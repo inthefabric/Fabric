@@ -1,0 +1,14 @@
+syntax: glob
+_Local/*
+*.suo
+*.user
+*/bin/*
+*/obj/*
+*.Publish.xml
+_Publish/*
+Global/GlobalConnectionStrings.config
+VisualizeHg.bat
+Fabric.*.log
+_Publish_*/*
+Fabric.*.log.*
+Solution/_ReSharper.Fabric/*
