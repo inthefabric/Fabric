@@ -17,7 +17,7 @@ var vWorkerPath = "";
 /**/
 
 NodeHttp.createServer(onRequest).listen(vPort, "127.0.0.1");
-console.log("Server running at http://127.0.0.1:"+vPort+"/");
+console.log("ApiServer running at http://127.0.0.1:"+vPort+"/");
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Server", "Fabric
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Worker", "Fabric.Api.Worker\Fabric.Api.Worker.csproj", "{F70882D1-789C-43B1-BA99-D9E1B6828EDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db.Server", "Fabric.Db.Server\Fabric.Db.Server.csproj", "{4109140D-8960-4FD7-A037-8B21AFC6659B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{F70882D1-789C-43B1-BA99-D9E1B6828EDC}.Release|Mixed Platforms.Build.0 = Release|x86
 		{F70882D1-789C-43B1-BA99-D9E1B6828EDC}.Release|x86.ActiveCfg = Release|x86
 		{F70882D1-789C-43B1-BA99-D9E1B6828EDC}.Release|x86.Build.0 = Release|x86
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4109140D-8960-4FD7-A037-8B21AFC6659B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
