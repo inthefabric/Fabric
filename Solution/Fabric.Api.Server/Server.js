@@ -24,8 +24,14 @@ console.log("ApiServer running at http://127.0.0.1:"+vPort+"/");
 /*----------------------------------------------------------------------------------------------------*/
 function onRequest(pRequest, pResponse) {
 	var parsed = NodeUrl.parse(pRequest.url);
-	var pathAndQuery = pRequest.method+" "+parsed.pathname+(parsed.query ? "?"+parsed.query : "");
+	var path = parsed.pathname;
 
+	if ( path.substring(path.length-4) == ".ico" ) {
+		pResponse.end();
+		return ;
+	}
+
+	var pathAndQuery = pRequest.method+" "+path+(parsed.query ? "?"+parsed.query : "");
 	console.log("Request: "+pathAndQuery);
 
 	/*if ( parsed.pathname.indexOf("testform") != -1 ) {
@@ -76,18 +82,19 @@ function beginWorker(pRequest, pResponse, pParsedUrl, pPostData) {
 	});
 
 	worker.on("exit", function(pCode) {
-		var curlyI = workerData.indexOf("\n{");
+		var dataStr = "&data=#\n";
+		var dataI = workerData.indexOf(dataStr)+dataStr.length;
 
-		if ( curlyI == -1 ) {
+		if ( dataI == -1 ) {
 			console.log("WORKER RESPONSE ERROR: "+workerData);
 			pResponse.writeHead(500, { "Content-Type": "text/plain" });
 			pResponse.end();
 			return ;
 		}
 		
-		var metaStr = workerData.substring(0, curlyI);
+		var metaStr = workerData.substring(0, dataI);
 		var meta = NodeQueryStr.parse(metaStr);
-		var json = workerData.substring(curlyI+1);
+		var json = workerData.substring(dataI);
 
 		/*pResponse.write("worker exit code: "+pCode+"\n");
 		pResponse.write("metaStr: "+metaStr+"\n");

@@ -39,6 +39,12 @@ function onRequest(pRequest, pResponse) {
 
 /*----------------------------------------------------------------------------------------------------*/
 function onQueryData(pResponse, pQueryData) {
+	if ( !pQueryData ) {
+		console.log("No query data!");
+		pResponse.end();
+		return;
+	}
+
 	var gremReq = NodeHttp.request(vOptions, function(pGremResp) { 
 		onGremResponse(pGremResp, pResponse);
 	});
@@ -67,29 +73,39 @@ function onGremResponse(pGremResp, pResponse) {
 	});
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*----------------------------------------------------------------------------------------------------*/
 function fixGremData(pGremData) {
-	var list = JSON.parse(pGremData);
-	var item;
+	var obj = JSON.parse(pGremData);
 
-	for ( var key in list ) {
-		item = list[key];
-		delete item.outgoing_relationships;
-		delete item.traverse;
-		delete item.all_typed_relationships;
-		delete item.property;
-		delete item.properties;
-		delete item.outgoing_typed_relationships;
-		delete item.incoming_relationships;
-		delete item.extensions;
-		delete item.create_relationship;
-		delete item.paged_traverse;
-		delete item.all_relationships;
-		delete item.incoming_typed_relationships;
-	};
+	if ( Array.isArray(obj) ) {
+		for ( var key in obj ) {
+			fixGremDataItem(obj[key]);
+		}
+	}
+	else {
+		fixGremDataItem(obj);
+	}
 
-	return JSON.stringify(list)
+	return JSON.stringify(obj)
 		.replace(/http:\/\/localhost:7474\/db\/data\//g, "")
 		.replace(/(?:":")node\//g, "\":\"n/")
 		.replace(/(?:":")relationship\//g, "\":\"r/");
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+function fixGremDataItem(pItem) {
+	delete pItem.outgoing_relationships;
+	delete pItem.traverse;
+	delete pItem.all_typed_relationships;
+	delete pItem.property;
+	delete pItem.properties;
+	delete pItem.outgoing_typed_relationships;
+	delete pItem.incoming_relationships;
+	delete pItem.extensions;
+	delete pItem.create_relationship;
+	delete pItem.paged_traverse;
+	delete pItem.all_relationships;
+	delete pItem.incoming_typed_relationships;
 }
