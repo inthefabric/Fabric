@@ -18,7 +18,7 @@ namespace Fabric.Api.Server.Util {
 
 		public const int ServerId = 0; //0 to 1023
 
-		private static long LastMilli = 0;
+		private static long LastMilli;
 		private readonly static Dictionary<SequenceKey, SharpflakeSequence> Sequence = BuildSequence();
 
 
@@ -39,7 +39,7 @@ namespace Fabric.Api.Server.Util {
 			//milliseconds since Jan 1, 2012
 			//this will overflow 41 bits in year 2071 (69 years)
 			
-			long m = (DateTime.Now.AddYears(-2011).Ticks/10000L);
+			long m = (DateTime.UtcNow.AddYears(-2011).Ticks/10000L);
 
 			if ( m < LastMilli ) {
 				throw new Exception("Clock moved backwards; rejecting requests for the next "+

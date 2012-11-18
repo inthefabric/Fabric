@@ -1,0 +1,178 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric\Solution\Fabric.Domain.Graph\bin\Debug\Fabric.Domain.Graph.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric\Solution\Fabric.Domain.Definition\bin\Debug\Fabric.Domain.Definition.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain.Graph" #>
+<#@ import namespace="Fabric.Domain.Definition" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+//NEXT: support validation and restrictions
+
+namespace Fabric.Domain.Graph {
+
+
+	/* Relationship Types */
+
+
+<#
+var schema = new Schema();
+var relTypeMap = new Dictionary<string, bool>();
+
+foreach ( SchemaRel rel in schema.Rels ) {
+	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
+	relTypeMap.Add(rel.Name, true);
+#>
+	/*================================================================================================*/
+	public interface I<#= rel.Name #> : IGraphQueryRelType {}
+
+	/*================================================================================================*/
+	public class <#= rel.Name #> : I<#= rel.Name #> {}
+
+<#
+}
+#>
+
+	/* Relationships */
+
+
+<#
+var relMap = new Dictionary<string, bool>();
+
+foreach ( SchemaNode node in schema.Nodes ) {
+	foreach ( SchemaRel rel in schema.Rels ) {
+		var relOut = (rel.FromNode == node);
+		var relDir = (relOut ? "Out" : "In");
+		var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
+		var fromNode = rel.FromNode.Name;
+		var toNode = rel.ToNode.Name;
+		string relClass = relDir+relAmt+fromNode+rel.Name+toNode;
+		
+		if ( relMap.ContainsKey(relClass) ) { continue; }
+		relMap.Add(relClass, true);
+
+		string relParent = relDir+relAmt+
+			"<"+
+			"IQueryable"+rel.FromNode.Name+", "+
+			rel.FromNode.Name+", "+
+			"I"+rel.Name+", "+
+			"IQueryable"+rel.ToNode.Name+", "+
+			rel.ToNode.Name+
+			">";
+#>
+	/*================================================================================================*/
+	public interface I<#= relClass #> :
+			I<#= relParent #> {
+
+		IQueryable<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get; }
+		IQueryable<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get; }
+
+	}
+
+	/*================================================================================================*/
+	public class <#= relClass #> :
+			<#= relParent #>, I<#= relClass #> {
+			
+		public virtual IQueryable<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
+		public virtual IQueryable<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
+		public override string Label { get { return "<#= rel.FromNode.Name+rel.Name+rel.ToNode.Name #>"; } }
+
+	}
+
+<#
+	}
+}
+#>
+
+
+	/* Query Nodes interfaces */
+
+
+<#
+foreach ( SchemaNode node in schema.Nodes ) {
+#>
+	/*================================================================================================*/
+	public interface IQueryable<#= node.Name #> : IGraphQueryNode {
+
+<#
+	foreach ( SchemaRel rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		var relOut = (rel.FromNode == node);
+		var relDir = (relOut ? "Out" : "In");
+		var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
+		var fromNode = (relOut ? "" : rel.FromNode.Name);
+		var toNode = (!relOut ? "" : rel.ToNode.Name);
+		string relClass = relDir+relAmt+rel.FromNode.Name+rel.Name+rel.ToNode.Name;
+#>
+		I<#= relClass #> <#= relDir+fromNode+rel.Name+toNode #> { get; }
+<#
+	}
+#>
+
+	}
+
+<#
+}
+#>
+
+	/* Nodes */
+
+
+<#
+foreach ( SchemaNode node in schema.Nodes ) {
+#>
+	/*================================================================================================*/
+	public class <#= node.Name #> : GraphQueryNode, IQueryable<#= node.Name #> {
+
+<#
+	foreach ( SchemaProp prop in node.Props ) { 
+		string propType = prop.Type.Name;
+		string propName = prop.Name;
+
+		switch ( prop.Type.Name ) {
+			case "Int64": propType = "long"; break;
+			case "Byte": propType = "byte"; break;
+			case "String": propType = "string"; break;
+			case "Boolean": propType = "bool"; break;
+			case "Single": propType = "float"; break;
+			case "DateTime": propType = "long"; propName += "Timestamp"; break;
+		}
+#>
+		public virtual <#= propType+" "+propName #> { get; set; }
+<#
+	}
+
+	if ( node.IsRoot ) {
+#>
+		public override bool IsRoot { get { return true; } }
+<#
+	} //end if "isRoot"
+
+	foreach ( SchemaRel rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		var relOut = (rel.FromNode == node);
+		var relDir = (relOut ? "Out" : "In");
+		var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
+		var fromNode = (relOut ? "" : rel.FromNode.Name);
+		var toNode = (!relOut ? "" : rel.ToNode.Name);
+		string relClass = relDir+relAmt+rel.FromNode.Name+rel.Name+rel.ToNode.Name;
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual I<#= relClass #> <#= relDir+fromNode+rel.Name+toNode #> {
+			get { return new <#= relClass #> { Query = Query }; }
+		}
+<#
+	}
+#>
+
+	}
+
+<#
+}
+#>
+
+}
