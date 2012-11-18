@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 
-namespace Fabric.Api.Server {
+namespace Fabric.Api.Server.Util {
 
 	/*================================================================================================*/
 	public class GremlinRequest {

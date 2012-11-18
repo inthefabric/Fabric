@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Api.Server.Util;
 using Nancy;
 
 namespace Fabric.Api.Server {
@@ -18,15 +19,21 @@ namespace Fabric.Api.Server {
 			try {
 				string query = (string)pParams["1"];
 				query = query.Replace('/', '.');
+
 				string result = "";
 
-				foreach ( var key in pParams ) {
+				/*foreach ( var key in pParams ) {
 					result += key+": "+pParams[key]+"\n";
 				}
 
+				long id = Sharpflake.GetId(Sharpflake.SequenceKey.Factor);
+				result += "TestID: "+id+" ... "+Convert.ToString(id, 2)+"\n";
+				 result += "----\n";
+				 */
+
 				//var gremReq = new GremlinRequestAsync(query);
 				var gremReq = new GremlinRequest(query);
-				result += "----\n"+gremReq.ResponseData;
+				result += gremReq.ResponseData;
 				return result;
 			}
 			catch ( Exception ex ) {

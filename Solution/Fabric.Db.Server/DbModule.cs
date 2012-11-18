@@ -66,8 +66,6 @@ namespace Fabric.Db.Server {
 		public string End { get; set; }
 		public Dictionary<string, string> Data { get; set; }
 
-		//TODO: add additional properties as needed
-
 	}
 
 }

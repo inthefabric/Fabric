@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 
-namespace Fabric.Api.Server {
+namespace Fabric.Api.Server.Util {
 
 	/*================================================================================================*/
 	public class GremlinRequestAsync {

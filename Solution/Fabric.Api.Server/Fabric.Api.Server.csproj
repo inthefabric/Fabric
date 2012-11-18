@@ -60,8 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModule.cs" />
-    <Compile Include="GremlinRequest.cs" />
-    <Compile Include="GremlinRequestAsync.cs" />
+    <Compile Include="Util\GremlinRequest.cs" />
+    <Compile Include="Util\GremlinRequestAsync.cs" />
+    <Compile Include="Util\Sharpflake.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
