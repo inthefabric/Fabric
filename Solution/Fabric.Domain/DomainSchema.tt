@@ -1,36 +1,41 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric\Solution\Fabric.Domain.Graph\bin\Debug\Fabric.Domain.Graph.dll" #>
-<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric\Solution\Fabric.Domain.Definition\bin\Debug\Fabric.Domain.Definition.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="Fabric.Domain.Graph" #>
-<#@ import namespace="Fabric.Domain.Definition" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using Weaver.Items;
+using Weaver.Interfaces;
+
 //NEXT: support validation and restrictions
 
-namespace Fabric.Domain.Graph {
+namespace Fabric.Domain {
 
 
 	/* Relationship Types */
 
 
 <#
-var schema = new Schema();
+var schema = new GraphSchema();
 var relTypeMap = new Dictionary<string, bool>();
 
-foreach ( SchemaRel rel in schema.Rels ) {
+foreach ( WeaverRelSchema rel in schema.Rels ) {
 	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
 	relTypeMap.Add(rel.Name, true);
 #>
 	/*================================================================================================*/
-	public interface I<#= rel.Name #> : IGraphQueryRelType {}
+	public class <#= rel.Name #> : IWeaverRelType {
 
-	/*================================================================================================*/
-	public class <#= rel.Name #> : I<#= rel.Name #> {}
+		public string Label { get { return "<#= rel.Name #>"; } }
+
+	}
 
 <#
 }
@@ -42,42 +47,44 @@ foreach ( SchemaRel rel in schema.Rels ) {
 <#
 var relMap = new Dictionary<string, bool>();
 
-foreach ( SchemaNode node in schema.Nodes ) {
-	foreach ( SchemaRel rel in schema.Rels ) {
-		var relOut = (rel.FromNode == node);
-		var relDir = (relOut ? "Out" : "In");
-		var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		//var relOut = (rel.FromNode == node);
+		//var relDir = (relOut ? "Out" : "In");
+		//var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
 		var fromNode = rel.FromNode.Name;
 		var toNode = rel.ToNode.Name;
-		string relClass = relDir+relAmt+fromNode+rel.Name+toNode;
+		string relClass = fromNode+rel.Name+toNode;
 		
 		if ( relMap.ContainsKey(relClass) ) { continue; }
 		relMap.Add(relClass, true);
 
-		string relParent = relDir+relAmt+
+		string interfaceTypes = "<IQuery"+rel.FromNode.Name+", IQuery"+rel.ToNode.Name+">";
+		string classTypes = 
 			"<"+
-			"IQueryable"+rel.FromNode.Name+", "+
+			"IQuery"+rel.FromNode.Name+", "+
 			rel.FromNode.Name+", "+
-			"I"+rel.Name+", "+
-			"IQueryable"+rel.ToNode.Name+", "+
+			rel.Name+", "+
+			"IQuery"+rel.ToNode.Name+", "+
 			rel.ToNode.Name+
 			">";
 #>
 	/*================================================================================================*/
-	public interface I<#= relClass #> :
-			I<#= relParent #> {
+	public interface I<#= GetRelClassName(node, rel) #> :
+			IWeaverRel<#= interfaceTypes #>, IWeaverQueryRel {
 
-		IQueryable<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get; }
-		IQueryable<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get; }
+		IQuery<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get; }
+		IQuery<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get; }
 
 	}
 
 	/*================================================================================================*/
-	public class <#= relClass #> :
-			<#= relParent #>, I<#= relClass #> {
+	public class <#= GetRelClassName(node, rel) #> :
+			WeaverRel<#= classTypes #>,
+			I<#= relClass #> {
 			
-		public virtual IQueryable<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
-		public virtual IQueryable<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
+		public virtual IQuery<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
+		public virtual IQuery<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
 		public override string Label { get { return "<#= rel.FromNode.Name+rel.Name+rel.ToNode.Name #>"; } }
 
 	}
@@ -92,22 +99,16 @@ foreach ( SchemaNode node in schema.Nodes ) {
 
 
 <#
-foreach ( SchemaNode node in schema.Nodes ) {
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 	/*================================================================================================*/
-	public interface IQueryable<#= node.Name #> : IGraphQueryNode {
+	public interface IQuery<#= node.Name #> : IWeaverQueryNode {
 
 <#
-	foreach ( SchemaRel rel in schema.Rels ) {
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		var relOut = (rel.FromNode == node);
-		var relDir = (relOut ? "Out" : "In");
-		var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
-		var fromNode = (relOut ? "" : rel.FromNode.Name);
-		var toNode = (!relOut ? "" : rel.ToNode.Name);
-		string relClass = relDir+relAmt+rel.FromNode.Name+rel.Name+rel.ToNode.Name;
 #>
-		I<#= relClass #> <#= relDir+fromNode+rel.Name+toNode #> { get; }
+		I<#= GetRelClassName(node, rel) #> <#= GetRelPropName(node, rel) #> { get; }
 <#
 	}
 #>
@@ -122,13 +123,13 @@ foreach ( SchemaNode node in schema.Nodes ) {
 
 
 <#
-foreach ( SchemaNode node in schema.Nodes ) {
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 	/*================================================================================================*/
-	public class <#= node.Name #> : GraphQueryNode, IQueryable<#= node.Name #> {
+	public class <#= node.Name #> : WeaverNode, IQuery<#= node.Name #> {
 
 <#
-	foreach ( SchemaProp prop in node.Props ) { 
+	foreach ( WeaverPropSchema prop in node.Props ) { 
 		string propType = prop.Type.Name;
 		string propName = prop.Name;
 
@@ -151,19 +152,14 @@ foreach ( SchemaNode node in schema.Nodes ) {
 <#
 	} //end if "isRoot"
 
-	foreach ( SchemaRel rel in schema.Rels ) {
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		var relOut = (rel.FromNode == node);
-		var relDir = (relOut ? "Out" : "In");
-		var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
-		var fromNode = (relOut ? "" : rel.FromNode.Name);
-		var toNode = (!relOut ? "" : rel.ToNode.Name);
-		string relClass = relDir+relAmt+rel.FromNode.Name+rel.Name+rel.ToNode.Name;
+		string relClass = GetRelClassName(node, rel);
 #>
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual I<#= relClass #> <#= relDir+fromNode+rel.Name+toNode #> {
-			get { return new <#= relClass #> { Query = Query }; }
+		public virtual I<#= relClass #> <#= GetRelPropName(node, rel) #> {
+			get { return NewRel<<#= relClass #>>(WeaverRelConn.<#= GetRelComm(node, rel) #>); }
 		}
 <#
 	}
@@ -176,3 +172,22 @@ foreach ( SchemaNode node in schema.Nodes ) {
 #>
 
 }
+<#+
+    public string GetRelClassName(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+		return pRel.FromNode.Name + pRel.Name + pRel.ToNode.Name;
+    }
+
+	public string GetRelPropName(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+		bool isOut = (pRel.FromNode == pNode);
+
+		var fromNode = (isOut ? "" : (pRel.Many ? "Many" : "One")+pRel.FromNode.Name);
+		var toNode = (!isOut ? "" : (pRel.RevMany ? "Many" : "One")+pRel.ToNode.Name);
+		return (isOut ? "Out" : "In") + fromNode + pRel.Name + toNode;
+    }
+
+	public string GetRelComm(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+		bool isOut = (pRel.FromNode == pNode);
+		bool isMany = ((isOut && pRel.Many) || (!isOut && pRel.RevMany));
+		return (isOut ? "OutTo" : "InFrom") + (isMany ? "Many" : "One") + "Node" + (isMany ? "s" : "");
+    }
+#>
