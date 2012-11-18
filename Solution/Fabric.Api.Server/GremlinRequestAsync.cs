@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 
-namespace Fabric.Api.Worker {
+namespace Fabric.Api.Server {
 
 	/*================================================================================================*/
 	public class GremlinRequestAsync {
@@ -131,7 +131,7 @@ namespace Fabric.Api.Worker {
 		public Stream StreamResp { get; set; }
 		public String ResponseData { get; set; }
 		public bool IsComplete { get; set; }
-		public GremlinRequest GremReq { get; set; }
+		public GremlinRequestAsync GremReq { get; set; }
 		public string ErrorMsg { get; set; }
 
 
