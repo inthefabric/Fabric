@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Weaver.Items;
 using Weaver.Schema;
 
 namespace Fabric.Domain.Schema {
@@ -28,118 +29,150 @@ namespace Fabric.Domain.Schema {
 		public GraphSchema() {
 			Nodes = new List<WeaverNodeSchema>();
 			Rels = new List<WeaverRelSchema>();
+			WeaverPropSchema p;
 
 			////
 
-			var nodeForType = new WeaverNodeSchema("NodeForType", null) { IsAbstract=true };
-			nodeForType.Props.Add(new WeaverPropSchema("Name", typeof(string)) { LenMin=1, LenMax=32, IsUnique=true, ValidRegex=ValidTitleRegex });
-			nodeForType.Props.Add(new WeaverPropSchema("Description", typeof(string)) { LenMax=256, ValidRegex=ValidTitleRegex });
-			Nodes.Add(nodeForType);
+			WeaverNodeSchema nodeForType = AddNode("NodeForType", null);
+			nodeForType.IsAbstract = true;
+			p = AddProp(nodeForType, "Name", typeof(string));
+				p.LenMin = 1;
+				p.LenMax = 32;
+				p.IsUnique = true;
+				p.ValidRegex = ValidTitleRegex;
+			p = AddProp(nodeForType, "Description", typeof(string));
+				p.LenMax = 256;
+				p.ValidRegex = ValidTitleRegex;
 
-			var nodeForAction = new WeaverNodeSchema("NodeForAction", null) { IsAbstract=true };
-			nodeForAction.Props.Add(new WeaverPropSchema("Performed", typeof(DateTime)) { IsTimestamp=true });
-			nodeForAction.Props.Add(new WeaverPropSchema("Note", typeof(string)) { LenMax=256 });
-			Nodes.Add(nodeForAction);
+			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", null);
+			nodeForAction.IsAbstract = true;
+			p = AddProp(nodeForAction, "Performed", typeof(DateTime));
+				p.IsTimestamp = true;
+			p = AddProp(nodeForAction, "Note", typeof(string));
+				p.LenMax = 256;
 
 			////
 
-			var root = new WeaverNodeSchema("Root", "R");
+			WeaverNodeSchema root = AddNode("Root", "R");
 			root.IsRoot = true;
-			Nodes.Add(root);
 
 			////
 
-			var app = new WeaverNodeSchema("App", "Ap");
-			app.Props.Add(new WeaverPropSchema("AppId", typeof(long)));
-			app.Props.Add(new WeaverPropSchema("Name", typeof(string)) {
-				LenMin=3,
-				LenMax=64,
-				IsUnique=true,
-				IsCaseInsensitive=true,
-				ValidRegex=ValidTitleRegex
-			});
-			app.Props.Add(new WeaverPropSchema("Secret", typeof(string)) { Len=32 });
-			Nodes.Add(app);
+			WeaverNodeSchema app = AddNode("App", "Ap");
+			p = AddProp(app, "AppId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(app, "Name", typeof(string));
+				p.LenMin = 3;
+				p.LenMax = 64;
+				p.IsUnique = true;
+				p.IsCaseInsensitive = true;
+				p.ValidRegex = ValidTitleRegex;
+			p = AddProp(app, "Secret", typeof(string));
+				p.Len = 32;
 
-			var artifact = new WeaverNodeSchema("Artifact", "A");
-			artifact.Props.Add(new WeaverPropSchema("ArtifactId", typeof(long)));
-			artifact.Props.Add(new WeaverPropSchema("IsPrivate", typeof(bool)));
-			artifact.Props.Add(new WeaverPropSchema("Created", typeof(DateTime)) { IsTimestamp=true });
-			Nodes.Add(artifact);
+			WeaverNodeSchema artifact = AddNode("Artifact", "A");
+			p = AddProp(artifact, "ArtifactId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(artifact, "IsPrivate", typeof(bool));
+			p = AddProp(artifact, "Created", typeof(DateTime));
+				p.IsTimestamp = true;
 
-			var artifactType = new WeaverNodeSchema("ArtifactType", "AT") { BaseNode=nodeForType };
-			artifactType.Props.Add(new WeaverPropSchema("ArtifactTypeId", typeof(byte)));
-			Nodes.Add(artifactType);
+			WeaverNodeSchema artifactType = AddNode("ArtifactType", "AT");
+			artifactType.BaseNode = nodeForType;
+			p = AddProp(artifactType, "ArtifactTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
 
-			var crowd = new WeaverNodeSchema("Crowd", "C");
-			crowd.Props.Add(new WeaverPropSchema("CrowdId", typeof(long)));
-			crowd.Props.Add(new WeaverPropSchema("Name", typeof(string)) { LenMin=3, LenMax=64 });
-			crowd.Props.Add(new WeaverPropSchema("Description", typeof(string)) { LenMax=256 });
-			crowd.Props.Add(new WeaverPropSchema("IsPrivate", typeof(bool)));
-			crowd.Props.Add(new WeaverPropSchema("IsInviteOnly", typeof(bool)));
-			Nodes.Add(crowd);
+			WeaverNodeSchema crowd = AddNode("Crowd", "C");
+			p = AddProp(crowd, "CrowdId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(crowd, "Name", typeof(string));
+				p.LenMin = 3;
+				p.LenMax = 64;
+			p = AddProp(crowd, "Description", typeof(string));
+				p.LenMax = 256;
+			p = AddProp(crowd, "IsPrivate", typeof(bool));
+			p = AddProp(crowd, "IsInviteOnly", typeof(bool));
 
-			var crowdian = new WeaverNodeSchema("Crowdian", "Cn");
-			crowdian.Props.Add(new WeaverPropSchema("CrowdianId", typeof(long)));
-			Nodes.Add(crowdian);
+			WeaverNodeSchema crowdian = AddNode("Crowdian", "Cn");
+			p = AddProp(crowdian, "CrowdianId", typeof(long));
+				p.IsPrimaryKey = true;
 
-			var crowdianType = new WeaverNodeSchema("CrowdianType", "CT") { BaseNode=nodeForType };
-			crowdianType.Props.Add(new WeaverPropSchema("CrowdianTypeId", typeof(byte)));
-			Nodes.Add(crowdianType);
+			WeaverNodeSchema crowdianType = AddNode("CrowdianType", "CT");
+			crowdianType.BaseNode = nodeForType;
+			p = AddProp(crowdianType, "CrowdianTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
 
-			var crowdianTypeAssign = new WeaverNodeSchema("CrowdianTypeAssign", "CTA") { BaseNode=nodeForAction };
-			crowdianTypeAssign.Props.Add(new WeaverPropSchema("Weight", typeof(float)));
-			Nodes.Add(crowdianTypeAssign);
+			WeaverNodeSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
+			crowdianTypeAssign.BaseNode = nodeForAction;
+			p = AddProp(crowdianTypeAssign, "Weight", typeof(float));
 
-			var email = new WeaverNodeSchema("Email", "E");
-			email.Props.Add(new WeaverPropSchema("EmailId", typeof(long)));
-			email.Props.Add(new WeaverPropSchema("Address", typeof(string)) { LenMax=256, IsUnique=true, IsCaseInsensitive=true, ValidRegex=ValidEmailRegex });
-			email.Props.Add(new WeaverPropSchema("Code", typeof(string)) { Len=32 });
-			email.Props.Add(new WeaverPropSchema("Created", typeof(DateTime)) { IsTimestamp=true });
-			email.Props.Add(new WeaverPropSchema("Verified", typeof(DateTime)) { IsNullable=true });
-			Nodes.Add(email);
+			WeaverNodeSchema email = AddNode("Email", "E");
+			p = AddProp(email, "EmailId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(email, "Address", typeof(string));
+				p.LenMax = 256;
+				p.IsUnique = true;
+				p.IsCaseInsensitive = true;
+				p.ValidRegex = ValidEmailRegex;
+			p = AddProp(email, "Code", typeof(string));
+				p.Len = 32;
+			p = AddProp(email, "Created", typeof(DateTime));
+				p.IsTimestamp = true;
+			p = AddProp(email, "Verified", typeof(DateTime));
+				p.IsNullable = true;
 
-			var label = new WeaverNodeSchema("Label", "L");
-			label.Props.Add(new WeaverPropSchema("LabelId", typeof(long)));
-			label.Props.Add(new WeaverPropSchema("Name", typeof(string)) {
-				LenMin=1,
-				LenMax=128,
-				IsUnique=true,
-				IsCaseInsensitive=true,
-				ValidRegex=ValidTitleRegex
-			});
-			Nodes.Add(label);
+			WeaverNodeSchema label = AddNode("Label", "L");
+			p = AddProp(label, "LabelId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(label, "Name", typeof(string));
+				p.LenMin = 1;
+				p.LenMax = 128;
+				p.IsUnique = true;
+				p.IsCaseInsensitive = true;
+				p.ValidRegex = ValidTitleRegex;
 
-			var member = new WeaverNodeSchema("Member", "M");
-			member.Props.Add(new WeaverPropSchema("MemberId", typeof(long)));
-			Nodes.Add(member);
+			WeaverNodeSchema member = AddNode("Member", "M");
+			p = AddProp(member, "MemberId", typeof(long));
+				p.IsPrimaryKey = true;
 
-			var memberType = new WeaverNodeSchema("MemberType", "MT") { BaseNode=nodeForType };
-			memberType.Props.Add(new WeaverPropSchema("MemberTypeId", typeof(byte)));
-			Nodes.Add(memberType);
+			WeaverNodeSchema memberType = AddNode("MemberType", "MT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(memberType, "MemberTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
 
-			var memberTypeAssign = new WeaverNodeSchema("MemberTypeAssign", "MTA") { BaseNode=nodeForAction };
-			Nodes.Add(memberTypeAssign);
+			WeaverNodeSchema memberTypeAssign = AddNode("MemberTypeAssign", "MTA");
+			memberTypeAssign.BaseNode = nodeForAction;
 
-			var thing = new WeaverNodeSchema("Thing", "T");
-			thing.Props.Add(new WeaverPropSchema("ThingId", typeof(long)));
-			thing.Props.Add(new WeaverPropSchema("IsClass", typeof(bool)));
-			thing.Props.Add(new WeaverPropSchema("Name", typeof(string)) { LenMax=128 });
-			thing.Props.Add(new WeaverPropSchema("Disamb", typeof(string)) { LenMax=128 });
-			thing.Props.Add(new WeaverPropSchema("Note", typeof(string)) { LenMax=256 });
-			Nodes.Add(thing);
+			WeaverNodeSchema thing = AddNode("Thing", "T");
+			p = AddProp(thing, "ThingId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(thing, "IsClass", typeof(bool));
+			p = AddProp(thing, "Name", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(thing, "Disamb", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(thing, "Note", typeof(string));
+				p.LenMax = 256;
 
-			var url = new WeaverNodeSchema("Url", "Ur");
-			url.Props.Add(new WeaverPropSchema("UrlId", typeof(long)));
-			url.Props.Add(new WeaverPropSchema("Name", typeof(string)) { LenMax=128 });
-			url.Props.Add(new WeaverPropSchema("AbsoluteUrl", typeof(string)) { LenMax=2048, IsUnique=true, IsCaseInsensitive=true });
-			Nodes.Add(url);
+			WeaverNodeSchema url = AddNode("Url", "Ur");
+			p = AddProp(url, "UrlId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(url, "Name", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(url, "AbsoluteUrl", typeof(string));
+				p.LenMax = 2048;
+				p.IsUnique = true;
+				p.IsCaseInsensitive = true;
 
-			var user = new WeaverNodeSchema("User", "U");
-			user.Props.Add(new WeaverPropSchema("UserId", typeof(long)));
-			user.Props.Add(new WeaverPropSchema("Name", typeof(string)) { LenMax=16, IsUnique=true, IsCaseInsensitive=true, ValidRegex=ValidUserRegex });
-			//store password hashes in Redis
-			Nodes.Add(user);
+			WeaverNodeSchema user = AddNode("User", "U");
+			p = AddProp(user, "UserId", typeof(long));
+			p = AddProp(user, "Name", typeof(string));
+				p.LenMax = 16;
+				p.IsUnique = true;
+				p.IsCaseInsensitive = true;
+				p.ValidRegex = ValidUserRegex;
+			p = AddProp(user, "Password", typeof(string));
+				p.Len = 32; //MD5
 
 			////
 
@@ -148,52 +181,87 @@ namespace Fabric.Domain.Schema {
 			const string uses = "Uses";
 			const string creates = "Creates";
 
-			Rels.Add(new WeaverRelSchema(root, has, app) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, artifact) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, artifactType) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, crowd) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, crowdian) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, crowdianType) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, email) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, label) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, member) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, memberType) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, thing) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, url) { Many=true });
-			Rels.Add(new WeaverRelSchema(root, has, user) { Many=true });
+			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
+			const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
+			const WeaverRelConn ifzom = WeaverRelConn.InFromZeroOrMore;
+			const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
+			const WeaverRelConn oto = WeaverRelConn.OutToOne;
+			//const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
+			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
+			//const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
 
-			Rels.Add(new WeaverRelSchema(app, has, artifact));
-			Rels.Add(new WeaverRelSchema(app, uses, email) { Many=true });
+			AddRel(root, has, app, otzom, ifo);
+			AddRel(root, has, artifact, otzom, ifo);
+			AddRel(root, has, artifactType, otzom, ifo);
+			AddRel(root, has, crowd, otzom, ifo);
+			AddRel(root, has, crowdian, otzom, ifo);
+			AddRel(root, has, crowdianType, otzom, ifo);
+			AddRel(root, has, email, otzom, ifo);
+			AddRel(root, has, label, otzom, ifo);
+			AddRel(root, has, member, otzom, ifo);
+			AddRel(root, has, memberType, otzom, ifo);
+			AddRel(root, has, thing, otzom, ifo);
+			AddRel(root, has, url, otzom, ifo);
+			AddRel(root, has, user, otzom, ifo);
 
-			Rels.Add(new WeaverRelSchema(artifact, uses, artifactType) { RevMany=true });
+			AddRel(app, has, artifact, oto, ifzoo);
+			AddRel(app, uses, email, oto, ifo);
 
-			Rels.Add(new WeaverRelSchema(crowd, has, artifact));
+			AddRel(artifact, uses, artifactType, oto, ifzom);
 
-			Rels.Add(new WeaverRelSchema(crowdian, uses, crowd) { RevMany=true });
-			Rels.Add(new WeaverRelSchema(crowdian, uses, user) { RevMany=true });
-			Rels.Add(new WeaverRelSchema(crowdian, has, crowdianTypeAssign));
-			Rels.Add(new WeaverRelSchema(crowdian, hasHistoric, crowdianTypeAssign) { Many=true });
+			AddRel(crowd, has, artifact, oto, ifzoo);
 
-			Rels.Add(new WeaverRelSchema(crowdianTypeAssign, uses, crowdianType) { RevMany=true });
+			AddRel(crowdian, uses, crowd, oto, ifoom);
+			AddRel(crowdian, uses, user, oto, ifzom);
+			AddRel(crowdian, has, crowdianTypeAssign, oto, ifo);
+			AddRel(crowdian, hasHistoric, crowdianTypeAssign, otzom, ifo);
 
-			Rels.Add(new WeaverRelSchema(label, has, artifact));
+			AddRel(crowdianTypeAssign, uses, crowdianType, oto, ifzom);
 
-			Rels.Add(new WeaverRelSchema(member, uses, app) { RevMany=true });
-			Rels.Add(new WeaverRelSchema(member, uses, user) { RevMany=true });
-			Rels.Add(new WeaverRelSchema(member, has, memberTypeAssign));
-			Rels.Add(new WeaverRelSchema(member, hasHistoric, memberTypeAssign) { Many=true });
-			Rels.Add(new WeaverRelSchema(member, creates, artifact) { Many=true });
-			Rels.Add(new WeaverRelSchema(member, creates, memberTypeAssign) { Many=true });
+			AddRel(label, has, artifact, oto, ifzoo);
 
-			Rels.Add(new WeaverRelSchema(memberTypeAssign, uses, memberType) { RevMany=true });
+			AddRel(member, uses, app, oto, ifoom);
+			AddRel(member, uses, user, oto, ifoom);
+			AddRel(member, has, memberTypeAssign, oto, ifo);
+			AddRel(member, hasHistoric, memberTypeAssign, otzom, ifo);
+			AddRel(member, creates, artifact, otzom, ifo);
+			AddRel(member, creates, memberTypeAssign, otzom, ifo);
 
-			Rels.Add(new WeaverRelSchema(thing, has, artifact));
+			AddRel(memberTypeAssign, uses, memberType, oto, ifzom);
 
-			Rels.Add(new WeaverRelSchema(url, has, artifact));
+			AddRel(thing, has, artifact, oto, ifzoo);
 
-			Rels.Add(new WeaverRelSchema(user, has, artifact));
-			Rels.Add(new WeaverRelSchema(user, uses, email) { Many=true });
-			Rels.Add(new WeaverRelSchema(user, creates, crowdianTypeAssign) { Many=true });
+			AddRel(url, has, artifact, oto, ifzoo);
+
+			AddRel(user, has, artifact, oto, ifzoo);
+			AddRel(user, uses, email, oto, ifo);
+			AddRel(user, creates, crowdianTypeAssign, otzom, ifo);
+		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public WeaverNodeSchema AddNode(string pName, string pShort) {
+			var n = new WeaverNodeSchema(pName, pShort);
+			Nodes.Add(n);
+			return n;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public WeaverRelSchema AddRel(WeaverNodeSchema pFrom, string pName, WeaverNodeSchema pTo,
+				WeaverRelConn pFromConn, WeaverRelConn pToConn) {
+			var r = new WeaverRelSchema(pFrom, pName, pTo);
+			r.FromNodeConn = pFromConn;
+			r.ToNodeConn = pToConn;
+			Rels.Add(r);
+			return r;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public WeaverPropSchema AddProp(WeaverNodeSchema pNode, string pName, Type pType) {
+			var p = new WeaverPropSchema(pName, pType);
+			pNode.Props.Add(p);
+			return p;
 		}
 
 	}

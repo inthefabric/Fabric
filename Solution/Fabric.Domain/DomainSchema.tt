@@ -4,6 +4,7 @@
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
@@ -108,7 +109,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
 #>
-		I<#= GetRelClassName(node, rel) #> <#= GetRelPropName(node, rel) #> { get; }
+		I<#= GetRelClassName(node, rel) #> <#= GetRelPropName(node, rel) #> { get; } //<#= GetRelConn(node, rel) #>
 <#
 	}
 #>
@@ -132,6 +133,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	foreach ( WeaverPropSchema prop in node.Props ) { 
 		string propType = prop.Type.Name;
 		string propName = prop.Name;
+		string attribs = "";
+		string attEnd = "\r\n\t\t";
 
 		switch ( prop.Type.Name ) {
 			case "Int64": propType = "long"; break;
@@ -141,8 +144,46 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			case "Single": propType = "float"; break;
 			case "DateTime": propType = "long"; propName += "Timestamp"; break;
 		}
+
+		if ( prop.IsCaseInsensitive != null ) {
+			attribs += "//[PropIsCaseInsensitive("+prop.IsCaseInsensitive+")]"+attEnd;
+		}
+
+		if ( prop.IsNullable != null ) {
+			attribs += "//[PropIsNullable("+prop.IsNullable+")]"+attEnd;
+		}
+
+		if ( prop.IsPrimaryKey != null ) {
+			attribs += "//[PropIsPrimaryKey("+prop.IsPrimaryKey+")]"+attEnd;
+		}
+
+		if ( prop.IsTimestamp != null ) {
+			attribs += "//[PropIsTimestamp("+prop.IsTimestamp+")]"+attEnd;
+		}
+
+		if ( prop.IsUnique != null ) {
+			attribs += "//[PropIsUnique("+prop.IsUnique+")]"+attEnd;
+		}
+
+		if ( prop.Len != null ) {
+			attribs += "//[PropLen("+prop.Len+")]"+attEnd;
+		}
+
+		if ( prop.LenMax != null ) {
+			attribs += "//[PropLenMax("+prop.LenMax+")]"+attEnd;
+		}
+
+		if ( prop.LenMin != null ) {
+			attribs += "//[PropLenMin("+prop.LenMin+")]"+attEnd;
+		}
+
+		if ( prop.ValidRegex != null ) {
+			attribs += "//[PropValidRegex(\""+prop.ValidRegex+"\")]"+attEnd;
+		}
+
 #>
-		public virtual <#= propType+" "+propName #> { get; set; }
+		<#= attribs #>public virtual <#= propType+" "+propName #> { get; set; }
+
 <#
 	}
 
@@ -159,7 +200,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual I<#= relClass #> <#= GetRelPropName(node, rel) #> {
-			get { return NewRel<<#= relClass #>>(WeaverRelConn.<#= GetRelComm(node, rel) #>); }
+			get { return NewRel<<#= relClass #>>(WeaverRelConn.<#= GetRelConn(node, rel) #>); }
 		}
 <#
 	}
@@ -170,24 +211,40 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 <#
 }
 #>
-
 }
 <#+
+
     public string GetRelClassName(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
 		return pRel.FromNode.Name + pRel.Name + pRel.ToNode.Name;
     }
 
+
 	public string GetRelPropName(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
 		bool isOut = (pRel.FromNode == pNode);
+		bool isMany = false;
 
-		var fromNode = (isOut ? "" : (pRel.Many ? "Many" : "One")+pRel.FromNode.Name);
-		var toNode = (!isOut ? "" : (pRel.RevMany ? "Many" : "One")+pRel.ToNode.Name);
+		if ( isOut ) {
+			isMany = (
+				pRel.FromNodeConn == WeaverRelConn.OutToOneOrMore ||
+				pRel.FromNodeConn == WeaverRelConn.OutToZeroOrMore
+			);
+		}
+		else {
+			isMany = (
+				pRel.ToNodeConn == WeaverRelConn.InFromOneOrMore ||
+				pRel.ToNodeConn == WeaverRelConn.InFromZeroOrMore
+			);
+		}
+
+		var fromNode = (isOut ? "" : pRel.FromNode.Name+(isMany ? "s" : ""));
+		var toNode = (!isOut ? "" : pRel.ToNode.Name+(isMany ? "s" : ""));
 		return (isOut ? "Out" : "In") + fromNode + pRel.Name + toNode;
     }
 
-	public string GetRelComm(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
-		bool isOut = (pRel.FromNode == pNode);
-		bool isMany = ((isOut && pRel.Many) || (!isOut && pRel.RevMany));
-		return (isOut ? "OutTo" : "InFrom") + (isMany ? "Many" : "One") + "Node" + (isMany ? "s" : "");
+
+	public string GetRelConn(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+		bool isFrom = (pRel.FromNode == pNode);
+		return (isFrom ? pRel.FromNodeConn : pRel.ToNodeConn)+"";
     }
+
 #>

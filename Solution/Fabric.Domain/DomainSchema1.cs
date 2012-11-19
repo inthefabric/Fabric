@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/18/2012 3:31:31 PM
+// Generated on 11/18/2012 10:36:57 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -765,166 +765,166 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public interface IQueryRoot : IWeaverQueryNode {
 
-		IRootHasApp OutHasOneApp { get; }
-		IRootHasArtifact OutHasOneArtifact { get; }
-		IRootHasArtifactType OutHasOneArtifactType { get; }
-		IRootHasCrowd OutHasOneCrowd { get; }
-		IRootHasCrowdian OutHasOneCrowdian { get; }
-		IRootHasCrowdianType OutHasOneCrowdianType { get; }
-		IRootHasEmail OutHasOneEmail { get; }
-		IRootHasLabel OutHasOneLabel { get; }
-		IRootHasMember OutHasOneMember { get; }
-		IRootHasMemberType OutHasOneMemberType { get; }
-		IRootHasThing OutHasOneThing { get; }
-		IRootHasUrl OutHasOneUrl { get; }
-		IRootHasUser OutHasOneUser { get; }
+		IRootHasApp OutHasApps { get; } //OutToZeroOrMore
+		IRootHasArtifact OutHasArtifacts { get; } //OutToZeroOrMore
+		IRootHasArtifactType OutHasArtifactTypes { get; } //OutToZeroOrMore
+		IRootHasCrowd OutHasCrowds { get; } //OutToZeroOrMore
+		IRootHasCrowdian OutHasCrowdians { get; } //OutToZeroOrMore
+		IRootHasCrowdianType OutHasCrowdianTypes { get; } //OutToZeroOrMore
+		IRootHasEmail OutHasEmails { get; } //OutToZeroOrMore
+		IRootHasLabel OutHasLabels { get; } //OutToZeroOrMore
+		IRootHasMember OutHasMembers { get; } //OutToZeroOrMore
+		IRootHasMemberType OutHasMemberTypes { get; } //OutToZeroOrMore
+		IRootHasThing OutHasThings { get; } //OutToZeroOrMore
+		IRootHasUrl OutHasUrls { get; } //OutToZeroOrMore
+		IRootHasUser OutHasUsers { get; } //OutToZeroOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryApp : IWeaverQueryNode {
 
-		IRootHasApp InManyRootHas { get; }
-		IAppHasArtifact OutHasOneArtifact { get; }
-		IAppUsesEmail OutUsesOneEmail { get; }
-		IMemberUsesApp InOneMemberUses { get; }
+		IRootHasApp InRootHas { get; } //InFromOne
+		IAppHasArtifact OutHasArtifact { get; } //OutToOne
+		IAppUsesEmail OutUsesEmail { get; } //OutToOne
+		IMemberUsesApp InMembersUses { get; } //InFromOneOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryArtifact : IWeaverQueryNode {
 
-		IRootHasArtifact InManyRootHas { get; }
-		IAppHasArtifact InOneAppHas { get; }
-		IArtifactUsesArtifactType OutUsesManyArtifactType { get; }
-		ICrowdHasArtifact InOneCrowdHas { get; }
-		ILabelHasArtifact InOneLabelHas { get; }
-		IMemberCreatesArtifact InManyMemberCreates { get; }
-		IThingHasArtifact InOneThingHas { get; }
-		IUrlHasArtifact InOneUrlHas { get; }
-		IUserHasArtifact InOneUserHas { get; }
+		IRootHasArtifact InRootHas { get; } //InFromOne
+		IAppHasArtifact InAppHas { get; } //InFromZeroOrOne
+		IArtifactUsesArtifactType OutUsesArtifactType { get; } //OutToOne
+		ICrowdHasArtifact InCrowdHas { get; } //InFromZeroOrOne
+		ILabelHasArtifact InLabelHas { get; } //InFromZeroOrOne
+		IMemberCreatesArtifact InMemberCreates { get; } //InFromOne
+		IThingHasArtifact InThingHas { get; } //InFromZeroOrOne
+		IUrlHasArtifact InUrlHas { get; } //InFromZeroOrOne
+		IUserHasArtifact InUserHas { get; } //InFromZeroOrOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryArtifactType : IWeaverQueryNode {
 
-		IRootHasArtifactType InManyRootHas { get; }
-		IArtifactUsesArtifactType InOneArtifactUses { get; }
+		IRootHasArtifactType InRootHas { get; } //InFromOne
+		IArtifactUsesArtifactType InArtifactsUses { get; } //InFromZeroOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryCrowd : IWeaverQueryNode {
 
-		IRootHasCrowd InManyRootHas { get; }
-		ICrowdHasArtifact OutHasOneArtifact { get; }
-		ICrowdianUsesCrowd InOneCrowdianUses { get; }
+		IRootHasCrowd InRootHas { get; } //InFromOne
+		ICrowdHasArtifact OutHasArtifact { get; } //OutToOne
+		ICrowdianUsesCrowd InCrowdiansUses { get; } //InFromOneOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryCrowdian : IWeaverQueryNode {
 
-		IRootHasCrowdian InManyRootHas { get; }
-		ICrowdianUsesCrowd OutUsesManyCrowd { get; }
-		ICrowdianUsesUser OutUsesManyUser { get; }
-		ICrowdianHasCrowdianTypeAssign OutHasOneCrowdianTypeAssign { get; }
-		ICrowdianUsesHistoricCrowdianTypeAssign OutUsesHistoricOneCrowdianTypeAssign { get; }
+		IRootHasCrowdian InRootHas { get; } //InFromOne
+		ICrowdianUsesCrowd OutUsesCrowd { get; } //OutToOne
+		ICrowdianUsesUser OutUsesUser { get; } //OutToOne
+		ICrowdianHasCrowdianTypeAssign OutHasCrowdianTypeAssign { get; } //OutToOne
+		ICrowdianUsesHistoricCrowdianTypeAssign OutUsesHistoricCrowdianTypeAssigns { get; } //OutToZeroOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryCrowdianType : IWeaverQueryNode {
 
-		IRootHasCrowdianType InManyRootHas { get; }
-		ICrowdianTypeAssignUsesCrowdianType InOneCrowdianTypeAssignUses { get; }
+		IRootHasCrowdianType InRootHas { get; } //InFromOne
+		ICrowdianTypeAssignUsesCrowdianType InCrowdianTypeAssignsUses { get; } //InFromZeroOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryCrowdianTypeAssign : IWeaverQueryNode {
 
-		ICrowdianHasCrowdianTypeAssign InOneCrowdianHas { get; }
-		ICrowdianUsesHistoricCrowdianTypeAssign InManyCrowdianUsesHistoric { get; }
-		ICrowdianTypeAssignUsesCrowdianType OutUsesManyCrowdianType { get; }
-		IUserCreatesCrowdianTypeAssign InManyUserCreates { get; }
+		ICrowdianHasCrowdianTypeAssign InCrowdianHas { get; } //InFromOne
+		ICrowdianUsesHistoricCrowdianTypeAssign InCrowdianUsesHistoric { get; } //InFromOne
+		ICrowdianTypeAssignUsesCrowdianType OutUsesCrowdianType { get; } //OutToOne
+		IUserCreatesCrowdianTypeAssign InUserCreates { get; } //InFromOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryEmail : IWeaverQueryNode {
 
-		IRootHasEmail InManyRootHas { get; }
-		IAppUsesEmail InManyAppUses { get; }
-		IUserUsesEmail InManyUserUses { get; }
+		IRootHasEmail InRootHas { get; } //InFromOne
+		IAppUsesEmail InAppUses { get; } //InFromOne
+		IUserUsesEmail InUserUses { get; } //InFromOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryLabel : IWeaverQueryNode {
 
-		IRootHasLabel InManyRootHas { get; }
-		ILabelHasArtifact OutHasOneArtifact { get; }
+		IRootHasLabel InRootHas { get; } //InFromOne
+		ILabelHasArtifact OutHasArtifact { get; } //OutToOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryMember : IWeaverQueryNode {
 
-		IRootHasMember InManyRootHas { get; }
-		IMemberUsesApp OutUsesManyApp { get; }
-		IMemberUsesUser OutUsesManyUser { get; }
-		IMemberHasMemberTypeAssign OutHasOneMemberTypeAssign { get; }
-		IMemberUsesHistoricMemberTypeAssign OutUsesHistoricOneMemberTypeAssign { get; }
-		IMemberCreatesArtifact OutCreatesOneArtifact { get; }
-		IMemberCreatesMemberTypeAssign OutCreatesOneMemberTypeAssign { get; }
+		IRootHasMember InRootHas { get; } //InFromOne
+		IMemberUsesApp OutUsesApp { get; } //OutToOne
+		IMemberUsesUser OutUsesUser { get; } //OutToOne
+		IMemberHasMemberTypeAssign OutHasMemberTypeAssign { get; } //OutToOne
+		IMemberUsesHistoricMemberTypeAssign OutUsesHistoricMemberTypeAssigns { get; } //OutToZeroOrMore
+		IMemberCreatesArtifact OutCreatesArtifacts { get; } //OutToZeroOrMore
+		IMemberCreatesMemberTypeAssign OutCreatesMemberTypeAssigns { get; } //OutToZeroOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryMemberType : IWeaverQueryNode {
 
-		IRootHasMemberType InManyRootHas { get; }
-		IMemberTypeAssignUsesMemberType InOneMemberTypeAssignUses { get; }
+		IRootHasMemberType InRootHas { get; } //InFromOne
+		IMemberTypeAssignUsesMemberType InMemberTypeAssignsUses { get; } //InFromZeroOrMore
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryMemberTypeAssign : IWeaverQueryNode {
 
-		IMemberHasMemberTypeAssign InOneMemberHas { get; }
-		IMemberUsesHistoricMemberTypeAssign InManyMemberUsesHistoric { get; }
-		IMemberCreatesMemberTypeAssign InManyMemberCreates { get; }
-		IMemberTypeAssignUsesMemberType OutUsesManyMemberType { get; }
+		IMemberHasMemberTypeAssign InMemberHas { get; } //InFromOne
+		IMemberUsesHistoricMemberTypeAssign InMemberUsesHistoric { get; } //InFromOne
+		IMemberCreatesMemberTypeAssign InMemberCreates { get; } //InFromOne
+		IMemberTypeAssignUsesMemberType OutUsesMemberType { get; } //OutToOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryThing : IWeaverQueryNode {
 
-		IRootHasThing InManyRootHas { get; }
-		IThingHasArtifact OutHasOneArtifact { get; }
+		IRootHasThing InRootHas { get; } //InFromOne
+		IThingHasArtifact OutHasArtifact { get; } //OutToOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryUrl : IWeaverQueryNode {
 
-		IRootHasUrl InManyRootHas { get; }
-		IUrlHasArtifact OutHasOneArtifact { get; }
+		IRootHasUrl InRootHas { get; } //InFromOne
+		IUrlHasArtifact OutHasArtifact { get; } //OutToOne
 
 	}
 
 	/*================================================================================================*/
 	public interface IQueryUser : IWeaverQueryNode {
 
-		IRootHasUser InManyRootHas { get; }
-		ICrowdianUsesUser InOneCrowdianUses { get; }
-		IMemberUsesUser InOneMemberUses { get; }
-		IUserHasArtifact OutHasOneArtifact { get; }
-		IUserUsesEmail OutUsesOneEmail { get; }
-		IUserCreatesCrowdianTypeAssign OutCreatesOneCrowdianTypeAssign { get; }
+		IRootHasUser InRootHas { get; } //InFromOne
+		ICrowdianUsesUser InCrowdiansUses { get; } //InFromZeroOrMore
+		IMemberUsesUser InMembersUses { get; } //InFromOneOrMore
+		IUserHasArtifact OutHasArtifact { get; } //OutToOne
+		IUserUsesEmail OutUsesEmail { get; } //OutToOne
+		IUserCreatesCrowdianTypeAssign OutCreatesCrowdianTypeAssigns { get; } //OutToZeroOrMore
 
 	}
 
@@ -935,16 +935,28 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class NodeForType : WeaverNode, IQueryNodeForType {
 
+		//[PropIsUnique(True)]
+		//[PropLenMax(32)]
+		//[PropLenMin(1)]
+		//[PropValidRegex("^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
+
+		//[PropLenMax(256)]
+		//[PropValidRegex("^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Description { get; set; }
+
 
 	}
 
 	/*================================================================================================*/
 	public class NodeForAction : WeaverNode, IQueryNodeForAction {
 
+		//[PropIsTimestamp(True)]
 		public virtual long PerformedTimestamp { get; set; }
+
+		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
+
 
 	}
 
@@ -954,68 +966,68 @@ namespace Fabric.Domain {
 		public override bool IsRoot { get { return true; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasApp OutHasOneApp {
-			get { return NewRel<RootHasApp>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasApp OutHasApps {
+			get { return NewRel<RootHasApp>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasArtifact OutHasOneArtifact {
-			get { return NewRel<RootHasArtifact>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasArtifact OutHasArtifacts {
+			get { return NewRel<RootHasArtifact>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasArtifactType OutHasOneArtifactType {
-			get { return NewRel<RootHasArtifactType>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasArtifactType OutHasArtifactTypes {
+			get { return NewRel<RootHasArtifactType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasCrowd OutHasOneCrowd {
-			get { return NewRel<RootHasCrowd>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasCrowd OutHasCrowds {
+			get { return NewRel<RootHasCrowd>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasCrowdian OutHasOneCrowdian {
-			get { return NewRel<RootHasCrowdian>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasCrowdian OutHasCrowdians {
+			get { return NewRel<RootHasCrowdian>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasCrowdianType OutHasOneCrowdianType {
-			get { return NewRel<RootHasCrowdianType>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasCrowdianType OutHasCrowdianTypes {
+			get { return NewRel<RootHasCrowdianType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasEmail OutHasOneEmail {
-			get { return NewRel<RootHasEmail>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasEmail OutHasEmails {
+			get { return NewRel<RootHasEmail>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasLabel OutHasOneLabel {
-			get { return NewRel<RootHasLabel>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasLabel OutHasLabels {
+			get { return NewRel<RootHasLabel>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasMember OutHasOneMember {
-			get { return NewRel<RootHasMember>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasMember OutHasMembers {
+			get { return NewRel<RootHasMember>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasMemberType OutHasOneMemberType {
-			get { return NewRel<RootHasMemberType>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasMemberType OutHasMemberTypes {
+			get { return NewRel<RootHasMemberType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasThing OutHasOneThing {
-			get { return NewRel<RootHasThing>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasThing OutHasThings {
+			get { return NewRel<RootHasThing>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasUrl OutHasOneUrl {
-			get { return NewRel<RootHasUrl>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasUrl OutHasUrls {
+			get { return NewRel<RootHasUrl>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasUser OutHasOneUser {
-			get { return NewRel<RootHasUser>(WeaverRelConn.OutToManyNodes); }
+		public virtual IRootHasUser OutHasUsers {
+			get { return NewRel<RootHasUser>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 	}
@@ -1023,28 +1035,39 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class App : WeaverNode, IQueryApp {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long AppId { get; set; }
+
+		//[PropIsCaseInsensitive(True)]
+		//[PropIsUnique(True)]
+		//[PropLenMax(64)]
+		//[PropLenMin(3)]
+		//[PropValidRegex("^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
+
+		//[PropLen(32)]
 		public virtual string Secret { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasApp InManyRootHas {
-			get { return NewRel<RootHasApp>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasApp InRootHas {
+			get { return NewRel<RootHasApp>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IAppHasArtifact OutHasOneArtifact {
-			get { return NewRel<AppHasArtifact>(WeaverRelConn.OutToOneNode); }
+		public virtual IAppHasArtifact OutHasArtifact {
+			get { return NewRel<AppHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IAppUsesEmail OutUsesOneEmail {
-			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToManyNodes); }
+		public virtual IAppUsesEmail OutUsesEmail {
+			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberUsesApp InOneMemberUses {
-			get { return NewRel<MemberUsesApp>(WeaverRelConn.InFromManyNodes); }
+		public virtual IMemberUsesApp InMembersUses {
+			get { return NewRel<MemberUsesApp>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 	}
@@ -1052,53 +1075,59 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Artifact : WeaverNode, IQueryArtifact {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long ArtifactId { get; set; }
+
 		public virtual bool IsPrivate { get; set; }
+
+		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasArtifact InManyRootHas {
-			get { return NewRel<RootHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasArtifact InRootHas {
+			get { return NewRel<RootHasArtifact>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IAppHasArtifact InOneAppHas {
-			get { return NewRel<AppHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual IAppHasArtifact InAppHas {
+			get { return NewRel<AppHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IArtifactUsesArtifactType OutUsesManyArtifactType {
-			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.OutToOneNode); }
+		public virtual IArtifactUsesArtifactType OutUsesArtifactType {
+			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdHasArtifact InOneCrowdHas {
-			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual ICrowdHasArtifact InCrowdHas {
+			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ILabelHasArtifact InOneLabelHas {
-			get { return NewRel<LabelHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual ILabelHasArtifact InLabelHas {
+			get { return NewRel<LabelHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberCreatesArtifact InManyMemberCreates {
-			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual IMemberCreatesArtifact InMemberCreates {
+			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IThingHasArtifact InOneThingHas {
-			get { return NewRel<ThingHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual IThingHasArtifact InThingHas {
+			get { return NewRel<ThingHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUrlHasArtifact InOneUrlHas {
-			get { return NewRel<UrlHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual IUrlHasArtifact InUrlHas {
+			get { return NewRel<UrlHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUserHasArtifact InOneUserHas {
-			get { return NewRel<UserHasArtifact>(WeaverRelConn.InFromOneNode); }
+		public virtual IUserHasArtifact InUserHas {
+			get { return NewRel<UserHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 	}
@@ -1106,16 +1135,19 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class ArtifactType : WeaverNode, IQueryArtifactType {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual byte ArtifactTypeId { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasArtifactType InManyRootHas {
-			get { return NewRel<RootHasArtifactType>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasArtifactType InRootHas {
+			get { return NewRel<RootHasArtifactType>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IArtifactUsesArtifactType InOneArtifactUses {
-			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.InFromManyNodes); }
+		public virtual IArtifactUsesArtifactType InArtifactsUses {
+			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 	}
@@ -1123,25 +1155,35 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Crowd : WeaverNode, IQueryCrowd {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long CrowdId { get; set; }
+
+		//[PropLenMax(64)]
+		//[PropLenMin(3)]
 		public virtual string Name { get; set; }
+
+		//[PropLenMax(256)]
 		public virtual string Description { get; set; }
+
 		public virtual bool IsPrivate { get; set; }
+
 		public virtual bool IsInviteOnly { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasCrowd InManyRootHas {
-			get { return NewRel<RootHasCrowd>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasCrowd InRootHas {
+			get { return NewRel<RootHasCrowd>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdHasArtifact OutHasOneArtifact {
-			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.OutToOneNode); }
+		public virtual ICrowdHasArtifact OutHasArtifact {
+			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianUsesCrowd InOneCrowdianUses {
-			get { return NewRel<CrowdianUsesCrowd>(WeaverRelConn.InFromManyNodes); }
+		public virtual ICrowdianUsesCrowd InCrowdiansUses {
+			get { return NewRel<CrowdianUsesCrowd>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 	}
@@ -1149,31 +1191,34 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Crowdian : WeaverNode, IQueryCrowdian {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long CrowdianId { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasCrowdian InManyRootHas {
-			get { return NewRel<RootHasCrowdian>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasCrowdian InRootHas {
+			get { return NewRel<RootHasCrowdian>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianUsesCrowd OutUsesManyCrowd {
-			get { return NewRel<CrowdianUsesCrowd>(WeaverRelConn.OutToOneNode); }
+		public virtual ICrowdianUsesCrowd OutUsesCrowd {
+			get { return NewRel<CrowdianUsesCrowd>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianUsesUser OutUsesManyUser {
-			get { return NewRel<CrowdianUsesUser>(WeaverRelConn.OutToOneNode); }
+		public virtual ICrowdianUsesUser OutUsesUser {
+			get { return NewRel<CrowdianUsesUser>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianHasCrowdianTypeAssign OutHasOneCrowdianTypeAssign {
-			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.OutToOneNode); }
+		public virtual ICrowdianHasCrowdianTypeAssign OutHasCrowdianTypeAssign {
+			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianUsesHistoricCrowdianTypeAssign OutUsesHistoricOneCrowdianTypeAssign {
-			get { return NewRel<CrowdianUsesHistoricCrowdianTypeAssign>(WeaverRelConn.OutToManyNodes); }
+		public virtual ICrowdianUsesHistoricCrowdianTypeAssign OutUsesHistoricCrowdianTypeAssigns {
+			get { return NewRel<CrowdianUsesHistoricCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 	}
@@ -1181,16 +1226,19 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class CrowdianType : WeaverNode, IQueryCrowdianType {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual byte CrowdianTypeId { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasCrowdianType InManyRootHas {
-			get { return NewRel<RootHasCrowdianType>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasCrowdianType InRootHas {
+			get { return NewRel<RootHasCrowdianType>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianTypeAssignUsesCrowdianType InOneCrowdianTypeAssignUses {
-			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.InFromManyNodes); }
+		public virtual ICrowdianTypeAssignUsesCrowdianType InCrowdianTypeAssignsUses {
+			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 	}
@@ -1200,24 +1248,25 @@ namespace Fabric.Domain {
 
 		public virtual float Weight { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianHasCrowdianTypeAssign InOneCrowdianHas {
-			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.InFromOneNode); }
+		public virtual ICrowdianHasCrowdianTypeAssign InCrowdianHas {
+			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianUsesHistoricCrowdianTypeAssign InManyCrowdianUsesHistoric {
-			get { return NewRel<CrowdianUsesHistoricCrowdianTypeAssign>(WeaverRelConn.InFromOneNode); }
+		public virtual ICrowdianUsesHistoricCrowdianTypeAssign InCrowdianUsesHistoric {
+			get { return NewRel<CrowdianUsesHistoricCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianTypeAssignUsesCrowdianType OutUsesManyCrowdianType {
-			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.OutToOneNode); }
+		public virtual ICrowdianTypeAssignUsesCrowdianType OutUsesCrowdianType {
+			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUserCreatesCrowdianTypeAssign InManyUserCreates {
-			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.InFromOneNode); }
+		public virtual IUserCreatesCrowdianTypeAssign InUserCreates {
+			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 	}
@@ -1225,25 +1274,39 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Email : WeaverNode, IQueryEmail {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long EmailId { get; set; }
+
+		//[PropIsCaseInsensitive(True)]
+		//[PropIsUnique(True)]
+		//[PropLenMax(256)]
+		//[PropValidRegex("^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
 		public virtual string Address { get; set; }
+
+		//[PropLen(32)]
 		public virtual string Code { get; set; }
+
+		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
+
+		//[PropIsNullable(True)]
 		public virtual long VerifiedTimestamp { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasEmail InManyRootHas {
-			get { return NewRel<RootHasEmail>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasEmail InRootHas {
+			get { return NewRel<RootHasEmail>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IAppUsesEmail InManyAppUses {
-			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromOneNode); }
+		public virtual IAppUsesEmail InAppUses {
+			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUserUsesEmail InManyUserUses {
-			get { return NewRel<UserUsesEmail>(WeaverRelConn.InFromOneNode); }
+		public virtual IUserUsesEmail InUserUses {
+			get { return NewRel<UserUsesEmail>(WeaverRelConn.InFromOne); }
 		}
 
 	}
@@ -1251,17 +1314,26 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Label : WeaverNode, IQueryLabel {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long LabelId { get; set; }
+
+		//[PropIsCaseInsensitive(True)]
+		//[PropIsUnique(True)]
+		//[PropLenMax(128)]
+		//[PropLenMin(1)]
+		//[PropValidRegex("^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasLabel InManyRootHas {
-			get { return NewRel<RootHasLabel>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasLabel InRootHas {
+			get { return NewRel<RootHasLabel>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ILabelHasArtifact OutHasOneArtifact {
-			get { return NewRel<LabelHasArtifact>(WeaverRelConn.OutToOneNode); }
+		public virtual ILabelHasArtifact OutHasArtifact {
+			get { return NewRel<LabelHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -1269,41 +1341,44 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Member : WeaverNode, IQueryMember {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long MemberId { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasMember InManyRootHas {
-			get { return NewRel<RootHasMember>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasMember InRootHas {
+			get { return NewRel<RootHasMember>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberUsesApp OutUsesManyApp {
-			get { return NewRel<MemberUsesApp>(WeaverRelConn.OutToOneNode); }
+		public virtual IMemberUsesApp OutUsesApp {
+			get { return NewRel<MemberUsesApp>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberUsesUser OutUsesManyUser {
-			get { return NewRel<MemberUsesUser>(WeaverRelConn.OutToOneNode); }
+		public virtual IMemberUsesUser OutUsesUser {
+			get { return NewRel<MemberUsesUser>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberHasMemberTypeAssign OutHasOneMemberTypeAssign {
-			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.OutToOneNode); }
+		public virtual IMemberHasMemberTypeAssign OutHasMemberTypeAssign {
+			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberUsesHistoricMemberTypeAssign OutUsesHistoricOneMemberTypeAssign {
-			get { return NewRel<MemberUsesHistoricMemberTypeAssign>(WeaverRelConn.OutToManyNodes); }
+		public virtual IMemberUsesHistoricMemberTypeAssign OutUsesHistoricMemberTypeAssigns {
+			get { return NewRel<MemberUsesHistoricMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberCreatesArtifact OutCreatesOneArtifact {
-			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.OutToManyNodes); }
+		public virtual IMemberCreatesArtifact OutCreatesArtifacts {
+			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberCreatesMemberTypeAssign OutCreatesOneMemberTypeAssign {
-			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.OutToManyNodes); }
+		public virtual IMemberCreatesMemberTypeAssign OutCreatesMemberTypeAssigns {
+			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 	}
@@ -1311,16 +1386,19 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class MemberType : WeaverNode, IQueryMemberType {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual byte MemberTypeId { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasMemberType InManyRootHas {
-			get { return NewRel<RootHasMemberType>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasMemberType InRootHas {
+			get { return NewRel<RootHasMemberType>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberTypeAssignUsesMemberType InOneMemberTypeAssignUses {
-			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.InFromManyNodes); }
+		public virtual IMemberTypeAssignUsesMemberType InMemberTypeAssignsUses {
+			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 	}
@@ -1330,23 +1408,23 @@ namespace Fabric.Domain {
 
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberHasMemberTypeAssign InOneMemberHas {
-			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOneNode); }
+		public virtual IMemberHasMemberTypeAssign InMemberHas {
+			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberUsesHistoricMemberTypeAssign InManyMemberUsesHistoric {
-			get { return NewRel<MemberUsesHistoricMemberTypeAssign>(WeaverRelConn.InFromOneNode); }
+		public virtual IMemberUsesHistoricMemberTypeAssign InMemberUsesHistoric {
+			get { return NewRel<MemberUsesHistoricMemberTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberCreatesMemberTypeAssign InManyMemberCreates {
-			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.InFromOneNode); }
+		public virtual IMemberCreatesMemberTypeAssign InMemberCreates {
+			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberTypeAssignUsesMemberType OutUsesManyMemberType {
-			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.OutToOneNode); }
+		public virtual IMemberTypeAssignUsesMemberType OutUsesMemberType {
+			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -1354,20 +1432,30 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Thing : WeaverNode, IQueryThing {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long ThingId { get; set; }
+
 		public virtual bool IsClass { get; set; }
+
+		//[PropLenMax(128)]
 		public virtual string Name { get; set; }
+
+		//[PropLenMax(128)]
 		public virtual string Disamb { get; set; }
+
+		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasThing InManyRootHas {
-			get { return NewRel<RootHasThing>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasThing InRootHas {
+			get { return NewRel<RootHasThing>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IThingHasArtifact OutHasOneArtifact {
-			get { return NewRel<ThingHasArtifact>(WeaverRelConn.OutToOneNode); }
+		public virtual IThingHasArtifact OutHasArtifact {
+			get { return NewRel<ThingHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -1375,18 +1463,27 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Url : WeaverNode, IQueryUrl {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long UrlId { get; set; }
+
+		//[PropLenMax(128)]
 		public virtual string Name { get; set; }
+
+		//[PropIsCaseInsensitive(True)]
+		//[PropIsUnique(True)]
+		//[PropLenMax(2048)]
 		public virtual string AbsoluteUrl { get; set; }
 
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasUrl InManyRootHas {
-			get { return NewRel<RootHasUrl>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasUrl InRootHas {
+			get { return NewRel<RootHasUrl>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUrlHasArtifact OutHasOneArtifact {
-			get { return NewRel<UrlHasArtifact>(WeaverRelConn.OutToOneNode); }
+		public virtual IUrlHasArtifact OutHasArtifact {
+			get { return NewRel<UrlHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -1394,40 +1491,50 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class User : WeaverNode, IQueryUser {
 
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
 		public virtual long UserId { get; set; }
+
+		//[PropIsCaseInsensitive(True)]
+		//[PropIsUnique(True)]
+		//[PropLenMax(16)]
+		//[PropValidRegex("^[a-zA-Z0-9_]*$")]
 		public virtual string Name { get; set; }
 
+		//[PropLen(32)]
+		public virtual string Password { get; set; }
+
+
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IRootHasUser InManyRootHas {
-			get { return NewRel<RootHasUser>(WeaverRelConn.InFromOneNode); }
+		public virtual IRootHasUser InRootHas {
+			get { return NewRel<RootHasUser>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ICrowdianUsesUser InOneCrowdianUses {
-			get { return NewRel<CrowdianUsesUser>(WeaverRelConn.InFromManyNodes); }
+		public virtual ICrowdianUsesUser InCrowdiansUses {
+			get { return NewRel<CrowdianUsesUser>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IMemberUsesUser InOneMemberUses {
-			get { return NewRel<MemberUsesUser>(WeaverRelConn.InFromManyNodes); }
+		public virtual IMemberUsesUser InMembersUses {
+			get { return NewRel<MemberUsesUser>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUserHasArtifact OutHasOneArtifact {
-			get { return NewRel<UserHasArtifact>(WeaverRelConn.OutToOneNode); }
+		public virtual IUserHasArtifact OutHasArtifact {
+			get { return NewRel<UserHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUserUsesEmail OutUsesOneEmail {
-			get { return NewRel<UserUsesEmail>(WeaverRelConn.OutToManyNodes); }
+		public virtual IUserUsesEmail OutUsesEmail {
+			get { return NewRel<UserUsesEmail>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IUserCreatesCrowdianTypeAssign OutCreatesOneCrowdianTypeAssign {
-			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.OutToManyNodes); }
+		public virtual IUserCreatesCrowdianTypeAssign OutCreatesCrowdianTypeAssigns {
+			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 	}
-
 
 }
