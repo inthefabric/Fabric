@@ -305,6 +305,45 @@ namespace Fabric.Domain.Schema {
 
 			////
 
+			WeaverNodeSchema oauthAccess = AddNode("OauthAccess", "OA");
+			p = AddProp(oauthAccess, "OauthAccessId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(oauthAccess, "Token", typeof(string));
+				p.Len = 32;
+				p.IsNullable = true;
+				p.IsUnique = true;
+			p = AddProp(oauthAccess, "Refresh", typeof(string));
+				p.Len = 32;
+				p.IsNullable = true;
+			p = AddProp(oauthAccess, "Expires", typeof(DateTime));
+			p = AddProp(oauthAccess, "IsClientOnly", typeof(bool));
+
+			WeaverNodeSchema oauthDomain = AddNode("OauthDomain", "OD");
+			p = AddProp(oauthDomain, "OauthDomainId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(oauthDomain, "Domain", typeof(string));
+				p.LenMax = 256;
+			
+			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
+			p = AddProp(oauthGrant, "OauthGrantId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(oauthGrant, "RedirectUri", typeof(string));
+				p.LenMax = 450;
+			p = AddProp(oauthGrant, "Code", typeof(string));
+				p.Len = 32;
+				p.IsUnique = true;
+			p = AddProp(oauthGrant, "Expires", typeof(DateTime));
+
+			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");
+			p = AddProp(oauthScope, "OauthScopeId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(oauthScope, "Allow", typeof(bool));
+			p = AddProp(oauthScope, "Created", typeof(DateTime));
+				p.IsTimestamp = true;
+
+			////
+
+			const string contains = "Contains";
 			const string has = "Has";
 			const string hasHistoric = "UsesHistoric";
 			const string uses = "Uses";
@@ -326,19 +365,45 @@ namespace Fabric.Domain.Schema {
 			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
 			const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
 
-			AddRel(root, has, app, otzom, ifo);
-			AddRel(root, has, artifact, otzom, ifo);
-			AddRel(root, has, artifactType, otzom, ifo);
-			AddRel(root, has, crowd, otzom, ifo);
-			AddRel(root, has, crowdian, otzom, ifo);
-			AddRel(root, has, crowdianType, otzom, ifo);
-			AddRel(root, has, email, otzom, ifo);
-			AddRel(root, has, label, otzom, ifo);
-			AddRel(root, has, member, otzom, ifo);
-			AddRel(root, has, memberType, otzom, ifo);
-			AddRel(root, has, thing, otzom, ifo);
-			AddRel(root, has, url, otzom, ifo);
-			AddRel(root, has, user, otzom, ifo);
+			AddRel(root, contains, app, otzom, ifo);
+			AddRel(root, contains, artifact, otzom, ifo);
+			AddRel(root, contains, artifactType, otzom, ifo);
+			AddRel(root, contains, crowd, otzom, ifo);
+			AddRel(root, contains, crowdian, otzom, ifo);
+			AddRel(root, contains, crowdianType, otzom, ifo);
+			AddRel(root, contains, email, otzom, ifo);
+			AddRel(root, contains, label, otzom, ifo);
+			AddRel(root, contains, member, otzom, ifo);
+			AddRel(root, contains, memberType, otzom, ifo);
+			AddRel(root, contains, thing, otzom, ifo);
+			AddRel(root, contains, url, otzom, ifo);
+			AddRel(root, contains, user, otzom, ifo);
+			
+			AddRel(root, contains, factor, otzom, ifo);
+			AddRel(root, contains, factorAssertion, otzom, ifo);
+			AddRel(root, contains, descriptor, otzom, ifo);
+			AddRel(root, contains, descriptorType, otzom, ifo);
+			AddRel(root, contains, director, otzom, ifo);
+			AddRel(root, contains, directorType, otzom, ifo);
+			AddRel(root, contains, directorAction, otzom, ifo);
+			AddRel(root, contains, eventor, otzom, ifo);
+			AddRel(root, contains, eventorType, otzom, ifo);
+			AddRel(root, contains, eventorPrecision, otzom, ifo);
+			AddRel(root, contains, identor, otzom, ifo);
+			AddRel(root, contains, identorType, otzom, ifo);
+			AddRel(root, contains, locator, otzom, ifo);
+			AddRel(root, contains, locatorType, otzom, ifo);
+			AddRel(root, contains, vector, otzom, ifo);
+			AddRel(root, contains, vectorType, otzom, ifo);
+			AddRel(root, contains, vectorRange, otzom, ifo);
+			AddRel(root, contains, vectorRangeLevel, otzom, ifo);
+			AddRel(root, contains, vectorUnit, otzom, ifo);
+			AddRel(root, contains, vectorUnitPrefix, otzom, ifo);
+
+			AddRel(root, contains, oauthAccess, otzom, ifo);
+			AddRel(root, contains, oauthDomain, otzom, ifo);
+			AddRel(root, contains, oauthGrant, otzom, ifo);
+			AddRel(root, contains, oauthScope, otzom, ifo);
 
 			AddRel(app, has, artifact, oto, ifzoo);
 			AddRel(app, uses, email, oto, ifo);
@@ -412,6 +477,19 @@ namespace Fabric.Domain.Schema {
 			AddRel(vectorType, uses, vectorRange, oto, ifzom);
 
 			AddRel(vectorRange, uses, vectorRangeLevel, otzom, ifzom);
+
+			////
+
+			AddRel(oauthAccess, uses, app, oto, ifzom);
+			AddRel(oauthAccess, uses, user, otzoo, ifzom);
+
+			AddRel(oauthDomain, uses, app, oto, ifzom);
+
+			AddRel(oauthGrant, uses, app, oto, ifzom);
+			AddRel(oauthGrant, uses, user, oto, ifzom);
+
+			AddRel(oauthScope, uses, app, oto, ifzom);
+			AddRel(oauthScope, uses, user, oto, ifzom);
 		}
 		
 

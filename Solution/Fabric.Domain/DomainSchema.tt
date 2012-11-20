@@ -32,7 +32,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 	relTypeMap.Add(rel.Name, true);
 #>
 	/*================================================================================================*/
-	public class <#= rel.Name #> : IWeaverRelType {
+	public partial class <#= rel.Name #> : IWeaverRelType {
 	
 		public string Label { get { return "<#= rel.Name #>"; } }
 
@@ -80,7 +80,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	}
 
 	/*================================================================================================*/
-	public class <#= GetRelClassName(node, rel) #> :
+	public partial class <#= GetRelClassName(node, rel) #> :
 			WeaverRel<#= classTypes #>,
 			I<#= relClass #> {
 			
@@ -103,6 +103,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 	/*================================================================================================*/
+	//[Shortcut(<#= node.Short+"" #>)]
 	public interface IQuery<#= node.Name #> : IWeaverQueryNode {
 
 <#
@@ -127,7 +128,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 	/*================================================================================================*/
-	public class <#= node.Name #> : WeaverNode, IQuery<#= node.Name #> {
+	public partial class <#= node.Name #> : WeaverNode, IQuery<#= node.Name #> {
 	
 <#
 	foreach ( WeaverPropSchema prop in node.Props ) { 
