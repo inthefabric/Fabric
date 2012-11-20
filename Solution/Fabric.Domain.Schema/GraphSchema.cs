@@ -176,10 +176,146 @@ namespace Fabric.Domain.Schema {
 
 			////
 
+			WeaverNodeSchema factor = AddNode("Factor", "F");
+			p = AddProp(factor, "FactorId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(factor, "IsPublic", typeof(bool));
+			p = AddProp(factor, "IsDefining", typeof(bool));
+			p = AddProp(factor, "Created", typeof(DateTime));
+				p.IsTimestamp = true;
+			p = AddProp(factor, "Deleted", typeof(DateTime));
+				p.IsNullable = true;
+			p = AddProp(factor, "Completed", typeof(DateTime));
+				p.IsNullable = true;
+			p = AddProp(factor, "Note", typeof(string));
+				p.LenMax = 256;
+
+			WeaverNodeSchema factorAssertion = AddNode("FactorAssertion", "FA");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(factorAssertion, "FactorAssertionId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema factorElementNode = AddNode("FactorElementNode", null);
+			factorElementNode.IsAbstract = true;
+
+			WeaverNodeSchema descriptor = AddNode("Descriptor", "De");
+			p = AddProp(descriptor, "DescriptorId", typeof(long));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema descriptorType = AddNode("DescriptorType", "DeT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(descriptorType, "DescriptorTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema director = AddNode("Director", "Di");
+			p = AddProp(director, "DirectorId", typeof(long));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema directorType = AddNode("DirectorType", "DiT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(directorType, "DirectorTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema directorAction = AddNode("DirectorAction", "DiA");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(directorAction, "DirectorActionId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema eventor = AddNode("Eventor", "Ev");
+			p = AddProp(eventor, "EventorId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(eventor, "DateTime", typeof(DateTime));
+
+			WeaverNodeSchema eventorType = AddNode("EventorType", "EvT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(eventorType, "EventorTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema eventorPrecision = AddNode("EventorPrecision", "EvP");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(eventorPrecision, "EventorPrecisionId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema identor = AddNode("Identor", "Id");
+			p = AddProp(identor, "IdentorId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(identor, "Value", typeof(string));
+				p.LenMax = 128;
+
+			WeaverNodeSchema identorType = AddNode("IdentorType", "IdT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(identorType, "IdentorTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema locator = AddNode("Locator", "Lo");
+			p = AddProp(locator, "LocatorId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(locator, "ValueX", typeof(double));
+			p = AddProp(locator, "ValueY", typeof(double));
+			p = AddProp(locator, "ValueZ", typeof(double));
+
+			WeaverNodeSchema locatorType = AddNode("LocatorType", "LoT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(locatorType, "LocatorTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
+			p = AddProp(locatorType, "MinX", typeof(double));
+			p = AddProp(locatorType, "MaxX", typeof(double));
+			p = AddProp(locatorType, "MinY", typeof(double));
+			p = AddProp(locatorType, "MaxY", typeof(double));
+			p = AddProp(locatorType, "MinZ", typeof(double));
+			p = AddProp(locatorType, "MaxZ", typeof(double));
+
+			WeaverNodeSchema vector = AddNode("Vector", "Ve");
+			p = AddProp(vector, "VectorId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(vector, "Value", typeof(long));
+
+			WeaverNodeSchema vectorType = AddNode("VectorType", "VeT");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(vectorType, "VectorTypeId", typeof(byte));
+				p.IsPrimaryKey = true;
+			p = AddProp(vectorType, "Min", typeof(long));
+			p = AddProp(vectorType, "Max", typeof(long));
+
+			WeaverNodeSchema vectorRange = AddNode("VectorRange", "VeR");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(vectorRange, "VectorRangeId", typeof(byte));
+				p.IsPrimaryKey = true;
+
+			WeaverNodeSchema vectorRangeLevel = AddNode("VectorRangeLevel", "VeRL");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(vectorRangeLevel, "VectorRangeLevelId", typeof(byte));
+				p.IsPrimaryKey = true;
+				p = AddProp(vectorRangeLevel, "Position", typeof(float));
+			
+			WeaverNodeSchema vectorUnit = AddNode("VectorUnit", "VeU");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(vectorUnit, "VectorUnitId", typeof(byte));
+				p.IsPrimaryKey = true;
+			p = AddProp(vectorUnit, "Symbol", typeof(string));
+				p.LenMax = 8;
+			
+			WeaverNodeSchema vectorUnitPrefix = AddNode("VectorUnitPrefix", "VeUP");
+			memberType.BaseNode = nodeForType;
+			p = AddProp(vectorUnitPrefix, "VectorUnitPrefixId", typeof(byte));
+				p.IsPrimaryKey = true;
+			p = AddProp(vectorUnitPrefix, "Symbol", typeof(string));
+				p.LenMax = 8;
+			p = AddProp(vectorUnitPrefix, "Amount", typeof(double));
+
+			////
+
 			const string has = "Has";
 			const string hasHistoric = "UsesHistoric";
 			const string uses = "Uses";
+			const string usesPrimary = "UsesPrimary";
+			const string usesRelated = "UsesRelated";
+			const string usesAxis = "UsesAxis";
 			const string creates = "Creates";
+			const string replaces = "Replaces";
+			const string refinesPrimaryWith = "refinesPrimaryWith";
+			const string refinesRelatedWith = "refinesRelatedWith";
+			const string refinesTypeWith = "refinesTypeWith";
 
 			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
 			const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
@@ -188,7 +324,7 @@ namespace Fabric.Domain.Schema {
 			const WeaverRelConn oto = WeaverRelConn.OutToOne;
 			//const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
 			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
-			//const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
+			const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
 
 			AddRel(root, has, app, otzom, ifo);
 			AddRel(root, has, artifact, otzom, ifo);
@@ -226,6 +362,7 @@ namespace Fabric.Domain.Schema {
 			AddRel(member, hasHistoric, memberTypeAssign, otzom, ifo);
 			AddRel(member, creates, artifact, otzom, ifo);
 			AddRel(member, creates, memberTypeAssign, otzom, ifo);
+			AddRel(member, creates, factor, otzom, ifo);
 
 			AddRel(memberTypeAssign, uses, memberType, oto, ifzom);
 
@@ -236,6 +373,45 @@ namespace Fabric.Domain.Schema {
 			AddRel(user, has, artifact, oto, ifzoo);
 			AddRel(user, uses, email, oto, ifo);
 			AddRel(user, creates, crowdianTypeAssign, otzom, ifo);
+
+			////
+
+			AddRel(factor, usesPrimary, artifact, oto, ifzom);
+			AddRel(factor, usesRelated, artifact, oto, ifzom);
+			AddRel(factor, uses, factorAssertion, oto, ifzom);
+			AddRel(factor, replaces, factor, otzoo, ifzoo);
+
+			AddRel(factor, uses, descriptor, oto, ifoom);
+			AddRel(factor, uses, director, otzoo, ifoom);
+			AddRel(factor, uses, eventor, otzoo, ifoom);
+			AddRel(factor, uses, identor, otzoo, ifoom);
+			AddRel(factor, uses, locator, otzoo, ifoom);
+			AddRel(factor, uses, vector, otzoo, ifoom);
+
+			AddRel(descriptor, uses, descriptorType, oto, ifzom);
+			AddRel(descriptor, refinesPrimaryWith, artifact, otzoo, ifzom);
+			AddRel(descriptor, refinesRelatedWith, artifact, otzoo, ifzom);
+			AddRel(descriptor, refinesTypeWith, artifact, otzoo, ifzom);
+
+			AddRel(director, uses, directorType, oto, ifzom);
+			AddRel(director, usesPrimary, directorAction, oto, ifzom);
+			AddRel(director, usesRelated, directorAction, oto, ifzom);
+
+			AddRel(eventor, uses, eventorType, oto, ifzom);
+			AddRel(eventor, uses, eventorPrecision, oto, ifzom);
+
+			AddRel(identor, uses, identorType, oto, ifzom);
+
+			AddRel(locator, uses, locatorType, oto, ifzom);
+
+			AddRel(vector, usesAxis, artifact, oto, ifzom);
+			AddRel(vector, uses, vectorType, oto, ifzom);
+			AddRel(vector, uses, vectorUnit, oto, ifzom);
+			AddRel(vector, uses, vectorUnitPrefix, oto, ifzom);
+
+			AddRel(vectorType, uses, vectorRange, oto, ifzom);
+
+			AddRel(vectorRange, uses, vectorRangeLevel, otzom, ifzom);
 		}
 		
 

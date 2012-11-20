@@ -21,8 +21,8 @@ namespace Fabric.Domain {
 
 
 	/* Relationship Types */
-
-
+	
+	
 <#
 var schema = new GraphSchema();
 var relTypeMap = new Dictionary<string, bool>();
@@ -33,7 +33,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 #>
 	/*================================================================================================*/
 	public class <#= rel.Name #> : IWeaverRelType {
-
+	
 		public string Label { get { return "<#= rel.Name #>"; } }
 
 	}
@@ -128,20 +128,21 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 	/*================================================================================================*/
 	public class <#= node.Name #> : WeaverNode, IQuery<#= node.Name #> {
-
+	
 <#
 	foreach ( WeaverPropSchema prop in node.Props ) { 
 		string propType = prop.Type.Name;
 		string propName = prop.Name;
 		string attribs = "";
 		string attEnd = "\r\n\t\t";
-
+		
 		switch ( prop.Type.Name ) {
 			case "Int64": propType = "long"; break;
 			case "Byte": propType = "byte"; break;
 			case "String": propType = "string"; break;
 			case "Boolean": propType = "bool"; break;
 			case "Single": propType = "float"; break;
+			case "Double": propType = "double"; break;
 			case "DateTime": propType = "long"; propName += "Timestamp"; break;
 		}
 

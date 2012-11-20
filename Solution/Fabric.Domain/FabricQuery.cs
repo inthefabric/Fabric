@@ -26,8 +26,8 @@ namespace Fabric.Domain {
 			
 			>>> Possible API path:
 			
-			/OutHasApps/Where(AppId;EqualTo;99)/InMembersUse/As(m)/OutHasMemberTypeAssign ...
-				...	/OutUsesMemberType/Where(MemberTypeId|GreaterThan|2)/Back(m)/OutUsesUser
+			/OutHasApps/Has(AppId,EqualTo,99)/InMembersUse/As(m)/OutHasMemberTypeAssign ...
+				...	/OutUsesMemberType/Has(MemberTypeId,GreaterThan,2)/Back(m)/OutUsesUser
 			
 			*/
 		}
