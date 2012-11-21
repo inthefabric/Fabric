@@ -3,7 +3,7 @@
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public class FabricQuery : WeaverQuery {
+	public class FabricQuery : WeaverPath {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -14,7 +14,7 @@ namespace Fabric.Domain {
 			>>> Get all App 99 users that have a MemberTypeId > 2:
 			
 			var x = Root
-				.OutHasApps.ToApp
+				.OutContainsApps.ToApp
 					.Has<App>(a => a.AppId, WeaverFuncHasOp.EqualTo, 99)
 				.InMembersUses.FromMember
 					.As<Member>("m")
@@ -26,8 +26,11 @@ namespace Fabric.Domain {
 			
 			>>> Possible API path:
 			
-			/OutHasApps/Has(AppId,EqualTo,99)/InMembersUse/As(m)/OutHasMemberTypeAssign ...
+			/OutContainsApps/Has(AppId,EqualTo,99)/InMembersUse/As(m)/OutHasMemberTypeAssign ...
 				...	/OutUsesMemberType/Has(MemberTypeId,GreaterThan,2)/Back(m)/OutUsesUser
+			
+			/ContainsApps/Has(AppId,EQ,99)/MembersUse/As(m)/HasMemberTypeAssign ...
+				...	/UsesMemberType/Has(MemberTypeId,GT,2)/Back(m)/UsesUser
 			
 			*/
 		}

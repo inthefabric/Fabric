@@ -32,7 +32,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 	relTypeMap.Add(rel.Name, true);
 #>
 	/*================================================================================================*/
-	public partial class <#= rel.Name #> : IWeaverRelType {
+	public class <#= rel.Name #> : IWeaverRelType {
 	
 		public string Label { get { return "<#= rel.Name #>"; } }
 
@@ -60,64 +60,24 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( relMap.ContainsKey(relClass) ) { continue; }
 		relMap.Add(relClass, true);
 
-		string interfaceTypes = "<IQuery"+rel.FromNode.Name+", IQuery"+rel.ToNode.Name+">";
 		string classTypes = 
 			"<"+
-			"IQuery"+rel.FromNode.Name+", "+
 			rel.FromNode.Name+", "+
 			rel.Name+", "+
-			"IQuery"+rel.ToNode.Name+", "+
 			rel.ToNode.Name+
 			">";
 #>
 	/*================================================================================================*/
-	public interface I<#= GetRelClassName(node, rel) #> :
-			IWeaverRel<#= interfaceTypes #>, IWeaverQueryRel {
-
-		IQuery<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get; }
-		IQuery<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get; }
-
-	}
-
-	/*================================================================================================*/
-	public partial class <#= GetRelClassName(node, rel) #> :
-			WeaverRel<#= classTypes #>,
-			I<#= relClass #> {
+	public class <#= GetRelClassName(node, rel) #> : WeaverRel<#= classTypes #> {
 			
-		public virtual IQuery<#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
-		public virtual IQuery<#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
+		public virtual <#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
+		public virtual <#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
 		public override string Label { get { return "<#= rel.FromNode.Name+rel.Name+rel.ToNode.Name #>"; } }
 
 	}
 
 <#
 	}
-}
-#>
-
-
-	/* Query Nodes interfaces */
-
-
-<#
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
-#>
-	/*================================================================================================*/
-	//[Shortcut(<#= node.Short+"" #>)]
-	public interface IQuery<#= node.Name #> : IWeaverQueryNode {
-
-<#
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-#>
-		I<#= GetRelClassName(node, rel) #> <#= GetRelPropName(node, rel) #> { get; } //<#= GetRelConn(node, rel) #>
-<#
-	}
-#>
-
-	}
-
-<#
 }
 #>
 
@@ -128,7 +88,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 	/*================================================================================================*/
-	public partial class <#= node.Name #> : WeaverNode, IQuery<#= node.Name #> {
+	public class <#= node.Name #> : WeaverNode {
 	
 <#
 	foreach ( WeaverPropSchema prop in node.Props ) { 
@@ -180,7 +140,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		}
 
 		if ( prop.ValidRegex != null ) {
-			attribs += "//[PropValidRegex(\""+prop.ValidRegex+"\")]"+attEnd;
+			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
 		}
 
 #>
@@ -191,7 +151,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 	if ( node.IsRoot ) {
 #>
-		public override bool IsRoot { get { return true; } }
+		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
+
 <#
 	} //end if "isRoot"
 
@@ -199,15 +160,14 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
 		string relClass = GetRelClassName(node, rel);
 #>
-
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual I<#= relClass #> <#= GetRelPropName(node, rel) #> {
+		public virtual <#= relClass #> <#= GetRelPropName(node, rel) #> {
 			get { return NewRel<<#= relClass #>>(WeaverRelConn.<#= GetRelConn(node, rel) #>); }
 		}
+
 <#
 	}
 #>
-
 	}
 
 <#
