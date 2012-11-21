@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/20/2012 9:44:38 PM
+// Generated on 11/20/2012 11:27:15 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -954,12 +954,14 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class NodeForType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsUnique(True)]
 		//[PropLenMax(32)]
 		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Description { get; set; }
@@ -969,9 +971,11 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class NodeForAction : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
 		public virtual long PerformedTimestamp { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
@@ -1172,10 +1176,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class App : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long AppId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(64)]
@@ -1183,6 +1189,7 @@ namespace Fabric.Domain {
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLen(32)]
 		public virtual string Secret { get; set; }
 
@@ -1231,12 +1238,15 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Artifact : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long ArtifactId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsPrivate { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 
@@ -1320,6 +1330,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class ArtifactType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte ArtifactTypeId { get; set; }
@@ -1339,19 +1350,24 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Crowd : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long CrowdId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(64)]
 		//[PropLenMin(3)]
 		public virtual string Name { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		public virtual string Description { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsPrivate { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsInviteOnly { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1374,6 +1390,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Crowdian : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long CrowdianId { get; set; }
@@ -1408,6 +1425,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class CrowdianType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte CrowdianTypeId { get; set; }
@@ -1427,6 +1445,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class CrowdianTypeAssign : WeaverNode {
 	
+		[WeaverItemProperty]
 		public virtual float Weight { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1454,22 +1473,27 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Email : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long EmailId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(256)]
 		//[PropValidRegex(@"^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
 		public virtual string Address { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLen(32)]
 		public virtual string Code { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		public virtual long VerifiedTimestamp { get; set; }
 
@@ -1493,10 +1517,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Label : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long LabelId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(128)]
@@ -1519,6 +1545,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Member : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long MemberId { get; set; }
@@ -1568,6 +1595,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class MemberType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte MemberTypeId { get; set; }
@@ -1612,18 +1640,23 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Thing : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long ThingId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsClass { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(128)]
 		public virtual string Name { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(128)]
 		public virtual string Disamb { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
@@ -1642,13 +1675,16 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Url : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long UrlId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(128)]
 		public virtual string Name { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(2048)]
@@ -1669,16 +1705,19 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class User : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long UserId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(16)]
 		//[PropValidRegex(@"^[a-zA-Z0-9_]*$")]
 		public virtual string Name { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLen(32)]
 		public virtual string Password { get; set; }
 
@@ -1732,23 +1771,30 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Factor : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long FactorId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsPublic { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsDefining { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		public virtual long DeletedTimestamp { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		public virtual long CompletedTimestamp { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
@@ -1817,6 +1863,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class FactorAssertion : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte FactorAssertionId { get; set; }
@@ -1841,6 +1888,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Descriptor : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long DescriptorId { get; set; }
@@ -1880,6 +1928,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class DescriptorType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte DescriptorTypeId { get; set; }
@@ -1899,6 +1948,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Director : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long DirectorId { get; set; }
@@ -1933,6 +1983,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class DirectorType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte DirectorTypeId { get; set; }
@@ -1952,6 +2003,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class DirectorAction : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte DirectorActionId { get; set; }
@@ -1976,10 +2028,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Eventor : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long EventorId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual long DateTimeTimestamp { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2007,6 +2061,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class EventorType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte EventorTypeId { get; set; }
@@ -2026,6 +2081,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class EventorPrecision : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte EventorPrecisionId { get; set; }
@@ -2045,10 +2101,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Identor : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long IdentorId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(128)]
 		public virtual string Value { get; set; }
 
@@ -2072,6 +2130,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class IdentorType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte IdentorTypeId { get; set; }
@@ -2091,14 +2150,18 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Locator : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long LocatorId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double ValueX { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double ValueY { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double ValueZ { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2121,20 +2184,27 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class LocatorType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte LocatorTypeId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double MinX { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double MaxX { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double MinY { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double MaxY { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double MinZ { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double MaxZ { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2152,10 +2222,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Vector : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long VectorId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual long Value { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2193,12 +2265,15 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class VectorType : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte VectorTypeId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual long Min { get; set; }
 
+		[WeaverItemProperty]
 		public virtual long Max { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2221,6 +2296,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class VectorRange : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte VectorRangeId { get; set; }
@@ -2245,10 +2321,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class VectorRangeLevel : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte VectorRangeLevelId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual float Position { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2266,10 +2344,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class VectorUnit : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte VectorUnitId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(8)]
 		public virtual string Symbol { get; set; }
 
@@ -2288,13 +2368,16 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class VectorUnitPrefix : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte VectorUnitPrefixId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(8)]
 		public virtual string Symbol { get; set; }
 
+		[WeaverItemProperty]
 		public virtual double Amount { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2312,21 +2395,26 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class OauthAccess : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long OauthAccessId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropIsUnique(True)]
 		//[PropLen(32)]
 		public virtual string Token { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLen(32)]
 		public virtual string Refresh { get; set; }
 
+		[WeaverItemProperty]
 		public virtual long ExpiresTimestamp { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool IsClientOnly { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2349,10 +2437,12 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class OauthDomain : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long OauthDomainId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		public virtual string Domain { get; set; }
 
@@ -2371,17 +2461,21 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class OauthGrant : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long OauthGrantId { get; set; }
 
+		[WeaverItemProperty]
 		//[PropLenMax(450)]
 		public virtual string RedirectUri { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsUnique(True)]
 		//[PropLen(32)]
 		public virtual string Code { get; set; }
 
+		[WeaverItemProperty]
 		public virtual long ExpiresTimestamp { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2404,12 +2498,15 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class OauthScope : WeaverNode {
 	
+		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long OauthScopeId { get; set; }
 
+		[WeaverItemProperty]
 		public virtual bool Allow { get; set; }
 
+		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 

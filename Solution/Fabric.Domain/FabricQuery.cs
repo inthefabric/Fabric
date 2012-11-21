@@ -3,7 +3,7 @@
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public class FabricQuery : WeaverPath {
+	public class FabricQuery : WeaverPath<Root> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Root Root { get { return (Root)BaseNode; } }
+		public Root Root { get { return BaseNode; } }
 
 	}
 

@@ -107,6 +107,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			case "DateTime": propType = "long"; propName += "Timestamp"; break;
 		}
 
+		attribs += "[WeaverItemProperty]"+attEnd;
+
 		if ( prop.IsCaseInsensitive != null ) {
 			attribs += "//[PropIsCaseInsensitive("+prop.IsCaseInsensitive+")]"+attEnd;
 		}
