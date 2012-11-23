@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/20/2012 11:27:15 PM
+// Generated on 11/22/2012 9:59:26 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -952,7 +952,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public class NodeForType : WeaverNode {
+	public abstract class NodeForType : WeaverNode {
 	
 		[WeaverItemProperty]
 		//[PropIsUnique(True)]
@@ -969,7 +969,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class NodeForAction : WeaverNode {
+	public abstract class NodeForAction : WeaverNode {
 	
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
@@ -1328,7 +1328,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class ArtifactType : WeaverNode {
+	public class ArtifactType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1423,7 +1423,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianType : WeaverNode {
+	public class CrowdianType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1443,7 +1443,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianTypeAssign : WeaverNode {
+	public class CrowdianTypeAssign : NodeForAction {
 	
 		[WeaverItemProperty]
 		public virtual float Weight { get; set; }
@@ -1593,7 +1593,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberType : WeaverNode {
+	public class MemberType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1613,7 +1613,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssign : WeaverNode {
+	public class MemberTypeAssign : NodeForAction {
 	
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign InMemberHas {
@@ -1881,7 +1881,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorElementNode : WeaverNode {
+	public abstract class FactorElementNode : WeaverNode {
 	
 	}
 

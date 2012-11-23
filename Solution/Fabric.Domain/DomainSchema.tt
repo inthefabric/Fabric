@@ -86,9 +86,10 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 <#
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	string baseNode = (node.BaseNode == null ? "WeaverNode" : node.BaseNode.Name);
 #>
 	/*================================================================================================*/
-	public class <#= node.Name #> : WeaverNode {
+	public <#= (node.IsAbstract ? "abstract " : "") #>class <#= node.Name #> : <#= baseNode #> {
 	
 <#
 	foreach ( WeaverPropSchema prop in node.Props ) { 
