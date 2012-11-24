@@ -520,44 +520,4 @@ namespace Fabric.Domain.Schema {
 
 	}
 
-
-	/*================================================================================================*/
-	public enum AppId {
-		FabricSystem = 1
-	}
-
-
-	/*================================================================================================*/
-	public enum ArtifactTypeId {
-		App = 1,
-		User,
-		Thing,
-		Url,
-		Label,
-		Crowd
-	}
-
-
-	/*================================================================================================*/
-	public enum CrowdUserTypeId {
-		None = 1,
-		Request,
-		Invite,
-		Member,
-		Admin
-	}
-
-
-	/*================================================================================================*/
-	public enum MemberTypeId {
-		None = 1,
-		Request,
-		Invite,
-		Member,
-		Staff,
-		Admin,
-		Owner,
-		DataProvider
-	}
-
 }

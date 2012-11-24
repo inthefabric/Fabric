@@ -8,8 +8,8 @@
     <ProjectGuid>{878B57C3-E251-4F77-8427-463693F033AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.Test.Data</RootNamespace>
-    <AssemblyName>Fabric.Test.Data</AssemblyName>
+    <RootNamespace>Fabric.Db.Data</RootNamespace>
+    <AssemblyName>Fabric.Db.Data</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,8 +43,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataNodeIndex.cs" />
+    <Compile Include="DataSet.cs" />
+    <Compile Include="FabricIdEnums.cs" />
     <Compile Include="Setups\Setup.cs" />
-    <Compile Include="Setups\SetupNode.cs" />
+    <Compile Include="DataNode.cs" />
     <Compile Include="Setups\SetupTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Fabric.Domain;
-using Fabric.Domain.Schema;
 
-namespace Fabric.Test.Data.Setups {
+namespace Fabric.Db.Data.Setups {
 
 	/*================================================================================================*/
 	public static class SetupTypes {
@@ -32,14 +30,12 @@ namespace Fabric.Test.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<ISetupNode> SetupAll() {
-			IEnumerable<ISetupNode> list = new List<ISetupNode>();
+		public static void SetupAll(DataSet pSet) {
+			SetupArtifactType(pSet);
+			SetupCrowdianType(pSet);
+			SetupMemberType(pSet);
 
-			list = list.Concat(SetupArtifactType());
-			/*SetupCrowdUserType();
-			SetupMemberType();
-
-			SetupDescriptorRefineType();
+			/*SetupDescriptorRefineType();
 			SetupDescriptorType();
 			SetupDirectorAction();
 			SetupDirectorType();
@@ -55,59 +51,134 @@ namespace Fabric.Test.Data.Setups {
 			SetupVectorUnitPrefix();
 			SetupVectorUnit();
 			SetupVectorUnitDerived();*/
-			
-			return list.ToList();
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<ISetupNode> SetupArtifactType() {
-			var list = new List<ISetupNode>();
-
+		public static void SetupArtifactType(DataSet pSet) {
 			var at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.App;
 			at.Name = "App";
 			at.Description = "This Artifact is related to a specific App.";
-			list.Add(SetupNode.Create(at, true));
+			pSet.AddNodeAndIndex(at, x => x.ArtifactTypeId, false);
 
 			at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.User;
 			at.Name = "User";
 			at.Description = "This Artifact is related to a specific User.";
-			list.Add(SetupNode.Create(at, true));
+			pSet.AddNodeAndIndex(at, x => x.ArtifactTypeId, false);
 
 			at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.Thing;
 			at.Name = "Thing";
 			at.Description = "This Artifact is related to a specific Thing.";
-			list.Add(SetupNode.Create(at, true));
+			pSet.AddNodeAndIndex(at, x => x.ArtifactTypeId, false);
 
 			at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.Url;
 			at.Name = "Url";
 			at.Description = "This Artifact is related to a specific URL.";
-			list.Add(SetupNode.Create(at, true));
+			pSet.AddNodeAndIndex(at, x => x.ArtifactTypeId, false);
 
 			at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.Label;
 			at.Name = "Label";
 			at.Description = "This Artifact is related to a specific Label.";
-			list.Add(SetupNode.Create(at, true));
+			pSet.AddNodeAndIndex(at, x => x.ArtifactTypeId, false);
 
 			/*at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.Comment;
 			at.Name = "Comment";
 			at.Description = "This Artifact is related to a specific Comment.";
-			list.Add(SetupNode.Create(at, true));*/
+			pSet.AddNode(DataNode.Create(at));*/
 
 			at = new ArtifactType();
 			at.ArtifactTypeId = (byte)ArtifactTypeId.Crowd;
 			at.Name = "Crowd";
 			at.Description = "This Artifact is related to a specific Crowd.";
-			list.Add(SetupNode.Create(at, true));
+			pSet.AddNodeAndIndex(at, x => x.ArtifactTypeId, false);
+		}
 
-			return list;
+		/*--------------------------------------------------------------------------------------------*/
+		public static void SetupCrowdianType(DataSet pSet) {
+			var list = new List<IDataNode>();
+
+			var ct = new CrowdianType();
+			ct.CrowdianTypeId = (byte)CrowdianTypeId.Request;
+			ct.Name = "Request";
+			ct.Description = "You would like to be a member of this Crowd.";
+			pSet.AddNodeAndIndex(ct, x => x.CrowdianTypeId, false);
+
+			ct = new CrowdianType();
+			ct.CrowdianTypeId = (byte)CrowdianTypeId.Invite;
+			ct.Name = "Invite";
+			ct.Description = "You have been invited to join this Crowd.";
+			pSet.AddNodeAndIndex(ct, x => x.CrowdianTypeId, false);
+
+			ct = new CrowdianType();
+			ct.CrowdianTypeId = (byte)CrowdianTypeId.Member;
+			ct.Name = "Member";
+			ct.Description = "You are a member of this Crowd.";
+			pSet.AddNodeAndIndex(ct, x => x.CrowdianTypeId, false);
+
+			ct = new CrowdianType();
+			ct.CrowdianTypeId = (byte)CrowdianTypeId.Admin;
+			ct.Name = "Admin";
+			ct.Description = "You are an administrator of this Crowd.";
+			pSet.AddNodeAndIndex(ct, x => x.CrowdianTypeId, false);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void SetupMemberType(DataSet pSet) {
+			var mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.None;
+			mt.Name = "None";
+			mt.Description = "You are not associated with this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.Request;
+			mt.Name = "Request";
+			mt.Description = "You would like to be a member of this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.Invite;
+			mt.Name = "Invite";
+			mt.Description = "You have been invited to join this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.Member;
+			mt.Name = "Member";
+			mt.Description = "You are a member of this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.Staff;
+			mt.Name = "Staff";
+			mt.Description = "You are a staff member of this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.Admin;
+			mt.Name = "Admin";
+			mt.Description = "You are an administrator of this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.Owner;
+			mt.Name = "Owner";
+			mt.Description = "You are the owner of this App.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
+
+			mt = new MemberType();
+			mt.MemberTypeId = (byte)MemberTypeId.DataProvider;
+			mt.Name = "DataProvider";
+			mt.Description = "A special membership which allows a App to add items that "+
+				"are accessible by all of its users.";
+			pSet.AddNodeAndIndex(mt, x => x.MemberTypeId, false);
 		}
 
 	}

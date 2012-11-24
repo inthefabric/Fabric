@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain", "Fabric.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain.Schema", "Fabric.Domain.Schema\Fabric.Domain.Schema.csproj", "{FC70F2C2-C0F0-4F12-903F-FBB5C9B877C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test.Data", "Fabric.Test.Data\Fabric.Test.Data.csproj", "{878B57C3-E251-4F77-8427-463693F033AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db.Data", "Fabric.Test.Data\Fabric.Db.Data.csproj", "{878B57C3-E251-4F77-8427-463693F033AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test", "Fabric.Test\Fabric.Test.csproj", "{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}"
 EndProject
