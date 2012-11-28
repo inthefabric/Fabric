@@ -55,7 +55,7 @@ namespace Fabric.Infrastructure {
 		public static void Info(Guid pSessId, string pMode, string pText, Exception pException=null) {
 			pText = Prefix("Info", pSessId, pMode)+pText;
 			LogInstance.Info(pText, pException);
-			if ( pException != null ) { ConsoleOut(pText, pException); }
+			ConsoleOut(pText, pException);
 		}
 
 
@@ -78,7 +78,7 @@ namespace Fabric.Infrastructure {
 		public static void Debug(Guid pSessId, string pMode, string pText, Exception pException=null) {
 			pText = Prefix("Debug", pSessId, pMode)+pText;
 			LogInstance.Debug(pText, pException);
-			if ( pException != null ) { ConsoleOut(pText, pException); }
+			ConsoleOut(pText, pException);
 		}
 
 
@@ -101,7 +101,7 @@ namespace Fabric.Infrastructure {
 		public static void Error(Guid pSessId, string pMode, string pText, Exception pException=null) {
 			pText = Prefix("Error", pSessId, pMode)+pText;
 			LogInstance.Error(pText, pException);
-			if ( pException != null ) { ConsoleOut(pText, pException); }
+			ConsoleOut(pText, pException);
 		}
 
 
@@ -124,7 +124,7 @@ namespace Fabric.Infrastructure {
 		public static void Fatal(Guid pSessId, string pMode, string pText, Exception pException=null) {
 			pText = Prefix("Fatal", pSessId, pMode)+pText;
 			LogInstance.Fatal(pText, pException);
-			if ( pException != null ) { ConsoleOut(pText, pException); }
+			ConsoleOut(pText, pException);
 		}
 
 
@@ -147,7 +147,7 @@ namespace Fabric.Infrastructure {
 		public static void Warn(Guid pSessId, string pMode, string pText, Exception pException=null) {
 			pText = Prefix("Warn", pSessId, pMode)+pText;
 			LogInstance.Warn(pText, pException);
-			if ( pException != null ) { ConsoleOut(pText, pException); }
+			ConsoleOut(pText, pException);
 		}
 
 

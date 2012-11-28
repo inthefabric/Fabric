@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Db.Data;
+﻿using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using NUnit.Framework;
@@ -35,19 +34,24 @@ namespace Fabric.Test {
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
 				string json = FabricUtil.WeaverQueryToJson(q);
-				Console.WriteLine(json);
+				Log.Debug(json);
 			}
 
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = FabricUtil.WeaverQueryToJson(n.AddQuery);
-				Console.WriteLine(json);
+				Log.Debug(json);
 
 				n.Node.Id = nodeI++;
 			}
 
 			foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
 				string json = FabricUtil.WeaverQueryToJson(ni.AddToIndexQuery);
-				Console.WriteLine(json);
+				Log.Debug(json);
+			}
+
+			foreach ( IDataRel r in ds.Rels ) {
+				string json = FabricUtil.WeaverQueryToJson(r.AddQuery);
+				Log.Debug(json);
 			}
 		}
 
