@@ -19,18 +19,6 @@ namespace Fabric.Db.Data {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public static IList<DataNodeIndex<T>> Create<T>(IList<DataNode<T>> pNodes,
-									Expression<Func<T, object>> pIndexValueFunc) where T : IWeaverNode {
-			var list = new List<DataNodeIndex<T>>();
-
-			foreach ( DataNode<T> node in pNodes ) {
-				list.Add(new DataNodeIndex<T>(node, pIndexValueFunc));
-			}
-
-			return list;
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public static DataNodeIndex<T> Create<T>(DataNode<T> pNode,
 									Expression<Func<T, object>> pIndexValueFunc) where T : IWeaverNode {
@@ -45,7 +33,9 @@ namespace Fabric.Db.Data {
 		public string IndexName { get; private set; }
 		public Expression<Func<T, object>> IndexValueFunc { get; private set; }
 		public bool IsForTesting { get; private set; }
-		public WeaverQuery AddToIndexQuery { get; private set; }
+
+		private readonly DataNode<T> vDataNode;
+		private WeaverQuery vAddToIndexQuery;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +44,20 @@ namespace Fabric.Db.Data {
 			IndexName = typeof(T).Name+"Id";
 			IndexValueFunc = pIndexValueFunc;
 			IsForTesting = pNode.IsForTesting;
-			AddToIndexQuery = WeaverQuery.AddNodeToIndex(IndexName, pNode.NodeT, pIndexValueFunc);
+
+			vDataNode = pNode;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public WeaverQuery AddToIndexQuery {
+			get {
+				if ( vAddToIndexQuery == null ) {
+					vAddToIndexQuery = WeaverQuery.AddNodeToIndex(
+						IndexName, vDataNode.NodeT, IndexValueFunc);
+				}
+
+				return vAddToIndexQuery;
+			}
 		}
 
 	}

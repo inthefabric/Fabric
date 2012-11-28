@@ -31,6 +31,7 @@ namespace Fabric.Test {
 		[TestCase(false)]
 		public void SetupAll(bool pIsForTesting) {
 			DataSet ds = Setup.SetupAll(pIsForTesting);
+			long nodeI = 0;
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
 				string json = FabricUtil.WeaverQueryToJson(q);
@@ -40,6 +41,8 @@ namespace Fabric.Test {
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = FabricUtil.WeaverQueryToJson(n.AddQuery);
 				Console.WriteLine(json);
+
+				n.Node.Id = nodeI++;
 			}
 
 			foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {

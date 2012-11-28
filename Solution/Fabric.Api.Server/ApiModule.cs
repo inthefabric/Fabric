@@ -1,16 +1,28 @@
 ﻿using System;
 using Fabric.Api.Server.Util;
+using Fabric.Db.Data;
+using Fabric.Db.Data.Setups;
+using Fabric.Infrastructure;
 using Nancy;
+using Weaver;
 
 namespace Fabric.Api.Server {
 
 	/*================================================================================================*/
 	public class ApiModule : NancyModule {
 
+		private readonly Guid vRequestId;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiModule() {
+			Log.ConfigureOnce();
+
+			vRequestId = Guid.NewGuid();
+			Log.Info(vRequestId, "REQUEST", "ApiModule Request");
+
+			Get["/setup"] = DoSetup;
 			Get["/(.*)"] = GremlinRequest;
 		}
 
@@ -19,27 +31,57 @@ namespace Fabric.Api.Server {
 			try {
 				string query = (string)pParams["1"];
 				query = query.Replace('/', '.');
+				var gremReq = new GremlinRequest(query);
+				return gremReq.ResponseData;
+			}
+			catch ( Exception ex ) {
+				return "error: "+ex.Message;
+			}
+		}
 
-				string result = "";
 
-				/*foreach ( var key in pParams ) {
-					result += key+": "+pParams[key]+"\n";
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private string DoSetup(dynamic pParams) {
+			try {
+				if ( Context.Request.Query["pass"] != "asdfasdf" ) {
+					//Context.Response.StatusCode = HttpStatusCode.Unauthorized;
+					return "Password required.";
 				}
 
-				long id = Sharpflake.GetId(Sharpflake.SequenceKey.Factor);
-				result += "TestID: "+id+" ... "+Convert.ToString(id, 2)+"\n";
-				 result += "----\n";
-				 */
+				DataSet ds = Setup.SetupAll(false);
+				string result = "";
 
-				//var gremReq = new GremlinRequestAsync(query);
-				var gremReq = new GremlinRequest(query);
-				result += gremReq.ResponseData;
+				var req = new GremlinRequest("g.clear();");
+				result += GetSetupLineItem(req);
+
+				foreach ( WeaverQuery q in ds.Indexes ) {
+					req = new GremlinRequest(q);
+					result += GetSetupLineItem(req);
+				}
+
+				foreach ( IDataNode n in ds.Nodes ) {
+					req = new GremlinRequest(n.AddQuery);
+					result += GetSetupLineItem(req);
+				}
+
+				/*foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
+					req = new GremlinRequest(ni.AddToIndexQuery);
+					result += GetSetupLineItem(req);
+				}*/
+
 				return result;
 			}
 			catch ( Exception ex ) {
 				return "error: "+ex.Message;
 			}
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetSetupLineItem(GremlinRequest pReq) {
+			return "<b>"+pReq.Script+"</b><br/>"+pReq.ResponseData+"<br/><br/>";
+		}
+
 	}
 
 }

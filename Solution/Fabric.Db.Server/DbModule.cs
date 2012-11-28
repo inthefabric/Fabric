@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Fabric.Infrastructure;
 using Nancy;
 using ServiceStack.Text;
 
@@ -9,10 +10,17 @@ namespace Fabric.Db.Server {
 	/*================================================================================================*/
 	public class DbModule : NancyModule {
 
+		private readonly Guid vRequestId;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DbModule() {
+			Log.ConfigureOnce();
+
+			vRequestId = Guid.NewGuid();
+			Log.Info(vRequestId, "REQUEST", "DbModule Request");
+
 			Post["/(.*)"] = SendQuery;
 		}
 
@@ -22,12 +30,16 @@ namespace Fabric.Db.Server {
 				StreamReader sr = new StreamReader(Context.Request.Body);
 				string query = sr.ReadToEnd();
 
+				Log.Info(vRequestId, "QUERY", query);
+
 				var grem = new GremlinQuery(query);
-				var result = grem.ExecuteQuery();
+				string result = grem.ExecuteQuery();
 				result = FixResult(result);
+				Log.Debug(vRequestId, "RESULT", result);
 				return result;
 			}
 			catch ( Exception ex ) {
+				Log.Error(vRequestId, "FAIL", ex.Message);
 				return "{\"Error\":\""+ex.Message.Replace('"', '\'')+"\"}";
 			}
 		}
@@ -54,17 +66,6 @@ namespace Fabric.Db.Server {
 				.Replace("\":\"node/", "\":\"n/")
 				.Replace("\":\"relationship/", "\":\"r/");
 		}
-
-	}
-
-	/*================================================================================================*/
-	public class DbResult {
-
-		public string Self { get; set; }
-		public string Start { get; set; }
-		public string Type { get; set; }
-		public string End { get; set; }
-		public Dictionary<string, string> Data { get; set; }
 
 	}
 
