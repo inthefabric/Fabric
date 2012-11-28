@@ -12,19 +12,6 @@ namespace Fabric.Test {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void SetupAddIndexes() {
-			List<WeaverQuery> queries = Setup.SetupAddNodeIndexes();
-
-			foreach ( WeaverQuery q in queries ) {
-				string json = FabricUtil.WeaverQueryToJson(q);
-				Console.WriteLine(json);
-			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true)]
 		[TestCase(false)]

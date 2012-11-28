@@ -41,7 +41,7 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataNodeIndex(DataNode<T> pNode, Expression<Func<T, object>> pIndexValueFunc) {
-			IndexName = typeof(T).Name+"Id";
+			IndexName = typeof(T).Name;
 			IndexValueFunc = pIndexValueFunc;
 			IsForTesting = pNode.IsForTesting;
 

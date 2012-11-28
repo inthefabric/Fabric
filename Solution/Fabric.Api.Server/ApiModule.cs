@@ -63,12 +63,18 @@ namespace Fabric.Api.Server {
 				foreach ( IDataNode n in ds.Nodes ) {
 					req = new GremlinRequest(n.AddQuery);
 					result += GetSetupLineItem(req);
+					n.Node.Id = req.Result.GetNodeId();
 				}
 
-				/*foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
+				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
 					req = new GremlinRequest(ni.AddToIndexQuery);
 					result += GetSetupLineItem(req);
-				}*/
+				}
+
+				foreach ( IDataRel r in ds.Rels ) {
+					req = new GremlinRequest(r.AddQuery);
+					result += GetSetupLineItem(req);
+				}
 
 				return result;
 			}

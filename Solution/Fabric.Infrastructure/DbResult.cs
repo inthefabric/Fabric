@@ -15,6 +15,15 @@ namespace Fabric.Infrastructure {
 		public string Message { get; set; }
 		public string Exception { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public long GetNodeId() {
+			if ( Self == null ) { return -1; }
+			string idStr = Self.Substring(Self.LastIndexOf('/')+1);
+			return long.Parse(idStr);
+		}
+
 	}
 
 }

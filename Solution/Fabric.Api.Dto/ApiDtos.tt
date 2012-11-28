@@ -1,0 +1,141 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+using Fabric.Infrastructure;
+
+namespace Fabric.Api.Dto {
+	
+<#
+var schema = new GraphSchema();
+
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	string baseNode = "Fab"+(node.BaseNode == null ? "Node" : node.BaseNode.Name);
+#>
+	/*================================================================================================*/
+	public <#= (node.IsAbstract ? "abstract " : "") #>class Fab<#= node.Name #> : <#= baseNode #> {
+	
+<#
+	foreach ( WeaverPropSchema prop in node.Props ) { 
+		string propType = prop.Type.Name;
+		string propName = prop.Name;
+		string attribs = "";
+		string attEnd = "\r\n\t\t";
+		
+		switch ( prop.Type.Name ) {
+			case "Int64": propType = "long"; break;
+			case "Byte": propType = "byte"; break;
+			case "String": propType = "string"; break;
+			case "Boolean": propType = "bool"; break;
+			case "Single": propType = "float"; break;
+			case "Double": propType = "double"; break;
+			case "DateTime": propType = "long"; propName += "Timestamp"; break;
+		}
+
+		if ( prop.IsCaseInsensitive != null ) {
+			attribs += "//[PropIsCaseInsensitive("+prop.IsCaseInsensitive+")]"+attEnd;
+		}
+
+		if ( prop.IsNullable != null ) {
+			attribs += "//[PropIsNullable("+prop.IsNullable+")]"+attEnd;
+		}
+
+		if ( prop.IsPrimaryKey != null ) {
+			attribs += "//[PropIsPrimaryKey("+prop.IsPrimaryKey+")]"+attEnd;
+		}
+
+		if ( prop.IsTimestamp != null ) {
+			attribs += "//[PropIsTimestamp("+prop.IsTimestamp+")]"+attEnd;
+		}
+
+		if ( prop.IsUnique != null ) {
+			attribs += "//[PropIsUnique("+prop.IsUnique+")]"+attEnd;
+		}
+
+		if ( prop.Len != null ) {
+			attribs += "//[PropLen("+prop.Len+")]"+attEnd;
+		}
+
+		if ( prop.LenMax != null ) {
+			attribs += "//[PropLenMax("+prop.LenMax+")]"+attEnd;
+		}
+
+		if ( prop.LenMin != null ) {
+			attribs += "//[PropLenMin("+prop.LenMin+")]"+attEnd;
+		}
+
+		if ( prop.ValidRegex != null ) {
+			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
+		}
+
+#>
+		<#= attribs #>public <#= propType+" "+propName #> { get; set; }
+
+<#
+	}
+
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+#>
+		public <#= GetRelProp(node, rel) #> { get; set; }
+<#
+	}
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void FillResultData(Dictionary<string,string> pData) {}
+
+	}
+
+<#
+}
+#>
+}
+<#+
+
+	public string GetRelProp(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+		bool isOut = (pRel.FromNode == pNode);
+		bool isMany = false;
+
+		if ( isOut ) {
+			isMany = (
+				pRel.FromNodeConn == WeaverRelConn.OutToOneOrMore ||
+				pRel.FromNodeConn == WeaverRelConn.OutToZeroOrMore
+			);
+		}
+		else {
+			isMany = (
+				pRel.ToNodeConn == WeaverRelConn.InFromOneOrMore ||
+				pRel.ToNodeConn == WeaverRelConn.InFromZeroOrMore
+			);
+		}
+
+		var fromNode = (isOut ? "" : pRel.FromNode.Name+(isMany ? "s" : ""));
+		var toNode = (!isOut ? "" : pRel.ToNode.Name+(isMany ? "s" : ""));
+		var type = "Fab"+(isOut ? pRel.ToNode.Name : pRel.FromNode.Name);
+		
+		if ( isMany ) {
+			type = "IList<"+type+">";
+		}
+
+		return type+" "+(isOut ? "Out" : "In") + fromNode + pRel.Name + toNode;
+    }
+
+
+	public string GetRelConn(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+		bool isFrom = (pRel.FromNode == pNode);
+		return (isFrom ? pRel.FromNodeConn : pRel.ToNodeConn)+"";
+    }
+
+#>
