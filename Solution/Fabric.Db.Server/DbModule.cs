@@ -19,7 +19,7 @@ namespace Fabric.Db.Server {
 			Log.ConfigureOnce();
 
 			vRequestId = Guid.NewGuid();
-			Log.Info(vRequestId, "REQUEST", "DbModule Request");
+			//Log.Info(vRequestId, "REQUEST", "DbModule Request");
 
 			Post["/(.*)"] = SendQuery;
 		}

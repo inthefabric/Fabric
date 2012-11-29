@@ -113,7 +113,7 @@
 	}
 
 	/*================================================================================================*/
-	public enum FactorAssertId {
+	public enum FactorAssertionId {
 		Undefined = 1,
 		Fact,
 		Opinion,
@@ -157,6 +157,40 @@
 		PosAgree,
 		FullFavor,
 		PosFavor
+	}
+
+	/*================================================================================================*/
+	public enum VectorRangeLevelId {
+		Zero0 = 1,
+		Zero05,
+		Zero1,
+
+		Min0,
+		Max1,
+		
+		CompDisagree,
+		MostDisagree,
+		SomeDisagree,
+		NoOpinion05,
+		SomeAgree,
+		MostAgree,
+		CompAgree,
+
+		NoOpinion0,
+		SomeAgreePos,
+		MostAgreePos,
+		CompAgreePos,
+
+		CompUnfavor,
+		MostUnfavor,
+		SomeUnfavor,
+		SomeFavor,
+		MostFavor,
+		CompFavor,
+
+		SomeFavorPos,
+		MostFavorPos,
+		CompFavorPos
 	}
 
 	/*================================================================================================*/
@@ -250,8 +284,6 @@
 		Tera,
 		Peta,
 		Exa,
-		//Zetta,
-		//Yotta,
 
 		Milli,
 		Micro,
@@ -259,17 +291,41 @@
 		Pico,
 		Femto,
 		Atto,
-		//Zepto,
-		//Yocto,
 
 		Kibi,
 		Mebi,
 		Gibi,
 		Tebi,
 		Pebi,
-		Exbi,
-		//Zebi,
-		//Yobi
+		Exbi
+	}
+
+	/*================================================================================================*/
+	public class VectorUnitPrefixConst {
+
+		public const double Base = 1;
+
+		public const double Kilo = 1E3;
+		public const double Mega = 1E6;
+		public const double Giga = 1E9;
+		public const double Tera = 1E12;
+		public const double Peta = 1E15;
+		public const double Exa = 1E18;
+
+		public const double Milli = 1E-3;
+		public const double Micro = 1E-6;
+		public const double Nano = 1E-9;
+		public const double Pico = 1E-12;
+		public const double Femto = 1E-15;
+		public const double Atto = 1E-18;
+
+		public const double Kibi = 1024;
+		public const double Mebi = 1048576;
+		public const double Gibi = 1073741824;
+		public const double Tebi = 1099511627776;
+		public const double Pebi = 1125899906842624;
+		public const double Exbi = 1152921504606846976;
+
 	}
 
 }

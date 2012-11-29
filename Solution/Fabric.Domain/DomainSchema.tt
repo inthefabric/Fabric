@@ -99,6 +99,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		string attEnd = "\r\n\t\t";
 		
 		switch ( prop.Type.Name ) {
+			case "Int32": propType = "int"; break;
 			case "Int64": propType = "long"; break;
 			case "Byte": propType = "byte"; break;
 			case "String": propType = "string"; break;

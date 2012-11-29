@@ -20,7 +20,7 @@ namespace Fabric.Api.Server {
 			Log.ConfigureOnce();
 
 			vRequestId = Guid.NewGuid();
-			Log.Info(vRequestId, "REQUEST", "ApiModule Request");
+			//Log.Info(vRequestId, "REQUEST", "ApiModule Request");
 
 			Get["/setup"] = DoSetup;
 			Get["/(.*)"] = GremlinRequest;

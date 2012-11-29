@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/28/2012 8:39:56 PM
+// Generated on 11/29/2012 5:35:35 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -70,23 +70,23 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class refinesPrimaryWith : IWeaverRelType {
+	public class RefinesPrimaryWith : IWeaverRelType {
 	
-		public string Label { get { return "refinesPrimaryWith"; } }
+		public string Label { get { return "RefinesPrimaryWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class refinesRelatedWith : IWeaverRelType {
+	public class RefinesRelatedWith : IWeaverRelType {
 	
-		public string Label { get { return "refinesRelatedWith"; } }
+		public string Label { get { return "RefinesRelatedWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class refinesTypeWith : IWeaverRelType {
+	public class RefinesTypeWith : IWeaverRelType {
 	
-		public string Label { get { return "refinesTypeWith"; } }
+		public string Label { get { return "RefinesTypeWith"; } }
 
 	}
 
@@ -94,6 +94,20 @@ namespace Fabric.Domain {
 	public class UsesAxis : IWeaverRelType {
 	
 		public string Label { get { return "UsesAxis"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class Defines : IWeaverRelType {
+	
+		public string Label { get { return "Defines"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class RaisesToExp : IWeaverRelType {
+	
+		public string Label { get { return "RaisesToExp"; } }
 
 	}
 
@@ -395,6 +409,15 @@ namespace Fabric.Domain {
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
 		public override string Label { get { return "RootContainsVectorUnitPrefix"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class RootContainsVectorUnitDerived : WeaverRel<Root, Contains, VectorUnitDerived> {
+			
+		public virtual Root FromRoot { get { return FromNode; } }
+		public virtual VectorUnitDerived ToVectorUnitDerived { get { return ToNode; } }
+		public override string Label { get { return "RootContainsVectorUnitDerived"; } }
 
 	}
 
@@ -741,29 +764,29 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorrefinesPrimaryWithArtifact : WeaverRel<Descriptor, refinesPrimaryWith, Artifact> {
+	public class DescriptorRefinesPrimaryWithArtifact : WeaverRel<Descriptor, RefinesPrimaryWith, Artifact> {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "DescriptorrefinesPrimaryWithArtifact"; } }
+		public override string Label { get { return "DescriptorRefinesPrimaryWithArtifact"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class DescriptorrefinesRelatedWithArtifact : WeaverRel<Descriptor, refinesRelatedWith, Artifact> {
+	public class DescriptorRefinesRelatedWithArtifact : WeaverRel<Descriptor, RefinesRelatedWith, Artifact> {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "DescriptorrefinesRelatedWithArtifact"; } }
+		public override string Label { get { return "DescriptorRefinesRelatedWithArtifact"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class DescriptorrefinesTypeWithArtifact : WeaverRel<Descriptor, refinesTypeWith, Artifact> {
+	public class DescriptorRefinesTypeWithArtifact : WeaverRel<Descriptor, RefinesTypeWith, Artifact> {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "DescriptorrefinesTypeWithArtifact"; } }
+		public override string Label { get { return "DescriptorRefinesTypeWithArtifact"; } }
 
 	}
 
@@ -881,6 +904,33 @@ namespace Fabric.Domain {
 		public virtual VectorRange FromVectorRange { get { return FromNode; } }
 		public virtual VectorRangeLevel ToVectorRangeLevel { get { return ToNode; } }
 		public override string Label { get { return "VectorRangeUsesVectorRangeLevel"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class VectorUnitDerivedDefinesVectorUnit : WeaverRel<VectorUnitDerived, Defines, VectorUnit> {
+			
+		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
+		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
+		public override string Label { get { return "VectorUnitDerivedDefinesVectorUnit"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class VectorUnitDerivedRaisesToExpVectorUnit : WeaverRel<VectorUnitDerived, RaisesToExp, VectorUnit> {
+			
+		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
+		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
+		public override string Label { get { return "VectorUnitDerivedRaisesToExpVectorUnit"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class VectorUnitDerivedUsesVectorUnitPrefix : WeaverRel<VectorUnitDerived, Uses, VectorUnitPrefix> {
+			
+		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
+		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
+		public override string Label { get { return "VectorUnitDerivedUsesVectorUnitPrefix"; } }
 
 	}
 
@@ -1160,6 +1210,11 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsVectorUnitDerived OutContainsVectorUnitDeriveds {
+			get { return NewRel<RootContainsVectorUnitDerived>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsOauthAccess OutContainsOauthAccesss {
 			get { return NewRel<RootContainsOauthAccess>(WeaverRelConn.OutToZeroOrMore); }
 		}
@@ -1328,18 +1383,18 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorrefinesPrimaryWithArtifact InDescriptorsrefinesPrimaryWith {
-			get { return NewRel<DescriptorrefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual DescriptorRefinesPrimaryWithArtifact InDescriptorsRefinesPrimaryWith {
+			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorrefinesRelatedWithArtifact InDescriptorsrefinesRelatedWith {
-			get { return NewRel<DescriptorrefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual DescriptorRefinesRelatedWithArtifact InDescriptorsRefinesRelatedWith {
+			get { return NewRel<DescriptorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorrefinesTypeWithArtifact InDescriptorsrefinesTypeWith {
-			get { return NewRel<DescriptorrefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual DescriptorRefinesTypeWithArtifact InDescriptorsRefinesTypeWith {
+			get { return NewRel<DescriptorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1991,7 +2046,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorAssertion : Node {
+	public class FactorAssertion : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2053,24 +2108,24 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorrefinesPrimaryWithArtifact OutrefinesPrimaryWithArtifact {
-			get { return NewRel<DescriptorrefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual DescriptorRefinesPrimaryWithArtifact OutRefinesPrimaryWithArtifact {
+			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorrefinesRelatedWithArtifact OutrefinesRelatedWithArtifact {
-			get { return NewRel<DescriptorrefinesRelatedWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual DescriptorRefinesRelatedWithArtifact OutRefinesRelatedWithArtifact {
+			get { return NewRel<DescriptorRefinesRelatedWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorrefinesTypeWithArtifact OutrefinesTypeWithArtifact {
-			get { return NewRel<DescriptorrefinesTypeWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual DescriptorRefinesTypeWithArtifact OutRefinesTypeWithArtifact {
+			get { return NewRel<DescriptorRefinesTypeWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public class DescriptorType : Node {
+	public class DescriptorType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2139,7 +2194,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorType : Node {
+	public class DirectorType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2166,7 +2221,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorAction : Node {
+	public class DirectorAction : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2238,7 +2293,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class EventorType : Node {
+	public class EventorType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2265,7 +2320,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class EventorPrecision : Node {
+	public class EventorPrecision : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2328,7 +2383,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class IdentorType : Node {
+	public class IdentorType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2396,7 +2451,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class LocatorType : Node {
+	public class LocatorType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2491,7 +2546,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorType : Node {
+	public class VectorType : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2529,7 +2584,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorRange : Node {
+	public class VectorRange : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2561,7 +2616,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeLevel : Node {
+	public class VectorRangeLevel : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2591,7 +2646,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnit : Node {
+	public class VectorUnit : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2619,10 +2674,20 @@ namespace Fabric.Domain {
 			get { return NewRel<VectorUsesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUnitDerivedDefinesVectorUnit InVectorUnitDerivedsDefines {
+			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUnitDerivedRaisesToExpVectorUnit InVectorUnitDerivedsRaisesToExp {
+			get { return NewRel<VectorUnitDerivedRaisesToExpVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitPrefix : Node {
+	public class VectorUnitPrefix : NodeForType {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2651,6 +2716,51 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorUsesVectorUnitPrefix InVectorsUses {
 			get { return NewRel<VectorUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUnitDerivedUsesVectorUnitPrefix InVectorUnitDerivedsUses {
+			get { return NewRel<VectorUnitDerivedUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class VectorUnitDerived : NodeForType {
+	
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte VectorUnitDerivedId { get; set; }
+
+		[WeaverItemProperty]
+		public virtual int Exponent { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorUnitDerivedId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsVectorUnitDerived InRootContains {
+			get { return NewRel<RootContainsVectorUnitDerived>(WeaverRelConn.InFromOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUnitDerivedDefinesVectorUnit OutDefinesVectorUnit {
+			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.OutToOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUnitDerivedRaisesToExpVectorUnit OutRaisesToExpVectorUnit {
+			get { return NewRel<VectorUnitDerivedRaisesToExpVectorUnit>(WeaverRelConn.OutToOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUnitDerivedUsesVectorUnitPrefix OutUsesVectorUnitPrefix {
+			get { return NewRel<VectorUnitDerivedUsesVectorUnitPrefix>(WeaverRelConn.OutToOne); }
 		}
 
 	}
