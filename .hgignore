@@ -12,3 +12,4 @@ Fabric.*.log
 _Publish_*/*
 Fabric.*.log.*
 Solution/_ReSharper.Fabric/*
+DbServer/Neo4j/data/graph.db/*

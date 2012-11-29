@@ -30,8 +30,8 @@ namespace Fabric.Db.Data {
 
 			vNodeMap = new Dictionary<string, INode>();
 
-			var r = new Root();
-			AddNode(DataNode.Create(r));
+			var r = new Root { Id = 0 };
+			//AddNode(DataNode.Create(r)); //do not add node, use g.v(0) instead
 			vNodeMap.Add(typeof(Root).Name+1, r);
 		}
 		
@@ -66,17 +66,15 @@ namespace Fabric.Db.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private DataNode<T> AddNode<T>(DataNode<T> pNode) where T : INode {
-			if ( !IsForTesting && pNode.IsForTesting ) { return pNode; }
+		private void AddNode<T>(DataNode<T> pNode) where T : INode {
+			if ( !IsForTesting && pNode.IsForTesting ) { return; }
 			Nodes.Add(pNode);
-			return pNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private DataNodeIndex<T> AddNodeToIndex<T>(DataNodeIndex<T> pNodeToIndex) where T : INode {
-			if ( !IsForTesting && pNodeToIndex.IsForTesting ) { return pNodeToIndex; }
+		private void AddNodeToIndex<T>(DataNodeIndex<T> pNodeToIndex) where T : INode {
+			if ( !IsForTesting && pNodeToIndex.IsForTesting ) { return; }
 			NodeToIndexes.Add(pNodeToIndex);
-			return pNodeToIndex;
 		}
 
 

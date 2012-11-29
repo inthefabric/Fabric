@@ -51,9 +51,7 @@ namespace Fabric.Api.Server {
 
 				DataSet ds = Setup.SetupAll(false);
 				string result = "";
-
-				var req = new GremlinRequest("g.clear();");
-				result += GetSetupLineItem(req);
+				GremlinRequest req;
 
 				foreach ( WeaverQuery q in ds.Indexes ) {
 					req = new GremlinRequest(q);
