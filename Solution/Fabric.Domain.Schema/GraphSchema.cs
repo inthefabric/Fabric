@@ -104,6 +104,8 @@ namespace Fabric.Domain.Schema {
 
 			WeaverNodeSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
 			crowdianTypeAssign.BaseNode = nodeForAction;
+			p = AddProp(crowdianTypeAssign, "CrowdianTypeAssignId", typeof(long));
+				p.IsPrimaryKey = true;
 			p = AddProp(crowdianTypeAssign, "Weight", typeof(float));
 
 			WeaverNodeSchema email = AddNode("Email", "E");
@@ -142,6 +144,8 @@ namespace Fabric.Domain.Schema {
 
 			WeaverNodeSchema memberTypeAssign = AddNode("MemberTypeAssign", "MTA");
 			memberTypeAssign.BaseNode = nodeForAction;
+			p = AddProp(memberTypeAssign, "MemberTypeAssignId", typeof(long));
+				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema thing = AddNode("Thing", "T");
 			p = AddProp(thing, "ThingId", typeof(long));

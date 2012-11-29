@@ -41,6 +41,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainSchema1.cs</LastGenOutput>
     </None>
+    <Compile Include="INode.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="DomainSchema1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

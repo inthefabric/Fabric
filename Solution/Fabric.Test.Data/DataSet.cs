@@ -16,6 +16,8 @@ namespace Fabric.Db.Data {
 		public IList<IDataRel> Rels { get; private set; }
 		public bool IsForTesting { get; private set; }
 
+		private readonly Dictionary<string, INode> vNodeMap;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -25,6 +27,21 @@ namespace Fabric.Db.Data {
 			NodeToIndexes = new List<IDataNodeIndex>();
 			Rels = new List<IDataRel>();
 			IsForTesting = pIsForTesting;
+
+			vNodeMap = new Dictionary<string, INode>();
+
+			var r = new Root();
+			AddNode(DataNode.Create(r));
+			vNodeMap.Add(typeof(Root).Name+1, r);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public INode GetNode<T>(long pNodeTypeId) where T : INode {
+			INode n;
+			vNodeMap.TryGetValue(typeof(T).Name+pNodeTypeId, out n);
+			return n;
 		}
 
 
@@ -38,24 +55,25 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public bool AddNodeAndIndex<T>(T pDomainNode, Expression<Func<T,object>> pIndexValueFunc,
-															bool pIsForTesting) where T : IWeaverNode {
+															bool pIsForTesting) where T : INode {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
 			DataNode<T> n = DataNode.Create(pDomainNode, pIsForTesting);
 			DataNodeIndex<T> ni = DataNodeIndex.Create(n, pIndexValueFunc);
 			AddNode(n);
 			AddNodeToIndex(ni);
+			vNodeMap.Add(typeof(T).Name+pDomainNode.GetTypeId(), pDomainNode);
 			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataNode<T> AddNode<T>(DataNode<T> pNode) where T : IWeaverNode {
+		private DataNode<T> AddNode<T>(DataNode<T> pNode) where T : INode {
 			if ( !IsForTesting && pNode.IsForTesting ) { return pNode; }
 			Nodes.Add(pNode);
 			return pNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataNodeIndex<T> AddNodeToIndex<T>(DataNodeIndex<T> pNodeToIndex) where T : IWeaverNode {
+		private DataNodeIndex<T> AddNodeToIndex<T>(DataNodeIndex<T> pNodeToIndex) where T : INode {
 			if ( !IsForTesting && pNodeToIndex.IsForTesting ) { return pNodeToIndex; }
 			NodeToIndexes.Add(pNodeToIndex);
 			return pNodeToIndex;
@@ -65,7 +83,7 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataRel<TFrom, TRel, TTo> AddRel<TFrom, TRel, TTo>(DataRel<TFrom, TRel, TTo> pRel)
-							where TFrom : IWeaverNode where TRel : IWeaverRel where TTo : IWeaverNode {
+							where TFrom : INode where TRel : IWeaverRel where TTo : INode {
 			if ( !IsForTesting && pRel.IsForTesting ) { return pRel; }
 			Rels.Add(pRel);
 			return pRel;
@@ -75,7 +93,7 @@ namespace Fabric.Db.Data {
 		public bool AddRootRel<TRel>(IWeaverNode pToNode, bool pIsForTesting)
 																		where TRel : IWeaverRel, new(){
 			if ( !IsForTesting && pIsForTesting ) { return false; }
-			IDataRel r = DataRel.Create(new Root { Id = 0 }, new TRel(), pToNode);
+			IDataRel r = DataRel.Create(GetNode<Root>(1), new TRel(), pToNode);
 			Rels.Add(r);
 			return true;
 		}

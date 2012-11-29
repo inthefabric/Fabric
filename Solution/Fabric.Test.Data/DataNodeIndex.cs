@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Fabric.Domain;
 using Weaver;
-using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
 
@@ -21,14 +21,14 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static DataNodeIndex<T> Create<T>(DataNode<T> pNode,
-									Expression<Func<T, object>> pIndexValueFunc) where T : IWeaverNode {
+									Expression<Func<T, object>> pIndexValueFunc) where T : INode {
 			return new DataNodeIndex<T>(pNode, pIndexValueFunc);
 		}
 
 	}
 
 	/*================================================================================================*/
-	public class DataNodeIndex<T> : IDataNodeIndex where T : IWeaverNode {
+	public class DataNodeIndex<T> : IDataNodeIndex where T : INode {
 
 		public string IndexName { get; private set; }
 		public Expression<Func<T, object>> IndexValueFunc { get; private set; }

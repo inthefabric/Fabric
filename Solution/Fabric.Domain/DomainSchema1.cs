@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/22/2012 9:59:26 PM
+// Generated on 11/28/2012 8:39:56 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -952,7 +952,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public abstract class NodeForType : WeaverNode {
+	public abstract class NodeForType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsUnique(True)]
@@ -969,7 +969,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public abstract class NodeForAction : WeaverNode {
+	public abstract class NodeForAction : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
@@ -982,10 +982,18 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Root : WeaverNode {
+	public class Root : Node {
 	
-		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return 1; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsApp OutContainsApps {
 			get { return NewRel<RootContainsApp>(WeaverRelConn.OutToZeroOrMore); }
@@ -1174,7 +1182,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class App : WeaverNode {
+	public class App : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1193,6 +1201,13 @@ namespace Fabric.Domain {
 		//[PropLen(32)]
 		public virtual string Secret { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return AppId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsApp InRootContains {
 			get { return NewRel<RootContainsApp>(WeaverRelConn.InFromOne); }
@@ -1236,7 +1251,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Artifact : WeaverNode {
+	public class Artifact : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1250,6 +1265,13 @@ namespace Fabric.Domain {
 		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return ArtifactId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsArtifact InRootContains {
 			get { return NewRel<RootContainsArtifact>(WeaverRelConn.InFromOne); }
@@ -1335,6 +1357,13 @@ namespace Fabric.Domain {
 		//[PropIsUnique(True)]
 		public virtual byte ArtifactTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return ArtifactTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsArtifactType InRootContains {
 			get { return NewRel<RootContainsArtifactType>(WeaverRelConn.InFromOne); }
@@ -1348,7 +1377,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Crowd : WeaverNode {
+	public class Crowd : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1370,6 +1399,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual bool IsInviteOnly { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return CrowdId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsCrowd InRootContains {
 			get { return NewRel<RootContainsCrowd>(WeaverRelConn.InFromOne); }
@@ -1388,13 +1424,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Crowdian : WeaverNode {
+	public class Crowdian : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long CrowdianId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return CrowdianId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsCrowdian InRootContains {
 			get { return NewRel<RootContainsCrowdian>(WeaverRelConn.InFromOne); }
@@ -1430,6 +1473,13 @@ namespace Fabric.Domain {
 		//[PropIsUnique(True)]
 		public virtual byte CrowdianTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return CrowdianTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsCrowdianType InRootContains {
 			get { return NewRel<RootContainsCrowdianType>(WeaverRelConn.InFromOne); }
@@ -1446,8 +1496,20 @@ namespace Fabric.Domain {
 	public class CrowdianTypeAssign : NodeForAction {
 	
 		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual long CrowdianTypeAssignId { get; set; }
+
+		[WeaverItemProperty]
 		public virtual float Weight { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return CrowdianTypeAssignId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual CrowdianHasCrowdianTypeAssign InCrowdianHas {
 			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
@@ -1471,7 +1533,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Email : WeaverNode {
+	public class Email : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1497,6 +1559,13 @@ namespace Fabric.Domain {
 		//[PropIsNullable(True)]
 		public virtual long VerifiedTimestamp { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return EmailId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsEmail InRootContains {
 			get { return NewRel<RootContainsEmail>(WeaverRelConn.InFromOne); }
@@ -1515,7 +1584,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Label : WeaverNode {
+	public class Label : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1530,6 +1599,13 @@ namespace Fabric.Domain {
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return LabelId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsLabel InRootContains {
 			get { return NewRel<RootContainsLabel>(WeaverRelConn.InFromOne); }
@@ -1543,13 +1619,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Member : WeaverNode {
+	public class Member : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long MemberId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return MemberId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsMember InRootContains {
 			get { return NewRel<RootContainsMember>(WeaverRelConn.InFromOne); }
@@ -1600,6 +1683,13 @@ namespace Fabric.Domain {
 		//[PropIsUnique(True)]
 		public virtual byte MemberTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return MemberTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsMemberType InRootContains {
 			get { return NewRel<RootContainsMemberType>(WeaverRelConn.InFromOne); }
@@ -1615,6 +1705,18 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class MemberTypeAssign : NodeForAction {
 	
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual long MemberTypeAssignId { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return MemberTypeAssignId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign InMemberHas {
 			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOne); }
@@ -1638,7 +1740,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Thing : WeaverNode {
+	public class Thing : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1660,6 +1762,13 @@ namespace Fabric.Domain {
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return ThingId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsThing InRootContains {
 			get { return NewRel<RootContainsThing>(WeaverRelConn.InFromOne); }
@@ -1673,7 +1782,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Url : WeaverNode {
+	public class Url : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1690,6 +1799,13 @@ namespace Fabric.Domain {
 		//[PropLenMax(2048)]
 		public virtual string AbsoluteUrl { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return UrlId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsUrl InRootContains {
 			get { return NewRel<RootContainsUrl>(WeaverRelConn.InFromOne); }
@@ -1703,7 +1819,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class User : WeaverNode {
+	public class User : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1721,6 +1837,13 @@ namespace Fabric.Domain {
 		//[PropLen(32)]
 		public virtual string Password { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return UserId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsUser InRootContains {
 			get { return NewRel<RootContainsUser>(WeaverRelConn.InFromOne); }
@@ -1769,7 +1892,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Factor : WeaverNode {
+	public class Factor : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1798,6 +1921,13 @@ namespace Fabric.Domain {
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return FactorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsFactor InRootContains {
 			get { return NewRel<RootContainsFactor>(WeaverRelConn.InFromOne); }
@@ -1861,13 +1991,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorAssertion : WeaverNode {
+	public class FactorAssertion : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte FactorAssertionId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return FactorAssertionId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsFactorAssertion InRootContains {
 			get { return NewRel<RootContainsFactorAssertion>(WeaverRelConn.InFromOne); }
@@ -1881,18 +2018,25 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public abstract class FactorElementNode : WeaverNode {
+	public abstract class FactorElementNode : Node {
 	
 	}
 
 	/*================================================================================================*/
-	public class Descriptor : WeaverNode {
+	public class Descriptor : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long DescriptorId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return DescriptorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsDescriptor InRootContains {
 			get { return NewRel<RootContainsDescriptor>(WeaverRelConn.InFromOne); }
@@ -1926,13 +2070,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorType : WeaverNode {
+	public class DescriptorType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte DescriptorTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return DescriptorTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsDescriptorType InRootContains {
 			get { return NewRel<RootContainsDescriptorType>(WeaverRelConn.InFromOne); }
@@ -1946,13 +2097,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Director : WeaverNode {
+	public class Director : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long DirectorId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return DirectorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsDirector InRootContains {
 			get { return NewRel<RootContainsDirector>(WeaverRelConn.InFromOne); }
@@ -1981,13 +2139,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorType : WeaverNode {
+	public class DirectorType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte DirectorTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return DirectorTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsDirectorType InRootContains {
 			get { return NewRel<RootContainsDirectorType>(WeaverRelConn.InFromOne); }
@@ -2001,13 +2166,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorAction : WeaverNode {
+	public class DirectorAction : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte DirectorActionId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return DirectorActionId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsDirectorAction InRootContains {
 			get { return NewRel<RootContainsDirectorAction>(WeaverRelConn.InFromOne); }
@@ -2026,7 +2198,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Eventor : WeaverNode {
+	public class Eventor : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2036,6 +2208,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual long DateTimeTimestamp { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return EventorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsEventor InRootContains {
 			get { return NewRel<RootContainsEventor>(WeaverRelConn.InFromOne); }
@@ -2059,13 +2238,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class EventorType : WeaverNode {
+	public class EventorType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte EventorTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return EventorTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsEventorType InRootContains {
 			get { return NewRel<RootContainsEventorType>(WeaverRelConn.InFromOne); }
@@ -2079,13 +2265,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class EventorPrecision : WeaverNode {
+	public class EventorPrecision : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte EventorPrecisionId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return EventorPrecisionId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsEventorPrecision InRootContains {
 			get { return NewRel<RootContainsEventorPrecision>(WeaverRelConn.InFromOne); }
@@ -2099,7 +2292,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Identor : WeaverNode {
+	public class Identor : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2110,6 +2303,13 @@ namespace Fabric.Domain {
 		//[PropLenMax(128)]
 		public virtual string Value { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return IdentorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsIdentor InRootContains {
 			get { return NewRel<RootContainsIdentor>(WeaverRelConn.InFromOne); }
@@ -2128,13 +2328,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class IdentorType : WeaverNode {
+	public class IdentorType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte IdentorTypeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return IdentorTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsIdentorType InRootContains {
 			get { return NewRel<RootContainsIdentorType>(WeaverRelConn.InFromOne); }
@@ -2148,7 +2355,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Locator : WeaverNode {
+	public class Locator : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2164,6 +2371,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual double ValueZ { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return LocatorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsLocator InRootContains {
 			get { return NewRel<RootContainsLocator>(WeaverRelConn.InFromOne); }
@@ -2182,7 +2396,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class LocatorType : WeaverNode {
+	public class LocatorType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2207,6 +2421,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual double MaxZ { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return LocatorTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsLocatorType InRootContains {
 			get { return NewRel<RootContainsLocatorType>(WeaverRelConn.InFromOne); }
@@ -2220,7 +2441,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Vector : WeaverNode {
+	public class Vector : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2230,6 +2451,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual long Value { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsVector InRootContains {
 			get { return NewRel<RootContainsVector>(WeaverRelConn.InFromOne); }
@@ -2263,7 +2491,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorType : WeaverNode {
+	public class VectorType : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2276,6 +2504,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual long Max { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorTypeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsVectorType InRootContains {
 			get { return NewRel<RootContainsVectorType>(WeaverRelConn.InFromOne); }
@@ -2294,13 +2529,20 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorRange : WeaverNode {
+	public class VectorRange : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual byte VectorRangeId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorRangeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsVectorRange InRootContains {
 			get { return NewRel<RootContainsVectorRange>(WeaverRelConn.InFromOne); }
@@ -2319,7 +2561,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeLevel : WeaverNode {
+	public class VectorRangeLevel : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2329,6 +2571,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual float Position { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorRangeLevelId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsVectorRangeLevel InRootContains {
 			get { return NewRel<RootContainsVectorRangeLevel>(WeaverRelConn.InFromOne); }
@@ -2342,7 +2591,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnit : WeaverNode {
+	public class VectorUnit : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2353,6 +2602,13 @@ namespace Fabric.Domain {
 		//[PropLenMax(8)]
 		public virtual string Symbol { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorUnitId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsVectorUnit InRootContains {
 			get { return NewRel<RootContainsVectorUnit>(WeaverRelConn.InFromOne); }
@@ -2366,7 +2622,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitPrefix : WeaverNode {
+	public class VectorUnitPrefix : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2380,6 +2636,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual double Amount { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return VectorUnitPrefixId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsVectorUnitPrefix InRootContains {
 			get { return NewRel<RootContainsVectorUnitPrefix>(WeaverRelConn.InFromOne); }
@@ -2393,7 +2656,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthAccess : WeaverNode {
+	public class OauthAccess : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2417,6 +2680,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual bool IsClientOnly { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return OauthAccessId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsOauthAccess InRootContains {
 			get { return NewRel<RootContainsOauthAccess>(WeaverRelConn.InFromOne); }
@@ -2435,7 +2705,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthDomain : WeaverNode {
+	public class OauthDomain : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2446,6 +2716,13 @@ namespace Fabric.Domain {
 		//[PropLenMax(256)]
 		public virtual string Domain { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return OauthDomainId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsOauthDomain InRootContains {
 			get { return NewRel<RootContainsOauthDomain>(WeaverRelConn.InFromOne); }
@@ -2459,7 +2736,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthGrant : WeaverNode {
+	public class OauthGrant : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2478,6 +2755,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		public virtual long ExpiresTimestamp { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return OauthGrantId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsOauthGrant InRootContains {
 			get { return NewRel<RootContainsOauthGrant>(WeaverRelConn.InFromOne); }
@@ -2496,7 +2780,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthScope : WeaverNode {
+	public class OauthScope : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2510,6 +2794,13 @@ namespace Fabric.Domain {
 		//[PropIsTimestamp(True)]
 		public virtual long CreatedTimestamp { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return OauthScopeId; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsOauthScope InRootContains {
 			get { return NewRel<RootContainsOauthScope>(WeaverRelConn.InFromOne); }

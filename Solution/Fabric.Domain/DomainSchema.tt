@@ -86,7 +86,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 <#
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	string baseNode = (node.BaseNode == null ? "WeaverNode" : node.BaseNode.Name);
+	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
 #>
 	/*================================================================================================*/
 	public <#= (node.IsAbstract ? "abstract " : "") #>class <#= node.Name #> : <#= baseNode #> {
@@ -154,10 +154,29 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 	if ( node.IsRoot ) {
 #>
-		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return 1; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
 	} //end if "isRoot"
+	else if ( !node.IsAbstract ) {
+#>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return <#= node.Name #>Id; }
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	} //end else !"isAbstract"
 
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
