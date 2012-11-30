@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure;
 
 namespace Fabric.Db.Data.Setups {
 
@@ -323,21 +324,21 @@ namespace Fabric.Db.Data.Setups {
 
 			AddLocatorType(pSet, LocatorTypeId.RelPos1D, "Relative Position 1D",
 				"A one-dimensional position, using X=Time. "+pos,
-				double.MinValue, double.MaxValue,
+				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
 				0, 0,
 				0, 0);
 
 			AddLocatorType(pSet, LocatorTypeId.RelPos2D, "Relative Position 2D",
 				"A two-dimensional position, using X=Width and Y=Height. "+pos,
-				double.MinValue, double.MaxValue,
-				double.MinValue, double.MaxValue,
+				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
+				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
 				0, 0);
 
 			AddLocatorType(pSet, LocatorTypeId.RelPos3D, "Relative Position 3D",
 				"A three-dimensional position, using X, Y, and Z axes. "+pos,
-				double.MinValue, double.MaxValue,
-				double.MinValue, double.MaxValue,
-				double.MinValue, double.MaxValue);
+				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
+				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
+				FabricUtil.DoubleMin, FabricUtil.DoubleMax);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -703,7 +704,7 @@ namespace Fabric.Db.Data.Setups {
 																						string pDesc) {
 			AddLocatorType(pSet, pId, pName,
 				pDesc+"Coordinates use X=Longitude, Y=Latitude, and Z=Elevation "+
-				"(in metres).", -180, 180, -90, 90, double.MinValue, double.MaxValue);
+				"(in metres).", -180, 180, -90, 90, FabricUtil.DoubleMin, FabricUtil.DoubleMax);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
