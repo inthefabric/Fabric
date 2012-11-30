@@ -1,0 +1,70 @@
+html, body {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body, div, form, input {
+	margin: 0;
+	font-size: 12px;
+}
+
+body {
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#graph {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.node {
+	color: #fa8072;
+}
+.relationship {
+	color: #87cefa;
+}
+
+.keyword {
+	color: #70E0BC;
+}
+
+.function {
+	color: #C370E0;
+}
+
+.link {
+	stroke: #ccc;
+}
+
+.path-text {
+	font: 8px sans-serif;
+	pointer-events: none;
+	text-align: center;
+}
+
+.shadow {
+	stroke: #000;
+	stroke-width: 1.5px;
+	stroke-opacity: .8;
+}
+
+.marker {
+	stroke: #ccc;
+	fill: #ccc;
+}
+
+text {
+	fill: #fff;
+	font: 10px sans-serif;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.selected {
+	stroke: red;
+	stroke-width: 1.5px;
+}

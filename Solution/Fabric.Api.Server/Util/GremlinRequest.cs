@@ -40,7 +40,7 @@ namespace Fabric.Api.Server.Util {
 			
 			char first = ResponseData[0];
 
-			if ( first == '[' && ResponseData[2] == '{' ) {
+			if ( first == '[' && ResponseData[1] == '{' ) {
 				ResultList = JsonSerializer.DeserializeFromString<List<DbResult>>(ResponseData);
 			}
 			else if ( first == '{' ) {

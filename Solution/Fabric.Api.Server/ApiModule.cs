@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Nancy;
+using ServiceStack.Text;
 using Weaver;
 
 namespace Fabric.Api.Server {
@@ -23,6 +26,13 @@ namespace Fabric.Api.Server {
 			//Log.Info(vRequestId, "REQUEST", "ApiModule Request");
 
 			Get["/setup"] = DoSetup;
+			Get["/json"] = DoJson;
+			
+			
+			Get["/graph"] = (p => {
+				return View["graph/index.html", null];
+			});
+
 			Get["/(.*)"] = GremlinRequest;
 		}
 
@@ -84,6 +94,64 @@ namespace Fabric.Api.Server {
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetSetupLineItem(GremlinRequest pReq) {
 			return "<b>"+pReq.Script+"</b><br/>"+pReq.ResponseData+"<br/><br/>";
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private string DoJson(dynamic pParams) {
+			dynamic obj = null;
+
+			try {
+				var req = new GremlinRequest("g.V;");
+				List<DbResult> nodes = req.ResultList;
+
+				req = new GremlinRequest("g.E;");
+				List<DbResult> links = req.ResultList;
+
+				obj = new ExpandoObject();
+				obj.nodes = new List<ExpandoObject>();
+				obj.links = new List<ExpandoObject>();
+
+				foreach ( DbResult n in nodes ) {
+					dynamic nodeObj = new ExpandoObject();
+					string name = "";
+					nodeObj.id = n.GetNodeId();
+					
+					foreach ( string key in n.Data.Keys ) {
+						if ( key.LastIndexOf("Id") == key.Length-2 ) {
+							name = key.Substring(0, key.Length-2);
+							break;
+						}
+					}
+
+					if ( n.Data.ContainsKey("Name") ) {
+						name += ":"+n.Data["Name"];
+					}
+
+					nodeObj.name = name+" ("+nodeObj.id+")";
+					nodeObj.selected = "n";
+
+					obj.nodes.Add(nodeObj);
+				}
+
+				foreach ( DbResult l in links ) {
+					dynamic linkObj = new ExpandoObject();
+					linkObj.id = l.GetNodeId();
+					linkObj.type = "x"; //l.Type;
+					linkObj.start = linkObj.source = l.GetIdFromPath(l.Start);
+					linkObj.end = linkObj.target = l.GetIdFromPath(l.End);
+
+					if ( linkObj.start == 0 || linkObj.end == 0 ) { continue; }
+					obj.links.Add(linkObj);
+				}
+			}
+			catch ( Exception e ) {
+				Log.Debug(vRequestId, "JSON", "Fail", e);
+				return "Error: "+e.Message;
+			}
+
+			return JsonSerializer.SerializeToString(obj);
 		}
 
 	}

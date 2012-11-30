@@ -70,12 +70,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModule.cs" />
+    <Compile Include="ApiBootstrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\GremlinRequest.cs" />
     <Compile Include="Util\GremlinRequestAsync.cs" />
     <Compile Include="Util\Sharpflake.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Graph\index.html" />
+    <Content Include="Graph\js\d3.min.js" />
+    <Content Include="Graph\js\jquery-1.6.4.min.js" />
+    <Content Include="Graph\js\viz.js" />
+    <Content Include="Graph\styles\main.css" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
