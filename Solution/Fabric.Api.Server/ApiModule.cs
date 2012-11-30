@@ -121,6 +121,7 @@ namespace Fabric.Api.Server {
 					foreach ( string key in n.Data.Keys ) {
 						if ( key.LastIndexOf("Id") == key.Length-2 ) {
 							name = key.Substring(0, key.Length-2);
+							nodeObj.Class = name;
 							break;
 						}
 					}
@@ -130,8 +131,6 @@ namespace Fabric.Api.Server {
 					}
 
 					nodeObj.name = name+" ("+nodeObj.id+")";
-					nodeObj.selected = "n";
-
 					obj.nodes.Add(nodeObj);
 				}
 

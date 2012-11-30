@@ -1,0 +1,66 @@
+﻿ 
+/*GENERATED CODE
+Changes made to this source file will be overwritten
+Generated on 11/30/2012 5:20:00 PM */
+
+/* NODES */
+
+.nodeRoot { color: rgba(48,230,199,0.9); }
+.nodeApp { color: rgba(77,144,132,0.9); }
+.nodeArtifact { color: rgba(131,224,40,0.9); }
+.nodeArtifactType { color: rgba(119,250,238,0.9); }
+.nodeCrowd { color: rgba(52,133,10,0.9); }
+.nodeCrowdian { color: rgba(48,39,149,0.9); }
+.nodeCrowdianType { color: rgba(168,159,216,0.9); }
+.nodeCrowdianTypeAssign { color: rgba(190,232,169,0.9); }
+.nodeEmail { color: rgba(16,27,208,0.9); }
+.nodeLabel { color: rgba(103,109,167,0.9); }
+.nodeMember { color: rgba(234,118,91,0.9); }
+.nodeMemberType { color: rgba(49,131,9,0.9); }
+.nodeMemberTypeAssign { color: rgba(59,109,69,0.9); }
+.nodeThing { color: rgba(79,231,158,0.9); }
+.nodeUrl { color: rgba(192,167,180,0.9); }
+.nodeUser { color: rgba(224,133,105,0.9); }
+.nodeFactor { color: rgba(46,82,245,0.9); }
+.nodeFactorAssertion { color: rgba(50,58,83,0.9); }
+.nodeDescriptor { color: rgba(156,240,253,0.9); }
+.nodeDescriptorType { color: rgba(30,61,117,0.9); }
+.nodeDirector { color: rgba(51,155,115,0.9); }
+.nodeDirectorType { color: rgba(0,12,4,0.9); }
+.nodeDirectorAction { color: rgba(147,3,129,0.9); }
+.nodeEventor { color: rgba(1,244,185,0.9); }
+.nodeEventorType { color: rgba(207,89,55,0.9); }
+.nodeEventorPrecision { color: rgba(58,253,65,0.9); }
+.nodeIdentor { color: rgba(116,47,21,0.9); }
+.nodeIdentorType { color: rgba(103,184,27,0.9); }
+.nodeLocator { color: rgba(177,184,187,0.9); }
+.nodeLocatorType { color: rgba(8,20,18,0.9); }
+.nodeVector { color: rgba(138,29,48,0.9); }
+.nodeVectorType { color: rgba(207,155,203,0.9); }
+.nodeVectorRange { color: rgba(43,64,27,0.9); }
+.nodeVectorRangeLevel { color: rgba(48,77,2,0.9); }
+.nodeVectorUnit { color: rgba(103,45,220,0.9); }
+.nodeVectorUnitPrefix { color: rgba(187,98,224,0.9); }
+.nodeVectorUnitDerived { color: rgba(155,225,242,0.9); }
+.nodeOauthAccess { color: rgba(60,41,14,0.9); }
+.nodeOauthDomain { color: rgba(223,203,98,0.9); }
+.nodeOauthGrant { color: rgba(215,78,83,0.9); }
+.nodeOauthScope { color: rgba(199,139,110,0.9); }
+
+/* RELS */
+
+.linkContains { stroke: rgba(0,0,0,0.4); }
+.linkHas { stroke: rgba(137,0,189,0.4); }
+.linkUses { stroke: rgba(107,15,61,0.4); }
+.linkHasHistoric { stroke: rgba(165,195,97,0.4); }
+.linkCreates { stroke: rgba(146,0,139,0.4); }
+.linkUsesPrimary { stroke: rgba(189,117,86,0.4); }
+.linkUsesRelated { stroke: rgba(218,235,177,0.4); }
+.linkReplaces { stroke: rgba(31,78,115,0.4); }
+.linkRefinesPrimaryWith { stroke: rgba(161,111,207,0.4); }
+.linkRefinesRelatedWith { stroke: rgba(232,210,113,0.4); }
+.linkRefinesTypeWith { stroke: rgba(199,104,65,0.4); }
+.linkUsesAxis { stroke: rgba(147,247,55,0.4); }
+.linkDefines { stroke: rgba(133,50,225,0.4); }
+.linkRaisesToExp { stroke: rgba(35,48,210,0.4); }
+

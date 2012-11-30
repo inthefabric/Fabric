@@ -1,0 +1,49 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension=".css" #> 
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Weaver" #>
+<#@ import namespace="Weaver.Schema" #>
+/*GENERATED CODE
+Changes made to this source file will be overwritten
+Generated on <#= DateTime.Now.ToString() #> */
+
+/* NODES */
+
+<#
+var schema = new GraphSchema();
+var rand = new Random(999);
+var relTypeMap = new Dictionary<string,string>();
+
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	if ( node.IsAbstract ) { continue; }
+#>
+.node<#= node.Name #> { color: <#= NewColor(rand, 0.9) #>; }
+<#
+}
+#>
+
+/* RELS */
+
+<#
+foreach ( WeaverRelSchema rel in schema.Rels ) {
+	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
+	relTypeMap.Add(rel.Name, "1");
+#>
+.link<#= rel.Name #> { stroke: <#= NewColor(rand, 0.4) #>; }
+<#
+}
+#>
+
+<#+ 
+public string NewColor(Random pRand, double pAlpha) {
+	return "rgba("+
+		(pRand.Next()%255)+","+
+		(pRand.Next()%255)+","+
+		(pRand.Next()%255)+","+
+		pAlpha+")";
+}
+#>

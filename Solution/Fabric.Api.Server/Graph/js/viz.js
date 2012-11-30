@@ -55,7 +55,7 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 	var link = vis.selectAll("line.link")
         .data(pData.links)
         .enter().append("svg:line")
-        .attr("class", "link")
+        .attr("class", function (d) { return "link"; })
 	  	.attr("marker-end", function (d) { return "url(#" + "end-marker" + ")"; }) // was d.type
 	  	.style("stroke", function (d) { var sel = d["selected"]; return sel ? "red" : null; })
         .style("stroke-width", function (d) { return d["selected"] ? 2 : null; })
@@ -67,7 +67,7 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 	var node = vis.selectAll("g.node")
         .data(pData.nodes)
         .enter().append("circle")
-        .attr("class", "node")
+        .attr("class", "nodeVector")// function (d) { return "node"+d.Class; })
 	    .attr("r", 5)
 	    .style("fill", function (d) { return vColor(propertyHash(d) % 20); })
 	  	.style("stroke-width", function (d) { return d["selected"] ? 2 : 0; })
@@ -85,7 +85,7 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 	text.append("svg:text")
 		    .attr("x", 8)
 		    .attr("y", "-.31em")
-		    .attr("class", "text shadow")
+		    //.attr("class", "text shadow")
 		    .text(function (d) { return title(d); });
 
 	text.append("svg:text")

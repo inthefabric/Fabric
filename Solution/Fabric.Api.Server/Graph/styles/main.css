@@ -9,7 +9,7 @@ html, body, div, form, input {
 }
 
 body {
-	background-color: black;
+	background-color: #fff;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -37,7 +37,7 @@ body {
 }
 
 .link {
-	stroke: #ccc;
+	stroke: rgba(0,0,0,0.2);
 }
 
 .path-text {
@@ -53,12 +53,12 @@ body {
 }
 
 .marker {
-	stroke: #ccc;
-	fill: #ccc;
+	stroke: rgba(0,0,0,0.4);
+	fill: rgba(0,0,0,0.4);
 }
 
 text {
-	fill: #fff;
+	fill: rgba(0,0,0,0.2);
 	font: 10px sans-serif;
 	pointer-events: none;
 	z-index: 10;
