@@ -35,17 +35,9 @@ namespace Fabric.Db.Data.Setups {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupAddNodes(DataSet pSet, bool pIsForTesting) {
-			SetupTypes.SetupAll(pSet);;
+			SetupTypes.SetupAll(pSet);
+			SetupUsers.SetupAll(pSet);
 		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public static List<WeaverQuery> SetupAddToIndex(IList<ISetupNode> pNodes) {
-			var queries = new List<WeaverQuery>();
-
-			foreach ( ISetupNode n in pNodes ) {
-				WeaverQuery.AddNodeToIndex(n.IndexName, n.Node,
-			}
-		}*/
 
 	}
 

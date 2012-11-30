@@ -355,7 +355,7 @@ namespace Fabric.Domain.Schema {
 
 			const string contains = "Contains";
 			const string has = "Has";
-			const string hasHistoric = "UsesHistoric";
+			const string hasHistoric = "HasHistoric";
 			const string uses = "Uses";
 			const string usesPrimary = "UsesPrimary";
 			const string usesRelated = "UsesRelated";
@@ -383,10 +383,12 @@ namespace Fabric.Domain.Schema {
 			AddRel(root, contains, crowd, otzom, ifo);
 			AddRel(root, contains, crowdian, otzom, ifo);
 			AddRel(root, contains, crowdianType, otzom, ifo);
+			AddRel(root, contains, crowdianTypeAssign, otzom, ifo);
 			AddRel(root, contains, email, otzom, ifo);
 			AddRel(root, contains, label, otzom, ifo);
 			AddRel(root, contains, member, otzom, ifo);
 			AddRel(root, contains, memberType, otzom, ifo);
+			AddRel(root, contains, memberTypeAssign, otzom, ifo);
 			AddRel(root, contains, thing, otzom, ifo);
 			AddRel(root, contains, url, otzom, ifo);
 			AddRel(root, contains, user, otzom, ifo);

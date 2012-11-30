@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/29/2012 5:35:35 PM
+// Generated on 11/29/2012 9:04:41 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -35,9 +35,9 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UsesHistoric : IWeaverRelType {
+	public class HasHistoric : IWeaverRelType {
 	
-		public string Label { get { return "UsesHistoric"; } }
+		public string Label { get { return "HasHistoric"; } }
 
 	}
 
@@ -170,6 +170,15 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class RootContainsCrowdianTypeAssign : WeaverRel<Root, Contains, CrowdianTypeAssign> {
+			
+		public virtual Root FromRoot { get { return FromNode; } }
+		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
+		public override string Label { get { return "RootContainsCrowdianTypeAssign"; } }
+
+	}
+
+	/*================================================================================================*/
 	public class RootContainsEmail : WeaverRel<Root, Contains, Email> {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
@@ -202,6 +211,15 @@ namespace Fabric.Domain {
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual MemberType ToMemberType { get { return ToNode; } }
 		public override string Label { get { return "RootContainsMemberType"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class RootContainsMemberTypeAssign : WeaverRel<Root, Contains, MemberTypeAssign> {
+			
+		public virtual Root FromRoot { get { return FromNode; } }
+		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
+		public override string Label { get { return "RootContainsMemberTypeAssign"; } }
 
 	}
 
@@ -521,11 +539,11 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianUsesHistoricCrowdianTypeAssign : WeaverRel<Crowdian, UsesHistoric, CrowdianTypeAssign> {
+	public class CrowdianHasHistoricCrowdianTypeAssign : WeaverRel<Crowdian, HasHistoric, CrowdianTypeAssign> {
 			
 		public virtual Crowdian FromCrowdian { get { return FromNode; } }
 		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "CrowdianUsesHistoricCrowdianTypeAssign"; } }
+		public override string Label { get { return "CrowdianHasHistoricCrowdianTypeAssign"; } }
 
 	}
 
@@ -575,11 +593,11 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberUsesHistoricMemberTypeAssign : WeaverRel<Member, UsesHistoric, MemberTypeAssign> {
+	public class MemberHasHistoricMemberTypeAssign : WeaverRel<Member, HasHistoric, MemberTypeAssign> {
 			
 		public virtual Member FromMember { get { return FromNode; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "MemberUsesHistoricMemberTypeAssign"; } }
+		public override string Label { get { return "MemberHasHistoricMemberTypeAssign"; } }
 
 	}
 
@@ -1075,6 +1093,11 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsCrowdianTypeAssign OutContainsCrowdianTypeAssigns {
+			get { return NewRel<RootContainsCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsEmail OutContainsEmails {
 			get { return NewRel<RootContainsEmail>(WeaverRelConn.OutToZeroOrMore); }
 		}
@@ -1092,6 +1115,11 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsMemberType OutContainsMemberTypes {
 			get { return NewRel<RootContainsMemberType>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsMemberTypeAssign OutContainsMemberTypeAssigns {
+			get { return NewRel<RootContainsMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1514,8 +1542,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianUsesHistoricCrowdianTypeAssign OutUsesHistoricCrowdianTypeAssigns {
-			get { return NewRel<CrowdianUsesHistoricCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+		public virtual CrowdianHasHistoricCrowdianTypeAssign OutHasHistoricCrowdianTypeAssigns {
+			get { return NewRel<CrowdianHasHistoricCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 	}
@@ -1566,13 +1594,18 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsCrowdianTypeAssign InRootContains {
+			get { return NewRel<RootContainsCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual CrowdianHasCrowdianTypeAssign InCrowdianHas {
 			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianUsesHistoricCrowdianTypeAssign InCrowdianUsesHistoric {
-			get { return NewRel<CrowdianUsesHistoricCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
+		public virtual CrowdianHasHistoricCrowdianTypeAssign InCrowdianHasHistoric {
+			get { return NewRel<CrowdianHasHistoricCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1709,8 +1742,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberUsesHistoricMemberTypeAssign OutUsesHistoricMemberTypeAssigns {
-			get { return NewRel<MemberUsesHistoricMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+		public virtual MemberHasHistoricMemberTypeAssign OutHasHistoricMemberTypeAssigns {
+			get { return NewRel<MemberHasHistoricMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1773,13 +1806,18 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsMemberTypeAssign InRootContains {
+			get { return NewRel<RootContainsMemberTypeAssign>(WeaverRelConn.InFromOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign InMemberHas {
 			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberUsesHistoricMemberTypeAssign InMemberUsesHistoric {
-			get { return NewRel<MemberUsesHistoricMemberTypeAssign>(WeaverRelConn.InFromOne); }
+		public virtual MemberHasHistoricMemberTypeAssign InMemberHasHistoric {
+			get { return NewRel<MemberHasHistoricMemberTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

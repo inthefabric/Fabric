@@ -16,6 +16,8 @@ namespace Fabric.Db.Data {
 		public IList<IDataRel> Rels { get; private set; }
 		public bool IsForTesting { get; private set; }
 
+		private readonly Random vRand;
+		private DateTime vCurrDate;
 		private readonly Dictionary<string, INode> vNodeMap;
 
 
@@ -28,11 +30,29 @@ namespace Fabric.Db.Data {
 			Rels = new List<IDataRel>();
 			IsForTesting = pIsForTesting;
 
+			vRand = new Random(999);
+			vCurrDate = DateTime.UtcNow.AddDays(-10);
 			vNodeMap = new Dictionary<string, INode>();
 
 			var r = new Root { Id = 0 };
 			//AddNode(DataNode.Create(r)); //do not add node, use g.v(0) instead
 			vNodeMap.Add(typeof(Root).Name+1, r);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public long NowTimestamp {
+			get { return DateTime.UtcNow.Ticks; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public long SetupTimestamp {
+			get { return vCurrDate.Ticks; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public long ElapseTime() {
+			vCurrDate = vCurrDate.AddMinutes(5+vRand.NextDouble()*55);
+			return SetupTimestamp;
 		}
 		
 		

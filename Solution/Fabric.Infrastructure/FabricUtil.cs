@@ -1,4 +1,5 @@
-﻿using Weaver;
+﻿using System;
+using Weaver;
 
 namespace Fabric.Infrastructure {
 
@@ -24,6 +25,9 @@ namespace Fabric.Infrastructure {
 		public static string JsonUnquote(string pText) {
 			return pText.Replace("\"", "\\\"");
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string Code32 { get { return Guid.NewGuid().ToString("N"); } }
 
 	}
 
