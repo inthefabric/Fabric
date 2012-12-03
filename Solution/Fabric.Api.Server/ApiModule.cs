@@ -8,6 +8,7 @@ using Fabric.Infrastructure;
 using Nancy;
 using ServiceStack.Text;
 using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Server {
 
@@ -127,17 +128,17 @@ namespace Fabric.Api.Server {
 					}
 
 					if ( n.Data.ContainsKey("Name") ) {
-						name += ":"+n.Data["Name"];
+						name += ": "+n.Data["Name"];
 					}
 
-					nodeObj.name = name+" ("+nodeObj.id+")";
+					nodeObj.name = name;//+" ("+nodeObj.id+")";
 					obj.nodes.Add(nodeObj);
 				}
 
 				foreach ( DbResult l in links ) {
 					dynamic linkObj = new ExpandoObject();
 					linkObj.id = l.GetNodeId();
-					linkObj.type = "x"; //l.Type;
+					linkObj.type = ExtractRelType(l);
 					linkObj.start = linkObj.source = l.GetIdFromPath(l.Start);
 					linkObj.end = linkObj.target = l.GetIdFromPath(l.End);
 
@@ -151,6 +152,14 @@ namespace Fabric.Api.Server {
 			}
 
 			return JsonSerializer.SerializeToString(obj);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string ExtractRelType(DbResult pLink) {
+			string name = pLink.Type;
+			object o = Activator.CreateInstance("Fabric.Domain", "Fabric.Domain."+name).Unwrap();
+			IWeaverRel r = (o as IWeaverRel);
+			return (r == null ? name : r.RelType.Label);
 		}
 
 	}

@@ -21,7 +21,7 @@ var relTypeMap = new Dictionary<string,string>();
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	if ( node.IsAbstract ) { continue; }
 #>
-.node<#= node.Name #> { color: <#= NewColor(rand, 0.9) #>; }
+.node<#= node.Name #> { fill: <#= NewColor(rand, 0.9) #>; }
 <#
 }
 #>
@@ -30,10 +30,19 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 <#
 foreach ( WeaverRelSchema rel in schema.Rels ) {
-	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
-	relTypeMap.Add(rel.Name, "1");
+	string col = null;
+
+	if ( relTypeMap.ContainsKey(rel.Name) ) {
+		continue;
+		//col = relTypeMap[rel.Name];
+	}
+	else {
+		col = NewColor(rand, 0.2);
+		relTypeMap.Add(rel.Name, col);
+	}
+	
 #>
-.link<#= rel.Name #> { stroke: <#= NewColor(rand, 0.4) #>; }
+.link<#= /*rel.FromNode.Name +*/ rel.Name /*+ rel.ToNode.Name*/ #> { stroke: <#= col #>; }
 <#
 }
 #>

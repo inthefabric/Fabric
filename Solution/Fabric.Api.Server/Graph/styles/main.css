@@ -21,35 +21,10 @@ body {
 	height: 100%;
 }
 
-.node {
-	color: #fa8072;
-}
-.relationship {
-	color: #87cefa;
-}
-
-.keyword {
-	color: #70E0BC;
-}
-
-.function {
-	color: #C370E0;
-}
-
-.link {
-	stroke: rgba(0,0,0,0.2);
-}
-
 .path-text {
 	font: 8px sans-serif;
 	pointer-events: none;
 	text-align: center;
-}
-
-.shadow {
-	stroke: #000;
-	stroke-width: 1.5px;
-	stroke-opacity: .8;
 }
 
 .marker {
@@ -62,9 +37,4 @@ text {
 	font: 10px sans-serif;
 	pointer-events: none;
 	z-index: 10;
-}
-
-.selected {
-	stroke: red;
-	stroke-width: 1.5px;
 }
