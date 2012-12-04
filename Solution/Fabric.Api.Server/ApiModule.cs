@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using Fabric.Api.Server.Graph;
+using Fabric.Api.Server.Query;
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
@@ -31,20 +32,7 @@ namespace Fabric.Api.Server {
 			Get["/setup"] = DoSetup;
 			Get["/json"] = DoJson;
 			Get["/graph"] = DoGraph;
-			Get["/(.*)"] = GremlinRequest;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private string GremlinRequest(dynamic pParams) {
-			try {
-				string query = (string)pParams["1"];
-				query = query.Replace('/', '.');
-				var gremReq = new GremlinRequest(query);
-				return gremReq.ResponseData;
-			}
-			catch ( Exception ex ) {
-				return "error: "+ex.Message;
-			}
+			Get["/(.*)"] = (p => new DataQuery(Context).GetResponse());
 		}
 
 
