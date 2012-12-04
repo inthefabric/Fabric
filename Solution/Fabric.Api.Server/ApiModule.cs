@@ -24,16 +24,11 @@ namespace Fabric.Api.Server {
 			Log.ConfigureOnce();
 
 			vRequestId = Guid.NewGuid();
-			//Log.Info(vRequestId, "REQUEST", "ApiModule Request");
+			Log.Info(vRequestId, "REQUEST", "ApiModule Request");
 
 			Get["/setup"] = DoSetup;
 			Get["/json"] = DoJson;
-			
-			
-			Get["/graph"] = (p => {
-				return View["graph/index.html", null];
-			});
-
+			Get["/graph"] = (p => View["graph/index.html", null]);
 			Get["/(.*)"] = GremlinRequest;
 		}
 
@@ -60,7 +55,7 @@ namespace Fabric.Api.Server {
 					return "Password required.";
 				}
 
-				DataSet ds = Setup.SetupAll(false);
+				DataSet ds = Setup.SetupAll(true); //false);
 				string result = "";
 				GremlinRequest req;
 

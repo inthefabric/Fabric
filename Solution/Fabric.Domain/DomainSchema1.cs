@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/29/2012 9:04:41 PM
+// Generated on 12/4/2012 9:38:58 AM
 
 using Weaver.Items;
 using Weaver.Interfaces;

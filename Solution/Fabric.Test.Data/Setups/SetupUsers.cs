@@ -4,7 +4,7 @@ using Fabric.Infrastructure;
 namespace Fabric.Db.Data.Setups {
 
 	/*================================================================================================*/
-	public static class SetupUsers {
+	public class SetupUsers {
 
 		public enum EmailId {
 			DP_ITF = 1,
@@ -31,7 +31,7 @@ namespace Fabric.Db.Data.Setups {
 			BookBookData,
 			BookZach,
 			BookMel,
-			GalBookData_None,
+			GalBookDataNone,
 			GalPenny
 		}
 
@@ -41,16 +41,16 @@ namespace Fabric.Db.Data.Setups {
 			FabMelBySystem,
 			FabGalDataBySystem,
 			GalGalDataBySystem,
-			GalZachBySystem,
+			GalZachByGalGalData,
 			FabEllieBySystem,
 			GalEllieBySystem,
-			GalMelBySystem,
+			GalMelByGalGalData,
 			FabPennyBySystem,
 			FabBookDataBySystem,
 			BookBookDataBySystem,
 			BookZachBySystem,
 			BookMelBySystem,
-			GalBookData_NoneBySystem,
+			GalBookDataNoneByBookBookData,
 			GalPennyBySystem
 		}
 
@@ -80,222 +80,255 @@ namespace Fabric.Db.Data.Setups {
 		public const string KinPhoGalSecret = "0123456789abcdefghijkLMNOPqrstuv";
 		public const string BookmarkSecret  = "alkjdfkusdlf7f238092fijlcsdc089f";
 
-		private static bool TestMode = false;
+		private DataSet vSet;
+		private readonly bool vTestMode;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupAll(DataSet pSet) {
-			TestMode = false;
+			var su = new SetupUsers(pSet);
+		}
+			
 
-			AddEmail(pSet, EmailId.DP_ITF, "dataprov@inthefabric.com");
-			AddApp(pSet, AppId.FabSys, "Fabric System", EmailId.DP_ITF, FabSysSecret);
-			AddUser(pSet, UserId.FabData, "Fabric", "password", EmailId.DP_ITF);
-			AddMember(pSet, MemberId.FabFabData, AppId.FabSys, UserId.FabData,
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public SetupUsers(DataSet pSet) {
+			vSet = pSet;
+			vTestMode = false;
+
+			AddEmail(EmailId.DP_ITF, "dataprov@inthefabric.com");
+			AddApp(AppId.FabSys, "Fabric System", EmailId.DP_ITF, FabSysSecret);
+			AddUser(UserId.FabData, "Fabric", "password", EmailId.DP_ITF);
+			AddMember(MemberId.FabFabData, AppId.FabSys, UserId.FabData,
 				MemberTypeId.DataProvider, MemberTypeAssignId.FabFabDataBySystem, MemberId.FabFabData);
-			AddAppArtifact(pSet, SetupArtifacts.ArtifactId.App_FabSys,
-				AppId.FabSys, MemberId.FabFabData);
-			AddUserArtifact(pSet, SetupArtifacts.ArtifactId.User_FabData,
-				UserId.FabData, MemberId.FabFabData);
-			pSet.ElapseTime();
+			AddAppArtifact(SetupArtifacts.ArtifactId.App_FabSys, AppId.FabSys, MemberId.FabFabData);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_FabData, UserId.FabData,MemberId.FabFabData);
+			vSet.ElapseTime();
 
 			////
 
-			TestMode = true;
+			vTestMode = true;
 			
-			/*
-			AddEmail("zach@aestheticinteractive.com");
-			AddUser("zachkinstner", "asdfasdf", EmailIds.Zach_AEI, MemberIds.FabZach);
-			AddMember(AppIds.FabSys, UserIds.Zach, MemberTypeIds.Owner);
-			pSet.ElapseTime();
+			AddEmail(EmailId.Zach_AEI, "zach@aestheticinteractive.com");
+			AddUser(UserId.Zach, "zachkinstner", "asdfasdf", EmailId.Zach_AEI);
+			AddMember(MemberId.FabZach, AppId.FabSys, UserId.Zach,
+				MemberTypeId.Owner, MemberTypeAssignId.FabZachBySystem, MemberId.FabFabData);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_Zach, UserId.FabData, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddEmail("mkinstner@gmail.com");
-			AddUser("melkins", "EllieBear1", EmailIds.MKin_Gmail, MemberIds.FabMel);
-			AddMember(AppIds.FabSys, UserIds.Mel, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddEmail(EmailId.MKin_Gmail, "mkinstner@gmail.com");
+			AddUser(UserId.Mel, "melkins", "EllieBear1", EmailId.MKin_Gmail);
+			AddMember(MemberId.FabMel, AppId.FabSys, UserId.Mel,
+				MemberTypeId.Member, MemberTypeAssignId.FabMelBySystem, MemberId.FabMel);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_Mel, UserId.FabData, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddEmail("PhotoApp@zachkinstner.com");
-			AddUser("KinstnerPhotos", "snapshot", EmailIds.PhoApp_ZK, MemberIds.FabGalData);
-			AddMember(AppIds.FabSys, UserIds.GalData, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddEmail(EmailId.PhoApp_ZK, "PhotoApp@zachkinstner.com");
+			AddUser(UserId.GalData, "KinstnerPhotos", "snapshot", EmailId.PhoApp_ZK);
+			AddMember(MemberId.FabGalData, AppId.FabSys, UserId.GalData,
+				MemberTypeId.Member, MemberTypeAssignId.FabGalDataBySystem, MemberId.FabFabData);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_GalData, UserId.FabData, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddApp("Kinstner Photo Gallery", EmailIds.PhoApp_ZK, MemberIds.GalGalData, KinPhoGalSecret);
-			AddMember(AppIds.KinPhoGal, UserIds.GalData, MemberTypeIds.DataProvider);
-			pSet.ElapseTime();
+			AddApp(AppId.KinPhoGal, "Kinstner Photo Gallery", EmailId.PhoApp_ZK, KinPhoGalSecret);
+			AddMember(MemberId.GalGalData, AppId.KinPhoGal, UserId.GalData,
+				MemberTypeId.DataProvider, MemberTypeAssignId.GalGalDataBySystem, MemberId.FabFabData);
+			AddAppArtifact(SetupArtifacts.ArtifactId.App_KinPhoGal, AppId.FabSys, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.KinPhoGal, UserIds.Zach, MemberTypeIds.Owner);
-			pSet.ElapseTime();
+			AddMember(MemberId.GalZach, AppId.KinPhoGal, UserId.Zach,
+				MemberTypeId.Owner, MemberTypeAssignId.GalZachByGalGalData, MemberId.GalGalData);
+			vSet.ElapseTime();
 
-			AddEmail("EllieJoy@zachkinstner.com");
-			AddUser("EllieJoy", "iLOVEdaddy", EmailIds.EJ_ZK, MemberIds.FabEllie);
-			AddMember(AppIds.FabSys, UserIds.Ellie, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddEmail(EmailId.EJ_ZK, "EllieJoy@zachkinstner.com");
+			AddUser(UserId.Ellie, "EllieJoy", "iLOVEdaddy", EmailId.EJ_ZK);
+			AddMember(MemberId.FabEllie, AppId.FabSys, UserId.Ellie,
+				MemberTypeId.Member, MemberTypeAssignId.FabEllieBySystem, MemberId.FabFabData);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_Ellie, UserId.FabData, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.KinPhoGal, UserIds.Ellie, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddMember(MemberId.GalEllie, AppId.KinPhoGal, UserId.Ellie,
+				MemberTypeId.Member, MemberTypeAssignId.GalEllieBySystem, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.KinPhoGal, UserIds.Mel, MemberTypeIds.Admin);
-			pSet.ElapseTime();
+			AddMember(MemberId.GalMel, AppId.KinPhoGal, UserId.Mel,
+				MemberTypeId.Admin, MemberTypeAssignId.GalMelByGalGalData, MemberId.GalGalData);
+			vSet.ElapseTime();
 
-			AddEmail("PennyJane@zachkinstner.com");
-			AddUser("PennyJane", "iLOVEdaddyTOO!", EmailIds.PJ_ZK, MemberIds.FabPenny);
-			AddMember(AppIds.FabSys, UserIds.Penny, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddEmail(EmailId.PJ_ZK, "PennyJane@zachkinstner.com");
+			AddUser(UserId.Penny, "PennyJane", "iLOVEdaddyTOO!", EmailId.PJ_ZK);
+			AddMember(MemberId.FabPenny, AppId.FabSys, UserId.Penny,
+				MemberTypeId.Member, MemberTypeAssignId.FabPennyBySystem, MemberId.FabFabData);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_Penny, UserId.FabData, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddEmail("fabricApp@bookmarker.com");
-			AddUser("BookmarkerDP", "bookpass", EmailIds.FabApp_Book, MemberIds.FabBookData);
-			AddMember(AppIds.FabSys, UserIds.BookData, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddEmail(EmailId.FabApp_Book, "fabricApp@bookmarker.com");
+			AddUser(UserId.BookData, "BookmarkerDP", "bookpass", EmailId.FabApp_Book);
+			AddMember(MemberId.FabBookData, AppId.FabSys, UserId.BookData,
+				MemberTypeId.Member, MemberTypeAssignId.FabBookDataBySystem, MemberId.FabFabData);
+			AddUserArtifact(SetupArtifacts.ArtifactId.User_BookData, UserId.FabData, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddApp("The Bookmarker", EmailIds.FabApp_Book, MemberIds.BookBookData, BookmarkSecret);
-			AddMember(AppIds.Bookmarker, UserIds.BookData, MemberTypeIds.DataProvider);
-			pSet.ElapseTime();
+			AddApp(AppId.Bookmarker, "The Bookmarker", EmailId.FabApp_Book, BookmarkSecret);
+			AddMember(MemberId.BookBookData, AppId.Bookmarker, UserId.BookData,
+				MemberTypeId.DataProvider, MemberTypeAssignId.BookBookDataBySystem, MemberId.FabFabData);
+			AddAppArtifact(SetupArtifacts.ArtifactId.App_Bookmarker, AppId.FabSys, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.Bookmarker, UserIds.Zach, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddMember(MemberId.BookZach, AppId.Bookmarker, UserId.Zach,
+				MemberTypeId.Member, MemberTypeAssignId.BookZachBySystem, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.Bookmarker, UserIds.Mel, MemberTypeIds.Member);
-			pSet.ElapseTime();
+			AddMember(MemberId.BookMel, AppId.Bookmarker, UserId.Mel,
+				MemberTypeId.Member, MemberTypeAssignId.BookMelBySystem, MemberId.FabFabData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.KinPhoGal, UserIds.BookData, MemberTypeIds.None);
-			pSet.ElapseTime();
+			AddMember(MemberId.GalBookDataNone, AppId.KinPhoGal, UserId.BookData, MemberTypeId.None,
+				MemberTypeAssignId.GalBookDataNoneByBookBookData, MemberId.BookBookData);
+			vSet.ElapseTime();
 
-			AddMember(AppIds.KinPhoGal, UserIds.Penny, MemberTypeIds.Member);
-			pSet.ElapseTime();*/
+			AddMember(MemberId.GalPenny, AppId.KinPhoGal, UserId.Penny,
+				MemberTypeId.Member, MemberTypeAssignId.GalPennyBySystem, MemberId.FabFabData);
+			vSet.ElapseTime();
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddEmail(DataSet pSet, EmailId pId, string pAddress) {
+		private void AddEmail(EmailId pId, string pAddress) {
 			var e = new Email();
 			e.EmailId = (long)pId;
 			e.Address = pAddress;
 			e.Code = FabricUtil.Code32;
-			e.CreatedTimestamp = pSet.SetupTimestamp;
-			e.VerifiedTimestamp = pSet.SetupTimestamp+10000000;
+			e.CreatedTimestamp = vSet.SetupTimestamp;
+			e.VerifiedTimestamp = vSet.SetupTimestamp+10000000;
 
-			pSet.AddNodeAndIndex(e, x => x.EmailId, TestMode);
-			pSet.AddRootRel<RootContainsEmail>(e, TestMode);
+			vSet.AddNodeAndIndex(e, x => x.EmailId, vTestMode);
+			vSet.AddRootRel<RootContainsEmail>(e, vTestMode);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddMember(DataSet pSet, MemberId pId, AppId pAppId, UserId pUserId,
+		private void AddMember(MemberId pId, AppId pAppId, UserId pUserId,
 					MemberTypeId pMemTypeId, MemberTypeAssignId pMemTypeAssnId, MemberId pAssignerId) {
 			var m = new Member();
 			m.MemberId = (long)pId;
 
-			pSet.AddNodeAndIndex(m, x => x.MemberId, TestMode);
-			pSet.AddRootRel<RootContainsMember>(m, TestMode);
+			vSet.AddNodeAndIndex(m, x => x.MemberId, vTestMode);
+			vSet.AddRootRel<RootContainsMember>(m, vTestMode);
 
 			var relA = DataRel.Create(m, new MemberUsesApp(),
-				pSet.GetNode<App>((long)pAppId), TestMode);
-			pSet.AddRel(relA);
+				vSet.GetNode<App>((long)pAppId), vTestMode);
+			vSet.AddRel(relA);
 
 			var relU = DataRel.Create(m, new MemberUsesUser(),
-				pSet.GetNode<User>((long)pUserId), TestMode);
-			pSet.AddRel(relU);
+				vSet.GetNode<User>((long)pUserId), vTestMode);
+			vSet.AddRel(relU);
 
-			AddMemberTypeAssign(pSet, pId, false, pMemTypeAssnId, pMemTypeId, pAssignerId);
+			AddMemberTypeAssign(pId, false, pMemTypeAssnId, pMemTypeId, pAssignerId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddMemberTypeAssign(DataSet pSet, MemberId pMemberId, bool pIsHistoric,
+		private void AddMemberTypeAssign(MemberId pMemberId, bool pIsHistoric,
 					MemberTypeAssignId pMemTypeAssnId, MemberTypeId pMemTypeId, MemberId pAssignerId) {
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = (long)pMemTypeAssnId;
 
-			pSet.AddNodeAndIndex(mta, x => x.MemberTypeAssignId, TestMode);
-			pSet.AddRootRel<RootContainsMemberTypeAssign>(mta, TestMode);
+			vSet.AddNodeAndIndex(mta, x => x.MemberTypeAssignId, vTestMode);
+			vSet.AddRootRel<RootContainsMemberTypeAssign>(mta, vTestMode);
 
-			var relAsn = DataRel.Create(pSet.GetNode<Member>((long)pAssignerId),
-				new MemberCreatesMemberTypeAssign(), mta, TestMode);
-			pSet.AddRel(relAsn);
+			var relAsn = DataRel.Create(vSet.GetNode<Member>((long)pAssignerId),
+				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
+			vSet.AddRel(relAsn);
 
 			////
 
-			INode m = pSet.GetNode<Member>((long)pMemberId);
+			INode m = vSet.GetNode<Member>((long)pMemberId);
 
 			if ( pIsHistoric ) {
-				var relMta = DataRel.Create(m, new MemberHasHistoricMemberTypeAssign(), mta, TestMode);
-				pSet.AddRel(relMta);
+				var relMta = DataRel.Create(m, new MemberHasHistoricMemberTypeAssign(), mta, vTestMode);
+				vSet.AddRel(relMta);
 			}
 			else {
-				var relMta = DataRel.Create(m, new MemberHasMemberTypeAssign(), mta, TestMode);
-				pSet.AddRel(relMta);
+				var relMta = DataRel.Create(m, new MemberHasMemberTypeAssign(), mta, vTestMode);
+				vSet.AddRel(relMta);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddApp(DataSet pSet, AppId pId, string pName, EmailId pEmailId,
+		private void AddApp(AppId pId, string pName, EmailId pEmailId,
 																					string pSecret) {
 			var a = new App();
 			a.AppId = (long)pId;
 			a.Name = pName;
 			a.Secret = pSecret;
 
-			pSet.AddNodeAndIndex(a, x => x.AppId, TestMode);
-			pSet.AddRootRel<RootContainsApp>(a, TestMode);
+			vSet.AddNodeAndIndex(a, x => x.AppId, vTestMode);
+			vSet.AddRootRel<RootContainsApp>(a, vTestMode);
 
-			var relE = DataRel.Create(a, new AppUsesEmail(), pSet.GetNode<Email>((long)pEmailId));
-			pSet.AddRel(relE);
+			var relE = DataRel.Create(
+				a, new AppUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);
+			vSet.AddRel(relE);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddUser(DataSet pSet, UserId pId, string pName, string pPass, 
+		private void AddUser(UserId pId, string pName, string pPass, 
 																					EmailId pEmailId) {
 			var u = new User();
 			u.UserId = (long)pId;
 			u.Name = pName;
 			u.Password = pPass;
 
-			pSet.AddNodeAndIndex(u, x => x.UserId, TestMode);
-			pSet.AddRootRel<RootContainsUser>(u, TestMode);
+			vSet.AddNodeAndIndex(u, x => x.UserId, vTestMode);
+			vSet.AddRootRel<RootContainsUser>(u, vTestMode);
 
-			var relE = DataRel.Create(u, new AppUsesEmail(), pSet.GetNode<Email>((long)pEmailId));
-			pSet.AddRel(relE);
+			var relE = DataRel.Create(
+				u, new AppUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);
+			vSet.AddRel(relE);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static Artifact AddArtifact(DataSet pSet, SetupArtifacts.ArtifactId pId, 
+		private Artifact AddArtifact(SetupArtifacts.ArtifactId pId, 
 													ArtifactTypeId pArtTypeId, MemberId pCreatorId) {
 			var a = new Artifact();
 			a.ArtifactId = (long)pId;
 			a.IsPrivate = false;
-			a.CreatedTimestamp = pSet.SetupTimestamp;
+			a.CreatedTimestamp = vSet.SetupTimestamp;
 
-			pSet.AddNodeAndIndex(a, x => x.ArtifactId, TestMode);
-			pSet.AddRootRel<RootContainsArtifact>(a, TestMode);
+			vSet.AddNodeAndIndex(a, x => x.ArtifactId, vTestMode);
+			vSet.AddRootRel<RootContainsArtifact>(a, vTestMode);
 
 			var relT = DataRel.Create(a, new ArtifactUsesArtifactType(),
-				pSet.GetNode<ArtifactType>((long)pArtTypeId));
-			pSet.AddRel(relT);
+				vSet.GetNode<ArtifactType>((long)pArtTypeId), vTestMode);
+			vSet.AddRel(relT);
 
-			var relM = DataRel.Create(pSet.GetNode<Member>((long)pCreatorId),
-				new MemberCreatesArtifact(), a);
-			pSet.AddRel(relM);
+			var relM = DataRel.Create(
+				vSet.GetNode<Member>((long)pCreatorId), new MemberCreatesArtifact(), a, vTestMode);
+			vSet.AddRel(relM);
 
 			return a;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddUserArtifact(DataSet pSet, SetupArtifacts.ArtifactId pId, UserId pUserId,
+		private void AddUserArtifact(SetupArtifacts.ArtifactId pId, UserId pUserId,
 																				MemberId pCreatorId) {
-			Artifact a = AddArtifact(pSet, pId, ArtifactTypeId.User, pCreatorId);
+			Artifact a = AddArtifact(pId, ArtifactTypeId.User, pCreatorId);
 
-			var rel = DataRel.Create(pSet.GetNode<User>((long)pUserId), new UserHasArtifact(), a);
-			pSet.AddRel(rel);
+			var rel = DataRel.Create(
+				vSet.GetNode<User>((long)pUserId), new UserHasArtifact(), a, vTestMode);
+			vSet.AddRel(rel);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddAppArtifact(DataSet pSet, SetupArtifacts.ArtifactId pId, AppId pAppId,
+		private void AddAppArtifact(SetupArtifacts.ArtifactId pId, AppId pAppId,
 																				MemberId pCreatorId) {
-			Artifact a = AddArtifact(pSet, pId, ArtifactTypeId.App, pCreatorId);
+			Artifact a = AddArtifact(pId, ArtifactTypeId.App, pCreatorId);
 
-			var rel = DataRel.Create(pSet.GetNode<App>((long)pAppId), new AppHasArtifact(), a);
-			pSet.AddRel(rel);
+			var rel = DataRel.Create(
+				vSet.GetNode<App>((long)pAppId), new AppHasArtifact(), a, vTestMode);
+			vSet.AddRel(rel);
 		}
 
 	}
