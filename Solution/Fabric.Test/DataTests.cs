@@ -27,7 +27,6 @@ namespace Fabric.Test {
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = FabricUtil.WeaverQueryToJson(n.AddQuery);
 				Log.Debug(json);
-
 				n.Node.Id = nodeI++;
 			}
 

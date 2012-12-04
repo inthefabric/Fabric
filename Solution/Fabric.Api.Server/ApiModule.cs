@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using Fabric.Api.Server.Graph;
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Nancy;
+using Nancy.Responses.Negotiation;
 using ServiceStack.Text;
 using Weaver;
 using Weaver.Interfaces;
@@ -28,7 +30,7 @@ namespace Fabric.Api.Server {
 
 			Get["/setup"] = DoSetup;
 			Get["/json"] = DoJson;
-			Get["/graph"] = (p => View["graph/index.html", null]);
+			Get["/graph"] = DoGraph;
 			Get["/(.*)"] = GremlinRequest;
 		}
 
@@ -91,6 +93,13 @@ namespace Fabric.Api.Server {
 		private string GetSetupLineItem(GremlinRequest pReq) {
 			return "<b>"+pReq.Script+"</b><br/>"+pReq.ResponseData+"<br/><br/>";
 		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private Negotiator DoGraph(dynamic pParams) {
+			return View["graph/index.html", new GraphModel(Context.Request.Query["q"])];
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,19 +108,26 @@ namespace Fabric.Api.Server {
 			dynamic obj = null;
 
 			try {
-				var req = new GremlinRequest("g.V;");
+				string q = (Context.Request.Query["q"] ?? "g.V");
+				q = "x=[];"+q+".except([g.v(0)]).aggregate(x).iterate();";
+
+				var req = new GremlinRequest(q+"g.V.retain(x);");
 				List<DbResult> nodes = req.ResultList;
 
-				req = new GremlinRequest("g.E;");
+				req = new GremlinRequest(q+"g.V.retain(x).outE.inV.retain(x).back(2);");
 				List<DbResult> links = req.ResultList;
 
 				obj = new ExpandoObject();
 				obj.nodes = new List<ExpandoObject>();
 				obj.links = new List<ExpandoObject>();
 
+				var nodeIdMap = new Dictionary<long, dynamic>();
+				int nodeI = 0;
+
 				foreach ( DbResult n in nodes ) {
 					dynamic nodeObj = new ExpandoObject();
 					string name = "";
+					nodeObj.index = nodeI++;
 					nodeObj.id = n.GetNodeId();
 					
 					foreach ( string key in n.Data.Keys ) {
@@ -128,14 +144,17 @@ namespace Fabric.Api.Server {
 
 					nodeObj.name = name;//+" ("+nodeObj.id+")";
 					obj.nodes.Add(nodeObj);
+					nodeIdMap.Add(nodeObj.id, nodeObj);
 				}
 
 				foreach ( DbResult l in links ) {
 					dynamic linkObj = new ExpandoObject();
 					linkObj.id = l.GetNodeId();
 					linkObj.type = ExtractRelType(l);
-					linkObj.start = linkObj.source = l.GetIdFromPath(l.Start);
-					linkObj.end = linkObj.target = l.GetIdFromPath(l.End);
+					//linkObj.start = linkObj.source = l.GetIdFromPath(l.Start);
+					//linkObj.end = linkObj.target = l.GetIdFromPath(l.End);
+					linkObj.start = linkObj.source = nodeIdMap[l.GetIdFromPath(l.Start)].index;
+					linkObj.end = linkObj.target = nodeIdMap[l.GetIdFromPath(l.End)].index;
 
 					if ( linkObj.start == 0 || linkObj.end == 0 ) { continue; }
 					obj.links.Add(linkObj);

@@ -10,12 +10,12 @@ function render(pDivId, pWidth, pHeight, pUrl) {
 }
 
 /*----------------------------------------------------------------------------------------------------*/
-function viz() {
+function viz(pQuery) {
 	var graph = $("#graph");
 	graph.empty();
 
 	//visualize("graph", graph.width(), graph.height(), data); //for static data
-	render("graph", graph.width(), graph.height(), "../json");
+	render("graph", graph.width(), graph.height(), "../json?q="+pQuery);
 
 	graph.show();
 }

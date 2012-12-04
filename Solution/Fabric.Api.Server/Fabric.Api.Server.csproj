@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="ApiModule.cs" />
     <Compile Include="ApiBootstrap.cs" />
+    <Compile Include="Graph\GraphModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\GremlinRequest.cs" />
     <Compile Include="Util\GremlinRequestAsync.cs" />
