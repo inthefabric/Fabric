@@ -79,7 +79,7 @@ namespace Fabric.Api.Server {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetSetupLineItem(GremlinRequest pReq) {
-			return "<b>"+pReq.Script+"</b><br/>"+pReq.ResponseData+"<br/><br/>";
+			return "<b>"+pReq.Script+"</b><br/>"+pReq.ResponseString+"<br/><br/>";
 		}
 		
 

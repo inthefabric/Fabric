@@ -33,18 +33,18 @@ namespace Fabric.Api.Server.Util {
 			byte[] queryData = UTF8Encoding.UTF8.GetBytes(query);
 
 			var wc = new WebClient();
-			byte[] resp = wc.UploadData("http://localhost:9001/", "POST", queryData);
-			ResponseData = UTF8Encoding.UTF8.GetString(resp);
+			ResponseBytes = wc.UploadData("http://localhost:9001/", "POST", queryData);
+			ResponseString = UTF8Encoding.UTF8.GetString(ResponseBytes);
 
 			////
 			
-			char first = ResponseData[0];
+			char first = ResponseString[0];
 
-			if ( first == '[' && ResponseData[1] == '{' ) {
-				ResultList = JsonSerializer.DeserializeFromString<List<DbResult>>(ResponseData);
+			if ( first == '[' && ResponseString[1] == '{' ) {
+				ResultList = JsonSerializer.DeserializeFromString<List<DbResult>>(ResponseString);
 			}
 			else if ( first == '{' ) {
-				Result = JsonSerializer.DeserializeFromString<DbResult>(ResponseData);
+				Result = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
 			}
 		}
 
@@ -54,7 +54,8 @@ namespace Fabric.Api.Server.Util {
 		/*--------------------------------------------------------------------------------------------*/
 		public string Script { get; private set; }
 		public IDictionary<string,string> Params { get; private set; }
-		public string ResponseData { get; private set; }
+		public byte[] ResponseBytes { get; private set; }
+		public string ResponseString { get; private set; }
 		public DbResult Result { get; private set; }
 		public List<DbResult> ResultList { get; private set; }
 
