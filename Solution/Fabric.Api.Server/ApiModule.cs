@@ -141,7 +141,8 @@ namespace Fabric.Api.Server {
 
 				nodeIdMap = new Dictionary<long, dynamic>();
 				//linkIdMap = new Dictionary<long, dynamic>();
-				int nodeI = 0;
+				int nodeI = 1;
+				obj.nodes.Add(new ExpandoObject());
 
 				foreach ( DbResult n in nodes ) {
 					dynamic nodeObj = new ExpandoObject();
@@ -154,7 +155,6 @@ namespace Fabric.Api.Server {
 						if ( key.LastIndexOf("Id") == key.Length-2 ) {
 							name = key.Substring(0, key.Length-2);
 							nodeObj.Class = name;
-							break;
 						}
 
 						nodeObj.Data += "\n - "+key+": "+n.Data[key];
