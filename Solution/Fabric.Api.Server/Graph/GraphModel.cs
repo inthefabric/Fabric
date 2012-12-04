@@ -1,6 +1,4 @@
-﻿using Fabric.Infrastructure;
-
-namespace Fabric.Api.Server.Graph {
+﻿namespace Fabric.Api.Server.Graph {
 
 	/*================================================================================================*/
 	public class GraphModel {
@@ -11,7 +9,9 @@ namespace Fabric.Api.Server.Graph {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public GraphModel(string pQuery) {
-			Query = pQuery.Replace("'", "\\'").Replace("\"", "\\\"");//.Replace("%3D", "=");
+			if ( pQuery != null ) {
+				Query = pQuery.Replace("'", "\\'").Replace("\"", "\\\"");//.Replace("%3D", "=");
+			}
 		}
 
 	}

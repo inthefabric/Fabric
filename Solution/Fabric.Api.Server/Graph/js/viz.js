@@ -162,11 +162,21 @@ function propertyHash(ob) {
 function toString(ob) {
 	var ret = "";
 	for (var prop in ob) {
+		
+		switch (prop) {
+			case "weight":
+			case "px":
+			case "py":
+			case "x":
+			case "y":
+				continue;
+		}
+
 		if (ob.hasOwnProperty(prop)) {
-			ret += prop + ": " + ob[prop] + " ";
+			ret += prop + ": " + ob[prop] + "\n";
 		}
 	}
-	return ret + "id: " + ob.id;
+	return ret;//  + "id: " + ob.id;
 }
 
 /*----------------------------------------------------------------------------------------------------*/

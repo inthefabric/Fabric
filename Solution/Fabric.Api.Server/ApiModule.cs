@@ -108,20 +108,39 @@ namespace Fabric.Api.Server {
 			dynamic obj = null;
 
 			try {
-				string q = (Context.Request.Query["q"] ?? "g.V");
-				q = "x=[];"+q+".except([g.v(0)]).aggregate(x).iterate();";
+				string q = Context.Request.Query["q"];
 
-				var req = new GremlinRequest(q+"g.V.retain(x);");
-				List<DbResult> nodes = req.ResultList;
+				if ( String.IsNullOrEmpty(q) ) {
+					q = "x=[];g.V.aggregate(x).iterate();g.E.aggregate(x).iterate();x;";
+				}
+				
+				var req = new GremlinRequest(q);
+				var nodes = new List<DbResult>();
+				var links = new List<DbResult>();
+				var nodeIdMap = new Dictionary<long, dynamic>();
+				var linkIdMap = new Dictionary<long, dynamic>();
 
-				req = new GremlinRequest(q+"g.V.retain(x).outE.inV.retain(x).back(2);");
-				List<DbResult> links = req.ResultList;
+				foreach ( DbResult dr in req.ResultList ) {
+					long id = dr.GetNodeId();
+
+					if ( dr.Self[0] == 'n' ) {
+						if ( nodeIdMap.ContainsKey(id) ) { continue; }
+						nodeIdMap.Add(id, dr);
+						nodes.Add(dr);
+					}
+					else {
+						if ( linkIdMap.ContainsKey(id) ) { continue; }
+						linkIdMap.Add(id, dr);
+						links.Add(dr);
+					}
+				}
 
 				obj = new ExpandoObject();
 				obj.nodes = new List<ExpandoObject>();
 				obj.links = new List<ExpandoObject>();
 
-				var nodeIdMap = new Dictionary<long, dynamic>();
+				nodeIdMap = new Dictionary<long, dynamic>();
+				//linkIdMap = new Dictionary<long, dynamic>();
 				int nodeI = 0;
 
 				foreach ( DbResult n in nodes ) {
@@ -129,6 +148,7 @@ namespace Fabric.Api.Server {
 					string name = "";
 					nodeObj.index = nodeI++;
 					nodeObj.id = n.GetNodeId();
+					nodeObj.Data = "";
 					
 					foreach ( string key in n.Data.Keys ) {
 						if ( key.LastIndexOf("Id") == key.Length-2 ) {
@@ -136,6 +156,8 @@ namespace Fabric.Api.Server {
 							nodeObj.Class = name;
 							break;
 						}
+
+						nodeObj.Data += "\n - "+key+": "+n.Data[key];
 					}
 
 					if ( n.Data.ContainsKey("Name") ) {
