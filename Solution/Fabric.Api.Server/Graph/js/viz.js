@@ -32,8 +32,8 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
         .nodes(pData.nodes)
         .links(pData.links)
         .gravity(.2)
-        .distance(30)
-        .charge(-500)
+        .distance(40)
+        .charge(-400)
         .size([pWidth, pHeight])
         .start();
 
@@ -55,7 +55,7 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 	var link = vis.selectAll("line.link")
         .data(pData.links)
         .enter().append("svg:line")
-        .attr("class", function (d) { return "link" + d.type; })
+        .attr("class", "link")
 	  	.attr("marker-end", function (d) { return "url(#" + "end-marker" + ")"; }) // was d.type
 	//.style("stroke", function (d) { var sel = d["selected"]; return sel ? "red" : null; })
 	//.style("stroke-width", function (d) { return d["selected"] ? 2 : null; })

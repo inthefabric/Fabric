@@ -38,3 +38,7 @@ text {
 	pointer-events: none;
 	z-index: 10;
 }
+
+.link {
+	stroke: rgba(0, 0, 0, 0.12);
+}

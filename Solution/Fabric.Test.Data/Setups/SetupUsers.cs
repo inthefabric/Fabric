@@ -80,7 +80,7 @@ namespace Fabric.Db.Data.Setups {
 		public const string KinPhoGalSecret = "0123456789abcdefghijkLMNOPqrstuv";
 		public const string BookmarkSecret  = "alkjdfkusdlf7f238092fijlcsdc089f";
 
-		private DataSet vSet;
+		private readonly DataSet vSet;
 		private readonly bool vTestMode;
 
 
@@ -244,6 +244,10 @@ namespace Fabric.Db.Data.Setups {
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
 			vSet.AddRel(relAsn);
 
+			var relMt = DataRel.Create(mta, new MemberHasMemberTypeAssign(),
+				vSet.GetNode<MemberType>((long)pMemTypeId), vTestMode);
+			vSet.AddRel(relMt);
+
 			////
 
 			INode m = vSet.GetNode<Member>((long)pMemberId);
@@ -259,8 +263,7 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddApp(AppId pId, string pName, EmailId pEmailId,
-																					string pSecret) {
+		private void AddApp(AppId pId, string pName, EmailId pEmailId, string pSecret) {
 			var a = new App();
 			a.AppId = (long)pId;
 			a.Name = pName;
@@ -275,8 +278,7 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddUser(UserId pId, string pName, string pPass, 
-																					EmailId pEmailId) {
+		private void AddUser(UserId pId, string pName, string pPass, EmailId pEmailId) {
 			var u = new User();
 			u.UserId = (long)pId;
 			u.Name = pName;

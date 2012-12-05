@@ -37,6 +37,8 @@ namespace Fabric.Db.Data.Setups {
 		public static void SetupAddNodes(DataSet pSet, bool pIsForTesting) {
 			SetupTypes.SetupAll(pSet);
 			SetupUsers.SetupAll(pSet);
+			SetupOauth.SetupAll(pSet);
+			SetupObjects.SetupAll(pSet);
 		}
 
 	}

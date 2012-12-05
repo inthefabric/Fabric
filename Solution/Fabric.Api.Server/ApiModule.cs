@@ -138,21 +138,25 @@ namespace Fabric.Api.Server {
 
 				foreach ( DbDto n in nodes ) {
 					dynamic nodeObj = new ExpandoObject();
-					string name = "";
 					nodeObj.index = nodeI++;
 					nodeObj.id = n.Id;
 					nodeObj.Class = n.Class;
+					nodeObj.name = n.Class;
 					nodeObj.Data = "";
-					
-					foreach ( string key in n.Data.Keys ) {
-						nodeObj.Data += "\n - "+key+": "+n.Data[key];
+
+					nodeObj.x = nodeObj.px = new Random().NextDouble();
+					nodeObj.y = nodeObj.py = new Random().NextDouble();
+
+					if ( n.Data != null ) {
+						foreach ( string key in n.Data.Keys ) {
+							nodeObj.Data += "\n - "+key+": "+n.Data[key];
+						}
 					}
 
 					/*if ( n.Data.ContainsKey("Name") ) {
 						name += ": "+n.Data["Name"];
 					}*/
 
-					nodeObj.name = name;
 					obj.nodes.Add(nodeObj);
 					nodeIdMap.Add(nodeObj.id, nodeObj);
 				}
