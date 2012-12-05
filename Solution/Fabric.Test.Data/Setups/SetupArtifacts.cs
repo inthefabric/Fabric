@@ -1,4 +1,6 @@
-﻿namespace Fabric.Db.Data.Setups {
+﻿using Fabric.Domain;
+
+namespace Fabric.Db.Data.Setups {
 
 	/*================================================================================================*/
 	public static class SetupArtifacts {
@@ -118,6 +120,30 @@
 		}
 
 		public const int NumArtifacts = 106;
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static Artifact AddArtifact(DataSet pSet, ArtifactId pId, ArtifactTypeId pArtTypeId,
+													SetupUsers.MemberId pCreatorId, bool pTestMode) {
+			var a = new Artifact();
+			a.ArtifactId = (long)pId;
+			a.IsPrivate = false;
+			a.CreatedTimestamp = pSet.SetupTimestamp;
+
+			pSet.AddNodeAndIndex(a, x => x.ArtifactId, pTestMode);
+			pSet.AddRootRel<RootContainsArtifact>(a, pTestMode);
+
+			var relT = DataRel.Create(a, new ArtifactUsesArtifactType(),
+				pSet.GetNode<ArtifactType>((long)pArtTypeId), pTestMode);
+			pSet.AddRel(relT);
+
+			var relM = DataRel.Create(
+				pSet.GetNode<Member>((long)pCreatorId), new MemberCreatesArtifact(), a, pTestMode);
+			pSet.AddRel(relM);
+
+			return a;
+		}
 
 	}
 

@@ -295,31 +295,10 @@ namespace Fabric.Db.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private Artifact AddArtifact(SetupArtifacts.ArtifactId pId, 
-													ArtifactTypeId pArtTypeId, MemberId pCreatorId) {
-			var a = new Artifact();
-			a.ArtifactId = (long)pId;
-			a.IsPrivate = false;
-			a.CreatedTimestamp = vSet.SetupTimestamp;
-
-			vSet.AddNodeAndIndex(a, x => x.ArtifactId, vTestMode);
-			vSet.AddRootRel<RootContainsArtifact>(a, vTestMode);
-
-			var relT = DataRel.Create(a, new ArtifactUsesArtifactType(),
-				vSet.GetNode<ArtifactType>((long)pArtTypeId), vTestMode);
-			vSet.AddRel(relT);
-
-			var relM = DataRel.Create(
-				vSet.GetNode<Member>((long)pCreatorId), new MemberCreatesArtifact(), a, vTestMode);
-			vSet.AddRel(relM);
-
-			return a;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		private void AddUserArtifact(SetupArtifacts.ArtifactId pId, UserId pUserId,
 																				MemberId pCreatorId) {
-			Artifact a = AddArtifact(pId, ArtifactTypeId.User, pCreatorId);
+			Artifact a = SetupArtifacts.AddArtifact(
+				vSet, pId, ArtifactTypeId.User, pCreatorId, vTestMode);
 
 			var rel = DataRel.Create(
 				vSet.GetNode<User>((long)pUserId), new UserHasArtifact(), a, vTestMode);
@@ -329,7 +308,8 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddAppArtifact(SetupArtifacts.ArtifactId pId, AppId pAppId,
 																				MemberId pCreatorId) {
-			Artifact a = AddArtifact(pId, ArtifactTypeId.App, pCreatorId);
+			Artifact a = SetupArtifacts.AddArtifact(
+				vSet, pId, ArtifactTypeId.App, pCreatorId, vTestMode);
 
 			var rel = DataRel.Create(
 				vSet.GetNode<App>((long)pAppId), new AppHasArtifact(), a, vTestMode);
