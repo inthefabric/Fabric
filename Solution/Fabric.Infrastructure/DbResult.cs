@@ -18,12 +18,7 @@ namespace Fabric.Infrastructure {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public long GetNodeId() {
-			return GetIdFromPath(Self);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public long GetIdFromPath(string pPath) {
+		public static long GetIdFromPath(string pPath) {
 			if ( pPath == null ) { return -1; }
 			string idStr = pPath.Substring(pPath.LastIndexOf('/')+1);
 			return long.Parse(idStr);

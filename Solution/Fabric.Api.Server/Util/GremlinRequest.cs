@@ -41,10 +41,10 @@ namespace Fabric.Api.Server.Util {
 			char first = ResponseString[0];
 
 			if ( first == '[' && ResponseString[1] == '{' ) {
-				ResultList = JsonSerializer.DeserializeFromString<List<DbResult>>(ResponseString);
+				DtoList = JsonSerializer.DeserializeFromString<List<DbDto>>(ResponseString);
 			}
 			else if ( first == '{' ) {
-				Result = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
+				Dto = JsonSerializer.DeserializeFromString<DbDto>(ResponseString);
 			}
 		}
 
@@ -56,8 +56,8 @@ namespace Fabric.Api.Server.Util {
 		public IDictionary<string,string> Params { get; private set; }
 		public byte[] ResponseBytes { get; private set; }
 		public string ResponseString { get; private set; }
-		public DbResult Result { get; private set; }
-		public List<DbResult> ResultList { get; private set; }
+		public DbDto Dto { get; private set; }
+		public List<DbDto> DtoList { get; private set; }
 
 	}
 

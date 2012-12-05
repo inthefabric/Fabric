@@ -23,7 +23,7 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Fill(DbResult pResult) {
-			NodeId = pResult.GetNodeId();
+			NodeId = DbResult.GetIdFromPath(pResult.Self);
 			FillResultData(pResult.Data);
 		}
 

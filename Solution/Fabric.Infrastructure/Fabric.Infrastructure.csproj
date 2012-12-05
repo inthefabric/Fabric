@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbDto.cs" />
     <Compile Include="DbResult.cs" />
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Log.cs" />

@@ -54,13 +54,13 @@ namespace Fabric.Api.Server.Query {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildHtml(GremlinRequest pReq) {
 			var html = "";
-			Log.Debug("REQ: "+pReq.Result+" / "+pReq.ResultList);
+			Log.Debug("REQ: "+pReq.Dto+" / "+pReq.DtoList);
 
-			if ( pReq.Result != null ) {
-				html += BuildHtmlResult(pReq.Result);
+			if ( pReq.Dto != null ) {
+				html += BuildHtmlResult(pReq.Dto);
 			}
-			else if ( pReq.ResultList != null ) {
-				foreach ( var r in pReq.ResultList ) {
+			else if ( pReq.DtoList != null ) {
+				foreach ( var r in pReq.DtoList ) {
 					html += BuildHtmlResult(r);
 				}
 			}
@@ -78,9 +78,72 @@ namespace Fabric.Api.Server.Query {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildHtmlResult(DbResult pResult) {
-			var html = "<p><b>"+pResult.Self+"</b></p>";
+		private string BuildHtmlResult(DbDto pResult) {
+			var html = "<p><b>"+pResult.Item+" ["+pResult.Class+"]</b><br/>";
+
+			if ( pResult.Id != null ) {
+				html += "* Id: "+BuildHtmlLink(pResult.Id, pResult.Item)+"<br/>";
+			}
+
+			if ( pResult.FromNodeId != null ) {
+				html += "* FromNodeId: "+BuildHtmlLink(pResult.FromNodeId)+"<br/>";
+			}
+
+			if ( pResult.ToNodeId != null ) {
+				html += "* ToNodeId: "+BuildHtmlLink(pResult.ToNodeId)+"<br/>";
+			}
+
+			if ( pResult.Message != null ) { html += "* Message: "+pResult.Message+"<br/>"; }
+			if ( pResult.Exception != null ) { html += "* Exception: "+pResult.Exception+"<br/>"; }
+
+			if ( pResult.Data != null ) {
+				html += "* Data: ";
+
+				foreach ( string key in pResult.Data.Keys ) {
+					html += "<br/>&nbsp&nbsp * "+key+": "+pResult.Data[key];
+				}
+			}
+
+			if ( pResult.Id != null ) {
+				string idUrl = BuildHtmlUrl(pResult.Id, pResult.Item);
+				html += (pResult.Data == null ? "" : "<br/>");
+				html += "* Actions: [";
+
+				switch ( pResult.Item ) {
+					case DbDto.ItemType.Node:
+						html += 
+							"<a href='"+idUrl+"/outE'>outE</a> | "+
+							"<a href='"+idUrl+"/inE'>inE</a> | "+
+							"<a href='"+idUrl+"/bothE'>bothE</a> | "+
+							"<a href='"+idUrl+"/out'>out</a> | "+
+							"<a href='"+idUrl+"/in'>in</a> | "+
+							"<a href='"+idUrl+"/both'>both</a>";
+						break;
+
+					case DbDto.ItemType.Rel:
+						html += 
+							"<a href='"+idUrl+"/outV'>outV</a> | "+
+							"<a href='"+idUrl+"/inV'>inV</a> | "+
+							"<a href='"+idUrl+"/bothV'>bothV</a>";
+						break;
+				}
+
+				html += "]<br/>";
+			}
+
+			html += "</p>";
 			return html;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private string BuildHtmlLink(long? pId, DbDto.ItemType pType=DbDto.ItemType.Node) {
+			return "<a href='"+BuildHtmlUrl(pId, pType)+"'>"+pId+"</a>";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string BuildHtmlUrl(long? pId, DbDto.ItemType pType=DbDto.ItemType.Node) {
+			string type = (pType == DbDto.ItemType.Node ? "v" : "e");
+			return "/g/"+type+"("+pId+")";
 		}
 
 	}

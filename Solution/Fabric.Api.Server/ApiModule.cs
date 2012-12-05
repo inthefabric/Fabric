@@ -57,7 +57,7 @@ namespace Fabric.Api.Server {
 				foreach ( IDataNode n in ds.Nodes ) {
 					req = new GremlinRequest(n.AddQuery);
 					result += GetSetupLineItem(req);
-					n.Node.Id = req.Result.GetNodeId();
+					n.Node.Id = (req.Dto.Id ?? -1);
 				}
 
 				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
@@ -93,7 +93,7 @@ namespace Fabric.Api.Server {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string DoJson(dynamic pParams) {
-			dynamic obj = null;
+			dynamic obj;
 
 			try {
 				string q = Context.Request.Query["q"];
@@ -103,23 +103,27 @@ namespace Fabric.Api.Server {
 				}
 				
 				var req = new GremlinRequest(q);
-				var nodes = new List<DbResult>();
-				var links = new List<DbResult>();
+				var nodes = new List<DbDto>();
+				var links = new List<DbDto>();
 				var nodeIdMap = new Dictionary<long, dynamic>();
 				var linkIdMap = new Dictionary<long, dynamic>();
 
-				foreach ( DbResult dr in req.ResultList ) {
-					long id = dr.GetNodeId();
+				foreach ( DbDto dto in req.DtoList ) {
+					long id = (dto.Id ?? -1);
 
-					if ( dr.Self[0] == 'n' ) {
-						if ( nodeIdMap.ContainsKey(id) ) { continue; }
-						nodeIdMap.Add(id, dr);
-						nodes.Add(dr);
-					}
-					else {
-						if ( linkIdMap.ContainsKey(id) ) { continue; }
-						linkIdMap.Add(id, dr);
-						links.Add(dr);
+					switch ( dto.Item ) {
+
+						case DbDto.ItemType.Node:
+							if ( nodeIdMap.ContainsKey(id) ) { continue; }
+							nodeIdMap.Add(id, dto);
+							nodes.Add(dto);
+							break;
+
+						case DbDto.ItemType.Rel:
+							if ( linkIdMap.ContainsKey(id) ) { continue; }
+							linkIdMap.Add(id, dto);
+							links.Add(dto);
+							break;
 					}
 				}
 
@@ -128,43 +132,43 @@ namespace Fabric.Api.Server {
 				obj.links = new List<ExpandoObject>();
 
 				nodeIdMap = new Dictionary<long, dynamic>();
-				//linkIdMap = new Dictionary<long, dynamic>();
+
 				int nodeI = 1;
 				obj.nodes.Add(new ExpandoObject());
 
-				foreach ( DbResult n in nodes ) {
+				foreach ( DbDto n in nodes ) {
 					dynamic nodeObj = new ExpandoObject();
 					string name = "";
 					nodeObj.index = nodeI++;
-					nodeObj.id = n.GetNodeId();
+					nodeObj.id = n.Id;
+					nodeObj.Class = n.Class;
 					nodeObj.Data = "";
 					
 					foreach ( string key in n.Data.Keys ) {
-						if ( key.LastIndexOf("Id") == key.Length-2 ) {
-							name = key.Substring(0, key.Length-2);
-							nodeObj.Class = name;
-						}
-
 						nodeObj.Data += "\n - "+key+": "+n.Data[key];
 					}
 
-					if ( n.Data.ContainsKey("Name") ) {
+					/*if ( n.Data.ContainsKey("Name") ) {
 						name += ": "+n.Data["Name"];
-					}
+					}*/
 
-					nodeObj.name = name;//+" ("+nodeObj.id+")";
+					nodeObj.name = name;
 					obj.nodes.Add(nodeObj);
 					nodeIdMap.Add(nodeObj.id, nodeObj);
 				}
 
-				foreach ( DbResult l in links ) {
+				foreach ( DbDto l in links ) {
 					dynamic linkObj = new ExpandoObject();
-					linkObj.id = l.GetNodeId();
+					linkObj.id = l.Id;
 					linkObj.type = ExtractRelType(l);
-					//linkObj.start = linkObj.source = l.GetIdFromPath(l.Start);
-					//linkObj.end = linkObj.target = l.GetIdFromPath(l.End);
-					linkObj.start = linkObj.source = nodeIdMap[l.GetIdFromPath(l.Start)].index;
-					linkObj.end = linkObj.target = nodeIdMap[l.GetIdFromPath(l.End)].index;
+
+					if ( l.FromNodeId != null ) {
+						linkObj.start = linkObj.source = nodeIdMap[(long)l.FromNodeId].index;
+					}
+
+					if ( l.ToNodeId != null ) {
+						linkObj.end = linkObj.target = nodeIdMap[(long)l.ToNodeId].index;
+					}
 
 					if ( linkObj.start == 0 || linkObj.end == 0 ) { continue; }
 					obj.links.Add(linkObj);
@@ -179,8 +183,8 @@ namespace Fabric.Api.Server {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string ExtractRelType(DbResult pLink) {
-			string name = pLink.Type;
+		private string ExtractRelType(DbDto pLink) {
+			string name = pLink.Class;
 			object o = Activator.CreateInstance("Fabric.Domain", "Fabric.Domain."+name).Unwrap();
 			IWeaverRel r = (o as IWeaverRel);
 			return (r == null ? name : r.RelType.Label);
