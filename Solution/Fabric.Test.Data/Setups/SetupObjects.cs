@@ -71,6 +71,46 @@ namespace Fabric.Db.Data.Setups {
 			Dp_BookData
 		}
 
+		public enum CrowdianTypeAssignId {
+			T1ZachAdminByZach = 1,
+			T1MelAdminByZach,
+			T1EllieMemberByMel,
+			T1FabMemberByZach,
+			T1GalMemberByZach,
+			T1BookMemberByZach,
+			T1PennyMemberByMel,
+
+			ZfZachAdminByZach,
+			ZfMelMemberByZach,
+			ZfEllieMemberByZach,
+			ZfPennyMemberByZach,
+
+			ZwZachAdminByZach,
+			ZwFabMemberByZach,
+			ZwGalMemberByZach,
+			ZwBookMemberByZach,
+			ZwMelMemberByZach,
+
+			MfMelAdminByMel,
+			MfZachMemberByMel,
+			MfEllieMemberByMel,
+			MfPennyMemberByMel,
+
+			CritGalAdminByGal,
+			CriZachIntiveByGal,
+			CritMelInviteByGal,
+			CritEllieRequestByElie,
+
+			LoveMelAdminByMel,
+			LoveZachRequestByZach,
+			LoveEllieMemberByMel,
+			LoveGalMemberByMel,
+
+			DpFabAdminByFab,
+			DbGalMemberByFab,
+			DbBookMemberByFab
+		}
+
 		public enum ThingId {
 			Human = 1,
 			Male,
@@ -161,14 +201,6 @@ namespace Fabric.Db.Data.Setups {
 			vSet = pSet;
 			vTestMode = true;
 
-			/*const SetupUsers.UserId fabData = SetupUsers.UserId.FabData;
-			const SetupUsers.UserId galData = SetupUsers.UserId.GalData;
-			const SetupUsers.UserId bookData = SetupUsers.UserId.BookData;
-			const SetupUsers.UserId zach = SetupUsers.UserId.Zach;
-			const SetupUsers.UserId mel = SetupUsers.UserId.Mel;
-			const SetupUsers.UserId ellie = SetupUsers.UserId.Ellie;
-			const SetupUsers.UserId penny = SetupUsers.UserId.Penny;*/
-
 			AddUrl(UrlId.ZachKin, "http://zachkinstner.com", "ZachKinstner.com", 
 				SetupArtifacts.ArtifactId.Url_ZachKin, SetupUsers.MemberId.BookZach);
 			AddUrl(UrlId.Google, "http://google.com", "Google Homepage",
@@ -187,56 +219,104 @@ namespace Fabric.Db.Data.Setups {
 			AddLabel(LabelId.LOL, "LOL!",
 				SetupArtifacts.ArtifactId.Label_LOL, SetupUsers.MemberId.GalMel);
 			
-			/*
-			AddCrowd("Crowd Test 1", "The first crowd.", false, false, SetupUsers.MemberId.FabFabData);
-			AddCrowd("Crowd Test 2", "The second crowd.", false, true, SetupUsers.MemberId.FabFabData);
-			AddCrowd("Family", "Zach's circle.", true, true, SetupUsers.MemberId.GalZach);
-			AddCrowd("Work", "Zach's circe.", true, true, SetupUsers.MemberId.GalZach);
-			AddCrowd("Family", "Mel's circle,", true, true, SetupUsers.MemberId.BookMel);
-			AddCrowd("Photo Critics", "Bash bad photos.", false, true, SetupUsers.MemberId.GalZach);
-			AddCrowd("Photo Lovers", "Love good photos.", false, false, SetupUsers.MemberId.GalMel);
-			AddCrowd("Crowd 3", "empty test crowd.", false, false, SetupUsers.MemberId.BookZach);
-			AddCrowd("Data Providers", "Only DPs.", false, true, SetupUsers.MemberId.FabFabData);
+			AddCrowd(CrowdId.Test1, "Crowd Test 1", "The first crowd.", false, false, 
+				SetupArtifacts.ArtifactId.Cro_Test1, SetupUsers.MemberId.FabFabData);
+			AddCrowd(CrowdId.Test2, "Crowd Test 2", "The second crowd.", false, true,
+				SetupArtifacts.ArtifactId.Cro_Test2, SetupUsers.MemberId.FabFabData);
+			AddCrowd(CrowdId.ZachFamCir, "Family", "Zach's circle.", true, true,
+				SetupArtifacts.ArtifactId.Cro_ZachFamCir, SetupUsers.MemberId.GalZach);
+			AddCrowd(CrowdId.ZachWorkCir, "Work", "Zach's circe.", true, true,
+				SetupArtifacts.ArtifactId.Cro_ZachWorkCir, SetupUsers.MemberId.GalZach);
+			AddCrowd(CrowdId.MelFamCir, "Family", "Mel's circle,", true, true,
+				SetupArtifacts.ArtifactId.Cro_MelFamCir, SetupUsers.MemberId.BookMel);
+			AddCrowd(CrowdId.PhoCrit, "Photo Critics", "Bash bad photos.", false, true,
+				SetupArtifacts.ArtifactId.Cro_PhoCrit, SetupUsers.MemberId.GalZach);
+			AddCrowd(CrowdId.PhoLove, "Photo Lovers", "Love good photos.", false, false,
+				SetupArtifacts.ArtifactId.Cro_PhoLove, SetupUsers.MemberId.GalMel);
+			AddCrowd(CrowdId.Crowd3, "Crowd 3", "empty test crowd.", false, false,
+				SetupArtifacts.ArtifactId.Cro_Crowd3, SetupUsers.MemberId.BookZach);
+			AddCrowd(CrowdId.DataProv, "Data Providers", "Only DPs.", false, true,
+				SetupArtifacts.ArtifactId.Cro_DataProv, SetupUsers.MemberId.FabFabData);
 
-			AddCrowdUser(CrowdId.Test1, zach, CrowdUserTypeId.Admin, 1.0f);
-			AddCrowdUser(CrowdId.Test1, mel, CrowdUserTypeId.Admin, 1.0f);
-			AddCrowdUser(CrowdId.Test1, ellie, CrowdUserTypeId.Member, 0.5f);
-			AddCrowdUser(CrowdId.Test1, fabData, CrowdUserTypeId.Member, 0.2f);
-			AddCrowdUser(CrowdId.Test1, galData, CrowdUserTypeId.Member, 0.3f);
-			AddCrowdUser(CrowdId.Test1, bookData, CrowdUserTypeId.Member, 0.1f);
-			AddCrowdUser(CrowdId.Test1, penny, CrowdUserTypeId.Member, 0.5f);
+			const SetupUsers.UserId fabData = SetupUsers.UserId.FabData;
+			const SetupUsers.UserId galData = SetupUsers.UserId.GalData;
+			const SetupUsers.UserId bookData = SetupUsers.UserId.BookData;
+			const SetupUsers.UserId zach = SetupUsers.UserId.Zach;
+			const SetupUsers.UserId mel = SetupUsers.UserId.Mel;
+			const SetupUsers.UserId ellie = SetupUsers.UserId.Ellie;
+			const SetupUsers.UserId penny = SetupUsers.UserId.Penny;
 
-			AddCrowdUser(CrowdId.ZachFamCir, zach, CrowdUserTypeId.Admin, 1.0f);
-			AddCrowdUser(CrowdId.ZachFamCir, mel, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.ZachFamCir, ellie, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.ZachFamCir, penny, CrowdUserTypeId.Member, 1.0f);
+			AddCrowdian(CrowdianId.Test1_Zach, CrowdId.Test1, zach, CrowdianTypeId.Admin, 1.0f,
+				CrowdianTypeAssignId.T1ZachAdminByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.Test1_Mel, CrowdId.Test1, mel, CrowdianTypeId.Admin, 1.0f,
+				CrowdianTypeAssignId.T1MelAdminByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.Test1_Ellie, CrowdId.Test1, ellie, CrowdianTypeId.Member, 0.5f,
+				CrowdianTypeAssignId.T1EllieMemberByMel, SetupUsers.UserId.Mel);
+			AddCrowdian(CrowdianId.Test1_FabData, CrowdId.Test1, fabData, CrowdianTypeId.Member, 0.2f,
+				CrowdianTypeAssignId.T1FabMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.Test1_GalData, CrowdId.Test1, galData, CrowdianTypeId.Member, 0.3f,
+				CrowdianTypeAssignId.T1GalMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.Test1_BookData, CrowdId.Test1, bookData, CrowdianTypeId.Member, 0.1f,
+				CrowdianTypeAssignId.T1BookMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.Test1_Penny, CrowdId.Test1, penny, CrowdianTypeId.Member, 0.5f,
+				CrowdianTypeAssignId.T1PennyMemberByMel, SetupUsers.UserId.Mel);
 
-			AddCrowdUser(CrowdId.ZachWorkCir, zach, CrowdUserTypeId.Admin, 0.2f);
-			AddCrowdUser(CrowdId.ZachWorkCir, fabData, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.ZachWorkCir, galData, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.ZachWorkCir, bookData, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.ZachWorkCir, mel, CrowdUserTypeId.Member, 0.2f);
+			AddCrowdian(CrowdianId.ZachFam_Zach, CrowdId.ZachFamCir, zach, CrowdianTypeId.Admin, 1.0f,
+				CrowdianTypeAssignId.ZfZachAdminByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachFam_Mel, CrowdId.ZachFamCir, mel, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.ZfMelMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachFam_Ellie, CrowdId.ZachFamCir, ellie, CrowdianTypeId.Member,1.0f,
+				CrowdianTypeAssignId.ZfEllieMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachFam_Penny, CrowdId.ZachFamCir, penny, CrowdianTypeId.Member,1.0f,
+				CrowdianTypeAssignId.ZfPennyMemberByZach, SetupUsers.UserId.Zach);
 
-			AddCrowdUser(CrowdId.MelFamCir, mel, CrowdUserTypeId.Admin, 0.0f);
-			AddCrowdUser(CrowdId.MelFamCir, zach, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.MelFamCir, ellie, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.MelFamCir, penny, CrowdUserTypeId.Member, 1.0f);
+			AddCrowdian(CrowdianId.ZachWork_Zach, CrowdId.ZachWorkCir, zach, CrowdianTypeId.Admin, 0.2f,
+				CrowdianTypeAssignId.ZwZachAdminByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachWork_FabData, CrowdId.ZachWorkCir, fabData,CrowdianTypeId.Member,
+				1.0f, CrowdianTypeAssignId.ZwFabMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachWork_GalData, CrowdId.ZachWorkCir, galData,CrowdianTypeId.Member,
+				1.0f, CrowdianTypeAssignId.ZwGalMemberByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachWork_BookData, CrowdId.ZachWorkCir, bookData,
+				CrowdianTypeId.Member, 1.0f, CrowdianTypeAssignId.ZwBookMemberByZach,
+				SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.ZachWork_Mel, CrowdId.ZachWorkCir, mel, CrowdianTypeId.Member, 0.2f,
+				CrowdianTypeAssignId.ZwMelMemberByZach, SetupUsers.UserId.Zach);
 
-			AddCrowdUser(CrowdId.PhoCrit, galData, CrowdUserTypeId.Admin, 1.0f);
-			AddCrowdUser(CrowdId.PhoCrit, zach, CrowdUserTypeId.Invite, 0.0f);
-			AddCrowdUser(CrowdId.PhoCrit, mel, CrowdUserTypeId.Invite, 0.0f);
-			AddCrowdUser(CrowdId.PhoCrit, ellie, CrowdUserTypeId.Request, 0.0f);
+			AddCrowdian(CrowdianId.MelFam_Mel, CrowdId.MelFamCir, mel, CrowdianTypeId.Admin, 0.0f,
+				CrowdianTypeAssignId.MfMelAdminByMel, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.MelFam_Zach, CrowdId.MelFamCir, zach, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.MfZachMemberByMel, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.MelFam_Ellie, CrowdId.MelFamCir, ellie, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.MfEllieMemberByMel, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.MelFam_Penny, CrowdId.MelFamCir, penny, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.MfPennyMemberByMel, SetupUsers.UserId.Zach);
 
-			AddCrowdUser(CrowdId.PhoLove, mel, CrowdUserTypeId.Admin, 1.0f);
-			AddCrowdUser(CrowdId.PhoLove, zach, CrowdUserTypeId.Request, 0.0f);
-			AddCrowdUser(CrowdId.PhoLove, ellie, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.PhoLove, galData, CrowdUserTypeId.Member, 0.5f);
+			AddCrowdian(CrowdianId.Crit_GalData, CrowdId.PhoCrit, galData, CrowdianTypeId.Admin, 1.0f,
+				CrowdianTypeAssignId.CritGalAdminByGal, SetupUsers.UserId.GalData);
+			AddCrowdian(CrowdianId.Crit_Zach, CrowdId.PhoCrit, zach, CrowdianTypeId.Invite, 0.0f,
+				CrowdianTypeAssignId.CriZachIntiveByGal, SetupUsers.UserId.GalData);
+			AddCrowdian(CrowdianId.Crit_Mel, CrowdId.PhoCrit, mel, CrowdianTypeId.Invite, 0.0f,
+				CrowdianTypeAssignId.CritMelInviteByGal, SetupUsers.UserId.GalData);
+			AddCrowdian(CrowdianId.Crit_Ellie, CrowdId.PhoCrit, ellie, CrowdianTypeId.Request, 0.0f,
+				CrowdianTypeAssignId.CritEllieRequestByElie, SetupUsers.UserId.Ellie);
 
-			AddCrowdUser(CrowdId.DataProv, fabData, CrowdUserTypeId.Admin, 0.0f);
-			AddCrowdUser(CrowdId.DataProv, galData, CrowdUserTypeId.Member, 1.0f);
-			AddCrowdUser(CrowdId.DataProv, bookData, CrowdUserTypeId.Member, 1.0f);
+			AddCrowdian(CrowdianId.Love_Mel, CrowdId.PhoLove, mel, CrowdianTypeId.Admin, 1.0f,
+				CrowdianTypeAssignId.LoveMelAdminByMel, SetupUsers.UserId.Mel);
+			AddCrowdian(CrowdianId.Love_Zach, CrowdId.PhoLove, zach, CrowdianTypeId.Request, 0.0f,
+				CrowdianTypeAssignId.LoveZachRequestByZach, SetupUsers.UserId.Zach);
+			AddCrowdian(CrowdianId.Love_Ellie, CrowdId.PhoLove, ellie, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.LoveEllieMemberByMel, SetupUsers.UserId.Mel);
+			AddCrowdian(CrowdianId.Love_GalData, CrowdId.PhoLove, galData, CrowdianTypeId.Member, 0.5f,
+				CrowdianTypeAssignId.LoveGalMemberByMel, SetupUsers.UserId.Mel);
 
-			const SetupUsers.MemberId ffd = SetupUsers.MemberId.FabFabData;
+			AddCrowdian(CrowdianId.Dp_FabData, CrowdId.DataProv, fabData, CrowdianTypeId.Admin, 0.0f,
+				CrowdianTypeAssignId.DpFabAdminByFab, SetupUsers.UserId.FabData);
+			AddCrowdian(CrowdianId.Dp_GalData, CrowdId.DataProv, galData, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.DbGalMemberByFab, SetupUsers.UserId.FabData);
+			AddCrowdian(CrowdianId.Dp_BookData, CrowdId.DataProv, bookData, CrowdianTypeId.Member, 1.0f,
+				CrowdianTypeAssignId.DbBookMemberByFab, SetupUsers.UserId.FabData);
+
+			/*const SetupUsers.MemberId ffd = SetupUsers.MemberId.FabFabData;
 			const SetupUsers.MemberId ggd = SetupUsers.MemberId.GalGalData;
 			const SetupUsers.MemberId bbd = SetupUsers.MemberId.BookBookData;
 
@@ -356,22 +436,76 @@ namespace Fabric.Db.Data.Setups {
 			vSet.ElapseTime();
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public void AddCrowd(string pName, string pDesc, bool pIsPrivate, bool pIsInviteOnly,
-																	SetupUsers.MemberId pMemberId) {
-			CrowdTable.AddItem(pName, pDesc, pIsPrivate, pIsInviteOnly,
-				vSess.Load<Artifact>(vData.SetupArts.NextArtifactId));
-			vData.SetupArts.ArtifactTable.AddItemForCrowd(
-				vSess.Load<Member>((uint)pMemberId), pIsPrivate);
-			vData.ElapseTime();
+		/*--------------------------------------------------------------------------------------------*/
+		public void AddCrowd(CrowdId pId, string pName, string pDesc, bool pIsPrivate, bool pIsInvOnly,
+									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
+			var c = new Crowd();
+			c.CrowdId = (long)pId;
+			c.Name = pName;
+			c.Description = pDesc;
+			c.IsPrivate = pIsPrivate;
+			c.IsInviteOnly = pIsInvOnly;
+
+			vSet.AddNodeAndIndex(c, x => x.CrowdId, vTestMode);
+			vSet.AddRootRel<RootContainsCrowd>(c, vTestMode);
+
+			////
+
+			Artifact a = SetupArtifacts.AddArtifact(
+				vSet, pArtId, ArtifactTypeId.Crowd, pMemberId, vTestMode);
+
+			var rel = DataRel.Create(
+				vSet.GetNode<Crowd>((long)pId), new CrowdHasArtifact(), a, vTestMode);
+			vSet.AddRel(rel);
+
+			////
+
+			vSet.ElapseTime();
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public void AddCrowdUser(CrowdId pCrowdId, Usr pUser, CrowdUserTypeId pTypeId,
-																						float pWeight) {
-			CrowdUserTable.AddItem(vSess.Load<Crowd>((uint)pCrowdId), pUser,
-				vSess.Load<CrowdUserType>((byte)pTypeId), "", pWeight);
-			vData.ElapseTime();
+		/*--------------------------------------------------------------------------------------------*/
+		public void AddCrowdian(CrowdianId pId, CrowdId pCrowdId, SetupUsers.UserId pUserId,
+									CrowdianTypeId pTypeId, float pWeight, CrowdianTypeAssignId pCtaId,
+									SetupUsers.UserId pAssignerId){
+			var c = new Crowdian();
+			c.CrowdianId = (long)pId;
+
+			vSet.AddNodeAndIndex(c, x => x.CrowdianId, vTestMode);
+			vSet.AddRootRel<RootContainsCrowdian>(c, vTestMode);
+
+			var relCro = DataRel.Create(c, new CrowdianUsesCrowd(),
+				vSet.GetNode<Crowd>((long)pCrowdId), vTestMode);
+			vSet.AddRel(relCro);
+
+			var relUser = DataRel.Create(c, new CrowdianUsesUser(),
+				vSet.GetNode<User>((long)pUserId), vTestMode);
+			vSet.AddRel(relUser);
+
+			////
+
+			var cta = new CrowdianTypeAssign();
+			cta.CrowdianTypeAssignId = (long)pCtaId;
+			cta.Weight = pWeight;
+
+			vSet.AddNodeAndIndex(cta, x => x.CrowdianTypeAssignId, vTestMode);
+			vSet.AddRootRel<RootContainsCrowdianTypeAssign>(cta, vTestMode);
+
+			////
+
+			var relC = DataRel.Create(c, new CrowdianHasCrowdianTypeAssign(), cta, vTestMode);
+			vSet.AddRel(relC);
+
+			var relCt = DataRel.Create(cta, new CrowdianTypeAssignUsesCrowdianType(),
+				vSet.GetNode<CrowdianType>((long)pTypeId), vTestMode);
+			vSet.AddRel(relCt);
+
+			var relU = DataRel.Create(vSet.GetNode<User>((long)pAssignerId),
+				new UserCreatesCrowdianTypeAssign(), cta, vTestMode);
+			vSet.AddRel(relU);
+
+			////
+
+			vSet.ElapseTime();
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

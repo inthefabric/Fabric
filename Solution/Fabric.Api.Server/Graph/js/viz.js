@@ -1,4 +1,5 @@
 var vColor = d3.scale.category20b();
+var vDrawAll = false;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,20 +38,22 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
         .size([pWidth, pHeight])
         .start();
 
-	// end-of-line arrow
-	vis.append("svg:defs").selectAll("marker")
-		    .data(["end-marker"]) // link types if needed
-		    .enter().append("svg:marker")
-		    .attr("id", String)
-		    .attr("viewBox", "0 -5 10 10")
-		    .attr("refX", 25)
-		    .attr("refY", -1.5)
-		    .attr("markerWidth", 6)
-		    .attr("markerHeight", 6)
-		    .attr("class", "marker")
-		    .attr("orient", "auto")
-		    .append("svg:path")
-		    .attr("d", "M0,-5L10,0L0,5");
+	if ( vDrawAll ) {
+		// end-of-line arrow
+		vis.append("svg:defs").selectAll("marker")
+			.data(["end-marker"]) // link types if needed
+			.enter().append("svg:marker")
+			.attr("id", String)
+			.attr("viewBox", "0 -5 10 10")
+			.attr("refX", 25)
+			.attr("refY", -1.5)
+			.attr("markerWidth", 6)
+			.attr("markerHeight", 6)
+			.attr("class", "marker")
+			.attr("orient", "auto")
+			.append("svg:path")
+			.attr("d", "M0,-5L10,0L0,5");
+	}
 
 	var link = vis.selectAll("line.link")
         .data(pData.links)
@@ -68,45 +71,45 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
         .data(pData.nodes)
         .enter().append("circle")
         .attr("class", function (d) { return "node"+d.Class; })
-	    .attr("r", 5)
+	    .attr("r", 3)
 	    //.style("fill", function (d) { return vColor(propertyHash(d.name) % 20); })
 	  	//.style("stroke-width", function (d) { return d["selected"] ? 2 : 0; })
         //.style("stroke", function (d) { var sel = d["selected"]; return sel ? "red" /* was d3.rgb(color2(hash(sel) % 20)).brighter() */ : null; })
         .call(force.drag);
 
 	node.append("title")
-	      .text(function (d) { return toString(d); });
+		.text(function (d) { return toString(d); });
 
-	var text = vis.append("svg:g").selectAll("g")
-		    .data(force.nodes())
-		    .enter().append("svg:g");
+	if (vDrawAll) {
+		var text = vis.append("svg:g").selectAll("g")
+			.data(force.nodes())
+			.enter().append("svg:g");
 
-	// A copy of the text with a thick white stroke for legibility.
-	text.append("svg:text")
-		    .attr("x", 8)
-		    .attr("y", "-.31em")
-		    //.attr("class", "text shadow")
-		    .text(function (d) { return title(d); });
+		// A copy of the text with a thick white stroke for legibility.
+		/*text.append("svg:text")
+			.attr("x", 8)
+			.attr("y", "-.31em")
+			//.attr("class", "text shadow")
+			.text(function (d) { return title(d); });*/
 
-	text.append("svg:text")
-		    .attr("x", 8)
-		    .attr("y", "-.31em")
+		text.append("svg:text")
+			.attr("x", 8)
+			.attr("y", "-.31em")
 			.attr("class", "text")
-		    .text(function (d) { return title(d); });
+			.text(function (d) { return title(d); });
 
+		var path_text = vis.append("svg:g").selectAll("g")
+			.data(force.links())
+			.enter().append("svg:g");
 
-	var path_text = vis.append("svg:g").selectAll("g")
-				    .data(force.links())
-				    .enter().append("svg:g");
+		path_text.append("svg:text")
+			.attr("class", "path-text shadow")
+			.text(function (d) { return d.type; });
 
-
-	path_text.append("svg:text")
-					.attr("class", "path-text shadow")
-					.text(function (d) { return d.type; });
-
-	path_text.append("svg:text")
-					.attr("class", "path-text")
-					.text(function (d) { return d.type; });
+		path_text.append("svg:text")
+			.attr("class", "path-text")
+			.text(function (d) { return d.type; });
+	}
 
 	force.on("tick", function () {
 		link.attr("x1", function (d) { return d.source.x; })
@@ -114,25 +117,27 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
           .attr("x2", function (d) { return d.target.x; })
           .attr("y2", function (d) { return d.target.y; });
 
-		text.attr("transform", function (d) {
-			return "translate(" + d.x + "," + d.y + ")";
-		});
-
 		node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-		path_text.attr("transform", function (d) {
-			var dx = (d.target.x - d.source.x),
-	        dy = (d.target.y - d.source.y);
-			var dr = Math.sqrt(dx * dx + dy * dy);
-			var sinus = dy / dr;
-			var cosinus = dx / dr;
-			var l = d.type.length * 6;
-			var offset = (1 - (l / dr)) / 2;
-			var x = (d.source.x + dx * offset);
-			var y = (d.source.y + dy * offset);
-			return "translate(" + x + "," + y + ") matrix(" + cosinus + ", " + sinus + ", " + -sinus + ", " + cosinus + ", 0 , 0)";
-		});
+		if ( vDrawAll ) {
+			text.attr("transform", function (d) {
+				return "translate(" + d.x + "," + d.y + ")";
+			});
 
+			path_text.attr("transform", function (d) {
+				var dx = (d.target.x - d.source.x),
+				dy = (d.target.y - d.source.y);
+				var dr = Math.sqrt(dx * dx + dy * dy);
+				var sinus = dy / dr;
+				var cosinus = dx / dr;
+				var l = d.type.length * 6;
+				var offset = (1 - (l / dr)) / 2;
+				var x = (d.source.x + dx * offset);
+				var y = (d.source.y + dy * offset);
+				return "translate(" + x + "," + y + ") matrix(" + 
+					cosinus + ", " + sinus + ", " + -sinus + ", " + cosinus + ", 0 , 0)";
+			});
+		}
 	});
 }
 
