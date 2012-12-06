@@ -47,6 +47,7 @@
     <Compile Include="DataNodeIndex.cs" />
     <Compile Include="DataSet.cs" />
     <Compile Include="FabricIdEnums.cs" />
+    <Compile Include="Setups\SetupFactors.cs" />
     <Compile Include="Setups\SetupObjects.cs" />
     <Compile Include="Setups\SetupOauth.cs" />
     <Compile Include="Setups\SetupArtifacts.cs" />

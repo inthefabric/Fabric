@@ -117,6 +117,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 		if ( prop.IsNullable != null ) {
 			attribs += "//[PropIsNullable("+prop.IsNullable+")]"+attEnd;
+			if ( prop.Type.IsValueType ) { propType += "?"; }
 		}
 
 		if ( prop.IsPrimaryKey != null ) {

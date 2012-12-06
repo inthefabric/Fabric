@@ -10,6 +10,15 @@ namespace Fabric.Api.Server.Util {
 	/*================================================================================================*/
 	public class GremlinRequest {
 
+		public string Script { get; private set; }
+		public IDictionary<string, string> Params { get; private set; }
+		public string Query { get; private set; }
+
+		public byte[] ResponseBytes { get; private set; }
+		public string ResponseString { get; private set; }
+		public DbDto Dto { get; private set; }
+		public List<DbDto> DtoList { get; private set; }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -27,10 +36,10 @@ namespace Fabric.Api.Server.Util {
 				}
 			}
 
-			string query = "{\"script\":\""+FabricUtil.JsonUnquote(pScript)+"\""+
+			Query = "{\"script\":\""+FabricUtil.JsonUnquote(pScript)+"\""+
 				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
 
-			byte[] queryData = UTF8Encoding.UTF8.GetBytes(query);
+			byte[] queryData = UTF8Encoding.UTF8.GetBytes(Query);
 
 			var wc = new WebClient();
 			ResponseBytes = wc.UploadData("http://localhost:9001/", "POST", queryData);
@@ -50,14 +59,6 @@ namespace Fabric.Api.Server.Util {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public GremlinRequest(WeaverQuery pQuery) : this(pQuery.Script, pQuery.Params) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public string Script { get; private set; }
-		public IDictionary<string,string> Params { get; private set; }
-		public byte[] ResponseBytes { get; private set; }
-		public string ResponseString { get; private set; }
-		public DbDto Dto { get; private set; }
-		public List<DbDto> DtoList { get; private set; }
 
 	}
 

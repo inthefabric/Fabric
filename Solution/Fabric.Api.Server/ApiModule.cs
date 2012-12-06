@@ -79,7 +79,7 @@ namespace Fabric.Api.Server {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetSetupLineItem(GremlinRequest pReq) {
-			return "<b>"+pReq.Script+"</b><br/>"+pReq.ResponseString+"<br/><br/>";
+			return "<b>"+pReq.Query+"</b><br/>"+pReq.ResponseString+"<br/><br/>";
 		}
 		
 
@@ -134,18 +134,23 @@ namespace Fabric.Api.Server {
 				nodeIdMap = new Dictionary<long, dynamic>();
 
 				int nodeI = 1;
-				obj.nodes.Add(new ExpandoObject());
+				var rand = new Random(999);
+
+				dynamic nodeObj = new ExpandoObject();
+				nodeObj.index = 0;
+				nodeObj.x = nodeObj.y = 0.5;
+				obj.nodes.Add(nodeObj);
 
 				foreach ( DbDto n in nodes ) {
-					dynamic nodeObj = new ExpandoObject();
+					nodeObj = new ExpandoObject();
 					nodeObj.index = nodeI++;
 					nodeObj.id = n.Id;
 					nodeObj.Class = n.Class;
 					nodeObj.name = n.Class;
 					nodeObj.Data = "";
 
-					nodeObj.x = nodeObj.px = new Random().NextDouble();
-					nodeObj.y = nodeObj.py = new Random().NextDouble();
+					nodeObj.x = rand.NextDouble()*0.5+0.25;
+					nodeObj.y = rand.NextDouble()*0.5+0.25;
 
 					if ( n.Data != null ) {
 						foreach ( string key in n.Data.Keys ) {

@@ -45,6 +45,12 @@ namespace Fabric.Db.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public DateTime SetupDateTime {
+			get { return new DateTime(SetupTimestamp);  }
+		}
+
+
+		/*--------------------------------------------------------------------------------------------*/
 		public long SetupTimestamp {
 			get { return vCurrDate.Ticks; }
 		}

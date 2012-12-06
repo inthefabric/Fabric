@@ -97,7 +97,7 @@ namespace Fabric.Db.Data.Setups {
 			Thi_FisherPrice,
 			Thi_Happiness,
 			Thi_Fun,
-			Thi_Cuteness,
+			Thi_Cuteness/*,
 
 			Com_First_1,
 			Com_First_2,
@@ -116,7 +116,7 @@ namespace Fabric.Db.Data.Setups {
 			Com_PhoLove_1,
 			Com_PhoCrit_1,
 			Com_ZFam_1,
-			Com_ZFam_2
+			Com_ZFam_2*/
 		}
 
 		public const int NumArtifacts = 106;

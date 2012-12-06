@@ -39,6 +39,7 @@ namespace Fabric.Db.Data.Setups {
 			SetupUsers.SetupAll(pSet);
 			SetupOauth.SetupAll(pSet);
 			SetupObjects.SetupAll(pSet);
+			SetupFactors.SetupAll(pSet);
 		}
 
 	}

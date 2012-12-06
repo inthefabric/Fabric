@@ -29,12 +29,19 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
     .attr("width", pWidth)
     .attr("height", pHeight);
 
+	for (var i = 0; i < pData.nodes.length; ++i) {
+		var n = pData.nodes[i];
+		n.x *= pWidth;
+		n.y *= pHeight;
+	}
+
 	var force = self.force = d3.layout.force()
         .nodes(pData.nodes)
         .links(pData.links)
         .gravity(.2)
-        .distance(40)
-        .charge(-400)
+        //.distance(1)
+        .charge(-Math.min(pWidth,pHeight)*0.1)
+		.friction(0.8)
         .size([pWidth, pHeight])
         .start();
 
@@ -70,11 +77,11 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 	var node = vis.selectAll("g.node")
         .data(pData.nodes)
         .enter().append("circle")
-        .attr("class", function (d) { return "node"+d.Class; })
+        .attr("class", function (d) { return "node" + d.Class; })
 	    .attr("r", 3)
-	    //.style("fill", function (d) { return vColor(propertyHash(d.name) % 20); })
-	  	//.style("stroke-width", function (d) { return d["selected"] ? 2 : 0; })
-        //.style("stroke", function (d) { var sel = d["selected"]; return sel ? "red" /* was d3.rgb(color2(hash(sel) % 20)).brighter() */ : null; })
+	//.style("fill", function (d) { return vColor(propertyHash(d.name) % 20); })
+	//.style("stroke-width", function (d) { return d["selected"] ? 2 : 0; })
+	//.style("stroke", function (d) { var sel = d["selected"]; return sel ? "red" /* was d3.rgb(color2(hash(sel) % 20)).brighter() */ : null; })
         .call(force.drag);
 
 	node.append("title")
@@ -112,6 +119,14 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 	}
 
 	force.on("tick", function () {
+		for (var i = 0; i < pData.nodes.length; ++i) {
+			var n = pData.nodes[i];
+			if ( n.x < 4 ) { n.x = 4; }
+			if ( n.y < 4 ) { n.y = 4; }
+			if ( n.x > pWidth-4 ) { n.x = pWidth-4; }
+			if (n.y > pHeight-4 ) { n.y = pHeight-4; }
+		}
+
 		link.attr("x1", function (d) { return d.source.x; })
           .attr("y1", function (d) { return d.source.y; })
           .attr("x2", function (d) { return d.target.x; })
@@ -119,7 +134,7 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 
 		node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-		if ( vDrawAll ) {
+		if (vDrawAll) {
 			text.attr("transform", function (d) {
 				return "translate(" + d.x + "," + d.y + ")";
 			});
@@ -134,7 +149,7 @@ function visualize(pGraphId, pWidth, pHeight, pData) {
 				var offset = (1 - (l / dr)) / 2;
 				var x = (d.source.x + dx * offset);
 				var y = (d.source.y + dy * offset);
-				return "translate(" + x + "," + y + ") matrix(" + 
+				return "translate(" + x + "," + y + ") matrix(" +
 					cosinus + ", " + sinus + ", " + -sinus + ", " + cosinus + ", 0 , 0)";
 			});
 		}
@@ -170,10 +185,10 @@ function toString(ob) {
 		
 		switch (prop) {
 			case "weight":
-			case "px":
-			case "py":
-			case "x":
-			case "y":
+			//case "px":
+			//case "py":
+			//case "x":
+			//case "y":
 				continue;
 		}
 
