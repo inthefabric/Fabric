@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/7/2012 1:39:43 PM
+// Generated on 12/7/2012 3:54:56 PM
 
 using System.Collections.Generic;
 using Fabric.Infrastructure;
@@ -62,6 +62,9 @@ namespace Fabric.Api.Dto {
 	public class FabRoot : FabNode {
 	
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return 0; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -85,6 +88,9 @@ namespace Fabric.Api.Dto {
 
 		//[PropLen(32)]
 		public string Secret { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return AppId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -116,6 +122,9 @@ namespace Fabric.Api.Dto {
 		public long CreatedTimestamp { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return ArtifactId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -138,6 +147,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte ArtifactTypeId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return ArtifactTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -167,6 +179,9 @@ namespace Fabric.Api.Dto {
 		public bool IsPrivate { get; set; }
 
 		public bool IsInviteOnly { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return CrowdId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -199,6 +214,9 @@ namespace Fabric.Api.Dto {
 		public long CrowdianId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return CrowdianId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -215,6 +233,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte CrowdianTypeId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return CrowdianTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -235,6 +256,9 @@ namespace Fabric.Api.Dto {
 		public long CrowdianTypeAssignId { get; set; }
 
 		public float Weight { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return CrowdianTypeAssignId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -271,6 +295,9 @@ namespace Fabric.Api.Dto {
 
 		//[PropIsNullable(True)]
 		public long VerifiedTimestamp { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return EmailId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -310,6 +337,9 @@ namespace Fabric.Api.Dto {
 		public string Name { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return LabelId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -331,6 +361,9 @@ namespace Fabric.Api.Dto {
 		public long MemberId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return MemberId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -349,6 +382,9 @@ namespace Fabric.Api.Dto {
 		public byte MemberTypeId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return MemberTypeId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -365,6 +401,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public long MemberTypeAssignId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return MemberTypeAssignId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -395,6 +434,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public string Note { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return ThingId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -435,6 +477,9 @@ namespace Fabric.Api.Dto {
 		public string AbsoluteUrl { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return UrlId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -466,6 +511,9 @@ namespace Fabric.Api.Dto {
 
 		//[PropLen(32)]
 		public string Password { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return UserId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -509,6 +557,9 @@ namespace Fabric.Api.Dto {
 		public string Note { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return FactorId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -545,6 +596,9 @@ namespace Fabric.Api.Dto {
 		public byte FactorAssertionId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return FactorAssertionId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -574,6 +628,9 @@ namespace Fabric.Api.Dto {
 		public long DescriptorId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return DescriptorId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -590,6 +647,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte DescriptorTypeId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return DescriptorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -610,6 +670,9 @@ namespace Fabric.Api.Dto {
 		public long DirectorId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return DirectorId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -626,6 +689,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte DirectorTypeId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return DirectorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -646,6 +712,9 @@ namespace Fabric.Api.Dto {
 		public byte DirectorActionId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return DirectorActionId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -664,6 +733,9 @@ namespace Fabric.Api.Dto {
 		public long EventorId { get; set; }
 
 		public long DateTimeTimestamp { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return EventorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -687,6 +759,9 @@ namespace Fabric.Api.Dto {
 		public byte EventorTypeId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return EventorTypeId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -703,6 +778,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte EventorPrecisionId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return EventorPrecisionId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -726,6 +804,9 @@ namespace Fabric.Api.Dto {
 		public string Value { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return IdentorId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -745,6 +826,9 @@ namespace Fabric.Api.Dto {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte IdentorTypeId { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return IdentorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -769,6 +853,9 @@ namespace Fabric.Api.Dto {
 		public double ValueY { get; set; }
 
 		public double ValueZ { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return LocatorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -810,6 +897,9 @@ namespace Fabric.Api.Dto {
 		public double MaxZ { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return LocatorTypeId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -848,6 +938,9 @@ namespace Fabric.Api.Dto {
 		public long Value { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -871,6 +964,9 @@ namespace Fabric.Api.Dto {
 		public long Min { get; set; }
 
 		public long Max { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -897,6 +993,9 @@ namespace Fabric.Api.Dto {
 		public byte VectorRangeId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorRangeId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -915,6 +1014,9 @@ namespace Fabric.Api.Dto {
 		public byte VectorRangeLevelId { get; set; }
 
 		public float Position { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorRangeLevelId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -939,6 +1041,9 @@ namespace Fabric.Api.Dto {
 
 		//[PropLenMax(8)]
 		public string Symbol { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorUnitId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -967,6 +1072,9 @@ namespace Fabric.Api.Dto {
 		public double Amount { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorUnitPrefixId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -991,6 +1099,9 @@ namespace Fabric.Api.Dto {
 		public byte VectorUnitDerivedId { get; set; }
 
 		public int Exponent { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return VectorUnitDerivedId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -1027,6 +1138,9 @@ namespace Fabric.Api.Dto {
 		public bool IsClientOnly { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return OauthAccessId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -1060,6 +1174,9 @@ namespace Fabric.Api.Dto {
 		public string Domain { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return OauthDomainId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -1088,6 +1205,9 @@ namespace Fabric.Api.Dto {
 		public string Code { get; set; }
 
 		public long ExpiresTimestamp { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return OauthGrantId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
@@ -1120,6 +1240,9 @@ namespace Fabric.Api.Dto {
 
 		//[PropIsTimestamp(True)]
 		public long CreatedTimestamp { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return OauthScopeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {

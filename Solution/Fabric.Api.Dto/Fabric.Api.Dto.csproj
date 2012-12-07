@@ -36,6 +36,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="IFabNode.cs" />
     <Compile Include="FabNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

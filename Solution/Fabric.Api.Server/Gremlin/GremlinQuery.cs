@@ -4,20 +4,33 @@ using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Nancy;
 
-namespace Fabric.Api.Server.Query {
+namespace Fabric.Api.Server.Gremlin {
 
 	/*================================================================================================*/
-	public class DataQuery {
+	public class GremlinQuery {
 
 		private readonly NancyContext vContext;
-		private readonly bool vUseHtml;
+		private readonly string vQuery;
+		private bool vUseHtml;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataQuery(NancyContext pContext) {
+		public GremlinQuery(NancyContext pContext) {
 			vContext = pContext;
+			vQuery = vContext.Request.Path.Substring(9).Replace('/', '.'); //remove "/gremlin/"
+			CheckRequestAccept();
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public GremlinQuery(NancyContext pContext, string pQuery) {
+			vContext = pContext;
+			vQuery = pQuery;
+			CheckRequestAccept();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void CheckRequestAccept() {
 			foreach ( var a in vContext.Request.Headers.Accept ) {
 				if ( a.Item1 != "text/html" ) { continue; }
 				//if ( a.Item1 != "application/xml" ) { continue; }
@@ -29,10 +42,8 @@ namespace Fabric.Api.Server.Query {
 		/*--------------------------------------------------------------------------------------------*/
 		public Response GetResponse() {
 			try {
-				string q = vContext.Request.Path.Substring(1).Replace('/', '.');
-				var req = new GremlinRequest(q);
+				var req = new GremlinRequest(vQuery);
 				Log.Debug("RESP: "+req.ResponseString);
-
 				return (vUseHtml ? BuildHtml(req) : BuildJson(req));
 			}
 			catch ( Exception ex ) {

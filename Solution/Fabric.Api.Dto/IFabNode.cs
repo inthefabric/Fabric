@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Fabric.Infrastructure;
 
-namespace Fabric.Api.Paths {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public interface IPathBase {
+	public interface IFabNode {
 
-		long? TypeId { get; }
-		Path Path { get; }
-		Type DtoType { get; }
+		long NodeId { get; set; }
+
+		//string BaseUri { get; set; }
+		//string NodeUri { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Id(long pTypeId);
-		IPathBase ExecuteUriPart(string pUriPart);
+		void Fill(DbDto pDbDto);
 
 	}
 

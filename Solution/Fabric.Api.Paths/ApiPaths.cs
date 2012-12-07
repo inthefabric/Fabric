@@ -1,11 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/7/2012 1:38:57 PM
+// Generated on 12/7/2012 2:26:14 PM
 
 using Fabric.Api.Dto;
-using Fabric.Domain;
-using Fabric.Infrastructure;
-using Weaver;
 
 namespace Fabric.Api.Paths {
 	
@@ -666,12 +663,69 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "RootId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "containsapplist": return ContainsAppList;
+				case "containsartifactlist": return ContainsArtifactList;
+				case "containsartifacttypelist": return ContainsArtifactTypeList;
+				case "containscrowdlist": return ContainsCrowdList;
+				case "containscrowdianlist": return ContainsCrowdianList;
+				case "containscrowdiantypelist": return ContainsCrowdianTypeList;
+				case "containscrowdiantypeassignlist": return ContainsCrowdianTypeAssignList;
+				case "containsemaillist": return ContainsEmailList;
+				case "containslabellist": return ContainsLabelList;
+				case "containsmemberlist": return ContainsMemberList;
+				case "containsmembertypelist": return ContainsMemberTypeList;
+				case "containsmembertypeassignlist": return ContainsMemberTypeAssignList;
+				case "containsthinglist": return ContainsThingList;
+				case "containsurllist": return ContainsUrlList;
+				case "containsuserlist": return ContainsUserList;
+				case "containsfactorlist": return ContainsFactorList;
+				case "containsfactorassertionlist": return ContainsFactorAssertionList;
+				case "containsdescriptorlist": return ContainsDescriptorList;
+				case "containsdescriptortypelist": return ContainsDescriptorTypeList;
+				case "containsdirectorlist": return ContainsDirectorList;
+				case "containsdirectortypelist": return ContainsDirectorTypeList;
+				case "containsdirectoractionlist": return ContainsDirectorActionList;
+				case "containseventorlist": return ContainsEventorList;
+				case "containseventortypelist": return ContainsEventorTypeList;
+				case "containseventorprecisionlist": return ContainsEventorPrecisionList;
+				case "containsidentorlist": return ContainsIdentorList;
+				case "containsidentortypelist": return ContainsIdentorTypeList;
+				case "containslocatorlist": return ContainsLocatorList;
+				case "containslocatortypelist": return ContainsLocatorTypeList;
+				case "containsvectorlist": return ContainsVectorList;
+				case "containsvectortypelist": return ContainsVectorTypeList;
+				case "containsvectorrangelist": return ContainsVectorRangeList;
+				case "containsvectorrangelevellist": return ContainsVectorRangeLevelList;
+				case "containsvectorunitlist": return ContainsVectorUnitList;
+				case "containsvectorunitprefixlist": return ContainsVectorUnitPrefixList;
+				case "containsvectorunitderivedlist": return ContainsVectorUnitDerivedList;
+				case "containsoauthaccesslist": return ContainsOauthAccessList;
+				case "containsoauthdomainlist": return ContainsOauthDomainList;
+				case "containsoauthgrantlist": return ContainsOauthGrantList;
+				case "containsoauthscopelist": return ContainsOauthScopeList;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -884,12 +938,37 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AppPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "AppId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "hasartifact": return HasArtifact;
+				case "usesemail": return UsesEmail;
+				case "inmemberlistuses": return InMemberListUses;
+				case "inoauthaccesslistuses": return InOauthAccessListUses;
+				case "inoauthdomainlistuses": return InOauthDomainListUses;
+				case "inoauthgrantlistuses": return InOauthGrantListUses;
+				case "inoauthscopelistuses": return InOauthScopeListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -942,12 +1021,44 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "ArtifactId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inapphas": return InAppHas;
+				case "usesartifacttype": return UsesArtifactType;
+				case "incrowdhas": return InCrowdHas;
+				case "inlabelhas": return InLabelHas;
+				case "inmembercreates": return InMemberCreates;
+				case "inthinghas": return InThingHas;
+				case "inurlhas": return InUrlHas;
+				case "inuserhas": return InUserHas;
+				case "infactorlistusesprimary": return InFactorListUsesPrimary;
+				case "infactorlistusesrelated": return InFactorListUsesRelated;
+				case "indescriptorlistrefinesprimarywith": return InDescriptorListRefinesPrimaryWith;
+				case "indescriptorlistrefinesrelatedwith": return InDescriptorListRefinesRelatedWith;
+				case "indescriptorlistrefinestypewith": return InDescriptorListRefinesTypeWith;
+				case "invectorlistusesaxis": return InVectorListUsesAxis;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1035,12 +1146,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "ArtifactTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inartifactlistuses": return InArtifactListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1063,12 +1193,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "hasartifact": return HasArtifact;
+				case "incrowdianlistuses": return InCrowdianListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1096,12 +1246,34 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdianId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "usescrowd": return UsesCrowd;
+				case "usesuser": return UsesUser;
+				case "hascrowdiantypeassign": return HasCrowdianTypeAssign;
+				case "hashistoriccrowdiantypeassignlist": return HasHistoricCrowdianTypeAssignList;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1139,12 +1311,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdianTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1167,12 +1358,34 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdianTypeAssignId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "incrowdianhas": return InCrowdianHas;
+				case "incrowdianhashistoric": return InCrowdianHasHistoric;
+				case "usescrowdiantype": return UsesCrowdianType;
+				case "inusercreates": return InUserCreates;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1210,12 +1423,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "EmailId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inappuses": return InAppUses;
+				case "inuseruses": return InUserUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1243,12 +1476,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public LabelPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "LabelId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "hasartifact": return HasArtifact;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1271,12 +1523,37 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "MemberId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "usesapp": return UsesApp;
+				case "usesuser": return UsesUser;
+				case "hasmembertypeassign": return HasMemberTypeAssign;
+				case "hashistoricmembertypeassignlist": return HasHistoricMemberTypeAssignList;
+				case "createsartifactlist": return CreatesArtifactList;
+				case "createsmembertypeassignlist": return CreatesMemberTypeAssignList;
+				case "createsfactorlist": return CreatesFactorList;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1329,12 +1606,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "MemberTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inmembertypeassignlistuses": return InMemberTypeAssignListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1357,12 +1653,34 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "MemberTypeAssignId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inmemberhas": return InMemberHas;
+				case "inmemberhashistoric": return InMemberHasHistoric;
+				case "inmembercreates": return InMemberCreates;
+				case "usesmembertype": return UsesMemberType;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1400,12 +1718,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ThingPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "ThingId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "hasartifact": return HasArtifact;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1428,12 +1765,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "UrlId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "hasartifact": return HasArtifact;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1456,12 +1812,38 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public UserPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "UserId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "incrowdianlistuses": return InCrowdianListUses;
+				case "inmemberlistuses": return InMemberListUses;
+				case "hasartifact": return HasArtifact;
+				case "usesemail": return UsesEmail;
+				case "createscrowdiantypeassignlist": return CreatesCrowdianTypeAssignList;
+				case "inoauthaccesslistuses": return InOauthAccessListUses;
+				case "inoauthgrantlistuses": return InOauthGrantListUses;
+				case "inoauthscopelistuses": return InOauthScopeListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1519,12 +1901,41 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "FactorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inmembercreates": return InMemberCreates;
+				case "usesprimaryartifact": return UsesPrimaryArtifact;
+				case "usesrelatedartifact": return UsesRelatedArtifact;
+				case "usesfactorassertion": return UsesFactorAssertion;
+				case "replacesfactor": return ReplacesFactor;
+				case "usesdescriptor": return UsesDescriptor;
+				case "usesdirector": return UsesDirector;
+				case "useseventor": return UsesEventor;
+				case "usesidentor": return UsesIdentor;
+				case "useslocator": return UsesLocator;
+				case "usesvector": return UsesVector;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1597,12 +2008,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "FactorAssertionId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1625,12 +2055,35 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DescriptorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+				case "usesdescriptortype": return UsesDescriptorType;
+				case "refinesprimarywithartifact": return RefinesPrimaryWithArtifact;
+				case "refinesrelatedwithartifact": return RefinesRelatedWithArtifact;
+				case "refinestypewithartifact": return RefinesTypeWithArtifact;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1673,12 +2126,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DescriptorTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "indescriptorlistuses": return InDescriptorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1701,12 +2173,34 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DirectorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+				case "usesdirectortype": return UsesDirectorType;
+				case "usesprimarydirectoraction": return UsesPrimaryDirectorAction;
+				case "usesrelateddirectoraction": return UsesRelatedDirectorAction;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1744,12 +2238,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DirectorTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "indirectorlistuses": return InDirectorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1772,12 +2285,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DirectorActionId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "indirectorlistusesprimary": return InDirectorListUsesPrimary;
+				case "indirectorlistusesrelated": return InDirectorListUsesRelated;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1805,12 +2338,33 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "EventorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+				case "useseventortype": return UsesEventorType;
+				case "useseventorprecision": return UsesEventorPrecision;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1843,12 +2397,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "EventorTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "ineventorlistuses": return InEventorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1871,12 +2444,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "EventorPrecisionId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "ineventorlistuses": return InEventorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1899,12 +2491,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "IdentorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+				case "usesidentortype": return UsesIdentorType;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1932,12 +2544,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "IdentorTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inidentorlistuses": return InIdentorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1960,12 +2591,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "LocatorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+				case "useslocatortype": return UsesLocatorType;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1993,12 +2644,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "LocatorTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "inlocatorlistuses": return InLocatorListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2021,12 +2691,35 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "infactorlistuses": return InFactorListUses;
+				case "usesaxisartifact": return UsesAxisArtifact;
+				case "usesvectortype": return UsesVectorType;
+				case "usesvectorunit": return UsesVectorUnit;
+				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2069,12 +2762,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorTypeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "invectorlistuses": return InVectorListUses;
+				case "usesvectorrange": return UsesVectorRange;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2102,12 +2815,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorRangeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "invectortypelistuses": return InVectorTypeListUses;
+				case "usesvectorrangelevellist": return UsesVectorRangeLevelList;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2135,12 +2868,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorRangeLevelId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "invectorrangelistuses": return InVectorRangeListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2163,12 +2915,33 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorUnitId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "invectorlistuses": return InVectorListUses;
+				case "invectorunitderivedlistdefines": return InVectorUnitDerivedListDefines;
+				case "invectorunitderivedlistraisestoexp": return InVectorUnitDerivedListRaisesToExp;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2201,12 +2974,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorUnitPrefixId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "invectorlistuses": return InVectorListUses;
+				case "invectorunitderivedlistuses": return InVectorUnitDerivedListUses;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2234,12 +3027,33 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorUnitDerivedId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "definesvectorunit": return DefinesVectorUnit;
+				case "raisestoexpvectorunit": return RaisesToExpVectorUnit;
+				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2272,12 +3086,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "OauthAccessId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "usesapp": return UsesApp;
+				case "usesuser": return UsesUser;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2305,12 +3139,31 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "OauthDomainId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "usesapp": return UsesApp;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2333,12 +3186,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantPaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "OauthGrantId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "usesapp": return UsesApp;
+				case "usesuser": return UsesUser;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2366,12 +3239,32 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopePaths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "OauthScopeId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+				case "inrootcontains": return InRootContains;
+				case "usesapp": return UsesApp;
+				case "usesuser": return UsesUser;
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

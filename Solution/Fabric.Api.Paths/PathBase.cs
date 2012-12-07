@@ -40,6 +40,23 @@ namespace Fabric.Api.Paths {
 			return new T();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public Type DtoType { get { return typeof(T); } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IPathBase ExecuteUriPart(string pUriPart) {
+			IPathBase result = GetPathByString(pUriPart.ToLower());
+
+			if ( result == null ) {
+				throw new Exception(pUriPart+" is not a valid path option for "+GetType().Name+".");
+			}
+
+			return result;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected abstract IPathBase GetPathByString(string pName);
+
 	}
 
 }

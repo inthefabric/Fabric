@@ -21,16 +21,25 @@ namespace Fabric.Infrastructure {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string GetRelPropType(WeaverRelSchema pRel, bool pIsOut, bool pInner=false) {
+		public static string GetRelPropType(WeaverRelSchema pRel, bool pIsOut) {
 			return (pIsOut ? pRel.ToNode.Name : pRel.FromNode.Name)+"Paths";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string GetRelProp(WeaverRelSchema pRel, bool pIsOut) {
+		public static string GetRelProp(WeaverRelSchema pRel, bool pIsOut, bool pShort=false) {
 			bool isMany = IsRelMany(pRel, pIsOut);
 			string manyStr = (isMany ? "List" : "");
-			var fromNode = (pIsOut ? "" : pRel.FromNode.Name+manyStr);
-			var toNode = (!pIsOut ? "" : pRel.ToNode.Name+manyStr);
+			string fromNode, toNode;
+
+			if ( pShort ) {
+				fromNode = (pIsOut ? "" : pRel.FromNode.Short+manyStr);
+				toNode = (!pIsOut ? "" : pRel.ToNode.Short+manyStr);
+			}
+			else {
+				fromNode = (pIsOut ? "" : pRel.FromNode.Name+manyStr);
+				toNode = (!pIsOut ? "" : pRel.ToNode.Name+manyStr);
+			}
+
 			return (pIsOut ? "" : "In") + fromNode + pRel.Name + toNode;
 		}
 

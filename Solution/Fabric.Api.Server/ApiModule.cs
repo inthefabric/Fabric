@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using Fabric.Api.Server.Api;
 using Fabric.Api.Server.Graph;
-using Fabric.Api.Server.Query;
+using Fabric.Api.Server.Gremlin;
 using Fabric.Api.Server.Tables;
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
@@ -30,11 +31,13 @@ namespace Fabric.Api.Server {
 			vRequestId = Guid.NewGuid();
 			Log.Info(vRequestId, "REQUEST", "ApiModule Request");
 
+			Get["/"] = (p => "api | setup | json | graph | tables/browse | gremlin");
 			Get["/setup"] = DoSetup;
 			Get["/json"] = DoJson;
 			Get["/graph"] = DoGraph;
 			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());
-			Get["/(.*)"] = (p => new DataQuery(Context).GetResponse());
+			Get["/gremlin/(.*)"] = (p => new GremlinQuery(Context).GetResponse());
+			Get["/api/(.*)"] = (p => new ApiQuery(Context).GetResponse());
 		}
 
 

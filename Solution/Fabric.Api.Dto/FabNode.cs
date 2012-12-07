@@ -5,21 +5,22 @@ using Fabric.Infrastructure;
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public abstract class FabNode {
+	public abstract class FabNode : IFabNode {
 
 		public long NodeId { get; set; }
+		protected abstract long TypeId { get; }
 
-		public string ApiBaseUri { get; set; }
-		public string IndexName { get; private set; }
-		public string NodeUri { get { return ApiBaseUri+"/"+IndexName+"/"+NodeId; } }
+		//public string BaseUri { get; set; }
+		//public string NodeUri { get { return BaseUri+"Contains"+vIndexName+"List("+TypeId+")"; } }
+		//private string vIndexName;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected FabNode() {
 			NodeId = -1;
-			ApiBaseUri = "";
-			IndexName = GetType().Name.Substring(3);
+			//BaseUri = "localhost:9000/api/";
+			//vIndexName = GetType().Name.Substring(3);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

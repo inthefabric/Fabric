@@ -24,6 +24,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	string baseNode = "Fab"+(node.BaseNode == null ? "Node" : node.BaseNode.Name);
 	var propNameMap = new Dictionary<string,string>();
 	var propTypeMap = new Dictionary<string,string>();
+	bool hasTypeId = false;
 #>
 	/*================================================================================================*/
 	public <#= (node.IsAbstract ? "abstract " : "") #>class Fab<#= node.Name #> : <#= baseNode #> {
@@ -34,6 +35,10 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		string propName = prop.Name;
 		string attribs = "";
 		string attEnd = "\r\n\t\t";
+
+		if ( propName == node.Name+"Id" ) {
+			hasTypeId = true;
+		}
 		
 		switch ( prop.Type.Name ) {
 			case "Int32": propType = "int"; break;
@@ -91,6 +96,13 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 <#
 	} //end prop loop
 
+	if ( !node.IsAbstract ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return <#= (hasTypeId ? node.Name+"Id" : "0") #>; } }
+
+<#
+	} //end non-abstract
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {

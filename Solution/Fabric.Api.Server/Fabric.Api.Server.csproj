@@ -36,6 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Paths\Fabric.Api.Paths.csproj">
+      <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
+      <Name>Fabric.Api.Paths</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
@@ -71,9 +79,10 @@
   <ItemGroup>
     <Compile Include="ApiModule.cs" />
     <Compile Include="ApiBootstrap.cs" />
+    <Compile Include="Api\ApiQuery.cs" />
     <Compile Include="Graph\GraphModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\DataQuery.cs" />
+    <Compile Include="Gremlin\GremlinQuery.cs" />
     <Compile Include="Tables\TableNode.cs" />
     <Compile Include="Tables\TableModel.cs" />
     <Compile Include="Tables\TableBrowser.cs" />

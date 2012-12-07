@@ -15,9 +15,6 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using Fabric.Api.Dto;
-using Fabric.Domain;
-using Fabric.Infrastructure;
-using Weaver;
 
 namespace Fabric.Api.Paths {
 	
@@ -78,12 +75,40 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= node.Name #>Paths(bool pIsToNode, Path pPath) {
-			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+			string q;
+
+			if ( pPath.Script.Length == 0 ) {
+				q = "g.v(0)";
+			}
+			else {
+				q = (pIsToNode ? "inV" : "outV");
+			}
+
+			Path = pPath.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "<#= node.Name #>Id"; } }
 		protected override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IPathBase GetPathByString(string pName) {
+			switch ( pName ) {
+<#
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		
+		bool isOut = (rel.FromNode == node);
+		var propName = PathUtil.GetRelProp(rel, isOut);
+#>
+				case "<#= propName.ToLower() #>": return <#= propName #>;
+<#
+	} //end rel loop
+#>
+			}
+
+			return null;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +119,6 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		bool isOut = (rel.FromNode == node);
 		var propType = PathUtil.GetRelPropType(rel, isOut);
 		var propName = PathUtil.GetRelProp(rel, isOut);
-		var propTypeInner = PathUtil.GetRelPropType(rel, isOut, true);
 		var isToNode = (isOut ? "true" : "false");
 		var script = (isOut ? "outE" : "inE")+"('"+PathUtil.GetRelLabel(rel)+"')";
 #>
@@ -104,7 +128,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		}
 
 <#
-	}
+	} //end rel loop
 #>
 	}
 
