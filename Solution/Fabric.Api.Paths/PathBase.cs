@@ -45,10 +45,30 @@ namespace Fabric.Api.Paths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IPathBase ExecuteUriPart(string pUriPart) {
-			IPathBase result = GetPathByString(pUriPart.ToLower());
+			string part = pUriPart.ToLower();
+			int parenI = part.IndexOf('(');
+			string param = null;
+
+			if ( parenI > 0 ) {
+				param = part.Substring(parenI+1);
+				param = param.Substring(0, param.Length-1);
+				part = part.Substring(0, parenI);
+			}
+
+			IPathBase result = GetPathByString(part);
 
 			if ( result == null ) {
 				throw new Exception(pUriPart+" is not a valid path option for "+GetType().Name+".");
+			}
+
+			if ( param != null ) {
+				long id;
+				
+				if ( !long.TryParse(param, out id) ) {
+					throw new Exception("Could not parse Id value for '"+param+"'.");
+				}
+
+				result.Id(id);
 			}
 
 			return result;
