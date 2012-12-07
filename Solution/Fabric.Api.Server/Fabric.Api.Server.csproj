@@ -74,6 +74,10 @@
     <Compile Include="Graph\GraphModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\DataQuery.cs" />
+    <Compile Include="Tables\TableNode.cs" />
+    <Compile Include="Tables\TableModel.cs" />
+    <Compile Include="Tables\TableBrowser.cs" />
+    <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Util\GremlinRequest.cs" />
     <Compile Include="Util\GremlinRequestAsync.cs" />
     <Compile Include="Util\Sharpflake.cs" />
@@ -92,6 +96,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Tables\index.html" />
+    <Content Include="Tables\styles\tables.css" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using Fabric.Api.Server.Graph;
 using Fabric.Api.Server.Query;
+using Fabric.Api.Server.Tables;
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
@@ -32,6 +33,7 @@ namespace Fabric.Api.Server {
 			Get["/setup"] = DoSetup;
 			Get["/json"] = DoJson;
 			Get["/graph"] = DoGraph;
+			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());
 			Get["/(.*)"] = (p => new DataQuery(Context).GetResponse());
 		}
 

@@ -19,6 +19,10 @@ namespace Fabric.Api.Server {
 			pConv.StaticContentsConventions.Add(
 				StaticContentConventionBuilder.AddDirectory("/graph/styles", @"/graph/styles")
 			);
+
+			pConv.StaticContentsConventions.Add(
+				StaticContentConventionBuilder.AddDirectory("/tables/styles", @"/tables/styles")
+			);
 		}
 
 	}
