@@ -16,7 +16,7 @@ function viz(pQuery) {
 	graph.empty();
 
 	//visualize("graph", graph.width(), graph.height(), data); //for static data
-	render("graph", graph.width(), graph.height(), "../json?q="+pQuery);
+	render("graph", graph.width(), graph.height(), "../graph/json?q="+pQuery);
 
 	graph.show();
 }
@@ -185,10 +185,10 @@ function toString(ob) {
 		
 		switch (prop) {
 			case "weight":
-			//case "px":
-			//case "py":
-			//case "x":
-			//case "y":
+			case "px":
+			case "py":
+			case "x":
+			case "y":
 				continue;
 		}
 

@@ -80,9 +80,12 @@
     <Compile Include="ApiModule.cs" />
     <Compile Include="ApiBootstrap.cs" />
     <Compile Include="Api\ApiQuery.cs" />
+    <Compile Include="Graph\GraphView.cs" />
+    <Compile Include="Graph\GraphJson.cs" />
     <Compile Include="Graph\GraphModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gremlin\GremlinQuery.cs" />
+    <Compile Include="Setups\SetupRoutine.cs" />
     <Compile Include="Tables\TableNode.cs" />
     <Compile Include="Tables\TableModel.cs" />
     <Compile Include="Tables\TableBrowser.cs" />
