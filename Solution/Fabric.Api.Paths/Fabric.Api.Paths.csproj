@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</ProjectGuid>
+    <ProjectGuid>{8AD70384-1405-41EE-BA61-25BD053CD56B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.Domain</RootNamespace>
-    <AssemblyName>Fabric.Domain</AssemblyName>
+    <RootNamespace>Fabric.Api.Paths</RootNamespace>
+    <AssemblyName>Fabric.Api.Paths</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,27 +32,57 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Weaver">
-      <HintPath>..\..\Packages\Weaver\Weaver.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DomainSchema.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainSchema.cs</LastGenOutput>
-    </None>
-    <Compile Include="DomainSchema.cs">
+    <Compile Include="ApiPaths.cs">
+      <DependentUpon>ApiPaths.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DomainSchema.tt</DependentUpon>
     </Compile>
-    <Compile Include="INode.cs" />
-    <Compile Include="Node.cs" />
-    <Compile Include="FabricQuery.cs" />
+    <Compile Include="ApiPathRouter.cs">
+      <DependentUpon>ApiPathRouter.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PathUtil.cs" />
+    <Compile Include="Path.cs" />
+    <Compile Include="IPathBase.cs" />
+    <Compile Include="PathBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApiPaths.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiPaths.cs</LastGenOutput>
+    </None>
+    <None Include="ApiPathRouter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiPathRouter.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
+      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
+      <Name>Fabric.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

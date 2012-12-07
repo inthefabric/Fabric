@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fabric.Infrastructure;
 
 namespace Fabric.Api.Dto {
@@ -22,9 +23,13 @@ namespace Fabric.Api.Dto {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void Fill(DbResult pResult) {
-			NodeId = DbResult.GetIdFromPath(pResult.Self);
-			FillResultData(pResult.Data);
+		public void Fill(DbDto pDbDto) {
+			if ( pDbDto.Id == null ) {
+				throw new Exception("DbDto.Id is null.");
+			}
+
+			NodeId = (long)pDbDto.Id;
+			FillResultData(pDbDto.Data);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

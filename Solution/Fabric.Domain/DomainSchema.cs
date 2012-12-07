@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/6/2012 2:06:41 PM
+// Generated on 12/7/2012 1:41:30 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -1044,6 +1044,7 @@ namespace Fabric.Domain {
 		public virtual long PerformedTimestamp { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
@@ -1852,6 +1853,7 @@ namespace Fabric.Domain {
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
@@ -2011,6 +2013,7 @@ namespace Fabric.Domain {
 		public virtual long? CompletedTimestamp { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 

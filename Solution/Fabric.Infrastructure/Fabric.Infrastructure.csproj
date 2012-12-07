@@ -50,6 +50,7 @@
     <Compile Include="DbResult.cs" />
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

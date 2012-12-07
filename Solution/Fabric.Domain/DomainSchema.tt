@@ -60,6 +60,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( relMap.ContainsKey(relClass) ) { continue; }
 		relMap.Add(relClass, true);
 
+		string className = GetRelClassName(rel);
+
 		string classTypes = 
 			"<"+
 			rel.FromNode.Name+", "+
@@ -68,11 +70,11 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			">";
 #>
 	/*================================================================================================*/
-	public class <#= GetRelClassName(node, rel) #> : WeaverRel<#= classTypes #> {
+	public class <#= className #> : WeaverRel<#= classTypes #> {
 			
 		public virtual <#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
 		public virtual <#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
-		public override string Label { get { return "<#= rel.FromNode.Name+rel.Name+rel.ToNode.Name #>"; } }
+		public override string Label { get { return "<#= className #>"; } }
 
 	}
 
@@ -182,7 +184,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		string relClass = GetRelClassName(node, rel);
+		string relClass = GetRelClassName(rel);
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual <#= relClass #> <#= GetRelPropName(node, rel) #> {
@@ -200,7 +202,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 }
 <#+
 
-    public string GetRelClassName(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
+    public string GetRelClassName(WeaverRelSchema pRel) {
 		return pRel.FromNode.Name + pRel.Name + pRel.ToNode.Name;
     }
 

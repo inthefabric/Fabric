@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 11/28/2012 3:56:36 PM
+// Generated on 12/7/2012 1:39:43 PM
 
 using System.Collections.Generic;
 using Fabric.Infrastructure;
@@ -20,9 +20,17 @@ namespace Fabric.Api.Dto {
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public string Description { get; set; }
 
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Description", out val);
+			if ( found ) { Description = val; }
+		}
 
 	}
 
@@ -32,58 +40,32 @@ namespace Fabric.Api.Dto {
 		//[PropIsTimestamp(True)]
 		public long PerformedTimestamp { get; set; }
 
+		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public string Note { get; set; }
 
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["PerformedTimestamp"];
+			PerformedTimestamp = long.Parse(val);
+
+			found = pData.TryGetValue("Note", out val);
+			if ( found ) { Note = val; }
+		}
 
 	}
 
 	/*================================================================================================*/
 	public class FabRoot : FabNode {
 	
-		public IList<FabApp> OutContainsApps { get; set; }
-		public IList<FabArtifact> OutContainsArtifacts { get; set; }
-		public IList<FabArtifactType> OutContainsArtifactTypes { get; set; }
-		public IList<FabCrowd> OutContainsCrowds { get; set; }
-		public IList<FabCrowdian> OutContainsCrowdians { get; set; }
-		public IList<FabCrowdianType> OutContainsCrowdianTypes { get; set; }
-		public IList<FabEmail> OutContainsEmails { get; set; }
-		public IList<FabLabel> OutContainsLabels { get; set; }
-		public IList<FabMember> OutContainsMembers { get; set; }
-		public IList<FabMemberType> OutContainsMemberTypes { get; set; }
-		public IList<FabThing> OutContainsThings { get; set; }
-		public IList<FabUrl> OutContainsUrls { get; set; }
-		public IList<FabUser> OutContainsUsers { get; set; }
-		public IList<FabFactor> OutContainsFactors { get; set; }
-		public IList<FabFactorAssertion> OutContainsFactorAssertions { get; set; }
-		public IList<FabDescriptor> OutContainsDescriptors { get; set; }
-		public IList<FabDescriptorType> OutContainsDescriptorTypes { get; set; }
-		public IList<FabDirector> OutContainsDirectors { get; set; }
-		public IList<FabDirectorType> OutContainsDirectorTypes { get; set; }
-		public IList<FabDirectorAction> OutContainsDirectorActions { get; set; }
-		public IList<FabEventor> OutContainsEventors { get; set; }
-		public IList<FabEventorType> OutContainsEventorTypes { get; set; }
-		public IList<FabEventorPrecision> OutContainsEventorPrecisions { get; set; }
-		public IList<FabIdentor> OutContainsIdentors { get; set; }
-		public IList<FabIdentorType> OutContainsIdentorTypes { get; set; }
-		public IList<FabLocator> OutContainsLocators { get; set; }
-		public IList<FabLocatorType> OutContainsLocatorTypes { get; set; }
-		public IList<FabVector> OutContainsVectors { get; set; }
-		public IList<FabVectorType> OutContainsVectorTypes { get; set; }
-		public IList<FabVectorRange> OutContainsVectorRanges { get; set; }
-		public IList<FabVectorRangeLevel> OutContainsVectorRangeLevels { get; set; }
-		public IList<FabVectorUnit> OutContainsVectorUnits { get; set; }
-		public IList<FabVectorUnitPrefix> OutContainsVectorUnitPrefixs { get; set; }
-		public IList<FabOauthAccess> OutContainsOauthAccesss { get; set; }
-		public IList<FabOauthDomain> OutContainsOauthDomains { get; set; }
-		public IList<FabOauthGrant> OutContainsOauthGrants { get; set; }
-		public IList<FabOauthScope> OutContainsOauthScopes { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+		}
 
 	}
 
@@ -104,17 +86,20 @@ namespace Fabric.Api.Dto {
 		//[PropLen(32)]
 		public string Secret { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabArtifact OutHasArtifact { get; set; }
-		public FabEmail OutUsesEmail { get; set; }
-		public IList<FabMember> InMembersUses { get; set; }
-		public IList<FabOauthAccess> InOauthAccesssUses { get; set; }
-		public IList<FabOauthDomain> InOauthDomainsUses { get; set; }
-		public IList<FabOauthGrant> InOauthGrantsUses { get; set; }
-		public IList<FabOauthScope> InOauthScopesUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["AppId"];
+			AppId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Secret", out val);
+			if ( found ) { Secret = val; }
+		}
 
 	}
 
@@ -130,24 +115,20 @@ namespace Fabric.Api.Dto {
 		//[PropIsTimestamp(True)]
 		public long CreatedTimestamp { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp InAppHas { get; set; }
-		public FabArtifactType OutUsesArtifactType { get; set; }
-		public FabCrowd InCrowdHas { get; set; }
-		public FabLabel InLabelHas { get; set; }
-		public FabMember InMemberCreates { get; set; }
-		public FabThing InThingHas { get; set; }
-		public FabUrl InUrlHas { get; set; }
-		public FabUser InUserHas { get; set; }
-		public IList<FabFactor> InFactorsUsesPrimary { get; set; }
-		public IList<FabFactor> InFactorsUsesRelated { get; set; }
-		public IList<FabDescriptor> InDescriptorsrefinesPrimaryWith { get; set; }
-		public IList<FabDescriptor> InDescriptorsrefinesRelatedWith { get; set; }
-		public IList<FabDescriptor> InDescriptorsrefinesTypeWith { get; set; }
-		public IList<FabVector> InVectorsUsesAxis { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["ArtifactId"];
+			ArtifactId = long.Parse(val);
+
+			val = pData["IsPrivate"];
+			IsPrivate = bool.Parse(val);
+
+			val = pData["CreatedTimestamp"];
+			CreatedTimestamp = long.Parse(val);
+		}
 
 	}
 
@@ -158,11 +139,14 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public byte ArtifactTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabArtifact> InArtifactsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["ArtifactTypeId"];
+			ArtifactTypeId = byte.Parse(val);
+		}
 
 	}
 
@@ -184,12 +168,26 @@ namespace Fabric.Api.Dto {
 
 		public bool IsInviteOnly { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabArtifact OutHasArtifact { get; set; }
-		public IList<FabCrowdian> InCrowdiansUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["CrowdId"];
+			CrowdId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Description", out val);
+			if ( found ) { Description = val; }
+
+			val = pData["IsPrivate"];
+			IsPrivate = bool.Parse(val);
+
+			val = pData["IsInviteOnly"];
+			IsInviteOnly = bool.Parse(val);
+		}
 
 	}
 
@@ -200,14 +198,14 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public long CrowdianId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabCrowd OutUsesCrowd { get; set; }
-		public FabUser OutUsesUser { get; set; }
-		public FabCrowdianTypeAssign OutHasCrowdianTypeAssign { get; set; }
-		public IList<FabCrowdianTypeAssign> OutUsesHistoricCrowdianTypeAssigns { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["CrowdianId"];
+			CrowdianId = long.Parse(val);
+		}
 
 	}
 
@@ -218,26 +216,37 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public byte CrowdianTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabCrowdianTypeAssign> InCrowdianTypeAssignsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["CrowdianTypeId"];
+			CrowdianTypeId = byte.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
 	public class FabCrowdianTypeAssign : FabNodeForAction {
 	
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public long CrowdianTypeAssignId { get; set; }
+
 		public float Weight { get; set; }
 
-		public FabCrowdian InCrowdianHas { get; set; }
-		public FabCrowdian InCrowdianUsesHistoric { get; set; }
-		public FabCrowdianType OutUsesCrowdianType { get; set; }
-		public FabUser InUserCreates { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["CrowdianTypeAssignId"];
+			CrowdianTypeAssignId = long.Parse(val);
+
+			val = pData["Weight"];
+			Weight = float.Parse(val);
+		}
 
 	}
 
@@ -263,12 +272,26 @@ namespace Fabric.Api.Dto {
 		//[PropIsNullable(True)]
 		public long VerifiedTimestamp { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp InAppUses { get; set; }
-		public FabUser InUserUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["EmailId"];
+			EmailId = long.Parse(val);
+
+			found = pData.TryGetValue("Address", out val);
+			if ( found ) { Address = val; }
+
+			found = pData.TryGetValue("Code", out val);
+			if ( found ) { Code = val; }
+
+			val = pData["CreatedTimestamp"];
+			CreatedTimestamp = long.Parse(val);
+
+			found = pData.TryGetValue("VerifiedTimestamp", out val);
+			if ( found ) { VerifiedTimestamp = long.Parse(val); }
+		}
 
 	}
 
@@ -286,11 +309,17 @@ namespace Fabric.Api.Dto {
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public string Name { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabArtifact OutHasArtifact { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["LabelId"];
+			LabelId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+		}
 
 	}
 
@@ -301,17 +330,14 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public long MemberId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp OutUsesApp { get; set; }
-		public FabUser OutUsesUser { get; set; }
-		public FabMemberTypeAssign OutHasMemberTypeAssign { get; set; }
-		public IList<FabMemberTypeAssign> OutUsesHistoricMemberTypeAssigns { get; set; }
-		public IList<FabArtifact> OutCreatesArtifacts { get; set; }
-		public IList<FabMemberTypeAssign> OutCreatesMemberTypeAssigns { get; set; }
-		public IList<FabFactor> OutCreatesFactors { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["MemberId"];
+			MemberId = long.Parse(val);
+		}
 
 	}
 
@@ -322,24 +348,32 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public byte MemberTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabMemberTypeAssign> InMemberTypeAssignsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["MemberTypeId"];
+			MemberTypeId = byte.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
 	public class FabMemberTypeAssign : FabNodeForAction {
 	
-		public FabMember InMemberHas { get; set; }
-		public FabMember InMemberUsesHistoric { get; set; }
-		public FabMember InMemberCreates { get; set; }
-		public FabMemberType OutUsesMemberType { get; set; }
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public long MemberTypeAssignId { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["MemberTypeAssignId"];
+			MemberTypeAssignId = long.Parse(val);
+		}
 
 	}
 
@@ -358,14 +392,30 @@ namespace Fabric.Api.Dto {
 		//[PropLenMax(128)]
 		public string Disamb { get; set; }
 
+		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public string Note { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabArtifact OutHasArtifact { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["ThingId"];
+			ThingId = long.Parse(val);
+
+			val = pData["IsClass"];
+			IsClass = bool.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Disamb", out val);
+			if ( found ) { Disamb = val; }
+
+			found = pData.TryGetValue("Note", out val);
+			if ( found ) { Note = val; }
+		}
 
 	}
 
@@ -384,11 +434,20 @@ namespace Fabric.Api.Dto {
 		//[PropLenMax(2048)]
 		public string AbsoluteUrl { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabArtifact OutHasArtifact { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["UrlId"];
+			UrlId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("AbsoluteUrl", out val);
+			if ( found ) { AbsoluteUrl = val; }
+		}
 
 	}
 
@@ -408,18 +467,20 @@ namespace Fabric.Api.Dto {
 		//[PropLen(32)]
 		public string Password { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabCrowdian> InCrowdiansUses { get; set; }
-		public IList<FabMember> InMembersUses { get; set; }
-		public FabArtifact OutHasArtifact { get; set; }
-		public FabEmail OutUsesEmail { get; set; }
-		public IList<FabCrowdianTypeAssign> OutCreatesCrowdianTypeAssigns { get; set; }
-		public IList<FabOauthAccess> InOauthAccesssUses { get; set; }
-		public IList<FabOauthGrant> InOauthGrantsUses { get; set; }
-		public IList<FabOauthScope> InOauthScopesUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["UserId"];
+			UserId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Password", out val);
+			if ( found ) { Password = val; }
+		}
 
 	}
 
@@ -443,48 +504,65 @@ namespace Fabric.Api.Dto {
 		//[PropIsNullable(True)]
 		public long CompletedTimestamp { get; set; }
 
+		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public string Note { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabMember InMemberCreates { get; set; }
-		public FabArtifact OutUsesPrimaryArtifact { get; set; }
-		public FabArtifact OutUsesRelatedArtifact { get; set; }
-		public FabFactorAssertion OutUsesFactorAssertion { get; set; }
-		public FabFactor OutReplacesFactor { get; set; }
-		public FabDescriptor OutUsesDescriptor { get; set; }
-		public FabDirector OutUsesDirector { get; set; }
-		public FabEventor OutUsesEventor { get; set; }
-		public FabIdentor OutUsesIdentor { get; set; }
-		public FabLocator OutUsesLocator { get; set; }
-		public FabVector OutUsesVector { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["FactorId"];
+			FactorId = long.Parse(val);
+
+			val = pData["IsPublic"];
+			IsPublic = bool.Parse(val);
+
+			val = pData["IsDefining"];
+			IsDefining = bool.Parse(val);
+
+			val = pData["CreatedTimestamp"];
+			CreatedTimestamp = long.Parse(val);
+
+			found = pData.TryGetValue("DeletedTimestamp", out val);
+			if ( found ) { DeletedTimestamp = long.Parse(val); }
+
+			found = pData.TryGetValue("CompletedTimestamp", out val);
+			if ( found ) { CompletedTimestamp = long.Parse(val); }
+
+			found = pData.TryGetValue("Note", out val);
+			if ( found ) { Note = val; }
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabFactorAssertion : FabNode {
+	public class FabFactorAssertion : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte FactorAssertionId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["FactorAssertionId"];
+			FactorAssertionId = byte.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
 	public abstract class FabFactorElementNode : FabNode {
 	
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+		}
 
 	}
 
@@ -495,30 +573,32 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public long DescriptorId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-		public FabDescriptorType OutUsesDescriptorType { get; set; }
-		public FabArtifact OutrefinesPrimaryWithArtifact { get; set; }
-		public FabArtifact OutrefinesRelatedWithArtifact { get; set; }
-		public FabArtifact OutrefinesTypeWithArtifact { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["DescriptorId"];
+			DescriptorId = long.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabDescriptorType : FabNode {
+	public class FabDescriptorType : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte DescriptorTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabDescriptor> InDescriptorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["DescriptorTypeId"];
+			DescriptorTypeId = byte.Parse(val);
+		}
 
 	}
 
@@ -529,45 +609,50 @@ namespace Fabric.Api.Dto {
 		//[PropIsUnique(True)]
 		public long DirectorId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-		public FabDirectorType OutUsesDirectorType { get; set; }
-		public FabDirectorAction OutUsesPrimaryDirectorAction { get; set; }
-		public FabDirectorAction OutUsesRelatedDirectorAction { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["DirectorId"];
+			DirectorId = long.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabDirectorType : FabNode {
+	public class FabDirectorType : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte DirectorTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabDirector> InDirectorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["DirectorTypeId"];
+			DirectorTypeId = byte.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabDirectorAction : FabNode {
+	public class FabDirectorAction : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte DirectorActionId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabDirector> InDirectorsUsesPrimary { get; set; }
-		public IList<FabDirector> InDirectorsUsesRelated { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["DirectorActionId"];
+			DirectorActionId = byte.Parse(val);
+		}
 
 	}
 
@@ -580,43 +665,53 @@ namespace Fabric.Api.Dto {
 
 		public long DateTimeTimestamp { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-		public FabEventorType OutUsesEventorType { get; set; }
-		public FabEventorPrecision OutUsesEventorPrecision { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["EventorId"];
+			EventorId = long.Parse(val);
+
+			val = pData["DateTimeTimestamp"];
+			DateTimeTimestamp = long.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabEventorType : FabNode {
+	public class FabEventorType : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte EventorTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabEventor> InEventorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["EventorTypeId"];
+			EventorTypeId = byte.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabEventorPrecision : FabNode {
+	public class FabEventorPrecision : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte EventorPrecisionId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabEventor> InEventorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["EventorPrecisionId"];
+			EventorPrecisionId = byte.Parse(val);
+		}
 
 	}
 
@@ -630,27 +725,35 @@ namespace Fabric.Api.Dto {
 		//[PropLenMax(128)]
 		public string Value { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-		public FabIdentorType OutUsesIdentorType { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["IdentorId"];
+			IdentorId = long.Parse(val);
+
+			found = pData.TryGetValue("Value", out val);
+			if ( found ) { Value = val; }
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabIdentorType : FabNode {
+	public class FabIdentorType : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte IdentorTypeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabIdentor> InIdentorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["IdentorTypeId"];
+			IdentorTypeId = byte.Parse(val);
+		}
 
 	}
 
@@ -667,17 +770,28 @@ namespace Fabric.Api.Dto {
 
 		public double ValueZ { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-		public FabLocatorType OutUsesLocatorType { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["LocatorId"];
+			LocatorId = long.Parse(val);
+
+			val = pData["ValueX"];
+			ValueX = double.Parse(val);
+
+			val = pData["ValueY"];
+			ValueY = double.Parse(val);
+
+			val = pData["ValueZ"];
+			ValueZ = double.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabLocatorType : FabNode {
+	public class FabLocatorType : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
@@ -695,11 +809,32 @@ namespace Fabric.Api.Dto {
 
 		public double MaxZ { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabLocator> InLocatorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["LocatorTypeId"];
+			LocatorTypeId = byte.Parse(val);
+
+			val = pData["MinX"];
+			MinX = double.Parse(val);
+
+			val = pData["MaxX"];
+			MaxX = double.Parse(val);
+
+			val = pData["MinY"];
+			MinY = double.Parse(val);
+
+			val = pData["MaxY"];
+			MaxY = double.Parse(val);
+
+			val = pData["MinZ"];
+			MinZ = double.Parse(val);
+
+			val = pData["MaxZ"];
+			MaxZ = double.Parse(val);
+		}
 
 	}
 
@@ -712,20 +847,22 @@ namespace Fabric.Api.Dto {
 
 		public long Value { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabFactor> InFactorsUses { get; set; }
-		public FabArtifact OutUsesAxisArtifact { get; set; }
-		public FabVectorType OutUsesVectorType { get; set; }
-		public FabVectorUnit OutUsesVectorUnit { get; set; }
-		public FabVectorUnitPrefix OutUsesVectorUnitPrefix { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorId"];
+			VectorId = long.Parse(val);
+
+			val = pData["Value"];
+			Value = long.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabVectorType : FabNode {
+	public class FabVectorType : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
@@ -735,33 +872,43 @@ namespace Fabric.Api.Dto {
 
 		public long Max { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabVector> InVectorsUses { get; set; }
-		public FabVectorRange OutUsesVectorRange { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorTypeId"];
+			VectorTypeId = byte.Parse(val);
+
+			val = pData["Min"];
+			Min = long.Parse(val);
+
+			val = pData["Max"];
+			Max = long.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabVectorRange : FabNode {
+	public class FabVectorRange : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public byte VectorRangeId { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabVectorType> InVectorTypesUses { get; set; }
-		public IList<FabVectorRangeLevel> OutUsesVectorRangeLevels { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorRangeId"];
+			VectorRangeId = byte.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabVectorRangeLevel : FabNode {
+	public class FabVectorRangeLevel : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
@@ -769,16 +916,22 @@ namespace Fabric.Api.Dto {
 
 		public float Position { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabVectorRange> InVectorRangesUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorRangeLevelId"];
+			VectorRangeLevelId = byte.Parse(val);
+
+			val = pData["Position"];
+			Position = float.Parse(val);
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabVectorUnit : FabNode {
+	public class FabVectorUnit : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
@@ -787,16 +940,22 @@ namespace Fabric.Api.Dto {
 		//[PropLenMax(8)]
 		public string Symbol { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabVector> InVectorsUses { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorUnitId"];
+			VectorUnitId = byte.Parse(val);
+
+			found = pData.TryGetValue("Symbol", out val);
+			if ( found ) { Symbol = val; }
+		}
 
 	}
 
 	/*================================================================================================*/
-	public class FabVectorUnitPrefix : FabNode {
+	public class FabVectorUnitPrefix : FabNodeForType {
 	
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
@@ -807,11 +966,43 @@ namespace Fabric.Api.Dto {
 
 		public double Amount { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public IList<FabVector> InVectorsUses { get; set; }
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorUnitPrefixId"];
+			VectorUnitPrefixId = byte.Parse(val);
+
+			found = pData.TryGetValue("Symbol", out val);
+			if ( found ) { Symbol = val; }
+
+			val = pData["Amount"];
+			Amount = double.Parse(val);
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class FabVectorUnitDerived : FabNodeForType {
+	
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public byte VectorUnitDerivedId { get; set; }
+
+		public int Exponent { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["VectorUnitDerivedId"];
+			VectorUnitDerivedId = byte.Parse(val);
+
+			val = pData["Exponent"];
+			Exponent = int.Parse(val);
+		}
 
 	}
 
@@ -835,12 +1026,26 @@ namespace Fabric.Api.Dto {
 
 		public bool IsClientOnly { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp OutUsesApp { get; set; }
-		public FabUser OutUsesUser { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["OauthAccessId"];
+			OauthAccessId = long.Parse(val);
+
+			found = pData.TryGetValue("Token", out val);
+			if ( found ) { Token = val; }
+
+			found = pData.TryGetValue("Refresh", out val);
+			if ( found ) { Refresh = val; }
+
+			val = pData["ExpiresTimestamp"];
+			ExpiresTimestamp = long.Parse(val);
+
+			val = pData["IsClientOnly"];
+			IsClientOnly = bool.Parse(val);
+		}
 
 	}
 
@@ -854,11 +1059,17 @@ namespace Fabric.Api.Dto {
 		//[PropLenMax(256)]
 		public string Domain { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp OutUsesApp { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["OauthDomainId"];
+			OauthDomainId = long.Parse(val);
+
+			found = pData.TryGetValue("Domain", out val);
+			if ( found ) { Domain = val; }
+		}
 
 	}
 
@@ -878,12 +1089,23 @@ namespace Fabric.Api.Dto {
 
 		public long ExpiresTimestamp { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp OutUsesApp { get; set; }
-		public FabUser OutUsesUser { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["OauthGrantId"];
+			OauthGrantId = long.Parse(val);
+
+			found = pData.TryGetValue("RedirectUri", out val);
+			if ( found ) { RedirectUri = val; }
+
+			found = pData.TryGetValue("Code", out val);
+			if ( found ) { Code = val; }
+
+			val = pData["ExpiresTimestamp"];
+			ExpiresTimestamp = long.Parse(val);
+		}
 
 	}
 
@@ -899,12 +1121,20 @@ namespace Fabric.Api.Dto {
 		//[PropIsTimestamp(True)]
 		public long CreatedTimestamp { get; set; }
 
-		public FabRoot InRootContains { get; set; }
-		public FabApp OutUsesApp { get; set; }
-		public FabUser OutUsesUser { get; set; }
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+
+			val = pData["OauthScopeId"];
+			OauthScopeId = long.Parse(val);
+
+			val = pData["Allow"];
+			Allow = bool.Parse(val);
+
+			val = pData["CreatedTimestamp"];
+			CreatedTimestamp = long.Parse(val);
+		}
 
 	}
 

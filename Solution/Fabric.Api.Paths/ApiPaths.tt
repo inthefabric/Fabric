@@ -1,0 +1,114 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Fabric.Infrastructure" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using Fabric.Api.Dto;
+using Fabric.Domain;
+using Fabric.Infrastructure;
+using Weaver;
+
+namespace Fabric.Api.Paths {
+	
+<#
+var schema = new GraphSchema();
+var relIntMap = new Dictionary<string, bool>();
+
+foreach ( WeaverRelSchema rel in schema.Rels ) {
+	string outName = PathUtil.GetRelInterface(rel, true);
+	string inName = PathUtil.GetRelInterface(rel, false);
+	
+	if ( !relIntMap.ContainsKey(outName) ) {
+		relIntMap.Add(outName, true);
+#>
+	/*================================================================================================*/
+	public interface <#= outName #> {
+		<#= PathUtil.GetRelPropType(rel, true) #> <#= PathUtil.GetRelProp(rel, true) #> { get; }
+	}
+
+<#
+	}
+
+	if ( !relIntMap.ContainsKey(inName) ) {
+		relIntMap.Add(inName, true);
+#>
+	/*================================================================================================*/
+	public interface <#= inName #> {
+		<#= PathUtil.GetRelPropType(rel, false) #> <#= PathUtil.GetRelProp(rel, false) #> { get; }
+	}
+
+<#
+	} //end map test
+}
+
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	if ( node.IsAbstract ) { continue; }
+
+	string interfaces = "";
+	
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		interfaces += (interfaces == "" ? "" : ", ")+
+			PathUtil.GetRelInterface(rel, (rel.FromNode == node));
+	}
+	
+	string typeIdIsLong = "false";
+	
+	foreach ( WeaverPropSchema prop in node.Props ) {
+		if ( prop.Name != node.Name+"Id" ) { continue; }
+		typeIdIsLong = (prop.Type == typeof(long) ? "true" : "false");
+		break;
+	}
+#>
+	/*================================================================================================*/
+	public partial class <#= node.Name #>Paths : PathBase<<#= "Fab"+node.Name #>>, <#= interfaces #> {
+	
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Paths(bool pIsToNode, Path pPath) {
+			Path = pPath.Add(pIsToNode ? "inV" : "outV");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string TypeIdName { get { return "<#= node.Name #>Id"; } }
+		protected override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		
+		bool isOut = (rel.FromNode == node);
+		var propType = PathUtil.GetRelPropType(rel, isOut);
+		var propName = PathUtil.GetRelProp(rel, isOut);
+		var propTypeInner = PathUtil.GetRelPropType(rel, isOut, true);
+		var isToNode = (isOut ? "true" : "false");
+		var script = (isOut ? "outE" : "inE")+"('"+PathUtil.GetRelLabel(rel)+"')";
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= propType #> <#= propName #> {
+			get { return new <#= propType #>(<#= isToNode #>, Path.Add("<#= script #>")); }
+		}
+
+<#
+	}
+#>
+	}
+
+<#
+}
+#>
+}

@@ -22,6 +22,8 @@ var schema = new GraphSchema();
 
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	string baseNode = "Fab"+(node.BaseNode == null ? "Node" : node.BaseNode.Name);
+	var propNameMap = new Dictionary<string,string>();
+	var propTypeMap = new Dictionary<string,string>();
 #>
 	/*================================================================================================*/
 	public <#= (node.IsAbstract ? "abstract " : "") #>class Fab<#= node.Name #> : <#= baseNode #> {
@@ -34,6 +36,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		string attEnd = "\r\n\t\t";
 		
 		switch ( prop.Type.Name ) {
+			case "Int32": propType = "int"; break;
 			case "Int64": propType = "long"; break;
 			case "Byte": propType = "byte"; break;
 			case "String": propType = "string"; break;
@@ -58,7 +61,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( prop.IsTimestamp != null ) {
 			attribs += "//[PropIsTimestamp("+prop.IsTimestamp+")]"+attEnd;
 		}
-
+		
 		if ( prop.IsUnique != null ) {
 			attribs += "//[PropIsUnique("+prop.IsUnique+")]"+attEnd;
 		}
@@ -78,64 +81,64 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( prop.ValidRegex != null ) {
 			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
 		}
+		
+		propNameMap.Add(prop.Name, propName);
+		propTypeMap.Add(prop.Name, propType);
 
 #>
 		<#= attribs #>public <#= propType+" "+propName #> { get; set; }
 
 <#
-	}
+	} //end prop loop
 
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
 #>
-		public <#= GetRelProp(node, rel) #> { get; set; }
-<#
-	}
-#>
-
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string,string> pData) {}
+		protected override void FillResultData(Dictionary<string,string> pData) {
+			string val;
+			bool found;
+<#
+	foreach ( WeaverPropSchema prop in node.Props ) { 
+		string propName = propNameMap[prop.Name];
+		string propType = propTypeMap[prop.Name];
+		string parseType = propType.Replace("?", "");
+		//if ( < #= parseType # >.TryParse(val, out typedVal) ) { < #= propName # > = typedVal; }
+#>
+
+<#
+		if ( prop.IsNullable == true || propType == "string" ) {
+#>
+			found = pData.TryGetValue("<#= propName #>", out val);
+<#
+		}
+		else { //not string nor nullable
+#>
+			val = pData["<#= propName #>"];
+<#
+		}
+
+		if ( propType == "string" ) {
+#>
+			if ( found ) { <#= propName #> = val; }
+<#
+		}
+		else if ( prop.IsNullable != null ) {
+#>
+			if ( found ) { <#= propName #> = <#= parseType #>.Parse(val); }
+<#
+		}
+		else { //not string nor nullable
+#>
+			<#= propName #> = <#= parseType #>.Parse(val);
+<#
+		}
+
+	} //end prop loop
+#>
+		}
 
 	}
 
 <#
-}
+} // end Node loop
 #>
 }
-<#+
-
-	public string GetRelProp(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
-		bool isOut = (pRel.FromNode == pNode);
-		bool isMany = false;
-
-		if ( isOut ) {
-			isMany = (
-				pRel.FromNodeConn == WeaverRelConn.OutToOneOrMore ||
-				pRel.FromNodeConn == WeaverRelConn.OutToZeroOrMore
-			);
-		}
-		else {
-			isMany = (
-				pRel.ToNodeConn == WeaverRelConn.InFromOneOrMore ||
-				pRel.ToNodeConn == WeaverRelConn.InFromZeroOrMore
-			);
-		}
-
-		var fromNode = (isOut ? "" : pRel.FromNode.Name+(isMany ? "s" : ""));
-		var toNode = (!isOut ? "" : pRel.ToNode.Name+(isMany ? "s" : ""));
-		var type = "Fab"+(isOut ? pRel.ToNode.Name : pRel.FromNode.Name);
-		
-		if ( isMany ) {
-			type = "IList<"+type+">";
-		}
-
-		return type+" "+(isOut ? "Out" : "In") + fromNode + pRel.Name + toNode;
-    }
-
-
-	public string GetRelConn(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
-		bool isFrom = (pRel.FromNode == pNode);
-		return (isFrom ? pRel.FromNodeConn : pRel.ToNodeConn)+"";
-    }
-
-#>

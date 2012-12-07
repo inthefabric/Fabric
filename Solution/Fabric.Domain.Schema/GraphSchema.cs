@@ -50,6 +50,7 @@ namespace Fabric.Domain.Schema {
 				p.IsTimestamp = true;
 			p = AddProp(nodeForAction, "Note", typeof(string));
 				p.LenMax = 256;
+				p.IsNullable = true;
 
 			////
 
@@ -157,6 +158,7 @@ namespace Fabric.Domain.Schema {
 				p.LenMax = 128;
 			p = AddProp(thing, "Note", typeof(string));
 				p.LenMax = 256;
+				p.IsNullable = true;
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
 			p = AddProp(url, "UrlId", typeof(long));
@@ -193,6 +195,7 @@ namespace Fabric.Domain.Schema {
 				p.IsNullable = true;
 			p = AddProp(factor, "Note", typeof(string));
 				p.LenMax = 256;
+				p.IsNullable = true;
 
 			WeaverNodeSchema factorAssertion = AddNode("FactorAssertion", "FA");
 			factorAssertion.BaseNode = nodeForType;
