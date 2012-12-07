@@ -27,11 +27,22 @@ namespace Fabric.Api.Server.Tables {
 			var model = new TableModel();
 
 			try {
-				string table = vModule.Context.Request.Path;
-				table = table.Substring(table.LastIndexOf('/')+1);
+				string table = vModule.Context.Request.Path.Substring("/tables/browse/".Length);
+				string[] parts = table.Split('/');
+				table = parts[0];
 
 				string query = "x=[];";
-				query += "g.V.filter{it.getProperty('"+table+"Id') != null}.aggregate(x).iterate();";
+
+				if ( parts.Length == 2 ) {
+					//query += "g.idx('"+table+"').get('"+table+"Id', "+parts[1]+
+					//	").aggregate(x).iterate();";
+					query += "g.v("+parts[1]+").aggregate(x).iterate();";
+				}
+				else {
+					query += "g.V.filter{it.getProperty('"+
+						table+"Id') != null}.aggregate(x).iterate();";
+				}
+
 				query += "g.V.retain(x).bothE.aggregate(x).iterate();";
 				query += "x;";
 

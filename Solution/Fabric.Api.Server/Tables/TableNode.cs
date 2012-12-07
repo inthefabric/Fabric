@@ -99,8 +99,9 @@ namespace Fabric.Api.Server.Tables {
 		/*--------------------------------------------------------------------------------------------*/
 		private string ToHtmlCells(Dictionary<string, int> pColMap) {
 			string html =
-				HtmlUtil.Wrap("td", Dto.Class)+
-				HtmlUtil.Wrap("td", Dto.Id+"");
+				HtmlUtil.Wrap("td", "<a href='/tables/browse/"+Dto.Class+"'>"+Dto.Class+"</a>")+
+				//HtmlUtil.Wrap("td", "<a href='/tables/browse/"+Dto.Class+"/"+Dto.Id+"'>"+Dto.Id+"</a>");
+				HtmlUtil.Wrap("td", "<a href='/tables/browse/node/"+Dto.Id+"'>"+Dto.Id+"</a>");
 
 			var cols = new string[pColMap.Keys.Count-2];
 
@@ -147,7 +148,12 @@ namespace Fabric.Api.Server.Tables {
 				var nodeIds = new List<string>();
 
 				foreach ( DbDto dto in dtos ) {
-					nodeIds.Add((pIsOut ? dto.ToNodeId : dto.FromNodeId)+"");
+					string nodeId = (pIsOut ? dto.ToNodeId : dto.FromNodeId)+"";
+					/*string[] relNameParts = rk.Split(' ');
+					int relNameI = (pIsOut ? relNameParts.Length-1 : 1);
+					string nodeClass = relNameParts[relNameI];
+					nodeIds.Add("<a href='/tables/browse/"+nodeClass+"/"+nodeId+"'>"+nodeId+"</a>");*/
+					nodeIds.Add("<a href='/tables/browse/node/"+nodeId+"'>"+nodeId+"</a>");
 				}
 
 				pDataCols[pColMap[rk]-2] = string.Join(" ", nodeIds);
