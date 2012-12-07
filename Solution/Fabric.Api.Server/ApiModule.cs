@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Server.Api;
+﻿using System;
+using Fabric.Api.Server.Api;
 using Fabric.Api.Server.Graph;
 using Fabric.Api.Server.Gremlin;
 using Fabric.Api.Server.Setups;
@@ -11,6 +12,9 @@ namespace Fabric.Api.Server {
 	/*================================================================================================*/
 	public class ApiModule : NancyModule {
 
+		public const string RequestId = "ReqId";
+		public const string StartTicks = "StartTicks";
+
 		//private readonly Guid vRequestId;
 
 
@@ -18,9 +22,6 @@ namespace Fabric.Api.Server {
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiModule() {
 			Log.ConfigureOnce();
-
-			//vRequestId = Guid.NewGuid();
-			//Log.Info(vRequestId, "REQUEST", "ApiModule Request");
 
 			Get["/"] = (p => "api | gremlin | graph | tables/browse | setup ");
 			Get["/setup"] = (p => new SetupRoutine(Context).GetResponse());

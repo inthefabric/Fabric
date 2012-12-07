@@ -17,16 +17,21 @@ namespace Fabric.Api.Server.Api {
 		private readonly NancyContext vContext;
 		private readonly string vQuery;
 		private readonly Type vDtoType;
+		private readonly FabResponse vResp;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiQuery(NancyContext pContext) {
+			vResp = new FabResponse();
+			vResp.StartEvent();
+
 			vContext = pContext;
 			
 			try {
 				string uri = vContext.Request.Path.Substring(5);
 				vQuery = PathRouter.GetPath(uri, out vDtoType).Script;
+				vResp.Type = vDtoType.Name;
 			}
 			catch ( Exception e ) {
 				Log.Error("fail", e);
@@ -37,6 +42,7 @@ namespace Fabric.Api.Server.Api {
 		public Response GetResponse() {
 			try {
 				var req = new GremlinRequest(vQuery);
+				vResp.DbEvent();
 				return BuildJsonResponse(req);
 			}
 			catch ( Exception ex ) {
@@ -49,17 +55,14 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildJsonResponse(GremlinRequest pReq) {
-			byte[] bytes = pReq.ResponseBytes;
-
 			var build = GetType()
 				.GetMethod("BuildJson", (BindingFlags.NonPublic | BindingFlags.Instance))
 				.MakeGenericMethod(new[] { vDtoType });
 
-			string json = (string)build.Invoke(this, new object[] { pReq });
-
-			if ( json != null ) {
-				bytes = UTF8Encoding.UTF8.GetBytes(json);
-			}
+			string dataJson = (string)build.Invoke(this, new object[] { pReq });
+			int count = (pReq.DtoList != null ? pReq.DtoList.Count : (pReq.Dto != null ? 1 : 0));
+			string wrapJson = vResp.Complete(dataJson);
+			byte[] bytes = UTF8Encoding.UTF8.GetBytes(wrapJson);
 
 			return new Response {
 				ContentType = "application/json",
@@ -70,26 +73,37 @@ namespace Fabric.Api.Server.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildJson<T>(GremlinRequest pReq) where T : FabNode {
-			string json = null;
-
 			if ( pReq.DtoList != null ) {
 				var nodeList = new List<T>();
+				var idMap = new HashSet<long>();
 
 				foreach ( DbDto dbDto in pReq.DtoList ) {
+					if ( dbDto.Id != null ) {
+						if ( idMap.Contains((long)dbDto.Id) ) {
+							++vResp.RemovedDups;
+							continue;
+						}
+
+						idMap.Add((long)dbDto.Id);
+					}
+
 					T n = (T)Activator.CreateInstance(vDtoType);
 					n.Fill(dbDto);
 					nodeList.Add(n);
+					++vResp.Count;
 				}
 
-				json = nodeList.ToJson();
+				return nodeList.ToJson();
 			}
-			else if ( pReq.Dto != null ) {
+			
+			if ( pReq.Dto != null ) {
 				T n = (T)Activator.CreateInstance(vDtoType);
 				n.Fill(pReq.Dto);
-				json = n.ToJson();
+				++vResp.Count;
+				return n.ToJson();
 			}
 
-			return json;
+			return "{\"Text\":\""+pReq.ResponseString.Replace("\"", "\\\"")+"\"}";
 		}
 
 	}
