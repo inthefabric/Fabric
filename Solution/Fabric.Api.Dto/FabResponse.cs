@@ -8,6 +8,9 @@ namespace Fabric.Api.Dto {
 
 		public string Data { get; set; }
 		public string Type { get; set; }
+		public string BaseUri { get; set; }
+		public string RequestUri { get; set; }
+		public string[] AvailableUris { get; set; }
 		public int DbMs { get; set; }
 		public int TotalMs { get; set; }
 		public int Size { get; set; }
@@ -34,14 +37,8 @@ namespace Fabric.Api.Dto {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string Complete(string pDataJson) {
-			Data = "{DATA}";
-			Size = pDataJson.Length;
+		public void Complete() {
 			TotalMs = (int)((DateTime.UtcNow.Ticks-RequestTimestamp)/10000);
-			
-			string json = this.ToJson().Replace("\"{DATA}\"", pDataJson);
-			Data = pDataJson;
-			return json;
 		}
 		
 			

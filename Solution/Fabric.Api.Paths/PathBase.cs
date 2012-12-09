@@ -9,6 +9,7 @@ namespace Fabric.Api.Paths {
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
+		public abstract string[] AvailablePaths { get; }
 
 		protected abstract string TypeIdName { get; }
 		protected abstract bool TypeIdIsLong { get; }

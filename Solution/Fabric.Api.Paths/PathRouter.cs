@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Fabric.Api.Paths {
 
 	/*================================================================================================*/
@@ -8,8 +7,8 @@ namespace Fabric.Api.Paths {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Path GetPath(string pUri, out Type pDtoType) {
-			string[] parts = pUri.Split('/');
+		public static IPathBase GetPath(string pUri) {
+			string[] parts = (pUri.Length > 0 ? pUri.Split('/') : new string[0]);
 			var path = new Path();
 			int n = parts.Length;
 			IPathBase pb = new RootPaths(true, path);
@@ -18,8 +17,7 @@ namespace Fabric.Api.Paths {
 				pb = pb.ExecuteUriPart(parts[i]);
 			}
 
-			pDtoType = pb.DtoType;
-			return path;
+			return pb;
 		}
 
 	}

@@ -80,6 +80,8 @@
     <Compile Include="ApiModule.cs" />
     <Compile Include="ApiBootstrap.cs" />
     <Compile Include="Api\ApiQuery.cs" />
+    <Compile Include="Api\ApiQueryJson.cs" />
+    <Compile Include="Api\ApiQueryHtml.cs" />
     <Compile Include="Graph\GraphView.cs" />
     <Compile Include="Graph\GraphJson.cs" />
     <Compile Include="Graph\GraphModel.cs" />

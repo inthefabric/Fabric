@@ -52,12 +52,17 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	if ( node.IsAbstract ) { continue; }
 
+	var rels = new List<WeaverRelSchema>();
 	string interfaces = "";
+	string paths = "";
 	
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		interfaces += (interfaces == "" ? "" : ", ")+
-			PathUtil.GetRelInterface(rel, (rel.FromNode == node));
+		rels.Add(rel);
+		bool isOut = (rel.FromNode == node);
+
+		interfaces += (interfaces == "" ? "" : ", ")+PathUtil.GetRelInterface(rel, isOut);
+		paths += (paths == "" ? "" : ", ")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
 	}
 	
 	string typeIdIsLong = "false";
@@ -92,12 +97,17 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		protected override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {<#= paths #>};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 <#
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		
+	foreach ( WeaverRelSchema rel in rels ) {
 		bool isOut = (rel.FromNode == node);
 		var propName = PathUtil.GetRelProp(rel, isOut);
 #>

@@ -10,17 +10,13 @@ namespace Fabric.Api.Dto {
 		public long NodeId { get; set; }
 		protected abstract long TypeId { get; }
 
-		//public string BaseUri { get; set; }
-		//public string NodeUri { get { return BaseUri+"Contains"+vIndexName+"List("+TypeId+")"; } }
-		//private string vIndexName;
+		public string NodeUri { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected FabNode() {
 			NodeId = -1;
-			//BaseUri = "localhost:9000/api/";
-			//vIndexName = GetType().Name.Substring(3);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -31,6 +27,8 @@ namespace Fabric.Api.Dto {
 
 			NodeId = (long)pDbDto.Id;
 			FillResultData(pDbDto.Data);
+
+			NodeUri = "("+TypeId+")";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

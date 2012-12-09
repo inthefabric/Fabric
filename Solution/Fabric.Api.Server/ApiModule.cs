@@ -29,6 +29,7 @@ namespace Fabric.Api.Server {
 			Get["/graph"] = (p => new GraphView(this).GetResponse());
 			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());
 			Get["/gremlin/(.*)"] = (p => new GremlinQuery(Context).GetResponse());
+			Get["/api/"] = (p => new ApiQuery(Context).GetResponse());
 			Get["/api/(.*)"] = (p => new ApiQuery(Context).GetResponse());
 		}
 

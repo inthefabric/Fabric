@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/7/2012 2:26:14 PM
+// Generated on 12/9/2012 2:31:46 PM
 
 using Fabric.Api.Dto;
 
@@ -680,6 +680,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "containsapplist": return ContainsAppList;
@@ -955,6 +962,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1036,6 +1050,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "ArtifactId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1163,6 +1184,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InArtifactListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1208,6 +1236,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/HasArtifact", "/InCrowdianListUses"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1261,6 +1296,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdianId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1328,6 +1370,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InCrowdianTypeAssignListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1373,6 +1422,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "CrowdianTypeAssignId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1440,6 +1496,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InAppUses", "/InUserUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1493,6 +1556,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/HasArtifact"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1538,6 +1608,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "MemberId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1623,6 +1700,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InMemberTypeAssignListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1668,6 +1752,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "MemberTypeAssignId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1735,6 +1826,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/HasArtifact"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1782,6 +1880,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/HasArtifact"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -1827,6 +1932,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "UserId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -1916,6 +2028,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "FactorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2025,6 +2144,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2070,6 +2196,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DescriptorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2143,6 +2276,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InDescriptorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2188,6 +2328,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DirectorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2255,6 +2402,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InDirectorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2300,6 +2454,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "DirectorActionId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2353,6 +2514,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "EventorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2414,6 +2582,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InEventorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2461,6 +2636,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InEventorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2506,6 +2688,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "IdentorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses", "/UsesIdentorType"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2561,6 +2750,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InIdentorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2606,6 +2802,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "LocatorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses", "/UsesLocatorType"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2661,6 +2864,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InLocatorListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2706,6 +2916,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2779,6 +2996,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InVectorListUses", "/UsesVectorRange"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2830,6 +3054,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorRangeId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InVectorTypeListUses", "/UsesVectorRangeLevelList"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2885,6 +3116,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InVectorRangeListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -2930,6 +3168,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorUnitId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -2991,6 +3236,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/InVectorListUses", "/InVectorUnitDerivedListUses"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -3042,6 +3294,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "VectorUnitDerivedId"; } }
 		protected override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -3103,6 +3362,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/UsesApp", "/UsesUser"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -3156,6 +3422,13 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/UsesApp"};
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
@@ -3201,6 +3474,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "OauthGrantId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/UsesApp", "/UsesUser"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {
@@ -3254,6 +3534,13 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string TypeIdName { get { return "OauthScopeId"; } }
 		protected override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string[] AvailablePaths {
+			get {
+				return new [] {"/InRootContains", "/UsesApp", "/UsesUser"};
+			}
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IPathBase GetPathByString(string pName) {

@@ -8,6 +8,7 @@ namespace Fabric.Api.Paths {
 		long? TypeId { get; }
 		Path Path { get; }
 		Type DtoType { get; }
+		string[] AvailablePaths { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

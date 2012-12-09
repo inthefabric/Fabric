@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Nancy;
-using ServiceStack.Text;
 
 namespace Fabric.Api.Server.Api {
 
@@ -19,91 +15,61 @@ namespace Fabric.Api.Server.Api {
 		private readonly Type vDtoType;
 		private readonly FabResponse vResp;
 
+		private bool vUseHtml;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiQuery(NancyContext pContext) {
 			vResp = new FabResponse();
 			vResp.StartEvent();
+			vResp.BaseUri = "http://localhost:9000/api";
 
 			vContext = pContext;
+			CheckRequestAccept();
 			
 			try {
 				string uri = vContext.Request.Path.Substring(5);
-				vQuery = PathRouter.GetPath(uri, out vDtoType).Script;
+				vResp.RequestUri = (uri.Length > 0 ? "/"+uri : "");
+
+				IPathBase pb = PathRouter.GetPath(uri);
+				vQuery = pb.Path.Script;
+				vDtoType = pb.DtoType;
 				vResp.Type = vDtoType.Name;
+				vResp.AvailableUris = pb.AvailablePaths;
 			}
 			catch ( Exception e ) {
 				Log.Error("fail", e);
+			}
+		}
+		/*--------------------------------------------------------------------------------------------*/
+		public void CheckRequestAccept() {
+			foreach ( var a in vContext.Request.Headers.Accept ) {
+				if ( a.Item1 != "text/html" ) { continue; }
+				//if ( a.Item1 != "application/xml" ) { continue; }
+				vUseHtml = true;
+				break;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Response GetResponse() {
 			try {
-				var req = new GremlinRequest(vQuery);
+				var req = (vDtoType == typeof(FabRoot) ? null : new GremlinRequest(vQuery));
 				vResp.DbEvent();
-				return BuildJsonResponse(req);
+
+				if ( vUseHtml ) {
+					var html = new ApiQueryHtml(req, vDtoType, vResp);
+					return html.BuildResponse();
+				}
+
+				var json = new ApiQueryJson(req, vDtoType, vResp);
+				return json.BuildResponse();
 			}
 			catch ( Exception ex ) {
 				Log.Error("", ex);
-				return "error: "+ex.Message;
+				return "error: "+ex.Message+" / query: "+vQuery;
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private Response BuildJsonResponse(GremlinRequest pReq) {
-			var build = GetType()
-				.GetMethod("BuildJson", (BindingFlags.NonPublic | BindingFlags.Instance))
-				.MakeGenericMethod(new[] { vDtoType });
-
-			string dataJson = (string)build.Invoke(this, new object[] { pReq });
-			int count = (pReq.DtoList != null ? pReq.DtoList.Count : (pReq.Dto != null ? 1 : 0));
-			string wrapJson = vResp.Complete(dataJson);
-			byte[] bytes = UTF8Encoding.UTF8.GetBytes(wrapJson);
-
-			return new Response {
-				ContentType = "application/json",
-				StatusCode = HttpStatusCode.OK,
-				Contents = (s => s.Write(bytes, 0, bytes.Length))
-			};
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private string BuildJson<T>(GremlinRequest pReq) where T : FabNode {
-			if ( pReq.DtoList != null ) {
-				var nodeList = new List<T>();
-				var idMap = new HashSet<long>();
-
-				foreach ( DbDto dbDto in pReq.DtoList ) {
-					if ( dbDto.Id != null ) {
-						if ( idMap.Contains((long)dbDto.Id) ) {
-							++vResp.RemovedDups;
-							continue;
-						}
-
-						idMap.Add((long)dbDto.Id);
-					}
-
-					T n = (T)Activator.CreateInstance(vDtoType);
-					n.Fill(dbDto);
-					nodeList.Add(n);
-					++vResp.Count;
-				}
-
-				return nodeList.ToJson();
-			}
-			
-			if ( pReq.Dto != null ) {
-				T n = (T)Activator.CreateInstance(vDtoType);
-				n.Fill(pReq.Dto);
-				++vResp.Count;
-				return n.ToJson();
-			}
-
-			return "{\"Text\":\""+pReq.ResponseString.Replace("\"", "\\\"")+"\"}";
 		}
 
 	}
