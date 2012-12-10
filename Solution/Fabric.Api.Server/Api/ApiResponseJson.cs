@@ -53,6 +53,7 @@ namespace Fabric.Api.Server.Api {
 			if ( vInfo.IsSingleDto ) {
 				T n = (T)Activator.CreateInstance(vInfo.DtoType);
 				n.Fill(vInfo.DtoList[0]);
+				vInfo.NodeAction(n);
 				return n.ToJson();
 			}
 
@@ -61,6 +62,7 @@ namespace Fabric.Api.Server.Api {
 			foreach ( DbDto dbDto in vInfo.DtoList ) {
 				T n = (T)Activator.CreateInstance(vInfo.DtoType);
 				n.Fill(dbDto);
+				vInfo.NodeAction(n);
 				nodeList.Add(n);
 			}
 

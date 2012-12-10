@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/9/2012 2:31:46 PM
+// Generated on 12/10/2012 4:51:06 PM
 
 using Fabric.Api.Dto;
 
@@ -682,7 +682,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList"};
+				return new string[] {"/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList"};
 			}
 		}
 		
@@ -964,7 +964,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
+				return new string[] {"/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
 			}
 		}
 		
@@ -1054,7 +1054,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis"};
+				return new string[] {"/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis"};
 			}
 		}
 		
@@ -1186,7 +1186,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InArtifactListUses"};
+				return new string[] {"/InArtifactListUses"};
 			}
 		}
 		
@@ -1240,7 +1240,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/HasArtifact", "/InCrowdianListUses"};
+				return new string[] {"/HasArtifact", "/InCrowdianListUses"};
 			}
 		}
 		
@@ -1300,7 +1300,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList"};
+				return new string[] {"/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList"};
 			}
 		}
 		
@@ -1372,7 +1372,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InCrowdianTypeAssignListUses"};
+				return new string[] {"/InCrowdianTypeAssignListUses"};
 			}
 		}
 		
@@ -1426,7 +1426,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates"};
+				return new string[] {"/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates"};
 			}
 		}
 		
@@ -1498,7 +1498,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InAppUses", "/InUserUses"};
+				return new string[] {"/InAppUses", "/InUserUses"};
 			}
 		}
 		
@@ -1558,7 +1558,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/HasArtifact"};
+				return new string[] {"/HasArtifact"};
 			}
 		}
 		
@@ -1612,7 +1612,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList"};
+				return new string[] {"/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList"};
 			}
 		}
 		
@@ -1702,7 +1702,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InMemberTypeAssignListUses"};
+				return new string[] {"/InMemberTypeAssignListUses"};
 			}
 		}
 		
@@ -1756,7 +1756,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType"};
+				return new string[] {"/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType"};
 			}
 		}
 		
@@ -1828,7 +1828,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/HasArtifact"};
+				return new string[] {"/HasArtifact"};
 			}
 		}
 		
@@ -1882,7 +1882,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/HasArtifact"};
+				return new string[] {"/HasArtifact"};
 			}
 		}
 		
@@ -1936,7 +1936,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
+				return new string[] {"/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
 			}
 		}
 		
@@ -2032,7 +2032,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector"};
+				return new string[] {"/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector"};
 			}
 		}
 		
@@ -2146,7 +2146,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses"};
+				return new string[] {"/InFactorListUses"};
 			}
 		}
 		
@@ -2200,7 +2200,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact"};
+				return new string[] {"/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact"};
 			}
 		}
 		
@@ -2278,7 +2278,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InDescriptorListUses"};
+				return new string[] {"/InDescriptorListUses"};
 			}
 		}
 		
@@ -2332,7 +2332,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction"};
+				return new string[] {"/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction"};
 			}
 		}
 		
@@ -2404,7 +2404,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InDirectorListUses"};
+				return new string[] {"/InDirectorListUses"};
 			}
 		}
 		
@@ -2458,7 +2458,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated"};
+				return new string[] {"/InDirectorListUsesPrimary", "/InDirectorListUsesRelated"};
 			}
 		}
 		
@@ -2518,7 +2518,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision"};
+				return new string[] {"/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision"};
 			}
 		}
 		
@@ -2584,7 +2584,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InEventorListUses"};
+				return new string[] {"/InEventorListUses"};
 			}
 		}
 		
@@ -2638,7 +2638,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InEventorListUses"};
+				return new string[] {"/InEventorListUses"};
 			}
 		}
 		
@@ -2692,7 +2692,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses", "/UsesIdentorType"};
+				return new string[] {"/InFactorListUses", "/UsesIdentorType"};
 			}
 		}
 		
@@ -2752,7 +2752,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InIdentorListUses"};
+				return new string[] {"/InIdentorListUses"};
 			}
 		}
 		
@@ -2806,7 +2806,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses", "/UsesLocatorType"};
+				return new string[] {"/InFactorListUses", "/UsesLocatorType"};
 			}
 		}
 		
@@ -2866,7 +2866,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InLocatorListUses"};
+				return new string[] {"/InLocatorListUses"};
 			}
 		}
 		
@@ -2920,7 +2920,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix"};
+				return new string[] {"/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix"};
 			}
 		}
 		
@@ -2998,7 +2998,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InVectorListUses", "/UsesVectorRange"};
+				return new string[] {"/InVectorListUses", "/UsesVectorRange"};
 			}
 		}
 		
@@ -3058,7 +3058,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InVectorTypeListUses", "/UsesVectorRangeLevelList"};
+				return new string[] {"/InVectorTypeListUses", "/UsesVectorRangeLevelList"};
 			}
 		}
 		
@@ -3118,7 +3118,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InVectorRangeListUses"};
+				return new string[] {"/InVectorRangeListUses"};
 			}
 		}
 		
@@ -3172,7 +3172,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp"};
+				return new string[] {"/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp"};
 			}
 		}
 		
@@ -3238,7 +3238,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/InVectorListUses", "/InVectorUnitDerivedListUses"};
+				return new string[] {"/InVectorListUses", "/InVectorUnitDerivedListUses"};
 			}
 		}
 		
@@ -3298,7 +3298,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix"};
+				return new string[] {"/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix"};
 			}
 		}
 		
@@ -3364,7 +3364,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/UsesApp", "/UsesUser"};
+				return new string[] {"/UsesApp", "/UsesUser"};
 			}
 		}
 		
@@ -3424,7 +3424,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/UsesApp"};
+				return new string[] {"/UsesApp"};
 			}
 		}
 		
@@ -3478,7 +3478,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/UsesApp", "/UsesUser"};
+				return new string[] {"/UsesApp", "/UsesUser"};
 			}
 		}
 		
@@ -3538,7 +3538,7 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {"/InRootContains", "/UsesApp", "/UsesUser"};
+				return new string[] {"/UsesApp", "/UsesUser"};
 			}
 		}
 		

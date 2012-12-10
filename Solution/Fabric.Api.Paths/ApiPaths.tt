@@ -1,6 +1,7 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
 <#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
@@ -62,6 +63,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		bool isOut = (rel.FromNode == node);
 
 		interfaces += (interfaces == "" ? "" : ", ")+PathUtil.GetRelInterface(rel, isOut);
+
+		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
 		paths += (paths == "" ? "" : ", ")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
 	}
 	
@@ -99,7 +102,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailablePaths {
 			get {
-				return new [] {<#= paths #>};
+				return new string[] {<#= paths #>};
 			}
 		}
 		

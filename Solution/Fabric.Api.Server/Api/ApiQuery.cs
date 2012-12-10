@@ -16,6 +16,7 @@ namespace Fabric.Api.Server.Api {
 
 		private readonly NancyContext vContext;
 		private readonly ApiQueryInfo vInfo;
+		private string vUri;
 		private GremlinRequest vReq;
 
 
@@ -46,14 +47,15 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp = new FabResponse();
 			vInfo.Resp.StartEvent();
 
-			string uri = vContext.Request.Path.Substring(5);
-			IPathBase pb = PathRouter.GetPath(uri);
+			vUri = vContext.Request.Path.Substring(5);
+			IPathBase pb = PathRouter.GetPath(vUri);
 
 			vInfo.Query = pb.Path.Script;
 			vInfo.DtoType = pb.DtoType;
+			vInfo.NodeAction = DoNodeAction;
 
 			vInfo.Resp.BaseUri = ApiBaseUri;
-			vInfo.Resp.RequestUri = (uri.Length > 0 ? "/"+uri : "");
+			vInfo.Resp.RequestUri = (vUri.Length > 0 ? "/"+vUri : "");
 			vInfo.Resp.AvailableUris = pb.AvailablePaths;
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 
@@ -136,6 +138,14 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			return false;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void DoNodeAction(IFabNode pNode) {
+			if ( vUri.IndexOf('/') == -1 && vUri.IndexOf('(') == -1 ) { return; }
+			pNode.NodeUri = null;
 		}
 
 	}

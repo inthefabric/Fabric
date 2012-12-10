@@ -17,7 +17,6 @@ namespace Fabric.Api.Server.Api {
 			vInfo = pInfo;
 		}
 
-
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetContent() {
 			string dataHtml = BuildTypedHtml();
@@ -42,12 +41,14 @@ namespace Fabric.Api.Server.Api {
 			if ( vInfo.IsSingleDto ) {
 				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
 				n.Fill(vInfo.DtoList[0]);
+				vInfo.NodeAction(n);
 				return BuildNodeHtml(n);
 			}
 
 			foreach ( DbDto dto in vInfo.DtoList ) {
 				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
 				n.Fill(dto);
+				vInfo.NodeAction(n);
 
 				html += (i++ == 0 ? "" : "<br/>");
 				html += BuildNodeHtml(n);

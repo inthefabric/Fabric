@@ -16,6 +16,8 @@ namespace Fabric.Api.Server.Api {
 		public bool IsSingleDto { get; set; }
 		public string NonDtoText { get; set; }
 
+		public Action<IFabNode> NodeAction { get; set; }
+
 	}
 
 }
