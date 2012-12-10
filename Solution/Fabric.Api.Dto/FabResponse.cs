@@ -12,10 +12,10 @@ namespace Fabric.Api.Dto {
 		public string[] AvailableUris { get; set; }
 		public int DbMs { get; set; }
 		public int TotalMs { get; set; }
-		public int Size { get; set; }
+		public int DataLen { get; set; }
 		public int Count { get; set; }
 		public int RemovedDups { get; set; }
-		public long RequestTimestamp { get; set; }
+		public long Timestamp { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,17 +27,17 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void StartEvent() {
-			RequestTimestamp = DateTime.UtcNow.Ticks;
+			Timestamp = DateTime.UtcNow.Ticks;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void DbEvent() {
-			DbMs = (int)((DateTime.UtcNow.Ticks-RequestTimestamp)/10000);
+			DbMs = (int)((DateTime.UtcNow.Ticks-Timestamp)/10000);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Complete() {
-			TotalMs = (int)((DateTime.UtcNow.Ticks-RequestTimestamp)/10000);
+			TotalMs = (int)((DateTime.UtcNow.Ticks-Timestamp)/10000);
 		}
 		
 			

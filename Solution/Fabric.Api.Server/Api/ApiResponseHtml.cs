@@ -1,84 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using Fabric.Api.Dto;
-using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
-using Nancy;
 
 namespace Fabric.Api.Server.Api {
 
 	/*================================================================================================*/
-	public class ApiQueryHtml {
+	public class ApiResponseHtml {
 
-		private readonly GremlinRequest vRequest;
-		private readonly Type vDtoType;
-		private readonly FabResponse vResp;
+		private readonly ApiQueryInfo vInfo;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiQueryHtml(GremlinRequest pRequest, Type pDtoType, FabResponse pResponse) {
-			vRequest = pRequest;
-			vDtoType = pDtoType;
-			vResp = pResponse;
+		public ApiResponseHtml(ApiQueryInfo pInfo) {
+			vInfo = pInfo;
 		}
 
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Response BuildResponse() {
+		public string GetContent() {
 			string dataHtml = BuildTypedHtml();
-			vResp.Complete();
-			string wrapHtml = BuildWrapHtml(dataHtml);
-			byte[] bytes = UTF8Encoding.UTF8.GetBytes(wrapHtml);
-
-			return new Response {
-				ContentType = "text/html",
-				StatusCode = HttpStatusCode.OK,
-				Contents = (s => s.Write(bytes, 0, bytes.Length))
-			};
+			vInfo.Resp.DataLen = dataHtml.Length;
+			
+			string wrap = BuildWrapHtml(dataHtml);
+			vInfo.Resp.Complete(); //last possible moment
+			return wrap.Replace("{TotalMs}", vInfo.Resp.TotalMs+"");
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildTypedHtml() {
-			if ( vRequest == null ) { return "{}"; }
-			var html = "";
-
-			if ( vRequest.DtoList != null ) {
-				var idMap = new HashSet<long>();
-
-				foreach ( DbDto dbDto in vRequest.DtoList ) {
-					if ( dbDto.Id != null ) {
-						if ( idMap.Contains((long)dbDto.Id) ) {
-							++vResp.RemovedDups;
-							continue;
-						}
-
-						idMap.Add((long)dbDto.Id);
-					}
-
-					FabNode n = (FabNode)Activator.CreateInstance(vDtoType);
-					n.Fill(dbDto);
-
-					html += (vResp.Count == 0 ? "" : "<br/>");
-					html += BuildNodeHtml(n);
-
-					++vResp.Count;
-				}
-
-				return html;
+			if ( vInfo.DtoList == null ) {
+				return (vInfo.NonDtoText ?? "");
 			}
 
-			if ( vRequest.Dto != null ) {
-				FabNode n = (FabNode)Activator.CreateInstance(vDtoType);
-				n.Fill(vRequest.Dto);
-				++vResp.Count;
+			var html = "";
+			var i = 0;
+
+			if ( vInfo.IsSingleDto ) {
+				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
+				n.Fill(vInfo.DtoList[0]);
 				return BuildNodeHtml(n);
 			}
 
-			return "Text: "+vRequest.ResponseString;
+			foreach ( DbDto dto in vInfo.DtoList ) {
+				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
+				n.Fill(dto);
+
+				html += (i++ == 0 ? "" : "<br/>");
+				html += BuildNodeHtml(n);
+			}
+
+			return html;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -91,7 +66,7 @@ namespace Fabric.Api.Server.Api {
 				var val = pi.GetValue(pNode, null);
 
 				if ( pi.Name == "NodeUri" ) {
-					var uri = vResp.BaseUri+vResp.RequestUri+val;
+					var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+val;
 					html += "<a href='"+uri+"'>"+val+"</a>";
 				}
 				else {
@@ -106,7 +81,7 @@ namespace Fabric.Api.Server.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildWrapHtml(string pDataHtml) {
-			PropertyInfo[] props = vResp.GetType().GetProperties();
+			PropertyInfo[] props = vInfo.Resp.GetType().GetProperties();
 			string html = "";
 
 			html += "<h3>Response</h3>";
@@ -117,16 +92,20 @@ namespace Fabric.Api.Server.Api {
 				if ( pi.Name == "AvailableUris" ) { continue; }
 
 				html += "<b>"+pi.Name+":</b> ";
-				var val = pi.GetValue(vResp, null);
+				var val = pi.GetValue(vInfo.Resp, null);
 
 				switch ( pi.Name ) {
 					case "BaseUri":
-						html += "<a href='"+vResp.BaseUri+"'>"+val+"</a>";
+						html += "<a href='"+vInfo.Resp.BaseUri+"'>"+val+"</a>";
 						break;
 
 					case "RequestUri":
-						var uri = vResp.BaseUri+vResp.RequestUri;
+						var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri;
 						html += "<a href='"+uri+"'>"+val+"</a>";
+						break;
+
+					case "TotalMs":
+						html += "{TotalMs}";
 						break;
 
 					default:
@@ -144,9 +123,9 @@ namespace Fabric.Api.Server.Api {
 			html += "<h3>Available URIs</h3>";
 			html += "<div style='margin-left:20px;'>";
 
-			for ( int i = 0 ; i < vResp.AvailableUris.Length ; ++i ) {
-				string au = vResp.AvailableUris[i];
-				var uri = vResp.BaseUri+vResp.RequestUri+au;
+			for ( int i = 0 ; i < vInfo.Resp.AvailableUris.Length ; ++i ) {
+				string au = vInfo.Resp.AvailableUris[i];
+				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+au;
 				html += (i == 0 ? "" : "<br/>")+"<a href='"+uri+"'>"+au+"</a>";
 			}
 
