@@ -56,11 +56,6 @@
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.27\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

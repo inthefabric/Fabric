@@ -33,12 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiPaths.cs">
@@ -47,7 +41,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="PathRouter.cs" />
-    <Compile Include="PathUtil.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="IPathBase.cs" />
     <Compile Include="PathBase.cs" />
@@ -66,10 +59,6 @@
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>

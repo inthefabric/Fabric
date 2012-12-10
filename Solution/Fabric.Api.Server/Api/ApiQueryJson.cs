@@ -40,7 +40,7 @@ namespace Fabric.Api.Server.Api {
 			vResp.Size = dataJson.Length;
 			vResp.Complete();
 
-			string wrapJson = vResp.ToJson().Replace("{DATA}", dataJson);
+			string wrapJson = vResp.ToJson().Replace("\"{DATA}\"", dataJson);
 			vResp.Data = dataJson;
 
 			byte[] bytes = UTF8Encoding.UTF8.GetBytes(wrapJson);

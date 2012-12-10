@@ -1,5 +1,4 @@
 ﻿using System;
-using ServiceStack.Text;
 
 namespace Fabric.Api.Dto {
 

@@ -72,7 +72,7 @@ namespace Fabric.Db.Server.Query {
 
 			char first = ResponseString[0];
 
-			if ( first == '[' && ResponseString[2] == '{' ) {
+			if ( first == '[' && (ResponseString[2] == '{' || ResponseString == "[ ]") ) {
 				ResultType = DbResultType.List;
 			}
 			else if ( first == '{' ) {

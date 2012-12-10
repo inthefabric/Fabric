@@ -42,6 +42,7 @@ namespace Fabric.Api.Server.Api {
 				Log.Error("fail", e);
 			}
 		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public void CheckRequestAccept() {
 			foreach ( var a in vContext.Request.Headers.Accept ) {

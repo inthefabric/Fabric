@@ -52,6 +52,9 @@ namespace Fabric.Api.Server.Util {
 			if ( first == '[' && ResponseString[1] == '{' ) {
 				DtoList = JsonSerializer.DeserializeFromString<List<DbDto>>(ResponseString);
 			}
+			else if ( ResponseString == "[]" ) {
+				DtoList = new List<DbDto>();
+			}
 			else if ( first == '{' ) {
 				Dto = JsonSerializer.DeserializeFromString<DbDto>(ResponseString);
 			}

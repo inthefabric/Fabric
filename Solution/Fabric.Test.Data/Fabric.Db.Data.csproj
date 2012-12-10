@@ -33,11 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver\Weaver.dll</HintPath>
     </Reference>
@@ -58,10 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Domain.Schema\Fabric.Domain.Schema.csproj">
-      <Project>{FC70F2C2-C0F0-4F12-903F-FBB5C9B877C6}</Project>
-      <Name>Fabric.Domain.Schema</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
