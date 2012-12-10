@@ -1,4 +1,6 @@
-﻿using Weaver;
+﻿using System;
+using Fabric.Domain;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
@@ -19,18 +21,6 @@ namespace Fabric.Db.Data {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static DataRel<TFrom, TRel, TTo> Create<TFrom, TRel, TTo>(TFrom pFromNode, TRel pRel,
-				TTo pToNode) where TFrom : IWeaverNode where TRel : IWeaverRel where TTo : IWeaverNode {
-			return Create(pFromNode, pRel, pToNode, false);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static DataRel<TFrom, TRel, TTo> CreateTest<TFrom, TRel, TTo>(TFrom pFromNode,TRel pRel,
-				TTo pToNode) where TFrom : IWeaverNode where TRel : IWeaverRel where TTo : IWeaverNode {
-			return Create(pFromNode, pRel, pToNode, true);
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public static DataRel<TFrom, TRel, TTo> Create<TFrom, TRel, TTo>(TFrom pFromNode, TRel pRel,
 												TTo pToNode, bool pIsForTest) where TFrom : IWeaverNode
@@ -65,6 +55,16 @@ namespace Fabric.Db.Data {
 			ToNode = pToNode;
 			ToNodeT = pToNode;
 			IsForTesting = pIsForTesting;
+
+			if ( pRel.FromNodeType != typeof(TFrom) ) {
+				throw new Exception("Incorrect FromNodeType '"+typeof(TFrom)+
+					"', expected '"+pRel.FromNodeType+"'.");
+			}
+
+			if ( typeof(TFrom) != typeof(Root) && pRel.ToNodeType != typeof(TTo) ) {
+				throw new Exception("Incorrect ToNodeType '"+typeof(TTo)+
+					"', expected '"+pRel.ToNodeType+"'.");
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

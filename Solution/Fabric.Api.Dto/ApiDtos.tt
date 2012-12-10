@@ -106,9 +106,28 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+<#
+	bool showFound = false;
+	bool showVal = (node.Props.Count > 0);
+
+	foreach ( WeaverPropSchema prop in node.Props ) { 
+		if ( prop.IsNullable == true || propTypeMap[prop.Name] == "string" ) {
+			showFound = true;
+		}
+	}
+
+	if ( showVal ) { 
+#>
 			string val;
+<#
+	} //end showVal
+	
+	if ( showFound ) { 
+#>
 			bool found;
 <#
+	} //end showFound
+
 	foreach ( WeaverPropSchema prop in node.Props ) { 
 		string propName = propNameMap[prop.Name];
 		string propType = propTypeMap[prop.Name];

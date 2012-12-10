@@ -731,7 +731,7 @@ namespace Fabric.Db.Data.Setups {
 
 			foreach ( VectorRangeLevelId level in pLevels ) {
 				var rel = DataRel.Create(t, new VectorRangeUsesVectorRangeLevel(),
-					pSet.GetNode<VectorRangeLevel>((long)level));
+					pSet.GetNode<VectorRangeLevel>((long)level), false);
 				pSet.AddRel(rel);
 			}
 		}
@@ -749,7 +749,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddRootRel<RootContainsVectorType>(t, false);
 
 			var rel = DataRel.Create(t, new VectorTypeUsesVectorRange(),
-				pSet.GetNode<VectorRange>((long)pRangeId));
+				pSet.GetNode<VectorRange>((long)pRangeId), false);
 			pSet.AddRel(rel);
 		}
 
@@ -788,15 +788,15 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddRootRel<RootContainsVectorUnitDerived>(t, false);
 
 			var relD = DataRel.Create(t, new VectorUnitDerivedDefinesVectorUnit(),
-				pSet.GetNode<VectorUnit>((long)pDefinesId));
+				pSet.GetNode<VectorUnit>((long)pDefinesId), false);
 			pSet.AddRel(relD);
 
 			var relR = DataRel.Create(t, new VectorUnitDerivedRaisesToExpVectorUnit(),
-				pSet.GetNode<VectorUnit>((long)pRaisesId));
+				pSet.GetNode<VectorUnit>((long)pRaisesId), false);
 			pSet.AddRel(relR);
 
 			var relP = DataRel.Create(t, new VectorUnitDerivedUsesVectorUnitPrefix(),
-				pSet.GetNode<VectorUnitPrefix>((long)pPrefix));
+				pSet.GetNode<VectorUnitPrefix>((long)pPrefix), false);
 			pSet.AddRel(relP);
 		}
 

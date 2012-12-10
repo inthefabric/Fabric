@@ -2,6 +2,7 @@
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
+using Fabric.Infrastructure;
 using Nancy;
 using Weaver;
 
@@ -54,6 +55,7 @@ namespace Fabric.Api.Server.Setups {
 				return result;
 			}
 			catch ( Exception ex ) {
+				Log.Error("error", ex);
 				return "error: "+ex.Message;
 			}
 		}

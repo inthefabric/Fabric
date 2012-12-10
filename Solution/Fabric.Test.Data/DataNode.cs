@@ -1,6 +1,5 @@
 ﻿using Fabric.Domain;
 using Weaver;
-using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
 
@@ -18,16 +17,6 @@ namespace Fabric.Db.Data {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static DataNode<T> Create<T>(T pNode) where T : INode {
-			return Create(pNode, false);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static DataNode<T> CreateTest<T>(T pNode) where T : INode {
-			return Create(pNode, true);
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public static DataNode<T> Create<T>(T pNode, bool pIsForTest) where T : INode {
 			return new DataNode<T>(pNode, pIsForTest);

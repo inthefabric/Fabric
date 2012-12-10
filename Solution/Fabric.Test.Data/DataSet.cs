@@ -64,10 +64,10 @@ namespace Fabric.Db.Data {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public INode GetNode<T>(long pNodeTypeId) where T : INode {
+		public T GetNode<T>(long pNodeTypeId) where T : INode {
 			INode n;
 			vNodeMap.TryGetValue(typeof(T).Name+pNodeTypeId, out n);
-			return n;
+			return (T)n;
 		}
 
 
@@ -117,7 +117,7 @@ namespace Fabric.Db.Data {
 		public bool AddRootRel<TRel>(IWeaverNode pToNode, bool pIsForTesting)
 																		where TRel : IWeaverRel, new(){
 			if ( !IsForTesting && pIsForTesting ) { return false; }
-			IDataRel r = DataRel.Create(GetNode<Root>(1), new TRel(), pToNode);
+			IDataRel r = DataRel.Create(GetNode<Root>(1), new TRel(), pToNode, pIsForTesting);
 			Rels.Add(r);
 			return true;
 		}

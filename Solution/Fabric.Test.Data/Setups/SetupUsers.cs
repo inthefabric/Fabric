@@ -244,13 +244,13 @@ namespace Fabric.Db.Data.Setups {
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
 			vSet.AddRel(relAsn);
 
-			var relMt = DataRel.Create(mta, new MemberHasMemberTypeAssign(),
+			var relMt = DataRel.Create(mta, new MemberTypeAssignUsesMemberType(),
 				vSet.GetNode<MemberType>((long)pMemTypeId), vTestMode);
 			vSet.AddRel(relMt);
 
 			////
 
-			INode m = vSet.GetNode<Member>((long)pMemberId);
+			Member m = vSet.GetNode<Member>((long)pMemberId);
 
 			if ( pIsHistoric ) {
 				var relMta = DataRel.Create(m, new MemberHasHistoricMemberTypeAssign(), mta, vTestMode);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/7/2012 3:54:56 PM
+// Generated on 12/10/2012 3:05:30 PM
 
 using System.Collections.Generic;
 using Fabric.Infrastructure;
@@ -66,8 +66,6 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
-			string val;
-			bool found;
 		}
 
 	}
@@ -127,7 +125,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["ArtifactId"];
 			ArtifactId = long.Parse(val);
@@ -154,7 +151,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["ArtifactTypeId"];
 			ArtifactTypeId = byte.Parse(val);
@@ -219,7 +215,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["CrowdianId"];
 			CrowdianId = long.Parse(val);
@@ -240,7 +235,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["CrowdianTypeId"];
 			CrowdianTypeId = byte.Parse(val);
@@ -263,7 +257,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["CrowdianTypeAssignId"];
 			CrowdianTypeAssignId = long.Parse(val);
@@ -366,7 +359,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["MemberId"];
 			MemberId = long.Parse(val);
@@ -387,7 +379,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["MemberTypeId"];
 			MemberTypeId = byte.Parse(val);
@@ -408,7 +399,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["MemberTypeAssignId"];
 			MemberTypeAssignId = long.Parse(val);
@@ -601,7 +591,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["FactorAssertionId"];
 			FactorAssertionId = byte.Parse(val);
@@ -614,8 +603,6 @@ namespace Fabric.Api.Dto {
 	
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
-			string val;
-			bool found;
 		}
 
 	}
@@ -633,7 +620,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["DescriptorId"];
 			DescriptorId = long.Parse(val);
@@ -654,7 +640,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["DescriptorTypeId"];
 			DescriptorTypeId = byte.Parse(val);
@@ -675,7 +660,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["DirectorId"];
 			DirectorId = long.Parse(val);
@@ -696,7 +680,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["DirectorTypeId"];
 			DirectorTypeId = byte.Parse(val);
@@ -717,7 +700,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["DirectorActionId"];
 			DirectorActionId = byte.Parse(val);
@@ -740,7 +722,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["EventorId"];
 			EventorId = long.Parse(val);
@@ -764,7 +745,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["EventorTypeId"];
 			EventorTypeId = byte.Parse(val);
@@ -785,7 +765,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["EventorPrecisionId"];
 			EventorPrecisionId = byte.Parse(val);
@@ -833,7 +812,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["IdentorTypeId"];
 			IdentorTypeId = byte.Parse(val);
@@ -860,7 +838,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["LocatorId"];
 			LocatorId = long.Parse(val);
@@ -902,7 +879,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["LocatorTypeId"];
 			LocatorTypeId = byte.Parse(val);
@@ -943,7 +919,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["VectorId"];
 			VectorId = long.Parse(val);
@@ -971,7 +946,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["VectorTypeId"];
 			VectorTypeId = byte.Parse(val);
@@ -998,7 +972,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["VectorRangeId"];
 			VectorRangeId = byte.Parse(val);
@@ -1021,7 +994,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["VectorRangeLevelId"];
 			VectorRangeLevelId = byte.Parse(val);
@@ -1106,7 +1078,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["VectorUnitDerivedId"];
 			VectorUnitDerivedId = byte.Parse(val);
@@ -1247,7 +1218,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
-			bool found;
 
 			val = pData["OauthScopeId"];
 			OauthScopeId = long.Parse(val);

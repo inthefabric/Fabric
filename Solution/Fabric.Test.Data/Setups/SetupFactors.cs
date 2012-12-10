@@ -899,11 +899,11 @@ namespace Fabric.Db.Data.Setups {
 			vSet.AddRel(relDt);
 
 			var relP = DataRel.Create(d, new DirectorUsesPrimaryDirectorAction(),
-				vSet.GetNode<Artifact>((long)pPrimActId), vTestMode);
+				vSet.GetNode<DirectorAction>((long)pPrimActId), vTestMode);
 			vSet.AddRel(relP);
 
 			var relA = DataRel.Create(d, new DirectorUsesRelatedDirectorAction(),
-				vSet.GetNode<Artifact>((long)pRelActId), vTestMode);
+				vSet.GetNode<DirectorAction>((long)pRelActId), vTestMode);
 			vSet.AddRel(relA);
 		}
 
@@ -993,78 +993,78 @@ namespace Fabric.Db.Data.Setups {
 
 			DateTime dt = vSet.SetupDateTime;
 
-			var v = new Factor();
-			v.FactorId = ++vIdCount;
-			v.IsPublic = (pAccId == FactorAccessId.Public);
-			v.IsDefining = pIsDefining;
-			v.CreatedTimestamp = dt.AddMinutes(-1).Ticks;
-			v.Note = pNote;
+			var f = new Factor();
+			f.FactorId = ++vIdCount;
+			f.IsPublic = (pAccId == FactorAccessId.Public);
+			f.IsDefining = pIsDefining;
+			f.CreatedTimestamp = dt.AddMinutes(-1).Ticks;
+			f.Note = pNote;
 
 			if ( pIsCompleted ) {
-				v.CompletedTimestamp = vSet.SetupTimestamp;
+				f.CompletedTimestamp = vSet.SetupTimestamp;
 			}
 
 			if ( pIsDeleted ) {
-				v.DeletedTimestamp = dt.AddMinutes(5).Ticks;
+				f.DeletedTimestamp = dt.AddMinutes(5).Ticks;
 			}
 
-			vSet.AddNodeAndIndex(v, x => x.FactorId, vTestMode);
-			vSet.AddRootRel<RootContainsFactor>(v, vTestMode);
+			vSet.AddNodeAndIndex(f, x => x.FactorId, vTestMode);
+			vSet.AddRootRel<RootContainsFactor>(f, vTestMode);
 
-			var relM = DataRel.Create(v, new MemberCreatesFactor(),
-				vSet.GetNode<Member>((long)pMemId), vTestMode);
+			var relM = DataRel.Create(vSet.GetNode<Member>((long)pMemId),
+				new MemberCreatesFactor(), f, vTestMode);
 			vSet.AddRel(relM);
 
-			var relPa = DataRel.Create(v, new FactorUsesPrimaryArtifact(),
+			var relPa = DataRel.Create(f, new FactorUsesPrimaryArtifact(),
 				vSet.GetNode<Artifact>((long)pPrimArtId), vTestMode);
 			vSet.AddRel(relPa);
 
-			var relRa = DataRel.Create(v, new FactorUsesRelatedArtifact(),
+			var relRa = DataRel.Create(f, new FactorUsesRelatedArtifact(),
 				vSet.GetNode<Artifact>((long)pRelArtId), vTestMode);
 			vSet.AddRel(relRa);
 
-			var relFa = DataRel.Create(v, new FactorUsesFactorAssertion(),
+			var relFa = DataRel.Create(f, new FactorUsesFactorAssertion(),
 				vSet.GetNode<FactorAssertion>((long)pAstId), vTestMode);
 			vSet.AddRel(relFa);
 
 			if ( pReplaceFactorId != null ) {
-				var relRf = DataRel.Create(v, new FactorReplacesFactor(),
+				var relRf = DataRel.Create(f, new FactorReplacesFactor(),
 					vSet.GetNode<Factor>((long)pReplaceFactorId), vTestMode);
 				vSet.AddRel(relRf);
 			}
 
 			if ( pDescId != null ) {
-				var rel = DataRel.Create(v, new FactorUsesDescriptor(),
+				var rel = DataRel.Create(f, new FactorUsesDescriptor(),
 					vSet.GetNode<Descriptor>((long)pDescId), vTestMode);
 				vSet.AddRel(rel);
 			}
 
 			if ( pDirId != null ) {
-				var rel = DataRel.Create(v, new FactorUsesDirector(),
+				var rel = DataRel.Create(f, new FactorUsesDirector(),
 					vSet.GetNode<Director>((long)pDirId), vTestMode);
 				vSet.AddRel(rel);
 			}
 
 			if ( pEventId != null ) {
-				var rel = DataRel.Create(v, new FactorUsesEventor(),
+				var rel = DataRel.Create(f, new FactorUsesEventor(),
 					vSet.GetNode<Eventor>((long)pEventId), vTestMode);
 				vSet.AddRel(rel);
 			}
 
 			if ( pIdentId != null ) {
-				var rel = DataRel.Create(v, new FactorUsesIdentor(),
+				var rel = DataRel.Create(f, new FactorUsesIdentor(),
 					vSet.GetNode<Identor>((long)pIdentId), vTestMode);
 				vSet.AddRel(rel);
 			}
 
 			if ( pLocId != null ) {
-				var rel = DataRel.Create(v, new FactorUsesLocator(),
+				var rel = DataRel.Create(f, new FactorUsesLocator(),
 					vSet.GetNode<Locator>((long)pLocId), vTestMode);
 				vSet.AddRel(rel);
 			}
 
 			if ( pVectId != null ) {
-				var rel = DataRel.Create(v, new FactorUsesVector(),
+				var rel = DataRel.Create(f, new FactorUsesVector(),
 					vSet.GetNode<Vector>((long)pVectId), vTestMode);
 				vSet.AddRel(rel);
 			}
