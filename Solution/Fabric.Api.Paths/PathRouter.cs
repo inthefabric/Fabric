@@ -16,7 +16,7 @@ namespace Fabric.Api.Paths {
 			IStep step = new RootStep(true, path);
 
 			for ( int i = 0 ; i < n ; ++i ) {
-				step = step.ExecuteUriPart(parts[i]);
+				step = step.GetNextStep(parts[i]);
 			}
 
 			return step;

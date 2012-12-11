@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/11/2012 3:54:12 PM
+// Generated on 12/11/2012 4:26:02 PM
 
 using Fabric.Api.Dto;
 
@@ -694,8 +694,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "containsapplist": return ContainsAppList;
 				case "containsartifactlist": return ContainsArtifactList;
 				case "containsartifacttypelist": return ContainsArtifactTypeList;
@@ -738,7 +738,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "containsoauthscopelist": return ContainsOauthScopeList;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -983,8 +983,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 				case "usesemail": return UsesEmail;
@@ -995,7 +995,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "inoauthscopelistuses": return InOauthScopeListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1080,8 +1080,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inapphas": return InAppHas;
 				case "usesartifacttype": return UsesArtifactType;
@@ -1099,7 +1099,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "invectorlistusesaxis": return InVectorListUsesAxis;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1219,13 +1219,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inartifactlistuses": return InArtifactListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1280,14 +1280,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 				case "incrowdianlistuses": return InCrowdianListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1347,8 +1347,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "usescrowd": return UsesCrowd;
 				case "usesuser": return UsesUser;
@@ -1356,7 +1356,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "hashistoriccrowdiantypeassignlist": return HasHistoricCrowdianTypeAssignList;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1426,13 +1426,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1487,8 +1487,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdianhas": return InCrowdianHas;
 				case "incrowdianhashistoric": return InCrowdianHasHistoric;
@@ -1496,7 +1496,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "inusercreates": return InUserCreates;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1566,14 +1566,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inappuses": return InAppUses;
 				case "inuseruses": return InUserUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1633,13 +1633,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1694,8 +1694,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
@@ -1706,7 +1706,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "createsfactorlist": return CreatesFactorList;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1791,13 +1791,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inmembertypeassignlistuses": return InMemberTypeAssignListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1852,8 +1852,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inmemberhas": return InMemberHas;
 				case "inmemberhashistoric": return InMemberHasHistoric;
@@ -1861,7 +1861,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesmembertype": return UsesMemberType;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1931,13 +1931,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -1992,13 +1992,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2053,8 +2053,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdianlistuses": return InCrowdianListUses;
 				case "inmemberlistuses": return InMemberListUses;
@@ -2066,7 +2066,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "inoauthscopelistuses": return InOauthScopeListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2156,8 +2156,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inmembercreates": return InMemberCreates;
 				case "usesprimaryartifact": return UsesPrimaryArtifact;
@@ -2172,7 +2172,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesvector": return UsesVector;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2277,13 +2277,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2338,8 +2338,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesdescriptortype": return UsesDescriptorType;
@@ -2348,7 +2348,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "refinestypewithartifact": return RefinesTypeWithArtifact;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2423,13 +2423,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "indescriptorlistuses": return InDescriptorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2484,8 +2484,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesdirectortype": return UsesDirectorType;
@@ -2493,7 +2493,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesrelateddirectoraction": return UsesRelatedDirectorAction;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2563,13 +2563,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "indirectorlistuses": return InDirectorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2624,14 +2624,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "indirectorlistusesprimary": return InDirectorListUsesPrimary;
 				case "indirectorlistusesrelated": return InDirectorListUsesRelated;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2691,15 +2691,15 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "useseventortype": return UsesEventorType;
 				case "useseventorprecision": return UsesEventorPrecision;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2764,13 +2764,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2825,13 +2825,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2886,14 +2886,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesidentortype": return UsesIdentorType;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -2953,13 +2953,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inidentorlistuses": return InIdentorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3014,14 +3014,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "useslocatortype": return UsesLocatorType;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3081,13 +3081,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "inlocatorlistuses": return InLocatorListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3142,8 +3142,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesaxisartifact": return UsesAxisArtifact;
@@ -3152,7 +3152,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3227,14 +3227,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "usesvectorrange": return UsesVectorRange;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3294,14 +3294,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "invectortypelistuses": return InVectorTypeListUses;
 				case "usesvectorrangelevellist": return UsesVectorRangeLevelList;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3361,13 +3361,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorrangelistuses": return InVectorRangeListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3422,15 +3422,15 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistdefines": return InVectorUnitDerivedListDefines;
 				case "invectorunitderivedlistraisestoexp": return InVectorUnitDerivedListRaisesToExp;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3495,14 +3495,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistuses": return InVectorUnitDerivedListUses;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3562,15 +3562,15 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "definesvectorunit": return DefinesVectorUnit;
 				case "raisestoexpvectorunit": return RaisesToExpVectorUnit;
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3635,14 +3635,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3702,13 +3702,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3763,14 +3763,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
@@ -3830,14 +3830,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 

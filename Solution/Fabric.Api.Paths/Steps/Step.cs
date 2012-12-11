@@ -20,22 +20,18 @@ namespace Fabric.Api.Paths.Steps {
 		protected abstract string TypeIdName { get; }
 		protected abstract bool TypeIdIsLong { get; }
 
+		private StepData vData;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		//protected PathBase() {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public abstract void SetParams(string pParams);
-
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public T NewFabDto(DbDto pDbDto) {
 			T dto = new T();
 			dto.Fill(pDbDto);
 			return dto;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public T NewFabDto() {
 			return new T();
 		}
@@ -45,38 +41,38 @@ namespace Fabric.Api.Paths.Steps {
 		public virtual string[] AvailableSteps { get { return Step.AvailSteps; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IStep ExecuteUriPart(string pUriPart) {
-			string part = pUriPart.ToLower();
-			int parenI = part.IndexOf('(');
-
-			if ( parenI > 0 ) {
-				part = part.Substring(0, parenI);
+		public virtual StepData Data {
+			get {
+				return vData;
 			}
-
-			IStep result = GetStepByString(part);
-
-			if ( result == null ) {
-				throw new Exception(pUriPart+" is not a valid path option for "+GetType().Name+".");
-			}
-
-			if ( parenI > 0 ) {
-				string param = part.Substring(parenI+1);
-
-				if ( param.Length == 0 || param[param.Length-1] != ')' ) {
-					throw new Exception("Invalid parameter syntax for "+pUriPart+".");
+			set {
+				if ( vData != null ) {
+					throw new Exception("StepData is already set.");
 				}
 
-				result.SetParams(param.Substring(0, param.Length-1));
+				vData = value;
+			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public IStep GetNextStep(string pStepText) {
+			var sd = new StepData(pStepText);
+			IStep result = GetNextStep(sd);
+
+			if ( result == null ) {
+				throw new Exception("'"+pStepText+"' is not a valid step for "+GetType().Name+".");
 			}
 
+			result.Data = sd;
 			return result;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IStep GetStepByString(string pName) {
-			switch ( pName ) {
-				case "back":
-					return null; //new RootStep(false, Path);
+		protected virtual IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
+				case "back": return null; //new RootStep(false, Path);
 				case "where": return null; //new RootStep(false, Path);
 			}
 

@@ -9,21 +9,22 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void SetParams(string pParams) {
-			if ( TypeId != null ) {
-				throw new Exception("TypeId already set.");
-			}
+		public override StepData Data {
+			set {
+				base.Data = value;
 
-			long tid;
+				string p = Data.Params[0];
+				long tid;
 
-			if ( long.TryParse(pParams, out tid) ) {
-				TypeId = tid;
-			}
-			else {
-				throw new Exception("Cannot convert value '"+pParams+"' to type 'long'.");
-			}
+				if ( long.TryParse(p, out tid) ) {
+					TypeId = tid;
+				}
+				else {
+					throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
+				}
 
-			Path.Add("has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
+				Path.Add("has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
+			}
 		}
 
 	}

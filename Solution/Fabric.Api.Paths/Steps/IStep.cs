@@ -9,12 +9,12 @@ namespace Fabric.Api.Paths.Steps {
 		Path Path { get; }
 		Type DtoType { get; }
 		string[] AvailableSteps { get; }
+		StepData Data { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void SetParams(string pParams);
-		IStep ExecuteUriPart(string pUriPart);
+		IStep GetNextStep(string pStepText);
 
 	}
 

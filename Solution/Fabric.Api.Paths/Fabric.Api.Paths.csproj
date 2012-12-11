@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Steps\StepData.cs" />
     <Compile Include="Steps\Nodes\ApiPaths.cs">
       <DependentUpon>ApiPaths.tt</DependentUpon>
       <AutoGen>True</AutoGen>

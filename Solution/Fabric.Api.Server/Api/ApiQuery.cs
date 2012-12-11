@@ -145,8 +145,7 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void DoNodeAction(IFabNode pNode) {
-			if ( vUri.IndexOf('/') == -1 && vUri.IndexOf('(') == -1 ) { return; }
-			pNode.NodeUri = null;
+			//nothing yet...
 		}
 
 	}

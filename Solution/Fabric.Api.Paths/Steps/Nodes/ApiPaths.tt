@@ -114,8 +114,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetStepByString(string pName) {
-			switch ( pName ) {
+		protected override IStep GetNextStep(StepData pData) {
+			switch ( pData.Command ) {
 <#
 	foreach ( WeaverRelSchema rel in rels ) {
 		bool isOut = (rel.FromNode == node);
@@ -127,7 +127,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 			}
 
-			return base.GetStepByString(pName);
+			return base.GetNextStep(pData);
 		}
 
 
