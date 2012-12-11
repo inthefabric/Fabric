@@ -3,13 +3,19 @@ using Fabric.Api.Dto;
 using Fabric.Infrastructure;
 
 namespace Fabric.Api.Paths {
+	
+	/*================================================================================================*/
+	public abstract class PathStep {
+
+		internal static readonly string[] AvailSteps = new[] { "/Back", "/Where" };
+
+	}
 
 	/*================================================================================================*/
-	public abstract class PathBase<T> : IPathBase where T : FabNode, new() {
+	public abstract class PathStep<T> : IPathStep where T : FabNode, new() {
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
-		public abstract string[] AvailablePaths { get; }
 
 		protected abstract string TypeIdName { get; }
 		protected abstract bool TypeIdIsLong { get; }
@@ -20,14 +26,7 @@ namespace Fabric.Api.Paths {
 		//protected PathBase() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void Id(long pTypeId) {
-			if ( TypeId != null ) {
-				throw new Exception("TypeId already set.");
-			}
-
-			TypeId = pTypeId;
-			Path.Add("has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
-		}
+		public abstract void SetParams(string pParams);
 
 		/*--------------------------------------------------------------------------------------------*/
 		public T NewFabDto(DbDto pDbDto) {
@@ -43,40 +42,46 @@ namespace Fabric.Api.Paths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Type DtoType { get { return typeof(T); } }
+		public virtual string[] AvailableSteps { get { return PathStep.AvailSteps; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IPathBase ExecuteUriPart(string pUriPart) {
+		public IPathStep ExecuteUriPart(string pUriPart) {
 			string part = pUriPart.ToLower();
 			int parenI = part.IndexOf('(');
-			string param = null;
 
 			if ( parenI > 0 ) {
-				param = part.Substring(parenI+1);
-				param = param.Substring(0, param.Length-1);
 				part = part.Substring(0, parenI);
 			}
 
-			IPathBase result = GetPathByString(part);
+			IPathStep result = GetStepByString(part);
 
 			if ( result == null ) {
 				throw new Exception(pUriPart+" is not a valid path option for "+GetType().Name+".");
 			}
 
-			if ( param != null ) {
-				long id;
-				
-				if ( !long.TryParse(param, out id) ) {
-					throw new Exception("Could not parse Id value for '"+param+"'.");
+			if ( parenI > 0 ) {
+				string param = part.Substring(parenI+1);
+
+				if ( param.Length == 0 || param[param.Length-1] != ')' ) {
+					throw new Exception("Invalid parameter syntax for "+pUriPart+".");
 				}
 
-				result.Id(id);
+				result.SetParams(param.Substring(0, param.Length-1));
 			}
 
 			return result;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract IPathBase GetPathByString(string pName);
+		protected virtual IPathStep GetStepByString(string pName) {
+			switch ( pName ) {
+				case "back":
+					return null; //new RootStep(false, Path);
+				case "where": return null; //new RootStep(false, Path);
+			}
+
+			return null;
+		}
 
 	}
 

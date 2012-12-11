@@ -3,18 +3,18 @@
 namespace Fabric.Api.Paths {
 
 	/*================================================================================================*/
-	public interface IPathBase {
+	public interface IPathStep {
 
 		long? TypeId { get; }
 		Path Path { get; }
 		Type DtoType { get; }
-		string[] AvailablePaths { get; }
+		string[] AvailableSteps { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Id(long pTypeId);
-		IPathBase ExecuteUriPart(string pUriPart);
+		void SetParams(string pParams);
+		IPathStep ExecuteUriPart(string pUriPart);
 
 	}
 

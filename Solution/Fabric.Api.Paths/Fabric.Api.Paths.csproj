@@ -40,10 +40,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="PathDomainStep.cs" />
     <Compile Include="PathRouter.cs" />
     <Compile Include="Path.cs" />
-    <Compile Include="IPathBase.cs" />
-    <Compile Include="PathBase.cs" />
+    <Compile Include="IPathStep.cs" />
+    <Compile Include="PathStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

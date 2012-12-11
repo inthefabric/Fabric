@@ -7,17 +7,17 @@ namespace Fabric.Api.Paths {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IPathBase GetPath(string pUri) {
+		public static IPathStep GetPath(string pUri) {
 			string[] parts = (pUri.Length > 0 ? pUri.Split('/') : new string[0]);
 			var path = new Path();
 			int n = parts.Length;
-			IPathBase pb = new RootPaths(true, path);
+			IPathStep step = new RootStep(true, path);
 
 			for ( int i = 0 ; i < n ; ++i ) {
-				pb = pb.ExecuteUriPart(parts[i]);
+				step = step.ExecuteUriPart(parts[i]);
 			}
 
-			return pb;
+			return step;
 		}
 
 	}

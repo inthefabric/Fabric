@@ -32,7 +32,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 #>
 	/*================================================================================================*/
 	public interface <#= outName #> {
-		<#= PathUtil.GetRelPropType(rel, true) #> <#= PathUtil.GetRelProp(rel, true) #> { get; }
+		<#= PathUtil.GetRelPropType(rel, true) #>Step <#= PathUtil.GetRelProp(rel, true) #> { get; }
 	}
 
 <#
@@ -43,7 +43,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 #>
 	/*================================================================================================*/
 	public interface <#= inName #> {
-		<#= PathUtil.GetRelPropType(rel, false) #> <#= PathUtil.GetRelProp(rel, false) #> { get; }
+		<#= PathUtil.GetRelPropType(rel, false) #>Step <#= PathUtil.GetRelProp(rel, false) #> { get; }
 	}
 
 <#
@@ -55,7 +55,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 	var rels = new List<WeaverRelSchema>();
 	string interfaces = "";
-	string paths = "";
+	string steps = "";
 	
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
@@ -65,7 +65,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		interfaces += (interfaces == "" ? "" : ", ")+PathUtil.GetRelInterface(rel, isOut);
 
 		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
-		paths += (paths == "" ? "" : ", ")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
+		steps += (steps == "" ? "" : ", ")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
 	}
 	
 	string typeIdIsLong = "false";
@@ -77,12 +77,15 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	}
 #>
 	/*================================================================================================*/
-	public partial class <#= node.Name #>Paths : PathBase<<#= "Fab"+node.Name #>>, <#= interfaces #> {
+	public partial class <#= node.Name #>Step : PathDomainStep<<#= "Fab"+node.Name #>>,
+			<#= interfaces #> {
 	
+		private static readonly string[] AvailSteps = new string[] { <#= steps #> };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Paths(bool pIsToNode, Path pPath) {
+		public <#= node.Name #>Step(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -100,14 +103,18 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		protected override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {<#= paths #>};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 <#
 	foreach ( WeaverRelSchema rel in rels ) {
@@ -120,7 +127,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
@@ -130,7 +137,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
 		
 		bool isOut = (rel.FromNode == node);
-		var propType = PathUtil.GetRelPropType(rel, isOut);
+		var propType = PathUtil.GetRelPropType(rel, isOut)+"Step";
 		var propName = PathUtil.GetRelProp(rel, isOut);
 		var isToNode = (isOut ? "true" : "false");
 		var script = (isOut ? "outE" : "inE")+"('"+PathUtil.GetRelLabel(rel)+"')";

@@ -48,15 +48,15 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.StartEvent();
 
 			vUri = vContext.Request.Path.Substring(5);
-			IPathBase pb = PathRouter.GetPath(vUri);
+			IPathStep step = PathRouter.GetPath(vUri);
 
-			vInfo.Query = pb.Path.Script;
-			vInfo.DtoType = pb.DtoType;
+			vInfo.Query = step.Path.Script;
+			vInfo.DtoType = step.DtoType;
 			vInfo.NodeAction = DoNodeAction;
 
 			vInfo.Resp.BaseUri = ApiBaseUri;
 			vInfo.Resp.RequestUri = (vUri.Length > 0 ? "/"+vUri : "");
-			vInfo.Resp.AvailableUris = pb.AvailablePaths;
+			vInfo.Resp.AvailableUris = step.AvailableSteps;
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 
 			if ( vInfo.DtoType != typeof(FabRoot) ) {

@@ -22,7 +22,7 @@ namespace Fabric.Infrastructure {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetRelPropType(WeaverRelSchema pRel, bool pIsOut) {
-			return (pIsOut ? pRel.ToNode.Name : pRel.FromNode.Name)+"Paths";
+			return (pIsOut ? pRel.ToNode.Name : pRel.FromNode.Name);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

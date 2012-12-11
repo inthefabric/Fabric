@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/10/2012 4:51:06 PM
+// Generated on 12/10/2012 9:50:38 PM
 
 using Fabric.Api.Dto;
 
@@ -8,661 +8,664 @@ namespace Fabric.Api.Paths {
 	
 	/*================================================================================================*/
 	public interface IContainsAppList {
-		AppPaths ContainsAppList { get; }
+		AppStep ContainsAppList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInRootContains {
-		RootPaths InRootContains { get; }
+		RootStep InRootContains { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsArtifactList {
-		ArtifactPaths ContainsArtifactList { get; }
+		ArtifactStep ContainsArtifactList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsArtifactTypeList {
-		ArtifactTypePaths ContainsArtifactTypeList { get; }
+		ArtifactTypeStep ContainsArtifactTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsCrowdList {
-		CrowdPaths ContainsCrowdList { get; }
+		CrowdStep ContainsCrowdList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsCrowdianList {
-		CrowdianPaths ContainsCrowdianList { get; }
+		CrowdianStep ContainsCrowdianList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsCrowdianTypeList {
-		CrowdianTypePaths ContainsCrowdianTypeList { get; }
+		CrowdianTypeStep ContainsCrowdianTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsCrowdianTypeAssignList {
-		CrowdianTypeAssignPaths ContainsCrowdianTypeAssignList { get; }
+		CrowdianTypeAssignStep ContainsCrowdianTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsEmailList {
-		EmailPaths ContainsEmailList { get; }
+		EmailStep ContainsEmailList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsLabelList {
-		LabelPaths ContainsLabelList { get; }
+		LabelStep ContainsLabelList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsMemberList {
-		MemberPaths ContainsMemberList { get; }
+		MemberStep ContainsMemberList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsMemberTypeList {
-		MemberTypePaths ContainsMemberTypeList { get; }
+		MemberTypeStep ContainsMemberTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsMemberTypeAssignList {
-		MemberTypeAssignPaths ContainsMemberTypeAssignList { get; }
+		MemberTypeAssignStep ContainsMemberTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsThingList {
-		ThingPaths ContainsThingList { get; }
+		ThingStep ContainsThingList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsUrlList {
-		UrlPaths ContainsUrlList { get; }
+		UrlStep ContainsUrlList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsUserList {
-		UserPaths ContainsUserList { get; }
+		UserStep ContainsUserList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsFactorList {
-		FactorPaths ContainsFactorList { get; }
+		FactorStep ContainsFactorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsFactorAssertionList {
-		FactorAssertionPaths ContainsFactorAssertionList { get; }
+		FactorAssertionStep ContainsFactorAssertionList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsDescriptorList {
-		DescriptorPaths ContainsDescriptorList { get; }
+		DescriptorStep ContainsDescriptorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsDescriptorTypeList {
-		DescriptorTypePaths ContainsDescriptorTypeList { get; }
+		DescriptorTypeStep ContainsDescriptorTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsDirectorList {
-		DirectorPaths ContainsDirectorList { get; }
+		DirectorStep ContainsDirectorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsDirectorTypeList {
-		DirectorTypePaths ContainsDirectorTypeList { get; }
+		DirectorTypeStep ContainsDirectorTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsDirectorActionList {
-		DirectorActionPaths ContainsDirectorActionList { get; }
+		DirectorActionStep ContainsDirectorActionList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsEventorList {
-		EventorPaths ContainsEventorList { get; }
+		EventorStep ContainsEventorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsEventorTypeList {
-		EventorTypePaths ContainsEventorTypeList { get; }
+		EventorTypeStep ContainsEventorTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsEventorPrecisionList {
-		EventorPrecisionPaths ContainsEventorPrecisionList { get; }
+		EventorPrecisionStep ContainsEventorPrecisionList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsIdentorList {
-		IdentorPaths ContainsIdentorList { get; }
+		IdentorStep ContainsIdentorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsIdentorTypeList {
-		IdentorTypePaths ContainsIdentorTypeList { get; }
+		IdentorTypeStep ContainsIdentorTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsLocatorList {
-		LocatorPaths ContainsLocatorList { get; }
+		LocatorStep ContainsLocatorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsLocatorTypeList {
-		LocatorTypePaths ContainsLocatorTypeList { get; }
+		LocatorTypeStep ContainsLocatorTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorList {
-		VectorPaths ContainsVectorList { get; }
+		VectorStep ContainsVectorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorTypeList {
-		VectorTypePaths ContainsVectorTypeList { get; }
+		VectorTypeStep ContainsVectorTypeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorRangeList {
-		VectorRangePaths ContainsVectorRangeList { get; }
+		VectorRangeStep ContainsVectorRangeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorRangeLevelList {
-		VectorRangeLevelPaths ContainsVectorRangeLevelList { get; }
+		VectorRangeLevelStep ContainsVectorRangeLevelList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorUnitList {
-		VectorUnitPaths ContainsVectorUnitList { get; }
+		VectorUnitStep ContainsVectorUnitList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorUnitPrefixList {
-		VectorUnitPrefixPaths ContainsVectorUnitPrefixList { get; }
+		VectorUnitPrefixStep ContainsVectorUnitPrefixList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsVectorUnitDerivedList {
-		VectorUnitDerivedPaths ContainsVectorUnitDerivedList { get; }
+		VectorUnitDerivedStep ContainsVectorUnitDerivedList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsOauthAccessList {
-		OauthAccessPaths ContainsOauthAccessList { get; }
+		OauthAccessStep ContainsOauthAccessList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsOauthDomainList {
-		OauthDomainPaths ContainsOauthDomainList { get; }
+		OauthDomainStep ContainsOauthDomainList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsOauthGrantList {
-		OauthGrantPaths ContainsOauthGrantList { get; }
+		OauthGrantStep ContainsOauthGrantList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IContainsOauthScopeList {
-		OauthScopePaths ContainsOauthScopeList { get; }
+		OauthScopeStep ContainsOauthScopeList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IHasArtifact {
-		ArtifactPaths HasArtifact { get; }
+		ArtifactStep HasArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInAppHas {
-		AppPaths InAppHas { get; }
+		AppStep InAppHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesEmail {
-		EmailPaths UsesEmail { get; }
+		EmailStep UsesEmail { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInAppUses {
-		AppPaths InAppUses { get; }
+		AppStep InAppUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesArtifactType {
-		ArtifactTypePaths UsesArtifactType { get; }
+		ArtifactTypeStep UsesArtifactType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInArtifactUsesList {
-		ArtifactPaths InArtifactListUses { get; }
+		ArtifactStep InArtifactListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInCrowdHas {
-		CrowdPaths InCrowdHas { get; }
+		CrowdStep InCrowdHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesCrowd {
-		CrowdPaths UsesCrowd { get; }
+		CrowdStep UsesCrowd { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInCrowdianUsesList {
-		CrowdianPaths InCrowdianListUses { get; }
+		CrowdianStep InCrowdianListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesUser {
-		UserPaths UsesUser { get; }
+		UserStep UsesUser { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IHasCrowdianTypeAssign {
-		CrowdianTypeAssignPaths HasCrowdianTypeAssign { get; }
+		CrowdianTypeAssignStep HasCrowdianTypeAssign { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInCrowdianHas {
-		CrowdianPaths InCrowdianHas { get; }
+		CrowdianStep InCrowdianHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IHasHistoricCrowdianTypeAssignList {
-		CrowdianTypeAssignPaths HasHistoricCrowdianTypeAssignList { get; }
+		CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInCrowdianHasHistoric {
-		CrowdianPaths InCrowdianHasHistoric { get; }
+		CrowdianStep InCrowdianHasHistoric { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesCrowdianType {
-		CrowdianTypePaths UsesCrowdianType { get; }
+		CrowdianTypeStep UsesCrowdianType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInCrowdianTypeAssignUsesList {
-		CrowdianTypeAssignPaths InCrowdianTypeAssignListUses { get; }
+		CrowdianTypeAssignStep InCrowdianTypeAssignListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInLabelHas {
-		LabelPaths InLabelHas { get; }
+		LabelStep InLabelHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesApp {
-		AppPaths UsesApp { get; }
+		AppStep UsesApp { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInMemberUsesList {
-		MemberPaths InMemberListUses { get; }
+		MemberStep InMemberListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IHasMemberTypeAssign {
-		MemberTypeAssignPaths HasMemberTypeAssign { get; }
+		MemberTypeAssignStep HasMemberTypeAssign { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInMemberHas {
-		MemberPaths InMemberHas { get; }
+		MemberStep InMemberHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IHasHistoricMemberTypeAssignList {
-		MemberTypeAssignPaths HasHistoricMemberTypeAssignList { get; }
+		MemberTypeAssignStep HasHistoricMemberTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInMemberHasHistoric {
-		MemberPaths InMemberHasHistoric { get; }
+		MemberStep InMemberHasHistoric { get; }
 	}
 
 	/*================================================================================================*/
 	public interface ICreatesArtifactList {
-		ArtifactPaths CreatesArtifactList { get; }
+		ArtifactStep CreatesArtifactList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInMemberCreates {
-		MemberPaths InMemberCreates { get; }
+		MemberStep InMemberCreates { get; }
 	}
 
 	/*================================================================================================*/
 	public interface ICreatesMemberTypeAssignList {
-		MemberTypeAssignPaths CreatesMemberTypeAssignList { get; }
+		MemberTypeAssignStep CreatesMemberTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface ICreatesFactorList {
-		FactorPaths CreatesFactorList { get; }
+		FactorStep CreatesFactorList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesMemberType {
-		MemberTypePaths UsesMemberType { get; }
+		MemberTypeStep UsesMemberType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInMemberTypeAssignUsesList {
-		MemberTypeAssignPaths InMemberTypeAssignListUses { get; }
+		MemberTypeAssignStep InMemberTypeAssignListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInThingHas {
-		ThingPaths InThingHas { get; }
+		ThingStep InThingHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInUrlHas {
-		UrlPaths InUrlHas { get; }
+		UrlStep InUrlHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInUserHas {
-		UserPaths InUserHas { get; }
+		UserStep InUserHas { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInUserUses {
-		UserPaths InUserUses { get; }
+		UserStep InUserUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface ICreatesCrowdianTypeAssignList {
-		CrowdianTypeAssignPaths CreatesCrowdianTypeAssignList { get; }
+		CrowdianTypeAssignStep CreatesCrowdianTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInUserCreates {
-		UserPaths InUserCreates { get; }
+		UserStep InUserCreates { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesPrimaryArtifact {
-		ArtifactPaths UsesPrimaryArtifact { get; }
+		ArtifactStep UsesPrimaryArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInFactorUsesPrimaryList {
-		FactorPaths InFactorListUsesPrimary { get; }
+		FactorStep InFactorListUsesPrimary { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesRelatedArtifact {
-		ArtifactPaths UsesRelatedArtifact { get; }
+		ArtifactStep UsesRelatedArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInFactorUsesRelatedList {
-		FactorPaths InFactorListUsesRelated { get; }
+		FactorStep InFactorListUsesRelated { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesFactorAssertion {
-		FactorAssertionPaths UsesFactorAssertion { get; }
+		FactorAssertionStep UsesFactorAssertion { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInFactorUsesList {
-		FactorPaths InFactorListUses { get; }
+		FactorStep InFactorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IReplacesFactor {
-		FactorPaths ReplacesFactor { get; }
+		FactorStep ReplacesFactor { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInFactorReplaces {
-		FactorPaths InFactorReplaces { get; }
+		FactorStep InFactorReplaces { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesDescriptor {
-		DescriptorPaths UsesDescriptor { get; }
+		DescriptorStep UsesDescriptor { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesDirector {
-		DirectorPaths UsesDirector { get; }
+		DirectorStep UsesDirector { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesEventor {
-		EventorPaths UsesEventor { get; }
+		EventorStep UsesEventor { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesIdentor {
-		IdentorPaths UsesIdentor { get; }
+		IdentorStep UsesIdentor { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesLocator {
-		LocatorPaths UsesLocator { get; }
+		LocatorStep UsesLocator { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesVector {
-		VectorPaths UsesVector { get; }
+		VectorStep UsesVector { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesDescriptorType {
-		DescriptorTypePaths UsesDescriptorType { get; }
+		DescriptorTypeStep UsesDescriptorType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDescriptorUsesList {
-		DescriptorPaths InDescriptorListUses { get; }
+		DescriptorStep InDescriptorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IRefinesPrimaryWithArtifact {
-		ArtifactPaths RefinesPrimaryWithArtifact { get; }
+		ArtifactStep RefinesPrimaryWithArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDescriptorRefinesPrimaryWithList {
-		DescriptorPaths InDescriptorListRefinesPrimaryWith { get; }
+		DescriptorStep InDescriptorListRefinesPrimaryWith { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IRefinesRelatedWithArtifact {
-		ArtifactPaths RefinesRelatedWithArtifact { get; }
+		ArtifactStep RefinesRelatedWithArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDescriptorRefinesRelatedWithList {
-		DescriptorPaths InDescriptorListRefinesRelatedWith { get; }
+		DescriptorStep InDescriptorListRefinesRelatedWith { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IRefinesTypeWithArtifact {
-		ArtifactPaths RefinesTypeWithArtifact { get; }
+		ArtifactStep RefinesTypeWithArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDescriptorRefinesTypeWithList {
-		DescriptorPaths InDescriptorListRefinesTypeWith { get; }
+		DescriptorStep InDescriptorListRefinesTypeWith { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesDirectorType {
-		DirectorTypePaths UsesDirectorType { get; }
+		DirectorTypeStep UsesDirectorType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDirectorUsesList {
-		DirectorPaths InDirectorListUses { get; }
+		DirectorStep InDirectorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesPrimaryDirectorAction {
-		DirectorActionPaths UsesPrimaryDirectorAction { get; }
+		DirectorActionStep UsesPrimaryDirectorAction { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDirectorUsesPrimaryList {
-		DirectorPaths InDirectorListUsesPrimary { get; }
+		DirectorStep InDirectorListUsesPrimary { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesRelatedDirectorAction {
-		DirectorActionPaths UsesRelatedDirectorAction { get; }
+		DirectorActionStep UsesRelatedDirectorAction { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInDirectorUsesRelatedList {
-		DirectorPaths InDirectorListUsesRelated { get; }
+		DirectorStep InDirectorListUsesRelated { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesEventorType {
-		EventorTypePaths UsesEventorType { get; }
+		EventorTypeStep UsesEventorType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInEventorUsesList {
-		EventorPaths InEventorListUses { get; }
+		EventorStep InEventorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesEventorPrecision {
-		EventorPrecisionPaths UsesEventorPrecision { get; }
+		EventorPrecisionStep UsesEventorPrecision { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesIdentorType {
-		IdentorTypePaths UsesIdentorType { get; }
+		IdentorTypeStep UsesIdentorType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInIdentorUsesList {
-		IdentorPaths InIdentorListUses { get; }
+		IdentorStep InIdentorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesLocatorType {
-		LocatorTypePaths UsesLocatorType { get; }
+		LocatorTypeStep UsesLocatorType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInLocatorUsesList {
-		LocatorPaths InLocatorListUses { get; }
+		LocatorStep InLocatorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesAxisArtifact {
-		ArtifactPaths UsesAxisArtifact { get; }
+		ArtifactStep UsesAxisArtifact { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorUsesAxisList {
-		VectorPaths InVectorListUsesAxis { get; }
+		VectorStep InVectorListUsesAxis { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesVectorType {
-		VectorTypePaths UsesVectorType { get; }
+		VectorTypeStep UsesVectorType { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorUsesList {
-		VectorPaths InVectorListUses { get; }
+		VectorStep InVectorListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesVectorUnit {
-		VectorUnitPaths UsesVectorUnit { get; }
+		VectorUnitStep UsesVectorUnit { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesVectorUnitPrefix {
-		VectorUnitPrefixPaths UsesVectorUnitPrefix { get; }
+		VectorUnitPrefixStep UsesVectorUnitPrefix { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesVectorRange {
-		VectorRangePaths UsesVectorRange { get; }
+		VectorRangeStep UsesVectorRange { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorTypeUsesList {
-		VectorTypePaths InVectorTypeListUses { get; }
+		VectorTypeStep InVectorTypeListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IUsesVectorRangeLevelList {
-		VectorRangeLevelPaths UsesVectorRangeLevelList { get; }
+		VectorRangeLevelStep UsesVectorRangeLevelList { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorRangeUsesList {
-		VectorRangePaths InVectorRangeListUses { get; }
+		VectorRangeStep InVectorRangeListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IDefinesVectorUnit {
-		VectorUnitPaths DefinesVectorUnit { get; }
+		VectorUnitStep DefinesVectorUnit { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorUnitDerivedDefinesList {
-		VectorUnitDerivedPaths InVectorUnitDerivedListDefines { get; }
+		VectorUnitDerivedStep InVectorUnitDerivedListDefines { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IRaisesToExpVectorUnit {
-		VectorUnitPaths RaisesToExpVectorUnit { get; }
+		VectorUnitStep RaisesToExpVectorUnit { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorUnitDerivedRaisesToExpList {
-		VectorUnitDerivedPaths InVectorUnitDerivedListRaisesToExp { get; }
+		VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInVectorUnitDerivedUsesList {
-		VectorUnitDerivedPaths InVectorUnitDerivedListUses { get; }
+		VectorUnitDerivedStep InVectorUnitDerivedListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInOauthAccessUsesList {
-		OauthAccessPaths InOauthAccessListUses { get; }
+		OauthAccessStep InOauthAccessListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInOauthDomainUsesList {
-		OauthDomainPaths InOauthDomainListUses { get; }
+		OauthDomainStep InOauthDomainListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInOauthGrantUsesList {
-		OauthGrantPaths InOauthGrantListUses { get; }
+		OauthGrantStep InOauthGrantListUses { get; }
 	}
 
 	/*================================================================================================*/
 	public interface IInOauthScopeUsesList {
-		OauthScopePaths InOauthScopeListUses { get; }
+		OauthScopeStep InOauthScopeListUses { get; }
 	}
 
 	/*================================================================================================*/
-	public partial class RootPaths : PathBase<FabRoot>, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
+	public partial class RootStep : PathDomainStep<FabRoot>,
+			IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths(bool pIsToNode, Path pPath) {
+		public RootStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -680,14 +683,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "containsapplist": return ContainsAppList;
 				case "containsartifactlist": return ContainsArtifactList;
@@ -731,220 +738,223 @@ namespace Fabric.Api.Paths {
 				case "containsoauthscopelist": return ContainsOauthScopeList;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths ContainsAppList {
-			get { return new AppPaths(true, Path.Add("outE('RootContainsApp')")); }
+		public AppStep ContainsAppList {
+			get { return new AppStep(true, Path.Add("outE('RootContainsApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths ContainsArtifactList {
-			get { return new ArtifactPaths(true, Path.Add("outE('RootContainsArtifact')")); }
+		public ArtifactStep ContainsArtifactList {
+			get { return new ArtifactStep(true, Path.Add("outE('RootContainsArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypePaths ContainsArtifactTypeList {
-			get { return new ArtifactTypePaths(true, Path.Add("outE('RootContainsArtifactType')")); }
+		public ArtifactTypeStep ContainsArtifactTypeList {
+			get { return new ArtifactTypeStep(true, Path.Add("outE('RootContainsArtifactType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdPaths ContainsCrowdList {
-			get { return new CrowdPaths(true, Path.Add("outE('RootContainsCrowd')")); }
+		public CrowdStep ContainsCrowdList {
+			get { return new CrowdStep(true, Path.Add("outE('RootContainsCrowd')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianPaths ContainsCrowdianList {
-			get { return new CrowdianPaths(true, Path.Add("outE('RootContainsCrowdian')")); }
+		public CrowdianStep ContainsCrowdianList {
+			get { return new CrowdianStep(true, Path.Add("outE('RootContainsCrowdian')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypePaths ContainsCrowdianTypeList {
-			get { return new CrowdianTypePaths(true, Path.Add("outE('RootContainsCrowdianType')")); }
+		public CrowdianTypeStep ContainsCrowdianTypeList {
+			get { return new CrowdianTypeStep(true, Path.Add("outE('RootContainsCrowdianType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignPaths ContainsCrowdianTypeAssignList {
-			get { return new CrowdianTypeAssignPaths(true, Path.Add("outE('RootContainsCrowdianTypeAssign')")); }
+		public CrowdianTypeAssignStep ContainsCrowdianTypeAssignList {
+			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('RootContainsCrowdianTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailPaths ContainsEmailList {
-			get { return new EmailPaths(true, Path.Add("outE('RootContainsEmail')")); }
+		public EmailStep ContainsEmailList {
+			get { return new EmailStep(true, Path.Add("outE('RootContainsEmail')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LabelPaths ContainsLabelList {
-			get { return new LabelPaths(true, Path.Add("outE('RootContainsLabel')")); }
+		public LabelStep ContainsLabelList {
+			get { return new LabelStep(true, Path.Add("outE('RootContainsLabel')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths ContainsMemberList {
-			get { return new MemberPaths(true, Path.Add("outE('RootContainsMember')")); }
+		public MemberStep ContainsMemberList {
+			get { return new MemberStep(true, Path.Add("outE('RootContainsMember')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypePaths ContainsMemberTypeList {
-			get { return new MemberTypePaths(true, Path.Add("outE('RootContainsMemberType')")); }
+		public MemberTypeStep ContainsMemberTypeList {
+			get { return new MemberTypeStep(true, Path.Add("outE('RootContainsMemberType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignPaths ContainsMemberTypeAssignList {
-			get { return new MemberTypeAssignPaths(true, Path.Add("outE('RootContainsMemberTypeAssign')")); }
+		public MemberTypeAssignStep ContainsMemberTypeAssignList {
+			get { return new MemberTypeAssignStep(true, Path.Add("outE('RootContainsMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ThingPaths ContainsThingList {
-			get { return new ThingPaths(true, Path.Add("outE('RootContainsThing')")); }
+		public ThingStep ContainsThingList {
+			get { return new ThingStep(true, Path.Add("outE('RootContainsThing')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlPaths ContainsUrlList {
-			get { return new UrlPaths(true, Path.Add("outE('RootContainsUrl')")); }
+		public UrlStep ContainsUrlList {
+			get { return new UrlStep(true, Path.Add("outE('RootContainsUrl')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths ContainsUserList {
-			get { return new UserPaths(true, Path.Add("outE('RootContainsUser')")); }
+		public UserStep ContainsUserList {
+			get { return new UserStep(true, Path.Add("outE('RootContainsUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths ContainsFactorList {
-			get { return new FactorPaths(true, Path.Add("outE('RootContainsFactor')")); }
+		public FactorStep ContainsFactorList {
+			get { return new FactorStep(true, Path.Add("outE('RootContainsFactor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionPaths ContainsFactorAssertionList {
-			get { return new FactorAssertionPaths(true, Path.Add("outE('RootContainsFactorAssertion')")); }
+		public FactorAssertionStep ContainsFactorAssertionList {
+			get { return new FactorAssertionStep(true, Path.Add("outE('RootContainsFactorAssertion')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths ContainsDescriptorList {
-			get { return new DescriptorPaths(true, Path.Add("outE('RootContainsDescriptor')")); }
+		public DescriptorStep ContainsDescriptorList {
+			get { return new DescriptorStep(true, Path.Add("outE('RootContainsDescriptor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypePaths ContainsDescriptorTypeList {
-			get { return new DescriptorTypePaths(true, Path.Add("outE('RootContainsDescriptorType')")); }
+		public DescriptorTypeStep ContainsDescriptorTypeList {
+			get { return new DescriptorTypeStep(true, Path.Add("outE('RootContainsDescriptorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorPaths ContainsDirectorList {
-			get { return new DirectorPaths(true, Path.Add("outE('RootContainsDirector')")); }
+		public DirectorStep ContainsDirectorList {
+			get { return new DirectorStep(true, Path.Add("outE('RootContainsDirector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypePaths ContainsDirectorTypeList {
-			get { return new DirectorTypePaths(true, Path.Add("outE('RootContainsDirectorType')")); }
+		public DirectorTypeStep ContainsDirectorTypeList {
+			get { return new DirectorTypeStep(true, Path.Add("outE('RootContainsDirectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionPaths ContainsDirectorActionList {
-			get { return new DirectorActionPaths(true, Path.Add("outE('RootContainsDirectorAction')")); }
+		public DirectorActionStep ContainsDirectorActionList {
+			get { return new DirectorActionStep(true, Path.Add("outE('RootContainsDirectorAction')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPaths ContainsEventorList {
-			get { return new EventorPaths(true, Path.Add("outE('RootContainsEventor')")); }
+		public EventorStep ContainsEventorList {
+			get { return new EventorStep(true, Path.Add("outE('RootContainsEventor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypePaths ContainsEventorTypeList {
-			get { return new EventorTypePaths(true, Path.Add("outE('RootContainsEventorType')")); }
+		public EventorTypeStep ContainsEventorTypeList {
+			get { return new EventorTypeStep(true, Path.Add("outE('RootContainsEventorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionPaths ContainsEventorPrecisionList {
-			get { return new EventorPrecisionPaths(true, Path.Add("outE('RootContainsEventorPrecision')")); }
+		public EventorPrecisionStep ContainsEventorPrecisionList {
+			get { return new EventorPrecisionStep(true, Path.Add("outE('RootContainsEventorPrecision')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorPaths ContainsIdentorList {
-			get { return new IdentorPaths(true, Path.Add("outE('RootContainsIdentor')")); }
+		public IdentorStep ContainsIdentorList {
+			get { return new IdentorStep(true, Path.Add("outE('RootContainsIdentor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypePaths ContainsIdentorTypeList {
-			get { return new IdentorTypePaths(true, Path.Add("outE('RootContainsIdentorType')")); }
+		public IdentorTypeStep ContainsIdentorTypeList {
+			get { return new IdentorTypeStep(true, Path.Add("outE('RootContainsIdentorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorPaths ContainsLocatorList {
-			get { return new LocatorPaths(true, Path.Add("outE('RootContainsLocator')")); }
+		public LocatorStep ContainsLocatorList {
+			get { return new LocatorStep(true, Path.Add("outE('RootContainsLocator')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypePaths ContainsLocatorTypeList {
-			get { return new LocatorTypePaths(true, Path.Add("outE('RootContainsLocatorType')")); }
+		public LocatorTypeStep ContainsLocatorTypeList {
+			get { return new LocatorTypeStep(true, Path.Add("outE('RootContainsLocatorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths ContainsVectorList {
-			get { return new VectorPaths(true, Path.Add("outE('RootContainsVector')")); }
+		public VectorStep ContainsVectorList {
+			get { return new VectorStep(true, Path.Add("outE('RootContainsVector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypePaths ContainsVectorTypeList {
-			get { return new VectorTypePaths(true, Path.Add("outE('RootContainsVectorType')")); }
+		public VectorTypeStep ContainsVectorTypeList {
+			get { return new VectorTypeStep(true, Path.Add("outE('RootContainsVectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangePaths ContainsVectorRangeList {
-			get { return new VectorRangePaths(true, Path.Add("outE('RootContainsVectorRange')")); }
+		public VectorRangeStep ContainsVectorRangeList {
+			get { return new VectorRangeStep(true, Path.Add("outE('RootContainsVectorRange')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelPaths ContainsVectorRangeLevelList {
-			get { return new VectorRangeLevelPaths(true, Path.Add("outE('RootContainsVectorRangeLevel')")); }
+		public VectorRangeLevelStep ContainsVectorRangeLevelList {
+			get { return new VectorRangeLevelStep(true, Path.Add("outE('RootContainsVectorRangeLevel')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPaths ContainsVectorUnitList {
-			get { return new VectorUnitPaths(true, Path.Add("outE('RootContainsVectorUnit')")); }
+		public VectorUnitStep ContainsVectorUnitList {
+			get { return new VectorUnitStep(true, Path.Add("outE('RootContainsVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixPaths ContainsVectorUnitPrefixList {
-			get { return new VectorUnitPrefixPaths(true, Path.Add("outE('RootContainsVectorUnitPrefix')")); }
+		public VectorUnitPrefixStep ContainsVectorUnitPrefixList {
+			get { return new VectorUnitPrefixStep(true, Path.Add("outE('RootContainsVectorUnitPrefix')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedPaths ContainsVectorUnitDerivedList {
-			get { return new VectorUnitDerivedPaths(true, Path.Add("outE('RootContainsVectorUnitDerived')")); }
+		public VectorUnitDerivedStep ContainsVectorUnitDerivedList {
+			get { return new VectorUnitDerivedStep(true, Path.Add("outE('RootContainsVectorUnitDerived')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessPaths ContainsOauthAccessList {
-			get { return new OauthAccessPaths(true, Path.Add("outE('RootContainsOauthAccess')")); }
+		public OauthAccessStep ContainsOauthAccessList {
+			get { return new OauthAccessStep(true, Path.Add("outE('RootContainsOauthAccess')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainPaths ContainsOauthDomainList {
-			get { return new OauthDomainPaths(true, Path.Add("outE('RootContainsOauthDomain')")); }
+		public OauthDomainStep ContainsOauthDomainList {
+			get { return new OauthDomainStep(true, Path.Add("outE('RootContainsOauthDomain')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantPaths ContainsOauthGrantList {
-			get { return new OauthGrantPaths(true, Path.Add("outE('RootContainsOauthGrant')")); }
+		public OauthGrantStep ContainsOauthGrantList {
+			get { return new OauthGrantStep(true, Path.Add("outE('RootContainsOauthGrant')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopePaths ContainsOauthScopeList {
-			get { return new OauthScopePaths(true, Path.Add("outE('RootContainsOauthScope')")); }
+		public OauthScopeStep ContainsOauthScopeList {
+			get { return new OauthScopeStep(true, Path.Add("outE('RootContainsOauthScope')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class AppPaths : PathBase<FabApp>, IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
+	public partial class AppStep : PathDomainStep<FabApp>,
+			IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths(bool pIsToNode, Path pPath) {
+		public AppStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -962,14 +972,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
@@ -981,60 +995,63 @@ namespace Fabric.Api.Paths {
 				case "inoauthscopelistuses": return InOauthScopeListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsApp')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths HasArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('AppHasArtifact')")); }
+		public ArtifactStep HasArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('AppHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailPaths UsesEmail {
-			get { return new EmailPaths(true, Path.Add("outE('AppUsesEmail')")); }
+		public EmailStep UsesEmail {
+			get { return new EmailStep(true, Path.Add("outE('AppUsesEmail')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberListUses {
-			get { return new MemberPaths(false, Path.Add("inE('MemberUsesApp')")); }
+		public MemberStep InMemberListUses {
+			get { return new MemberStep(false, Path.Add("inE('MemberUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessPaths InOauthAccessListUses {
-			get { return new OauthAccessPaths(false, Path.Add("inE('OauthAccessUsesApp')")); }
+		public OauthAccessStep InOauthAccessListUses {
+			get { return new OauthAccessStep(false, Path.Add("inE('OauthAccessUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainPaths InOauthDomainListUses {
-			get { return new OauthDomainPaths(false, Path.Add("inE('OauthDomainUsesApp')")); }
+		public OauthDomainStep InOauthDomainListUses {
+			get { return new OauthDomainStep(false, Path.Add("inE('OauthDomainUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantPaths InOauthGrantListUses {
-			get { return new OauthGrantPaths(false, Path.Add("inE('OauthGrantUsesApp')")); }
+		public OauthGrantStep InOauthGrantListUses {
+			get { return new OauthGrantStep(false, Path.Add("inE('OauthGrantUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopePaths InOauthScopeListUses {
-			get { return new OauthScopePaths(false, Path.Add("inE('OauthScopeUsesApp')")); }
+		public OauthScopeStep InOauthScopeListUses {
+			get { return new OauthScopeStep(false, Path.Add("inE('OauthScopeUsesApp')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactPaths : PathBase<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
+	public partial class ArtifactStep : PathDomainStep<FabArtifact>,
+			IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths(bool pIsToNode, Path pPath) {
+		public ArtifactStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1052,14 +1069,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inapphas": return InAppHas;
@@ -1078,95 +1099,98 @@ namespace Fabric.Api.Paths {
 				case "invectorlistusesaxis": return InVectorListUsesAxis;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsArtifact')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths InAppHas {
-			get { return new AppPaths(false, Path.Add("inE('AppHasArtifact')")); }
+		public AppStep InAppHas {
+			get { return new AppStep(false, Path.Add("inE('AppHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypePaths UsesArtifactType {
-			get { return new ArtifactTypePaths(true, Path.Add("outE('ArtifactUsesArtifactType')")); }
+		public ArtifactTypeStep UsesArtifactType {
+			get { return new ArtifactTypeStep(true, Path.Add("outE('ArtifactUsesArtifactType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdPaths InCrowdHas {
-			get { return new CrowdPaths(false, Path.Add("inE('CrowdHasArtifact')")); }
+		public CrowdStep InCrowdHas {
+			get { return new CrowdStep(false, Path.Add("inE('CrowdHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LabelPaths InLabelHas {
-			get { return new LabelPaths(false, Path.Add("inE('LabelHasArtifact')")); }
+		public LabelStep InLabelHas {
+			get { return new LabelStep(false, Path.Add("inE('LabelHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberCreates {
-			get { return new MemberPaths(false, Path.Add("inE('MemberCreatesArtifact')")); }
+		public MemberStep InMemberCreates {
+			get { return new MemberStep(false, Path.Add("inE('MemberCreatesArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ThingPaths InThingHas {
-			get { return new ThingPaths(false, Path.Add("inE('ThingHasArtifact')")); }
+		public ThingStep InThingHas {
+			get { return new ThingStep(false, Path.Add("inE('ThingHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlPaths InUrlHas {
-			get { return new UrlPaths(false, Path.Add("inE('UrlHasArtifact')")); }
+		public UrlStep InUrlHas {
+			get { return new UrlStep(false, Path.Add("inE('UrlHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths InUserHas {
-			get { return new UserPaths(false, Path.Add("inE('UserHasArtifact')")); }
+		public UserStep InUserHas {
+			get { return new UserStep(false, Path.Add("inE('UserHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUsesPrimary {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesPrimaryArtifact')")); }
+		public FactorStep InFactorListUsesPrimary {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesPrimaryArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUsesRelated {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesRelatedArtifact')")); }
+		public FactorStep InFactorListUsesRelated {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesRelatedArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths InDescriptorListRefinesPrimaryWith {
-			get { return new DescriptorPaths(false, Path.Add("inE('DescriptorRefinesPrimaryWithArtifact')")); }
+		public DescriptorStep InDescriptorListRefinesPrimaryWith {
+			get { return new DescriptorStep(false, Path.Add("inE('DescriptorRefinesPrimaryWithArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths InDescriptorListRefinesRelatedWith {
-			get { return new DescriptorPaths(false, Path.Add("inE('DescriptorRefinesRelatedWithArtifact')")); }
+		public DescriptorStep InDescriptorListRefinesRelatedWith {
+			get { return new DescriptorStep(false, Path.Add("inE('DescriptorRefinesRelatedWithArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths InDescriptorListRefinesTypeWith {
-			get { return new DescriptorPaths(false, Path.Add("inE('DescriptorRefinesTypeWithArtifact')")); }
+		public DescriptorStep InDescriptorListRefinesTypeWith {
+			get { return new DescriptorStep(false, Path.Add("inE('DescriptorRefinesTypeWithArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths InVectorListUsesAxis {
-			get { return new VectorPaths(false, Path.Add("inE('VectorUsesAxisArtifact')")); }
+		public VectorStep InVectorListUsesAxis {
+			get { return new VectorStep(false, Path.Add("inE('VectorUsesAxisArtifact')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactTypePaths : PathBase<FabArtifactType>, IInRootContains, IInArtifactUsesList {
+	public partial class ArtifactTypeStep : PathDomainStep<FabArtifactType>,
+			IInRootContains, IInArtifactUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InArtifactListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypePaths(bool pIsToNode, Path pPath) {
+		public ArtifactTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1184,43 +1208,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InArtifactListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inartifactlistuses": return InArtifactListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsArtifactType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsArtifactType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths InArtifactListUses {
-			get { return new ArtifactPaths(false, Path.Add("inE('ArtifactUsesArtifactType')")); }
+		public ArtifactStep InArtifactListUses {
+			get { return new ArtifactStep(false, Path.Add("inE('ArtifactUsesArtifactType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdPaths : PathBase<FabCrowd>, IInRootContains, IHasArtifact, IInCrowdianUsesList {
+	public partial class CrowdStep : PathDomainStep<FabCrowd>,
+			IInRootContains, IHasArtifact, IInCrowdianUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/HasArtifact", "/InCrowdianListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdPaths(bool pIsToNode, Path pPath) {
+		public CrowdStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1238,49 +1269,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/HasArtifact", "/InCrowdianListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 				case "incrowdianlistuses": return InCrowdianListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsCrowd')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsCrowd')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths HasArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('CrowdHasArtifact')")); }
+		public ArtifactStep HasArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('CrowdHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianPaths InCrowdianListUses {
-			get { return new CrowdianPaths(false, Path.Add("inE('CrowdianUsesCrowd')")); }
+		public CrowdianStep InCrowdianListUses {
+			get { return new CrowdianStep(false, Path.Add("inE('CrowdianUsesCrowd')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianPaths : PathBase<FabCrowdian>, IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
+	public partial class CrowdianStep : PathDomainStep<FabCrowdian>,
+			IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianPaths(bool pIsToNode, Path pPath) {
+		public CrowdianStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1298,14 +1336,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usescrowd": return UsesCrowd;
@@ -1314,45 +1356,48 @@ namespace Fabric.Api.Paths {
 				case "hashistoriccrowdiantypeassignlist": return HasHistoricCrowdianTypeAssignList;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsCrowdian')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsCrowdian')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdPaths UsesCrowd {
-			get { return new CrowdPaths(true, Path.Add("outE('CrowdianUsesCrowd')")); }
+		public CrowdStep UsesCrowd {
+			get { return new CrowdStep(true, Path.Add("outE('CrowdianUsesCrowd')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths UsesUser {
-			get { return new UserPaths(true, Path.Add("outE('CrowdianUsesUser')")); }
+		public UserStep UsesUser {
+			get { return new UserStep(true, Path.Add("outE('CrowdianUsesUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignPaths HasCrowdianTypeAssign {
-			get { return new CrowdianTypeAssignPaths(true, Path.Add("outE('CrowdianHasCrowdianTypeAssign')")); }
+		public CrowdianTypeAssignStep HasCrowdianTypeAssign {
+			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('CrowdianHasCrowdianTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignPaths HasHistoricCrowdianTypeAssignList {
-			get { return new CrowdianTypeAssignPaths(true, Path.Add("outE('CrowdianHasHistoricCrowdianTypeAssign')")); }
+		public CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList {
+			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('CrowdianHasHistoricCrowdianTypeAssign')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypePaths : PathBase<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignUsesList {
+	public partial class CrowdianTypeStep : PathDomainStep<FabCrowdianType>,
+			IInRootContains, IInCrowdianTypeAssignUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InCrowdianTypeAssignListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypePaths(bool pIsToNode, Path pPath) {
+		public CrowdianTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1370,43 +1415,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InCrowdianTypeAssignListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsCrowdianType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsCrowdianType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignPaths InCrowdianTypeAssignListUses {
-			get { return new CrowdianTypeAssignPaths(false, Path.Add("inE('CrowdianTypeAssignUsesCrowdianType')")); }
+		public CrowdianTypeAssignStep InCrowdianTypeAssignListUses {
+			get { return new CrowdianTypeAssignStep(false, Path.Add("inE('CrowdianTypeAssignUsesCrowdianType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypeAssignPaths : PathBase<FabCrowdianTypeAssign>, IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
+	public partial class CrowdianTypeAssignStep : PathDomainStep<FabCrowdianTypeAssign>,
+			IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignPaths(bool pIsToNode, Path pPath) {
+		public CrowdianTypeAssignStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1424,14 +1476,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdianhas": return InCrowdianHas;
@@ -1440,45 +1496,48 @@ namespace Fabric.Api.Paths {
 				case "inusercreates": return InUserCreates;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsCrowdianTypeAssign')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsCrowdianTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianPaths InCrowdianHas {
-			get { return new CrowdianPaths(false, Path.Add("inE('CrowdianHasCrowdianTypeAssign')")); }
+		public CrowdianStep InCrowdianHas {
+			get { return new CrowdianStep(false, Path.Add("inE('CrowdianHasCrowdianTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianPaths InCrowdianHasHistoric {
-			get { return new CrowdianPaths(false, Path.Add("inE('CrowdianHasHistoricCrowdianTypeAssign')")); }
+		public CrowdianStep InCrowdianHasHistoric {
+			get { return new CrowdianStep(false, Path.Add("inE('CrowdianHasHistoricCrowdianTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypePaths UsesCrowdianType {
-			get { return new CrowdianTypePaths(true, Path.Add("outE('CrowdianTypeAssignUsesCrowdianType')")); }
+		public CrowdianTypeStep UsesCrowdianType {
+			get { return new CrowdianTypeStep(true, Path.Add("outE('CrowdianTypeAssignUsesCrowdianType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths InUserCreates {
-			get { return new UserPaths(false, Path.Add("inE('UserCreatesCrowdianTypeAssign')")); }
+		public UserStep InUserCreates {
+			get { return new UserStep(false, Path.Add("inE('UserCreatesCrowdianTypeAssign')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EmailPaths : PathBase<FabEmail>, IInRootContains, IInAppUses, IInUserUses {
+	public partial class EmailStep : PathDomainStep<FabEmail>,
+			IInRootContains, IInAppUses, IInUserUses {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InAppUses", "/InUserUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailPaths(bool pIsToNode, Path pPath) {
+		public EmailStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1496,49 +1555,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InAppUses", "/InUserUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inappuses": return InAppUses;
 				case "inuseruses": return InUserUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsEmail')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsEmail')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths InAppUses {
-			get { return new AppPaths(false, Path.Add("inE('AppUsesEmail')")); }
+		public AppStep InAppUses {
+			get { return new AppStep(false, Path.Add("inE('AppUsesEmail')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths InUserUses {
-			get { return new UserPaths(false, Path.Add("inE('UserUsesEmail')")); }
+		public UserStep InUserUses {
+			get { return new UserStep(false, Path.Add("inE('UserUsesEmail')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class LabelPaths : PathBase<FabLabel>, IInRootContains, IHasArtifact {
+	public partial class LabelStep : PathDomainStep<FabLabel>,
+			IInRootContains, IHasArtifact {
 	
+		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LabelPaths(bool pIsToNode, Path pPath) {
+		public LabelStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1556,43 +1622,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/HasArtifact"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsLabel')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsLabel')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths HasArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('LabelHasArtifact')")); }
+		public ArtifactStep HasArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('LabelHasArtifact')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberPaths : PathBase<FabMember>, IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
+	public partial class MemberStep : PathDomainStep<FabMember>,
+			IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths(bool pIsToNode, Path pPath) {
+		public MemberStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1610,14 +1683,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
@@ -1629,60 +1706,63 @@ namespace Fabric.Api.Paths {
 				case "createsfactorlist": return CreatesFactorList;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsMember')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsMember')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths UsesApp {
-			get { return new AppPaths(true, Path.Add("outE('MemberUsesApp')")); }
+		public AppStep UsesApp {
+			get { return new AppStep(true, Path.Add("outE('MemberUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths UsesUser {
-			get { return new UserPaths(true, Path.Add("outE('MemberUsesUser')")); }
+		public UserStep UsesUser {
+			get { return new UserStep(true, Path.Add("outE('MemberUsesUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignPaths HasMemberTypeAssign {
-			get { return new MemberTypeAssignPaths(true, Path.Add("outE('MemberHasMemberTypeAssign')")); }
+		public MemberTypeAssignStep HasMemberTypeAssign {
+			get { return new MemberTypeAssignStep(true, Path.Add("outE('MemberHasMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignPaths HasHistoricMemberTypeAssignList {
-			get { return new MemberTypeAssignPaths(true, Path.Add("outE('MemberHasHistoricMemberTypeAssign')")); }
+		public MemberTypeAssignStep HasHistoricMemberTypeAssignList {
+			get { return new MemberTypeAssignStep(true, Path.Add("outE('MemberHasHistoricMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths CreatesArtifactList {
-			get { return new ArtifactPaths(true, Path.Add("outE('MemberCreatesArtifact')")); }
+		public ArtifactStep CreatesArtifactList {
+			get { return new ArtifactStep(true, Path.Add("outE('MemberCreatesArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignPaths CreatesMemberTypeAssignList {
-			get { return new MemberTypeAssignPaths(true, Path.Add("outE('MemberCreatesMemberTypeAssign')")); }
+		public MemberTypeAssignStep CreatesMemberTypeAssignList {
+			get { return new MemberTypeAssignStep(true, Path.Add("outE('MemberCreatesMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths CreatesFactorList {
-			get { return new FactorPaths(true, Path.Add("outE('MemberCreatesFactor')")); }
+		public FactorStep CreatesFactorList {
+			get { return new FactorStep(true, Path.Add("outE('MemberCreatesFactor')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypePaths : PathBase<FabMemberType>, IInRootContains, IInMemberTypeAssignUsesList {
+	public partial class MemberTypeStep : PathDomainStep<FabMemberType>,
+			IInRootContains, IInMemberTypeAssignUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InMemberTypeAssignListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypePaths(bool pIsToNode, Path pPath) {
+		public MemberTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1700,43 +1780,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InMemberTypeAssignListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inmembertypeassignlistuses": return InMemberTypeAssignListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsMemberType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsMemberType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignPaths InMemberTypeAssignListUses {
-			get { return new MemberTypeAssignPaths(false, Path.Add("inE('MemberTypeAssignUsesMemberType')")); }
+		public MemberTypeAssignStep InMemberTypeAssignListUses {
+			get { return new MemberTypeAssignStep(false, Path.Add("inE('MemberTypeAssignUsesMemberType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssignPaths : PathBase<FabMemberTypeAssign>, IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
+	public partial class MemberTypeAssignStep : PathDomainStep<FabMemberTypeAssign>,
+			IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignPaths(bool pIsToNode, Path pPath) {
+		public MemberTypeAssignStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1754,14 +1841,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inmemberhas": return InMemberHas;
@@ -1770,45 +1861,48 @@ namespace Fabric.Api.Paths {
 				case "usesmembertype": return UsesMemberType;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsMemberTypeAssign')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberHas {
-			get { return new MemberPaths(false, Path.Add("inE('MemberHasMemberTypeAssign')")); }
+		public MemberStep InMemberHas {
+			get { return new MemberStep(false, Path.Add("inE('MemberHasMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberHasHistoric {
-			get { return new MemberPaths(false, Path.Add("inE('MemberHasHistoricMemberTypeAssign')")); }
+		public MemberStep InMemberHasHistoric {
+			get { return new MemberStep(false, Path.Add("inE('MemberHasHistoricMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberCreates {
-			get { return new MemberPaths(false, Path.Add("inE('MemberCreatesMemberTypeAssign')")); }
+		public MemberStep InMemberCreates {
+			get { return new MemberStep(false, Path.Add("inE('MemberCreatesMemberTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypePaths UsesMemberType {
-			get { return new MemberTypePaths(true, Path.Add("outE('MemberTypeAssignUsesMemberType')")); }
+		public MemberTypeStep UsesMemberType {
+			get { return new MemberTypeStep(true, Path.Add("outE('MemberTypeAssignUsesMemberType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class ThingPaths : PathBase<FabThing>, IInRootContains, IHasArtifact {
+	public partial class ThingStep : PathDomainStep<FabThing>,
+			IInRootContains, IHasArtifact {
 	
+		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ThingPaths(bool pIsToNode, Path pPath) {
+		public ThingStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1826,43 +1920,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/HasArtifact"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsThing')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsThing')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths HasArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('ThingHasArtifact')")); }
+		public ArtifactStep HasArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('ThingHasArtifact')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class UrlPaths : PathBase<FabUrl>, IInRootContains, IHasArtifact {
+	public partial class UrlStep : PathDomainStep<FabUrl>,
+			IInRootContains, IHasArtifact {
 	
+		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlPaths(bool pIsToNode, Path pPath) {
+		public UrlStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1880,43 +1981,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/HasArtifact"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsUrl')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsUrl')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths HasArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('UrlHasArtifact')")); }
+		public ArtifactStep HasArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('UrlHasArtifact')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class UserPaths : PathBase<FabUser>, IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
+	public partial class UserStep : PathDomainStep<FabUser>,
+			IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths(bool pIsToNode, Path pPath) {
+		public UserStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -1934,14 +2042,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdianlistuses": return InCrowdianListUses;
@@ -1954,65 +2066,68 @@ namespace Fabric.Api.Paths {
 				case "inoauthscopelistuses": return InOauthScopeListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsUser')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianPaths InCrowdianListUses {
-			get { return new CrowdianPaths(false, Path.Add("inE('CrowdianUsesUser')")); }
+		public CrowdianStep InCrowdianListUses {
+			get { return new CrowdianStep(false, Path.Add("inE('CrowdianUsesUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberListUses {
-			get { return new MemberPaths(false, Path.Add("inE('MemberUsesUser')")); }
+		public MemberStep InMemberListUses {
+			get { return new MemberStep(false, Path.Add("inE('MemberUsesUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths HasArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('UserHasArtifact')")); }
+		public ArtifactStep HasArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('UserHasArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailPaths UsesEmail {
-			get { return new EmailPaths(true, Path.Add("outE('UserUsesEmail')")); }
+		public EmailStep UsesEmail {
+			get { return new EmailStep(true, Path.Add("outE('UserUsesEmail')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignPaths CreatesCrowdianTypeAssignList {
-			get { return new CrowdianTypeAssignPaths(true, Path.Add("outE('UserCreatesCrowdianTypeAssign')")); }
+		public CrowdianTypeAssignStep CreatesCrowdianTypeAssignList {
+			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('UserCreatesCrowdianTypeAssign')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessPaths InOauthAccessListUses {
-			get { return new OauthAccessPaths(false, Path.Add("inE('OauthAccessUsesUser')")); }
+		public OauthAccessStep InOauthAccessListUses {
+			get { return new OauthAccessStep(false, Path.Add("inE('OauthAccessUsesUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantPaths InOauthGrantListUses {
-			get { return new OauthGrantPaths(false, Path.Add("inE('OauthGrantUsesUser')")); }
+		public OauthGrantStep InOauthGrantListUses {
+			get { return new OauthGrantStep(false, Path.Add("inE('OauthGrantUsesUser')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopePaths InOauthScopeListUses {
-			get { return new OauthScopePaths(false, Path.Add("inE('OauthScopeUsesUser')")); }
+		public OauthScopeStep InOauthScopeListUses {
+			get { return new OauthScopeStep(false, Path.Add("inE('OauthScopeUsesUser')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class FactorPaths : PathBase<FabFactor>, IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
+	public partial class FactorStep : PathDomainStep<FabFactor>,
+			IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths(bool pIsToNode, Path pPath) {
+		public FactorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2030,14 +2145,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inmembercreates": return InMemberCreates;
@@ -2053,80 +2172,83 @@ namespace Fabric.Api.Paths {
 				case "usesvector": return UsesVector;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsFactor')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsFactor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberPaths InMemberCreates {
-			get { return new MemberPaths(false, Path.Add("inE('MemberCreatesFactor')")); }
+		public MemberStep InMemberCreates {
+			get { return new MemberStep(false, Path.Add("inE('MemberCreatesFactor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths UsesPrimaryArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('FactorUsesPrimaryArtifact')")); }
+		public ArtifactStep UsesPrimaryArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('FactorUsesPrimaryArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths UsesRelatedArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('FactorUsesRelatedArtifact')")); }
+		public ArtifactStep UsesRelatedArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('FactorUsesRelatedArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionPaths UsesFactorAssertion {
-			get { return new FactorAssertionPaths(true, Path.Add("outE('FactorUsesFactorAssertion')")); }
+		public FactorAssertionStep UsesFactorAssertion {
+			get { return new FactorAssertionStep(true, Path.Add("outE('FactorUsesFactorAssertion')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths ReplacesFactor {
-			get { return new FactorPaths(true, Path.Add("outE('FactorReplacesFactor')")); }
+		public FactorStep ReplacesFactor {
+			get { return new FactorStep(true, Path.Add("outE('FactorReplacesFactor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths UsesDescriptor {
-			get { return new DescriptorPaths(true, Path.Add("outE('FactorUsesDescriptor')")); }
+		public DescriptorStep UsesDescriptor {
+			get { return new DescriptorStep(true, Path.Add("outE('FactorUsesDescriptor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorPaths UsesDirector {
-			get { return new DirectorPaths(true, Path.Add("outE('FactorUsesDirector')")); }
+		public DirectorStep UsesDirector {
+			get { return new DirectorStep(true, Path.Add("outE('FactorUsesDirector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPaths UsesEventor {
-			get { return new EventorPaths(true, Path.Add("outE('FactorUsesEventor')")); }
+		public EventorStep UsesEventor {
+			get { return new EventorStep(true, Path.Add("outE('FactorUsesEventor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorPaths UsesIdentor {
-			get { return new IdentorPaths(true, Path.Add("outE('FactorUsesIdentor')")); }
+		public IdentorStep UsesIdentor {
+			get { return new IdentorStep(true, Path.Add("outE('FactorUsesIdentor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorPaths UsesLocator {
-			get { return new LocatorPaths(true, Path.Add("outE('FactorUsesLocator')")); }
+		public LocatorStep UsesLocator {
+			get { return new LocatorStep(true, Path.Add("outE('FactorUsesLocator')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths UsesVector {
-			get { return new VectorPaths(true, Path.Add("outE('FactorUsesVector')")); }
+		public VectorStep UsesVector {
+			get { return new VectorStep(true, Path.Add("outE('FactorUsesVector')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class FactorAssertionPaths : PathBase<FabFactorAssertion>, IInRootContains, IInFactorUsesList {
+	public partial class FactorAssertionStep : PathDomainStep<FabFactorAssertion>,
+			IInRootContains, IInFactorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionPaths(bool pIsToNode, Path pPath) {
+		public FactorAssertionStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2144,43 +2266,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsFactorAssertion')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsFactorAssertion')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesFactorAssertion')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesFactorAssertion')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorPaths : PathBase<FabDescriptor>, IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
+	public partial class DescriptorStep : PathDomainStep<FabDescriptor>,
+			IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths(bool pIsToNode, Path pPath) {
+		public DescriptorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2198,14 +2327,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2215,50 +2348,53 @@ namespace Fabric.Api.Paths {
 				case "refinestypewithartifact": return RefinesTypeWithArtifact;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsDescriptor')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsDescriptor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesDescriptor')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesDescriptor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypePaths UsesDescriptorType {
-			get { return new DescriptorTypePaths(true, Path.Add("outE('DescriptorUsesDescriptorType')")); }
+		public DescriptorTypeStep UsesDescriptorType {
+			get { return new DescriptorTypeStep(true, Path.Add("outE('DescriptorUsesDescriptorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths RefinesPrimaryWithArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('DescriptorRefinesPrimaryWithArtifact')")); }
+		public ArtifactStep RefinesPrimaryWithArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('DescriptorRefinesPrimaryWithArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths RefinesRelatedWithArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('DescriptorRefinesRelatedWithArtifact')")); }
+		public ArtifactStep RefinesRelatedWithArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('DescriptorRefinesRelatedWithArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths RefinesTypeWithArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('DescriptorRefinesTypeWithArtifact')")); }
+		public ArtifactStep RefinesTypeWithArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('DescriptorRefinesTypeWithArtifact')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorTypePaths : PathBase<FabDescriptorType>, IInRootContains, IInDescriptorUsesList {
+	public partial class DescriptorTypeStep : PathDomainStep<FabDescriptorType>,
+			IInRootContains, IInDescriptorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InDescriptorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypePaths(bool pIsToNode, Path pPath) {
+		public DescriptorTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2276,43 +2412,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InDescriptorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "indescriptorlistuses": return InDescriptorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsDescriptorType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsDescriptorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorPaths InDescriptorListUses {
-			get { return new DescriptorPaths(false, Path.Add("inE('DescriptorUsesDescriptorType')")); }
+		public DescriptorStep InDescriptorListUses {
+			get { return new DescriptorStep(false, Path.Add("inE('DescriptorUsesDescriptorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorPaths : PathBase<FabDirector>, IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
+	public partial class DirectorStep : PathDomainStep<FabDirector>,
+			IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorPaths(bool pIsToNode, Path pPath) {
+		public DirectorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2330,14 +2473,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2346,45 +2493,48 @@ namespace Fabric.Api.Paths {
 				case "usesrelateddirectoraction": return UsesRelatedDirectorAction;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsDirector')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsDirector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesDirector')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesDirector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypePaths UsesDirectorType {
-			get { return new DirectorTypePaths(true, Path.Add("outE('DirectorUsesDirectorType')")); }
+		public DirectorTypeStep UsesDirectorType {
+			get { return new DirectorTypeStep(true, Path.Add("outE('DirectorUsesDirectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionPaths UsesPrimaryDirectorAction {
-			get { return new DirectorActionPaths(true, Path.Add("outE('DirectorUsesPrimaryDirectorAction')")); }
+		public DirectorActionStep UsesPrimaryDirectorAction {
+			get { return new DirectorActionStep(true, Path.Add("outE('DirectorUsesPrimaryDirectorAction')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionPaths UsesRelatedDirectorAction {
-			get { return new DirectorActionPaths(true, Path.Add("outE('DirectorUsesRelatedDirectorAction')")); }
+		public DirectorActionStep UsesRelatedDirectorAction {
+			get { return new DirectorActionStep(true, Path.Add("outE('DirectorUsesRelatedDirectorAction')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorTypePaths : PathBase<FabDirectorType>, IInRootContains, IInDirectorUsesList {
+	public partial class DirectorTypeStep : PathDomainStep<FabDirectorType>,
+			IInRootContains, IInDirectorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InDirectorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypePaths(bool pIsToNode, Path pPath) {
+		public DirectorTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2402,43 +2552,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InDirectorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "indirectorlistuses": return InDirectorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsDirectorType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsDirectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorPaths InDirectorListUses {
-			get { return new DirectorPaths(false, Path.Add("inE('DirectorUsesDirectorType')")); }
+		public DirectorStep InDirectorListUses {
+			get { return new DirectorStep(false, Path.Add("inE('DirectorUsesDirectorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorActionPaths : PathBase<FabDirectorAction>, IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
+	public partial class DirectorActionStep : PathDomainStep<FabDirectorAction>,
+			IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionPaths(bool pIsToNode, Path pPath) {
+		public DirectorActionStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2456,49 +2613,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InDirectorListUsesPrimary", "/InDirectorListUsesRelated"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "indirectorlistusesprimary": return InDirectorListUsesPrimary;
 				case "indirectorlistusesrelated": return InDirectorListUsesRelated;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsDirectorAction')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsDirectorAction')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorPaths InDirectorListUsesPrimary {
-			get { return new DirectorPaths(false, Path.Add("inE('DirectorUsesPrimaryDirectorAction')")); }
+		public DirectorStep InDirectorListUsesPrimary {
+			get { return new DirectorStep(false, Path.Add("inE('DirectorUsesPrimaryDirectorAction')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorPaths InDirectorListUsesRelated {
-			get { return new DirectorPaths(false, Path.Add("inE('DirectorUsesRelatedDirectorAction')")); }
+		public DirectorStep InDirectorListUsesRelated {
+			get { return new DirectorStep(false, Path.Add("inE('DirectorUsesRelatedDirectorAction')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EventorPaths : PathBase<FabEventor>, IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
+	public partial class EventorStep : PathDomainStep<FabEventor>,
+			IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPaths(bool pIsToNode, Path pPath) {
+		public EventorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2516,14 +2680,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2531,40 +2699,43 @@ namespace Fabric.Api.Paths {
 				case "useseventorprecision": return UsesEventorPrecision;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsEventor')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsEventor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesEventor')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesEventor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypePaths UsesEventorType {
-			get { return new EventorTypePaths(true, Path.Add("outE('EventorUsesEventorType')")); }
+		public EventorTypeStep UsesEventorType {
+			get { return new EventorTypeStep(true, Path.Add("outE('EventorUsesEventorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionPaths UsesEventorPrecision {
-			get { return new EventorPrecisionPaths(true, Path.Add("outE('EventorUsesEventorPrecision')")); }
+		public EventorPrecisionStep UsesEventorPrecision {
+			get { return new EventorPrecisionStep(true, Path.Add("outE('EventorUsesEventorPrecision')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EventorTypePaths : PathBase<FabEventorType>, IInRootContains, IInEventorUsesList {
+	public partial class EventorTypeStep : PathDomainStep<FabEventorType>,
+			IInRootContains, IInEventorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InEventorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypePaths(bool pIsToNode, Path pPath) {
+		public EventorTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2582,43 +2753,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InEventorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsEventorType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsEventorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPaths InEventorListUses {
-			get { return new EventorPaths(false, Path.Add("inE('EventorUsesEventorType')")); }
+		public EventorStep InEventorListUses {
+			get { return new EventorStep(false, Path.Add("inE('EventorUsesEventorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EventorPrecisionPaths : PathBase<FabEventorPrecision>, IInRootContains, IInEventorUsesList {
+	public partial class EventorPrecisionStep : PathDomainStep<FabEventorPrecision>,
+			IInRootContains, IInEventorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InEventorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionPaths(bool pIsToNode, Path pPath) {
+		public EventorPrecisionStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2636,43 +2814,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InEventorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsEventorPrecision')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsEventorPrecision')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPaths InEventorListUses {
-			get { return new EventorPaths(false, Path.Add("inE('EventorUsesEventorPrecision')")); }
+		public EventorStep InEventorListUses {
+			get { return new EventorStep(false, Path.Add("inE('EventorUsesEventorPrecision')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorPaths : PathBase<FabIdentor>, IInRootContains, IInFactorUsesList, IUsesIdentorType {
+	public partial class IdentorStep : PathDomainStep<FabIdentor>,
+			IInRootContains, IInFactorUsesList, IUsesIdentorType {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesIdentorType" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorPaths(bool pIsToNode, Path pPath) {
+		public IdentorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2690,49 +2875,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses", "/UsesIdentorType"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesidentortype": return UsesIdentorType;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsIdentor')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsIdentor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesIdentor')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesIdentor')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypePaths UsesIdentorType {
-			get { return new IdentorTypePaths(true, Path.Add("outE('IdentorUsesIdentorType')")); }
+		public IdentorTypeStep UsesIdentorType {
+			get { return new IdentorTypeStep(true, Path.Add("outE('IdentorUsesIdentorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorTypePaths : PathBase<FabIdentorType>, IInRootContains, IInIdentorUsesList {
+	public partial class IdentorTypeStep : PathDomainStep<FabIdentorType>,
+			IInRootContains, IInIdentorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InIdentorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypePaths(bool pIsToNode, Path pPath) {
+		public IdentorTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2750,43 +2942,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InIdentorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inidentorlistuses": return InIdentorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsIdentorType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsIdentorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorPaths InIdentorListUses {
-			get { return new IdentorPaths(false, Path.Add("inE('IdentorUsesIdentorType')")); }
+		public IdentorStep InIdentorListUses {
+			get { return new IdentorStep(false, Path.Add("inE('IdentorUsesIdentorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorPaths : PathBase<FabLocator>, IInRootContains, IInFactorUsesList, IUsesLocatorType {
+	public partial class LocatorStep : PathDomainStep<FabLocator>,
+			IInRootContains, IInFactorUsesList, IUsesLocatorType {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesLocatorType" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorPaths(bool pIsToNode, Path pPath) {
+		public LocatorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2804,49 +3003,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses", "/UsesLocatorType"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "useslocatortype": return UsesLocatorType;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsLocator')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsLocator')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesLocator')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesLocator')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypePaths UsesLocatorType {
-			get { return new LocatorTypePaths(true, Path.Add("outE('LocatorUsesLocatorType')")); }
+		public LocatorTypeStep UsesLocatorType {
+			get { return new LocatorTypeStep(true, Path.Add("outE('LocatorUsesLocatorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorTypePaths : PathBase<FabLocatorType>, IInRootContains, IInLocatorUsesList {
+	public partial class LocatorTypeStep : PathDomainStep<FabLocatorType>,
+			IInRootContains, IInLocatorUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InLocatorListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypePaths(bool pIsToNode, Path pPath) {
+		public LocatorTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2864,43 +3070,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InLocatorListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inlocatorlistuses": return InLocatorListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsLocatorType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsLocatorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorPaths InLocatorListUses {
-			get { return new LocatorPaths(false, Path.Add("inE('LocatorUsesLocatorType')")); }
+		public LocatorStep InLocatorListUses {
+			get { return new LocatorStep(false, Path.Add("inE('LocatorUsesLocatorType')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorPaths : PathBase<FabVector>, IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorStep : PathDomainStep<FabVector>,
+			IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths(bool pIsToNode, Path pPath) {
+		public VectorStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2918,14 +3131,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2935,50 +3152,53 @@ namespace Fabric.Api.Paths {
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVector')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorPaths InFactorListUses {
-			get { return new FactorPaths(false, Path.Add("inE('FactorUsesVector')")); }
+		public FactorStep InFactorListUses {
+			get { return new FactorStep(false, Path.Add("inE('FactorUsesVector')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactPaths UsesAxisArtifact {
-			get { return new ArtifactPaths(true, Path.Add("outE('VectorUsesAxisArtifact')")); }
+		public ArtifactStep UsesAxisArtifact {
+			get { return new ArtifactStep(true, Path.Add("outE('VectorUsesAxisArtifact')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypePaths UsesVectorType {
-			get { return new VectorTypePaths(true, Path.Add("outE('VectorUsesVectorType')")); }
+		public VectorTypeStep UsesVectorType {
+			get { return new VectorTypeStep(true, Path.Add("outE('VectorUsesVectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPaths UsesVectorUnit {
-			get { return new VectorUnitPaths(true, Path.Add("outE('VectorUsesVectorUnit')")); }
+		public VectorUnitStep UsesVectorUnit {
+			get { return new VectorUnitStep(true, Path.Add("outE('VectorUsesVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixPaths UsesVectorUnitPrefix {
-			get { return new VectorUnitPrefixPaths(true, Path.Add("outE('VectorUsesVectorUnitPrefix')")); }
+		public VectorUnitPrefixStep UsesVectorUnitPrefix {
+			get { return new VectorUnitPrefixStep(true, Path.Add("outE('VectorUsesVectorUnitPrefix')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorTypePaths : PathBase<FabVectorType>, IInRootContains, IInVectorUsesList, IUsesVectorRange {
+	public partial class VectorTypeStep : PathDomainStep<FabVectorType>,
+			IInRootContains, IInVectorUsesList, IUsesVectorRange {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/UsesVectorRange" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypePaths(bool pIsToNode, Path pPath) {
+		public VectorTypeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -2996,49 +3216,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InVectorListUses", "/UsesVectorRange"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "usesvectorrange": return UsesVectorRange;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVectorType')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths InVectorListUses {
-			get { return new VectorPaths(false, Path.Add("inE('VectorUsesVectorType')")); }
+		public VectorStep InVectorListUses {
+			get { return new VectorStep(false, Path.Add("inE('VectorUsesVectorType')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangePaths UsesVectorRange {
-			get { return new VectorRangePaths(true, Path.Add("outE('VectorTypeUsesVectorRange')")); }
+		public VectorRangeStep UsesVectorRange {
+			get { return new VectorRangeStep(true, Path.Add("outE('VectorTypeUsesVectorRange')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangePaths : PathBase<FabVectorRange>, IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
+	public partial class VectorRangeStep : PathDomainStep<FabVectorRange>,
+			IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangePaths(bool pIsToNode, Path pPath) {
+		public VectorRangeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3056,49 +3283,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InVectorTypeListUses", "/UsesVectorRangeLevelList"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectortypelistuses": return InVectorTypeListUses;
 				case "usesvectorrangelevellist": return UsesVectorRangeLevelList;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVectorRange')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVectorRange')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypePaths InVectorTypeListUses {
-			get { return new VectorTypePaths(false, Path.Add("inE('VectorTypeUsesVectorRange')")); }
+		public VectorTypeStep InVectorTypeListUses {
+			get { return new VectorTypeStep(false, Path.Add("inE('VectorTypeUsesVectorRange')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelPaths UsesVectorRangeLevelList {
-			get { return new VectorRangeLevelPaths(true, Path.Add("outE('VectorRangeUsesVectorRangeLevel')")); }
+		public VectorRangeLevelStep UsesVectorRangeLevelList {
+			get { return new VectorRangeLevelStep(true, Path.Add("outE('VectorRangeUsesVectorRangeLevel')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeLevelPaths : PathBase<FabVectorRangeLevel>, IInRootContains, IInVectorRangeUsesList {
+	public partial class VectorRangeLevelStep : PathDomainStep<FabVectorRangeLevel>,
+			IInRootContains, IInVectorRangeUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InVectorRangeListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelPaths(bool pIsToNode, Path pPath) {
+		public VectorRangeLevelStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3116,43 +3350,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InVectorRangeListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorrangelistuses": return InVectorRangeListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVectorRangeLevel')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVectorRangeLevel')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangePaths InVectorRangeListUses {
-			get { return new VectorRangePaths(false, Path.Add("inE('VectorRangeUsesVectorRangeLevel')")); }
+		public VectorRangeStep InVectorRangeListUses {
+			get { return new VectorRangeStep(false, Path.Add("inE('VectorRangeUsesVectorRangeLevel')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitPaths : PathBase<FabVectorUnit>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
+	public partial class VectorUnitStep : PathDomainStep<FabVectorUnit>,
+			IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPaths(bool pIsToNode, Path pPath) {
+		public VectorUnitStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3170,14 +3411,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
@@ -3185,40 +3430,43 @@ namespace Fabric.Api.Paths {
 				case "invectorunitderivedlistraisestoexp": return InVectorUnitDerivedListRaisesToExp;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVectorUnit')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths InVectorListUses {
-			get { return new VectorPaths(false, Path.Add("inE('VectorUsesVectorUnit')")); }
+		public VectorStep InVectorListUses {
+			get { return new VectorStep(false, Path.Add("inE('VectorUsesVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedPaths InVectorUnitDerivedListDefines {
-			get { return new VectorUnitDerivedPaths(false, Path.Add("inE('VectorUnitDerivedDefinesVectorUnit')")); }
+		public VectorUnitDerivedStep InVectorUnitDerivedListDefines {
+			get { return new VectorUnitDerivedStep(false, Path.Add("inE('VectorUnitDerivedDefinesVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedPaths InVectorUnitDerivedListRaisesToExp {
-			get { return new VectorUnitDerivedPaths(false, Path.Add("inE('VectorUnitDerivedRaisesToExpVectorUnit')")); }
+		public VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp {
+			get { return new VectorUnitDerivedStep(false, Path.Add("inE('VectorUnitDerivedRaisesToExpVectorUnit')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitPrefixPaths : PathBase<FabVectorUnitPrefix>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
+	public partial class VectorUnitPrefixStep : PathDomainStep<FabVectorUnitPrefix>,
+			IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
 	
+		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixPaths(bool pIsToNode, Path pPath) {
+		public VectorUnitPrefixStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3236,49 +3484,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/InVectorListUses", "/InVectorUnitDerivedListUses"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistuses": return InVectorUnitDerivedListUses;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVectorUnitPrefix')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVectorUnitPrefix')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorPaths InVectorListUses {
-			get { return new VectorPaths(false, Path.Add("inE('VectorUsesVectorUnitPrefix')")); }
+		public VectorStep InVectorListUses {
+			get { return new VectorStep(false, Path.Add("inE('VectorUsesVectorUnitPrefix')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedPaths InVectorUnitDerivedListUses {
-			get { return new VectorUnitDerivedPaths(false, Path.Add("inE('VectorUnitDerivedUsesVectorUnitPrefix')")); }
+		public VectorUnitDerivedStep InVectorUnitDerivedListUses {
+			get { return new VectorUnitDerivedStep(false, Path.Add("inE('VectorUnitDerivedUsesVectorUnitPrefix')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitDerivedPaths : PathBase<FabVectorUnitDerived>, IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorUnitDerivedStep : PathDomainStep<FabVectorUnitDerived>,
+			IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
 	
+		private static readonly string[] AvailSteps = new string[] { "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedPaths(bool pIsToNode, Path pPath) {
+		public VectorUnitDerivedStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3296,14 +3551,18 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "definesvectorunit": return DefinesVectorUnit;
@@ -3311,40 +3570,43 @@ namespace Fabric.Api.Paths {
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsVectorUnitDerived')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsVectorUnitDerived')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPaths DefinesVectorUnit {
-			get { return new VectorUnitPaths(true, Path.Add("outE('VectorUnitDerivedDefinesVectorUnit')")); }
+		public VectorUnitStep DefinesVectorUnit {
+			get { return new VectorUnitStep(true, Path.Add("outE('VectorUnitDerivedDefinesVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPaths RaisesToExpVectorUnit {
-			get { return new VectorUnitPaths(true, Path.Add("outE('VectorUnitDerivedRaisesToExpVectorUnit')")); }
+		public VectorUnitStep RaisesToExpVectorUnit {
+			get { return new VectorUnitStep(true, Path.Add("outE('VectorUnitDerivedRaisesToExpVectorUnit')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixPaths UsesVectorUnitPrefix {
-			get { return new VectorUnitPrefixPaths(true, Path.Add("outE('VectorUnitDerivedUsesVectorUnitPrefix')")); }
+		public VectorUnitPrefixStep UsesVectorUnitPrefix {
+			get { return new VectorUnitPrefixStep(true, Path.Add("outE('VectorUnitDerivedUsesVectorUnitPrefix')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthAccessPaths : PathBase<FabOauthAccess>, IInRootContains, IUsesApp, IUsesUser {
+	public partial class OauthAccessStep : PathDomainStep<FabOauthAccess>,
+			IInRootContains, IUsesApp, IUsesUser {
 	
+		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessPaths(bool pIsToNode, Path pPath) {
+		public OauthAccessStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3362,49 +3624,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/UsesApp", "/UsesUser"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsOauthAccess')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsOauthAccess')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths UsesApp {
-			get { return new AppPaths(true, Path.Add("outE('OauthAccessUsesApp')")); }
+		public AppStep UsesApp {
+			get { return new AppStep(true, Path.Add("outE('OauthAccessUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths UsesUser {
-			get { return new UserPaths(true, Path.Add("outE('OauthAccessUsesUser')")); }
+		public UserStep UsesUser {
+			get { return new UserStep(true, Path.Add("outE('OauthAccessUsesUser')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthDomainPaths : PathBase<FabOauthDomain>, IInRootContains, IUsesApp {
+	public partial class OauthDomainStep : PathDomainStep<FabOauthDomain>,
+			IInRootContains, IUsesApp {
 	
+		private static readonly string[] AvailSteps = new string[] { "/UsesApp" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainPaths(bool pIsToNode, Path pPath) {
+		public OauthDomainStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3422,43 +3691,50 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/UsesApp"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsOauthDomain')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsOauthDomain')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths UsesApp {
-			get { return new AppPaths(true, Path.Add("outE('OauthDomainUsesApp')")); }
+		public AppStep UsesApp {
+			get { return new AppStep(true, Path.Add("outE('OauthDomainUsesApp')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthGrantPaths : PathBase<FabOauthGrant>, IInRootContains, IUsesApp, IUsesUser {
+	public partial class OauthGrantStep : PathDomainStep<FabOauthGrant>,
+			IInRootContains, IUsesApp, IUsesUser {
 	
+		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantPaths(bool pIsToNode, Path pPath) {
+		public OauthGrantStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3476,49 +3752,56 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/UsesApp", "/UsesUser"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsOauthGrant')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsOauthGrant')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths UsesApp {
-			get { return new AppPaths(true, Path.Add("outE('OauthGrantUsesApp')")); }
+		public AppStep UsesApp {
+			get { return new AppStep(true, Path.Add("outE('OauthGrantUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths UsesUser {
-			get { return new UserPaths(true, Path.Add("outE('OauthGrantUsesUser')")); }
+		public UserStep UsesUser {
+			get { return new UserStep(true, Path.Add("outE('OauthGrantUsesUser')")); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthScopePaths : PathBase<FabOauthScope>, IInRootContains, IUsesApp, IUsesUser {
+	public partial class OauthScopeStep : PathDomainStep<FabOauthScope>,
+			IInRootContains, IUsesApp, IUsesUser {
 	
+		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopePaths(bool pIsToNode, Path pPath) {
+		public OauthScopeStep(bool pIsToNode, Path pPath) {
 			string q;
 
 			if ( pPath.Script.Length == 0 ) {
@@ -3536,38 +3819,42 @@ namespace Fabric.Api.Paths {
 		protected override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailablePaths {
+		public override string[] AvailableSteps {
 			get {
-				return new string[] {"/UsesApp", "/UsesUser"};
+				string[] baseSteps = base.AvailableSteps;
+				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				base.AvailableSteps.CopyTo(mergeSteps, 0);
+				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				return mergeSteps;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathBase GetPathByString(string pName) {
+		protected override IPathStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
 
-			return null;
+			return base.GetStepByString(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootPaths InRootContains {
-			get { return new RootPaths(false, Path.Add("inE('RootContainsOauthScope')")); }
+		public RootStep InRootContains {
+			get { return new RootStep(false, Path.Add("inE('RootContainsOauthScope')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppPaths UsesApp {
-			get { return new AppPaths(true, Path.Add("outE('OauthScopeUsesApp')")); }
+		public AppStep UsesApp {
+			get { return new AppStep(true, Path.Add("outE('OauthScopeUsesApp')")); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserPaths UsesUser {
-			get { return new UserPaths(true, Path.Add("outE('OauthScopeUsesUser')")); }
+		public UserStep UsesUser {
+			get { return new UserStep(true, Path.Add("outE('OauthScopeUsesUser')")); }
 		}
 
 	}
