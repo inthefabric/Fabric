@@ -1,10 +1,10 @@
 ﻿using System;
 using Fabric.Api.Dto;
 
-namespace Fabric.Api.Paths {
+namespace Fabric.Api.Paths.Steps.Nodes {
 	
 	/*================================================================================================*/
-	public abstract class PathDomainStep<T> : PathStep<T> where T : FabNode, new() {
+	public abstract class NodeStep<T> : Step<T> where T : FabNode, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Fabric.Api.Paths {
+namespace Fabric.Api.Paths.Steps {
 
 	/*================================================================================================*/
-	public interface IPathStep {
+	public interface IStep {
 
 		long? TypeId { get; }
 		Path Path { get; }
@@ -14,7 +14,7 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void SetParams(string pParams);
-		IPathStep ExecuteUriPart(string pUriPart);
+		IStep ExecuteUriPart(string pUriPart);
 
 	}
 

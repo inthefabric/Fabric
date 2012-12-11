@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths;
+using Fabric.Api.Paths.Steps;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Nancy;
@@ -48,7 +49,7 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.StartEvent();
 
 			vUri = vContext.Request.Path.Substring(5);
-			IPathStep step = PathRouter.GetPath(vUri);
+			IStep step = PathRouter.GetPath(vUri);
 
 			vInfo.Query = step.Path.Script;
 			vInfo.DtoType = step.DtoType;

@@ -2,17 +2,17 @@
 using Fabric.Api.Dto;
 using Fabric.Infrastructure;
 
-namespace Fabric.Api.Paths {
+namespace Fabric.Api.Paths.Steps {
 	
 	/*================================================================================================*/
-	public abstract class PathStep {
+	public abstract class Step {
 
 		internal static readonly string[] AvailSteps = new[] { "/Back", "/Where" };
 
 	}
 
 	/*================================================================================================*/
-	public abstract class PathStep<T> : IPathStep where T : FabNode, new() {
+	public abstract class Step<T> : IStep where T : FabNode, new() {
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
@@ -42,10 +42,10 @@ namespace Fabric.Api.Paths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Type DtoType { get { return typeof(T); } }
-		public virtual string[] AvailableSteps { get { return PathStep.AvailSteps; } }
+		public virtual string[] AvailableSteps { get { return Step.AvailSteps; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IPathStep ExecuteUriPart(string pUriPart) {
+		public IStep ExecuteUriPart(string pUriPart) {
 			string part = pUriPart.ToLower();
 			int parenI = part.IndexOf('(');
 
@@ -53,7 +53,7 @@ namespace Fabric.Api.Paths {
 				part = part.Substring(0, parenI);
 			}
 
-			IPathStep result = GetStepByString(part);
+			IStep result = GetStepByString(part);
 
 			if ( result == null ) {
 				throw new Exception(pUriPart+" is not a valid path option for "+GetType().Name+".");
@@ -73,7 +73,7 @@ namespace Fabric.Api.Paths {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IPathStep GetStepByString(string pName) {
+		protected virtual IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "back":
 					return null; //new RootStep(false, Path);

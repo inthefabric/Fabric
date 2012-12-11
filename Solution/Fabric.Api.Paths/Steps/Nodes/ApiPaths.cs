@@ -1,10 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/10/2012 9:50:38 PM
+// Generated on 12/11/2012 3:54:12 PM
 
 using Fabric.Api.Dto;
 
-namespace Fabric.Api.Paths {
+namespace Fabric.Api.Paths.Steps.Nodes {
 	
 	/*================================================================================================*/
 	public interface IContainsAppList {
@@ -657,7 +657,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class RootStep : PathDomainStep<FabRoot>,
+	public partial class RootStep : NodeStep<FabRoot>,
 			IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
@@ -694,7 +694,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "containsapplist": return ContainsAppList;
 				case "containsartifactlist": return ContainsArtifactList;
@@ -946,7 +946,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class AppStep : PathDomainStep<FabApp>,
+	public partial class AppStep : NodeStep<FabApp>,
 			IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
@@ -983,7 +983,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
@@ -1043,7 +1043,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactStep : PathDomainStep<FabArtifact>,
+	public partial class ArtifactStep : NodeStep<FabArtifact>,
 			IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
@@ -1080,7 +1080,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inapphas": return InAppHas;
@@ -1182,7 +1182,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactTypeStep : PathDomainStep<FabArtifactType>,
+	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>,
 			IInRootContains, IInArtifactUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InArtifactListUses" };
@@ -1219,7 +1219,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inartifactlistuses": return InArtifactListUses;
@@ -1243,7 +1243,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdStep : PathDomainStep<FabCrowd>,
+	public partial class CrowdStep : NodeStep<FabCrowd>,
 			IInRootContains, IHasArtifact, IInCrowdianUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/HasArtifact", "/InCrowdianListUses" };
@@ -1280,7 +1280,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
@@ -1310,7 +1310,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianStep : PathDomainStep<FabCrowdian>,
+	public partial class CrowdianStep : NodeStep<FabCrowdian>,
 			IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
@@ -1347,7 +1347,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usescrowd": return UsesCrowd;
@@ -1389,7 +1389,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypeStep : PathDomainStep<FabCrowdianType>,
+	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>,
 			IInRootContains, IInCrowdianTypeAssignUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InCrowdianTypeAssignListUses" };
@@ -1426,7 +1426,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
@@ -1450,7 +1450,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypeAssignStep : PathDomainStep<FabCrowdianTypeAssign>,
+	public partial class CrowdianTypeAssignStep : NodeStep<FabCrowdianTypeAssign>,
 			IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates" };
@@ -1487,7 +1487,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdianhas": return InCrowdianHas;
@@ -1529,7 +1529,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class EmailStep : PathDomainStep<FabEmail>,
+	public partial class EmailStep : NodeStep<FabEmail>,
 			IInRootContains, IInAppUses, IInUserUses {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InAppUses", "/InUserUses" };
@@ -1566,7 +1566,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inappuses": return InAppUses;
@@ -1596,7 +1596,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class LabelStep : PathDomainStep<FabLabel>,
+	public partial class LabelStep : NodeStep<FabLabel>,
 			IInRootContains, IHasArtifact {
 	
 		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
@@ -1633,7 +1633,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
@@ -1657,7 +1657,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberStep : PathDomainStep<FabMember>,
+	public partial class MemberStep : NodeStep<FabMember>,
 			IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
@@ -1694,7 +1694,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
@@ -1754,7 +1754,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeStep : PathDomainStep<FabMemberType>,
+	public partial class MemberTypeStep : NodeStep<FabMemberType>,
 			IInRootContains, IInMemberTypeAssignUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InMemberTypeAssignListUses" };
@@ -1791,7 +1791,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inmembertypeassignlistuses": return InMemberTypeAssignListUses;
@@ -1815,7 +1815,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssignStep : PathDomainStep<FabMemberTypeAssign>,
+	public partial class MemberTypeAssignStep : NodeStep<FabMemberTypeAssign>,
 			IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType" };
@@ -1852,7 +1852,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inmemberhas": return InMemberHas;
@@ -1894,7 +1894,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class ThingStep : PathDomainStep<FabThing>,
+	public partial class ThingStep : NodeStep<FabThing>,
 			IInRootContains, IHasArtifact {
 	
 		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
@@ -1931,7 +1931,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
@@ -1955,7 +1955,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class UrlStep : PathDomainStep<FabUrl>,
+	public partial class UrlStep : NodeStep<FabUrl>,
 			IInRootContains, IHasArtifact {
 	
 		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
@@ -1992,7 +1992,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
@@ -2016,7 +2016,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class UserStep : PathDomainStep<FabUser>,
+	public partial class UserStep : NodeStep<FabUser>,
 			IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
@@ -2053,7 +2053,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "incrowdianlistuses": return InCrowdianListUses;
@@ -2119,7 +2119,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class FactorStep : PathDomainStep<FabFactor>,
+	public partial class FactorStep : NodeStep<FabFactor>,
 			IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector" };
@@ -2156,7 +2156,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inmembercreates": return InMemberCreates;
@@ -2240,7 +2240,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class FactorAssertionStep : PathDomainStep<FabFactorAssertion>,
+	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>,
 			IInRootContains, IInFactorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses" };
@@ -2277,7 +2277,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2301,7 +2301,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorStep : PathDomainStep<FabDescriptor>,
+	public partial class DescriptorStep : NodeStep<FabDescriptor>,
 			IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
@@ -2338,7 +2338,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2386,7 +2386,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorTypeStep : PathDomainStep<FabDescriptorType>,
+	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>,
 			IInRootContains, IInDescriptorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InDescriptorListUses" };
@@ -2423,7 +2423,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "indescriptorlistuses": return InDescriptorListUses;
@@ -2447,7 +2447,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorStep : PathDomainStep<FabDirector>,
+	public partial class DirectorStep : NodeStep<FabDirector>,
 			IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
@@ -2484,7 +2484,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2526,7 +2526,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorTypeStep : PathDomainStep<FabDirectorType>,
+	public partial class DirectorTypeStep : NodeStep<FabDirectorType>,
 			IInRootContains, IInDirectorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InDirectorListUses" };
@@ -2563,7 +2563,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "indirectorlistuses": return InDirectorListUses;
@@ -2587,7 +2587,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorActionStep : PathDomainStep<FabDirectorAction>,
+	public partial class DirectorActionStep : NodeStep<FabDirectorAction>,
 			IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
@@ -2624,7 +2624,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "indirectorlistusesprimary": return InDirectorListUsesPrimary;
@@ -2654,7 +2654,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorStep : PathDomainStep<FabEventor>,
+	public partial class EventorStep : NodeStep<FabEventor>,
 			IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
@@ -2691,7 +2691,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2727,7 +2727,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorTypeStep : PathDomainStep<FabEventorType>,
+	public partial class EventorTypeStep : NodeStep<FabEventorType>,
 			IInRootContains, IInEventorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InEventorListUses" };
@@ -2764,7 +2764,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
@@ -2788,7 +2788,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorPrecisionStep : PathDomainStep<FabEventorPrecision>,
+	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>,
 			IInRootContains, IInEventorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InEventorListUses" };
@@ -2825,7 +2825,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
@@ -2849,7 +2849,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorStep : PathDomainStep<FabIdentor>,
+	public partial class IdentorStep : NodeStep<FabIdentor>,
 			IInRootContains, IInFactorUsesList, IUsesIdentorType {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesIdentorType" };
@@ -2886,7 +2886,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -2916,7 +2916,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorTypeStep : PathDomainStep<FabIdentorType>,
+	public partial class IdentorTypeStep : NodeStep<FabIdentorType>,
 			IInRootContains, IInIdentorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InIdentorListUses" };
@@ -2953,7 +2953,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inidentorlistuses": return InIdentorListUses;
@@ -2977,7 +2977,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorStep : PathDomainStep<FabLocator>,
+	public partial class LocatorStep : NodeStep<FabLocator>,
 			IInRootContains, IInFactorUsesList, IUsesLocatorType {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesLocatorType" };
@@ -3014,7 +3014,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -3044,7 +3044,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorTypeStep : PathDomainStep<FabLocatorType>,
+	public partial class LocatorTypeStep : NodeStep<FabLocatorType>,
 			IInRootContains, IInLocatorUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InLocatorListUses" };
@@ -3081,7 +3081,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "inlocatorlistuses": return InLocatorListUses;
@@ -3105,7 +3105,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorStep : PathDomainStep<FabVector>,
+	public partial class VectorStep : NodeStep<FabVector>,
 			IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
@@ -3142,7 +3142,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
@@ -3190,7 +3190,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorTypeStep : PathDomainStep<FabVectorType>,
+	public partial class VectorTypeStep : NodeStep<FabVectorType>,
 			IInRootContains, IInVectorUsesList, IUsesVectorRange {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/UsesVectorRange" };
@@ -3227,7 +3227,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
@@ -3257,7 +3257,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeStep : PathDomainStep<FabVectorRange>,
+	public partial class VectorRangeStep : NodeStep<FabVectorRange>,
 			IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
@@ -3294,7 +3294,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectortypelistuses": return InVectorTypeListUses;
@@ -3324,7 +3324,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeLevelStep : PathDomainStep<FabVectorRangeLevel>,
+	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>,
 			IInRootContains, IInVectorRangeUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InVectorRangeListUses" };
@@ -3361,7 +3361,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorrangelistuses": return InVectorRangeListUses;
@@ -3385,7 +3385,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitStep : PathDomainStep<FabVectorUnit>,
+	public partial class VectorUnitStep : NodeStep<FabVectorUnit>,
 			IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
@@ -3422,7 +3422,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
@@ -3458,7 +3458,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitPrefixStep : PathDomainStep<FabVectorUnitPrefix>,
+	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>,
 			IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
 	
 		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
@@ -3495,7 +3495,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
@@ -3525,7 +3525,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitDerivedStep : PathDomainStep<FabVectorUnitDerived>,
+	public partial class VectorUnitDerivedStep : NodeStep<FabVectorUnitDerived>,
 			IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
 	
 		private static readonly string[] AvailSteps = new string[] { "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix" };
@@ -3562,7 +3562,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "definesvectorunit": return DefinesVectorUnit;
@@ -3598,7 +3598,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthAccessStep : PathDomainStep<FabOauthAccess>,
+	public partial class OauthAccessStep : NodeStep<FabOauthAccess>,
 			IInRootContains, IUsesApp, IUsesUser {
 	
 		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
@@ -3635,7 +3635,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
@@ -3665,7 +3665,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthDomainStep : PathDomainStep<FabOauthDomain>,
+	public partial class OauthDomainStep : NodeStep<FabOauthDomain>,
 			IInRootContains, IUsesApp {
 	
 		private static readonly string[] AvailSteps = new string[] { "/UsesApp" };
@@ -3702,7 +3702,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
@@ -3726,7 +3726,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthGrantStep : PathDomainStep<FabOauthGrant>,
+	public partial class OauthGrantStep : NodeStep<FabOauthGrant>,
 			IInRootContains, IUsesApp, IUsesUser {
 	
 		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
@@ -3763,7 +3763,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
@@ -3793,7 +3793,7 @@ namespace Fabric.Api.Paths {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthScopeStep : PathDomainStep<FabOauthScope>,
+	public partial class OauthScopeStep : NodeStep<FabOauthScope>,
 			IInRootContains, IUsesApp, IUsesUser {
 	
 		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
@@ -3830,7 +3830,7 @@ namespace Fabric.Api.Paths {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IPathStep GetStepByString(string pName) {
+		protected override IStep GetStepByString(string pName) {
 			switch ( pName ) {
 				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;

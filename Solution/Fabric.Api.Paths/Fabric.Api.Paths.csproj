@@ -35,20 +35,20 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiPaths.cs">
+    <Compile Include="Steps\Nodes\ApiPaths.cs">
       <DependentUpon>ApiPaths.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="PathDomainStep.cs" />
+    <Compile Include="Steps\Nodes\NodeStep.cs" />
     <Compile Include="PathRouter.cs" />
     <Compile Include="Path.cs" />
-    <Compile Include="IPathStep.cs" />
-    <Compile Include="PathStep.cs" />
+    <Compile Include="Steps\IStep.cs" />
+    <Compile Include="Steps\Step.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApiPaths.tt">
+    <None Include="Steps\Nodes\ApiPaths.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiPaths.cs</LastGenOutput>
     </None>
@@ -65,6 +65,9 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Steps\Functions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
