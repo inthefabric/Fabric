@@ -36,8 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Steps\StepData.cs" />
-    <Compile Include="Steps\Nodes\ApiPaths.cs">
-      <DependentUpon>ApiPaths.tt</DependentUpon>
+    <Compile Include="Steps\Nodes\NodeSteps.cs">
+      <DependentUpon>NodeSteps.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Steps\Nodes\ApiPaths.tt">
+    <None Include="Steps\Nodes\NodeSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ApiPaths.cs</LastGenOutput>
+      <LastGenOutput>NodeSteps.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

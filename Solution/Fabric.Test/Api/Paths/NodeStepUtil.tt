@@ -1,0 +1,61 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Fabric.Infrastructure" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+
+namespace Fabric.Test.Api.Paths {
+	
+	/*================================================================================================*/
+	public static class NodeStepUtil {
+
+		public static Dictionary<string, string[]> NodeStepMap = BuildNodeStepMap();
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static Dictionary<string, string[]> BuildNodeStepMap() {
+			var map = new Dictionary<string, string[]>();
+
+<#
+var schema = new GraphSchema();
+
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	if ( node.IsAbstract ) { continue; }
+
+	var rels = new List<WeaverRelSchema>();
+	string interfaces = "";
+	string steps = "";
+	
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		rels.Add(rel);
+		bool isOut = (rel.FromNode == node);
+
+		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
+		steps += (steps == "" ? "" : ",\r\n\t\t\t\t")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
+	}
+#>
+			map.Add("<#= node.Name #>", new string[] {
+				<#= steps #>
+			});
+
+<#
+}
+#>
+			return map;
+		}
+	}
+}

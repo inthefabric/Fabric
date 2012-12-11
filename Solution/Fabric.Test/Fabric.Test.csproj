@@ -31,7 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Api\Server\TApiQuery.cs" />
+    <Compile Include="Api\Paths\NodeStepUtil.cs">
+      <DependentUpon>NodeStepUtil.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Api\Paths\TApiQuery.cs" />
     <Compile Include="DataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,6 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Api\Paths\NodeStepUtil.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NodeStepUtil.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,9 @@
       <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
       <Name>Fabric.Db.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

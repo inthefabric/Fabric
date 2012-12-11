@@ -119,6 +119,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 <#
 	foreach ( WeaverRelSchema rel in rels ) {
 		bool isOut = (rel.FromNode == node);
+		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
 		var propName = PathUtil.GetRelProp(rel, isOut);
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;

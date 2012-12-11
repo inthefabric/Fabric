@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/11/2012 4:26:02 PM
+// Generated on 12/11/2012 4:55:25 PM
 
 using Fabric.Api.Dto;
 
@@ -985,7 +985,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 				case "usesemail": return UsesEmail;
 				case "inmemberlistuses": return InMemberListUses;
@@ -1082,7 +1081,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inapphas": return InAppHas;
 				case "usesartifacttype": return UsesArtifactType;
 				case "incrowdhas": return InCrowdHas;
@@ -1221,7 +1219,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inartifactlistuses": return InArtifactListUses;
 			}
 
@@ -1282,7 +1279,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 				case "incrowdianlistuses": return InCrowdianListUses;
 			}
@@ -1349,7 +1345,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "usescrowd": return UsesCrowd;
 				case "usesuser": return UsesUser;
 				case "hascrowdiantypeassign": return HasCrowdianTypeAssign;
@@ -1428,7 +1423,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
 			}
 
@@ -1489,7 +1483,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "incrowdianhas": return InCrowdianHas;
 				case "incrowdianhashistoric": return InCrowdianHasHistoric;
 				case "usescrowdiantype": return UsesCrowdianType;
@@ -1568,7 +1561,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inappuses": return InAppUses;
 				case "inuseruses": return InUserUses;
 			}
@@ -1635,7 +1627,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
@@ -1696,7 +1687,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 				case "hasmembertypeassign": return HasMemberTypeAssign;
@@ -1793,7 +1783,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inmembertypeassignlistuses": return InMemberTypeAssignListUses;
 			}
 
@@ -1854,7 +1843,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inmemberhas": return InMemberHas;
 				case "inmemberhashistoric": return InMemberHasHistoric;
 				case "inmembercreates": return InMemberCreates;
@@ -1933,7 +1921,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
@@ -1994,7 +1981,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "hasartifact": return HasArtifact;
 			}
 
@@ -2055,7 +2041,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "incrowdianlistuses": return InCrowdianListUses;
 				case "inmemberlistuses": return InMemberListUses;
 				case "hasartifact": return HasArtifact;
@@ -2158,7 +2143,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inmembercreates": return InMemberCreates;
 				case "usesprimaryartifact": return UsesPrimaryArtifact;
 				case "usesrelatedartifact": return UsesRelatedArtifact;
@@ -2279,7 +2263,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 			}
 
@@ -2340,7 +2323,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesdescriptortype": return UsesDescriptorType;
 				case "refinesprimarywithartifact": return RefinesPrimaryWithArtifact;
@@ -2425,7 +2407,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "indescriptorlistuses": return InDescriptorListUses;
 			}
 
@@ -2486,7 +2467,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesdirectortype": return UsesDirectorType;
 				case "usesprimarydirectoraction": return UsesPrimaryDirectorAction;
@@ -2565,7 +2545,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "indirectorlistuses": return InDirectorListUses;
 			}
 
@@ -2626,7 +2605,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "indirectorlistusesprimary": return InDirectorListUsesPrimary;
 				case "indirectorlistusesrelated": return InDirectorListUsesRelated;
 			}
@@ -2693,7 +2671,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "useseventortype": return UsesEventorType;
 				case "useseventorprecision": return UsesEventorPrecision;
@@ -2766,7 +2743,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
@@ -2827,7 +2803,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
@@ -2888,7 +2863,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesidentortype": return UsesIdentorType;
 			}
@@ -2955,7 +2929,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inidentorlistuses": return InIdentorListUses;
 			}
 
@@ -3016,7 +2989,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "useslocatortype": return UsesLocatorType;
 			}
@@ -3083,7 +3055,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "inlocatorlistuses": return InLocatorListUses;
 			}
 
@@ -3144,7 +3115,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "infactorlistuses": return InFactorListUses;
 				case "usesaxisartifact": return UsesAxisArtifact;
 				case "usesvectortype": return UsesVectorType;
@@ -3229,7 +3199,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "usesvectorrange": return UsesVectorRange;
 			}
@@ -3296,7 +3265,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "invectortypelistuses": return InVectorTypeListUses;
 				case "usesvectorrangelevellist": return UsesVectorRangeLevelList;
 			}
@@ -3363,7 +3331,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "invectorrangelistuses": return InVectorRangeListUses;
 			}
 
@@ -3424,7 +3391,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistdefines": return InVectorUnitDerivedListDefines;
 				case "invectorunitderivedlistraisestoexp": return InVectorUnitDerivedListRaisesToExp;
@@ -3497,7 +3463,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistuses": return InVectorUnitDerivedListUses;
 			}
@@ -3564,7 +3529,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "definesvectorunit": return DefinesVectorUnit;
 				case "raisestoexpvectorunit": return RaisesToExpVectorUnit;
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
@@ -3637,7 +3601,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
@@ -3704,7 +3667,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 			}
 
@@ -3765,7 +3727,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
@@ -3832,7 +3793,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "inrootcontains": return InRootContains;
 				case "usesapp": return UsesApp;
 				case "usesuser": return UsesUser;
 			}
