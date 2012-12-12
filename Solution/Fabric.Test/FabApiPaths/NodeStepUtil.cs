@@ -1,10 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/11/2012 8:27:46 PM
+// Generated on 12/12/2012 1:35:19 PM
 
 using System.Collections.Generic;
 
-namespace Fabric.Test.Api.Paths {
+namespace Fabric.Test.FabApiPaths {
 	
 	/*================================================================================================*/
 	public static class NodeStepUtil {

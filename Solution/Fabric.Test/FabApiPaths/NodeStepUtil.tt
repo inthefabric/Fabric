@@ -16,7 +16,7 @@
 
 using System.Collections.Generic;
 
-namespace Fabric.Test.Api.Paths {
+namespace Fabric.Test.FabApiPaths {
 	
 	/*================================================================================================*/
 	public static class NodeStepUtil {

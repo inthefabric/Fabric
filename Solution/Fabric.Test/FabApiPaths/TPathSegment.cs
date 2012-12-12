@@ -5,7 +5,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.Test.Api.Paths {
+namespace Fabric.Test.FabApiPaths {
 
 	/*================================================================================================*/
 	[TestFixture]
