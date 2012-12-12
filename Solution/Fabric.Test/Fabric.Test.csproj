@@ -33,14 +33,14 @@
   <ItemGroup>
     <Compile Include="FabApiPaths\TPathRouter.cs" />
     <Compile Include="FabApiPaths\TPathSegment.cs" />
-    <Compile Include="FabApiPaths\NodeStepUtil.cs">
-      <DependentUpon>NodeStepUtil.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="FabApiPaths\TPath.cs" />
     <Compile Include="DataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\StepUtil.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StepUtil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Util\TestUtil.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,11 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FabApiPaths\NodeStepUtil.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NodeStepUtil.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
+    <None Include="Util\StepUtil.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StepUtil.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">

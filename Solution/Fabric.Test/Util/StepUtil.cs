@@ -1,13 +1,13 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/12/2012 1:35:19 PM
+// Generated on 12/12/2012 1:42:46 PM
 
 using System.Collections.Generic;
 
-namespace Fabric.Test.FabApiPaths {
+namespace Fabric.Test.Util {
 	
 	/*================================================================================================*/
-	public static class NodeStepUtil {
+	public static class StepUtil {
 
 		public static Dictionary<string, string[]> NodeStepMap = BuildNodeStepMap();
 		

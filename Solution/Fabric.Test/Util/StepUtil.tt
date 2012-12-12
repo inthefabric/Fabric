@@ -16,10 +16,10 @@
 
 using System.Collections.Generic;
 
-namespace Fabric.Test.FabApiPaths {
+namespace Fabric.Test.Util {
 	
 	/*================================================================================================*/
-	public static class NodeStepUtil {
+	public static class StepUtil {
 
 		public static Dictionary<string, string[]> NodeStepMap = BuildNodeStepMap();
 		
