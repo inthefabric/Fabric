@@ -1,9 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/10/2012 3:05:30 PM
+// Generated on 12/12/2012 4:18:05 PM
 
 using System.Collections.Generic;
-using Fabric.Infrastructure;
 
 namespace Fabric.Api.Dto {
 	
@@ -150,6 +149,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["ArtifactTypeId"];
@@ -234,6 +235,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["CrowdianTypeId"];
@@ -256,6 +259,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["CrowdianTypeAssignId"];
@@ -378,6 +383,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["MemberTypeId"];
@@ -398,6 +405,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["MemberTypeAssignId"];
@@ -590,6 +599,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["FactorAssertionId"];
@@ -639,6 +650,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["DescriptorTypeId"];
@@ -679,6 +692,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["DirectorTypeId"];
@@ -699,6 +714,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["DirectorActionId"];
@@ -744,6 +761,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["EventorTypeId"];
@@ -764,6 +783,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["EventorPrecisionId"];
@@ -811,6 +832,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["IdentorTypeId"];
@@ -878,6 +901,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["LocatorTypeId"];
@@ -945,6 +970,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["VectorTypeId"];
@@ -971,6 +998,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["VectorRangeId"];
@@ -993,6 +1022,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["VectorRangeLevelId"];
@@ -1019,6 +1050,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 			bool found;
 
@@ -1048,6 +1081,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 			bool found;
 
@@ -1077,6 +1112,8 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+			base.FillResultData(pData);
+
 			string val;
 
 			val = pData["VectorUnitDerivedId"];

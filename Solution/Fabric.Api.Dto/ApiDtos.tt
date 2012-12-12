@@ -13,7 +13,6 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System.Collections.Generic;
-using Fabric.Infrastructure;
 
 namespace Fabric.Api.Dto {
 	
@@ -107,6 +106,13 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 <#
+	if ( baseNode != "FabNode" ) {
+#>
+			base.FillResultData(pData);
+
+<#
+	} //end non-FabNode baseNode
+
 	bool showFound = false;
 	bool showVal = (node.Props.Count > 0);
 
