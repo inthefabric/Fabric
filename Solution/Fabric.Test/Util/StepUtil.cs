@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/12/2012 1:42:46 PM
+// Generated on 12/12/2012 3:24:10 PM
 
 using System.Collections.Generic;
 
@@ -301,5 +301,7 @@ namespace Fabric.Test.Util {
 
 			return map;
 		}
+		
 	}
+
 }

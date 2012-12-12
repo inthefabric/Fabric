@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
+    <Compile Include="Steps\Nodes\INodeStep.cs" />
     <Compile Include="Steps\StepData.cs" />
     <Compile Include="Steps\Nodes\NodeSteps.cs">
       <DependentUpon>NodeSteps.tt</DependentUpon>

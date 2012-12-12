@@ -109,8 +109,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "<#= node.Name #>Id"; } }
-		protected override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
+		public override string TypeIdName { get { return "<#= node.Name #>Id"; } }
+		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {

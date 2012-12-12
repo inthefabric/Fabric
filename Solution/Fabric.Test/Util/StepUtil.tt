@@ -54,5 +54,21 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 			return map;
 		}
+		
+<#
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	continue; //only for generation of test cases
+	if ( node.IsAbstract ) { continue; }
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void <#= node.Name #>Step() {
+			TestStep("<#= node.Name #>", (tn, p) => new <#= node.Name #>Step(tn, p));
+		}
+
+<#
+}
+#>
 	}
+
 }

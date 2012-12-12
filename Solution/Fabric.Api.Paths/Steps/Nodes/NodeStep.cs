@@ -4,7 +4,7 @@ using Fabric.Api.Dto;
 namespace Fabric.Api.Paths.Steps.Nodes {
 	
 	/*================================================================================================*/
-	public abstract class NodeStep<T> : Step<T> where T : FabNode, new() {
+	public abstract class NodeStep<T> : Step<T>, INodeStep where T : FabNode, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -12,9 +12,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		protected NodeStep(Path pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public abstract string TypeIdName { get; }
+		public abstract bool TypeIdIsLong { get; }
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override StepData Data {
 			set {
 				base.Data = value;
+				if ( Data.Params == null ) { return; }
 
 				string p = Data.Params[0];
 				long tid;

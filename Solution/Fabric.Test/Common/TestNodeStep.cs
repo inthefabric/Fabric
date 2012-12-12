@@ -5,16 +5,20 @@ using Fabric.Api.Paths.Steps.Nodes;
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
-	public class TestStep : Step<TestFabNode> {
+	public class TestNodeStep : NodeStep<TestFabNode> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestStep(Path pPath) : base(pPath) { }
+		public TestNodeStep(Path pPath) : base(pPath) { }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return "TestNodeStepId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
-			get { return new[] { "Test1", "TEST2" }; }
+			get { return new[] { "HasThing" }; }
 		}
 
 
@@ -22,10 +26,7 @@ namespace Fabric.Test.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "test1":
-					return new ArtifactStep(true, Path);
-				case "test2":
-					return new FactorStep(true, Path);
+				case "HasThing": return new ThingStep(true, Path);
 			}
 
 			return null;

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/11/2012 9:09:01 PM
+// Generated on 12/12/2012 3:46:20 PM
 
 using Fabric.Api.Dto;
 
@@ -678,8 +678,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "RootId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "RootId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1077,8 +1077,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "AppId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "AppId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1187,8 +1187,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "ArtifactId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "ArtifactId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1360,8 +1360,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "ArtifactTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "ArtifactTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1416,8 +1416,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "CrowdId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "CrowdId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1481,8 +1481,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "CrowdianId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "CrowdianId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1564,8 +1564,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "CrowdianTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "CrowdianTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1620,8 +1620,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "CrowdianTypeAssignId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "CrowdianTypeAssignId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1703,8 +1703,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "EmailId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "EmailId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1768,8 +1768,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "LabelId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "LabelId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1824,8 +1824,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "MemberId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "MemberId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1934,8 +1934,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "MemberTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "MemberTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -1990,8 +1990,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "MemberTypeAssignId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "MemberTypeAssignId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2073,8 +2073,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "ThingId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "ThingId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2129,8 +2129,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "UrlId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "UrlId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2185,8 +2185,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "UserId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "UserId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2304,8 +2304,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "FactorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "FactorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2450,8 +2450,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "FactorAssertionId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "FactorAssertionId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2506,8 +2506,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "DescriptorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "DescriptorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2598,8 +2598,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "DescriptorTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "DescriptorTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2654,8 +2654,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "DirectorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "DirectorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2737,8 +2737,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "DirectorTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "DirectorTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2793,8 +2793,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "DirectorActionId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "DirectorActionId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2858,8 +2858,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "EventorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "EventorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2932,8 +2932,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "EventorTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "EventorTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -2988,8 +2988,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "EventorPrecisionId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "EventorPrecisionId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3044,8 +3044,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "IdentorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "IdentorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3109,8 +3109,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "IdentorTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "IdentorTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3165,8 +3165,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "LocatorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "LocatorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3230,8 +3230,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "LocatorTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "LocatorTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3286,8 +3286,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "VectorId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3378,8 +3378,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorTypeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "VectorTypeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3443,8 +3443,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorRangeId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "VectorRangeId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3508,8 +3508,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorRangeLevelId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "VectorRangeLevelId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3564,8 +3564,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorUnitId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "VectorUnitId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3638,8 +3638,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorUnitPrefixId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "VectorUnitPrefixId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3703,8 +3703,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "VectorUnitDerivedId"; } }
-		protected override bool TypeIdIsLong { get { return false; } }
+		public override string TypeIdName { get { return "VectorUnitDerivedId"; } }
+		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3777,8 +3777,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "OauthAccessId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "OauthAccessId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3842,8 +3842,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "OauthDomainId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "OauthDomainId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3898,8 +3898,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "OauthGrantId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "OauthGrantId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {
@@ -3963,8 +3963,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string TypeIdName { get { return "OauthScopeId"; } }
-		protected override bool TypeIdIsLong { get { return true; } }
+		public override string TypeIdName { get { return "OauthScopeId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string[] AvailableSteps {

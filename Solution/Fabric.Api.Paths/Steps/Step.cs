@@ -16,9 +16,6 @@ namespace Fabric.Api.Paths.Steps {
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
 
-		protected abstract string TypeIdName { get; }
-		protected abstract bool TypeIdIsLong { get; }
-
 		private StepData vData;
 
 
