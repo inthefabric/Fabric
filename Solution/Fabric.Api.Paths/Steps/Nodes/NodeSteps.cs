@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/11/2012 4:55:25 PM
+// Generated on 12/11/2012 9:09:01 PM
 
 using Fabric.Api.Dto;
 
@@ -657,25 +657,24 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class RootStep : NodeStep<FabRoot>,
-			IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
+	public partial class RootStep : NodeStep<FabRoot>, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
+		private static readonly string[] AvailSteps = new [] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep(bool pIsToNode, Path pPath) {
+		public RootStep(bool pIsToNode, Path pPath) : base(pPath) {
 			string q;
-
-			if ( pPath.Script.Length == 0 ) {
+			
+			if ( pPath.Segments.Count == 0 ) {
 				q = "g.v(0)";
 			}
 			else {
 				q = (pIsToNode ? "inV" : "outV");
 			}
-
-			Path = pPath.Add(q);
+			
+			AddPathSegment(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -745,226 +744,336 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep ContainsAppList {
-			get { return new AppStep(true, Path.Add("outE('RootContainsApp')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsApp')");
+				return new AppStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep ContainsArtifactList {
-			get { return new ArtifactStep(true, Path.Add("outE('RootContainsArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactTypeStep ContainsArtifactTypeList {
-			get { return new ArtifactTypeStep(true, Path.Add("outE('RootContainsArtifactType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsArtifactType')");
+				return new ArtifactTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdStep ContainsCrowdList {
-			get { return new CrowdStep(true, Path.Add("outE('RootContainsCrowd')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsCrowd')");
+				return new CrowdStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep ContainsCrowdianList {
-			get { return new CrowdianStep(true, Path.Add("outE('RootContainsCrowdian')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsCrowdian')");
+				return new CrowdianStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeStep ContainsCrowdianTypeList {
-			get { return new CrowdianTypeStep(true, Path.Add("outE('RootContainsCrowdianType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsCrowdianType')");
+				return new CrowdianTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep ContainsCrowdianTypeAssignList {
-			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('RootContainsCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsCrowdianTypeAssign')");
+				return new CrowdianTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailStep ContainsEmailList {
-			get { return new EmailStep(true, Path.Add("outE('RootContainsEmail')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsEmail')");
+				return new EmailStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LabelStep ContainsLabelList {
-			get { return new LabelStep(true, Path.Add("outE('RootContainsLabel')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsLabel')");
+				return new LabelStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep ContainsMemberList {
-			get { return new MemberStep(true, Path.Add("outE('RootContainsMember')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsMember')");
+				return new MemberStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeStep ContainsMemberTypeList {
-			get { return new MemberTypeStep(true, Path.Add("outE('RootContainsMemberType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsMemberType')");
+				return new MemberTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep ContainsMemberTypeAssignList {
-			get { return new MemberTypeAssignStep(true, Path.Add("outE('RootContainsMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsMemberTypeAssign')");
+				return new MemberTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ThingStep ContainsThingList {
-			get { return new ThingStep(true, Path.Add("outE('RootContainsThing')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsThing')");
+				return new ThingStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlStep ContainsUrlList {
-			get { return new UrlStep(true, Path.Add("outE('RootContainsUrl')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsUrl')");
+				return new UrlStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep ContainsUserList {
-			get { return new UserStep(true, Path.Add("outE('RootContainsUser')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsUser')");
+				return new UserStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep ContainsFactorList {
-			get { return new FactorStep(true, Path.Add("outE('RootContainsFactor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsFactor')");
+				return new FactorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionStep ContainsFactorAssertionList {
-			get { return new FactorAssertionStep(true, Path.Add("outE('RootContainsFactorAssertion')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsFactorAssertion')");
+				return new FactorAssertionStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep ContainsDescriptorList {
-			get { return new DescriptorStep(true, Path.Add("outE('RootContainsDescriptor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsDescriptor')");
+				return new DescriptorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeStep ContainsDescriptorTypeList {
-			get { return new DescriptorTypeStep(true, Path.Add("outE('RootContainsDescriptorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsDescriptorType')");
+				return new DescriptorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep ContainsDirectorList {
-			get { return new DirectorStep(true, Path.Add("outE('RootContainsDirector')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsDirector')");
+				return new DirectorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeStep ContainsDirectorTypeList {
-			get { return new DirectorTypeStep(true, Path.Add("outE('RootContainsDirectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsDirectorType')");
+				return new DirectorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionStep ContainsDirectorActionList {
-			get { return new DirectorActionStep(true, Path.Add("outE('RootContainsDirectorAction')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsDirectorAction')");
+				return new DirectorActionStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep ContainsEventorList {
-			get { return new EventorStep(true, Path.Add("outE('RootContainsEventor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsEventor')");
+				return new EventorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeStep ContainsEventorTypeList {
-			get { return new EventorTypeStep(true, Path.Add("outE('RootContainsEventorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsEventorType')");
+				return new EventorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionStep ContainsEventorPrecisionList {
-			get { return new EventorPrecisionStep(true, Path.Add("outE('RootContainsEventorPrecision')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsEventorPrecision')");
+				return new EventorPrecisionStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorStep ContainsIdentorList {
-			get { return new IdentorStep(true, Path.Add("outE('RootContainsIdentor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsIdentor')");
+				return new IdentorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeStep ContainsIdentorTypeList {
-			get { return new IdentorTypeStep(true, Path.Add("outE('RootContainsIdentorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsIdentorType')");
+				return new IdentorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorStep ContainsLocatorList {
-			get { return new LocatorStep(true, Path.Add("outE('RootContainsLocator')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsLocator')");
+				return new LocatorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeStep ContainsLocatorTypeList {
-			get { return new LocatorTypeStep(true, Path.Add("outE('RootContainsLocatorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsLocatorType')");
+				return new LocatorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep ContainsVectorList {
-			get { return new VectorStep(true, Path.Add("outE('RootContainsVector')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVector')");
+				return new VectorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeStep ContainsVectorTypeList {
-			get { return new VectorTypeStep(true, Path.Add("outE('RootContainsVectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVectorType')");
+				return new VectorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeStep ContainsVectorRangeList {
-			get { return new VectorRangeStep(true, Path.Add("outE('RootContainsVectorRange')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVectorRange')");
+				return new VectorRangeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelStep ContainsVectorRangeLevelList {
-			get { return new VectorRangeLevelStep(true, Path.Add("outE('RootContainsVectorRangeLevel')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVectorRangeLevel')");
+				return new VectorRangeLevelStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep ContainsVectorUnitList {
-			get { return new VectorUnitStep(true, Path.Add("outE('RootContainsVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVectorUnit')");
+				return new VectorUnitStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixStep ContainsVectorUnitPrefixList {
-			get { return new VectorUnitPrefixStep(true, Path.Add("outE('RootContainsVectorUnitPrefix')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVectorUnitPrefix')");
+				return new VectorUnitPrefixStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep ContainsVectorUnitDerivedList {
-			get { return new VectorUnitDerivedStep(true, Path.Add("outE('RootContainsVectorUnitDerived')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsVectorUnitDerived')");
+				return new VectorUnitDerivedStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessStep ContainsOauthAccessList {
-			get { return new OauthAccessStep(true, Path.Add("outE('RootContainsOauthAccess')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsOauthAccess')");
+				return new OauthAccessStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainStep ContainsOauthDomainList {
-			get { return new OauthDomainStep(true, Path.Add("outE('RootContainsOauthDomain')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsOauthDomain')");
+				return new OauthDomainStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantStep ContainsOauthGrantList {
-			get { return new OauthGrantStep(true, Path.Add("outE('RootContainsOauthGrant')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsOauthGrant')");
+				return new OauthGrantStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeStep ContainsOauthScopeList {
-			get { return new OauthScopeStep(true, Path.Add("outE('RootContainsOauthScope')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('RootContainsOauthScope')");
+				return new OauthScopeStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class AppStep : NodeStep<FabApp>,
-			IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
+	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+		private static readonly string[] AvailSteps = new [] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public AppStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1001,66 +1110,80 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsApp')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsApp')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('AppHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('AppHasArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailStep UsesEmail {
-			get { return new EmailStep(true, Path.Add("outE('AppUsesEmail')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('AppUsesEmail')");
+				return new EmailStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberListUses {
-			get { return new MemberStep(false, Path.Add("inE('MemberUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberUsesApp')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessStep InOauthAccessListUses {
-			get { return new OauthAccessStep(false, Path.Add("inE('OauthAccessUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthAccessUsesApp')");
+				return new OauthAccessStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainStep InOauthDomainListUses {
-			get { return new OauthDomainStep(false, Path.Add("inE('OauthDomainUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthDomainUsesApp')");
+				return new OauthDomainStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantStep InOauthGrantListUses {
-			get { return new OauthGrantStep(false, Path.Add("inE('OauthGrantUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthGrantUsesApp')");
+				return new OauthGrantStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeStep InOauthScopeListUses {
-			get { return new OauthScopeStep(false, Path.Add("inE('OauthScopeUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthScopeUsesApp')");
+				return new OauthScopeStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactStep : NodeStep<FabArtifact>,
-			IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
+	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
+		private static readonly string[] AvailSteps = new [] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public ArtifactStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1104,101 +1227,136 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsArtifact')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep InAppHas {
-			get { return new AppStep(false, Path.Add("inE('AppHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('AppHasArtifact')");
+				return new AppStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactTypeStep UsesArtifactType {
-			get { return new ArtifactTypeStep(true, Path.Add("outE('ArtifactUsesArtifactType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('ArtifactUsesArtifactType')");
+				return new ArtifactTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdStep InCrowdHas {
-			get { return new CrowdStep(false, Path.Add("inE('CrowdHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('CrowdHasArtifact')");
+				return new CrowdStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LabelStep InLabelHas {
-			get { return new LabelStep(false, Path.Add("inE('LabelHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('LabelHasArtifact')");
+				return new LabelStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberCreates {
-			get { return new MemberStep(false, Path.Add("inE('MemberCreatesArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberCreatesArtifact')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ThingStep InThingHas {
-			get { return new ThingStep(false, Path.Add("inE('ThingHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('ThingHasArtifact')");
+				return new ThingStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlStep InUrlHas {
-			get { return new UrlStep(false, Path.Add("inE('UrlHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('UrlHasArtifact')");
+				return new UrlStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserHas {
-			get { return new UserStep(false, Path.Add("inE('UserHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('UserHasArtifact')");
+				return new UserStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUsesPrimary {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesPrimaryArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesPrimaryArtifact')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUsesRelated {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesRelatedArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesRelatedArtifact')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListRefinesPrimaryWith {
-			get { return new DescriptorStep(false, Path.Add("inE('DescriptorRefinesPrimaryWithArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DescriptorRefinesPrimaryWithArtifact')");
+				return new DescriptorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListRefinesRelatedWith {
-			get { return new DescriptorStep(false, Path.Add("inE('DescriptorRefinesRelatedWithArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DescriptorRefinesRelatedWithArtifact')");
+				return new DescriptorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListRefinesTypeWith {
-			get { return new DescriptorStep(false, Path.Add("inE('DescriptorRefinesTypeWithArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DescriptorRefinesTypeWithArtifact')");
+				return new DescriptorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUsesAxis {
-			get { return new VectorStep(false, Path.Add("inE('VectorUsesAxisArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUsesAxisArtifact')");
+				return new VectorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>,
-			IInRootContains, IInArtifactUsesList {
+	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>, IInRootContains, IInArtifactUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InArtifactListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InArtifactListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public ArtifactTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1229,36 +1387,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsArtifactType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsArtifactType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep InArtifactListUses {
-			get { return new ArtifactStep(false, Path.Add("inE('ArtifactUsesArtifactType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('ArtifactUsesArtifactType')");
+				return new ArtifactStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdStep : NodeStep<FabCrowd>,
-			IInRootContains, IHasArtifact, IInCrowdianUsesList {
+	public partial class CrowdStep : NodeStep<FabCrowd>, IInRootContains, IHasArtifact, IInCrowdianUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/HasArtifact", "/InCrowdianListUses" };
+		private static readonly string[] AvailSteps = new [] { "/HasArtifact", "/InCrowdianListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public CrowdStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1290,41 +1444,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsCrowd')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsCrowd')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('CrowdHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('CrowdHasArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep InCrowdianListUses {
-			get { return new CrowdianStep(false, Path.Add("inE('CrowdianUsesCrowd')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('CrowdianUsesCrowd')");
+				return new CrowdianStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianStep : NodeStep<FabCrowdian>,
-			IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
+	public partial class CrowdianStep : NodeStep<FabCrowdian>, IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
+		private static readonly string[] AvailSteps = new [] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public CrowdianStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1358,51 +1511,56 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsCrowdian')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsCrowdian')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdStep UsesCrowd {
-			get { return new CrowdStep(true, Path.Add("outE('CrowdianUsesCrowd')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('CrowdianUsesCrowd')");
+				return new CrowdStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep UsesUser {
-			get { return new UserStep(true, Path.Add("outE('CrowdianUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('CrowdianUsesUser')");
+				return new UserStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep HasCrowdianTypeAssign {
-			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('CrowdianHasCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('CrowdianHasCrowdianTypeAssign')");
+				return new CrowdianTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList {
-			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('CrowdianHasHistoricCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('CrowdianHasHistoricCrowdianTypeAssign')");
+				return new CrowdianTypeAssignStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>,
-			IInRootContains, IInCrowdianTypeAssignUsesList {
+	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InCrowdianTypeAssignListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InCrowdianTypeAssignListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public CrowdianTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1433,36 +1591,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsCrowdianType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsCrowdianType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep InCrowdianTypeAssignListUses {
-			get { return new CrowdianTypeAssignStep(false, Path.Add("inE('CrowdianTypeAssignUsesCrowdianType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('CrowdianTypeAssignUsesCrowdianType')");
+				return new CrowdianTypeAssignStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypeAssignStep : NodeStep<FabCrowdianTypeAssign>,
-			IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
+	public partial class CrowdianTypeAssignStep : NodeStep<FabCrowdianTypeAssign>, IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates" };
+		private static readonly string[] AvailSteps = new [] { "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public CrowdianTypeAssignStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1496,51 +1650,56 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsCrowdianTypeAssign')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep InCrowdianHas {
-			get { return new CrowdianStep(false, Path.Add("inE('CrowdianHasCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('CrowdianHasCrowdianTypeAssign')");
+				return new CrowdianStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep InCrowdianHasHistoric {
-			get { return new CrowdianStep(false, Path.Add("inE('CrowdianHasHistoricCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('CrowdianHasHistoricCrowdianTypeAssign')");
+				return new CrowdianStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeStep UsesCrowdianType {
-			get { return new CrowdianTypeStep(true, Path.Add("outE('CrowdianTypeAssignUsesCrowdianType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('CrowdianTypeAssignUsesCrowdianType')");
+				return new CrowdianTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserCreates {
-			get { return new UserStep(false, Path.Add("inE('UserCreatesCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('UserCreatesCrowdianTypeAssign')");
+				return new UserStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EmailStep : NodeStep<FabEmail>,
-			IInRootContains, IInAppUses, IInUserUses {
+	public partial class EmailStep : NodeStep<FabEmail>, IInRootContains, IInAppUses, IInUserUses {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InAppUses", "/InUserUses" };
+		private static readonly string[] AvailSteps = new [] { "/InAppUses", "/InUserUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public EmailStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1572,41 +1731,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsEmail')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsEmail')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep InAppUses {
-			get { return new AppStep(false, Path.Add("inE('AppUsesEmail')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('AppUsesEmail')");
+				return new AppStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserUses {
-			get { return new UserStep(false, Path.Add("inE('UserUsesEmail')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('UserUsesEmail')");
+				return new UserStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class LabelStep : NodeStep<FabLabel>,
-			IInRootContains, IHasArtifact {
+	public partial class LabelStep : NodeStep<FabLabel>, IInRootContains, IHasArtifact {
 	
-		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
+		private static readonly string[] AvailSteps = new [] { "/HasArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LabelStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public LabelStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1637,36 +1795,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsLabel')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsLabel')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('LabelHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('LabelHasArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberStep : NodeStep<FabMember>,
-			IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
+	public partial class MemberStep : NodeStep<FabMember>, IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
+		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public MemberStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1703,66 +1857,80 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsMember')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsMember')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep UsesApp {
-			get { return new AppStep(true, Path.Add("outE('MemberUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberUsesApp')");
+				return new AppStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep UsesUser {
-			get { return new UserStep(true, Path.Add("outE('MemberUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberUsesUser')");
+				return new UserStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep HasMemberTypeAssign {
-			get { return new MemberTypeAssignStep(true, Path.Add("outE('MemberHasMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberHasMemberTypeAssign')");
+				return new MemberTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep HasHistoricMemberTypeAssignList {
-			get { return new MemberTypeAssignStep(true, Path.Add("outE('MemberHasHistoricMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberHasHistoricMemberTypeAssign')");
+				return new MemberTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep CreatesArtifactList {
-			get { return new ArtifactStep(true, Path.Add("outE('MemberCreatesArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberCreatesArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep CreatesMemberTypeAssignList {
-			get { return new MemberTypeAssignStep(true, Path.Add("outE('MemberCreatesMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberCreatesMemberTypeAssign')");
+				return new MemberTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep CreatesFactorList {
-			get { return new FactorStep(true, Path.Add("outE('MemberCreatesFactor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberCreatesFactor')");
+				return new FactorStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeStep : NodeStep<FabMemberType>,
-			IInRootContains, IInMemberTypeAssignUsesList {
+	public partial class MemberTypeStep : NodeStep<FabMemberType>, IInRootContains, IInMemberTypeAssignUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InMemberTypeAssignListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InMemberTypeAssignListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public MemberTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1793,36 +1961,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsMemberType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsMemberType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep InMemberTypeAssignListUses {
-			get { return new MemberTypeAssignStep(false, Path.Add("inE('MemberTypeAssignUsesMemberType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberTypeAssignUsesMemberType')");
+				return new MemberTypeAssignStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssignStep : NodeStep<FabMemberTypeAssign>,
-			IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
+	public partial class MemberTypeAssignStep : NodeStep<FabMemberTypeAssign>, IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType" };
+		private static readonly string[] AvailSteps = new [] { "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public MemberTypeAssignStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1856,51 +2020,56 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsMemberTypeAssign')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberHas {
-			get { return new MemberStep(false, Path.Add("inE('MemberHasMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberHasMemberTypeAssign')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberHasHistoric {
-			get { return new MemberStep(false, Path.Add("inE('MemberHasHistoricMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberHasHistoricMemberTypeAssign')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberCreates {
-			get { return new MemberStep(false, Path.Add("inE('MemberCreatesMemberTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberCreatesMemberTypeAssign')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeStep UsesMemberType {
-			get { return new MemberTypeStep(true, Path.Add("outE('MemberTypeAssignUsesMemberType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('MemberTypeAssignUsesMemberType')");
+				return new MemberTypeStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class ThingStep : NodeStep<FabThing>,
-			IInRootContains, IHasArtifact {
+	public partial class ThingStep : NodeStep<FabThing>, IInRootContains, IHasArtifact {
 	
-		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
+		private static readonly string[] AvailSteps = new [] { "/HasArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ThingStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public ThingStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1931,36 +2100,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsThing')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsThing')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('ThingHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('ThingHasArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class UrlStep : NodeStep<FabUrl>,
-			IInRootContains, IHasArtifact {
+	public partial class UrlStep : NodeStep<FabUrl>, IInRootContains, IHasArtifact {
 	
-		private static readonly string[] AvailSteps = new string[] { "/HasArtifact" };
+		private static readonly string[] AvailSteps = new [] { "/HasArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public UrlStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1991,36 +2156,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsUrl')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsUrl')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('UrlHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('UrlHasArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class UserStep : NodeStep<FabUser>,
-			IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
+	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UserStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public UserStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2058,71 +2219,88 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsUser')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsUser')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep InCrowdianListUses {
-			get { return new CrowdianStep(false, Path.Add("inE('CrowdianUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('CrowdianUsesUser')");
+				return new CrowdianStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberListUses {
-			get { return new MemberStep(false, Path.Add("inE('MemberUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberUsesUser')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('UserHasArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('UserHasArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailStep UsesEmail {
-			get { return new EmailStep(true, Path.Add("outE('UserUsesEmail')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('UserUsesEmail')");
+				return new EmailStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep CreatesCrowdianTypeAssignList {
-			get { return new CrowdianTypeAssignStep(true, Path.Add("outE('UserCreatesCrowdianTypeAssign')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('UserCreatesCrowdianTypeAssign')");
+				return new CrowdianTypeAssignStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessStep InOauthAccessListUses {
-			get { return new OauthAccessStep(false, Path.Add("inE('OauthAccessUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthAccessUsesUser')");
+				return new OauthAccessStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantStep InOauthGrantListUses {
-			get { return new OauthGrantStep(false, Path.Add("inE('OauthGrantUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthGrantUsesUser')");
+				return new OauthGrantStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeStep InOauthScopeListUses {
-			get { return new OauthScopeStep(false, Path.Add("inE('OauthScopeUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('OauthScopeUsesUser')");
+				return new OauthScopeStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class FactorStep : NodeStep<FabFactor>,
-			IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
+	public partial class FactorStep : NodeStep<FabFactor>, IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector" };
+		private static readonly string[] AvailSteps = new [] { "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public FactorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2163,86 +2341,112 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsFactor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsFactor')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberCreates {
-			get { return new MemberStep(false, Path.Add("inE('MemberCreatesFactor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('MemberCreatesFactor')");
+				return new MemberStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep UsesPrimaryArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('FactorUsesPrimaryArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesPrimaryArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep UsesRelatedArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('FactorUsesRelatedArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesRelatedArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionStep UsesFactorAssertion {
-			get { return new FactorAssertionStep(true, Path.Add("outE('FactorUsesFactorAssertion')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesFactorAssertion')");
+				return new FactorAssertionStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep ReplacesFactor {
-			get { return new FactorStep(true, Path.Add("outE('FactorReplacesFactor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorReplacesFactor')");
+				return new FactorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep UsesDescriptor {
-			get { return new DescriptorStep(true, Path.Add("outE('FactorUsesDescriptor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesDescriptor')");
+				return new DescriptorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep UsesDirector {
-			get { return new DirectorStep(true, Path.Add("outE('FactorUsesDirector')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesDirector')");
+				return new DirectorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep UsesEventor {
-			get { return new EventorStep(true, Path.Add("outE('FactorUsesEventor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesEventor')");
+				return new EventorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorStep UsesIdentor {
-			get { return new IdentorStep(true, Path.Add("outE('FactorUsesIdentor')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesIdentor')");
+				return new IdentorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorStep UsesLocator {
-			get { return new LocatorStep(true, Path.Add("outE('FactorUsesLocator')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesLocator')");
+				return new LocatorStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep UsesVector {
-			get { return new VectorStep(true, Path.Add("outE('FactorUsesVector')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('FactorUsesVector')");
+				return new VectorStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>,
-			IInRootContains, IInFactorUsesList {
+	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>, IInRootContains, IInFactorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public FactorAssertionStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2273,36 +2477,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsFactorAssertion')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsFactorAssertion')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesFactorAssertion')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesFactorAssertion')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorStep : NodeStep<FabDescriptor>,
-			IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
+	public partial class DescriptorStep : NodeStep<FabDescriptor>, IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public DescriptorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2337,56 +2537,64 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsDescriptor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsDescriptor')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesDescriptor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesDescriptor')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeStep UsesDescriptorType {
-			get { return new DescriptorTypeStep(true, Path.Add("outE('DescriptorUsesDescriptorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DescriptorUsesDescriptorType')");
+				return new DescriptorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep RefinesPrimaryWithArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('DescriptorRefinesPrimaryWithArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DescriptorRefinesPrimaryWithArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep RefinesRelatedWithArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('DescriptorRefinesRelatedWithArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DescriptorRefinesRelatedWithArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep RefinesTypeWithArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('DescriptorRefinesTypeWithArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DescriptorRefinesTypeWithArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>,
-			IInRootContains, IInDescriptorUsesList {
+	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>, IInRootContains, IInDescriptorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InDescriptorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InDescriptorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public DescriptorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2417,36 +2625,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsDescriptorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsDescriptorType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListUses {
-			get { return new DescriptorStep(false, Path.Add("inE('DescriptorUsesDescriptorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DescriptorUsesDescriptorType')");
+				return new DescriptorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorStep : NodeStep<FabDirector>,
-			IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
+	public partial class DirectorStep : NodeStep<FabDirector>, IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public DirectorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2480,51 +2684,56 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsDirector')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsDirector')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesDirector')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesDirector')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeStep UsesDirectorType {
-			get { return new DirectorTypeStep(true, Path.Add("outE('DirectorUsesDirectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DirectorUsesDirectorType')");
+				return new DirectorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionStep UsesPrimaryDirectorAction {
-			get { return new DirectorActionStep(true, Path.Add("outE('DirectorUsesPrimaryDirectorAction')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DirectorUsesPrimaryDirectorAction')");
+				return new DirectorActionStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionStep UsesRelatedDirectorAction {
-			get { return new DirectorActionStep(true, Path.Add("outE('DirectorUsesRelatedDirectorAction')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('DirectorUsesRelatedDirectorAction')");
+				return new DirectorActionStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorTypeStep : NodeStep<FabDirectorType>,
-			IInRootContains, IInDirectorUsesList {
+	public partial class DirectorTypeStep : NodeStep<FabDirectorType>, IInRootContains, IInDirectorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InDirectorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InDirectorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public DirectorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2555,36 +2764,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsDirectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsDirectorType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep InDirectorListUses {
-			get { return new DirectorStep(false, Path.Add("inE('DirectorUsesDirectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DirectorUsesDirectorType')");
+				return new DirectorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorActionStep : NodeStep<FabDirectorAction>,
-			IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
+	public partial class DirectorActionStep : NodeStep<FabDirectorAction>, IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
+		private static readonly string[] AvailSteps = new [] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public DirectorActionStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2616,41 +2821,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsDirectorAction')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsDirectorAction')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep InDirectorListUsesPrimary {
-			get { return new DirectorStep(false, Path.Add("inE('DirectorUsesPrimaryDirectorAction')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DirectorUsesPrimaryDirectorAction')");
+				return new DirectorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep InDirectorListUsesRelated {
-			get { return new DirectorStep(false, Path.Add("inE('DirectorUsesRelatedDirectorAction')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('DirectorUsesRelatedDirectorAction')");
+				return new DirectorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EventorStep : NodeStep<FabEventor>,
-			IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
+	public partial class EventorStep : NodeStep<FabEventor>, IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public EventorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2683,46 +2887,48 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsEventor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsEventor')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesEventor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesEventor')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeStep UsesEventorType {
-			get { return new EventorTypeStep(true, Path.Add("outE('EventorUsesEventorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('EventorUsesEventorType')");
+				return new EventorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionStep UsesEventorPrecision {
-			get { return new EventorPrecisionStep(true, Path.Add("outE('EventorUsesEventorPrecision')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('EventorUsesEventorPrecision')");
+				return new EventorPrecisionStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EventorTypeStep : NodeStep<FabEventorType>,
-			IInRootContains, IInEventorUsesList {
+	public partial class EventorTypeStep : NodeStep<FabEventorType>, IInRootContains, IInEventorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InEventorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InEventorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public EventorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2753,36 +2959,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsEventorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsEventorType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep InEventorListUses {
-			get { return new EventorStep(false, Path.Add("inE('EventorUsesEventorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('EventorUsesEventorType')");
+				return new EventorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>,
-			IInRootContains, IInEventorUsesList {
+	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>, IInRootContains, IInEventorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InEventorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InEventorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public EventorPrecisionStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2813,36 +3015,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsEventorPrecision')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsEventorPrecision')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep InEventorListUses {
-			get { return new EventorStep(false, Path.Add("inE('EventorUsesEventorPrecision')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('EventorUsesEventorPrecision')");
+				return new EventorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorStep : NodeStep<FabIdentor>,
-			IInRootContains, IInFactorUsesList, IUsesIdentorType {
+	public partial class IdentorStep : NodeStep<FabIdentor>, IInRootContains, IInFactorUsesList, IUsesIdentorType {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesIdentorType" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesIdentorType" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public IdentorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2874,41 +3072,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsIdentor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsIdentor')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesIdentor')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesIdentor')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeStep UsesIdentorType {
-			get { return new IdentorTypeStep(true, Path.Add("outE('IdentorUsesIdentorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('IdentorUsesIdentorType')");
+				return new IdentorTypeStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorTypeStep : NodeStep<FabIdentorType>,
-			IInRootContains, IInIdentorUsesList {
+	public partial class IdentorTypeStep : NodeStep<FabIdentorType>, IInRootContains, IInIdentorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InIdentorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InIdentorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public IdentorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -2939,36 +3136,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsIdentorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsIdentorType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorStep InIdentorListUses {
-			get { return new IdentorStep(false, Path.Add("inE('IdentorUsesIdentorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('IdentorUsesIdentorType')");
+				return new IdentorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorStep : NodeStep<FabLocator>,
-			IInRootContains, IInFactorUsesList, IUsesLocatorType {
+	public partial class LocatorStep : NodeStep<FabLocator>, IInRootContains, IInFactorUsesList, IUsesLocatorType {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesLocatorType" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesLocatorType" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public LocatorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3000,41 +3193,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsLocator')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsLocator')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesLocator')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesLocator')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeStep UsesLocatorType {
-			get { return new LocatorTypeStep(true, Path.Add("outE('LocatorUsesLocatorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('LocatorUsesLocatorType')");
+				return new LocatorTypeStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorTypeStep : NodeStep<FabLocatorType>,
-			IInRootContains, IInLocatorUsesList {
+	public partial class LocatorTypeStep : NodeStep<FabLocatorType>, IInRootContains, IInLocatorUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InLocatorListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InLocatorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public LocatorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3065,36 +3257,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsLocatorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsLocatorType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorStep InLocatorListUses {
-			get { return new LocatorStep(false, Path.Add("inE('LocatorUsesLocatorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('LocatorUsesLocatorType')");
+				return new LocatorStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorStep : NodeStep<FabVector>,
-			IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorStep : NodeStep<FabVector>, IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
+		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3129,56 +3317,64 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVector')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVector')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
-			get { return new FactorStep(false, Path.Add("inE('FactorUsesVector')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('FactorUsesVector')");
+				return new FactorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep UsesAxisArtifact {
-			get { return new ArtifactStep(true, Path.Add("outE('VectorUsesAxisArtifact')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUsesAxisArtifact')");
+				return new ArtifactStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeStep UsesVectorType {
-			get { return new VectorTypeStep(true, Path.Add("outE('VectorUsesVectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUsesVectorType')");
+				return new VectorTypeStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep UsesVectorUnit {
-			get { return new VectorUnitStep(true, Path.Add("outE('VectorUsesVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUsesVectorUnit')");
+				return new VectorUnitStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixStep UsesVectorUnitPrefix {
-			get { return new VectorUnitPrefixStep(true, Path.Add("outE('VectorUsesVectorUnitPrefix')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUsesVectorUnitPrefix')");
+				return new VectorUnitPrefixStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorTypeStep : NodeStep<FabVectorType>,
-			IInRootContains, IInVectorUsesList, IUsesVectorRange {
+	public partial class VectorTypeStep : NodeStep<FabVectorType>, IInRootContains, IInVectorUsesList, IUsesVectorRange {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/UsesVectorRange" };
+		private static readonly string[] AvailSteps = new [] { "/InVectorListUses", "/UsesVectorRange" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3210,41 +3406,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVectorType')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUses {
-			get { return new VectorStep(false, Path.Add("inE('VectorUsesVectorType')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUsesVectorType')");
+				return new VectorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeStep UsesVectorRange {
-			get { return new VectorRangeStep(true, Path.Add("outE('VectorTypeUsesVectorRange')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorTypeUsesVectorRange')");
+				return new VectorRangeStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeStep : NodeStep<FabVectorRange>,
-			IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
+	public partial class VectorRangeStep : NodeStep<FabVectorRange>, IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
+		private static readonly string[] AvailSteps = new [] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorRangeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3276,41 +3471,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVectorRange')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVectorRange')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeStep InVectorTypeListUses {
-			get { return new VectorTypeStep(false, Path.Add("inE('VectorTypeUsesVectorRange')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorTypeUsesVectorRange')");
+				return new VectorTypeStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelStep UsesVectorRangeLevelList {
-			get { return new VectorRangeLevelStep(true, Path.Add("outE('VectorRangeUsesVectorRangeLevel')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorRangeUsesVectorRangeLevel')");
+				return new VectorRangeLevelStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>,
-			IInRootContains, IInVectorRangeUsesList {
+	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>, IInRootContains, IInVectorRangeUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InVectorRangeListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InVectorRangeListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorRangeLevelStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3341,36 +3535,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVectorRangeLevel')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVectorRangeLevel')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeStep InVectorRangeListUses {
-			get { return new VectorRangeStep(false, Path.Add("inE('VectorRangeUsesVectorRangeLevel')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorRangeUsesVectorRangeLevel')");
+				return new VectorRangeStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitStep : NodeStep<FabVectorUnit>,
-			IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
+	public partial class VectorUnitStep : NodeStep<FabVectorUnit>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
+		private static readonly string[] AvailSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorUnitStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3403,46 +3593,48 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVectorUnit')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUses {
-			get { return new VectorStep(false, Path.Add("inE('VectorUsesVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUsesVectorUnit')");
+				return new VectorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep InVectorUnitDerivedListDefines {
-			get { return new VectorUnitDerivedStep(false, Path.Add("inE('VectorUnitDerivedDefinesVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUnitDerivedDefinesVectorUnit')");
+				return new VectorUnitDerivedStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp {
-			get { return new VectorUnitDerivedStep(false, Path.Add("inE('VectorUnitDerivedRaisesToExpVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUnitDerivedRaisesToExpVectorUnit')");
+				return new VectorUnitDerivedStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>,
-			IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
+	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
 	
-		private static readonly string[] AvailSteps = new string[] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
+		private static readonly string[] AvailSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorUnitPrefixStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3474,41 +3666,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVectorUnitPrefix')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVectorUnitPrefix')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUses {
-			get { return new VectorStep(false, Path.Add("inE('VectorUsesVectorUnitPrefix')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUsesVectorUnitPrefix')");
+				return new VectorStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep InVectorUnitDerivedListUses {
-			get { return new VectorUnitDerivedStep(false, Path.Add("inE('VectorUnitDerivedUsesVectorUnitPrefix')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('VectorUnitDerivedUsesVectorUnitPrefix')");
+				return new VectorUnitDerivedStep(false, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitDerivedStep : NodeStep<FabVectorUnitDerived>,
-			IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorUnitDerivedStep : NodeStep<FabVectorUnitDerived>, IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
 	
-		private static readonly string[] AvailSteps = new string[] { "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix" };
+		private static readonly string[] AvailSteps = new [] { "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public VectorUnitDerivedStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3541,46 +3732,48 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsVectorUnitDerived')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsVectorUnitDerived')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep DefinesVectorUnit {
-			get { return new VectorUnitStep(true, Path.Add("outE('VectorUnitDerivedDefinesVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUnitDerivedDefinesVectorUnit')");
+				return new VectorUnitStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep RaisesToExpVectorUnit {
-			get { return new VectorUnitStep(true, Path.Add("outE('VectorUnitDerivedRaisesToExpVectorUnit')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUnitDerivedRaisesToExpVectorUnit')");
+				return new VectorUnitStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixStep UsesVectorUnitPrefix {
-			get { return new VectorUnitPrefixStep(true, Path.Add("outE('VectorUnitDerivedUsesVectorUnitPrefix')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('VectorUnitDerivedUsesVectorUnitPrefix')");
+				return new VectorUnitPrefixStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthAccessStep : NodeStep<FabOauthAccess>,
-			IInRootContains, IUsesApp, IUsesUser {
+	public partial class OauthAccessStep : NodeStep<FabOauthAccess>, IInRootContains, IUsesApp, IUsesUser {
 	
-		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
+		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public OauthAccessStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3612,41 +3805,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsOauthAccess')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsOauthAccess')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep UsesApp {
-			get { return new AppStep(true, Path.Add("outE('OauthAccessUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthAccessUsesApp')");
+				return new AppStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep UsesUser {
-			get { return new UserStep(true, Path.Add("outE('OauthAccessUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthAccessUsesUser')");
+				return new UserStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthDomainStep : NodeStep<FabOauthDomain>,
-			IInRootContains, IUsesApp {
+	public partial class OauthDomainStep : NodeStep<FabOauthDomain>, IInRootContains, IUsesApp {
 	
-		private static readonly string[] AvailSteps = new string[] { "/UsesApp" };
+		private static readonly string[] AvailSteps = new [] { "/UsesApp" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public OauthDomainStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3677,36 +3869,32 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsOauthDomain')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsOauthDomain')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep UsesApp {
-			get { return new AppStep(true, Path.Add("outE('OauthDomainUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthDomainUsesApp')");
+				return new AppStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthGrantStep : NodeStep<FabOauthGrant>,
-			IInRootContains, IUsesApp, IUsesUser {
+	public partial class OauthGrantStep : NodeStep<FabOauthGrant>, IInRootContains, IUsesApp, IUsesUser {
 	
-		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
+		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public OauthGrantStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3738,41 +3926,40 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsOauthGrant')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsOauthGrant')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep UsesApp {
-			get { return new AppStep(true, Path.Add("outE('OauthGrantUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthGrantUsesApp')");
+				return new AppStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep UsesUser {
-			get { return new UserStep(true, Path.Add("outE('OauthGrantUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthGrantUsesUser')");
+				return new UserStep(true, Path);
+			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthScopeStep : NodeStep<FabOauthScope>,
-			IInRootContains, IUsesApp, IUsesUser {
+	public partial class OauthScopeStep : NodeStep<FabOauthScope>, IInRootContains, IUsesApp, IUsesUser {
 	
-		private static readonly string[] AvailSteps = new string[] { "/UsesApp", "/UsesUser" };
+		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopeStep(bool pIsToNode, Path pPath) {
-			string q;
-
-			if ( pPath.Script.Length == 0 ) {
-				q = "g.v(0)";
-			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-
-			Path = pPath.Add(q);
+		public OauthScopeStep(bool pIsToNode, Path pPath) : base(pPath) {
+			AddPathSegment(pIsToNode ? "inV" : "outV");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -3804,17 +3991,26 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
-			get { return new RootStep(false, Path.Add("inE('RootContainsOauthScope')")); }
+			get {
+				Path.AppendToCurrentSegment("inE('RootContainsOauthScope')");
+				return new RootStep(false, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep UsesApp {
-			get { return new AppStep(true, Path.Add("outE('OauthScopeUsesApp')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthScopeUsesApp')");
+				return new AppStep(true, Path);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep UsesUser {
-			get { return new UserStep(true, Path.Add("outE('OauthScopeUsesUser')")); }
+			get {
+				Path.AppendToCurrentSegment("outE('OauthScopeUsesUser')");
+				return new UserStep(true, Path);
+			}
 		}
 
 	}

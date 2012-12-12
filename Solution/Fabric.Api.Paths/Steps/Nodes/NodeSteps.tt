@@ -77,25 +77,35 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	}
 #>
 	/*================================================================================================*/
-	public partial class <#= node.Name #>Step : NodeStep<<#= "Fab"+node.Name #>>,
-			<#= interfaces #> {
+	public partial class <#= node.Name #>Step : NodeStep<<#= "Fab"+node.Name #>>, <#= interfaces #> {
 	
-		private static readonly string[] AvailSteps = new string[] { <#= steps #> };
+		private static readonly string[] AvailSteps = new [] { <#= steps #> };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Step(bool pIsToNode, Path pPath) {
+		public <#= node.Name #>Step(bool pIsToNode, Path pPath) : base(pPath) {
+<#
+	if ( node.Name == "Root" ) {
+#>
 			string q;
-
-			if ( pPath.Script.Length == 0 ) {
+			
+			if ( pPath.Segments.Count == 0 ) {
 				q = "g.v(0)";
 			}
 			else {
 				q = (pIsToNode ? "inV" : "outV");
 			}
-
-			Path = pPath.Add(q);
+			
+			AddPathSegment(q);
+<#
+	}
+	else {
+#>
+			AddPathSegment(pIsToNode ? "inV" : "outV");
+<#
+	}
+#>
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -145,7 +155,10 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= propType #> <#= propName #> {
-			get { return new <#= propType #>(<#= isToNode #>, Path.Add("<#= script #>")); }
+			get {
+				Path.AppendToCurrentSegment("<#= script #>");
+				return new <#= propType #>(<#= isToNode #>, Path);
+			}
 		}
 
 <#

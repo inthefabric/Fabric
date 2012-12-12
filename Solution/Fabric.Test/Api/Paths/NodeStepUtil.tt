@@ -35,20 +35,17 @@ var schema = new GraphSchema();
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	if ( node.IsAbstract ) { continue; }
 
-	var rels = new List<WeaverRelSchema>();
-	string interfaces = "";
 	string steps = "";
 	
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		rels.Add(rel);
 		bool isOut = (rel.FromNode == node);
 
 		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
 		steps += (steps == "" ? "" : ",\r\n\t\t\t\t")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
 	}
 #>
-			map.Add("<#= node.Name #>", new string[] {
+			map.Add("<#= node.Name #>", new [] {
 				<#= steps #>
 			});
 

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/11/2012 4:55:48 PM
+// Generated on 12/11/2012 8:27:46 PM
 
 using System.Collections.Generic;
 
@@ -17,7 +17,7 @@ namespace Fabric.Test.Api.Paths {
 		private static Dictionary<string, string[]> BuildNodeStepMap() {
 			var map = new Dictionary<string, string[]>();
 
-			map.Add("Root", new string[] {
+			map.Add("Root", new [] {
 				"/ContainsAppList",
 				"/ContainsArtifactList",
 				"/ContainsArtifactTypeList",
@@ -60,7 +60,7 @@ namespace Fabric.Test.Api.Paths {
 				"/ContainsOauthScopeList"
 			});
 
-			map.Add("App", new string[] {
+			map.Add("App", new [] {
 				"/HasArtifact",
 				"/UsesEmail",
 				"/InMemberListUses",
@@ -70,7 +70,7 @@ namespace Fabric.Test.Api.Paths {
 				"/InOauthScopeListUses"
 			});
 
-			map.Add("Artifact", new string[] {
+			map.Add("Artifact", new [] {
 				"/InAppHas",
 				"/UsesArtifactType",
 				"/InCrowdHas",
@@ -87,43 +87,43 @@ namespace Fabric.Test.Api.Paths {
 				"/InVectorListUsesAxis"
 			});
 
-			map.Add("ArtifactType", new string[] {
+			map.Add("ArtifactType", new [] {
 				"/InArtifactListUses"
 			});
 
-			map.Add("Crowd", new string[] {
+			map.Add("Crowd", new [] {
 				"/HasArtifact",
 				"/InCrowdianListUses"
 			});
 
-			map.Add("Crowdian", new string[] {
+			map.Add("Crowdian", new [] {
 				"/UsesCrowd",
 				"/UsesUser",
 				"/HasCrowdianTypeAssign",
 				"/HasHistoricCrowdianTypeAssignList"
 			});
 
-			map.Add("CrowdianType", new string[] {
+			map.Add("CrowdianType", new [] {
 				"/InCrowdianTypeAssignListUses"
 			});
 
-			map.Add("CrowdianTypeAssign", new string[] {
+			map.Add("CrowdianTypeAssign", new [] {
 				"/InCrowdianHas",
 				"/InCrowdianHasHistoric",
 				"/UsesCrowdianType",
 				"/InUserCreates"
 			});
 
-			map.Add("Email", new string[] {
+			map.Add("Email", new [] {
 				"/InAppUses",
 				"/InUserUses"
 			});
 
-			map.Add("Label", new string[] {
+			map.Add("Label", new [] {
 				"/HasArtifact"
 			});
 
-			map.Add("Member", new string[] {
+			map.Add("Member", new [] {
 				"/UsesApp",
 				"/UsesUser",
 				"/HasMemberTypeAssign",
@@ -133,26 +133,26 @@ namespace Fabric.Test.Api.Paths {
 				"/CreatesFactorList"
 			});
 
-			map.Add("MemberType", new string[] {
+			map.Add("MemberType", new [] {
 				"/InMemberTypeAssignListUses"
 			});
 
-			map.Add("MemberTypeAssign", new string[] {
+			map.Add("MemberTypeAssign", new [] {
 				"/InMemberHas",
 				"/InMemberHasHistoric",
 				"/InMemberCreates",
 				"/UsesMemberType"
 			});
 
-			map.Add("Thing", new string[] {
+			map.Add("Thing", new [] {
 				"/HasArtifact"
 			});
 
-			map.Add("Url", new string[] {
+			map.Add("Url", new [] {
 				"/HasArtifact"
 			});
 
-			map.Add("User", new string[] {
+			map.Add("User", new [] {
 				"/InCrowdianListUses",
 				"/InMemberListUses",
 				"/HasArtifact",
@@ -163,7 +163,7 @@ namespace Fabric.Test.Api.Paths {
 				"/InOauthScopeListUses"
 			});
 
-			map.Add("Factor", new string[] {
+			map.Add("Factor", new [] {
 				"/InMemberCreates",
 				"/UsesPrimaryArtifact",
 				"/UsesRelatedArtifact",
@@ -177,11 +177,11 @@ namespace Fabric.Test.Api.Paths {
 				"/UsesVector"
 			});
 
-			map.Add("FactorAssertion", new string[] {
+			map.Add("FactorAssertion", new [] {
 				"/InFactorListUses"
 			});
 
-			map.Add("Descriptor", new string[] {
+			map.Add("Descriptor", new [] {
 				"/InFactorListUses",
 				"/UsesDescriptorType",
 				"/RefinesPrimaryWithArtifact",
@@ -189,59 +189,59 @@ namespace Fabric.Test.Api.Paths {
 				"/RefinesTypeWithArtifact"
 			});
 
-			map.Add("DescriptorType", new string[] {
+			map.Add("DescriptorType", new [] {
 				"/InDescriptorListUses"
 			});
 
-			map.Add("Director", new string[] {
+			map.Add("Director", new [] {
 				"/InFactorListUses",
 				"/UsesDirectorType",
 				"/UsesPrimaryDirectorAction",
 				"/UsesRelatedDirectorAction"
 			});
 
-			map.Add("DirectorType", new string[] {
+			map.Add("DirectorType", new [] {
 				"/InDirectorListUses"
 			});
 
-			map.Add("DirectorAction", new string[] {
+			map.Add("DirectorAction", new [] {
 				"/InDirectorListUsesPrimary",
 				"/InDirectorListUsesRelated"
 			});
 
-			map.Add("Eventor", new string[] {
+			map.Add("Eventor", new [] {
 				"/InFactorListUses",
 				"/UsesEventorType",
 				"/UsesEventorPrecision"
 			});
 
-			map.Add("EventorType", new string[] {
+			map.Add("EventorType", new [] {
 				"/InEventorListUses"
 			});
 
-			map.Add("EventorPrecision", new string[] {
+			map.Add("EventorPrecision", new [] {
 				"/InEventorListUses"
 			});
 
-			map.Add("Identor", new string[] {
+			map.Add("Identor", new [] {
 				"/InFactorListUses",
 				"/UsesIdentorType"
 			});
 
-			map.Add("IdentorType", new string[] {
+			map.Add("IdentorType", new [] {
 				"/InIdentorListUses"
 			});
 
-			map.Add("Locator", new string[] {
+			map.Add("Locator", new [] {
 				"/InFactorListUses",
 				"/UsesLocatorType"
 			});
 
-			map.Add("LocatorType", new string[] {
+			map.Add("LocatorType", new [] {
 				"/InLocatorListUses"
 			});
 
-			map.Add("Vector", new string[] {
+			map.Add("Vector", new [] {
 				"/InFactorListUses",
 				"/UsesAxisArtifact",
 				"/UsesVectorType",
@@ -249,52 +249,52 @@ namespace Fabric.Test.Api.Paths {
 				"/UsesVectorUnitPrefix"
 			});
 
-			map.Add("VectorType", new string[] {
+			map.Add("VectorType", new [] {
 				"/InVectorListUses",
 				"/UsesVectorRange"
 			});
 
-			map.Add("VectorRange", new string[] {
+			map.Add("VectorRange", new [] {
 				"/InVectorTypeListUses",
 				"/UsesVectorRangeLevelList"
 			});
 
-			map.Add("VectorRangeLevel", new string[] {
+			map.Add("VectorRangeLevel", new [] {
 				"/InVectorRangeListUses"
 			});
 
-			map.Add("VectorUnit", new string[] {
+			map.Add("VectorUnit", new [] {
 				"/InVectorListUses",
 				"/InVectorUnitDerivedListDefines",
 				"/InVectorUnitDerivedListRaisesToExp"
 			});
 
-			map.Add("VectorUnitPrefix", new string[] {
+			map.Add("VectorUnitPrefix", new [] {
 				"/InVectorListUses",
 				"/InVectorUnitDerivedListUses"
 			});
 
-			map.Add("VectorUnitDerived", new string[] {
+			map.Add("VectorUnitDerived", new [] {
 				"/DefinesVectorUnit",
 				"/RaisesToExpVectorUnit",
 				"/UsesVectorUnitPrefix"
 			});
 
-			map.Add("OauthAccess", new string[] {
+			map.Add("OauthAccess", new [] {
 				"/UsesApp",
 				"/UsesUser"
 			});
 
-			map.Add("OauthDomain", new string[] {
+			map.Add("OauthDomain", new [] {
 				"/UsesApp"
 			});
 
-			map.Add("OauthGrant", new string[] {
+			map.Add("OauthGrant", new [] {
 				"/UsesApp",
 				"/UsesUser"
 			});
 
-			map.Add("OauthScope", new string[] {
+			map.Add("OauthScope", new [] {
 				"/UsesApp",
 				"/UsesUser"
 			});
