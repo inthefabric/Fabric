@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Fabric.Api.Paths.Steps {
 	
@@ -17,13 +18,18 @@ namespace Fabric.Api.Paths.Steps {
 
 			Command = RawString.ToLower();
 			int pi = Command.IndexOf('(');
+			int pi2 = Command.LastIndexOf(')');
+
+			if ( (pi != -1 && pi2 < pi) || (pi == -1 && pi2 != -1) ) {
+				throw new Exception("Invalid parameter syntax: '"+RawString+"'.");
+			}
 
 			if ( pi == -1 ) {
 				return;
 			}
 
 			Command = Command.Substring(0, pi);
-			string p = Command.Substring(pi+1);
+			string p = RawString.Substring(pi+1);
 			int len = p.Length;
 
 			if ( len == 0 || p[len-1] != ')' ) {
@@ -36,7 +42,7 @@ namespace Fabric.Api.Paths.Steps {
 				throw new Exception("Empty parameter list: '"+RawString+"'.");
 			}
 
-			Params = p.Replace(" ", "").Split(',');
+			Params = Regex.Replace(p, @"\s*", "").Split(',');
 		}
 
 	}
