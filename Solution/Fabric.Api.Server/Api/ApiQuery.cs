@@ -49,7 +49,7 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.StartEvent();
 
 			vUri = vContext.Request.Path.Substring(5);
-			IStep step = PathRouter.GetPath(vUri);
+			IStep step = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
 			vInfo.Query = step.Path.Script;
 			vInfo.DtoType = step.DtoType;

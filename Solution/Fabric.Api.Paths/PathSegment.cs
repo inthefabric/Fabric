@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Paths.Steps;
+﻿using System;
+using Fabric.Api.Paths.Steps;
 
 namespace Fabric.Api.Paths {
 
@@ -12,13 +13,21 @@ namespace Fabric.Api.Paths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public PathSegment(IStep pStep, string pScript) {
+			if ( string.IsNullOrWhiteSpace(pScript) ) {
+				throw new Exception("No script provided.");
+			}
+
 			Step = pStep;
 			Script = pScript;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Append(string pScript) {
-			Script += (Script.Length == 0 ? "" : ".")+pScript;
+			if ( string.IsNullOrWhiteSpace(pScript) ) {
+				throw new Exception("No script provided.");
+			}
+
+			Script += "."+pScript;
 		}
 
 	}
