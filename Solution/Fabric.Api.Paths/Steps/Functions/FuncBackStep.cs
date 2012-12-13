@@ -5,8 +5,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 	/*================================================================================================*/
 	public class FuncBackStep : Step {
 
-		//The correct way to read the "back" command is to count the period chars BEFORE ".back". The
-		//next command will be issued from that period.
+		//The correct way to read the "back" command is to count the period chars BEFORE ".back".
+		//The next command will be issued from that period.
 
 		//Example: g.v(0).out('HasX').inV(x).something(1,2).out('HasY').inV(y).filter(123).back(BACK)
 		// * BACK == 1: next command will be issued as if it were after "inV(y)."
@@ -90,7 +90,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override IStep GetNextStep(string pStepText, bool pSetData=true) {
 			if ( vBackToStep == null ) {
-				throw new Exception("ParentStep is null.");
+				throw new Exception("BackToStep is null.");
 			}
 
 			IStep next = vBackToStep.GetNextStep(pStepText, false);

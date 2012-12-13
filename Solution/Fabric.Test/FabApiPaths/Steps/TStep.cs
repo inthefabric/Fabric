@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
+using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Paths.Steps.Nodes;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
@@ -50,18 +51,40 @@ namespace Fabric.Test.FabApiPaths.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void GetNextStep() {
+		[TestCase(true)]
+		[TestCase(false)]
+		public void GetNextStep(bool pSetData) {
 			var s = new TestStep(new Path());
 			const string comm = "teST1";
 
-			IStep result = s.GetNextStep(comm+"(1,2)");
+			IStep result = s.GetNextStep(comm+"(1,2)", pSetData);
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(typeof(ArtifactStep), result.GetType(), "Incorrect Result Type.");
 
-			Assert.NotNull(result.Data, "Result.Data should be filled.");
-			Assert.AreEqual(comm.ToLower(), result.Data.Command, "Result.Data should be filled.");
+			if ( pSetData ) {
+				Assert.NotNull(result.Data, "Result.Data should be filled.");
+				Assert.AreEqual(comm.ToLower(), result.Data.Command, "Result.Data should be filled.");
+			}
+			else {
+				Assert.Null(result.Data, "Result.Data should be null.");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void GetNextStepBack() {
+			var p = new Path();
+			p.AddSegment(null, "g.v(0).outE");
+			p.AddSegment(null, "inV");
+
+			var s = new TestStep(p);
+			const string comm = "Back";
+
+			IStep result = s.GetNextStep(comm+"(1)");
+
+			Assert.NotNull(result, "Result should be filled.");
+			Assert.AreEqual(typeof(FuncBackStep), result.GetType(), "Incorrect Result type.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

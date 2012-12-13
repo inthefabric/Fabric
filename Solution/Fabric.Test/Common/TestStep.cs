@@ -26,7 +26,7 @@ namespace Fabric.Test.Common {
 				case "test2": return new FactorStep(true, Path);
 			}
 
-			return null;
+			return base.GetNextStep(pData);
 		}
 
 	}

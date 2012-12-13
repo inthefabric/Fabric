@@ -5,7 +5,7 @@ using Fabric.Api.Paths.Steps.Functions;
 namespace Fabric.Api.Paths.Steps {
 	
 	/*================================================================================================*/
-	public abstract class Step : IStep { //TODO update tests based on new Step vs Step<T>
+	public abstract class Step : IStep {
 
 		private static readonly string[] AvailSteps = new[] { "/Back", "/Where" };
 
@@ -38,7 +38,6 @@ namespace Fabric.Api.Paths.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TODO: add Step.GetNextStep() test for pSetData=false
 		public virtual IStep GetNextStep(string pStepText, bool pSetData=true) {
 			var sd = new StepData(pStepText);
 			IStep next = GetNextStep(sd);

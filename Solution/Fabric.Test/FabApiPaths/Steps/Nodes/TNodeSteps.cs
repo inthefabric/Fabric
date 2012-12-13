@@ -57,6 +57,15 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 				TestNextStep(step, text);
 			}
 
+			try {
+				step = pNewStep(false, new Path());
+				IStep next = step.GetNextStep("fake");
+				Assert.Fail("Expected 'fake' step to fail.");
+			}
+			catch ( Exception ex ) {
+				Assert.NotNull(ex);
+			}
+
 			////
 			
 			step = pNewStep(false, new Path());

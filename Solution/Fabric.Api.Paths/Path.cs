@@ -18,11 +18,19 @@ namespace Fabric.Api.Paths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddSegment(IStep pStep, string pScript) {
+			if ( string.IsNullOrWhiteSpace(pScript) ) {
+				throw new Exception("Script is null or empty.");
+			}
+
 			Segments.Add(new PathSegment(pStep, pScript));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AppendToCurrentSegment(string pScript, bool pAddDot=true) { //TODO: test Path.Append pAddDot
+		public void AppendToCurrentSegment(string pScript, bool pAddDot=true) {
+			if ( string.IsNullOrWhiteSpace(pScript) ) {
+				throw new Exception("Script is null or empty.");
+			}
+
 			if ( Segments.Count == 0 ) {
 				throw new Exception("Path has no segments.");
 			}
@@ -46,7 +54,7 @@ namespace Fabric.Api.Paths {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static int GetSegmentIndexOfStep(IStep pStep) { //TODO: test Path.GetSegmentIndexOfStep
+		public static int GetSegmentIndexOfStep(IStep pStep) {
 			Path p = pStep.Path;
 			int n = p.Segments.Count;
 

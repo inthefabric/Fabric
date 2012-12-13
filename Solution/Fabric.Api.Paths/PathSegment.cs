@@ -22,7 +22,7 @@ namespace Fabric.Api.Paths {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void Append(string pScript, bool pAddDot=true) { //TODO test PathSegment.Append pAddDot
+		public void Append(string pScript, bool pAddDot=true) {
 			if ( string.IsNullOrWhiteSpace(pScript) ) {
 				throw new Exception("No script provided.");
 			}
@@ -31,7 +31,7 @@ namespace Fabric.Api.Paths {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public int SubstepCount { //TODO test PathSegment.SubstepCount
+		public int SubstepCount {
 			get {
 				return Script.Split('.').Length;
 			}

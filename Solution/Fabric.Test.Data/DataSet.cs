@@ -85,22 +85,10 @@ namespace Fabric.Db.Data {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
 			DataNode<T> n = DataNode.Create(pDomainNode, pIsForTesting);
 			DataNodeIndex<T> ni = DataNodeIndex.Create(n, pIndexValueFunc);
-			AddNode(n);
-			AddNodeToIndex(ni);
+			Nodes.Add(n);
+			NodeToIndexes.Add(ni);
 			vNodeMap.Add(typeof(T).Name+pDomainNode.GetTypeId(), pDomainNode);
 			return true;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void AddNode<T>(DataNode<T> pNode) where T : INode {
-			if ( !IsForTesting && pNode.IsForTesting ) { return; }
-			Nodes.Add(pNode);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void AddNodeToIndex<T>(DataNodeIndex<T> pNodeToIndex) where T : INode {
-			if ( !IsForTesting && pNodeToIndex.IsForTesting ) { return; }
-			NodeToIndexes.Add(pNodeToIndex);
 		}
 
 

@@ -25,22 +25,6 @@ namespace Fabric.Test.FabApiPaths {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("inV")]
-		[TestCase("outE('RootContainsArtifact')")]
-		public void Append(string pScript) {
-			IStep step = new Mock<IStep>().Object;
-			string origScript = "g.v(0)";
-
-			var ps = new PathSegment(step, origScript);
-			ps.Append(pScript);
-
-			Assert.AreEqual(origScript+"."+pScript, ps.Script, "Incorrect Script.");
-			Assert.AreEqual(step, ps.Step, "Incorrect Step.");
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(null)]
 		[TestCase("")]
 		[TestCase(" ")]
@@ -48,6 +32,23 @@ namespace Fabric.Test.FabApiPaths {
 		public void NewInvalidScript(string pScript) {
 			IStep step = new Mock<IStep>().Object;
 			TestUtil.CheckThrows<Exception>(true, () => new PathSegment(step, pScript));
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("inV", true)]
+		[TestCase("outE('RootContainsArtifact')", true)]
+		[TestCase("[0..2]", false)]
+		public void Append(string pScript, bool pAddDot) {
+			IStep step = new Mock<IStep>().Object;
+			string origScript = "g.v(0)";
+
+			var ps = new PathSegment(step, origScript);
+			ps.Append(pScript, pAddDot);
+
+			Assert.AreEqual(origScript+(pAddDot ? "." : "")+pScript, ps.Script, "Incorrect Script.");
+			Assert.AreEqual(step, ps.Step, "Incorrect Step.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -59,6 +60,18 @@ namespace Fabric.Test.FabApiPaths {
 			IStep step = new Mock<IStep>().Object;
 			var ps = new PathSegment(step, "x");
 			TestUtil.CheckThrows<Exception>(true, () => ps.Append(pScript));
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("x", 1)]
+		[TestCase("inV.outE('RootContainsArtifact')", 2)]
+		[TestCase("1.2.3.4(a,b,c).5.6", 6)]
+		public void SubstepCount(string pScript, int pExpectCount) {
+			IStep step = new Mock<IStep>().Object;
+			var ps = new PathSegment(step, pScript);
+			Assert.AreEqual(pExpectCount, ps.SubstepCount, "Incorrect SubstepCount.");
 		}
 
 	}

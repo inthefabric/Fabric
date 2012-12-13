@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
@@ -131,6 +132,8 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			Assert.AreEqual(rs.AvailableSteps, back.AvailableSteps, "Incorrect AvailableSteps.");
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true)]
 		[TestCase(false)]
@@ -153,6 +156,13 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			else {
 				Assert.Null(next.Data, "Result.Data should be null.");
 			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void GetNextStepNoBackTo() {
+			var back = new FuncBackStep(new Path());
+			TestUtil.CheckThrows<Exception>(true, () => back.GetNextStep(null));
 		}
 
 	}
