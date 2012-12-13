@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace Fabric.Api.Paths.Steps {
@@ -43,6 +44,32 @@ namespace Fabric.Api.Paths.Steps {
 			}
 
 			Params = Regex.Replace(p, @"\s*", "").Split(',');
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public T ParamAt<T>(int pIndex) {
+			if ( Params == null ) {
+				throw new Exception("No parameters available.");
+			}
+
+			if ( pIndex < 0 || pIndex >= Params.Length ) {
+				throw new Exception("Index "+pIndex+" out of range: ["+0+", "+Params.Length+"].");
+			}
+
+			string p = Params[pIndex];
+			Type tt = typeof(T);
+
+			if ( tt == typeof(string) ) {
+				return (T)(object)p;
+			}
+
+			try {
+				return (T)TypeDescriptor.GetConverter(tt).ConvertFromString(p);
+			}
+			catch ( Exception ) {
+				throw new Exception("Could not convert parameter '"+p+"' to expected "+
+					"type '"+tt.Name+"'.");
+			}
 		}
 
 	}

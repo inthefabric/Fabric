@@ -41,7 +41,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 
 			var s = new TestNodeStep(p);
 			var d = new StepData(pStepText);
-			s.Data = d;
+			s.SetDataAndUpdatePath(d);
 
 			Assert.AreEqual(d, s.Data, "Incorrect Data.");
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
@@ -70,7 +70,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 		public void SetDataInvalidParam(string pStepText) {
 			var s = new TestNodeStep(new Path());
 			var d = new StepData(pStepText);
-			TestUtil.CheckThrows<Exception>(true, () => { s.Data = d; });
+			TestUtil.CheckThrows<Exception>(true, () => { s.SetDataAndUpdatePath(d); });
 		}
 
 	}

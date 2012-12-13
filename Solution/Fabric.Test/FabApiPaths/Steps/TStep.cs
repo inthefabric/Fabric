@@ -30,21 +30,21 @@ namespace Fabric.Test.FabApiPaths.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void SetData() {
+		public void SetDataAndUpdatePath() {
 			var s = new TestStep(new Path());
 			var d = new StepData("Testing(1,2,3)");
-			s.Data = d;
+			s.SetDataAndUpdatePath(d);
 
 			Assert.AreEqual(d, s.Data, "Incorrect Data.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void SetDataAlreadySet() {
+		public void SetDataAndUpdatePathAlreadySet() {
 			var s = new TestStep(new Path());
 			var d = new StepData("Testing(1,2,3)");
-			s.Data = d;
-			TestUtil.CheckThrows<Exception>(true, () => s.Data = d);
+			s.SetDataAndUpdatePath(d);
+			TestUtil.CheckThrows<Exception>(true, () => s.SetDataAndUpdatePath(d));
 		}
 
 

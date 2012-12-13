@@ -14,43 +14,46 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public FuncBackStep(Path pPath) : base(pPath) {}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override StepData Data {
-			set {
-				base.Data = value;
-				if ( Data.Params == null ) { return; }
-
-				string p = Data.Params[0];
-				int segCount;
-
-				if ( !int.TryParse(p, out segCount) ) {
-					throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
-				}
-
-				if ( segCount <= 0 ) {
-					throw new Exception("The 'Back' parameter cannot be less than 1: "+segCount);
-				}
-
-				////
-
-				int numSegs = Path.Segments.Count;
-
-				if ( numSegs-segCount <= 0 ) {
-					throw new Exception("Too many 'Back' steps: "+segCount);
-				}
-
-				PathSegment seg;
-				Count = -1;
-
-				for ( int i = 0 ; i < segCount ; ++i ) {
-					seg = Path.Segments[numSegs-i-1];
-					Count += seg.SubstepCount;
-				}
-
-				seg = Path.Segments[numSegs-segCount-1];
-				vParentStep = seg.Step;
-				Path.AddSegment(this, "back("+Count+")");
+		public override void SetDataAndUpdatePath(StepData pData) {
+			base.SetDataAndUpdatePath(pData);
+			
+			if ( Data.Params == null ) {
+				return;
 			}
+
+			string p = Data.Params[0];
+			int segCount;
+
+			if ( !int.TryParse(p, out segCount) ) {
+				throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
+			}
+
+			if ( segCount <= 0 ) {
+				throw new Exception("The 'Back' parameter cannot be less than 1: "+segCount);
+			}
+
+			////
+
+			int numSegs = Path.Segments.Count;
+
+			if ( numSegs-segCount <= 0 ) {
+				throw new Exception("Too many 'Back' steps: "+segCount);
+			}
+
+			PathSegment seg;
+			Count = -1;
+
+			for ( int i = 0 ; i < segCount ; ++i ) {
+				seg = Path.Segments[numSegs-i-1];
+				Count += seg.SubstepCount;
+			}
+
+			seg = Path.Segments[numSegs-segCount-1];
+			vParentStep = seg.Step;
+			Path.AddSegment(this, "back("+Count+")");
 		}
 
 
@@ -74,7 +77,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			IStep next = vParentStep.GetNextStep(pStepText, false);
 
 			if ( pSetData ) {
-				next.Data = new StepData(pStepText);
+				next.SetDataAndUpdatePath(new StepData(pStepText));
 			}
 
 			return next;

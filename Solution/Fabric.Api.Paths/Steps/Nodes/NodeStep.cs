@@ -15,25 +15,25 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public abstract string TypeIdName { get; }
 		public abstract bool TypeIdIsLong { get; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override StepData Data {
-			set {
-				base.Data = value;
-				if ( Data.Params == null ) { return; }
+		public override void SetDataAndUpdatePath(StepData pData) {
+			base.SetDataAndUpdatePath(pData);
+			if ( Data.Params == null ) { return; }
 
-				string p = Data.Params[0];
-				long tid;
+			string p = Data.Params[0];
+			long tid;
 
-				if ( long.TryParse(p, out tid) ) {
-					TypeId = tid;
-				}
-				else {
-					throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
-				}
-
-				Path.AppendToCurrentSegment(
-					"has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
+			if ( long.TryParse(p, out tid) ) {
+				TypeId = tid;
 			}
+			else {
+				throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
+			}
+
+			Path.AppendToCurrentSegment(
+				"has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
 		}
 
 
@@ -45,19 +45,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void AppendPathSegmentDetails() { }
-
-		/*--------------------------------------------------------------------------------------------* /
-		public T NewFabDto(DbDto pDbDto) {
-			T dto = new T();
-			dto.Fill(pDbDto);
-			return dto;
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public T NewFabDto() {
-			return new T();
-		}*/
+		protected virtual void AppendPathSegmentDetails() {}
 
 	}
 

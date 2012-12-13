@@ -74,7 +74,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestNextStep(INodeStep pStep, string pStepText) {
-			pStep.Data = new StepData("first");
+			pStep.SetDataAndUpdatePath(new StepData("first"));
 			string origPathScript = pStep.Path.Script;
 			int origPathSegCount = pStep.Path.Segments.Count;
 

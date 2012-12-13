@@ -11,8 +11,7 @@ namespace Fabric.Api.Paths.Steps {
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
-
-		private StepData vData;
+		public StepData Data { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,18 +24,15 @@ namespace Fabric.Api.Paths.Steps {
 		public abstract Type DtoType { get; }
 		public virtual string[] AvailableSteps { get { return Step.AvailSteps; } }
 
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual StepData Data {
-			get {
-				return vData;
-			}
-			set {
-				if ( vData != null ) {
-					throw new Exception("StepData is already set.");
-				}
 
-				vData = value;
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetDataAndUpdatePath(StepData pData) {
+			if ( Data != null ) {
+				throw new Exception("StepData is already set.");
 			}
+
+			Data = pData;
 		}
 
 
@@ -52,7 +48,7 @@ namespace Fabric.Api.Paths.Steps {
 			}
 
 			if ( pSetData ) {
-				next.Data = sd;
+				next.SetDataAndUpdatePath(sd);
 			}
 
 			return next;
