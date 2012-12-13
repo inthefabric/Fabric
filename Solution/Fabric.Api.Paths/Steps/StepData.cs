@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Fabric.Api.Paths.Steps {
@@ -49,11 +50,12 @@ namespace Fabric.Api.Paths.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public T ParamAt<T>(int pIndex) {
 			if ( Params == null ) {
-				throw new Exception("No parameters available.");
+				throw new InvalidDataException("No parameters available.");
 			}
 
 			if ( pIndex < 0 || pIndex >= Params.Length ) {
-				throw new Exception("Index "+pIndex+" out of range: ["+0+", "+Params.Length+"].");
+				throw new ArgumentOutOfRangeException("Index", pIndex,
+					"The maximum Index value is "+(Params.Length-1));
 			}
 
 			string p = Params[pIndex];
@@ -66,9 +68,9 @@ namespace Fabric.Api.Paths.Steps {
 			try {
 				return (T)TypeDescriptor.GetConverter(tt).ConvertFromString(p);
 			}
-			catch ( Exception ) {
-				throw new Exception("Could not convert parameter '"+p+"' to expected "+
-					"type '"+tt.Name+"'.");
+			catch ( Exception ex ) {
+				throw new InvalidCastException("Count not convert parameter at index "+pIndex+
+					"to type '"+tt.Name+"'.", ex);
 			}
 		}
 

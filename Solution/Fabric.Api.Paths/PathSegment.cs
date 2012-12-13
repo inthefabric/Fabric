@@ -22,12 +22,12 @@ namespace Fabric.Api.Paths {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void Append(string pScript) {
+		public void Append(string pScript, bool pAddDot=true) { //TODO test PathSegment.Append pAddDot
 			if ( string.IsNullOrWhiteSpace(pScript) ) {
 				throw new Exception("No script provided.");
 			}
 
-			Script += "."+pScript;
+			Script += (pAddDot ? "." : "")+pScript;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

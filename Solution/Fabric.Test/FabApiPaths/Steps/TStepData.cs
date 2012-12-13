@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Fabric.Api.Paths.Steps;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -126,21 +127,21 @@ namespace Fabric.Test.FabApiPaths.Steps {
 		[TestCase(7)]
 		public void ParamAtIndexRangeFail(int pIndex) {
 			var sd = new StepData("x(a,b,c,d,e,f,g)");
-			TestUtil.CheckThrows<Exception>(true, () => sd.ParamAt<string>(pIndex));
+			TestUtil.CheckThrows<ArgumentOutOfRangeException>(true, () => sd.ParamAt<string>(pIndex));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ParamAtNoParams() {
 			var sd = new StepData("test");
-			TestUtil.CheckThrows<Exception>(true, () => sd.ParamAt<string>(0));
+			TestUtil.CheckThrows<InvalidDataException>(true, () => sd.ParamAt<string>(0));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ParamAtConvertFail() {
 			var sd = new StepData("x(text)");
-			TestUtil.CheckThrows<Exception>(true, () => sd.ParamAt<int>(0));
+			TestUtil.CheckThrows<InvalidCastException>(true, () => sd.ParamAt<int>(0));
 		}
 
 	}

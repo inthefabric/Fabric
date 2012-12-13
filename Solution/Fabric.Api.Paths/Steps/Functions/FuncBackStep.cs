@@ -12,27 +12,31 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncBackStep(Path pPath) : base(pPath) {}
+		public FuncBackStep(Path pPath) : base(pPath) {
+			Path.AddSegment(this, "back");
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
-			
-			if ( Data.Params == null ) {
-				return;
+
+			if ( Data.Params == null || Data.Params.Length != 1 ) {
+				throw new StepException(this, "One integer parameter required.");
 			}
 
-			string p = Data.Params[0];
 			int segCount;
 
-			if ( !int.TryParse(p, out segCount) ) {
-				throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
+			try {
+				segCount = Data.ParamAt<int>(0);
+			}
+			catch ( InvalidCastException ex ) {
+				throw new StepException(this, "Could not convert to type 'int'.", 0, ex);
 			}
 
 			if ( segCount <= 0 ) {
-				throw new Exception("The 'Back' parameter cannot be less than 1: "+segCount);
+				throw new StepException(this, "Cannot be less than 1.", 0);
 			}
 
 			////
@@ -40,7 +44,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			int numSegs = Path.Segments.Count;
 
 			if ( numSegs-segCount <= 0 ) {
-				throw new Exception("Too many 'Back' steps: "+segCount);
+				throw new StepException(this, "Exceeds the maximum 'back' steps "+
+					"("+(numSegs-1)+") for the current path.", 0);
 			}
 
 			PathSegment seg;
@@ -53,7 +58,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 			seg = Path.Segments[numSegs-segCount-1];
 			vParentStep = seg.Step;
-			Path.AddSegment(this, "back("+Count+")");
+			Path.AppendToCurrentSegment("("+Count+")", false);
 		}
 
 
