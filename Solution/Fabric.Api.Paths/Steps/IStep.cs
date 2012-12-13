@@ -14,7 +14,7 @@ namespace Fabric.Api.Paths.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		IStep GetNextStep(string pStepText);
+		IStep GetNextStep(string pStepText, bool pSetData=true);
 
 	}
 

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/12/2012 3:46:20 PM
+// Generated on 12/12/2012 8:41:47 PM
 
 using Fabric.Api.Dto;
 
@@ -659,7 +659,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class RootStep : NodeStep<FabRoot>, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
 	
-		private static readonly string[] AvailSteps = new [] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -685,9 +685,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1067,7 +1067,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1084,9 +1084,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1177,7 +1177,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1194,9 +1194,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1350,7 +1350,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>, IInRootContains, IInArtifactUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InArtifactListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InArtifactListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1367,9 +1367,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1406,7 +1406,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdStep : NodeStep<FabCrowd>, IInRootContains, IHasArtifact, IInCrowdianUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/HasArtifact", "/InCrowdianListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/InCrowdianListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1423,9 +1423,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1471,7 +1471,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdianStep : NodeStep<FabCrowdian>, IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
 	
-		private static readonly string[] AvailSteps = new [] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1488,9 +1488,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1554,7 +1554,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InCrowdianTypeAssignListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianTypeAssignListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1571,9 +1571,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1610,7 +1610,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdianTypeAssignStep : NodeStep<FabCrowdianTypeAssign>, IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
 	
-		private static readonly string[] AvailSteps = new [] { "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1627,9 +1627,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1693,7 +1693,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EmailStep : NodeStep<FabEmail>, IInRootContains, IInAppUses, IInUserUses {
 	
-		private static readonly string[] AvailSteps = new [] { "/InAppUses", "/InUserUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InAppUses", "/InUserUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1710,9 +1710,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1758,7 +1758,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class LabelStep : NodeStep<FabLabel>, IInRootContains, IHasArtifact {
 	
-		private static readonly string[] AvailSteps = new [] { "/HasArtifact" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1775,9 +1775,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1814,7 +1814,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class MemberStep : NodeStep<FabMember>, IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
 	
-		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1831,9 +1831,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1924,7 +1924,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class MemberTypeStep : NodeStep<FabMemberType>, IInRootContains, IInMemberTypeAssignUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InMemberTypeAssignListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InMemberTypeAssignListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1941,9 +1941,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -1980,7 +1980,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class MemberTypeAssignStep : NodeStep<FabMemberTypeAssign>, IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
 	
-		private static readonly string[] AvailSteps = new [] { "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1997,9 +1997,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2063,7 +2063,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ThingStep : NodeStep<FabThing>, IInRootContains, IHasArtifact {
 	
-		private static readonly string[] AvailSteps = new [] { "/HasArtifact" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2080,9 +2080,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2119,7 +2119,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class UrlStep : NodeStep<FabUrl>, IInRootContains, IHasArtifact {
 	
-		private static readonly string[] AvailSteps = new [] { "/HasArtifact" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2136,9 +2136,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2175,7 +2175,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2192,9 +2192,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2294,7 +2294,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class FactorStep : NodeStep<FabFactor>, IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	
-		private static readonly string[] AvailSteps = new [] { "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2311,9 +2311,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2440,7 +2440,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>, IInRootContains, IInFactorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2457,9 +2457,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2496,7 +2496,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DescriptorStep : NodeStep<FabDescriptor>, IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2513,9 +2513,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2588,7 +2588,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>, IInRootContains, IInDescriptorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InDescriptorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InDescriptorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2605,9 +2605,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2644,7 +2644,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DirectorStep : NodeStep<FabDirector>, IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2661,9 +2661,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2727,7 +2727,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DirectorTypeStep : NodeStep<FabDirectorType>, IInRootContains, IInDirectorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InDirectorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InDirectorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2744,9 +2744,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2783,7 +2783,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DirectorActionStep : NodeStep<FabDirectorAction>, IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2800,9 +2800,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2848,7 +2848,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EventorStep : NodeStep<FabEventor>, IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2865,9 +2865,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2922,7 +2922,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EventorTypeStep : NodeStep<FabEventorType>, IInRootContains, IInEventorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InEventorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InEventorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2939,9 +2939,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -2978,7 +2978,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>, IInRootContains, IInEventorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InEventorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InEventorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2995,9 +2995,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3034,7 +3034,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class IdentorStep : NodeStep<FabIdentor>, IInRootContains, IInFactorUsesList, IUsesIdentorType {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesIdentorType" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesIdentorType" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3051,9 +3051,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3099,7 +3099,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class IdentorTypeStep : NodeStep<FabIdentorType>, IInRootContains, IInIdentorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InIdentorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InIdentorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3116,9 +3116,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3155,7 +3155,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class LocatorStep : NodeStep<FabLocator>, IInRootContains, IInFactorUsesList, IUsesLocatorType {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesLocatorType" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesLocatorType" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3172,9 +3172,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3220,7 +3220,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class LocatorTypeStep : NodeStep<FabLocatorType>, IInRootContains, IInLocatorUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InLocatorListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InLocatorListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3237,9 +3237,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3276,7 +3276,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorStep : NodeStep<FabVector>, IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	
-		private static readonly string[] AvailSteps = new [] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3293,9 +3293,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3368,7 +3368,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorTypeStep : NodeStep<FabVectorType>, IInRootContains, IInVectorUsesList, IUsesVectorRange {
 	
-		private static readonly string[] AvailSteps = new [] { "/InVectorListUses", "/UsesVectorRange" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InVectorListUses", "/UsesVectorRange" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3385,9 +3385,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3433,7 +3433,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorRangeStep : NodeStep<FabVectorRange>, IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3450,9 +3450,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3498,7 +3498,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>, IInRootContains, IInVectorRangeUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InVectorRangeListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InVectorRangeListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3515,9 +3515,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3554,7 +3554,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorUnitStep : NodeStep<FabVectorUnit>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3571,9 +3571,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3628,7 +3628,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
 	
-		private static readonly string[] AvailSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3645,9 +3645,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3693,7 +3693,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorUnitDerivedStep : NodeStep<FabVectorUnitDerived>, IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
 	
-		private static readonly string[] AvailSteps = new [] { "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix" };
+		private static readonly string[] AvailNodeSteps = new [] { "/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3710,9 +3710,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3767,7 +3767,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class OauthAccessStep : NodeStep<FabOauthAccess>, IInRootContains, IUsesApp, IUsesUser {
 	
-		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser" };
+		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3784,9 +3784,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3832,7 +3832,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class OauthDomainStep : NodeStep<FabOauthDomain>, IInRootContains, IUsesApp {
 	
-		private static readonly string[] AvailSteps = new [] { "/UsesApp" };
+		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3849,9 +3849,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3888,7 +3888,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class OauthGrantStep : NodeStep<FabOauthGrant>, IInRootContains, IUsesApp, IUsesUser {
 	
-		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser" };
+		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3905,9 +3905,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}
@@ -3953,7 +3953,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class OauthScopeStep : NodeStep<FabOauthScope>, IInRootContains, IUsesApp, IUsesUser {
 	
-		private static readonly string[] AvailSteps = new [] { "/UsesApp", "/UsesUser" };
+		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3970,9 +3970,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}

@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
+    <Compile Include="Steps\Functions\FuncBackStep.cs" />
     <Compile Include="Steps\Nodes\INodeStep.cs" />
     <Compile Include="Steps\StepData.cs" />
     <Compile Include="Steps\Nodes\NodeSteps.cs">
@@ -69,9 +70,7 @@
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Steps\Functions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

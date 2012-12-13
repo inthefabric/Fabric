@@ -30,6 +30,13 @@ namespace Fabric.Api.Paths {
 			Script += "."+pScript;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public int SubstepCount { //TODO test PathSegment.SubstepCount
+			get {
+				return Script.Split('.').Length;
+			}
+		}
+
 	}
 
 }

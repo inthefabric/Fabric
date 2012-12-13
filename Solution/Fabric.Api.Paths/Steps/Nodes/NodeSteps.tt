@@ -79,7 +79,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	/*================================================================================================*/
 	public partial class <#= node.Name #>Step : NodeStep<<#= "Fab"+node.Name #>>, <#= interfaces #> {
 	
-		private static readonly string[] AvailSteps = new [] { <#= steps #> };
+		private static readonly string[] AvailNodeSteps = new [] { <#= steps #> };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,9 +116,9 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		public override string[] AvailableSteps {
 			get {
 				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailSteps.Length];
+				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
 				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailSteps.CopyTo(mergeSteps, baseSteps.Length);
+				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
 				return mergeSteps;
 			}
 		}

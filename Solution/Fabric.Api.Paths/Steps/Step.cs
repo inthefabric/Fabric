@@ -1,17 +1,13 @@
 ﻿using System;
 using Fabric.Api.Dto;
+using Fabric.Api.Paths.Steps.Functions;
 
 namespace Fabric.Api.Paths.Steps {
 	
 	/*================================================================================================*/
-	public abstract class Step {
+	public abstract class Step : IStep { //TODO update tests based on new Step vs Step<T>
 
-		internal static readonly string[] AvailSteps = new[] { "/Back", "/Where" };
-
-	}
-
-	/*================================================================================================*/
-	public abstract class Step<T> : IStep where T : FabNode, new() {
+		private static readonly string[] AvailSteps = new[] { "/Back", "/Where" };
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
@@ -26,7 +22,7 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Type DtoType { get { return typeof(T); } }
+		public abstract Type DtoType { get; }
 		public virtual string[] AvailableSteps { get { return Step.AvailSteps; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -46,27 +42,44 @@ namespace Fabric.Api.Paths.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IStep GetNextStep(string pStepText) {
+		//TODO: add Step.GetNextStep() test for pSetData=false
+		public virtual IStep GetNextStep(string pStepText, bool pSetData=true) {
 			var sd = new StepData(pStepText);
-			IStep result = GetNextStep(sd);
+			IStep next = GetNextStep(sd);
 
-			if ( result == null ) {
+			if ( next == null ) {
 				throw new Exception("'"+pStepText+"' is not a valid step for "+GetType().Name+".");
 			}
 
-			result.Data = sd;
-			return result;
+			if ( pSetData ) {
+				next.Data = sd;
+			}
+
+			return next;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "back": return null; //new RootStep(false, Path);
-				case "where": return null; //new RootStep(false, Path);
+				case "back": return new FuncBackStep(Path);
+				//case "where": return new FuncWhereStep(Path);
 			}
 
 			return null;
 		}
+
+	}
+
+	/*================================================================================================*/
+	public abstract class Step<T> : Step where T : FabNode, new() {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected Step(Path pPath) : base(pPath) {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type DtoType { get { return typeof(T); } }
 
 	}
 

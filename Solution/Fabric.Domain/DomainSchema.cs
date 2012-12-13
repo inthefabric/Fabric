@@ -5,7 +5,7 @@
 using Weaver.Items;
 using Weaver.Interfaces;
 
-//NEXT: support validation and restrictions
+//TODO: support validation and restrictions
 
 namespace Fabric.Domain {
 

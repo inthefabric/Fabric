@@ -35,6 +35,7 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiPaths\Steps\Functions\TFuncBackStep.cs" />
     <Compile Include="FabApiPaths\Steps\Nodes\TNodeSteps.cs" />
     <Compile Include="FabApiPaths\Steps\Nodes\TNodeStep.cs" />
     <Compile Include="FabApiPaths\Steps\TStepData.cs" />
@@ -107,9 +108,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FabApiPaths\Steps\Functions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

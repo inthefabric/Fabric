@@ -22,10 +22,8 @@ namespace Fabric.Test.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "test1":
-					return new ArtifactStep(true, Path);
-				case "test2":
-					return new FactorStep(true, Path);
+				case "test1": return new ArtifactStep(true, Path);
+				case "test2": return new FactorStep(true, Path);
 			}
 
 			return null;
