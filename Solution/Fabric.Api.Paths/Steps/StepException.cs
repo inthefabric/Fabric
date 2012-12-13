@@ -1,44 +1,61 @@
 ﻿using System;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Paths.Steps {
 	
 	/*================================================================================================*/
 	public class StepException : Exception {
 
+		public enum Code {
+			IncorrectParamCount = 1001,
+			IncorrectParamValue = 1002,
+			FailedParamConversion = 1003
+		}
+
+		public Code ErrCode { get; private set; }
 		public IStep Step { get; private set; }
 		public int StepIndex { get; private set; }
 		public int ParamIndex { get; private set; }
 		public string StepText { get; private set; }
 		public string ParamText { get; private set; }
 
-		private string vMessage;
+		private readonly string vMessage;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public StepException(IStep pStep, string pMessage, int pParamIndex=-1,
+		public StepException(Code pErrCode, IStep pStep, string pMessage, int pParamIndex=-1,
 														Exception pInnerEx=null) : base("", pInnerEx) {
+			ErrCode = pErrCode;
 			Step = pStep;
 
-			StepIndex = Path.GetSegmentIndexOfStep(pStep);
+			StepIndex = Path.GetSegmentIndexOfStep(Step);
 			ParamIndex = pParamIndex;
-			StepText = pStep.Data.RawString;
+			StepText = Step.Data.RawString;
 
 			try {
 				if ( ParamIndex != -1 ) {
-					ParamText = pStep.Data.Params[ParamIndex];
+					ParamText = Step.Data.Params[ParamIndex];
 				}
 			}
 			catch ( Exception ) {
 				ParamText = null;
 			}
 
-			vMessage += pMessage;
-			vMessage += "\nStep "+StepIndex+": '"+StepText+"'";
+			vMessage = BuildMessage(pMessage);
+			Log.Error(vMessage);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string BuildMessage(string pMessage) {
+			string msg = ErrCode+" ("+(int)ErrCode+"): "+pMessage;
+			msg += "\nStep "+StepIndex+": '"+StepText+"'";
 
 			if ( ParamIndex != -1 ) {
-				vMessage += "\nParam "+ParamIndex+": '"+ParamText+"'";
+				msg += "\nParam "+ParamIndex+": '"+ParamText+"'";
 			}
+
+			return msg;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
