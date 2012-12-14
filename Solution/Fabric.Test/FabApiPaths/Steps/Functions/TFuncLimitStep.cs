@@ -77,7 +77,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 
 			StepException se =
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(sd));
-			Assert.AreEqual(StepException.Code.FailedParamConversion, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(StepException.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(pParamI, se.ParamIndex, "Incorrect StepException.ParamIndex.");
 		}
 

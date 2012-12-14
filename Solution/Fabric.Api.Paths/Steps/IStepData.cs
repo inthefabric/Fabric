@@ -1,14 +1,16 @@
 ﻿namespace Fabric.Api.Paths.Steps {
-
+	
 	/*================================================================================================*/
-	public interface IStep : IBaseStep {
+	public interface IStepData {
+
+		string RawString { get; }
+		string Command { get; }
+		string[] Params { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void SetDataAndUpdatePath(StepData pData);
-		IStep GetNextStep(string pStepText, bool pSetData=true);
-		int GetPathIndex();
+		T ParamAt<T>(int pIndex);
 
 	}
 

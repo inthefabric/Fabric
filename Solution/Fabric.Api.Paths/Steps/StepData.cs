@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Fabric.Api.Paths.Steps {
 	
 	/*================================================================================================*/
-	public class StepData {
+	public class StepData : IStepData {
 
 		public string RawString { get; private set; }
 		public string Command { get; private set; }

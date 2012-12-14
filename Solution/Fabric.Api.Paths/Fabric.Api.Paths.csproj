@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
+    <Compile Include="Steps\IStepData.cs" />
     <Compile Include="Steps\IBaseStep.cs" />
     <Compile Include="Steps\IFinalStep.cs" />
     <Compile Include="Steps\Functions\FuncStep.cs" />

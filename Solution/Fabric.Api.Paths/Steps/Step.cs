@@ -11,7 +11,7 @@ namespace Fabric.Api.Paths.Steps {
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
-		public StepData Data { get; private set; }
+		public IStepData Data { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +33,11 @@ namespace Fabric.Api.Paths.Steps {
 			}
 
 			Data = pData;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetPathIndex() {
+			return Path.GetSegmentIndexOfStep(this);
 		}
 
 

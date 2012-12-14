@@ -34,7 +34,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 				Index = Data.ParamAt<long>(0);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepException(StepException.Code.FailedParamConversion, this,
+				throw new StepException(StepException.Code.IncorrectParamType, this,
 					"Could not convert to type 'long'.", 0, ex);
 			}
 
@@ -49,7 +49,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 				Count = Data.ParamAt<int>(1);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepException(StepException.Code.FailedParamConversion, this,
+				throw new StepException(StepException.Code.IncorrectParamType, this,
 					"Could not convert to type 'int'.", 1, ex);
 			}
 

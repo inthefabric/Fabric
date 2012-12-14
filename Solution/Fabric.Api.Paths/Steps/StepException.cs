@@ -9,9 +9,10 @@ namespace Fabric.Api.Paths.Steps {
 		public enum Code {
 			IncorrectParamCount = 1001,
 			IncorrectParamValue = 1002,
-			FailedParamConversion = 1003
+			IncorrectParamType = 1003
 		}
 
+		public override string Message { get { return vMessage; } }
 		public Code ErrCode { get; private set; }
 		public IStep Step { get; private set; }
 		public int StepIndex { get; private set; }
@@ -29,7 +30,7 @@ namespace Fabric.Api.Paths.Steps {
 			ErrCode = pErrCode;
 			Step = pStep;
 
-			StepIndex = Path.GetSegmentIndexOfStep(Step);
+			StepIndex = Step.GetPathIndex();
 			ParamIndex = pParamIndex;
 			StepText = Step.Data.RawString;
 
@@ -47,7 +48,7 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string BuildMessage(string pMessage) {
+		private string BuildMessage(string pMessage) {
 			string msg = ErrCode+" ("+(int)ErrCode+"): "+pMessage;
 			msg += "\nStep "+StepIndex+": '"+StepText+"'";
 
@@ -56,11 +57,6 @@ namespace Fabric.Api.Paths.Steps {
 			}
 
 			return msg;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string Message {
-			get { return vMessage; }
 		}
 
 	}

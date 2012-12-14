@@ -41,7 +41,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 				segCount = Data.ParamAt<int>(0);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepException(StepException.Code.FailedParamConversion, this,
+				throw new StepException(StepException.Code.IncorrectParamType, this,
 					"Could not convert to type 'int'.", 0, ex);
 			}
 
