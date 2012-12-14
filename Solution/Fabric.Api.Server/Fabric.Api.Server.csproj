@@ -79,6 +79,13 @@
   <ItemGroup>
     <Compile Include="ApiModule.cs" />
     <Compile Include="ApiBootstrap.cs" />
+    <Compile Include="ApiSpec\ApiSpecDtos.cs">
+      <DependentUpon>ApiSpecDtos.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ApiSpec\ApiSpecBuilder.cs" />
+    <Compile Include="ApiSpec\ApiSpecDoc.cs" />
     <Compile Include="Api\ApiQuery.cs" />
     <Compile Include="Api\ApiResponseJson.cs" />
     <Compile Include="Api\ApiResponseHtml.cs" />
@@ -116,6 +123,10 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApiSpec\ApiSpecDtos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiSpecDtos.cs</LastGenOutput>
+    </None>
     <None Include="Graph\styles\Colors.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Colors.css</LastGenOutput>

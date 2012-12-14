@@ -5,7 +5,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabResponse {
 
-		public string Data { get; set; }
+		public object Data { get; set; }
 		public string Type { get; set; }
 		public string BaseUri { get; set; }
 		public string RequestUri { get; set; }
@@ -39,8 +39,6 @@ namespace Fabric.Api.Dto {
 		public void Complete() {
 			TotalMs = (int)((DateTime.UtcNow.Ticks-Timestamp)/10000);
 		}
-		
-			
 
 	}
 

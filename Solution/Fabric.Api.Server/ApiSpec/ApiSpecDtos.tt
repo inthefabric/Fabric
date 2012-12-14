@@ -1,0 +1,135 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
+<#@ assembly name="$(ProjectDir)bin\Fabric.Api.Server.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Fabric.Infrastructure" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+
+namespace Fabric.Api.Server.ApiSpec {
+
+	/*================================================================================================*/
+	public partial class ApiSpecDoc {
+	
+		/*--------------------------------------------------------------------------------------------*/
+		public List<ApiSpecDto> BuildDtoList() {
+			var list = new List<ApiSpecDto>();
+			
+			ApiSpecDto dto;
+			ApiSpecProperty p;
+			ApiSpecLink l;
+
+<#
+var schema = new GraphSchema();
+
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	string baseNode = "Fab"+(node.BaseNode == null ? "Node" : node.BaseNode.Name);
+	var propNameMap = new Dictionary<string,string>();
+	var propTypeMap = new Dictionary<string,string>();
+#>
+			////
+
+			dto = new ApiSpecDto();
+			dto.Name = "Fab<#= node.Name #>";
+			dto.Extends = "<#= baseNode #>";
+			dto.Abstract = "TODO";
+			dto.Description = "TODO";
+			list.Add(dto);
+	
+<#
+	foreach ( WeaverPropSchema prop in node.Props ) { 
+		string propType = FabricUtil.GetTypeDisplayName(prop.Type);
+		string propName = prop.Name;
+		string propItems = "";
+		string lineEnd = "\r\n\t\t\t\t";
+		
+		switch ( prop.Type.Name ) {
+			case "DateTime": propName += "Timestamp"; break;
+		}
+
+		if ( prop.IsCaseInsensitive != null ) {
+			propItems += "p.IsCaseInsensitive = "+prop.IsCaseInsensitive.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.IsNullable != null ) {
+			propItems += "p.IsNullable = "+prop.IsNullable.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.IsPrimaryKey != null ) {
+			propItems += "p.IsPrimaryKey = "+prop.IsPrimaryKey.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.IsTimestamp != null ) {
+			propItems += "p.IsTimestamp = "+prop.IsTimestamp.ToString().ToLower()+";"+lineEnd;
+		}
+		
+		if ( prop.IsUnique != null ) {
+			propItems += "p.IsUnique = "+prop.IsUnique.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.Len != null ) {
+			propItems += "p.Len = "+prop.Len+";"+lineEnd;
+		}
+
+		if ( prop.LenMax != null ) {
+			propItems += "p.LenMax = "+prop.LenMax+";"+lineEnd;
+		}
+
+		if ( prop.LenMin != null ) {
+			propItems += "p.LenMin = "+prop.LenMin+";"+lineEnd;
+		}
+
+		if ( prop.ValidRegex != null ) {
+			propItems += "p.ValidRegex = @\""+prop.ValidRegex.Replace("\"", "\"\"")+"\";"+lineEnd;
+		}
+		
+		propNameMap.Add(prop.Name, propName);
+		propTypeMap.Add(prop.Name, propType);
+
+#>
+				p = new ApiSpecProperty();
+				p.Name = "<#= propName #>";
+				p.Type = "<#= propType #>";
+				<#= propItems #>dto.PropertyList.Add(p);
+
+<#
+	} //end prop loop
+
+	
+	foreach ( WeaverRelSchema rel in schema.Rels ) {
+		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
+		bool isOut = (rel.FromNode == node);
+		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
+#>
+					l = new ApiSpecLink();
+					l.Name = "<#= PathUtil.GetRelProp(rel, isOut) #>";
+					l.IsOutgoing = <#= isOut.ToString().ToLower() #>;
+					l.FromDto = "Fab<#= rel.FromNode.Name #>";
+					l.FromDtoConn = "<#= rel.FromNodeConn+"" #>";
+					l.Verb = "<#= rel.Name #>";
+					l.ToDto = "Fab<#= rel.ToNode.Name #>";
+					l.ToDtoConn = "<#= rel.ToNodeConn+"" #>";
+					dto.LinkList.Add(l);
+
+<#
+	} //end rel loop
+
+} // end node loop
+#>
+			return list;
+		}
+
+	}
+
+}

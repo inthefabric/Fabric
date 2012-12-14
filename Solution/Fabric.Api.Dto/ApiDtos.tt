@@ -1,9 +1,11 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="Z:\Work\AestheticInteractive\FabricProject\Fabric2\Solution\Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Domain.Schema" #>
+<#@ import namespace="Fabric.Infrastructure" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -39,15 +41,10 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			hasTypeId = true;
 		}
 		
+		propType = FabricUtil.GetTypeDisplayName(prop.Type);
+		
 		switch ( prop.Type.Name ) {
-			case "Int32": propType = "int"; break;
-			case "Int64": propType = "long"; break;
-			case "Byte": propType = "byte"; break;
-			case "String": propType = "string"; break;
-			case "Boolean": propType = "bool"; break;
-			case "Single": propType = "float"; break;
-			case "Double": propType = "double"; break;
-			case "DateTime": propType = "long"; propName += "Timestamp"; break;
+			case "DateTime": propName += "Timestamp"; break;
 		}
 
 		if ( prop.IsCaseInsensitive != null ) {

@@ -37,18 +37,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DomainSchema.tt">
+    <None Include="DomainClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainSchema.cs</LastGenOutput>
+      <LastGenOutput>DomainClasses.cs</LastGenOutput>
     </None>
-    <Compile Include="DomainSchema.cs">
+    <Compile Include="DomainClasses.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DomainSchema.tt</DependentUpon>
+      <DependentUpon>DomainClasses.tt</DependentUpon>
     </Compile>
+    <Compile Include="Schema.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="FabricQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

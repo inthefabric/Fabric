@@ -92,10 +92,6 @@
       <Project>{4109140D-8960-4FD7-A037-8B21AFC6659B}</Project>
       <Name>Fabric.Db.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain.Schema\Fabric.Domain.Schema.csproj">
-      <Project>{FC70F2C2-C0F0-4F12-903F-FBB5C9B877C6}</Project>
-      <Name>Fabric.Domain.Schema</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>

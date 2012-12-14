@@ -1,7 +1,7 @@
 ﻿ 
 /*GENERATED CODE
 Changes made to this source file will be overwritten
-Generated on 12/2/2012 9:25:29 PM */
+Generated on 12/14/2012 5:15:29 PM */
 
 /* NODES */
 
@@ -15,9 +15,9 @@ Generated on 12/2/2012 9:25:29 PM */
 .nodeCrowdianTypeAssign { fill: rgba(190,232,169,0.9); }
 .nodeEmail { fill: rgba(16,27,208,0.9); }
 .nodeLabel { fill: rgba(103,109,167,0.9); }
-.nodeMember { fill: rgba(234,33,91,0.9); }
+.nodeMember { fill: rgba(234,118,91,0.9); }
 .nodeMemberType { fill: rgba(49,131,9,0.9); }
-.nodeMemberTypeAssign { fill: rgba(160,130,140,0.9); }
+.nodeMemberTypeAssign { fill: rgba(59,109,69,0.9); }
 .nodeThing { fill: rgba(79,231,158,0.9); }
 .nodeUrl { fill: rgba(192,167,180,0.9); }
 .nodeUser { fill: rgba(224,133,105,0.9); }
@@ -46,3 +46,21 @@ Generated on 12/2/2012 9:25:29 PM */
 .nodeOauthDomain { fill: rgba(223,203,98,0.9); }
 .nodeOauthGrant { fill: rgba(215,78,83,0.9); }
 .nodeOauthScope { fill: rgba(199,139,110,0.9); }
+
+/* RELS */
+
+.linkContains { stroke: rgba(238,245,87,0.2); }
+.linkHas { stroke: rgba(137,0,189,0.2); }
+.linkUses { stroke: rgba(107,15,61,0.2); }
+.linkHasHistoric { stroke: rgba(165,195,97,0.2); }
+.linkCreates { stroke: rgba(146,0,139,0.2); }
+.linkUsesPrimary { stroke: rgba(189,117,86,0.2); }
+.linkUsesRelated { stroke: rgba(218,235,177,0.2); }
+.linkReplaces { stroke: rgba(31,78,115,0.2); }
+.linkRefinesPrimaryWith { stroke: rgba(161,111,207,0.2); }
+.linkRefinesRelatedWith { stroke: rgba(232,210,113,0.2); }
+.linkRefinesTypeWith { stroke: rgba(199,104,65,0.2); }
+.linkUsesAxis { stroke: rgba(147,247,55,0.2); }
+.linkDefines { stroke: rgba(133,50,225,0.2); }
+.linkRaisesToExp { stroke: rgba(35,48,210,0.2); }
+

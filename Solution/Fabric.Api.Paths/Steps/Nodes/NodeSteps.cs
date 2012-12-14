@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/12/2012 8:41:47 PM
+// Generated on 12/14/2012 5:05:10 PM
 
 using Fabric.Api.Dto;
 
