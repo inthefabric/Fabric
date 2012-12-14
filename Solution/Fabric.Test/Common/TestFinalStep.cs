@@ -1,13 +1,17 @@
-﻿namespace Fabric.Api.Paths.Steps {
+﻿using Fabric.Api.Paths;
+using Fabric.Api.Paths.Steps.Functions;
+
+namespace Fabric.Test.Common {
+
+
 
 	/*================================================================================================*/
-	public interface IStep : IBaseStep {
+	public class TestFinalStep : FuncLimitStep {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void SetDataAndUpdatePath(StepData pData);
-		IStep GetNextStep(string pStepText, bool pSetData=true);
+		public TestFinalStep() : base(new Path()) { }
 
 	}
 

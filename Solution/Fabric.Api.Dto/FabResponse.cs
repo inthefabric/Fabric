@@ -13,6 +13,7 @@ namespace Fabric.Api.Dto {
 		public int DbMs { get; set; }
 		public int TotalMs { get; set; }
 		public int DataLen { get; set; }
+		public long StartIndex { get; set; }
 		public int Count { get; set; }
 		public bool HasMore { get; set; }
 		public long Timestamp { get; set; }

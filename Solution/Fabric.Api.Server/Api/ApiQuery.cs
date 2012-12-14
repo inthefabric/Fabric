@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths;
+using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
@@ -17,7 +18,7 @@ namespace Fabric.Api.Server.Api {
 
 		private readonly NancyContext vContext;
 		private readonly ApiQueryInfo vInfo;
-		private FuncLimitStep vLastStep;
+		private IFinalStep vLastStep;
 		private string vUri;
 		private GremlinRequest vReq;
 
@@ -87,6 +88,7 @@ namespace Fabric.Api.Server.Api {
 
 				Log.Debug("QUERY: "+vInfo.Query);
 				Log.Debug("Results: "+vReq.DtoList.Count+" / "+max);
+				vInfo.Resp.StartIndex = vLastStep.StartI;
 				vInfo.Resp.HasMore = (vReq.DtoList.Count > max);
 				return;
 			}

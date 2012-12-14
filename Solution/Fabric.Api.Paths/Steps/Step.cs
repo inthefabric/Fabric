@@ -7,7 +7,7 @@ namespace Fabric.Api.Paths.Steps {
 	/*================================================================================================*/
 	public abstract class Step : IStep {
 
-		private static readonly string[] AvailSteps = new[] { "/Back", "/Limit" };
+		public static readonly string[] AvailSteps = new[] { "/Back", "/Limit" };
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }

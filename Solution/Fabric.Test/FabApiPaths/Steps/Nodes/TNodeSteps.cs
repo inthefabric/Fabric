@@ -29,7 +29,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 
 			////
 
-			string fabDom = "Fabric.Domain";
+			const string fabDom = "Fabric.Domain";
 			Object domObj = Activator.CreateInstance(fabDom, fabDom+"."+pStepName).Unwrap();
 			Assert.True((domObj is Node), "Incorrect domain type: '"+domObj.GetType().Name+"'.");
 
@@ -46,8 +46,10 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			////
 			
 			var expectSteps = new List<string>();
-			expectSteps.Add("/Back");
-			expectSteps.Add("/Where");
+
+			foreach ( string a in Step.AvailSteps ) {
+				expectSteps.Add(a);
+			}
 
 			foreach ( string a in availSteps ) {
 				expectSteps.Add(a);

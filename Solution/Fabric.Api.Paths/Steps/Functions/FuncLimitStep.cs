@@ -3,7 +3,9 @@
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
-	public class FuncLimitStep : FuncStep { //TODO: test FuncLimitStep
+	public class FuncLimitStep : FuncStep, IFinalStep { //TODO: test FuncLimitStep
+
+		public const string DefaultStepText = "Limit(0,20)";
 
 		public long StartI { get; private set; }
 		public int RangeLen { get; private set; }
