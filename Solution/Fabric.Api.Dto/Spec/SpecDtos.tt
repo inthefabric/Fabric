@@ -15,9 +15,12 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using Fabric.Api.Dto.Spec.Lang;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Resources;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
 	public partial class ApiSpecDoc {
@@ -29,6 +32,8 @@ namespace Fabric.Api.Dto {
 			ApiSpecDto dto;
 			ApiSpecProperty p;
 			ApiSpecLink l;
+
+			var res = new ResourceManager("RM", Assembly.GetExecutingAssembly());
 
 <#
 var schema = new GraphSchema();
@@ -44,7 +49,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			dto.Name = "Fab<#= node.Name #>";
 			dto.Extends = "<#= baseNode #>";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("<#= node.Name #>");
 			list.Add(dto);
 	
 <#

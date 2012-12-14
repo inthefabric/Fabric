@@ -36,9 +36,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ApiSpecDoc.cs" />
-    <Compile Include="ApiSpecDtos.cs">
-      <DependentUpon>ApiSpecDtos.tt</DependentUpon>
+    <Compile Include="Spec\Lang\DtoPropText.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DtoPropText.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spec\Lang\DtoText.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DtoText.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spec\SpecDoc.cs" />
+    <Compile Include="Spec\SpecDtos.cs">
+      <DependentUpon>SpecDtos.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -52,9 +62,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiDtos.cs</LastGenOutput>
     </None>
-    <None Include="ApiSpecDtos.tt">
+    <None Include="Spec\Lang\DtoPropText.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ApiSpecDtos.cs</LastGenOutput>
+      <LastGenOutput>DtoPropText.cs</LastGenOutput>
+    </None>
+    <None Include="Spec\Lang\DtoText.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DtoText.cs</LastGenOutput>
+    </None>
+    <None Include="Spec\SpecDtos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SpecDtos.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +83,10 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Spec\Lang\DtoPropText.resx" />
+    <EmbeddedResource Include="Spec\Lang\DtoText.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

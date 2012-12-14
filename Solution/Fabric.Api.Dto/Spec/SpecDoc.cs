@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using Fabric.Infrastructure;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
 	public partial class ApiSpecDoc {
@@ -12,6 +13,8 @@ namespace Fabric.Api.Dto {
 		public ApiSpecApiResponse ApiResponse { get; set; }
 		public List<ApiSpecDto> DtoList { get; set; }
 		public List<ApiSpecPathFunc> PathFunctionList { get; set; }
+
+		public static ResourceManager ResMan;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +38,15 @@ namespace Fabric.Api.Dto {
 
 			return results;
 		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public static string GetDtoText(string pName) {
+			if ( ResMan == null ) {
+				ResMan = new ResourceManager("DtoText", Assembly.GetExecutingAssembly());
+			}
+
+			return ResMan.GetString(pName);
+		}*/
 
 	}
 

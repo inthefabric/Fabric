@@ -1,10 +1,13 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/14/2012 5:22:04 PM
+// Generated on 12/14/2012 5:45:38 PM
 
+using Fabric.Api.Dto.Spec.Lang;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Resources;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
 	public partial class ApiSpecDoc {
@@ -17,13 +20,15 @@ namespace Fabric.Api.Dto {
 			ApiSpecProperty p;
 			ApiSpecLink l;
 
+			var res = new ResourceManager("RM", Assembly.GetExecutingAssembly());
+
 			////
 
 			dto = new ApiSpecDto();
 			dto.Name = "FabNodeForType";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("NodeForType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -48,7 +53,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabNodeForAction";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("NodeForAction");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -70,7 +75,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabRoot";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Root");
 			list.Add(dto);
 	
 					l = new ApiSpecLink();
@@ -479,7 +484,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabApp";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("App");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -581,7 +586,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabArtifact";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Artifact");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -748,7 +753,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabArtifactType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("ArtifactType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -774,7 +779,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabCrowd";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Crowd");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -833,7 +838,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabCrowdian";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Crowdian");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -889,7 +894,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabCrowdianType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("CrowdianType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -915,7 +920,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabCrowdianTypeAssign";
 			dto.Extends = "FabNodeForAction";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("CrowdianTypeAssign");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -976,7 +981,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabEmail";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Email");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1039,7 +1044,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabLabel";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Label");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1075,7 +1080,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabMember";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Member");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1161,7 +1166,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabMemberType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("MemberType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1187,7 +1192,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabMemberTypeAssign";
 			dto.Extends = "FabNodeForAction";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("MemberTypeAssign");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1243,7 +1248,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabThing";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Thing");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1293,7 +1298,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabUrl";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Url");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1333,7 +1338,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabUser";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("User");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1444,7 +1449,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabFactor";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Factor");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1605,7 +1610,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabFactorAssertion";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("FactorAssertion");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1631,7 +1636,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabFactorElementNode";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("FactorElementNode");
 			list.Add(dto);
 	
 			////
@@ -1640,7 +1645,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabDescriptor";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Descriptor");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1706,7 +1711,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabDescriptorType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("DescriptorType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1732,7 +1737,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabDirector";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Director");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1788,7 +1793,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabDirectorType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("DirectorType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1814,7 +1819,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabDirectorAction";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("DirectorAction");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1850,7 +1855,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabEventor";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Eventor");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1901,7 +1906,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabEventorType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("EventorType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1927,7 +1932,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabEventorPrecision";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("EventorPrecision");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1953,7 +1958,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabIdentor";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Identor");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -1995,7 +2000,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabIdentorType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("IdentorType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2021,7 +2026,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabLocator";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Locator");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2072,7 +2077,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabLocatorType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("LocatorType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2128,7 +2133,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVector";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("Vector");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2199,7 +2204,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVectorType";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("VectorType");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2245,7 +2250,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVectorRange";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("VectorRange");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2281,7 +2286,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVectorRangeLevel";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("VectorRangeLevel");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2312,7 +2317,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVectorUnit";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("VectorUnit");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2364,7 +2369,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVectorUnitPrefix";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("VectorUnitPrefix");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2411,7 +2416,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabVectorUnitDerived";
 			dto.Extends = "FabNodeForType";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("VectorUnitDerived");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2462,7 +2467,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabOauthAccess";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("OauthAccess");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2523,7 +2528,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabOauthDomain";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("OauthDomain");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2555,7 +2560,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabOauthGrant";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("OauthGrant");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
@@ -2609,7 +2614,7 @@ namespace Fabric.Api.Dto {
 			dto.Name = "FabOauthScope";
 			dto.Extends = "FabNode";
 			dto.Abstract = "TODO";
-			dto.Description = "TODO";
+			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("OauthScope");
 			list.Add(dto);
 	
 				p = new ApiSpecProperty();
