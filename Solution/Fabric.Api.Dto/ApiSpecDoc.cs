@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Fabric.Api.Dto;
 using Fabric.Infrastructure;
 
-namespace Fabric.Api.Server.ApiSpec {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
 	public partial class ApiSpecDoc {
@@ -18,7 +17,6 @@ namespace Fabric.Api.Server.ApiSpec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiSpecDoc() {
-			ApiVersion = ApiModule.ApiVersion;
 			ApiResponse = new ApiSpecApiResponse();
 			DtoList = BuildDtoList();
 		}

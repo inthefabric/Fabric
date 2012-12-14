@@ -2,7 +2,7 @@
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
-<#@ assembly name="$(ProjectDir)bin\Fabric.Api.Server.dll" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Api.Dto.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Domain.Schema" #>
@@ -17,7 +17,7 @@
 
 using System.Collections.Generic;
 
-namespace Fabric.Api.Server.ApiSpec {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
 	public partial class ApiSpecDoc {

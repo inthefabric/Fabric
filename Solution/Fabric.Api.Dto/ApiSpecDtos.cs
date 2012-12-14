@@ -1,10 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/14/2012 5:04:44 PM
+// Generated on 12/14/2012 5:22:04 PM
 
 using System.Collections.Generic;
 
-namespace Fabric.Api.Server.ApiSpec {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
 	public partial class ApiSpecDoc {

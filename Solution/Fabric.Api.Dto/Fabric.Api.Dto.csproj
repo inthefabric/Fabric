@@ -36,6 +36,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ApiSpecDoc.cs" />
+    <Compile Include="ApiSpecDtos.cs">
+      <DependentUpon>ApiSpecDtos.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="FabResponse.cs" />
     <Compile Include="IFabNode.cs" />
     <Compile Include="FabNode.cs" />
@@ -45,6 +51,10 @@
     <None Include="ApiDtos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiDtos.cs</LastGenOutput>
+    </None>
+    <None Include="ApiSpecDtos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiSpecDtos.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

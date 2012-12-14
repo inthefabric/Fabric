@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Fabric.Api.Dto;
 using Fabric.Infrastructure;
 using Nancy;
 using ServiceStack.Text;
@@ -31,6 +32,8 @@ namespace Fabric.Api.Server.ApiSpec {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildResponse() {
 			var doc = new ApiSpecDoc();
+			doc.ApiVersion = ApiModule.ApiVersion;
+
 			var json = JsonSerializer.SerializeToString(doc);
 			byte[] bytes = UTF8Encoding.UTF8.GetBytes(json);
 
