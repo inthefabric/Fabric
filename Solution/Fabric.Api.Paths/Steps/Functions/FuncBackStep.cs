@@ -3,7 +3,7 @@
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
-	public class FuncBackStep : Step {
+	public class FuncBackStep : FuncStep {
 
 		//The correct way to read the "back" command is to count the period chars BEFORE ".back".
 		//The next command will be issued from that period.
@@ -14,8 +14,6 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		// * BACK == 4: after "inV(x)."
 
 		public int Count { get; private set; }
-
-		private IStep vBackToStep;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +30,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 			if ( Data.Params == null || Data.Params.Length != 1 ) {
 				throw new StepException(StepException.Code.IncorrectParamCount, this,
-					"One integer parameter required.");
+					"One parameter required.");
 			}
 
 			////
@@ -71,35 +69,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			}
 
 			seg = Path.Segments[numSegs-segCount-1];
-			vBackToStep = seg.Step;
+			ProxyStep = seg.Step;
 			Path.AppendToCurrentSegment("("+Count+")", false);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override Type DtoType {
-			get {
-				return (vBackToStep != null ? vBackToStep.DtoType : null);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps { get { return vBackToStep.AvailableSteps; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override IStep GetNextStep(string pStepText, bool pSetData=true) {
-			if ( vBackToStep == null ) {
-				throw new Exception("BackToStep is null.");
-			}
-
-			IStep next = vBackToStep.GetNextStep(pStepText, false);
-
-			if ( pSetData ) {
-				next.SetDataAndUpdatePath(new StepData(pStepText));
-			}
-
-			return next;
 		}
 
 	}

@@ -14,7 +14,7 @@ namespace Fabric.Api.Dto {
 		public int TotalMs { get; set; }
 		public int DataLen { get; set; }
 		public int Count { get; set; }
-		public int RemovedDups { get; set; }
+		public bool HasMore { get; set; }
 		public long Timestamp { get; set; }
 
 
@@ -22,7 +22,6 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabResponse() {
 			Count = 0;
-			RemovedDups = 0;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

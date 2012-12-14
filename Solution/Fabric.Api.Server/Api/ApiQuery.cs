@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths;
-using Fabric.Api.Paths.Steps;
+using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Nancy;
@@ -17,6 +17,7 @@ namespace Fabric.Api.Server.Api {
 
 		private readonly NancyContext vContext;
 		private readonly ApiQueryInfo vInfo;
+		private FuncLimitStep vLastStep;
 		private string vUri;
 		private GremlinRequest vReq;
 
@@ -49,15 +50,15 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.StartEvent();
 
 			vUri = vContext.Request.Path.Substring(5);
-			IStep step = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
+			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
-			vInfo.Query = step.Path.Script;
-			vInfo.DtoType = step.DtoType;
+			vInfo.Query = vLastStep.Path.Script;
+			vInfo.DtoType = vLastStep.DtoType;
 			vInfo.NodeAction = DoNodeAction;
 
 			vInfo.Resp.BaseUri = ApiBaseUri;
 			vInfo.Resp.RequestUri = (vUri.Length > 0 ? "/"+vUri : "");
-			vInfo.Resp.AvailableUris = step.AvailableSteps;
+			vInfo.Resp.AvailableUris = vLastStep.AvailableSteps;
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 
 			if ( vInfo.DtoType != typeof(FabRoot) ) {
@@ -74,23 +75,19 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			if ( vReq.DtoList != null ) {
-				var idMap = new HashSet<long>();
+				int max = vLastStep.RangeLen;
+				int count = 0;
 				vInfo.DtoList = new List<DbDto>();
 
 				foreach ( DbDto dbDto in vReq.DtoList ) {
-					if ( dbDto.Id != null ) {
-						if ( idMap.Contains((long)dbDto.Id) ) {
-							++vInfo.Resp.RemovedDups;
-							continue;
-						}
-
-						idMap.Add((long)dbDto.Id);
-					}
-
+					if ( count++ >= max ) { break; } //TODO: test ApiQuery.BuildDtoList max
 					vInfo.DtoList.Add(dbDto);
 					++vInfo.Resp.Count;
 				}
 
+				Log.Debug("QUERY: "+vInfo.Query);
+				Log.Debug("Results: "+vReq.DtoList.Count+" / "+max);
+				vInfo.Resp.HasMore = (vReq.DtoList.Count > max);
 				return;
 			}
 			

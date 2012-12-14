@@ -7,7 +7,7 @@ namespace Fabric.Api.Paths.Steps {
 	/*================================================================================================*/
 	public abstract class Step : IStep {
 
-		private static readonly string[] AvailSteps = new[] { "/Back", "/Where" };
+		private static readonly string[] AvailSteps = new[] { "/Back", "/Limit" };
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
@@ -57,7 +57,7 @@ namespace Fabric.Api.Paths.Steps {
 		protected virtual IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
 				case "back": return new FuncBackStep(Path);
-				//case "where": return new FuncWhereStep(Path);
+				case "limit": return new FuncLimitStep(Path);
 			}
 
 			return null;
