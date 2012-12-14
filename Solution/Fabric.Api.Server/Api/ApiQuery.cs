@@ -4,7 +4,6 @@ using System.Text;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
-using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Nancy;
@@ -12,7 +11,7 @@ using Nancy;
 namespace Fabric.Api.Server.Api {
 
 	/*================================================================================================*/
-	public class ApiQuery {
+	public class ApiQuery {  //TODO: test ApiQuery
 
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
@@ -76,19 +75,17 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			if ( vReq.DtoList != null ) {
-				int max = vLastStep.RangeLen;
+				int max = vLastStep.Count;
 				int count = 0;
 				vInfo.DtoList = new List<DbDto>();
 
 				foreach ( DbDto dbDto in vReq.DtoList ) {
-					if ( count++ >= max ) { break; } //TODO: test ApiQuery.BuildDtoList max
+					if ( count++ >= max ) { break; }
 					vInfo.DtoList.Add(dbDto);
 					++vInfo.Resp.Count;
 				}
 
-				Log.Debug("QUERY: "+vInfo.Query);
-				Log.Debug("Results: "+vReq.DtoList.Count+" / "+max);
-				vInfo.Resp.StartIndex = vLastStep.StartI;
+				vInfo.Resp.StartIndex = vLastStep.Index;
 				vInfo.Resp.HasMore = (vReq.DtoList.Count > max);
 				return;
 			}

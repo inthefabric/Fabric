@@ -3,12 +3,12 @@
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
-	public class FuncLimitStep : FuncStep, IFinalStep { //TODO: test FuncLimitStep
+	public class FuncLimitStep : FuncStep, IFinalStep {
 
 		public const string DefaultStepText = "Limit(0,20)";
 
-		public long StartI { get; private set; }
-		public int RangeLen { get; private set; }
+		public long Index { get; private set; }
+		public int Count { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,14 +31,14 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			////
 
 			try {
-				StartI = Data.ParamAt<long>(0);
+				Index = Data.ParamAt<long>(0);
 			}
 			catch ( InvalidCastException ex ) {
 				throw new StepException(StepException.Code.FailedParamConversion, this,
 					"Could not convert to type 'long'.", 0, ex);
 			}
 
-			if ( StartI < 0 ) {
+			if ( Index < 0 ) {
 				throw new StepException(StepException.Code.IncorrectParamValue, this,
 					"Cannot be less than 0.", 0);
 			}
@@ -46,14 +46,14 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			////
 
 			try {
-				RangeLen = Data.ParamAt<int>(1);
+				Count = Data.ParamAt<int>(1);
 			}
 			catch ( InvalidCastException ex ) {
 				throw new StepException(StepException.Code.FailedParamConversion, this,
 					"Could not convert to type 'int'.", 1, ex);
 			}
 
-			if ( RangeLen <= 0 || RangeLen > 50 ) {
+			if ( Count <= 0 || Count > 50 ) {
 				throw new StepException(StepException.Code.IncorrectParamValue, this,
 					"Must be between 1 and 50.", 1);
 			}
@@ -61,7 +61,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			////
 
 			ProxyStep = Path.Segments[Path.Segments.Count-2].Step;
-			Path.AppendToCurrentSegment("["+StartI+".."+(StartI+RangeLen)+"]", false);
+			Path.AppendToCurrentSegment("["+Index+".."+(Index+Count)+"]", false);
 		}
 
 	}

@@ -64,11 +64,12 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void SetDataAndUpdatePathNoParams() {
+		[TestCase("")]
+		[TestCase("(1,2)")]
+		public void SetDataAndUpdatePathNoParams(string pParams) {
 			var p = new Path();
 			var s = new FuncBackStep(p);
-			var sd = new StepData("back");
+			var sd = new StepData("back"+pParams);
 			
 			StepException se =
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(sd));

@@ -77,14 +77,25 @@ namespace Fabric.Test.FabApiPaths.Steps {
 			var p = new Path();
 			p.AddSegment(null, "g.v(0).outE");
 			p.AddSegment(null, "inV");
-
 			var s = new TestStep(p);
-			const string comm = "Back";
 
-			IStep result = s.GetNextStep(comm+"(1)");
+			IStep result = s.GetNextStep("Back(1)");
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(typeof(FuncBackStep), result.GetType(), "Incorrect Result type.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void GetNextStepLimit() {
+			var p = new Path();
+			p.AddSegment(null, "g.V");
+			var s = new TestStep(p);
+
+			IStep result = s.GetNextStep("Limit(0,10)");
+
+			Assert.NotNull(result, "Result should be filled.");
+			Assert.AreEqual(typeof(FuncLimitStep), result.GetType(), "Incorrect Result type.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

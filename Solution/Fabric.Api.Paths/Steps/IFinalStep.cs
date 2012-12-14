@@ -3,8 +3,8 @@
 	/*================================================================================================*/
 	public interface IFinalStep : IBaseStep {
 
-		long StartI { get; }
-		int RangeLen { get; }
+		long Index { get; }
+		int Count { get; }
 
 	}
 
