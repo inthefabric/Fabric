@@ -12,7 +12,7 @@ namespace Fabric.Api.Server {
 	/*================================================================================================*/
 	public class ApiModule : NancyModule {
 
-		public const string ApiVersion = "2.0.0";
+		public const string ApiVersion = "2.0.0.4e9eb0f30b0f";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -149,21 +149,8 @@ An !Artifact has several 'Of{Item}' properties, but only one of them can be non-
   <data name="ArtItem_Public" xml:space="preserve">
     <value>is publicly accessible</value>
   </data>
-  <data name="ArtItem_TalkClosed" xml:space="preserve">
-    <value>does not allow new discussion Threads</value>
-  </data>
-  <data name="ArtItem_TalkOpen" xml:space="preserve">
-    <value>allows new discussion Threads</value>
-  </data>
   <data name="ArtItem_VariedAccess" xml:space="preserve">
     <value>can have either public or private accessibility</value>
-  </data>
-  <data name="Comment" xml:space="preserve">
-    <value>A message or note from particular User, contained within a discussion Thread.
-
-Any !Comment can be edited and/or deleted by the User who created it.  The text of deleted !Comments is an empty string; an App may either omit this !Comment or include it with a placeholder message (such as 'This comment was deleted').
-
-Every !Comment (via its Thread) belongs to a particular Artifact, so ideally, all discussion should be kept relevant to that Artifact. Fortunately, Apps and Users have a built-in method of !Comment moderation. Each new !Comment receives its own Artifact, which provides a way to (among many other things) rate a !Comment's relevance, objectivity, and/or obscenity. Apps may choose to filter !Comments based on such ratings.</value>
   </data>
   <data name="Core_Common" xml:space="preserve">
     <value>The essential data for a particular {{Item}}.</value>
@@ -217,12 +204,6 @@ There are various restrictions (based on Crowd properties) for !Crowdian creatio
   <data name="IdentorType" xml:space="preserve">
     <value>Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc.</value>
   </data>
-  <data name="Key_Common" xml:space="preserve">
-    <value>A key which identifies a particular {{Item}}.</value>
-  </data>
-  <data name="Key_Uint" xml:space="preserve">
-    <value>The base class for all Key objects.</value>
-  </data>
   <data name="Label" xml:space="preserve">
     <value>A word, phrase, code, or other text-based value.
 
@@ -253,11 +234,6 @@ This redirect is used in one particular scenario: the [[OAuth login process|Req|
   <data name="OauthLogout" xml:space="preserve">
     <value>The result of an OAuth logout.</value>
   </data>
-  <data name="Thread" xml:space="preserve">
-    <value>A discussion related to a particular Artifact, containing one or more Comments.
-
-A User must provide text for the first Comment when creating a new !Thread. Every !Thread belongs to a particular Artifact, so ideally, all discussion should be kept relevant to that Artifact.</value>
-  </data>
   <data name="User" xml:space="preserve">
     <value>A registered Fabric account that has indirect access (via Apps) to the Fabric API. A !User can become a Member of an App, and then use the App's interface to interact with Fabric. An App's interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
 
@@ -279,16 +255,6 @@ Every item added to Fabric is associated with (via Member) a !User and and an Ap
   </data>
   <data name="VectorUnitPrefix" xml:space="preserve">
     <value>Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc.</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Current version information for the Fabric API. 
-
-The API versioning format is: 'Major.Minor.ReleaseIndex.Build'. Major, Minor, and ReleaseIndex values are sequential integer values. Minor resets to zero after each Major increase. ReleaseIndex resets to zero after each Minor increase. Build is a 12-character hashtag, and can typically be ignored.
-
-In general, each increment of...
-- ReleaseIndex represents internal improvements and fixes.
-- Minor represents external additions, such as a new API request, a new service layer, or a new DTO property.
-- Major represents large and potentially breaking changes, such as the removal or modification of existing requests, services, or DTOs.</value>
   </data>
   <data name="Thing" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. A !Thing is the primary method for generating new Artifacts. There are two distinct !Thing types: Class and Instance.
@@ -527,16 +493,26 @@ _Method:_
 _Factor Phrase:_
 Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]</value>
   </data>
-  <data name="FqlResult" xml:space="preserve">
-    <value>The data that results from [[the execution|Req|fabriql.myapp.queries.queryId.result.post]] of an FqlQuery. Each execution results in a new !FqlResult. The results for a particular FqlQuery can vary over time, as Fabric's collection of data grows and changes.
-
-An !FqlResult's data is structured as a grid; specifically, a two-dimensional array of strings. Another string array contains the names of the data columns. The query parameters used to obtain this result (if applicable) are also provided for reference.</value>
+  <data name="Response" xml:space="preserve">
+    <value>The API response wrapper; contains the Data payload and other metadata.</value>
   </data>
-  <data name="FqlQuery" xml:space="preserve">
-    <value>An object containing a custom FabriQL query and other information related to it. !FqlQuery objects are not created via the API. Instead, they must be created and activated using tools from the !App Admin section of the Fabric website.
+  <data name="Version" xml:space="preserve">
+    <value>Current version information for the Fabric API. 
 
-A !FqlQuery's query code is [[executed via API|Req|fabriql.myapp.queries.queryId.result.post]], and returns the resulting data as an FqlResult.
+The API versioning format is: 'Major.Minor.ReleaseIndex.Build'. Major, Minor, and ReleaseIndex values are sequential integer values. Minor resets to zero after each Major increase. ReleaseIndex resets to zero after each Minor increase. Build is a 12-character hashtag, and can typically be ignored.
 
-Only active FqlQueries may be executed via API. The activation process validates and verifies, ensuring that all active FqlQueries have functional FabriQL query code. An !FqlQuery's query code cannot be modified after becoming active, ensuring consistent query results.</value>
+In general, each increment of...
+- ReleaseIndex represents internal improvements and fixes.
+- Minor represents external additions, such as a new API request, a new service layer, or a new DTO property.
+- Major represents large and potentially breaking changes, such as the removal or modification of existing requests, services, or DTOs.</value>
+  </data>
+  <data name="Node" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="NodeForAction" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="NodeForType" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>

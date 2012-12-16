@@ -138,24 +138,6 @@
   <data name="Artifact_OfItem" xml:space="preserve">
     <value>Identifies the corresponding {{Item}}, if applicable.</value>
   </data>
-  <data name="Comment_EditCount" xml:space="preserve">
-    <value>The number of edits performed.</value>
-  </data>
-  <data name="Comment_IsDeleted" xml:space="preserve">
-    <value>Specifies the deletion state.</value>
-  </data>
-  <data name="Comment_IsPost" xml:space="preserve">
-    <value>Specifies whether this !Comment is the first in the Thread.</value>
-  </data>
-  <data name="Comment_Text" xml:space="preserve">
-    <value>The main body of text. Maximum length: 4096 characters.</value>
-  </data>
-  <data name="Comment_UserKey" xml:space="preserve">
-    <value>Identifies the author.</value>
-  </data>
-  <data name="Comment_UserUsername" xml:space="preserve">
-    <value>The username of the author.</value>
-  </data>
   <data name="Common_AssociatedItem" xml:space="preserve">
     <value>Identifies the associated {{Item}}.</value>
   </data>
@@ -258,21 +240,6 @@
   <data name="OauthLogout_Success" xml:space="preserve">
     <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
   </data>
-  <data name="Thread_CommentCount" xml:space="preserve">
-    <value>The total number of Comments.</value>
-  </data>
-  <data name="Thread_Title" xml:space="preserve">
-    <value>A non-unique title which summarizes or describes the intended discussion topic. Maximum length: 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
-  </data>
-  <data name="Thread_Updated" xml:space="preserve">
-    <value>The date/time of the most recently updated Comment.</value>
-  </data>
-  <data name="Thread_UserKey" xml:space="preserve">
-    <value>Identifies the author.</value>
-  </data>
-  <data name="Thread_UserUsername" xml:space="preserve">
-    <value>The username of the author.</value>
-  </data>
   <data name="User_Created" xml:space="preserve">
     <value>The date/time of registration.</value>
   </data>
@@ -305,9 +272,6 @@
   </data>
   <data name="VectorUnit_Symbol" xml:space="preserve">
     <value>A unique symbol or abbreviation. Maximum length: 16 characters.</value>
-  </data>
-  <data name="Version_Version" xml:space="preserve">
-    <value>Identifies the current version.</value>
   </data>
   <data name="Thing_Disambiguation" xml:space="preserve">
     <value>A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters.</value>
@@ -369,12 +333,6 @@
   <data name="Locator_Z" xml:space="preserve">
     <value>A value representing elevation or a particular three-dimensional axis.</value>
   </data>
-  <data name="FqlQuery_Created" xml:space="preserve">
-    <value>If the !FqlQuery is unfinished: the date/time of creation. Otherwise: the date/time of the !FqlQuery's first activation.</value>
-  </data>
-  <data name="FqlQuery_FqlQuery" xml:space="preserve">
-    <value>The query code, written in FabriQL (Fabric Query Language). The code defines which DTO objects to query, how to join or combine them, applies filters and other criteria, and specifies the DTO values to return. Maximum length: 65535 characters.</value>
-  </data>
   <data name="Vector_AxisArtifactKey" xml:space="preserve">
     <value>Identifies the value's axis using an arbitrary Artifact.</value>
   </data>
@@ -432,34 +390,61 @@
   <data name="TODO" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="FqlQuery_IsActive" xml:space="preserve">
-    <value>Specifies the active or inactive state of the query. The Fabric API will only execute active queries.</value>
+  <data name="NodeForAction_Note" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlQuery_IsUnfinished" xml:space="preserve">
-    <value>Specifies the unfinished or finished state of the query. Once finished, a query's FabriQL code cannot be modified. Only finished queries can have an active state.</value>
+  <data name="NodeForAction_PerformedTimestamp" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_ColumnNames" xml:space="preserve">
-    <value>A list of column names, which map to the cells of a DataGrid row. Column names are typically defined by the query code. Fabric generates placeholder column name in cases where they are not provided.</value>
+  <data name="NodeForType_Description" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_Created" xml:space="preserve">
-    <value>The date/time of FqlQuery execution.</value>
+  <data name="NodeForType_Name" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_DataCharCount" xml:space="preserve">
-    <value>The total number of characters in all of the strings in the DataGrid. Fabric uses this value to store the relative size of each !FqlResult.</value>
+  <data name="Node_NodeId" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_DataGrid" xml:space="preserve">
-    <value>The data that resulted from the query execution. This data is structured as a two-dimensional string array. The first dimension represents rows, the second represents columns.</value>
+  <data name="Node_NodeUri" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_DurationTicks" xml:space="preserve">
-    <value>The number of ticks that elapsed during the query execution. A tick is equal to 100 nanoseconds, or one ten-millionth of a second. There are 10,000 ticks in a millisecond.</value>
+  <data name="Object_TypeId" xml:space="preserve">
+    <value>Uniquely identifies this object amongst all other objects of this type.</value>
   </data>
-  <data name="FqlResult_FqlQueryKey" xml:space="preserve">
-    <value>Identifies the executed FqlQuery.</value>
+  <data name="Response_AvailableUris" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_Parameters" xml:space="preserve">
-    <value>A dictionary (collection of key-value pairs) describing the parameters used to produce this result.  In each pair, the first string (key) represents the parameter name, and second string represents that parameter's value.</value>
+  <data name="Response_BaseUri" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="FqlResult_RowCount" xml:space="preserve">
-    <value>The number of rows present in the DataGrid.</value>
+  <data name="Response_Count" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Data" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_DataLen" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_DbMs" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_HasMore" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_RequestUri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_StartIndex" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Timestamp" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_TotalMs" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Type" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>

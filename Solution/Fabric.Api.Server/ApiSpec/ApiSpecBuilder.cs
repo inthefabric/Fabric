@@ -31,7 +31,7 @@ namespace Fabric.Api.Server.ApiSpec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildResponse() {
-			var doc = new ApiSpecDoc();
+			var doc = new SpecDoc();
 			doc.ApiVersion = ApiModule.ApiVersion;
 
 			var json = JsonSerializer.SerializeToString(doc);

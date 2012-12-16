@@ -1,129 +1,69 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Resources;
+using Fabric.Api.Dto.Spec.Lang;
 using Fabric.Infrastructure;
 
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public partial class ApiSpecDoc {
+	public partial class SpecDoc {
 
 		public string ApiVersion { get; set; }
-		public ApiSpecApiResponse ApiResponse { get; set; }
-		public List<ApiSpecDto> DtoList { get; set; }
-		public List<ApiSpecPathFunc> PathFunctionList { get; set; }
-
-		public static ResourceManager ResMan;
+		public SpecApiResponse ApiResponse { get; set; }
+		public List<SpecDto> DtoList { get; set; }
+		public List<SpecPathFunc> PathFunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiSpecDoc() {
-			ApiResponse = new ApiSpecApiResponse();
+		public SpecDoc() {
+			ApiResponse = new SpecApiResponse();
 			DtoList = BuildDtoList();
+			DtoList.Insert(0, GetSpectDtoFabNode());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static Dictionary<string,ApiSpecProperty> ReflectProps<T>() {
+		public static Dictionary<string,SpecProperty> ReflectProps<T>() {
 			PropertyInfo[] props = typeof(T).GetProperties();
-			var results = new Dictionary<string,ApiSpecProperty>();
+			var results = new Dictionary<string,SpecProperty>();
 
 			foreach ( PropertyInfo pi in props ) {
-				var specProp = new ApiSpecProperty();
+				var specProp = new SpecProperty();
 				specProp.Name = pi.Name;
 				specProp.Type = FabricUtil.GetTypeDisplayName(pi.PropertyType);
+				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
 				results.Add(pi.Name, specProp);
 			}
 
 			return results;
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public static string GetDtoText(string pName) {
-			if ( ResMan == null ) {
-				ResMan = new ResourceManager("DtoText", Assembly.GetExecutingAssembly());
-			}
+			string s = DtoText.ResourceManager.GetString(pName);
+			return (s ?? "MISSING:"+pName);
+		}
 
-			return ResMan.GetString(pName);
-		}*/
-
-	}
-
-	/*================================================================================================*/
-	public class ApiSpecApiResponse : ApiSpecDto {
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetDtoPropText(string pName) {
+			string s = DtoPropText.ResourceManager.GetString(pName);
+			return (s ?? "MISSING:"+pName);
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiSpecApiResponse() {
-			Name = typeof(FabResponse).Name;
-			Abstract = "The API response wrapper; contains the Data payload and other metadata.";
-			Description = "TODO";
+		private SpecDto GetSpectDtoFabNode() {
+			var sd = new SpecDto();
+			sd.Name = typeof(FabNode).Name;
+			sd.Description = GetDtoText(sd.Name.Substring(3));
+			sd.Abstract = sd.Description.Substring(0, sd.Description.IndexOf('.')+1);
 
-			Dictionary<string,ApiSpecProperty> propMap = ApiSpecDoc.ReflectProps<FabResponse>();
-			PropertyList = propMap.Values.ToList();
+			Dictionary<string, SpecProperty> propMap = ReflectProps<FabNode>();
+			sd.PropertyList = propMap.Values.ToList();
+			return sd;
 		}
-
-	}
-	
-	/*================================================================================================*/
-	public class ApiSpecPathFunc {
-
-		public List<ApiSpecProperty> ParameterList { get; set; }
-
-	}
-
-	/*================================================================================================*/
-	public class ApiSpecDto {
-
-		public string Name { get; set; }
-		public string Extends { get; set; }
-		public string Abstract { get; set; }
-		public string Description { get; set; }
-		public List<ApiSpecProperty> PropertyList { get; set; }
-		public List<ApiSpecLink> LinkList { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ApiSpecDto() {
-			PropertyList = new List<ApiSpecProperty>();
-			LinkList = new List<ApiSpecLink>();
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class ApiSpecProperty {
-
-		public string Name { get; set; }
-		public string Type { get; set; }
-		public string Description { get; set; }
-
-		public bool? IsCaseInsensitive { get; set; }
-		public bool? IsNullable { get; set; }
-		public bool? IsPrimaryKey { get; set; }
-		public bool? IsTimestamp { get; set; }
-		public bool? IsUnique { get; set; }
-
-		public int? Len { get; set; }
-		public int? LenMax { get; set; }
-		public int? LenMin { get; set; }
-		public string ValidRegex { get; set; }
-
-	}
-
-	/*================================================================================================*/
-	public class ApiSpecLink {
-
-		public string Name { get; set; }
-		public bool IsOutgoing { get; set; }
-		public string FromDto { get; set; }
-		public string FromDtoConn { get; set; }
-		public string Verb { get; set; }
-		public string ToDto { get; set; }
-		public string ToDtoConn { get; set; }
 
 	}
 

@@ -15,7 +15,6 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-using Fabric.Api.Dto.Spec.Lang;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Resources;
@@ -23,15 +22,15 @@ using System.Resources;
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public partial class ApiSpecDoc {
+	public partial class SpecDoc {
 	
 		/*--------------------------------------------------------------------------------------------*/
-		public List<ApiSpecDto> BuildDtoList() {
-			var list = new List<ApiSpecDto>();
+		public List<SpecDto> BuildDtoList() {
+			var list = new List<SpecDto>();
 			
-			ApiSpecDto dto;
-			ApiSpecProperty p;
-			ApiSpecLink l;
+			SpecDto dto;
+			SpecProperty p;
+			SpecLink l;
 
 			var res = new ResourceManager("RM", Assembly.GetExecutingAssembly());
 
@@ -45,11 +44,11 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
 			////
 
-			dto = new ApiSpecDto();
+			dto = new SpecDto();
 			dto.Name = "Fab<#= node.Name #>";
 			dto.Extends = "<#= baseNode #>";
-			dto.Abstract = "TODO";
-			dto.Description = "TODO"; //ApiSpecDoc.GetDtoText("<#= node.Name #>");
+			dto.Description = GetDtoText("<#= node.Name #>");
+			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
 	
 <#
@@ -102,10 +101,13 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		propNameMap.Add(prop.Name, propName);
 		propTypeMap.Add(prop.Name, propType);
 
+		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : node.Name+"_"+propName);
+
 #>
-				p = new ApiSpecProperty();
+				p = new SpecProperty();
 				p.Name = "<#= propName #>";
 				p.Type = "<#= propType #>";
+				p.Description = GetDtoPropText("<#= resxDesc #>");
 				<#= propItems #>dto.PropertyList.Add(p);
 
 <#
@@ -117,7 +119,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		bool isOut = (rel.FromNode == node);
 		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
 #>
-					l = new ApiSpecLink();
+					l = new SpecLink();
 					l.Name = "<#= PathUtil.GetRelProp(rel, isOut) #>";
 					l.IsOutgoing = <#= isOut.ToString().ToLower() #>;
 					l.FromDto = "Fab<#= rel.FromNode.Name #>";
