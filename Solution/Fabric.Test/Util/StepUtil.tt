@@ -1,10 +1,9 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Domain.Schema" #>
 <#@ import namespace="Fabric.Infrastructure" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
@@ -30,7 +29,7 @@ namespace Fabric.Test.Util {
 			var map = new Dictionary<string, string[]>();
 
 <#
-var schema = new GraphSchema();
+var schema = new Schema();
 
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	if ( node.IsAbstract ) { continue; }

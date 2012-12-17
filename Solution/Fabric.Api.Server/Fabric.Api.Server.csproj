@@ -80,6 +80,7 @@
     <Compile Include="ApiModule.cs" />
     <Compile Include="ApiBootstrap.cs" />
     <Compile Include="ApiSpec\ApiSpecBuilder.cs" />
+    <Compile Include="ApiSpec\ApiSpecBuilderHtml.cs" />
     <Compile Include="Api\ApiQuery.cs" />
     <Compile Include="Api\ApiResponseJson.cs" />
     <Compile Include="Api\ApiResponseHtml.cs" />

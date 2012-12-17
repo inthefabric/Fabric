@@ -194,7 +194,7 @@ namespace Fabric.Db.Data.Setups {
 													string pToken, int pMins, string pRefresh=null) {
 			var oa = new OauthAccess();
 			oa.OauthAccessId = (long)pId;
-			oa.ExpiresTimestamp = new DateTime(vSet.NowTimestamp).AddMinutes(pMins).Ticks;
+			oa.Expires = new DateTime(vSet.NowTimestamp).AddMinutes(pMins).Ticks;
 			oa.Token = pToken;
 			oa.Refresh = (pRefresh ?? FabricUtil.Code32);
 			oa.IsClientOnly = (pUserId == null);
@@ -220,7 +220,7 @@ namespace Fabric.Db.Data.Setups {
 			og.OauthGrantId = (long)pId;
 			og.RedirectUri = pRedirectUri;
 			og.Code = pCode;
-			og.ExpiresTimestamp = pExpires.Ticks;
+			og.Expires = pExpires.Ticks;
 
 			vSet.AddNodeAndIndex(og, x => x.OauthGrantId, vTestMode);
 			vSet.AddRootRel<RootContainsOauthGrant>(og, vTestMode);
@@ -240,7 +240,7 @@ namespace Fabric.Db.Data.Setups {
 			var os = new OauthScope();
 			os.OauthScopeId = (long)pId;
 			os.Allow = pAllow;
-			os.CreatedTimestamp = vSet.NowTimestamp;
+			os.Created = vSet.NowTimestamp;
 
 			vSet.AddNodeAndIndex(os, x => x.OauthScopeId, vTestMode);
 			vSet.AddRootRel<RootContainsOauthScope>(os, vTestMode);

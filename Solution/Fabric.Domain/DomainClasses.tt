@@ -107,7 +107,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			case "Boolean": propType = "bool"; break;
 			case "Single": propType = "float"; break;
 			case "Double": propType = "double"; break;
-			case "DateTime": propType = "long"; propName += "Timestamp"; break;
+			case "DateTime": propType = "long"; break;
 		}
 
 		attribs += "[WeaverItemProperty]"+attEnd;
@@ -131,6 +131,14 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 		if ( prop.IsUnique != null ) {
 			attribs += "//[PropIsUnique("+prop.IsUnique+")]"+attEnd;
+		}
+
+		if ( prop.IsInternal != null ) {
+			attribs += "//[PropIsInternal("+prop.IsInternal+")]"+attEnd;
+		}
+
+		if ( prop.IsPassword != null ) {
+			attribs += "//[PropIsPassword("+prop.IsPassword+")]"+attEnd;
 		}
 
 		if ( prop.Len != null ) {

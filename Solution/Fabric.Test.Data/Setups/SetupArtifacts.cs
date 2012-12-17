@@ -97,29 +97,10 @@ namespace Fabric.Db.Data.Setups {
 			Thi_FisherPrice,
 			Thi_Happiness,
 			Thi_Fun,
-			Thi_Cuteness/*,
-
-			Com_First_1,
-			Com_First_2,
-			Com_First_3,
-			Com_Love_1,
-			Com_Love2,
-			Com_Love3_Del,
-			Com_Love4,
-			Com_Crowd_1,
-			Com_Sec_1c,
-			Com_Sec_2b,
-			Com_Sec_3_Del,
-			Com_Sec_4,
-			Com_Sec_5b,
-			Com_First_4,
-			Com_PhoLove_1,
-			Com_PhoCrit_1,
-			Com_ZFam_1,
-			Com_ZFam_2*/
+			Thi_Cuteness
 		}
 
-		public const int NumArtifacts = 106;
+		public const int NumArtifacts = 77;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +110,7 @@ namespace Fabric.Db.Data.Setups {
 			var a = new Artifact();
 			a.ArtifactId = (long)pId;
 			a.IsPrivate = false;
-			a.CreatedTimestamp = pSet.SetupTimestamp;
+			a.Created = pSet.SetupTimestamp;
 
 			pSet.AddNodeAndIndex(a, x => x.ArtifactId, pTestMode);
 			pSet.AddRootRel<RootContainsArtifact>(a, pTestMode);

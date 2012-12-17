@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/14/2012 5:05:10 PM
+// Generated on 12/17/2012 2:55:47 PM
 
 using Fabric.Api.Dto;
 
@@ -44,11 +44,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IContainsCrowdianTypeAssignList {
 		CrowdianTypeAssignStep ContainsCrowdianTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEmailList {
-		EmailStep ContainsEmailList { get; }
 	}
 
 	/*================================================================================================*/
@@ -192,26 +187,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IContainsOauthAccessList {
-		OauthAccessStep ContainsOauthAccessList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsOauthDomainList {
-		OauthDomainStep ContainsOauthDomainList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsOauthGrantList {
-		OauthGrantStep ContainsOauthGrantList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsOauthScopeList {
-		OauthScopeStep ContainsOauthScopeList { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IHasArtifact {
 		ArtifactStep HasArtifact { get; }
 	}
@@ -219,11 +194,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IInAppHas {
 		AppStep InAppHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesEmail {
-		EmailStep UsesEmail { get; }
 	}
 
 	/*================================================================================================*/
@@ -637,29 +607,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInOauthAccessUsesList {
-		OauthAccessStep InOauthAccessListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInOauthDomainUsesList {
-		OauthDomainStep InOauthDomainListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInOauthGrantUsesList {
-		OauthGrantStep InOauthGrantListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInOauthScopeUsesList {
-		OauthScopeStep InOauthScopeListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public partial class RootStep : NodeStep<FabRoot>, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsEmailList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList, IContainsOauthAccessList, IContainsOauthDomainList, IContainsOauthGrantList, IContainsOauthScopeList {
+	public partial class RootStep : NodeStep<FabRoot>, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsEmailList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList", "/ContainsOauthAccessList", "/ContainsOauthDomainList", "/ContainsOauthGrantList", "/ContainsOauthScopeList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -702,7 +652,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "containscrowdianlist": return ContainsCrowdianList;
 				case "containscrowdiantypelist": return ContainsCrowdianTypeList;
 				case "containscrowdiantypeassignlist": return ContainsCrowdianTypeAssignList;
-				case "containsemaillist": return ContainsEmailList;
 				case "containslabellist": return ContainsLabelList;
 				case "containsmemberlist": return ContainsMemberList;
 				case "containsmembertypelist": return ContainsMemberTypeList;
@@ -731,10 +680,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "containsvectorunitlist": return ContainsVectorUnitList;
 				case "containsvectorunitprefixlist": return ContainsVectorUnitPrefixList;
 				case "containsvectorunitderivedlist": return ContainsVectorUnitDerivedList;
-				case "containsoauthaccesslist": return ContainsOauthAccessList;
-				case "containsoauthdomainlist": return ContainsOauthDomainList;
-				case "containsoauthgrantlist": return ContainsOauthGrantList;
-				case "containsoauthscopelist": return ContainsOauthScopeList;
 			}
 
 			return base.GetNextStep(pData);
@@ -795,14 +740,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			get {
 				Path.AppendToCurrentSegment("outE('RootContainsCrowdianTypeAssign')");
 				return new CrowdianTypeAssignStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public EmailStep ContainsEmailList {
-			get {
-				Path.AppendToCurrentSegment("outE('RootContainsEmail')");
-				return new EmailStep(true, Path);
 			}
 		}
 
@@ -1030,44 +967,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessStep ContainsOauthAccessList {
-			get {
-				Path.AppendToCurrentSegment("outE('RootContainsOauthAccess')");
-				return new OauthAccessStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainStep ContainsOauthDomainList {
-			get {
-				Path.AppendToCurrentSegment("outE('RootContainsOauthDomain')");
-				return new OauthDomainStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantStep ContainsOauthGrantList {
-			get {
-				Path.AppendToCurrentSegment("outE('RootContainsOauthGrant')");
-				return new OauthGrantStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopeStep ContainsOauthScopeList {
-			get {
-				Path.AppendToCurrentSegment("outE('RootContainsOauthScope')");
-				return new OauthScopeStep(true, Path);
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
-	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IUsesEmail, IInMemberUsesList, IInOauthAccessUsesList, IInOauthDomainUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
+	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IInMemberUsesList {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/UsesEmail", "/InMemberListUses", "/InOauthAccessListUses", "/InOauthDomainListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/InMemberListUses" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1095,12 +1000,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
-				case "usesemail": return UsesEmail;
 				case "inmemberlistuses": return InMemberListUses;
-				case "inoauthaccesslistuses": return InOauthAccessListUses;
-				case "inoauthdomainlistuses": return InOauthDomainListUses;
-				case "inoauthgrantlistuses": return InOauthGrantListUses;
-				case "inoauthscopelistuses": return InOauthScopeListUses;
 			}
 
 			return base.GetNextStep(pData);
@@ -1125,50 +1025,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailStep UsesEmail {
-			get {
-				Path.AppendToCurrentSegment("outE('AppUsesEmail')");
-				return new EmailStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberListUses {
 			get {
 				Path.AppendToCurrentSegment("inE('MemberUsesApp')");
 				return new MemberStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessStep InOauthAccessListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthAccessUsesApp')");
-				return new OauthAccessStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainStep InOauthDomainListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthDomainUsesApp')");
-				return new OauthDomainStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantStep InOauthGrantListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthGrantUsesApp')");
-				return new OauthGrantStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopeStep InOauthScopeListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthScopeUsesApp')");
-				return new OauthScopeStep(false, Path);
 			}
 		}
 
@@ -1691,71 +1551,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EmailStep : NodeStep<FabEmail>, IInRootContains, IInAppUses, IInUserUses {
-	
-		private static readonly string[] AvailNodeSteps = new [] { "/InAppUses", "/InUserUses" };
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public EmailStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "EmailId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get {
-				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
-				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
-				return mergeSteps;
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
-			switch ( pData.Command ) {
-				case "inappuses": return InAppUses;
-				case "inuseruses": return InUserUses;
-			}
-
-			return base.GetNextStep(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				Path.AppendToCurrentSegment("inE('RootContainsEmail')");
-				return new RootStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep InAppUses {
-			get {
-				Path.AppendToCurrentSegment("inE('AppUsesEmail')");
-				return new AppStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep InUserUses {
-			get {
-				Path.AppendToCurrentSegment("inE('UserUsesEmail')");
-				return new UserStep(false, Path);
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
 	public partial class LabelStep : NodeStep<FabLabel>, IInRootContains, IHasArtifact {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact" };
@@ -2173,9 +1968,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, IUsesEmail, ICreatesCrowdianTypeAssignList, IInOauthAccessUsesList, IInOauthGrantUsesList, IInOauthScopeUsesList {
+	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, ICreatesCrowdianTypeAssignList {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/UsesEmail", "/CreatesCrowdianTypeAssignList", "/InOauthAccessListUses", "/InOauthGrantListUses", "/InOauthScopeListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/CreatesCrowdianTypeAssignList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2205,11 +2000,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "incrowdianlistuses": return InCrowdianListUses;
 				case "inmemberlistuses": return InMemberListUses;
 				case "hasartifact": return HasArtifact;
-				case "usesemail": return UsesEmail;
 				case "createscrowdiantypeassignlist": return CreatesCrowdianTypeAssignList;
-				case "inoauthaccesslistuses": return InOauthAccessListUses;
-				case "inoauthgrantlistuses": return InOauthGrantListUses;
-				case "inoauthscopelistuses": return InOauthScopeListUses;
 			}
 
 			return base.GetNextStep(pData);
@@ -2250,42 +2041,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailStep UsesEmail {
-			get {
-				Path.AppendToCurrentSegment("outE('UserUsesEmail')");
-				return new EmailStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep CreatesCrowdianTypeAssignList {
 			get {
 				Path.AppendToCurrentSegment("outE('UserCreatesCrowdianTypeAssign')");
 				return new CrowdianTypeAssignStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessStep InOauthAccessListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthAccessUsesUser')");
-				return new OauthAccessStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantStep InOauthGrantListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthGrantUsesUser')");
-				return new OauthGrantStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopeStep InOauthScopeListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('OauthScopeUsesUser')");
-				return new OauthScopeStep(false, Path);
 			}
 		}
 
@@ -3759,257 +3518,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			get {
 				Path.AppendToCurrentSegment("outE('VectorUnitDerivedUsesVectorUnitPrefix')");
 				return new VectorUnitPrefixStep(true, Path);
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class OauthAccessStep : NodeStep<FabOauthAccess>, IInRootContains, IUsesApp, IUsesUser {
-	
-		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser" };
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "OauthAccessId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get {
-				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
-				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
-				return mergeSteps;
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
-			switch ( pData.Command ) {
-				case "usesapp": return UsesApp;
-				case "usesuser": return UsesUser;
-			}
-
-			return base.GetNextStep(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				Path.AppendToCurrentSegment("inE('RootContainsOauthAccess')");
-				return new RootStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep UsesApp {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthAccessUsesApp')");
-				return new AppStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep UsesUser {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthAccessUsesUser')");
-				return new UserStep(true, Path);
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class OauthDomainStep : NodeStep<FabOauthDomain>, IInRootContains, IUsesApp {
-	
-		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp" };
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "OauthDomainId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get {
-				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
-				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
-				return mergeSteps;
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
-			switch ( pData.Command ) {
-				case "usesapp": return UsesApp;
-			}
-
-			return base.GetNextStep(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				Path.AppendToCurrentSegment("inE('RootContainsOauthDomain')");
-				return new RootStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep UsesApp {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthDomainUsesApp')");
-				return new AppStep(true, Path);
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class OauthGrantStep : NodeStep<FabOauthGrant>, IInRootContains, IUsesApp, IUsesUser {
-	
-		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser" };
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "OauthGrantId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get {
-				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
-				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
-				return mergeSteps;
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
-			switch ( pData.Command ) {
-				case "usesapp": return UsesApp;
-				case "usesuser": return UsesUser;
-			}
-
-			return base.GetNextStep(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				Path.AppendToCurrentSegment("inE('RootContainsOauthGrant')");
-				return new RootStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep UsesApp {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthGrantUsesApp')");
-				return new AppStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep UsesUser {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthGrantUsesUser')");
-				return new UserStep(true, Path);
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class OauthScopeStep : NodeStep<FabOauthScope>, IInRootContains, IUsesApp, IUsesUser {
-	
-		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser" };
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "OauthScopeId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get {
-				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
-				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
-				return mergeSteps;
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
-			switch ( pData.Command ) {
-				case "usesapp": return UsesApp;
-				case "usesuser": return UsesUser;
-			}
-
-			return base.GetNextStep(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				Path.AppendToCurrentSegment("inE('RootContainsOauthScope')");
-				return new RootStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep UsesApp {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthScopeUsesApp')");
-				return new AppStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep UsesUser {
-			get {
-				Path.AppendToCurrentSegment("outE('OauthScopeUsesUser')");
-				return new UserStep(true, Path);
 			}
 		}
 

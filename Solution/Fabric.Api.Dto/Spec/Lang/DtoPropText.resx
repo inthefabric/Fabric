@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="App_Created" xml:space="preserve">
-    <value>The date/time of registration.</value>
-  </data>
   <data name="App_Name" xml:space="preserve">
     <value>A unique title or identifier, with length between 3 and 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
   </data>
@@ -141,9 +138,6 @@
   <data name="Common_AssociatedItem" xml:space="preserve">
     <value>Identifies the associated {{Item}}.</value>
   </data>
-  <data name="Common_Created" xml:space="preserve">
-    <value>The date/time of creation.</value>
-  </data>
   <data name="Common_Description" xml:space="preserve">
     <value>A brief summary of purpose, usage, and/or guidelines. Maximum length: {{Max}} characters.</value>
   </data>
@@ -152,9 +146,6 @@
   </data>
   <data name="Common_ItemCreator" xml:space="preserve">
     <value>Identifies the Member, User, and App responsible for the creation of this {{Item}}.</value>
-  </data>
-  <data name="Common_Key" xml:space="preserve">
-    <value>Identifies this object.</value>
   </data>
   <data name="Common_Name" xml:space="preserve">
     <value>A descriptive name or title. Maximum length: {{Max}} characters.</value>
@@ -165,7 +156,7 @@
   <data name="Crowdian_CrowdianTypeKey" xml:space="preserve">
     <value>Idenfies membership status and access privileges.</value>
   </data>
-  <data name="Crowdian_Weighting" xml:space="preserve">
+  <data name="CrowdianTypeAssign_Weight" xml:space="preserve">
     <value>A value (between 0.0 and 1.0) which represents relative impact on Crowd-based data analysis. The default value is 0.5.</value>
   </data>
   <data name="Crowd_IsInviteOnly" xml:space="preserve">
@@ -195,53 +186,8 @@
   <data name="Label_Name" xml:space="preserve">
     <value>A unique title or identifier. Maximum length: 128 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
   </data>
-  <data name="LocatorType_Max" xml:space="preserve">
-    <value>The maximum Locator {{Coord}}-coordinate value.</value>
-  </data>
-  <data name="LocatorType_Min" xml:space="preserve">
-    <value>The minimum Locator {{Coord}}-coordinate value.</value>
-  </data>
   <data name="Member_MemberTypeKey" xml:space="preserve">
     <value>Identifies the membership state and/or access privileges.</value>
-  </data>
-  <data name="OauthAccess_AccessToken" xml:space="preserve">
-    <value>A 32-character code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
-  </data>
-  <data name="OauthAccess_ExpiresIn" xml:space="preserve">
-    <value>The number of seconds until the access token expires.</value>
-  </data>
-  <data name="OauthAccess_RefreshToken" xml:space="preserve">
-    <value>A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Req|oauth.access_token.client_credentials.get]].</value>
-  </data>
-  <data name="OauthAccess_TokenType" xml:space="preserve">
-    <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>
-  </data>
-  <data name="OauthError_Error" xml:space="preserve">
-    <value>An error code as defined by the OAuth 2.0 specification.</value>
-  </data>
-  <data name="OauthError_ErrorDescription" xml:space="preserve">
-    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions.</value>
-  </data>
-  <data name="OauthLogin_Code" xml:space="preserve">
-    <value>Use this 32-character string (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.</value>
-  </data>
-  <data name="OauthLogin_Error" xml:space="preserve">
-    <value>An error code as defined by the OAuth 2.0 specification.</value>
-  </data>
-  <data name="OauthLogin_ErrorDescription" xml:space="preserve">
-    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a '+' character in place of each space character.</value>
-  </data>
-  <data name="OauthLogin_State" xml:space="preserve">
-    <value>Returns the 'state' value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal.</value>
-  </data>
-  <data name="OauthLogout_AccessToken" xml:space="preserve">
-    <value>Identifies a particular OAuth session.</value>
-  </data>
-  <data name="OauthLogout_Success" xml:space="preserve">
-    <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
-  </data>
-  <data name="User_Created" xml:space="preserve">
-    <value>The date/time of registration.</value>
   </data>
   <data name="User_Name" xml:space="preserve">
     <value>A unique username, with length between 4 and 16 characters. This string is restricted to the [[Username character set|Note|UsernameCharSet]].</value>
@@ -273,7 +219,7 @@
   <data name="VectorUnit_Symbol" xml:space="preserve">
     <value>A unique symbol or abbreviation. Maximum length: 16 characters.</value>
   </data>
-  <data name="Thing_Disambiguation" xml:space="preserve">
+  <data name="Thing_Disamb" xml:space="preserve">
     <value>A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters.</value>
   </data>
   <data name="Thing_IsClass" xml:space="preserve">
@@ -282,7 +228,7 @@
   <data name="Thing_Note" xml:space="preserve">
     <value>A summary of the !Thing's intended meaning or purpose. This can resolve confusion in cases where a !Thing has vague or missing Factors.  Maximum length: 256 characters.</value>
   </data>
-  <data name="Url_FullUrl" xml:space="preserve">
+  <data name="Url_AbsoluteUrl" xml:space="preserve">
     <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://'). Maximum length: 450 characters.</value>
   </data>
   <data name="Descriptor_DescriptorTypeKey" xml:space="preserve">
@@ -324,13 +270,13 @@
   <data name="Locator_LocatorTypeKey" xml:space="preserve">
     <value>Identifies the spatial context of the coordinate.</value>
   </data>
-  <data name="Locator_X" xml:space="preserve">
+  <data name="Locator_ValueX" xml:space="preserve">
     <value>A value representing longitude, time/progress, width, or a particular three-dimensional axis.</value>
   </data>
-  <data name="Locator_Y" xml:space="preserve">
+  <data name="Locator_ValueY" xml:space="preserve">
     <value>A value representing latitude, height, or a particular three-dimensional axis.</value>
   </data>
-  <data name="Locator_Z" xml:space="preserve">
+  <data name="Locator_ValueZ" xml:space="preserve">
     <value>A value representing elevation or a particular three-dimensional axis.</value>
   </data>
   <data name="Vector_AxisArtifactKey" xml:space="preserve">
@@ -363,8 +309,8 @@
   <data name="Factor_IdentorKey" xml:space="preserve">
     <value>Identifies the Identor Element, which applies a name or identifier.</value>
   </data>
-  <data name="Factor_IsComplete" xml:space="preserve">
-    <value>Specifies the completion state.</value>
+  <data name="Factor_Completed" xml:space="preserve">
+    <value>The date/time of completion. This value is null if the !Factor is not complete.</value>
   </data>
   <data name="Factor_IsDefining" xml:space="preserve">
     <value>Specifies whether this !Factor helps to uniquely define the primary Artifact.</value>
@@ -393,7 +339,7 @@
   <data name="NodeForAction_Note" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="NodeForAction_PerformedTimestamp" xml:space="preserve">
+  <data name="NodeForAction_Performed" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="NodeForType_Description" xml:space="preserve">
@@ -445,6 +391,45 @@
     <value>TODO</value>
   </data>
   <data name="Response_Type" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Artifact_Created" xml:space="preserve">
+    <value>The date/time of creation.</value>
+  </data>
+  <data name="Crowd_Description" xml:space="preserve">
+    <value>A brief summary of purpose, usage, and/or guidelines.</value>
+  </data>
+  <data name="Crowd_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Factor_Created" xml:space="preserve">
+    <value>The date/time of creation.</value>
+  </data>
+  <data name="LocatorType_MaxX" xml:space="preserve">
+    <value>The maximum Locator X-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MaxY" xml:space="preserve">
+    <value>The maximum Locator Y-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MaxZ" xml:space="preserve">
+    <value>The maximum Locator Z-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MinX" xml:space="preserve">
+    <value>The minimum Locator X-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MinY" xml:space="preserve">
+    <value>The minimum Locator Y-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MinZ" xml:space="preserve">
+    <value>The minimum Locator Z-coordinate value.</value>
+  </data>
+  <data name="Thing_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Url_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="VectorUnitDerived_Exponent" xml:space="preserve">
     <value>TODO</value>
   </data>
 </root>

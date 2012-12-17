@@ -204,8 +204,8 @@ namespace Fabric.Db.Data.Setups {
 			e.EmailId = (long)pId;
 			e.Address = pAddress;
 			e.Code = FabricUtil.Code32;
-			e.CreatedTimestamp = vSet.SetupTimestamp;
-			e.VerifiedTimestamp = vSet.SetupTimestamp+10000000;
+			e.Created = vSet.SetupTimestamp;
+			e.Verified = vSet.SetupTimestamp+10000000;
 
 			vSet.AddNodeAndIndex(e, x => x.EmailId, vTestMode);
 			vSet.AddRootRel<RootContainsEmail>(e, vTestMode);

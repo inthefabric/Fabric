@@ -1,10 +1,9 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ output extension=".css" #> 
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Domain.Schema" #>
 <#@ import namespace="Weaver" #>
 <#@ import namespace="Weaver.Schema" #>
 /*GENERATED CODE
@@ -14,7 +13,7 @@ Generated on <#= DateTime.Now.ToString() #> */
 /* NODES */
 
 <#
-var schema = new GraphSchema();
+var schema = new Schema();
 var rand = new Random(999);
 var relTypeMap = new Dictionary<string,string>();
 

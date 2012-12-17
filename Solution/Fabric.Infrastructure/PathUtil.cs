@@ -25,6 +25,12 @@ namespace Fabric.Infrastructure {
 			return (pIsOut ? pRel.ToNode.Name : pRel.FromNode.Name);
 		}
 
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static bool GetRelIsTargetNodeInternal(WeaverRelSchema pRel, bool pIsOut) {
+			return (pIsOut ? pRel.ToNode.IsInternal : pRel.FromNode.IsInternal);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetRelProp(WeaverRelSchema pRel, bool pIsOut, bool pShort=false) {
 			bool isMany = IsRelMany(pRel, pIsOut);

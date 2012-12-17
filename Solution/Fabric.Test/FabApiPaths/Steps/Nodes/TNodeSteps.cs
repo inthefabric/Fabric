@@ -161,7 +161,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			TestStep("CrowdianTypeAssign", (tn, p) => new CrowdianTypeAssignStep(tn, p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void EmailStep() {
 			TestStep("Email", (tn, p) => new EmailStep(tn, p));
@@ -335,29 +335,29 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			TestStep("VectorUnitDerived", (tn, p) => new VectorUnitDerivedStep(tn, p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthAccessStep() {
 			TestStep("OauthAccess", (tn, p) => new OauthAccessStep(tn, p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthDomainStep() {
 			TestStep("OauthDomain", (tn, p) => new OauthDomainStep(tn, p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthGrantStep() {
 			TestStep("OauthGrant", (tn, p) => new OauthGrantStep(tn, p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthScopeStep() {
 			TestStep("OauthScope", (tn, p) => new OauthScopeStep(tn, p));
-		}
+		}*/
 
 	}
 

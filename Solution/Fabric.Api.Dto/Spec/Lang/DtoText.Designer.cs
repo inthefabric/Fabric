@@ -177,6 +177,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        public static string CrowdianTypeAssign {
+            get {
+                return ResourceManager.GetString("CrowdianTypeAssign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Describes and refines the relationship between the two Artifacts of a particular Factor.
         ///
         ///The primary purpose of a !Descriptor is to describe the relationship between a Factor&apos;s primary Artifact and related Artifact. The DescriptorType provides this description, establishing meaningful connections like a A &apos;is a&apos; B, or C &apos;sounds like&apos; D.
@@ -301,6 +310,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        public static string FactorElementNode {
+            get {
+                return ResourceManager.GetString("FactorElementNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The base class for all Fault objects..
         /// </summary>
         public static string Fault {
@@ -389,6 +407,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
+        public static string MemberTypeAssign {
+            get {
+                return ResourceManager.GetString("MemberTypeAssign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         public static string Node {
             get {
                 return ResourceManager.GetString("Node", resourceCulture);
@@ -414,49 +441,20 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides an OAuth access token and other related information. Every Fabric API request requires an access token. To include an OAuth access token with a FabricAPI request, add an &quot;Authorization&quot; header to the HTTP request with a value of &quot;Bearer=[your OAuth access code here]&quot;..
-        /// </summary>
-        public static string OauthAccess {
-            get {
-                return ResourceManager.GetString("OauthAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To comply with the OAuth 2.0 specification, all Fabric OAuth requests return a FabOauthError (instead of FabFault or FabError) when errors occur..
-        /// </summary>
-        public static string OauthError {
-            get {
-                return ResourceManager.GetString("OauthError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This DTO is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
-        ///
-        ///This redirect is used in one particular scenario: the [[OAuth login process|Req|oauth.get]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the &apos;c [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string OauthLogin {
-            get {
-                return ResourceManager.GetString("OauthLogin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The result of an OAuth logout..
-        /// </summary>
-        public static string OauthLogout {
-            get {
-                return ResourceManager.GetString("OauthLogout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The API response wrapper; contains the Data payload and other metadata..
         /// </summary>
         public static string Response {
             get {
                 return ResourceManager.GetString("Response", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        public static string Root {
+            get {
+                return ResourceManager.GetString("Root", resourceCulture);
             }
         }
         
@@ -542,6 +540,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string VectorUnit {
             get {
                 return ResourceManager.GetString("VectorUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        public static string VectorUnitDerived {
+            get {
+                return ResourceManager.GetString("VectorUnitDerived", resourceCulture);
             }
         }
         

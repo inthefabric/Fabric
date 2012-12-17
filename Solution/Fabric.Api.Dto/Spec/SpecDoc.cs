@@ -20,7 +20,7 @@ namespace Fabric.Api.Dto.Spec {
 		public SpecDoc() {
 			ApiResponse = new SpecApiResponse();
 			DtoList = BuildDtoList();
-			DtoList.Insert(0, GetSpectDtoFabNode());
+			DtoList.Insert(0, GetSpecDtoFabNode());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -51,10 +51,19 @@ namespace Fabric.Api.Dto.Spec {
 			return (s ?? "MISSING:"+pName);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public SpecDto GetSpecDto(string pName) {
+			foreach ( SpecDto dto in DtoList ) {
+				if ( dto.Name == pName ) { return dto; }
+			}
+
+			return null;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private SpecDto GetSpectDtoFabNode() {
+		private SpecDto GetSpecDtoFabNode() {
 			var sd = new SpecDto();
 			sd.Name = typeof(FabNode).Name;
 			sd.Description = GetDtoText(sd.Name.Substring(3));

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/16/2012 3:07:02 PM
+// Generated on 12/17/2012 2:55:53 PM
 
 using System.Collections.Generic;
 using System.Reflection;
@@ -58,9 +58,9 @@ namespace Fabric.Api.Dto.Spec {
 			list.Add(dto);
 	
 				p = new SpecProperty();
-				p.Name = "PerformedTimestamp";
+				p.Name = "Performed";
 				p.Type = "long";
-				p.Description = GetDtoPropText("NodeForAction_PerformedTimestamp");
+				p.Description = GetDtoPropText("NodeForAction_Performed");
 				p.IsTimestamp = true;
 				dto.PropertyList.Add(p);
 
@@ -72,6 +72,15 @@ namespace Fabric.Api.Dto.Spec {
 				p.LenMax = 256;
 				dto.PropertyList.Add(p);
 
+			////
+
+			dto = new SpecDto();
+			dto.Name = "FabArtifactOwnerNode";
+			dto.Extends = "FabNode";
+			dto.Description = GetDtoText("ArtifactOwnerNode");
+			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
+			list.Add(dto);
+	
 			////
 
 			dto = new SpecDto();
@@ -148,16 +157,6 @@ namespace Fabric.Api.Dto.Spec {
 					l.FromDtoConn = "OutToZeroOrMore";
 					l.Verb = "Contains";
 					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "ContainsEmailList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
-					l.ToDto = "FabEmail";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
@@ -441,51 +440,11 @@ namespace Fabric.Api.Dto.Spec {
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
-					l = new SpecLink();
-					l.Name = "ContainsOauthAccessList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
-					l.ToDto = "FabOauthAccess";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "ContainsOauthDomainList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
-					l.ToDto = "FabOauthDomain";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "ContainsOauthGrantList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
-					l.ToDto = "FabOauthGrant";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "ContainsOauthScopeList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
-					l.ToDto = "FabOauthScope";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
 			////
 
 			dto = new SpecDto();
 			dto.Name = "FabApp";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabArtifactOwnerNode";
 			dto.Description = GetDtoText("App");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -509,13 +468,6 @@ namespace Fabric.Api.Dto.Spec {
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 				dto.PropertyList.Add(p);
 
-				p = new SpecProperty();
-				p.Name = "Secret";
-				p.Type = "string";
-				p.Description = GetDtoPropText("App_Secret");
-				p.Len = 32;
-				dto.PropertyList.Add(p);
-
 					l = new SpecLink();
 					l.Name = "HasArtifact";
 					l.IsOutgoing = true;
@@ -527,16 +479,6 @@ namespace Fabric.Api.Dto.Spec {
 					dto.LinkList.Add(l);
 
 					l = new SpecLink();
-					l.Name = "UsesEmail";
-					l.IsOutgoing = true;
-					l.FromDto = "FabApp";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabEmail";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
 					l.Name = "InMemberListUses";
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
@@ -544,46 +486,6 @@ namespace Fabric.Api.Dto.Spec {
 					l.Verb = "Uses";
 					l.ToDto = "FabApp";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthAccessListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthAccess";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthDomainListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthDomain";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthGrantListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthGrant";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthScopeListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthScope";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
 			////
@@ -610,9 +512,9 @@ namespace Fabric.Api.Dto.Spec {
 				dto.PropertyList.Add(p);
 
 				p = new SpecProperty();
-				p.Name = "CreatedTimestamp";
+				p.Name = "Created";
 				p.Type = "long";
-				p.Description = GetDtoPropText("Artifact_CreatedTimestamp");
+				p.Description = GetDtoPropText("Artifact_Created");
 				p.IsTimestamp = true;
 				dto.PropertyList.Add(p);
 
@@ -787,7 +689,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabCrowd";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabArtifactOwnerNode";
 			dto.Description = GetDtoText("Crowd");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -997,76 +899,8 @@ namespace Fabric.Api.Dto.Spec {
 			////
 
 			dto = new SpecDto();
-			dto.Name = "FabEmail";
-			dto.Extends = "FabNode";
-			dto.Description = GetDtoText("Email");
-			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
-			list.Add(dto);
-	
-				p = new SpecProperty();
-				p.Name = "EmailId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Address";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Email_Address");
-				p.IsCaseInsensitive = true;
-				p.IsUnique = true;
-				p.LenMax = 256;
-				p.ValidRegex = @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Code";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Email_Code");
-				p.Len = 32;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "CreatedTimestamp";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Email_CreatedTimestamp");
-				p.IsTimestamp = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "VerifiedTimestamp";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Email_VerifiedTimestamp");
-				p.IsNullable = true;
-				dto.PropertyList.Add(p);
-
-					l = new SpecLink();
-					l.Name = "InAppUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabApp";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabEmail";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InUserUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabUser";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabEmail";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-			////
-
-			dto = new SpecDto();
 			dto.Name = "FabLabel";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabArtifactOwnerNode";
 			dto.Description = GetDtoText("Label");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1275,7 +1109,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabThing";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabArtifactOwnerNode";
 			dto.Description = GetDtoText("Thing");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1330,7 +1164,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabUrl";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabArtifactOwnerNode";
 			dto.Description = GetDtoText("Url");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1373,7 +1207,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabUser";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabArtifactOwnerNode";
 			dto.Description = GetDtoText("User");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1394,13 +1228,6 @@ namespace Fabric.Api.Dto.Spec {
 				p.IsUnique = true;
 				p.LenMax = 16;
 				p.ValidRegex = @"^[a-zA-Z0-9_]*$";
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Password";
-				p.Type = "string";
-				p.Description = GetDtoPropText("User_Password");
-				p.Len = 32;
 				dto.PropertyList.Add(p);
 
 					l = new SpecLink();
@@ -1434,16 +1261,6 @@ namespace Fabric.Api.Dto.Spec {
 					dto.LinkList.Add(l);
 
 					l = new SpecLink();
-					l.Name = "UsesEmail";
-					l.IsOutgoing = true;
-					l.FromDto = "FabUser";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabEmail";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
 					l.Name = "CreatesCrowdianTypeAssignList";
 					l.IsOutgoing = true;
 					l.FromDto = "FabUser";
@@ -1451,36 +1268,6 @@ namespace Fabric.Api.Dto.Spec {
 					l.Verb = "Creates";
 					l.ToDto = "FabCrowdianTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthAccessListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthAccess";
-					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthGrantListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthGrant";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InOauthScopeListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabOauthScope";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
 			////
@@ -1513,23 +1300,16 @@ namespace Fabric.Api.Dto.Spec {
 				dto.PropertyList.Add(p);
 
 				p = new SpecProperty();
-				p.Name = "CreatedTimestamp";
+				p.Name = "Created";
 				p.Type = "long";
-				p.Description = GetDtoPropText("Factor_CreatedTimestamp");
+				p.Description = GetDtoPropText("Factor_Created");
 				p.IsTimestamp = true;
 				dto.PropertyList.Add(p);
 
 				p = new SpecProperty();
-				p.Name = "DeletedTimestamp";
+				p.Name = "Completed";
 				p.Type = "long";
-				p.Description = GetDtoPropText("Factor_DeletedTimestamp");
-				p.IsNullable = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "CompletedTimestamp";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Factor_CompletedTimestamp");
+				p.Description = GetDtoPropText("Factor_Completed");
 				p.IsNullable = true;
 				dto.PropertyList.Add(p);
 
@@ -1691,7 +1471,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabDescriptor";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabFactorElementNode";
 			dto.Description = GetDtoText("Descriptor");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1785,7 +1565,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabDirector";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabFactorElementNode";
 			dto.Description = GetDtoText("Director");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1906,7 +1686,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabEventor";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabFactorElementNode";
 			dto.Description = GetDtoText("Eventor");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -1920,9 +1700,9 @@ namespace Fabric.Api.Dto.Spec {
 				dto.PropertyList.Add(p);
 
 				p = new SpecProperty();
-				p.Name = "DateTimeTimestamp";
+				p.Name = "DateTime";
 				p.Type = "long";
-				p.Description = GetDtoPropText("Eventor_DateTimeTimestamp");
+				p.Description = GetDtoPropText("Eventor_DateTime");
 				dto.PropertyList.Add(p);
 
 					l = new SpecLink();
@@ -2013,7 +1793,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabIdentor";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabFactorElementNode";
 			dto.Description = GetDtoText("Identor");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -2084,7 +1864,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabLocator";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabFactorElementNode";
 			dto.Description = GetDtoText("Locator");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -2202,7 +1982,7 @@ namespace Fabric.Api.Dto.Spec {
 
 			dto = new SpecDto();
 			dto.Name = "FabVector";
-			dto.Extends = "FabNode";
+			dto.Extends = "FabFactorElementNode";
 			dto.Description = GetDtoText("Vector");
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
@@ -2544,214 +2324,6 @@ namespace Fabric.Api.Dto.Spec {
 					l.FromDtoConn = "OutToOne";
 					l.Verb = "Uses";
 					l.ToDto = "FabVectorUnitPrefix";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-			////
-
-			dto = new SpecDto();
-			dto.Name = "FabOauthAccess";
-			dto.Extends = "FabNode";
-			dto.Description = GetDtoText("OauthAccess");
-			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
-			list.Add(dto);
-	
-				p = new SpecProperty();
-				p.Name = "OauthAccessId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Token";
-				p.Type = "string";
-				p.Description = GetDtoPropText("OauthAccess_Token");
-				p.IsNullable = true;
-				p.IsUnique = true;
-				p.Len = 32;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Refresh";
-				p.Type = "string";
-				p.Description = GetDtoPropText("OauthAccess_Refresh");
-				p.IsNullable = true;
-				p.Len = 32;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "ExpiresTimestamp";
-				p.Type = "long";
-				p.Description = GetDtoPropText("OauthAccess_ExpiresTimestamp");
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "IsClientOnly";
-				p.Type = "bool";
-				p.Description = GetDtoPropText("OauthAccess_IsClientOnly");
-				dto.PropertyList.Add(p);
-
-					l = new SpecLink();
-					l.Name = "UsesApp";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthAccess";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "UsesUser";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthAccess";
-					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-			////
-
-			dto = new SpecDto();
-			dto.Name = "FabOauthDomain";
-			dto.Extends = "FabNode";
-			dto.Description = GetDtoText("OauthDomain");
-			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
-			list.Add(dto);
-	
-				p = new SpecProperty();
-				p.Name = "OauthDomainId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Domain";
-				p.Type = "string";
-				p.Description = GetDtoPropText("OauthDomain_Domain");
-				p.LenMax = 256;
-				dto.PropertyList.Add(p);
-
-					l = new SpecLink();
-					l.Name = "UsesApp";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthDomain";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-			////
-
-			dto = new SpecDto();
-			dto.Name = "FabOauthGrant";
-			dto.Extends = "FabNode";
-			dto.Description = GetDtoText("OauthGrant");
-			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
-			list.Add(dto);
-	
-				p = new SpecProperty();
-				p.Name = "OauthGrantId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "RedirectUri";
-				p.Type = "string";
-				p.Description = GetDtoPropText("OauthGrant_RedirectUri");
-				p.LenMax = 450;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Code";
-				p.Type = "string";
-				p.Description = GetDtoPropText("OauthGrant_Code");
-				p.IsUnique = true;
-				p.Len = 32;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "ExpiresTimestamp";
-				p.Type = "long";
-				p.Description = GetDtoPropText("OauthGrant_ExpiresTimestamp");
-				dto.PropertyList.Add(p);
-
-					l = new SpecLink();
-					l.Name = "UsesApp";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthGrant";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "UsesUser";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthGrant";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-			////
-
-			dto = new SpecDto();
-			dto.Name = "FabOauthScope";
-			dto.Extends = "FabNode";
-			dto.Description = GetDtoText("OauthScope");
-			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
-			list.Add(dto);
-	
-				p = new SpecProperty();
-				p.Name = "OauthScopeId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "Allow";
-				p.Type = "bool";
-				p.Description = GetDtoPropText("OauthScope_Allow");
-				dto.PropertyList.Add(p);
-
-				p = new SpecProperty();
-				p.Name = "CreatedTimestamp";
-				p.Type = "long";
-				p.Description = GetDtoPropText("OauthScope_CreatedTimestamp");
-				p.IsTimestamp = true;
-				dto.PropertyList.Add(p);
-
-					l = new SpecLink();
-					l.Name = "UsesApp";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthScope";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "UsesUser";
-					l.IsOutgoing = true;
-					l.FromDto = "FabOauthScope";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 

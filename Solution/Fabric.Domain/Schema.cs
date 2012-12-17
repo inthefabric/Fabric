@@ -51,6 +51,9 @@ namespace Fabric.Domain {
 			p = AddProp(nodeForAction, "Note", typeof(string));
 				p.LenMax = 256;
 				p.IsNullable = true;
+			
+			WeaverNodeSchema artOwnerNode = AddNode("ArtifactOwnerNode", null);
+			artOwnerNode.IsAbstract = true;
 
 			////
 
@@ -60,6 +63,7 @@ namespace Fabric.Domain {
 			////
 
 			WeaverNodeSchema app = AddNode("App", "Ap");
+			app.BaseNode = artOwnerNode;
 			p = AddProp(app, "AppId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(app, "Name", typeof(string));
@@ -70,6 +74,7 @@ namespace Fabric.Domain {
 				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(app, "Secret", typeof(string));
 				p.Len = 32;
+				p.IsInternal = true;
 
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
 			p = AddProp(artifact, "ArtifactId", typeof(long));
@@ -84,6 +89,7 @@ namespace Fabric.Domain {
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema crowd = AddNode("Crowd", "C");
+			crowd.BaseNode = artOwnerNode;
 			p = AddProp(crowd, "CrowdId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(crowd, "Name", typeof(string));
@@ -110,6 +116,7 @@ namespace Fabric.Domain {
 			p = AddProp(crowdianTypeAssign, "Weight", typeof(float));
 
 			WeaverNodeSchema email = AddNode("Email", "E");
+			email.IsInternal = true;
 			p = AddProp(email, "EmailId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(email, "Address", typeof(string));
@@ -125,6 +132,8 @@ namespace Fabric.Domain {
 				p.IsNullable = true;
 
 			WeaverNodeSchema label = AddNode("Label", "L");
+			label.BaseNode = artOwnerNode;
+			;
 			p = AddProp(label, "LabelId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(label, "Name", typeof(string));
@@ -149,6 +158,7 @@ namespace Fabric.Domain {
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema thing = AddNode("Thing", "T");
+			thing.BaseNode = artOwnerNode;
 			p = AddProp(thing, "ThingId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(thing, "IsClass", typeof(bool));
@@ -161,6 +171,7 @@ namespace Fabric.Domain {
 				p.IsNullable = true;
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
+			url.BaseNode = artOwnerNode;
 			p = AddProp(url, "UrlId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(url, "Name", typeof(string));
@@ -171,6 +182,7 @@ namespace Fabric.Domain {
 				p.IsCaseInsensitive = true;
 
 			WeaverNodeSchema user = AddNode("User", "U");
+			user.BaseNode = artOwnerNode;
 			p = AddProp(user, "UserId", typeof(long));
 			p = AddProp(user, "Name", typeof(string));
 				p.LenMax = 16;
@@ -179,6 +191,8 @@ namespace Fabric.Domain {
 				p.ValidRegex = ValidUserRegex;
 			p = AddProp(user, "Password", typeof(string));
 				p.Len = 32; //MD5
+				p.IsInternal = true;
+				p.IsPassword = true;
 
 			////
 
@@ -191,6 +205,7 @@ namespace Fabric.Domain {
 				p.IsTimestamp = true;
 			p = AddProp(factor, "Deleted", typeof(DateTime));
 				p.IsNullable = true;
+				p.IsInternal = true;
 			p = AddProp(factor, "Completed", typeof(DateTime));
 				p.IsNullable = true;
 			p = AddProp(factor, "Note", typeof(string));
@@ -206,6 +221,7 @@ namespace Fabric.Domain {
 			factorElementNode.IsAbstract = true;
 
 			WeaverNodeSchema descriptor = AddNode("Descriptor", "De");
+			descriptor.BaseNode = factorElementNode;
 			p = AddProp(descriptor, "DescriptorId", typeof(long));
 				p.IsPrimaryKey = true;
 
@@ -215,6 +231,7 @@ namespace Fabric.Domain {
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema director = AddNode("Director", "Di");
+			director.BaseNode = factorElementNode;
 			p = AddProp(director, "DirectorId", typeof(long));
 				p.IsPrimaryKey = true;
 
@@ -229,6 +246,7 @@ namespace Fabric.Domain {
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema eventor = AddNode("Eventor", "Ev");
+			eventor.BaseNode = factorElementNode;
 			p = AddProp(eventor, "EventorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(eventor, "DateTime", typeof(DateTime));
@@ -244,6 +262,7 @@ namespace Fabric.Domain {
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema identor = AddNode("Identor", "Id");
+			identor.BaseNode = factorElementNode;
 			p = AddProp(identor, "IdentorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(identor, "Value", typeof(string));
@@ -255,6 +274,7 @@ namespace Fabric.Domain {
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema locator = AddNode("Locator", "Lo");
+			locator.BaseNode = factorElementNode;
 			p = AddProp(locator, "LocatorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(locator, "ValueX", typeof(double));
@@ -273,6 +293,7 @@ namespace Fabric.Domain {
 			p = AddProp(locatorType, "MaxZ", typeof(double));
 
 			WeaverNodeSchema vector = AddNode("Vector", "Ve");
+			vector.BaseNode = factorElementNode;
 			p = AddProp(vector, "VectorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vector, "Value", typeof(long));
@@ -319,6 +340,7 @@ namespace Fabric.Domain {
 			////
 
 			WeaverNodeSchema oauthAccess = AddNode("OauthAccess", "OA");
+			oauthAccess.IsInternal = true;
 			p = AddProp(oauthAccess, "OauthAccessId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthAccess, "Token", typeof(string));
@@ -332,12 +354,14 @@ namespace Fabric.Domain {
 			p = AddProp(oauthAccess, "IsClientOnly", typeof(bool));
 
 			WeaverNodeSchema oauthDomain = AddNode("OauthDomain", "OD");
+			oauthDomain.IsInternal = true;
 			p = AddProp(oauthDomain, "OauthDomainId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthDomain, "Domain", typeof(string));
 				p.LenMax = 256;
 			
 			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
+			oauthGrant.IsInternal = true;
 			p = AddProp(oauthGrant, "OauthGrantId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthGrant, "RedirectUri", typeof(string));
@@ -348,6 +372,7 @@ namespace Fabric.Domain {
 			p = AddProp(oauthGrant, "Expires", typeof(DateTime));
 
 			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");
+			oauthScope.IsInternal = true;
 			p = AddProp(oauthScope, "OauthScopeId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthScope, "Allow", typeof(bool));

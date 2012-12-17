@@ -61,15 +61,6 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The date/time of registration..
-        /// </summary>
-        public static string App_Created {
-            get {
-                return ResourceManager.GetString("App_Created", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A unique title or identifier, with length between 3 and 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]]..
         /// </summary>
         public static string App_Name {
@@ -84,6 +75,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string Artifact_ArtifactTypeKey {
             get {
                 return ResourceManager.GetString("Artifact_ArtifactTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date/time of creation..
+        /// </summary>
+        public static string Artifact_Created {
+            get {
+                return ResourceManager.GetString("Artifact_Created", resourceCulture);
             }
         }
         
@@ -133,15 +133,6 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The date/time of creation..
-        /// </summary>
-        public static string Common_Created {
-            get {
-                return ResourceManager.GetString("Common_Created", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A brief summary of purpose, usage, and/or guidelines. Maximum length: {{Max}} characters..
         /// </summary>
         public static string Common_Description {
@@ -169,15 +160,6 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies this object..
-        /// </summary>
-        public static string Common_Key {
-            get {
-                return ResourceManager.GetString("Common_Key", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A descriptive name or title. Maximum length: {{Max}} characters..
         /// </summary>
         public static string Common_Name {
@@ -192,6 +174,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string Common_Update {
             get {
                 return ResourceManager.GetString("Common_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A brief summary of purpose, usage, and/or guidelines..
+        /// </summary>
+        public static string Crowd_Description {
+            get {
+                return ResourceManager.GetString("Crowd_Description", resourceCulture);
             }
         }
         
@@ -214,6 +205,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A descriptive name or title..
+        /// </summary>
+        public static string Crowd_Name {
+            get {
+                return ResourceManager.GetString("Crowd_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Idenfies membership status and access privileges..
         /// </summary>
         public static string Crowdian_CrowdianTypeKey {
@@ -225,9 +225,9 @@ namespace Fabric.Api.Dto.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A value (between 0.0 and 1.0) which represents relative impact on Crowd-based data analysis. The default value is 0.5..
         /// </summary>
-        public static string Crowdian_Weighting {
+        public static string CrowdianTypeAssign_Weight {
             get {
-                return ResourceManager.GetString("Crowdian_Weighting", resourceCulture);
+                return ResourceManager.GetString("CrowdianTypeAssign_Weight", resourceCulture);
             }
         }
         
@@ -349,6 +349,24 @@ namespace Fabric.Api.Dto.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The date/time of completion. This value is null if the !Factor is not complete..
+        /// </summary>
+        public static string Factor_Completed {
+            get {
+                return ResourceManager.GetString("Factor_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date/time of creation..
+        /// </summary>
+        public static string Factor_Created {
+            get {
+                return ResourceManager.GetString("Factor_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identifies the Descriptor Element, which defines the relationship between the primary and related Artifact..
         /// </summary>
         public static string Factor_DescriptorKey {
@@ -390,15 +408,6 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string Factor_IdentorKey {
             get {
                 return ResourceManager.GetString("Factor_IdentorKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Specifies the completion state..
-        /// </summary>
-        public static string Factor_IsComplete {
-            get {
-                return ResourceManager.GetString("Factor_IsComplete", resourceCulture);
             }
         }
         
@@ -531,45 +540,81 @@ namespace Fabric.Api.Dto.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A value representing longitude, time/progress, width, or a particular three-dimensional axis..
         /// </summary>
-        public static string Locator_X {
+        public static string Locator_ValueX {
             get {
-                return ResourceManager.GetString("Locator_X", resourceCulture);
+                return ResourceManager.GetString("Locator_ValueX", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to A value representing latitude, height, or a particular three-dimensional axis..
         /// </summary>
-        public static string Locator_Y {
+        public static string Locator_ValueY {
             get {
-                return ResourceManager.GetString("Locator_Y", resourceCulture);
+                return ResourceManager.GetString("Locator_ValueY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to A value representing elevation or a particular three-dimensional axis..
         /// </summary>
-        public static string Locator_Z {
+        public static string Locator_ValueZ {
             get {
-                return ResourceManager.GetString("Locator_Z", resourceCulture);
+                return ResourceManager.GetString("Locator_ValueZ", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The maximum Locator {{Coord}}-coordinate value..
+        ///   Looks up a localized string similar to The maximum Locator X-coordinate value..
         /// </summary>
-        public static string LocatorType_Max {
+        public static string LocatorType_MaxX {
             get {
-                return ResourceManager.GetString("LocatorType_Max", resourceCulture);
+                return ResourceManager.GetString("LocatorType_MaxX", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The minimum Locator {{Coord}}-coordinate value..
+        ///   Looks up a localized string similar to The maximum Locator Y-coordinate value..
         /// </summary>
-        public static string LocatorType_Min {
+        public static string LocatorType_MaxY {
             get {
-                return ResourceManager.GetString("LocatorType_Min", resourceCulture);
+                return ResourceManager.GetString("LocatorType_MaxY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum Locator Z-coordinate value..
+        /// </summary>
+        public static string LocatorType_MaxZ {
+            get {
+                return ResourceManager.GetString("LocatorType_MaxZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum Locator X-coordinate value..
+        /// </summary>
+        public static string LocatorType_MinX {
+            get {
+                return ResourceManager.GetString("LocatorType_MinX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum Locator Y-coordinate value..
+        /// </summary>
+        public static string LocatorType_MinY {
+            get {
+                return ResourceManager.GetString("LocatorType_MinY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum Locator Z-coordinate value..
+        /// </summary>
+        public static string LocatorType_MinZ {
+            get {
+                return ResourceManager.GetString("LocatorType_MinZ", resourceCulture);
             }
         }
         
@@ -612,9 +657,9 @@ namespace Fabric.Api.Dto.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string NodeForAction_PerformedTimestamp {
+        public static string NodeForAction_Performed {
             get {
-                return ResourceManager.GetString("NodeForAction_PerformedTimestamp", resourceCulture);
+                return ResourceManager.GetString("NodeForAction_Performed", resourceCulture);
             }
         }
         
@@ -633,114 +678,6 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string NodeForType_Name {
             get {
                 return ResourceManager.GetString("NodeForType_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A 32-character code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User..
-        /// </summary>
-        public static string OauthAccess_AccessToken {
-            get {
-                return ResourceManager.GetString("OauthAccess_AccessToken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The number of seconds until the access token expires..
-        /// </summary>
-        public static string OauthAccess_ExpiresIn {
-            get {
-                return ResourceManager.GetString("OauthAccess_ExpiresIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Req|oauth.access_token.client_credentials.get]]..
-        /// </summary>
-        public static string OauthAccess_RefreshToken {
-            get {
-                return ResourceManager.GetString("OauthAccess_RefreshToken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For the current Fabric OAuth implementation, this value is always equal to &quot;bearer&quot;..
-        /// </summary>
-        public static string OauthAccess_TokenType {
-            get {
-                return ResourceManager.GetString("OauthAccess_TokenType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error code as defined by the OAuth 2.0 specification..
-        /// </summary>
-        public static string OauthError_Error {
-            get {
-                return ResourceManager.GetString("OauthError_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides specific details about the error. A single error code may have one or more possible error descriptions..
-        /// </summary>
-        public static string OauthError_ErrorDescription {
-            get {
-                return ResourceManager.GetString("OauthError_ErrorDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use this 32-character string (also called the &apos;authorization code&apos;) to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation..
-        /// </summary>
-        public static string OauthLogin_Code {
-            get {
-                return ResourceManager.GetString("OauthLogin_Code", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error code as defined by the OAuth 2.0 specification..
-        /// </summary>
-        public static string OauthLogin_Error {
-            get {
-                return ResourceManager.GetString("OauthLogin_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a &apos;+&apos; character in place of each space character..
-        /// </summary>
-        public static string OauthLogin_ErrorDescription {
-            get {
-                return ResourceManager.GetString("OauthLogin_ErrorDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Returns the &apos;state&apos; value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal..
-        /// </summary>
-        public static string OauthLogin_State {
-            get {
-                return ResourceManager.GetString("OauthLogin_State", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies a particular OAuth session..
-        /// </summary>
-        public static string OauthLogout_AccessToken {
-            get {
-                return ResourceManager.GetString("OauthLogout_AccessToken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Describes the result of the logout attempt. Successful logout attempts return a value of 1..
-        /// </summary>
-        public static string OauthLogout_Success {
-            get {
-                return ResourceManager.GetString("OauthLogout_Success", resourceCulture);
             }
         }
         
@@ -864,9 +801,9 @@ namespace Fabric.Api.Dto.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters..
         /// </summary>
-        public static string Thing_Disambiguation {
+        public static string Thing_Disamb {
             get {
-                return ResourceManager.GetString("Thing_Disambiguation", resourceCulture);
+                return ResourceManager.GetString("Thing_Disamb", resourceCulture);
             }
         }
         
@@ -876,6 +813,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string Thing_IsClass {
             get {
                 return ResourceManager.GetString("Thing_IsClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descriptive name or title..
+        /// </summary>
+        public static string Thing_Name {
+            get {
+                return ResourceManager.GetString("Thing_Name", resourceCulture);
             }
         }
         
@@ -900,18 +846,18 @@ namespace Fabric.Api.Dto.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A unique, valid absolute URL. The string must include the link&apos;s protocol (such as &apos;http://&apos;). Maximum length: 450 characters..
         /// </summary>
-        public static string Url_FullUrl {
+        public static string Url_AbsoluteUrl {
             get {
-                return ResourceManager.GetString("Url_FullUrl", resourceCulture);
+                return ResourceManager.GetString("Url_AbsoluteUrl", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The date/time of registration..
+        ///   Looks up a localized string similar to A descriptive name or title..
         /// </summary>
-        public static string User_Created {
+        public static string Url_Name {
             get {
-                return ResourceManager.GetString("User_Created", resourceCulture);
+                return ResourceManager.GetString("Url_Name", resourceCulture);
             }
         }
         
@@ -1029,6 +975,15 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static string VectorUnit_Symbol {
             get {
                 return ResourceManager.GetString("VectorUnit_Symbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        public static string VectorUnitDerived_Exponent {
+            get {
+                return ResourceManager.GetString("VectorUnitDerived_Exponent", resourceCulture);
             }
         }
         

@@ -13,10 +13,6 @@ namespace Fabric.Api.Server.ApiSpec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiSpecBuilder() {
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public Response GetResponse() {
 			try {
 				return BuildResponse();
@@ -34,11 +30,22 @@ namespace Fabric.Api.Server.ApiSpec {
 			var doc = new SpecDoc();
 			doc.ApiVersion = ApiModule.ApiVersion;
 
-			var json = JsonSerializer.SerializeToString(doc);
-			byte[] bytes = UTF8Encoding.UTF8.GetBytes(json);
+			string cont;
+			string contType;
+
+			if ( true ) {
+				cont = ApiSpecBuilderHtml.BuildHtml(doc);
+				contType = "text/html";
+			}
+			else {
+				cont = JsonSerializer.SerializeToString(doc);
+				contType = "application/json";
+			}
+
+			byte[] bytes = UTF8Encoding.UTF8.GetBytes(cont);
 
 			return new Response {
-				ContentType = "application/json",
+				ContentType = contType,
 				StatusCode = HttpStatusCode.OK,
 				Contents = (s => s.Write(bytes, 0, bytes.Length))
 			};

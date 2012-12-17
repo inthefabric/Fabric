@@ -911,7 +911,7 @@ namespace Fabric.Db.Data.Setups {
 		public void AddEventor(EventorTypeId pTypeId, EventorPrecisionId pPrecId, DateTime pDate) {
 			var e = new Eventor();
 			e.EventorId = ++vIdCount;
-			e.DateTimeTimestamp = pDate.Ticks;
+			e.DateTime = pDate.Ticks;
 
 			vSet.AddNodeAndIndex(e, x => x.EventorId, vTestMode);
 			vSet.AddRootRel<RootContainsEventor>(e, vTestMode);
@@ -997,15 +997,15 @@ namespace Fabric.Db.Data.Setups {
 			f.FactorId = ++vIdCount;
 			f.IsPublic = (pAccId == FactorAccessId.Public);
 			f.IsDefining = pIsDefining;
-			f.CreatedTimestamp = dt.AddMinutes(-1).Ticks;
+			f.Created = dt.AddMinutes(-1).Ticks;
 			f.Note = pNote;
 
 			if ( pIsCompleted ) {
-				f.CompletedTimestamp = vSet.SetupTimestamp;
+				f.Completed = vSet.SetupTimestamp;
 			}
 
 			if ( pIsDeleted ) {
-				f.DeletedTimestamp = dt.AddMinutes(5).Ticks;
+				f.Deleted = dt.AddMinutes(5).Ticks;
 			}
 
 			vSet.AddNodeAndIndex(f, x => x.FactorId, vTestMode);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/14/2012 5:14:02 PM
+// Generated on 12/17/2012 2:55:41 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -1041,13 +1041,18 @@ namespace Fabric.Domain {
 	
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
-		public virtual long PerformedTimestamp { get; set; }
+		public virtual long Performed { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		public virtual string Note { get; set; }
 
+	}
+
+	/*================================================================================================*/
+	public abstract class ArtifactOwnerNode : Node {
+	
 	}
 
 	/*================================================================================================*/
@@ -1266,7 +1271,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class App : Node {
+	public class App : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1282,6 +1287,7 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsInternal(True)]
 		//[PropLen(32)]
 		public virtual string Secret { get; set; }
 
@@ -1347,7 +1353,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
-		public virtual long CreatedTimestamp { get; set; }
+		public virtual long Created { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1461,7 +1467,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Crowd : Node {
+	public class Crowd : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1642,11 +1648,11 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
-		public virtual long CreatedTimestamp { get; set; }
+		public virtual long Created { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
-		public virtual long? VerifiedTimestamp { get; set; }
+		public virtual long? Verified { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1673,7 +1679,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Label : Node {
+	public class Label : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1834,7 +1840,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Thing : Node {
+	public class Thing : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1877,7 +1883,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Url : Node {
+	public class Url : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1914,7 +1920,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class User : Node {
+	public class User : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1929,6 +1935,8 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsInternal(True)]
+		//[PropIsPassword(True)]
 		//[PropLen(32)]
 		public virtual string Password { get; set; }
 
@@ -2002,15 +2010,16 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
-		public virtual long CreatedTimestamp { get; set; }
+		public virtual long Created { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
-		public virtual long? DeletedTimestamp { get; set; }
+		//[PropIsInternal(True)]
+		public virtual long? Deleted { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
-		public virtual long? CompletedTimestamp { get; set; }
+		public virtual long? Completed { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
@@ -2119,7 +2128,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Descriptor : Node {
+	public class Descriptor : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2193,7 +2202,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Director : Node {
+	public class Director : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2294,7 +2303,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Eventor : Node {
+	public class Eventor : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2302,7 +2311,7 @@ namespace Fabric.Domain {
 		public virtual long EventorId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual long DateTimeTimestamp { get; set; }
+		public virtual long DateTime { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2388,7 +2397,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Identor : Node {
+	public class Identor : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2451,7 +2460,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Locator : Node {
+	public class Locator : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2537,7 +2546,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Vector : Node {
+	public class Vector : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2826,7 +2835,7 @@ namespace Fabric.Domain {
 		public virtual string Refresh { get; set; }
 
 		[WeaverItemProperty]
-		public virtual long ExpiresTimestamp { get; set; }
+		public virtual long Expires { get; set; }
 
 		[WeaverItemProperty]
 		public virtual bool IsClientOnly { get; set; }
@@ -2904,7 +2913,7 @@ namespace Fabric.Domain {
 		public virtual string Code { get; set; }
 
 		[WeaverItemProperty]
-		public virtual long ExpiresTimestamp { get; set; }
+		public virtual long Expires { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2943,7 +2952,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
-		public virtual long CreatedTimestamp { get; set; }
+		public virtual long Created { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

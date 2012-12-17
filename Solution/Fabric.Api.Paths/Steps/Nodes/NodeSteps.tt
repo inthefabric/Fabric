@@ -1,11 +1,9 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain.Schema\bin\Debug\Fabric.Domain.Schema.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Domain.Schema" #>
 <#@ import namespace="Fabric.Infrastructure" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
@@ -20,14 +18,14 @@ using Fabric.Api.Dto;
 namespace Fabric.Api.Paths.Steps.Nodes {
 	
 <#
-var schema = new GraphSchema();
+var schema = new Schema();
 var relIntMap = new Dictionary<string, bool>();
 
 foreach ( WeaverRelSchema rel in schema.Rels ) {
 	string outName = PathUtil.GetRelInterface(rel, true);
 	string inName = PathUtil.GetRelInterface(rel, false);
 	
-	if ( !relIntMap.ContainsKey(outName) ) {
+	if ( !relIntMap.ContainsKey(outName) && !PathUtil.GetRelIsTargetNodeInternal(rel, true) ) {
 		relIntMap.Add(outName, true);
 #>
 	/*================================================================================================*/
@@ -38,7 +36,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 <#
 	}
 
-	if ( !relIntMap.ContainsKey(inName) ) {
+	if ( !relIntMap.ContainsKey(inName) && !PathUtil.GetRelIsTargetNodeInternal(rel, false) ) {
 		relIntMap.Add(inName, true);
 #>
 	/*================================================================================================*/
@@ -51,7 +49,9 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 }
 
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	if ( node.IsAbstract ) { continue; }
+	if ( node.IsAbstract || node.IsInternal ) {
+		continue;
+	}
 
 	var rels = new List<WeaverRelSchema>();
 	string interfaces = "";
@@ -60,7 +60,9 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	foreach ( WeaverRelSchema rel in schema.Rels ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
 		rels.Add(rel);
+
 		bool isOut = (rel.FromNode == node);
+		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
 
 		interfaces += (interfaces == "" ? "" : ", ")+PathUtil.GetRelInterface(rel, isOut);
 
@@ -130,6 +132,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 	foreach ( WeaverRelSchema rel in rels ) {
 		bool isOut = (rel.FromNode == node);
 		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
+		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
+
 		var propName = PathUtil.GetRelProp(rel, isOut);
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;
@@ -148,6 +152,8 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
 		
 		bool isOut = (rel.FromNode == node);
+		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
+
 		var propType = PathUtil.GetRelPropType(rel, isOut)+"Step";
 		var propName = PathUtil.GetRelProp(rel, isOut);
 		var isToNode = (isOut ? "true" : "false");
