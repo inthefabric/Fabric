@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/17/2012 1:38:58 PM
+// Generated on 12/17/2012 4:53:37 PM
 
 using System.Collections.Generic;
 
@@ -25,7 +25,6 @@ namespace Fabric.Test.Util {
 				"/ContainsCrowdianList",
 				"/ContainsCrowdianTypeList",
 				"/ContainsCrowdianTypeAssignList",
-				"/ContainsEmailList",
 				"/ContainsLabelList",
 				"/ContainsMemberList",
 				"/ContainsMemberTypeList",
@@ -53,21 +52,12 @@ namespace Fabric.Test.Util {
 				"/ContainsVectorRangeLevelList",
 				"/ContainsVectorUnitList",
 				"/ContainsVectorUnitPrefixList",
-				"/ContainsVectorUnitDerivedList",
-				"/ContainsOauthAccessList",
-				"/ContainsOauthDomainList",
-				"/ContainsOauthGrantList",
-				"/ContainsOauthScopeList"
+				"/ContainsVectorUnitDerivedList"
 			});
 
 			map.Add("App", new [] {
 				"/HasArtifact",
-				"/UsesEmail",
-				"/InMemberListUses",
-				"/InOauthAccessListUses",
-				"/InOauthDomainListUses",
-				"/InOauthGrantListUses",
-				"/InOauthScopeListUses"
+				"/DefinesMemberList"
 			});
 
 			map.Add("Artifact", new [] {
@@ -93,14 +83,14 @@ namespace Fabric.Test.Util {
 
 			map.Add("Crowd", new [] {
 				"/HasArtifact",
-				"/InCrowdianListUses"
+				"/DefinesCrowdianList"
 			});
 
 			map.Add("Crowdian", new [] {
-				"/UsesCrowd",
-				"/UsesUser",
+				"/InCrowdDefines",
 				"/HasCrowdianTypeAssign",
-				"/HasHistoricCrowdianTypeAssignList"
+				"/HasHistoricCrowdianTypeAssignList",
+				"/InUserDefines"
 			});
 
 			map.Add("CrowdianType", new [] {
@@ -114,23 +104,18 @@ namespace Fabric.Test.Util {
 				"/InUserCreates"
 			});
 
-			map.Add("Email", new [] {
-				"/InAppUses",
-				"/InUserUses"
-			});
-
 			map.Add("Label", new [] {
 				"/HasArtifact"
 			});
 
 			map.Add("Member", new [] {
-				"/UsesApp",
-				"/UsesUser",
+				"/InAppDefines",
 				"/HasMemberTypeAssign",
 				"/HasHistoricMemberTypeAssignList",
 				"/CreatesArtifactList",
 				"/CreatesMemberTypeAssignList",
-				"/CreatesFactorList"
+				"/CreatesFactorList",
+				"/InUserDefines"
 			});
 
 			map.Add("MemberType", new [] {
@@ -153,14 +138,10 @@ namespace Fabric.Test.Util {
 			});
 
 			map.Add("User", new [] {
-				"/InCrowdianListUses",
-				"/InMemberListUses",
 				"/HasArtifact",
-				"/UsesEmail",
 				"/CreatesCrowdianTypeAssignList",
-				"/InOauthAccessListUses",
-				"/InOauthGrantListUses",
-				"/InOauthScopeListUses"
+				"/DefinesCrowdianList",
+				"/DefinesMemberList"
 			});
 
 			map.Add("Factor", new [] {
@@ -278,25 +259,6 @@ namespace Fabric.Test.Util {
 				"/DefinesVectorUnit",
 				"/RaisesToExpVectorUnit",
 				"/UsesVectorUnitPrefix"
-			});
-
-			map.Add("OauthAccess", new [] {
-				"/UsesApp",
-				"/UsesUser"
-			});
-
-			map.Add("OauthDomain", new [] {
-				"/UsesApp"
-			});
-
-			map.Add("OauthGrant", new [] {
-				"/UsesApp",
-				"/UsesUser"
-			});
-
-			map.Add("OauthScope", new [] {
-				"/UsesApp",
-				"/UsesUser"
 			});
 
 			return map;

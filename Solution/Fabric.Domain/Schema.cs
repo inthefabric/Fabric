@@ -401,7 +401,7 @@ namespace Fabric.Domain {
 			const WeaverRelConn ifzom = WeaverRelConn.InFromZeroOrMore;
 			const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
 			const WeaverRelConn oto = WeaverRelConn.OutToOne;
-			//const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
+			const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
 			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
 			const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
 
@@ -450,13 +450,13 @@ namespace Fabric.Domain {
 
 			AddRel(app, has, artifact, oto, ifzoo);
 			AddRel(app, uses, email, oto, ifo);
+			AddRel(app, defines, member, otoom, ifo);
 
 			AddRel(artifact, uses, artifactType, oto, ifzom);
 
 			AddRel(crowd, has, artifact, oto, ifzoo);
+			AddRel(crowd, defines, crowdian, otoom, ifo);
 
-			AddRel(crowdian, uses, crowd, oto, ifoom);
-			AddRel(crowdian, uses, user, oto, ifzom);
 			AddRel(crowdian, has, crowdianTypeAssign, oto, ifo);
 			AddRel(crowdian, hasHistoric, crowdianTypeAssign, otzom, ifo);
 
@@ -464,8 +464,6 @@ namespace Fabric.Domain {
 
 			AddRel(label, has, artifact, oto, ifzoo);
 
-			AddRel(member, uses, app, oto, ifoom);
-			AddRel(member, uses, user, oto, ifoom);
 			AddRel(member, has, memberTypeAssign, oto, ifo);
 			AddRel(member, hasHistoric, memberTypeAssign, otzom, ifo);
 			AddRel(member, creates, artifact, otzom, ifo);
@@ -479,8 +477,10 @@ namespace Fabric.Domain {
 			AddRel(url, has, artifact, oto, ifzoo);
 
 			AddRel(user, has, artifact, oto, ifzoo);
-			AddRel(user, uses, email, oto, ifo);
 			AddRel(user, creates, crowdianTypeAssign, otzom, ifo);
+			AddRel(user, defines, crowdian, otzom, ifo);
+			AddRel(user, uses, email, oto, ifo);
+			AddRel(user, defines, member, otoom, ifo);
 
 			////
 
@@ -549,9 +549,9 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public WeaverRelSchema AddRel(WeaverNodeSchema pFrom, string pName, WeaverNodeSchema pTo,
+		public WeaverRelSchema AddRel(WeaverNodeSchema pFrom, string pRelType, WeaverNodeSchema pTo,
 				WeaverRelConn pFromConn, WeaverRelConn pToConn) {
-			var r = new WeaverRelSchema(pFrom, pName, pTo);
+			var r = new WeaverRelSchema(pFrom, pRelType, pTo);
 			r.FromNodeConn = pFromConn;
 			r.ToNodeConn = pToConn;
 			Rels.Add(r);

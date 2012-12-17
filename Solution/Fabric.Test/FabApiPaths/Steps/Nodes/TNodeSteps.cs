@@ -108,7 +108,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void TotalNodeStepKeys() {
-			Assert.AreEqual(41, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+			Assert.AreEqual(36, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
 		}
 
 

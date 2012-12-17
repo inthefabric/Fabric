@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/17/2012 2:55:47 PM
+// Generated on 12/17/2012 4:51:47 PM
 
 using Fabric.Api.Dto;
 
@@ -202,6 +202,16 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
+	public interface IDefinesMemberList {
+		MemberStep DefinesMemberList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInAppDefines {
+		AppStep InAppDefines { get; }
+	}
+
+	/*================================================================================================*/
 	public interface IUsesArtifactType {
 		ArtifactTypeStep UsesArtifactType { get; }
 	}
@@ -217,18 +227,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IUsesCrowd {
-		CrowdStep UsesCrowd { get; }
+	public interface IDefinesCrowdianList {
+		CrowdianStep DefinesCrowdianList { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInCrowdianUsesList {
-		CrowdianStep InCrowdianListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesUser {
-		UserStep UsesUser { get; }
+	public interface IInCrowdDefines {
+		CrowdStep InCrowdDefines { get; }
 	}
 
 	/*================================================================================================*/
@@ -264,16 +269,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IInLabelHas {
 		LabelStep InLabelHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesApp {
-		AppStep UsesApp { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberUsesList {
-		MemberStep InMemberListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -342,11 +337,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInUserUses {
-		UserStep InUserUses { get; }
-	}
-
-	/*================================================================================================*/
 	public interface ICreatesCrowdianTypeAssignList {
 		CrowdianTypeAssignStep CreatesCrowdianTypeAssignList { get; }
 	}
@@ -354,6 +344,16 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IInUserCreates {
 		UserStep InUserCreates { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInUserDefines {
+		UserStep InUserDefines { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInUserUses {
+		UserStep InUserUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -604,6 +604,16 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IInVectorUnitDerivedUsesList {
 		VectorUnitDerivedStep InVectorUnitDerivedListUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IUsesApp {
+		AppStep UsesApp { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IUsesUser {
+		UserStep UsesUser { get; }
 	}
 
 	/*================================================================================================*/
@@ -970,9 +980,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IInMemberUsesList {
+	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IDefinesMemberList {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/InMemberListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/DefinesMemberList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1000,7 +1010,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
-				case "inmemberlistuses": return InMemberListUses;
+				case "definesmemberlist": return DefinesMemberList;
 			}
 
 			return base.GetNextStep(pData);
@@ -1025,10 +1035,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberListUses {
+		public MemberStep DefinesMemberList {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberUsesApp')");
-				return new MemberStep(false, Path);
+				Path.AppendToCurrentSegment("outE('AppDefinesMember')");
+				return new MemberStep(true, Path);
 			}
 		}
 
@@ -1264,9 +1274,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdStep : NodeStep<FabCrowd>, IInRootContains, IHasArtifact, IInCrowdianUsesList {
+	public partial class CrowdStep : NodeStep<FabCrowd>, IInRootContains, IHasArtifact, IDefinesCrowdianList {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/InCrowdianListUses" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/DefinesCrowdianList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1294,7 +1304,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
-				case "incrowdianlistuses": return InCrowdianListUses;
+				case "definescrowdianlist": return DefinesCrowdianList;
 			}
 
 			return base.GetNextStep(pData);
@@ -1319,19 +1329,19 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep InCrowdianListUses {
+		public CrowdianStep DefinesCrowdianList {
 			get {
-				Path.AppendToCurrentSegment("inE('CrowdianUsesCrowd')");
-				return new CrowdianStep(false, Path);
+				Path.AppendToCurrentSegment("outE('CrowdDefinesCrowdian')");
+				return new CrowdianStep(true, Path);
 			}
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianStep : NodeStep<FabCrowdian>, IInRootContains, IUsesCrowd, IUsesUser, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList {
+	public partial class CrowdianStep : NodeStep<FabCrowdian>, IInRootContains, IInCrowdDefines, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList, IInUserDefines {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/UsesCrowd", "/UsesUser", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdDefines", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList", "/InUserDefines" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1358,10 +1368,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "usescrowd": return UsesCrowd;
-				case "usesuser": return UsesUser;
+				case "incrowddefines": return InCrowdDefines;
 				case "hascrowdiantypeassign": return HasCrowdianTypeAssign;
 				case "hashistoriccrowdiantypeassignlist": return HasHistoricCrowdianTypeAssignList;
+				case "inuserdefines": return InUserDefines;
 			}
 
 			return base.GetNextStep(pData);
@@ -1378,18 +1388,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep UsesCrowd {
+		public CrowdStep InCrowdDefines {
 			get {
-				Path.AppendToCurrentSegment("outE('CrowdianUsesCrowd')");
-				return new CrowdStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep UsesUser {
-			get {
-				Path.AppendToCurrentSegment("outE('CrowdianUsesUser')");
-				return new UserStep(true, Path);
+				Path.AppendToCurrentSegment("inE('CrowdDefinesCrowdian')");
+				return new CrowdStep(false, Path);
 			}
 		}
 
@@ -1406,6 +1408,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			get {
 				Path.AppendToCurrentSegment("outE('CrowdianHasHistoricCrowdianTypeAssign')");
 				return new CrowdianTypeAssignStep(true, Path);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public UserStep InUserDefines {
+			get {
+				Path.AppendToCurrentSegment("inE('UserDefinesCrowdian')");
+				return new UserStep(false, Path);
 			}
 		}
 
@@ -1607,9 +1617,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberStep : NodeStep<FabMember>, IInRootContains, IUsesApp, IUsesUser, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList {
+	public partial class MemberStep : NodeStep<FabMember>, IInRootContains, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/UsesApp", "/UsesUser", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/InAppDefines", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList", "/InUserDefines" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1636,13 +1646,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "usesapp": return UsesApp;
-				case "usesuser": return UsesUser;
+				case "inappdefines": return InAppDefines;
 				case "hasmembertypeassign": return HasMemberTypeAssign;
 				case "hashistoricmembertypeassignlist": return HasHistoricMemberTypeAssignList;
 				case "createsartifactlist": return CreatesArtifactList;
 				case "createsmembertypeassignlist": return CreatesMemberTypeAssignList;
 				case "createsfactorlist": return CreatesFactorList;
+				case "inuserdefines": return InUserDefines;
 			}
 
 			return base.GetNextStep(pData);
@@ -1659,18 +1669,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppStep UsesApp {
+		public AppStep InAppDefines {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberUsesApp')");
-				return new AppStep(true, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep UsesUser {
-			get {
-				Path.AppendToCurrentSegment("outE('MemberUsesUser')");
-				return new UserStep(true, Path);
+				Path.AppendToCurrentSegment("inE('AppDefinesMember')");
+				return new AppStep(false, Path);
 			}
 		}
 
@@ -1711,6 +1713,14 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			get {
 				Path.AppendToCurrentSegment("outE('MemberCreatesFactor')");
 				return new FactorStep(true, Path);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public UserStep InUserDefines {
+			get {
+				Path.AppendToCurrentSegment("inE('UserDefinesMember')");
+				return new UserStep(false, Path);
 			}
 		}
 
@@ -1968,9 +1978,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IInCrowdianUsesList, IInMemberUsesList, IHasArtifact, ICreatesCrowdianTypeAssignList {
+	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IHasArtifact, ICreatesCrowdianTypeAssignList, IDefinesCrowdianList, IDefinesMemberList {
 	
-		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianListUses", "/InMemberListUses", "/HasArtifact", "/CreatesCrowdianTypeAssignList" };
+		private static readonly string[] AvailNodeSteps = new [] { "/HasArtifact", "/CreatesCrowdianTypeAssignList", "/DefinesCrowdianList", "/DefinesMemberList" };
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1997,10 +2007,10 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
-				case "incrowdianlistuses": return InCrowdianListUses;
-				case "inmemberlistuses": return InMemberListUses;
 				case "hasartifact": return HasArtifact;
 				case "createscrowdiantypeassignlist": return CreatesCrowdianTypeAssignList;
+				case "definescrowdianlist": return DefinesCrowdianList;
+				case "definesmemberlist": return DefinesMemberList;
 			}
 
 			return base.GetNextStep(pData);
@@ -2017,22 +2027,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep InCrowdianListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('CrowdianUsesUser')");
-				return new CrowdianStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberListUses {
-			get {
-				Path.AppendToCurrentSegment("inE('MemberUsesUser')");
-				return new MemberStep(false, Path);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
 				Path.AppendToCurrentSegment("outE('UserHasArtifact')");
@@ -2045,6 +2039,22 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			get {
 				Path.AppendToCurrentSegment("outE('UserCreatesCrowdianTypeAssign')");
 				return new CrowdianTypeAssignStep(true, Path);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public CrowdianStep DefinesCrowdianList {
+			get {
+				Path.AppendToCurrentSegment("outE('UserDefinesCrowdian')");
+				return new CrowdianStep(true, Path);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public MemberStep DefinesMemberList {
+			get {
+				Path.AppendToCurrentSegment("outE('UserDefinesMember')");
+				return new MemberStep(true, Path);
 			}
 		}
 

@@ -220,12 +220,12 @@ namespace Fabric.Db.Data.Setups {
 			vSet.AddNodeAndIndex(m, x => x.MemberId, vTestMode);
 			vSet.AddRootRel<RootContainsMember>(m, vTestMode);
 
-			var relA = DataRel.Create(m, new MemberUsesApp(),
-				vSet.GetNode<App>((long)pAppId), vTestMode);
+			var relA = DataRel.Create(vSet.GetNode<App>((long)pAppId),
+				new AppDefinesMember(), m, vTestMode);
 			vSet.AddRel(relA);
 
-			var relU = DataRel.Create(m, new MemberUsesUser(),
-				vSet.GetNode<User>((long)pUserId), vTestMode);
+			var relU = DataRel.Create(vSet.GetNode<User>((long)pUserId),
+				new UserDefinesMember(), m, vTestMode);
 			vSet.AddRel(relU);
 
 			AddMemberTypeAssign(pId, false, pMemTypeAssnId, pMemTypeId, pAssignerId);

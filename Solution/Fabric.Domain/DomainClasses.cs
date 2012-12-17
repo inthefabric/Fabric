@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/17/2012 2:55:41 PM
+// Generated on 12/17/2012 4:47:26 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -31,6 +31,13 @@ namespace Fabric.Domain {
 	public class Uses : IWeaverRelType {
 	
 		public string Label { get { return "Uses"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class Defines : IWeaverRelType {
+	
+		public string Label { get { return "Defines"; } }
 
 	}
 
@@ -94,13 +101,6 @@ namespace Fabric.Domain {
 	public class UsesAxis : IWeaverRelType {
 	
 		public string Label { get { return "UsesAxis"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class Defines : IWeaverRelType {
-	
-		public string Label { get { return "Defines"; } }
 
 	}
 
@@ -494,6 +494,15 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class AppDefinesMember : WeaverRel<App, Defines, Member> {
+			
+		public virtual App FromApp { get { return FromNode; } }
+		public virtual Member ToMember { get { return ToNode; } }
+		public override string Label { get { return "AppDefinesMember"; } }
+
+	}
+
+	/*================================================================================================*/
 	public class ArtifactUsesArtifactType : WeaverRel<Artifact, Uses, ArtifactType> {
 			
 		public virtual Artifact FromArtifact { get { return FromNode; } }
@@ -512,20 +521,11 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianUsesCrowd : WeaverRel<Crowdian, Uses, Crowd> {
+	public class CrowdDefinesCrowdian : WeaverRel<Crowd, Defines, Crowdian> {
 			
-		public virtual Crowdian FromCrowdian { get { return FromNode; } }
-		public virtual Crowd ToCrowd { get { return ToNode; } }
-		public override string Label { get { return "CrowdianUsesCrowd"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianUsesUser : WeaverRel<Crowdian, Uses, User> {
-			
-		public virtual Crowdian FromCrowdian { get { return FromNode; } }
-		public virtual User ToUser { get { return ToNode; } }
-		public override string Label { get { return "CrowdianUsesUser"; } }
+		public virtual Crowd FromCrowd { get { return FromNode; } }
+		public virtual Crowdian ToCrowdian { get { return ToNode; } }
+		public override string Label { get { return "CrowdDefinesCrowdian"; } }
 
 	}
 
@@ -562,24 +562,6 @@ namespace Fabric.Domain {
 		public virtual Label FromLabel { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
 		public override string Label { get { return "LabelHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class MemberUsesApp : WeaverRel<Member, Uses, App> {
-			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual App ToApp { get { return ToNode; } }
-		public override string Label { get { return "MemberUsesApp"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class MemberUsesUser : WeaverRel<Member, Uses, User> {
-			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual User ToUser { get { return ToNode; } }
-		public override string Label { get { return "MemberUsesUser"; } }
 
 	}
 
@@ -665,6 +647,24 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class UserCreatesCrowdianTypeAssign : WeaverRel<User, Creates, CrowdianTypeAssign> {
+			
+		public virtual User FromUser { get { return FromNode; } }
+		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
+		public override string Label { get { return "UserCreatesCrowdianTypeAssign"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class UserDefinesCrowdian : WeaverRel<User, Defines, Crowdian> {
+			
+		public virtual User FromUser { get { return FromNode; } }
+		public virtual Crowdian ToCrowdian { get { return ToNode; } }
+		public override string Label { get { return "UserDefinesCrowdian"; } }
+
+	}
+
+	/*================================================================================================*/
 	public class UserUsesEmail : WeaverRel<User, Uses, Email> {
 			
 		public virtual User FromUser { get { return FromNode; } }
@@ -674,11 +674,11 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UserCreatesCrowdianTypeAssign : WeaverRel<User, Creates, CrowdianTypeAssign> {
+	public class UserDefinesMember : WeaverRel<User, Defines, Member> {
 			
 		public virtual User FromUser { get { return FromNode; } }
-		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "UserCreatesCrowdianTypeAssign"; } }
+		public virtual Member ToMember { get { return ToNode; } }
+		public override string Label { get { return "UserDefinesMember"; } }
 
 	}
 
@@ -1314,8 +1314,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberUsesApp InMembersUses {
-			get { return NewRel<MemberUsesApp>(WeaverRelConn.InFromOneOrMore); }
+		public virtual AppDefinesMember OutDefinesMembers {
+			get { return NewRel<AppDefinesMember>(WeaverRelConn.OutToOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1507,8 +1507,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianUsesCrowd InCrowdiansUses {
-			get { return NewRel<CrowdianUsesCrowd>(WeaverRelConn.InFromOneOrMore); }
+		public virtual CrowdDefinesCrowdian OutDefinesCrowdians {
+			get { return NewRel<CrowdDefinesCrowdian>(WeaverRelConn.OutToOneOrMore); }
 		}
 
 	}
@@ -1534,13 +1534,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianUsesCrowd OutUsesCrowd {
-			get { return NewRel<CrowdianUsesCrowd>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianUsesUser OutUsesUser {
-			get { return NewRel<CrowdianUsesUser>(WeaverRelConn.OutToOne); }
+		public virtual CrowdDefinesCrowdian InCrowdDefines {
+			get { return NewRel<CrowdDefinesCrowdian>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1551,6 +1546,11 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual CrowdianHasHistoricCrowdianTypeAssign OutHasHistoricCrowdianTypeAssigns {
 			get { return NewRel<CrowdianHasHistoricCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual UserDefinesCrowdian InUserDefines {
+			get { return NewRel<UserDefinesCrowdian>(WeaverRelConn.InFromOne); }
 		}
 
 	}
@@ -1734,13 +1734,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberUsesApp OutUsesApp {
-			get { return NewRel<MemberUsesApp>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberUsesUser OutUsesUser {
-			get { return NewRel<MemberUsesUser>(WeaverRelConn.OutToOne); }
+		public virtual AppDefinesMember InAppDefines {
+			get { return NewRel<AppDefinesMember>(WeaverRelConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1766,6 +1761,11 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesFactor OutCreatesFactors {
 			get { return NewRel<MemberCreatesFactor>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual UserDefinesMember InUserDefines {
+			get { return NewRel<UserDefinesMember>(WeaverRelConn.InFromOne); }
 		}
 
 	}
@@ -1953,18 +1953,18 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianUsesUser InCrowdiansUses {
-			get { return NewRel<CrowdianUsesUser>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberUsesUser InMembersUses {
-			get { return NewRel<MemberUsesUser>(WeaverRelConn.InFromOneOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserHasArtifact OutHasArtifact {
 			get { return NewRel<UserHasArtifact>(WeaverRelConn.OutToOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual UserCreatesCrowdianTypeAssign OutCreatesCrowdianTypeAssigns {
+			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual UserDefinesCrowdian OutDefinesCrowdians {
+			get { return NewRel<UserDefinesCrowdian>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1973,8 +1973,8 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserCreatesCrowdianTypeAssign OutCreatesCrowdianTypeAssigns {
-			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+		public virtual UserDefinesMember OutDefinesMembers {
+			get { return NewRel<UserDefinesMember>(WeaverRelConn.OutToOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

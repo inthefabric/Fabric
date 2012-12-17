@@ -505,12 +505,12 @@ namespace Fabric.Db.Data.Setups {
 			vSet.AddNodeAndIndex(c, x => x.CrowdianId, vTestMode);
 			vSet.AddRootRel<RootContainsCrowdian>(c, vTestMode);
 
-			var relCro = DataRel.Create(c, new CrowdianUsesCrowd(),
-				vSet.GetNode<Crowd>((long)pCrowdId), vTestMode);
+			var relCro = DataRel.Create(vSet.GetNode<Crowd>((long)pCrowdId),
+				new CrowdDefinesCrowdian(), c, vTestMode);
 			vSet.AddRel(relCro);
 
-			var relUser = DataRel.Create(c, new CrowdianUsesUser(),
-				vSet.GetNode<User>((long)pUserId), vTestMode);
+			var relUser = DataRel.Create(vSet.GetNode<User>((long)pUserId),
+				new UserDefinesCrowdian(), c, vTestMode);
 			vSet.AddRel(relUser);
 
 			////
