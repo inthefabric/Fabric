@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Fabric.Api.Dto.Spec;
+using Fabric.Api.Spec;
 using Fabric.Infrastructure;
 using Nancy;
 using ServiceStack.Text;

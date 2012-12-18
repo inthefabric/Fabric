@@ -1,12 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/17/2012 2:55:53 PM
+// Generated on 12/18/2012 4:31:26 PM
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Resources;
 
-namespace Fabric.Api.Dto.Spec {
+namespace Fabric.Api.Spec {
 
 	/*================================================================================================*/
 	public partial class SpecDoc {
@@ -18,8 +16,6 @@ namespace Fabric.Api.Dto.Spec {
 			SpecDto dto;
 			SpecProperty p;
 			SpecLink l;
-
-			var res = new ResourceManager("RM", Assembly.GetExecutingAssembly());
 
 			////
 
@@ -95,7 +91,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsApp";
 					l.ToDto = "FabApp";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -105,7 +101,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -115,7 +111,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsArtifactType";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -125,7 +121,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsCrowd";
 					l.ToDto = "FabCrowd";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -135,7 +131,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsCrowdian";
 					l.ToDto = "FabCrowdian";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -145,7 +141,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsCrowdianType";
 					l.ToDto = "FabCrowdianType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -155,7 +151,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -165,7 +161,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsLabel";
 					l.ToDto = "FabLabel";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -175,7 +171,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsMember";
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -185,7 +181,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsMemberType";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -195,7 +191,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -205,7 +201,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsThing";
 					l.ToDto = "FabThing";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -215,7 +211,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsUrl";
 					l.ToDto = "FabUrl";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -225,7 +221,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsUser";
 					l.ToDto = "FabUser";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -235,7 +231,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsFactor";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -245,7 +241,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsFactorAssertion";
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -255,7 +251,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsDescriptor";
 					l.ToDto = "FabDescriptor";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -265,7 +261,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsDescriptorType";
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -275,7 +271,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsDirector";
 					l.ToDto = "FabDirector";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -285,7 +281,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsDirectorType";
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -295,7 +291,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsDirectorAction";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -305,7 +301,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsEventor";
 					l.ToDto = "FabEventor";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -315,7 +311,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsEventorType";
 					l.ToDto = "FabEventorType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -325,7 +321,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsEventorPrecision";
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -335,7 +331,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsIdentor";
 					l.ToDto = "FabIdentor";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -345,7 +341,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsIdentorType";
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -355,7 +351,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsLocator";
 					l.ToDto = "FabLocator";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -365,7 +361,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsLocatorType";
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -375,7 +371,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVector";
 					l.ToDto = "FabVector";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -385,7 +381,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVectorType";
 					l.ToDto = "FabVectorType";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -395,7 +391,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVectorRange";
 					l.ToDto = "FabVectorRange";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -405,7 +401,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVectorRangeLevel";
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -415,7 +411,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -425,7 +421,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVectorUnitPrefix";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -435,7 +431,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Contains";
+					l.Verb = "RootContainsVectorUnitDerived";
 					l.ToDto = "FabVectorUnitDerived";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -473,19 +469,19 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabApp";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "AppHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
 					l = new SpecLink();
-					l.Name = "InMemberListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabMember";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromOneOrMore";
+					l.Name = "DefinesMemberList";
+					l.IsOutgoing = true;
+					l.FromDto = "FabApp";
+					l.FromDtoConn = "OutToOneOrMore";
+					l.Verb = "AppDefinesMember";
+					l.ToDto = "FabMember";
+					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
 			////
@@ -523,7 +519,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabApp";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "AppHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -533,7 +529,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabArtifact";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "ArtifactUsesArtifactType";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -543,7 +539,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabCrowd";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "CrowdHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -553,7 +549,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabLabel";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "LabelHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -563,7 +559,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "MemberCreatesArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -573,7 +569,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabThing";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "ThingHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -583,7 +579,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabUrl";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "UrlHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -593,7 +589,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabUser";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "UserHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -603,7 +599,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesPrimary";
+					l.Verb = "FactorUsesPrimaryArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -613,7 +609,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesRelated";
+					l.Verb = "FactorUsesRelatedArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -623,7 +619,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "RefinesPrimaryWith";
+					l.Verb = "DescriptorRefinesPrimaryWithArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -633,7 +629,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "RefinesRelatedWith";
+					l.Verb = "DescriptorRefinesRelatedWithArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -643,7 +639,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "RefinesTypeWith";
+					l.Verb = "DescriptorRefinesTypeWithArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -653,7 +649,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesAxis";
+					l.Verb = "VectorUsesAxisArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -680,7 +676,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabArtifact";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "ArtifactUsesArtifactType";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -734,19 +730,19 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabCrowd";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "CrowdHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
 					l = new SpecLink();
-					l.Name = "InCrowdianListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabCrowd";
-					l.ToDtoConn = "InFromOneOrMore";
+					l.Name = "DefinesCrowdianList";
+					l.IsOutgoing = true;
+					l.FromDto = "FabCrowd";
+					l.FromDtoConn = "OutToOneOrMore";
+					l.Verb = "CrowdDefinesCrowdian";
+					l.ToDto = "FabCrowdian";
+					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
 			////
@@ -767,23 +763,13 @@ namespace Fabric.Api.Dto.Spec {
 				dto.PropertyList.Add(p);
 
 					l = new SpecLink();
-					l.Name = "UsesCrowd";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabCrowd";
-					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "UsesUser";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
+					l.Name = "InCrowdDefines";
+					l.IsOutgoing = false;
+					l.FromDto = "FabCrowd";
+					l.FromDtoConn = "OutToOneOrMore";
+					l.Verb = "CrowdDefinesCrowdian";
+					l.ToDto = "FabCrowdian";
+					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
 					l = new SpecLink();
@@ -791,7 +777,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabCrowdian";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "CrowdianHasCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -801,8 +787,18 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabCrowdian";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "HasHistoric";
+					l.Verb = "CrowdianHasHistoricCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
+					l.ToDtoConn = "InFromOne";
+					dto.LinkList.Add(l);
+
+					l = new SpecLink();
+					l.Name = "InUserDefines";
+					l.IsOutgoing = false;
+					l.FromDto = "FabUser";
+					l.FromDtoConn = "OutToZeroOrMore";
+					l.Verb = "UserDefinesCrowdian";
+					l.ToDto = "FabCrowdian";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
@@ -828,7 +824,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabCrowdianTypeAssign";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "CrowdianTypeAssignUsesCrowdianType";
 					l.ToDto = "FabCrowdianType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -861,7 +857,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabCrowdian";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "CrowdianHasCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -871,7 +867,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabCrowdian";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "HasHistoric";
+					l.Verb = "CrowdianHasHistoricCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -881,7 +877,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabCrowdianTypeAssign";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "CrowdianTypeAssignUsesCrowdianType";
 					l.ToDto = "FabCrowdianType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -891,7 +887,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabUser";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "UserCreatesCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -929,7 +925,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabLabel";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "LabelHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -952,23 +948,13 @@ namespace Fabric.Api.Dto.Spec {
 				dto.PropertyList.Add(p);
 
 					l = new SpecLink();
-					l.Name = "UsesApp";
-					l.IsOutgoing = true;
-					l.FromDto = "FabMember";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabApp";
-					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "UsesUser";
-					l.IsOutgoing = true;
-					l.FromDto = "FabMember";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromOneOrMore";
+					l.Name = "InAppDefines";
+					l.IsOutgoing = false;
+					l.FromDto = "FabApp";
+					l.FromDtoConn = "OutToOneOrMore";
+					l.Verb = "AppDefinesMember";
+					l.ToDto = "FabMember";
+					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
 					l = new SpecLink();
@@ -976,7 +962,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "MemberHasMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -986,7 +972,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "HasHistoric";
+					l.Verb = "MemberHasHistoricMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -996,7 +982,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "MemberCreatesArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -1006,7 +992,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "MemberCreatesMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -1016,8 +1002,18 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "MemberCreatesFactor";
 					l.ToDto = "FabFactor";
+					l.ToDtoConn = "InFromOne";
+					dto.LinkList.Add(l);
+
+					l = new SpecLink();
+					l.Name = "InUserDefines";
+					l.IsOutgoing = false;
+					l.FromDto = "FabUser";
+					l.FromDtoConn = "OutToOneOrMore";
+					l.Verb = "UserDefinesMember";
+					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
@@ -1043,7 +1039,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabMemberTypeAssign";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "MemberTypeAssignUsesMemberType";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1070,7 +1066,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "MemberHasMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -1080,7 +1076,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "HasHistoric";
+					l.Verb = "MemberHasHistoricMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -1090,7 +1086,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "MemberCreatesMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -1100,7 +1096,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabMemberTypeAssign";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "MemberTypeAssignUsesMemberType";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1155,7 +1151,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabThing";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "ThingHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -1198,7 +1194,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabUrl";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "UrlHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -1231,31 +1227,11 @@ namespace Fabric.Api.Dto.Spec {
 				dto.PropertyList.Add(p);
 
 					l = new SpecLink();
-					l.Name = "InCrowdianListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
-					l.Name = "InMemberListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabMember";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
-					l.ToDto = "FabUser";
-					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
-
-					l = new SpecLink();
 					l.Name = "HasArtifact";
 					l.IsOutgoing = true;
 					l.FromDto = "FabUser";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Has";
+					l.Verb = "UserHasArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -1265,8 +1241,28 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabUser";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "UserCreatesCrowdianTypeAssign";
 					l.ToDto = "FabCrowdianTypeAssign";
+					l.ToDtoConn = "InFromOne";
+					dto.LinkList.Add(l);
+
+					l = new SpecLink();
+					l.Name = "DefinesCrowdianList";
+					l.IsOutgoing = true;
+					l.FromDto = "FabUser";
+					l.FromDtoConn = "OutToZeroOrMore";
+					l.Verb = "UserDefinesCrowdian";
+					l.ToDto = "FabCrowdian";
+					l.ToDtoConn = "InFromOne";
+					dto.LinkList.Add(l);
+
+					l = new SpecLink();
+					l.Name = "DefinesMemberList";
+					l.IsOutgoing = true;
+					l.FromDto = "FabUser";
+					l.FromDtoConn = "OutToOneOrMore";
+					l.Verb = "UserDefinesMember";
+					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
@@ -1308,7 +1304,7 @@ namespace Fabric.Api.Dto.Spec {
 
 				p = new SpecProperty();
 				p.Name = "Completed";
-				p.Type = "long";
+				p.Type = "long?";
 				p.Description = GetDtoPropText("Factor_Completed");
 				p.IsNullable = true;
 				dto.PropertyList.Add(p);
@@ -1326,7 +1322,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Creates";
+					l.Verb = "MemberCreatesFactor";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
@@ -1336,7 +1332,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesPrimary";
+					l.Verb = "FactorUsesPrimaryArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1346,7 +1342,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesRelated";
+					l.Verb = "FactorUsesRelatedArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1356,7 +1352,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesFactorAssertion";
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1366,7 +1362,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Replaces";
+					l.Verb = "FactorReplacesFactor";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
@@ -1376,7 +1372,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesDescriptor";
 					l.ToDto = "FabDescriptor";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1386,7 +1382,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesDirector";
 					l.ToDto = "FabDirector";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1396,7 +1392,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesEventor";
 					l.ToDto = "FabEventor";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1406,7 +1402,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesIdentor";
 					l.ToDto = "FabIdentor";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1416,7 +1412,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesLocator";
 					l.ToDto = "FabLocator";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1426,7 +1422,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesVector";
 					l.ToDto = "FabVector";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1453,7 +1449,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesFactorAssertion";
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1489,7 +1485,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesDescriptor";
 					l.ToDto = "FabDescriptor";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1499,7 +1495,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "DescriptorUsesDescriptorType";
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1509,7 +1505,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "RefinesPrimaryWith";
+					l.Verb = "DescriptorRefinesPrimaryWithArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1519,7 +1515,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "RefinesRelatedWith";
+					l.Verb = "DescriptorRefinesRelatedWithArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1529,7 +1525,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "RefinesTypeWith";
+					l.Verb = "DescriptorRefinesTypeWithArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1556,7 +1552,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDescriptor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "DescriptorUsesDescriptorType";
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1583,7 +1579,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesDirector";
 					l.ToDto = "FabDirector";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1593,7 +1589,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDirector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "DirectorUsesDirectorType";
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1603,7 +1599,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDirector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesPrimary";
+					l.Verb = "DirectorUsesPrimaryDirectorAction";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1613,7 +1609,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabDirector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesRelated";
+					l.Verb = "DirectorUsesRelatedDirectorAction";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1640,7 +1636,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDirector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "DirectorUsesDirectorType";
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1667,7 +1663,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDirector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesPrimary";
+					l.Verb = "DirectorUsesPrimaryDirectorAction";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1677,7 +1673,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabDirector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesRelated";
+					l.Verb = "DirectorUsesRelatedDirectorAction";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1710,7 +1706,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesEventor";
 					l.ToDto = "FabEventor";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1720,7 +1716,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabEventor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "EventorUsesEventorType";
 					l.ToDto = "FabEventorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1730,7 +1726,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabEventor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "EventorUsesEventorPrecision";
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1757,7 +1753,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabEventor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "EventorUsesEventorType";
 					l.ToDto = "FabEventorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1784,7 +1780,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabEventor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "EventorUsesEventorPrecision";
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1818,7 +1814,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesIdentor";
 					l.ToDto = "FabIdentor";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1828,7 +1824,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabIdentor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "IdentorUsesIdentorType";
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1855,7 +1851,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabIdentor";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "IdentorUsesIdentorType";
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1900,7 +1896,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesLocator";
 					l.ToDto = "FabLocator";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -1910,7 +1906,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabLocator";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "LocatorUsesLocatorType";
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -1973,7 +1969,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabLocator";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "LocatorUsesLocatorType";
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2006,7 +2002,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabFactor";
 					l.FromDtoConn = "OutToZeroOrOne";
-					l.Verb = "Uses";
+					l.Verb = "FactorUsesVector";
 					l.ToDto = "FabVector";
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
@@ -2016,7 +2012,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "UsesAxis";
+					l.Verb = "VectorUsesAxisArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2026,7 +2022,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUsesVectorType";
 					l.ToDto = "FabVectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2036,7 +2032,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUsesVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2046,7 +2042,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUsesVectorUnitPrefix";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2085,7 +2081,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUsesVectorType";
 					l.ToDto = "FabVectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2095,7 +2091,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVectorType";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorTypeUsesVectorRange";
 					l.ToDto = "FabVectorRange";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2122,7 +2118,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVectorType";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorTypeUsesVectorRange";
 					l.ToDto = "FabVectorRange";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2132,7 +2128,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVectorRange";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Uses";
+					l.Verb = "VectorRangeUsesVectorRangeLevel";
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2165,7 +2161,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVectorRange";
 					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "Uses";
+					l.Verb = "VectorRangeUsesVectorRangeLevel";
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2199,7 +2195,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUsesVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2209,7 +2205,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVectorUnitDerived";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Defines";
+					l.Verb = "VectorUnitDerivedDefinesVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2219,7 +2215,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVectorUnitDerived";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "RaisesToExp";
+					l.Verb = "VectorUnitDerivedRaisesToExpVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2259,7 +2255,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVector";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUsesVectorUnitPrefix";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2269,7 +2265,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = false;
 					l.FromDto = "FabVectorUnitDerived";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUnitDerivedUsesVectorUnitPrefix";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2302,7 +2298,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVectorUnitDerived";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Defines";
+					l.Verb = "VectorUnitDerivedDefinesVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2312,7 +2308,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVectorUnitDerived";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "RaisesToExp";
+					l.Verb = "VectorUnitDerivedRaisesToExpVectorUnit";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
@@ -2322,7 +2318,7 @@ namespace Fabric.Api.Dto.Spec {
 					l.IsOutgoing = true;
 					l.FromDto = "FabVectorUnitDerived";
 					l.FromDtoConn = "OutToOne";
-					l.Verb = "Uses";
+					l.Verb = "VectorUnitDerivedUsesVectorUnitPrefix";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);

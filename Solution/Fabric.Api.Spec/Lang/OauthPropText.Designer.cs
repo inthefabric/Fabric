@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fabric.Api.Dto.Spec.Lang {
+namespace Fabric.Api.Spec.Lang {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fabric.Api.Dto.Spec.Lang {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Dto.Spec.Lang.OauthPropText", typeof(OauthPropText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Spec.Lang.OauthPropText", typeof(OauthPropText).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

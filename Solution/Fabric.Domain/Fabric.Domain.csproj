@@ -37,29 +37,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SchemaHelper.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchemaHelper.cs</LastGenOutput>
-    </None>
     <None Include="DomainClasses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainClasses.cs</LastGenOutput>
     </None>
-    <Compile Include="SchemaHelperNodeRel.cs" />
-    <Compile Include="SchemaHelperRel.cs" />
-    <Compile Include="SchemaHelperProp.cs" />
-    <Compile Include="SchemaHelperNode.cs" />
-    <Compile Include="SchemaHelper.cs">
-      <DependentUpon>SchemaHelper.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="DomainClasses.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="Schema.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

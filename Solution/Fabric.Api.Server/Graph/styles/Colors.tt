@@ -1,9 +1,9 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ output extension=".css" #> 
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver" #>
 <#@ import namespace="Weaver.Schema" #>
 /*GENERATED CODE

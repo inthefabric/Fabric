@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/17/2012 2:55:53 PM
+// Generated on 12/18/2012 4:31:26 PM
 
 using System.Collections.Generic;
 
@@ -9,16 +9,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public abstract class FabNodeForType : FabNode {
 	
-		//[PropIsUnique(True)]
-		//[PropLenMax(32)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public string Name { get; set; } //[]
+		public string Name { get; set; }
+		public string Description { get; set; }
+		
 
-		//[PropLenMax(256)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public string Description { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
@@ -36,13 +31,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public abstract class FabNodeForAction : FabNode {
 	
-		//[PropIsTimestamp(True)]
-		public long Performed { get; set; } //[]
+		public long Performed { get; set; }
+		public string Note { get; set; }
+		
 
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		public string Note { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 			string val;
@@ -60,6 +53,9 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public abstract class FabArtifactOwnerNode : FabNode {
 	
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 		}
@@ -69,6 +65,9 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabRoot : FabNode {
 	
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return 0; } }
 
@@ -81,17 +80,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabApp : FabArtifactOwnerNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long AppId { get; set; } //[]
+		public long AppId { get; set; }
+		public string Name { get; set; }
+		
 
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(64)]
-		//[PropLenMin(3)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public string Name { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return AppId; } }
 
@@ -114,15 +107,12 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabArtifact : FabNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long ArtifactId { get; set; } //[]
+		public long ArtifactId { get; set; }
+		public bool IsPrivate { get; set; }
+		public long Created { get; set; }
+		
 
-		public bool IsPrivate { get; set; } //[]
-
-		//[PropIsTimestamp(True)]
-		public long Created { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ArtifactId; } }
 
@@ -145,10 +135,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabArtifactType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte ArtifactTypeId { get; set; } //[]
+		public byte ArtifactTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ArtifactTypeId; } }
 
@@ -167,21 +157,14 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabCrowd : FabArtifactOwnerNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long CrowdId { get; set; } //[]
+		public long CrowdId { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
+		public bool IsPrivate { get; set; }
+		public bool IsInviteOnly { get; set; }
+		
 
-		//[PropLenMax(64)]
-		//[PropLenMin(3)]
-		public string Name { get; set; } //[]
-
-		//[PropLenMax(256)]
-		public string Description { get; set; } //[]
-
-		public bool IsPrivate { get; set; } //[]
-
-		public bool IsInviteOnly { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return CrowdId; } }
 
@@ -213,10 +196,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabCrowdian : FabNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long CrowdianId { get; set; } //[]
+		public long CrowdianId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return CrowdianId; } }
 
@@ -233,10 +216,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabCrowdianType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte CrowdianTypeId { get; set; } //[]
+		public byte CrowdianTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return CrowdianTypeId; } }
 
@@ -255,12 +238,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabCrowdianTypeAssign : FabNodeForAction {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long CrowdianTypeAssignId { get; set; } //[]
+		public long CrowdianTypeAssignId { get; set; }
+		public float Weight { get; set; }
+		
 
-		public float Weight { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return CrowdianTypeAssignId; } }
 
@@ -282,17 +264,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabLabel : FabArtifactOwnerNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long LabelId { get; set; } //[]
+		public long LabelId { get; set; }
+		public string Name { get; set; }
+		
 
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public string Name { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return LabelId; } }
 
@@ -315,10 +291,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabMember : FabNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long MemberId { get; set; } //[]
+		public long MemberId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberId; } }
 
@@ -335,10 +311,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabMemberType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte MemberTypeId { get; set; } //[]
+		public byte MemberTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberTypeId; } }
 
@@ -357,10 +333,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabMemberTypeAssign : FabNodeForAction {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long MemberTypeAssignId { get; set; } //[]
+		public long MemberTypeAssignId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberTypeAssignId; } }
 
@@ -379,22 +355,14 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabThing : FabArtifactOwnerNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long ThingId { get; set; } //[]
+		public long ThingId { get; set; }
+		public bool IsClass { get; set; }
+		public string Name { get; set; }
+		public string Disamb { get; set; }
+		public string Note { get; set; }
+		
 
-		public bool IsClass { get; set; } //[]
-
-		//[PropLenMax(128)]
-		public string Name { get; set; } //[]
-
-		//[PropLenMax(128)]
-		public string Disamb { get; set; } //[]
-
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		public string Note { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ThingId; } }
 
@@ -426,18 +394,12 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabUrl : FabArtifactOwnerNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long UrlId { get; set; } //[]
+		public long UrlId { get; set; }
+		public string Name { get; set; }
+		public string AbsoluteUrl { get; set; }
+		
 
-		//[PropLenMax(128)]
-		public string Name { get; set; } //[]
-
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(2048)]
-		public string AbsoluteUrl { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return UrlId; } }
 
@@ -463,16 +425,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabUser : FabArtifactOwnerNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long UserId { get; set; } //[]
+		public long UserId { get; set; }
+		public string Name { get; set; }
+		
 
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(16)]
-		//[PropValidRegex(@"^[a-zA-Z0-9_]*$")]
-		public string Name { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return UserId; } }
 
@@ -495,24 +452,15 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabFactor : FabNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long FactorId { get; set; } //[]
+		public long FactorId { get; set; }
+		public bool IsPublic { get; set; }
+		public bool IsDefining { get; set; }
+		public long Created { get; set; }
+		public long? Completed { get; set; }
+		public string Note { get; set; }
+		
 
-		public bool IsPublic { get; set; } //[]
-
-		public bool IsDefining { get; set; } //[]
-
-		//[PropIsTimestamp(True)]
-		public long Created { get; set; } //[]
-
-		//[PropIsNullable(True)]
-		public long Completed { get; set; } //[]
-
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		public string Note { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return FactorId; } }
 
@@ -545,10 +493,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabFactorAssertion : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte FactorAssertionId { get; set; } //[]
+		public byte FactorAssertionId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return FactorAssertionId; } }
 
@@ -567,6 +515,9 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public abstract class FabFactorElementNode : FabNode {
 	
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 		}
@@ -576,10 +527,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDescriptor : FabFactorElementNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long DescriptorId { get; set; } //[]
+		public long DescriptorId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DescriptorId; } }
 
@@ -598,10 +549,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDescriptorType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte DescriptorTypeId { get; set; } //[]
+		public byte DescriptorTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DescriptorTypeId; } }
 
@@ -620,10 +571,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDirector : FabFactorElementNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long DirectorId { get; set; } //[]
+		public long DirectorId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DirectorId; } }
 
@@ -642,10 +593,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDirectorType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte DirectorTypeId { get; set; } //[]
+		public byte DirectorTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DirectorTypeId; } }
 
@@ -664,10 +615,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDirectorAction : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte DirectorActionId { get; set; } //[]
+		public byte DirectorActionId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DirectorActionId; } }
 
@@ -686,12 +637,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabEventor : FabFactorElementNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long EventorId { get; set; } //[]
+		public long EventorId { get; set; }
+		public long DateTime { get; set; }
+		
 
-		public long DateTime { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return EventorId; } }
 
@@ -713,10 +663,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabEventorType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte EventorTypeId { get; set; } //[]
+		public byte EventorTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return EventorTypeId; } }
 
@@ -735,10 +685,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabEventorPrecision : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte EventorPrecisionId { get; set; } //[]
+		public byte EventorPrecisionId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return EventorPrecisionId; } }
 
@@ -757,13 +707,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabIdentor : FabFactorElementNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long IdentorId { get; set; } //[]
+		public long IdentorId { get; set; }
+		public string Value { get; set; }
+		
 
-		//[PropLenMax(128)]
-		public string Value { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return IdentorId; } }
 
@@ -786,10 +734,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabIdentorType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte IdentorTypeId { get; set; } //[]
+		public byte IdentorTypeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return IdentorTypeId; } }
 
@@ -808,16 +756,13 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabLocator : FabFactorElementNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long LocatorId { get; set; } //[]
+		public long LocatorId { get; set; }
+		public double ValueX { get; set; }
+		public double ValueY { get; set; }
+		public double ValueZ { get; set; }
+		
 
-		public double ValueX { get; set; } //[]
-
-		public double ValueY { get; set; } //[]
-
-		public double ValueZ { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return LocatorId; } }
 
@@ -845,22 +790,16 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabLocatorType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte LocatorTypeId { get; set; } //[]
+		public byte LocatorTypeId { get; set; }
+		public double MinX { get; set; }
+		public double MaxX { get; set; }
+		public double MinY { get; set; }
+		public double MaxY { get; set; }
+		public double MinZ { get; set; }
+		public double MaxZ { get; set; }
+		
 
-		public double MinX { get; set; } //[]
-
-		public double MaxX { get; set; } //[]
-
-		public double MinY { get; set; } //[]
-
-		public double MaxY { get; set; } //[]
-
-		public double MinZ { get; set; } //[]
-
-		public double MaxZ { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return LocatorTypeId; } }
 
@@ -897,12 +836,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVector : FabFactorElementNode {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public long VectorId { get; set; } //[]
+		public long VectorId { get; set; }
+		public long Value { get; set; }
+		
 
-		public long Value { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorId; } }
 
@@ -924,14 +862,12 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorType : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte VectorTypeId { get; set; } //[]
+		public byte VectorTypeId { get; set; }
+		public long Min { get; set; }
+		public long Max { get; set; }
+		
 
-		public long Min { get; set; } //[]
-
-		public long Max { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorTypeId; } }
 
@@ -956,10 +892,10 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorRange : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte VectorRangeId { get; set; } //[]
+		public byte VectorRangeId { get; set; }
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorRangeId; } }
 
@@ -978,12 +914,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorRangeLevel : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte VectorRangeLevelId { get; set; } //[]
+		public byte VectorRangeLevelId { get; set; }
+		public float Position { get; set; }
+		
 
-		public float Position { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorRangeLevelId; } }
 
@@ -1005,13 +940,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorUnit : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte VectorUnitId { get; set; } //[]
+		public byte VectorUnitId { get; set; }
+		public string Symbol { get; set; }
+		
 
-		//[PropLenMax(8)]
-		public string Symbol { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorUnitId; } }
 
@@ -1034,15 +967,12 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorUnitPrefix : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte VectorUnitPrefixId { get; set; } //[]
+		public byte VectorUnitPrefixId { get; set; }
+		public string Symbol { get; set; }
+		public double Amount { get; set; }
+		
 
-		//[PropLenMax(8)]
-		public string Symbol { get; set; } //[]
-
-		public double Amount { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorUnitPrefixId; } }
 
@@ -1068,12 +998,11 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorUnitDerived : FabNodeForType {
 	
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public byte VectorUnitDerivedId { get; set; } //[]
+		public byte VectorUnitDerivedId { get; set; }
+		public int Exponent { get; set; }
+		
 
-		public int Exponent { get; set; } //[]
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorUnitDerivedId; } }
 

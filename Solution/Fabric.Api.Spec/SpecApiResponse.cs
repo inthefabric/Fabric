@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Fabric.Api.Dto;
 
-namespace Fabric.Api.Dto.Spec {
+namespace Fabric.Api.Spec {
 
 	/*================================================================================================*/
 	public class SpecApiResponse : SpecDto {

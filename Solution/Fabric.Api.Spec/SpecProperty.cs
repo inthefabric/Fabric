@@ -1,4 +1,4 @@
-﻿namespace Fabric.Api.Dto.Spec {
+﻿namespace Fabric.Api.Spec {
 
 	/*================================================================================================*/
 	public class SpecProperty {

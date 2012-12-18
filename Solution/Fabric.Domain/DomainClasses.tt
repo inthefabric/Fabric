@@ -1,8 +1,8 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>

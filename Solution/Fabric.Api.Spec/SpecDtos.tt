@@ -1,11 +1,9 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
-<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Api.Dto.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Api.Dto\bin\Debug\Fabric.Api.Dto.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Infrastructure" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -15,10 +13,8 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Resources;
 
-namespace Fabric.Api.Dto.Spec {
+namespace Fabric.Api.Spec {
 
 	/*================================================================================================*/
 	public partial class SpecDoc {
@@ -31,17 +27,15 @@ namespace Fabric.Api.Dto.Spec {
 			SpecProperty p;
 			SpecLink l;
 
-			var res = new ResourceManager("RM", Assembly.GetExecutingAssembly());
-
 <#
-var schema = new Schema();
+IList<string> nodes = SchemaHelper.GetNodes();
 
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 
-	string baseNode = "Fab"+(node.BaseNode == null ? "Node" : node.BaseNode.Name);
-	var propNameMap = new Dictionary<string,string>();
-	var propTypeMap = new Dictionary<string,string>();
+	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseNode.Name : "Node");
 #>
 			////
 
@@ -53,12 +47,11 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			list.Add(dto);
 	
 <#
-	foreach ( WeaverPropSchema prop in node.Props ) { 
-		if ( prop.IsInternal == true ) {
-			continue;
-		}
+	IList<SchemaHelperProp> props = hn.GetProps(true);
 
-		string propType = FabricUtil.GetTypeDisplayName(prop.Type);
+	foreach ( SchemaHelperProp hp in props ) { 
+		WeaverPropSchema prop = hp.PropSchema;
+		string propType = hp.TypeName;
 		string propName = prop.Name;
 		string propItems = "";
 		string lineEnd = "\r\n\t\t\t\t";
@@ -98,9 +91,6 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		if ( prop.ValidRegex != null ) {
 			propItems += "p.ValidRegex = @\""+prop.ValidRegex.Replace("\"", "\"\"")+"\";"+lineEnd;
 		}
-		
-		propNameMap.Add(prop.Name, propName);
-		propTypeMap.Add(prop.Name, propType);
 
 		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : node.Name+"_"+propName);
 
@@ -113,22 +103,20 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 <#
 	} //end prop loop
-
 	
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		bool isOut = (rel.FromNode == node);
-		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
-		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
 #>
 					l = new SpecLink();
-					l.Name = "<#= PathUtil.GetRelProp(rel, isOut) #>";
-					l.IsOutgoing = <#= isOut.ToString().ToLower() #>;
-					l.FromDto = "Fab<#= rel.FromNode.Name #>";
-					l.FromDtoConn = "<#= rel.FromNodeConn+"" #>";
-					l.Verb = "<#= rel.Name #>";
-					l.ToDto = "Fab<#= rel.ToNode.Name #>";
-					l.ToDtoConn = "<#= rel.ToNodeConn+"" #>";
+					l.Name = "<#= hr.RelDtoPropName #>";
+					l.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
+					l.FromDto = "Fab<#= hr.FromNodeName #>";
+					l.FromDtoConn = "<#= hr.RelSchema.FromNodeConn+"" #>";
+					l.Verb = "<#= hr.RelName #>";
+					l.ToDto = "Fab<#= hr.ToNodeName #>";
+					l.ToDtoConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
 					dto.LinkList.Add(l);
 
 <#

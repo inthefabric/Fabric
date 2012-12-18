@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Weaver.Items;
 using Weaver.Schema;
 
-namespace Fabric.Domain {
+namespace Fabric.Infrastructure.Domain {
 
 	/*================================================================================================*/
 	public class Schema {

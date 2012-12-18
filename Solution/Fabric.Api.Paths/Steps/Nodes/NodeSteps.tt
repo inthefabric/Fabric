@@ -4,7 +4,7 @@
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Infrastructure" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -37,8 +37,6 @@ foreach ( string name in nodeNames ) {
 <#
 	} //end nodeRels loop
 } //end nodes loop
-
-var schema = new Schema();
 
 foreach ( string name in nodeNames ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);

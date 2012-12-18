@@ -32,40 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiDtos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>ApiDtos.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Spec\Lang\OauthPropText.Designer.cs">
-      <DependentUpon>OauthPropText.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Spec\Lang\OauthText.Designer.cs">
-      <DependentUpon>OauthText.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Spec\SpecLink.cs" />
-    <Compile Include="Spec\SpecPathFunc.cs" />
-    <Compile Include="Spec\SpecDto.cs" />
-    <Compile Include="Spec\SpecProperty.cs" />
-    <Compile Include="Spec\SpecApiResponse.cs" />
-    <Compile Include="Spec\Lang\DtoPropText.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DtoPropText.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Spec\Lang\DtoText.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DtoText.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Spec\SpecDoc.cs" />
-    <Compile Include="Spec\SpecDtos.cs">
-      <DependentUpon>SpecDtos.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="FabResponse.cs" />
     <Compile Include="IFabNode.cs" />
@@ -77,10 +46,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiDtos.cs</LastGenOutput>
     </None>
-    <None Include="Spec\SpecDtos.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SpecDtos.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -90,24 +55,6 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Spec\Lang\OauthPropText.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>OauthPropText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Spec\Lang\OauthText.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>OauthText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Spec\Lang\DtoPropText.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Spec\Lang\DtoText.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DtoText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -4,7 +4,7 @@
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Infrastructure" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -18,81 +18,40 @@ using System.Collections.Generic;
 namespace Fabric.Api.Dto {
 	
 <#
-var schema = new Schema();
+IList<string> nodes = SchemaHelper.GetNodes();
 
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 
-	string baseNode = "Fab"+(node.BaseNode == null ? "Node" : node.BaseNode.Name);
-	var propNameMap = new Dictionary<string,string>();
-	var propTypeMap = new Dictionary<string,string>();
+	string baseNode = (hn.HasParentClass ? node.BaseNode.Name : "Node");
+	string abs = (node.IsAbstract ? "abstract " : "");
 	bool hasTypeId = false;
 #>
 	/*================================================================================================*/
-	public <#= (node.IsAbstract ? "abstract " : "") #>class Fab<#= node.Name #> : <#= baseNode #> {
+	public <#= abs #>class Fab<#= node.Name #> : Fab<#= baseNode #> {
 	
 <#
-	foreach ( WeaverPropSchema prop in node.Props ) {
-		if ( prop.IsInternal == true ) {
-			continue;
-		}
+	IList<SchemaHelperProp> props = hn.GetProps(true);
 
-		string propType = prop.Type.Name;
+	foreach ( SchemaHelperProp hp in props ) { 
+		WeaverPropSchema prop = hp.PropSchema;
+		string propType = hp.TypeName;
 		string propName = prop.Name;
-		string attribs = "";
-		string attEnd = "\r\n\t\t";
 
 		if ( propName == node.Name+"Id" ) {
 			hasTypeId = true;
 		}
-		
-		propType = FabricUtil.GetTypeDisplayName(prop.Type);
-		
-		if ( prop.IsCaseInsensitive != null ) {
-			attribs += "//[PropIsCaseInsensitive("+prop.IsCaseInsensitive+")]"+attEnd;
-		}
-
-		if ( prop.IsNullable != null ) {
-			attribs += "//[PropIsNullable("+prop.IsNullable+")]"+attEnd;
-		}
-
-		if ( prop.IsPrimaryKey != null ) {
-			attribs += "//[PropIsPrimaryKey("+prop.IsPrimaryKey+")]"+attEnd;
-		}
-
-		if ( prop.IsTimestamp != null ) {
-			attribs += "//[PropIsTimestamp("+prop.IsTimestamp+")]"+attEnd;
-		}
-		
-		if ( prop.IsUnique != null ) {
-			attribs += "//[PropIsUnique("+prop.IsUnique+")]"+attEnd;
-		}
-
-		if ( prop.Len != null ) {
-			attribs += "//[PropLen("+prop.Len+")]"+attEnd;
-		}
-
-		if ( prop.LenMax != null ) {
-			attribs += "//[PropLenMax("+prop.LenMax+")]"+attEnd;
-		}
-		
-		if ( prop.LenMin != null ) {
-			attribs += "//[PropLenMin("+prop.LenMin+")]"+attEnd;
-		}
-
-		if ( prop.ValidRegex != null ) {
-			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
-		}
-		
-		propNameMap.Add(prop.Name, propName);
-		propTypeMap.Add(prop.Name, propType);
-
 #>
-		<#= attribs #>public <#= propType+" "+propName #> { get; set; } //<#= "["+prop.IsInternal+"]" #>
-
+		public <#= propType+" "+propName #> { get; set; }
 <#
 	} //end prop loop
+#>
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
 	if ( !node.IsAbstract ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
@@ -104,7 +63,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
 <#
-	if ( baseNode != "FabNode" ) {
+	if ( baseNode != "Node" ) {
 #>
 			base.FillResultData(pData);
 
@@ -113,13 +72,9 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 	bool showFound = false;
 	bool showVal = (node.Props.Count > 0);
-
-	foreach ( WeaverPropSchema prop in node.Props ) {
-		if ( prop.IsInternal == true ) {
-			continue;
-		}
-
-		if ( prop.IsNullable == true || propTypeMap[prop.Name] == "string" ) {
+	
+	foreach ( SchemaHelperProp hp in props ) { 
+		if ( hp.PropSchema.IsNullable == true || hp.TypeName == "string" ) {
 			showFound = true;
 		}
 	}
@@ -135,20 +90,15 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			bool found;
 <#
 	} //end showFound
-
-	foreach ( WeaverPropSchema prop in node.Props ) {
-		if ( prop.IsInternal == true ) {
-			continue;
-		}
-
-		string propName = propNameMap[prop.Name];
-		string propType = propTypeMap[prop.Name];
+	
+	foreach ( SchemaHelperProp hp in props ) { 
+		string propType = hp.TypeName;
+		string propName = hp.PropSchema.Name;
 		string parseType = propType.Replace("?", "");
-		//if ( < #= parseType # >.TryParse(val, out typedVal) ) { < #= propName # > = typedVal; }
 #>
 
 <#
-		if ( prop.IsNullable == true || propType == "string" ) {
+		if ( hp.PropSchema.IsNullable == true || propType == "string" ) {
 #>
 			found = pData.TryGetValue("<#= propName #>", out val);
 <#
@@ -164,7 +114,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			if ( found ) { <#= propName #> = val; }
 <#
 		}
-		else if ( prop.IsNullable != null ) {
+		else if ( hp.PropSchema.IsNullable != null ) {
 #>
 			if ( found ) { <#= propName #> = <#= parseType #>.Parse(val); }
 <#

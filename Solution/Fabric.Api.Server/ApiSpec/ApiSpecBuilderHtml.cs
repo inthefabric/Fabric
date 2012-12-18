@@ -1,4 +1,4 @@
-﻿using Fabric.Api.Dto.Spec;
+﻿using Fabric.Api.Spec;
 
 namespace Fabric.Api.Server.ApiSpec {
 

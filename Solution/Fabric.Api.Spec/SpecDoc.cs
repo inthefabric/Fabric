@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Fabric.Api.Dto.Spec.Lang;
-using Fabric.Infrastructure;
+using Fabric.Api.Dto;
+using Fabric.Api.Spec.Lang;
+using Fabric.Infrastructure.Domain;
 
-namespace Fabric.Api.Dto.Spec {
+namespace Fabric.Api.Spec {
 
 	/*================================================================================================*/
 	public partial class SpecDoc {
@@ -31,7 +32,7 @@ namespace Fabric.Api.Dto.Spec {
 			foreach ( PropertyInfo pi in props ) {
 				var specProp = new SpecProperty();
 				specProp.Name = pi.Name;
-				specProp.Type = FabricUtil.GetTypeDisplayName(pi.PropertyType);
+				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
 				results.Add(pi.Name, specProp);
 			}

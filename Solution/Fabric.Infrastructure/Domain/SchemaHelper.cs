@@ -1,22 +1,13 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/18/2012 3:31:47 PM
+// Generated on 12/18/2012 4:31:26 PM
 
 using System.Collections.Generic;
 
-namespace Fabric.Domain {
+namespace Fabric.Infrastructure.Domain {
 
 	/*================================================================================================*/
 	public static partial class SchemaHelper {
-		
-		private static Schema SchemaInner;
-		
-		public static Schema SchemaInstance {
-			get { 
-				if ( SchemaInner == null ) { SchemaInner = new Schema(); }
-				return SchemaInner;
-			}
-		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

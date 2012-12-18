@@ -34,25 +34,6 @@ namespace Fabric.Infrastructure {
 		/*--------------------------------------------------------------------------------------------*/
 		public static string Code32 { get { return Guid.NewGuid().ToString("N"); } }
 
-		/*--------------------------------------------------------------------------------------------*/
-		//TODO: remove method
-		public static string GetTypeDisplayName(Type pType) {
-			switch ( pType.Name ) {
-				case "Int32": return "int";
-				case "Int64": return "long";
-				case "Byte": return "byte";
-				case "String": return "string";
-				case "String[]": return "string[]";
-				case "Boolean": return "bool";
-				case "Single": return "float";
-				case "Double": return "double";
-				case "DateTime": return "long";
-				case "Object": return "object";
-			}
-
-			throw new Exception("Unknown type: "+pType.Name);
-		}
-
 	}
 
 }

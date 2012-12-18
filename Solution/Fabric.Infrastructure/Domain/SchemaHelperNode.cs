@@ -2,7 +2,7 @@
 using System.Linq;
 using Weaver.Schema;
 
-namespace Fabric.Domain {
+namespace Fabric.Infrastructure.Domain {
 
 	/*================================================================================================*/
 	public class SchemaHelperNode {
