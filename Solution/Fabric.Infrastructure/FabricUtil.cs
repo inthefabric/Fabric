@@ -35,6 +35,7 @@ namespace Fabric.Infrastructure {
 		public static string Code32 { get { return Guid.NewGuid().ToString("N"); } }
 
 		/*--------------------------------------------------------------------------------------------*/
+		//TODO: remove method
 		public static string GetTypeDisplayName(Type pType) {
 			switch ( pType.Name ) {
 				case "Int32": return "int";

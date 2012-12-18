@@ -23,92 +23,69 @@ namespace Fabric.Domain {
 	
 	
 <#
-var schema = new Schema();
-var relTypeMap = new Dictionary<string, bool>();
+IList<string> relTypes = SchemaHelper.GetRelTypes();
 
-foreach ( WeaverRelSchema rel in schema.Rels ) {
-	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
-	relTypeMap.Add(rel.Name, true);
+foreach ( string name in relTypes ) {
 #>
 	/*================================================================================================*/
-	public class <#= rel.Name #> : IWeaverRelType {
+	public class <#= name #> : IWeaverRelType {
 	
-		public string Label { get { return "<#= rel.Name #>"; } }
+		public string Label { get { return "<#= name #>"; } }
 
 	}
 
 <#
-}
+} //end rel types loop
 #>
 
 	/* Relationships */
 
 
 <#
-var relMap = new Dictionary<string, bool>();
+IList<string> rels = SchemaHelper.GetRels();
 
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		//var relOut = (rel.FromNode == node);
-		//var relDir = (relOut ? "Out" : "In");
-		//var relAmt = ((relOut && rel.Many) || (!relOut && rel.RevMany) ? "List" : "");
-		var fromNode = rel.FromNode.Name;
-		var toNode = rel.ToNode.Name;
-		string relClass = fromNode+rel.Name+toNode;
-		
-		if ( relMap.ContainsKey(relClass) ) { continue; }
-		relMap.Add(relClass, true);
-
-		string className = GetRelClassName(rel);
-
-		string classTypes = 
-			"<"+
-			rel.FromNode.Name+", "+
-			rel.Name+", "+
-			rel.ToNode.Name+
-			">";
+foreach ( string name in rels ) {
+	SchemaHelperRel rel = SchemaHelper.GetRel(name);
 #>
 	/*================================================================================================*/
-	public class <#= className #> : WeaverRel<#= classTypes #> {
+	public class <#= rel.RelName #> : <#= rel.WeaverBaseClass #> {
 			
-		public virtual <#= rel.FromNode.Name #> From<#= rel.FromNode.Name #> { get { return FromNode; } }
-		public virtual <#= rel.ToNode.Name #> To<#= rel.ToNode.Name #> { get { return ToNode; } }
-		public override string Label { get { return "<#= className #>"; } }
+		public virtual <#= rel.FromNodeName #> From<#= rel.FromNodeName #> { get { return FromNode; } }
+		public virtual <#= rel.ToNodeName #> To<#= rel.ToNodeName #> { get { return ToNode; } }
+		public override string Label { get { return "<#= rel.RelName #>"; } }
 
 	}
 
 <#
-	}
-}
+} //end rel names loop
 #>
 
 	/* Nodes */
 
 
 <#
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
+var schema = new Schema();
+
+IList<string> nodes = SchemaHelper.GetNodes();
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	string baseNode = (hn.HasParentClass ? node.BaseNode.Name : "Node");
+	string abs = (node.IsAbstract ? "abstract " : "");
 #>
 	/*================================================================================================*/
-	public <#= (node.IsAbstract ? "abstract " : "") #>class <#= node.Name #> : <#= baseNode #> {
+	public <#= abs #>class <#= node.Name #> : <#= baseNode #> {
 	
 <#
-	foreach ( WeaverPropSchema prop in node.Props ) { 
-		string propType = prop.Type.Name;
+	IList<SchemaHelperProp> props = hn.GetProps(false);
+
+	foreach ( SchemaHelperProp hp in props ) { 
+		WeaverPropSchema prop = hp.PropSchema;
+		string propType = hp.TypeName;
 		string propName = prop.Name;
 		string attribs = "";
 		string attEnd = "\r\n\t\t";
-		
-		switch ( prop.Type.Name ) {
-			case "Int32": propType = "int"; break;
-			case "Int64": propType = "long"; break;
-			case "Byte": propType = "byte"; break;
-			case "String": propType = "string"; break;
-			case "Boolean": propType = "bool"; break;
-			case "Single": propType = "float"; break;
-			case "Double": propType = "double"; break;
-			case "DateTime": propType = "long"; break;
-		}
 
 		attribs += "[WeaverItemProperty]"+attEnd;
 
@@ -118,7 +95,6 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 		if ( prop.IsNullable != null ) {
 			attribs += "//[PropIsNullable("+prop.IsNullable+")]"+attEnd;
-			if ( prop.Type.IsValueType ) { propType += "?"; }
 		}
 
 		if ( prop.IsPrimaryKey != null ) {
@@ -189,13 +165,13 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 <#
 	} //end else !"isAbstract"
 
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		string relClass = GetRelClassName(rel);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual <#= relClass #> <#= GetRelPropName(node, rel) #> {
-			get { return NewRel<<#= relClass #>>(WeaverRelConn.<#= GetRelConn(node, rel) #>); }
+		public virtual <#= hr.RelName #> <#= hr.RelPropName #> {
+			get { return NewRel<<#= hr.RelName #>>(WeaverRelConn.<#= hr.Conn+"" #>); }
 		}
 
 <#
@@ -207,39 +183,3 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 }
 #>
 }
-<#+
-
-    public string GetRelClassName(WeaverRelSchema pRel) {
-		return pRel.FromNode.Name + pRel.Name + pRel.ToNode.Name;
-    }
-
-
-	public string GetRelPropName(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
-		bool isOut = (pRel.FromNode == pNode);
-		bool isMany = false;
-
-		if ( isOut ) {
-			isMany = (
-				pRel.FromNodeConn == WeaverRelConn.OutToOneOrMore ||
-				pRel.FromNodeConn == WeaverRelConn.OutToZeroOrMore
-			);
-		}
-		else {
-			isMany = (
-				pRel.ToNodeConn == WeaverRelConn.InFromOneOrMore ||
-				pRel.ToNodeConn == WeaverRelConn.InFromZeroOrMore
-			);
-		}
-
-		var fromNode = (isOut ? "" : pRel.FromNode.Name+(isMany ? "s" : ""));
-		var toNode = (!isOut ? "" : pRel.ToNode.Name+(isMany ? "s" : ""));
-		return (isOut ? "Out" : "In") + fromNode + pRel.Name + toNode;
-    }
-
-
-	public string GetRelConn(WeaverNodeSchema pNode, WeaverRelSchema pRel) {
-		bool isFrom = (pRel.FromNode == pNode);
-		return (isFrom ? pRel.FromNodeConn : pRel.ToNodeConn)+"";
-    }
-
-#>

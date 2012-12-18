@@ -4,7 +4,7 @@ using Weaver.Schema;
 namespace Fabric.Infrastructure {
 
 	/*================================================================================================*/
-	public static class PathUtil {
+	public static class PathUtil { //TODO: remove this class
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

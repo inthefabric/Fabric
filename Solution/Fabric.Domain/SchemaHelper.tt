@@ -1,0 +1,129 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Domain.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+
+namespace Fabric.Domain {
+
+	/*================================================================================================*/
+	public static partial class SchemaHelper {
+		
+		private static Schema SchemaInner;
+		
+		public static Schema SchemaInstance {
+			get { 
+				if ( SchemaInner == null ) { SchemaInner = new Schema(); }
+				return SchemaInner;
+			}
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetRelTypes() {
+			return new List<string> {
+<#
+var schema = new Schema();
+var relTypeMap = new Dictionary<string, bool>();
+var relMap = new Dictionary<string, bool>();
+
+foreach ( WeaverRelSchema rel in schema.Rels ) {
+	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
+	relTypeMap.Add(rel.Name, true);
+#>
+				"<#= rel.Name #>",
+<#
+} // end rel loop
+#>
+			};
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static SchemaHelperRel GetRel(string pName) {
+			var s = SchemaInstance;
+
+			switch ( pName ) {
+<#
+int ri = 0;
+
+foreach ( WeaverRelSchema rel in schema.Rels ) {
+	var fromNode = rel.FromNode.Name;
+	var toNode = rel.ToNode.Name;
+	string relClass = fromNode+rel.Name+toNode;
+		
+	if ( relMap.ContainsKey(relClass) ) { continue; }
+	relMap.Add(relClass, true);
+#>
+				case "<#= relClass #>": return new SchemaHelperRel(s.Rels[<#= ri #>]);
+<#
+	++ri;
+} //end rel loop
+#>
+			}
+
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetRels() {
+			return new List<string> {
+<#
+foreach ( string key in relMap.Keys ) {
+#>
+				"<#= key #>",
+<#
+} // end keys loop
+#>
+			};
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static SchemaHelperNode GetNode(string pName) {
+			var s = SchemaInstance;
+
+			switch ( pName ) {
+<#
+int ni = 0;
+
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+#>
+				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]);
+<#
+	++ni;
+} //end node loop
+#>
+			}
+
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetNodes() {
+			return new List<string> {
+<#
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+#>
+				"<#= node.Name #>",
+<#
+} // end node loop
+#>
+			};
+		}
+
+	}
+
+}
