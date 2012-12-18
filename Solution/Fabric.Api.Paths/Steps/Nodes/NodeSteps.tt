@@ -18,56 +18,41 @@ using Fabric.Api.Dto;
 namespace Fabric.Api.Paths.Steps.Nodes {
 	
 <#
+IList<string> nodeNames = SchemaHelper.GetNodes();
+var intMap = new Dictionary<string,bool>();
+
+foreach ( string name in nodeNames ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( intMap.ContainsKey(hr.RelDtoPropName) ) { continue; }
+		intMap.Add(hr.RelDtoPropName, true);
+#>
+	/*================================================================================================*/
+	public interface I<#= hr.RelDtoPropName #> {
+		<#= hr.TargetNodeType #>Step <#= hr.RelDtoPropName #> { get; }
+	}
+
+<#
+	} //end nodeRels loop
+} //end nodes loop
+
 var schema = new Schema();
-var relIntMap = new Dictionary<string, bool>();
 
-foreach ( WeaverRelSchema rel in schema.Rels ) {
-	string outName = PathUtil.GetRelInterface(rel, true);
-	string inName = PathUtil.GetRelInterface(rel, false);
-	
-	if ( !relIntMap.ContainsKey(outName) && !PathUtil.GetRelIsTargetNodeInternal(rel, true) ) {
-		relIntMap.Add(outName, true);
-#>
-	/*================================================================================================*/
-	public interface <#= outName #> {
-		<#= PathUtil.GetRelPropType(rel, true) #>Step <#= PathUtil.GetRelProp(rel, true) #> { get; }
-	}
+foreach ( string name in nodeNames ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	if ( node.IsAbstract || node.IsInternal ) { continue; }
 
-<#
-	}
-
-	if ( !relIntMap.ContainsKey(inName) && !PathUtil.GetRelIsTargetNodeInternal(rel, false) ) {
-		relIntMap.Add(inName, true);
-#>
-	/*================================================================================================*/
-	public interface <#= inName #> {
-		<#= PathUtil.GetRelPropType(rel, false) #>Step <#= PathUtil.GetRelProp(rel, false) #> { get; }
-	}
-
-<#
-	} //end map test
-}
-
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	if ( node.IsAbstract || node.IsInternal ) {
-		continue;
-	}
-
-	var rels = new List<WeaverRelSchema>();
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
 	string interfaces = "";
 	string steps = "";
-	
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		rels.Add(rel);
 
-		bool isOut = (rel.FromNode == node);
-		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
-
-		interfaces += (interfaces == "" ? "" : ", ")+PathUtil.GetRelInterface(rel, isOut);
-
-		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
-		steps += (steps == "" ? "" : ", ")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		interfaces += (interfaces == "" ? "" : ", ")+"I"+hr.RelDtoPropName;
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		steps += (steps == "" ? "" : ", ")+"\"/"+hr.RelDtoPropName+"\"";
 	}
 	
 	string typeIdIsLong = "false";
@@ -129,16 +114,13 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		protected override IStep GetNextStep(StepData pData) {
 			switch ( pData.Command ) {
 <#
-	foreach ( WeaverRelSchema rel in rels ) {
-		bool isOut = (rel.FromNode == node);
-		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
-		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
-
-		var propName = PathUtil.GetRelProp(rel, isOut);
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		var propName = hr.RelDtoPropName;
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;
 <#
-	} //end rel loop
+	} //end nodeRels loop
 #>
 			}
 
@@ -148,31 +130,24 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		
-		bool isOut = (rel.FromNode == node);
-		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
-
-		var propType = PathUtil.GetRelPropType(rel, isOut)+"Step";
-		var propName = PathUtil.GetRelProp(rel, isOut);
-		var isToNode = (isOut ? "true" : "false");
-		var script = (isOut ? "outE" : "inE")+"('"+PathUtil.GetRelLabel(rel)+"')";
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		var propType = hr.TargetNodeType+"Step";
+		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelName+"')";
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= propType #> <#= propName #> {
+		public <#= propType #> <#= hr.RelDtoPropName #> {
 			get {
 				Path.AppendToCurrentSegment("<#= script #>");
-				return new <#= propType #>(<#= isToNode #>, Path);
+				return new <#= propType #>(<#= (hr.IsOutgoing ? "true" : "false") #>, Path);
 			}
 		}
 
 <#
-	} //end rel loop
+	} //end nodeRels loop
 #>
 	}
 
 <#
-}
+} //end nodes loop
 #>
 }

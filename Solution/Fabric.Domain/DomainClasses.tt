@@ -64,8 +64,6 @@ foreach ( string name in rels ) {
 
 
 <#
-var schema = new Schema();
-
 IList<string> nodes = SchemaHelper.GetNodes();
 
 foreach ( string name in nodes ) {

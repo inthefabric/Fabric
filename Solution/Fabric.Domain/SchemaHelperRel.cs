@@ -30,6 +30,49 @@ namespace Fabric.Domain {
 				"<"+FromNodeName+", "+RelTypeName+", "+ToNodeName+">";
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetRelNodeType(bool pIsOut) {
+			return (pIsOut ? ToNodeName : FromNodeName);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public bool GetRelNodeIsInternal(bool pIsOut) {
+			return (pIsOut ? RelSchema.ToNode.IsInternal : RelSchema.FromNode.IsInternal);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool GetRelHasMany(bool pIsOut) {
+			WeaverRelConn c = (pIsOut ? RelSchema.FromNodeConn : RelSchema.ToNodeConn);
+
+			return (pIsOut ?
+				(c == WeaverRelConn.OutToOneOrMore || c ==WeaverRelConn.OutToZeroOrMore) :
+				(c == WeaverRelConn.InFromOneOrMore || c ==WeaverRelConn.InFromZeroOrMore)
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetRelPropName(bool pIsOut) {
+			var useS = (GetRelHasMany(pIsOut) ? "s" : "");
+
+			return (pIsOut ?
+				"Out"+RelTypeName+ToNodeName+useS :
+				"In"+FromNodeName+useS+RelTypeName
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetRelDtoPropName(bool pIsOut) {
+			var useS = (GetRelHasMany(pIsOut) ? "List" : "");
+
+			return (pIsOut ?
+				RelTypeName+ToNodeName+useS :
+				"In"+FromNodeName+useS+RelTypeName
+			);
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/17/2012 4:51:47 PM
+// Generated on 12/18/2012 3:31:48 PM
 
 using Fabric.Api.Dto;
 
@@ -9,11 +9,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IContainsAppList {
 		AppStep ContainsAppList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInRootContains {
-		RootStep InRootContains { get; }
 	}
 
 	/*================================================================================================*/
@@ -187,18 +182,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
+	public interface IInRootContains {
+		RootStep InRootContains { get; }
+	}
+
+	/*================================================================================================*/
 	public interface IHasArtifact {
 		ArtifactStep HasArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInAppHas {
-		AppStep InAppHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInAppUses {
-		AppStep InAppUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -207,8 +197,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInAppDefines {
-		AppStep InAppDefines { get; }
+	public interface IInAppHas {
+		AppStep InAppHas { get; }
 	}
 
 	/*================================================================================================*/
@@ -217,53 +207,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInArtifactUsesList {
-		ArtifactStep InArtifactListUses { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IInCrowdHas {
 		CrowdStep InCrowdHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IDefinesCrowdianList {
-		CrowdianStep DefinesCrowdianList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdDefines {
-		CrowdStep InCrowdDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasCrowdianTypeAssign {
-		CrowdianTypeAssignStep HasCrowdianTypeAssign { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdianHas {
-		CrowdianStep InCrowdianHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasHistoricCrowdianTypeAssignList {
-		CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdianHasHistoric {
-		CrowdianStep InCrowdianHasHistoric { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesCrowdianType {
-		CrowdianTypeStep UsesCrowdianType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdianTypeAssignUsesList {
-		CrowdianTypeAssignStep InCrowdianTypeAssignListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -272,53 +217,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IHasMemberTypeAssign {
-		MemberTypeAssignStep HasMemberTypeAssign { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberHas {
-		MemberStep InMemberHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasHistoricMemberTypeAssignList {
-		MemberTypeAssignStep HasHistoricMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberHasHistoric {
-		MemberStep InMemberHasHistoric { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesArtifactList {
-		ArtifactStep CreatesArtifactList { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IInMemberCreates {
 		MemberStep InMemberCreates { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesMemberTypeAssignList {
-		MemberTypeAssignStep CreatesMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesFactorList {
-		FactorStep CreatesFactorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesMemberType {
-		MemberTypeStep UsesMemberType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberTypeAssignUsesList {
-		MemberTypeAssignStep InMemberTypeAssignListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -337,13 +237,58 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface ICreatesCrowdianTypeAssignList {
-		CrowdianTypeAssignStep CreatesCrowdianTypeAssignList { get; }
+	public interface IInFactorListUsesPrimary {
+		FactorStep InFactorListUsesPrimary { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInUserCreates {
-		UserStep InUserCreates { get; }
+	public interface IInFactorListUsesRelated {
+		FactorStep InFactorListUsesRelated { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInDescriptorListRefinesPrimaryWith {
+		DescriptorStep InDescriptorListRefinesPrimaryWith { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInDescriptorListRefinesRelatedWith {
+		DescriptorStep InDescriptorListRefinesRelatedWith { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInDescriptorListRefinesTypeWith {
+		DescriptorStep InDescriptorListRefinesTypeWith { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInVectorListUsesAxis {
+		VectorStep InVectorListUsesAxis { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInArtifactListUses {
+		ArtifactStep InArtifactListUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IDefinesCrowdianList {
+		CrowdianStep DefinesCrowdianList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInCrowdDefines {
+		CrowdStep InCrowdDefines { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IHasCrowdianTypeAssign {
+		CrowdianTypeAssignStep HasCrowdianTypeAssign { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IHasHistoricCrowdianTypeAssignList {
+		CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
@@ -352,8 +297,93 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
+	public interface IInCrowdianTypeAssignListUses {
+		CrowdianTypeAssignStep InCrowdianTypeAssignListUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInCrowdianHas {
+		CrowdianStep InCrowdianHas { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInCrowdianHasHistoric {
+		CrowdianStep InCrowdianHasHistoric { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IUsesCrowdianType {
+		CrowdianTypeStep UsesCrowdianType { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInUserCreates {
+		UserStep InUserCreates { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInAppUses {
+		AppStep InAppUses { get; }
+	}
+
+	/*================================================================================================*/
 	public interface IInUserUses {
 		UserStep InUserUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInAppDefines {
+		AppStep InAppDefines { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IHasMemberTypeAssign {
+		MemberTypeAssignStep HasMemberTypeAssign { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IHasHistoricMemberTypeAssignList {
+		MemberTypeAssignStep HasHistoricMemberTypeAssignList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface ICreatesArtifactList {
+		ArtifactStep CreatesArtifactList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface ICreatesMemberTypeAssignList {
+		MemberTypeAssignStep CreatesMemberTypeAssignList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface ICreatesFactorList {
+		FactorStep CreatesFactorList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInMemberTypeAssignListUses {
+		MemberTypeAssignStep InMemberTypeAssignListUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInMemberHas {
+		MemberStep InMemberHas { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInMemberHasHistoric {
+		MemberStep InMemberHasHistoric { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IUsesMemberType {
+		MemberTypeStep UsesMemberType { get; }
+	}
+
+	/*================================================================================================*/
+	public interface ICreatesCrowdianTypeAssignList {
+		CrowdianTypeAssignStep CreatesCrowdianTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
@@ -362,18 +392,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInFactorUsesPrimaryList {
-		FactorStep InFactorListUsesPrimary { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IUsesRelatedArtifact {
 		ArtifactStep UsesRelatedArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInFactorUsesRelatedList {
-		FactorStep InFactorListUsesRelated { get; }
 	}
 
 	/*================================================================================================*/
@@ -382,18 +402,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInFactorUsesList {
-		FactorStep InFactorListUses { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IReplacesFactor {
 		FactorStep ReplacesFactor { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInFactorReplaces {
-		FactorStep InFactorReplaces { get; }
 	}
 
 	/*================================================================================================*/
@@ -427,13 +437,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IUsesDescriptorType {
-		DescriptorTypeStep UsesDescriptorType { get; }
+	public interface IInFactorListUses {
+		FactorStep InFactorListUses { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInDescriptorUsesList {
-		DescriptorStep InDescriptorListUses { get; }
+	public interface IUsesDescriptorType {
+		DescriptorTypeStep UsesDescriptorType { get; }
 	}
 
 	/*================================================================================================*/
@@ -442,18 +452,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInDescriptorRefinesPrimaryWithList {
-		DescriptorStep InDescriptorListRefinesPrimaryWith { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IRefinesRelatedWithArtifact {
 		ArtifactStep RefinesRelatedWithArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDescriptorRefinesRelatedWithList {
-		DescriptorStep InDescriptorListRefinesRelatedWith { get; }
 	}
 
 	/*================================================================================================*/
@@ -462,8 +462,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInDescriptorRefinesTypeWithList {
-		DescriptorStep InDescriptorListRefinesTypeWith { get; }
+	public interface IInDescriptorListUses {
+		DescriptorStep InDescriptorListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -472,18 +472,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInDirectorUsesList {
-		DirectorStep InDirectorListUses { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IUsesPrimaryDirectorAction {
 		DirectorActionStep UsesPrimaryDirectorAction { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorUsesPrimaryList {
-		DirectorStep InDirectorListUsesPrimary { get; }
 	}
 
 	/*================================================================================================*/
@@ -492,7 +482,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInDirectorUsesRelatedList {
+	public interface IInDirectorListUses {
+		DirectorStep InDirectorListUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInDirectorListUsesPrimary {
+		DirectorStep InDirectorListUsesPrimary { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInDirectorListUsesRelated {
 		DirectorStep InDirectorListUsesRelated { get; }
 	}
 
@@ -502,13 +502,13 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInEventorUsesList {
-		EventorStep InEventorListUses { get; }
+	public interface IUsesEventorPrecision {
+		EventorPrecisionStep UsesEventorPrecision { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IUsesEventorPrecision {
-		EventorPrecisionStep UsesEventorPrecision { get; }
+	public interface IInEventorListUses {
+		EventorStep InEventorListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -517,7 +517,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInIdentorUsesList {
+	public interface IInIdentorListUses {
 		IdentorStep InIdentorListUses { get; }
 	}
 
@@ -527,7 +527,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInLocatorUsesList {
+	public interface IInLocatorListUses {
 		LocatorStep InLocatorListUses { get; }
 	}
 
@@ -537,18 +537,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInVectorUsesAxisList {
-		VectorStep InVectorListUsesAxis { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IUsesVectorType {
 		VectorTypeStep UsesVectorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUsesList {
-		VectorStep InVectorListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -562,12 +552,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
+	public interface IInVectorListUses {
+		VectorStep InVectorListUses { get; }
+	}
+
+	/*================================================================================================*/
 	public interface IUsesVectorRange {
 		VectorRangeStep UsesVectorRange { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInVectorTypeUsesList {
+	public interface IInVectorTypeListUses {
 		VectorTypeStep InVectorTypeListUses { get; }
 	}
 
@@ -577,8 +572,23 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInVectorRangeUsesList {
+	public interface IInVectorRangeListUses {
 		VectorRangeStep InVectorRangeListUses { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInVectorUnitDerivedListDefines {
+		VectorUnitDerivedStep InVectorUnitDerivedListDefines { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInVectorUnitDerivedListRaisesToExp {
+		VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInVectorUnitDerivedListUses {
+		VectorUnitDerivedStep InVectorUnitDerivedListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -587,23 +597,8 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInVectorUnitDerivedDefinesList {
-		VectorUnitDerivedStep InVectorUnitDerivedListDefines { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IRaisesToExpVectorUnit {
 		VectorUnitStep RaisesToExpVectorUnit { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedRaisesToExpList {
-		VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedUsesList {
-		VectorUnitDerivedStep InVectorUnitDerivedListUses { get; }
 	}
 
 	/*================================================================================================*/
@@ -1045,7 +1040,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorUsesPrimaryList, IInFactorUsesRelatedList, IInDescriptorRefinesPrimaryWithList, IInDescriptorRefinesRelatedWithList, IInDescriptorRefinesTypeWithList, IInVectorUsesAxisList {
+	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis" };
 
@@ -1218,7 +1213,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>, IInRootContains, IInArtifactUsesList {
+	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>, IInRootContains, IInArtifactListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InArtifactListUses" };
 
@@ -1422,7 +1417,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignUsesList {
+	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InCrowdianTypeAssignListUses" };
 
@@ -1727,7 +1722,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeStep : NodeStep<FabMemberType>, IInRootContains, IInMemberTypeAssignUsesList {
+	public partial class MemberTypeStep : NodeStep<FabMemberType>, IInRootContains, IInMemberTypeAssignListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InMemberTypeAssignListUses" };
 
@@ -2207,7 +2202,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>, IInRootContains, IInFactorUsesList {
+	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>, IInRootContains, IInFactorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses" };
 
@@ -2263,7 +2258,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorStep : NodeStep<FabDescriptor>, IInRootContains, IInFactorUsesList, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
+	public partial class DescriptorStep : NodeStep<FabDescriptor>, IInRootContains, IInFactorListUses, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact" };
 
@@ -2355,7 +2350,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>, IInRootContains, IInDescriptorUsesList {
+	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>, IInRootContains, IInDescriptorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InDescriptorListUses" };
 
@@ -2411,7 +2406,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorStep : NodeStep<FabDirector>, IInRootContains, IInFactorUsesList, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
+	public partial class DirectorStep : NodeStep<FabDirector>, IInRootContains, IInFactorListUses, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction" };
 
@@ -2494,7 +2489,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorTypeStep : NodeStep<FabDirectorType>, IInRootContains, IInDirectorUsesList {
+	public partial class DirectorTypeStep : NodeStep<FabDirectorType>, IInRootContains, IInDirectorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InDirectorListUses" };
 
@@ -2550,7 +2545,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorActionStep : NodeStep<FabDirectorAction>, IInRootContains, IInDirectorUsesPrimaryList, IInDirectorUsesRelatedList {
+	public partial class DirectorActionStep : NodeStep<FabDirectorAction>, IInRootContains, IInDirectorListUsesPrimary, IInDirectorListUsesRelated {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InDirectorListUsesPrimary", "/InDirectorListUsesRelated" };
 
@@ -2615,7 +2610,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorStep : NodeStep<FabEventor>, IInRootContains, IInFactorUsesList, IUsesEventorType, IUsesEventorPrecision {
+	public partial class EventorStep : NodeStep<FabEventor>, IInRootContains, IInFactorListUses, IUsesEventorType, IUsesEventorPrecision {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision" };
 
@@ -2689,7 +2684,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorTypeStep : NodeStep<FabEventorType>, IInRootContains, IInEventorUsesList {
+	public partial class EventorTypeStep : NodeStep<FabEventorType>, IInRootContains, IInEventorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InEventorListUses" };
 
@@ -2745,7 +2740,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>, IInRootContains, IInEventorUsesList {
+	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>, IInRootContains, IInEventorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InEventorListUses" };
 
@@ -2801,7 +2796,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorStep : NodeStep<FabIdentor>, IInRootContains, IInFactorUsesList, IUsesIdentorType {
+	public partial class IdentorStep : NodeStep<FabIdentor>, IInRootContains, IInFactorListUses, IUsesIdentorType {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesIdentorType" };
 
@@ -2866,7 +2861,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorTypeStep : NodeStep<FabIdentorType>, IInRootContains, IInIdentorUsesList {
+	public partial class IdentorTypeStep : NodeStep<FabIdentorType>, IInRootContains, IInIdentorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InIdentorListUses" };
 
@@ -2922,7 +2917,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorStep : NodeStep<FabLocator>, IInRootContains, IInFactorUsesList, IUsesLocatorType {
+	public partial class LocatorStep : NodeStep<FabLocator>, IInRootContains, IInFactorListUses, IUsesLocatorType {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesLocatorType" };
 
@@ -2987,7 +2982,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorTypeStep : NodeStep<FabLocatorType>, IInRootContains, IInLocatorUsesList {
+	public partial class LocatorTypeStep : NodeStep<FabLocatorType>, IInRootContains, IInLocatorListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InLocatorListUses" };
 
@@ -3043,7 +3038,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorStep : NodeStep<FabVector>, IInRootContains, IInFactorUsesList, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorStep : NodeStep<FabVector>, IInRootContains, IInFactorListUses, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix" };
 
@@ -3135,7 +3130,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorTypeStep : NodeStep<FabVectorType>, IInRootContains, IInVectorUsesList, IUsesVectorRange {
+	public partial class VectorTypeStep : NodeStep<FabVectorType>, IInRootContains, IInVectorListUses, IUsesVectorRange {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InVectorListUses", "/UsesVectorRange" };
 
@@ -3200,7 +3195,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeStep : NodeStep<FabVectorRange>, IInRootContains, IInVectorTypeUsesList, IUsesVectorRangeLevelList {
+	public partial class VectorRangeStep : NodeStep<FabVectorRange>, IInRootContains, IInVectorTypeListUses, IUsesVectorRangeLevelList {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InVectorTypeListUses", "/UsesVectorRangeLevelList" };
 
@@ -3265,7 +3260,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>, IInRootContains, IInVectorRangeUsesList {
+	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>, IInRootContains, IInVectorRangeListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InVectorRangeListUses" };
 
@@ -3321,7 +3316,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitStep : NodeStep<FabVectorUnit>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedDefinesList, IInVectorUnitDerivedRaisesToExpList {
+	public partial class VectorUnitStep : NodeStep<FabVectorUnit>, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListDefines, IInVectorUnitDerivedListRaisesToExp {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp" };
 
@@ -3395,7 +3390,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>, IInRootContains, IInVectorUsesList, IInVectorUnitDerivedUsesList {
+	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListUses {
 	
 		private static readonly string[] AvailNodeSteps = new [] { "/InVectorListUses", "/InVectorUnitDerivedListUses" };
 

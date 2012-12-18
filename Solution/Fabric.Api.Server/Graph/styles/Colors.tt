@@ -13,11 +13,14 @@ Generated on <#= DateTime.Now.ToString() #> */
 /* NODES */
 
 <#
-var schema = new Schema();
 var rand = new Random(999);
-var relTypeMap = new Dictionary<string,string>();
 
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+IList<string> nodes = SchemaHelper.GetNodes();
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+
 	if ( node.IsAbstract ) { continue; }
 #>
 .node<#= node.Name #> { fill: <#= NewColor(rand, 0.9) #>; }
@@ -28,20 +31,12 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 /* RELS */
 
 <#
-foreach ( WeaverRelSchema rel in schema.Rels ) {
-	string col = null;
+IList<string> relTypes = SchemaHelper.GetRelTypes();
 
-	if ( relTypeMap.ContainsKey(rel.Name) ) {
-		continue;
-		//col = relTypeMap[rel.Name];
-	}
-	else {
-		col = NewColor(rand, 0.2);
-		relTypeMap.Add(rel.Name, col);
-	}
-	
+foreach ( string name in relTypes ) {
+	string col = NewColor(rand, 0.2);
 #>
-.link<#= /*rel.FromNode.Name +*/ rel.Name /*+ rel.ToNode.Name*/ #> { stroke: <#= col #>; }
+.link<#= name #> { stroke: <#= col #>; }
 <#
 }
 #>
