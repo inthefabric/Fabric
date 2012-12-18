@@ -37,10 +37,10 @@ namespace Fabric.Api.Server.ApiSpec {
 				cont = ApiSpecBuilderHtml.BuildHtml(doc);
 				contType = "text/html";
 			}
-			else {
+			/*else {
 				cont = JsonSerializer.SerializeToString(doc);
 				contType = "application/json";
-			}
+			}*/
 
 			byte[] bytes = UTF8Encoding.UTF8.GetBytes(cont);
 

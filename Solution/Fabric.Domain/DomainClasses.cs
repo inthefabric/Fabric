@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/18/2012 4:31:25 PM
+// Generated on 12/18/2012 4:45:06 PM
 
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -1069,202 +1069,202 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsApp OutContainsApps {
+		public virtual RootContainsApp ContainsAppList {
 			get { return NewRel<RootContainsApp>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsArtifact OutContainsArtifacts {
+		public virtual RootContainsArtifact ContainsArtifactList {
 			get { return NewRel<RootContainsArtifact>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsArtifactType OutContainsArtifactTypes {
+		public virtual RootContainsArtifactType ContainsArtifactTypeList {
 			get { return NewRel<RootContainsArtifactType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowd OutContainsCrowds {
+		public virtual RootContainsCrowd ContainsCrowdList {
 			get { return NewRel<RootContainsCrowd>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdian OutContainsCrowdians {
+		public virtual RootContainsCrowdian ContainsCrowdianList {
 			get { return NewRel<RootContainsCrowdian>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdianType OutContainsCrowdianTypes {
+		public virtual RootContainsCrowdianType ContainsCrowdianTypeList {
 			get { return NewRel<RootContainsCrowdianType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdianTypeAssign OutContainsCrowdianTypeAssigns {
+		public virtual RootContainsCrowdianTypeAssign ContainsCrowdianTypeAssignList {
 			get { return NewRel<RootContainsCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEmail OutContainsEmails {
+		public virtual RootContainsEmail ContainsEmailList {
 			get { return NewRel<RootContainsEmail>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLabel OutContainsLabels {
+		public virtual RootContainsLabel ContainsLabelList {
 			get { return NewRel<RootContainsLabel>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMember OutContainsMembers {
+		public virtual RootContainsMember ContainsMemberList {
 			get { return NewRel<RootContainsMember>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMemberType OutContainsMemberTypes {
+		public virtual RootContainsMemberType ContainsMemberTypeList {
 			get { return NewRel<RootContainsMemberType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMemberTypeAssign OutContainsMemberTypeAssigns {
+		public virtual RootContainsMemberTypeAssign ContainsMemberTypeAssignList {
 			get { return NewRel<RootContainsMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsThing OutContainsThings {
+		public virtual RootContainsThing ContainsThingList {
 			get { return NewRel<RootContainsThing>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsUrl OutContainsUrls {
+		public virtual RootContainsUrl ContainsUrlList {
 			get { return NewRel<RootContainsUrl>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsUser OutContainsUsers {
+		public virtual RootContainsUser ContainsUserList {
 			get { return NewRel<RootContainsUser>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsFactor OutContainsFactors {
+		public virtual RootContainsFactor ContainsFactorList {
 			get { return NewRel<RootContainsFactor>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsFactorAssertion OutContainsFactorAssertions {
+		public virtual RootContainsFactorAssertion ContainsFactorAssertionList {
 			get { return NewRel<RootContainsFactorAssertion>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDescriptor OutContainsDescriptors {
+		public virtual RootContainsDescriptor ContainsDescriptorList {
 			get { return NewRel<RootContainsDescriptor>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDescriptorType OutContainsDescriptorTypes {
+		public virtual RootContainsDescriptorType ContainsDescriptorTypeList {
 			get { return NewRel<RootContainsDescriptorType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirector OutContainsDirectors {
+		public virtual RootContainsDirector ContainsDirectorList {
 			get { return NewRel<RootContainsDirector>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirectorType OutContainsDirectorTypes {
+		public virtual RootContainsDirectorType ContainsDirectorTypeList {
 			get { return NewRel<RootContainsDirectorType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirectorAction OutContainsDirectorActions {
+		public virtual RootContainsDirectorAction ContainsDirectorActionList {
 			get { return NewRel<RootContainsDirectorAction>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventor OutContainsEventors {
+		public virtual RootContainsEventor ContainsEventorList {
 			get { return NewRel<RootContainsEventor>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventorType OutContainsEventorTypes {
+		public virtual RootContainsEventorType ContainsEventorTypeList {
 			get { return NewRel<RootContainsEventorType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventorPrecision OutContainsEventorPrecisions {
+		public virtual RootContainsEventorPrecision ContainsEventorPrecisionList {
 			get { return NewRel<RootContainsEventorPrecision>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsIdentor OutContainsIdentors {
+		public virtual RootContainsIdentor ContainsIdentorList {
 			get { return NewRel<RootContainsIdentor>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsIdentorType OutContainsIdentorTypes {
+		public virtual RootContainsIdentorType ContainsIdentorTypeList {
 			get { return NewRel<RootContainsIdentorType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLocator OutContainsLocators {
+		public virtual RootContainsLocator ContainsLocatorList {
 			get { return NewRel<RootContainsLocator>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLocatorType OutContainsLocatorTypes {
+		public virtual RootContainsLocatorType ContainsLocatorTypeList {
 			get { return NewRel<RootContainsLocatorType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVector OutContainsVectors {
+		public virtual RootContainsVector ContainsVectorList {
 			get { return NewRel<RootContainsVector>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorType OutContainsVectorTypes {
+		public virtual RootContainsVectorType ContainsVectorTypeList {
 			get { return NewRel<RootContainsVectorType>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorRange OutContainsVectorRanges {
+		public virtual RootContainsVectorRange ContainsVectorRangeList {
 			get { return NewRel<RootContainsVectorRange>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorRangeLevel OutContainsVectorRangeLevels {
+		public virtual RootContainsVectorRangeLevel ContainsVectorRangeLevelList {
 			get { return NewRel<RootContainsVectorRangeLevel>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnit OutContainsVectorUnits {
+		public virtual RootContainsVectorUnit ContainsVectorUnitList {
 			get { return NewRel<RootContainsVectorUnit>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnitPrefix OutContainsVectorUnitPrefixs {
+		public virtual RootContainsVectorUnitPrefix ContainsVectorUnitPrefixList {
 			get { return NewRel<RootContainsVectorUnitPrefix>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnitDerived OutContainsVectorUnitDeriveds {
+		public virtual RootContainsVectorUnitDerived ContainsVectorUnitDerivedList {
 			get { return NewRel<RootContainsVectorUnitDerived>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthAccess OutContainsOauthAccesss {
+		public virtual RootContainsOauthAccess ContainsOauthAccessList {
 			get { return NewRel<RootContainsOauthAccess>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthDomain OutContainsOauthDomains {
+		public virtual RootContainsOauthDomain ContainsOauthDomainList {
 			get { return NewRel<RootContainsOauthDomain>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthGrant OutContainsOauthGrants {
+		public virtual RootContainsOauthGrant ContainsOauthGrantList {
 			get { return NewRel<RootContainsOauthGrant>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthScope OutContainsOauthScopes {
+		public virtual RootContainsOauthScope ContainsOauthScopeList {
 			get { return NewRel<RootContainsOauthScope>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
@@ -1304,37 +1304,37 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual AppHasArtifact OutHasArtifact {
+		public virtual AppHasArtifact HasArtifact {
 			get { return NewRel<AppHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual AppUsesEmail OutUsesEmail {
+		public virtual AppUsesEmail UsesEmail {
 			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual AppDefinesMember OutDefinesMembers {
+		public virtual AppDefinesMember DefinesMemberList {
 			get { return NewRel<AppDefinesMember>(WeaverRelConn.OutToOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessUsesApp InOauthAccesssUses {
+		public virtual OauthAccessUsesApp InOauthAccessListUses {
 			get { return NewRel<OauthAccessUsesApp>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthDomainUsesApp InOauthDomainsUses {
+		public virtual OauthDomainUsesApp InOauthDomainListUses {
 			get { return NewRel<OauthDomainUsesApp>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthGrantUsesApp InOauthGrantsUses {
+		public virtual OauthGrantUsesApp InOauthGrantListUses {
 			get { return NewRel<OauthGrantUsesApp>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthScopeUsesApp InOauthScopesUses {
+		public virtual OauthScopeUsesApp InOauthScopeListUses {
 			get { return NewRel<OauthScopeUsesApp>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -1373,7 +1373,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ArtifactUsesArtifactType OutUsesArtifactType {
+		public virtual ArtifactUsesArtifactType UsesArtifactType {
 			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.OutToOne); }
 		}
 
@@ -1408,32 +1408,32 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesPrimaryArtifact InFactorsUsesPrimary {
+		public virtual FactorUsesPrimaryArtifact InFactorListUsesPrimary {
 			get { return NewRel<FactorUsesPrimaryArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesRelatedArtifact InFactorsUsesRelated {
+		public virtual FactorUsesRelatedArtifact InFactorListUsesRelated {
 			get { return NewRel<FactorUsesRelatedArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesPrimaryWithArtifact InDescriptorsRefinesPrimaryWith {
+		public virtual DescriptorRefinesPrimaryWithArtifact InDescriptorListRefinesPrimaryWith {
 			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesRelatedWithArtifact InDescriptorsRefinesRelatedWith {
+		public virtual DescriptorRefinesRelatedWithArtifact InDescriptorListRefinesRelatedWith {
 			get { return NewRel<DescriptorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesTypeWithArtifact InDescriptorsRefinesTypeWith {
+		public virtual DescriptorRefinesTypeWithArtifact InDescriptorListRefinesTypeWith {
 			get { return NewRel<DescriptorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesAxisArtifact InVectorsUsesAxis {
+		public virtual VectorUsesAxisArtifact InVectorListUsesAxis {
 			get { return NewRel<VectorUsesAxisArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -1460,7 +1460,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ArtifactUsesArtifactType InArtifactsUses {
+		public virtual ArtifactUsesArtifactType InArtifactListUses {
 			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -1502,12 +1502,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdHasArtifact OutHasArtifact {
+		public virtual CrowdHasArtifact HasArtifact {
 			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdDefinesCrowdian OutDefinesCrowdians {
+		public virtual CrowdDefinesCrowdian DefinesCrowdianList {
 			get { return NewRel<CrowdDefinesCrowdian>(WeaverRelConn.OutToOneOrMore); }
 		}
 
@@ -1539,12 +1539,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianHasCrowdianTypeAssign OutHasCrowdianTypeAssign {
+		public virtual CrowdianHasCrowdianTypeAssign HasCrowdianTypeAssign {
 			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianHasHistoricCrowdianTypeAssign OutHasHistoricCrowdianTypeAssigns {
+		public virtual CrowdianHasHistoricCrowdianTypeAssign HasHistoricCrowdianTypeAssignList {
 			get { return NewRel<CrowdianHasHistoricCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
@@ -1576,7 +1576,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianTypeAssignUsesCrowdianType InCrowdianTypeAssignsUses {
+		public virtual CrowdianTypeAssignUsesCrowdianType InCrowdianTypeAssignListUses {
 			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -1616,7 +1616,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianTypeAssignUsesCrowdianType OutUsesCrowdianType {
+		public virtual CrowdianTypeAssignUsesCrowdianType UsesCrowdianType {
 			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.OutToOne); }
 		}
 
@@ -1707,7 +1707,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual LabelHasArtifact OutHasArtifact {
+		public virtual LabelHasArtifact HasArtifact {
 			get { return NewRel<LabelHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
@@ -1739,27 +1739,27 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberHasMemberTypeAssign OutHasMemberTypeAssign {
+		public virtual MemberHasMemberTypeAssign HasMemberTypeAssign {
 			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberHasHistoricMemberTypeAssign OutHasHistoricMemberTypeAssigns {
+		public virtual MemberHasHistoricMemberTypeAssign HasHistoricMemberTypeAssignList {
 			get { return NewRel<MemberHasHistoricMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberCreatesArtifact OutCreatesArtifacts {
+		public virtual MemberCreatesArtifact CreatesArtifactList {
 			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberCreatesMemberTypeAssign OutCreatesMemberTypeAssigns {
+		public virtual MemberCreatesMemberTypeAssign CreatesMemberTypeAssignList {
 			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberCreatesFactor OutCreatesFactors {
+		public virtual MemberCreatesFactor CreatesFactorList {
 			get { return NewRel<MemberCreatesFactor>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
@@ -1791,7 +1791,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberTypeAssignUsesMemberType InMemberTypeAssignsUses {
+		public virtual MemberTypeAssignUsesMemberType InMemberTypeAssignListUses {
 			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -1833,7 +1833,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberTypeAssignUsesMemberType OutUsesMemberType {
+		public virtual MemberTypeAssignUsesMemberType UsesMemberType {
 			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.OutToOne); }
 		}
 
@@ -1876,7 +1876,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual ThingHasArtifact OutHasArtifact {
+		public virtual ThingHasArtifact HasArtifact {
 			get { return NewRel<ThingHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
@@ -1913,7 +1913,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UrlHasArtifact OutHasArtifact {
+		public virtual UrlHasArtifact HasArtifact {
 			get { return NewRel<UrlHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
@@ -1953,42 +1953,42 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserHasArtifact OutHasArtifact {
+		public virtual UserHasArtifact HasArtifact {
 			get { return NewRel<UserHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserCreatesCrowdianTypeAssign OutCreatesCrowdianTypeAssigns {
+		public virtual UserCreatesCrowdianTypeAssign CreatesCrowdianTypeAssignList {
 			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserDefinesCrowdian OutDefinesCrowdians {
+		public virtual UserDefinesCrowdian DefinesCrowdianList {
 			get { return NewRel<UserDefinesCrowdian>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserUsesEmail OutUsesEmail {
+		public virtual UserUsesEmail UsesEmail {
 			get { return NewRel<UserUsesEmail>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserDefinesMember OutDefinesMembers {
+		public virtual UserDefinesMember DefinesMemberList {
 			get { return NewRel<UserDefinesMember>(WeaverRelConn.OutToOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessUsesUser InOauthAccesssUses {
+		public virtual OauthAccessUsesUser InOauthAccessListUses {
 			get { return NewRel<OauthAccessUsesUser>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthGrantUsesUser InOauthGrantsUses {
+		public virtual OauthGrantUsesUser InOauthGrantListUses {
 			get { return NewRel<OauthGrantUsesUser>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthScopeUsesUser InOauthScopesUses {
+		public virtual OauthScopeUsesUser InOauthScopeListUses {
 			get { return NewRel<OauthScopeUsesUser>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2044,52 +2044,52 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesPrimaryArtifact OutUsesPrimaryArtifact {
+		public virtual FactorUsesPrimaryArtifact UsesPrimaryArtifact {
 			get { return NewRel<FactorUsesPrimaryArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesRelatedArtifact OutUsesRelatedArtifact {
+		public virtual FactorUsesRelatedArtifact UsesRelatedArtifact {
 			get { return NewRel<FactorUsesRelatedArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesFactorAssertion OutUsesFactorAssertion {
+		public virtual FactorUsesFactorAssertion UsesFactorAssertion {
 			get { return NewRel<FactorUsesFactorAssertion>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorReplacesFactor OutReplacesFactor {
+		public virtual FactorReplacesFactor ReplacesFactor {
 			get { return NewRel<FactorReplacesFactor>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesDescriptor OutUsesDescriptor {
+		public virtual FactorUsesDescriptor UsesDescriptor {
 			get { return NewRel<FactorUsesDescriptor>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesDirector OutUsesDirector {
+		public virtual FactorUsesDirector UsesDirector {
 			get { return NewRel<FactorUsesDirector>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesEventor OutUsesEventor {
+		public virtual FactorUsesEventor UsesEventor {
 			get { return NewRel<FactorUsesEventor>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesIdentor OutUsesIdentor {
+		public virtual FactorUsesIdentor UsesIdentor {
 			get { return NewRel<FactorUsesIdentor>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesLocator OutUsesLocator {
+		public virtual FactorUsesLocator UsesLocator {
 			get { return NewRel<FactorUsesLocator>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesVector OutUsesVector {
+		public virtual FactorUsesVector UsesVector {
 			get { return NewRel<FactorUsesVector>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
@@ -2116,7 +2116,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesFactorAssertion InFactorsUses {
+		public virtual FactorUsesFactorAssertion InFactorListUses {
 			get { return NewRel<FactorUsesFactorAssertion>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2148,27 +2148,27 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesDescriptor InFactorsUses {
+		public virtual FactorUsesDescriptor InFactorListUses {
 			get { return NewRel<FactorUsesDescriptor>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorUsesDescriptorType OutUsesDescriptorType {
+		public virtual DescriptorUsesDescriptorType UsesDescriptorType {
 			get { return NewRel<DescriptorUsesDescriptorType>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesPrimaryWithArtifact OutRefinesPrimaryWithArtifact {
+		public virtual DescriptorRefinesPrimaryWithArtifact RefinesPrimaryWithArtifact {
 			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesRelatedWithArtifact OutRefinesRelatedWithArtifact {
+		public virtual DescriptorRefinesRelatedWithArtifact RefinesRelatedWithArtifact {
 			get { return NewRel<DescriptorRefinesRelatedWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesTypeWithArtifact OutRefinesTypeWithArtifact {
+		public virtual DescriptorRefinesTypeWithArtifact RefinesTypeWithArtifact {
 			get { return NewRel<DescriptorRefinesTypeWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
@@ -2195,7 +2195,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorUsesDescriptorType InDescriptorsUses {
+		public virtual DescriptorUsesDescriptorType InDescriptorListUses {
 			get { return NewRel<DescriptorUsesDescriptorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2222,22 +2222,22 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesDirector InFactorsUses {
+		public virtual FactorUsesDirector InFactorListUses {
 			get { return NewRel<FactorUsesDirector>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesDirectorType OutUsesDirectorType {
+		public virtual DirectorUsesDirectorType UsesDirectorType {
 			get { return NewRel<DirectorUsesDirectorType>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesPrimaryDirectorAction OutUsesPrimaryDirectorAction {
+		public virtual DirectorUsesPrimaryDirectorAction UsesPrimaryDirectorAction {
 			get { return NewRel<DirectorUsesPrimaryDirectorAction>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesRelatedDirectorAction OutUsesRelatedDirectorAction {
+		public virtual DirectorUsesRelatedDirectorAction UsesRelatedDirectorAction {
 			get { return NewRel<DirectorUsesRelatedDirectorAction>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2264,7 +2264,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesDirectorType InDirectorsUses {
+		public virtual DirectorUsesDirectorType InDirectorListUses {
 			get { return NewRel<DirectorUsesDirectorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2291,12 +2291,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesPrimaryDirectorAction InDirectorsUsesPrimary {
+		public virtual DirectorUsesPrimaryDirectorAction InDirectorListUsesPrimary {
 			get { return NewRel<DirectorUsesPrimaryDirectorAction>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesRelatedDirectorAction InDirectorsUsesRelated {
+		public virtual DirectorUsesRelatedDirectorAction InDirectorListUsesRelated {
 			get { return NewRel<DirectorUsesRelatedDirectorAction>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2326,17 +2326,17 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesEventor InFactorsUses {
+		public virtual FactorUsesEventor InFactorListUses {
 			get { return NewRel<FactorUsesEventor>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorType OutUsesEventorType {
+		public virtual EventorUsesEventorType UsesEventorType {
 			get { return NewRel<EventorUsesEventorType>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorPrecision OutUsesEventorPrecision {
+		public virtual EventorUsesEventorPrecision UsesEventorPrecision {
 			get { return NewRel<EventorUsesEventorPrecision>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2363,7 +2363,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorType InEventorsUses {
+		public virtual EventorUsesEventorType InEventorListUses {
 			get { return NewRel<EventorUsesEventorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2390,7 +2390,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorPrecision InEventorsUses {
+		public virtual EventorUsesEventorPrecision InEventorListUses {
 			get { return NewRel<EventorUsesEventorPrecision>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2421,12 +2421,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesIdentor InFactorsUses {
+		public virtual FactorUsesIdentor InFactorListUses {
 			get { return NewRel<FactorUsesIdentor>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IdentorUsesIdentorType OutUsesIdentorType {
+		public virtual IdentorUsesIdentorType UsesIdentorType {
 			get { return NewRel<IdentorUsesIdentorType>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2453,7 +2453,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IdentorUsesIdentorType InIdentorsUses {
+		public virtual IdentorUsesIdentorType InIdentorListUses {
 			get { return NewRel<IdentorUsesIdentorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2489,12 +2489,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesLocator InFactorsUses {
+		public virtual FactorUsesLocator InFactorListUses {
 			get { return NewRel<FactorUsesLocator>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual LocatorUsesLocatorType OutUsesLocatorType {
+		public virtual LocatorUsesLocatorType UsesLocatorType {
 			get { return NewRel<LocatorUsesLocatorType>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2539,7 +2539,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual LocatorUsesLocatorType InLocatorsUses {
+		public virtual LocatorUsesLocatorType InLocatorListUses {
 			get { return NewRel<LocatorUsesLocatorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2569,27 +2569,27 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesVector InFactorsUses {
+		public virtual FactorUsesVector InFactorListUses {
 			get { return NewRel<FactorUsesVector>(WeaverRelConn.InFromOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesAxisArtifact OutUsesAxisArtifact {
+		public virtual VectorUsesAxisArtifact UsesAxisArtifact {
 			get { return NewRel<VectorUsesAxisArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorType OutUsesVectorType {
+		public virtual VectorUsesVectorType UsesVectorType {
 			get { return NewRel<VectorUsesVectorType>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnit OutUsesVectorUnit {
+		public virtual VectorUsesVectorUnit UsesVectorUnit {
 			get { return NewRel<VectorUsesVectorUnit>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnitPrefix OutUsesVectorUnitPrefix {
+		public virtual VectorUsesVectorUnitPrefix UsesVectorUnitPrefix {
 			get { return NewRel<VectorUsesVectorUnitPrefix>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2622,12 +2622,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorType InVectorsUses {
+		public virtual VectorUsesVectorType InVectorListUses {
 			get { return NewRel<VectorUsesVectorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorTypeUsesVectorRange OutUsesVectorRange {
+		public virtual VectorTypeUsesVectorRange UsesVectorRange {
 			get { return NewRel<VectorTypeUsesVectorRange>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2654,12 +2654,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorTypeUsesVectorRange InVectorTypesUses {
+		public virtual VectorTypeUsesVectorRange InVectorTypeListUses {
 			get { return NewRel<VectorTypeUsesVectorRange>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorRangeUsesVectorRangeLevel OutUsesVectorRangeLevels {
+		public virtual VectorRangeUsesVectorRangeLevel UsesVectorRangeLevelList {
 			get { return NewRel<VectorRangeUsesVectorRangeLevel>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
@@ -2689,7 +2689,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorRangeUsesVectorRangeLevel InVectorRangesUses {
+		public virtual VectorRangeUsesVectorRangeLevel InVectorRangeListUses {
 			get { return NewRel<VectorRangeUsesVectorRangeLevel>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2720,17 +2720,17 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnit InVectorsUses {
+		public virtual VectorUsesVectorUnit InVectorListUses {
 			get { return NewRel<VectorUsesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedDefinesVectorUnit InVectorUnitDerivedsDefines {
+		public virtual VectorUnitDerivedDefinesVectorUnit InVectorUnitDerivedListDefines {
 			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedRaisesToExpVectorUnit InVectorUnitDerivedsRaisesToExp {
+		public virtual VectorUnitDerivedRaisesToExpVectorUnit InVectorUnitDerivedListRaisesToExp {
 			get { return NewRel<VectorUnitDerivedRaisesToExpVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2764,12 +2764,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnitPrefix InVectorsUses {
+		public virtual VectorUsesVectorUnitPrefix InVectorListUses {
 			get { return NewRel<VectorUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedUsesVectorUnitPrefix InVectorUnitDerivedsUses {
+		public virtual VectorUnitDerivedUsesVectorUnitPrefix InVectorUnitDerivedListUses {
 			get { return NewRel<VectorUnitDerivedUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
@@ -2799,17 +2799,17 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedDefinesVectorUnit OutDefinesVectorUnit {
+		public virtual VectorUnitDerivedDefinesVectorUnit DefinesVectorUnit {
 			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedRaisesToExpVectorUnit OutRaisesToExpVectorUnit {
+		public virtual VectorUnitDerivedRaisesToExpVectorUnit RaisesToExpVectorUnit {
 			get { return NewRel<VectorUnitDerivedRaisesToExpVectorUnit>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedUsesVectorUnitPrefix OutUsesVectorUnitPrefix {
+		public virtual VectorUnitDerivedUsesVectorUnitPrefix UsesVectorUnitPrefix {
 			get { return NewRel<VectorUnitDerivedUsesVectorUnitPrefix>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2853,12 +2853,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessUsesApp OutUsesApp {
+		public virtual OauthAccessUsesApp UsesApp {
 			get { return NewRel<OauthAccessUsesApp>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessUsesUser OutUsesUser {
+		public virtual OauthAccessUsesUser UsesUser {
 			get { return NewRel<OauthAccessUsesUser>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
@@ -2889,7 +2889,7 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthDomainUsesApp OutUsesApp {
+		public virtual OauthDomainUsesApp UsesApp {
 			get { return NewRel<OauthDomainUsesApp>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2928,12 +2928,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthGrantUsesApp OutUsesApp {
+		public virtual OauthGrantUsesApp UsesApp {
 			get { return NewRel<OauthGrantUsesApp>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthGrantUsesUser OutUsesUser {
+		public virtual OauthGrantUsesUser UsesUser {
 			get { return NewRel<OauthGrantUsesUser>(WeaverRelConn.OutToOne); }
 		}
 
@@ -2967,12 +2967,12 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthScopeUsesApp OutUsesApp {
+		public virtual OauthScopeUsesApp UsesApp {
 			get { return NewRel<OauthScopeUsesApp>(WeaverRelConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthScopeUsesUser OutUsesUser {
+		public virtual OauthScopeUsesUser UsesUser {
 			get { return NewRel<OauthScopeUsesUser>(WeaverRelConn.OutToOne); }
 		}
 

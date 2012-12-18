@@ -11,7 +11,6 @@ namespace Fabric.Infrastructure.Domain {
 		public bool IsMany { get; private set; }
 		public bool IsTargetNodeInternal { get; private set; }
 		public string RelPropName { get; private set; }
-		public string RelDtoPropName { get; private set; }
 		public string TargetNodeType { get; private set; }
 
 
@@ -24,7 +23,6 @@ namespace Fabric.Infrastructure.Domain {
 			IsMany = GetRelHasMany(IsOutgoing);
 			IsTargetNodeInternal = GetRelNodeIsInternal(IsOutgoing);
 			RelPropName = GetRelPropName(IsOutgoing);
-			RelDtoPropName = GetRelDtoPropName(IsOutgoing);
 			TargetNodeType = GetRelNodeType(IsOutgoing);
 		}
 

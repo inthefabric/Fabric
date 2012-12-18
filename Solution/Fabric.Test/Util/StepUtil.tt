@@ -43,7 +43,7 @@ foreach ( string name in nodes ) {
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
 #>
-				"/<#= hr.RelDtoPropName #>",
+				"/<#= hr.RelPropName #>",
 <#
 	} //end nodeRels loop
 #>

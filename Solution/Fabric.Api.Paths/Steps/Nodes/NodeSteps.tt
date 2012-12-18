@@ -26,12 +26,12 @@ foreach ( string name in nodeNames ) {
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( intMap.ContainsKey(hr.RelDtoPropName) ) { continue; }
-		intMap.Add(hr.RelDtoPropName, true);
+		if ( intMap.ContainsKey(hr.RelPropName) ) { continue; }
+		intMap.Add(hr.RelPropName, true);
 #>
 	/*================================================================================================*/
-	public interface I<#= hr.RelDtoPropName #> {
-		<#= hr.TargetNodeType #>Step <#= hr.RelDtoPropName #> { get; }
+	public interface I<#= hr.RelPropName #> {
+		<#= hr.TargetNodeType #>Step <#= hr.RelPropName #> { get; }
 	}
 
 <#
@@ -48,9 +48,9 @@ foreach ( string name in nodeNames ) {
 	string steps = "";
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		interfaces += (interfaces == "" ? "" : ", ")+"I"+hr.RelDtoPropName;
+		interfaces += (interfaces == "" ? "" : ", ")+"I"+hr.RelPropName;
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
-		steps += (steps == "" ? "" : ", ")+"\"/"+hr.RelDtoPropName+"\"";
+		steps += (steps == "" ? "" : ", ")+"\"/"+hr.RelPropName+"\"";
 	}
 	
 	string typeIdIsLong = "false";
@@ -114,7 +114,7 @@ foreach ( string name in nodeNames ) {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
-		var propName = hr.RelDtoPropName;
+		var propName = hr.RelPropName;
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;
 <#
@@ -133,7 +133,7 @@ foreach ( string name in nodeNames ) {
 		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelName+"')";
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= propType #> <#= hr.RelDtoPropName #> {
+		public <#= propType #> <#= hr.RelPropName #> {
 			get {
 				Path.AppendToCurrentSegment("<#= script #>");
 				return new <#= propType #>(<#= (hr.IsOutgoing ? "true" : "false") #>, Path);

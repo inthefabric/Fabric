@@ -110,7 +110,7 @@ foreach ( string name in nodes ) {
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
 #>
 					l = new SpecLink();
-					l.Name = "<#= hr.RelDtoPropName #>";
+					l.Name = "<#= hr.RelPropName #>";
 					l.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
 					l.FromDto = "Fab<#= hr.FromNodeName #>";
 					l.FromDtoConn = "<#= hr.RelSchema.FromNodeConn+"" #>";

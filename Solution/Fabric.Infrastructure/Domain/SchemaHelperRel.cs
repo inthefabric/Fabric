@@ -52,20 +52,8 @@ namespace Fabric.Infrastructure.Domain {
 			);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetRelPropName(bool pIsOut) {
-			var useS = (GetRelHasMany(pIsOut) ? "s" : "");
-
-			return (pIsOut ?
-				"Out"+RelTypeName+ToNodeName+useS :
-				"In"+FromNodeName+useS+RelTypeName
-			);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public string GetRelDtoPropName(bool pIsOut) {
 			var useS = (GetRelHasMany(pIsOut) ? "List" : "");
 
 			return (pIsOut ?
@@ -73,6 +61,7 @@ namespace Fabric.Infrastructure.Domain {
 				"In"+FromNodeName+useS+RelTypeName
 			);
 		}
+
 	}
 
 }
