@@ -29,24 +29,24 @@ namespace Fabric.Test.Util {
 			var map = new Dictionary<string, string[]>();
 
 <#
-var schema = new Schema();
+IList<string> nodes = SchemaHelper.GetNodes();
 
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
 	if ( node.IsAbstract || node.IsInternal ) { continue; }
 
-	string steps = "";
-	
-	foreach ( WeaverRelSchema rel in schema.Rels ) {
-		if ( rel.FromNode != node && rel.ToNode != node ) { continue; }
-		bool isOut = (rel.FromNode == node);
-		if ( PathUtil.GetRelIsTargetNodeInternal(rel, isOut) ) { continue; }
-
-		if ( node.Name != "Root" && rel.FromNode.Name == "Root" ) { continue; }
-		steps += (steps == "" ? "" : ",\r\n\t\t\t\t")+"\"/"+PathUtil.GetRelProp(rel, isOut)+"\"";
-	}
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
 #>
 			map.Add("<#= node.Name #>", new [] {
-				<#= steps #>
+<#
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+#>
+				"/<#= hr.RelDtoPropName #>",
+<#
+	} //end nodeRels loop
+#>
 			});
 
 <#
@@ -56,11 +56,15 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		}
 		
 <#
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	continue; //only for generation of test cases
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	if ( node.IsAbstract || node.IsInternal ) { continue; }
+
 	if ( node.IsAbstract ) { continue; }
 #>
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void <#= node.Name #>Step() {
 			TestStep("<#= node.Name #>", (tn, p) => new <#= node.Name #>Step(tn, p));
@@ -69,6 +73,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 <#
 }
 #>
+		*/
 	}
 
 }

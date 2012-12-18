@@ -45,7 +45,7 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<SchemaHelperNodeRel> GetRels(bool pSkipInternal=false) {
 			return vRels
-				//.Where(p => (!pSkipInternal || p.RelSchema.IsInternal != true))
+				.Where(r => (!pSkipInternal || !r.IsTargetNodeInternal))
 				.ToList();
 		}
 
