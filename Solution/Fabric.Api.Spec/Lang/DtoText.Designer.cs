@@ -22,7 +22,7 @@ namespace Fabric.Api.Spec.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class DtoText {
+    internal class DtoText {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Fabric.Api.Spec.Lang {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Spec.Lang.DtoText", typeof(DtoText).Assembly);
@@ -51,7 +51,7 @@ namespace Fabric.Api.Spec.Lang {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -67,7 +67,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///When a User becomes a Member of an !App, they are granting that !App permission to perform various actions o [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string App {
+        internal static string App {
             get {
                 return ResourceManager.GetString("App", resourceCulture);
             }
@@ -78,7 +78,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///Every !Artifact maps exclusively to one other item in the Fabric architecture (such as an App, Crowd, or User). Fabric generates an !Artifact automatically each time a new !Artifact-enabled item is created.  Technically, each of these items &apos;has&apos; an associated !Artifact. However, due to the item&apos;s exclusive owner [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Artifact {
+        internal static string Artifact {
             get {
                 return ResourceManager.GetString("Artifact", resourceCulture);
             }
@@ -87,7 +87,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact. Example types include: !App, !Thing, !Comment, etc..
         /// </summary>
-        public static string ArtifactType {
+        internal static string ArtifactType {
             get {
                 return ResourceManager.GetString("ArtifactType", resourceCulture);
             }
@@ -96,7 +96,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The {{Item}} is one of seven Artifact Owners. Each {{Item}}-owned Artifact {{Access}} and {{Talk}}..
         /// </summary>
-        public static string ArtItem_Main {
+        internal static string ArtItem_Main {
             get {
                 return ResourceManager.GetString("ArtItem_Main", resourceCulture);
             }
@@ -105,7 +105,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to is accessible only to the User who created it.
         /// </summary>
-        public static string ArtItem_Private {
+        internal static string ArtItem_Private {
             get {
                 return ResourceManager.GetString("ArtItem_Private", resourceCulture);
             }
@@ -114,7 +114,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to is publicly accessible.
         /// </summary>
-        public static string ArtItem_Public {
+        internal static string ArtItem_Public {
             get {
                 return ResourceManager.GetString("ArtItem_Public", resourceCulture);
             }
@@ -123,7 +123,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to can have either public or private accessibility.
         /// </summary>
-        public static string ArtItem_VariedAccess {
+        internal static string ArtItem_VariedAccess {
             get {
                 return ResourceManager.GetString("ArtItem_VariedAccess", resourceCulture);
             }
@@ -132,7 +132,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The essential data for a particular {{Item}}..
         /// </summary>
-        public static string Core_Common {
+        internal static string Core_Common {
             get {
                 return ResourceManager.GetString("Core_Common", resourceCulture);
             }
@@ -148,7 +148,7 @@ namespace Fabric.Api.Spec.Lang {
         ///!Crowds are useful on many levels, as they:
         ///- allow like-minded Users to connect and  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Crowd {
+        internal static string Crowd {
             get {
                 return ResourceManager.GetString("Crowd", resourceCulture);
             }
@@ -161,7 +161,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///There are various restrictions (based on Crowd properties) for !Crowdian creat [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Crowdian {
+        internal static string Crowdian {
             get {
                 return ResourceManager.GetString("Crowdian", resourceCulture);
             }
@@ -170,7 +170,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc..
         /// </summary>
-        public static string CrowdianType {
+        internal static string CrowdianType {
             get {
                 return ResourceManager.GetString("CrowdianType", resourceCulture);
             }
@@ -179,7 +179,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string CrowdianTypeAssign {
+        internal static string CrowdianTypeAssign {
             get {
                 return ResourceManager.GetString("CrowdianTypeAssign", resourceCulture);
             }
@@ -192,7 +192,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///The Artifact relationship (defined by a Factor) is directional, flowing from the primary Artifact to the related Artifact. The DescriptorType, therefore, must coordina [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Descriptor {
+        internal static string Descriptor {
             get {
                 return ResourceManager.GetString("Descriptor", resourceCulture);
             }
@@ -201,7 +201,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor. Example types include: Is A, Refers To, Sounds Like, etc..
         /// </summary>
-        public static string DescriptorType {
+        internal static string DescriptorType {
             get {
                 return ResourceManager.GetString("DescriptorType", resourceCulture);
             }
@@ -214,7 +214,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///A !Director specifies a DirectorAction for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Director {
+        internal static string Director {
             get {
                 return ResourceManager.GetString("Director", resourceCulture);
             }
@@ -223,7 +223,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc..
         /// </summary>
-        public static string DirectorAction {
+        internal static string DirectorAction {
             get {
                 return ResourceManager.GetString("DirectorAction", resourceCulture);
             }
@@ -232,7 +232,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc..
         /// </summary>
-        public static string DirectorType {
+        internal static string DirectorType {
             get {
                 return ResourceManager.GetString("DirectorType", resourceCulture);
             }
@@ -241,7 +241,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to When a fault or error occurs, a FabError is returned in place of the expected API response type. The information it provides should help determine issues with a particular API request..
         /// </summary>
-        public static string Error {
+        internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
             }
@@ -254,7 +254,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The EventorPrecision allows a point in time to specify a level of accuracy ranging from o [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Eventor {
+        internal static string Eventor {
             get {
                 return ResourceManager.GetString("Eventor", resourceCulture);
             }
@@ -263,7 +263,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc..
         /// </summary>
-        public static string EventorPrecision {
+        internal static string EventorPrecision {
             get {
                 return ResourceManager.GetString("EventorPrecision", resourceCulture);
             }
@@ -272,7 +272,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides temporal significance (via Eventor) for a particular Factor.  Example types include: Start, Occur, Expected, etc..
         /// </summary>
-        public static string EventorType {
+        internal static string EventorType {
             get {
                 return ResourceManager.GetString("EventorType", resourceCulture);
             }
@@ -285,7 +285,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///The six !Factor Elements are called Descript [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Factor {
+        internal static string Factor {
             get {
                 return ResourceManager.GetString("Factor", resourceCulture);
             }
@@ -294,7 +294,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc..
         /// </summary>
-        public static string FactorAssertion {
+        internal static string FactorAssertion {
             get {
                 return ResourceManager.GetString("FactorAssertion", resourceCulture);
             }
@@ -303,7 +303,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The {{Item}} is one of six Factor Elements. Each Element provides a specific type of meaning to a Factor..
         /// </summary>
-        public static string FactorElem_Main {
+        internal static string FactorElem_Main {
             get {
                 return ResourceManager.GetString("FactorElem_Main", resourceCulture);
             }
@@ -312,7 +312,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string FactorElementNode {
+        internal static string FactorElementNode {
             get {
                 return ResourceManager.GetString("FactorElementNode", resourceCulture);
             }
@@ -321,7 +321,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The base class for all Fault objects..
         /// </summary>
-        public static string Fault {
+        internal static string Fault {
             get {
                 return ResourceManager.GetString("Fault", resourceCulture);
             }
@@ -334,7 +334,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///The IdentorType hints at the purpose or intent of the !Identor. A &apos;Text&apos; IdentorType is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A &apos;Key&apos; IdentorType is typically meant to associate [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Identor {
+        internal static string Identor {
             get {
                 return ResourceManager.GetString("Identor", resourceCulture);
             }
@@ -343,7 +343,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc..
         /// </summary>
-        public static string IdentorType {
+        internal static string IdentorType {
             get {
                 return ResourceManager.GetString("IdentorType", resourceCulture);
             }
@@ -354,7 +354,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///!Labels are less formal (and less effective) than a Thing, and should only be used in certain circumstances.  For example, some value or code (like &apos;A-1234&apos; or &apos;study for science test&apos;) might have a useful purpose for a particular User..
         /// </summary>
-        public static string Label {
+        internal static string Label {
             get {
                 return ResourceManager.GetString("Label", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace Fabric.Api.Spec.Lang {
         ///[(EX|Geographic Example|_Objective:_
         ///Specify t [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Locator {
+        internal static string Locator {
             get {
                 return ResourceManager.GetString("Locator", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides spatial context and boundaries (via Locator) for a particular Factor. Example types include: Earth Coordinate, Mars Coordinate, Relative 3D Position, etc..
         /// </summary>
-        public static string LocatorType {
+        internal static string LocatorType {
             get {
                 return ResourceManager.GetString("LocatorType", resourceCulture);
             }
@@ -389,7 +389,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///Every item added to Fabric is associated with a particular !Member. Thus, Fabric can determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc..
         /// </summary>
-        public static string Member {
+        internal static string Member {
             get {
                 return ResourceManager.GetString("Member", resourceCulture);
             }
@@ -398,7 +398,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Describes the level of access and control given to a particular Member.  Example types include: !Member, Admin, Data Provider, etc..
         /// </summary>
-        public static string MemberType {
+        internal static string MemberType {
             get {
                 return ResourceManager.GetString("MemberType", resourceCulture);
             }
@@ -407,7 +407,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string MemberTypeAssign {
+        internal static string MemberTypeAssign {
             get {
                 return ResourceManager.GetString("MemberTypeAssign", resourceCulture);
             }
@@ -416,7 +416,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string Node {
+        internal static string Node {
             get {
                 return ResourceManager.GetString("Node", resourceCulture);
             }
@@ -425,7 +425,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string NodeForAction {
+        internal static string NodeForAction {
             get {
                 return ResourceManager.GetString("NodeForAction", resourceCulture);
             }
@@ -434,7 +434,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string NodeForType {
+        internal static string NodeForType {
             get {
                 return ResourceManager.GetString("NodeForType", resourceCulture);
             }
@@ -443,7 +443,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The API response wrapper; contains the Data payload and other metadata..
         /// </summary>
-        public static string Response {
+        internal static string Response {
             get {
                 return ResourceManager.GetString("Response", resourceCulture);
             }
@@ -452,7 +452,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string Root {
+        internal static string Root {
             get {
                 return ResourceManager.GetString("Root", resourceCulture);
             }
@@ -464,7 +464,7 @@ namespace Fabric.Api.Spec.Lang {
         ///- A !Thing receives Factors via its associated Artifact.
         ///- Each Factor refe [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Thing {
+        internal static string Thing {
             get {
                 return ResourceManager.GetString("Thing", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace Fabric.Api.Spec.Lang {
         ///- The news article and photo (via their Artifacts) can receive Factors independently.
         ///- The !Url (via its Artifact) should onl [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Url {
+        internal static string Url {
             get {
                 return ResourceManager.GetString("Url", resourceCulture);
             }
@@ -490,7 +490,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///Every item added to Fabric is associated with (via Member) a !User and and a [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string User {
+        internal static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
             }
@@ -501,7 +501,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &apos;axis&apos;. This axis depends entirely upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &apos;Height&apos; or &apos;Shutter Speed&apos;. A !Vector that provides an opinion might use an Artifact like &apos;Quality&apos; or &apos;Excitement&apos;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Vector {
+        internal static string Vector {
             get {
                 return ResourceManager.GetString("Vector", resourceCulture);
             }
@@ -510,7 +510,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType. Example ranges include: Negative Numeric, Full Agreement, Positive Favorability, etc..
         /// </summary>
-        public static string VectorRange {
+        internal static string VectorRange {
             get {
                 return ResourceManager.GetString("VectorRange", resourceCulture);
             }
@@ -519,7 +519,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A relatively-positioned point which provides meaning to a numerical range. Example levels include: Maximum, Somewhat Disagree, Mostly Favorable, etc..
         /// </summary>
-        public static string VectorRangeLevel {
+        internal static string VectorRangeLevel {
             get {
                 return ResourceManager.GetString("VectorRangeLevel", resourceCulture);
             }
@@ -528,7 +528,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor. Example types include: Full Percentage, Standard Agreement, Opposable Favorability, etc..
         /// </summary>
-        public static string VectorType {
+        internal static string VectorType {
             get {
                 return ResourceManager.GetString("VectorType", resourceCulture);
             }
@@ -537,7 +537,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides a unit of measurement for the numeric value of a particular Vector. Example units include: Metre, Second, Byte, etc..
         /// </summary>
-        public static string VectorUnit {
+        internal static string VectorUnit {
             get {
                 return ResourceManager.GetString("VectorUnit", resourceCulture);
             }
@@ -546,7 +546,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        public static string VectorUnitDerived {
+        internal static string VectorUnitDerived {
             get {
                 return ResourceManager.GetString("VectorUnitDerived", resourceCulture);
             }
@@ -555,7 +555,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc..
         /// </summary>
-        public static string VectorUnitPrefix {
+        internal static string VectorUnitPrefix {
             get {
                 return ResourceManager.GetString("VectorUnitPrefix", resourceCulture);
             }
@@ -570,7 +570,7 @@ namespace Fabric.Api.Spec.Lang {
         ///- ReleaseIndex represents internal improvements and fixes.
         ///- Minor represents external additions, such as a new API request [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Version {
+        internal static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
             }
