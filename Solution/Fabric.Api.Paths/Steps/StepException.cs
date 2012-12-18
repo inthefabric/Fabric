@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Infrastructure;
 
 namespace Fabric.Api.Paths.Steps {
@@ -46,7 +47,19 @@ namespace Fabric.Api.Paths.Steps {
 			vMessage = BuildMessage(pMessage);
 			Log.Error(vMessage);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabError ToFabError() {
+			var e = new FabError();
+			e.Code = (int)ErrCode;
+			e.CodeName = ErrCode+"";
+			e.Type = GetType().Name;
+			e.Message = Message;
+			return e;
+		}
 
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildMessage(string pMessage) {
 			string msg = ErrCode+" ("+(int)ErrCode+"): "+pMessage;

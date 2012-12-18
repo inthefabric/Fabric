@@ -17,6 +17,8 @@ namespace Fabric.Api.Dto {
 		public int Count { get; set; }
 		public bool HasMore { get; set; }
 		public long Timestamp { get; set; }
+		public int HttpStatus { get; set; }
+		public string Warning { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

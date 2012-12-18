@@ -36,9 +36,17 @@ namespace Fabric.Api.Server.Api {
 				BuildDtoList();
 				return BuildResponse();
 			}
+			/*catch ( StepException se ) {
+				Log.Error("API", se);
+				return se.ToFabError();
+			}
 			catch ( Exception ex ) {
 				Log.Error("API", ex);
-				return "error: "+ex.Message;
+				return FabError.FromException(ex);
+			}*/
+			catch ( Exception ex ) {
+				Log.Error("API", ex);
+				return "Error: "+ex.Message;
 			}
 		}
 

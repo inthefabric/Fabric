@@ -36,6 +36,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApiDtos.tt</DependentUpon>
     </Compile>
+    <Compile Include="FabError.cs" />
     <Compile Include="FabResponse.cs" />
     <Compile Include="IFabNode.cs" />
     <Compile Include="FabNode.cs" />
