@@ -9,8 +9,12 @@ namespace Fabric.Api.Dto {
 
 		public long NodeId { get; set; }
 		protected abstract long TypeId { get; }
-
+		public virtual List<string> AvailableProps { get { return AvailProps; } }
 		public string NodeUri { get; set; }
+
+		public static readonly List<string> AvailProps = new List<string> {
+			"NodeId" 
+		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

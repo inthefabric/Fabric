@@ -46,7 +46,7 @@
     <Compile Include="FabApiPaths\TPathRouter.cs" />
     <Compile Include="FabApiPaths\TPathSegment.cs" />
     <Compile Include="FabApiPaths\TPath.cs" />
-    <Compile Include="DataTests.cs" />
+    <Compile Include="FabDbData\TSetup.cs" />
     <Compile Include="FabDbData\TDataRel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\StepUtil.cs">

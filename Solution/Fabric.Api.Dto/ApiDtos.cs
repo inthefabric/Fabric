@@ -1,8 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/19/2012 2:20:25 PM
+// Generated on 12/19/2012 2:52:29 PM
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabric.Api.Dto {
 	
@@ -12,6 +13,10 @@ namespace Fabric.Api.Dto {
 		public string Name { get; set; }
 		public string Description { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"Name", "Description"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -25,6 +30,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Description", out val);
 			if ( found ) { Description = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -34,6 +44,10 @@ namespace Fabric.Api.Dto {
 		public long Performed { get; set; }
 		public string Note { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"Performed", "Note"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -47,6 +61,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -54,10 +73,19 @@ namespace Fabric.Api.Dto {
 	public abstract class FabArtifactOwnerNode : FabNode {
 	
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
 	}
@@ -66,6 +94,10 @@ namespace Fabric.Api.Dto {
 	public class FabRoot : FabNode {
 	
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -73,6 +105,11 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
 	}
@@ -83,6 +120,10 @@ namespace Fabric.Api.Dto {
 		public long AppId { get; set; }
 		public string Name { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"AppId", "Name"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -101,6 +142,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Name", out val);
 			if ( found ) { Name = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -111,6 +157,10 @@ namespace Fabric.Api.Dto {
 		public bool IsPrivate { get; set; }
 		public long Created { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"ArtifactId", "IsPrivate", "Created"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -129,6 +179,11 @@ namespace Fabric.Api.Dto {
 			val = pData["Created"];
 			Created = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -137,6 +192,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte ArtifactTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"ArtifactTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -151,6 +210,11 @@ namespace Fabric.Api.Dto {
 			val = pData["ArtifactTypeId"];
 			ArtifactTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -163,6 +227,10 @@ namespace Fabric.Api.Dto {
 		public bool IsPrivate { get; set; }
 		public bool IsInviteOnly { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"CrowdId", "Name", "Description", "IsPrivate", "IsInviteOnly"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -190,6 +258,11 @@ namespace Fabric.Api.Dto {
 			val = pData["IsInviteOnly"];
 			IsInviteOnly = bool.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -198,6 +271,10 @@ namespace Fabric.Api.Dto {
 	
 		public long CrowdianId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"CrowdianId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -210,6 +287,11 @@ namespace Fabric.Api.Dto {
 			val = pData["CrowdianId"];
 			CrowdianId = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -218,6 +300,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte CrowdianTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"CrowdianTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -232,6 +318,11 @@ namespace Fabric.Api.Dto {
 			val = pData["CrowdianTypeId"];
 			CrowdianTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -241,6 +332,10 @@ namespace Fabric.Api.Dto {
 		public long CrowdianTypeAssignId { get; set; }
 		public float Weight { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"CrowdianTypeAssignId", "Weight"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -258,6 +353,11 @@ namespace Fabric.Api.Dto {
 			val = pData["Weight"];
 			Weight = float.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -267,6 +367,10 @@ namespace Fabric.Api.Dto {
 		public long LabelId { get; set; }
 		public string Name { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"LabelId", "Name"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -285,6 +389,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Name", out val);
 			if ( found ) { Name = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -293,6 +402,10 @@ namespace Fabric.Api.Dto {
 	
 		public long MemberId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"MemberId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -305,6 +418,11 @@ namespace Fabric.Api.Dto {
 			val = pData["MemberId"];
 			MemberId = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -313,6 +431,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte MemberTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"MemberTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -327,6 +449,11 @@ namespace Fabric.Api.Dto {
 			val = pData["MemberTypeId"];
 			MemberTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -335,6 +462,10 @@ namespace Fabric.Api.Dto {
 	
 		public long MemberTypeAssignId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"MemberTypeAssignId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -349,6 +480,11 @@ namespace Fabric.Api.Dto {
 			val = pData["MemberTypeAssignId"];
 			MemberTypeAssignId = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -361,6 +497,10 @@ namespace Fabric.Api.Dto {
 		public string Disamb { get; set; }
 		public string Note { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"ThingId", "IsClass", "Name", "Disamb", "Note"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -388,6 +528,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -398,6 +543,10 @@ namespace Fabric.Api.Dto {
 		public string Name { get; set; }
 		public string AbsoluteUrl { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"UrlId", "Name", "AbsoluteUrl"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -419,6 +568,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("AbsoluteUrl", out val);
 			if ( found ) { AbsoluteUrl = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -428,6 +582,10 @@ namespace Fabric.Api.Dto {
 		public long UserId { get; set; }
 		public string Name { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"UserId", "Name"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -446,6 +604,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Name", out val);
 			if ( found ) { Name = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -459,6 +622,10 @@ namespace Fabric.Api.Dto {
 		public long? Completed { get; set; }
 		public string Note { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"FactorId", "IsPublic", "IsDefining", "Created", "Completed", "Note"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -487,6 +654,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -495,6 +667,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte FactorAssertionId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"FactorAssertionId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -509,6 +685,11 @@ namespace Fabric.Api.Dto {
 			val = pData["FactorAssertionId"];
 			FactorAssertionId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -516,10 +697,19 @@ namespace Fabric.Api.Dto {
 	public abstract class FabFactorElementNode : FabNode {
 	
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(Dictionary<string,string> pData) {
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
 	}
@@ -529,6 +719,10 @@ namespace Fabric.Api.Dto {
 	
 		public long DescriptorId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"DescriptorId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -543,6 +737,11 @@ namespace Fabric.Api.Dto {
 			val = pData["DescriptorId"];
 			DescriptorId = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -551,6 +750,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte DescriptorTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"DescriptorTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -565,6 +768,11 @@ namespace Fabric.Api.Dto {
 			val = pData["DescriptorTypeId"];
 			DescriptorTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -573,6 +781,10 @@ namespace Fabric.Api.Dto {
 	
 		public long DirectorId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"DirectorId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -587,6 +799,11 @@ namespace Fabric.Api.Dto {
 			val = pData["DirectorId"];
 			DirectorId = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -595,6 +812,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte DirectorTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"DirectorTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -609,6 +830,11 @@ namespace Fabric.Api.Dto {
 			val = pData["DirectorTypeId"];
 			DirectorTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -617,6 +843,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte DirectorActionId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"DirectorActionId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -631,6 +861,11 @@ namespace Fabric.Api.Dto {
 			val = pData["DirectorActionId"];
 			DirectorActionId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -640,6 +875,10 @@ namespace Fabric.Api.Dto {
 		public long EventorId { get; set; }
 		public long DateTime { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"EventorId", "DateTime"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -657,6 +896,11 @@ namespace Fabric.Api.Dto {
 			val = pData["DateTime"];
 			DateTime = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -665,6 +909,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte EventorTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"EventorTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -679,6 +927,11 @@ namespace Fabric.Api.Dto {
 			val = pData["EventorTypeId"];
 			EventorTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -687,6 +940,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte EventorPrecisionId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"EventorPrecisionId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -701,6 +958,11 @@ namespace Fabric.Api.Dto {
 			val = pData["EventorPrecisionId"];
 			EventorPrecisionId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -710,6 +972,10 @@ namespace Fabric.Api.Dto {
 		public long IdentorId { get; set; }
 		public string Value { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"IdentorId", "Value"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -728,6 +994,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Value", out val);
 			if ( found ) { Value = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -736,6 +1007,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte IdentorTypeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"IdentorTypeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -750,6 +1025,11 @@ namespace Fabric.Api.Dto {
 			val = pData["IdentorTypeId"];
 			IdentorTypeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -761,6 +1041,10 @@ namespace Fabric.Api.Dto {
 		public double ValueY { get; set; }
 		public double ValueZ { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"LocatorId", "ValueX", "ValueY", "ValueZ"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -784,6 +1068,11 @@ namespace Fabric.Api.Dto {
 			val = pData["ValueZ"];
 			ValueZ = double.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -798,6 +1087,10 @@ namespace Fabric.Api.Dto {
 		public double MinZ { get; set; }
 		public double MaxZ { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"LocatorTypeId", "MinX", "MaxX", "MinY", "MaxY", "MinZ", "MaxZ"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -830,6 +1123,11 @@ namespace Fabric.Api.Dto {
 			val = pData["MaxZ"];
 			MaxZ = double.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -839,6 +1137,10 @@ namespace Fabric.Api.Dto {
 		public long VectorId { get; set; }
 		public long Value { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorId", "Value"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -856,6 +1158,11 @@ namespace Fabric.Api.Dto {
 			val = pData["Value"];
 			Value = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -866,6 +1173,10 @@ namespace Fabric.Api.Dto {
 		public long Min { get; set; }
 		public long Max { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorTypeId", "Min", "Max"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -886,6 +1197,11 @@ namespace Fabric.Api.Dto {
 			val = pData["Max"];
 			Max = long.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -894,6 +1210,10 @@ namespace Fabric.Api.Dto {
 	
 		public byte VectorRangeId { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorRangeId"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -908,6 +1228,11 @@ namespace Fabric.Api.Dto {
 			val = pData["VectorRangeId"];
 			VectorRangeId = byte.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -917,6 +1242,10 @@ namespace Fabric.Api.Dto {
 		public byte VectorRangeLevelId { get; set; }
 		public float Position { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorRangeLevelId", "Position"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -934,6 +1263,11 @@ namespace Fabric.Api.Dto {
 			val = pData["Position"];
 			Position = float.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -943,6 +1277,10 @@ namespace Fabric.Api.Dto {
 		public byte VectorUnitId { get; set; }
 		public string Symbol { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorUnitId", "Symbol"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -961,6 +1299,11 @@ namespace Fabric.Api.Dto {
 			found = pData.TryGetValue("Symbol", out val);
 			if ( found ) { Symbol = val; }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -971,6 +1314,10 @@ namespace Fabric.Api.Dto {
 		public string Symbol { get; set; }
 		public double Amount { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorUnitPrefixId", "Symbol", "Amount"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -992,6 +1339,11 @@ namespace Fabric.Api.Dto {
 			val = pData["Amount"];
 			Amount = double.Parse(val);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
 
 	}
 
@@ -1001,6 +1353,10 @@ namespace Fabric.Api.Dto {
 		public byte VectorUnitDerivedId { get; set; }
 		public int Exponent { get; set; }
 		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"VectorUnitDerivedId", "Exponent"
+		};
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1017,6 +1373,11 @@ namespace Fabric.Api.Dto {
 
 			val = pData["Exponent"];
 			Exponent = int.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
 	}

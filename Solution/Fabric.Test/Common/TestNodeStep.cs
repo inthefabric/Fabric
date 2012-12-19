@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Paths;
+﻿using System.Collections.Generic;
+using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Nodes;
 
@@ -6,6 +7,10 @@ namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
 	public class TestNodeStep : NodeStep<TestFabNode> {
+
+		public static readonly List<string> AvailNodeSteps = new List<string> {
+			 "HasThing"
+		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,9 +22,7 @@ namespace Fabric.Test.Common {
 		public override bool TypeIdIsLong { get { return true; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get { return new[] { "HasThing" }; }
-		}
+		public override List<string> AvailableSteps { get { return AvailNodeSteps; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

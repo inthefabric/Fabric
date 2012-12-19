@@ -60,7 +60,7 @@ namespace Fabric.Api.Server.Api {
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
 			vInfo.DtoType = vLastStep.DtoType;
-			vInfo.Resp.AvailableUris = vLastStep.AvailableSteps;
+			vInfo.Resp.AvailableUris = vLastStep.AvailableSteps.ToArray();
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 			vInfo.Query = vLastStep.Path.Script;
 

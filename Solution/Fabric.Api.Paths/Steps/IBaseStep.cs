@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Fabric.Api.Paths.Steps {
 
@@ -8,7 +9,7 @@ namespace Fabric.Api.Paths.Steps {
 		long? TypeId { get; }
 		Path Path { get; }
 		Type DtoType { get; }
-		string[] AvailableSteps { get; }
+		List<string> AvailableSteps { get; }
 		IStepData Data { get; }
 
 	}

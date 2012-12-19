@@ -31,6 +31,14 @@ namespace Fabric.Test.FabApiDto {
 			Assert.AreEqual(desc, at.Description, "Incorrect Description.");
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AvailableProps() {
+			var expect = new List<string> { "NodeId", "Name", "Description", "ArtifactTypeId" };
+			var at = new FabArtifactType();
+			Assert.AreEqual(expect, at.AvailableProps, "Incorrect AvailableProps.");
+		}
+
 	}
 
 }

@@ -13,6 +13,8 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using System.Collections.Generic;
+using System.Linq;
 using Fabric.Api.Dto;
 
 namespace Fabric.Api.Paths.Steps.Nodes {
@@ -64,7 +66,9 @@ foreach ( string name in nodeNames ) {
 	/*================================================================================================*/
 	public partial class <#= node.Name #>Step : NodeStep<<#= "Fab"+node.Name #>>, <#= interfaces #> {
 	
-		private static readonly string[] AvailNodeSteps = new [] { <#= steps #> };
+		private static readonly List<string> AvailNodeSteps = new List<string> {
+			<#= steps #>
+		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,14 +102,8 @@ foreach ( string name in nodeNames ) {
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps {
-			get {
-				string[] baseSteps = base.AvailableSteps;
-				var mergeSteps = new string[baseSteps.Length+AvailNodeSteps.Length];
-				base.AvailableSteps.CopyTo(mergeSteps, 0);
-				AvailNodeSteps.CopyTo(mergeSteps, baseSteps.Length);
-				return mergeSteps;
-			}
+		public override List<string> AvailableSteps {
+			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

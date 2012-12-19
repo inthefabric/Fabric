@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -22,7 +23,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string[] AvailableSteps { get { return ProxyStep.AvailableSteps; } }
+		public override List<string> AvailableSteps { get { return ProxyStep.AvailableSteps; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IStep GetNextStep(string pStepText, bool pSetData=true) {

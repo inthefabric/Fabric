@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths.Steps.Functions;
 
@@ -7,7 +8,9 @@ namespace Fabric.Api.Paths.Steps {
 	/*================================================================================================*/
 	public abstract class Step : IStep {
 
-		public static readonly string[] AvailSteps = new[] { "/Back", "/Limit" };
+		public static readonly List<string> AvailSteps = new List<string> {
+			"/Back", "/Limit"
+		};
 
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
@@ -22,7 +25,7 @@ namespace Fabric.Api.Paths.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract Type DtoType { get; }
-		public virtual string[] AvailableSteps { get { return Step.AvailSteps; } }
+		public virtual List<string> AvailableSteps { get { return AvailSteps; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@ using Fabric.Infrastructure;
 using NUnit.Framework;
 using Weaver;
 
-namespace Fabric.Test {
+namespace Fabric.Test.FabDbData {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class DataTests {
+	public class TSetup {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
