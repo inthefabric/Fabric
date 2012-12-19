@@ -23,11 +23,18 @@ namespace Fabric.Api.Server.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetContent() {
-			var build = GetType()
-				.GetMethod("BuildTypedJson", (BindingFlags.NonPublic | BindingFlags.Instance))
-				.MakeGenericMethod(new[] { vInfo.DtoType });
+			string data = null;
 
-			string data = (string)build.Invoke(this, new object[] {});
+			if ( vInfo.Error != null ) {
+				data = vInfo.Error.ToJson();
+			}
+			else {
+				var build = GetType()
+					.GetMethod("BuildTypedJson", (BindingFlags.NonPublic | BindingFlags.Instance))
+					.MakeGenericMethod(new[] { vInfo.DtoType });
+
+				data = (string)build.Invoke(this, new object[] { });
+			}
 			
 			vInfo.Resp.Data = "{DATA}";
 			vInfo.Resp.DataLen = data.Length;
@@ -42,6 +49,8 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildTypedJson<T>() where T : FabNode {
+			
+
 			if ( vInfo.DtoList == null ) {
 				if ( vInfo.NonDtoText == null ) {
 					return "{}";

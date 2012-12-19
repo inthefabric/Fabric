@@ -36,17 +36,9 @@ namespace Fabric.Api.Server.Api {
 				BuildDtoList();
 				return BuildResponse();
 			}
-			/*catch ( StepException se ) {
-				Log.Error("API", se);
-				return se.ToFabError();
-			}
 			catch ( Exception ex ) {
 				Log.Error("API", ex);
-				return FabError.FromException(ex);
-			}*/
-			catch ( Exception ex ) {
-				Log.Error("API", ex);
-				return "Error: "+ex.Message;
+				return GetExceptionResponse(ex);
 			}
 		}
 
@@ -54,20 +46,24 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillQueryInfo() {
+			vInfo.HttpStatus = HttpStatusCode.OK;
+			vInfo.NodeAction = DoNodeAction;
+
 			vInfo.Resp = new FabResponse();
 			vInfo.Resp.StartEvent();
+			vInfo.Resp.HttpStatus = (int)vInfo.HttpStatus;
 
 			vUri = vContext.Request.Path.Substring(5);
-			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
-
-			vInfo.Query = vLastStep.Path.Script;
-			vInfo.DtoType = vLastStep.DtoType;
-			vInfo.NodeAction = DoNodeAction;
 
 			vInfo.Resp.BaseUri = ApiBaseUri;
 			vInfo.Resp.RequestUri = (vUri.Length > 0 ? "/"+vUri : "");
+
+			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
+
+			vInfo.DtoType = vLastStep.DtoType;
 			vInfo.Resp.AvailableUris = vLastStep.AvailableSteps;
 			vInfo.Resp.Type = vInfo.DtoType.Name;
+			vInfo.Query = vLastStep.Path.Script;
 
 			if ( vInfo.DtoType != typeof(FabRoot) ) {
 				vReq = new GremlinRequest(vInfo.Query);
@@ -128,7 +124,7 @@ namespace Fabric.Api.Server.Api {
 
 			return new Response {
 				ContentType = contType,
-				StatusCode = HttpStatusCode.OK,
+				StatusCode = vInfo.HttpStatus,
 				Contents = (s => s.Write(bytes, 0, bytes.Length))
 			};
 		}
@@ -150,6 +146,45 @@ namespace Fabric.Api.Server.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private void DoNodeAction(IFabNode pNode) {
 			//nothing yet...
+		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private Response GetExceptionResponse(Exception pEx) {//TODO: test ApiQuery.GetExceptionResponse
+			try {
+			vInfo.Resp.IsError = true;
+			vInfo.Resp.AvailableUris = new string[0];
+			vInfo.Resp.StartIndex = 0;
+			vInfo.Resp.Count = 0;
+
+			if ( pEx is StepException ) {
+				var step = (pEx as StepException);
+				vInfo.Error = step.ToFabError();
+				vInfo.HttpStatus = HttpStatusCode.BadRequest;
+
+				switch ( step.ErrCode ) {
+					case StepException.Code.IncorrectParamCount:
+					case StepException.Code.IncorrectParamValue:
+					case StepException.Code.IncorrectParamType:
+						vInfo.HttpStatus = HttpStatusCode.BadRequest;
+						break;
+				}
+			}
+			else {
+				//vInfo.Error = FabError.FromException(pEx);
+				vInfo.Error = new FabError();
+				vInfo.Error.Code = 0;
+				vInfo.Error.CodeName = "InternalError";
+				vInfo.Error.Type = typeof(Exception).Name;
+				vInfo.Error.Message = "An internal server error occurred.";
+				vInfo.HttpStatus = HttpStatusCode.InternalServerError;
+			}
+
+			vInfo.Resp.HttpStatus = (int)vInfo.HttpStatus;
+			return BuildResponse();
+			}catch(Exception e){Log.Debug("WTF: "+e); }
+			return null;
 		}
 
 	}

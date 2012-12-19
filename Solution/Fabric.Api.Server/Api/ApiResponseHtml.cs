@@ -31,6 +31,10 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildTypedHtml() {
+			if ( vInfo.Error != null ) {
+				return BuildNodeHtml(vInfo.Error);
+			}
+
 			if ( vInfo.DtoList == null ) {
 				return (vInfo.NonDtoText ?? "");
 			}
@@ -58,7 +62,7 @@ namespace Fabric.Api.Server.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildNodeHtml(FabNode pNode) {
+		private string BuildNodeHtml(IFabDto pNode) {
 			PropertyInfo[] props = pNode.GetType().GetProperties();
 			string html = "";
 

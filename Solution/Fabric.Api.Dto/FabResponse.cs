@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace Fabric.Api.Dto {
 
@@ -18,7 +19,7 @@ namespace Fabric.Api.Dto {
 		public bool HasMore { get; set; }
 		public long Timestamp { get; set; }
 		public int HttpStatus { get; set; }
-		public string Warning { get; set; }
+		public bool IsError { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

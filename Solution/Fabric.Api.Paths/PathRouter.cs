@@ -16,7 +16,10 @@ namespace Fabric.Api.Paths {
 			IStep step = pRoot;
 
 			for ( int i = 0 ; i < n ; ++i ) {
-				step = step.GetNextStep(parts[i]);
+				string p = parts[i];
+				//TODO: test PathRouter for the slash support
+				if ( p == "" && i == n-1 ) { continue; } //allows URI to end with '/'
+				step = step.GetNextStep(p);
 			}
 
 			return FinalizePath(step);

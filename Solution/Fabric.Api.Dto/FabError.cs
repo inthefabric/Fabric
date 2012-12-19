@@ -1,9 +1,10 @@
 ﻿using System;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabError {
+	public class FabError : IFabDto {
 
 		public int Code { get; set; }
 		public string CodeName { get; set; }
@@ -21,6 +22,9 @@ namespace Fabric.Api.Dto {
 			e.Message = pEx.Message;
 			return e;
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void Fill(DbDto pDbDto) {}
 
 	}
 

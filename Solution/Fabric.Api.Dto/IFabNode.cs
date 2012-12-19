@@ -1,17 +1,10 @@
-﻿using Fabric.Infrastructure;
-
-namespace Fabric.Api.Dto {
+﻿namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public interface IFabNode {
+	public interface IFabNode : IFabDto {
 
 		long NodeId { get; set; }
 		string NodeUri { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		void Fill(DbDto pDbDto);
 
 	}
 
