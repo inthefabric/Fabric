@@ -34,9 +34,13 @@ namespace Fabric.Test.FabApiDto {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void AvailableProps() {
-			var expect = new List<string> { "NodeId", "Name", "Description", "ArtifactTypeId" };
 			var at = new FabArtifactType();
-			Assert.AreEqual(expect, at.AvailableProps, "Incorrect AvailableProps.");
+			Assert.True(at.HasProperty("NodeId"), "Missing 'NodeId' property.");
+			Assert.True(at.HasProperty("Name"), "Missing 'Name' property.");
+			Assert.True(at.HasProperty("Description"), "Missing 'Description' property.");
+			Assert.True(at.HasProperty("ArtifactTypeId"), "Missing 'ArtifactTypeId' property.");
+			Assert.False(at.HasProperty("Nam"), "Should not have 'Nam' property.");
+			Assert.False(at.HasProperty("Namee"), "Should not have 'Namee' property.");
 		}
 
 	}

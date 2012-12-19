@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/19/2012 2:52:29 PM
+// Generated on 12/19/2012 3:20:21 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -63,7 +63,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -84,7 +84,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -108,7 +108,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -144,7 +144,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -181,7 +181,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -212,7 +212,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -260,7 +260,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -289,7 +289,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -320,7 +320,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -355,7 +355,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -391,7 +391,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -420,7 +420,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -451,7 +451,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -482,7 +482,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -530,7 +530,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -570,7 +570,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -606,7 +606,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -656,7 +656,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -687,7 +687,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -708,7 +708,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -739,7 +739,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -770,7 +770,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -801,7 +801,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -832,7 +832,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -863,7 +863,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -898,7 +898,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -929,7 +929,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -960,7 +960,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -996,7 +996,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1027,7 +1027,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1070,7 +1070,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1125,7 +1125,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1160,7 +1160,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1199,7 +1199,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1230,7 +1230,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1265,7 +1265,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1301,7 +1301,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1341,7 +1341,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 
@@ -1376,7 +1376,7 @@ namespace Fabric.Api.Dto {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 

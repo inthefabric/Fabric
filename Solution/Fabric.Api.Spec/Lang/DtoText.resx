@@ -187,7 +187,7 @@ There are various restrictions (based on Crowd properties) for !Crowdian creatio
     <value>Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc.</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>When a fault or error occurs, a FabError is returned in place of the expected API response type. The information it provides should help determine issues with a particular API request.</value>
+    <value>When a fault or error occurs, a !FabError is returned in place of the expected response data. The information it provides should help determine what caused the issue for the given request.</value>
   </data>
   <data name="EventorPrecision" xml:space="preserve">
     <value>Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc.</value>
@@ -514,6 +514,9 @@ In general, each increment of...
     <value>TODO</value>
   </data>
   <data name="VectorUnitDerived" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ArtifactOwnerNode" xml:space="preserve">
     <value>TODO</value>
   </data>
 </root>

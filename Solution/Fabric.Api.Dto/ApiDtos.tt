@@ -138,7 +138,7 @@ foreach ( string name in nodes ) {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableProps {
+		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
 

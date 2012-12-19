@@ -9,7 +9,7 @@ namespace Fabric.Api.Dto {
 
 		public long NodeId { get; set; }
 		protected abstract long TypeId { get; }
-		public virtual List<string> AvailableProps { get { return AvailProps; } }
+		protected virtual List<string> AvailableProps { get { return AvailProps; } }
 		public string NodeUri { get; set; }
 
 		public static readonly List<string> AvailProps = new List<string> {
@@ -23,6 +23,8 @@ namespace Fabric.Api.Dto {
 			NodeId = -1;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Fill(DbDto pDbDto) {
 			if ( pDbDto.Id == null ) {
@@ -37,6 +39,13 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void FillResultData(Dictionary<string,string> pData);
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public bool HasProperty(string pPropName) {
+			return AvailableProps.Contains(pPropName);
+		}
 
 	}
 

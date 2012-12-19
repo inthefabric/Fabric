@@ -295,29 +295,38 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Additional information about the error..
+        ///   Looks up a localized string similar to A numeric value which identifies the specific error type..
         /// </summary>
-        internal static string Error_Description {
+        internal static string Error_Code {
             get {
-                return ResourceManager.GetString("Error_Description", resourceCulture);
+                return ResourceManager.GetString("Error_Code", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A descriptive name of the error or fault that occurred..
+        ///   Looks up a localized string similar to The name associated with the error code..
         /// </summary>
-        internal static string Error_Name {
+        internal static string Error_CodeName {
             get {
-                return ResourceManager.GetString("Error_Name", resourceCulture);
+                return ResourceManager.GetString("Error_CodeName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A 3-digit numeric value which is also returned as the status code of the HTTP response..
+        ///   Looks up a localized string similar to Information about the error..
         /// </summary>
-        internal static string Error_StatusCode {
+        internal static string Error_Message {
             get {
-                return ResourceManager.GetString("Error_StatusCode", resourceCulture);
+                return ResourceManager.GetString("Error_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Error_Type {
+            get {
+                return ResourceManager.GetString("Error_Type", resourceCulture);
             }
         }
         
@@ -750,6 +759,24 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Response_HasMore {
             get {
                 return ResourceManager.GetString("Response_HasMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Response_HttpStatus {
+            get {
+                return ResourceManager.GetString("Response_HttpStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Response_IsError {
+            get {
+                return ResourceManager.GetString("Response_IsError", resourceCulture);
             }
         }
         

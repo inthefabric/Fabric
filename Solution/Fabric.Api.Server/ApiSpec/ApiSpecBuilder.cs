@@ -10,16 +10,23 @@ namespace Fabric.Api.Server.ApiSpec {
 	/*================================================================================================*/
 	public class ApiSpecBuilder {
 
+		private readonly NancyContext vContext;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public ApiSpecBuilder(NancyContext pContext) {
+			vContext = pContext;
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public Response GetResponse() {
 			try {
 				return BuildResponse();
 			}
 			catch ( Exception ex ) {
-				Log.Error("API", ex);
-				return "error: "+ex.Message;
+				Log.Error("API Spec Exception", ex);
+				return "Error: "+ex.Message;
 			}
 		}
 
@@ -33,14 +40,14 @@ namespace Fabric.Api.Server.ApiSpec {
 			string cont;
 			string contType;
 
-			if ( true ) {
+			if ( ShouldReturnHtml() ) {
 				cont = ApiSpecBuilderHtml.BuildHtml(doc);
 				contType = "text/html";
 			}
-			/*else {
+			else {
 				cont = JsonSerializer.SerializeToString(doc);
 				contType = "application/json";
-			}*/
+			}
 
 			byte[] bytes = UTF8Encoding.UTF8.GetBytes(cont);
 
@@ -49,6 +56,18 @@ namespace Fabric.Api.Server.ApiSpec {
 				StatusCode = HttpStatusCode.OK,
 				Contents = (s => s.Write(bytes, 0, bytes.Length))
 			};
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private bool ShouldReturnHtml() {
+			var acc = vContext.Request.Headers.Accept;
+
+			foreach ( var a in acc ) {
+				if ( a.Item1 != "text/html" ) { continue; }
+				return true;
+			}
+
+			return false;
 		}
 
 	}

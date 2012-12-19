@@ -12,6 +12,7 @@ namespace Fabric.Api.Spec {
 
 		public string ApiVersion { get; set; }
 		public SpecApiResponse ApiResponse { get; set; }
+		public SpecApiError ApiError { get; set; }
 		public List<SpecDto> DtoList { get; set; }
 		public List<SpecPathFunc> PathFunctionList { get; set; }
 
@@ -20,6 +21,7 @@ namespace Fabric.Api.Spec {
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecDoc() {
 			ApiResponse = new SpecApiResponse();
+			ApiError = new SpecApiError();
 			DtoList = BuildDtoList();
 			DtoList.Insert(0, GetSpecDtoFabNode());
 		}

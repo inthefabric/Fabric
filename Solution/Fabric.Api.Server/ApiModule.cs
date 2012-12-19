@@ -12,7 +12,7 @@ namespace Fabric.Api.Server {
 	/*================================================================================================*/
 	public class ApiModule : NancyModule {
 
-		public const string ApiVersion = "2.0.0.4e9eb0f30b0f";
+		public const string ApiVersion = "1.0.0.10f7771a29e1";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ namespace Fabric.Api.Server {
 		public ApiModule() {
 			Log.ConfigureOnce();
 
-			Get["/"] = (p => "api | gremlin | graph | tables/browse | setup ");
+			Get["/"] = (p => "api | apispec | gremlin | graph | tables/browse | setup ");
 			Get["/setup"] = (p => new SetupRoutine(Context).GetResponse());
 			Get["/graph/json"] = (p => new GraphJson(Context).GetResponse());
 			Get["/graph"] = (p => new GraphView(this).GetResponse());
@@ -28,7 +28,7 @@ namespace Fabric.Api.Server {
 			Get["/gremlin/(.*)"] = (p => new GremlinQuery(Context).GetResponse());
 			Get["/api/"] = (p => new ApiQuery(Context).GetResponse());
 			Get["/api/(.*)"] = (p => new ApiQuery(Context).GetResponse());
-			Get["/apispec"] = (p => new ApiSpecBuilder().GetResponse());
+			Get["/apispec"] = (p => new ApiSpecBuilder(Context).GetResponse());
 		}
 
 	}

@@ -7,7 +7,11 @@ namespace Fabric.Api.Dto {
 
 		long NodeId { get; set; }
 		string NodeUri { get; set; }
-		List<string> AvailableProps { get; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasProperty(string pPropName);
 
 	}
 

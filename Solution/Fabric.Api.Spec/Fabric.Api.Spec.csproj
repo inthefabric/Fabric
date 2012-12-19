@@ -34,6 +34,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpecApiError.cs" />
     <Compile Include="Lang\DtoPropText.Designer.cs">
       <DependentUpon>DtoPropText.resx</DependentUpon>
       <AutoGen>True</AutoGen>

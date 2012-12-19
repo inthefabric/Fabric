@@ -165,14 +165,14 @@
   <data name="Crowd_IsPrivate" xml:space="preserve">
     <value>Specifies the level of accessibility. A private !Crowd is called a 'Circle'.</value>
   </data>
-  <data name="Error_Description" xml:space="preserve">
-    <value>Additional information about the error.</value>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Information about the error.</value>
   </data>
-  <data name="Error_Name" xml:space="preserve">
-    <value>A descriptive name of the error or fault that occurred.</value>
+  <data name="Error_CodeName" xml:space="preserve">
+    <value>The name associated with the error code.</value>
   </data>
-  <data name="Error_StatusCode" xml:space="preserve">
-    <value>A 3-digit numeric value which is also returned as the status code of the HTTP response.</value>
+  <data name="Error_Code" xml:space="preserve">
+    <value>A numeric value which identifies the specific error type.</value>
   </data>
   <data name="Fault_Message" xml:space="preserve">
     <value>Information about the details and/or causes of the Fault.</value>
@@ -430,6 +430,15 @@
     <value>A descriptive name or title.</value>
   </data>
   <data name="VectorUnitDerived_Exponent" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_HttpStatus" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_IsError" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Error_Type" xml:space="preserve">
     <value>TODO</value>
   </data>
 </root>

@@ -20,6 +20,7 @@ namespace Fabric.Api.Server.ApiSpec {
 		public static string BuildHtml(SpecDoc pDoc) {
 			string html = "<h2>Fabric Api Specification ("+pDoc.ApiVersion+")</h2><br/><br/>";
 			html += BuildDtoHtml(pDoc.ApiResponse, pDoc)+"<br/><br/>";
+			html += BuildDtoHtml(pDoc.ApiError, pDoc)+"<br/><br/>";
 
 			foreach ( SpecDto dto in pDoc.DtoList ) {
 				html += BuildDtoHtml(dto, pDoc)+"<br/><br/>";
