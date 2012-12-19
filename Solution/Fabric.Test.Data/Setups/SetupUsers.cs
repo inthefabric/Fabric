@@ -282,7 +282,7 @@ namespace Fabric.Db.Data.Setups {
 			var u = new User();
 			u.UserId = (long)pId;
 			u.Name = pName;
-			u.Password = pPass;
+			u.Password = FabricUtil.HashPassword(pPass);
 
 			vSet.AddNodeAndIndex(u, x => x.UserId, vTestMode);
 			vSet.AddRootRel<RootContainsUser>(u, vTestMode);
