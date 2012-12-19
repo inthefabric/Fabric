@@ -102,7 +102,13 @@ namespace Fabric.Test.FabApiPaths.Steps {
 		[Test]
 		public void GetNextStepInvalid() {
 			var s = new TestStep(new Path());
-			TestUtil.CheckThrows<Exception>(true, () => s.GetNextStep("abcd(1,2)"));
+			s.SetDataAndUpdatePath(new StepData("start"));
+			string stepText = "abcd(1,2)";
+
+			StepException se = 
+				TestUtil.CheckThrows<StepException>(true, () => s.GetNextStep(stepText));
+			Assert.AreEqual(StepException.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
+			Assert.Less(-1, se.Message.IndexOf(stepText), "Message did not include the step text.");
 		}
 
 	}

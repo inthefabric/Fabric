@@ -47,8 +47,9 @@ namespace Fabric.Api.Paths.Steps {
 			var sd = new StepData(pStepText);
 			IStep next = GetNextStep(sd);
 
-			if ( next == null ) {
-				throw new Exception("'"+pStepText+"' is not a valid step for "+GetType().Name+".");
+			if ( next == null ) { //TODO: test Step's new StepException usage
+				throw new StepException(StepException.Code.InvalidStep, this,
+					"The attempted next step ('"+pStepText+"') is not supported by the current step.");
 			}
 
 			if ( pSetData ) {

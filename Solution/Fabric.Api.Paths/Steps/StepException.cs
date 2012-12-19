@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using Fabric.Api.Dto;
 using Fabric.Infrastructure;
 
@@ -11,7 +10,8 @@ namespace Fabric.Api.Paths.Steps {
 		public enum Code {
 			IncorrectParamCount = 1001,
 			IncorrectParamValue = 1002,
-			IncorrectParamType = 1003
+			IncorrectParamType = 1003,
+			InvalidStep = 1004
 		}
 
 		public override string Message { get { return vMessage; } }

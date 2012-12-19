@@ -37,7 +37,6 @@ namespace Fabric.Api.Server.Api {
 				return BuildResponse();
 			}
 			catch ( Exception ex ) {
-				Log.Error("API", ex);
 				return GetExceptionResponse(ex);
 			}
 		}
@@ -151,8 +150,7 @@ namespace Fabric.Api.Server.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private Response GetExceptionResponse(Exception pEx) {//TODO: test ApiQuery.GetExceptionResponse
-			try {
+		private Response GetExceptionResponse(Exception pEx) {
 			vInfo.Resp.IsError = true;
 			vInfo.Resp.AvailableUris = new string[0];
 			vInfo.Resp.StartIndex = 0;
@@ -163,16 +161,17 @@ namespace Fabric.Api.Server.Api {
 				vInfo.Error = step.ToFabError();
 				vInfo.HttpStatus = HttpStatusCode.BadRequest;
 
-				switch ( step.ErrCode ) {
+				/*switch ( step.ErrCode ) {
 					case StepException.Code.IncorrectParamCount:
 					case StepException.Code.IncorrectParamValue:
 					case StepException.Code.IncorrectParamType:
 						vInfo.HttpStatus = HttpStatusCode.BadRequest;
 						break;
-				}
+				}*/
 			}
 			else {
-				//vInfo.Error = FabError.FromException(pEx);
+				Log.Error("API Exception", pEx);
+
 				vInfo.Error = new FabError();
 				vInfo.Error.Code = 0;
 				vInfo.Error.CodeName = "InternalError";
@@ -183,8 +182,6 @@ namespace Fabric.Api.Server.Api {
 
 			vInfo.Resp.HttpStatus = (int)vInfo.HttpStatus;
 			return BuildResponse();
-			}catch(Exception e){Log.Debug("WTF: "+e); }
-			return null;
 		}
 
 	}

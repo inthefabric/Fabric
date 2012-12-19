@@ -22,14 +22,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 			base.SetDataAndUpdatePath(pData);
 			if ( Data.Params == null ) { return; }
 
-			string p = Data.Params[0];
-			long tid;
-
-			if ( long.TryParse(p, out tid) ) {
-				TypeId = tid;
+			try {
+				TypeId = Data.ParamAt<long>(0);
 			}
-			else {
-				throw new Exception("Cannot convert parameter '"+p+"' to 'long'.");
+			catch ( InvalidCastException ex ) {
+				throw new StepException(StepException.Code.IncorrectParamType, this,
+					"Could not convert to type 'long'.", 0, ex);
 			}
 
 			Path.AppendToCurrentSegment(

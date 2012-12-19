@@ -16,6 +16,7 @@ namespace Fabric.Test.FabApiPaths {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("test")]
+		[TestCase("test/")]
 		[TestCase("0")]
 		public void GetPath1(string pUri) {
 			string[] parts = pUri.Split('/');
@@ -34,6 +35,7 @@ namespace Fabric.Test.FabApiPaths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("this/a/test/path")]
+		[TestCase("this/a/test/path/")]
 		[TestCase("0/1/2/3")]
 		[TestCase("ContainsArtifactList/InUserHas/InMemberListUses/CreatedFactorList")]
 		public void GetPath4(string pUri) {
@@ -98,6 +100,8 @@ namespace Fabric.Test.FabApiPaths {
 
 			Assert.NotNull(rs, "Result should be filled.");
 			Assert.NotNull(rs.Path, "Result.Path should be filled.");
+			Assert.NotNull(rs.Data, "Result.Data should be filled.");
+			Assert.AreEqual("api", rs.Data.RawString, "Incorrect Result.Data.RawString.");
 			Assert.AreEqual("g.v(0)", rs.Path.Script, "Incorrect Path.Script.");
 			Assert.AreEqual(1, rs.Path.Segments.Count, "Incorrect Path.Segments.Count.");
 		}

@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Paths;
+﻿using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
@@ -70,7 +69,11 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 		public void SetDataInvalidParam(string pStepText) {
 			var s = new TestNodeStep(new Path());
 			var d = new StepData(pStepText);
-			TestUtil.CheckThrows<Exception>(true, () => { s.SetDataAndUpdatePath(d); });
+
+			StepException se =
+				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(d) );
+			Assert.AreEqual(StepException.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
 		}
 
 	}

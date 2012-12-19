@@ -17,8 +17,11 @@ namespace Fabric.Api.Paths {
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				string p = parts[i];
-				//TODO: test PathRouter for the slash support
-				if ( p == "" && i == n-1 ) { continue; } //allows URI to end with '/'
+				
+				if ( p == "" && i == n-1 ) { //allows URI to end with '/'
+					continue;
+				}
+
 				step = step.GetNextStep(p);
 			}
 
@@ -27,7 +30,9 @@ namespace Fabric.Api.Paths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static RootStep NewRootStep() {
-			return new RootStep(true, new Path());
+			var rs = new RootStep(true, new Path());
+			rs.SetDataAndUpdatePath(new StepData("api"));
+			return rs;
 		}
 
 

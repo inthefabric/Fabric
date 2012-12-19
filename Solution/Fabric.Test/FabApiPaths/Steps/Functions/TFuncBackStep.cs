@@ -86,6 +86,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			StepException se =
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(StepException.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -99,6 +100,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			StepException se =
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(StepException.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -115,6 +117,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			StepException se =
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(StepException.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
 		}
 
 
