@@ -68,7 +68,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(IStep pStep) {
+		public static bool AllowedForStep(IStep pStep) { //TEST FuncLimitStep.AllowedForStep
 			if ( pStep is RootStep ) { return false; }
 			return true;
 		}

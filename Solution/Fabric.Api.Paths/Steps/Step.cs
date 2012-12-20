@@ -51,13 +51,14 @@ namespace Fabric.Api.Paths.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IStep GetNextStep(string pStepText, bool pSetData=true) {
+		public virtual IStep GetNextStep(string pStepText, bool pSetData=true,
+																		IFuncStep pProxyForFunc=null) {
 			var sd = new StepData(pStepText);
 			IStep next = GetNextStep(sd);
 
 			if ( next == null ) {
-				//NEXT: InvalidStep behaves incorrectly after a Back(x) step
-				throw new StepException(StepException.Code.InvalidStep, this,
+				IStep step = (pProxyForFunc == null ? this : (IStep)pProxyForFunc);
+				throw new StepException(StepException.Code.InvalidStep, step,
 					"The attempted next step ('"+pStepText+"') is not supported by the current step.");
 			}
 
@@ -69,13 +70,13 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected IStep GetNextStep(StepData pData) {
+		private IStep GetNextStep(StepData pData) { //TEST: Step: new GetFunc usage
 			IStep func = GetFunc(pData);
 			return (func ?? GetLink(pData));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IStep GetFunc(StepData pData) { //TEST: Step.GetFunc
+		protected virtual IStep GetFunc(StepData pData) {
 			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(this, false);
 
 			foreach ( string comm in availFuncs ) {
@@ -87,7 +88,7 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IStep GetLink(StepData pData) { //TEST: Step.GetLink
+		protected virtual IStep GetLink(StepData pData) {
 			return null;
 		}
 

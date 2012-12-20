@@ -18,14 +18,14 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestStep<T>(string pStepName, Func<bool, Path, T> pNewStep) where T : INodeStep {
+		private void TestStep<T>(string pStepName, Func<Path, T> pNewStep) where T : INodeStep {
 			string[] availSteps;
 			bool isRoot = (pStepName == "Root");
 
 			bool found = StepUtil.NodeStepMap.TryGetValue(pStepName, out availSteps);
 			Assert.True(found, pStepName+" is not an accepted NodeStep name.");
 
-			INodeStep step = pNewStep(false, new Path());
+			INodeStep step = pNewStep(new Path());
 			Assert.AreEqual(pStepName+"Id", step.TypeIdName, "Incorrect TypeIdName.");
 
 			////
@@ -54,13 +54,13 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			foreach ( string a in availSteps ) {
 				expectSteps.Add(a);
 
-				step = pNewStep(false, new Path());
+				step = pNewStep(new Path());
 				string text = a.Substring(1); //remove leading slash char
 				TestNextStep(step, text);
 			}
 
 			try {
-				step = pNewStep(false, new Path());
+				step = pNewStep(new Path());
 				IStep next = step.GetNextStep("fake");
 				Assert.Fail("Expected 'fake' step to fail.");
 			}
@@ -70,11 +70,11 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 
 			////
 			
-			step = pNewStep(false, new Path());
+			step = pNewStep(new Path());
 			Assert.AreEqual(expectSteps, step.AvailableLinks, "Incorrect AvailableLinks.");
 
 			if ( !isRoot ) {
-				step = pNewStep(false, new Path());
+				step = pNewStep(new Path());
 				IInRootContains rc = (step as IInRootContains);
 				Assert.NotNull(rc, "All non-Root NodeSteps must implement IInRootContains.");
 
@@ -116,247 +116,247 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RootStep() {
-			TestStep("Root", (tn, p) => new RootStep(tn, p));
+			TestStep("Root", p => new RootStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void AppStep() {
-			TestStep("App", (tn, p) => new AppStep(tn, p));
+			TestStep("App", p => new AppStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ArtifactStep() {
-			TestStep("Artifact", (tn, p) => new ArtifactStep(tn, p));
+			TestStep("Artifact", p => new ArtifactStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ArtifactTypeStep() {
-			TestStep("ArtifactType", (tn, p) => new ArtifactTypeStep(tn, p));
+			TestStep("ArtifactType", p => new ArtifactTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void CrowdStep() {
-			TestStep("Crowd", (tn, p) => new CrowdStep(tn, p));
+			TestStep("Crowd", p => new CrowdStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void CrowdianStep() {
-			TestStep("Crowdian", (tn, p) => new CrowdianStep(tn, p));
+			TestStep("Crowdian", p => new CrowdianStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void CrowdianTypeStep() {
-			TestStep("CrowdianType", (tn, p) => new CrowdianTypeStep(tn, p));
+			TestStep("CrowdianType", p => new CrowdianTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void CrowdianTypeAssignStep() {
-			TestStep("CrowdianTypeAssign", (tn, p) => new CrowdianTypeAssignStep(tn, p));
+			TestStep("CrowdianTypeAssign", p => new CrowdianTypeAssignStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void EmailStep() {
-			TestStep("Email", (tn, p) => new EmailStep(tn, p));
+			TestStep("Email", p => new EmailStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LabelStep() {
-			TestStep("Label", (tn, p) => new LabelStep(tn, p));
+			TestStep("Label", p => new LabelStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void MemberStep() {
-			TestStep("Member", (tn, p) => new MemberStep(tn, p));
+			TestStep("Member", p => new MemberStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void MemberTypeStep() {
-			TestStep("MemberType", (tn, p) => new MemberTypeStep(tn, p));
+			TestStep("MemberType", p => new MemberTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void MemberTypeAssignStep() {
-			TestStep("MemberTypeAssign", (tn, p) => new MemberTypeAssignStep(tn, p));
+			TestStep("MemberTypeAssign", p => new MemberTypeAssignStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ThingStep() {
-			TestStep("Thing", (tn, p) => new ThingStep(tn, p));
+			TestStep("Thing", p => new ThingStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void UrlStep() {
-			TestStep("Url", (tn, p) => new UrlStep(tn, p));
+			TestStep("Url", p => new UrlStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void UserStep() {
-			TestStep("User", (tn, p) => new UserStep(tn, p));
+			TestStep("User", p => new UserStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorStep() {
-			TestStep("Factor", (tn, p) => new FactorStep(tn, p));
+			TestStep("Factor", p => new FactorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorAssertionStep() {
-			TestStep("FactorAssertion", (tn, p) => new FactorAssertionStep(tn, p));
+			TestStep("FactorAssertion", p => new FactorAssertionStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void DescriptorStep() {
-			TestStep("Descriptor", (tn, p) => new DescriptorStep(tn, p));
+			TestStep("Descriptor", p => new DescriptorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void DescriptorTypeStep() {
-			TestStep("DescriptorType", (tn, p) => new DescriptorTypeStep(tn, p));
+			TestStep("DescriptorType", p => new DescriptorTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void DirectorStep() {
-			TestStep("Director", (tn, p) => new DirectorStep(tn, p));
+			TestStep("Director", p => new DirectorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void DirectorTypeStep() {
-			TestStep("DirectorType", (tn, p) => new DirectorTypeStep(tn, p));
+			TestStep("DirectorType", p => new DirectorTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void DirectorActionStep() {
-			TestStep("DirectorAction", (tn, p) => new DirectorActionStep(tn, p));
+			TestStep("DirectorAction", p => new DirectorActionStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void EventorStep() {
-			TestStep("Eventor", (tn, p) => new EventorStep(tn, p));
+			TestStep("Eventor", p => new EventorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void EventorTypeStep() {
-			TestStep("EventorType", (tn, p) => new EventorTypeStep(tn, p));
+			TestStep("EventorType", p => new EventorTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void EventorPrecisionStep() {
-			TestStep("EventorPrecision", (tn, p) => new EventorPrecisionStep(tn, p));
+			TestStep("EventorPrecision", p => new EventorPrecisionStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void IdentorStep() {
-			TestStep("Identor", (tn, p) => new IdentorStep(tn, p));
+			TestStep("Identor", p => new IdentorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void IdentorTypeStep() {
-			TestStep("IdentorType", (tn, p) => new IdentorTypeStep(tn, p));
+			TestStep("IdentorType", p => new IdentorTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LocatorStep() {
-			TestStep("Locator", (tn, p) => new LocatorStep(tn, p));
+			TestStep("Locator", p => new LocatorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LocatorTypeStep() {
-			TestStep("LocatorType", (tn, p) => new LocatorTypeStep(tn, p));
+			TestStep("LocatorType", p => new LocatorTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorStep() {
-			TestStep("Vector", (tn, p) => new VectorStep(tn, p));
+			TestStep("Vector", p => new VectorStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorTypeStep() {
-			TestStep("VectorType", (tn, p) => new VectorTypeStep(tn, p));
+			TestStep("VectorType", p => new VectorTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorRangeStep() {
-			TestStep("VectorRange", (tn, p) => new VectorRangeStep(tn, p));
+			TestStep("VectorRange", p => new VectorRangeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorRangeLevelStep() {
-			TestStep("VectorRangeLevel", (tn, p) => new VectorRangeLevelStep(tn, p));
+			TestStep("VectorRangeLevel", p => new VectorRangeLevelStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorUnitStep() {
-			TestStep("VectorUnit", (tn, p) => new VectorUnitStep(tn, p));
+			TestStep("VectorUnit", p => new VectorUnitStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorUnitPrefixStep() {
-			TestStep("VectorUnitPrefix", (tn, p) => new VectorUnitPrefixStep(tn, p));
+			TestStep("VectorUnitPrefix", p => new VectorUnitPrefixStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void VectorUnitDerivedStep() {
-			TestStep("VectorUnitDerived", (tn, p) => new VectorUnitDerivedStep(tn, p));
+			TestStep("VectorUnitDerived", p => new VectorUnitDerivedStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthAccessStep() {
-			TestStep("OauthAccess", (tn, p) => new OauthAccessStep(tn, p));
+			TestStep("OauthAccess", p => new OauthAccessStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthDomainStep() {
-			TestStep("OauthDomain", (tn, p) => new OauthDomainStep(tn, p));
+			TestStep("OauthDomain", p => new OauthDomainStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthGrantStep() {
-			TestStep("OauthGrant", (tn, p) => new OauthGrantStep(tn, p));
+			TestStep("OauthGrant", p => new OauthGrantStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void OauthScopeStep() {
-			TestStep("OauthScope", (tn, p) => new OauthScopeStep(tn, p));
+			TestStep("OauthScope", p => new OauthScopeStep(p));
 		}*/
 
 	}

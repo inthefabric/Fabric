@@ -34,17 +34,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				"has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected void AddPathSegment(string pScript) {
-			Path.AddSegment(this, pScript);
-			AppendPathSegmentDetails();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void AppendPathSegmentDetails() {}
-
 	}
 
 }

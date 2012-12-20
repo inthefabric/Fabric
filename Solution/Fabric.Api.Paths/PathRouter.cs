@@ -30,7 +30,7 @@ namespace Fabric.Api.Paths {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static RootStep NewRootStep() {
-			var rs = new RootStep(true, new Path());
+			var rs = new RootStep(new Path());
 			rs.SetDataAndUpdatePath(new StepData("api"));
 			return rs;
 		}

@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto;
+﻿using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
@@ -31,9 +30,9 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(1, 2, "FabFactor")]
-		[TestCase(2, 3, "FabArtifact")]
-		[TestCase(3, 6, "FabRoot")]
+		[TestCase(1, 3, "FabFactor")]
+		[TestCase(2, 4, "FabArtifact")]
+		[TestCase(3, 7, "FabRoot")]
 		public void SetDataAndUpdatePath(int pUriCount, int pExpectCount, string pExpectDtoType) {
 			var p = new Path();
 
@@ -62,7 +61,40 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			Assert.AreEqual("back("+pExpectCount+")", seg.Script, "Incorrect segment Script.");
 			Assert.AreEqual(pExpectDtoType, back.DtoType.Name, "Incorrect DtoType.");
 		}
-		
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(1, 2, "FabUser")]
+		[TestCase(2, 4, "FabArtifact")]
+		[TestCase(3, 6, "FabRoot")]
+		public void SetDataAndUpdatePathFuncs(int pUriCount, int pExpectCount, string pExpectDtoType) {
+			var p = new Path();
+
+			var mockStep = new Mock<IStep>();
+			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabRoot));
+			p.AddSegment(mockStep.Object, "g.v(0)"); //2 steps
+
+			mockStep = new Mock<IStep>();
+			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabArtifact));
+			p.AddSegment(mockStep.Object, "outE('RootContainsArtifact').inV"); //2 steps
+
+			mockStep = new Mock<IStep>();
+			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabUser));
+			p.AddSegment(mockStep.Object, "inE('UserHasArtifact').outV"); //2 steps
+
+			mockStep = new Mock<IStep>();
+			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabUser));
+			p.AddSegment(mockStep.Object, "dedup[0..9]"); //2 steps
+
+			var back = new FuncBackStep(p);
+			var sd = new StepData("Back("+pUriCount+")");
+			back.SetDataAndUpdatePath(sd);
+
+			PathSegment seg = back.Path.Segments[back.Path.Segments.Count-1];
+			Assert.AreEqual(pExpectCount, back.Count, "Incorrect Count.");
+			Assert.AreEqual("back("+pExpectCount+")", seg.Script, "Incorrect segment Script.");
+			Assert.AreEqual(pExpectDtoType, back.DtoType.Name, "Incorrect DtoType.");
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("")]
 		[TestCase("(1,2)")]
@@ -126,47 +158,14 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 		[Test]
 		public void AvailableLinks() {
 			var p = new Path();
-			var step = new RootStep(false, p).ContainsArtifactList;
+			var step = new RootStep(p).ContainsArtifactList;
 
 			var back = new FuncBackStep(p);
 			var sd = new StepData("Back(1)");
 			back.SetDataAndUpdatePath(sd);
 
-			var rs = new RootStep(false, new Path());
+			var rs = new RootStep(new Path());
 			Assert.AreEqual(rs.AvailableLinks, back.AvailableLinks, "Incorrect AvailableLinks.");
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true)]
-		[TestCase(false)]
-		public void GetNextStep(bool pSetData) {
-			var p = new Path();
-			var step = new RootStep(false, p).ContainsArtifactList;
-
-			var back = new FuncBackStep(p);
-			var sd = new StepData("Back(1)");
-			back.SetDataAndUpdatePath(sd);
-
-			string stepText = StepUtil.NodeStepMap["Root"][4].Substring(1);
-			IStep next = back.GetNextStep(stepText, pSetData);
-
-			Assert.NotNull(next, "Result should be filled.");
-
-			if ( pSetData ) {
-				Assert.NotNull(next.Data, "Result.Data should be filled.");
-			}
-			else {
-				Assert.Null(next.Data, "Result.Data should be null.");
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void GetNextStepNoBackTo() {
-			var back = new FuncBackStep(new Path());
-			TestUtil.CheckThrows<Exception>(true, () => back.GetNextStep(null));
 		}
 
 	}

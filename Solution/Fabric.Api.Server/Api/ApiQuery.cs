@@ -59,6 +59,10 @@ namespace Fabric.Api.Server.Api {
 
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
+			/*foreach ( PathSegment ps in vLastStep.Path.Segments ) {
+				Log.Debug("PS "+ps.Script+" / "+ps.SubstepCount);
+			}*/
+
 			vInfo.DtoType = vLastStep.DtoType;
 			vInfo.Resp.Links = vLastStep.AvailableLinks.ToArray();
 			vInfo.Resp.Functions = vLastStep.AvailableFuncs.ToArray();
@@ -86,6 +90,7 @@ namespace Fabric.Api.Server.Api {
 				foreach ( DbDto dbDto in vReq.DtoList ) {
 					if ( count++ >= max ) { break; }
 					vInfo.DtoList.Add(dbDto);
+					CheckDtoType(dbDto);
 					++vInfo.Resp.Count;
 				}
 
@@ -98,10 +103,22 @@ namespace Fabric.Api.Server.Api {
 				vInfo.DtoList = new List<DbDto>();
 				vInfo.DtoList.Add(vReq.Dto);
 				vInfo.IsSingleDto = true;
+				CheckDtoType(vReq.Dto);
 				return;
 			}
 			
 			vInfo.NonDtoText = vReq.ResponseString;
+		}
+		
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void CheckDtoType(DbDto pDbDto) {
+			if ( vInfo.DtoType.Name == "Fab"+pDbDto.Class ) {
+				return;
+			}
+
+			throw new Exception("Incorrect DbDto.Class '"+pDbDto.Class+"', expected match for "+
+				"DtoType '"+vInfo.DtoType.Name+"'.");
 		}
 
 
@@ -162,6 +179,10 @@ namespace Fabric.Api.Server.Api {
 				var step = (pEx as StepException);
 				vInfo.Error = step.ToFabError();
 				vInfo.HttpStatus = HttpStatusCode.BadRequest;
+
+				if ( vInfo.Resp.Type == null ) {
+					vInfo.Resp.Type = step.Step.DtoType.Name;
+				}
 
 				/*switch ( step.ErrCode ) {
 					case StepException.Code.IncorrectParamCount:

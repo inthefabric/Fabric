@@ -1,11 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/19/2012 2:20:24 PM
+// Generated on 12/20/2012 11:33:50 AM
 
 using Weaver.Items;
 using Weaver.Interfaces;
-
-//NEXT: support validation and restrictions
 
 namespace Fabric.Domain {
 

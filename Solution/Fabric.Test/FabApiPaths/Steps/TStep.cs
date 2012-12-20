@@ -5,6 +5,7 @@ using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Paths.Steps.Nodes;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiPaths.Steps {
@@ -103,12 +104,38 @@ namespace Fabric.Test.FabApiPaths.Steps {
 		public void GetNextStepInvalid() {
 			var s = new TestStep(new Path());
 			s.SetDataAndUpdatePath(new StepData("start"));
-			string stepText = "abcd(1,2)";
+			const string stepText = "abcd(1,2)";
 
 			StepException se = 
 				TestUtil.CheckThrows<StepException>(true, () => s.GetNextStep(stepText));
 			Assert.AreEqual(StepException.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 			Assert.Less(-1, se.Message.IndexOf(stepText), "Message did not include the step text.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void GetNextStepInvalidProxyForFunc() {
+			var p = new Path();
+			var s = new TestStep(p);
+			const string funcText = "TestFunc";
+			const string stepText = "unknownLink(1)";
+			const int funcStepI = 1;
+
+			var mockData = new Mock<IStepData>();
+			mockData.SetupGet(x => x.RawString).Returns(funcText);
+			mockData.SetupGet(x => x.Params).Returns((string[])null);
+
+			var funcMock = new Mock<IFuncStep>();
+			funcMock.SetupGet(x => x.Path).Returns(p);
+			funcMock.Setup(x => x.GetPathIndex()).Returns(funcStepI);
+			funcMock.SetupGet(x => x.Data).Returns(mockData.Object);
+
+			p.AddSegment(funcMock.Object, funcText);
+
+			StepException se = TestUtil.CheckThrows<StepException>(true,
+				() => s.GetNextStep(stepText, true, funcMock.Object));
+			Assert.AreEqual(StepException.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(funcStepI, se.StepIndex, "Incorrect StepIndex.");
 		}
 
 	}

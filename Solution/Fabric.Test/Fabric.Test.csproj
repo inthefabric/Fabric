@@ -31,11 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\TestFuncStep.cs" />
     <Compile Include="Common\TestFinalStep.cs" />
     <Compile Include="Common\TestNodeStep.cs" />
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiPaths\Steps\Functions\TFuncStep.cs" />
     <Compile Include="FabApiPaths\Steps\TStepException.cs" />
     <Compile Include="FabApiPaths\Steps\Functions\TFuncLimitStep.cs" />
     <Compile Include="FabApiPaths\Steps\Functions\TFuncBackStep.cs" />

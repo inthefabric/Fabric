@@ -12,10 +12,14 @@ namespace Fabric.Test.Common {
 			 "Test1", "TEST2"
 		};
 
+		public const string SegmentText = "testStep(x)";
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestStep(Path pPath) : base(pPath) { }
+		public TestStep(Path pPath) : base(pPath) {
+			Path.AddSegment(this, SegmentText);
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<string> AvailableLinks { get { return TestAvailLinks; } }
@@ -25,8 +29,8 @@ namespace Fabric.Test.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "test1": return new ArtifactStep(true, Path);
-				case "test2": return new FactorStep(true, Path);
+				case "test1": return new ArtifactStep(Path);
+				case "test2": return new FactorStep(Path);
 			}
 
 			return base.GetLink(pData);

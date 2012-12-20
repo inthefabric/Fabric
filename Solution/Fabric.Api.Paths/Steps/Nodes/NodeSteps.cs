@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/20/2012 9:43:26 AM
+// Generated on 12/20/2012 1:01:30 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -623,18 +623,16 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep(bool pIsToNode, Path pPath) : base(pPath) {
-			string q;
-			
+		public RootStep(Path pPath) : base(pPath) {
 			if ( pPath.Segments.Count == 0 ) {
-				q = "g.v(0)";
+				Path.AddSegment(this, "g.v(0)");
 			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-			
-			AddPathSegment(q);
+
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public int Count { get { return 1; } }
@@ -697,280 +695,315 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep ContainsAppList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsApp')");
-				return new AppStep(true, Path);
+				var step = new AppStep(Path);
+				Path.AddSegment(step, "outE('RootContainsApp').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep ContainsArtifactList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('RootContainsArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactTypeStep ContainsArtifactTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsArtifactType')");
-				return new ArtifactTypeStep(true, Path);
+				var step = new ArtifactTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsArtifactType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdStep ContainsCrowdList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsCrowd')");
-				return new CrowdStep(true, Path);
+				var step = new CrowdStep(Path);
+				Path.AddSegment(step, "outE('RootContainsCrowd').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep ContainsCrowdianList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsCrowdian')");
-				return new CrowdianStep(true, Path);
+				var step = new CrowdianStep(Path);
+				Path.AddSegment(step, "outE('RootContainsCrowdian').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeStep ContainsCrowdianTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsCrowdianType')");
-				return new CrowdianTypeStep(true, Path);
+				var step = new CrowdianTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsCrowdianType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep ContainsCrowdianTypeAssignList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsCrowdianTypeAssign')");
-				return new CrowdianTypeAssignStep(true, Path);
+				var step = new CrowdianTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('RootContainsCrowdianTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LabelStep ContainsLabelList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsLabel')");
-				return new LabelStep(true, Path);
+				var step = new LabelStep(Path);
+				Path.AddSegment(step, "outE('RootContainsLabel').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep ContainsMemberList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsMember')");
-				return new MemberStep(true, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "outE('RootContainsMember').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeStep ContainsMemberTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsMemberType')");
-				return new MemberTypeStep(true, Path);
+				var step = new MemberTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsMemberType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep ContainsMemberTypeAssignList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsMemberTypeAssign')");
-				return new MemberTypeAssignStep(true, Path);
+				var step = new MemberTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('RootContainsMemberTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ThingStep ContainsThingList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsThing')");
-				return new ThingStep(true, Path);
+				var step = new ThingStep(Path);
+				Path.AddSegment(step, "outE('RootContainsThing').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlStep ContainsUrlList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsUrl')");
-				return new UrlStep(true, Path);
+				var step = new UrlStep(Path);
+				Path.AddSegment(step, "outE('RootContainsUrl').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep ContainsUserList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsUser')");
-				return new UserStep(true, Path);
+				var step = new UserStep(Path);
+				Path.AddSegment(step, "outE('RootContainsUser').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep ContainsFactorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsFactor')");
-				return new FactorStep(true, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsFactor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionStep ContainsFactorAssertionList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsFactorAssertion')");
-				return new FactorAssertionStep(true, Path);
+				var step = new FactorAssertionStep(Path);
+				Path.AddSegment(step, "outE('RootContainsFactorAssertion').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep ContainsDescriptorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsDescriptor')");
-				return new DescriptorStep(true, Path);
+				var step = new DescriptorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsDescriptor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeStep ContainsDescriptorTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsDescriptorType')");
-				return new DescriptorTypeStep(true, Path);
+				var step = new DescriptorTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsDescriptorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep ContainsDirectorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsDirector')");
-				return new DirectorStep(true, Path);
+				var step = new DirectorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsDirector').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeStep ContainsDirectorTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsDirectorType')");
-				return new DirectorTypeStep(true, Path);
+				var step = new DirectorTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsDirectorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionStep ContainsDirectorActionList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsDirectorAction')");
-				return new DirectorActionStep(true, Path);
+				var step = new DirectorActionStep(Path);
+				Path.AddSegment(step, "outE('RootContainsDirectorAction').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep ContainsEventorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsEventor')");
-				return new EventorStep(true, Path);
+				var step = new EventorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsEventor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeStep ContainsEventorTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsEventorType')");
-				return new EventorTypeStep(true, Path);
+				var step = new EventorTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsEventorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionStep ContainsEventorPrecisionList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsEventorPrecision')");
-				return new EventorPrecisionStep(true, Path);
+				var step = new EventorPrecisionStep(Path);
+				Path.AddSegment(step, "outE('RootContainsEventorPrecision').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorStep ContainsIdentorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsIdentor')");
-				return new IdentorStep(true, Path);
+				var step = new IdentorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsIdentor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeStep ContainsIdentorTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsIdentorType')");
-				return new IdentorTypeStep(true, Path);
+				var step = new IdentorTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsIdentorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorStep ContainsLocatorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsLocator')");
-				return new LocatorStep(true, Path);
+				var step = new LocatorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsLocator').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeStep ContainsLocatorTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsLocatorType')");
-				return new LocatorTypeStep(true, Path);
+				var step = new LocatorTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsLocatorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep ContainsVectorList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVector')");
-				return new VectorStep(true, Path);
+				var step = new VectorStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVector').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeStep ContainsVectorTypeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVectorType')");
-				return new VectorTypeStep(true, Path);
+				var step = new VectorTypeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVectorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeStep ContainsVectorRangeList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVectorRange')");
-				return new VectorRangeStep(true, Path);
+				var step = new VectorRangeStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVectorRange').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelStep ContainsVectorRangeLevelList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVectorRangeLevel')");
-				return new VectorRangeLevelStep(true, Path);
+				var step = new VectorRangeLevelStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVectorRangeLevel').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep ContainsVectorUnitList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVectorUnit')");
-				return new VectorUnitStep(true, Path);
+				var step = new VectorUnitStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVectorUnit').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixStep ContainsVectorUnitPrefixList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVectorUnitPrefix')");
-				return new VectorUnitPrefixStep(true, Path);
+				var step = new VectorUnitPrefixStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVectorUnitPrefix').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep ContainsVectorUnitDerivedList {
 			get {
-				Path.AppendToCurrentSegment("outE('RootContainsVectorUnitDerived')");
-				return new VectorUnitDerivedStep(true, Path);
+				var step = new VectorUnitDerivedStep(Path);
+				Path.AddSegment(step, "outE('RootContainsVectorUnitDerived').inV");
+				return step;
 			}
 		}
 
@@ -986,9 +1019,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public AppStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "AppId"; } }
@@ -1014,24 +1050,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsApp')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsApp').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('AppHasArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('AppHasArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep DefinesMemberList {
 			get {
-				Path.AppendToCurrentSegment("outE('AppDefinesMember')");
-				return new MemberStep(true, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "outE('AppDefinesMember').inV");
+				return step;
 			}
 		}
 
@@ -1047,9 +1086,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public ArtifactStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "ArtifactId"; } }
@@ -1087,120 +1129,135 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsArtifact')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep InAppHas {
 			get {
-				Path.AppendToCurrentSegment("inE('AppHasArtifact')");
-				return new AppStep(false, Path);
+				var step = new AppStep(Path);
+				Path.AddSegment(step, "inE('AppHasArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactTypeStep UsesArtifactType {
 			get {
-				Path.AppendToCurrentSegment("outE('ArtifactUsesArtifactType')");
-				return new ArtifactTypeStep(true, Path);
+				var step = new ArtifactTypeStep(Path);
+				Path.AddSegment(step, "outE('ArtifactUsesArtifactType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdStep InCrowdHas {
 			get {
-				Path.AppendToCurrentSegment("inE('CrowdHasArtifact')");
-				return new CrowdStep(false, Path);
+				var step = new CrowdStep(Path);
+				Path.AddSegment(step, "inE('CrowdHasArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LabelStep InLabelHas {
 			get {
-				Path.AppendToCurrentSegment("inE('LabelHasArtifact')");
-				return new LabelStep(false, Path);
+				var step = new LabelStep(Path);
+				Path.AddSegment(step, "inE('LabelHasArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberCreates {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberCreatesArtifact')");
-				return new MemberStep(false, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "inE('MemberCreatesArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ThingStep InThingHas {
 			get {
-				Path.AppendToCurrentSegment("inE('ThingHasArtifact')");
-				return new ThingStep(false, Path);
+				var step = new ThingStep(Path);
+				Path.AddSegment(step, "inE('ThingHasArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlStep InUrlHas {
 			get {
-				Path.AppendToCurrentSegment("inE('UrlHasArtifact')");
-				return new UrlStep(false, Path);
+				var step = new UrlStep(Path);
+				Path.AddSegment(step, "inE('UrlHasArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserHas {
 			get {
-				Path.AppendToCurrentSegment("inE('UserHasArtifact')");
-				return new UserStep(false, Path);
+				var step = new UserStep(Path);
+				Path.AddSegment(step, "inE('UserHasArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUsesPrimary {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesPrimaryArtifact')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesPrimaryArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUsesRelated {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesRelatedArtifact')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesRelatedArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListRefinesPrimaryWith {
 			get {
-				Path.AppendToCurrentSegment("inE('DescriptorRefinesPrimaryWithArtifact')");
-				return new DescriptorStep(false, Path);
+				var step = new DescriptorStep(Path);
+				Path.AddSegment(step, "inE('DescriptorRefinesPrimaryWithArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListRefinesRelatedWith {
 			get {
-				Path.AppendToCurrentSegment("inE('DescriptorRefinesRelatedWithArtifact')");
-				return new DescriptorStep(false, Path);
+				var step = new DescriptorStep(Path);
+				Path.AddSegment(step, "inE('DescriptorRefinesRelatedWithArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListRefinesTypeWith {
 			get {
-				Path.AppendToCurrentSegment("inE('DescriptorRefinesTypeWithArtifact')");
-				return new DescriptorStep(false, Path);
+				var step = new DescriptorStep(Path);
+				Path.AddSegment(step, "inE('DescriptorRefinesTypeWithArtifact').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUsesAxis {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUsesAxisArtifact')");
-				return new VectorStep(false, Path);
+				var step = new VectorStep(Path);
+				Path.AddSegment(step, "inE('VectorUsesAxisArtifact').outV");
+				return step;
 			}
 		}
 
@@ -1216,9 +1273,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public ArtifactTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "ArtifactTypeId"; } }
@@ -1243,16 +1303,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsArtifactType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsArtifactType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep InArtifactListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('ArtifactUsesArtifactType')");
-				return new ArtifactStep(false, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "inE('ArtifactUsesArtifactType').outV");
+				return step;
 			}
 		}
 
@@ -1268,9 +1330,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public CrowdStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "CrowdId"; } }
@@ -1296,24 +1361,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsCrowd')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsCrowd').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('CrowdHasArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('CrowdHasArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep DefinesCrowdianList {
 			get {
-				Path.AppendToCurrentSegment("outE('CrowdDefinesCrowdian')");
-				return new CrowdianStep(true, Path);
+				var step = new CrowdianStep(Path);
+				Path.AddSegment(step, "outE('CrowdDefinesCrowdian').inV");
+				return step;
 			}
 		}
 
@@ -1329,9 +1397,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public CrowdianStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "CrowdianId"; } }
@@ -1359,40 +1430,45 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsCrowdian')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsCrowdian').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdStep InCrowdDefines {
 			get {
-				Path.AppendToCurrentSegment("inE('CrowdDefinesCrowdian')");
-				return new CrowdStep(false, Path);
+				var step = new CrowdStep(Path);
+				Path.AddSegment(step, "inE('CrowdDefinesCrowdian').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep HasCrowdianTypeAssign {
 			get {
-				Path.AppendToCurrentSegment("outE('CrowdianHasCrowdianTypeAssign')");
-				return new CrowdianTypeAssignStep(true, Path);
+				var step = new CrowdianTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('CrowdianHasCrowdianTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList {
 			get {
-				Path.AppendToCurrentSegment("outE('CrowdianHasHistoricCrowdianTypeAssign')");
-				return new CrowdianTypeAssignStep(true, Path);
+				var step = new CrowdianTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('CrowdianHasHistoricCrowdianTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserDefines {
 			get {
-				Path.AppendToCurrentSegment("inE('UserDefinesCrowdian')");
-				return new UserStep(false, Path);
+				var step = new UserStep(Path);
+				Path.AddSegment(step, "inE('UserDefinesCrowdian').outV");
+				return step;
 			}
 		}
 
@@ -1408,9 +1484,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public CrowdianTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "CrowdianTypeId"; } }
@@ -1435,16 +1514,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsCrowdianType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsCrowdianType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep InCrowdianTypeAssignListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('CrowdianTypeAssignUsesCrowdianType')");
-				return new CrowdianTypeAssignStep(false, Path);
+				var step = new CrowdianTypeAssignStep(Path);
+				Path.AddSegment(step, "inE('CrowdianTypeAssignUsesCrowdianType').outV");
+				return step;
 			}
 		}
 
@@ -1460,9 +1541,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public CrowdianTypeAssignStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "CrowdianTypeAssignId"; } }
@@ -1490,40 +1574,45 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsCrowdianTypeAssign')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsCrowdianTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep InCrowdianHas {
 			get {
-				Path.AppendToCurrentSegment("inE('CrowdianHasCrowdianTypeAssign')");
-				return new CrowdianStep(false, Path);
+				var step = new CrowdianStep(Path);
+				Path.AddSegment(step, "inE('CrowdianHasCrowdianTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep InCrowdianHasHistoric {
 			get {
-				Path.AppendToCurrentSegment("inE('CrowdianHasHistoricCrowdianTypeAssign')");
-				return new CrowdianStep(false, Path);
+				var step = new CrowdianStep(Path);
+				Path.AddSegment(step, "inE('CrowdianHasHistoricCrowdianTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeStep UsesCrowdianType {
 			get {
-				Path.AppendToCurrentSegment("outE('CrowdianTypeAssignUsesCrowdianType')");
-				return new CrowdianTypeStep(true, Path);
+				var step = new CrowdianTypeStep(Path);
+				Path.AddSegment(step, "outE('CrowdianTypeAssignUsesCrowdianType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserCreates {
 			get {
-				Path.AppendToCurrentSegment("inE('UserCreatesCrowdianTypeAssign')");
-				return new UserStep(false, Path);
+				var step = new UserStep(Path);
+				Path.AddSegment(step, "inE('UserCreatesCrowdianTypeAssign').outV");
+				return step;
 			}
 		}
 
@@ -1539,9 +1628,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LabelStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public LabelStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "LabelId"; } }
@@ -1566,16 +1658,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsLabel')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsLabel').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('LabelHasArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('LabelHasArtifact').inV");
+				return step;
 			}
 		}
 
@@ -1591,9 +1685,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public MemberStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "MemberId"; } }
@@ -1624,64 +1721,72 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsMember')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsMember').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public AppStep InAppDefines {
 			get {
-				Path.AppendToCurrentSegment("inE('AppDefinesMember')");
-				return new AppStep(false, Path);
+				var step = new AppStep(Path);
+				Path.AddSegment(step, "inE('AppDefinesMember').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep HasMemberTypeAssign {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberHasMemberTypeAssign')");
-				return new MemberTypeAssignStep(true, Path);
+				var step = new MemberTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('MemberHasMemberTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep HasHistoricMemberTypeAssignList {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberHasHistoricMemberTypeAssign')");
-				return new MemberTypeAssignStep(true, Path);
+				var step = new MemberTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('MemberHasHistoricMemberTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep CreatesArtifactList {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberCreatesArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('MemberCreatesArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep CreatesMemberTypeAssignList {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberCreatesMemberTypeAssign')");
-				return new MemberTypeAssignStep(true, Path);
+				var step = new MemberTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('MemberCreatesMemberTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep CreatesFactorList {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberCreatesFactor')");
-				return new FactorStep(true, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "outE('MemberCreatesFactor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public UserStep InUserDefines {
 			get {
-				Path.AppendToCurrentSegment("inE('UserDefinesMember')");
-				return new UserStep(false, Path);
+				var step = new UserStep(Path);
+				Path.AddSegment(step, "inE('UserDefinesMember').outV");
+				return step;
 			}
 		}
 
@@ -1697,9 +1802,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public MemberTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "MemberTypeId"; } }
@@ -1724,16 +1832,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsMemberType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsMemberType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignStep InMemberTypeAssignListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberTypeAssignUsesMemberType')");
-				return new MemberTypeAssignStep(false, Path);
+				var step = new MemberTypeAssignStep(Path);
+				Path.AddSegment(step, "inE('MemberTypeAssignUsesMemberType').outV");
+				return step;
 			}
 		}
 
@@ -1749,9 +1859,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public MemberTypeAssignStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "MemberTypeAssignId"; } }
@@ -1779,40 +1892,45 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsMemberTypeAssign')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsMemberTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberHas {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberHasMemberTypeAssign')");
-				return new MemberStep(false, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "inE('MemberHasMemberTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberHasHistoric {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberHasHistoricMemberTypeAssign')");
-				return new MemberStep(false, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "inE('MemberHasHistoricMemberTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberCreates {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberCreatesMemberTypeAssign')");
-				return new MemberStep(false, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "inE('MemberCreatesMemberTypeAssign').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeStep UsesMemberType {
 			get {
-				Path.AppendToCurrentSegment("outE('MemberTypeAssignUsesMemberType')");
-				return new MemberTypeStep(true, Path);
+				var step = new MemberTypeStep(Path);
+				Path.AddSegment(step, "outE('MemberTypeAssignUsesMemberType').inV");
+				return step;
 			}
 		}
 
@@ -1828,9 +1946,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ThingStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public ThingStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "ThingId"; } }
@@ -1855,16 +1976,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsThing')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsThing').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('ThingHasArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('ThingHasArtifact').inV");
+				return step;
 			}
 		}
 
@@ -1880,9 +2003,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public UrlStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "UrlId"; } }
@@ -1907,16 +2033,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsUrl')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsUrl').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('UrlHasArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('UrlHasArtifact').inV");
+				return step;
 			}
 		}
 
@@ -1932,9 +2060,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UserStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public UserStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "UserId"; } }
@@ -1962,40 +2093,45 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsUser')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsUser').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep HasArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('UserHasArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('UserHasArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignStep CreatesCrowdianTypeAssignList {
 			get {
-				Path.AppendToCurrentSegment("outE('UserCreatesCrowdianTypeAssign')");
-				return new CrowdianTypeAssignStep(true, Path);
+				var step = new CrowdianTypeAssignStep(Path);
+				Path.AddSegment(step, "outE('UserCreatesCrowdianTypeAssign').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianStep DefinesCrowdianList {
 			get {
-				Path.AppendToCurrentSegment("outE('UserDefinesCrowdian')");
-				return new CrowdianStep(true, Path);
+				var step = new CrowdianStep(Path);
+				Path.AddSegment(step, "outE('UserDefinesCrowdian').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep DefinesMemberList {
 			get {
-				Path.AppendToCurrentSegment("outE('UserDefinesMember')");
-				return new MemberStep(true, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "outE('UserDefinesMember').inV");
+				return step;
 			}
 		}
 
@@ -2011,9 +2147,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public FactorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "FactorId"; } }
@@ -2048,96 +2187,108 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsFactor')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsFactor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep InMemberCreates {
 			get {
-				Path.AppendToCurrentSegment("inE('MemberCreatesFactor')");
-				return new MemberStep(false, Path);
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "inE('MemberCreatesFactor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep UsesPrimaryArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesPrimaryArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesPrimaryArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep UsesRelatedArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesRelatedArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesRelatedArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionStep UsesFactorAssertion {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesFactorAssertion')");
-				return new FactorAssertionStep(true, Path);
+				var step = new FactorAssertionStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesFactorAssertion').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep ReplacesFactor {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorReplacesFactor')");
-				return new FactorStep(true, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "outE('FactorReplacesFactor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep UsesDescriptor {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesDescriptor')");
-				return new DescriptorStep(true, Path);
+				var step = new DescriptorStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesDescriptor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep UsesDirector {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesDirector')");
-				return new DirectorStep(true, Path);
+				var step = new DirectorStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesDirector').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep UsesEventor {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesEventor')");
-				return new EventorStep(true, Path);
+				var step = new EventorStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesEventor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorStep UsesIdentor {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesIdentor')");
-				return new IdentorStep(true, Path);
+				var step = new IdentorStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesIdentor').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorStep UsesLocator {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesLocator')");
-				return new LocatorStep(true, Path);
+				var step = new LocatorStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesLocator').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep UsesVector {
 			get {
-				Path.AppendToCurrentSegment("outE('FactorUsesVector')");
-				return new VectorStep(true, Path);
+				var step = new VectorStep(Path);
+				Path.AddSegment(step, "outE('FactorUsesVector').inV");
+				return step;
 			}
 		}
 
@@ -2153,9 +2304,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public FactorAssertionStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "FactorAssertionId"; } }
@@ -2180,16 +2334,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsFactorAssertion')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsFactorAssertion').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesFactorAssertion')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesFactorAssertion').outV");
+				return step;
 			}
 		}
 
@@ -2205,9 +2361,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public DescriptorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "DescriptorId"; } }
@@ -2236,48 +2395,54 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsDescriptor')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsDescriptor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesDescriptor')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesDescriptor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeStep UsesDescriptorType {
 			get {
-				Path.AppendToCurrentSegment("outE('DescriptorUsesDescriptorType')");
-				return new DescriptorTypeStep(true, Path);
+				var step = new DescriptorTypeStep(Path);
+				Path.AddSegment(step, "outE('DescriptorUsesDescriptorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep RefinesPrimaryWithArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('DescriptorRefinesPrimaryWithArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('DescriptorRefinesPrimaryWithArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep RefinesRelatedWithArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('DescriptorRefinesRelatedWithArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('DescriptorRefinesRelatedWithArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep RefinesTypeWithArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('DescriptorRefinesTypeWithArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('DescriptorRefinesTypeWithArtifact').inV");
+				return step;
 			}
 		}
 
@@ -2293,9 +2458,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public DescriptorTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "DescriptorTypeId"; } }
@@ -2320,16 +2488,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsDescriptorType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsDescriptorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorStep InDescriptorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('DescriptorUsesDescriptorType')");
-				return new DescriptorStep(false, Path);
+				var step = new DescriptorStep(Path);
+				Path.AddSegment(step, "inE('DescriptorUsesDescriptorType').outV");
+				return step;
 			}
 		}
 
@@ -2345,9 +2515,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public DirectorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "DirectorId"; } }
@@ -2375,40 +2548,45 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsDirector')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsDirector').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesDirector')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesDirector').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeStep UsesDirectorType {
 			get {
-				Path.AppendToCurrentSegment("outE('DirectorUsesDirectorType')");
-				return new DirectorTypeStep(true, Path);
+				var step = new DirectorTypeStep(Path);
+				Path.AddSegment(step, "outE('DirectorUsesDirectorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionStep UsesPrimaryDirectorAction {
 			get {
-				Path.AppendToCurrentSegment("outE('DirectorUsesPrimaryDirectorAction')");
-				return new DirectorActionStep(true, Path);
+				var step = new DirectorActionStep(Path);
+				Path.AddSegment(step, "outE('DirectorUsesPrimaryDirectorAction').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionStep UsesRelatedDirectorAction {
 			get {
-				Path.AppendToCurrentSegment("outE('DirectorUsesRelatedDirectorAction')");
-				return new DirectorActionStep(true, Path);
+				var step = new DirectorActionStep(Path);
+				Path.AddSegment(step, "outE('DirectorUsesRelatedDirectorAction').inV");
+				return step;
 			}
 		}
 
@@ -2424,9 +2602,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public DirectorTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "DirectorTypeId"; } }
@@ -2451,16 +2632,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsDirectorType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsDirectorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep InDirectorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('DirectorUsesDirectorType')");
-				return new DirectorStep(false, Path);
+				var step = new DirectorStep(Path);
+				Path.AddSegment(step, "inE('DirectorUsesDirectorType').outV");
+				return step;
 			}
 		}
 
@@ -2476,9 +2659,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public DirectorActionStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "DirectorActionId"; } }
@@ -2504,24 +2690,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsDirectorAction')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsDirectorAction').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep InDirectorListUsesPrimary {
 			get {
-				Path.AppendToCurrentSegment("inE('DirectorUsesPrimaryDirectorAction')");
-				return new DirectorStep(false, Path);
+				var step = new DirectorStep(Path);
+				Path.AddSegment(step, "inE('DirectorUsesPrimaryDirectorAction').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorStep InDirectorListUsesRelated {
 			get {
-				Path.AppendToCurrentSegment("inE('DirectorUsesRelatedDirectorAction')");
-				return new DirectorStep(false, Path);
+				var step = new DirectorStep(Path);
+				Path.AddSegment(step, "inE('DirectorUsesRelatedDirectorAction').outV");
+				return step;
 			}
 		}
 
@@ -2537,9 +2726,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public EventorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "EventorId"; } }
@@ -2566,32 +2758,36 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsEventor')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsEventor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesEventor')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesEventor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeStep UsesEventorType {
 			get {
-				Path.AppendToCurrentSegment("outE('EventorUsesEventorType')");
-				return new EventorTypeStep(true, Path);
+				var step = new EventorTypeStep(Path);
+				Path.AddSegment(step, "outE('EventorUsesEventorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionStep UsesEventorPrecision {
 			get {
-				Path.AppendToCurrentSegment("outE('EventorUsesEventorPrecision')");
-				return new EventorPrecisionStep(true, Path);
+				var step = new EventorPrecisionStep(Path);
+				Path.AddSegment(step, "outE('EventorUsesEventorPrecision').inV");
+				return step;
 			}
 		}
 
@@ -2607,9 +2803,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public EventorTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "EventorTypeId"; } }
@@ -2634,16 +2833,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsEventorType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsEventorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep InEventorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('EventorUsesEventorType')");
-				return new EventorStep(false, Path);
+				var step = new EventorStep(Path);
+				Path.AddSegment(step, "inE('EventorUsesEventorType').outV");
+				return step;
 			}
 		}
 
@@ -2659,9 +2860,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public EventorPrecisionStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "EventorPrecisionId"; } }
@@ -2686,16 +2890,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsEventorPrecision')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsEventorPrecision').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorStep InEventorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('EventorUsesEventorPrecision')");
-				return new EventorStep(false, Path);
+				var step = new EventorStep(Path);
+				Path.AddSegment(step, "inE('EventorUsesEventorPrecision').outV");
+				return step;
 			}
 		}
 
@@ -2711,9 +2917,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public IdentorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "IdentorId"; } }
@@ -2739,24 +2948,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsIdentor')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsIdentor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesIdentor')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesIdentor').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeStep UsesIdentorType {
 			get {
-				Path.AppendToCurrentSegment("outE('IdentorUsesIdentorType')");
-				return new IdentorTypeStep(true, Path);
+				var step = new IdentorTypeStep(Path);
+				Path.AddSegment(step, "outE('IdentorUsesIdentorType').inV");
+				return step;
 			}
 		}
 
@@ -2772,9 +2984,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public IdentorTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "IdentorTypeId"; } }
@@ -2799,16 +3014,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsIdentorType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsIdentorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorStep InIdentorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('IdentorUsesIdentorType')");
-				return new IdentorStep(false, Path);
+				var step = new IdentorStep(Path);
+				Path.AddSegment(step, "inE('IdentorUsesIdentorType').outV");
+				return step;
 			}
 		}
 
@@ -2824,9 +3041,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public LocatorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "LocatorId"; } }
@@ -2852,24 +3072,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsLocator')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsLocator').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesLocator')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesLocator').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeStep UsesLocatorType {
 			get {
-				Path.AppendToCurrentSegment("outE('LocatorUsesLocatorType')");
-				return new LocatorTypeStep(true, Path);
+				var step = new LocatorTypeStep(Path);
+				Path.AddSegment(step, "outE('LocatorUsesLocatorType').inV");
+				return step;
 			}
 		}
 
@@ -2885,9 +3108,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public LocatorTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "LocatorTypeId"; } }
@@ -2912,16 +3138,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsLocatorType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsLocatorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorStep InLocatorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('LocatorUsesLocatorType')");
-				return new LocatorStep(false, Path);
+				var step = new LocatorStep(Path);
+				Path.AddSegment(step, "inE('LocatorUsesLocatorType').outV");
+				return step;
 			}
 		}
 
@@ -2937,9 +3165,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorId"; } }
@@ -2968,48 +3199,54 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVector')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVector').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorStep InFactorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('FactorUsesVector')");
-				return new FactorStep(false, Path);
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesVector').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactStep UsesAxisArtifact {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUsesAxisArtifact')");
-				return new ArtifactStep(true, Path);
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('VectorUsesAxisArtifact').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeStep UsesVectorType {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUsesVectorType')");
-				return new VectorTypeStep(true, Path);
+				var step = new VectorTypeStep(Path);
+				Path.AddSegment(step, "outE('VectorUsesVectorType').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep UsesVectorUnit {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUsesVectorUnit')");
-				return new VectorUnitStep(true, Path);
+				var step = new VectorUnitStep(Path);
+				Path.AddSegment(step, "outE('VectorUsesVectorUnit').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixStep UsesVectorUnitPrefix {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUsesVectorUnitPrefix')");
-				return new VectorUnitPrefixStep(true, Path);
+				var step = new VectorUnitPrefixStep(Path);
+				Path.AddSegment(step, "outE('VectorUsesVectorUnitPrefix').inV");
+				return step;
 			}
 		}
 
@@ -3025,9 +3262,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorTypeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorTypeId"; } }
@@ -3053,24 +3293,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVectorType')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVectorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUsesVectorType')");
-				return new VectorStep(false, Path);
+				var step = new VectorStep(Path);
+				Path.AddSegment(step, "inE('VectorUsesVectorType').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeStep UsesVectorRange {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorTypeUsesVectorRange')");
-				return new VectorRangeStep(true, Path);
+				var step = new VectorRangeStep(Path);
+				Path.AddSegment(step, "outE('VectorTypeUsesVectorRange').inV");
+				return step;
 			}
 		}
 
@@ -3086,9 +3329,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorRangeStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorRangeId"; } }
@@ -3114,24 +3360,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVectorRange')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVectorRange').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeStep InVectorTypeListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorTypeUsesVectorRange')");
-				return new VectorTypeStep(false, Path);
+				var step = new VectorTypeStep(Path);
+				Path.AddSegment(step, "inE('VectorTypeUsesVectorRange').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelStep UsesVectorRangeLevelList {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorRangeUsesVectorRangeLevel')");
-				return new VectorRangeLevelStep(true, Path);
+				var step = new VectorRangeLevelStep(Path);
+				Path.AddSegment(step, "outE('VectorRangeUsesVectorRangeLevel').inV");
+				return step;
 			}
 		}
 
@@ -3147,9 +3396,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorRangeLevelStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorRangeLevelId"; } }
@@ -3174,16 +3426,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVectorRangeLevel')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVectorRangeLevel').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeStep InVectorRangeListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorRangeUsesVectorRangeLevel')");
-				return new VectorRangeStep(false, Path);
+				var step = new VectorRangeStep(Path);
+				Path.AddSegment(step, "inE('VectorRangeUsesVectorRangeLevel').outV");
+				return step;
 			}
 		}
 
@@ -3199,9 +3453,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorUnitStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorUnitId"; } }
@@ -3228,32 +3485,36 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVectorUnit')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVectorUnit').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUsesVectorUnit')");
-				return new VectorStep(false, Path);
+				var step = new VectorStep(Path);
+				Path.AddSegment(step, "inE('VectorUsesVectorUnit').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep InVectorUnitDerivedListDefines {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUnitDerivedDefinesVectorUnit')");
-				return new VectorUnitDerivedStep(false, Path);
+				var step = new VectorUnitDerivedStep(Path);
+				Path.AddSegment(step, "inE('VectorUnitDerivedDefinesVectorUnit').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUnitDerivedRaisesToExpVectorUnit')");
-				return new VectorUnitDerivedStep(false, Path);
+				var step = new VectorUnitDerivedStep(Path);
+				Path.AddSegment(step, "inE('VectorUnitDerivedRaisesToExpVectorUnit').outV");
+				return step;
 			}
 		}
 
@@ -3269,9 +3530,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorUnitPrefixStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorUnitPrefixId"; } }
@@ -3297,24 +3561,27 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVectorUnitPrefix')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVectorUnitPrefix').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorStep InVectorListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUsesVectorUnitPrefix')");
-				return new VectorStep(false, Path);
+				var step = new VectorStep(Path);
+				Path.AddSegment(step, "inE('VectorUsesVectorUnitPrefix').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedStep InVectorUnitDerivedListUses {
 			get {
-				Path.AppendToCurrentSegment("inE('VectorUnitDerivedUsesVectorUnitPrefix')");
-				return new VectorUnitDerivedStep(false, Path);
+				var step = new VectorUnitDerivedStep(Path);
+				Path.AddSegment(step, "inE('VectorUnitDerivedUsesVectorUnitPrefix').outV");
+				return step;
 			}
 		}
 
@@ -3330,9 +3597,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep(bool pIsToNode, Path pPath) : base(pPath) {
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+		public VectorUnitDerivedStep(Path pPath) : base(pPath) {
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "VectorUnitDerivedId"; } }
@@ -3359,32 +3629,36 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep InRootContains {
 			get {
-				Path.AppendToCurrentSegment("inE('RootContainsVectorUnitDerived')");
-				return new RootStep(false, Path);
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsVectorUnitDerived').outV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep DefinesVectorUnit {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUnitDerivedDefinesVectorUnit')");
-				return new VectorUnitStep(true, Path);
+				var step = new VectorUnitStep(Path);
+				Path.AddSegment(step, "outE('VectorUnitDerivedDefinesVectorUnit').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitStep RaisesToExpVectorUnit {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUnitDerivedRaisesToExpVectorUnit')");
-				return new VectorUnitStep(true, Path);
+				var step = new VectorUnitStep(Path);
+				Path.AddSegment(step, "outE('VectorUnitDerivedRaisesToExpVectorUnit').inV");
+				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixStep UsesVectorUnitPrefix {
 			get {
-				Path.AppendToCurrentSegment("outE('VectorUnitDerivedUsesVectorUnitPrefix')");
-				return new VectorUnitPrefixStep(true, Path);
+				var step = new VectorUnitPrefixStep(Path);
+				Path.AddSegment(step, "outE('VectorUnitDerivedUsesVectorUnitPrefix').inV");
+				return step;
 			}
 		}
 

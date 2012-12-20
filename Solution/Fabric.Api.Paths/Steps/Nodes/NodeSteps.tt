@@ -77,29 +77,22 @@ foreach ( string name in nodeNames ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Step(bool pIsToNode, Path pPath) : base(pPath) {
+		public <#= node.Name #>Step(Path pPath) : base(pPath) {
 <#
 	if ( node.Name == "Root" ) {
 #>
-			string q;
-			
 			if ( pPath.Segments.Count == 0 ) {
-				q = "g.v(0)";
+				Path.AddSegment(this, "g.v(0)");
 			}
-			else {
-				q = (pIsToNode ? "inV" : "outV");
-			}
-			
-			AddPathSegment(q);
-<#
-	}
-	else {
-#>
-			AddPathSegment(pIsToNode ? "inV" : "outV");
+
 <#
 	}
 #>
+			ConstructorHook();
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
 
 <#
 	if ( node.Name == "Root" ) {
@@ -142,13 +135,15 @@ foreach ( string name in nodeNames ) {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		var propType = hr.TargetNodeType+"Step";
-		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelName+"')";
+		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelName+"')."+
+			(hr.IsOutgoing ? "inV" : "outV");
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= propType #> <#= hr.RelPropName #> {
 			get {
-				Path.AppendToCurrentSegment("<#= script #>");
-				return new <#= propType #>(<#= (hr.IsOutgoing ? "true" : "false") #>, Path);
+				var step = new <#= propType #>(Path);
+				Path.AddSegment(step, "<#= script #>");
+				return step;
 			}
 		}
 

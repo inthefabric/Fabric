@@ -53,8 +53,6 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 			////
 
-			//TODO: Back function must skip non-Link steps
-
 			int numSegs = Path.Segments.Count-1; //skip "back" segment
 			int maxSegCount = numSegs-1;
 
@@ -64,11 +62,12 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			}
 
 			PathSegment seg;
-			Count = -1;
+			Count = 0;
 
 			for ( int i = 0 ; i < segCount ; ++i ) {
 				seg = Path.Segments[numSegs-i-1];
 				Count += seg.SubstepCount;
+				//Log.Debug(i+": "+seg.Script+" / "+seg.SubstepCount+" / "+Count);
 			}
 
 			seg = Path.Segments[numSegs-segCount-1];
@@ -79,9 +78,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(IStep pStep) {
+		public static bool AllowedForStep(IStep pStep) { //TEST FuncBackStep.AllowedForStep
 			if ( pStep is RootStep ) { return false; }
-			if ( pStep is FuncBackStep ) { return false; }
 			return true;
 		}
 

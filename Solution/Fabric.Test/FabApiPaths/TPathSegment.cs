@@ -68,6 +68,8 @@ namespace Fabric.Test.FabApiPaths {
 		[TestCase("x", 1)]
 		[TestCase("inV.outE('RootContainsArtifact')", 2)]
 		[TestCase("1.2.3.4(a,b,c).5.6", 6)]
+		[TestCase("test[0..9]", 2)]
+		[TestCase("g.V.dedup[0..9].back(2)", 5)]
 		public void SubstepCount(string pScript, int pExpectCount) {
 			IStep step = new Mock<IStep>().Object;
 			var ps = new PathSegment(step, pScript);

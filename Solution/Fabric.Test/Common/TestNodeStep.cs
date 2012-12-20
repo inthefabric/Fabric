@@ -29,7 +29,7 @@ namespace Fabric.Test.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "HasThing": return new ThingStep(true, Path);
+				case "HasThing": return new ThingStep(Path);
 			}
 
 			return null;

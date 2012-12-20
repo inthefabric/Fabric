@@ -33,7 +33,10 @@ namespace Fabric.Api.Paths {
 		/*--------------------------------------------------------------------------------------------*/
 		public int SubstepCount {
 			get {
-				return Script.Split('.').Length;
+				string s = Script.Replace("..", "-");
+				int c0 = s.Split('.').Length;
+				int c1 = s.Split('[').Length-1;
+				return c0+c1;
 			}
 		}
 

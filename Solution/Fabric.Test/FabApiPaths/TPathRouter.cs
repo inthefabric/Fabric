@@ -24,8 +24,8 @@ namespace Fabric.Test.FabApiPaths {
 			var mockStep1 = new Mock<IStep>();
 			var mockStepLast = new Mock<TestFinalStep>();
 
-			mockStep0.Setup(x => x.GetNextStep(parts[0], true)).Returns(mockStep1.Object);
-			mockStep1.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true))
+			mockStep0.Setup(x => x.GetNextStep(parts[0], true, null)).Returns(mockStep1.Object);
+			mockStep1.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true, null))
 				.Returns(mockStepLast.Object);
 
 			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, pUri);
@@ -47,11 +47,11 @@ namespace Fabric.Test.FabApiPaths {
 			var mockStep4 = new Mock<IStep>();
 			var mockStepLast = new Mock<TestFinalStep>();
 
-			mockStep0.Setup(x => x.GetNextStep(parts[0], true)).Returns(mockStep1.Object);
-			mockStep1.Setup(x => x.GetNextStep(parts[1], true)).Returns(mockStep2.Object);
-			mockStep2.Setup(x => x.GetNextStep(parts[2], true)).Returns(mockStep3.Object);
-			mockStep3.Setup(x => x.GetNextStep(parts[3], true)).Returns(mockStep4.Object);
-			mockStep4.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true))
+			mockStep0.Setup(x => x.GetNextStep(parts[0], true, null)).Returns(mockStep1.Object);
+			mockStep1.Setup(x => x.GetNextStep(parts[1], true, null)).Returns(mockStep2.Object);
+			mockStep2.Setup(x => x.GetNextStep(parts[2], true, null)).Returns(mockStep3.Object);
+			mockStep3.Setup(x => x.GetNextStep(parts[3], true, null)).Returns(mockStep4.Object);
+			mockStep4.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true, null))
 				.Returns(mockStepLast.Object);
 
 			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, pUri);
@@ -67,7 +67,7 @@ namespace Fabric.Test.FabApiPaths {
 			var mockStep0 = new Mock<IStep>();
 			var mockStep1 = new Mock<TestFinalStep>();
 
-			mockStep0.Setup(x => x.GetNextStep(parts[0], true)).Returns(mockStep1.Object);
+			mockStep0.Setup(x => x.GetNextStep(parts[0], true, null)).Returns(mockStep1.Object);
 
 			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, pUri);
 
@@ -83,8 +83,8 @@ namespace Fabric.Test.FabApiPaths {
 			var mockStep1 = new Mock<IStep>();
 			var mockStep2 = new Mock<TestFinalStep>();
 
-			mockStep0.Setup(x => x.GetNextStep(parts[0], true)).Returns(mockStep1.Object);
-			mockStep1.Setup(x => x.GetNextStep(parts[1], true)).Returns(mockStep2.Object);
+			mockStep0.Setup(x => x.GetNextStep(parts[0], true, null)).Returns(mockStep1.Object);
+			mockStep1.Setup(x => x.GetNextStep(parts[1], true, null)).Returns(mockStep2.Object);
 
 			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, pUri);
 
