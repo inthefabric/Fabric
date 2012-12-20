@@ -10,6 +10,7 @@ namespace Fabric.Api.Paths.Steps {
 		Path Path { get; }
 		Type DtoType { get; }
 		List<string> AvailableSteps { get; }
+		List<string> AvailableFuncs { get; }
 		IStepData Data { get; }
 
 	}

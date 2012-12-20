@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
-	public abstract class FuncStep : Step {
+	public abstract class FuncStep : Step, IFuncStep {
 
 		protected IStep ProxyStep { get; set; }
 

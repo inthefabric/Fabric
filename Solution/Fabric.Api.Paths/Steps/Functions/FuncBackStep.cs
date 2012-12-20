@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Api.Paths.Steps.Nodes;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -52,6 +53,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 			////
 
+			//TODO: Back function must skip non-Link steps
+
 			int numSegs = Path.Segments.Count-1; //skip "back" segment
 			int maxSegCount = numSegs-1;
 
@@ -71,6 +74,15 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			seg = Path.Segments[numSegs-segCount-1];
 			ProxyStep = seg.Step;
 			Path.AppendToCurrentSegment("("+Count+")", false);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static bool AllowedForStep(IStep pStep) {
+			if ( pStep is RootStep ) { return false; }
+			if ( pStep is FuncBackStep ) { return false; }
+			return true;
 		}
 
 	}

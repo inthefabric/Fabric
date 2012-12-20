@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 
 namespace Fabric.Api.Dto {
 
@@ -10,7 +9,8 @@ namespace Fabric.Api.Dto {
 		public string Type { get; set; }
 		public string BaseUri { get; set; }
 		public string RequestUri { get; set; }
-		public string[] AvailableUris { get; set; }
+		public string[] Links { get; set; }
+		public string[] Functions { get; set; }
 		public int DbMs { get; set; }
 		public int TotalMs { get; set; }
 		public int DataLen { get; set; }

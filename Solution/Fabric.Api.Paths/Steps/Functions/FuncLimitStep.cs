@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Api.Paths.Steps.Nodes;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -62,6 +63,14 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 			ProxyStep = Path.Segments[Path.Segments.Count-2].Step;
 			Path.AppendToCurrentSegment("["+Index+".."+(Index+Count)+"]", false);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static bool AllowedForStep(IStep pStep) {
+			if ( pStep is RootStep ) { return false; }
+			return true;
 		}
 
 	}

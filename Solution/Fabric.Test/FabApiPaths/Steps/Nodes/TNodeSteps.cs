@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
+using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Paths.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Test.Util;
@@ -43,13 +44,12 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 					"Incorrect TypeIdIsLong.");
 			}
 
-			////
-			
-			var expectSteps = new List<string>();
+			Assert.AreEqual(isRoot, (step is IFinalStep), "Incorrect IFinalStep usage.");
 
-			foreach ( string a in Step.AvailSteps ) {
-				expectSteps.Add(a);
-			}
+			////
+
+			var expectSteps = new List<string>();
+			List<string> expectFuncs = FuncRegistry.GetAvailableFuncs(step, true);
 
 			foreach ( string a in availSteps ) {
 				expectSteps.Add(a);

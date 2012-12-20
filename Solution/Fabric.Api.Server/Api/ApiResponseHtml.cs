@@ -94,7 +94,8 @@ namespace Fabric.Api.Server.Api {
 
 			foreach ( PropertyInfo pi in props ) {
 				if ( pi.Name == "Data" ) { continue; }
-				if ( pi.Name == "AvailableUris" ) { continue; }
+				if ( pi.Name == "Links" ) { continue; }
+				if ( pi.Name == "Functions" ) { continue; }
 
 				html += "<b>"+pi.Name+":</b> ";
 				var val = pi.GetValue(vInfo.Resp, null);
@@ -125,11 +126,24 @@ namespace Fabric.Api.Server.Api {
 
 			////
 
-			html += "<h3>Available URIs</h3>";
+			html += "<h3>Links</h3>";
 			html += "<div style='margin-left:20px;'>";
 
-			for ( int i = 0 ; i < vInfo.Resp.AvailableUris.Length ; ++i ) {
-				string au = vInfo.Resp.AvailableUris[i];
+			for ( int i = 0 ; i < vInfo.Resp.Links.Length ; ++i ) {
+				string au = vInfo.Resp.Links[i];
+				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+au;
+				html += (i == 0 ? "" : "<br/>")+"<a href='"+uri+"'>"+au+"</a>";
+			}
+
+			html += "</div>";
+
+			////
+
+			html += "<h3>Functions</h3>";
+			html += "<div style='margin-left:20px;'>";
+
+			for ( int i = 0 ; i < vInfo.Resp.Functions.Length ; ++i ) {
+				string au = vInfo.Resp.Functions[i];
 				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+au;
 				html += (i == 0 ? "" : "<br/>")+"<a href='"+uri+"'>"+au+"</a>";
 			}

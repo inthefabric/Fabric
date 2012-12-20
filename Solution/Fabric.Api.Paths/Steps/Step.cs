@@ -8,10 +8,6 @@ namespace Fabric.Api.Paths.Steps {
 	/*================================================================================================*/
 	public abstract class Step : IStep {
 
-		public static readonly List<string> AvailSteps = new List<string> {
-			"/Back", "/Limit"
-		};
-
 		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
 		public IStepData Data { get; private set; }
@@ -25,7 +21,16 @@ namespace Fabric.Api.Paths.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract Type DtoType { get; }
-		public virtual List<string> AvailableSteps { get { return AvailSteps; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual List<string> AvailableSteps {
+			get { return new List<string>(); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual List<string> AvailableFuncs {
+			get { return FuncRegistry.GetAvailableFuncs(this, true); }
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +55,8 @@ namespace Fabric.Api.Paths.Steps {
 			var sd = new StepData(pStepText);
 			IStep next = GetNextStep(sd);
 
-			if ( next == null ) { //TODO: test Step's new StepException usage
+			if ( next == null ) {
+				//NEXT: InvalidStep behaves incorrectly after a Back(x) step
 				throw new StepException(StepException.Code.InvalidStep, this,
 					"The attempted next step ('"+pStepText+"') is not supported by the current step.");
 			}
@@ -64,9 +70,19 @@ namespace Fabric.Api.Paths.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IStep GetNextStep(StepData pData) {
-			switch ( pData.Command ) {
-				case "back": return new FuncBackStep(Path);
-				case "limit": return new FuncLimitStep(Path);
+			IStep func = GetFunc(pData);
+			if ( func != null ) { return func; }
+
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IStep GetFunc(StepData pData) { //TEST: Step.GetFunc
+			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(this, false);
+
+			foreach ( string comm in availFuncs ) {
+				if ( comm != pData.Command ) { continue; }
+				return FuncRegistry.GetFuncStep(comm, Path);
 			}
 
 			return null;

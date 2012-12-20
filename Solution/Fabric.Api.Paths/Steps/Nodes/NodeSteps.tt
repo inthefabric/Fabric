@@ -49,6 +49,10 @@ foreach ( string name in nodeNames ) {
 	string interfaces = "";
 	string steps = "";
 
+	if ( node.Name == "Root" ) {
+		interfaces += "IFinalStep";
+	}
+
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		interfaces += (interfaces == "" ? "" : ", ")+"I"+hr.RelPropName;
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
@@ -97,6 +101,16 @@ foreach ( string name in nodeNames ) {
 #>
 		}
 
+<#
+	if ( node.Name == "Root" ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public int Count { get { return 1; } }
+		public long Index { get { return 0; } }
+
+<#
+	}
+#>
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "<#= node.Name #>Id"; } }
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }

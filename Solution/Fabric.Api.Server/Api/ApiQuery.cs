@@ -11,7 +11,7 @@ using Nancy;
 namespace Fabric.Api.Server.Api {
 
 	/*================================================================================================*/
-	public class ApiQuery {  //TODO: test ApiQuery
+	public class ApiQuery {  //TEST: ApiQuery
 
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
@@ -60,7 +60,8 @@ namespace Fabric.Api.Server.Api {
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
 			vInfo.DtoType = vLastStep.DtoType;
-			vInfo.Resp.AvailableUris = vLastStep.AvailableSteps.ToArray();
+			vInfo.Resp.Links = vLastStep.AvailableSteps.ToArray();
+			vInfo.Resp.Functions = vLastStep.AvailableFuncs.ToArray();
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 			vInfo.Query = vLastStep.Path.Script;
 
@@ -152,7 +153,8 @@ namespace Fabric.Api.Server.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response GetExceptionResponse(Exception pEx) {
 			vInfo.Resp.IsError = true;
-			vInfo.Resp.AvailableUris = new string[0];
+			vInfo.Resp.Links = new string[0];
+			vInfo.Resp.Functions = new string[0];
 			vInfo.Resp.StartIndex = 0;
 			vInfo.Resp.Count = 0;
 
