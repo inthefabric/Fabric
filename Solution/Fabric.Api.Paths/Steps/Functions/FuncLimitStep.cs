@@ -4,11 +4,15 @@ using Fabric.Api.Dto;
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
+	[Func("Limit")]
 	public class FuncLimitStep : FuncStep, IFinalStep {
 
 		public const string DefaultStepText = "Limit(0,20)";
 
+		[FuncParam(0, 0)]
 		public long Index { get; private set; }
+
+		[FuncParam(1, 0, 50)]
 		public int Count { get; private set; }
 
 

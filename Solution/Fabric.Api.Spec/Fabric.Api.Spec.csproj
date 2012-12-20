@@ -34,6 +34,17 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lang\FuncParamText.Designer.cs">
+      <DependentUpon>FuncParamText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\FuncText.Designer.cs">
+      <DependentUpon>FuncText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SpecFunc.cs" />
     <Compile Include="SpecApiError.cs" />
     <Compile Include="Lang\DtoPropText.Designer.cs">
       <DependentUpon>DtoPropText.resx</DependentUpon>
@@ -65,10 +76,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SpecLink.cs" />
-    <Compile Include="SpecPathFunc.cs" />
     <Compile Include="SpecProperty.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lang\FuncParamText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncParamText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\FuncText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\DtoPropText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>
@@ -99,6 +117,10 @@
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Paths\Fabric.Api.Paths.csproj">
+      <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
+      <Name>Fabric.Api.Paths</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>

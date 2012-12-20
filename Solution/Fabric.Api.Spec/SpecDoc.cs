@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Fabric.Api.Dto;
+using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Spec.Lang;
 using Fabric.Infrastructure.Domain;
 
@@ -14,7 +16,7 @@ namespace Fabric.Api.Spec {
 		public SpecApiResponse ApiResponse { get; set; }
 		public SpecApiError ApiError { get; set; }
 		public List<SpecDto> DtoList { get; set; }
-		public List<SpecPathFunc> PathFunctionList { get; set; }
+		public List<SpecFunc> FunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +26,19 @@ namespace Fabric.Api.Spec {
 			ApiError = new SpecApiError();
 			DtoList = BuildDtoList();
 			DtoList.Insert(0, GetSpecDtoFabNode());
+
+			////
+
+			FunctionList = new List<SpecFunc>();
+			Assembly a = Assembly.GetAssembly(typeof(FuncBackStep));
+
+			foreach ( Type t in a.GetTypes() ) {
+				if ( t.GetCustomAttributes(typeof(FuncAttribute), false).Length == 0 ) {
+					continue;
+				}
+
+				FunctionList.Add(new SpecFunc(t));
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -51,6 +66,18 @@ namespace Fabric.Api.Spec {
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetDtoPropText(string pName) {
 			string s = DtoPropText.ResourceManager.GetString(pName);
+			return (s ?? "MISSING:"+pName);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetFuncText(string pName) {
+			string s = FuncText.ResourceManager.GetString(pName);
+			return (s ?? "MISSING:"+pName);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetFuncParamText(string pName) {
+			string s = FuncParamText.ResourceManager.GetString(pName);
 			return (s ?? "MISSING:"+pName);
 		}
 

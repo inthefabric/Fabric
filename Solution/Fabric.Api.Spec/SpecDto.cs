@@ -11,6 +11,7 @@ namespace Fabric.Api.Spec {
 		public string Description { get; set; }
 		public List<SpecProperty> PropertyList { get; set; }
 		public List<SpecLink> LinkList { get; set; }
+		public List<string> FunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +19,7 @@ namespace Fabric.Api.Spec {
 		public SpecDto() {
 			PropertyList = new List<SpecProperty>();
 			LinkList = new List<SpecLink>();
+			FunctionList = new List<string>();
 		}
 
 	}

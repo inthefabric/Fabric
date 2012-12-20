@@ -1,8 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/19/2012 2:20:25 PM
+// Generated on 12/20/2012 3:22:16 PM
 
 using System.Collections.Generic;
+using Fabric.Api.Paths.Steps.Functions;
 
 namespace Fabric.Api.Spec {
 
@@ -484,6 +485,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -654,6 +659,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -680,6 +689,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -745,6 +758,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -802,6 +819,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -828,6 +849,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabCrowdianType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -892,6 +917,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -929,6 +958,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1017,6 +1050,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1043,6 +1080,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1101,6 +1142,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1156,6 +1201,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1198,6 +1247,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1265,6 +1318,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1427,6 +1484,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromOneOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1453,6 +1514,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1530,6 +1595,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1556,6 +1625,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1614,6 +1687,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1640,6 +1717,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1677,6 +1758,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1731,6 +1816,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1758,6 +1847,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1784,6 +1877,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1829,6 +1926,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -1855,6 +1956,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1910,6 +2015,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -1973,6 +2082,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -2047,6 +2160,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -2096,6 +2213,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -2133,6 +2254,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -2165,6 +2290,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -2220,6 +2349,10 @@ namespace Fabric.Api.Spec {
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
 
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
 			////
 
 			dto = new SpecDto();
@@ -2269,6 +2402,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			////
 
@@ -2322,6 +2459,10 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
 
 			return list;
 		}

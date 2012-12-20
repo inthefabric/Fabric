@@ -357,7 +357,7 @@
   <data name="Object_TypeId" xml:space="preserve">
     <value>Uniquely identifies this object amongst all other objects of this type.</value>
   </data>
-  <data name="Response_AvailableUris" xml:space="preserve">
+  <data name="Response_Links" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="Response_BaseUri" xml:space="preserve">
@@ -439,6 +439,9 @@
     <value>TODO</value>
   </data>
   <data name="Error_Type" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Functions" xml:space="preserve">
     <value>TODO</value>
   </data>
 </root>

@@ -702,15 +702,6 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string Response_AvailableUris {
-            get {
-                return ResourceManager.GetString("Response_AvailableUris", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
         internal static string Response_BaseUri {
             get {
                 return ResourceManager.GetString("Response_BaseUri", resourceCulture);
@@ -756,6 +747,15 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
+        internal static string Response_Functions {
+            get {
+                return ResourceManager.GetString("Response_Functions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string Response_HasMore {
             get {
                 return ResourceManager.GetString("Response_HasMore", resourceCulture);
@@ -777,6 +777,15 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Response_IsError {
             get {
                 return ResourceManager.GetString("Response_IsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Response_Links {
+            get {
+                return ResourceManager.GetString("Response_Links", resourceCulture);
             }
         }
         

@@ -4,6 +4,7 @@ using Fabric.Api.Dto;
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
+	[Func("Back")]
 	public class FuncBackStep : FuncStep {
 
 		//The correct way to read the "back" command is to count the period chars BEFORE ".back".
@@ -14,6 +15,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		// * BACK == 3: after "something(1,2)."
 		// * BACK == 4: after "inV(x)."
 
+		[FuncParam(0, 1)]
 		public int Count { get; private set; }
 
 

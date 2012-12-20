@@ -65,7 +65,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IStep GetFuncStep(string pCommand, Path pPath) {
+		public static IFuncStep GetFuncStep(string pCommand, Path pPath) {
 			if ( !RegItemMap.ContainsKey(pCommand) ) { return null; }
 			return RegItemMap[pCommand].New(pPath);
 		}

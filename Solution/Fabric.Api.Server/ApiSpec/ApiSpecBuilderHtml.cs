@@ -26,15 +26,21 @@ namespace Fabric.Api.Server.ApiSpec {
 				html += BuildDtoHtml(dto, pDoc)+"<br/><br/>";
 			}
 
+			foreach ( SpecFunc func in pDoc.FunctionList ) {
+				html += BuildFuncHtml(func, pDoc)+"<br/><br/>";
+			}
+
 			return html;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static string BuildDtoHtml(SpecDto pDto, SpecDoc pDoc) {
 			string html = "<hr><h3><a name='"+pDto.Name+"' />"+pDto.Name+"</h3>";
 			
 			if ( !string.IsNullOrWhiteSpace(pDto.Extends) ) {
-				html +=  "Extends "+BuildDtoLink(pDto.Extends)+"<br/><br/>";
+				html +=  "Extends "+BuildAnchorLink(pDto.Extends)+"<br/><br/>";
 			}
 
 			html += "<b>Description</b><br/>";
@@ -51,7 +57,7 @@ namespace Fabric.Api.Server.ApiSpec {
 
 				html += "<div style='margin-left:20px'>";
 				html += sl.Name+" : "+
-						(many ? "List[" : "")+BuildDtoLink(sl.ToDto)+(many ? "]" : "")+"<br/>";
+						(many ? "List[" : "")+BuildAnchorLink(sl.ToDto)+(many ? "]" : "")+"<br/>";
 				html += "</div>";
 			}
 
@@ -63,7 +69,15 @@ namespace Fabric.Api.Server.ApiSpec {
 
 				html += "<div style='margin-left:20px'>";
 				html += sl.Name+" : "+
-					(many ? "List[" : "")+BuildDtoLink(sl.FromDto)+(many ? "]" : "")+"<br/>";
+					(many ? "List[" : "")+BuildAnchorLink(sl.FromDto)+(many ? "]" : "")+"<br/>";
+				html += "</div>";
+			}
+
+			html += "<br/><b>Functions</b><br/>";
+
+			foreach ( string funcName in pDto.FunctionList ) {
+				html += "<div style='margin-left:20px'>";
+				html += BuildAnchorLink(funcName)+"<br/>";
 				html += "</div>";
 			}
 			
@@ -81,15 +95,47 @@ namespace Fabric.Api.Server.ApiSpec {
 			foreach ( SpecProperty sp in pDto.PropertyList ) {
 				html += "<div style='margin-left:20px'>"+sp.Name+" : "+sp.Type+"<br/>"+
 					"<span style='color:#777;'>"+
-					(pLevel > 0 ? "(from "+BuildDtoLink(pDto.Name)+") " : "")+
+					(pLevel > 0 ? "(from "+BuildAnchorLink(pDto.Name)+") " : "")+
 						sp.Description+"</span><br/><br/></div>";
 			}
 
 			return html;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static string BuildDtoLink(string pDtoName) {
+		public static string BuildFuncHtml(SpecFunc pFunc, SpecDoc pDoc) {
+			string html = "<hr><h3><a name='"+pFunc.Name+"' />Function: "+pFunc.Name+"</h3>";
+
+			html += "<b>Description</b><br/>";
+			html += "<span style='color:#777;'>"+pFunc.Description+"</span><br/><br/>";
+
+			html += "<b>Parameters</b><br/>";
+			html += BuildFuncParamHtml(pFunc, pDoc);
+
+			return html;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string BuildFuncParamHtml(SpecFunc pFunc, SpecDoc pDoc) {
+			string html = "";
+
+			foreach ( SpecFuncParam fp in pFunc.ParameterList ) {
+				html += "<div style='margin-left:20px'>"+fp.Name+" : "+fp.Type+" { ";
+				html += (fp.Min == null ? "" : "Min="+fp.Min+" ");
+				html += (fp.Max == null ? "" : "Max="+fp.Max+" ");
+				html += "}<br/><span style='color:#777;'>"+fp.Description+"</span>";
+				html += "<br/><br/></div>";
+			}
+
+			return html;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static string BuildAnchorLink(string pDtoName) {
 			return "<a href='#"+pDtoName+"'>"+pDtoName+"</a>";
 		}
 
