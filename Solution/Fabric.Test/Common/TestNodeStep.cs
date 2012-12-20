@@ -8,7 +8,7 @@ namespace Fabric.Test.Common {
 	/*================================================================================================*/
 	public class TestNodeStep : NodeStep<TestFabNode> {
 
-		public static readonly List<string> AvailNodeSteps = new List<string> {
+		public static readonly List<string> AvailNodeLinks = new List<string> {
 			 "HasThing"
 		};
 
@@ -22,12 +22,12 @@ namespace Fabric.Test.Common {
 		public override bool TypeIdIsLong { get { return true; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps { get { return AvailNodeSteps; } }
+		public override List<string> AvailableLinks { get { return AvailNodeLinks; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "HasThing": return new ThingStep(true, Path);
 			}

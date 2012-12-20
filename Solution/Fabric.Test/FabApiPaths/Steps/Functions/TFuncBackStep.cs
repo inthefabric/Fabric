@@ -124,7 +124,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void AvailableSteps() {
+		public void AvailableLinks() {
 			var p = new Path();
 			var step = new RootStep(false, p).ContainsArtifactList;
 
@@ -133,7 +133,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			back.SetDataAndUpdatePath(sd);
 
 			var rs = new RootStep(false, new Path());
-			Assert.AreEqual(rs.AvailableSteps, back.AvailableSteps, "Incorrect AvailableSteps.");
+			Assert.AreEqual(rs.AvailableLinks, back.AvailableLinks, "Incorrect AvailableLinks.");
 		}
 
 

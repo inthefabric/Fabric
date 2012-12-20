@@ -8,7 +8,7 @@ namespace Fabric.Test.Common {
 	/*================================================================================================*/
 	public class TestStep : Step<TestFabNode> {
 
-		public static readonly List<string> TestAvailSteps = new List<string> {
+		public static readonly List<string> TestAvailLinks = new List<string> {
 			 "Test1", "TEST2"
 		};
 
@@ -18,18 +18,18 @@ namespace Fabric.Test.Common {
 		public TestStep(Path pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps { get { return TestAvailSteps; } }
+		public override List<string> AvailableLinks { get { return TestAvailLinks; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "test1": return new ArtifactStep(true, Path);
 				case "test2": return new FactorStep(true, Path);
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 	}

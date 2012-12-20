@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/20/2012 9:08:08 AM
+// Generated on 12/20/2012 9:43:26 AM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -616,7 +616,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class RootStep : NodeStep<FabRoot>, IFinalStep, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/ContainsAppList", "/ContainsArtifactList", "/ContainsArtifactTypeList", "/ContainsCrowdList", "/ContainsCrowdianList", "/ContainsCrowdianTypeList", "/ContainsCrowdianTypeAssignList", "/ContainsLabelList", "/ContainsMemberList", "/ContainsMemberTypeList", "/ContainsMemberTypeAssignList", "/ContainsThingList", "/ContainsUrlList", "/ContainsUserList", "/ContainsFactorList", "/ContainsFactorAssertionList", "/ContainsDescriptorList", "/ContainsDescriptorTypeList", "/ContainsDirectorList", "/ContainsDirectorTypeList", "/ContainsDirectorActionList", "/ContainsEventorList", "/ContainsEventorTypeList", "/ContainsEventorPrecisionList", "/ContainsIdentorList", "/ContainsIdentorTypeList", "/ContainsLocatorList", "/ContainsLocatorTypeList", "/ContainsVectorList", "/ContainsVectorTypeList", "/ContainsVectorRangeList", "/ContainsVectorRangeLevelList", "/ContainsVectorUnitList", "/ContainsVectorUnitPrefixList", "/ContainsVectorUnitDerivedList"
 		};
 
@@ -645,12 +645,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "containsapplist": return ContainsAppList;
 				case "containsartifactlist": return ContainsArtifactList;
@@ -689,7 +689,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "containsvectorunitderivedlist": return ContainsVectorUnitDerivedList;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -979,7 +979,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IDefinesMemberList {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/HasArtifact", "/DefinesMemberList"
 		};
 
@@ -995,18 +995,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
 				case "definesmemberlist": return DefinesMemberList;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1040,7 +1040,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InAppHas", "/UsesArtifactType", "/InCrowdHas", "/InLabelHas", "/InMemberCreates", "/InThingHas", "/InUrlHas", "/InUserHas", "/InFactorListUsesPrimary", "/InFactorListUsesRelated", "/InDescriptorListRefinesPrimaryWith", "/InDescriptorListRefinesRelatedWith", "/InDescriptorListRefinesTypeWith", "/InVectorListUsesAxis"
 		};
 
@@ -1056,12 +1056,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inapphas": return InAppHas;
 				case "usesartifacttype": return UsesArtifactType;
@@ -1079,7 +1079,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "invectorlistusesaxis": return InVectorListUsesAxis;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1209,7 +1209,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>, IInRootContains, IInArtifactListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InArtifactListUses"
 		};
 
@@ -1225,17 +1225,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inartifactlistuses": return InArtifactListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1261,7 +1261,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdStep : NodeStep<FabCrowd>, IInRootContains, IHasArtifact, IDefinesCrowdianList {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/HasArtifact", "/DefinesCrowdianList"
 		};
 
@@ -1277,18 +1277,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
 				case "definescrowdianlist": return DefinesCrowdianList;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1322,7 +1322,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdianStep : NodeStep<FabCrowdian>, IInRootContains, IInCrowdDefines, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList, IInUserDefines {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InCrowdDefines", "/HasCrowdianTypeAssign", "/HasHistoricCrowdianTypeAssignList", "/InUserDefines"
 		};
 
@@ -1338,12 +1338,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "incrowddefines": return InCrowdDefines;
 				case "hascrowdiantypeassign": return HasCrowdianTypeAssign;
@@ -1351,7 +1351,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "inuserdefines": return InUserDefines;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1401,7 +1401,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InCrowdianTypeAssignListUses"
 		};
 
@@ -1417,17 +1417,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1453,7 +1453,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class CrowdianTypeAssignStep : NodeStep<FabCrowdianTypeAssign>, IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InCrowdianHas", "/InCrowdianHasHistoric", "/UsesCrowdianType", "/InUserCreates"
 		};
 
@@ -1469,12 +1469,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "incrowdianhas": return InCrowdianHas;
 				case "incrowdianhashistoric": return InCrowdianHasHistoric;
@@ -1482,7 +1482,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "inusercreates": return InUserCreates;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1532,7 +1532,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class LabelStep : NodeStep<FabLabel>, IInRootContains, IHasArtifact {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/HasArtifact"
 		};
 
@@ -1548,17 +1548,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1584,7 +1584,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class MemberStep : NodeStep<FabMember>, IInRootContains, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InAppDefines", "/HasMemberTypeAssign", "/HasHistoricMemberTypeAssignList", "/CreatesArtifactList", "/CreatesMemberTypeAssignList", "/CreatesFactorList", "/InUserDefines"
 		};
 
@@ -1600,12 +1600,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inappdefines": return InAppDefines;
 				case "hasmembertypeassign": return HasMemberTypeAssign;
@@ -1616,7 +1616,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "inuserdefines": return InUserDefines;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1690,7 +1690,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class MemberTypeStep : NodeStep<FabMemberType>, IInRootContains, IInMemberTypeAssignListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InMemberTypeAssignListUses"
 		};
 
@@ -1706,17 +1706,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inmembertypeassignlistuses": return InMemberTypeAssignListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1742,7 +1742,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class MemberTypeAssignStep : NodeStep<FabMemberTypeAssign>, IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InMemberHas", "/InMemberHasHistoric", "/InMemberCreates", "/UsesMemberType"
 		};
 
@@ -1758,12 +1758,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inmemberhas": return InMemberHas;
 				case "inmemberhashistoric": return InMemberHasHistoric;
@@ -1771,7 +1771,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesmembertype": return UsesMemberType;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1821,7 +1821,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ThingStep : NodeStep<FabThing>, IInRootContains, IHasArtifact {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/HasArtifact"
 		};
 
@@ -1837,17 +1837,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1873,7 +1873,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class UrlStep : NodeStep<FabUrl>, IInRootContains, IHasArtifact {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/HasArtifact"
 		};
 
@@ -1889,17 +1889,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -1925,7 +1925,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IHasArtifact, ICreatesCrowdianTypeAssignList, IDefinesCrowdianList, IDefinesMemberList {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/HasArtifact", "/CreatesCrowdianTypeAssignList", "/DefinesCrowdianList", "/DefinesMemberList"
 		};
 
@@ -1941,12 +1941,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
 				case "createscrowdiantypeassignlist": return CreatesCrowdianTypeAssignList;
@@ -1954,7 +1954,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "definesmemberlist": return DefinesMemberList;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2004,7 +2004,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class FactorStep : NodeStep<FabFactor>, IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InMemberCreates", "/UsesPrimaryArtifact", "/UsesRelatedArtifact", "/UsesFactorAssertion", "/ReplacesFactor", "/UsesDescriptor", "/UsesDirector", "/UsesEventor", "/UsesIdentor", "/UsesLocator", "/UsesVector"
 		};
 
@@ -2020,12 +2020,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inmembercreates": return InMemberCreates;
 				case "usesprimaryartifact": return UsesPrimaryArtifact;
@@ -2040,7 +2040,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesvector": return UsesVector;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2146,7 +2146,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>, IInRootContains, IInFactorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses"
 		};
 
@@ -2162,17 +2162,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2198,7 +2198,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DescriptorStep : NodeStep<FabDescriptor>, IInRootContains, IInFactorListUses, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses", "/UsesDescriptorType", "/RefinesPrimaryWithArtifact", "/RefinesRelatedWithArtifact", "/RefinesTypeWithArtifact"
 		};
 
@@ -2214,12 +2214,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 				case "usesdescriptortype": return UsesDescriptorType;
@@ -2228,7 +2228,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "refinestypewithartifact": return RefinesTypeWithArtifact;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2286,7 +2286,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>, IInRootContains, IInDescriptorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InDescriptorListUses"
 		};
 
@@ -2302,17 +2302,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "indescriptorlistuses": return InDescriptorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2338,7 +2338,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DirectorStep : NodeStep<FabDirector>, IInRootContains, IInFactorListUses, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses", "/UsesDirectorType", "/UsesPrimaryDirectorAction", "/UsesRelatedDirectorAction"
 		};
 
@@ -2354,12 +2354,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 				case "usesdirectortype": return UsesDirectorType;
@@ -2367,7 +2367,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesrelateddirectoraction": return UsesRelatedDirectorAction;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2417,7 +2417,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DirectorTypeStep : NodeStep<FabDirectorType>, IInRootContains, IInDirectorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InDirectorListUses"
 		};
 
@@ -2433,17 +2433,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "indirectorlistuses": return InDirectorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2469,7 +2469,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class DirectorActionStep : NodeStep<FabDirectorAction>, IInRootContains, IInDirectorListUsesPrimary, IInDirectorListUsesRelated {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InDirectorListUsesPrimary", "/InDirectorListUsesRelated"
 		};
 
@@ -2485,18 +2485,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "indirectorlistusesprimary": return InDirectorListUsesPrimary;
 				case "indirectorlistusesrelated": return InDirectorListUsesRelated;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2530,7 +2530,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EventorStep : NodeStep<FabEventor>, IInRootContains, IInFactorListUses, IUsesEventorType, IUsesEventorPrecision {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses", "/UsesEventorType", "/UsesEventorPrecision"
 		};
 
@@ -2546,19 +2546,19 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 				case "useseventortype": return UsesEventorType;
 				case "useseventorprecision": return UsesEventorPrecision;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2600,7 +2600,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EventorTypeStep : NodeStep<FabEventorType>, IInRootContains, IInEventorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InEventorListUses"
 		};
 
@@ -2616,17 +2616,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2652,7 +2652,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>, IInRootContains, IInEventorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InEventorListUses"
 		};
 
@@ -2668,17 +2668,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "ineventorlistuses": return InEventorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2704,7 +2704,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class IdentorStep : NodeStep<FabIdentor>, IInRootContains, IInFactorListUses, IUsesIdentorType {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses", "/UsesIdentorType"
 		};
 
@@ -2720,18 +2720,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 				case "usesidentortype": return UsesIdentorType;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2765,7 +2765,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class IdentorTypeStep : NodeStep<FabIdentorType>, IInRootContains, IInIdentorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InIdentorListUses"
 		};
 
@@ -2781,17 +2781,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inidentorlistuses": return InIdentorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2817,7 +2817,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class LocatorStep : NodeStep<FabLocator>, IInRootContains, IInFactorListUses, IUsesLocatorType {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses", "/UsesLocatorType"
 		};
 
@@ -2833,18 +2833,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 				case "useslocatortype": return UsesLocatorType;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2878,7 +2878,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class LocatorTypeStep : NodeStep<FabLocatorType>, IInRootContains, IInLocatorListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InLocatorListUses"
 		};
 
@@ -2894,17 +2894,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "inlocatorlistuses": return InLocatorListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -2930,7 +2930,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorStep : NodeStep<FabVector>, IInRootContains, IInFactorListUses, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InFactorListUses", "/UsesAxisArtifact", "/UsesVectorType", "/UsesVectorUnit", "/UsesVectorUnitPrefix"
 		};
 
@@ -2946,12 +2946,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "infactorlistuses": return InFactorListUses;
 				case "usesaxisartifact": return UsesAxisArtifact;
@@ -2960,7 +2960,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -3018,7 +3018,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorTypeStep : NodeStep<FabVectorType>, IInRootContains, IInVectorListUses, IUsesVectorRange {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InVectorListUses", "/UsesVectorRange"
 		};
 
@@ -3034,18 +3034,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "invectorlistuses": return InVectorListUses;
 				case "usesvectorrange": return UsesVectorRange;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -3079,7 +3079,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorRangeStep : NodeStep<FabVectorRange>, IInRootContains, IInVectorTypeListUses, IUsesVectorRangeLevelList {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InVectorTypeListUses", "/UsesVectorRangeLevelList"
 		};
 
@@ -3095,18 +3095,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "invectortypelistuses": return InVectorTypeListUses;
 				case "usesvectorrangelevellist": return UsesVectorRangeLevelList;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -3140,7 +3140,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>, IInRootContains, IInVectorRangeListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InVectorRangeListUses"
 		};
 
@@ -3156,17 +3156,17 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "invectorrangelistuses": return InVectorRangeListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -3192,7 +3192,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorUnitStep : NodeStep<FabVectorUnit>, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListDefines, IInVectorUnitDerivedListRaisesToExp {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InVectorListUses", "/InVectorUnitDerivedListDefines", "/InVectorUnitDerivedListRaisesToExp"
 		};
 
@@ -3208,19 +3208,19 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistdefines": return InVectorUnitDerivedListDefines;
 				case "invectorunitderivedlistraisestoexp": return InVectorUnitDerivedListRaisesToExp;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -3262,7 +3262,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListUses {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/InVectorListUses", "/InVectorUnitDerivedListUses"
 		};
 
@@ -3278,18 +3278,18 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "invectorlistuses": return InVectorListUses;
 				case "invectorunitderivedlistuses": return InVectorUnitDerivedListUses;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 
@@ -3323,7 +3323,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class VectorUnitDerivedStep : NodeStep<FabVectorUnitDerived>, IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			"/DefinesVectorUnit", "/RaisesToExpVectorUnit", "/UsesVectorUnitPrefix"
 		};
 
@@ -3339,19 +3339,19 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "definesvectorunit": return DefinesVectorUnit;
 				case "raisestoexpvectorunit": return RaisesToExpVectorUnit;
 				case "usesvectorunitprefix": return UsesVectorUnitPrefix;
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 

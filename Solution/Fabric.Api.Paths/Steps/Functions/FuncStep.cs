@@ -23,7 +23,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps { get { return ProxyStep.AvailableSteps; } }
+		public override List<string> AvailableLinks { get { return ProxyStep.AvailableLinks; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IStep GetNextStep(string pStepText, bool pSetData=true) {

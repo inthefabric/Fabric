@@ -23,7 +23,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
 			Assert.Null(s.TypeId, "TypeId should be null.");
 			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
-			Assert.AreEqual(expectAvail, s.AvailableSteps, "Incorrect AvailableSteps.");
+			Assert.AreEqual(expectAvail, s.AvailableLinks, "Incorrect AvailableLinks.");
 			Assert.Null(s.Data, "Data should be null.");
 		}
 

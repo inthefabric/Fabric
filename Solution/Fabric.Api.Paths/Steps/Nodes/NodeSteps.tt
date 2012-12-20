@@ -70,7 +70,7 @@ foreach ( string name in nodeNames ) {
 	/*================================================================================================*/
 	public partial class <#= node.Name #>Step : NodeStep<<#= "Fab"+node.Name #>>, <#= interfaces #> {
 	
-		private static readonly List<string> AvailNodeSteps = new List<string> {
+		private static readonly List<string> AvailNodeLinks = new List<string> {
 			<#= steps #>
 		};
 
@@ -116,12 +116,12 @@ foreach ( string name in nodeNames ) {
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableSteps {
-			get { return base.AvailableSteps.Concat(AvailNodeSteps).ToList(); }
+		public override List<string> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetNextStep(StepData pData) {
+		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
@@ -134,7 +134,7 @@ foreach ( string name in nodeNames ) {
 #>
 			}
 
-			return base.GetNextStep(pData);
+			return base.GetLink(pData);
 		}
 
 

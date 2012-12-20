@@ -23,7 +23,7 @@ namespace Fabric.Api.Paths.Steps {
 		public abstract Type DtoType { get; }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual List<string> AvailableSteps {
+		public virtual List<string> AvailableLinks {
 			get { return new List<string>(); }
 		}
 
@@ -69,11 +69,9 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IStep GetNextStep(StepData pData) {
+		protected IStep GetNextStep(StepData pData) {
 			IStep func = GetFunc(pData);
-			if ( func != null ) { return func; }
-
-			return null;
+			return (func ?? GetLink(pData));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -85,6 +83,11 @@ namespace Fabric.Api.Paths.Steps {
 				return FuncRegistry.GetFuncStep(comm, Path);
 			}
 
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IStep GetLink(StepData pData) { //TEST: Step.GetLink
 			return null;
 		}
 
