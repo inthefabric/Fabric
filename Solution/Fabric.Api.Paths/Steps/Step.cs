@@ -70,7 +70,7 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IStep GetNextStep(StepData pData) { //TEST: Step: new GetFunc usage
+		private IStep GetNextStep(StepData pData) {
 			IStep func = GetFunc(pData);
 			return (func ?? GetLink(pData));
 		}

@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.Api.Dto;
-using Fabric.Infrastructure;
 
 namespace Fabric.Api.Paths.Steps {
 	
@@ -46,7 +45,6 @@ namespace Fabric.Api.Paths.Steps {
 			}
 
 			vMessage = BuildMessage(pMessage);
-			Log.Error(vMessage);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

@@ -176,12 +176,14 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.Count = 0;
 
 			if ( pEx is StepException ) {
-				var step = (pEx as StepException);
-				vInfo.Error = step.ToFabError();
+				var se = (pEx as StepException);
+				vInfo.Error = se.ToFabError();
 				vInfo.HttpStatus = HttpStatusCode.BadRequest;
 
-				if ( vInfo.Resp.Type == null ) {
-					vInfo.Resp.Type = step.Step.DtoType.Name;
+				IStep s = se.Step;
+
+				if ( vInfo.Resp.Type == null && s != null && s.DtoType != null ) {
+					vInfo.Resp.Type = s.DtoType.Name;
 				}
 
 				/*switch ( step.ErrCode ) {
@@ -193,7 +195,7 @@ namespace Fabric.Api.Server.Api {
 				}*/
 			}
 			else {
-				Log.Error("API Exception", pEx);
+				Log.Error("API Unhandled Exception", pEx);
 
 				vInfo.Error = new FabError();
 				vInfo.Error.Code = 0;

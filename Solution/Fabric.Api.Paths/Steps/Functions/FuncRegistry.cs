@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Api.Dto;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
 	/*================================================================================================*/
-	public static class FuncRegistry { //TEST: FuncRegistry
+	public static class FuncRegistry {
 
-		private static List<FuncRegItem> RegItems;
-		private static Dictionary<string, FuncRegItem> RegItemMap;
+		private static List<FuncRegistryItem> RegItems;
+		private static Dictionary<string, FuncRegistryItem> RegItemMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void Init() {
 			if ( RegItems != null ) { return; }
-			RegItems = new List<FuncRegItem>();
-			RegItemMap = new Dictionary<string, FuncRegItem>();
+			RegItems = new List<FuncRegistryItem>();
+			RegItemMap = new Dictionary<string, FuncRegistryItem>();
 
 			Register<FuncBackStep>("Back", (p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);
 			Register<FuncLimitStep>("Limit", (p => new FuncLimitStep(p)), FuncLimitStep.AllowedForStep);
@@ -23,10 +24,10 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void Register<T>(string pCommand, Func<Path, IFuncStep> pNew,
-														Func<IStep, bool> pAllow) where T : IFuncStep {
+													Func<Type, bool> pAllow) where T : IFuncStep {
 			Init();
 			
-			var ri = new FuncRegItem {
+			var ri = new FuncRegistryItem {
 				FuncType = typeof(T),
 				Uri = "/"+pCommand,
 				Command = pCommand.ToLower(),
@@ -42,12 +43,21 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static List<string> GetAvailableFuncs(IStep pStep, bool pUri) {
+			return GetAvailableFuncs(pStep.DtoType, pUri);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static List<string> GetAvailableFuncs(Type pDtoType, bool pUri) {
 			Init();
+
+			if ( !typeof(IFabNode).IsAssignableFrom(pDtoType) ) {
+				throw new Exception("DtoType must implement IFabNode.");
+			}
 
 			var list = new List<string>();
 
-			foreach ( FuncRegItem ri in RegItems ) {
-				if ( !ri.Allow(pStep) ) { continue; }
+			foreach ( FuncRegistryItem ri in RegItems ) {
+				if ( !ri.Allow(pDtoType) ) { continue; }
 				list.Add(pUri ? ri.Uri : ri.Command);
 			}
 
@@ -59,18 +69,6 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			if ( !RegItemMap.ContainsKey(pCommand) ) { return null; }
 			return RegItemMap[pCommand].New(pPath);
 		}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FuncRegItem {
-
-		public Type FuncType { get; set; }
-		public string Command { get; set; }
-		public string Uri { get; set; }
-		public Func<Path, IFuncStep> New { get; set; }
-		public Func<IStep, bool> Allow { get; set; }
 
 	}
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Fabric.Api.Paths.Steps.Nodes;
+using Fabric.Api.Dto;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -67,7 +67,6 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			for ( int i = 0 ; i < segCount ; ++i ) {
 				seg = Path.Segments[numSegs-i-1];
 				Count += seg.SubstepCount;
-				//Log.Debug(i+": "+seg.Script+" / "+seg.SubstepCount+" / "+Count);
 			}
 
 			seg = Path.Segments[numSegs-segCount-1];
@@ -78,8 +77,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(IStep pStep) { //TEST FuncBackStep.AllowedForStep
-			if ( pStep is RootStep ) { return false; }
+		public static bool AllowedForStep(Type pDtoType) {
+			if ( pDtoType == typeof(FabRoot) ) { return false; }
 			return true;
 		}
 

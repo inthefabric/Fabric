@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
@@ -155,17 +156,11 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void AvailableLinks() {
-			var p = new Path();
-			var step = new RootStep(p).ContainsArtifactList;
-
-			var back = new FuncBackStep(p);
-			var sd = new StepData("Back(1)");
-			back.SetDataAndUpdatePath(sd);
-
-			var rs = new RootStep(new Path());
-			Assert.AreEqual(rs.AvailableLinks, back.AvailableLinks, "Incorrect AvailableLinks.");
+		[TestCase(typeof(FabRoot), false)]
+		[TestCase(typeof(FabArtifact), true)]
+		public void AllowForStep(Type pDtoType, bool pExpect) {
+			bool result = FuncBackStep.AllowedForStep(pDtoType);
+			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
 	}

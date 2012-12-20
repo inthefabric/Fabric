@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
@@ -95,6 +96,16 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(StepException.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(pParamI, se.ParamIndex, "Incorrect StepException.ParamIndex.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(typeof(FabRoot), false)]
+		[TestCase(typeof(FabArtifact), true)]
+		public void AllowForStep(Type pDtoType, bool pExpect) {
+			bool result = FuncLimitStep.AllowedForStep(pDtoType);
+			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
 	}

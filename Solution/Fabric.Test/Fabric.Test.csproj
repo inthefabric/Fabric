@@ -37,6 +37,7 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiPaths\Steps\Functions\TFuncRegistry.cs" />
     <Compile Include="FabApiPaths\Steps\Functions\TFuncStep.cs" />
     <Compile Include="FabApiPaths\Steps\TStepException.cs" />
     <Compile Include="FabApiPaths\Steps\Functions\TFuncLimitStep.cs" />

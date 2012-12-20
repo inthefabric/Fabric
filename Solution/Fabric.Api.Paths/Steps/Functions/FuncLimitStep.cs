@@ -1,5 +1,5 @@
 ﻿using System;
-using Fabric.Api.Paths.Steps.Nodes;
+using Fabric.Api.Dto;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -68,8 +68,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(IStep pStep) { //TEST FuncLimitStep.AllowedForStep
-			if ( pStep is RootStep ) { return false; }
+		public static bool AllowedForStep(Type pDtoType) {
+			if ( pDtoType == typeof(FabRoot) ) { return false; }
 			return true;
 		}
 
