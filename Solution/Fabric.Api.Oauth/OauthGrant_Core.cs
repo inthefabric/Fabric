@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.Api.Dto;
-using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure;
 
 namespace Fabric.Api.Oauth {

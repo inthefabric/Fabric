@@ -1,7 +1,10 @@
-﻿namespace Fabric.Api.Oauth.Tasks {
+﻿using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
+
+namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetDomain : SvcFunc<FabOauthDomain> {
+	public class GetDomain : ActiveFunc<FabOauthDomain> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly string vRedirectUri;

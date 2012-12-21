@@ -1,7 +1,10 @@
-﻿namespace Fabric.Api.Oauth.Tasks {
+﻿using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
+
+namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddGrant : SvcFunc<string> {
+	public class AddGrant : ActiveFunc<string> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly FabUserKey vUserKey;

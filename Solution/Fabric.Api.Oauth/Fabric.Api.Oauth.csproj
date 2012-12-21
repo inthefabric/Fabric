@@ -31,28 +31,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OauthAccess.cs" />
-    <Compile Include="OauthAccess_AuthCode.cs" />
-    <Compile Include="OauthAccess_ClientCred.cs" />
-    <Compile Include="OauthAccess_ClientDataProv.cs" />
-    <Compile Include="OauthAccess_RefToken.cs" />
+    <Compile Include="Results\AccessResult.cs" />
+    <None Include="OauthAccess.cs" />
+    <None Include="OauthAccess_AuthCode.cs" />
+    <None Include="OauthAccess_ClientCred.cs" />
+    <None Include="OauthAccess_ClientDataProv.cs" />
+    <None Include="OauthAccess_RefToken.cs" />
     <Compile Include="OauthException.cs" />
-    <Compile Include="OauthGrant_Core.cs" />
-    <Compile Include="OauthGrant_LoginAction.cs" />
-    <Compile Include="OauthGrant_LoginEntry.cs" />
-    <Compile Include="OauthGrant_ScopeAction.cs" />
+    <None Include="OauthGrant_Core.cs" />
+    <None Include="OauthGrant_LoginAction.cs" />
+    <None Include="OauthGrant_LoginEntry.cs" />
+    <None Include="OauthGrant_ScopeAction.cs" />
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\DoLogout.cs" />
-    <Compile Include="Tasks\GetAccessToken.cs" />
-    <Compile Include="Tasks\AddAccess.cs" />
-    <Compile Include="Tasks\GetDomain.cs" />
-    <Compile Include="Tasks\AddGrant.cs" />
-    <Compile Include="Tasks\GetGrant.cs" />
-    <Compile Include="Tasks\AddMemberEnsure.cs" />
-    <Compile Include="Tasks\GetRefresh.cs" />
-    <Compile Include="Tasks\AddScope.cs" />
-    <Compile Include="Tasks\GetScope.cs" />
+    <None Include="Tasks\DoLogout.cs" />
+    <None Include="Tasks\GetAccessToken.cs" />
+    <None Include="Tasks\AddAccess.cs" />
+    <None Include="Tasks\GetDomain.cs" />
+    <None Include="Tasks\AddGrant.cs" />
+    <None Include="Tasks\GetGrant.cs" />
+    <None Include="Tasks\AddMemberEnsure.cs" />
+    <None Include="Tasks\GetRefresh.cs" />
+    <None Include="Tasks\AddScope.cs" />
+    <None Include="Tasks\GetScope.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">

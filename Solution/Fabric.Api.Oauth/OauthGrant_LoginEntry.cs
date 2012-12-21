@@ -1,12 +1,12 @@
 ﻿using System;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Tasks;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrant_LoginEntry : SvcFunc<FabOauthLogin> {
+	public class OauthGrant_LoginEntry : ActiveFunc<FabOauthLogin> {
 
 		private readonly OauthGrant_Core vCore;
 

@@ -1,9 +1,11 @@
 ﻿using System;
+using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddAccess : SvcFunc<OAuthAccessResult> {
+	public class AddAccess : ActiveFunc<OAuthAccessResult> {
 		
 		protected FabAppKey vAppKey;
 		protected FabUserKey vUserKey;

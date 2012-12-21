@@ -1,7 +1,9 @@
-﻿namespace Fabric.Api.Oauth.Tasks {
+﻿using Fabric.Infrastructure.Api;
+
+namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetRefresh : SvcFunc<OauthRefreshResult> {
+	public class GetRefresh : ActiveFunc<OauthRefreshResult> {
 		
 		private readonly string vRefreshToken;
 		

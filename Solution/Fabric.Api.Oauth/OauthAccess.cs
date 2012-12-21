@@ -1,7 +1,7 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 
@@ -34,7 +34,7 @@ namespace Fabric.Api.Oauth {
 	};
 
 	/*================================================================================================*/
-	public abstract class OauthAccess : SvcFunc<FabOauthAccess> {
+	public abstract class OauthAccess : ActiveFunc<FabOauthAccess> {
 
 		public static string[] ErrDescStrings = new [] {
 			"The grant_type is invalid",

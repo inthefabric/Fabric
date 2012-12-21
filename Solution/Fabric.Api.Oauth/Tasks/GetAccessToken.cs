@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using Fabric.Api.Dto.Oauth;
+using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetAccessToken : SvcFunc<FabOauthAccess> {
+	public class GetAccessToken : ActiveFunc<FabOauthAccess> {
 		
 		private readonly string vToken;
 		

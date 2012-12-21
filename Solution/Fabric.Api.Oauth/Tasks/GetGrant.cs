@@ -1,9 +1,10 @@
 ﻿using System;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetGrant : SvcFunc<FabOauthGrant> {
+	public class GetGrant : ActiveFunc<FabOauthGrant> {
 		
 		private readonly string vCode;
 		

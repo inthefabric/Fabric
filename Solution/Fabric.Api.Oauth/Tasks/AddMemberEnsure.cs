@@ -1,7 +1,9 @@
-﻿namespace Fabric.Api.Oauth.Tasks {
+﻿using Fabric.Infrastructure.Api;
+
+namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddMemberEnsure : SvcFunc<bool> {
+	public class AddMemberEnsure : ActiveFunc<bool> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly FabUserKey vUserKey;

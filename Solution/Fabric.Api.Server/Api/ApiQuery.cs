@@ -135,7 +135,7 @@ namespace Fabric.Api.Server.Api {
 				contType = "application/json";
 			}
 
-			byte[] bytes = UTF8Encoding.UTF8.GetBytes(cont);
+			byte[] bytes = Encoding.UTF8.GetBytes(cont);
 
 			return new Response {
 				ContentType = contType,

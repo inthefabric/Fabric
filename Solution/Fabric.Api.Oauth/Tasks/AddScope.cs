@@ -1,7 +1,9 @@
-﻿namespace Fabric.Api.Oauth.Tasks {
+﻿using Fabric.Infrastructure.Api;
+
+namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddScope : SvcFunc<FabOauthScopeKey> {
+	public class AddScope : ActiveFunc<FabOauthScopeKey> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly FabUserKey vUserKey;

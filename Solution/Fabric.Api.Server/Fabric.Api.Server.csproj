@@ -40,6 +40,10 @@
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
+      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
+      <Name>Fabric.Api.Oauth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Api.Paths\Fabric.Api.Paths.csproj">
       <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
       <Name>Fabric.Api.Paths</Name>
@@ -93,6 +97,8 @@
     <Compile Include="Graph\GraphView.cs" />
     <Compile Include="Graph\GraphJson.cs" />
     <Compile Include="Graph\GraphModel.cs" />
+    <Compile Include="Oauth\OauthBase.cs" />
+    <Compile Include="Oauth\OauthLogoutRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gremlin\GremlinQuery.cs" />
     <Compile Include="Setups\SetupRoutine.cs" />

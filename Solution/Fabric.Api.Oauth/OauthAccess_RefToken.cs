@@ -1,6 +1,4 @@
-﻿using Fabric.Api.Oauth.Tasks;
-
-namespace Fabric.Api.Oauth {
+﻿namespace Fabric.Api.Oauth {
 
 
 	/*================================================================================================*/

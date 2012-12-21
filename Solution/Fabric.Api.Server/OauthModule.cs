@@ -1,4 +1,5 @@
-﻿using Fabric.Infrastructure;
+﻿using Fabric.Api.Server.Oauth;
+using Fabric.Infrastructure;
 using Nancy;
 
 namespace Fabric.Api.Server {
@@ -18,7 +19,7 @@ namespace Fabric.Api.Server {
 			Get["/api/oauth/AccessTokenClientCredentials"] = (p => "Fabric OAuth: ClientCredentials");
 			Get["/api/oauth/AccessTokenClientDataProv"] = (p => "Fabric OAuth: ClientDataProv");
 			Get["/api/oauth/Login"] = (p => "Fabric OAuth: Login");
-			Get["/api/oauth/Logout"] = (p => "Fabric OAuth: Logout");
+			Get["/api/oauth/Logout"] = (p => new OauthLogoutRequest().Go(Context));
 		}
 
 	}

@@ -1,6 +1,8 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Tasks;
+using Fabric.Api.Oauth.Results;
+using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 
@@ -19,9 +21,9 @@ namespace Fabric.Api.Oauth {
 	};
 
 	/*================================================================================================*/
-	public class OauthLogout : SvcFunc<FabOauthLogout> {
+	public class OauthLogout : ActiveFunc<FabOauthLogout> {
 
-		public static string[] ErrDescStrings = new[] {
+		public static readonly string[] ErrDescStrings = new[] {
 			"The access_token is missing or in an invalid format",
 			"No tokens match the provided access_token",
 			"The logout request failed",
@@ -33,68 +35,63 @@ namespace Fabric.Api.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLogout(string pToken) : base(AuthType.None) {
+		public OauthLogout(string pToken) {
 			vToken = pToken;
-			AddTransactionFunc(DoLogout);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
+		protected override void ValidateParams() {
 			if ( vToken == null || vToken.Length != 32 ) {
-				ThrowFault(LogoutErrors.invalid_request, LogoutErrorDescs.BadToken);
+				throw GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.BadToken);
 			}
 		}
-			
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void DoLogout(ISession pSession) {
-			FabOauthAccess acc;
-			OAuthAccessResult logoutResult;
-
+		protected override FabOauthLogout Execute() {
 			try {
-				acc = new GetAccessToken(vToken).Go(Context);
+				return DoLogout();
+			}
+			catch ( OauthException ) {
+				throw;
 			}
 			catch ( Exception e ) {
-				ThrowFaultOnException(e);
-				return;
+				throw GetFaultOnException(e);
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private FabOauthLogout DoLogout() {
+			FabOauthAccess acc = null;//new GetAccessToken(vToken).Go(Context);
 
 			if ( acc == null ) {
-				ThrowFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
-				return;
+				throw GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
 			}
 
-			try {
-				logoutResult = new DoLogout(acc).Go(Context);
-			}
-			catch ( Exception e ) {
-				ThrowFaultOnException(e);
-				return;
-			}
-			
-			if ( logoutResult == null ) {
-				ThrowFault(LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
-				return;
+			AccessResult ar = null;//new DoLogout(acc).Go(Context);
+
+			if ( ar == null ) {
+				throw GetFault(LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
 			}
 
 			var log = new FabOauthLogout();
-			log.success = 1;
-			log.access_token = vToken;
-			SetResult(log);
+			log.Success = 1;
+			log.AccessToken = vToken;
+			return log;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void ThrowFaultOnException(Exception pEx) {
-			Log.Error("FOAuthLogout", pEx);
-			ThrowFault(LogoutErrors.invalid_request, LogoutErrorDescs.Unexpected);
+		private OauthException GetFaultOnException(Exception pEx) {
+			Log.Error("OauthLogout", pEx);
+			return GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.Unexpected);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected void ThrowFault(LogoutErrors pErr, LogoutErrorDescs pDesc) {
-			throw new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
+		private OauthException GetFault(LogoutErrors pErr, LogoutErrorDescs pDesc) {
+			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 
 	}

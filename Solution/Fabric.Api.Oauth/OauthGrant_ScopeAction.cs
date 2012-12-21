@@ -1,10 +1,10 @@
 ﻿using System;
-using Fabric.Api.Oauth.Tasks;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrant_ScopeAction : SvcFunc<FabOauthLoginScope> {
+	public class OauthGrant_ScopeAction : ActiveFunc<FabOauthLoginScope> {
 
 		private readonly OauthGrant_Core vCore;
 
