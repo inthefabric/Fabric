@@ -36,18 +36,36 @@
     <Compile Include="OauthAccess_ClientCred.cs" />
     <Compile Include="OauthAccess_ClientDataProv.cs" />
     <Compile Include="OauthAccess_RefToken.cs" />
+    <Compile Include="OauthException.cs" />
     <Compile Include="OauthGrant_Core.cs" />
     <Compile Include="OauthGrant_LoginAction.cs" />
     <Compile Include="OauthGrant_LoginEntry.cs" />
     <Compile Include="OauthGrant_ScopeAction.cs" />
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\DoLogout.cs" />
+    <Compile Include="Tasks\GetAccessToken.cs" />
+    <Compile Include="Tasks\AddAccess.cs" />
+    <Compile Include="Tasks\GetDomain.cs" />
+    <Compile Include="Tasks\AddGrant.cs" />
+    <Compile Include="Tasks\GetGrant.cs" />
+    <Compile Include="Tasks\AddMemberEnsure.cs" />
+    <Compile Include="Tasks\GetRefresh.cs" />
+    <Compile Include="Tasks\AddScope.cs" />
+    <Compile Include="Tasks\GetScope.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

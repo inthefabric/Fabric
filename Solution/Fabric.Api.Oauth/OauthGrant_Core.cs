@@ -1,5 +1,7 @@
 ﻿using System;
-using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Dto;
+using Fabric.Api.Oauth.Tasks;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Oauth {
 
@@ -110,7 +112,7 @@ namespace Fabric.Api.Oauth {
 		public FabOauthLoginScope GetGrantCodeIfScopeAlreadyAllowed() {
 			if ( UserKey == null ) { return null; }
 
-			FabOauthScope os = new FOauthScope_Get(AppKey, UserKey).Go(Context);
+			FabOauthScope os = new GetScope(AppKey, UserKey).Go(Context);
 			if ( os == null || !os.Allow ) { return null; }
 
 			return AddGrantCode(true);
@@ -118,13 +120,13 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthLoginScope AddGrantCode(bool pScopeAlreadyAdded) {
-			new FOauthMemberEnsure_Add(AppKey, UserKey).Go(Context);
+			new AddMemberEnsure(AppKey, UserKey).Go(Context);
 
 			if ( !pScopeAlreadyAdded ) {
-				new FOauthScope_Add(AppKey, UserKey, true).Go(Context);
+				new AddScope(AppKey, UserKey, true).Go(Context);
 			}
 
-			string code = new FOauthGrant_Add(AppKey, UserKey, RedirectUri).Go(Context);
+			string code = new AddGrant(AppKey, UserKey, RedirectUri).Go(Context);
 
 			var s = new FabOauthLoginScope();
 			s.Redirect = RedirectUri;
@@ -142,12 +144,12 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ThrowFault(GrantErrors pErr, GrantErrorDescs pDesc) {
-			throw new FabOauthFault(pErr.ToString(), ErrDescStrings[(int)pDesc]);
+			throw new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ThrowFaultStatic(GrantErrors pErr, GrantErrorDescs pDesc) {
-			throw new FabOauthFault(pErr.ToString(), ErrDescStrings[(int)pDesc]);
+			throw new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 
 	}

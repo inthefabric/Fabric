@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 
@@ -54,7 +55,7 @@ namespace Fabric.Api.Oauth {
 			}
 
 			try {
-				dom = new FOauthDomain_Get(new FabAppKey(vClientId), vRedirectUri).Go(Context);
+				dom = new GetDomain(new FabAppKey(vClientId), vRedirectUri).Go(Context);
 			}
 			catch ( Exception e ) { ThrowFaultOnException(e); return true; }
 			

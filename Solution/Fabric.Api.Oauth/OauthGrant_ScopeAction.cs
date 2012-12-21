@@ -1,5 +1,5 @@
 ﻿using System;
-using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 	
@@ -33,13 +33,13 @@ namespace Fabric.Api.Oauth {
 				vCore.Context = Context;
 
 				if ( !vAllowScope ) {
-					new FOauthScope_Add(vCore.AppKey, vCore.UserKey, false).Go(Context);
+					new AddScope(vCore.AppKey, vCore.UserKey, false).Go(Context);
 					return;
 				}
 
 				SetResult(vCore.AddGrantCode(false));
 			}
-			catch ( FabOauthFault ) {
+			catch ( OauthException ) {
 				throw;
 			}
 			catch ( Exception e ) {

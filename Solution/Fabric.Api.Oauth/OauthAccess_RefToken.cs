@@ -1,4 +1,6 @@
-﻿namespace Fabric.Api.Oauth {
+﻿using Fabric.Api.Oauth.Tasks;
+
+namespace Fabric.Api.Oauth {
 
 
 	/*================================================================================================*/
@@ -52,7 +54,7 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected void SendRefreshedAccessToken() {
-			OauthRefreshResult orr = new FOauthRefresh_Get(vRefreshToken).Go(Context);
+			OauthRefreshResult orr = new GetRefresh(vRefreshToken).Go(Context);
 
 			if ( orr == null ) {
 				ThrowFault(AccessErrors.invalid_request, AccessErrorDescs.BadRefresh);
@@ -63,7 +65,7 @@
 
 			var ak = new FabAppKey(orr.appId);
 			var pk = new FabUserKey(orr.userId);
-			OAuthAccessResult oar = new FOauthAccess_Add(ak, pk, 3600, false).Go(Context);
+			OAuthAccessResult oar = new AddAccess(ak, pk, 3600, false).Go(Context);
 
 			var oa = new FabOauthAccess();
 			oa.access_token = oar.Token;

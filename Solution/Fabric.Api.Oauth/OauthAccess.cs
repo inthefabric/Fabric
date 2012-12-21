@@ -1,5 +1,7 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Oauth {
 
@@ -102,7 +104,7 @@ namespace Fabric.Api.Oauth {
 			try {
 				PerformAccessRequestActions();
 			}
-			catch ( FabOauthFault ) {
+			catch ( OauthException ) {
 				throw;
 			}
 			catch ( Exception e ) {
@@ -121,7 +123,7 @@ namespace Fabric.Api.Oauth {
 
 			FabUserKey perKey = (pUserId == null ? null : new FabUserKey((uint)pUserId));
 			OAuthAccessResult oar =
-				new FOauthAccess_Add(ak, perKey, 3600, pClientMode).Go(Context);
+				new AddAccess(ak, perKey, 3600, pClientMode).Go(Context);
 
 			var oa = new FabOauthAccess();
 			oa.access_token = oar.Token;
@@ -153,7 +155,7 @@ namespace Fabric.Api.Oauth {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected void ThrowFault(AccessErrors pErr, AccessErrorDescs pDesc) {
-			throw new FabOauthFault(pErr.ToString(), ErrDescStrings[(int)pDesc]);
+			throw new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 
 	}

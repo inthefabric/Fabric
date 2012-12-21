@@ -1,5 +1,7 @@
 ﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 	
@@ -87,7 +89,7 @@ namespace Fabric.Api.Oauth {
 				result.LoggedUserId = (per == null ? 0 : per.Key.Id);
 				result.LoggedUserName = (per == null ? null : per.Name);
 			}
-			catch ( FabOauthFault ) {
+			catch ( OauthException ) {
 				throw;
 			}
 			catch ( Exception e ) {
@@ -97,7 +99,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void CheckDomain() {
-			FabOauthDomain dom = new FOauthDomain_Get(vCore.AppKey, vCore.RedirectUri).Go(Context);
+			FabOauthDomain dom = new GetDomain(vCore.AppKey, vCore.RedirectUri).Go(Context);
 
 			if ( dom == null ) {
 				vCore.ThrowFault(GrantErrors.invalid_request, GrantErrorDescs.RedirMismatch);

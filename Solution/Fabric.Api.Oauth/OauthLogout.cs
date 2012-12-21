@@ -1,4 +1,6 @@
 ﻿using System;
+using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 
@@ -51,7 +53,7 @@ namespace Fabric.Api.Oauth {
 			OAuthAccessResult logoutResult;
 
 			try {
-				acc = new FOauthAccessToken_Get(vToken).Go(Context);
+				acc = new GetAccessToken(vToken).Go(Context);
 			}
 			catch ( Exception e ) {
 				ThrowFaultOnException(e);
@@ -64,7 +66,7 @@ namespace Fabric.Api.Oauth {
 			}
 
 			try {
-				logoutResult = new FOauthAccessLogout(acc).Go(Context);
+				logoutResult = new DoLogout(acc).Go(Context);
 			}
 			catch ( Exception e ) {
 				ThrowFaultOnException(e);
@@ -92,7 +94,7 @@ namespace Fabric.Api.Oauth {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected void ThrowFault(LogoutErrors pErr, LogoutErrorDescs pDesc) {
-			throw new FabOauthFault(pErr.ToString(), ErrDescStrings[(int)pDesc]);
+			throw new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 
 	}

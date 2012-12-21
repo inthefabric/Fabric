@@ -1,5 +1,7 @@
 ﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 	
@@ -53,7 +55,7 @@ namespace Fabric.Api.Oauth {
 				result.LoggedUserId = pk.Id;
 				result.LoggedUserName = vCore.GetUser().Name;
 			}
-			catch ( FabOauthFault ) {
+			catch ( OauthException ) {
 				throw;
 			}
 			catch ( Exception e ) {

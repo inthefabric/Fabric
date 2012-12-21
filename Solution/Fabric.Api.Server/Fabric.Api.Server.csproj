@@ -99,8 +99,8 @@
     <Compile Include="Tables\TableNode.cs" />
     <Compile Include="Tables\TableModel.cs" />
     <Compile Include="Tables\TableBrowser.cs" />
-    <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Util\GremlinRequest.cs" />
+    <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Util\GremlinRequestAsync.cs" />
     <Compile Include="Util\Sharpflake.cs" />
   </ItemGroup>

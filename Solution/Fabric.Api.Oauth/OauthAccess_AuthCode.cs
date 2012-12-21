@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 
@@ -37,7 +38,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void PerformAccessRequestActions() {
-			FabOauthGrant g = new FOauthGrant_Get(vCode).Go(Context);
+			FabOauthGrant g = new GetGrant(vCode).Go(Context);
 
 			if ( g == null ) {
 				ThrowFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);
