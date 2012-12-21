@@ -15,7 +15,7 @@ namespace Fabric.Api.Spec {
 			Description = SpecDoc.GetDtoText(Name.Substring(3));
 			Abstract = Description.Substring(0, Description.IndexOf('.')+1);
 
-			Dictionary<string,SpecProperty> propMap = SpecDoc.ReflectProps<FabResponse>();
+			Dictionary<string,SpecDtoProp> propMap = SpecDoc.ReflectProps<FabResponse>();
 			PropertyList = propMap.Values.ToList();
 		}
 

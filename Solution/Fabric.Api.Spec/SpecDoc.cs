@@ -42,12 +42,12 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static Dictionary<string,SpecProperty> ReflectProps<T>() {
+		public static Dictionary<string,SpecDtoProp> ReflectProps<T>() {
 			PropertyInfo[] props = typeof(T).GetProperties();
-			var results = new Dictionary<string,SpecProperty>();
+			var results = new Dictionary<string,SpecDtoProp>();
 
 			foreach ( PropertyInfo pi in props ) {
-				var specProp = new SpecProperty();
+				var specProp = new SpecDtoProp();
 				specProp.Name = pi.Name;
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
@@ -99,7 +99,7 @@ namespace Fabric.Api.Spec {
 			sd.Description = GetDtoText(sd.Name.Substring(3));
 			sd.Abstract = sd.Description.Substring(0, sd.Description.IndexOf('.')+1);
 
-			Dictionary<string, SpecProperty> propMap = ReflectProps<FabNode>();
+			Dictionary<string, SpecDtoProp> propMap = ReflectProps<FabNode>();
 			sd.PropertyList = propMap.Values.ToList();
 			return sd;
 		}

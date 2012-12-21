@@ -26,9 +26,14 @@ namespace Fabric.Api.Server {
 			Get["/graph"] = (p => new GraphView(this).GetResponse());
 			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());
 			Get["/gremlin/(.*)"] = (p => new GremlinQuery(Context).GetResponse());
-			Get["/api/"] = (p => new ApiQuery(Context).GetResponse());
+			Get["/api"] = (p => new ApiQuery(Context).GetResponse());
 			Get["/api/(.*)"] = (p => new ApiQuery(Context).GetResponse());
+
 			Get["/apispec"] = (p => new ApiSpecBuilder(Context).GetResponse());
+			Get["/apispec/apiresponse"] = (p => new ApiSpecBuilder(Context, "res").GetResponse());
+			Get["/apispec/apierror"] = (p => new ApiSpecBuilder(Context, "err").GetResponse());
+			Get["/apispec/dtolist/{name}"] = (p => new ApiSpecBuilder(Context, "dto").GetResponse());
+			Get["/apispec/functionlist/{name}"] = (p => new ApiSpecBuilder(Context, "fun").GetResponse());
 		}
 
 	}

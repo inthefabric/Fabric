@@ -1,7 +1,7 @@
 ﻿namespace Fabric.Api.Spec {
 
 	/*================================================================================================*/
-	public class SpecProperty {
+	public class SpecDtoProp {
 
 		public string Name { get; set; }
 		public string Type { get; set; }

@@ -9,16 +9,16 @@ namespace Fabric.Api.Spec {
 		public string Extends { get; set; }
 		public string Abstract { get; set; }
 		public string Description { get; set; }
-		public List<SpecProperty> PropertyList { get; set; }
-		public List<SpecLink> LinkList { get; set; }
+		public List<SpecDtoProp> PropertyList { get; set; }
+		public List<SpecDtoLink> LinkList { get; set; }
 		public List<string> FunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecDto() {
-			PropertyList = new List<SpecProperty>();
-			LinkList = new List<SpecLink>();
+			PropertyList = new List<SpecDtoProp>();
+			LinkList = new List<SpecDtoLink>();
 			FunctionList = new List<string>();
 		}
 

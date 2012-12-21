@@ -34,6 +34,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpecFuncParam.cs" />
     <Compile Include="Lang\FuncParamText.Designer.cs">
       <DependentUpon>FuncParamText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -75,8 +76,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="SpecLink.cs" />
-    <Compile Include="SpecProperty.cs" />
+    <Compile Include="SpecDtoLink.cs" />
+    <Compile Include="SpecDtoProp.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lang\FuncParamText.resx">

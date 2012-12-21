@@ -18,13 +18,15 @@ namespace Fabric.Api.Server.ApiSpec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static string BuildHtml(SpecDoc pDoc) {
-			string html = "<h2>Fabric Api Specification ("+pDoc.ApiVersion+")</h2><br/><br/>";
+			string html = "<h2>Fabric Api Specification ("+pDoc.ApiVersion+")</h2><hr/>";
 			html += BuildDtoHtml(pDoc.ApiResponse, pDoc)+"<br/><br/>";
 			html += BuildDtoHtml(pDoc.ApiError, pDoc)+"<br/><br/>";
 
 			foreach ( SpecDto dto in pDoc.DtoList ) {
 				html += BuildDtoHtml(dto, pDoc)+"<br/><br/>";
 			}
+
+			html += "<hr/>";
 
 			foreach ( SpecFunc func in pDoc.FunctionList ) {
 				html += BuildFuncHtml(func, pDoc)+"<br/><br/>";
@@ -37,10 +39,10 @@ namespace Fabric.Api.Server.ApiSpec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static string BuildDtoHtml(SpecDto pDto, SpecDoc pDoc) {
-			string html = "<hr><h3><a name='"+pDto.Name+"' />"+pDto.Name+"</h3>";
+			string html = "<h3><a name='"+pDto.Name+"' />"+pDto.Name+"</h3>";
 			
 			if ( !string.IsNullOrWhiteSpace(pDto.Extends) ) {
-				html +=  "Extends "+BuildAnchorLink(pDto.Extends)+"<br/><br/>";
+				html +=  "Extends "+BuildDtoLink(pDto.Extends)+"<br/><br/>";
 			}
 
 			html += "<b>Description</b><br/>";
@@ -51,25 +53,25 @@ namespace Fabric.Api.Server.ApiSpec {
 
 			html += "<b>Outgoing Links</b><br/>";
 
-			foreach ( SpecLink sl in pDto.LinkList ) {
+			foreach ( SpecDtoLink sl in pDto.LinkList ) {
 				if ( !sl.IsOutgoing ) { continue; }
 				bool many = (sl.FromDtoConn.IndexOf("OrMore") != -1);
 
 				html += "<div style='margin-left:20px'>";
 				html += sl.Name+" : "+
-						(many ? "List[" : "")+BuildAnchorLink(sl.ToDto)+(many ? "]" : "")+"<br/>";
+						(many ? "List[" : "")+BuildDtoLink(sl.ToDto)+(many ? "]" : "")+"<br/>";
 				html += "</div>";
 			}
 
 			html += "<br/><b>Incoming Links</b><br/>";
 
-			foreach ( SpecLink sl in pDto.LinkList ) {
+			foreach ( SpecDtoLink sl in pDto.LinkList ) {
 				if ( sl.IsOutgoing ) { continue; }
 				bool many = (sl.ToDtoConn.IndexOf("OrMore") != -1);
 
 				html += "<div style='margin-left:20px'>";
 				html += sl.Name+" : "+
-					(many ? "List[" : "")+BuildAnchorLink(sl.FromDto)+(many ? "]" : "")+"<br/>";
+					(many ? "List[" : "")+BuildDtoLink(sl.FromDto)+(many ? "]" : "")+"<br/>";
 				html += "</div>";
 			}
 
@@ -77,7 +79,7 @@ namespace Fabric.Api.Server.ApiSpec {
 
 			foreach ( string funcName in pDto.FunctionList ) {
 				html += "<div style='margin-left:20px'>";
-				html += BuildAnchorLink(funcName)+"<br/>";
+				html += BuildFuncLink(funcName)+"<br/>";
 				html += "</div>";
 			}
 			
@@ -92,10 +94,10 @@ namespace Fabric.Api.Server.ApiSpec {
 				html += BuildDtoPropHtml(pDoc.GetSpecDto(pDto.Extends), pDoc, pLevel+1);
 			}
 
-			foreach ( SpecProperty sp in pDto.PropertyList ) {
+			foreach ( SpecDtoProp sp in pDto.PropertyList ) {
 				html += "<div style='margin-left:20px'>"+sp.Name+" : "+sp.Type+"<br/>"+
 					"<span style='color:#777;'>"+
-					(pLevel > 0 ? "(from "+BuildAnchorLink(pDto.Name)+") " : "")+
+					(pLevel > 0 ? "(from "+BuildDtoLink(pDto.Name)+") " : "")+
 						sp.Description+"</span><br/><br/></div>";
 			}
 
@@ -106,7 +108,7 @@ namespace Fabric.Api.Server.ApiSpec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static string BuildFuncHtml(SpecFunc pFunc, SpecDoc pDoc) {
-			string html = "<hr><h3><a name='"+pFunc.Name+"' />Function: "+pFunc.Name+"</h3>";
+			string html = "<h3><a name='"+pFunc.Name+"' />Function: "+pFunc.Name+"</h3>";
 
 			html += "<b>Description</b><br/>";
 			html += "<span style='color:#777;'>"+pFunc.Description+"</span><br/><br/>";
@@ -135,8 +137,13 @@ namespace Fabric.Api.Server.ApiSpec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static string BuildAnchorLink(string pDtoName) {
-			return "<a href='#"+pDtoName+"'>"+pDtoName+"</a>";
+		public static string BuildDtoLink(string pName) {
+			return "<a href='/apispec/dtolist/"+pName+"'>"+pName+"</a>";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string BuildFuncLink(string pName) {
+			return "<a href='/apispec/functionlist/"+pName+"'>"+pName+"</a>";
 		}
 
 	}
