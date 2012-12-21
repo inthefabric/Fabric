@@ -25,10 +25,18 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			//TEST: Oauth functions added to FuncRegistry
 			Register<FuncOauthStep>((p => new FuncOauthStep(p)), FuncOauthStep.AllowedForStep);
 			Register<FuncOauthAtStep>((p => new FuncOauthAtStep(p)), FuncOauthAtStep.AllowedForStep);
-			Register<FuncOauthAtacStep>((p => new FuncOauthAtacStep(p)), FuncOauthAtacStep.AllowedForStep);
-			Register<FuncOauthAtrStep>((p => new FuncOauthAtrStep(p)), FuncOauthAtrStep.AllowedForStep);
-			Register<FuncOauthAtccStep>((p => new FuncOauthAtccStep(p)), FuncOauthAtccStep.AllowedForStep);
-			Register<FuncOauthAtcdStep>((p => new FuncOauthAtcdStep(p)), FuncOauthAtcdStep.AllowedForStep);
+			Register<FuncOauthAtacStep>(
+				(p => new FuncOauthAtacStep(p)), FuncOauthAtacStep.AllowedForStep);
+			Register<FuncOauthAtrStep>(
+				(p => new FuncOauthAtrStep(p)), FuncOauthAtrStep.AllowedForStep);
+			Register<FuncOauthAtccStep>(
+				(p => new FuncOauthAtccStep(p)), FuncOauthAtccStep.AllowedForStep);
+			Register<FuncOauthAtcdStep>(
+				(p => new FuncOauthAtcdStep(p)), FuncOauthAtcdStep.AllowedForStep);
+			Register<FuncOauthLoginStep>(
+				(p => new FuncOauthLoginStep(p)), FuncOauthLoginStep.AllowedForStep);
+			Register<FuncOauthLogoutStep>(
+				(p => new FuncOauthLogoutStep(p)), FuncOauthLogoutStep.AllowedForStep);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -4,7 +4,7 @@ using Fabric.Api.Dto.Oauth;
 namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
-	[Func("access_token", typeof(FabOauthAccess), ResxKey="OauthAt")]
+	[Func("AccessToken", typeof(FabOauthAccess), ResxKey="OauthAt")]
 	public class FuncOauthAtStep : FuncOauthFinal { //TEST: FuncOauthAtStep
 
 		[FuncParam("grant_type", FuncResxKey="OauthAt")]

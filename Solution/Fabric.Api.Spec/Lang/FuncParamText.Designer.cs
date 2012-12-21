@@ -153,54 +153,54 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The ID of the Fabric App making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this App ID and the authenticated User&apos;s ID..
         /// </summary>
-        internal static string OauthGrant_ClientId {
+        internal static string OauthLogin_ClientId {
             get {
-                return ResourceManager.GetString("OauthGrant_ClientId", resourceCulture);
+                return ResourceManager.GetString("OauthLogin_ClientId", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The URL which will receive success/error redirects from the OAuth Login process.  This URL should handle the following query-string parameters: access_code, error, error_description, state..
         /// </summary>
-        internal static string OauthGrant_RedirectUri {
+        internal static string OauthLogin_RedirectUri {
             get {
-                return ResourceManager.GetString("OauthGrant_RedirectUri", resourceCulture);
+                return ResourceManager.GetString("OauthLogin_RedirectUri", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Describes which type of authentication should be performed. For now, this value should always be &apos;code&apos;. Fabric may accept more response types in the future..
         /// </summary>
-        internal static string OauthGrant_ResponseType {
+        internal static string OauthLogin_ResponseType {
             get {
-                return ResourceManager.GetString("OauthGrant_ResponseType", resourceCulture);
+                return ResourceManager.GetString("OauthLogin_ResponseType", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Describes the level of access the App will have to the User&apos;s account.  This value is required by the OAuth 2.0 specification, however, Fabric currently ignores it.  All OAuth requests currently receive the same level of access to the User&apos;s account.  Fabric may begin using this parameter in the future..
         /// </summary>
-        internal static string OauthGrant_Scope {
+        internal static string OauthLogin_Scope {
             get {
-                return ResourceManager.GetString("OauthGrant_Scope", resourceCulture);
+                return ResourceManager.GetString("OauthLogin_Scope", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Provides a security function for a Fabric App.  All success/message redirect responses include a &apos;state&apos; query-string parameter.  The App should check this value against the state value provided in the initial request.  The two values should always be equal. If the values are not equal, then the redirect did not come from the Fabric OAuth process (or from a different user&apos;s process), and should be handled accordingly..
         /// </summary>
-        internal static string OauthGrant_State {
+        internal static string OauthLogin_State {
             get {
-                return ResourceManager.GetString("OauthGrant_State", resourceCulture);
+                return ResourceManager.GetString("OauthLogin_State", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Causes the login process to behave in different ways.  If a value of &apos;1&apos; is provided, the user will see the login page even if they are currently authenticated with Fabric.  This is useful shared-computer scenarios, where the most-recently authenticated user may be different from the user making the current request..
         /// </summary>
-        internal static string OauthGrant_SwitchMode {
+        internal static string OauthLogin_SwitchMode {
             get {
-                return ResourceManager.GetString("OauthGrant_SwitchMode", resourceCulture);
+                return ResourceManager.GetString("OauthLogin_SwitchMode", resourceCulture);
             }
         }
         

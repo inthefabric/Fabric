@@ -109,6 +109,14 @@ namespace Fabric.Api.Spec {
 
 			Dictionary<string, SpecDtoProp> propMap = ReflectProps<T>();
 			sd.PropertyList = propMap.Values.ToList();
+
+			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(typeof(T), true);
+			sd.FunctionList = new List<string>();
+		
+			foreach ( string funcUri in availFuncs ) {
+				sd.FunctionList.Add(funcUri.Substring(1));
+			}
+
 			return sd;
 		}
 

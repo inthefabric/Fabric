@@ -36,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthLogoutStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthLoginStep.cs" />
     <Compile Include="Steps\Functions\Oauth\FuncOauthFinal.cs" />
     <Compile Include="Steps\Functions\Oauth\FuncOauthAtcdStep.cs" />
     <Compile Include="Steps\Functions\Oauth\FuncOauthAtccStep.cs" />

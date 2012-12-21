@@ -101,7 +101,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used immediately after obtaining an authorization code from the OAuth entry process. Fabric verifies the authorization code, determines the associated App and User IDs, and generates a new access token.
         ///
-        ///See [[access_token|Func|access_token]] for general information about the OAuth process..
+        ///See [[Access Token|Func|AccessToken]] for general information about the OAuth process..
         /// </summary>
         internal static string OauthAtac {
             get {
@@ -112,7 +112,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used to begin an OAuth session for your Fabric App. This flow does not require an authorization code from the typical OAuth entry process.
         ///
-        ///See [[access_token|Func|access_token]] or general information about the OAuth process..
+        ///See [[Access Token|Func|AccessToken]] or general information about the OAuth process..
         /// </summary>
         internal static string OauthAtcc {
             get {
@@ -123,7 +123,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used to begin an OAuth session for your Fabric App&apos;s Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App&apos;s OAuth needs.
         ///
-        ///See [[access_token|Func|access_token]]] for general information about the OAuth process..
+        ///See [[Access Token|Func|AccessToken]]] for general information about the OAuth process..
         /// </summary>
         internal static string OauthAtcd {
             get {
@@ -136,7 +136,7 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///App-only access tokens (obtained with the &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos; flow) should not be refreshed; the App should simply request a new access token.
         ///
-        ///See [[access_token|Func|access_token]] for general information about the OAuth process..
+        ///See [[Access Token|Func|AccessToken]] for general information about the OAuth process..
         /// </summary>
         internal static string OauthAtr {
             get {
@@ -149,9 +149,9 @@ namespace Fabric.Api.Spec.Lang {
         ///
         ///A web-based Fabric App would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string OauthGrant {
+        internal static string OauthLogin {
             get {
-                return ResourceManager.GetString("OauthGrant", resourceCulture);
+                return ResourceManager.GetString("OauthLogin", resourceCulture);
             }
         }
         

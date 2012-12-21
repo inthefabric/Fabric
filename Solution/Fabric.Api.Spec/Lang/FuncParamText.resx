@@ -92,7 +92,7 @@
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
               <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-		  </xsd:element>
+          </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
@@ -147,22 +147,22 @@
   <data name="OauthAt_RefreshToken" xml:space="preserve">
     <value>The refresh token obtained after a successful '[[Authorization Code|Func|AccessTokenAuthCode]]' access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the '[[Refresh|Func|AccessTokenRefresh]]' flow.</value>
   </data>
-  <data name="OauthGrant_ClientId" xml:space="preserve">
+  <data name="OauthLogin_ClientId" xml:space="preserve">
     <value>The ID of the Fabric App making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this App ID and the authenticated User's ID.</value>
   </data>
-  <data name="OauthGrant_RedirectUri" xml:space="preserve">
+  <data name="OauthLogin_RedirectUri" xml:space="preserve">
     <value>The URL which will receive success/error redirects from the OAuth Login process.  This URL should handle the following query-string parameters: access_code, error, error_description, state.</value>
   </data>
-  <data name="OauthGrant_ResponseType" xml:space="preserve">
+  <data name="OauthLogin_ResponseType" xml:space="preserve">
     <value>Describes which type of authentication should be performed. For now, this value should always be 'code'. Fabric may accept more response types in the future.</value>
   </data>
-  <data name="OauthGrant_Scope" xml:space="preserve">
+  <data name="OauthLogin_Scope" xml:space="preserve">
     <value>Describes the level of access the App will have to the User's account.  This value is required by the OAuth 2.0 specification, however, Fabric currently ignores it.  All OAuth requests currently receive the same level of access to the User's account.  Fabric may begin using this parameter in the future.</value>
   </data>
-  <data name="OauthGrant_State" xml:space="preserve">
+  <data name="OauthLogin_State" xml:space="preserve">
     <value>Provides a security function for a Fabric App.  All success/message redirect responses include a 'state' query-string parameter.  The App should check this value against the state value provided in the initial request.  The two values should always be equal. If the values are not equal, then the redirect did not come from the Fabric OAuth process (or from a different user's process), and should be handled accordingly.</value>
   </data>
-  <data name="OauthGrant_SwitchMode" xml:space="preserve">
+  <data name="OauthLogin_SwitchMode" xml:space="preserve">
     <value>Causes the login process to behave in different ways.  If a value of '1' is provided, the user will see the login page even if they are currently authenticated with Fabric.  This is useful shared-computer scenarios, where the most-recently authenticated user may be different from the user making the current request.</value>
   </data>
   <data name="OauthLogout_AccessToken" xml:space="preserve">

@@ -136,26 +136,26 @@ See FabOauthAccess for information on how to include an OAuth access token with 
   <data name="OauthAtac" xml:space="preserve">
     <value>This OAuth flow should be used immediately after obtaining an authorization code from the OAuth entry process. Fabric verifies the authorization code, determines the associated App and User IDs, and generates a new access token.
 
-See [[access_token|Func|access_token]] for general information about the OAuth process.</value>
+See [[Access Token|Func|AccessToken]] for general information about the OAuth process.</value>
   </data>
   <data name="OauthAtcc" xml:space="preserve">
     <value>This OAuth flow should be used to begin an OAuth session for your Fabric App. This flow does not require an authorization code from the typical OAuth entry process.
 
-See [[access_token|Func|access_token]] or general information about the OAuth process.</value>
+See [[Access Token|Func|AccessToken]] or general information about the OAuth process.</value>
   </data>
   <data name="OauthAtcd" xml:space="preserve">
     <value>This OAuth flow should be used to begin an OAuth session for your Fabric App's Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App's OAuth needs.
 
-See [[access_token|Func|access_token]]] for general information about the OAuth process.</value>
+See [[Access Token|Func|AccessToken]]] for general information about the OAuth process.</value>
   </data>
   <data name="OauthAtr" xml:space="preserve">
     <value>This OAuth flow should be used to refresh an expired access token. If the refresh token is valid, Fabric generates new access and refresh tokens for the given OAuth session. This process also invalidates the original refresh token.
 
 App-only access tokens (obtained with the '[[Client Credentials|Func|AccessTokenClientCredentials]]' flow) should not be refreshed; the App should simply request a new access token.
 
-See [[access_token|Func|access_token]] for general information about the OAuth process.</value>
+See [[Access Token|Func|AccessToken]] for general information about the OAuth process.</value>
   </data>
-  <data name="OauthGrant" xml:space="preserve">
+  <data name="OauthLogin" xml:space="preserve">
     <value>This API request is unique -- it represents the entry point for Fabric's OAuth 2.0 authentication process.  Instead of making this API request directly from a Fabric App, the App should provide a link so that its users can load this request's URL (including the required query-string parameters) in their browser.
 
 A web-based Fabric App would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to the App's specified redirect URI.  This redirect includes query-string parameters that provide success or error information.

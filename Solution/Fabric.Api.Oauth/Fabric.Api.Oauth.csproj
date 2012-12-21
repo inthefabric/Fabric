@@ -31,7 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="OauthAccess.cs" />
+    <Compile Include="OauthAccess_AuthCode.cs" />
+    <Compile Include="OauthAccess_ClientCred.cs" />
+    <Compile Include="OauthAccess_ClientDataProv.cs" />
+    <Compile Include="OauthAccess_RefToken.cs" />
+    <Compile Include="OauthGrant_Core.cs" />
+    <Compile Include="OauthGrant_LoginAction.cs" />
+    <Compile Include="OauthGrant_LoginEntry.cs" />
+    <Compile Include="OauthGrant_ScopeAction.cs" />
+    <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
