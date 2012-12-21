@@ -120,7 +120,7 @@
   <data name="App_Name" xml:space="preserve">
     <value>A unique title or identifier, with length between 3 and 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
   </data>
-  <data name="Artifact_ArtifactTypeKey" xml:space="preserve">
+  <data name="_Artifact_ArtifactTypeKey" xml:space="preserve">
     <value>Identifies the associated object type, such as User or Thing.</value>
   </data>
   <data name="Artifact_IsPrivate" xml:space="preserve">
@@ -132,28 +132,28 @@
   <data name="Artifact_Name" xml:space="preserve">
     <value>A decriptive (but non-unique) title, based on the name of the corresponding item.</value>
   </data>
-  <data name="Artifact_OfItem" xml:space="preserve">
+  <data name="_Artifact_OfItem" xml:space="preserve">
     <value>Identifies the corresponding {{Item}}, if applicable.</value>
   </data>
-  <data name="Common_AssociatedItem" xml:space="preserve">
+  <data name="_Common_AssociatedItem" xml:space="preserve">
     <value>Identifies the associated {{Item}}.</value>
   </data>
-  <data name="Common_Description" xml:space="preserve">
+  <data name="_Common_Description" xml:space="preserve">
     <value>A brief summary of purpose, usage, and/or guidelines. Maximum length: {{Max}} characters.</value>
   </data>
-  <data name="Common_ItemArtifactKey" xml:space="preserve">
+  <data name="_Common_ItemArtifactKey" xml:space="preserve">
     <value>Identifies the Artifact that is associated exclusively with this {{Item}}.</value>
   </data>
-  <data name="Common_ItemCreator" xml:space="preserve">
+  <data name="_Common_ItemCreator" xml:space="preserve">
     <value>Identifies the Member, User, and App responsible for the creation of this {{Item}}.</value>
   </data>
-  <data name="Common_Name" xml:space="preserve">
+  <data name="_Common_Name" xml:space="preserve">
     <value>A descriptive name or title. Maximum length: {{Max}} characters.</value>
   </data>
-  <data name="Common_Update" xml:space="preserve">
+  <data name="_Common_Update" xml:space="preserve">
     <value>The date/time of the latest update.</value>
   </data>
-  <data name="Crowdian_CrowdianTypeKey" xml:space="preserve">
+  <data name="_Crowdian_CrowdianTypeKey" xml:space="preserve">
     <value>Idenfies membership status and access privileges.</value>
   </data>
   <data name="CrowdianTypeAssign_Weight" xml:space="preserve">
@@ -186,7 +186,7 @@
   <data name="Label_Name" xml:space="preserve">
     <value>A unique title or identifier. Maximum length: 128 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
   </data>
-  <data name="Member_MemberTypeKey" xml:space="preserve">
+  <data name="_Member_MemberTypeKey" xml:space="preserve">
     <value>Identifies the membership state and/or access privileges.</value>
   </data>
   <data name="User_Name" xml:space="preserve">
@@ -195,7 +195,7 @@
   <data name="VectorRangeLevel_Position" xml:space="preserve">
     <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
   </data>
-  <data name="VectorRangeLevel_RangeKey" xml:space="preserve">
+  <data name="_VectorRangeLevel_RangeKey" xml:space="preserve">
     <value>Identifies the parent VectorRange.</value>
   </data>
   <data name="VectorRange_Levels" xml:space="preserve">
@@ -207,7 +207,7 @@
   <data name="VectorType_Min" xml:space="preserve">
     <value>The minimum Vector value allowed.</value>
   </data>
-  <data name="VectorType_RangeKey" xml:space="preserve">
+  <data name="_VectorType_RangeKey" xml:space="preserve">
     <value>Identifies a set of meaningful points/labels which map to the numerical range.</value>
   </data>
   <data name="VectorUnitPrefix_Amount" xml:space="preserve">
@@ -231,43 +231,43 @@
   <data name="Url_AbsoluteUrl" xml:space="preserve">
     <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://'). Maximum length: 450 characters.</value>
   </data>
-  <data name="Descriptor_DescriptorTypeKey" xml:space="preserve">
+  <data name="_Descriptor_DescriptorTypeKey" xml:space="preserve">
     <value>Identifies the type of relationship or connection.</value>
   </data>
-  <data name="Descriptor_RefinePrimaryWithArtifactKey" xml:space="preserve">
+  <data name="_Descriptor_RefinePrimaryWithArtifactKey" xml:space="preserve">
     <value>Identifies a particular Artifact; this specifies or clarifies a particular aspect of the Factor's primary Artifact.</value>
   </data>
-  <data name="Descriptor_RefineRelatedWithArtifactKey" xml:space="preserve">
+  <data name="_Descriptor_RefineRelatedWithArtifactKey" xml:space="preserve">
     <value>Identifies a particular Artifact; this specifies or clarifies a particular aspect of the Factor's related Artifact.</value>
   </data>
-  <data name="Descriptor_RefineTypeWithArtifactKey" xml:space="preserve">
+  <data name="_Descriptor_RefineTypeWithArtifactKey" xml:space="preserve">
     <value>Identifies a particular Artifact; this specifies or clarifies the DescriptorType's meaning or purpose.</value>
   </data>
-  <data name="Director_DirectorTypeKy" xml:space="preserve">
+  <data name="_Director_DirectorTypeKy" xml:space="preserve">
     <value>Identifies the type and reason for the pathway.</value>
   </data>
-  <data name="Director_PrimaryActionKey" xml:space="preserve">
+  <data name="_Director_PrimaryActionKey" xml:space="preserve">
     <value>Identifies the action to be performed on the Factor's primary Artifact.</value>
   </data>
-  <data name="Director_RelatedActionKey" xml:space="preserve">
+  <data name="_Director_RelatedActionKey" xml:space="preserve">
     <value>Identifies the action to be performed on the Factor's related Artifact.</value>
   </data>
   <data name="Eventor_DateTime" xml:space="preserve">
     <value>A particular point in time, with a level of accuracy defined by EventorPrecision.</value>
   </data>
-  <data name="Eventor_EventorPrecisionKey" xml:space="preserve">
+  <data name="_Eventor_EventorPrecisionKey" xml:space="preserve">
     <value>Identifies the level of accuracy given to this point in time.</value>
   </data>
-  <data name="Eventor_EventorTypeKey" xml:space="preserve">
+  <data name="_Eventor_EventorTypeKey" xml:space="preserve">
     <value>Identifies the significance of this point in time.</value>
   </data>
-  <data name="Identor_IdentorTypeKey" xml:space="preserve">
+  <data name="_Identor_IdentorTypeKey" xml:space="preserve">
     <value>Identifies the value's purpose or intent.</value>
   </data>
   <data name="Identor_Value" xml:space="preserve">
     <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc. Maximum length: 256 characters.</value>
   </data>
-  <data name="Locator_LocatorTypeKey" xml:space="preserve">
+  <data name="_Locator_LocatorTypeKey" xml:space="preserve">
     <value>Identifies the spatial context of the coordinate.</value>
   </data>
   <data name="Locator_ValueX" xml:space="preserve">
@@ -279,34 +279,34 @@
   <data name="Locator_ValueZ" xml:space="preserve">
     <value>A value representing elevation or a particular three-dimensional axis.</value>
   </data>
-  <data name="Vector_AxisArtifactKey" xml:space="preserve">
+  <data name="_Vector_AxisArtifactKey" xml:space="preserve">
     <value>Identifies the value's axis using an arbitrary Artifact.</value>
   </data>
   <data name="Vector_Value" xml:space="preserve">
     <value>An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.</value>
   </data>
-  <data name="Vector_VectorTypeKey" xml:space="preserve">
+  <data name="_Vector_VectorTypeKey" xml:space="preserve">
     <value>Identifies the value's boundaries and context.</value>
   </data>
-  <data name="Vector_VectorUnitKey" xml:space="preserve">
+  <data name="_Vector_VectorUnitKey" xml:space="preserve">
     <value>Identifies the value's unit of measurement.</value>
   </data>
-  <data name="Vector_VectorUnitPrefixKey" xml:space="preserve">
+  <data name="_Vector_VectorUnitPrefixKey" xml:space="preserve">
     <value>Identifies the value's order of magnitude.</value>
   </data>
-  <data name="Factor_DescriptorKey" xml:space="preserve">
+  <data name="_Factor_DescriptorKey" xml:space="preserve">
     <value>Identifies the Descriptor Element, which defines the relationship between the primary and related Artifact.</value>
   </data>
-  <data name="Factor_DirectorKey" xml:space="preserve">
+  <data name="_Factor_DirectorKey" xml:space="preserve">
     <value>Identifies the Director Element, which creates a directional pathway between the primary and related Artifacts.</value>
   </data>
-  <data name="Factor_EventorKey" xml:space="preserve">
+  <data name="_Factor_EventorKey" xml:space="preserve">
     <value>Identifies the Eventor Element, which applies the concept of time.</value>
   </data>
-  <data name="Factor_FactorAssertionKey" xml:space="preserve">
+  <data name="_Factor_FactorAssertionKey" xml:space="preserve">
     <value>Identifies the type of information and/or level of confidence.</value>
   </data>
-  <data name="Factor_IdentorKey" xml:space="preserve">
+  <data name="_Factor_IdentorKey" xml:space="preserve">
     <value>Identifies the Identor Element, which applies a name or identifier.</value>
   </data>
   <data name="Factor_Completed" xml:space="preserve">
@@ -318,19 +318,19 @@
   <data name="Factor_IsPublic" xml:space="preserve">
     <value>Specifies the level of access.</value>
   </data>
-  <data name="Factor_LocatorKey" xml:space="preserve">
+  <data name="_Factor_LocatorKey" xml:space="preserve">
     <value>Identifies the Locator Element, which provides a geographical or relative position.</value>
   </data>
   <data name="Factor_Note" xml:space="preserve">
     <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase. Maximum length: 256 characters.</value>
   </data>
-  <data name="Factor_PrimaryArtifactKey" xml:space="preserve">
+  <data name="_Factor_PrimaryArtifactKey" xml:space="preserve">
     <value>Identifies the primary (first) part of the directional Artifact relationship.</value>
   </data>
-  <data name="Factor_RelatedArtifactKey" xml:space="preserve">
+  <data name="_Factor_RelatedArtifactKey" xml:space="preserve">
     <value>Identifies the related (second) part of the directional Artifact relationship.</value>
   </data>
-  <data name="Factor_VectorKey" xml:space="preserve">
+  <data name="_Factor_VectorKey" xml:space="preserve">
     <value>Identifies the Vector Element, which applies a numeric axis and value.</value>
   </data>
   <data name="TODO" xml:space="preserve">
@@ -443,5 +443,41 @@
   </data>
   <data name="Response_Functions" xml:space="preserve">
     <value>TODO</value>
+  </data>
+  <data name="OauthAccess_AccessToken" xml:space="preserve">
+    <value>A 32-character code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
+  </data>
+  <data name="OauthAccess_ExpiresIn" xml:space="preserve">
+    <value>The number of seconds until the access token expires.</value>
+  </data>
+  <data name="OauthAccess_RefreshToken" xml:space="preserve">
+    <value>A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Req|oauth.access_token.client_credentials.get]].</value>
+  </data>
+  <data name="OauthAccess_TokenType" xml:space="preserve">
+    <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>
+  </data>
+  <data name="OauthError_Error" xml:space="preserve">
+    <value>An error code as defined by the OAuth 2.0 specification.</value>
+  </data>
+  <data name="OauthError_ErrorDesc" xml:space="preserve">
+    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions.</value>
+  </data>
+  <data name="OauthLogin_Code" xml:space="preserve">
+    <value>Use this 32-character string (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.</value>
+  </data>
+  <data name="OauthLogin_Error" xml:space="preserve">
+    <value>An error code as defined by the OAuth 2.0 specification.</value>
+  </data>
+  <data name="OauthLogin_ErrorDesc" xml:space="preserve">
+    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a '+' character in place of each space character.</value>
+  </data>
+  <data name="OauthLogin_State" xml:space="preserve">
+    <value>Returns the 'state' value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal.</value>
+  </data>
+  <data name="OauthLogout_AccessToken" xml:space="preserve">
+    <value>Identifies a particular OAuth session.</value>
+  </data>
+  <data name="OauthLogout_Success" xml:space="preserve">
+    <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
   </data>
 </root>

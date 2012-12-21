@@ -69,7 +69,7 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 			vInfo.Query = vLastStep.Path.Script;
 
-			if ( vInfo.DtoType != typeof(FabRoot) ) {
+			if ( !vLastStep.UseLocalData ) {
 				vReq = new GremlinRequest(vInfo.Query);
 			}
 

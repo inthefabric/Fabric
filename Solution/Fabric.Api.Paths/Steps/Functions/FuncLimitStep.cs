@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Oauth;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -8,6 +9,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 	public class FuncLimitStep : FuncStep, IFinalStep {
 
 		public const string DefaultStepText = "Limit(0,20)";
+
+		public bool UseLocalData { get { return false; } }
 
 		[FuncParam(0, 0)]
 		public long Index { get; private set; }
@@ -74,6 +77,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
 			if ( pDtoType == typeof(FabRoot) ) { return false; }
+			if ( pDtoType == typeof(FabOauth) ) { return false; } //TEST: FuncLimitStep skip Oauth
 			return true;
 		}
 

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</ProjectGuid>
+    <ProjectGuid>{F950795F-E668-4C70-A3FA-8194BC866D39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.Api.Dto</RootNamespace>
-    <AssemblyName>Fabric.Api.Dto</AssemblyName>
+    <RootNamespace>Fabric.Api.Oauth</RootNamespace>
+    <AssemblyName>Fabric.Api.Oauth</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,41 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApiDtos.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApiDtos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DtoPropAttribute.cs" />
-    <Compile Include="IFabDto.cs" />
-    <Compile Include="FabError.cs" />
-    <Compile Include="FabResponse.cs" />
-    <Compile Include="IFabNode.cs" />
-    <Compile Include="FabNode.cs" />
-    <Compile Include="Oauth\FabOauth.cs" />
-    <Compile Include="Oauth\FabOauthAccess.cs" />
-    <Compile Include="Oauth\FabOauthError.cs" />
-    <Compile Include="Oauth\FabOauthLogin.cs" />
-    <Compile Include="Oauth\FabOauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ApiDtos.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ApiDtos.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
-      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
-      <Name>Fabric.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

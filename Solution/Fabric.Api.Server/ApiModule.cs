@@ -31,7 +31,6 @@ namespace Fabric.Api.Server {
 
 			Get["/apispec"] = (p => new ApiSpecBuilder(Context).GetResponse());
 			Get["/apispec/apiresponse"] = (p => new ApiSpecBuilder(Context, "res").GetResponse());
-			Get["/apispec/apierror"] = (p => new ApiSpecBuilder(Context, "err").GetResponse());
 			Get["/apispec/dtolist/{name}"] = (p => new ApiSpecBuilder(Context, "dto").GetResponse());
 			Get["/apispec/functionlist/{name}"] = (p => new ApiSpecBuilder(Context, "fun").GetResponse());
 		}

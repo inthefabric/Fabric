@@ -61,20 +61,335 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Identifies the associated object type, such as User or Thing..
+        /// </summary>
+        internal static string _Artifact_ArtifactTypeKey {
+            get {
+                return ResourceManager.GetString("_Artifact_ArtifactTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the corresponding {{Item}}, if applicable..
+        /// </summary>
+        internal static string _Artifact_OfItem {
+            get {
+                return ResourceManager.GetString("_Artifact_OfItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the associated {{Item}}..
+        /// </summary>
+        internal static string _Common_AssociatedItem {
+            get {
+                return ResourceManager.GetString("_Common_AssociatedItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A brief summary of purpose, usage, and/or guidelines. Maximum length: {{Max}} characters..
+        /// </summary>
+        internal static string _Common_Description {
+            get {
+                return ResourceManager.GetString("_Common_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Artifact that is associated exclusively with this {{Item}}..
+        /// </summary>
+        internal static string _Common_ItemArtifactKey {
+            get {
+                return ResourceManager.GetString("_Common_ItemArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Member, User, and App responsible for the creation of this {{Item}}..
+        /// </summary>
+        internal static string _Common_ItemCreator {
+            get {
+                return ResourceManager.GetString("_Common_ItemCreator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descriptive name or title. Maximum length: {{Max}} characters..
+        /// </summary>
+        internal static string _Common_Name {
+            get {
+                return ResourceManager.GetString("_Common_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date/time of the latest update..
+        /// </summary>
+        internal static string _Common_Update {
+            get {
+                return ResourceManager.GetString("_Common_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Idenfies membership status and access privileges..
+        /// </summary>
+        internal static string _Crowdian_CrowdianTypeKey {
+            get {
+                return ResourceManager.GetString("_Crowdian_CrowdianTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the type of relationship or connection..
+        /// </summary>
+        internal static string _Descriptor_DescriptorTypeKey {
+            get {
+                return ResourceManager.GetString("_Descriptor_DescriptorTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies a particular Artifact; this specifies or clarifies a particular aspect of the Factor&apos;s primary Artifact..
+        /// </summary>
+        internal static string _Descriptor_RefinePrimaryWithArtifactKey {
+            get {
+                return ResourceManager.GetString("_Descriptor_RefinePrimaryWithArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies a particular Artifact; this specifies or clarifies a particular aspect of the Factor&apos;s related Artifact..
+        /// </summary>
+        internal static string _Descriptor_RefineRelatedWithArtifactKey {
+            get {
+                return ResourceManager.GetString("_Descriptor_RefineRelatedWithArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies a particular Artifact; this specifies or clarifies the DescriptorType&apos;s meaning or purpose..
+        /// </summary>
+        internal static string _Descriptor_RefineTypeWithArtifactKey {
+            get {
+                return ResourceManager.GetString("_Descriptor_RefineTypeWithArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the type and reason for the pathway..
+        /// </summary>
+        internal static string _Director_DirectorTypeKy {
+            get {
+                return ResourceManager.GetString("_Director_DirectorTypeKy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the action to be performed on the Factor&apos;s primary Artifact..
+        /// </summary>
+        internal static string _Director_PrimaryActionKey {
+            get {
+                return ResourceManager.GetString("_Director_PrimaryActionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the action to be performed on the Factor&apos;s related Artifact..
+        /// </summary>
+        internal static string _Director_RelatedActionKey {
+            get {
+                return ResourceManager.GetString("_Director_RelatedActionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the level of accuracy given to this point in time..
+        /// </summary>
+        internal static string _Eventor_EventorPrecisionKey {
+            get {
+                return ResourceManager.GetString("_Eventor_EventorPrecisionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the significance of this point in time..
+        /// </summary>
+        internal static string _Eventor_EventorTypeKey {
+            get {
+                return ResourceManager.GetString("_Eventor_EventorTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Descriptor Element, which defines the relationship between the primary and related Artifact..
+        /// </summary>
+        internal static string _Factor_DescriptorKey {
+            get {
+                return ResourceManager.GetString("_Factor_DescriptorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Director Element, which creates a directional pathway between the primary and related Artifacts..
+        /// </summary>
+        internal static string _Factor_DirectorKey {
+            get {
+                return ResourceManager.GetString("_Factor_DirectorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Eventor Element, which applies the concept of time..
+        /// </summary>
+        internal static string _Factor_EventorKey {
+            get {
+                return ResourceManager.GetString("_Factor_EventorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the type of information and/or level of confidence..
+        /// </summary>
+        internal static string _Factor_FactorAssertionKey {
+            get {
+                return ResourceManager.GetString("_Factor_FactorAssertionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Identor Element, which applies a name or identifier..
+        /// </summary>
+        internal static string _Factor_IdentorKey {
+            get {
+                return ResourceManager.GetString("_Factor_IdentorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Locator Element, which provides a geographical or relative position..
+        /// </summary>
+        internal static string _Factor_LocatorKey {
+            get {
+                return ResourceManager.GetString("_Factor_LocatorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the primary (first) part of the directional Artifact relationship..
+        /// </summary>
+        internal static string _Factor_PrimaryArtifactKey {
+            get {
+                return ResourceManager.GetString("_Factor_PrimaryArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the related (second) part of the directional Artifact relationship..
+        /// </summary>
+        internal static string _Factor_RelatedArtifactKey {
+            get {
+                return ResourceManager.GetString("_Factor_RelatedArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Vector Element, which applies a numeric axis and value..
+        /// </summary>
+        internal static string _Factor_VectorKey {
+            get {
+                return ResourceManager.GetString("_Factor_VectorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the value&apos;s purpose or intent..
+        /// </summary>
+        internal static string _Identor_IdentorTypeKey {
+            get {
+                return ResourceManager.GetString("_Identor_IdentorTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the spatial context of the coordinate..
+        /// </summary>
+        internal static string _Locator_LocatorTypeKey {
+            get {
+                return ResourceManager.GetString("_Locator_LocatorTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the membership state and/or access privileges..
+        /// </summary>
+        internal static string _Member_MemberTypeKey {
+            get {
+                return ResourceManager.GetString("_Member_MemberTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the value&apos;s axis using an arbitrary Artifact..
+        /// </summary>
+        internal static string _Vector_AxisArtifactKey {
+            get {
+                return ResourceManager.GetString("_Vector_AxisArtifactKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the value&apos;s boundaries and context..
+        /// </summary>
+        internal static string _Vector_VectorTypeKey {
+            get {
+                return ResourceManager.GetString("_Vector_VectorTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the value&apos;s unit of measurement..
+        /// </summary>
+        internal static string _Vector_VectorUnitKey {
+            get {
+                return ResourceManager.GetString("_Vector_VectorUnitKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the value&apos;s order of magnitude..
+        /// </summary>
+        internal static string _Vector_VectorUnitPrefixKey {
+            get {
+                return ResourceManager.GetString("_Vector_VectorUnitPrefixKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the parent VectorRange..
+        /// </summary>
+        internal static string _VectorRangeLevel_RangeKey {
+            get {
+                return ResourceManager.GetString("_VectorRangeLevel_RangeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies a set of meaningful points/labels which map to the numerical range..
+        /// </summary>
+        internal static string _VectorType_RangeKey {
+            get {
+                return ResourceManager.GetString("_VectorType_RangeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A unique title or identifier, with length between 3 and 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]]..
         /// </summary>
         internal static string App_Name {
             get {
                 return ResourceManager.GetString("App_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the associated object type, such as User or Thing..
-        /// </summary>
-        internal static string Artifact_ArtifactTypeKey {
-            get {
-                return ResourceManager.GetString("Artifact_ArtifactTypeKey", resourceCulture);
             }
         }
         
@@ -115,69 +430,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the corresponding {{Item}}, if applicable..
-        /// </summary>
-        internal static string Artifact_OfItem {
-            get {
-                return ResourceManager.GetString("Artifact_OfItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the associated {{Item}}..
-        /// </summary>
-        internal static string Common_AssociatedItem {
-            get {
-                return ResourceManager.GetString("Common_AssociatedItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A brief summary of purpose, usage, and/or guidelines. Maximum length: {{Max}} characters..
-        /// </summary>
-        internal static string Common_Description {
-            get {
-                return ResourceManager.GetString("Common_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Artifact that is associated exclusively with this {{Item}}..
-        /// </summary>
-        internal static string Common_ItemArtifactKey {
-            get {
-                return ResourceManager.GetString("Common_ItemArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Member, User, and App responsible for the creation of this {{Item}}..
-        /// </summary>
-        internal static string Common_ItemCreator {
-            get {
-                return ResourceManager.GetString("Common_ItemCreator", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A descriptive name or title. Maximum length: {{Max}} characters..
-        /// </summary>
-        internal static string Common_Name {
-            get {
-                return ResourceManager.GetString("Common_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The date/time of the latest update..
-        /// </summary>
-        internal static string Common_Update {
-            get {
-                return ResourceManager.GetString("Common_Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A brief summary of purpose, usage, and/or guidelines..
         /// </summary>
         internal static string Crowd_Description {
@@ -214,83 +466,11 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Idenfies membership status and access privileges..
-        /// </summary>
-        internal static string Crowdian_CrowdianTypeKey {
-            get {
-                return ResourceManager.GetString("Crowdian_CrowdianTypeKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A value (between 0.0 and 1.0) which represents relative impact on Crowd-based data analysis. The default value is 0.5..
         /// </summary>
         internal static string CrowdianTypeAssign_Weight {
             get {
                 return ResourceManager.GetString("CrowdianTypeAssign_Weight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the type of relationship or connection..
-        /// </summary>
-        internal static string Descriptor_DescriptorTypeKey {
-            get {
-                return ResourceManager.GetString("Descriptor_DescriptorTypeKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies a particular Artifact; this specifies or clarifies a particular aspect of the Factor&apos;s primary Artifact..
-        /// </summary>
-        internal static string Descriptor_RefinePrimaryWithArtifactKey {
-            get {
-                return ResourceManager.GetString("Descriptor_RefinePrimaryWithArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies a particular Artifact; this specifies or clarifies a particular aspect of the Factor&apos;s related Artifact..
-        /// </summary>
-        internal static string Descriptor_RefineRelatedWithArtifactKey {
-            get {
-                return ResourceManager.GetString("Descriptor_RefineRelatedWithArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies a particular Artifact; this specifies or clarifies the DescriptorType&apos;s meaning or purpose..
-        /// </summary>
-        internal static string Descriptor_RefineTypeWithArtifactKey {
-            get {
-                return ResourceManager.GetString("Descriptor_RefineTypeWithArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the type and reason for the pathway..
-        /// </summary>
-        internal static string Director_DirectorTypeKy {
-            get {
-                return ResourceManager.GetString("Director_DirectorTypeKy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the action to be performed on the Factor&apos;s primary Artifact..
-        /// </summary>
-        internal static string Director_PrimaryActionKey {
-            get {
-                return ResourceManager.GetString("Director_PrimaryActionKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the action to be performed on the Factor&apos;s related Artifact..
-        /// </summary>
-        internal static string Director_RelatedActionKey {
-            get {
-                return ResourceManager.GetString("Director_RelatedActionKey", resourceCulture);
             }
         }
         
@@ -340,24 +520,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the level of accuracy given to this point in time..
-        /// </summary>
-        internal static string Eventor_EventorPrecisionKey {
-            get {
-                return ResourceManager.GetString("Eventor_EventorPrecisionKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the significance of this point in time..
-        /// </summary>
-        internal static string Eventor_EventorTypeKey {
-            get {
-                return ResourceManager.GetString("Eventor_EventorTypeKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The date/time of completion. This value is null if the !Factor is not complete..
         /// </summary>
         internal static string Factor_Completed {
@@ -372,51 +534,6 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Factor_Created {
             get {
                 return ResourceManager.GetString("Factor_Created", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Descriptor Element, which defines the relationship between the primary and related Artifact..
-        /// </summary>
-        internal static string Factor_DescriptorKey {
-            get {
-                return ResourceManager.GetString("Factor_DescriptorKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Director Element, which creates a directional pathway between the primary and related Artifacts..
-        /// </summary>
-        internal static string Factor_DirectorKey {
-            get {
-                return ResourceManager.GetString("Factor_DirectorKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Eventor Element, which applies the concept of time..
-        /// </summary>
-        internal static string Factor_EventorKey {
-            get {
-                return ResourceManager.GetString("Factor_EventorKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the type of information and/or level of confidence..
-        /// </summary>
-        internal static string Factor_FactorAssertionKey {
-            get {
-                return ResourceManager.GetString("Factor_FactorAssertionKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Identor Element, which applies a name or identifier..
-        /// </summary>
-        internal static string Factor_IdentorKey {
-            get {
-                return ResourceManager.GetString("Factor_IdentorKey", resourceCulture);
             }
         }
         
@@ -439,15 +556,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the Locator Element, which provides a geographical or relative position..
-        /// </summary>
-        internal static string Factor_LocatorKey {
-            get {
-                return ResourceManager.GetString("Factor_LocatorKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A summary of the !Factor&apos;s intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor&apos;s Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase. Maximum length: 256 characters..
         /// </summary>
         internal static string Factor_Note {
@@ -457,47 +565,11 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the primary (first) part of the directional Artifact relationship..
-        /// </summary>
-        internal static string Factor_PrimaryArtifactKey {
-            get {
-                return ResourceManager.GetString("Factor_PrimaryArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the related (second) part of the directional Artifact relationship..
-        /// </summary>
-        internal static string Factor_RelatedArtifactKey {
-            get {
-                return ResourceManager.GetString("Factor_RelatedArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the Vector Element, which applies a numeric axis and value..
-        /// </summary>
-        internal static string Factor_VectorKey {
-            get {
-                return ResourceManager.GetString("Factor_VectorKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Information about the details and/or causes of the Fault..
         /// </summary>
         internal static string Fault_Message {
             get {
                 return ResourceManager.GetString("Fault_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the value&apos;s purpose or intent..
-        /// </summary>
-        internal static string Identor_IdentorTypeKey {
-            get {
-                return ResourceManager.GetString("Identor_IdentorTypeKey", resourceCulture);
             }
         }
         
@@ -534,15 +606,6 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Label_Name {
             get {
                 return ResourceManager.GetString("Label_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the spatial context of the coordinate..
-        /// </summary>
-        internal static string Locator_LocatorTypeKey {
-            get {
-                return ResourceManager.GetString("Locator_LocatorTypeKey", resourceCulture);
             }
         }
         
@@ -628,15 +691,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the membership state and/or access privileges..
-        /// </summary>
-        internal static string Member_MemberTypeKey {
-            get {
-                return ResourceManager.GetString("Member_MemberTypeKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
         internal static string Node_NodeId {
@@ -687,6 +741,114 @@ namespace Fabric.Api.Spec.Lang {
         internal static string NodeForType_Name {
             get {
                 return ResourceManager.GetString("NodeForType_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A 32-character code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User..
+        /// </summary>
+        internal static string OauthAccess_AccessToken {
+            get {
+                return ResourceManager.GetString("OauthAccess_AccessToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of seconds until the access token expires..
+        /// </summary>
+        internal static string OauthAccess_ExpiresIn {
+            get {
+                return ResourceManager.GetString("OauthAccess_ExpiresIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Req|oauth.access_token.client_credentials.get]]..
+        /// </summary>
+        internal static string OauthAccess_RefreshToken {
+            get {
+                return ResourceManager.GetString("OauthAccess_RefreshToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For the current Fabric OAuth implementation, this value is always equal to &quot;bearer&quot;..
+        /// </summary>
+        internal static string OauthAccess_TokenType {
+            get {
+                return ResourceManager.GetString("OauthAccess_TokenType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error code as defined by the OAuth 2.0 specification..
+        /// </summary>
+        internal static string OauthError_Error {
+            get {
+                return ResourceManager.GetString("OauthError_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides specific details about the error. A single error code may have one or more possible error descriptions..
+        /// </summary>
+        internal static string OauthError_ErrorDesc {
+            get {
+                return ResourceManager.GetString("OauthError_ErrorDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use this 32-character string (also called the &apos;authorization code&apos;) to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation..
+        /// </summary>
+        internal static string OauthLogin_Code {
+            get {
+                return ResourceManager.GetString("OauthLogin_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error code as defined by the OAuth 2.0 specification..
+        /// </summary>
+        internal static string OauthLogin_Error {
+            get {
+                return ResourceManager.GetString("OauthLogin_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a &apos;+&apos; character in place of each space character..
+        /// </summary>
+        internal static string OauthLogin_ErrorDesc {
+            get {
+                return ResourceManager.GetString("OauthLogin_ErrorDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns the &apos;state&apos; value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal..
+        /// </summary>
+        internal static string OauthLogin_State {
+            get {
+                return ResourceManager.GetString("OauthLogin_State", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies a particular OAuth session..
+        /// </summary>
+        internal static string OauthLogout_AccessToken {
+            get {
+                return ResourceManager.GetString("OauthLogout_AccessToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Describes the result of the logout attempt. Successful logout attempts return a value of 1..
+        /// </summary>
+        internal static string OauthLogout_Success {
+            get {
+                return ResourceManager.GetString("OauthLogout_Success", resourceCulture);
             }
         }
         
@@ -907,47 +1069,11 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the value&apos;s axis using an arbitrary Artifact..
-        /// </summary>
-        internal static string Vector_AxisArtifactKey {
-            get {
-                return ResourceManager.GetString("Vector_AxisArtifactKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807..
         /// </summary>
         internal static string Vector_Value {
             get {
                 return ResourceManager.GetString("Vector_Value", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the value&apos;s boundaries and context..
-        /// </summary>
-        internal static string Vector_VectorTypeKey {
-            get {
-                return ResourceManager.GetString("Vector_VectorTypeKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the value&apos;s unit of measurement..
-        /// </summary>
-        internal static string Vector_VectorUnitKey {
-            get {
-                return ResourceManager.GetString("Vector_VectorUnitKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the value&apos;s order of magnitude..
-        /// </summary>
-        internal static string Vector_VectorUnitPrefixKey {
-            get {
-                return ResourceManager.GetString("Vector_VectorUnitPrefixKey", resourceCulture);
             }
         }
         
@@ -970,15 +1096,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Identifies the parent VectorRange..
-        /// </summary>
-        internal static string VectorRangeLevel_RangeKey {
-            get {
-                return ResourceManager.GetString("VectorRangeLevel_RangeKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The maximum Vector value allowed..
         /// </summary>
         internal static string VectorType_Max {
@@ -993,15 +1110,6 @@ namespace Fabric.Api.Spec.Lang {
         internal static string VectorType_Min {
             get {
                 return ResourceManager.GetString("VectorType_Min", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies a set of meaningful points/labels which map to the numerical range..
-        /// </summary>
-        internal static string VectorType_RangeKey {
-            get {
-                return ResourceManager.GetString("VectorType_RangeKey", resourceCulture);
             }
         }
         

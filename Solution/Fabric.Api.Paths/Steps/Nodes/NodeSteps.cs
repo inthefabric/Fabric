@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/20/2012 1:01:30 PM
+// Generated on 12/21/2012 9:16:46 AM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -635,8 +635,9 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public int Count { get { return 1; } }
+		public bool UseLocalData { get { return true; } }
 		public long Index { get { return 0; } }
+		public int Count { get { return 1; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "RootId"; } }

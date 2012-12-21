@@ -1,26 +1,26 @@
 ﻿using System;
 
-namespace Fabric.Api.Paths.Steps.Functions {
+namespace Fabric.Api.Dto {
 	
 	/*================================================================================================*/
-	[AttributeUsage(AttributeTargets.Class)]
-	public class FuncAttribute : Attribute {
+	[AttributeUsage(AttributeTargets.Property)]
+	public class DtoPropAttribute : Attribute {
 
-		public string Name { get; set; }
-		public string ResxKey { get; set; }
-		public Type ReturnType { get; set; }
+		public bool IsInternal { get; set; }
+		public string DisplayName { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncAttribute(string pName) {
-			Name = pName;
-			ReturnType = null;
+		public DtoPropAttribute(string pDisplayName) {
+			DisplayName = pDisplayName;
+			IsInternal = false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncAttribute(string pName, Type pReturnType) : this(pName) {
-			ReturnType = pReturnType;
+		public DtoPropAttribute(bool pIsInternal) {
+			IsInternal = pIsInternal;
+			DisplayName = null;
 		}
 
 	}

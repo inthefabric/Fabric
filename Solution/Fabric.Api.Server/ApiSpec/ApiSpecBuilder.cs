@@ -63,12 +63,6 @@ namespace Fabric.Api.Server.ApiSpec {
 						JsonSerializer.SerializeToString(ApiSpec.ApiResponse));
 					break;
 
-				case "err":
-					cont = (html ?
-						ApiSpecBuilderHtml.BuildDtoHtml(ApiSpec.ApiError, ApiSpec) :
-						JsonSerializer.SerializeToString(ApiSpec.ApiError));
-					break;
-
 				case "dto":
 					foreach ( SpecDto dto in ApiSpec.DtoList ) {
 						if ( dto.Name.ToLower() != objNameLower ) { continue; }

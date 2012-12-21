@@ -95,7 +95,7 @@ namespace Fabric.Api.Paths.Steps {
 	}
 
 	/*================================================================================================*/
-	public abstract class Step<T> : Step where T : FabNode, new() {
+	public abstract class Step<T> : Step where T : IFabDto, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

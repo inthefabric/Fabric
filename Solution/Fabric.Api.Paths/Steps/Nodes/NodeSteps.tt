@@ -98,8 +98,9 @@ foreach ( string name in nodeNames ) {
 	if ( node.Name == "Root" ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public int Count { get { return 1; } }
+		public bool UseLocalData { get { return true; } }
 		public long Index { get { return 0; } }
+		public int Count { get { return 1; } }
 
 <#
 	}

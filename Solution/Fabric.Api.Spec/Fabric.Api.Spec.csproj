@@ -46,7 +46,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SpecFunc.cs" />
-    <Compile Include="SpecApiError.cs" />
     <Compile Include="Lang\DtoPropText.Designer.cs">
       <DependentUpon>DtoPropText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -54,16 +53,6 @@
     </Compile>
     <Compile Include="Lang\DtoText.Designer.cs">
       <DependentUpon>DtoText.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Lang\OauthPropText.Designer.cs">
-      <DependentUpon>OauthPropText.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Lang\OauthText.Designer.cs">
-      <DependentUpon>OauthText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -83,10 +72,12 @@
     <EmbeddedResource Include="Lang\FuncParamText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FuncParamText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\FuncText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FuncText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\DtoPropText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -95,14 +86,6 @@
     <EmbeddedResource Include="Lang\DtoText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DtoText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lang\OauthPropText.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>OauthPropText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lang\OauthText.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>OauthText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

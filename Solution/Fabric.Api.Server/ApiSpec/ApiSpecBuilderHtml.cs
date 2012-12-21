@@ -19,17 +19,16 @@ namespace Fabric.Api.Server.ApiSpec {
 		/*--------------------------------------------------------------------------------------------*/
 		public static string BuildHtml(SpecDoc pDoc) {
 			string html = "<h2>Fabric Api Specification ("+pDoc.ApiVersion+")</h2><hr/>";
-			html += BuildDtoHtml(pDoc.ApiResponse, pDoc)+"<br/><br/>";
-			html += BuildDtoHtml(pDoc.ApiError, pDoc)+"<br/><br/>";
+			html += BuildDtoHtml(pDoc.ApiResponse, pDoc)+"<br/><hr/>";
 
 			foreach ( SpecDto dto in pDoc.DtoList ) {
-				html += BuildDtoHtml(dto, pDoc)+"<br/><br/>";
+				html += BuildDtoHtml(dto, pDoc)+"<br/>";
 			}
 
 			html += "<hr/>";
 
 			foreach ( SpecFunc func in pDoc.FunctionList ) {
-				html += BuildFuncHtml(func, pDoc)+"<br/><br/>";
+				html += BuildFuncHtml(func, pDoc)+"<br/>";
 			}
 
 			return html;
@@ -46,7 +45,8 @@ namespace Fabric.Api.Server.ApiSpec {
 			}
 
 			html += "<b>Description</b><br/>";
-			html += "<span style='color:#777;'>"+pDto.Description+"</span><br/><br/>";
+			html += "<span style='color:#777;'>"+pDto.Description.Replace("\n", "<br/>")+
+				"</span><br/><br/>";
 
 			html += "<b>Properties</b><br/>";
 			html += BuildDtoPropHtml(pDto, pDoc, 0);
@@ -110,6 +110,10 @@ namespace Fabric.Api.Server.ApiSpec {
 		public static string BuildFuncHtml(SpecFunc pFunc, SpecDoc pDoc) {
 			string html = "<h3><a name='"+pFunc.Name+"' />Function: "+pFunc.Name+"</h3>";
 
+			html += "<b>Return Type</b><br/>";
+			html += (pFunc.ReturnType == null ? "Variable, based on previous step(s)." : 
+				BuildDtoLink(pFunc.ReturnType.Name))+"<br/><br/>";
+
 			html += "<b>Description</b><br/>";
 			html += "<span style='color:#777;'>"+pFunc.Description+"</span><br/><br/>";
 
@@ -124,9 +128,13 @@ namespace Fabric.Api.Server.ApiSpec {
 			string html = "";
 
 			foreach ( SpecFuncParam fp in pFunc.ParameterList ) {
-				html += "<div style='margin-left:20px'>"+fp.Name+" : "+fp.Type+" { ";
-				html += (fp.Min == null ? "" : "Min="+fp.Min+" ");
-				html += (fp.Max == null ? "" : "Max="+fp.Max+" ");
+				html += "<div style='margin-left:20px'>"+
+					(fp.DisplayName ?? fp.Name)+" : "+fp.Type+" { ";
+				html += "IsRequired="+fp.IsRequired+", ";
+				html += "UsesQueryString="+fp.UsesQueryString+", ";
+				html += (fp.Max == null ? "" : "Max="+fp.Max+", ");
+				html += (fp.Min == null ? "" : "Min="+fp.Min+", ");
+				html += (fp.Max == null ? "" : "Max="+fp.Max+", ");
 				html += "}<br/><span style='color:#777;'>"+fp.Description+"</span>";
 				html += "<br/><br/></div>";
 			}

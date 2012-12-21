@@ -10,11 +10,25 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		public int? Min { get; set; }
 		public int? Max { get; set; }
 
+		public bool IsRequired { get; set; }
+		public bool UsesQueryString { get; set; }
+		public string DisplayName { get; set; }
+		public string FuncResxKey { get; set; }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FuncParamAttribute(string pQueryStringName, bool pIsRequired=true) {
+			UsesQueryString = true;
+			DisplayName = pQueryStringName;
+			IsRequired = pIsRequired;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public FuncParamAttribute(int pParamIndex) {
 			ParamIndex = pParamIndex;
+			UsesQueryString = false;
+			DisplayName = null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

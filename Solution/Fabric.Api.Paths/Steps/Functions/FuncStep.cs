@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -18,6 +19,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override Type DtoType {
 			get {
+				Log.Debug("PROXY: "+ProxyStep+" / "+this);
 				return (ProxyStep != null ? ProxyStep.DtoType : null);
 			}
 		}

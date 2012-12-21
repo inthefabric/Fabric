@@ -86,5 +86,131 @@ namespace Fabric.Api.Spec.Lang {
                 return ResourceManager.GetString("Limit_Index", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The App ID value (an integer) for the App making the request. This parameter is only used by the &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos; and &apos;[[Client Data Provider|Func|AccessTokenClientDataProv]]&apos; flows..
+        /// </summary>
+        internal static string OauthAt_ClientId {
+            get {
+                return ResourceManager.GetString("OauthAt_ClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The 32-letter (alpha-numeric) secret code for the Fabric App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone..
+        /// </summary>
+        internal static string OauthAt_ClientSecret {
+            get {
+                return ResourceManager.GetString("OauthAt_ClientSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The authorization code obtained after a successful OAuth entry process. This parameter is only used by the &apos;[[Authorization Code|Func|AccessTokenAuthCode]]&apos; flow..
+        /// </summary>
+        internal static string OauthAt_Code {
+            get {
+                return ResourceManager.GetString("OauthAt_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special &apos;Data Provider&apos; User which the App uses for creating items in the Fabric system. This parameter is only used by the &apos;[[Client Data Provider|Func|AccessTokenClientDataProv]]&apos; flow..
+        /// </summary>
+        internal static string OauthAt_DataProvUserId {
+            get {
+                return ResourceManager.GetString("OauthAt_DataProvUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defines the desired access token flow.  The four accepted (case-sensitive) values are &apos;[[Authorization Code|Func|AccessTokenAuthCode]]&apos;, &apos;[[Refresh|Func|AccessTokenRefresh]]&apos;, &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos;, and &apos;[[Client Data Provider|Func|AccessTokenClientDataProv]]&apos;..
+        /// </summary>
+        internal static string OauthAt_GrantType {
+            get {
+                return ResourceManager.GetString("OauthAt_GrantType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This value must be exactly the same as the redirect URI provided for the OAuth entry process..
+        /// </summary>
+        internal static string OauthAt_RedirectUri {
+            get {
+                return ResourceManager.GetString("OauthAt_RedirectUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The refresh token obtained after a successful &apos;[[Authorization Code|Func|AccessTokenAuthCode]]&apos; access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the &apos;[[Refresh|Func|AccessTokenRefresh]]&apos; flow..
+        /// </summary>
+        internal static string OauthAt_RefreshToken {
+            get {
+                return ResourceManager.GetString("OauthAt_RefreshToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ID of the Fabric App making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this App ID and the authenticated User&apos;s ID..
+        /// </summary>
+        internal static string OauthGrant_ClientId {
+            get {
+                return ResourceManager.GetString("OauthGrant_ClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The URL which will receive success/error redirects from the OAuth Login process.  This URL should handle the following query-string parameters: access_code, error, error_description, state..
+        /// </summary>
+        internal static string OauthGrant_RedirectUri {
+            get {
+                return ResourceManager.GetString("OauthGrant_RedirectUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Describes which type of authentication should be performed. For now, this value should always be &apos;code&apos;. Fabric may accept more response types in the future..
+        /// </summary>
+        internal static string OauthGrant_ResponseType {
+            get {
+                return ResourceManager.GetString("OauthGrant_ResponseType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Describes the level of access the App will have to the User&apos;s account.  This value is required by the OAuth 2.0 specification, however, Fabric currently ignores it.  All OAuth requests currently receive the same level of access to the User&apos;s account.  Fabric may begin using this parameter in the future..
+        /// </summary>
+        internal static string OauthGrant_Scope {
+            get {
+                return ResourceManager.GetString("OauthGrant_Scope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides a security function for a Fabric App.  All success/message redirect responses include a &apos;state&apos; query-string parameter.  The App should check this value against the state value provided in the initial request.  The two values should always be equal. If the values are not equal, then the redirect did not come from the Fabric OAuth process (or from a different user&apos;s process), and should be handled accordingly..
+        /// </summary>
+        internal static string OauthGrant_State {
+            get {
+                return ResourceManager.GetString("OauthGrant_State", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Causes the login process to behave in different ways.  If a value of &apos;1&apos; is provided, the user will see the login page even if they are currently authenticated with Fabric.  This is useful shared-computer scenarios, where the most-recently authenticated user may be different from the user making the current request..
+        /// </summary>
+        internal static string OauthGrant_SwitchMode {
+            get {
+                return ResourceManager.GetString("OauthGrant_SwitchMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The access token for the desired OAuth session. This request will fail if the token has already been invalidated by a previous logout..
+        /// </summary>
+        internal static string OauthLogout_AccessToken {
+            get {
+                return ResourceManager.GetString("OauthLogout_AccessToken", resourceCulture);
+            }
+        }
     }
 }

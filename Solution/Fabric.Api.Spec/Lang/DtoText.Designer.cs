@@ -61,6 +61,66 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The {{Item}} is one of seven Artifact Owners. Each {{Item}}-owned Artifact {{Access}} and {{Talk}}..
+        /// </summary>
+        internal static string _ArtItem_Main {
+            get {
+                return ResourceManager.GetString("_ArtItem_Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is accessible only to the User who created it.
+        /// </summary>
+        internal static string _ArtItem_Private {
+            get {
+                return ResourceManager.GetString("_ArtItem_Private", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is publicly accessible.
+        /// </summary>
+        internal static string _ArtItem_Public {
+            get {
+                return ResourceManager.GetString("_ArtItem_Public", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to can have either public or private accessibility.
+        /// </summary>
+        internal static string _ArtItem_VariedAccess {
+            get {
+                return ResourceManager.GetString("_ArtItem_VariedAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The essential data for a particular {{Item}}..
+        /// </summary>
+        internal static string _Core_Common {
+            get {
+                return ResourceManager.GetString("_Core_Common", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current version information for the Fabric API. 
+        ///
+        ///The API versioning format is: &apos;Major.Minor.ReleaseIndex.Build&apos;. Major, Minor, and ReleaseIndex values are sequential integer values. Minor resets to zero after each Major increase. ReleaseIndex resets to zero after each Minor increase. Build is a 12-character hashtag, and can typically be ignored.
+        ///
+        ///In general, each increment of...
+        ///- ReleaseIndex represents internal improvements and fixes.
+        ///- Minor represents external additions, such as a new API request [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _Version {
+            get {
+                return ResourceManager.GetString("_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A registered project, application, or business that has direct access to the Fabric API.
         ///
         ///An !App&apos;s primary purpose is to facilitate User interaction with Fabric. To accomplish this, an !App typically creates an interface for its Users. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
@@ -99,51 +159,6 @@ namespace Fabric.Api.Spec.Lang {
         internal static string ArtifactType {
             get {
                 return ResourceManager.GetString("ArtifactType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The {{Item}} is one of seven Artifact Owners. Each {{Item}}-owned Artifact {{Access}} and {{Talk}}..
-        /// </summary>
-        internal static string ArtItem_Main {
-            get {
-                return ResourceManager.GetString("ArtItem_Main", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is accessible only to the User who created it.
-        /// </summary>
-        internal static string ArtItem_Private {
-            get {
-                return ResourceManager.GetString("ArtItem_Private", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is publicly accessible.
-        /// </summary>
-        internal static string ArtItem_Public {
-            get {
-                return ResourceManager.GetString("ArtItem_Public", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to can have either public or private accessibility.
-        /// </summary>
-        internal static string ArtItem_VariedAccess {
-            get {
-                return ResourceManager.GetString("ArtItem_VariedAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The essential data for a particular {{Item}}..
-        /// </summary>
-        internal static string Core_Common {
-            get {
-                return ResourceManager.GetString("Core_Common", resourceCulture);
             }
         }
         
@@ -450,6 +465,53 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Oauth {
+            get {
+                return ResourceManager.GetString("Oauth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides an OAuth access token and other related information. Every Fabric API request requires an access token. To include an OAuth access token with a FabricAPI request, add an &quot;Authorization&quot; header to the HTTP request with a value of &quot;Bearer=[your OAuth access code here]&quot;..
+        /// </summary>
+        internal static string OauthAccess {
+            get {
+                return ResourceManager.GetString("OauthAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To comply with the OAuth 2.0 specification, all Fabric OAuth requests return a FabOauthError (instead of FabFault or FabError) when errors occur..
+        /// </summary>
+        internal static string OauthError {
+            get {
+                return ResourceManager.GetString("OauthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This DTO is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
+        ///
+        ///This redirect is used in one particular scenario: the [[OAuth login process|Req|oauth.get]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the &apos;c [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string OauthLogin {
+            get {
+                return ResourceManager.GetString("OauthLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The result of an OAuth logout..
+        /// </summary>
+        internal static string OauthLogout {
+            get {
+                return ResourceManager.GetString("OauthLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The API response wrapper; contains the Data payload and other metadata..
         /// </summary>
         internal static string Response {
@@ -567,21 +629,6 @@ namespace Fabric.Api.Spec.Lang {
         internal static string VectorUnitPrefix {
             get {
                 return ResourceManager.GetString("VectorUnitPrefix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current version information for the Fabric API. 
-        ///
-        ///The API versioning format is: &apos;Major.Minor.ReleaseIndex.Build&apos;. Major, Minor, and ReleaseIndex values are sequential integer values. Minor resets to zero after each Major increase. ReleaseIndex resets to zero after each Minor increase. Build is a 12-character hashtag, and can typically be ignored.
-        ///
-        ///In general, each increment of...
-        ///- ReleaseIndex represents internal improvements and fixes.
-        ///- Minor represents external additions, such as a new API request [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Version {
-            get {
-                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }
