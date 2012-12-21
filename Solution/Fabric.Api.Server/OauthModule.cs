@@ -12,13 +12,13 @@ namespace Fabric.Api.Server {
 		public OauthModule() {
 			Log.ConfigureOnce();
 
-			Get["/api/oauth/access_token"] = (p => "Fabric OAuth: access_token");
-			Get["/api/oauth/access_token_auth_code"] = (p => "Fabric OAuth: /access_token_auth_code");
-			Get["/api/oauth/access_token_refresh"] = (p => "Fabric OAuth: access_token_refresh");
-			Get["/api/oauth/access_token_client_credentials"] = 
-				(p => "Fabric OAuth: access_token_client_credentials");
-			Get["/api/oauth/access_token_client_dataprov"] =
-				(p => "Fabric OAuth: access_token_client_dataprov");
+			Get["/api/oauth/AccessToken"] = (p => "Fabric OAuth: AccessToken");
+			Get["/api/oauth/AccessTokenAuthCode"] = (p => "Fabric OAuth: AuthCode");
+			Get["/api/oauth/AccessTokenRefresh"] = (p => "Fabric OAuth: Refresh");
+			Get["/api/oauth/AccessTokenClientCredentials"] = (p => "Fabric OAuth: ClientCredentials");
+			Get["/api/oauth/AccessTokenClientDataProv"] = (p => "Fabric OAuth: ClientDataProv");
+			Get["/api/oauth/Login"] = (p => "Fabric OAuth: Login");
+			Get["/api/oauth/Logout"] = (p => "Fabric OAuth: Logout");
 		}
 
 	}

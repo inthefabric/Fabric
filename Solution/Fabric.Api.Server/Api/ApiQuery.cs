@@ -4,28 +4,30 @@ using System.Text;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
-using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 using Nancy;
 
 namespace Fabric.Api.Server.Api {
 
 	/*================================================================================================*/
-	public class ApiQuery {  //TEST: ApiQuery
+	public class ApiQuery { //TEST: ApiQuery
 
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
 		private readonly NancyContext vContext;
+		private readonly ApiRequestContext vReqContext;
 		private readonly ApiQueryInfo vInfo;
 		private IFinalStep vLastStep;
 		private string vUri;
-		private GremlinRequest vReq;
+		private DbQuery vReq;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiQuery(NancyContext pContext) {
 			vContext = pContext;
+			vReqContext = new ApiRequestContext("http://localhost:9001/");
 			vInfo = new ApiQueryInfo();
 		}
 
@@ -59,10 +61,6 @@ namespace Fabric.Api.Server.Api {
 
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
-			/*foreach ( PathSegment ps in vLastStep.Path.Segments ) {
-				Log.Debug("PS "+ps.Script+" / "+ps.SubstepCount);
-			}*/
-
 			vInfo.DtoType = vLastStep.DtoType;
 			vInfo.Resp.Links = vLastStep.AvailableLinks.ToArray();
 			vInfo.Resp.Functions = vLastStep.AvailableFuncs.ToArray();
@@ -70,10 +68,10 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Query = vLastStep.Path.Script;
 
 			if ( !vLastStep.UseLocalData ) {
-				vReq = new GremlinRequest(vInfo.Query);
+				vInfo.Resp.DbStartEvent();
+				vReq = vReqContext.ExecuteQuery(vInfo.Query);
+				vInfo.Resp.DbEndEvent();
 			}
-
-			vInfo.Resp.DbEvent();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -82,12 +80,12 @@ namespace Fabric.Api.Server.Api {
 				return;
 			}
 
-			if ( vReq.DtoList != null ) {
+			if ( vReq.ResultDtoList != null ) {
 				int max = vLastStep.Count;
 				int count = 0;
 				vInfo.DtoList = new List<DbDto>();
 
-				foreach ( DbDto dbDto in vReq.DtoList ) {
+				foreach ( DbDto dbDto in vReq.ResultDtoList ) {
 					if ( count++ >= max ) { break; }
 					vInfo.DtoList.Add(dbDto);
 					CheckDtoType(dbDto);
@@ -95,19 +93,19 @@ namespace Fabric.Api.Server.Api {
 				}
 
 				vInfo.Resp.StartIndex = vLastStep.Index;
-				vInfo.Resp.HasMore = (vReq.DtoList.Count > max);
+				vInfo.Resp.HasMore = (vReq.ResultDtoList.Count > max);
 				return;
 			}
-			
-			if ( vReq.Dto != null ) {
+
+			if ( vReq.ResultDto != null ) {
 				vInfo.DtoList = new List<DbDto>();
-				vInfo.DtoList.Add(vReq.Dto);
+				vInfo.DtoList.Add(vReq.ResultDto);
 				vInfo.IsSingleDto = true;
-				CheckDtoType(vReq.Dto);
+				CheckDtoType(vReq.ResultDto);
 				return;
 			}
-			
-			vInfo.NonDtoText = vReq.ResponseString;
+
+			vInfo.NonDtoText = vReq.ResultString;
 		}
 		
 

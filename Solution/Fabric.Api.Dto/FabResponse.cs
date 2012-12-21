@@ -21,6 +21,8 @@ namespace Fabric.Api.Dto {
 		public int HttpStatus { get; set; }
 		public bool IsError { get; set; }
 
+		private long vDbStart;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -34,8 +36,13 @@ namespace Fabric.Api.Dto {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DbEvent() {
-			DbMs = (int)((DateTime.UtcNow.Ticks-Timestamp)/10000);
+		public void DbStartEvent() {
+			vDbStart = DateTime.UtcNow.Ticks;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void DbEndEvent() {
+			DbMs = (int)((DateTime.UtcNow.Ticks-vDbStart)/10000);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
