@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
@@ -27,65 +28,53 @@ namespace Fabric.Api.Server.Setups {
 					return "Password required.";
 				}
 
-				/*DataSet ds = Setup.SetupAll(true); //false);
-				string result = "";
-				GremlinRequest req;
-
-				foreach ( WeaverQuery q in ds.Indexes ) {
-					req = new GremlinRequest(q);
-					result += GetSetupLineItem(req);
-				}
-
-				foreach ( IDataNode n in ds.Nodes ) {
-					req = new GremlinRequest(n.AddQuery);
-					result += GetSetupLineItem(req);
-					n.Node.Id = (req.Dto.Id ?? -1);
-				}
-
-				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
-					req = new GremlinRequest(ni.AddToIndexQuery);
-					result += GetSetupLineItem(req);
-				}
-
-				foreach ( IDataRel r in ds.Rels ) {
-					req = new GremlinRequest(r.AddQuery);
-					result += GetSetupLineItem(req);
-				}*/
-
-				var tx = new WeaverTransaction();
 				DataSet ds = Setup.SetupAll(true);
+				var queries = new List<WeaverQuery>();
 				long nodeI = 0;
-				
+
 				foreach ( WeaverQuery q in ds.Indexes ) {
-					tx.AddQuery(q);
+					queries.Add(q);
 				}
-				
+
 				foreach ( IDataNode n in ds.Nodes ) {
-					tx.AddQuery(n.AddQuery);
+					queries.Add(n.AddQuery);
 					n.Node.Id = nodeI++;
 				}
-				
+
 				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
-					tx.AddQuery(ni.AddToIndexQuery);
+					queries.Add(ni.AddToIndexQuery);
 				}
 				
 				foreach ( IDataRel r in ds.Rels ) {
-					tx.AddQuery(r.AddQuery);
+					queries.Add(r.AddQuery);
 				}
-				
-				tx.Finish(WeaverTransaction.ConclusionType.Success);
-				var req = new GremlinRequest(tx.Script, tx.Params);
-				return req.ResponseString;
+
+				////
+
+				string result = "<b>Results:</b><br/><br/>";
+
+				while ( queries.Count > 0 ) {
+					var tx = new WeaverTransaction();
+					int count = 0;
+
+					for ( int i = 0 ; queries.Count > 0 && count < 100 ; ++i ) {
+						tx.AddQuery(queries[0]);
+						queries.RemoveAt(0);
+						count++;
+					}
+
+					tx.Finish(WeaverTransaction.ConclusionType.Success);
+
+					var req = new GremlinRequest(tx.Script, tx.Params);
+					result += "<hr/><b>"+req.Query+"</b><br/><br/>"+req.ResponseString+"<br/><br/>";
+				}
+
+				return result;
 			}
 			catch ( Exception ex ) {
 				Log.Error("error", ex);
 				return "error: "+ex.Message;
 			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static string GetSetupLineItem(GremlinRequest pReq) {
-			return "<b>"+pReq.Query+"</b><br/>"+pReq.ResponseString+"<br/><br/>";
 		}
 
 	}
