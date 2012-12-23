@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using Weaver;
+using System.Collections.Generic;
 
 namespace Fabric.Infrastructure {
 
@@ -15,17 +16,27 @@ namespace Fabric.Infrastructure {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static string WeaverQueryToJson(WeaverQuery pQuery) {
-			string json = "{\"script\":\""+JsonUnquote(pQuery.Script)+"\",\"params\":{";
+		public static string ScriptAndParamsToJson(string pScript, Dictionary<string,string> pParams) {
+			string json = "{\"script\":\""+JsonUnquote(pScript)+"\",\"params\":{";
 			bool first = true;
 
-			foreach ( string key in pQuery.Params.Keys ) {
+			foreach ( string key in pParams.Keys ) {
 				json += (first ? "" : ",")+"\""+JsonUnquote(key)+"\":\""+
-					JsonUnquote(pQuery.Params[key])+"\"";
+					JsonUnquote(pParams[key])+"\"";
 				first = false;
 			}
 
 			return json+"}}";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string WeaverQueryToJson(WeaverQuery pQuery) {
+			return ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static string WeaverTransactionToJson(WeaverTransaction pTx) {
+			return ScriptAndParamsToJson(pTx.Script, pTx.Params);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

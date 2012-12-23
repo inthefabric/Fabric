@@ -27,7 +27,7 @@ namespace Fabric.Api.Server.Setups {
 					return "Password required.";
 				}
 
-				DataSet ds = Setup.SetupAll(true); //false);
+				/*DataSet ds = Setup.SetupAll(true); //false);
 				string result = "";
 				GremlinRequest req;
 
@@ -50,9 +50,32 @@ namespace Fabric.Api.Server.Setups {
 				foreach ( IDataRel r in ds.Rels ) {
 					req = new GremlinRequest(r.AddQuery);
 					result += GetSetupLineItem(req);
-				}
+				}*/
 
-				return result;
+				var tx = new WeaverTransaction();
+				DataSet ds = Setup.SetupAll(true);
+				long nodeI = 0;
+				
+				foreach ( WeaverQuery q in ds.Indexes ) {
+					tx.AddQuery(q);
+				}
+				
+				foreach ( IDataNode n in ds.Nodes ) {
+					tx.AddQuery(n.AddQuery);
+					n.Node.Id = nodeI++;
+				}
+				
+				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
+					tx.AddQuery(ni.AddToIndexQuery);
+				}
+				
+				foreach ( IDataRel r in ds.Rels ) {
+					tx.AddQuery(r.AddQuery);
+				}
+				
+				tx.Finish(WeaverTransaction.ConclusionType.Success);
+				var req = new GremlinRequest(tx.Script, tx.Params);
+				return req.ResponseString;
 			}
 			catch ( Exception ex ) {
 				Log.Error("error", ex);
