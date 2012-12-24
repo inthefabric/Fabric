@@ -3,7 +3,7 @@
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddMemberEnsure : ActiveFunc<bool> {
+	public class AddMemberEnsure : ApiFunc<bool> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly FabUserKey vUserKey;

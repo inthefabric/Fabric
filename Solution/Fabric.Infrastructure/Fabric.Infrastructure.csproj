@@ -44,10 +44,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\ApiRequestContext.cs" />
-    <Compile Include="Api\ActiveFunc.cs" />
-    <Compile Include="Api\IActiveFunc.cs" />
-    <Compile Include="Api\DbQuery.cs" />
+    <Compile Include="Api\ApiContext.cs" />
+    <Compile Include="Api\ApiFunc.cs" />
+    <Compile Include="Api\IApiFunc.cs" />
+    <Compile Include="Api\ApiToDbQuery.cs" />
     <Compile Include="DbDto.cs" />
     <Compile Include="DbResult.cs" />
     <Compile Include="Domain\SchemaHelper.cs">

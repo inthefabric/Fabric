@@ -3,7 +3,7 @@
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetRefresh : ActiveFunc<OauthRefreshResult> {
+	public class GetRefresh : ApiFunc<OauthRefreshResult> {
 		
 		private readonly string vRefreshToken;
 		

@@ -1,19 +1,19 @@
 ﻿namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
-	public abstract class ActiveFunc<TReturn> : IActiveFunc<TReturn> {
+	public abstract class ApiFunc<TReturn> : IApiFunc<TReturn> {
 
-		public ApiRequestContext Context { get; private set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ActiveFunc() {}
+		public ApiContext Context { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TReturn Go(ApiRequestContext pContext) {
+		public ApiFunc() {}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public TReturn Go(ApiContext pContext) {
 			Context = pContext;
 			ValidateParams();
 			return Execute();

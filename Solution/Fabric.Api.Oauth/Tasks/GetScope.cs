@@ -3,7 +3,7 @@
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetScope : ActiveFunc<FabOauthScope> {
+	public class GetScope : ApiFunc<FabOauthScope> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly FabUserKey vUserKey;

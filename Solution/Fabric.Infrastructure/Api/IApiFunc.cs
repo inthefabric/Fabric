@@ -1,9 +1,9 @@
 ﻿namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
-	public interface IActiveFunc {
+	public interface IApiFunc {
 
-		ApiRequestContext Context { get; }
+		ApiContext Context { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,12 +13,12 @@
 	}
 
 	/*================================================================================================*/
-	public interface IActiveFunc<out TReturn> {
+	public interface IApiFunc<out TReturn> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		TReturn Go(ApiRequestContext pContext);
+		TReturn Go(ApiContext pContext);
 
 	}
 

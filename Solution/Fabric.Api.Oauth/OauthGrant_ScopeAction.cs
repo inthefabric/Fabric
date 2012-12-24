@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrant_ScopeAction : ActiveFunc<FabOauthLoginScope> {
+	public class OauthGrant_ScopeAction : ApiFunc<FabOauthLoginScope> {
 
 		private readonly OauthGrant_Core vCore;
 

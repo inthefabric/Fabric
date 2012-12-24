@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetGrant : ActiveFunc<FabOauthGrant> {
+	public class GetGrant : ApiFunc<FabOauthGrant> {
 		
 		private readonly string vCode;
 		

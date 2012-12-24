@@ -34,7 +34,7 @@ namespace Fabric.Api.Oauth {
 	};
 
 	/*================================================================================================*/
-	public abstract class OauthAccess : ActiveFunc<FabOauthAccess> {
+	public abstract class OauthAccess : ApiFunc<FabOauthAccess> {
 
 		public static string[] ErrDescStrings = new [] {
 			"The grant_type is invalid",

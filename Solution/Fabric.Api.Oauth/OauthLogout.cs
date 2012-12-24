@@ -21,7 +21,7 @@ namespace Fabric.Api.Oauth {
 	};
 
 	/*================================================================================================*/
-	public class OauthLogout : ActiveFunc<FabOauthLogout> {
+	public class OauthLogout : ApiFunc<FabOauthLogout> {
 
 		public static readonly string[] ErrDescStrings = new[] {
 			"The access_token is missing or in an invalid format",

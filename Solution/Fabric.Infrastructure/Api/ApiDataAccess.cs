@@ -7,9 +7,9 @@ using Weaver;
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public class DbQuery {
+	public class ApiDataAccess {
 
-		public ApiRequestContext Context { get; private set; }
+		public ApiContext Context { get; private set; }
 
 		public string Script { get; private set; }
 		public IDictionary<string, string> Params { get; private set; }
@@ -23,7 +23,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DbQuery(ApiRequestContext pContext, string pScript, 
+		public ApiDataAccess(ApiContext pContext, string pScript, 
 														IDictionary<string, string> pParams=null) {
 			Context = pContext;
 			Script = pScript;
@@ -31,7 +31,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DbQuery(ApiRequestContext pContext, WeaverQuery pQuery) :
+		public ApiDataAccess(ApiContext pContext, WeaverQuery pQuery) :
 														this(pContext, pQuery.Script, pQuery.Params) {}
 
 

@@ -16,18 +16,18 @@ namespace Fabric.Api.Server.Api {
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
 		private readonly NancyContext vContext;
-		private readonly ApiRequestContext vReqContext;
+		private readonly ApiContext vReqContext;
 		private readonly ApiQueryInfo vInfo;
 		private IFinalStep vLastStep;
 		private string vUri;
-		private DbQuery vReq;
+		private ApiDataAccess vReq;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiQuery(NancyContext pContext) {
 			vContext = pContext;
-			vReqContext = new ApiRequestContext("http://localhost:9001/");
+			vReqContext = new ApiContext("http://localhost:9001/");
 			vInfo = new ApiQueryInfo();
 		}
 

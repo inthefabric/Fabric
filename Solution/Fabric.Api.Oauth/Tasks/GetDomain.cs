@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetDomain : ActiveFunc<FabOauthDomain> {
+	public class GetDomain : ApiFunc<FabOauthDomain> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly string vRedirectUri;

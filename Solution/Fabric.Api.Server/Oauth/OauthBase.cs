@@ -23,7 +23,7 @@ namespace Fabric.Api.Server.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract IActiveFunc<T> BuildFunc();
+		protected abstract IApiFunc<T> BuildFunc();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,12 +57,12 @@ namespace Fabric.Api.Server.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected Response GetResponse(IActiveFunc<T> pFunc) {
+		protected Response GetResponse(IApiFunc<T> pFunc) {
 			string json;
 			HttpStatusCode statCode;
 
 			try {
-				var asc = new ApiRequestContext("http://localhost:9001/");
+				var asc = new ApiContext("http://localhost:9001/");
 				T result = pFunc.Go(asc);
 				json = result.ToJson();
 				statCode = HttpStatusCode.OK;

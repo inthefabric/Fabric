@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddGrant : ActiveFunc<string> {
+	public class AddGrant : ApiFunc<string> {
 		
 		private readonly FabAppKey vAppKey;
 		private readonly FabUserKey vUserKey;

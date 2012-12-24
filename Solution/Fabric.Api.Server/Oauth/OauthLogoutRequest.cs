@@ -11,7 +11,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IActiveFunc<FabOauthLogout> BuildFunc() {
+		protected override IApiFunc<FabOauthLogout> BuildFunc() {
 			return new OauthLogout(
 				GetParamString(FuncOauthLogoutStep.AccessTokenName)
 			);

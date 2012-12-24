@@ -7,7 +7,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetAccessToken : ActiveFunc<FabOauthAccess> {
+	public class GetAccessToken : ApiFunc<FabOauthAccess> {
 		
 		private readonly string vToken;
 		

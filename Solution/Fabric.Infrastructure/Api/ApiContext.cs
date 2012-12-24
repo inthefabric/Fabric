@@ -5,7 +5,7 @@ using Weaver;
 namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
-	public class ApiRequestContext {
+	public class ApiContext {
 
 		public string DbServerUrl { get; private set; }
 
@@ -18,7 +18,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiRequestContext(string pDbServerUrl) {
+		public ApiContext(string pDbServerUrl) {
 			DbServerUrl = pDbServerUrl;
 			UserId = -1;
 			AppId = -1;
@@ -42,17 +42,17 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DbQuery ExecuteQuery(string pScript, IDictionary<string, string> pParams=null) {
-			return ExecuteQuery(new DbQuery(this, pScript, pParams));
+		public ApiDataAccess ExecuteQuery(string pScript, IDictionary<string, string> pParams=null) {
+			return ExecuteQuery(new ApiDataAccess(this, pScript, pParams));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DbQuery ExecuteQuery(WeaverQuery pQuery) {
-			return ExecuteQuery(new DbQuery(this, pQuery));
+		public ApiDataAccess ExecuteQuery(WeaverQuery pQuery) {
+			return ExecuteQuery(new ApiDataAccess(this, pQuery));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private DbQuery ExecuteQuery(DbQuery pDbQuery) {
+		private ApiDataAccess ExecuteQuery(ApiDataAccess pDbQuery) {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;

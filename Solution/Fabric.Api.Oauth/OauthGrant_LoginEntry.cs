@@ -6,7 +6,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrant_LoginEntry : ActiveFunc<FabOauthLogin> {
+	public class OauthGrant_LoginEntry : ApiFunc<FabOauthLogin> {
 
 		private readonly OauthGrant_Core vCore;
 
