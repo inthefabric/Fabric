@@ -46,8 +46,21 @@
   <ItemGroup>
     <Compile Include="Api\ApiContext.cs" />
     <Compile Include="Api\ApiFunc.cs" />
+    <Compile Include="Api\ApiDataAccessT.cs" />
+    <Compile Include="Api\Faults\FabAlreadyVerifiedFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
+    <Compile Include="Api\Faults\FabAuthorizationFault.cs" />
+    <Compile Include="Api\Faults\FabDuplicateFault.cs" />
+    <Compile Include="Api\Faults\FabFault.cs" />
+    <Compile Include="Api\Faults\FabMembershipFault.cs" />
+    <Compile Include="Api\Faults\FabNotFoundFault.cs" />
+    <Compile Include="Api\Faults\FabPreventedFault.cs" />
+    <Compile Include="Api\Faults\FabPrivacyFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
-    <Compile Include="Api\ApiToDbQuery.cs" />
+    <Compile Include="Api\ApiDataAccess.cs" />
     <Compile Include="DbDto.cs" />
     <Compile Include="DbResult.cs" />
     <Compile Include="Domain\SchemaHelper.cs">
@@ -74,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
+      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
+      <Name>Fabric.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

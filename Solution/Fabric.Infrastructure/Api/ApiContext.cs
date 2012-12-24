@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Domain;
 using Weaver;
 
 namespace Fabric.Infrastructure.Api {
@@ -53,6 +54,26 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private ApiDataAccess ExecuteQuery(ApiDataAccess pDbQuery) {
+			pDbQuery.Execute();
+			DbQueryExecutionCount++;
+			return pDbQuery;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public ApiDataAccess<T> ExecuteQuery<T>(string pScript,
+								IDictionary<string, string> pParams=null) where T : INode, new() {
+			return ExecuteQuery<T>(new ApiDataAccess<T>(this, pScript, pParams));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public ApiDataAccess<T> ExecuteQuery<T>(WeaverQuery pQuery) where T : INode, new() {
+			return ExecuteQuery<T>(new ApiDataAccess<T>(this, pQuery));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private ApiDataAccess<T> ExecuteQuery<T>(ApiDataAccess<T> pDbQuery) where T : INode, new() {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;

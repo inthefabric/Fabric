@@ -37,7 +37,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Execute() {
+		public virtual void Execute() {
 			string param = BuildParams();
 
 			Query = "{\"script\":\""+FabricUtil.JsonUnquote(Script)+"\""+
@@ -65,7 +65,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildParams() {
+		protected string BuildParams() {
 			if ( Params == null ) { return ""; }
 			string p = "";
 

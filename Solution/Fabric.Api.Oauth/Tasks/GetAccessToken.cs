@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Infrastructure;
+using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
+using Weaver;
+using Weaver.Functions;
+using Weaver.Items;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -14,13 +18,12 @@ namespace Fabric.Api.Oauth.Tasks {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public GetAccessToken(string pToken) : base(AuthType.None) {
+		public GetAccessToken(string pToken) {
 			vToken = pToken;
-			AddTransactionFunc(DoAccessGet);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
+		protected override void ValidateParams() {
 			if ( vToken == null ) { throw new FabArgumentNullFault("Token"); }
 			if ( vToken.Length != 32 ) { throw new FabArgumentLengthFault("Token", 32, 32); }
 
@@ -31,43 +34,28 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void DoAccessGet(ISession pSession) {
-			PreGoChecks(); //just in case, check for injection again...
-			
-			//OPTIMIZE: including "LIMIT 1" works with SQLite, but not SqlServer (uses "TOP"?).
-			//It's not a SQL standard, so consider omitting it entirely.
-			//LIMIT may not be much of a performance boost if Token is an indexed column.
+		protected override FabOauthAccess Execute() {
+			var getOaPath = new WeaverPath<Root>(new Root());
+			getOaPath.BaseNode
+				.ContainsOauthAccessList
+				.ToOauthAccess
+				.Has(oa => oa.Token, WeaverFuncHasOp.EqualTo, vToken)
+				.Has(oa => oa.Expires, WeaverFuncHasOp.GreaterThan, DateTime.UtcNow.Ticks);
 
-			string q = String.Format(
-				/*"SELECT {1}Id, IsClientOnly, {2}Id, {3}Id FROM {0}{1} "+
-					"WHERE (Token='{4}' and Expires > CURRENT_TIMESTAMP)",
-				Context.SqlSchemaWithDot, typeof(OauthAccess).Name,
-				typeof(App).Name, typeof(User).Name, vToken);*/
-				"SELECT * FROM {0}{1} WHERE (Token='{2}' and Expires > CURRENT_TIMESTAMP)",
-				Context.SqlSchemaWithDot, FabricUtil.GetTableName<OauthAccess>(), vToken);
-			
-			OauthAccess oa = pSession.CreateSQLQuery(q)
-				.AddEntity(typeof(OauthAccess))
-				.UniqueResult<OauthAccess>();
+			//TODO: NEED Weaver functions like List(), Limit(), Single(), Dedup(), etc.
 
-			if ( oa == null ) { return; }
-			SetResult(new FabOauthAccess(oa));
+			var getOaQuery = new WeaverQuery(getOaPath.GremlinCode);
+			ApiDataAccess access = Context.ExecuteQuery(getOaQuery);
 
-			//OPTIMIZE: shouldn't need to include Token and Expires. Discluding these columns
-			//works in SQLite, but breaks in SqlServer. Below is a different attempt...
+			if ( access.ResultDto == null ) {
+				return null;
+			}
 
-			/*object oa = pSession.CreateSQLQuery(q)
-				.AddScalar("OauthAccessId", NHibernateUtil.Int32)
-				.AddScalar("AppId", NHibernateUtil.Int32)
-				.AddScalar("UserId", NHibernateUtil.Int32)
-				.AddScalar("IsClientOnly", NHibernateUtil.Boolean)
-				.UniqueResult();
-			
-			if ( oa == null ) { return; }
-			FabOauthAccess dto = new FabOauthAccess();
-			dto.AppKey = new FabAppKey(oa[1]);
-			SetResult(dto);*/
+			var foa = new FabOauthAccess();
+			foa.Fill(access.ResultDto);
+			return foa;
 		}
 
 	}
+
 }
