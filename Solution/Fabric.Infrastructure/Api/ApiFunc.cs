@@ -1,4 +1,7 @@
-﻿namespace Fabric.Infrastructure.Api {
+﻿using Fabric.Domain;
+using Weaver;
+
+namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
 	public abstract class ApiFunc<TReturn> : IApiFunc<TReturn> {
@@ -24,6 +27,14 @@
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract TReturn Execute();
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected Root NewPathFromRoot() {
+			return WeaverTasks.BeginPath(new Root()).BaseNode;
+		}
 
 	}
 

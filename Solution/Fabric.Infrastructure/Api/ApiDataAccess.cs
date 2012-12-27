@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 using ServiceStack.Text;
-using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -31,7 +31,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, WeaverQuery pQuery) :
+		public ApiDataAccess(ApiContext pContext, IWeaverQuery pQuery) :
 														this(pContext, pQuery.Script, pQuery.Params) {}
 
 

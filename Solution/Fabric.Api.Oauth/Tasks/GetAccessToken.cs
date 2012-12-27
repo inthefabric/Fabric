@@ -6,7 +6,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Weaver;
 using Weaver.Functions;
-using Weaver.Items;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -35,24 +35,23 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess Execute() {
-			var getOaPath = new WeaverPath<Root>(new Root());
-			getOaPath.BaseNode
-				.ContainsOauthAccessList
-				.ToOauthAccess
-				.Has(oa => oa.Token, WeaverFuncHasOp.EqualTo, vToken)
-				.Has(oa => oa.Expires, WeaverFuncHasOp.GreaterThan, DateTime.UtcNow.Ticks);
+			IWeaverQuery getOa = NewPathFromRoot()
+				.ContainsOauthAccessList.ToOauthAccess
+					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, vToken)
+					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, DateTime.UtcNow.Ticks)
+				.End();
 
-			//TODO: NEED Weaver functions like List(), Limit(), Single(), Dedup(), etc.
+			OauthAccess oa = Context.QueryForSingle<OauthAccess>(getOa);
 
-			var getOaQuery = new WeaverQuery(getOaPath.GremlinCode);
-			ApiDataAccess access = Context.ExecuteQuery(getOaQuery);
-
-			if ( access.ResultDto == null ) {
+			if ( oa == null ) {
 				return null;
 			}
 
 			var foa = new FabOauthAccess();
-			foa.Fill(access.ResultDto);
+			foa.AccessToken = oa.Token;
+			foa.RefreshToken = oa.Refresh;
+			foa.TokenType = "bearer";
+			foa.ExpiresIn = 3600;
 			return foa;
 		}
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Results;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 
@@ -63,7 +64,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthLogout DoLogout() {
-			FabOauthAccess acc = null; //new GetAccessToken(vToken).Go(Context);
+			FabOauthAccess acc = new GetAccessToken(vToken).Go(Context);
 
 			if ( acc == null ) {
 				throw GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);

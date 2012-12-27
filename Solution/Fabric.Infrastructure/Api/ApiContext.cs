@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
 	
@@ -48,7 +48,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess ExecuteQuery(WeaverQuery pQuery) {
+		public ApiDataAccess ExecuteQuery(IWeaverQuery pQuery) {
 			return ExecuteQuery(new ApiDataAccess(this, pQuery));
 		}
 
@@ -62,14 +62,29 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess<T> ExecuteQuery<T>(string pScript,
+		public T QueryForSingle<T>(string pScript,
 								IDictionary<string, string> pParams=null) where T : INode, new() {
-			return ExecuteQuery<T>(new ApiDataAccess<T>(this, pScript, pParams));
+			var a = new ApiDataAccess<T>(this, pScript, pParams);
+			return ExecuteQuery(a).TypedResult;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess<T> ExecuteQuery<T>(WeaverQuery pQuery) where T : INode, new() {
-			return ExecuteQuery<T>(new ApiDataAccess<T>(this, pQuery));
+		public T QueryForSingle<T>(IWeaverQuery pQuery) where T : INode, new() {
+			var a = new ApiDataAccess<T>(this, pQuery);
+			return ExecuteQuery(a).TypedResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<T> QueryForList<T>(string pScript,
+								IDictionary<string, string> pParams=null) where T : INode, new() {
+			var a = new ApiDataAccess<T>(this, pScript, pParams);
+			return ExecuteQuery(a).TypedResultList;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<T> QueryForList<T>(IWeaverQuery pQuery) where T : INode, new() {
+			var a = new ApiDataAccess<T>(this, pQuery);
+			return ExecuteQuery(a).TypedResultList;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

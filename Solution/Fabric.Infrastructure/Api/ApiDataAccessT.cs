@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -20,7 +20,7 @@ namespace Fabric.Infrastructure.Api {
 						IDictionary<string, string> pParams=null) : base(pContext, pScript, pParams) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, WeaverQuery pQuery) : base(pContext, pQuery) {}
+		public ApiDataAccess(ApiContext pContext, IWeaverQuery pQuery) : base(pContext, pQuery) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -45,7 +45,7 @@
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Tasks\DoLogout.cs" />
-    <None Include="Tasks\GetAccessToken.cs" />
+    <Compile Include="Tasks\GetAccessToken.cs" />
     <None Include="Tasks\AddAccess.cs" />
     <None Include="Tasks\GetDomain.cs" />
     <None Include="Tasks\AddGrant.cs" />
@@ -71,7 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Weaver\Weaver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
