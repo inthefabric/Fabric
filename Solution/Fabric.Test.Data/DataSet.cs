@@ -10,7 +10,7 @@ namespace Fabric.Db.Data {
 	/*================================================================================================*/
 	public class DataSet {
 
-		public IList<WeaverQuery> Indexes { get; private set; }
+		public IList<IWeaverQuery> Indexes { get; private set; }
 		public IList<IDataNode> Nodes { get; private set; }
 		public IList<IDataNodeIndex> NodeToIndexes { get; private set; }
 		public IList<IDataRel> Rels { get; private set; }
@@ -24,7 +24,7 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataSet(bool pIsForTesting) {
-			Indexes = new List<WeaverQuery>();
+			Indexes = new List<IWeaverQuery>();
 			Nodes = new List<IDataNode>();
 			NodeToIndexes = new List<IDataNodeIndex>();
 			Rels = new List<IDataRel>();
@@ -73,7 +73,7 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddIndex(WeaverQuery pQuery) {
+		public void AddIndex(IWeaverQuery pQuery) {
 			Indexes.Add(pQuery);
 		}
 

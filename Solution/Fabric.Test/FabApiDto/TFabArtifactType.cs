@@ -14,8 +14,8 @@ namespace Fabric.Test.FabApiDto {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NameDesc() {
-			string name = "Test";
-			string desc = "Ensure that the Name and Description properties are set correctly.";
+			const string name = "Test";
+			const string desc = "Ensure that the Name and Description properties are set correctly.";
 
 			var dd = new DbDto();
 			dd.Id = 99;

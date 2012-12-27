@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using Fabric.Domain;
 using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
 
@@ -10,7 +11,7 @@ namespace Fabric.Db.Data {
 
 		string IndexName { get; }
 		bool IsForTesting { get; }
-		WeaverQuery AddToIndexQuery { get; }
+		IWeaverQuery AddToIndexQuery { get; }
 
 	}
 
@@ -35,7 +36,7 @@ namespace Fabric.Db.Data {
 		public bool IsForTesting { get; private set; }
 
 		private readonly DataNode<T> vDataNode;
-		private WeaverQuery vAddToIndexQuery;
+		private IWeaverQuery vAddToIndexQuery;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,10 +50,10 @@ namespace Fabric.Db.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public WeaverQuery AddToIndexQuery {
+		public IWeaverQuery AddToIndexQuery {
 			get {
 				if ( vAddToIndexQuery == null ) {
-					vAddToIndexQuery = WeaverQuery.AddNodeToIndex(
+					vAddToIndexQuery = WeaverTasks.AddNodeToIndex(
 						IndexName, vDataNode.NodeT, IndexValueFunc);
 				}
 

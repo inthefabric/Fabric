@@ -12,7 +12,7 @@ namespace Fabric.Db.Data {
 		IWeaverRel Rel { get; }
 		IWeaverNode ToNode { get; }
 		bool IsForTesting { get; }
-		WeaverQuery AddQuery { get; }
+		IWeaverQuery AddQuery { get; }
 
 	}
 
@@ -42,7 +42,7 @@ namespace Fabric.Db.Data {
 		public IWeaverNode ToNode { get; private set; }
 		public bool IsForTesting { get; private set; }
 
-		private WeaverQuery vAddQuery;
+		private IWeaverQuery vAddQuery;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,10 +68,10 @@ namespace Fabric.Db.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public WeaverQuery AddQuery {
+		public IWeaverQuery AddQuery {
 			get {
 				if ( vAddQuery == null ) {
-					vAddQuery = WeaverQuery.AddRel(FromNode, Rel, ToNode);
+					vAddQuery = WeaverTasks.AddRel(FromNode, Rel, ToNode);
 				}
 
 				return vAddQuery;

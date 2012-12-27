@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
 
@@ -8,7 +9,7 @@ namespace Fabric.Db.Data {
 
 		INode Node { get; }
 		bool IsForTesting { get; }
-		WeaverQuery AddQuery { get; }
+		IWeaverQuery AddQuery { get; }
 
 	}
 
@@ -31,7 +32,7 @@ namespace Fabric.Db.Data {
 		public INode Node { get; private set; }
 
 		public bool IsForTesting { get; private set; }
-		public WeaverQuery AddQuery { get; private set; }
+		public IWeaverQuery AddQuery { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +41,7 @@ namespace Fabric.Db.Data {
 			Node = pNode;
 			NodeT = pNode;
 			IsForTesting = pIsForTesting;
-			AddQuery = WeaverQuery.AddNode(pNode);
+			AddQuery = WeaverTasks.AddNode(pNode);
 		}
 
 	}

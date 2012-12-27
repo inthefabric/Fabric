@@ -45,7 +45,7 @@
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Tasks\DoLogout.cs" />
-    <Compile Include="Tasks\GetAccessToken.cs" />
+    <None Include="Tasks\GetAccessToken.cs" />
     <None Include="Tasks\AddAccess.cs" />
     <None Include="Tasks\GetDomain.cs" />
     <None Include="Tasks\AddGrant.cs" />

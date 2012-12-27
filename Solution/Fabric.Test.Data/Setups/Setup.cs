@@ -29,7 +29,7 @@ namespace Fabric.Db.Data.Setups {
 			foreach ( Type t in types ) {
 				if ( t.IsAbstract ) { continue; }
 				if ( !nodeType.IsAssignableFrom(t) ) { continue; }
-				pSet.AddIndex(WeaverQuery.AddNodeIndex(t.Name));
+				pSet.AddIndex(WeaverTasks.AddNodeIndex(t.Name));
 			}
 		}
 

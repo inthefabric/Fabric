@@ -6,6 +6,7 @@ using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Nancy;
 using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Server.Setups {
 
@@ -29,7 +30,7 @@ namespace Fabric.Api.Server.Setups {
 				}
 
 				DataSet ds = Setup.SetupAll(true);
-				var queries = new List<WeaverQuery>();
+				var queries = new List<IWeaverQuery>();
 				long nodeI = 0;
 
 				foreach ( WeaverQuery q in ds.Indexes ) {

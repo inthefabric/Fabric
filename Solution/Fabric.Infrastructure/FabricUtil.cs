@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Weaver;
-using System.Collections.Generic;
+using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure {
 
@@ -30,7 +31,7 @@ namespace Fabric.Infrastructure {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string WeaverQueryToJson(WeaverQuery pQuery) {
+		public static string WeaverQueryToJson(IWeaverQuery pQuery) {
 			return ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
 		}
 		
