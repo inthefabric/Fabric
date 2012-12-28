@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -70,9 +69,9 @@ namespace Fabric.Api.Oauth {
 				throw GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
 			}
 
-			AccessResult ar = null;//new DoLogout(acc).Go(Context);
+			acc = new DoLogout(acc).Go(Context);
 
-			if ( ar == null ) {
+			if ( acc == null ) {
 				throw GetFault(LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
 			}
 

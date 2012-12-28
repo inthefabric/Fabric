@@ -1,89 +1,137 @@
 ﻿using System;
+using Fabric.Api.Dto.Oauth;
+using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
+using Weaver;
+using Weaver.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddAccess : ApiFunc<OAuthAccessResult> {
-		
-		protected FabAppKey vAppKey;
-		protected FabUserKey vUserKey;
+	public class AddAccess : ApiFunc<FabOauthAccess> {
+
+		private readonly long vAppId;
+		private readonly long? vUserId;
 		private readonly int vExpireSec;
 		private readonly bool vClientOnly;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AddAccess(FabAppKey pAppKey, FabUserKey pUserKey, int pExpireSec,
-															bool pClientOnly) :	base(AuthType.None) {
-			vAppKey = pAppKey;
-			vUserKey = pUserKey;
+		public AddAccess(long pAppId, long? pUserId, int pExpireSec, bool pClientOnly) {
+			vAppId = pAppId;
+			vUserId = pUserId;
 			vExpireSec = pExpireSec;
 			vClientOnly = pClientOnly;
-
-			AddTransactionFunc(ClearOldTokens);
-			AddTransactionFunc(DoAccessAdd);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
-			if ( vAppKey == null ) { throw new FabArgumentNullFault("AppKey"); }
-			
-			if ( vClientOnly ) {
-				if ( vUserKey != null ) {
-					throw new FabArgumentFault("UserKey must be null in ClientOnly mode.");
-				}
+		public AddAccess(long pAppId, long pUserId, int pExpireSec) :
+															this(pAppId, pUserId, pExpireSec, false) {}
 
-				vUserKey = new FabUserKey(1); //Fabric System (ID can't be zero)
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void ValidateParams() {
+			if ( vAppId <= 0 ) {
+				throw new FabArgumentOutOfRangeFault("AppId");
 			}
-			else if ( vUserKey == null ) {
-				throw new FabArgumentNullFault("UserKey");
+			
+			if ( !vClientOnly && vUserId <= 0 ) {
+				throw new FabArgumentOutOfRangeFault("UserId");
 			}
 		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void ClearOldTokens(ISession pSession) {
-			//Clear out the Token value of old records instead of removing the row. The rows will
-			//provide good historical data about logins and app usage. Use the OauthAccess ID value
-			//to replace the Token, because the Token column has a unique constraint.
-
-			string q = String.Format(
-				"UPDATE {0}{1} SET {2}={1}Id WHERE {3}={4} AND {5}={6} AND {7}({2})=32",
-				Context.SqlSchemaWithDot, FabricUtil.GetTableName<OauthAccess>(), "Token",
-				typeof(App).Name+"Id", vAppKey.Id,
-				typeof(Usr).Name+"Id", vUserKey.Id,
-				Context.SqlStringLengthFunc);
-			pSession.CreateSQLQuery(q).UniqueResult();
+		protected override FabOauthAccess Execute() {
+			ClearOldTokens();
+			return AddAccessNodeAndRels();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void DoAccessAdd(ISession pSession) {
-			OauthAccess oa = new OauthAccess();
-			oa.App = pSession.Load<App>(vAppKey.Id);
-			oa.Usr = pSession.Load<Usr>(vUserKey.Id);
-			oa.Expires = GetDbNow(pSession).AddSeconds(vExpireSec);
-			oa.Token = FabricUtil.Code32();
-			oa.Refresh = FabricUtil.Code32();
-			oa.IsClientOnly = vClientOnly;
-			pSession.Save(oa);
+		protected void ClearOldTokens() {
+			//Clear out the Token value of old records instead of removing the row. The rows will
+			//provide good historical data about logins and app usage.
 
-			OAuthAccessResult res = new OAuthAccessResult();
-			res.Token = oa.Token;
-			res.Refresh = oa.Refresh;
-			res.ExpireSec = vExpireSec;
-			SetResult(res);
+			var updates = new WeaverUpdates<OauthAccess>();
+			updates.AddUpdate(new OauthAccess(), x => x.Token); //set token to null
+
+			OauthAccess oaAlias;
+
+			IWeaverQuery updateOa = NewPathFromRoot()
+				.ContainsOauthAccessList.ToOauthAccess
+					.Has(x => x.Token, WeaverFuncHasOp.NotEqualTo, null)
+					.As(out oaAlias)
+				.UsesApp.ToApp
+					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+				.Back(oaAlias)
+				.UsesUser.ToUser
+					.Has(x => x.UserId, WeaverFuncHasOp.EqualTo, vUserId)
+				.Back(oaAlias)
+					.UpdateEach(updates)
+				.End();
+
+			Context.ExecuteQuery(updateOa);
 		}
 
-	}
-	
-	/*================================================================================================*/
-	public class OAuthAccessResult {
-		public string Token;
-		public string Refresh;
-		public int ExpireSec;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private FabOauthAccess AddAccessNodeAndRels() {
+			var oa = new OauthAccess();
+			oa.OauthAccessId = Sharpflake.GetId(Sharpflake.SequenceKey.OauthAccess);
+			oa.Expires = DateTime.UtcNow.AddSeconds(vExpireSec).Ticks;
+			oa.Token = FabricUtil.Code32;
+			oa.Refresh = FabricUtil.Code32;
+			oa.IsClientOnly = vClientOnly;
+
+			////
+
+			oa = Context.ExecuteAddNodeQuery<OauthAccess, RootContainsOauthAccess>(
+				oa, x => x.OauthAccessId);
+
+			AddAccessUsesApp(oa);
+			AddAccessUsesUser(oa);
+
+			////
+
+			var foa = new FabOauthAccess();
+			foa.AccessToken = oa.Token;
+			foa.RefreshToken = oa.Refresh;
+			foa.ExpiresIn = vExpireSec;
+			foa.TokenType = "bearer";
+			return foa;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddAccessUsesApp(OauthAccess pAccess) {
+			App app = Context.QueryForSingle<App>(
+				NewPathFromIndex<App>(x => x.AppId, vAppId).End()
+			);
+
+			Context.ExecuteQuery(
+				WeaverTasks.AddRel(pAccess, new OauthAccessUsesApp(), app)
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddAccessUsesUser(OauthAccess pAccess) {
+			if ( vUserId == null ) {
+				return;
+			}
+
+			User user = Context.QueryForSingle<User>(
+				NewPathFromIndex<User>(x => x.UserId, (long)vUserId).End()
+			);
+
+			Context.ExecuteQuery(
+				WeaverTasks.AddRel(pAccess, new OauthAccessUsesUser(), user)
+			);
+		}
+
 	}
 
 }

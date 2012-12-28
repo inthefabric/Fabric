@@ -112,7 +112,6 @@
     <Compile Include="Util\GremlinRequest.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Util\GremlinRequestAsync.cs" />
-    <Compile Include="Util\Sharpflake.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Graph\index.html" />

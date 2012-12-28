@@ -47,6 +47,7 @@
     <Compile Include="Api\ApiContext.cs" />
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
+    <Compile Include="Api\IApiContext.cs" />
     <Compile Include="Api\Faults\FabAlreadyVerifiedFault.cs" />
     <Compile Include="Api\Faults\FabArgumentFault.cs" />
     <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Domain\SchemaHelperNodeRel.cs" />
     <Compile Include="Domain\SchemaHelperProp.cs" />
     <Compile Include="Domain\SchemaHelperRel.cs" />
+    <Compile Include="Sharpflake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,12 +1,15 @@
-﻿using Fabric.Domain;
+﻿using System;
+using System.Linq.Expressions;
+using Fabric.Domain;
 using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
 	public abstract class ApiFunc<TReturn> : IApiFunc<TReturn> {
 
-		public ApiContext Context { get; private set; }
+		public IApiContext Context { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,7 +19,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TReturn Go(ApiContext pContext) {
+		public TReturn Go(IApiContext pContext) {
 			Context = pContext;
 			ValidateParams();
 			return Execute();
@@ -34,6 +37,12 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected Root NewPathFromRoot() {
 			return WeaverTasks.BeginPath(new Root()).BaseNode;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected T NewPathFromIndex<T>(Expression<Func<T,object>> pFunc, long pId)
+														where T : class, IWeaverItemIndexable, new() {
+			return WeaverTasks.BeginPath(typeof(T).Name, pFunc, pId).BaseNode;
 		}
 
 	}

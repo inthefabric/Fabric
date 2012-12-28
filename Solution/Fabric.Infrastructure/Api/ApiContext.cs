@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Fabric.Domain;
+using Weaver;
 using Weaver.Interfaces;
+using Weaver.Items;
 
 namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
-	public class ApiContext {
+	public class ApiContext : IApiContext {
 
 		public string DbServerUrl { get; private set; }
 
@@ -55,6 +58,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private ApiDataAccess ExecuteQuery(ApiDataAccess pDbQuery) {
 			pDbQuery.Execute();
+			Log.Debug("Query "+DbQueryExecutionCount+": "+pDbQuery.Query);
 			DbQueryExecutionCount++;
 			return pDbQuery;
 		}
@@ -90,8 +94,29 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private ApiDataAccess<T> ExecuteQuery<T>(ApiDataAccess<T> pDbQuery) where T : INode, new() {
 			pDbQuery.Execute();
+			Log.Debug("Query<"+typeof(T).Name+"> "+DbQueryExecutionCount+": "+pDbQuery.Query);
 			DbQueryExecutionCount++;
 			return pDbQuery;
+		}
+
+			
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public T ExecuteAddNodeQuery<T, TRootRel>(T pNode, Expression<Func<T,object>> pIndexProp)
+						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+			T newNode = QueryForSingle<T>(
+				WeaverTasks.AddNode(pNode)
+			);
+
+			ExecuteQuery(
+				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pIndexProp)
+			);
+
+			ExecuteQuery(
+				WeaverTasks.AddRel(new Root { Id = 0 }, new TRootRel(), newNode)
+			);
+
+			return newNode;
 		}
 
 	}

@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fabric.Api.Server.Util {
+namespace Fabric.Infrastructure {
 
 	//idea from: https://github.com/twitter/snowflake
 
 	/*================================================================================================*/
-	public class Sharpflake {
+	public static class Sharpflake {
 
 		public enum SequenceKey {
 			App = 1,
 			Artifact,
 			Crowd,
 			Factor,
-			User //and many more...
+			User,
+			OauthAccess
+			//and many more...
 		}
 
-		public const int ServerId = 0; //0 to 1023
+		private const int ServerId = 0; //0 to 1023
 
 		private static long LastMilli;
 		private readonly static Dictionary<SequenceKey, SharpflakeSequence> Sequence = BuildSequence();

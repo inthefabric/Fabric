@@ -17,6 +17,18 @@ namespace Fabric.Api.Dto.Oauth {
 		[DtoProp("expires_in")]
 		public int ExpiresIn { get; set; }
 
+		[DtoProp(true)]
+		public long OauthAccessId { get; set; }
+
+		[DtoProp(true)]
+		public long AppId { get; set; }
+
+		[DtoProp(true)]
+		public long? UserId { get; set; }
+
+		//[DtoProp(true)]
+		//public bool IsClientOnly { get; set; }
+
 		/*--------------------------------------------------------------------------------------------* /
 		public FabOauthAccessKey Key { get; set; }
 		public FabAppKey AppKey { get; set; }
@@ -27,10 +39,7 @@ namespace Fabric.Api.Dto.Oauth {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Fill(DbDto pDbDto) {
-			TokenType = "bearer";
-			ExpiresIn = 3600;
-		}
+		public void Fill(DbDto pDbDto) {}
 
 	}
 
