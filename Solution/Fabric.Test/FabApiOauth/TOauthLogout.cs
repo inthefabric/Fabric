@@ -4,6 +4,9 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Moq;
 using NUnit.Framework;
+using Fabric.Api.Oauth.Tasks;
+using Fabric.Test.Util;
+using System;
 
 namespace Fabric.Test.FabApiOauth {
 
@@ -11,18 +14,98 @@ namespace Fabric.Test.FabApiOauth {
 	[TestFixture]
 	public class TOauthLogout {
 
+		private string vToken;
+		private Mock<IApiContext> vMockCtx;
+		private Mock<IOauthTasks> vMockTasks;
+		private FabOauthAccess vGetAcc;
+		private FabOauthAccess vOutAcc;
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[SetUp]
+		public void SetUp() {
+			vToken = "abcdefghijklmnopqrstuvwxyz789012";
+
+			vMockCtx = new Mock<IApiContext>();
+			vMockTasks = new Mock<IOauthTasks>();
+			
+			vGetAcc = new FabOauthAccess();
+			vOutAcc = new FabOauthAccess();
+			
+			vMockTasks.Setup(x => x.GetAccessToken(vToken, vMockCtx.Object)).Returns(vGetAcc);
+			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Returns(vOutAcc);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private FabOauthLogout TestGo(string pToken) {
+			var func = new OauthLogout(pToken, vMockTasks.Object);
+			return func.Go(vMockCtx.Object);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void Go() {
-			//var c = new ApiContext("http://localhost:9001/");
-			string token = FabricUtil.Code32;
-
-			var mockCtx = new Mock<IApiContext>();
-
-			FabOauthLogout result = new OauthLogout(token).Go(mockCtx.Object);
+		public void Success() {
+			FabOauthLogout result = TestGo(vToken);
 			Assert.NotNull(result, "Result should be filled.");
+			Assert.AreEqual(1, result.Success, "Incorrect Result.Success.");
+			Assert.AreEqual(vToken, result.AccessToken, "Incorrect Result.AccessToken.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(null)]
+		[TestCase("")]
+		[TestCase("x")]
+		[TestCase("1234567890123456789012345678901")]
+		[TestCase("123456789012345678901234567890123")]
+		public void ErrorBadToken(string pToken) {
+			vMockTasks.Setup(x => x.GetAccessToken(pToken, vMockCtx.Object)).Returns(vGetAcc);
+			
+			CheckOauthEx(() => TestGo(pToken),
+				LogoutErrors.invalid_request, LogoutErrorDescs.BadToken);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorNoTokenMatch() {
+			FabOauthAccess nullFoa = null;
+			vMockTasks.Setup(x => x.GetAccessToken(vToken, vMockCtx.Object)).Returns(nullFoa);
+			
+			CheckOauthEx(() => TestGo(vToken),
+				LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorLogoutFailed() {
+			FabOauthAccess nullFoa = null;
+			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Returns(nullFoa);
+			
+			CheckOauthEx(() => TestGo(vToken),
+				LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorUnexpected() {
+			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Throws(new Exception());
+			
+			CheckOauthEx(() => TestGo(vToken),
+				LogoutErrors.logout_failure, LogoutErrorDescs.Unexpected);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void CheckOauthEx(TestDelegate pFunc, LogoutErrors pErr, LogoutErrorDescs pDesc) {
+			OauthException oe = TestUtil.CheckThrows<OauthException>(true, pFunc);
+
+			Assert.NotNull(oe.OauthError, "OauthError should filled.");
+			Assert.AreEqual(pErr+"", oe.OauthError.Error, "Invalid OauthError.Error");
+			Assert.AreEqual(OauthLogout.ErrDescStrings[(int)pDesc]+"",
+				oe.OauthError.ErrorDesc, "Invalid OauthError.ErrorDesc");
 		}
 
 	}

@@ -31,12 +31,14 @@ namespace Fabric.Api.Oauth {
 		};
 
 		private readonly string vToken;
+		private readonly IOauthTasks vTasks;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLogout(string pToken) {
+		public OauthLogout(string pToken, IOauthTasks pTasks) {
 			vToken = pToken;
+			vTasks = pTasks;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -63,13 +65,13 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthLogout DoLogout() {
-			FabOauthAccess acc = new GetAccessToken(vToken).Go(Context);
+			FabOauthAccess acc = vTasks.GetAccessToken(vToken, Context);
 
 			if ( acc == null ) {
 				throw GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
 			}
 
-			acc = new DoLogout(acc).Go(Context);
+			acc = vTasks.DoLogout(acc, Context);
 
 			if ( acc == null ) {
 				throw GetFault(LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
@@ -86,7 +88,7 @@ namespace Fabric.Api.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		private OauthException GetFaultOnException(Exception pEx) {
 			Log.Error("OauthLogout", pEx);
-			return GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.Unexpected);
+			return GetFault(LogoutErrors.logout_failure, LogoutErrorDescs.Unexpected);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

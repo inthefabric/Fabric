@@ -12,14 +12,20 @@ namespace Fabric.Api.Server {
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthModule() {
 			Log.ConfigureOnce();
+			const string ao = "/api/oauth/";
 
-			Get["/api/oauth/AccessToken"] = (p => "Fabric OAuth: AccessToken");
-			Get["/api/oauth/AccessTokenAuthCode"] = (p => "Fabric OAuth: AuthCode");
-			Get["/api/oauth/AccessTokenRefresh"] = (p => "Fabric OAuth: Refresh");
-			Get["/api/oauth/AccessTokenClientCredentials"] = (p => "Fabric OAuth: ClientCredentials");
-			Get["/api/oauth/AccessTokenClientDataProv"] = (p => "Fabric OAuth: ClientDataProv");
-			Get["/api/oauth/Login"] = (p => "Fabric OAuth: Login");
-			Get["/api/oauth/Logout"] = (p => new OauthLogoutRequest().Go(Context));
+			Get[ao+"AccessToken"] = (p => "Fabric OAuth: AccessToken");
+			Get[ao+"AccessTokenAuthCode"] = (p => "Fabric OAuth: AuthCode");
+			Get[ao+"AccessTokenRefresh"] = (p => "Fabric OAuth: Refresh");
+			Get[ao+"AccessTokenClientCredentials"] = (p => "Fabric OAuth: ClientCredentials");
+			Get[ao+"AccessTokenClientDataProv"] = (p => "Fabric OAuth: ClientDataProv");
+			Get[ao+"Login"] = (p => "Fabric OAuth: Login");
+			Get[ao+"Logout"] = (p => NewFunc(Context).Logout.ToResponse());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public OauthFuncs NewFunc(NancyContext pContext) {
+			return new OauthFuncs(Context.Request.Query);
 		}
 
 	}

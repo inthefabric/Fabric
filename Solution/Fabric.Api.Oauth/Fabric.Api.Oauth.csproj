@@ -10,13 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.Api.Oauth</RootNamespace>
     <AssemblyName>Fabric.Api.Oauth</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -24,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -54,6 +53,8 @@
     <None Include="Tasks\GetRefresh.cs" />
     <None Include="Tasks\AddScope.cs" />
     <None Include="Tasks\GetScope.cs" />
+    <Compile Include="Tasks\OauthTasks.cs" />
+    <Compile Include="Tasks\IOauthTasks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
@@ -75,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Packages\Weaver\Weaver.dll</HintPath>
     </Reference>
   </ItemGroup>

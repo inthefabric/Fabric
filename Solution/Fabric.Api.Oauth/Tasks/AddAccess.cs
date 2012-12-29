@@ -74,7 +74,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.UpdateEach(updates)
 				.End();
 
-			Context.ExecuteQuery(updateOa);
+			Context.DbData(updateOa);
 		}
 
 
@@ -90,7 +90,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			oa = Context.ExecuteAddNodeQuery<OauthAccess, RootContainsOauthAccess>(
+			oa = Context.DbAddNode<OauthAccess, RootContainsOauthAccess>(
 				oa, x => x.OauthAccessId);
 
 			AddAccessUsesApp(oa);
@@ -108,11 +108,11 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddAccessUsesApp(OauthAccess pAccess) {
-			App app = Context.QueryForSingle<App>(
+			App app = Context.DbSingle<App>(
 				NewPathFromIndex<App>(x => x.AppId, vAppId).End()
 			);
 
-			Context.ExecuteQuery(
+			Context.DbData(
 				WeaverTasks.AddRel(pAccess, new OauthAccessUsesApp(), app)
 			);
 		}
@@ -123,11 +123,11 @@ namespace Fabric.Api.Oauth.Tasks {
 				return;
 			}
 
-			User user = Context.QueryForSingle<User>(
+			User user = Context.DbSingle<User>(
 				NewPathFromIndex<User>(x => x.UserId, (long)vUserId).End()
 			);
 
-			Context.ExecuteQuery(
+			Context.DbData(
 				WeaverTasks.AddRel(pAccess, new OauthAccessUsesUser(), user)
 			);
 		}

@@ -38,10 +38,10 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverQuery getOa = NewPathFromRoot()
 				.ContainsOauthAccessList.ToOauthAccess
 					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, vToken)
-					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, DateTime.UtcNow.Ticks)
+					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, Context.UtcNow.Ticks)
 				.End();
 
-			OauthAccess oa = Context.QueryForSingle<OauthAccess>(getOa);
+			OauthAccess oa = Context.DbSingle<OauthAccess>(getOa);
 
 			if ( oa == null ) {
 				return null;

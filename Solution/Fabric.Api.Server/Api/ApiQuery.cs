@@ -7,6 +7,7 @@ using Fabric.Api.Paths.Steps;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
+using Weaver;
 
 namespace Fabric.Api.Server.Api {
 
@@ -69,7 +70,9 @@ namespace Fabric.Api.Server.Api {
 
 			if ( !vLastStep.UseLocalData ) {
 				vInfo.Resp.DbStartEvent();
-				vReq = vReqContext.ExecuteQuery(vInfo.Query);
+				var wq = new WeaverQuery();
+				wq.FinalizeQuery(vInfo.Query);
+				vReq = vReqContext.DbData(wq);
 				vInfo.Resp.DbEndEvent();
 			}
 		}

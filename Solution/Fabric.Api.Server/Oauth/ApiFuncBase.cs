@@ -5,32 +5,33 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
+using System.Globalization;
 
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
-	public abstract class OauthBase<T> {
+	public abstract class ApiFuncBase {
 
-		protected NancyContext Context { get; private set; }
+		private static CultureInfo EnUs = new CultureInfo("en-US");
+
+		protected DynamicDictionary Query { get; private set; }
+		protected IApiContext ApiCtx { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Response Go(NancyContext pContext) {
-			Context = pContext;
-			return GetResponse(BuildFunc());
+		public ApiFuncBase(DynamicDictionary pQuery, IApiContext pApiContext) {
+			Query = pQuery;
+			ApiCtx = pApiContext;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected abstract IApiFunc<T> BuildFunc();
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TType GetParam<TType>(string pName, Func<DynamicDictionaryValue,TType> pConvert, 
+		private TType GetParam<TType>(string pName, Func<DynamicDictionaryValue,TType> pConvert, 
 																				bool pRequired=true) {
 			try {
-				DynamicDictionaryValue val = Context.Request.Query[pName];
+				DynamicDictionaryValue val = Query[pName];
 
 				if ( !pRequired && val == null ) {
 					return default(TType);
@@ -47,22 +48,29 @@ namespace Fabric.Api.Server.Oauth {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected string GetParamString(string pName, bool pRequired=true) {
-			return GetParam(pName, (v => v.ToString()), pRequired);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		protected int GetQsInt(string pName, bool pRequired=true) {
-			return GetQs(pName, (v => v.ToInt32(null)), pRequired);
+			return GetParam(pName, (v => v.ToString(EnUs)), pRequired);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected Response GetResponse(IApiFunc<T> pFunc) {
+		protected int GetParamInt(string pName, bool pRequired=true) {
+			return GetParam(pName, (v => v.ToInt32(EnUs)), pRequired);
+		}
+
+	}
+
+	
+	/*================================================================================================*/
+	public static class ApiFuncBaseExt {
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static Response ToResponse<T>(this IApiFunc<T> pFunc) {
 			string json;
 			HttpStatusCode statCode;
 
 			try {
-				var asc = new ApiContext("http://localhost:9001/");
-				T result = pFunc.Go(asc);
+				T result = pFunc.Go(pFunc.Context);
 				json = result.ToJson();
 				statCode = HttpStatusCode.OK;
 			}

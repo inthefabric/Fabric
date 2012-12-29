@@ -16,6 +16,7 @@ namespace Fabric.Infrastructure.Api {
 		long AppId { get; }
 		long MemberId { get; }
 
+		DateTime UtcNow { get; }
 		long DbQueryExecutionCount { get; }
 
 
@@ -27,30 +28,17 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		ApiDataAccess ExecuteQuery(string pScript, IDictionary<string, string> pParams=null);
-		ApiDataAccess ExecuteQuery(IWeaverQuery pQuery);
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		T QueryForSingle<T>(string pScript,
-									IDictionary<string, string> pParams=null) where T : INode, new();
+		ApiDataAccess DbData(IWeaverQuery pQuery);
 
 		/*--------------------------------------------------------------------------------------------*/
-		T QueryForSingle<T>(IWeaverQuery pQuery) where T : INode, new();
+		T DbSingle<T>(IWeaverQuery pQuery) where T : INode, new();
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<T> QueryForList<T>(string pScript,
-									IDictionary<string, string> pParams=null) where T : INode, new();
+		IList<T> DbList<T>(IWeaverQuery pQuery) where T : INode, new();
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<T> QueryForList<T>(IWeaverQuery pQuery) where T : INode, new();
-
-			
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		T ExecuteAddNodeQuery<T, TRootRel>(T pNode, Expression<Func<T,object>> pIndexProp)
-						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new();
+		T DbAddNode<T, TRootRel>(T pNode, Expression<Func<T,object>> pIndexProp)
+			where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new();
 
 	}
 
