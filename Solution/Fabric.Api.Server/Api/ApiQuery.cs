@@ -72,7 +72,7 @@ namespace Fabric.Api.Server.Api {
 				vInfo.Resp.DbStartEvent();
 				var wq = new WeaverQuery();
 				wq.FinalizeQuery(vInfo.Query);
-				vReq = vReqContext.DbData(wq);
+				vReq = vReqContext.DbData("Api", wq);
 				vInfo.Resp.DbEndEvent();
 			}
 		}

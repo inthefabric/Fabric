@@ -59,6 +59,9 @@
     </Compile>
     <Compile Include="Util\TestUtil.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetAccessToken.cs" />
+    <Compile Include="FabApiOauth\Tasks\TAddAccess.cs" />
+    <Compile Include="Util\UsageMap.cs" />
+    <Compile Include="FabApiOauth\Tasks\TDoLogout.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">
@@ -74,6 +77,7 @@
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.32\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,8 +9,10 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		FabOauthAccess GetAccessToken(string pToken, IApiContext pContext);
+		FabOauthAccess AddAccess(long pAppId, long? pUserId, int pExpireSec, bool pClientOnly,
+		                         												IApiContext pContext);
 		FabOauthAccess DoLogout(FabOauthAccess pAccess, IApiContext pContext);
+		FabOauthAccess GetAccessToken(string pToken, IApiContext pContext);
 
 	}
 

@@ -21,27 +21,27 @@ namespace Fabric.Test.FabDbData {
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
 				string json = FabricUtil.WeaverQueryToJson(q);
-				Log.Debug(json);
+				//Log.Debug(json);
 			}
 
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = FabricUtil.WeaverQueryToJson(n.AddQuery);
-				Log.Debug(json);
+				//Log.Debug(json);
 				n.Node.Id = nodeI++;
 			}
 
 			foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
 				string json = FabricUtil.WeaverQueryToJson(ni.AddToIndexQuery);
-				Log.Debug(json);
+				//Log.Debug(json);
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {
 				string json = FabricUtil.WeaverQueryToJson(r.AddQuery);
-				Log.Debug(json);
+				//Log.Debug(json);
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[TestCase(true)]
 		[TestCase(false)]
 		public void SetupAllTransaction(bool pIsForTesting) {
@@ -67,8 +67,8 @@ namespace Fabric.Test.FabDbData {
 			}
 
 			tx.Finish(WeaverTransaction.ConclusionType.Success);
-			Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
-		}
+			//Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
+		}*/
 
 	}
 

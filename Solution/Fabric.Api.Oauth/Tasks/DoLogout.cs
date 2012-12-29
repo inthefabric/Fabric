@@ -18,6 +18,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess Execute() {
 			ClearOldTokens();
+			vAccess.RefreshToken = null;
+			vAccess.ExpiresIn = 0;
 			return vAccess;
 		}
 

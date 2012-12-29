@@ -9,13 +9,19 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthAccess GetAccessToken(string pToken, IApiContext pContext) {
-			return new GetAccessToken(pToken).Go(pContext);
+		public FabOauthAccess AddAccess(long pAppId, long? pUserId, int pExpireSec, bool pClientOnly,
+		                                										IApiContext pContext) {
+			return new AddAccess(pAppId, pUserId, pExpireSec, pClientOnly).Go(pContext);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess DoLogout(FabOauthAccess pAccess, IApiContext pContext) {
 			return new DoLogout(pAccess).Go(pContext);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabOauthAccess GetAccessToken(string pToken, IApiContext pContext) {
+			return new GetAccessToken(pToken).Go(pContext);
 		}
 
 	}

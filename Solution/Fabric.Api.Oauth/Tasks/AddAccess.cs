@@ -13,6 +13,15 @@ namespace Fabric.Api.Oauth.Tasks {
 	/*================================================================================================*/
 	public class AddAccess : ApiFunc<FabOauthAccess> {
 
+		public enum Query {
+			ClearTokens,
+			AddAccess,
+			GetApp,
+			AddAppRel,
+			GetUser,
+			AddUserRel
+		}
+
 		private readonly long vAppId;
 		private readonly long? vUserId;
 		private readonly int vExpireSec;
@@ -29,16 +38,16 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AddAccess(long pAppId, long pUserId, int pExpireSec) :
-															this(pAppId, pUserId, pExpireSec, false) {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			if ( vAppId <= 0 ) {
 				throw new FabArgumentOutOfRangeFault("AppId");
 			}
 			
-			if ( !vClientOnly && vUserId <= 0 ) {
+			if ( vClientOnly && vUserId != null ) {
+				throw new FabArgumentOutOfRangeFault("UserId");
+			}
+			
+			if ( !vClientOnly && (vUserId == null || vUserId <= 0) ) {
 				throw new FabArgumentOutOfRangeFault("UserId");
 			}
 		}
@@ -74,7 +83,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.UpdateEach(updates)
 				.End();
 
-			Context.DbData(updateOa);
+			Context.DbData(Query.ClearTokens+"", updateOa);
 		}
 
 
@@ -91,8 +100,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 
 			oa = Context.DbAddNode<OauthAccess, RootContainsOauthAccess>(
-				oa, x => x.OauthAccessId);
-
+				Query.AddAccess+"", oa, x => x.OauthAccessId);
 			AddAccessUsesApp(oa);
 			AddAccessUsesUser(oa);
 
@@ -109,10 +117,12 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddAccessUsesApp(OauthAccess pAccess) {
 			App app = Context.DbSingle<App>(
+				Query.GetApp+"",
 				NewPathFromIndex<App>(x => x.AppId, vAppId).End()
 			);
 
 			Context.DbData(
+				Query.AddAppRel+"",
 				WeaverTasks.AddRel(pAccess, new OauthAccessUsesApp(), app)
 			);
 		}
@@ -124,10 +134,12 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			User user = Context.DbSingle<User>(
+				Query.GetUser+"",
 				NewPathFromIndex<User>(x => x.UserId, (long)vUserId).End()
 			);
 
 			Context.DbData(
+				Query.AddUserRel+"",
 				WeaverTasks.AddRel(pAccess, new OauthAccessUsesUser(), user)
 			);
 		}

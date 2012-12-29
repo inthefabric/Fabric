@@ -16,22 +16,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetAccessToken {
 
-		private enum QueryIndex {
-			GetSingleAccess
-		}
-
 		private static string[] vQueries = new [] {
-			//GetSingleAccess
+			//GetAccess
 			"g.v(0)"+
 			".outE('RootContainsOauthAccess').inV"+
 				".has('Token',Tokens.T.eq,_P0)"+
-				".has('Expires',Tokens.T.gt,{{UtcNowTicks}});"
+				".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L);"
 		};
 
 		private string vToken;
 		private DateTime vUtcNow;
 		private Mock<IApiContext> vMockCtx;
-		private OauthAccess vSingleAccessResult;
+		private OauthAccess vGetAccessResult;
+		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,48 +37,56 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void SetUp() {
 			vToken = "abcdefghijklmnopqrstuvwxyz789012";
 			vUtcNow = DateTime.UtcNow;
+			vUsageMap = new UsageMap();
 			
-			vSingleAccessResult = new OauthAccess();
-			vSingleAccessResult.Token = vToken;
-			vSingleAccessResult.Refresh = FabricUtil.Code32;
+			vGetAccessResult = new OauthAccess();
+			vGetAccessResult.Token = vToken;
+			vGetAccessResult.Refresh = FabricUtil.Code32;
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 
 			vMockCtx
-				.Setup(x => x.DbSingle<OauthAccess>(It.IsAny<IWeaverQuery>()))
-				.Returns((IWeaverQuery q) => GetSingleAccess(q, vToken, vUtcNow, vSingleAccessResult));
+				.Setup(x => x.DbSingle<OauthAccess>(
+					GetAccessToken.Query.GetAccess+"", It.IsAny<IWeaverQuery>()))
+				.Returns((string s, IWeaverQuery q) => GetAccess(q));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthAccess TestGo(string pToken) {
-			var task = new GetAccessToken(pToken);
+		private FabOauthAccess TestGo(bool pViaTask=false) {
+			if ( pViaTask ) {
+				return new OauthTasks().GetAccessToken(vToken, vMockCtx.Object);
+			}
+
+			var task = new GetAccessToken(vToken);
 			return task.Go(vMockCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthAccess GetSingleAccess(IWeaverQuery pQuery, string pToken, DateTime pUtcNow,
-		                                    									OauthAccess pReturn) {
+		private OauthAccess GetAccess(IWeaverQuery pQuery) {
 			TestUtil.LogQuery(pQuery);
-			string expect = vQueries[(int)QueryIndex.GetSingleAccess]
-				.Replace("{{UtcNowTicks}}", pUtcNow.Ticks+"L");
+			vUsageMap.Increment(GetAccessToken.Query.GetAccess+"");
+			string expect = vQueries[(int)GetAccessToken.Query.GetAccess]
+				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery, "_P0", pToken);
+			TestUtil.CheckParam(pQuery, "_P0", vToken);
 
-			return pReturn;
+			return vGetAccessResult;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void Success() {
-			FabOauthAccess result = TestGo(vToken);
+		[TestCase(true)]
+		[TestCase(false)]
+		public void Success(bool pViaTask) {
+			FabOauthAccess result = TestGo(pViaTask);
 
+			vUsageMap.AssertUses(GetAccessToken.Query.GetAccess+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vToken, result.AccessToken, "Incorrect Result.AccessToken.");
-			Assert.AreEqual(vSingleAccessResult.Refresh, result.RefreshToken,
+			Assert.AreEqual(vGetAccessResult.Refresh, result.RefreshToken,
 				"Incorrect Result.RefreshToken.");
 			Assert.AreEqual("bearer", result.TokenType, "Incorrect Result.TokenType.");
 			Assert.AreEqual(3600, result.ExpiresIn, "Incorrect Result.ExpiresIn.");
@@ -90,14 +95,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			OauthAccess nullOa = null;
+			vGetAccessResult = null;
 
 			vMockCtx
-				.Setup(x => x.DbSingle<OauthAccess>(It.IsAny<IWeaverQuery>()))
-				.Returns((IWeaverQuery q) => GetSingleAccess(q, vToken, vUtcNow, nullOa));
+				.Setup(x => x.DbSingle<OauthAccess>(
+					GetAccessToken.Query.GetAccess+"", It.IsAny<IWeaverQuery>()))
+				.Returns((string s, IWeaverQuery q) => GetAccess(q));
 
-			FabOauthAccess result = TestGo(vToken);
-			
+			FabOauthAccess result = TestGo();
+
+			vUsageMap.AssertUses(GetAccessToken.Query.GetAccess+"", 1);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -107,7 +114,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[Test]
 		public void ErrNullToken() {
 			vToken = null;
-			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo(vToken));
+			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
+			vUsageMap.AssertNoOverallUses();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -117,7 +125,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase("123456789012345678901234567890123")]
 		public void ErrTokenLen(string pToken) {
 			vToken = pToken;
-			TestUtil.CheckThrows<FabArgumentLengthFault>(true, () => TestGo(vToken));
+			TestUtil.CheckThrows<FabArgumentLengthFault>(true, () => TestGo());
+			vUsageMap.AssertNoOverallUses();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -125,7 +134,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase("123456789 1234567890123456789012")]
 		public void ErrTokenChars(string pToken) {
 			vToken = pToken;
-			TestUtil.CheckThrows<FabArgumentFault>(true, () => TestGo(vToken));
+			TestUtil.CheckThrows<FabArgumentFault>(true, () => TestGo());
+			vUsageMap.AssertNoOverallUses();
 		}
 
 	}

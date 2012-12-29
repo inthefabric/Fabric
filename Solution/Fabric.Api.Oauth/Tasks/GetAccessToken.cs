@@ -13,6 +13,10 @@ namespace Fabric.Api.Oauth.Tasks {
 	/*================================================================================================*/
 	public class GetAccessToken : ApiFunc<FabOauthAccess> {
 		
+		public enum Query {
+			GetAccess
+		}
+
 		private readonly string vToken;
 		
 		
@@ -41,7 +45,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, Context.UtcNow.Ticks)
 				.End();
 
-			OauthAccess oa = Context.DbSingle<OauthAccess>(getOa);
+			OauthAccess oa = Context.DbSingle<OauthAccess>(Query.GetAccess+"", getOa);
 
 			if ( oa == null ) {
 				return null;

@@ -47,37 +47,41 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess DbData(IWeaverQuery pQuery) {
+		public ApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery) {
 			var a = new ApiDataAccess(this, pQuery);
-			return DbDataAccess(a);
+			return DbDataAccess(pQueryName, a);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbSingle<T>(IWeaverQuery pQuery) where T : INode, new() {
+		public T DbSingle<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new() {
 			var a = new ApiDataAccess<T>(this, pQuery);
-			return DbDataAccess(a).TypedResult;
+			return DbDataAccess(pQueryName, a).TypedResult;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<T> DbList<T>(IWeaverQuery pQuery) where T : INode, new() {
+		public IList<T> DbList<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new() {
 			var a = new ApiDataAccess<T>(this, pQuery);
-			return DbDataAccess(a).TypedResultList;
+			return DbDataAccess(pQueryName, a).TypedResultList;
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbAddNode<T, TRootRel>(T pNode, Expression<Func<T,object>> pIndexProp)
-		where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+		public T DbAddNode<T, TRootRel>(string pQueryName, T pNode,
+			                  	        Expression<Func<T,object>> pIndexProp) where T : INode, new()
+										where TRootRel : WeaverRel<Root, Contains, T>, new() {
 			T newNode = DbSingle<T>(
+				pQueryName,
 				WeaverTasks.AddNode(pNode)
 			);
 			
 			DbData(
+				pQueryName,
 				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pIndexProp)
 			);
 			
 			DbData(
+				pQueryName,
 				WeaverTasks.AddRel(new Root { Id = 0 }, new TRootRel(), newNode)
 			);
 			
@@ -87,8 +91,8 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess DbDataAccess(ApiDataAccess pDbQuery) {
-			Log.Debug("Query "+DbQueryExecutionCount+": "+pDbQuery.Query);
+		private ApiDataAccess DbDataAccess(string pQueryName, ApiDataAccess pDbQuery) {
+			Log.Debug("Query ("+pQueryName+") "+DbQueryExecutionCount+": "+pDbQuery.Query);
 			
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
@@ -96,8 +100,10 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess<T> DbDataAccess<T>(ApiDataAccess<T> pDbQuery) where T : INode, new() {
-			Log.Debug("Query<"+typeof(T).Name+"> "+DbQueryExecutionCount+": "+pDbQuery.Query);
+		private ApiDataAccess<T> DbDataAccess<T>(string pQueryName, ApiDataAccess<T> pDbQuery)
+																			where T : INode, new() {
+			Log.Debug("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
+				DbQueryExecutionCount+": "+pDbQuery.Query);
 			
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
