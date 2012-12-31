@@ -1,17 +1,18 @@
 ﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Results;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 
-
 	/*================================================================================================*/
-	public class OauthAccess_AuthCode : OauthAccess {
+	public class OauthAccessAuthCode : OauthAccessBase { //TEST: OauthAccessAuthCode
 
 		protected string vCode;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccess_AuthCode(string pGrantType, string pRedirectUri, string pClientSecret,
+		public OauthAccessAuthCode(string pGrantType, string pRedirectUri, string pClientSecret,
 										string pCode) : base(pGrantType, pRedirectUri, pClientSecret) {
 			vCode = pCode;
 		}
@@ -22,34 +23,27 @@ namespace Fabric.Api.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool RedirectOnParamErrors() {
-			if ( base.RedirectOnParamErrors() ) {
-				return true;
-			}
+		protected override void RedirectOnParamErrors() {
+			base.RedirectOnParamErrors();
 
 			if ( vCode == null || vCode.Length <= 0 ) {
-				ThrowFault(AccessErrors.invalid_request, AccessErrorDescs.NoCode);
-				return true;
+				throw GetFault(AccessErrors.invalid_request, AccessErrorDescs.NoCode);
 			}
-
-			return false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void PerformAccessRequestActions() {
-			FabOauthGrant g = new GetGrant(vCode).Go(Context);
+		protected override FabOauthAccess PerformAccessRequestActions() {
+			GrantResult g = new GetGrant(vCode).Go(Context);
 
 			if ( g == null ) {
-				ThrowFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);
-				return;
+				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);
 			}
 
 			if ( vRedirectUri != g.RedirectUri ) {
-				ThrowFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
-				return;
+				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
 			}
 
-			SendAccessCode(g.AppKey.Id, g.UserKey.Id);
+			return SendAccessCode(g.AppId, g.UserId);
 		}
 
 	}

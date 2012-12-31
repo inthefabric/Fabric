@@ -31,11 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Results\AccessResult.cs" />
-    <None Include="OauthAccess.cs" />
-    <None Include="OauthAccess_AuthCode.cs" />
-    <None Include="OauthAccess_ClientCred.cs" />
-    <None Include="OauthAccess_ClientDataProv.cs" />
-    <None Include="OauthAccess_RefToken.cs" />
     <Compile Include="OauthException.cs" />
     <None Include="OauthGrant_Core.cs" />
     <None Include="OauthGrant_LoginAction.cs" />
@@ -48,13 +43,20 @@
     <Compile Include="Tasks\AddAccess.cs" />
     <None Include="Tasks\GetDomain.cs" />
     <None Include="Tasks\AddGrant.cs" />
-    <None Include="Tasks\GetGrant.cs" />
     <None Include="Tasks\AddMemberEnsure.cs" />
     <None Include="Tasks\GetRefresh.cs" />
     <None Include="Tasks\AddScope.cs" />
     <None Include="Tasks\GetScope.cs" />
     <Compile Include="Tasks\OauthTasks.cs" />
     <Compile Include="Tasks\IOauthTasks.cs" />
+    <Compile Include="OauthAccessBase.cs" />
+    <Compile Include="Tasks\GetAppAuth.cs" />
+    <Compile Include="Results\GrantResult.cs" />
+    <Compile Include="Tasks\GetGrant.cs" />
+    <Compile Include="OauthAccessAuthCode.cs" />
+    <None Include="OauthAccessClientCred.cs" />
+    <None Include="OauthAccessClientDataProv.cs" />
+    <None Include="OauthAccessRefToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
@@ -79,6 +81,7 @@
     <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Packages\Weaver\Weaver.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
