@@ -68,7 +68,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			var updates = new WeaverUpdates<OauthAccess>();
 			updates.AddUpdate(new OauthAccess(), x => x.Token); //set token to null
 
-			OauthAccess oaAlias;
+			IWeaverFuncAs<OauthAccess> oaAlias;
 
 			IWeaverQuery updateOa = NewPathFromRoot()
 				.ContainsOauthAccessList.ToOauthAccess

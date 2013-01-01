@@ -22,13 +22,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.v(0)"+
 				".outE('RootContainsOauthAccess').inV"+
 					".has('Token',Tokens.T.neq,null)"+
-					".as('step3')" +
+					".as('step4')" +
 				".outE('OauthAccessUsesApp')[0].inV(0)" +
 					".has('AppId',Tokens.T.eq,{{AppId}}L)" +
-				".back('step2')" +
+				".back('step4')" +
 				".outE('OauthAccessUsesUser')[0].inV(0)" +
 					".has('UserId',Tokens.T.eq,{{UserId}})" +
-				".back('step2')" +
+				".back('step4')" +
 					".each{it.Token=null};",
 
 			//AddNode

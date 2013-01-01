@@ -19,7 +19,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public virtual void SetUp() {
+		public override void SetUp() {
 			base.SetUp();
 			
 			vMockCtx

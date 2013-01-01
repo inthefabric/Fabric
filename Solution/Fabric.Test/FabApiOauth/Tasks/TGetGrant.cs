@@ -28,10 +28,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
 					".aggregate(_var0)"+
 					".each{it.Code=null}"+
-					".as('step6')"+
+					".as('step7')"+
 				".outE('OauthGrantUsesApp')[0].inV(0)"+
 					".aggregate(_var0)"+
-				".back('step6')"+
+				".back('step7')"+
 				".outE('OauthGrantUsesUser')[0].inV(0)"+
 					".aggregate(_var0)"+
 					".iterate();"+
@@ -111,7 +111,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_P0", vOauthGrant.Code);
+			TestUtil.CheckParam(pTx.Params, "_TP0", vOauthGrant.Code);
 
 			return vMockGetAndUpdateTxResult.Object;
 		}
@@ -124,7 +124,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			GrantResult result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetAccessToken.Query.GetAccess+"", 1);
+			vUsageMap.AssertUses(GetGrant.Query.GetAndUpdateTx+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vOauthGrant.OauthGrantId, result.GrantId, "Incorrect Result.GrantId.");
 			Assert.AreEqual(vOauthGrant.Code, result.Code, "Incorrect Result.AccessToken.");

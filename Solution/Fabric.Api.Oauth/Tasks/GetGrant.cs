@@ -39,7 +39,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override GrantResult Execute () {
 			var tx = new WeaverTransaction();
 			IWeaverListVar listVar;
-			OauthGrant grantAlias;
+			IWeaverFuncAs<OauthGrant> grantAlias;
 			
 			var grantUpdater = new WeaverUpdates<OauthGrant>();
 			grantUpdater.AddUpdate(new OauthGrant(), x => x.Code); //set to null
@@ -77,7 +77,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			App app = data.ResultDtoList[1].ToNode<App>();
 			
 			var gr = new GrantResult();
-			gr.GrantId = og.Id;
+			gr.GrantId = og.OauthGrantId;
 			gr.AppId = app.AppId;
 			gr.Code = vCode;
 			gr.RedirectUri = og.RedirectUri;
