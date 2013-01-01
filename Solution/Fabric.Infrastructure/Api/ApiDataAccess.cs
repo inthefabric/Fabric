@@ -7,7 +7,7 @@ using Weaver.Interfaces;
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public class ApiDataAccess {
+	public class ApiDataAccess : IApiDataAccess {
 
 		public ApiContext Context { get; private set; }
 
@@ -17,8 +17,8 @@ namespace Fabric.Infrastructure.Api {
 
 		public byte[] ResultBytes { get; private set; }
 		public string ResultString { get; private set; }
-		public DbDto ResultDto { get; private set; }
-		public List<DbDto> ResultDtoList { get; private set; }
+		public IDbDto ResultDto { get; private set; }
+		public List<IDbDto> ResultDtoList { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,10 +54,10 @@ namespace Fabric.Infrastructure.Api {
 			////
 
 			if ( ResultString == "[]" ) {
-				ResultDtoList = new List<DbDto>();
+				ResultDtoList = new List<IDbDto>();
 			}
 			else if ( ResultString[0] == '[' && ResultString[1] == '{' ) {
-				ResultDtoList = JsonSerializer.DeserializeFromString<List<DbDto>>(ResultString);
+				ResultDtoList = JsonSerializer.DeserializeFromString<List<IDbDto>>(ResultString);
 			}
 			else if ( ResultString[0] == '{' ) {
 				ResultDto = JsonSerializer.DeserializeFromString<DbDto>(ResultString);

@@ -14,10 +14,7 @@ namespace Fabric.Api.Oauth.Tasks {
 	public class GetGrant : ApiFunc<GrantResult> { //TEST: GetGrant
 		
 		public enum Query {
-			GetGrant,
-			GetApp,
-			GetUser,
-			UpdateGrant
+			GetAndUpdateTx
 		}
 		
 		private readonly string vCode;
@@ -39,54 +36,56 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override GrantResult Execute() {
-			IWeaverQuery getGrant = 
+		protected override GrantResult Execute () {
+			var tx = new WeaverTransaction();
+			IWeaverListVar listVar;
+			OauthGrant grantAlias;
+			
+			var grantUpdater = new WeaverUpdates<OauthGrant>();
+			grantUpdater.AddUpdate(new OauthGrant(), x => x.Code); //set to null
+			
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out listVar)
+			);
+			
+			tx.AddQuery(
 				NewPathFromRoot()
 				.ContainsOauthGrantList.ToOauthGrant
 					.Has(x => x.Code, WeaverFuncHasOp.EqualTo, vCode)
 					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, Context.UtcNow.Ticks)
-				.End();
+					.Aggregate(listVar)
+					.UpdateEach(grantUpdater)
+					.As(out grantAlias)
+				.UsesApp.ToApp
+					.Aggregate(listVar)
+				.Back(grantAlias)
+				.UsesUser.ToUser
+					.Aggregate(listVar)
+					.Iterate()
+				.End()
+			);
 			
-			OauthGrant og = Context.DbSingle<OauthGrant>(Query.GetGrant+"", getGrant);
+			tx.Finish (WeaverTransaction.ConclusionType.Success, listVar);
+				
+			IApiDataAccess data = Context.DbData(Query.GetAndUpdateTx+"", tx);
 			
-			if ( og == null ) {
+			if ( data.ResultDtoList == null ) {
 				return null;
 			}
 			
-			IWeaverQuery getApp = 
-				NewPathFromIndex<OauthGrant>(x => x.OauthGrantId, og.OauthGrantId)
-				.UsesApp.ToApp
-				.End();
-			
-			IWeaverQuery getUser = 
-				NewPathFromIndex<OauthGrant>(x => x.OauthGrantId, og.OauthGrantId)
-				.UsesUser.ToUser
-				.End();
-			
-			App app = Context.DbSingle<App>(Query.GetApp+"", getApp);
-			User user = Context.DbSingle<User>(Query.GetUser+"", getUser);
+			OauthGrant og = data.ResultDtoList[0].ToNode<OauthGrant>();
+			App app = data.ResultDtoList[1].ToNode<App>();
 			
 			var gr = new GrantResult();
 			gr.GrantId = og.Id;
 			gr.AppId = app.AppId;
-			gr.Code = og.Code;
+			gr.Code = vCode;
 			gr.RedirectUri = og.RedirectUri;
 			
-			if ( user != null ) {
+			if ( data.ResultDtoList.Count == 3 ) {
+				User user = data.ResultDtoList[2].ToNode<User>();
 				gr.UserId = user.UserId;
 			}
-			
-			//Previous implementations deleted the OauthGrant (and related relationships)
-			
-			var updates = new WeaverUpdates<OauthGrant>();
-			updates.AddUpdate(new OauthGrant(), x => x.Code); //set to null
-			
-			IWeaverQuery updateGrant = 
-				NewPathFromIndex<OauthGrant>(x => x.OauthGrantId, og.OauthGrantId)
-					.UpdateEach(updates)
-				.End();
-			
-			Context.DbData(Query.UpdateGrant+"", updateGrant); 
 			
 			return gr;
 		}

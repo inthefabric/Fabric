@@ -26,7 +26,7 @@ namespace Fabric.Api.Dto {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Fill(DbDto pDbDto) {
+		public void Fill(IDbDto pDbDto) {
 			if ( pDbDto.Id == null ) {
 				throw new Exception("DbDto.Id is null.");
 			}

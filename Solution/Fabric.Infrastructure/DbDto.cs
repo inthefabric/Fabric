@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Infrastructure.Api.Faults;
+using Fabric.Domain;
 
 namespace Fabric.Infrastructure {
 	
 	/*================================================================================================*/
-	public class DbDto {
+	public class DbDto : IDbDto {
 
 		public enum ItemType {
 			Node = 1,
@@ -75,6 +77,24 @@ namespace Fabric.Infrastructure {
 					throw new Exception("Unknown ItemType: "+self[0]);
 			}
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public T ToNode<T>() where T : INode, new() {
+			if ( Id == null ) {
+				throw new FabArgumentNullFault("DbDto.Id");
+			}
+			
+			T result = new T();
+			result.Id = (long)Id;
+			
+			Type resultType = typeof(T);
+			
+			foreach ( string key in Data.Keys ) {
+				resultType.GetProperty(key).SetValue(result, Data[key], null);
+			}
+			
+			return result;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +117,7 @@ namespace Fabric.Infrastructure {
 			int i1 = pSelf.LastIndexOf('/', i0-1);
 			return pSelf[i1+1];
 		}
-
+		
 	}
 
 }

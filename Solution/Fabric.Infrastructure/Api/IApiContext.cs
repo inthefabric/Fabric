@@ -28,8 +28,11 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		ApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery);
+		IApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery);
 
+		/*--------------------------------------------------------------------------------------------*/
+		IApiDataAccess DbData(string pQueryName, IWeaverTransaction pTx);
+		
 		/*--------------------------------------------------------------------------------------------*/
 		T DbSingle<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new();
 

@@ -7,7 +7,7 @@ using Weaver.Interfaces;
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public class ApiDataAccess<T> : ApiDataAccess where T : INode, new() {
+	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : INode, new() {
 
 		public T TypedResult { get; private set; }
 		public List<T> TypedResultList { get; private set; }
@@ -29,35 +29,15 @@ namespace Fabric.Infrastructure.Api {
 			base.Execute();
 
 			if ( ResultDto != null ) {
-				TypedResult = BuildTypedResult(ResultDto);
+				TypedResult = ResultDto.ToNode<T>();
 			}
 			else if ( ResultDtoList != null ) {
 				TypedResultList = new List<T>();
 
 				foreach ( DbDto dbDto in ResultDtoList ) {
-					TypedResultList.Add(BuildTypedResult(dbDto));
+					TypedResultList.Add(dbDto.ToNode<T>());
 				}
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static T BuildTypedResult(DbDto pDbDto) {
-			if ( pDbDto.Id == null ) {
-				throw new FabArgumentNullFault("DbDto.Id");
-			}
-
-			T result = new T();
-			result.Id = (long)pDbDto.Id;
-
-			Type resultType = typeof(T);
-
-			foreach ( string key in pDbDto.Data.Keys ) {
-				resultType.GetProperty(key).SetValue(result, pDbDto.Data[key], null);
-			}
-
-			return result;
 		}
 
 	}

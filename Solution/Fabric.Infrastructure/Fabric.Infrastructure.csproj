@@ -10,13 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.Infrastructure</RootNamespace>
     <AssemblyName>Fabric.Infrastructure</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -24,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -79,6 +78,9 @@
     <Compile Include="Domain\SchemaHelperProp.cs" />
     <Compile Include="Domain\SchemaHelperRel.cs" />
     <Compile Include="Sharpflake.cs" />
+    <Compile Include="Api\IApiDataAccess.cs" />
+    <Compile Include="Api\IApiDataAccessT.cs" />
+    <Compile Include="IDbDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

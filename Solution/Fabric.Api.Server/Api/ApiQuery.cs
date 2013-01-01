@@ -21,7 +21,7 @@ namespace Fabric.Api.Server.Api {
 		private readonly ApiQueryInfo vInfo;
 		private IFinalStep vLastStep;
 		private string vUri;
-		private ApiDataAccess vReq;
+		private IApiDataAccess vReq;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ namespace Fabric.Api.Server.Api {
 			if ( vReq.ResultDtoList != null ) {
 				int max = vLastStep.Count;
 				int count = 0;
-				vInfo.DtoList = new List<DbDto>();
+				vInfo.DtoList = new List<IDbDto>();
 
 				foreach ( DbDto dbDto in vReq.ResultDtoList ) {
 					if ( count++ >= max ) { break; }
@@ -101,7 +101,7 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			if ( vReq.ResultDto != null ) {
-				vInfo.DtoList = new List<DbDto>();
+				vInfo.DtoList = new List<IDbDto>();
 				vInfo.DtoList.Add(vReq.ResultDto);
 				vInfo.IsSingleDto = true;
 				CheckDtoType(vReq.ResultDto);
@@ -113,7 +113,7 @@ namespace Fabric.Api.Server.Api {
 		
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CheckDtoType(DbDto pDbDto) {
+		private void CheckDtoType(IDbDto pDbDto) {
 			if ( vInfo.DtoType.Name == "Fab"+pDbDto.Class ) {
 				return;
 			}

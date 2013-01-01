@@ -153,7 +153,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{AppId}}", vAppId+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery, "_P0", typeof(App).Name);
+			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(App).Name);
 			return vGetAppResult;
 		}
 		
@@ -179,7 +179,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UserId}}", vUserId+"");
 			
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery, "_P0", typeof(User).Name);
+			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(User).Name);
 			return vGetUserResult;
 		}
 		

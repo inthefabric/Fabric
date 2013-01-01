@@ -47,21 +47,27 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery) {
+		public IApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery) {
 			var a = new ApiDataAccess(this, pQuery);
+			return DbDataAccess(pQueryName, a);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public IApiDataAccess DbData(string pQueryName, IWeaverTransaction pTx) {
+			var a = new ApiDataAccess(this, pTx.Script, pTx.Params);
 			return DbDataAccess(pQueryName, a);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbSingle<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new() {
 			var a = new ApiDataAccess<T>(this, pQuery);
-			return DbDataAccess(pQueryName, a).TypedResult;
+			return DbDataAccess<T>(pQueryName, a).TypedResult;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<T> DbList<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new() {
 			var a = new ApiDataAccess<T>(this, pQuery);
-			return DbDataAccess(pQueryName, a).TypedResultList;
+			return DbDataAccess<T>(pQueryName, a).TypedResultList;
 		}
 		
 		
@@ -91,7 +97,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess DbDataAccess(string pQueryName, ApiDataAccess pDbQuery) {
+		private IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
 			Log.Debug("Query ("+pQueryName+") "+DbQueryExecutionCount+": "+pDbQuery.Query);
 			
 			pDbQuery.Execute();
@@ -100,7 +106,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess<T> DbDataAccess<T>(string pQueryName, ApiDataAccess<T> pDbQuery)
+		private IApiDataAccess<T> DbDataAccess<T>(string pQueryName, IApiDataAccess<T> pDbQuery)
 																			where T : INode, new() {
 			Log.Debug("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
 				DbQueryExecutionCount+": "+pDbQuery.Query);

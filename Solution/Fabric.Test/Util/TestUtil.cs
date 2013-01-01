@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Weaver.Interfaces;
 using Fabric.Infrastructure;
+using System.Collections.Generic;
 
 namespace Fabric.Test.Util {
 
@@ -21,10 +22,10 @@ namespace Fabric.Test.Util {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CheckParam(IWeaverQuery pQuery, string pKey, string pValue) {
-			Assert.NotNull(pQuery.Params, "Query.Params should not be null.");
-			Assert.True(pQuery.Params.ContainsKey(pKey), "Query.Params['"+pKey+"'] should be filled.");
-			Assert.AreEqual(pValue, pQuery.Params[pKey], "Incorrect Query.Params['"+pKey+"'].");
+		public static void CheckParam(IDictionary<string,string> pParams, string pKey, string pValue) {
+			Assert.NotNull(pParams, "Query.Params should not be null.");
+			Assert.True(pParams.ContainsKey(pKey), "Query.Params['"+pKey+"'] should be filled.");
+			Assert.AreEqual(pValue, pParams[pKey], "Incorrect Query.Params['"+pKey+"'].");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -36,7 +37,19 @@ namespace Fabric.Test.Util {
 			}
 
 			if ( p != "" ) { p += " ]"; }
-			Log.Debug("Query: "+pQuery.Script+p);;
+			Log.Debug("Query: "+pQuery.Script+p);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static void LogTransaction(IWeaverTransaction pTx) {
+			string p = "";
+			
+			foreach ( string key in pTx.Params.Keys ) {
+				p += (p == "" ? " [ " : ", ")+key+"="+pTx.Params[key];
+			}
+			
+			if ( p != "" ) { p += " ]"; }
+			Log.Debug("Query: "+pTx.Script.Replace(";", ";\n")+p);
 		}
 
 	}

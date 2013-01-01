@@ -70,7 +70,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery, "_P0", vToken);
+			TestUtil.CheckParam(pQuery.Params, "_P0", vToken);
 
 			return vGetAccessResult;
 		}
