@@ -129,16 +129,17 @@ namespace Fabric.Db.Server.Query {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DbDto ResultDto {
+		public IDbDto ResultDto {
 			get {
 				return (Result != null ? new DbDto(Result) : null);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public List<DbDto> ResultDtoList {
+		public List<IDbDto> ResultDtoList {
 			get {
-				return (ResultList != null ? ResultList.Select(r => new DbDto(r)).ToList() : null);
+				return (ResultList != null ?
+					ResultList.Select(r => new DbDto(r)).ToList<IDbDto>() : null);
 			}
 		}
 

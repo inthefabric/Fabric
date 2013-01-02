@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public interface IApiDataAccess<T> : IApiDataAccess where T : INode, new() {
+	public interface IApiDataAccess<T> : IApiDataAccess where T : INodeWithId, new() {
 
 		T TypedResult { get; }
 		List<T> TypedResultList { get; }

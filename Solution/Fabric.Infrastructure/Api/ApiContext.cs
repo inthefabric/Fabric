@@ -47,26 +47,21 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery) {
-			var a = new ApiDataAccess(this, pQuery);
-			return DbDataAccess(pQueryName, a);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public IApiDataAccess DbData(string pQueryName, IWeaverTransaction pTx) {
-			var a = new ApiDataAccess(this, pTx.Script, pTx.Params);
+		public IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted) {
+			var a = new ApiDataAccess(this, pScripted);
 			return DbDataAccess(pQueryName, a);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbSingle<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new() {
-			var a = new ApiDataAccess<T>(this, pQuery);
+		public T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : INodeWithId, new() {
+			var a = new ApiDataAccess<T>(this, pScripted);
 			return DbDataAccess<T>(pQueryName, a).TypedResult;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<T> DbList<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new() {
-			var a = new ApiDataAccess<T>(this, pQuery);
+		public IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted)
+																		where T : INodeWithId, new() {
+			var a = new ApiDataAccess<T>(this, pScripted);
 			return DbDataAccess<T>(pQueryName, a).TypedResultList;
 		}
 		
@@ -74,7 +69,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbAddNode<T, TRootRel>(string pQueryName, T pNode,
-			                  	        Expression<Func<T,object>> pIndexProp) where T : INode, new()
+							Expression<Func<T,object>> pIndexProp) where T : INode, INodeWithId, new()
 										where TRootRel : WeaverRel<Root, Contains, T>, new() {
 			T newNode = DbSingle<T>(
 				pQueryName,
@@ -107,7 +102,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private IApiDataAccess<T> DbDataAccess<T>(string pQueryName, IApiDataAccess<T> pDbQuery)
-																			where T : INode, new() {
+																		where T : INodeWithId, new() {
 			Log.Debug("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
 				DbQueryExecutionCount+": "+pDbQuery.Query);
 			

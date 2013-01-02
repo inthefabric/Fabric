@@ -79,7 +79,7 @@ namespace Fabric.Infrastructure {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T ToNode<T>() where T : INode, new() {
+		public T ToNode<T>() where T : INodeWithId, new() {
 			if ( Id == null ) {
 				throw new FabArgumentNullFault("DbDto.Id");
 			}

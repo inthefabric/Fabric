@@ -1,12 +1,10 @@
-﻿using System;
-using Fabric.Infrastructure.Api;
-using Fabric.Api.Oauth.Results;
+﻿using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
-using Weaver;
-using Weaver.Interfaces;
-using Weaver.Functions;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using System.Linq.Expressions;
+using Weaver;
+using Weaver.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -38,7 +36,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override GrantResult Execute () {
 			var tx = new WeaverTransaction();
-			IWeaverListVar listVar;
+			IWeaverVarAlias listVar;
 			IWeaverFuncAs<OauthGrant> grantAlias;
 			
 			var grantUpdater = new WeaverUpdates<OauthGrant>();

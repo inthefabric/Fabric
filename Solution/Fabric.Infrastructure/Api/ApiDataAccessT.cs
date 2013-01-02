@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api.Faults;
 using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : INode, new() {
+	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : INodeWithId, new() {
 
 		public T TypedResult { get; private set; }
 		public List<T> TypedResultList { get; private set; }
@@ -20,7 +18,7 @@ namespace Fabric.Infrastructure.Api {
 						IDictionary<string, string> pParams=null) : base(pContext, pScript, pParams) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, IWeaverQuery pQuery) : base(pContext, pQuery) {}
+		public ApiDataAccess(ApiContext pContext, IWeaverScript pScripted) : base(pContext, pScripted){}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

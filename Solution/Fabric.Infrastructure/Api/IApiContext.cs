@@ -28,20 +28,17 @@ namespace Fabric.Infrastructure.Api {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		IApiDataAccess DbData(string pQueryName, IWeaverQuery pQuery);
-
-		/*--------------------------------------------------------------------------------------------*/
-		IApiDataAccess DbData(string pQueryName, IWeaverTransaction pTx);
+		IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		T DbSingle<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new();
+		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : INodeWithId, new();
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<T> DbList<T>(string pQueryName, IWeaverQuery pQuery) where T : INode, new();
+		IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted) where T : INodeWithId, new();
 
 		/*--------------------------------------------------------------------------------------------*/
 		T DbAddNode<T, TRootRel>(string pQueryName, T pNode, Expression<Func<T,object>> pIndexProp)
-			where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new();
+			where T : INode, INodeWithId, new() where TRootRel : WeaverRel<Root, Contains, T>, new();
 
 	}
 

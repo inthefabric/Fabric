@@ -31,8 +31,8 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, IWeaverQuery pQuery) :
-														this(pContext, pQuery.Script, pQuery.Params) {}
+		public ApiDataAccess(ApiContext pContext, IWeaverScript pScripted) :
+												this(pContext, pScripted.Script, pScripted.Params) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

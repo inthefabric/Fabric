@@ -1,14 +1,14 @@
-﻿using Weaver.Items;
-
-namespace Fabric.Domain {
+﻿namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public abstract class Node : WeaverNode, INode, INodeWithId {
+	public interface INodeWithId {
+
+		long Id { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract long GetTypeId();
+		long GetTypeId();
 
 	}
 
