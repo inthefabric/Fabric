@@ -81,6 +81,7 @@
     <Compile Include="Api\IApiDataAccess.cs" />
     <Compile Include="Api\IApiDataAccessT.cs" />
     <Compile Include="IDbDto.cs" />
+    <Compile Include="Weaver\TxBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

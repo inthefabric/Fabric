@@ -4,6 +4,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -103,7 +104,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			return foa;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
 			var tx = new WeaverTransaction();
 
@@ -164,6 +165,16 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.Finish(WeaverTransaction.ConclusionType.Success);
 			return tx;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
+			var txBuild = new TxBuilder();
+
+			txBuild.AddNode<OauthAccess, RootContainsOauthAccess>(
+				pAccess, "newOa", x => x.OauthAccessId);
+
+			return txBuild.Transaction;
 		}
 
 	}
