@@ -28,6 +28,11 @@ namespace Fabric.Infrastructure.Api {
 			Context = pContext;
 			Script = pScript;
 			Params = pParams;
+
+			string param = BuildParams();
+
+			Query = "{\"script\":\""+FabricUtil.JsonUnquote(Script)+"\""+
+				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -38,11 +43,6 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
-			string param = BuildParams();
-
-			Query = "{\"script\":\""+FabricUtil.JsonUnquote(Script)+"\""+
-				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
-
 			byte[] queryData = Encoding.UTF8.GetBytes(Query);
 
 			using ( var wc = new WebClient() ) {

@@ -15,11 +15,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		public enum Query {
 			ClearTokens,
-			AddAccess,
-			GetApp,
-			AddAppRel,
-			GetUser,
-			AddUserRel
+			AddAccessTx
 		}
 
 		private readonly long vAppId;
@@ -97,14 +93,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			oa.Refresh = FabricUtil.Code32;
 			oa.IsClientOnly = vClientOnly;
 
-			////
-
-			oa = Context.DbAddNode<OauthAccess, RootContainsOauthAccess>(
-				Query.AddAccess+"", oa, x => x.OauthAccessId);
-			AddAccessUsesApp(oa);
-			AddAccessUsesUser(oa);
-
-			////
+			Context.DbData(Query.AddAccessTx+"", BuildAddTx(oa));
 
 			var foa = new FabOauthAccess();
 			foa.AccessToken = oa.Token;
@@ -115,33 +104,66 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddAccessUsesApp(OauthAccess pAccess) {
-			App app = Context.DbSingle<App>(
-				Query.GetApp+"",
-				NewPathFromIndex<App>(x => x.AppId, vAppId).End()
+		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
+			var tx = new WeaverTransaction();
+
+			// Add node and index it
+
+			IWeaverQuery addAcc = WeaverTasks.AddNode(pAccess);
+			IWeaverVarAlias newOaVar;
+
+			tx.AddQuery(
+				WeaverTasks.StoreQueryResultAsVar(tx, addAcc, out newOaVar)
 			);
 
-			Context.DbData(
-				Query.AddAppRel+"",
-				WeaverTasks.AddRel(pAccess, new OauthAccessUsesApp(), app)
+			tx.AddQuery(
+				WeaverTasks.AddNodeToIndex<OauthAccess>(
+					typeof(OauthAccess).Name, newOaVar, x => x.OauthAccessId)
 			);
-		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		private void AddAccessUsesUser(OauthAccess pAccess) {
-			if ( vUserId == null ) {
-				return;
+			// Root relationship
+
+			IWeaverQuery getRoot = NewPathFromRoot().End();
+			IWeaverVarAlias rootVar;
+
+			tx.AddQuery(
+				WeaverTasks.StoreQueryResultAsVar(tx, getRoot, out rootVar)
+			);
+
+			tx.AddQuery(
+				WeaverTasks.AddRel(rootVar, new RootContainsOauthAccess(), newOaVar)
+			);
+
+			// App relationship
+
+			IWeaverQuery getApp = NewPathFromIndex<App>(x => x.AppId, vAppId).End();
+			IWeaverVarAlias appVar;
+
+			tx.AddQuery(
+				WeaverTasks.StoreQueryResultAsVar(tx, getApp, out appVar)
+			);
+
+			tx.AddQuery(
+				WeaverTasks.AddRel(newOaVar, new OauthAccessUsesApp(), appVar)
+			);
+
+			// User relationship
+
+			if ( vUserId != null ) {
+				IWeaverQuery getUser = NewPathFromIndex<User>(x => x.UserId, (long)vUserId).End();
+				IWeaverVarAlias userVar;
+
+				tx.AddQuery(
+					WeaverTasks.StoreQueryResultAsVar(tx, getUser, out userVar)
+				);
+
+				tx.AddQuery(
+					WeaverTasks.AddRel(newOaVar, new OauthAccessUsesUser(), userVar)
+				);
 			}
 
-			User user = Context.DbSingle<User>(
-				Query.GetUser+"",
-				NewPathFromIndex<User>(x => x.UserId, (long)vUserId).End()
-			);
-
-			Context.DbData(
-				Query.AddUserRel+"",
-				WeaverTasks.AddRel(pAccess, new OauthAccessUsesUser(), user)
-			);
+			tx.Finish(WeaverTransaction.ConclusionType.Success);
+			return tx;
 		}
 
 	}

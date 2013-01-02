@@ -64,7 +64,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private OauthAccess GetAccess(IWeaverQuery pQuery) {
-			TestUtil.LogQuery(pQuery);
+			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetAccessToken.Query.GetAccess+"");
 			string expect = vQueries[(int)GetAccessToken.Query.GetAccess]
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");

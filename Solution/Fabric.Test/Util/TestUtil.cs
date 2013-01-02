@@ -29,27 +29,15 @@ namespace Fabric.Test.Util {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static void LogQuery(IWeaverQuery pQuery) {
+		public static void LogWeaverScript(IWeaverScript pScripted) {
 			string p = "";
 
-			foreach ( string key in pQuery.Params.Keys ) {
-				p += (p == "" ? " [ " : ", ")+key+"="+pQuery.Params[key];
+			foreach ( string key in pScripted.Params.Keys ) {
+				p += (p == "" ? " [ " : ", ")+key+"="+pScripted.Params[key];
 			}
 
 			if ( p != "" ) { p += " ]"; }
-			Log.Debug("Query: "+pQuery.Script+p);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static void LogTransaction(IWeaverTransaction pTx) {
-			string p = "";
-			
-			foreach ( string key in pTx.Params.Keys ) {
-				p += (p == "" ? " [ " : ", ")+key+"="+pTx.Params[key];
-			}
-			
-			if ( p != "" ) { p += " ]"; }
-			Log.Debug("Query: "+pTx.Script.Replace(";", ";\n")+p);
+			Log.Debug("Query: "+pScripted.Script.Replace(";", ";\n")+p);
 		}
 
 	}

@@ -21,16 +21,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[SetUp]
 		public override void SetUp() {
 			base.SetUp();
-			
-			vMockCtx
-				.Setup(x => 
-					x.DbAddNode<OauthAccess, RootContainsOauthAccess>(
-						AddAccess.Query.AddAccess+"", 
-						It.IsAny<OauthAccess>(),
-						It.IsAny<Expression<Func<OauthAccess,object>>>()
-					)
-				)
-				.Throws(new Exception());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -75,8 +65,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			FabOauthAccess result = TestGo(pViaTask);
 			
 			vUsageMap.AssertUses(AddAccess.Query.ClearTokens+"", 1);
-			vUsageMap.AssertUses(AddAccess.Query.GetApp+"", 0);
-			vUsageMap.AssertUses(AddAccess.Query.GetUser+"", 0);
+			vUsageMap.AssertUses(AddAccess.Query.AddAccessTx+"", 0);
 			
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vAccess.AccessToken, result.AccessToken, "Incorrect Result.AccessToken.");

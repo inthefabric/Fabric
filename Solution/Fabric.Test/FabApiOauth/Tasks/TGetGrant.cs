@@ -105,7 +105,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private IApiDataAccess GetAndUpdateTx(IWeaverTransaction pTx) {
-			TestUtil.LogTransaction(pTx);
+			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetGrant.Query.GetAndUpdateTx+"");
 			string expect = vQueries[(int)GetGrant.Query.GetAndUpdateTx]
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
