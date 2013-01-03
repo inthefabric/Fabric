@@ -30,6 +30,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		public App GetAppAuth(long pAppId, string pAppSecret, IApiContext pContext) {
 			return new GetAppAuth(pAppId, pAppSecret).Go(pContext);
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public DomainResult GetDomain(long pAppId, string pRedirectUri, IApiContext pContext) {
+			return new GetDomain(pAppId, pRedirectUri).Go(pContext);
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public GrantResult GetGrant(string pCode, IApiContext pContext) {

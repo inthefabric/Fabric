@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiOauth {
 		public virtual void SetUp() {
 			vGrantType = GrantType;
 			vClientSecret = "12345678901234567890123456789012";
-			vRedirUri = "test.com/oauth";
+			vRedirUri = "http://test.com/oauth";
 			vAppId = 123;
 			vUserId = 345;
 
@@ -49,6 +49,10 @@ namespace Fabric.Test.FabApiOauth {
 
 			vMockTasks
 				.Setup(x => x.AddAccess(vAppId, vUserId, 3600, false, vMockCtx.Object))
+				.Returns(vAccessResult);
+
+			vMockTasks
+				.Setup(x => x.AddAccess(vAppId, null, 3600, true, vMockCtx.Object))
 				.Returns(vAccessResult);
 		}
 
@@ -99,7 +103,13 @@ namespace Fabric.Test.FabApiOauth {
 		[Test]
 		public void ErrUnhandled() {
 			vMockTasks
-				.Setup(x => x.AddAccess(vAppId, vUserId, 3600, false, vMockCtx.Object))
+				.Setup(x => x.AddAccess(
+					It.IsAny<long>(),
+					It.IsAny<long?>(),
+					It.IsAny<int>(),
+					It.IsAny<bool>(),
+					vMockCtx.Object
+				))
 				.Throws(new Exception());
 
 			CheckOauthEx(TestGo, AccessErrors.invalid_request, AccessErrorDescs.Unexpected);

@@ -1,19 +1,21 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Results;
+using Fabric.Api.Oauth.Tasks;
 
 namespace Fabric.Api.Oauth {
 
 	/*================================================================================================*/
-	public class OauthAccess_ClientCred : OauthAccess {
+	public class OauthAccessClientCred : OauthAccessBase {
 
-		protected string vClientIdStr;
-		protected uint vClientId;
+		private readonly string vClientIdStr;
+		private long vClientId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccess_ClientCred(string pGrantType, string pRedirectUri, string pClientSecret,
-									string pClientId) : base(pGrantType, pRedirectUri, pClientSecret) {
+		public OauthAccessClientCred(string pGrantType, string pRedirectUri, string pClientSecret,
+												string pClientId, IOauthTasks pTasks) : 
+												base(pGrantType, pRedirectUri, pClientSecret, pTasks) {
 			vClientIdStr = pClientId;
 		}
 
@@ -23,47 +25,29 @@ namespace Fabric.Api.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool RedirectOnParamErrors() {
-			if ( base.RedirectOnParamErrors() ) {
-				return true;
-			}
+		protected override void RedirectOnParamErrors() {
+			base.RedirectOnParamErrors();
 
-			bool parsed = uint.TryParse(vClientIdStr, out vClientId);
+			bool parsed = long.TryParse(vClientIdStr, out vClientId);
 
 			if ( !parsed || vClientId <= 0 ) {
-				ThrowFault(AccessErrors.invalid_client, AccessErrorDescs.NoClientId);
-				return true;
+				throw GetFault(AccessErrors.invalid_client, AccessErrorDescs.NoClientId);
 			}
 
-			return false;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void PerformAccessRequestActions() {
-			if ( RedirectOnBadDomain() ) { return; }
-			SendAccessCode(vClientId, null, true);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected bool RedirectOnBadDomain() {
-			FabOauthDomain dom;
-			
 			if ( vRedirectUri.IndexOf("://") <= 0 ) {
-				ThrowFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);
-				return true;
+				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);
 			}
+		}
 
-			try {
-				dom = new GetDomain(new FabAppKey(vClientId), vRedirectUri).Go(Context);
-			}
-			catch ( Exception e ) { ThrowFaultOnException(e); return true; }
-			
+		/*--------------------------------------------------------------------------------------------*/
+		protected override FabOauthAccess PerformAccessRequestActions() {
+			DomainResult dom = vTasks.GetDomain(vClientId, vRedirectUri, Context);
+
 			if ( dom == null ) {
-				ThrowFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
-				return true;
+				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
 			}
 
-			return false;
+			return SendAccessCode(vClientId, null, true);
 		}
 
 	}

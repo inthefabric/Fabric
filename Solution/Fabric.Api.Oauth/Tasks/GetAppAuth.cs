@@ -8,7 +8,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetAppAuth : ApiFunc<App> { //TEST: GetAppAuth
+	public class GetAppAuth : ApiFunc<App> {
 		
 		public enum Query {
 			GetApp
@@ -49,4 +49,5 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 		
 	}
+
 }

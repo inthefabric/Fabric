@@ -15,9 +15,10 @@ namespace Fabric.Api.Server {
 			const string ao = "/api/oauth/";
 
 			Get[ao+"AccessToken"] = (p => "Fabric OAuth: AccessToken");
-			Get[ao+"AccessTokenAuthCode"] = (p => "Fabric OAuth: AuthCode");
+			Get[ao+"AccessTokenAuthCode"] = (p => NewFunc(Context).OauthAccessAuthCode.ToResponse());
 			Get[ao+"AccessTokenRefresh"] = (p => "Fabric OAuth: Refresh");
-			Get[ao+"AccessTokenClientCredentials"] = (p => "Fabric OAuth: ClientCredentials");
+			Get[ao+"AccessTokenClientCredentials"] = 
+				(p => NewFunc(Context).OauthAccessClientCred.ToResponse());
 			Get[ao+"AccessTokenClientDataProv"] = (p => "Fabric OAuth: ClientDataProv");
 			Get[ao+"Login"] = (p => "Fabric OAuth: Login");
 			Get[ao+"Logout"] = (p => NewFunc(Context).Logout.ToResponse());

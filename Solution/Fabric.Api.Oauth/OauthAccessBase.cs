@@ -38,7 +38,7 @@ namespace Fabric.Api.Oauth {
 	/*================================================================================================*/
 	public abstract class OauthAccessBase : ApiFunc<FabOauthAccess> {
 
-		public static string[] ErrDescStrings = new [] {
+		public static readonly string[] ErrDescStrings = new [] {
 			"The grant_type is invalid",
 			"The redirect_uri was not supplied",
 			"The redirect_uri must be an absolute path",

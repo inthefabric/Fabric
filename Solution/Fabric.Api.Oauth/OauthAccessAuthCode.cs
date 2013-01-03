@@ -5,7 +5,7 @@ using Fabric.Api.Oauth.Tasks;
 namespace Fabric.Api.Oauth {
 
 	/*================================================================================================*/
-	public class OauthAccessAuthCode : OauthAccessBase { //TEST: OauthAccessAuthCode
+	public class OauthAccessAuthCode : OauthAccessBase {
 
 		private readonly string vCode;
 

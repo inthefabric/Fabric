@@ -7,13 +7,17 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	[Func("AccessTokenClientCredentials", typeof(FabOauthAccess), ResxKey="OauthAtcc")]
 	public class FuncOauthAtccStep : FuncOauthFinal { //TEST: FuncOauthAtccStep
 
-		[FuncParam("redirect_uri", FuncResxKey="OauthAt")]
+		public const string RedirectUriName = "redirect_uri";
+		public const string ClientSecretName = "client_secret";
+		public const string ClientIdName = "client_id";
+
+		[FuncParam(RedirectUriName, FuncResxKey="OauthAt")]
 		public string RedirectUri { get; private set; }
 
-		[FuncParam("client_secret", FuncResxKey="OauthAt")]
+		[FuncParam(ClientSecretName, FuncResxKey="OauthAt")]
 		public string ClientSecret { get; private set; }
 
-		[FuncParam("client_id", FuncResxKey="OauthAt")]
+		[FuncParam(ClientIdName, FuncResxKey="OauthAt")]
 		public string ClientId { get; private set; }
 		
 
