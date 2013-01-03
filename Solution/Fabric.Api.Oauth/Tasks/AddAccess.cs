@@ -95,18 +95,19 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 			
 			var txb = new TxBuilder();
-			const string oaKey = "oa";
-			const string appKey = "a";
-			const string userKey = "u";
+			ITxBuilderVar<OauthAccess> oaVar;
+			ITxBuilderVar<Root> rootVar;
+			ITxBuilderVar<App> appVar;
 
-			txb.AddNode<OauthAccess, RootContainsOauthAccess>(oa, oaKey, "r");
+			txb.AddNode<OauthAccess, RootContainsOauthAccess>(oa, out rootVar, out oaVar);
 
-			txb.GetNode(new App { AppId = vAppId }, appKey);
-			txb.AddRel<OauthAccessUsesApp>(oaKey, appKey);
+			txb.GetNode(new App { AppId = vAppId }, out appVar);
+			txb.AddRel<OauthAccessUsesApp>(oaVar, appVar);
 			
 			if ( vUserId != null ) {
-				txb.GetNode(new User { UserId = (long)vUserId }, userKey);
-				txb.AddRel<OauthAccessUsesUser>(oaKey, userKey);
+				ITxBuilderVar<User> userVar;
+				txb.GetNode(new User { UserId = (long)vUserId }, out userVar);
+				txb.AddRel<OauthAccessUsesUser>(oaVar, userVar);
 			}
 
 			Context.DbData(Query.AddAccessTx+"", txb.Finish());
