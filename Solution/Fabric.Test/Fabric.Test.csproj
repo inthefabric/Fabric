@@ -36,6 +36,7 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiOauth\Tasks\TGetAppAuth.cs" />
     <Compile Include="FabApiOauth\TOauthLogout.cs" />
     <Compile Include="FabApiPaths\Steps\Functions\TFuncRegistry.cs" />
     <Compile Include="FabApiPaths\Steps\Functions\TFuncStep.cs" />
@@ -133,7 +134,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="FabApiOauth\Tasks\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

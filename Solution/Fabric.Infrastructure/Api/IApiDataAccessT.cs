@@ -7,7 +7,7 @@ namespace Fabric.Infrastructure.Api {
 	public interface IApiDataAccess<T> : IApiDataAccess where T : INodeWithId, new() {
 
 		T TypedResult { get; }
-		List<T> TypedResultList { get; }
+		IList<T> TypedResultList { get; }
 
 	}
 

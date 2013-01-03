@@ -9,7 +9,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetGrant : ApiFunc<GrantResult> { //TEST: GetGrant
+	public class GetGrant : ApiFunc<GrantResult> {
 		
 		public enum Query {
 			GetAndUpdateTx
@@ -34,7 +34,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override GrantResult Execute () {
+		protected override GrantResult Execute() {
 			var tx = new WeaverTransaction();
 			IWeaverVarAlias listVar;
 			IWeaverFuncAs<OauthGrant> grantAlias;
@@ -63,7 +63,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.End()
 			);
 			
-			tx.Finish (WeaverTransaction.ConclusionType.Success, listVar);
+			tx.Finish(WeaverTransaction.ConclusionType.Success, listVar);
 				
 			IApiDataAccess data = Context.DbData(Query.GetAndUpdateTx+"", tx);
 			

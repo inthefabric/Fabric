@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Dto.Oauth;
-using Fabric.Infrastructure.Api;
 using Fabric.Api.Oauth.Results;
+using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -14,6 +15,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		                         												IApiContext pContext);
 		FabOauthAccess DoLogout(FabOauthAccess pAccess, IApiContext pContext);
 		FabOauthAccess GetAccessToken(string pToken, IApiContext pContext);
+		App GetAppAuth(long pAppId, string pAppSecret, IApiContext pContext);
 		GrantResult GetGrant(string pCode, IApiContext pContext);
 
 	}

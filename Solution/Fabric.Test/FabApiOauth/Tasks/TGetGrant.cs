@@ -5,6 +5,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -16,8 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetGrant {
 
-		private static string[] vQueries = new [] {
-			//GetAndUpdateTx
+		private const string QueryGetAndUpdateTx =
 			"g.startTransaction();"+
 			"_V0=[];"+
 			"g.v(0)"+
@@ -34,8 +34,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".aggregate(_V0)"+
 					".iterate();"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+
-			"_V0;"
-		};
+			"_V0;";
 
 		private OauthGrant vOauthGrant;
 		private App vUsesApp;
@@ -105,7 +104,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private IApiDataAccess GetAndUpdateTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetGrant.Query.GetAndUpdateTx+"");
-			string expect = vQueries[(int)GetGrant.Query.GetAndUpdateTx]
+			string expect = QueryGetAndUpdateTx
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
@@ -132,51 +131,26 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(vUsesUser.UserId, result.UserId, "Incorrect Result.UserId.");
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			vGetAccessResult = null;
+			vMockGetAndUpdateTxResult.SetupGet(x => x.ResultDtoList).Returns((List<IDbDto>)null);
 
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthAccess>(
-					GetAccessToken.Query.GetAccess+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetAccess(q));
+			GrantResult result = TestGo();
 
-			FabOauthAccess result = TestGo();
-
-			vUsageMap.AssertUses(GetAccessToken.Query.GetAccess+"", 1);
+			vUsageMap.AssertUses(GetGrant.Query.GetAndUpdateTx+"", 1);
 			Assert.Null(result, "Result should be null.");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrNullToken() {
-			vToken = null;
+		public void ErrNullCode() {
+			vOauthGrant.Code = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[TestCase("")]
-		[TestCase("x")]
-		[TestCase("1234567890123456789012345678901")]
-		[TestCase("123456789012345678901234567890123")]
-		public void ErrTokenLen(string pToken) {
-			vToken = pToken;
-			TestUtil.CheckThrows<FabArgumentLengthFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[TestCase("1234567890123456789012345678901_")]
-		[TestCase("123456789 1234567890123456789012")]
-		public void ErrTokenChars(string pToken) {
-			vToken = pToken;
-			TestUtil.CheckThrows<FabArgumentFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
-		}*/
 
 	}
 

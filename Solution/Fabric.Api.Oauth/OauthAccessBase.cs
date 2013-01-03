@@ -1,9 +1,9 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Api;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 
@@ -55,17 +55,20 @@ namespace Fabric.Api.Oauth {
 			"An unexpected error occurred"
 		};
 
-		protected string vGrantType;
-		protected string vRedirectUri;
-		protected string vClientSecret;
+		protected readonly string vGrantType;
+		protected readonly string vRedirectUri;
+		protected readonly string vClientSecret;
+		protected readonly IOauthTasks vTasks;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected OauthAccessBase(string pGrantType, string pRedirectUri, string pClientSecret) {
+		protected OauthAccessBase(string pGrantType, string pRedirectUri, string pClientSecret,
+																				IOauthTasks pTasks) {
 			vGrantType = pGrantType;
 			vRedirectUri = pRedirectUri;
 			vClientSecret = pClientSecret;
+			vTasks = pTasks;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -115,7 +118,7 @@ namespace Fabric.Api.Oauth {
 		protected FabOauthAccess SendAccessCode(long pAppId, long? pUserId, bool pClientMode=false) {
 			long appId = VerifyAppWithSecret(pAppId);
 
-			FabOauthAccess oa = new AddAccess(appId, pUserId, 3600, pClientMode).Go(Context);
+			FabOauthAccess oa = vTasks.AddAccess(appId, pUserId, 3600, pClientMode, Context);
 			
 			if ( pClientMode ) {
 				oa.RefreshToken = null;
@@ -126,7 +129,7 @@ namespace Fabric.Api.Oauth {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected long VerifyAppWithSecret(long pAppId) {
-			App app = new GetAppAuth(pAppId, vClientSecret).Go(Context);
+			App app = vTasks.GetAppAuth(pAppId, vClientSecret, Context);
 
 			if ( app == null ) {
 				throw GetFault(AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);

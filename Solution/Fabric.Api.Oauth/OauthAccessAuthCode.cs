@@ -13,7 +13,8 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessAuthCode(string pGrantType, string pRedirectUri, string pClientSecret,
-										string pCode) : base(pGrantType, pRedirectUri, pClientSecret) {
+												string pCode, IOauthTasks pTasks) : 
+												base(pGrantType, pRedirectUri, pClientSecret, pTasks) {
 			vCode = pCode;
 		}
 		
@@ -33,7 +34,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess PerformAccessRequestActions() {
-			GrantResult g = new GetGrant(vCode).Go(Context);
+			GrantResult g = vTasks.GetGrant(vCode, Context);
 
 			if ( g == null ) {
 				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);

@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Dto.Oauth;
-using Fabric.Infrastructure.Api;
 using Fabric.Api.Oauth.Results;
+using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -23,6 +24,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess GetAccessToken(string pToken, IApiContext pContext) {
 			return new GetAccessToken(pToken).Go(pContext);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public App GetAppAuth(long pAppId, string pAppSecret, IApiContext pContext) {
+			return new GetAppAuth(pAppId, pAppSecret).Go(pContext);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

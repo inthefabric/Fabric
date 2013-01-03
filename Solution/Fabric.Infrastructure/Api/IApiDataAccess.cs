@@ -14,7 +14,7 @@ namespace Fabric.Infrastructure.Api {
 		byte[] ResultBytes { get; }
 		string ResultString { get; }
 		IDbDto ResultDto { get; }
-		List<IDbDto> ResultDtoList { get; }
+		IList<IDbDto> ResultDtoList { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
