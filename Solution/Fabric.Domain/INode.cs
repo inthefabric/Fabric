@@ -11,7 +11,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		long GetTypeId();
-		Expression<Func<INode, object>> GetTypeIdProp();
+		Expression<Func<T, object>> GetTypeIdProp<T>() where T : INode;
 		
 	}
 

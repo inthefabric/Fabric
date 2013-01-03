@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Weaver;
 using Weaver.Interfaces;
@@ -12,7 +10,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		public IWeaverTransaction Transaction { get; private set; }
 
-		private IDictionary<string, IWeaverVarAlias> vVarMap;
+		private readonly IDictionary<string, IWeaverVarAlias> vVarMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,11 +44,11 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetNode<T>(Expression<Func<T,object>> pTypeIdProp, object pId, string pVarKey) 
-																		where T : class, INode, new() {
+		public void GetNode<T>(T pNodeWithId, string pVarKey) where T : class, INode, new() {
 			IWeaverVarAlias node;
-			
-			IWeaverQuery q = WeaverTasks.BeginPath(typeof(T).Name, pTypeIdProp, pId).BaseNode.End();
+
+			IWeaverQuery q = WeaverTasks.BeginPath<T>(typeof(T).Name, pNodeWithId.GetTypeIdProp<T>(),
+				pNodeWithId.GetTypeId()).BaseNode.End();
 			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out node);
 			vVarMap.Add(pVarKey, node);
 			Transaction.AddQuery(q);
@@ -59,9 +57,8 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T, TRootRel>(T pNode, Expression<Func<T,object>> pTypeIdProp,
-												string pNewNodeKey, string pRootKey) where T : INode
-												where TRootRel : IWeaverRel, new() {
+		public void AddNode<T, TRootRel>(T pNode, string pNewNodeKey, string pRootKey)
+													where T : INode where TRootRel : IWeaverRel, new() {
 			IWeaverVarAlias newNode;
 
 			IWeaverQuery q = WeaverTasks.AddNode(pNode);
@@ -69,10 +66,8 @@ namespace Fabric.Infrastructure.Weaver {
 			vVarMap.Add(pNewNodeKey, newNode);
 			Transaction.AddQuery(q);
 			
-			var testProp = pNode.GetTypeIdProp();
-
 			Transaction.AddQuery(
-				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, testProp)
+				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pNode.GetTypeIdProp<T>())
 			);
 
 			GetRoot(pRootKey);
@@ -89,24 +84,22 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddKnownToNodeRel<T, TRel>(Expression<Func<T,object>> pTypeIdProp, object pId,
-		                            string pGetNodeKey, string pKnownNodeKey) 
-									where T : class, INode, new() where TRel : IWeaverRel, new() {
-			GetNodeAndAddRel<T,TRel>(pTypeIdProp, pId, pGetNodeKey, pKnownNodeKey, true);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void AddNodeToKnownRel<T, TRel>(Expression<Func<T,object>> pTypeIdProp, object pId,
-		                         	    string pGetNodeKey, string pKnownNodeKey) 
+		public void AddKnownToNodeRel<T, TRel>(T pNodeWithId, string pGetNodeKey, string pKnownNodeKey) 
 										where T : class, INode, new() where TRel : IWeaverRel, new() {
-			GetNodeAndAddRel<T,TRel>(pTypeIdProp, pId, pGetNodeKey, pKnownNodeKey, false);
+			GetNodeAndAddRel<T,TRel>(pNodeWithId, pGetNodeKey, pKnownNodeKey, true);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void GetNodeAndAddRel<T, TRel>(Expression<Func<T,object>> pTypeIdProp, object pId,
+		public void AddNodeToKnownRel<T, TRel>(T pNodeWithId, string pGetNodeKey, string pKnownNodeKey) 
+										where T : class, INode, new() where TRel : IWeaverRel, new() {
+			GetNodeAndAddRel<T,TRel>(pNodeWithId, pGetNodeKey, pKnownNodeKey, false);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private void GetNodeAndAddRel<T, TRel>(T pNodeWithId,
 									string pGetNodeKey, string pKnownNodeKey, bool pFromKnown) 
 									where T : class, INode, new() where TRel : IWeaverRel, new() {
-			GetNode(pTypeIdProp, pId, pGetNodeKey);
+			GetNode(pNodeWithId, pGetNodeKey);
 			
 			if ( pFromKnown ) {
 				AddRel<TRel>(pKnownNodeKey, pGetNodeKey);

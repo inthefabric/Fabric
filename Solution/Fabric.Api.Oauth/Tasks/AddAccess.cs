@@ -107,13 +107,16 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
 			var txb = new TxBuilder();
-			txb.AddNode<OauthAccess, RootContainsOauthAccess>(
-				pAccess, x => x.OauthAccessId, "oa", "root");
-			txb.AddKnownToNodeRel<App, OauthAccessUsesApp>(x => x.AppId, vAppId, "app", "oa");
+			const string oaKey = "oa";
+
+			txb.AddNode<OauthAccess, RootContainsOauthAccess>(pAccess, oaKey, "r");
+
+			var appWithId = new App { AppId = vAppId };
+			txb.AddKnownToNodeRel<App, OauthAccessUsesApp>(appWithId, "a", oaKey);
 			
 			if ( vUserId != null ) {
-				txb.AddKnownToNodeRel<User, OauthAccessUsesUser>(
-					x => x.UserId, (long)vUserId, "user", "oa");
+				var userWithId = new User { UserId = (long)vUserId };
+				txb.AddKnownToNodeRel<User, OauthAccessUsesUser>(userWithId, "u", oaKey);
 			}
 			
 			return txb.Finish();
@@ -122,10 +125,3 @@ namespace Fabric.Api.Oauth.Tasks {
 	}
 
 }
-
-/*
-
-FAB	1/2 7:05pm	1/2 7:40pm	Continued work on TxBuilder and usage.
-FAB	1/2 8:00pm	1/2 8:30pm	Improved TxBuilder and usage.
-
-*/

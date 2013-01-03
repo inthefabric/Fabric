@@ -13,7 +13,7 @@ namespace Fabric.Domain {
 		public abstract long GetTypeId();
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual Expression<Func<INode, object>> GetTypeIdProp() {
+		public virtual Expression<Func<T, object>> GetTypeIdProp<T>() where T : INode {
 			return (x => x.Id);
 		}
 
