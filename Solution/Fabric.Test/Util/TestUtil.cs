@@ -33,11 +33,15 @@ namespace Fabric.Test.Util {
 			string p = "";
 
 			foreach ( string key in pScripted.Params.Keys ) {
-				p += (p == "" ? " [ " : ", ")+key+"="+pScripted.Params[key];
+				p += "\n\t"+key+" = "+pScripted.Params[key];
 			}
 
-			if ( p != "" ) { p += " ]"; }
-			Log.Debug("Query: "+pScripted.Script.Replace(";", ";\n")+p);
+			string script = pScripted.Script
+				.Replace(".outE", "\n\t\t.outE")
+				.Replace(".inE", "\n\t\t.inE")
+				.Replace(";", ";\n\t");
+
+			Log.Debug("Query:\n\n\t"+script+p);
 		}
 
 	}

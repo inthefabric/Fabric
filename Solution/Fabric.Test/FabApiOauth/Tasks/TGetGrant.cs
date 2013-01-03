@@ -1,16 +1,14 @@
-﻿using Moq;
-using Fabric.Infrastructure.Api;
-using Fabric.Api.Dto.Oauth;
+﻿using System;
+using System.Collections.Generic;
+using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
-using NUnit.Framework;
-using Weaver.Interfaces;
 using Fabric.Domain;
 using Fabric.Infrastructure;
-using System;
+using Fabric.Infrastructure.Api;
 using Fabric.Test.Util;
-using Fabric.Infrastructure.Api.Faults;
-using Fabric.Api.Oauth.Results;
-using System.Collections.Generic;
+using Moq;
+using NUnit.Framework;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
@@ -21,22 +19,22 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private static string[] vQueries = new [] {
 			//GetAndUpdateTx
 			"g.startTransaction();"+
-			"_var0=[];"+
+			"_V0=[];"+
 			"g.v(0)"+
 				".outE('RootContainsOauthGrant').inV"+
 					".has('Code',Tokens.T.eq,_TP0)"+
 					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
-					".aggregate(_var0)"+
+					".aggregate(_V0)"+
 					".each{it.Code=null}"+
 					".as('step7')"+
-				".outE('OauthGrantUsesApp')[0].inV(0)"+
-					".aggregate(_var0)"+
+				".outE('OauthGrantUsesApp')[0].inV[0]"+
+					".aggregate(_V0)"+
 				".back('step7')"+
-				".outE('OauthGrantUsesUser')[0].inV(0)"+
-					".aggregate(_var0)"+
+				".outE('OauthGrantUsesUser')[0].inV[0]"+
+					".aggregate(_V0)"+
 					".iterate();"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+
-			"_var0;"
+			"_V0;"
 		};
 
 		private OauthGrant vOauthGrant;

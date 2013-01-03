@@ -31,7 +31,7 @@ namespace Fabric.Api.Server.Setups {
 
 				DataSet ds = Setup.SetupAll(true);
 				var queries = new List<IWeaverQuery>();
-				long nodeI = 0;
+				long nodeI = 1;
 
 				foreach ( WeaverQuery q in ds.Indexes ) {
 					queries.Add(q);

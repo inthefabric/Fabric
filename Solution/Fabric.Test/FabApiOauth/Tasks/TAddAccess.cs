@@ -20,46 +20,46 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('RootContainsOauthAccess').inV"+
 				".has('Token',Tokens.T.neq,null)"+
 				".as('step4')" +
-			".outE('OauthAccessUsesApp')[0].inV(0)" +
+			".outE('OauthAccessUsesApp')[0].inV[0]" +
 				".has('AppId',Tokens.T.eq,{{AppId}}L)" +
 			".back('step4')" +
-			".outE('OauthAccessUsesUser')[0].inV(0)" +
+			".outE('OauthAccessUsesUser')[0].inV[0]" +
 				".has('UserId',Tokens.T.eq,{{UserId}})" +
 			".back('step4')" +
 				".each{it.Token=null};";
 
 		private const string QueryAddAccessTx =
 			"g.startTransaction();"+
-			"_var0=g.v(0);"+
-			"_var1=g.addVertex(["+
+			"_V0=g.v(0);"+
+			"_V1=g.addVertex(["+
 				"OauthAccessId:{{OauthAccessId}}L,"+
 				"Token:_TP0,"+
 				"Refresh:_TP1,"+
 				"Expires:{{UtcExpireTicks}}L,"+
 				"IsClientOnly:false"+
 			"]);"+
-			"g.idx(_TP2).put(_TP3,_var1.OauthAccessId,_var1);"+
-			"g.addEdge(_var0,_var1,_TP4);"+
-			"_var2=g.idx(_TP5).get('AppId',{{AppId}}L)[0];"+
-			"g.addEdge(_var1,_var2,_TP6);"+
-			"_var3=g.idx(_TP7).get('UserId',{{UserId}})[0];"+
-			"g.addEdge(_var1,_var3,_TP8);"+
+			"g.idx(_TP2).put(_TP3,_V1.OauthAccessId,_V1);"+
+			"g.addEdge(_V0,_V1,_TP4);"+
+			"_V2=g.idx(_TP5).get('AppId',{{AppId}}L)[0];"+
+			"g.addEdge(_V1,_V2,_TP6);"+
+			"_V3=g.idx(_TP7).get('UserId',{{UserId}})[0];"+
+			"g.addEdge(_V1,_V3,_TP8);"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
 
 		private const string QueryAddAccessTxClientOnly =
 			"g.startTransaction();"+
-			"_var0=g.v(0);"+
-			"_var1=g.addVertex(["+
+			"_V0=g.v(0);"+
+			"_V1=g.addVertex(["+
 				"OauthAccessId:{{OauthAccessId}}L,"+
 				"Token:_TP0,"+
 				"Refresh:_TP1,"+
 				"Expires:{{UtcExpireTicks}}L,"+
 				"IsClientOnly:true"+
 			"]);"+
-			"g.idx(_TP2).put(_TP3,_var1.OauthAccessId,_var1);"+
-			"g.addEdge(_var0,_var1,_TP4);"+
-			"_var2=g.idx(_TP5).get('AppId',{{AppId}}L)[0];"+
-			"g.addEdge(_var1,_var2,_TP6);"+
+			"g.idx(_TP2).put(_TP3,_V1.OauthAccessId,_V1);"+
+			"g.addEdge(_V0,_V1,_TP4);"+
+			"_V2=g.idx(_TP5).get('AppId',{{AppId}}L)[0];"+
+			"g.addEdge(_V1,_V2,_TP6);"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
 
 		protected long vAddOauthAccessId;
