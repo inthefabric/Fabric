@@ -36,7 +36,7 @@ namespace Fabric.Api.Oauth {
 	};
 
 	/*================================================================================================*/
-	public abstract class OauthAccessBase : ApiFunc<FabOauthAccess> { //TEST: OauthAccessBase
+	public abstract class OauthAccessBase : ApiFunc<FabOauthAccess> {
 
 		public static string[] ErrDescStrings = new [] {
 			"The grant_type is invalid",
@@ -142,7 +142,7 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected OauthException GetFaultOnException(Exception pEx) {
-			Log.Error("FOAuthAccess", pEx);
+			Log.Error("OAuthAccessBase", pEx);
 			return GetFault(AccessErrors.invalid_request, AccessErrorDescs.Unexpected);
 		}
 		

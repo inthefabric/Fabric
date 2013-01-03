@@ -7,7 +7,7 @@ namespace Fabric.Api.Oauth {
 	/*================================================================================================*/
 	public class OauthAccessAuthCode : OauthAccessBase { //TEST: OauthAccessAuthCode
 
-		protected string vCode;
+		private readonly string vCode;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

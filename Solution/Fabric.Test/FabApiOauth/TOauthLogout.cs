@@ -1,12 +1,11 @@
-﻿using Fabric.Api.Dto.Oauth;
+﻿using System;
+using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
-using Fabric.Infrastructure;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure.Api;
+using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Fabric.Api.Oauth.Tasks;
-using Fabric.Test.Util;
-using System;
 
 namespace Fabric.Test.FabApiOauth {
 
@@ -38,8 +37,8 @@ namespace Fabric.Test.FabApiOauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthLogout TestGo(string pToken) {
-			var func = new OauthLogout(pToken, vMockTasks.Object);
+		private FabOauthLogout TestGo() {
+			var func = new OauthLogout(vToken, vMockTasks.Object);
 			return func.Go(vMockCtx.Object);
 		}
 
@@ -48,7 +47,7 @@ namespace Fabric.Test.FabApiOauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
-			FabOauthLogout result = TestGo(vToken);
+			FabOauthLogout result = TestGo();
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(1, result.Success, "Incorrect Result.Success.");
 			Assert.AreEqual(vToken, result.AccessToken, "Incorrect Result.AccessToken.");
@@ -61,10 +60,9 @@ namespace Fabric.Test.FabApiOauth {
 		[TestCase("1234567890123456789012345678901")]
 		[TestCase("123456789012345678901234567890123")]
 		public void ErrorBadToken(string pToken) {
+			vToken = pToken;
 			vMockTasks.Setup(x => x.GetAccessToken(pToken, vMockCtx.Object)).Returns(vGetAcc);
-			
-			CheckOauthEx(() => TestGo(pToken),
-				LogoutErrors.invalid_request, LogoutErrorDescs.BadToken);
+			CheckOauthEx(() => TestGo(), LogoutErrors.invalid_request, LogoutErrorDescs.BadToken);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -72,9 +70,7 @@ namespace Fabric.Test.FabApiOauth {
 		public void ErrorNoTokenMatch() {
 			FabOauthAccess nullFoa = null;
 			vMockTasks.Setup(x => x.GetAccessToken(vToken, vMockCtx.Object)).Returns(nullFoa);
-			
-			CheckOauthEx(() => TestGo(vToken),
-				LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
+			CheckOauthEx(() => TestGo(), LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -82,18 +78,14 @@ namespace Fabric.Test.FabApiOauth {
 		public void ErrorLogoutFailed() {
 			FabOauthAccess nullFoa = null;
 			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Returns(nullFoa);
-			
-			CheckOauthEx(() => TestGo(vToken),
-				LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
+			CheckOauthEx(() => TestGo(), LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrorUnexpected() {
 			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Throws(new Exception());
-			
-			CheckOauthEx(() => TestGo(vToken),
-				LogoutErrors.logout_failure, LogoutErrorDescs.Unexpected);
+			CheckOauthEx(() => TestGo(), LogoutErrors.logout_failure, LogoutErrorDescs.Unexpected);
 		}
 		
 		
