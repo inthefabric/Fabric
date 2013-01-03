@@ -83,19 +83,19 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddKnownToNodeRel<T, TRel>(T pNodeWithId, string pGetNodeKey, string pKnownNodeKey) 
 										where T : class, INode, new() where TRel : IWeaverRel, new() {
 			GetNodeAndAddRel<T,TRel>(pNodeWithId, pGetNodeKey, pKnownNodeKey, true);
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddNodeToKnownRel<T, TRel>(T pNodeWithId, string pGetNodeKey, string pKnownNodeKey) 
 										where T : class, INode, new() where TRel : IWeaverRel, new() {
 			GetNodeAndAddRel<T,TRel>(pNodeWithId, pGetNodeKey, pKnownNodeKey, false);
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private void GetNodeAndAddRel<T, TRel>(T pNodeWithId,
 									string pGetNodeKey, string pKnownNodeKey, bool pFromKnown) 
 									where T : class, INode, new() where TRel : IWeaverRel, new() {
@@ -107,7 +107,7 @@ namespace Fabric.Infrastructure.Weaver {
 			else {
 				AddRel<TRel>(pGetNodeKey, pKnownNodeKey);
 			}
-		}
+		}*/
 		
 	}
 

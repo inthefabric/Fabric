@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Domain;
 
 namespace Fabric.Infrastructure {
 
@@ -8,34 +9,14 @@ namespace Fabric.Infrastructure {
 	/*================================================================================================*/
 	public static class Sharpflake {
 
-		public enum SequenceKey {
-			App = 1,
-			Artifact,
-			Crowd,
-			Factor,
-			User,
-			OauthAccess
-			//and many more...
-		}
-
 		private const int ServerId = 0; //0 to 1023
 
 		private static long LastMilli;
-		private readonly static Dictionary<SequenceKey, SharpflakeSequence> Sequence = BuildSequence();
+		private static readonly Dictionary<Type, SharpflakeSequence> Sequence = 
+			new Dictionary<Type, SharpflakeSequence>();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static Dictionary<SequenceKey, SharpflakeSequence> BuildSequence() {
-			var seq = new Dictionary<SequenceKey, SharpflakeSequence>();
-
-			foreach ( SequenceKey key in Enum.GetValues(typeof(SequenceKey)) ) {
-				seq[key] = new SharpflakeSequence();
-			}
-
-			return seq;
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public static long GetMilli() {
 			//milliseconds since Jan 1, 2012
@@ -52,19 +33,30 @@ namespace Fabric.Infrastructure {
 			return m;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private static SharpflakeSequence GetSequence<T>() where T : INode {
+			Type t = typeof(T);
+
+			if ( !Sequence.ContainsKey(t) ) {
+				Sequence.Add(t, new SharpflakeSequence());
+			}
+
+			return Sequence[t];
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static long GetId(SequenceKey pKey) {
+		public static long GetId<T>() where T : INode {
 			long m = GetMilli();
-			return (m << 22) + (ServerId << 12) + Sequence[pKey].NextIndex;
+			return (m << 22) + (ServerId << 12) + GetSequence<T>().NextIndex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string GetIdStr(SequenceKey pKey) {
+		public static string GetIdStr<T>() where T : INode {
 			long m = GetMilli();
 			return Convert.ToString(m, 2) + "." + Convert.ToString(ServerId, 2) + "." +
-				Convert.ToString(Sequence[pKey].NextIndex, 2);
+				Convert.ToString(GetSequence<T>().NextIndex, 2);
 		}
 
 	}

@@ -1,7 +1,5 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
@@ -88,13 +86,32 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess AddAccessNodeAndRels() {
 			var oa = new OauthAccess();
-			oa.OauthAccessId = Sharpflake.GetId(Sharpflake.SequenceKey.OauthAccess);
-			oa.Expires = DateTime.UtcNow.AddSeconds(vExpireSec).Ticks;
-			oa.Token = FabricUtil.Code32;
-			oa.Refresh = FabricUtil.Code32;
+			oa.OauthAccessId = Context.GetSharpflakeId<OauthAccess>();
+			oa.Expires = Context.UtcNow.AddSeconds(vExpireSec).Ticks;
+			oa.Token = Context.Code32;
+			oa.Refresh = Context.Code32;
 			oa.IsClientOnly = vClientOnly;
 
-			Context.DbData(Query.AddAccessTx+"", BuildAddTx(oa));
+			////
+			
+			var txb = new TxBuilder();
+			const string oaKey = "oa";
+			const string appKey = "a";
+			const string userKey = "u";
+
+			txb.AddNode<OauthAccess, RootContainsOauthAccess>(oa, oaKey, "r");
+
+			txb.GetNode(new App { AppId = vAppId }, appKey);
+			txb.AddRel<OauthAccessUsesApp>(oaKey, appKey);
+			
+			if ( vUserId != null ) {
+				txb.GetNode(new User { UserId = (long)vUserId }, userKey);
+				txb.AddRel<OauthAccessUsesUser>(oaKey, userKey);
+			}
+
+			Context.DbData(Query.AddAccessTx+"", txb.Finish());
+
+			////
 
 			var foa = new FabOauthAccess();
 			foa.AccessToken = oa.Token;
@@ -102,24 +119,6 @@ namespace Fabric.Api.Oauth.Tasks {
 			foa.ExpiresIn = vExpireSec;
 			foa.TokenType = "bearer";
 			return foa;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
-			var txb = new TxBuilder();
-			const string oaKey = "oa";
-
-			txb.AddNode<OauthAccess, RootContainsOauthAccess>(pAccess, oaKey, "r");
-
-			var appWithId = new App { AppId = vAppId };
-			txb.AddKnownToNodeRel<App, OauthAccessUsesApp>(appWithId, "a", oaKey);
-			
-			if ( vUserId != null ) {
-				var userWithId = new User { UserId = (long)vUserId };
-				txb.AddKnownToNodeRel<User, OauthAccessUsesUser>(userWithId, "u", oaKey);
-			}
-			
-			return txb.Finish();
 		}
 
 	}

@@ -16,7 +16,6 @@ namespace Fabric.Infrastructure.Api {
 		long AppId { get; }
 		long MemberId { get; }
 
-		DateTime UtcNow { get; }
 		long DbQueryExecutionCount { get; }
 
 
@@ -24,6 +23,13 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		void SetUserAppId(long pUserId, long pAppId);
 		void SetMemberId(long pMember);
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		DateTime UtcNow { get; }
+		string Code32 { get; }
+		long GetSharpflakeId<T>() where T : INode;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

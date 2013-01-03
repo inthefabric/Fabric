@@ -57,7 +57,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vAccess.AppId = vAppId;
 			vAccess.UserId = vUserId;
 			vAccess.OauthAccessId = 83838;
-			vAccess.AccessToken = vAddAccessResult.Token;
+			vAccess.AccessToken = vTokenCode;
 			vAccess.RefreshToken = FabricUtil.Code32;
 			vAccess.TokenType = "bearer";
 			vAccess.ExpiresIn = 400;

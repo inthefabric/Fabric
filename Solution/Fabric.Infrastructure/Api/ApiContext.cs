@@ -17,7 +17,6 @@ namespace Fabric.Infrastructure.Api {
 		public long AppId { get; private set; }
 		public long MemberId { get; private set; }
 
-		public DateTime UtcNow { get { return DateTime.UtcNow; } }
 		public long DbQueryExecutionCount { get; private set; }
 
 
@@ -42,6 +41,23 @@ namespace Fabric.Infrastructure.Api {
 		public void SetMemberId(long pMember) {
 			if ( MemberId != -1 ) { throw new Exception("MemberId is already set."); }
 			MemberId = MemberId;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public DateTime UtcNow {
+			get { return DateTime.UtcNow; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string Code32 {
+			get { return FabricUtil.Code32; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public long GetSharpflakeId<T>() where T : INode {
+			return Sharpflake.GetId<T>();
 		}
 
 		
