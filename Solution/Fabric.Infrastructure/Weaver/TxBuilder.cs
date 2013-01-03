@@ -68,9 +68,11 @@ namespace Fabric.Infrastructure.Weaver {
 			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out newNode);
 			vVarMap.Add(pNewNodeKey, newNode);
 			Transaction.AddQuery(q);
+			
+			var testProp = pNode.GetTypeIdProp();
 
 			Transaction.AddQuery(
-				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pTypeIdProp)
+				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, testProp)
 			);
 
 			GetRoot(pRootKey);

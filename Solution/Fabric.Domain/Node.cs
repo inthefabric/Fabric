@@ -1,4 +1,6 @@
 ﻿using Weaver.Items;
+using System;
+using System.Linq.Expressions;
 
 namespace Fabric.Domain {
 
@@ -9,6 +11,11 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract long GetTypeId();
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Expression<Func<INode, object>> GetTypeIdProp() {
+			return (x => x.Id);
+		}
 
 	}
 

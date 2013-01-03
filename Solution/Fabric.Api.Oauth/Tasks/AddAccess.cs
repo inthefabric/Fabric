@@ -126,6 +126,6 @@ namespace Fabric.Api.Oauth.Tasks {
 /*
 
 FAB	1/2 7:05pm	1/2 7:40pm	Continued work on TxBuilder and usage.
-FAB	1/2 8:00pm	1/2 x
+FAB	1/2 8:00pm	1/2 8:30pm	Improved TxBuilder and usage.
 
 */
