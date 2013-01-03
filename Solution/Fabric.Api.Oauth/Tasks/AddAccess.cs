@@ -103,80 +103,29 @@ namespace Fabric.Api.Oauth.Tasks {
 			foa.TokenType = "bearer";
 			return foa;
 		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
-			var tx = new WeaverTransaction();
-
-			// Add node and index it
-
-			IWeaverQuery addAcc = WeaverTasks.AddNode(pAccess);
-			IWeaverVarAlias newOaVar;
-
-			tx.AddQuery(
-				WeaverTasks.StoreQueryResultAsVar(tx, addAcc, out newOaVar)
-			);
-
-			tx.AddQuery(
-				WeaverTasks.AddNodeToIndex<OauthAccess>(
-					typeof(OauthAccess).Name, newOaVar, x => x.OauthAccessId)
-			);
-
-			// Root relationship
-
-			IWeaverQuery getRoot = NewPathFromRoot().End();
-			IWeaverVarAlias rootVar;
-
-			tx.AddQuery(
-				WeaverTasks.StoreQueryResultAsVar(tx, getRoot, out rootVar)
-			);
-
-			tx.AddQuery(
-				WeaverTasks.AddRel(rootVar, new RootContainsOauthAccess(), newOaVar)
-			);
-
-			// App relationship
-
-			IWeaverQuery getApp = NewPathFromIndex<App>(x => x.AppId, vAppId).End();
-			IWeaverVarAlias appVar;
-
-			tx.AddQuery(
-				WeaverTasks.StoreQueryResultAsVar(tx, getApp, out appVar)
-			);
-
-			tx.AddQuery(
-				WeaverTasks.AddRel(newOaVar, new OauthAccessUsesApp(), appVar)
-			);
-
-			// User relationship
-
-			if ( vUserId != null ) {
-				IWeaverQuery getUser = NewPathFromIndex<User>(x => x.UserId, (long)vUserId).End();
-				IWeaverVarAlias userVar;
-
-				tx.AddQuery(
-					WeaverTasks.StoreQueryResultAsVar(tx, getUser, out userVar)
-				);
-
-				tx.AddQuery(
-					WeaverTasks.AddRel(newOaVar, new OauthAccessUsesUser(), userVar)
-				);
-			}
-
-			tx.Finish(WeaverTransaction.ConclusionType.Success);
-			return tx;
-		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		private IWeaverTransaction BuildAddTx(OauthAccess pAccess) {
-			var txBuild = new TxBuilder();
-
-			txBuild.AddNode<OauthAccess, RootContainsOauthAccess>(
-				pAccess, "newOa", x => x.OauthAccessId);
-
-			return txBuild.Transaction;
+			var txb = new TxBuilder();
+			txb.AddNode<OauthAccess, RootContainsOauthAccess>(
+				pAccess, x => x.OauthAccessId, "oa", "root");
+			txb.AddKnownToNodeRel<App, OauthAccessUsesApp>(x => x.AppId, vAppId, "app", "oa");
+			
+			if ( vUserId != null ) {
+				txb.AddKnownToNodeRel<User, OauthAccessUsesUser>(
+					x => x.UserId, (long)vUserId, "user", "oa");
+			}
+			
+			return txb.Finish();
 		}
 
 	}
 
 }
+
+/*
+
+FAB	1/2 7:05pm	1/2 7:40pm	Continued work on TxBuilder and usage.
+FAB	1/2 8:00pm	1/2 x
+
+*/
