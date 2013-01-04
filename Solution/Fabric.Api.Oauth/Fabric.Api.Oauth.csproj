@@ -50,7 +50,7 @@
     <Compile Include="Tasks\AddAccess.cs" />
     <Compile Include="Tasks\GetDomain.cs" />
     <None Include="Tasks\AddGrant.cs" />
-    <None Include="Tasks\AddMemberEnsure.cs" />
+    <Compile Include="Tasks\AddMemberEnsure.cs" />
     <Compile Include="Tasks\GetRefresh.cs" />
     <None Include="Tasks\AddScope.cs" />
     <Compile Include="Tasks\GetScope.cs" />
