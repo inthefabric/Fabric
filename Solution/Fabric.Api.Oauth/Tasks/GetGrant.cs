@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Oauth.Results;
+﻿using System;
+using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -64,11 +65,17 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 			
 			tx.Finish(WeaverTransaction.ConclusionType.Success, listVar);
-				
+			
+			////
+
 			IApiDataAccess data = Context.DbData(Query.GetAndUpdateTx+"", tx);
 			
 			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
 				return null;
+			}
+
+			if ( data.ResultDtoList.Count != 2 && data.ResultDtoList.Count != 3 ) {
+				throw new Exception("Incorrect ResultDtoList.Count.");
 			}
 			
 			OauthGrant og = data.ResultDtoList[0].ToNode<OauthGrant>();

@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private static readonly string QueryGetDomain =
 			"g.idx(_P0).get('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".filter{it.Domain.toLowerCase()=='{{RedirUri}}'};";
+				".filter{it.Domain.toLowerCase()=='{{RedirUriLower}}'};";
 
 		private long vAppId;
 		private string vRedirUri;
@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[SetUp]
 		public void SetUp() {
 			vAppId = 123;
-			vRedirDomain = "test.com";
+			vRedirDomain = "TeST.com";
 			vRedirUri = "http://www."+vRedirDomain+"/redir";
 			vUsageMap = new UsageMap();
 
@@ -64,7 +64,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			string expect = QueryGetDomain
 				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{RedirUri}}", vRedirDomain);
+				.Replace("{{RedirUriLower}}", vRedirDomain.ToLower());
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(App).Name);
@@ -82,7 +82,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			vUsageMap.AssertUses(GetDomain.Query.GetOauthDomain+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vRedirDomain, result.Domain, "Incorrect Result.Domain.");
+			Assert.AreEqual(vRedirDomain.ToLower(), result.Domain, "Incorrect Result.Domain.");
 			Assert.AreEqual(vAppId, result.AppId, "Incorrect Result.AppId.");
 		}
 

@@ -50,6 +50,16 @@ namespace Fabric.Api.Oauth.Tasks {
 		public RefreshResult GetRefresh(string pRefreshToken, IApiContext pContext) {
 			return new GetRefresh(pRefreshToken).Go(pContext);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public ScopeResult GetScope(long pAppId, long pUserId, IApiContext pContext) {
+			return new GetScope(pAppId, pUserId).Go(pContext);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public User GetUserAuth(string pUsername, string pPassword, IApiContext pContext) {
+			return new GetUserAuth(pUsername, pPassword).Go(pContext);
+		}
 
 	}
 

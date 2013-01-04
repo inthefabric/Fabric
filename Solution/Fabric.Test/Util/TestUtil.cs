@@ -39,6 +39,7 @@ namespace Fabric.Test.Util {
 			string script = pScripted.Script
 				.Replace(".outE", "\n\t\t.outE")
 				.Replace(".inE", "\n\t\t.inE")
+				.Replace(".back", "\n\t\t.back")
 				.Replace(";", ";\n\t");
 
 			Log.Debug("Query:\n\n\t"+script+p);

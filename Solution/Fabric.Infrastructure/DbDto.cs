@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure.Api.Faults;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Infrastructure {
 	
@@ -81,13 +81,18 @@ namespace Fabric.Infrastructure {
 		/*--------------------------------------------------------------------------------------------*/
 		public T ToNode<T>() where T : INodeWithId, new() {
 			if ( Id == null ) {
-				throw new FabArgumentNullFault("DbDto.Id");
+				throw new FabArgumentNullFault("DbDto.Id was null.");
+			}
+
+			Type resultType = typeof(T);
+
+			if ( resultType.Name != Class ) {
+				throw new Exception("Incorrect conversion from DbDto class '"+
+					Class+"' to type '"+resultType.Name+"'.");
 			}
 			
-			T result = new T();
+			var result = new T();
 			result.Id = (long)Id;
-			
-			Type resultType = typeof(T);
 			
 			foreach ( string key in Data.Keys ) {
 				resultType.GetProperty(key).SetValue(result, Data[key], null);

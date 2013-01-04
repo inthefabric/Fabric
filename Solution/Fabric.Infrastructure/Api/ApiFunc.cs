@@ -7,14 +7,9 @@ using Weaver.Interfaces;
 namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
-	public abstract class ApiFunc<TReturn> : IApiFunc<TReturn> {
+	public abstract class ApiFunc<TReturn> : ApiFunc, IApiFunc<TReturn> {
 
 		public IApiContext Context { get; private set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ApiFunc() {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,18 +26,34 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract TReturn Execute();
 
+	}
+
+	/*================================================================================================*/
+	public class ApiFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected Root NewPathFromRoot() {
+		public static Root NewPathFromRoot() {
 			return WeaverTasks.BeginPath(new Root()).BaseNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T NewPathFromIndex<T>(Expression<Func<T,object>> pFunc, long pId)
-														where T : class, IWeaverItemIndexable, new() {
+		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
+			return WeaverTasks.BeginPath(typeof(T).Name, pNodeWithId.GetTypeIdProp<T>(),
+				pNodeWithId.GetTypeId()).BaseNode;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TODO: deprecate NewPathFromIndex with Func<T,object>
+		public static T NewPathFromIndex<T>(Expression<Func<T, object>> pFunc, long pId)
+																		where T : class, INode, new() {
 			return WeaverTasks.BeginPath(typeof(T).Name, pFunc, pId).BaseNode;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IWeaverQuery NewNodeQuery<T>(T pNodeWithId) where T : class, INode, new() {
+			return NewPathFromIndex(pNodeWithId).End();
 		}
 
 	}

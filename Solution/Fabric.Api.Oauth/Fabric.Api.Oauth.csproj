@@ -30,16 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IOauthGrantCore.cs" />
     <Compile Include="Results\AccessResult.cs" />
     <Compile Include="OauthException.cs" />
-    <None Include="OauthGrant_Core.cs" />
-    <None Include="OauthGrant_LoginAction.cs" />
+    <Compile Include="OauthGrantCore.cs" />
+    <Compile Include="OauthGrantLoginAction.cs" />
     <None Include="OauthGrant_LoginEntry.cs" />
     <None Include="OauthGrant_ScopeAction.cs" />
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\ScopeResult.cs" />
+    <Compile Include="Results\LoginScopeResult.cs" />
     <Compile Include="Results\RefreshResult.cs" />
     <Compile Include="Results\DomainResult.cs" />
+    <Compile Include="Tasks\GetUserAuth.cs" />
     <Compile Include="Tasks\GetDataProv.cs" />
     <Compile Include="Tasks\DoLogout.cs" />
     <Compile Include="Tasks\GetAccessToken.cs" />
@@ -49,7 +53,7 @@
     <None Include="Tasks\AddMemberEnsure.cs" />
     <Compile Include="Tasks\GetRefresh.cs" />
     <None Include="Tasks\AddScope.cs" />
-    <None Include="Tasks\GetScope.cs" />
+    <Compile Include="Tasks\GetScope.cs" />
     <Compile Include="Tasks\OauthTasks.cs" />
     <Compile Include="Tasks\IOauthTasks.cs" />
     <Compile Include="OauthAccessBase.cs" />

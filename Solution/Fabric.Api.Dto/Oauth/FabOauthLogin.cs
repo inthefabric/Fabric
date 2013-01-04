@@ -17,20 +17,29 @@ namespace Fabric.Api.Dto.Oauth {
 		[DtoProp("error_description")]
 		public string ErrorDesc { get; set; }
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		[DtoProp(true)]
 		public bool ShowLoginPage { get; set; }
 
-		/*--------------------------------------------------------------------------------------------* /
-		public uint AppId { get; set; }
+		[DtoProp(true)]
+		public long AppId { get; set; }
+
+		[DtoProp(true)]
 		public string AppName { get; set; }
-		public uint LoggedUserId { get; set; }
+
+		[DtoProp(true)]
+		public long LoggedUserId { get; set; }
+
+		[DtoProp(true)]
 		public string LoggedUserName { get; set; }
+
+		[DtoProp(true)]
 		public string LoginErrorText { get; set; }
-		
-		/*--------------------------------------------------------------------------------------------* /
-		public FabOauthLoginScope Scope { get; set; }
+
+		[DtoProp(true)]
+		public string ScopeRedirect { get; set; }
+
+		[DtoProp(true)]
+		public string ScopeCode { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,23 +47,5 @@ namespace Fabric.Api.Dto.Oauth {
 		public void Fill(IDbDto pDbDto) {}
 
 	}
-
-
-	/*================================================================================================* /
-	public class FabOauthLoginScope {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public string Redirect { get; set; }
-		public string Code { get; set; }
-
-	}
-
-
-	/*================================================================================================* /
-	public class FabOauthLoginError {
-
-	}*/
 
 }

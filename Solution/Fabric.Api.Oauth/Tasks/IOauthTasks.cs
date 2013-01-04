@@ -20,6 +20,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		DomainResult GetDomain(long pAppId, string pRedirectUri, IApiContext pContext);
 		GrantResult GetGrant(string pCode, IApiContext pContext);
 		RefreshResult GetRefresh(string pRefreshToken, IApiContext pContext);
+		ScopeResult GetScope(long pAppId, long pUserId, IApiContext pContext);
+		User GetUserAuth(string pUsername, string pPassword, IApiContext pContext);
 
 	}
 
