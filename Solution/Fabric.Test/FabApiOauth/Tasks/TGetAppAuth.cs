@@ -13,8 +13,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetAppAuth{
 
-		private const string QueryGetApp =
-			"g.idx(_P0).get('AppId',{{AppId}}L)[0]"+
+		private readonly static string QueryGetApp =
+			"g.idx(_P0).get('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 				".has('Secret',Tokens.T.eq,_P1);";
 
 		private long vAppId;

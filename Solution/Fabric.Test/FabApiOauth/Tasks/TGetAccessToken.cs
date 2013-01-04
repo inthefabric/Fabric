@@ -1,14 +1,14 @@
-﻿using Moq;
-using Fabric.Infrastructure.Api;
+﻿using System;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
-using NUnit.Framework;
-using Weaver.Interfaces;
 using Fabric.Domain;
 using Fabric.Infrastructure;
-using System;
-using Fabric.Test.Util;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Util;
+using Moq;
+using NUnit.Framework;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
@@ -16,13 +16,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetAccessToken {
 
-		private static string[] vQueries = new [] {
-			//GetAccess
+		private readonly static string QueryGetAccess = 
 			"g.v(0)"+
-			".outE('RootContainsOauthAccess').inV"+
+			".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
 				".has('Token',Tokens.T.eq,_P0)"+
-				".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L);"
-		};
+				".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L);";
 
 		private string vToken;
 		private DateTime vUtcNow;
@@ -66,7 +64,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private OauthAccess GetAccess(IWeaverQuery pQuery) {
 			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetAccessToken.Query.GetAccess+"");
-			string expect = vQueries[(int)GetAccessToken.Query.GetAccess]
+			string expect = QueryGetAccess
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");

@@ -15,50 +15,50 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddAccess {
 
-		private const string QueryClearTokens =
+		private readonly static string QueryClearTokens =
 			"g.v(0)"+
-			".outE('RootContainsOauthAccess').inV"+
+			".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
 				".has('Token',Tokens.T.neq,null)"+
 				".as('step4')" +
-			".outE('OauthAccessUsesApp')[0].inV[0]" +
-				".has('AppId',Tokens.T.eq,{{AppId}}L)" +
+			".outE('"+typeof(OauthAccessUsesApp).Name+"')[0].inV[0]" +
+				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)" +
 			".back('step4')" +
-			".outE('OauthAccessUsesUser')[0].inV[0]" +
-				".has('UserId',Tokens.T.eq,{{UserId}})" +
+			".outE('"+typeof(OauthAccessUsesUser).Name+"')[0].inV[0]" +
+				".has('"+typeof(User).Name+"Id',Tokens.T.eq,{{UserId}})" +
 			".back('step4')" +
 				".each{it.Token=null};";
 
-		private const string QueryAddAccessTx =
+		private readonly static string QueryAddAccessTx =
 			"g.startTransaction();"+
 			"_V0=g.v(0);"+
 			"_V1=g.addVertex(["+
-				"OauthAccessId:{{OauthAccessId}}L,"+
+				typeof(OauthAccess).Name+"Id:{{OauthAccessId}}L,"+
 				"Token:_TP0,"+
 				"Refresh:_TP1,"+
 				"Expires:{{UtcExpireTicks}}L,"+
 				"IsClientOnly:false"+
 			"]);"+
-			"g.idx(_TP2).put(_TP3,_V1.OauthAccessId,_V1);"+
+			"g.idx(_TP2).put(_TP3,_V1."+typeof(OauthAccess).Name+"Id,_V1);"+
 			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.idx(_TP5).get('AppId',{{AppId}}L)[0];"+
+			"_V2=g.idx(_TP5).get('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
 			"g.addEdge(_V1,_V2,_TP6);"+
-			"_V3=g.idx(_TP7).get('UserId',{{UserId}})[0];"+
+			"_V3=g.idx(_TP7).get('"+typeof(User).Name+"Id',{{UserId}})[0];"+
 			"g.addEdge(_V1,_V3,_TP8);"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
 
-		private const string QueryAddAccessTxClientOnly =
+		private readonly static string QueryAddAccessTxClientOnly =
 			"g.startTransaction();"+
 			"_V0=g.v(0);"+
 			"_V1=g.addVertex(["+
-				"OauthAccessId:{{OauthAccessId}}L,"+
+				typeof(OauthAccess).Name+"Id:{{OauthAccessId}}L,"+
 				"Token:_TP0,"+
 				"Refresh:_TP1,"+
 				"Expires:{{UtcExpireTicks}}L,"+
 				"IsClientOnly:true"+
 			"]);"+
-			"g.idx(_TP2).put(_TP3,_V1.OauthAccessId,_V1);"+
+			"g.idx(_TP2).put(_TP3,_V1."+typeof(OauthAccess).Name+"Id,_V1);"+
 			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.idx(_TP5).get('AppId',{{AppId}}L)[0];"+
+			"_V2=g.idx(_TP5).get('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
 			"g.addEdge(_V1,_V2,_TP6);"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
 

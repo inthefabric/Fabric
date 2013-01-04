@@ -3,16 +3,15 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Weaver;
-using Weaver.Functions;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetDomain : ApiFunc<DomainResult> { //TEST: GetDomain
+	public class GetDomain : ApiFunc<DomainResult> {
 
 		public enum Query {
-			GetDomain
+			GetOauthDomain
 		}
 		
 		private readonly long vAppId;
@@ -37,7 +36,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				throw new FabArgumentNullFault("RedirectUri");
 			}
 
-			if ( vRedirectUri.IndexOf('\'') != 0 ) {
+			if ( vRedirectUri.IndexOf('\'') != -1 ) {
 				throw new FabArgumentFault("RedirectUri");
 			}
 			
@@ -64,12 +63,11 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			IWeaverQuery q = 
 				NewPathFromIndex<App>(x => x.AppId, vAppId)
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep("filter{it."+domainProp+".toLowerCase()=='"+vRedirectDomain+"'}")
 				.End();
 
-			OauthDomain od = Context.DbSingle<OauthDomain>(Query.GetDomain+"", q);
+			OauthDomain od = Context.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);
 			
 			if ( od == null ) {
 				return null;
@@ -82,4 +80,5 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 
 	}
+
 }

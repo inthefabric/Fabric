@@ -1,11 +1,7 @@
-﻿using NUnit.Framework;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
-using System;
-using System.Linq.Expressions;
-using Fabric.Domain;
-using Moq;
 using Fabric.Infrastructure;
+using NUnit.Framework;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 

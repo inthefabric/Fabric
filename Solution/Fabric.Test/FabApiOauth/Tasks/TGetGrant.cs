@@ -17,20 +17,20 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetGrant {
 
-		private const string QueryGetAndUpdateTx =
+		private readonly static string QueryGetAndUpdateTx =
 			"g.startTransaction();"+
 			"_V0=[];"+
 			"g.v(0)"+
-				".outE('RootContainsOauthGrant').inV"+
+				".outE('"+typeof(RootContainsOauthGrant).Name+"').inV"+
 					".has('Code',Tokens.T.eq,_TP0)"+
 					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
 					".aggregate(_V0)"+
 					".each{it.Code=null}"+
 					".as('step7')"+
-				".outE('OauthGrantUsesApp')[0].inV[0]"+
+				".outE('"+typeof(OauthGrantUsesApp).Name+"')[0].inV[0]"+
 					".aggregate(_V0)"+
 				".back('step7')"+
-				".outE('OauthGrantUsesUser')[0].inV[0]"+
+				".outE('"+typeof(OauthGrantUsesUser).Name+"')[0].inV[0]"+
 					".aggregate(_V0)"+
 					".iterate();"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+
