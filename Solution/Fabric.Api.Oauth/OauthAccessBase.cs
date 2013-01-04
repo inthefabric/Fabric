@@ -148,7 +148,7 @@ namespace Fabric.Api.Oauth {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected OauthException GetFault(AccessErrors pErr, AccessErrorDescs pDesc) {
-			throw new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
+			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 
 	}

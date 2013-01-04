@@ -7,8 +7,8 @@ namespace Fabric.Api.Oauth {
 	/*================================================================================================*/
 	public class OauthAccessClientCred : OauthAccessBase {
 
-		private readonly string vClientIdStr;
-		private long vClientId;
+		protected readonly string vClientIdStr;
+		protected long vClientId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,13 +41,17 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess PerformAccessRequestActions() {
+			RedirectOnBadDomain();
+			return SendAccessCode(vClientId, null, true);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void RedirectOnBadDomain() {
 			DomainResult dom = vTasks.GetDomain(vClientId, vRedirectUri, Context);
 
 			if ( dom == null ) {
 				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
 			}
-
-			return SendAccessCode(vClientId, null, true);
 		}
 
 	}

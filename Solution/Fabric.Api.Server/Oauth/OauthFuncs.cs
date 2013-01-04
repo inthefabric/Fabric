@@ -19,7 +19,7 @@ namespace Fabric.Api.Server.Oauth {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessAuthCode OauthAccessAuthCode {
+		public OauthAccessAuthCode AccessAuthCode {
 			get {
 				return new OauthAccessAuthCode(
 					"authorization_code",
@@ -32,13 +32,27 @@ namespace Fabric.Api.Server.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessClientCred OauthAccessClientCred {
+		public OauthAccessClientCred AccessClientCred {
 			get {
 				return new OauthAccessClientCred(
 					"client_credentials",
 					GetParamString(FuncOauthAtccStep.RedirectUriName),
 					GetParamString(FuncOauthAtccStep.ClientSecretName),
 					GetParamString(FuncOauthAtccStep.ClientIdName),
+					new OauthTasks()
+				);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public OauthAccessClientDataProv AccessClientDataProv {
+			get {
+				return new OauthAccessClientDataProv(
+					"client_dataprov",
+					GetParamString(FuncOauthAtccStep.RedirectUriName),
+					GetParamString(FuncOauthAtccStep.ClientSecretName),
+					GetParamString(FuncOauthAtccStep.ClientIdName),
+					GetParamString(FuncOauthAtcdStep.DataProvUserIdName),
 					new OauthTasks()
 				);
 			}

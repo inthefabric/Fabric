@@ -16,6 +16,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		FabOauthAccess DoLogout(FabOauthAccess pAccess, IApiContext pContext);
 		FabOauthAccess GetAccessToken(string pToken, IApiContext pContext);
 		App GetAppAuth(long pAppId, string pAppSecret, IApiContext pContext);
+		User GetDataProv(long pAppId, long pDataProvUserId, IApiContext pContext);
 		DomainResult GetDomain(long pAppId, string pRedirectUri, IApiContext pContext);
 		GrantResult GetGrant(string pCode, IApiContext pContext);
 

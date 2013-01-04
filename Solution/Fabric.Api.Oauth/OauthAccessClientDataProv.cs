@@ -1,20 +1,23 @@
-﻿namespace Fabric.Api.Oauth {
+﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
+using Fabric.Domain;
+
+namespace Fabric.Api.Oauth {
 
 	/*================================================================================================*/
-	public class OauthAccess_ClientDataProv : OauthAccess_ClientCred {
+	public class OauthAccessClientDataProv : OauthAccessClientCred {
 
-		protected string vDataProvIdStr;
-		protected int vDataProvId;
+		private readonly string vDataProvIdStr;
+		private int vDataProvId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccess_ClientDataProv(string pGrantType, string pRedirectUri,
-										string pClientSecret, string pClientId, string pDataProvId)
-											: base(pGrantType, pRedirectUri, pClientSecret, pClientId) {
+		public OauthAccessClientDataProv(string pGrantType, string pRedirectUri, string pClientSecret,
+									string pClientId, string pDataProvId, IOauthTasks pTasks) :
+									base(pGrantType, pRedirectUri, pClientSecret, pClientId, pTasks) {
 			vDataProvIdStr = pDataProvId;
 		}
-
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool VerifyGrantType() {
@@ -22,38 +25,27 @@
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool RedirectOnParamErrors() {
-			if ( base.RedirectOnParamErrors() ) {
-				return true;
-			}
+		protected override void RedirectOnParamErrors() {
+			base.RedirectOnParamErrors();
 
 			bool parsed = int.TryParse(vDataProvIdStr, out vDataProvId);
 
 			if ( !parsed || vDataProvId <= 0 ) {
-				ThrowFault(AccessErrors.invalid_client, AccessErrorDescs.NoDataProvId);
-				return true;
+				throw GetFault(AccessErrors.invalid_client, AccessErrorDescs.NoDataProvId);
 			}
-
-			return false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void PerformAccessRequestActions() {
-			if ( RedirectOnBadDomain() ) { return; }
+		protected override FabOauthAccess PerformAccessRequestActions() {
+			RedirectOnBadDomain();
 
-			Usr dp = Context.CurrentSession.QueryOver<Usr>()
-			   .Where(p => p.Id == vDataProvId)
-			   .JoinQueryOver<Member>(p => p.Members, JoinType.InnerJoin)
-			   .Where(m => m.App.Id == vClientId && m.MemberType.Id == (int)MemberTypeIds.DataProvider)
-			   .Take(1)
-			   .SingleOrDefault();
-
+			User dp = vTasks.GetDataProv(vClientId, vDataProvId, Context);
+			
 			if ( dp == null ) {
-				ThrowFault(AccessErrors.unauthorized_client, AccessErrorDescs.BadDataProvId);
-				return;
+				throw GetFault(AccessErrors.unauthorized_client, AccessErrorDescs.BadDataProvId);
 			}
 
-			SendAccessCode(vClientId, dp.Id);
+			return SendAccessCode(vClientId, dp.UserId);
 		}
 
 	}

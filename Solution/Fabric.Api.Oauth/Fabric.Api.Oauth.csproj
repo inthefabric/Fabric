@@ -39,6 +39,7 @@
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\DomainResult.cs" />
+    <Compile Include="Tasks\GetDataProv.cs" />
     <Compile Include="Tasks\DoLogout.cs" />
     <Compile Include="Tasks\GetAccessToken.cs" />
     <Compile Include="Tasks\AddAccess.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="Tasks\GetGrant.cs" />
     <Compile Include="OauthAccessAuthCode.cs" />
     <Compile Include="OauthAccessClientCred.cs" />
-    <None Include="OauthAccessClientDataProv.cs" />
+    <Compile Include="OauthAccessClientDataProv.cs" />
     <None Include="OauthAccessRefToken.cs" />
   </ItemGroup>
   <ItemGroup>

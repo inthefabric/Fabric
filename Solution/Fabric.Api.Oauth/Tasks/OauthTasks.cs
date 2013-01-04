@@ -32,6 +32,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public User GetDataProv(long pAppId, long pDataProvUserId, IApiContext pContext) {
+			return new GetDataProv(pAppId, pDataProvUserId).Go(pContext);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public DomainResult GetDomain(long pAppId, string pRedirectUri, IApiContext pContext) {
 			return new GetDomain(pAppId, pRedirectUri).Go(pContext);
 		}

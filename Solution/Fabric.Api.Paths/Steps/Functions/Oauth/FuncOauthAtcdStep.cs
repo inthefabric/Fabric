@@ -5,18 +5,11 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
 	[Func("AccessTokenClientDataProv", typeof(FabOauthAccess), ResxKey="OauthAtcd")]
-	public class FuncOauthAtcdStep : FuncOauthFinal { //TEST: FuncOauthAtcdStep
+	public class FuncOauthAtcdStep : FuncOauthAtccStep { //TEST: FuncOauthAtcdStep
 
-		[FuncParam("redirect_uri", FuncResxKey="OauthAt")]
-		public string RedirectUri { get; private set; }
+		public const string DataProvUserIdName = "data_prov_userid";
 
-		[FuncParam("client_secret", FuncResxKey="OauthAt")]
-		public string ClientSecret { get; private set; }
-
-		[FuncParam("client_id", FuncResxKey="OauthAt")]
-		public string ClientId { get; private set; }
-
-		[FuncParam("data_prov_userid", FuncResxKey="OauthAt")]
+		[FuncParam(DataProvUserIdName, FuncResxKey="OauthAt")]
 		public string DataProvUserId { get; private set; }
 
 
@@ -27,7 +20,7 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
+		public new static bool AllowedForStep(Type pDtoType) {
 			return (pDtoType == typeof(FabOauth));
 		}
 
