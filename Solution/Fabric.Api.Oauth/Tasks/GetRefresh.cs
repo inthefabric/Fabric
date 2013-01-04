@@ -1,54 +1,78 @@
-﻿using Fabric.Infrastructure.Api;
+﻿using Fabric.Api.Oauth.Results;
+using Fabric.Domain;
+using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
+using Weaver;
+using Weaver.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class GetRefresh : ApiFunc<OauthRefreshResult> {
+	public class GetRefresh : ApiFunc<RefreshResult> {
+
+		public enum Query {
+			GetAppUserTx
+		}
 		
 		private readonly string vRefreshToken;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public GetRefresh(string pRefreshToken) : base(AuthType.None) {
+		public GetRefresh(string pRefreshToken) {
 			vRefreshToken = pRefreshToken;
-			AddTransactionFunc(DoRefreshGet);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
-			if ( vRefreshToken == null ) { throw new FabArgumentNullFault("RefreshToken"); }
+		protected override void ValidateParams() {
+			if ( vRefreshToken == null ) {
+				throw new FabArgumentNullFault("RefreshToken");
+			}
 		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void DoRefreshGet(ISession pSession) {
-			OauthAccess oa = pSession.QueryOver<OauthAccess>()
-				.Where(a => a.Refresh == vRefreshToken && a.IsClientOnly == false)
-				.Take(1)
-				.SingleOrDefault();
+		protected override RefreshResult Execute() {
+			var tx = new WeaverTransaction();
+			IWeaverFuncAs<OauthAccess> accessAlias;
+			IWeaverVarAlias listVar;
+			
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out listVar)
+			);
 
-			if ( oa == null ) { return; }
+			tx.AddQuery(
+				NewPathFromRoot()
+				.ContainsOauthAccessList.ToOauthAccess
+					.Has(x => x.Refresh, WeaverFuncHasOp.EqualTo, vRefreshToken)
+					.Has(x => x.IsClientOnly, WeaverFuncHasOp.EqualTo, false)
+					.As(out accessAlias)
+				.UsesApp.ToApp
+					.Aggregate(listVar)
+				.Back(accessAlias)
+				.UsesUser.ToUser
+					.Aggregate(listVar)
+					.Iterate()
+				.End()
+			);
 
-			if ( oa.Token.Length < 32 ) {
-				//FUTURE: could record the use of an expired refresh token as a potential abuse
-				return;
+			tx.Finish(WeaverTransaction.ConclusionType.Success, listVar);
+
+			////
+			
+			IApiDataAccess data = Context.DbData(Query.GetAppUserTx+"", tx);
+
+			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
+				return null;
 			}
 
-			OauthRefreshResult res = new OauthRefreshResult();
-			res.appId = oa.App.Id;
-			res.userId = oa.Usr.Id;
-			SetResult(res);
+			var rr = new RefreshResult();
+			rr.AppId = data.ResultDtoList[0].ToNode<App>().AppId;
+			rr.UserId = data.ResultDtoList[1].ToNode<User>().UserId;
+			return rr;
 		}
-
-	}
-	
-	/*================================================================================================*/
-	public class OauthRefreshResult {
-
-		public uint appId;
-		public uint userId;
 
 	}
 	

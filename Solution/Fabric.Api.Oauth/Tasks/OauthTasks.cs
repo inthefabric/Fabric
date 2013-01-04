@@ -45,6 +45,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		public GrantResult GetGrant(string pCode, IApiContext pContext) {
 			return new GetGrant(pCode).Go(pContext);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public RefreshResult GetRefresh(string pRefreshToken, IApiContext pContext) {
+			return new GetRefresh(pRefreshToken).Go(pContext);
+		}
 
 	}
 

@@ -17,10 +17,12 @@ namespace Fabric.Api.Server {
 			const string aoAt = ao+"AccessToken";
 
 			Get[aoAt] = (p => "Fabric OAuth: AccessToken");
+
 			Get[aoAt+"AuthCode"] = (p => NewFunc(Context).AccessAuthCode.ToResponse());
-			Get[aoAt+"Refresh"] = (p => "Fabric OAuth: Refresh");
+			Get[aoAt+"Refresh"] = (p => NewFunc(Context).AccessRefToken.ToResponse());
 			Get[aoAt+"ClientCredentials"] = (p => NewFunc(Context).AccessClientCred.ToResponse());
 			Get[aoAt+"ClientDataProv"] = (p => NewFunc(Context).AccessClientDataProv.ToResponse());
+
 			Get[ao+"Login"] = (p => "Fabric OAuth: Login");
 			Get[ao+"Logout"] = (p => NewFunc(Context).Logout.ToResponse());
 		}

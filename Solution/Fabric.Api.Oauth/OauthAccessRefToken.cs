@@ -1,16 +1,20 @@
-﻿namespace Fabric.Api.Oauth {
+﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Results;
+using Fabric.Api.Oauth.Tasks;
 
+namespace Fabric.Api.Oauth {
 
 	/*================================================================================================*/
-	public class OauthAccess_RefToken : OauthAccess {
+	public class OauthAccessRefToken : OauthAccessBase {
 
 		private readonly string vRefreshToken;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccess_RefToken(string pGrantType, string pRedirectUri, string pClientSecret,
-								string pRefreshToken) : base(pGrantType, pRedirectUri, pClientSecret) {
+		public OauthAccessRefToken(string pGrantType, string pRedirectUri, string pClientSecret,
+												string pRefreshToken, IOauthTasks pTasks) :
+												base(pGrantType, pRedirectUri, pClientSecret, pTasks) {
 			vRefreshToken = pRefreshToken;
 		}
 
@@ -20,58 +24,25 @@
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void PerformAccessRequestActions() {
-			SendRefreshedAccessToken();
-		}
+		protected override void RedirectOnParamErrors() {
+			base.RedirectOnParamErrors();
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override bool RedirectOnParamErrors() {
-			//do not call base.redirectOnParamErrors()
-
-			if ( !VerifyGrantType() ) {
-				ThrowFault(AccessErrors.unsupported_grant_type, AccessErrorDescs.BadGrantType);
-				return true;
-			}
-
-			if ( vClientSecret == null || vClientSecret.Length <= 0 ) {
-				ThrowFault(AccessErrors.invalid_request, AccessErrorDescs.NoClientSecret);
-				return true;
-			}
+			//NOTE: Original implementation purposefully skipped RequestUri validation. Why?
 
 			if ( vRefreshToken == null || vRefreshToken.Length <= 0 ) {
-				ThrowFault(AccessErrors.invalid_request, AccessErrorDescs.NoRefresh);
-				return true;
+				throw GetFault(AccessErrors.invalid_request, AccessErrorDescs.NoRefresh);
 			}
-
-			return false;
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void SendRefreshedAccessToken() {
-			OauthRefreshResult orr = new GetRefresh(vRefreshToken).Go(Context);
+		protected override FabOauthAccess PerformAccessRequestActions() {
+			RefreshResult orr = vTasks.GetRefresh(vRefreshToken, Context);
 
 			if ( orr == null ) {
-				ThrowFault(AccessErrors.invalid_request, AccessErrorDescs.BadRefresh);
-				return;
+				throw GetFault(AccessErrors.invalid_request, AccessErrorDescs.BadRefresh);
 			}
 
-			VerifyAppWithSecret(orr.appId);
-
-			var ak = new FabAppKey(orr.appId);
-			var pk = new FabUserKey(orr.userId);
-			OAuthAccessResult oar = new AddAccess(ak, pk, 3600, false).Go(Context);
-
-			var oa = new FabOauthAccess();
-			oa.access_token = oar.Token;
-			oa.token_type = "bearer";
-			oa.expires_in = oar.ExpireSec+"";
-			oa.refresh_token = oar.Refresh;
-
-			SetResult(oa);
+			return SendAccessCode(orr.AppId, orr.UserId);
 		}
 
 	}

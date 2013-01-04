@@ -105,7 +105,8 @@ namespace Fabric.Api.Oauth {
 				throw;
 			}
 			catch ( Exception e ) {
-				throw GetFaultOnException(e);
+				Log.Error("OAuthAccessBase", e);
+				throw GetFault(AccessErrors.invalid_request, AccessErrorDescs.Unexpected);
 			}
 		}
 
@@ -128,7 +129,7 @@ namespace Fabric.Api.Oauth {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected long VerifyAppWithSecret(long pAppId) {
+		private long VerifyAppWithSecret(long pAppId) {
 			App app = vTasks.GetAppAuth(pAppId, vClientSecret, Context);
 
 			if ( app == null ) {
@@ -140,12 +141,6 @@ namespace Fabric.Api.Oauth {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected OauthException GetFaultOnException(Exception pEx) {
-			Log.Error("OAuthAccessBase", pEx);
-			return GetFault(AccessErrors.invalid_request, AccessErrorDescs.Unexpected);
-		}
-		
 		/*--------------------------------------------------------------------------------------------*/
 		protected OauthException GetFault(AccessErrors pErr, AccessErrorDescs pDesc) {
 			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);

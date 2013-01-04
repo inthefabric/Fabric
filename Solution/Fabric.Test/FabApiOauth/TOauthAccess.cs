@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Test.Util;
 using Moq;
@@ -43,6 +44,7 @@ namespace Fabric.Test.FabApiOauth {
 
 			vAccessResult = new FabOauthAccess();
 
+			Log.Debug("MOCK: "+vAppId+", "+vClientSecret);
 			vMockTasks
 				.Setup(x => x.GetAppAuth(vAppId, vClientSecret, vMockCtx.Object))
 				.Returns(vGetAppAuthResult);

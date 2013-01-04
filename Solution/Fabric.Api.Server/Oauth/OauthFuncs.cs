@@ -19,7 +19,7 @@ namespace Fabric.Api.Server.Oauth {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessAuthCode AccessAuthCode {
+		public virtual OauthAccessAuthCode AccessAuthCode {
 			get {
 				return new OauthAccessAuthCode(
 					"authorization_code",
@@ -32,7 +32,7 @@ namespace Fabric.Api.Server.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessClientCred AccessClientCred {
+		public virtual OauthAccessClientCred AccessClientCred {
 			get {
 				return new OauthAccessClientCred(
 					"client_credentials",
@@ -45,7 +45,7 @@ namespace Fabric.Api.Server.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessClientDataProv AccessClientDataProv {
+		public virtual OauthAccessClientDataProv AccessClientDataProv {
 			get {
 				return new OauthAccessClientDataProv(
 					"client_dataprov",
@@ -58,10 +58,23 @@ namespace Fabric.Api.Server.Oauth {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual OauthAccessRefToken AccessRefToken {
+			get {
+				return new OauthAccessRefToken(
+					"refresh_token",
+					GetParamString(FuncOauthAtrStep.RedirectUriName),
+					GetParamString(FuncOauthAtrStep.ClientSecretName),
+					GetParamString(FuncOauthAtrStep.RefreshTokenName),
+					new OauthTasks()
+				);
+			}
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLogout Logout {
+		public virtual OauthLogout Logout {
 			get {
 				return new OauthLogout(
 					GetParamString(FuncOauthLogoutStep.AccessTokenName),

@@ -1,11 +1,10 @@
 ﻿namespace Fabric.Api.Oauth.Results {
 	
 	/*================================================================================================*/
-	public class AccessResult {
+	public class RefreshResult {
 
-		public string Token { get; set; }
-		public string Refresh { get; set; }
-		public int ExpireSec { get; set; }
+		public long AppId { get; set; }
+		public long UserId { get; set; }
 
 	}
 

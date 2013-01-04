@@ -3,8 +3,8 @@
 	/*================================================================================================*/
 	public class DomainResult {
 
-		public long AppId;
-		public string Domain;
+		public long AppId { get; set; }
+		public string Domain { get; set; }
 
 	}
 

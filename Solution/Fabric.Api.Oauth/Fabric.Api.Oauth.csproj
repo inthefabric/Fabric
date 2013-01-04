@@ -38,6 +38,7 @@
     <None Include="OauthGrant_ScopeAction.cs" />
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\RefreshResult.cs" />
     <Compile Include="Results\DomainResult.cs" />
     <Compile Include="Tasks\GetDataProv.cs" />
     <Compile Include="Tasks\DoLogout.cs" />
@@ -46,7 +47,7 @@
     <Compile Include="Tasks\GetDomain.cs" />
     <None Include="Tasks\AddGrant.cs" />
     <None Include="Tasks\AddMemberEnsure.cs" />
-    <None Include="Tasks\GetRefresh.cs" />
+    <Compile Include="Tasks\GetRefresh.cs" />
     <None Include="Tasks\AddScope.cs" />
     <None Include="Tasks\GetScope.cs" />
     <Compile Include="Tasks\OauthTasks.cs" />
@@ -58,7 +59,7 @@
     <Compile Include="OauthAccessAuthCode.cs" />
     <Compile Include="OauthAccessClientCred.cs" />
     <Compile Include="OauthAccessClientDataProv.cs" />
-    <None Include="OauthAccessRefToken.cs" />
+    <Compile Include="OauthAccessRefToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">

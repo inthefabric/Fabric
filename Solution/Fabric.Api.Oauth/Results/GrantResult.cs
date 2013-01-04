@@ -3,11 +3,11 @@
 	/*================================================================================================*/
 	public class GrantResult {
 
-		public long GrantId;
-		public long AppId;
-		public long? UserId;
-		public string Code;
-		public string RedirectUri;
+		public long GrantId { get; set; }
+		public long AppId { get; set; }
+		public long? UserId { get; set; }
+		public string Code { get; set; }
+		public string RedirectUri { get; set; }
 
 	}
 

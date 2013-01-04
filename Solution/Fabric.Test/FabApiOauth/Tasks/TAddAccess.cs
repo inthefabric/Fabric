@@ -26,7 +26,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('"+typeof(OauthAccessUsesUser).Name+"')[0].inV[0]" +
 				".has('"+typeof(User).Name+"Id',Tokens.T.eq,{{UserId}})" +
 			".back('step4')" +
-				".each{it.Token=null};";
+				".each{it.Token=null;it.Refresh=null};";
 
 		private readonly static string QueryAddAccessTx =
 			"g.startTransaction();"+

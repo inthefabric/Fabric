@@ -67,7 +67,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				
 			IApiDataAccess data = Context.DbData(Query.GetAndUpdateTx+"", tx);
 			
-			if ( data.ResultDtoList == null ) {
+			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
 				return null;
 			}
 			

@@ -60,8 +60,10 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Clear out the Token value of old records instead of removing the row. The rows will
 			//provide good historical data about logins and app usage.
 
+			var oa = new OauthAccess();
 			var updates = new WeaverUpdates<OauthAccess>();
-			updates.AddUpdate(new OauthAccess(), x => x.Token); //set token to null
+			updates.AddUpdate(oa, x => x.Token); //set token to null
+			updates.AddUpdate(oa, x => x.Refresh); //set refresh to null
 
 			IWeaverFuncAs<OauthAccess> oaAlias;
 
