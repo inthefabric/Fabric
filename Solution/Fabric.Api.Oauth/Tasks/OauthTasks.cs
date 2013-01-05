@@ -17,6 +17,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public string AddGrant(long pAppId, long pUserId, string pRedirectUri, IApiContext pContext) {
+			return new AddGrant(pAppId, pUserId, pRedirectUri).Go(pContext);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public bool AddMemberEnsure(long pAppId, long pUserId, IApiContext pContext) {
 			return new AddMemberEnsure(pAppId, pUserId).Go(pContext);
 		}

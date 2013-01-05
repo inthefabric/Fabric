@@ -75,6 +75,7 @@
     <Compile Include="FabApiOauth\Tasks\TDoLogout.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetGrant.cs" />
     <Compile Include="FabApiOauth\Tasks\TAddMemberEnsure.cs" />
+    <Compile Include="FabApiOauth\Tasks\TAddGrant.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">

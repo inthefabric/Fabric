@@ -139,7 +139,7 @@ namespace Fabric.Api.Oauth {
 				//TODO: pTasks.AddScope(AppId, UserId, true, pContext);
 			}
 
-			string code = null; //TODO: pTasks.AddGrant(AppId, UserId, RedirectUri, pContext);
+			string code = pTasks.AddGrant(AppId, (long)UserId, RedirectUri, pContext);
 
 			var s = new LoginScopeResult();
 			s.Redirect = RedirectUri;

@@ -1,55 +1,96 @@
 ﻿using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
+using Weaver.Interfaces;
+using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
+using Weaver;
+using Weaver.Functions;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddGrant : ApiFunc<string> {
+	public class AddGrant : ApiFunc<string> { //TEST: AddGrant
+	
+		public enum Query {
+			UpdateGrant,
+			AddGrantTx
+		}
 		
-		private readonly FabAppKey vAppKey;
-		private readonly FabUserKey vUserKey;
+		private readonly long vAppId;
+		private readonly long vUserId;
 		private readonly string vRedirectUri;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AddGrant(FabAppKey pAppKey, FabUserKey pUserKey, string pRedirectUri) :
-																				base(AuthType.None) {
-			vAppKey = pAppKey;
-			vUserKey = pUserKey;
+		public AddGrant(long pAppId, long pUserId, string pRedirectUri) {
+			vAppId = pAppId;
+			vUserId = pUserId;
 			vRedirectUri = pRedirectUri;
-			AddTransactionFunc(DoGrantAdd);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
-			if ( vAppKey == null ) { throw new FabArgumentNullFault("AppKey"); }
-			if ( vUserKey == null ) { throw new FabArgumentNullFault("UserKey"); }
-			if ( vRedirectUri == null ) { throw new FabArgumentNullFault("RedirectUri"); }
+		protected override void ValidateParams() {
+			if ( vAppId <= 0 ) {
+				throw new FabArgumentOutOfRangeFault("AppId");
+			}
+			
+			if ( vUserId <= 0 ) {
+				throw new FabArgumentOutOfRangeFault("UserId");
+			}
+			
+			if ( vRedirectUri == null ) {
+				throw new FabArgumentNullFault("RedirectUri");
+			}
 		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void DoGrantAdd(ISession pSession) {
-			OauthGrant og = pSession.QueryOver<OauthGrant>()
-				.Where(g => g.App.Id == vAppKey.Id && g.Usr.Id == vUserKey.Id)
-				.Take(1)
-				.SingleOrDefault();
-
-			if ( og == null ) {
-				og = new OauthGrant();
-				og.App = pSession.Load<App>(vAppKey.Id);
-				og.Usr = pSession.Load<Usr>(vUserKey.Id);
+		protected override string Execute() {
+			IWeaverFuncAs<OauthGrant> ogAlias;
+			
+			var newOg = new OauthGrant();
+			newOg.RedirectUri = vRedirectUri;
+			newOg.Expires = Context.UtcNow.AddMinutes(2).Ticks;
+			newOg.Code = Context.Code32;
+			
+			var updates = new WeaverUpdates<OauthGrant>();
+			updates.AddUpdate(newOg, x => x.RedirectUri);
+			updates.AddUpdate(newOg, x => x.Expires);
+			updates.AddUpdate(newOg, x => x.Code);
+			
+			IWeaverQuery updateOg = 
+				NewPathFromIndex(new User { UserId = vUserId })
+				.InOauthGrantListUses.FromOauthGrant
+					.As(out ogAlias)
+				.UsesApp.ToApp
+					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+				.Back(ogAlias)
+				.UpdateEach(updates)
+				.End();
+			
+			OauthGrant og = Context.DbSingle<OauthGrant>(Query.UpdateGrant+"", updateOg);
+			
+			if ( og != null ) {
+				return og.Code;
 			}
-
-			og.RedirectUri = vRedirectUri;
-			og.Expires = GetDbNow(pSession).AddMinutes(2);
-			og.Code = FabricUtil.Code32();
-			pSession.SaveOrUpdate(og);
-
-			SetResult(og.Code);
+			
+			////
+			
+			var txb = new TxBuilder();
+			newOg.OauthGrantId = Context.GetSharpflakeId<OauthGrant>();
+			
+			var ogBuild = new OauthGrantBuilder(txb, newOg);
+			ogBuild.AddNode();
+			ogBuild.SetUsesApp(vAppId);
+			ogBuild.SetUsesUser(vUserId);
+			
+			Context.DbData(Query.AddGrantTx+"", txb.Finish());
+			return newOg.Code;
 		}
 
 	}
+	
 }
