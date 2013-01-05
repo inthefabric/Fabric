@@ -282,20 +282,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.True(result, "Incorrect result.");
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		[TestCase(null)]
-		[TestCase(0)]
-		public void NotFound(int? pLen) {
-			IList<IDbDto> list = null;
-			if ( pLen == 0 ) { list = new List<IDbDto>(); }
-			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
-
-			RefreshResult result = TestGo();
-
-			vUsageMap.AssertUses(AddMemberEnsure.Query.GetAppUserTx+"", 1);
-			Assert.Null(result, "Result should be null.");
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

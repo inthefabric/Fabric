@@ -64,7 +64,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			string domainProp = WeaverUtil.GetPropertyName<OauthDomain>(x => x.Domain);
 
 			IWeaverQuery q = 
-				NewPathFromIndex<App>(x => x.AppId, vAppId)
+				NewPathFromIndex<App>(new App { AppId = vAppId })
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep("filter{it."+domainProp+".toLowerCase()=='"+vRedirectDomain+"'}")
 				.End();

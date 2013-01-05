@@ -46,34 +46,6 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool Execute() {
-			/*Member mem = pSession.QueryOver<Member>()
-				.Where(g => g.App.Id == vAppId.Id && g.Usr.Id == vUserId.Id)
-				.Take(1)
-				.SingleOrDefault();
-
-			//only SaveOrUpdate if no membership, or if it's none/invite/request
-
-			if ( mem == null ) {
-				mem = new Member();
-				mem.App = pSession.Load<App>(vAppId.Id);
-				mem.Usr = pSession.Load<Usr>(vUserId.Id);
-			}
-			else {
-				switch ( mem.MemberType.Id ) {
-					case (int)MemberTypeIds.None:
-					case (int)MemberTypeIds.Invite:
-					case (int)MemberTypeIds.Request:
-						break;
-
-					default:
-						return false;
-				}
-			}
-			
-			mem.MemberType = pSession.Load<MemberType>((byte)MemberTypeIds.Member);
-			mem.Updated = GetDbNow(pSession);
-			pSession.SaveOrUpdate(mem);*/
-
 			IApiDataAccess getData = GetMemberData();
 
 			if ( getData == null ) {

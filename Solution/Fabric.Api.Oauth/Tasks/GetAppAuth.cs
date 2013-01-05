@@ -41,7 +41,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override App Execute() {
 			IWeaverQuery getApp = 
-				NewPathFromIndex<App>(x => x.AppId, vAppId)
+				NewPathFromIndex<App>(new App { AppId = vAppId })
 					.Has(x => x.Secret, WeaverFuncHasOp.EqualTo, vAppSecret)
 				.End();
 				

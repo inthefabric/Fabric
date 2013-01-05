@@ -51,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverFuncAs<Member> memberAlias;
 
 			IWeaverQuery q = 
-				NewPathFromIndex<User>(x => x.UserId, vDataProvUserId)
+				NewPathFromIndex<User>(new User { UserId = vDataProvUserId})
 					.As(out userAlias)
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)

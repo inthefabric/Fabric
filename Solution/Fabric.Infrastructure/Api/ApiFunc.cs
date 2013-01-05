@@ -43,14 +43,7 @@ namespace Fabric.Infrastructure.Api {
 			return WeaverTasks.BeginPath(typeof(T).Name, pNodeWithId.GetTypeIdProp<T>(),
 				pNodeWithId.GetTypeId()).BaseNode;
 		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		//TODO: deprecate NewPathFromIndex with Func<T,object>
-		public static T NewPathFromIndex<T>(Expression<Func<T, object>> pFunc, long pId)
-																		where T : class, INode, new() {
-			return WeaverTasks.BeginPath(typeof(T).Name, pFunc, pId).BaseNode;
-		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public static IWeaverQuery NewNodeQuery<T>(T pNodeWithId) where T : class, INode, new() {
 			return NewPathFromIndex(pNodeWithId).End();
