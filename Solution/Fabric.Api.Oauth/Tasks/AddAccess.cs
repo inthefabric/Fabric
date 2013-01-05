@@ -97,9 +97,9 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 			
 			var txb = new TxBuilder();
-			ITxBuilderVar<OauthAccess> oaVar;
-			ITxBuilderVar<Root> rootVar;
-			ITxBuilderVar<App> appVar;
+			IWeaverVarAlias<OauthAccess> oaVar;
+			IWeaverVarAlias<Root> rootVar;
+			IWeaverVarAlias<App> appVar;
 
 			txb.AddNode<OauthAccess, RootContainsOauthAccess>(oa, out rootVar, out oaVar);
 
@@ -107,7 +107,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			txb.AddRel<OauthAccessUsesApp>(oaVar, appVar);
 			
 			if ( vUserId != null ) {
-				ITxBuilderVar<User> userVar;
+				IWeaverVarAlias<User> userVar;
 				txb.GetNode(new User { UserId = (long)vUserId }, out userVar);
 				txb.AddRel<OauthAccessUsesUser>(oaVar, userVar);
 			}

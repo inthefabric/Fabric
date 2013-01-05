@@ -81,8 +81,6 @@
     <Compile Include="Api\IApiDataAccess.cs" />
     <Compile Include="Api\IApiDataAccessT.cs" />
     <Compile Include="IDbDto.cs" />
-    <Compile Include="Weaver\ITxBuilderVar.cs" />
-    <Compile Include="Weaver\TxBuilderVar.cs" />
     <Compile Include="Weaver\TxBuilder.cs" />
   </ItemGroup>
   <ItemGroup>

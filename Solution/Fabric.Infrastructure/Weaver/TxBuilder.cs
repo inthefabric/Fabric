@@ -11,14 +11,14 @@ namespace Fabric.Infrastructure.Weaver {
 
 		public IWeaverTransaction Transaction { get; private set; }
 
-		private readonly HashSet<ITxBuilderVar> vVarHash;
+		private readonly HashSet<IWeaverVarAlias> vVarHash;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TxBuilder() {
 			Transaction = new WeaverTransaction();
-			vVarHash = new HashSet<ITxBuilderVar>();
+			vVarHash = new HashSet<IWeaverVarAlias>();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -28,92 +28,68 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyVar(ITxBuilderVar pVar) {
+		private void VerifyVar(IWeaverVarAlias pVar) {
 			if ( !vVarHash.Contains(pVar) ) {
-				throw new Exception("No matching ITxBuilderVar found.");
+				throw new Exception("No matching IWeaverVarAlias found.");
 			}
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetRoot(out ITxBuilderVar<Root> pRootVar) {
-			IWeaverVarAlias root;
-
+		public void GetRoot(out IWeaverVarAlias<Root> pRootVar) {
 			IWeaverQuery q = WeaverTasks.BeginPath(new Root()).BaseNode.End();
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out root);
+			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pRootVar);
 			Transaction.AddQuery(q);
-
-			pRootVar = new TxBuilderVar<Root>(root);
 			vVarHash.Add(pRootVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetNode<T>(T pNodeWithId, out ITxBuilderVar<T> pNodeVar)
+		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
-			IWeaverVarAlias node;
-
 			IWeaverQuery q = WeaverTasks.BeginPath(typeof(T).Name, pNodeWithId.GetTypeIdProp<T>(),
 				pNodeWithId.GetTypeId()).BaseNode.End();
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out node);
+			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
 			Transaction.AddQuery(q);
-
-			pNodeVar = new TxBuilderVar<T>(node);
 			vVarHash.Add(pNodeVar);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T, TRootRel>(T pNode, ITxBuilderVar<Root> pRootVar, 
-				out ITxBuilderVar<T> pNewNodeVar) where T : INode where TRootRel : IWeaverRel, new() {
+		public void AddNode<T, TRootRel>(T pNode, IWeaverVarAlias<Root> pRootVar, 
+				out IWeaverVarAlias<T> pNewNodeVar) where T : INode where TRootRel : IWeaverRel, new() {
 			VerifyVar(pRootVar);
 
-			IWeaverVarAlias newNode;
-
 			IWeaverQuery q = WeaverTasks.AddNode(pNode);
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out newNode);
+			q = WeaverTasks.StoreQueryResultAsVar<T>(Transaction, q, out pNewNodeVar);
 			Transaction.AddQuery(q);
-
-			pNewNodeVar = new TxBuilderVar<T>(newNode);
 			vVarHash.Add(pNewNodeVar);
 
 			////
 			
 			Transaction.AddQuery(
-				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pNode.GetTypeIdProp<T>())
+				WeaverTasks.AddNodeToIndex(typeof(T).Name, pNewNodeVar, pNode.GetTypeIdProp<T>())
 			);
 
 			AddRel<TRootRel>(pRootVar, pNewNodeVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T, TRootRel>(T pNode, out ITxBuilderVar<Root> pRootVar,
-				out ITxBuilderVar<T> pNewNodeVar) where T : INode where TRootRel : IWeaverRel, new() {
+		public void AddNode<T, TRootRel>(T pNode, out IWeaverVarAlias<Root> pRootVar,
+				out IWeaverVarAlias<T> pNewNodeVar) where T : INode where TRootRel : IWeaverRel, new() {
 			GetRoot(out pRootVar);
 			AddNode<T, TRootRel>(pNode, pRootVar, out pNewNodeVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddRel<TRel>(ITxBuilderVar pFromVar, ITxBuilderVar pToVar)
+		public void AddRel<TRel>(IWeaverVarAlias pFromVar, IWeaverVarAlias pToVar)
 																		where TRel : IWeaverRel, new() {
-			var rel = new TRel();
-
 			VerifyVar(pFromVar);
 			VerifyVar(pToVar);
-
-			if ( rel.FromNodeType != pFromVar.VarType ) {
-				throw new Exception("Invalid From VarType: '"+pFromVar.VarType.Name+"', expected "+
-					"'"+rel.FromNodeType.Name+"'.");
-			}
-
-			if ( rel.ToNodeType != pToVar.VarType ) {
-				throw new Exception("Invalid To VarType: '"+pToVar.VarType.Name+"', expected "+
-					"'"+rel.ToNodeType.Name+"'.");
-			}
-
+			
 			Transaction.AddQuery(
-				WeaverTasks.AddRel(pFromVar.Alias, rel, pToVar.Alias)
+				WeaverTasks.AddRel(pFromVar, new TRel(), pToVar)
 			);
 		}
 		
