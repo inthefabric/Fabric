@@ -7,6 +7,7 @@ using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -81,7 +82,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			MemberType mt = getData.ResultDtoList[2].ToNode<MemberType>();
-
+			
 			if ( AcceptableMembershipExists(mt) ) {
 				return false;
 			}
@@ -140,57 +141,51 @@ namespace Fabric.Api.Oauth.Tasks {
 				case (byte)MemberTypeId.None:
 				case (byte)MemberTypeId.Invite:
 				case (byte)MemberTypeId.Request:
-					return true;
+					return false;
 			}
-
-			return false;
+			
+			return true;
 		}
-
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddMember() {
-			var tx = new WeaverTransaction();
-			AddMemberWithTx(tx);
-			tx.Finish(WeaverTransaction.ConclusionType.Success);
-			Context.DbData(Query.AddMemberTx+"", tx);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void AddMemberWithTx(IWeaverTransaction pTx) {
 			var txb = new TxBuilder();
-
+			
 			var newMem = new Member();
 			newMem.MemberId = Context.GetSharpflakeId<Member>();
-
+			
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<App> appVar;
 			IWeaverVarAlias<User> userVar;
-
+			
 			//Add Member node
-
+			
 			txb.AddNode<Member, RootContainsMember>(newMem, out rootVar, out memVar);
-
+			
 			//Add App-Defines-Member relationship
-
+			
 			txb.GetNode(new App { AppId = vAppId }, out appVar);
 			txb.AddRel<AppDefinesMember>(appVar, memVar);
-
+			
 			//Add User-Defines-Member relationship
-
+			
 			txb.GetNode(new User { UserId = vUserId }, out userVar);
 			txb.AddRel<UserDefinesMember>(userVar, memVar);
-
-			AddMemberTypeAssignWithTx(txb, /*rootVar,*/ memVar);
+			
+			//Finish transaction
+			
+			AddMemberTypeAssignWithTx(txb, rootVar, memVar);
+			Context.DbData(Query.AddMemberTx+"", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Member> pMemVar) {
-			IWeaverTransaction tx = pTxBuild.Transaction;
-
+		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
+																	IWeaverVarAlias<Member> pMemVar) {
 			var newAssign = new MemberTypeAssign();
 			newAssign.MemberTypeAssignId = Context.GetSharpflakeId<MemberTypeAssign>();
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<MemberTypeAssign> mtaVar;
 			IWeaverVarAlias<MemberType> mtVar;
 			IWeaverVarAlias<Member> creatorVar;
@@ -198,7 +193,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Add MemberTypeAssign node
 
 			pTxBuild.AddNode<MemberTypeAssign, RootContainsMemberTypeAssign>(
-				newAssign, out rootVar, out mtaVar);
+				newAssign, pRootVar, out mtaVar);
 
 			//Add Member-Has-MemberTypeAssign relationship
 
@@ -218,8 +213,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private void UpdateMemberType(Member pMember, MemberTypeAssign pAssign) {
 			var txb = new TxBuilder();
+			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<MemberTypeAssign> mtaVar;
+			
+			txb.GetRoot(out rootVar);
 
 			//Remove original Member-Has-MemberTypeAssign relationship
 
@@ -235,7 +233,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			//Finish transaction
 
-			AddMemberTypeAssignWithTx(txb, memVar);
+			AddMemberTypeAssignWithTx(txb, rootVar, memVar);
 			Context.DbData(Query.UpdateMemberTx+"", txb.Finish());
 		}
 

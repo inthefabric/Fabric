@@ -17,6 +17,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public bool AddMemberEnsure(long pAppId, long pUserId, IApiContext pContext) {
+			return new AddMemberEnsure(pAppId, pUserId).Go(pContext);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess DoLogout(FabOauthAccess pAccess, IApiContext pContext) {
 			return new DoLogout(pAccess).Go(pContext);
 		}
