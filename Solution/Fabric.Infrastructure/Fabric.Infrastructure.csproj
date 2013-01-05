@@ -82,12 +82,20 @@
     <Compile Include="Api\IApiDataAccessT.cs" />
     <Compile Include="IDbDto.cs" />
     <Compile Include="Weaver\TxBuilder.cs" />
+    <Compile Include="Weaver\DomainBuilders.cs">
+      <DependentUpon>DomainBuilders.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Weaver\DomainBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Domain\SchemaHelper.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchemaHelper.cs</LastGenOutput>
+    </None>
+    <None Include="Weaver\DomainBuilders.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DomainBuilders.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

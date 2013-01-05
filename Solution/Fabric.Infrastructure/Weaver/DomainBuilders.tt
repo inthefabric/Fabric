@@ -1,0 +1,78 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Packages/Weaver/Weaver.dll" #>
+<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Solution/Fabric.Infrastructure/bin/Debug/Fabric.Infrastructure.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System;
+using System.Linq.Expressions;
+using Weaver.Items;
+using Weaver.Interfaces;
+using Fabric.Domain;
+
+namespace Fabric.Infrastructure.Weaver {
+
+<#
+IList<string> nodes = SchemaHelper.GetNodes();
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	
+	if ( node.IsAbstract || node.IsRoot ) { continue; }
+	
+	string baseNode = (hn.HasParentClass ? node.BaseNode.Name : "Node");
+#>
+	/*================================================================================================*/
+	public class <#= node.Name #>Builder : DomainBuilder<<#= node.Name #>> {
+	
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Builder(IWeaverTransaction pTx, <#= node.Name #> pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Builder(IWeaverTransaction pTx) : base(pTx) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Builder(IWeaverTransaction pTx, long p<#= node.Name #>Id) :
+			base(pTx, Node = new <#= node.Name #>() { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void Set<#= hr.RelPropName #>(long pNodeTypeId) {}
+
+<#
+	} //end rel loop
+#>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual IWeaverVarAlias<<#= node.Name #>> <#= hr.RelPropName #> { get; set; }
+
+<#
+	} //end rel loop
+#>
+	}
+
+<#
+} //end node loop
+#>
+}
