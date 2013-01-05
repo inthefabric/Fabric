@@ -16,6 +16,7 @@ using System.Linq.Expressions;
 using Weaver.Items;
 using Weaver.Interfaces;
 using Fabric.Domain;
+using System.Collections.Generic;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -28,48 +29,97 @@ foreach ( string name in nodes ) {
 	
 	if ( node.IsAbstract || node.IsRoot ) { continue; }
 	
-	string baseNode = (hn.HasParentClass ? node.BaseNode.Name : "Node");
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
+	string idType = hn.GetPrimaryKeyProp().TypeName;
 #>
 	/*================================================================================================*/
-	public class <#= node.Name #>Builder : DomainBuilder<<#= node.Name #>> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Builder(IWeaverTransaction pTx, <#= node.Name #> pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Builder(IWeaverTransaction pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Builder(IWeaverTransaction pTx, long p<#= node.Name #>Id) :
-			base(pTx, Node = new <#= node.Name #>() { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
+	public class <#= node.Name #>Builder : DomainBuilder<<#= node.Name #>, RootContains<#= node.Name #>> {
+
 <#
-
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
-
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( hr.TargetNodeType == "Root" ) {
+			continue;
+		}
+		
+		string type = "IWeaverVarAlias<"+hr.TargetNodeType+">";
+		
+		if ( hr.IsMany ) {
+			type = "IList<"+type+">";
+		}
 #>
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void Set<#= hr.RelPropName #>(long pNodeTypeId) {}
-
+		public virtual <#= type #> <#= hr.RelPropName #> { get; private set; }
 <#
 	} //end rel loop
 #>
-
+		
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Builder(TxBuilder pTx, <#= node.Name #> pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Builder(TxBuilder pTx) : base(pTx) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Builder(TxBuilder pTx, <#= idType #> p<#= node.Name #>Id) : 
+			base(pTx, new <#= node.Name #>() { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
+		
+		
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-#>
+		string method = (hr.IsMany ? "Add" : "Set")+hr.RelPropName;
+		string t = hr.TargetNodeType;
+		bool isRoot = (t == "Root");
+		SchemaHelperProp targKeyProp = SchemaHelper.GetNode(hr.TargetNodeType).GetPrimaryKeyProp();
+		string targNodeIdType = (targKeyProp != null ? targKeyProp.TypeName : "XXX");
+		
+		if ( !isRoot ) {
+#>		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual IWeaverVarAlias<<#= node.Name #>> <#= hr.RelPropName #> { get; set; }
-
+		public virtual void <#= method #>(IWeaverVarAlias<<#= t #>> pTargetNodeVar) {
 <#
+			if ( hr.IsOutgoing ) {
+#>
+			TxBuild.AddRel<<#= hr.RelName #>>(pTargetNodeVar, NodeVar);
+<#
+			}
+			else {
+#>
+			TxBuild.AddRel<<#= hr.RelName #>>(NodeVar, pTargetNodeVar);
+<#
+			}
+			
+			if ( hr.IsMany ) {
+#>
+			<#= hr.RelPropName #> = (<#= hr.RelPropName #> ?? new List<IWeaverVarAlias<<#= t #>>>());
+			<#= hr.RelPropName #>.Add(pTargetNodeVar);
+<#
+			}
+			else {
+#>
+			<#= hr.RelPropName #> = pTargetNodeVar;
+<#
+			} //end is-many
+#>
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void <#= method #>(<#= t #> p<#= t #>, out IWeaverVarAlias<<#= t #>> pNodeVar) {
+			TxBuild.GetNode(p<#= t #>, out pNodeVar);
+			<#= method #>(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void <#= method #>(<#= targNodeIdType #> p<#= t #>Id, out IWeaverVarAlias<<#= t #>> pNodeVar) {
+			<#= method #>(new <#= t #> { <#= t #>Id = p<#= t #>Id }, out pNodeVar);
+		}
+		
+<#
+		} //end if/else
 	} //end rel loop
 #>
+
 	}
 
 <#

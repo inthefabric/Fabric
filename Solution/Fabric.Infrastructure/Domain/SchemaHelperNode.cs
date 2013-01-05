@@ -48,7 +48,20 @@ namespace Fabric.Infrastructure.Domain {
 				.Where(r => (!pSkipInternal || !r.IsTargetNodeInternal))
 				.ToList();
 		}
-
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public SchemaHelperProp GetPrimaryKeyProp() {
+			IList<SchemaHelperProp> props = GetProps();
+			
+			foreach ( SchemaHelperProp hp in props ) {
+				if ( hp.PropSchema.IsPrimaryKey == true ) {
+					return hp;
+				}
+			}
+			
+			return null;
+		}
+		
 	}
 
 }
