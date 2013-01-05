@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/5/2013 11:59:20 AM
+// Generated on 1/5/2013 3:10:19 PM
 
 using System;
 using System.Linq.Expressions;
@@ -39,7 +39,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<AppHasArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<AppHasArtifact>(NodeVar, pTargetNodeVar);
 			HasArtifact = pTargetNodeVar;
 		}
 		
@@ -50,15 +50,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetNodeVar) {
-			TxBuild.AddRel<AppUsesEmail>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<AppUsesEmail>(NodeVar, pTargetNodeVar);
 			UsesEmail = pTargetNodeVar;
 		}
 		
@@ -69,15 +81,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEmail(Email pEmail) {
+			IWeaverVarAlias<Email> nodeVar;
+			SetUsesEmail(pEmail, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
 			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEmail(long pEmailId) {
+			IWeaverVarAlias<Email> nodeVar;
+			SetUsesEmail(pEmailId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesMemberList(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<AppDefinesMember>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<AppDefinesMember>(NodeVar, pTargetNodeVar);
 			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
 			DefinesMemberList.Add(pTargetNodeVar);
 		}
@@ -89,15 +113,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesMemberList(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			AddDefinesMemberList(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			AddDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesMemberList(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			AddDefinesMemberList(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthAccessUsesApp>(pTargetNodeVar, NodeVar);
 			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
 			InOauthAccessListUses.Add(pTargetNodeVar);
 		}
@@ -109,15 +145,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthAccessListUses(OauthAccess pOauthAccess) {
+			IWeaverVarAlias<OauthAccess> nodeVar;
+			AddInOauthAccessListUses(pOauthAccess, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
 			AddInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthAccessListUses(long pOauthAccessId) {
+			IWeaverVarAlias<OauthAccess> nodeVar;
+			AddInOauthAccessListUses(pOauthAccessId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthDomainListUses(IWeaverVarAlias<OauthDomain> pTargetNodeVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthDomainUsesApp>(pTargetNodeVar, NodeVar);
 			InOauthDomainListUses = (InOauthDomainListUses ?? new List<IWeaverVarAlias<OauthDomain>>());
 			InOauthDomainListUses.Add(pTargetNodeVar);
 		}
@@ -129,15 +177,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthDomainListUses(OauthDomain pOauthDomain) {
+			IWeaverVarAlias<OauthDomain> nodeVar;
+			AddInOauthDomainListUses(pOauthDomain, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthDomainListUses(long pOauthDomainId, out IWeaverVarAlias<OauthDomain> pNodeVar) {
 			AddInOauthDomainListUses(new OauthDomain { OauthDomainId = pOauthDomainId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthDomainListUses(long pOauthDomainId) {
+			IWeaverVarAlias<OauthDomain> nodeVar;
+			AddInOauthDomainListUses(pOauthDomainId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthGrantUsesApp>(pTargetNodeVar, NodeVar);
 			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
 			InOauthGrantListUses.Add(pTargetNodeVar);
 		}
@@ -149,15 +209,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthGrantListUses(OauthGrant pOauthGrant) {
+			IWeaverVarAlias<OauthGrant> nodeVar;
+			AddInOauthGrantListUses(pOauthGrant, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
 			AddInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthGrantListUses(long pOauthGrantId) {
+			IWeaverVarAlias<OauthGrant> nodeVar;
+			AddInOauthGrantListUses(pOauthGrantId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthScopeUsesApp>(pTargetNodeVar, NodeVar);
 			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
 			InOauthScopeListUses.Add(pTargetNodeVar);
 		}
@@ -169,8 +241,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthScopeListUses(OauthScope pOauthScope) {
+			IWeaverVarAlias<OauthScope> nodeVar;
+			AddInOauthScopeListUses(pOauthScope, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
 			AddInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthScopeListUses(long pOauthScopeId) {
+			IWeaverVarAlias<OauthScope> nodeVar;
+			AddInOauthScopeListUses(pOauthScopeId, out nodeVar);
 		}
 		
 
@@ -211,7 +295,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppHas(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<AppHasArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<AppHasArtifact>(pTargetNodeVar, NodeVar);
 			InAppHas = pTargetNodeVar;
 		}
 		
@@ -222,15 +306,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInAppHas(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetInAppHas(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppHas(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetInAppHas(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInAppHas(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetInAppHas(pAppId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesArtifactType(IWeaverVarAlias<ArtifactType> pTargetNodeVar) {
-			TxBuild.AddRel<ArtifactUsesArtifactType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<ArtifactUsesArtifactType>(NodeVar, pTargetNodeVar);
 			UsesArtifactType = pTargetNodeVar;
 		}
 		
@@ -241,15 +337,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesArtifactType(ArtifactType pArtifactType) {
+			IWeaverVarAlias<ArtifactType> nodeVar;
+			SetUsesArtifactType(pArtifactType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesArtifactType(byte pArtifactTypeId, out IWeaverVarAlias<ArtifactType> pNodeVar) {
 			SetUsesArtifactType(new ArtifactType { ArtifactTypeId = pArtifactTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesArtifactType(byte pArtifactTypeId) {
+			IWeaverVarAlias<ArtifactType> nodeVar;
+			SetUsesArtifactType(pArtifactTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdHas(IWeaverVarAlias<Crowd> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdHasArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<CrowdHasArtifact>(pTargetNodeVar, NodeVar);
 			InCrowdHas = pTargetNodeVar;
 		}
 		
@@ -260,15 +368,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdHas(Crowd pCrowd) {
+			IWeaverVarAlias<Crowd> nodeVar;
+			SetInCrowdHas(pCrowd, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdHas(long pCrowdId, out IWeaverVarAlias<Crowd> pNodeVar) {
 			SetInCrowdHas(new Crowd { CrowdId = pCrowdId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdHas(long pCrowdId) {
+			IWeaverVarAlias<Crowd> nodeVar;
+			SetInCrowdHas(pCrowdId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInLabelHas(IWeaverVarAlias<Label> pTargetNodeVar) {
-			TxBuild.AddRel<LabelHasArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<LabelHasArtifact>(pTargetNodeVar, NodeVar);
 			InLabelHas = pTargetNodeVar;
 		}
 		
@@ -279,15 +399,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInLabelHas(Label pLabel) {
+			IWeaverVarAlias<Label> nodeVar;
+			SetInLabelHas(pLabel, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInLabelHas(long pLabelId, out IWeaverVarAlias<Label> pNodeVar) {
 			SetInLabelHas(new Label { LabelId = pLabelId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInLabelHas(long pLabelId) {
+			IWeaverVarAlias<Label> nodeVar;
+			SetInLabelHas(pLabelId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<MemberCreatesArtifact>(pTargetNodeVar, NodeVar);
 			InMemberCreates = pTargetNodeVar;
 		}
 		
@@ -298,15 +430,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberCreates(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberCreates(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberCreates(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberCreates(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInThingHas(IWeaverVarAlias<Thing> pTargetNodeVar) {
-			TxBuild.AddRel<ThingHasArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<ThingHasArtifact>(pTargetNodeVar, NodeVar);
 			InThingHas = pTargetNodeVar;
 		}
 		
@@ -317,15 +461,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInThingHas(Thing pThing) {
+			IWeaverVarAlias<Thing> nodeVar;
+			SetInThingHas(pThing, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInThingHas(long pThingId, out IWeaverVarAlias<Thing> pNodeVar) {
 			SetInThingHas(new Thing { ThingId = pThingId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInThingHas(long pThingId) {
+			IWeaverVarAlias<Thing> nodeVar;
+			SetInThingHas(pThingId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUrlHas(IWeaverVarAlias<Url> pTargetNodeVar) {
-			TxBuild.AddRel<UrlHasArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<UrlHasArtifact>(pTargetNodeVar, NodeVar);
 			InUrlHas = pTargetNodeVar;
 		}
 		
@@ -336,15 +492,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUrlHas(Url pUrl) {
+			IWeaverVarAlias<Url> nodeVar;
+			SetInUrlHas(pUrl, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUrlHas(long pUrlId, out IWeaverVarAlias<Url> pNodeVar) {
 			SetInUrlHas(new Url { UrlId = pUrlId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUrlHas(long pUrlId) {
+			IWeaverVarAlias<Url> nodeVar;
+			SetInUrlHas(pUrlId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserHas(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserHasArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<UserHasArtifact>(pTargetNodeVar, NodeVar);
 			InUserHas = pTargetNodeVar;
 		}
 		
@@ -355,15 +523,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserHas(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserHas(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserHas(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetInUserHas(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserHas(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserHas(pUserId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUsesPrimary(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesPrimaryArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesPrimaryArtifact>(pTargetNodeVar, NodeVar);
 			InFactorListUsesPrimary = (InFactorListUsesPrimary ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUsesPrimary.Add(pTargetNodeVar);
 		}
@@ -375,15 +555,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUsesPrimary(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUsesPrimary(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUsesPrimary(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUsesPrimary(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUsesPrimary(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUsesPrimary(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUsesRelated(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesRelatedArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesRelatedArtifact>(pTargetNodeVar, NodeVar);
 			InFactorListUsesRelated = (InFactorListUsesRelated ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUsesRelated.Add(pTargetNodeVar);
 		}
@@ -395,15 +587,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUsesRelated(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUsesRelated(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUsesRelated(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUsesRelated(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUsesRelated(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUsesRelated(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListRefinesPrimaryWith(IWeaverVarAlias<Descriptor> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorRefinesPrimaryWithArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DescriptorRefinesPrimaryWithArtifact>(pTargetNodeVar, NodeVar);
 			InDescriptorListRefinesPrimaryWith = (InDescriptorListRefinesPrimaryWith ?? new List<IWeaverVarAlias<Descriptor>>());
 			InDescriptorListRefinesPrimaryWith.Add(pTargetNodeVar);
 		}
@@ -415,15 +619,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListRefinesPrimaryWith(Descriptor pDescriptor) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListRefinesPrimaryWith(pDescriptor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListRefinesPrimaryWith(long pDescriptorId, out IWeaverVarAlias<Descriptor> pNodeVar) {
 			AddInDescriptorListRefinesPrimaryWith(new Descriptor { DescriptorId = pDescriptorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListRefinesPrimaryWith(long pDescriptorId) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListRefinesPrimaryWith(pDescriptorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListRefinesRelatedWith(IWeaverVarAlias<Descriptor> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorRefinesRelatedWithArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DescriptorRefinesRelatedWithArtifact>(pTargetNodeVar, NodeVar);
 			InDescriptorListRefinesRelatedWith = (InDescriptorListRefinesRelatedWith ?? new List<IWeaverVarAlias<Descriptor>>());
 			InDescriptorListRefinesRelatedWith.Add(pTargetNodeVar);
 		}
@@ -435,15 +651,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListRefinesRelatedWith(Descriptor pDescriptor) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListRefinesRelatedWith(pDescriptor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListRefinesRelatedWith(long pDescriptorId, out IWeaverVarAlias<Descriptor> pNodeVar) {
 			AddInDescriptorListRefinesRelatedWith(new Descriptor { DescriptorId = pDescriptorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListRefinesRelatedWith(long pDescriptorId) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListRefinesRelatedWith(pDescriptorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListRefinesTypeWith(IWeaverVarAlias<Descriptor> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorRefinesTypeWithArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DescriptorRefinesTypeWithArtifact>(pTargetNodeVar, NodeVar);
 			InDescriptorListRefinesTypeWith = (InDescriptorListRefinesTypeWith ?? new List<IWeaverVarAlias<Descriptor>>());
 			InDescriptorListRefinesTypeWith.Add(pTargetNodeVar);
 		}
@@ -455,15 +683,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListRefinesTypeWith(Descriptor pDescriptor) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListRefinesTypeWith(pDescriptor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListRefinesTypeWith(long pDescriptorId, out IWeaverVarAlias<Descriptor> pNodeVar) {
 			AddInDescriptorListRefinesTypeWith(new Descriptor { DescriptorId = pDescriptorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListRefinesTypeWith(long pDescriptorId) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListRefinesTypeWith(pDescriptorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUsesAxis(IWeaverVarAlias<Vector> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesAxisArtifact>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUsesAxisArtifact>(pTargetNodeVar, NodeVar);
 			InVectorListUsesAxis = (InVectorListUsesAxis ?? new List<IWeaverVarAlias<Vector>>());
 			InVectorListUsesAxis.Add(pTargetNodeVar);
 		}
@@ -475,8 +715,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUsesAxis(Vector pVector) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUsesAxis(pVector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUsesAxis(long pVectorId, out IWeaverVarAlias<Vector> pNodeVar) {
 			AddInVectorListUsesAxis(new Vector { VectorId = pVectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUsesAxis(long pVectorId) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUsesAxis(pVectorId, out nodeVar);
 		}
 		
 
@@ -504,7 +756,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInArtifactListUses(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<ArtifactUsesArtifactType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<ArtifactUsesArtifactType>(pTargetNodeVar, NodeVar);
 			InArtifactListUses = (InArtifactListUses ?? new List<IWeaverVarAlias<Artifact>>());
 			InArtifactListUses.Add(pTargetNodeVar);
 		}
@@ -516,8 +768,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInArtifactListUses(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			AddInArtifactListUses(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInArtifactListUses(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			AddInArtifactListUses(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInArtifactListUses(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			AddInArtifactListUses(pArtifactId, out nodeVar);
 		}
 		
 
@@ -546,7 +810,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdHasArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<CrowdHasArtifact>(NodeVar, pTargetNodeVar);
 			HasArtifact = pTargetNodeVar;
 		}
 		
@@ -557,15 +821,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesCrowdianList(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdDefinesCrowdian>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<CrowdDefinesCrowdian>(NodeVar, pTargetNodeVar);
 			DefinesCrowdianList = (DefinesCrowdianList ?? new List<IWeaverVarAlias<Crowdian>>());
 			DefinesCrowdianList.Add(pTargetNodeVar);
 		}
@@ -577,8 +853,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesCrowdianList(Crowdian pCrowdian) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			AddDefinesCrowdianList(pCrowdian, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesCrowdianList(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
 			AddDefinesCrowdianList(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesCrowdianList(long pCrowdianId) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			AddDefinesCrowdianList(pCrowdianId, out nodeVar);
 		}
 		
 
@@ -609,7 +897,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdDefines(IWeaverVarAlias<Crowd> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdDefinesCrowdian>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<CrowdDefinesCrowdian>(pTargetNodeVar, NodeVar);
 			InCrowdDefines = pTargetNodeVar;
 		}
 		
@@ -620,15 +908,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdDefines(Crowd pCrowd) {
+			IWeaverVarAlias<Crowd> nodeVar;
+			SetInCrowdDefines(pCrowd, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdDefines(long pCrowdId, out IWeaverVarAlias<Crowd> pNodeVar) {
 			SetInCrowdDefines(new Crowd { CrowdId = pCrowdId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdDefines(long pCrowdId) {
+			IWeaverVarAlias<Crowd> nodeVar;
+			SetInCrowdDefines(pCrowdId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasCrowdianTypeAssign(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<CrowdianHasCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
 			HasCrowdianTypeAssign = pTargetNodeVar;
 		}
 		
@@ -639,15 +939,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasCrowdianTypeAssign(CrowdianTypeAssign pCrowdianTypeAssign) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			SetHasCrowdianTypeAssign(pCrowdianTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasCrowdianTypeAssign(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
 			SetHasCrowdianTypeAssign(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasCrowdianTypeAssign(long pCrowdianTypeAssignId) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			SetHasCrowdianTypeAssign(pCrowdianTypeAssignId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddHasHistoricCrowdianTypeAssignList(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasHistoricCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<CrowdianHasHistoricCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
 			HasHistoricCrowdianTypeAssignList = (HasHistoricCrowdianTypeAssignList ?? new List<IWeaverVarAlias<CrowdianTypeAssign>>());
 			HasHistoricCrowdianTypeAssignList.Add(pTargetNodeVar);
 		}
@@ -659,15 +971,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddHasHistoricCrowdianTypeAssignList(CrowdianTypeAssign pCrowdianTypeAssign) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			AddHasHistoricCrowdianTypeAssignList(pCrowdianTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddHasHistoricCrowdianTypeAssignList(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
 			AddHasHistoricCrowdianTypeAssignList(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddHasHistoricCrowdianTypeAssignList(long pCrowdianTypeAssignId) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			AddHasHistoricCrowdianTypeAssignList(pCrowdianTypeAssignId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesCrowdian>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<UserDefinesCrowdian>(pTargetNodeVar, NodeVar);
 			InUserDefines = pTargetNodeVar;
 		}
 		
@@ -678,8 +1002,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserDefines(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserDefines(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetInUserDefines(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserDefines(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserDefines(pUserId, out nodeVar);
 		}
 		
 
@@ -707,7 +1043,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInCrowdianTypeAssignListUses(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianTypeAssignUsesCrowdianType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<CrowdianTypeAssignUsesCrowdianType>(pTargetNodeVar, NodeVar);
 			InCrowdianTypeAssignListUses = (InCrowdianTypeAssignListUses ?? new List<IWeaverVarAlias<CrowdianTypeAssign>>());
 			InCrowdianTypeAssignListUses.Add(pTargetNodeVar);
 		}
@@ -719,8 +1055,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInCrowdianTypeAssignListUses(CrowdianTypeAssign pCrowdianTypeAssign) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			AddInCrowdianTypeAssignListUses(pCrowdianTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInCrowdianTypeAssignListUses(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
 			AddInCrowdianTypeAssignListUses(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInCrowdianTypeAssignListUses(long pCrowdianTypeAssignId) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			AddInCrowdianTypeAssignListUses(pCrowdianTypeAssignId, out nodeVar);
 		}
 		
 
@@ -751,7 +1099,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdianHas(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<CrowdianHasCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
 			InCrowdianHas = pTargetNodeVar;
 		}
 		
@@ -762,15 +1110,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdianHas(Crowdian pCrowdian) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			SetInCrowdianHas(pCrowdian, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdianHas(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
 			SetInCrowdianHas(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdianHas(long pCrowdianId) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			SetInCrowdianHas(pCrowdianId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdianHasHistoric(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasHistoricCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<CrowdianHasHistoricCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
 			InCrowdianHasHistoric = pTargetNodeVar;
 		}
 		
@@ -781,15 +1141,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdianHasHistoric(Crowdian pCrowdian) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			SetInCrowdianHasHistoric(pCrowdian, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdianHasHistoric(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
 			SetInCrowdianHasHistoric(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInCrowdianHasHistoric(long pCrowdianId) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			SetInCrowdianHasHistoric(pCrowdianId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesCrowdianType(IWeaverVarAlias<CrowdianType> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianTypeAssignUsesCrowdianType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<CrowdianTypeAssignUsesCrowdianType>(NodeVar, pTargetNodeVar);
 			UsesCrowdianType = pTargetNodeVar;
 		}
 		
@@ -800,15 +1172,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesCrowdianType(CrowdianType pCrowdianType) {
+			IWeaverVarAlias<CrowdianType> nodeVar;
+			SetUsesCrowdianType(pCrowdianType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesCrowdianType(byte pCrowdianTypeId, out IWeaverVarAlias<CrowdianType> pNodeVar) {
 			SetUsesCrowdianType(new CrowdianType { CrowdianTypeId = pCrowdianTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesCrowdianType(byte pCrowdianTypeId) {
+			IWeaverVarAlias<CrowdianType> nodeVar;
+			SetUsesCrowdianType(pCrowdianTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserCreates(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserCreatesCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<UserCreatesCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
 			InUserCreates = pTargetNodeVar;
 		}
 		
@@ -819,8 +1203,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserCreates(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserCreates(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserCreates(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetInUserCreates(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserCreates(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserCreates(pUserId, out nodeVar);
 		}
 		
 
@@ -849,7 +1245,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppUses(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<AppUsesEmail>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<AppUsesEmail>(pTargetNodeVar, NodeVar);
 			InAppUses = pTargetNodeVar;
 		}
 		
@@ -860,15 +1256,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInAppUses(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetInAppUses(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppUses(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetInAppUses(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInAppUses(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetInAppUses(pAppId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserUses(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserUsesEmail>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<UserUsesEmail>(pTargetNodeVar, NodeVar);
 			InUserUses = pTargetNodeVar;
 		}
 		
@@ -879,8 +1287,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserUses(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserUses(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserUses(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetInUserUses(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserUses(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserUses(pUserId, out nodeVar);
 		}
 		
 
@@ -908,7 +1328,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<LabelHasArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<LabelHasArtifact>(NodeVar, pTargetNodeVar);
 			HasArtifact = pTargetNodeVar;
 		}
 		
@@ -919,8 +1339,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 
@@ -954,7 +1386,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppDefines(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<AppDefinesMember>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<AppDefinesMember>(pTargetNodeVar, NodeVar);
 			InAppDefines = pTargetNodeVar;
 		}
 		
@@ -965,15 +1397,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInAppDefines(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetInAppDefines(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppDefines(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetInAppDefines(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInAppDefines(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetInAppDefines(pAppId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasMemberTypeAssign(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasMemberTypeAssign>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<MemberHasMemberTypeAssign>(NodeVar, pTargetNodeVar);
 			HasMemberTypeAssign = pTargetNodeVar;
 		}
 		
@@ -984,15 +1428,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasMemberTypeAssign(MemberTypeAssign pMemberTypeAssign) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			SetHasMemberTypeAssign(pMemberTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasMemberTypeAssign(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			SetHasMemberTypeAssign(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasMemberTypeAssign(long pMemberTypeAssignId) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			SetHasMemberTypeAssign(pMemberTypeAssignId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddHasHistoricMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(NodeVar, pTargetNodeVar);
 			HasHistoricMemberTypeAssignList = (HasHistoricMemberTypeAssignList ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
 			HasHistoricMemberTypeAssignList.Add(pTargetNodeVar);
 		}
@@ -1004,15 +1460,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddHasHistoricMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			AddHasHistoricMemberTypeAssignList(pMemberTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddHasHistoricMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			AddHasHistoricMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddHasHistoricMemberTypeAssignList(long pMemberTypeAssignId) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			AddHasHistoricMemberTypeAssignList(pMemberTypeAssignId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesArtifactList(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<MemberCreatesArtifact>(NodeVar, pTargetNodeVar);
 			CreatesArtifactList = (CreatesArtifactList ?? new List<IWeaverVarAlias<Artifact>>());
 			CreatesArtifactList.Add(pTargetNodeVar);
 		}
@@ -1024,15 +1492,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesArtifactList(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			AddCreatesArtifactList(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesArtifactList(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			AddCreatesArtifactList(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesArtifactList(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			AddCreatesArtifactList(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(NodeVar, pTargetNodeVar);
 			CreatesMemberTypeAssignList = (CreatesMemberTypeAssignList ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
 			CreatesMemberTypeAssignList.Add(pTargetNodeVar);
 		}
@@ -1044,15 +1524,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			AddCreatesMemberTypeAssignList(pMemberTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			AddCreatesMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesMemberTypeAssignList(long pMemberTypeAssignId) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			AddCreatesMemberTypeAssignList(pMemberTypeAssignId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesFactorList(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesFactor>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<MemberCreatesFactor>(NodeVar, pTargetNodeVar);
 			CreatesFactorList = (CreatesFactorList ?? new List<IWeaverVarAlias<Factor>>());
 			CreatesFactorList.Add(pTargetNodeVar);
 		}
@@ -1064,15 +1556,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesFactorList(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddCreatesFactorList(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesFactorList(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddCreatesFactorList(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesFactorList(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddCreatesFactorList(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesMember>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<UserDefinesMember>(pTargetNodeVar, NodeVar);
 			InUserDefines = pTargetNodeVar;
 		}
 		
@@ -1083,8 +1587,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserDefines(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserDefines(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetInUserDefines(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInUserDefines(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetInUserDefines(pUserId, out nodeVar);
 		}
 		
 
@@ -1112,7 +1628,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInMemberTypeAssignListUses(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberTypeAssignUsesMemberType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<MemberTypeAssignUsesMemberType>(pTargetNodeVar, NodeVar);
 			InMemberTypeAssignListUses = (InMemberTypeAssignListUses ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
 			InMemberTypeAssignListUses.Add(pTargetNodeVar);
 		}
@@ -1124,8 +1640,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInMemberTypeAssignListUses(MemberTypeAssign pMemberTypeAssign) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			AddInMemberTypeAssignListUses(pMemberTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInMemberTypeAssignListUses(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			AddInMemberTypeAssignListUses(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInMemberTypeAssignListUses(long pMemberTypeAssignId) {
+			IWeaverVarAlias<MemberTypeAssign> nodeVar;
+			AddInMemberTypeAssignListUses(pMemberTypeAssignId, out nodeVar);
 		}
 		
 
@@ -1156,7 +1684,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHas(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasMemberTypeAssign>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<MemberHasMemberTypeAssign>(pTargetNodeVar, NodeVar);
 			InMemberHas = pTargetNodeVar;
 		}
 		
@@ -1167,15 +1695,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberHas(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberHas(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHas(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberHas(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberHas(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberHas(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHasHistoric(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(pTargetNodeVar, NodeVar);
 			InMemberHasHistoric = pTargetNodeVar;
 		}
 		
@@ -1186,15 +1726,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberHasHistoric(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberHasHistoric(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHasHistoric(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberHasHistoric(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberHasHistoric(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberHasHistoric(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(pTargetNodeVar, NodeVar);
 			InMemberCreates = pTargetNodeVar;
 		}
 		
@@ -1205,15 +1757,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberCreates(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberCreates(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberCreates(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberCreates(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesMemberType(IWeaverVarAlias<MemberType> pTargetNodeVar) {
-			TxBuild.AddRel<MemberTypeAssignUsesMemberType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<MemberTypeAssignUsesMemberType>(NodeVar, pTargetNodeVar);
 			UsesMemberType = pTargetNodeVar;
 		}
 		
@@ -1224,8 +1788,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesMemberType(MemberType pMemberType) {
+			IWeaverVarAlias<MemberType> nodeVar;
+			SetUsesMemberType(pMemberType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesMemberType(byte pMemberTypeId, out IWeaverVarAlias<MemberType> pNodeVar) {
 			SetUsesMemberType(new MemberType { MemberTypeId = pMemberTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesMemberType(byte pMemberTypeId) {
+			IWeaverVarAlias<MemberType> nodeVar;
+			SetUsesMemberType(pMemberTypeId, out nodeVar);
 		}
 		
 
@@ -1253,7 +1829,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<ThingHasArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<ThingHasArtifact>(NodeVar, pTargetNodeVar);
 			HasArtifact = pTargetNodeVar;
 		}
 		
@@ -1264,8 +1840,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 
@@ -1293,7 +1881,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<UrlHasArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<UrlHasArtifact>(NodeVar, pTargetNodeVar);
 			HasArtifact = pTargetNodeVar;
 		}
 		
@@ -1304,8 +1892,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 
@@ -1340,7 +1940,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<UserHasArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<UserHasArtifact>(NodeVar, pTargetNodeVar);
 			HasArtifact = pTargetNodeVar;
 		}
 		
@@ -1351,15 +1951,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesCrowdianTypeAssignList(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<UserCreatesCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<UserCreatesCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
 			CreatesCrowdianTypeAssignList = (CreatesCrowdianTypeAssignList ?? new List<IWeaverVarAlias<CrowdianTypeAssign>>());
 			CreatesCrowdianTypeAssignList.Add(pTargetNodeVar);
 		}
@@ -1371,15 +1983,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesCrowdianTypeAssignList(CrowdianTypeAssign pCrowdianTypeAssign) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			AddCreatesCrowdianTypeAssignList(pCrowdianTypeAssign, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddCreatesCrowdianTypeAssignList(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
 			AddCreatesCrowdianTypeAssignList(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddCreatesCrowdianTypeAssignList(long pCrowdianTypeAssignId) {
+			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
+			AddCreatesCrowdianTypeAssignList(pCrowdianTypeAssignId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesCrowdianList(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesCrowdian>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<UserDefinesCrowdian>(NodeVar, pTargetNodeVar);
 			DefinesCrowdianList = (DefinesCrowdianList ?? new List<IWeaverVarAlias<Crowdian>>());
 			DefinesCrowdianList.Add(pTargetNodeVar);
 		}
@@ -1391,15 +2015,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesCrowdianList(Crowdian pCrowdian) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			AddDefinesCrowdianList(pCrowdian, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesCrowdianList(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
 			AddDefinesCrowdianList(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesCrowdianList(long pCrowdianId) {
+			IWeaverVarAlias<Crowdian> nodeVar;
+			AddDefinesCrowdianList(pCrowdianId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetNodeVar) {
-			TxBuild.AddRel<UserUsesEmail>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<UserUsesEmail>(NodeVar, pTargetNodeVar);
 			UsesEmail = pTargetNodeVar;
 		}
 		
@@ -1410,15 +2046,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEmail(Email pEmail) {
+			IWeaverVarAlias<Email> nodeVar;
+			SetUsesEmail(pEmail, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
 			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEmail(long pEmailId) {
+			IWeaverVarAlias<Email> nodeVar;
+			SetUsesEmail(pEmailId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesMemberList(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesMember>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<UserDefinesMember>(NodeVar, pTargetNodeVar);
 			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
 			DefinesMemberList.Add(pTargetNodeVar);
 		}
@@ -1430,15 +2078,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesMemberList(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			AddDefinesMemberList(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			AddDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddDefinesMemberList(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			AddDefinesMemberList(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesUser>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthAccessUsesUser>(pTargetNodeVar, NodeVar);
 			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
 			InOauthAccessListUses.Add(pTargetNodeVar);
 		}
@@ -1450,15 +2110,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthAccessListUses(OauthAccess pOauthAccess) {
+			IWeaverVarAlias<OauthAccess> nodeVar;
+			AddInOauthAccessListUses(pOauthAccess, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
 			AddInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthAccessListUses(long pOauthAccessId) {
+			IWeaverVarAlias<OauthAccess> nodeVar;
+			AddInOauthAccessListUses(pOauthAccessId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesUser>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthGrantUsesUser>(pTargetNodeVar, NodeVar);
 			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
 			InOauthGrantListUses.Add(pTargetNodeVar);
 		}
@@ -1470,15 +2142,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthGrantListUses(OauthGrant pOauthGrant) {
+			IWeaverVarAlias<OauthGrant> nodeVar;
+			AddInOauthGrantListUses(pOauthGrant, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
 			AddInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthGrantListUses(long pOauthGrantId) {
+			IWeaverVarAlias<OauthGrant> nodeVar;
+			AddInOauthGrantListUses(pOauthGrantId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesUser>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<OauthScopeUsesUser>(pTargetNodeVar, NodeVar);
 			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
 			InOauthScopeListUses.Add(pTargetNodeVar);
 		}
@@ -1490,8 +2174,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthScopeListUses(OauthScope pOauthScope) {
+			IWeaverVarAlias<OauthScope> nodeVar;
+			AddInOauthScopeListUses(pOauthScope, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
 			AddInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInOauthScopeListUses(long pOauthScopeId) {
+			IWeaverVarAlias<OauthScope> nodeVar;
+			AddInOauthScopeListUses(pOauthScopeId, out nodeVar);
 		}
 		
 
@@ -1529,7 +2225,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesFactor>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<MemberCreatesFactor>(pTargetNodeVar, NodeVar);
 			InMemberCreates = pTargetNodeVar;
 		}
 		
@@ -1540,15 +2236,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberCreates(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberCreates(pMember, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInMemberCreates(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			SetInMemberCreates(pMemberId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesPrimaryArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesPrimaryArtifact>(NodeVar, pTargetNodeVar);
 			UsesPrimaryArtifact = pTargetNodeVar;
 		}
 		
@@ -1559,15 +2267,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesPrimaryArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetUsesPrimaryArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetUsesPrimaryArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesPrimaryArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetUsesPrimaryArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesRelatedArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesRelatedArtifact>(NodeVar, pTargetNodeVar);
 			UsesRelatedArtifact = pTargetNodeVar;
 		}
 		
@@ -1578,15 +2298,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesRelatedArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetUsesRelatedArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetUsesRelatedArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesRelatedArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetUsesRelatedArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesFactorAssertion(IWeaverVarAlias<FactorAssertion> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesFactorAssertion>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesFactorAssertion>(NodeVar, pTargetNodeVar);
 			UsesFactorAssertion = pTargetNodeVar;
 		}
 		
@@ -1597,15 +2329,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesFactorAssertion(FactorAssertion pFactorAssertion) {
+			IWeaverVarAlias<FactorAssertion> nodeVar;
+			SetUsesFactorAssertion(pFactorAssertion, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesFactorAssertion(byte pFactorAssertionId, out IWeaverVarAlias<FactorAssertion> pNodeVar) {
 			SetUsesFactorAssertion(new FactorAssertion { FactorAssertionId = pFactorAssertionId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesFactorAssertion(byte pFactorAssertionId) {
+			IWeaverVarAlias<FactorAssertion> nodeVar;
+			SetUsesFactorAssertion(pFactorAssertionId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetReplacesFactor(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorReplacesFactor>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorReplacesFactor>(NodeVar, pTargetNodeVar);
 			ReplacesFactor = pTargetNodeVar;
 		}
 		
@@ -1616,15 +2360,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetReplacesFactor(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			SetReplacesFactor(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetReplacesFactor(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			SetReplacesFactor(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetReplacesFactor(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			SetReplacesFactor(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDescriptor(IWeaverVarAlias<Descriptor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesDescriptor>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesDescriptor>(NodeVar, pTargetNodeVar);
 			UsesDescriptor = pTargetNodeVar;
 		}
 		
@@ -1635,15 +2391,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDescriptor(Descriptor pDescriptor) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			SetUsesDescriptor(pDescriptor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDescriptor(long pDescriptorId, out IWeaverVarAlias<Descriptor> pNodeVar) {
 			SetUsesDescriptor(new Descriptor { DescriptorId = pDescriptorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDescriptor(long pDescriptorId) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			SetUsesDescriptor(pDescriptorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDirector(IWeaverVarAlias<Director> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesDirector>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesDirector>(NodeVar, pTargetNodeVar);
 			UsesDirector = pTargetNodeVar;
 		}
 		
@@ -1654,15 +2422,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDirector(Director pDirector) {
+			IWeaverVarAlias<Director> nodeVar;
+			SetUsesDirector(pDirector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDirector(long pDirectorId, out IWeaverVarAlias<Director> pNodeVar) {
 			SetUsesDirector(new Director { DirectorId = pDirectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDirector(long pDirectorId) {
+			IWeaverVarAlias<Director> nodeVar;
+			SetUsesDirector(pDirectorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEventor(IWeaverVarAlias<Eventor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesEventor>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesEventor>(NodeVar, pTargetNodeVar);
 			UsesEventor = pTargetNodeVar;
 		}
 		
@@ -1673,15 +2453,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEventor(Eventor pEventor) {
+			IWeaverVarAlias<Eventor> nodeVar;
+			SetUsesEventor(pEventor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEventor(long pEventorId, out IWeaverVarAlias<Eventor> pNodeVar) {
 			SetUsesEventor(new Eventor { EventorId = pEventorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEventor(long pEventorId) {
+			IWeaverVarAlias<Eventor> nodeVar;
+			SetUsesEventor(pEventorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesIdentor(IWeaverVarAlias<Identor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesIdentor>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesIdentor>(NodeVar, pTargetNodeVar);
 			UsesIdentor = pTargetNodeVar;
 		}
 		
@@ -1692,15 +2484,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesIdentor(Identor pIdentor) {
+			IWeaverVarAlias<Identor> nodeVar;
+			SetUsesIdentor(pIdentor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesIdentor(long pIdentorId, out IWeaverVarAlias<Identor> pNodeVar) {
 			SetUsesIdentor(new Identor { IdentorId = pIdentorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesIdentor(long pIdentorId) {
+			IWeaverVarAlias<Identor> nodeVar;
+			SetUsesIdentor(pIdentorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesLocator(IWeaverVarAlias<Locator> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesLocator>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesLocator>(NodeVar, pTargetNodeVar);
 			UsesLocator = pTargetNodeVar;
 		}
 		
@@ -1711,15 +2515,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesLocator(Locator pLocator) {
+			IWeaverVarAlias<Locator> nodeVar;
+			SetUsesLocator(pLocator, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesLocator(long pLocatorId, out IWeaverVarAlias<Locator> pNodeVar) {
 			SetUsesLocator(new Locator { LocatorId = pLocatorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesLocator(long pLocatorId) {
+			IWeaverVarAlias<Locator> nodeVar;
+			SetUsesLocator(pLocatorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVector(IWeaverVarAlias<Vector> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesVector>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<FactorUsesVector>(NodeVar, pTargetNodeVar);
 			UsesVector = pTargetNodeVar;
 		}
 		
@@ -1730,8 +2546,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVector(Vector pVector) {
+			IWeaverVarAlias<Vector> nodeVar;
+			SetUsesVector(pVector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVector(long pVectorId, out IWeaverVarAlias<Vector> pNodeVar) {
 			SetUsesVector(new Vector { VectorId = pVectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVector(long pVectorId) {
+			IWeaverVarAlias<Vector> nodeVar;
+			SetUsesVector(pVectorId, out nodeVar);
 		}
 		
 
@@ -1759,7 +2587,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesFactorAssertion>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesFactorAssertion>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -1771,8 +2599,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 
@@ -1804,7 +2644,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesDescriptor>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesDescriptor>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -1816,15 +2656,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDescriptorType(IWeaverVarAlias<DescriptorType> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorUsesDescriptorType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DescriptorUsesDescriptorType>(NodeVar, pTargetNodeVar);
 			UsesDescriptorType = pTargetNodeVar;
 		}
 		
@@ -1835,15 +2687,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDescriptorType(DescriptorType pDescriptorType) {
+			IWeaverVarAlias<DescriptorType> nodeVar;
+			SetUsesDescriptorType(pDescriptorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDescriptorType(byte pDescriptorTypeId, out IWeaverVarAlias<DescriptorType> pNodeVar) {
 			SetUsesDescriptorType(new DescriptorType { DescriptorTypeId = pDescriptorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDescriptorType(byte pDescriptorTypeId) {
+			IWeaverVarAlias<DescriptorType> nodeVar;
+			SetUsesDescriptorType(pDescriptorTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRefinesPrimaryWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorRefinesPrimaryWithArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DescriptorRefinesPrimaryWithArtifact>(NodeVar, pTargetNodeVar);
 			RefinesPrimaryWithArtifact = pTargetNodeVar;
 		}
 		
@@ -1854,15 +2718,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRefinesPrimaryWithArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetRefinesPrimaryWithArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRefinesPrimaryWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetRefinesPrimaryWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRefinesPrimaryWithArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetRefinesPrimaryWithArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRefinesRelatedWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorRefinesRelatedWithArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DescriptorRefinesRelatedWithArtifact>(NodeVar, pTargetNodeVar);
 			RefinesRelatedWithArtifact = pTargetNodeVar;
 		}
 		
@@ -1873,15 +2749,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRefinesRelatedWithArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetRefinesRelatedWithArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRefinesRelatedWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetRefinesRelatedWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRefinesRelatedWithArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetRefinesRelatedWithArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRefinesTypeWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorRefinesTypeWithArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DescriptorRefinesTypeWithArtifact>(NodeVar, pTargetNodeVar);
 			RefinesTypeWithArtifact = pTargetNodeVar;
 		}
 		
@@ -1892,8 +2780,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRefinesTypeWithArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetRefinesTypeWithArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRefinesTypeWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetRefinesTypeWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRefinesTypeWithArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetRefinesTypeWithArtifact(pArtifactId, out nodeVar);
 		}
 		
 
@@ -1921,7 +2821,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListUses(IWeaverVarAlias<Descriptor> pTargetNodeVar) {
-			TxBuild.AddRel<DescriptorUsesDescriptorType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DescriptorUsesDescriptorType>(pTargetNodeVar, NodeVar);
 			InDescriptorListUses = (InDescriptorListUses ?? new List<IWeaverVarAlias<Descriptor>>());
 			InDescriptorListUses.Add(pTargetNodeVar);
 		}
@@ -1933,8 +2833,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListUses(Descriptor pDescriptor) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListUses(pDescriptor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDescriptorListUses(long pDescriptorId, out IWeaverVarAlias<Descriptor> pNodeVar) {
 			AddInDescriptorListUses(new Descriptor { DescriptorId = pDescriptorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDescriptorListUses(long pDescriptorId) {
+			IWeaverVarAlias<Descriptor> nodeVar;
+			AddInDescriptorListUses(pDescriptorId, out nodeVar);
 		}
 		
 
@@ -1965,7 +2877,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesDirector>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesDirector>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -1977,15 +2889,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDirectorType(IWeaverVarAlias<DirectorType> pTargetNodeVar) {
-			TxBuild.AddRel<DirectorUsesDirectorType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DirectorUsesDirectorType>(NodeVar, pTargetNodeVar);
 			UsesDirectorType = pTargetNodeVar;
 		}
 		
@@ -1996,15 +2920,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDirectorType(DirectorType pDirectorType) {
+			IWeaverVarAlias<DirectorType> nodeVar;
+			SetUsesDirectorType(pDirectorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesDirectorType(byte pDirectorTypeId, out IWeaverVarAlias<DirectorType> pNodeVar) {
 			SetUsesDirectorType(new DirectorType { DirectorTypeId = pDirectorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesDirectorType(byte pDirectorTypeId) {
+			IWeaverVarAlias<DirectorType> nodeVar;
+			SetUsesDirectorType(pDirectorTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryDirectorAction(IWeaverVarAlias<DirectorAction> pTargetNodeVar) {
-			TxBuild.AddRel<DirectorUsesPrimaryDirectorAction>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DirectorUsesPrimaryDirectorAction>(NodeVar, pTargetNodeVar);
 			UsesPrimaryDirectorAction = pTargetNodeVar;
 		}
 		
@@ -2015,15 +2951,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesPrimaryDirectorAction(DirectorAction pDirectorAction) {
+			IWeaverVarAlias<DirectorAction> nodeVar;
+			SetUsesPrimaryDirectorAction(pDirectorAction, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryDirectorAction(byte pDirectorActionId, out IWeaverVarAlias<DirectorAction> pNodeVar) {
 			SetUsesPrimaryDirectorAction(new DirectorAction { DirectorActionId = pDirectorActionId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesPrimaryDirectorAction(byte pDirectorActionId) {
+			IWeaverVarAlias<DirectorAction> nodeVar;
+			SetUsesPrimaryDirectorAction(pDirectorActionId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedDirectorAction(IWeaverVarAlias<DirectorAction> pTargetNodeVar) {
-			TxBuild.AddRel<DirectorUsesRelatedDirectorAction>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<DirectorUsesRelatedDirectorAction>(NodeVar, pTargetNodeVar);
 			UsesRelatedDirectorAction = pTargetNodeVar;
 		}
 		
@@ -2034,8 +2982,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesRelatedDirectorAction(DirectorAction pDirectorAction) {
+			IWeaverVarAlias<DirectorAction> nodeVar;
+			SetUsesRelatedDirectorAction(pDirectorAction, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedDirectorAction(byte pDirectorActionId, out IWeaverVarAlias<DirectorAction> pNodeVar) {
 			SetUsesRelatedDirectorAction(new DirectorAction { DirectorActionId = pDirectorActionId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesRelatedDirectorAction(byte pDirectorActionId) {
+			IWeaverVarAlias<DirectorAction> nodeVar;
+			SetUsesRelatedDirectorAction(pDirectorActionId, out nodeVar);
 		}
 		
 
@@ -2063,7 +3023,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDirectorListUses(IWeaverVarAlias<Director> pTargetNodeVar) {
-			TxBuild.AddRel<DirectorUsesDirectorType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DirectorUsesDirectorType>(pTargetNodeVar, NodeVar);
 			InDirectorListUses = (InDirectorListUses ?? new List<IWeaverVarAlias<Director>>());
 			InDirectorListUses.Add(pTargetNodeVar);
 		}
@@ -2075,8 +3035,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDirectorListUses(Director pDirector) {
+			IWeaverVarAlias<Director> nodeVar;
+			AddInDirectorListUses(pDirector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDirectorListUses(long pDirectorId, out IWeaverVarAlias<Director> pNodeVar) {
 			AddInDirectorListUses(new Director { DirectorId = pDirectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDirectorListUses(long pDirectorId) {
+			IWeaverVarAlias<Director> nodeVar;
+			AddInDirectorListUses(pDirectorId, out nodeVar);
 		}
 		
 
@@ -2105,7 +3077,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDirectorListUsesPrimary(IWeaverVarAlias<Director> pTargetNodeVar) {
-			TxBuild.AddRel<DirectorUsesPrimaryDirectorAction>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DirectorUsesPrimaryDirectorAction>(pTargetNodeVar, NodeVar);
 			InDirectorListUsesPrimary = (InDirectorListUsesPrimary ?? new List<IWeaverVarAlias<Director>>());
 			InDirectorListUsesPrimary.Add(pTargetNodeVar);
 		}
@@ -2117,15 +3089,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDirectorListUsesPrimary(Director pDirector) {
+			IWeaverVarAlias<Director> nodeVar;
+			AddInDirectorListUsesPrimary(pDirector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDirectorListUsesPrimary(long pDirectorId, out IWeaverVarAlias<Director> pNodeVar) {
 			AddInDirectorListUsesPrimary(new Director { DirectorId = pDirectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDirectorListUsesPrimary(long pDirectorId) {
+			IWeaverVarAlias<Director> nodeVar;
+			AddInDirectorListUsesPrimary(pDirectorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDirectorListUsesRelated(IWeaverVarAlias<Director> pTargetNodeVar) {
-			TxBuild.AddRel<DirectorUsesRelatedDirectorAction>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<DirectorUsesRelatedDirectorAction>(pTargetNodeVar, NodeVar);
 			InDirectorListUsesRelated = (InDirectorListUsesRelated ?? new List<IWeaverVarAlias<Director>>());
 			InDirectorListUsesRelated.Add(pTargetNodeVar);
 		}
@@ -2137,8 +3121,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDirectorListUsesRelated(Director pDirector) {
+			IWeaverVarAlias<Director> nodeVar;
+			AddInDirectorListUsesRelated(pDirector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInDirectorListUsesRelated(long pDirectorId, out IWeaverVarAlias<Director> pNodeVar) {
 			AddInDirectorListUsesRelated(new Director { DirectorId = pDirectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInDirectorListUsesRelated(long pDirectorId) {
+			IWeaverVarAlias<Director> nodeVar;
+			AddInDirectorListUsesRelated(pDirectorId, out nodeVar);
 		}
 		
 
@@ -2168,7 +3164,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesEventor>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesEventor>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -2180,15 +3176,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEventorType(IWeaverVarAlias<EventorType> pTargetNodeVar) {
-			TxBuild.AddRel<EventorUsesEventorType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<EventorUsesEventorType>(NodeVar, pTargetNodeVar);
 			UsesEventorType = pTargetNodeVar;
 		}
 		
@@ -2199,15 +3207,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEventorType(EventorType pEventorType) {
+			IWeaverVarAlias<EventorType> nodeVar;
+			SetUsesEventorType(pEventorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEventorType(byte pEventorTypeId, out IWeaverVarAlias<EventorType> pNodeVar) {
 			SetUsesEventorType(new EventorType { EventorTypeId = pEventorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEventorType(byte pEventorTypeId) {
+			IWeaverVarAlias<EventorType> nodeVar;
+			SetUsesEventorType(pEventorTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEventorPrecision(IWeaverVarAlias<EventorPrecision> pTargetNodeVar) {
-			TxBuild.AddRel<EventorUsesEventorPrecision>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<EventorUsesEventorPrecision>(NodeVar, pTargetNodeVar);
 			UsesEventorPrecision = pTargetNodeVar;
 		}
 		
@@ -2218,8 +3238,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEventorPrecision(EventorPrecision pEventorPrecision) {
+			IWeaverVarAlias<EventorPrecision> nodeVar;
+			SetUsesEventorPrecision(pEventorPrecision, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEventorPrecision(byte pEventorPrecisionId, out IWeaverVarAlias<EventorPrecision> pNodeVar) {
 			SetUsesEventorPrecision(new EventorPrecision { EventorPrecisionId = pEventorPrecisionId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEventorPrecision(byte pEventorPrecisionId) {
+			IWeaverVarAlias<EventorPrecision> nodeVar;
+			SetUsesEventorPrecision(pEventorPrecisionId, out nodeVar);
 		}
 		
 
@@ -2247,7 +3279,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInEventorListUses(IWeaverVarAlias<Eventor> pTargetNodeVar) {
-			TxBuild.AddRel<EventorUsesEventorType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<EventorUsesEventorType>(pTargetNodeVar, NodeVar);
 			InEventorListUses = (InEventorListUses ?? new List<IWeaverVarAlias<Eventor>>());
 			InEventorListUses.Add(pTargetNodeVar);
 		}
@@ -2259,8 +3291,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInEventorListUses(Eventor pEventor) {
+			IWeaverVarAlias<Eventor> nodeVar;
+			AddInEventorListUses(pEventor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInEventorListUses(long pEventorId, out IWeaverVarAlias<Eventor> pNodeVar) {
 			AddInEventorListUses(new Eventor { EventorId = pEventorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInEventorListUses(long pEventorId) {
+			IWeaverVarAlias<Eventor> nodeVar;
+			AddInEventorListUses(pEventorId, out nodeVar);
 		}
 		
 
@@ -2288,7 +3332,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInEventorListUses(IWeaverVarAlias<Eventor> pTargetNodeVar) {
-			TxBuild.AddRel<EventorUsesEventorPrecision>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<EventorUsesEventorPrecision>(pTargetNodeVar, NodeVar);
 			InEventorListUses = (InEventorListUses ?? new List<IWeaverVarAlias<Eventor>>());
 			InEventorListUses.Add(pTargetNodeVar);
 		}
@@ -2300,8 +3344,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInEventorListUses(Eventor pEventor) {
+			IWeaverVarAlias<Eventor> nodeVar;
+			AddInEventorListUses(pEventor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInEventorListUses(long pEventorId, out IWeaverVarAlias<Eventor> pNodeVar) {
 			AddInEventorListUses(new Eventor { EventorId = pEventorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInEventorListUses(long pEventorId) {
+			IWeaverVarAlias<Eventor> nodeVar;
+			AddInEventorListUses(pEventorId, out nodeVar);
 		}
 		
 
@@ -2330,7 +3386,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesIdentor>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesIdentor>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -2342,15 +3398,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesIdentorType(IWeaverVarAlias<IdentorType> pTargetNodeVar) {
-			TxBuild.AddRel<IdentorUsesIdentorType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<IdentorUsesIdentorType>(NodeVar, pTargetNodeVar);
 			UsesIdentorType = pTargetNodeVar;
 		}
 		
@@ -2361,8 +3429,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesIdentorType(IdentorType pIdentorType) {
+			IWeaverVarAlias<IdentorType> nodeVar;
+			SetUsesIdentorType(pIdentorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesIdentorType(byte pIdentorTypeId, out IWeaverVarAlias<IdentorType> pNodeVar) {
 			SetUsesIdentorType(new IdentorType { IdentorTypeId = pIdentorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesIdentorType(byte pIdentorTypeId) {
+			IWeaverVarAlias<IdentorType> nodeVar;
+			SetUsesIdentorType(pIdentorTypeId, out nodeVar);
 		}
 		
 
@@ -2390,7 +3470,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInIdentorListUses(IWeaverVarAlias<Identor> pTargetNodeVar) {
-			TxBuild.AddRel<IdentorUsesIdentorType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<IdentorUsesIdentorType>(pTargetNodeVar, NodeVar);
 			InIdentorListUses = (InIdentorListUses ?? new List<IWeaverVarAlias<Identor>>());
 			InIdentorListUses.Add(pTargetNodeVar);
 		}
@@ -2402,8 +3482,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInIdentorListUses(Identor pIdentor) {
+			IWeaverVarAlias<Identor> nodeVar;
+			AddInIdentorListUses(pIdentor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInIdentorListUses(long pIdentorId, out IWeaverVarAlias<Identor> pNodeVar) {
 			AddInIdentorListUses(new Identor { IdentorId = pIdentorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInIdentorListUses(long pIdentorId) {
+			IWeaverVarAlias<Identor> nodeVar;
+			AddInIdentorListUses(pIdentorId, out nodeVar);
 		}
 		
 
@@ -2432,7 +3524,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesLocator>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesLocator>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -2444,15 +3536,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesLocatorType(IWeaverVarAlias<LocatorType> pTargetNodeVar) {
-			TxBuild.AddRel<LocatorUsesLocatorType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<LocatorUsesLocatorType>(NodeVar, pTargetNodeVar);
 			UsesLocatorType = pTargetNodeVar;
 		}
 		
@@ -2463,8 +3567,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesLocatorType(LocatorType pLocatorType) {
+			IWeaverVarAlias<LocatorType> nodeVar;
+			SetUsesLocatorType(pLocatorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesLocatorType(byte pLocatorTypeId, out IWeaverVarAlias<LocatorType> pNodeVar) {
 			SetUsesLocatorType(new LocatorType { LocatorTypeId = pLocatorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesLocatorType(byte pLocatorTypeId) {
+			IWeaverVarAlias<LocatorType> nodeVar;
+			SetUsesLocatorType(pLocatorTypeId, out nodeVar);
 		}
 		
 
@@ -2492,7 +3608,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInLocatorListUses(IWeaverVarAlias<Locator> pTargetNodeVar) {
-			TxBuild.AddRel<LocatorUsesLocatorType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<LocatorUsesLocatorType>(pTargetNodeVar, NodeVar);
 			InLocatorListUses = (InLocatorListUses ?? new List<IWeaverVarAlias<Locator>>());
 			InLocatorListUses.Add(pTargetNodeVar);
 		}
@@ -2504,8 +3620,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInLocatorListUses(Locator pLocator) {
+			IWeaverVarAlias<Locator> nodeVar;
+			AddInLocatorListUses(pLocator, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInLocatorListUses(long pLocatorId, out IWeaverVarAlias<Locator> pNodeVar) {
 			AddInLocatorListUses(new Locator { LocatorId = pLocatorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInLocatorListUses(long pLocatorId) {
+			IWeaverVarAlias<Locator> nodeVar;
+			AddInLocatorListUses(pLocatorId, out nodeVar);
 		}
 		
 
@@ -2537,7 +3665,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesVector>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<FactorUsesVector>(pTargetNodeVar, NodeVar);
 			InFactorListUses = (InFactorListUses ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUses.Add(pTargetNodeVar);
 		}
@@ -2549,15 +3677,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(Factor pFactor) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactor, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInFactorListUses(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddInFactorListUses(new Factor { FactorId = pFactorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInFactorListUses(long pFactorId) {
+			IWeaverVarAlias<Factor> nodeVar;
+			AddInFactorListUses(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesAxisArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesAxisArtifact>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUsesAxisArtifact>(NodeVar, pTargetNodeVar);
 			UsesAxisArtifact = pTargetNodeVar;
 		}
 		
@@ -2568,15 +3708,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesAxisArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetUsesAxisArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesAxisArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetUsesAxisArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesAxisArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetUsesAxisArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorType(IWeaverVarAlias<VectorType> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesVectorType>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUsesVectorType>(NodeVar, pTargetNodeVar);
 			UsesVectorType = pTargetNodeVar;
 		}
 		
@@ -2587,15 +3739,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorType(VectorType pVectorType) {
+			IWeaverVarAlias<VectorType> nodeVar;
+			SetUsesVectorType(pVectorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorType(byte pVectorTypeId, out IWeaverVarAlias<VectorType> pNodeVar) {
 			SetUsesVectorType(new VectorType { VectorTypeId = pVectorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorType(byte pVectorTypeId) {
+			IWeaverVarAlias<VectorType> nodeVar;
+			SetUsesVectorType(pVectorTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorUnit(IWeaverVarAlias<VectorUnit> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesVectorUnit>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUsesVectorUnit>(NodeVar, pTargetNodeVar);
 			UsesVectorUnit = pTargetNodeVar;
 		}
 		
@@ -2606,15 +3770,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorUnit(VectorUnit pVectorUnit) {
+			IWeaverVarAlias<VectorUnit> nodeVar;
+			SetUsesVectorUnit(pVectorUnit, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorUnit(byte pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
 			SetUsesVectorUnit(new VectorUnit { VectorUnitId = pVectorUnitId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorUnit(byte pVectorUnitId) {
+			IWeaverVarAlias<VectorUnit> nodeVar;
+			SetUsesVectorUnit(pVectorUnitId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorUnitPrefix(IWeaverVarAlias<VectorUnitPrefix> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesVectorUnitPrefix>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUsesVectorUnitPrefix>(NodeVar, pTargetNodeVar);
 			UsesVectorUnitPrefix = pTargetNodeVar;
 		}
 		
@@ -2625,8 +3801,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorUnitPrefix(VectorUnitPrefix pVectorUnitPrefix) {
+			IWeaverVarAlias<VectorUnitPrefix> nodeVar;
+			SetUsesVectorUnitPrefix(pVectorUnitPrefix, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId, out IWeaverVarAlias<VectorUnitPrefix> pNodeVar) {
 			SetUsesVectorUnitPrefix(new VectorUnitPrefix { VectorUnitPrefixId = pVectorUnitPrefixId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId) {
+			IWeaverVarAlias<VectorUnitPrefix> nodeVar;
+			SetUsesVectorUnitPrefix(pVectorUnitPrefixId, out nodeVar);
 		}
 		
 
@@ -2655,7 +3843,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUses(IWeaverVarAlias<Vector> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesVectorType>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUsesVectorType>(pTargetNodeVar, NodeVar);
 			InVectorListUses = (InVectorListUses ?? new List<IWeaverVarAlias<Vector>>());
 			InVectorListUses.Add(pTargetNodeVar);
 		}
@@ -2667,15 +3855,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUses(Vector pVector) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUses(pVector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUses(long pVectorId, out IWeaverVarAlias<Vector> pNodeVar) {
 			AddInVectorListUses(new Vector { VectorId = pVectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUses(long pVectorId) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUses(pVectorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorRange(IWeaverVarAlias<VectorRange> pTargetNodeVar) {
-			TxBuild.AddRel<VectorTypeUsesVectorRange>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorTypeUsesVectorRange>(NodeVar, pTargetNodeVar);
 			UsesVectorRange = pTargetNodeVar;
 		}
 		
@@ -2686,8 +3886,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorRange(VectorRange pVectorRange) {
+			IWeaverVarAlias<VectorRange> nodeVar;
+			SetUsesVectorRange(pVectorRange, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorRange(byte pVectorRangeId, out IWeaverVarAlias<VectorRange> pNodeVar) {
 			SetUsesVectorRange(new VectorRange { VectorRangeId = pVectorRangeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorRange(byte pVectorRangeId) {
+			IWeaverVarAlias<VectorRange> nodeVar;
+			SetUsesVectorRange(pVectorRangeId, out nodeVar);
 		}
 		
 
@@ -2716,7 +3928,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorTypeListUses(IWeaverVarAlias<VectorType> pTargetNodeVar) {
-			TxBuild.AddRel<VectorTypeUsesVectorRange>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorTypeUsesVectorRange>(pTargetNodeVar, NodeVar);
 			InVectorTypeListUses = (InVectorTypeListUses ?? new List<IWeaverVarAlias<VectorType>>());
 			InVectorTypeListUses.Add(pTargetNodeVar);
 		}
@@ -2728,15 +3940,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorTypeListUses(VectorType pVectorType) {
+			IWeaverVarAlias<VectorType> nodeVar;
+			AddInVectorTypeListUses(pVectorType, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorTypeListUses(byte pVectorTypeId, out IWeaverVarAlias<VectorType> pNodeVar) {
 			AddInVectorTypeListUses(new VectorType { VectorTypeId = pVectorTypeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorTypeListUses(byte pVectorTypeId) {
+			IWeaverVarAlias<VectorType> nodeVar;
+			AddInVectorTypeListUses(pVectorTypeId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddUsesVectorRangeLevelList(IWeaverVarAlias<VectorRangeLevel> pTargetNodeVar) {
-			TxBuild.AddRel<VectorRangeUsesVectorRangeLevel>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorRangeUsesVectorRangeLevel>(NodeVar, pTargetNodeVar);
 			UsesVectorRangeLevelList = (UsesVectorRangeLevelList ?? new List<IWeaverVarAlias<VectorRangeLevel>>());
 			UsesVectorRangeLevelList.Add(pTargetNodeVar);
 		}
@@ -2748,8 +3972,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddUsesVectorRangeLevelList(VectorRangeLevel pVectorRangeLevel) {
+			IWeaverVarAlias<VectorRangeLevel> nodeVar;
+			AddUsesVectorRangeLevelList(pVectorRangeLevel, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddUsesVectorRangeLevelList(byte pVectorRangeLevelId, out IWeaverVarAlias<VectorRangeLevel> pNodeVar) {
 			AddUsesVectorRangeLevelList(new VectorRangeLevel { VectorRangeLevelId = pVectorRangeLevelId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddUsesVectorRangeLevelList(byte pVectorRangeLevelId) {
+			IWeaverVarAlias<VectorRangeLevel> nodeVar;
+			AddUsesVectorRangeLevelList(pVectorRangeLevelId, out nodeVar);
 		}
 		
 
@@ -2777,7 +4013,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorRangeListUses(IWeaverVarAlias<VectorRange> pTargetNodeVar) {
-			TxBuild.AddRel<VectorRangeUsesVectorRangeLevel>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorRangeUsesVectorRangeLevel>(pTargetNodeVar, NodeVar);
 			InVectorRangeListUses = (InVectorRangeListUses ?? new List<IWeaverVarAlias<VectorRange>>());
 			InVectorRangeListUses.Add(pTargetNodeVar);
 		}
@@ -2789,8 +4025,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorRangeListUses(VectorRange pVectorRange) {
+			IWeaverVarAlias<VectorRange> nodeVar;
+			AddInVectorRangeListUses(pVectorRange, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorRangeListUses(byte pVectorRangeId, out IWeaverVarAlias<VectorRange> pNodeVar) {
 			AddInVectorRangeListUses(new VectorRange { VectorRangeId = pVectorRangeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorRangeListUses(byte pVectorRangeId) {
+			IWeaverVarAlias<VectorRange> nodeVar;
+			AddInVectorRangeListUses(pVectorRangeId, out nodeVar);
 		}
 		
 
@@ -2820,7 +4068,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUses(IWeaverVarAlias<Vector> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesVectorUnit>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUsesVectorUnit>(pTargetNodeVar, NodeVar);
 			InVectorListUses = (InVectorListUses ?? new List<IWeaverVarAlias<Vector>>());
 			InVectorListUses.Add(pTargetNodeVar);
 		}
@@ -2832,15 +4080,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUses(Vector pVector) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUses(pVector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUses(long pVectorId, out IWeaverVarAlias<Vector> pNodeVar) {
 			AddInVectorListUses(new Vector { VectorId = pVectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUses(long pVectorId) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUses(pVectorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorUnitDerivedListDefines(IWeaverVarAlias<VectorUnitDerived> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUnitDerivedDefinesVectorUnit>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUnitDerivedDefinesVectorUnit>(pTargetNodeVar, NodeVar);
 			InVectorUnitDerivedListDefines = (InVectorUnitDerivedListDefines ?? new List<IWeaverVarAlias<VectorUnitDerived>>());
 			InVectorUnitDerivedListDefines.Add(pTargetNodeVar);
 		}
@@ -2852,15 +4112,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorUnitDerivedListDefines(VectorUnitDerived pVectorUnitDerived) {
+			IWeaverVarAlias<VectorUnitDerived> nodeVar;
+			AddInVectorUnitDerivedListDefines(pVectorUnitDerived, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorUnitDerivedListDefines(byte pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
 			AddInVectorUnitDerivedListDefines(new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorUnitDerivedListDefines(byte pVectorUnitDerivedId) {
+			IWeaverVarAlias<VectorUnitDerived> nodeVar;
+			AddInVectorUnitDerivedListDefines(pVectorUnitDerivedId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorUnitDerivedListRaisesToExp(IWeaverVarAlias<VectorUnitDerived> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUnitDerivedRaisesToExpVectorUnit>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUnitDerivedRaisesToExpVectorUnit>(pTargetNodeVar, NodeVar);
 			InVectorUnitDerivedListRaisesToExp = (InVectorUnitDerivedListRaisesToExp ?? new List<IWeaverVarAlias<VectorUnitDerived>>());
 			InVectorUnitDerivedListRaisesToExp.Add(pTargetNodeVar);
 		}
@@ -2872,8 +4144,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorUnitDerivedListRaisesToExp(VectorUnitDerived pVectorUnitDerived) {
+			IWeaverVarAlias<VectorUnitDerived> nodeVar;
+			AddInVectorUnitDerivedListRaisesToExp(pVectorUnitDerived, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorUnitDerivedListRaisesToExp(byte pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
 			AddInVectorUnitDerivedListRaisesToExp(new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorUnitDerivedListRaisesToExp(byte pVectorUnitDerivedId) {
+			IWeaverVarAlias<VectorUnitDerived> nodeVar;
+			AddInVectorUnitDerivedListRaisesToExp(pVectorUnitDerivedId, out nodeVar);
 		}
 		
 
@@ -2902,7 +4186,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUses(IWeaverVarAlias<Vector> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUsesVectorUnitPrefix>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUsesVectorUnitPrefix>(pTargetNodeVar, NodeVar);
 			InVectorListUses = (InVectorListUses ?? new List<IWeaverVarAlias<Vector>>());
 			InVectorListUses.Add(pTargetNodeVar);
 		}
@@ -2914,15 +4198,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUses(Vector pVector) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUses(pVector, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorListUses(long pVectorId, out IWeaverVarAlias<Vector> pNodeVar) {
 			AddInVectorListUses(new Vector { VectorId = pVectorId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorListUses(long pVectorId) {
+			IWeaverVarAlias<Vector> nodeVar;
+			AddInVectorListUses(pVectorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorUnitDerivedListUses(IWeaverVarAlias<VectorUnitDerived> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUnitDerivedUsesVectorUnitPrefix>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<VectorUnitDerivedUsesVectorUnitPrefix>(pTargetNodeVar, NodeVar);
 			InVectorUnitDerivedListUses = (InVectorUnitDerivedListUses ?? new List<IWeaverVarAlias<VectorUnitDerived>>());
 			InVectorUnitDerivedListUses.Add(pTargetNodeVar);
 		}
@@ -2934,8 +4230,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorUnitDerivedListUses(VectorUnitDerived pVectorUnitDerived) {
+			IWeaverVarAlias<VectorUnitDerived> nodeVar;
+			AddInVectorUnitDerivedListUses(pVectorUnitDerived, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddInVectorUnitDerivedListUses(byte pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
 			AddInVectorUnitDerivedListUses(new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInVectorUnitDerivedListUses(byte pVectorUnitDerivedId) {
+			IWeaverVarAlias<VectorUnitDerived> nodeVar;
+			AddInVectorUnitDerivedListUses(pVectorUnitDerivedId, out nodeVar);
 		}
 		
 
@@ -2965,7 +4273,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDefinesVectorUnit(IWeaverVarAlias<VectorUnit> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUnitDerivedDefinesVectorUnit>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUnitDerivedDefinesVectorUnit>(NodeVar, pTargetNodeVar);
 			DefinesVectorUnit = pTargetNodeVar;
 		}
 		
@@ -2976,15 +4284,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetDefinesVectorUnit(VectorUnit pVectorUnit) {
+			IWeaverVarAlias<VectorUnit> nodeVar;
+			SetDefinesVectorUnit(pVectorUnit, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDefinesVectorUnit(byte pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
 			SetDefinesVectorUnit(new VectorUnit { VectorUnitId = pVectorUnitId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetDefinesVectorUnit(byte pVectorUnitId) {
+			IWeaverVarAlias<VectorUnit> nodeVar;
+			SetDefinesVectorUnit(pVectorUnitId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRaisesToExpVectorUnit(IWeaverVarAlias<VectorUnit> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUnitDerivedRaisesToExpVectorUnit>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUnitDerivedRaisesToExpVectorUnit>(NodeVar, pTargetNodeVar);
 			RaisesToExpVectorUnit = pTargetNodeVar;
 		}
 		
@@ -2995,15 +4315,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRaisesToExpVectorUnit(VectorUnit pVectorUnit) {
+			IWeaverVarAlias<VectorUnit> nodeVar;
+			SetRaisesToExpVectorUnit(pVectorUnit, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetRaisesToExpVectorUnit(byte pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
 			SetRaisesToExpVectorUnit(new VectorUnit { VectorUnitId = pVectorUnitId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetRaisesToExpVectorUnit(byte pVectorUnitId) {
+			IWeaverVarAlias<VectorUnit> nodeVar;
+			SetRaisesToExpVectorUnit(pVectorUnitId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorUnitPrefix(IWeaverVarAlias<VectorUnitPrefix> pTargetNodeVar) {
-			TxBuild.AddRel<VectorUnitDerivedUsesVectorUnitPrefix>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<VectorUnitDerivedUsesVectorUnitPrefix>(NodeVar, pTargetNodeVar);
 			UsesVectorUnitPrefix = pTargetNodeVar;
 		}
 		
@@ -3014,8 +4346,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorUnitPrefix(VectorUnitPrefix pVectorUnitPrefix) {
+			IWeaverVarAlias<VectorUnitPrefix> nodeVar;
+			SetUsesVectorUnitPrefix(pVectorUnitPrefix, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId, out IWeaverVarAlias<VectorUnitPrefix> pNodeVar) {
 			SetUsesVectorUnitPrefix(new VectorUnitPrefix { VectorUnitPrefixId = pVectorUnitPrefixId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId) {
+			IWeaverVarAlias<VectorUnitPrefix> nodeVar;
+			SetUsesVectorUnitPrefix(pVectorUnitPrefixId, out nodeVar);
 		}
 		
 
@@ -3044,7 +4388,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthAccessUsesApp>(NodeVar, pTargetNodeVar);
 			UsesApp = pTargetNodeVar;
 		}
 		
@@ -3055,15 +4399,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pAppId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesUser>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthAccessUsesUser>(NodeVar, pTargetNodeVar);
 			UsesUser = pTargetNodeVar;
 		}
 		
@@ -3074,8 +4430,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesUser(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetUsesUser(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetUsesUser(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesUser(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetUsesUser(pUserId, out nodeVar);
 		}
 		
 
@@ -3103,7 +4471,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthDomainUsesApp>(NodeVar, pTargetNodeVar);
 			UsesApp = pTargetNodeVar;
 		}
 		
@@ -3114,8 +4482,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pAppId, out nodeVar);
 		}
 		
 
@@ -3144,7 +4524,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthGrantUsesApp>(NodeVar, pTargetNodeVar);
 			UsesApp = pTargetNodeVar;
 		}
 		
@@ -3155,15 +4535,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pAppId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesUser>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthGrantUsesUser>(NodeVar, pTargetNodeVar);
 			UsesUser = pTargetNodeVar;
 		}
 		
@@ -3174,8 +4566,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesUser(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetUsesUser(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetUsesUser(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesUser(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetUsesUser(pUserId, out nodeVar);
 		}
 		
 
@@ -3204,7 +4608,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthScopeUsesApp>(NodeVar, pTargetNodeVar);
 			UsesApp = pTargetNodeVar;
 		}
 		
@@ -3215,15 +4619,27 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(App pApp) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pApp, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
 			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesApp(long pAppId) {
+			IWeaverVarAlias<App> nodeVar;
+			SetUsesApp(pAppId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesUser>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<OauthScopeUsesUser>(NodeVar, pTargetNodeVar);
 			UsesUser = pTargetNodeVar;
 		}
 		
@@ -3234,8 +4650,20 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesUser(User pUser) {
+			IWeaverVarAlias<User> nodeVar;
+			SetUsesUser(pUser, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
 			SetUsesUser(new User { UserId = pUserId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesUser(long pUserId) {
+			IWeaverVarAlias<User> nodeVar;
+			SetUsesUser(pUserId, out nodeVar);
 		}
 		
 

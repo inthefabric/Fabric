@@ -100,7 +100,9 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUser(IApiContext pContext) {
-			if ( UserId == null || UserId <= 0 ) { return null; }
+			if ( UserId == null || UserId <= 0 ) {
+				return null;
+			}
 
 			var user = new User { UserId = (long)UserId };
 			return pContext.DbSingle<User>("GetUser", ApiFunc.NewNodeQuery(user));
@@ -111,10 +113,15 @@ namespace Fabric.Api.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		public LoginScopeResult GetGrantCodeIfScopeAlreadyAllowed(
 															IOauthTasks pTasks, IApiContext pContext) {
-			if ( UserId == null ) { return null; }
+			if ( UserId == null ) {
+				return null;
+			}
 
 			ScopeResult os = pTasks.GetScope(AppId, (long)UserId, pContext);
-			if ( os == null || !os.Allow ) { return null; }
+			
+			if ( os == null || !os.Allow ) {
+				return null;
+			}
 
 			return AddGrantCode(true, pTasks, pContext);
 		}
@@ -122,7 +129,11 @@ namespace Fabric.Api.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		public LoginScopeResult AddGrantCode(
 									bool pScopeAlreadyAdded, IOauthTasks pTasks, IApiContext pContext) {
-			//TODO: pTasks.AddMemberEnsure(AppId, UserId, pContext);
+			if ( UserId == null ) {
+				return null;
+			}
+			
+			pTasks.AddMemberEnsure(AppId, (long)UserId, pContext);
 
 			if ( !pScopeAlreadyAdded ) {
 				//TODO: pTasks.AddScope(AppId, UserId, true, pContext);

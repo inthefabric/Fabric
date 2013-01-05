@@ -20,7 +20,15 @@ namespace Fabric.Infrastructure.Weaver {
 		public DomainBuilder(TxBuilder pTx, T pNode) {
 			TxBuild = pTx;
 			Node = pNode;
-			
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public DomainBuilder(TxBuilder pTx) : this(pTx, new T()) {}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void AddNode() {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<T> nodeVar;
 			TxBuild.AddNode<T, TRootRel>(Node, out rootVar, out nodeVar);
@@ -29,7 +37,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public DomainBuilder(TxBuilder pTx) : this(pTx, new T()) {}
+		public void AddNode(IWeaverVarAlias<Root> pRootVar) {
+			IWeaverVarAlias<T> nodeVar;
+			TxBuild.AddNode<T, TRootRel>(Node, pRootVar, out nodeVar);
+			InRootContains = pRootVar;
+			NodeVar = nodeVar;
+		}
 		
 	}
 

@@ -81,12 +81,12 @@ foreach ( string name in nodes ) {
 <#
 			if ( hr.IsOutgoing ) {
 #>
-			TxBuild.AddRel<<#= hr.RelName #>>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<<#= hr.RelName #>>(NodeVar, pTargetNodeVar);
 <#
 			}
 			else {
 #>
-			TxBuild.AddRel<<#= hr.RelName #>>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<<#= hr.RelName #>>(pTargetNodeVar, NodeVar);
 <#
 			}
 			
@@ -111,8 +111,20 @@ foreach ( string name in nodes ) {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void <#= method #>(<#= t #> p<#= t #>) {
+			IWeaverVarAlias<<#= t #>> nodeVar;
+			<#= method #>(p<#= t #>, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void <#= method #>(<#= targNodeIdType #> p<#= t #>Id, out IWeaverVarAlias<<#= t #>> pNodeVar) {
 			<#= method #>(new <#= t #> { <#= t #>Id = p<#= t #>Id }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void <#= method #>(<#= targNodeIdType #> p<#= t #>Id) {
+			IWeaverVarAlias<<#= t #>> nodeVar;
+			<#= method #>(p<#= t #>Id, out nodeVar);
 		}
 		
 <#

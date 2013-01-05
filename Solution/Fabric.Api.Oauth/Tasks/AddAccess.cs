@@ -87,29 +87,21 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess AddAccessNodeAndRels() {
+			var txb = new TxBuilder();
+		
 			var oa = new OauthAccess();
 			oa.OauthAccessId = Context.GetSharpflakeId<OauthAccess>();
 			oa.Expires = Context.UtcNow.AddSeconds(vExpireSec).Ticks;
 			oa.Token = Context.Code32;
 			oa.Refresh = Context.Code32;
 			oa.IsClientOnly = vClientOnly;
-
-			////
 			
-			var txb = new TxBuilder();
-			IWeaverVarAlias<OauthAccess> oaVar;
-			IWeaverVarAlias<Root> rootVar;
-			IWeaverVarAlias<App> appVar;
-
-			txb.AddNode<OauthAccess, RootContainsOauthAccess>(oa, out rootVar, out oaVar);
-
-			txb.GetNode(new App { AppId = vAppId }, out appVar);
-			txb.AddRel<OauthAccessUsesApp>(oaVar, appVar);
+			var oaBuild = new OauthAccessBuilder(txb, oa);
+			oaBuild.AddNode();
+			oaBuild.SetUsesApp(vAppId);
 			
 			if ( vUserId != null ) {
-				IWeaverVarAlias<User> userVar;
-				txb.GetNode(new User { UserId = (long)vUserId }, out userVar);
-				txb.AddRel<OauthAccessUsesUser>(oaVar, userVar);
+				oaBuild.SetUsesUser((long)vUserId);
 			}
 
 			Context.DbData(Query.AddAccessTx+"", txb.Finish());

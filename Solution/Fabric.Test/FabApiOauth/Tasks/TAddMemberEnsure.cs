@@ -45,14 +45,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"g.addEdge(_V2,_V1,_TP4);"+
 				"_V3=g.idx(_TP5).get('"+typeof(User).Name+"Id',{{UserId}}L)[0];"+
 				"g.addEdge(_V3,_V1,_TP6);"+
-				"_V4=g.addVertex(["+typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,Performed:0L]);"+
-				"g.idx(_TP7).put(_TP8,_V4."+typeof(MemberTypeAssign).Name+"Id,_V4);"+
-				"g.addEdge(_V0,_V4,_TP9);"+
-				"g.addEdge(_V1,_V4,_TP10);"+
-				"_V5=g.idx(_TP11).get('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0];"+
-				"g.addEdge(_V4,_V5,_TP12);"+
-				"_V6=g.idx(_TP13).get('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0];"+
-				"g.addEdge(_V6,_V4,_TP14);"+
+				"_V4=g.addVertex(["+
+					typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
+					"Performed:{{UtcNowTicks}}L,"+
+					"Note:_TP7"+
+				"]);"+
+				"g.idx(_TP8).put(_TP9,_V4."+typeof(MemberTypeAssign).Name+"Id,_V4);"+
+				"g.addEdge(_V0,_V4,_TP10);"+
+				"g.addEdge(_V1,_V4,_TP11);"+
+				"_V5=g.idx(_TP12).get('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0];"+
+				"g.addEdge(_V4,_V5,_TP13);"+
+				"_V6=g.idx(_TP14).get('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0];"+
+				"g.addEdge(_V6,_V4,_TP15);"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
 
 		private readonly static string QueryUpdateMemberTx =
@@ -64,14 +68,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"_V1=g.idx(_TP1).get('"+typeof(Member).Name+"Id',{{MemId}}L)[0];"+
 				"_V2=g.idx(_TP2).get('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0];"+
 				"g.addEdge(_V1,_V2,_TP3);"+
-				"_V3=g.addVertex(["+typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,Performed:0L]);"+
-				"g.idx(_TP4).put(_TP5,_V3."+typeof(MemberTypeAssign).Name+"Id,_V3);"+
-				"g.addEdge(_V0,_V3,_TP6);"+
-				"g.addEdge(_V1,_V3,_TP7);"+
-				"_V4=g.idx(_TP8).get('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0];"+
-				"g.addEdge(_V3,_V4,_TP9);"+
-				"_V5=g.idx(_TP10).get('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0];"+
-				"g.addEdge(_V5,_V3,_TP11);"+
+				"_V3=g.addVertex(["+
+					typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
+					"Performed:{{UtcNowTicks}}L,"+
+					"Note:_TP4"+
+				"]);"+
+				"g.idx(_TP5).put(_TP6,_V3."+typeof(MemberTypeAssign).Name+"Id,_V3);"+
+				"g.addEdge(_V0,_V3,_TP7);"+
+				"g.addEdge(_V1,_V3,_TP8);"+
+				"_V4=g.idx(_TP9).get('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0];"+
+				"g.addEdge(_V3,_V4,_TP10);"+
+				"_V5=g.idx(_TP11).get('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0];"+
+				"g.addEdge(_V5,_V3,_TP12);"+
 				"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
 		
 		private long vAppId;
@@ -176,6 +184,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UserId}}", vUserId+"")
 				.Replace("{{MtaId}}", vMtaResult.MemberTypeAssignId+"")
 				.Replace("{{NewMtaId}}", vNewMtaId+"")
+				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
 				.Replace("{{NewMemTypeId}}", ((byte)MemberTypeId.Member)+"")
 				.Replace("{{CreatorMemId}}", ((long)MemberId.FabFabData)+"");
 			
@@ -187,14 +196,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP4", typeof(AppDefinesMember).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(User).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(UserDefinesMember).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP7", typeof(MemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberTypeAssign).Name+"Id");
-			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(RootContainsMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberType).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP12", typeof(MemberTypeAssignUsesMemberType).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP13", typeof(Member).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP14", typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP7", "First login.");
+			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberTypeAssign).Name+"Id");
+			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP12", typeof(MemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP13", typeof(MemberTypeAssignUsesMemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP14", typeof(Member).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP15", typeof(MemberCreatesMemberTypeAssign).Name);
 			
 			return vMockGetMemberTxResult.Object;
 		}
@@ -208,6 +218,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{MemId}}", vMemberResult.MemberId+"")
 				.Replace("{{MtaId}}", vMtaResult.MemberTypeAssignId+"")
 				.Replace("{{NewMtaId}}", vNewMtaId+"")
+				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
 				.Replace("{{NewMemTypeId}}", ((byte)MemberTypeId.Member)+"")
 				.Replace("{{CreatorMemId}}", ((long)MemberId.FabFabData)+"");
 			
@@ -216,14 +227,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP1", typeof(Member).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP2", typeof(MemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP3", typeof(MemberHasHistoricMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP4", typeof(MemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(MemberTypeAssign).Name+"Id");
-			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(RootContainsMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP7", typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberType).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberTypeAssignUsesMemberType).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(Member).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP4", "First login.");
+			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(MemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(MemberTypeAssign).Name+"Id");
+			TestUtil.CheckParam(pTx.Params, "_TP7", typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(MemberTypeAssignUsesMemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(Member).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP12", typeof(MemberCreatesMemberTypeAssign).Name);
 			
 			return vMockGetMemberTxResult.Object;
 		}
