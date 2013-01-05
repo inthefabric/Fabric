@@ -51,7 +51,6 @@
     <Compile Include="Tasks\GetDomain.cs" />
     <Compile Include="Tasks\AddMemberEnsure.cs" />
     <Compile Include="Tasks\GetRefresh.cs" />
-    <None Include="Tasks\AddScope.cs" />
     <Compile Include="Tasks\GetScope.cs" />
     <Compile Include="Tasks\OauthTasks.cs" />
     <Compile Include="Tasks\IOauthTasks.cs" />
@@ -64,6 +63,7 @@
     <Compile Include="OauthAccessClientDataProv.cs" />
     <Compile Include="OauthAccessRefToken.cs" />
     <Compile Include="Tasks\AddGrant.cs" />
+    <Compile Include="Tasks\AddScope.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">

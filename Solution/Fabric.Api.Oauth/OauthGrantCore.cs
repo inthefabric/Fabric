@@ -136,7 +136,7 @@ namespace Fabric.Api.Oauth {
 			pTasks.AddMemberEnsure(AppId, (long)UserId, pContext);
 
 			if ( !pScopeAlreadyAdded ) {
-				//TODO: pTasks.AddScope(AppId, UserId, true, pContext);
+				pTasks.AddScope(AppId, (long)UserId, true, pContext);
 			}
 
 			string code = pTasks.AddGrant(AppId, (long)UserId, RedirectUri, pContext);

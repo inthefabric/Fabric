@@ -10,7 +10,7 @@ using Weaver.Functions;
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddGrant : ApiFunc<string> { //TEST: AddGrant
+	public class AddGrant : ApiFunc<string> {
 	
 		public enum Query {
 			UpdateGrant,

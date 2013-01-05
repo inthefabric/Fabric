@@ -1,52 +1,90 @@
 ﻿using Fabric.Infrastructure.Api;
+using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
+using Weaver.Interfaces;
+using Weaver;
+using Weaver.Functions;
+using Fabric.Infrastructure.Weaver;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
-	public class AddScope : ApiFunc<FabOauthScopeKey> {
+	public class AddScope : ApiFunc<OauthScope> {
 		
-		private readonly FabAppKey vAppKey;
-		private readonly FabUserKey vUserKey;
+		public enum Query {
+			UpdateScope,
+			AddScopeTx
+		}
+		
+		private readonly long vAppId;
+		private readonly long vUserId;
 		private readonly bool vAllow;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AddScope(FabAppKey pAppKey, FabUserKey pUserKey, bool pAllow) :
-																				base(AuthType.None) {
-			vAppKey = pAppKey;
-			vUserKey = pUserKey;
+		public AddScope(long pAppId, long pUserId, bool pAllow) {
+			vAppId = pAppId;
+			vUserId = pUserId;
 			vAllow = pAllow;
-			AddTransactionFunc(DoScopeAdd);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
-			if ( vAppKey == null ) { throw new FabArgumentNullFault("AppKey"); }
-			if ( vUserKey == null ) { throw new FabArgumentNullFault("UserKey"); }
+		protected override void ValidateParams() {
+			if ( vAppId <= 0 ) {
+				throw new FabArgumentOutOfRangeFault("AppId");
+			}
+			
+			if ( vUserId <= 0 ) {
+				throw new FabArgumentOutOfRangeFault("UserId");
+			}
 		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void DoScopeAdd(ISession pSession) {
-			OauthScope os = pSession.QueryOver<OauthScope>()
-				.Where(g => g.App.Id == vAppKey.Id && g.Usr.Id == vUserKey.Id)
-				.Take(1)
-				.SingleOrDefault();
-
-			if ( os == null ) {
-				os = new OauthScope();
-				os.App = pSession.Load<App>(vAppKey.Id);
-				os.Usr = pSession.Load<Usr>(vUserKey.Id);
+		protected override OauthScope Execute() {
+			IWeaverFuncAs<OauthScope> ogAlias;
+			
+			var newOs = new OauthScope();
+			newOs.Allow = vAllow;
+			newOs.Created = Context.UtcNow.Ticks;
+			
+			var updates = new WeaverUpdates<OauthScope>();
+			updates.AddUpdate(newOs, x => x.Allow);
+			updates.AddUpdate(newOs, x => x.Created);
+			
+			IWeaverQuery updateOs = 
+				NewPathFromIndex(new User { UserId = vUserId })
+					.InOauthScopeListUses.FromOauthScope
+					.As(out ogAlias)
+					.UsesApp.ToApp
+					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Back(ogAlias)
+					.UpdateEach(updates)
+					.End();
+			
+			OauthScope os = Context.DbSingle<OauthScope>(Query.UpdateScope+"", updateOs);
+			
+			if ( os != null ) {
+				return os;
 			}
-
-			os.Allow = vAllow;
-			os.Created = GetDbNow(pSession);
-			pSession.SaveOrUpdate(os);
-
-			SetResult(new FabOauthScopeKey(os.Id));
+			
+			////
+			
+			var txb = new TxBuilder();
+			newOs.OauthScopeId = Context.GetSharpflakeId<OauthScope>();
+			
+			var osBuild = new OauthScopeBuilder(txb, newOs);
+			osBuild.AddNode();
+			osBuild.SetUsesApp(vAppId);
+			osBuild.SetUsesUser(vUserId);
+			
+			txb.Transaction.Finish(WeaverTransaction.ConclusionType.Success, osBuild.NodeVar);
+			newOs = Context.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
+			return newOs;
 		}
 
 	}
+	
 }

@@ -27,6 +27,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public OauthScope AddScope(long pAppId, long pUserId, bool pAllow, IApiContext pContext) {
+			return new AddScope(pAppId, pUserId, pAllow).Go(pContext);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess DoLogout(FabOauthAccess pAccess, IApiContext pContext) {
 			return new DoLogout(pAccess).Go(pContext);
 		}
