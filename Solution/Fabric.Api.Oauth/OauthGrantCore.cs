@@ -33,7 +33,12 @@ namespace Fabric.Api.Oauth {
 	};
 
 	/*================================================================================================*/
-	public class OauthGrantCore : IOauthGrantCore { //TEST: OauthGrantCore
+	public class OauthGrantCore : IOauthGrantCore {
+	
+		public enum Query {
+			GetApp,
+			GetUser
+		}
 
 		public static string[] ErrDescStrings = new [] {
 			"Login cancelled by user",
@@ -57,9 +62,6 @@ namespace Fabric.Api.Oauth {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantCore() {}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantCore(string pClientId, string pRedirectUri, long pLoggedUserId) {
 			ClientId = pClientId;
@@ -89,7 +91,7 @@ namespace Fabric.Api.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IApiContext pContext) {
 			var app = new App { AppId = AppId };
-			app = pContext.DbSingle<App>("GetApp", ApiFunc.NewNodeQuery(app));
+			app = pContext.DbSingle<App>(Query.GetApp+"", ApiFunc.NewNodeQuery(app));
 
 			if ( app == null ) {
 				throw GetFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
@@ -105,7 +107,7 @@ namespace Fabric.Api.Oauth {
 			}
 
 			var user = new User { UserId = (long)UserId };
-			return pContext.DbSingle<User>("GetUser", ApiFunc.NewNodeQuery(user));
+			return pContext.DbSingle<User>(Query.GetUser+"", ApiFunc.NewNodeQuery(user));
 		}
 
 
