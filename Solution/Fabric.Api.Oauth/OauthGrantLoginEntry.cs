@@ -2,107 +2,115 @@
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Infrastructure.Api;
+using Fabric.Api.Oauth.Tasks;
+using Fabric.Api.Oauth.Results;
+using Fabric.Domain;
 
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrant_LoginEntry : ApiFunc<FabOauthLogin> {
-
-		private readonly OauthGrant_Core vCore;
+	public class OauthGrantLoginEntry : ApiFunc<FabOauthLogin> {
 
 		private readonly string vResponseType;
-		private bool vSwitchMode;
-		private readonly string vSwitchModeStr;
+		private readonly string vSwitchMode;
+		private readonly IOauthGrantCore vCore;
+		private readonly IOauthTasks vTasks;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrant_LoginEntry(string pResponseType, string pClientId, string pRedirectUri,
-									string pSwitchMode, uint pLoggedUserId) : base(AuthType.None) {
+		public OauthGrantLoginEntry(string pResponseType, string pSwitchMode, IOauthGrantCore pCore,
+		                            											IOauthTasks pTasks) {
 			vResponseType = pResponseType;
-			vSwitchModeStr = pSwitchMode;
-
-			vCore = new OauthGrant_Core(pClientId, pRedirectUri, pLoggedUserId);
-
-			AddTransactionFunc(GetPageData);
+			vSwitchMode = pSwitchMode;
+			vCore = pCore;
+			vTasks = pTasks;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void PreGoChecks() {
+		protected override void ValidateParams() {
 			if ( vResponseType != "code" ) {
-				vCore.ThrowFault(GrantErrors.invalid_request, GrantErrorDescs.BadRespType);
+				throw vCore.GetFault(GrantErrors.invalid_request, GrantErrorDescs.BadRespType);
 			}
 
-			if ( vSwitchModeStr != null && vSwitchModeStr != "0" && vSwitchModeStr != "1" ) {
-				vCore.ThrowFault(GrantErrors.invalid_request, GrantErrorDescs.BadSwitch);
+			if ( vSwitchMode != null && vSwitchMode != "0" && vSwitchMode != "1" ) {
+				throw vCore.GetFault(GrantErrors.invalid_request, GrantErrorDescs.BadSwitch);
 			}
-
-			vSwitchMode = (vSwitchModeStr == "1");
 
 			// Redirect tests
 
 			if ( vCore.RedirectUri == null || vCore.RedirectUri.Length <= 0 ) {
-				vCore.ThrowFault(GrantErrors.invalid_request, GrantErrorDescs.NoRedirUri);
+				throw vCore.GetFault(GrantErrors.invalid_request, GrantErrorDescs.NoRedirUri);
 			}
 
 			if ( vCore.RedirectUri.IndexOf("://") <= 0 ) {
-				vCore.ThrowFault(GrantErrors.invalid_request, GrantErrorDescs.BadRedirUri);
+				throw vCore.GetFault(GrantErrors.invalid_request, GrantErrorDescs.BadRedirUri);
 			}
 
 			// App tests
 
-			if ( vCore.AppKey == null ) {
-				vCore.ThrowFault(GrantErrors.unauthorized_client, GrantErrorDescs.NoClient);
+			if ( vCore.AppId <= 0 ) {
+				throw vCore.GetFault(GrantErrors.unauthorized_client, GrantErrorDescs.NoClient);
 			}
 
 			// Scope tests
 
 			/*if ( false ) {
-				throwFault(GrantErrors.invalid_scope, "The scope is invalid");
+				throw vCore.GetFault(GrantErrors.invalid_scope, "The scope is invalid");
 				return;
 			}*/
 		}
 
 
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void GetPageData(ISession pSession) {
+		protected override FabOauthLogin Execute() {
 			try {
-				vCore.Context = Context;
-
-				FabApp app = vCore.GetApp(); //throws fault on error
-				CheckDomain();
-
-				var result = new FabOauthLogin();
-				SetResult(result);
-
-				if ( !vSwitchMode ) {
-					result.Scope = vCore.GetGrantCodeIfScopeAlreadyAllowed();
-					if ( result.Scope != null ) { return; }
-				}
-
-				FabUser per = vCore.GetUser();
-
-				result.ShowLoginPage = (per == null || vSwitchMode);
-				result.AppId = app.Key.Id;
-				result.AppName = app.Name;
-				result.LoggedUserId = (per == null ? 0 : per.Key.Id);
-				result.LoggedUserName = (per == null ? null : per.Name);
+				return GetPageData();
 			}
 			catch ( OauthException ) {
 				throw;
 			}
 			catch ( Exception e ) {
-				vCore.ThrowFaultOnException(e);
+				throw vCore.GetFaultOnException(e);
 			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private FabOauthLogin GetPageData() {
+			App app = vCore.GetApp(Context); //throws fault on error
+			CheckDomain();
+			
+			var result = new FabOauthLogin();
+			bool switchBool = (vSwitchMode == "1");
+
+			if ( !switchBool ) {
+				LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, Context);
+				
+				if ( scope != null ) {
+					result.ScopeCode = scope.Code;
+					result.ScopeRedirect = scope.Redirect;
+					return result;
+				}
+			}
+
+			User user = vCore.GetUser(Context);
+			
+			result.ShowLoginPage = (user == null || switchBool);
+			result.AppId = app.AppId;
+			result.AppName = app.Name;
+			result.LoggedUserId = (user == null ? 0 : user.UserId);
+			result.LoggedUserName = (user == null ? null : user.Name);
+			return result;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void CheckDomain() {
-			FabOauthDomain dom = new GetDomain(vCore.AppKey, vCore.RedirectUri).Go(Context);
+			DomainResult dom = vTasks.GetDomain(vCore.AppId, vCore.RedirectUri, Context);
 
 			if ( dom == null ) {
-				vCore.ThrowFault(GrantErrors.invalid_request, GrantErrorDescs.RedirMismatch);
+				throw vCore.GetFault(GrantErrors.invalid_request, GrantErrorDescs.RedirMismatch);
 			}
 		}
 

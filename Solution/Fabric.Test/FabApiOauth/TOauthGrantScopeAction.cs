@@ -44,8 +44,6 @@ namespace Fabric.Test.FabApiOauth {
 			vMockCore.SetupGet(x => x.UserId).Returns(userId);
 			vMockCore.Setup(x => x.AddGrantCode(false, vMockTasks.Object, vMockCtx.Object))
 				.Returns(vCoreScopeResult);
-			vMockCore.Setup(x => x.GetFault(GrantErrors.access_denied, GrantErrorDescs.AccessDeny))
-				.Returns(new OauthException("x", "y"));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -70,7 +68,12 @@ namespace Fabric.Test.FabApiOauth {
 		[Test]
 		public void DenyScope() {
 			vAllowScope = false;
+			
+			vMockCore.Setup(x => x.GetFault(GrantErrors.access_denied, GrantErrorDescs.AccessDeny))
+				.Returns(new OauthException("x", "y"));
+				
 			TestUtil.CheckThrows<OauthException>(true, () => TestGo());
+			
 			vMockCore.Verify(x => x.AddGrantCode(It.IsAny<bool>(), It.IsAny<IOauthTasks>(),
 				It.IsAny<IApiContext>()), Times.Never());
 		}

@@ -63,6 +63,7 @@
     <Compile Include="Tasks\AddGrant.cs" />
     <Compile Include="Tasks\AddScope.cs" />
     <Compile Include="OauthGrantScopeAction.cs" />
+    <Compile Include="OauthGrantLoginEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
@@ -97,7 +98,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="OauthGrantLoginEntry.cs" />
-  </ItemGroup>
 </Project>
