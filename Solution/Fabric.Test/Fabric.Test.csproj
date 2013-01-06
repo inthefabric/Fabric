@@ -79,6 +79,7 @@
     <Compile Include="FabApiOauth\Tasks\TAddScope.cs" />
     <Compile Include="FabApiOauth\TOauthGrantCore.cs" />
     <Compile Include="FabApiOauth\TOauthGrantLoginAction.cs" />
+    <Compile Include="FabApiOauth\TOauthGrantScopeAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">
