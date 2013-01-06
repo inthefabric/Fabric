@@ -8,7 +8,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrantLoginAction : ApiFunc<FabOauthLogin> { //TEST: OauthGrantLoginAction
+	public class OauthGrantLoginAction : ApiFunc<FabOauthLogin> {
 
 		private readonly string vUsername;
 		private readonly string vPassword;
