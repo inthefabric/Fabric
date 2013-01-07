@@ -7,7 +7,7 @@ using Nancy;
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
-	public class OauthFuncs : ApiFuncBase {
+	public class OauthFuncs : ModuleFuncBase, IOauthFuncs {
 
 		private const string DbSvcUrl = "http://localhost:9001/";
 
@@ -19,53 +19,66 @@ namespace Fabric.Api.Server.Oauth {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessAuthCode AccessAuthCode {
+		public OauthAccessBase Access {
+			get {
+				switch ( GetParamString(FuncOauthAtStep.GrantTypeName) ) {
+					case FuncOauthAtStep.GrantTypeCc: return AccessClientCred;
+					case FuncOauthAtStep.GrantTypeCdp: return AccessClientDataProv;
+					case FuncOauthAtStep.GrantTypeRt: return AccessRefToken;
+				}
+
+				return AccessAuthCode;
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public OauthAccessAuthCode AccessAuthCode {
 			get {
 				return new OauthAccessAuthCode(
-					"authorization_code",
-					GetParamString(FuncOauthAtacStep.RedirectUriName),
-					GetParamString(FuncOauthAtacStep.ClientSecretName),
-					GetParamString(FuncOauthAtacStep.CodeName),
+					FuncOauthAtStep.GrantTypeAc,
+					GetParamString(FuncOauthAtStep.RedirectUriName),
+					GetParamString(FuncOauthAtStep.ClientSecretName),
+					GetParamString(FuncOauthAtStep.CodeName),
 					new OauthTasks()
 				);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessClientCred AccessClientCred {
+		public OauthAccessClientCred AccessClientCred {
 			get {
 				return new OauthAccessClientCred(
-					"client_credentials",
-					GetParamString(FuncOauthAtccStep.RedirectUriName),
-					GetParamString(FuncOauthAtccStep.ClientSecretName),
-					GetParamString(FuncOauthAtccStep.ClientIdName),
+					FuncOauthAtStep.GrantTypeCc,
+					GetParamString(FuncOauthAtStep.RedirectUriName),
+					GetParamString(FuncOauthAtStep.ClientSecretName),
+					GetParamString(FuncOauthAtStep.ClientIdName),
 					new OauthTasks()
 				);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessClientDataProv AccessClientDataProv {
+		public OauthAccessClientDataProv AccessClientDataProv {
 			get {
 				return new OauthAccessClientDataProv(
-					"client_dataprov",
-					GetParamString(FuncOauthAtccStep.RedirectUriName),
-					GetParamString(FuncOauthAtccStep.ClientSecretName),
-					GetParamString(FuncOauthAtccStep.ClientIdName),
-					GetParamString(FuncOauthAtcdStep.DataProvUserIdName),
+					FuncOauthAtStep.GrantTypeCdp,
+					GetParamString(FuncOauthAtStep.RedirectUriName),
+					GetParamString(FuncOauthAtStep.ClientSecretName),
+					GetParamString(FuncOauthAtStep.ClientIdName),
+					GetParamString(FuncOauthAtStep.DataProvUserIdName),
 					new OauthTasks()
 				);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthAccessRefToken AccessRefToken {
+		public OauthAccessRefToken AccessRefToken {
 			get {
 				return new OauthAccessRefToken(
-					"refresh_token",
-					GetParamString(FuncOauthAtrStep.RedirectUriName),
-					GetParamString(FuncOauthAtrStep.ClientSecretName),
-					GetParamString(FuncOauthAtrStep.RefreshTokenName),
+					FuncOauthAtStep.GrantTypeRt,
+					GetParamString(FuncOauthAtStep.RedirectUriName),
+					GetParamString(FuncOauthAtStep.ClientSecretName),
+					GetParamString(FuncOauthAtStep.RefreshTokenName),
 					new OauthTasks()
 				);
 			}
@@ -74,7 +87,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual OauthLogout Logout {
+		public OauthLogout Logout {
 			get {
 				return new OauthLogout(
 					GetParamString(FuncOauthLogoutStep.AccessTokenName),

@@ -7,39 +7,46 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	[Func("Login", typeof(FabOauthLogin), ResxKey="OauthLogin")]
 	public class FuncOauthLoginStep : FuncOauthFinal { //TEST: FuncOauthLoginStep
 
-		[FuncParam("response_type")]
+		public const string ResponseTypeName = "response_type";
+		public const string ClientIdName = "client_id";
+		public const string RedirectUriName = "redirect_uri";
+		public const string ScopeName = "scope";
+		public const string StateName = "state";
+		public const string SwitchModeName = "switchMode";
+
+		[FuncParam(ResponseTypeName)]
 		public string ResponseType { get; set; }
 
-		[FuncParam("client_id")]
+		[FuncParam(ClientIdName)]
 		public string ClientId { get; set; }
 
-		[FuncParam("redirect_uri")]
+		[FuncParam(RedirectUriName)]
 		public string RedirectUri { get; set; }
 
-		[FuncParam("scope", false)]
+		[FuncParam(ScopeName, false)]
 		public string Scope { get; set; }
 
-		[FuncParam("state", false)]
+		[FuncParam(StateName, false)]
 		public string State { get; set; }
 
-		[FuncParam("switchMode", false)]
+		[FuncParam(SwitchModeName, false)]
 		public string SwitchMode { get; set; }
 
 		//in case someone goes directly to the OAuth page.
-		/*[FuncParam(false)]
-		public string error { get; set; }
+
+		public string Error { get; set; }
 
 		//Internal: POST vars
 
-		public string loginButton { get; set; }
-		public string cancelButton { get; set; }
-		public string allowButton { get; set; }
-		public string denyButton { get; set; }
-		public string logoutButton { get; set; }
+		public string LoginAction { get; set; }
+		public string CancelAction { get; set; }
+		public string AllowAction { get; set; }
+		public string DenyAction { get; set; }
+		public string LogoutAction { get; set; }
 
-		public string username { get; set; }
-		public string password { get; set; }
-		public bool rememberMe { get; set; }*/
+		public string Username { get; set; }
+		public string Password { get; set; }
+		public bool RememberMe { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

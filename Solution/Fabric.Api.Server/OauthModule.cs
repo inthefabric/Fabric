@@ -16,20 +16,30 @@ namespace Fabric.Api.Server {
 			const string ao = "/api/oauth/";
 			const string aoAt = ao+"AccessToken";
 
-			Get[aoAt] = (p => "Fabric OAuth: AccessToken");
+			Get[aoAt] = (p => NewFunc.Access.ToResponse());
+			Get[aoAt+"AuthCode"] = (p => NewFunc.AccessAuthCode.ToResponse());
+			Get[aoAt+"Refresh"] = (p => NewFunc.AccessRefToken.ToResponse());
+			Get[aoAt+"ClientCredentials"] = (p => NewFunc.AccessClientCred.ToResponse());
+			Get[aoAt+"ClientDataProv"] = (p => NewFunc.AccessClientDataProv.ToResponse());
 
-			Get[aoAt+"AuthCode"] = (p => NewFunc(Context).AccessAuthCode.ToResponse());
-			Get[aoAt+"Refresh"] = (p => NewFunc(Context).AccessRefToken.ToResponse());
-			Get[aoAt+"ClientCredentials"] = (p => NewFunc(Context).AccessClientCred.ToResponse());
-			Get[aoAt+"ClientDataProv"] = (p => NewFunc(Context).AccessClientDataProv.ToResponse());
+			Get[ao+"Logout"] = (p => NewFunc.Logout.ToResponse());
 
-			Get[ao+"Login"] = (p => "Fabric OAuth: Login");
-			Get[ao+"Logout"] = (p => NewFunc(Context).Logout.ToResponse());
+			Get[ao+"Login"] = (p => NewLogin.LoginGet());
+			Post[ao+"Login"] = (p => NewLogin.LoginPost());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthFuncs NewFunc(NancyContext pContext) {
-			return new OauthFuncs(Context.Request.Query);
+		protected IOauthFuncs NewFunc {
+			get {
+				return new OauthFuncs(Context.Request.Query);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected IOauthLoginFuncs NewLogin {
+			get {
+				return new OauthLoginFuncs(Context.Request.Query);
+			}
 		}
 
 	}

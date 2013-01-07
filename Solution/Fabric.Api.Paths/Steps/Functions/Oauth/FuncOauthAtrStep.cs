@@ -7,17 +7,13 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	[Func("AccessTokenRefresh", typeof(FabOauthAccess), ResxKey="OauthAtr")]
 	public class FuncOauthAtrStep : FuncOauthFinal { //TEST: FuncOauthAtrStep
 
-		public const string RedirectUriName = "redirect_uri";
-		public const string ClientSecretName = "client_secret";
-		public const string RefreshTokenName = "refresh_token";
-
-		[FuncParam(RedirectUriName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAtStep.RedirectUriName, FuncResxKey="OauthAt")]
 		public string RedirectUri { get; private set; }
 
-		[FuncParam(ClientSecretName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAtStep.ClientSecretName, FuncResxKey="OauthAt")]
 		public string ClientSecret { get; private set; }
 
-		[FuncParam(RefreshTokenName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAtStep.RefreshTokenName, FuncResxKey="OauthAt")]
 		public string RefreshToken { get; private set; }
 
 

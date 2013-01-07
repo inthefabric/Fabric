@@ -7,25 +7,38 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	[Func("AccessToken", typeof(FabOauthAccess), ResxKey="OauthAt")]
 	public class FuncOauthAtStep : FuncOauthFinal { //TEST: FuncOauthAtStep
 
-		[FuncParam("grant_type", FuncResxKey="OauthAt")]
+		public const string GrantTypeAc = "authorization_code";
+		public const string GrantTypeCc = "client_credentials";
+		public const string GrantTypeCdp = "client_dataprov";
+		public const string GrantTypeRt = "refresh_token";
+
+		public const string GrantTypeName = "grant_type";
+		public const string RedirectUriName = "redirect_uri";
+		public const string ClientSecretName = "client_secret";
+		public const string CodeName = "code";
+		public const string RefreshTokenName = "refresh_token";
+		public const string ClientIdName = "client_id";
+		public const string DataProvUserIdName = "data_prov_userid";
+
+		[FuncParam(GrantTypeName, FuncResxKey="OauthAt")]
 		public string GrantType { get; private set; }
-		
-		[FuncParam("redirect_uri", FuncResxKey="OauthAt")]
+
+		[FuncParam(RedirectUriName, FuncResxKey="OauthAt")]
 		public string RedirectUri { get; private set; }
-		
-		[FuncParam("client_secret", FuncResxKey="OauthAt")]
+
+		[FuncParam(ClientSecretName, FuncResxKey="OauthAt")]
 		public string ClientSecret { get; private set; }
-		
-		[FuncParam("code", false, FuncResxKey="OauthAt")]
+
+		[FuncParam(CodeName, false, FuncResxKey="OauthAt")]
 		public string Code { get; private set; }
-		
-		[FuncParam("refresh_token", false, FuncResxKey="OauthAt")]
+
+		[FuncParam(RefreshTokenName, false, FuncResxKey="OauthAt")]
 		public string RefreshToken { get; private set; }
-		
-		[FuncParam("client_id", false, FuncResxKey="OauthAt")]
+
+		[FuncParam(ClientIdName, false, FuncResxKey="OauthAt")]
 		public string ClientId { get; private set; }
 		
-		[FuncParam("data_prov_userid", false, FuncResxKey="OauthAt")]
+		[FuncParam(DataProvUserIdName, false, FuncResxKey="OauthAt")]
 		public string DataProvUserId { get; private set; }
 
 

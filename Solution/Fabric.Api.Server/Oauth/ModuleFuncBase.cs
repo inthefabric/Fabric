@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Text;
+using System.Globalization;
 using Fabric.Api.Oauth;
+using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
-using System.Globalization;
 
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
-	public abstract class ApiFuncBase {
+	public abstract class ModuleFuncBase {
 
 		private static CultureInfo EnUs = new CultureInfo("en-US");
 
@@ -20,7 +20,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiFuncBase(DynamicDictionary pQuery, IApiContext pApiContext) {
+		public ModuleFuncBase(DynamicDictionary pQuery, IApiContext pApiContext) {
 			Query = pQuery;
 			ApiCtx = pApiContext;
 		}
@@ -66,26 +66,13 @@ namespace Fabric.Api.Server.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static Response ToResponse<T>(this IApiFunc<T> pFunc) {
-			string json;
-			HttpStatusCode statCode;
-
 			try {
 				T result = pFunc.Go(pFunc.Context);
-				json = result.ToJson();
-				statCode = HttpStatusCode.OK;
+				return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, result.ToJson());
 			}
 			catch ( OauthException oe ) {
-				json = oe.OauthError.ToJson();
-				statCode = HttpStatusCode.Forbidden;
+				return NancyUtil.BuildJsonResponse(HttpStatusCode.Forbidden, oe.OauthError.ToJson());
 			}
-
-			byte[] bytes = Encoding.UTF8.GetBytes(json);
-
-			return new Response {
-				ContentType = "application/json",
-				StatusCode = statCode,
-				Contents = (s => s.Write(bytes, 0, bytes.Length))
-			};
 		}
 
 	}
