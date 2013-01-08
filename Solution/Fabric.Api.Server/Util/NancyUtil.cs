@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Nancy;
 using ServiceStack.Text;
 
@@ -6,6 +8,50 @@ namespace Fabric.Api.Server.Util {
 
 	/*================================================================================================*/
 	public static class NancyUtil {
+
+		private const string FabricUserAuth = "FabricUserAuth";
+		private const string EncryptKey = "Gu11iverIsMyD0gAuth";
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static long GetUserIdFromCookies(IDictionary<string, string> pCookies) {
+			string c;
+			pCookies.TryGetValue(FabricUserAuth, out c);
+
+			if ( c == null || c == "0" ) {
+				return 0;
+			}
+
+			string val = EncryptUtil.DecryptData(EncryptKey, Uri.UnescapeDataString(c));
+			return long.Parse(val.Split('|')[1]);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void SetUserHeader(Response pRes, long? pUserId, bool pRemember) {
+			DateTime now = DateTime.UtcNow;
+
+			if ( pUserId == null ) {
+				pRes.AddCookie(FabricUserAuth, "", now.AddMinutes(-1));
+				return;
+			}
+
+			string val = TwoDigitRandom()+"|"+pUserId;
+			string encVal = EncryptUtil.EncryptData(EncryptKey, val);
+			DateTime expires = (pRemember ? now.AddDays(30) : now.AddMinutes(20));
+			pRes.AddCookie(FabricUserAuth, encVal, expires);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static int TwoDigitRandom() {
+			return (new Random()).Next(89)+10;
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public static NancyCookie NewUserCookie(long pUserId) {
+			string val = TwoDigitRandom()+"|"+pUserId;
+			return new NancyCookie(FabricUserAuth, EncryptUtil.EncryptData(EncryptKey, val));
+		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

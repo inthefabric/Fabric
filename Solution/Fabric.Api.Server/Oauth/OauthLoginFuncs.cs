@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Results;
@@ -25,15 +26,16 @@ namespace Fabric.Api.Server.Oauth {
 
 		private const string DbSvcUrl = "http://localhost:9001/";
 
-		/*
-		localhost:9000/api/oauth/login?
-			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316
-		*/
+		/* localhost:9000/api/oauth/login?
+			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316 */
+
+		private readonly IDictionary<string, string> vCookies;
 
 		private string vIncomingError;
+		private long vLoggedUserId;
+
 		private string vClientId;
 		private string vRedirUri;
-		private long vLoggedUserId;
 		private string vRespType;
 		private string vScope;
 		private string vSwitchMode;
@@ -42,20 +44,23 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLoginFuncs(DynamicDictionary pQuery, DynamicDictionary pForm) :
-														base(new ApiContext(DbSvcUrl), pQuery, pForm) {}
+		public OauthLoginFuncs(DynamicDictionary pQuery, DynamicDictionary pForm,
+				IDictionary<string,string> pCookies) : base(new ApiContext(DbSvcUrl), pQuery, pForm) {
+			vCookies = pCookies;
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private Response LoginInner(Func<Response> pFunc) {
 			try {
 				vIncomingError = GetParamString("error", false);
+				vLoggedUserId = NancyUtil.GetUserIdFromCookies(vCookies);
+
 				vClientId = GetParamString(FuncOauthLoginStep.ClientIdName);
 				vRedirUri = GetParamString(FuncOauthLoginStep.RedirectUriName);
 				vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName);
 				vScope = GetParamString(FuncOauthLoginStep.ScopeName, false);
 				vSwitchMode = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
 				vState = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
-				vLoggedUserId = 0;
 
 				return pFunc();
 			}
@@ -95,8 +100,6 @@ namespace Fabric.Api.Server.Oauth {
 				return ResponseErrorPage();
 			}
 
-			vLoggedUserId = 0; //TODO: obtain via HTTP request data
-
 			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
 			var func = new OauthGrantLoginEntry(vRespType, vSwitchMode, core, new OauthTasks());
 			FabOauthLogin log = func.Go(ApiCtx);
@@ -132,14 +135,15 @@ namespace Fabric.Api.Server.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response PeformLogout() {
 			Response r = NancyUtil.Redirect(vRedirUri);
-			//TODO: r.SetUserHeader(r, null, false);
+			NancyUtil.SetUserHeader(r, null, false);
 			return r;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response PerformLogin() {
-			string user = GetPostString("username", false);
-			string pass = GetPostString("password", false);
+			string user = GetPostString(Username, false);
+			string pass = GetPostString(Password, false);
+			bool rem = (GetPostString(RememberMe, false) == "1");
 
 			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
 			var func = new OauthGrantLoginAction(user, pass, core, new OauthTasks());
@@ -153,7 +157,7 @@ namespace Fabric.Api.Server.Oauth {
 
 			Response r = (scopeAllowed ?
 				Redirect(log.ScopeRedirect, log.ScopeCode) : ResponseScopePage(log));
-			//TODO: AuthUtil.SetUserHeader(r, log.LoggedUserId, Req.rememberMe);
+			NancyUtil.SetUserHeader(r, log.LoggedUserId, rem);
 			return r;
 		}
 
@@ -250,7 +254,28 @@ namespace Fabric.Api.Server.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response ResponseScopePage(FabOauthLogin pLog) {
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, pLog);
+			string html = 
+				"<div class='ContentPanel'>"+
+				"	<h3>"+
+				"		Authorize App Access"+
+				"	</h3>"+
+				"	<p>"+
+				"		<b>"+pLog.AppName+"</b> would like connect to your <b>"+pLog.LoggedUserName+"</b> "+
+				"		Fabric account. Would you like to authorize access for this App?"+
+				"	</p>"+
+				"	<form id='ScopeForm' method='POST'>"+
+				"		<input type='submit' name='"+AllowAction+"' value='Allow Access' />"+
+				"		<input type='submit' name='"+DenyAction+"' value='Deny Access' />"+
+				"	</form>"+
+				"	<form id='logoutForm' method='POST'>"+
+				"		<p>"+
+				"			<input type='submit' name='"+LogoutAction+"' value='Not "+pLog.LoggedUserName+"?' />"+
+				"		</p>"+
+				"	</form>"+
+				"</div>";
+
+			html = BuildHtmlPage("Fabric Login: Scope", html);
+			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
 		}
 
 	}

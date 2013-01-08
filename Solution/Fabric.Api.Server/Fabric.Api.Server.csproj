@@ -105,6 +105,7 @@
     <Compile Include="Tables\TableNode.cs" />
     <Compile Include="Tables\TableModel.cs" />
     <Compile Include="Tables\TableBrowser.cs" />
+    <Compile Include="Util\EncryptUtil.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\GremlinRequest.cs" />
     <Compile Include="Util\HtmlUtil.cs" />

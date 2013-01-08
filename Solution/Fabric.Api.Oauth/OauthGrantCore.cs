@@ -153,7 +153,7 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthException GetFaultOnException(Exception pEx) {
-			Log.Error("OauthGrantBase", pEx);
+			Log.Error("OauthGrantCore", pEx);
 			return GetFault(GrantErrors.invalid_request, GrantErrorDescs.Unexpected);
 		}
 

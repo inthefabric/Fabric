@@ -13,7 +13,7 @@ namespace Fabric.Api.Oauth.Tasks {
 	public class GetScope : ApiFunc<ScopeResult> {
 
 		public enum Query {
-			GetScopeTx
+			GetMatchingScope
 		}
 		
 		private readonly long vAppId;
@@ -42,50 +42,27 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override ScopeResult Execute() {
-			var tx = new WeaverTransaction();
 			IWeaverFuncAs<OauthScope> scopeAlias;
-			IWeaverVarAlias listVar;
 
-			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out listVar)
-			);
-
-			tx.AddQuery(
+			IWeaverQuery q =
 				NewPathFromIndex(new User { UserId = vUserId })
-					.Aggregate(listVar)
 				.InOauthScopeListUses.FromOauthScope
 					.As(out scopeAlias)
 				.UsesApp.ToApp
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
-					.Aggregate(listVar)
 				.Back(scopeAlias)
-					.Aggregate(listVar)
-					.Iterate()
-				.End()
-			);
+				.End();
 
-			tx.Finish(WeaverTransaction.ConclusionType.Success, listVar);
+			OauthScope scope = Context.DbSingle<OauthScope>(Query.GetMatchingScope+"", q);
 
-			////
-
-			IApiDataAccess data = Context.DbData(Query.GetScopeTx+"", tx);
-
-			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
+			if ( scope == null ) {
 				return null;
 			}
 
-			if ( data.ResultDtoList.Count != 3 ) {
-				throw new Exception("Incorrect ResultDtoList.Count.");
-			}
-
-			User user = data.ResultDtoList[0].ToNode<User>();
-			App app = data.ResultDtoList[1].ToNode<App>();
-			OauthScope scope = data.ResultDtoList[2].ToNode<OauthScope>();
-
 			var sr = new ScopeResult();
 			sr.ScopeId = scope.OauthScopeId;
-			sr.AppId = app.AppId;
-			sr.UserId = user.UserId;
+			sr.AppId = vAppId;
+			sr.UserId = vUserId;
 			sr.Allow = scope.Allow;
 			sr.Created = new DateTime(scope.Created);
 			return sr;
