@@ -20,10 +20,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
 				".has('Token',Tokens.T.neq,null)"+
 				".as('step4')" +
-			".outE('"+typeof(OauthAccessUsesApp).Name+"')[0].inV[0]" +
+			".outE('"+typeof(OauthAccessUsesApp).Name+"').inV" +
 				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)" +
 			".back('step4')" +
-			".outE('"+typeof(OauthAccessUsesUser).Name+"')[0].inV[0]" +
+			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV" +
 				".has('"+typeof(User).Name+"Id',Tokens.T.eq,{{UserId}})" +
 			".back('step4')" +
 				".each{it.Token=null;it.Refresh=null};";

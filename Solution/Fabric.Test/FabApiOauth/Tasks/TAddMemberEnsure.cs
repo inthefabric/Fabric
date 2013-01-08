@@ -24,13 +24,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"g.idx(_TP0).get('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 					".as('step3')"+
-				".inE('"+typeof(AppDefinesMember).Name+"')[0].outV[0]"+
+				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
 				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 				".back('step3')"+
 					".aggregate(_V0)"+
-				".outE('"+typeof(MemberHasMemberTypeAssign).Name+"')[0].inV[0]"+
+				".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 					".aggregate(_V0)"+
-				".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"')[0].inV[0]"+
+				".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
 					".aggregate(_V0);"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+
 			"_V0;";
@@ -63,7 +63,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.startTransaction();"+
 				"_V0=g.v(0);"+
 				"g.idx(_TP0).get('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+
-				".inE('"+typeof(MemberHasMemberTypeAssign).Name+"')[0]"+
+				".inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 					".each{g.removeEdge(it)};"+
 				"_V1=g.idx(_TP1).get('"+typeof(Member).Name+"Id',{{MemId}}L)[0];"+
 				"_V2=g.idx(_TP2).get('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0];"+

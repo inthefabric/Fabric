@@ -27,10 +27,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".aggregate(_V0)"+
 					".each{it.Code=null}"+
 					".as('step7')"+
-				".outE('"+typeof(OauthGrantUsesApp).Name+"')[0].inV[0]"+
+				".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
 					".aggregate(_V0)"+
 				".back('step7')"+
-				".outE('"+typeof(OauthGrantUsesUser).Name+"')[0].inV[0]"+
+				".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
 					".iterate();"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+

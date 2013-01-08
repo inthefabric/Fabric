@@ -24,10 +24,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".has('Refresh',Tokens.T.eq,_TP0)"+
 					".has('IsClientOnly',Tokens.T.eq,false)"+
 					".as('step5')"+
-				".outE('"+typeof(OauthAccessUsesApp).Name+"')[0].inV[0]"+
+				".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
 					".aggregate(_V0)"+
 				".back('step5')"+
-				".outE('"+typeof(OauthAccessUsesUser).Name+"')[0].inV[0]"+
+				".outE('"+typeof(OauthAccessUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
 					".iterate();"+
 			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+

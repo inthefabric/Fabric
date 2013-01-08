@@ -19,11 +19,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".as('step1')"+
 			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".as('step4')"+
-			".inE('"+typeof(AppDefinesMember).Name+"')[0].outV[0]"+
+			".inE('"+typeof(AppDefinesMember).Name+"').outV"+
 				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 			".back('step4')"+
-			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"')[0].inV[0]"+
-			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"')[0].inV[0]"+
+			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
+			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
 				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,{{MemberTypeId}})"+
 			".back('step1');";
 

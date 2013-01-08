@@ -19,7 +19,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.idx(_P0).get('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 			".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
 				".as('step3')"+
-			".outE('"+typeof(OauthGrantUsesApp).Name+"')[0].inV[0]"+
+			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
 				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 			".back('step3')"+
 				".each{"+
