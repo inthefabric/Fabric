@@ -42,7 +42,7 @@ namespace Fabric.Test.FabApiPaths {
 		[TestCase("[0..2]", false)]
 		public void Append(string pScript, bool pAddDot) {
 			IStep step = new Mock<IStep>().Object;
-			string origScript = "g.v(0)";
+			const string origScript = "g.v(0)";
 
 			var ps = new PathSegment(step, origScript);
 			ps.Append(pScript, pAddDot);

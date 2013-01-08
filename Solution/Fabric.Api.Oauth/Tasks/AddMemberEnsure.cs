@@ -7,7 +7,6 @@ using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
-using Fabric.Infrastructure;
 
 namespace Fabric.Api.Oauth.Tasks {
 	

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;

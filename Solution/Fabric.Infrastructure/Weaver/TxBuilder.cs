@@ -23,13 +23,13 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverTransaction Finish() {
-			Transaction.Finish(WeaverTransaction.ConclusionType.Success, null);
+			Transaction.Finish(WeaverTransaction.ConclusionType.Success);
 			return Transaction;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyVar(IWeaverVarAlias pVar) {
-			if ( !vVarHash.Contains(pVar) ) {
+			if ( pVar == null || !vVarHash.Contains(pVar) ) {
 				throw new Exception("No matching IWeaverVarAlias found.");
 			}
 		}

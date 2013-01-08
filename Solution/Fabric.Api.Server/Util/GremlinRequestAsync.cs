@@ -28,7 +28,7 @@ namespace Fabric.Api.Server.Util {
 			string query = "{\"script\":"+"\""+pScript.Replace("\"", "'")+"\","+
 				"\"params\":{"+param.Replace("\"", "'")+"}}";
 
-			byte[] queryData = UTF8Encoding.UTF8.GetBytes(query);
+			byte[] queryData = Encoding.UTF8.GetBytes(query);
 			int queryDataLen = queryData.Length;
 
 			////

@@ -1,10 +1,7 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/5/2013 3:10:19 PM
+// Generated on 1/8/2013 3:22:28 PM
 
-using System;
-using System.Linq.Expressions;
-using Weaver.Items;
 using Weaver.Interfaces;
 using Fabric.Domain;
 using System.Collections.Generic;

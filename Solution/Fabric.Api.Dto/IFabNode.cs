@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Fabric.Api.Dto {
+﻿namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
 	public interface IFabNode : IFabDto {

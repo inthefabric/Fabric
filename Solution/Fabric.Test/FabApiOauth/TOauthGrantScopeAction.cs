@@ -1,13 +1,11 @@
 ﻿using Fabric.Api.Oauth;
-using Moq;
+using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
-using NUnit.Framework;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Results;
-using System;
 using Fabric.Test.Util;
+using Moq;
+using NUnit.Framework;
 
 namespace Fabric.Test.FabApiOauth {
 
@@ -30,8 +28,8 @@ namespace Fabric.Test.FabApiOauth {
 			vAllowScope = true;
 			
 			vCoreScopeResult = new LoginScopeResult() { Code = "FakeCode123", Redirect = "Redir" };
-			long appId = 125312;
-			long userId = 6223;
+			const long appId = 125312;
+			const long userId = 6223;
 			
 			vMockCtx = new Mock<IApiContext>();
 			

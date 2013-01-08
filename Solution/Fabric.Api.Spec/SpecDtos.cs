@@ -1,9 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/20/2012 3:22:16 PM
+// Generated on 1/8/2013 3:24:29 PM
 
 using System.Collections.Generic;
-using Fabric.Api.Paths.Steps.Functions;
 
 namespace Fabric.Api.Spec {
 
@@ -436,6 +435,8 @@ namespace Fabric.Api.Spec {
 					l.ToDto = "FabVectorUnitDerived";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Oauth");
 
 			////
 

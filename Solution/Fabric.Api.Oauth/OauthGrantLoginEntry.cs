@@ -1,10 +1,9 @@
 ﻿using System;
-using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Infrastructure.Api;
-using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Oauth.Results;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 	

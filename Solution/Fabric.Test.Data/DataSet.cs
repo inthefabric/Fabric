@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Fabric.Domain;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {

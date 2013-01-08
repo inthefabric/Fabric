@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System.Collections.Generic;
+using Fabric.Domain;
 using Fabric.Infrastructure;
 
 namespace Fabric.Db.Data.Setups {
@@ -721,7 +722,7 @@ namespace Fabric.Db.Data.Setups {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void AddVectorRange(DataSet pSet, VectorRangeId pId, string pName,
-																		VectorRangeLevelId[] pLevels) {
+															IEnumerable<VectorRangeLevelId> pLevels) {
 			var t = new VectorRange();
 			t.VectorRangeId = (byte)pId;
 			t.Name = pName;

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Fabric.Api.Oauth.Results;
+﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Oauth.Tasks;
+using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -9,8 +10,6 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Interfaces;
-using System;
-using Fabric.Db.Data;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 

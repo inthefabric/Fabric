@@ -39,11 +39,11 @@ namespace Fabric.Api.Server.Util {
 			Query = "{\"script\":\""+FabricUtil.JsonUnquote(pScript)+"\""+
 				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
 
-			byte[] queryData = UTF8Encoding.UTF8.GetBytes(Query);
+			byte[] queryData = Encoding.UTF8.GetBytes(Query);
 
 			var wc = new WebClient();
 			ResponseBytes = wc.UploadData("http://localhost:9001/", "POST", queryData);
-			ResponseString = UTF8Encoding.UTF8.GetString(ResponseBytes);
+			ResponseString = Encoding.UTF8.GetString(ResponseBytes);
 
 			////
 			

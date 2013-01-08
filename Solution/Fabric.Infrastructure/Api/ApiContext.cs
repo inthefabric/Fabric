@@ -38,7 +38,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetMemberId(long pMember) {
+		public void SetMemberId(long pMemberId) {
 			if ( MemberId != -1 ) { throw new Exception("MemberId is already set."); }
 			MemberId = MemberId;
 		}

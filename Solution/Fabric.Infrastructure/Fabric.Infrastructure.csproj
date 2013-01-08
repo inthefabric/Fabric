@@ -84,6 +84,8 @@
     <Compile Include="Weaver\TxBuilder.cs" />
     <Compile Include="Weaver\DomainBuilders.cs">
       <DependentUpon>DomainBuilders.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Weaver\DomainBuilder.cs" />
   </ItemGroup>

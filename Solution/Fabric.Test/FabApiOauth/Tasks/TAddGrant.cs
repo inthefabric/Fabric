@@ -1,5 +1,4 @@
 ﻿using System;
-using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;

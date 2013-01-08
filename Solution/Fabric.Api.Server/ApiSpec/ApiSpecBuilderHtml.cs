@@ -3,17 +3,8 @@
 namespace Fabric.Api.Server.ApiSpec {
 
 	/*================================================================================================*/
-	public class ApiSpecBuilderHtml {
-
-		private readonly SpecDoc vDoc;
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ApiSpecBuilderHtml(SpecDoc pDoc) {
-			vDoc = pDoc;
-		}
-
+	public static class ApiSpecBuilderHtml {
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -118,13 +109,13 @@ namespace Fabric.Api.Server.ApiSpec {
 			html += "<span style='color:#777;'>"+pFunc.Description+"</span><br/><br/>";
 
 			html += "<b>Parameters</b><br/>";
-			html += BuildFuncParamHtml(pFunc, pDoc);
+			html += BuildFuncParamHtml(pFunc);
 
 			return html;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string BuildFuncParamHtml(SpecFunc pFunc, SpecDoc pDoc) {
+		public static string BuildFuncParamHtml(SpecFunc pFunc) {
 			string html = "";
 
 			foreach ( SpecFuncParam fp in pFunc.ParameterList ) {

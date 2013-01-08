@@ -34,7 +34,7 @@ namespace Fabric.Db.Server.Query {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public GremlinQuery(string pQuery) {
-			vQueryData = UTF8Encoding.UTF8.GetBytes(pQuery);
+			vQueryData = Encoding.UTF8.GetBytes(pQuery);
 			ResultType = DbResultType.None;
 		}
 
@@ -45,7 +45,7 @@ namespace Fabric.Db.Server.Query {
 			try {
 				var wc = new WebClient();
 				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
-				ResponseString = UTF8Encoding.UTF8.GetString(ResponseData);
+				ResponseString = Encoding.UTF8.GetString(ResponseData);
 			}
 			catch ( WebException we ) {
 				//Log.Error(we+"");

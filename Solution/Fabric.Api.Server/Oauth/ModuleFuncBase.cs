@@ -12,7 +12,7 @@ namespace Fabric.Api.Server.Oauth {
 	/*================================================================================================*/
 	public abstract class ModuleFuncBase {
 
-		private static CultureInfo EnUs = new CultureInfo("en-US");
+		private static readonly CultureInfo EnUs = new CultureInfo("en-US");
 
 		protected IApiContext ApiCtx { get; private set; }
 		protected DynamicDictionary Query { get; private set; }
@@ -21,7 +21,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ModuleFuncBase(IApiContext pApiContext, DynamicDictionary pQuery,
+		protected ModuleFuncBase(IApiContext pApiContext, DynamicDictionary pQuery,
 																			DynamicDictionary pForm) {
 			ApiCtx = pApiContext;
 			Query = pQuery;

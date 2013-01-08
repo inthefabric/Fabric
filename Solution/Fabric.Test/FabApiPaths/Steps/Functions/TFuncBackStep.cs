@@ -3,7 +3,6 @@ using Fabric.Api.Dto;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
-using Fabric.Api.Paths.Steps.Nodes;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;

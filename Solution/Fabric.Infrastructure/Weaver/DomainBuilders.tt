@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Packages/Weaver/Weaver.dll" #>
-<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Solution/Fabric.Infrastructure/bin/Debug/Fabric.Infrastructure.dll" #>
+<#@ assembly name="$(SolutionDir)../Packages/Weaver/Weaver.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
@@ -11,9 +11,6 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-using System;
-using System.Linq.Expressions;
-using Weaver.Items;
 using Weaver.Interfaces;
 using Fabric.Domain;
 using System.Collections.Generic;

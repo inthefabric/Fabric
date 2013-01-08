@@ -68,16 +68,16 @@ namespace Fabric.Test.FabApiOauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrorNoTokenMatch() {
-			FabOauthAccess nullFoa = null;
-			vMockTasks.Setup(x => x.GetAccessToken(vToken, vMockCtx.Object)).Returns(nullFoa);
+			vMockTasks.Setup(x => x.GetAccessToken(vToken, vMockCtx.Object))
+				.Returns((FabOauthAccess)null);
 			CheckOauthEx(() => TestGo(), LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrorLogoutFailed() {
-			FabOauthAccess nullFoa = null;
-			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Returns(nullFoa);
+			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object))
+				.Returns((FabOauthAccess)null);
 			CheckOauthEx(() => TestGo(), LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
 		}
 		

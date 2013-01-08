@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiOauth {
 			vSwitchMode = "0";
 			
 			vCoreAppResult = new App() { AppId = 15235, Name = "TestApp" };
-			string coreRedirUri = "http://www.test.com/oauth";
+			const string coreRedirUri = "http://www.test.com/oauth";
 			
 			vMockCtx = new Mock<IApiContext>();
 			

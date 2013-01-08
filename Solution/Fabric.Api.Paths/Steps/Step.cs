@@ -76,7 +76,7 @@ namespace Fabric.Api.Paths.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IStep GetFunc(StepData pData) {
+		protected IStep GetFunc(StepData pData) {
 			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(this, false);
 
 			foreach ( string comm in availFuncs ) {

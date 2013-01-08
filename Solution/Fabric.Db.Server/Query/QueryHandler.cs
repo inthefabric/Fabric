@@ -49,7 +49,7 @@ namespace Fabric.Db.Server.Query {
 				Log.Error(vReqId, "FAIL", json);
 			}
 
-			byte[] bytes = UTF8Encoding.UTF8.GetBytes(json);
+			byte[] bytes = Encoding.UTF8.GetBytes(json);
 
 			return new Response {
 				ContentType = "application/json",

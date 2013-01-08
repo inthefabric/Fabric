@@ -6,7 +6,7 @@ namespace Fabric.Test.Util {
 	/*================================================================================================*/
 	public class UsageMap {
 
-		private Dictionary<string, int> vMap;
+		private readonly Dictionary<string, int> vMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,7 +17,6 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System.Collections.Generic;
-using Fabric.Api.Paths.Steps.Functions;
 
 namespace Fabric.Api.Spec {
 
@@ -29,8 +28,8 @@ namespace Fabric.Api.Spec {
 			var list = new List<SpecDto>();
 			
 			SpecDto dto;
-			SpecProperty p;
-			SpecLink l;
+			SpecDtoProp p;
+			SpecDtoLink l;
 
 <#
 IList<string> nodes = SchemaHelper.GetNodes();
@@ -101,7 +100,7 @@ foreach ( string name in nodes ) {
 		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : node.Name+"_"+propName);
 
 #>
-				p = new SpecProperty();
+				p = new SpecDtoProp();
 				p.Name = "<#= propName #>";
 				p.Type = "<#= propType #>";
 				p.Description = GetDtoPropText("<#= resxDesc #>");
@@ -115,7 +114,7 @@ foreach ( string name in nodes ) {
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
 #>
-					l = new SpecLink();
+					l = new SpecDtoLink();
 					l.Name = "<#= hr.RelPropName #>";
 					l.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
 					l.FromDto = "Fab<#= hr.FromNodeName #>";

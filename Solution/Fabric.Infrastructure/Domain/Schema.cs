@@ -8,16 +8,16 @@ namespace Fabric.Infrastructure.Domain {
 	/*================================================================================================*/
 	public class Schema {
 
-		public static string ValidEmailRegex = @"^(([^<>()[\]\\.,;:\s@\""]+" 
+		private const string ValidEmailRegex = @"^(([^<>()[\]\\.,;:\s@\""]+" 
 			+ @"(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@" 
 			+ @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" 
 			+ @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+" 
 			+ @"[a-zA-Z]{2,}))$";
 
-		public const string ValidUserRegex = 
+		private const string ValidUserRegex = 
 			@"^[a-zA-Z0-9_]*$";
 
-		public const string ValidTitleRegex = 
+		private const string ValidTitleRegex = 
 			@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\"+"/!@#$%&=_,:;'\"<>~]*$";
 
 		public List<WeaverNodeSchema> Nodes { get; private set; }
@@ -133,7 +133,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema label = AddNode("Label", "L");
 			label.BaseNode = artOwnerNode;
-			;
+			
 			p = AddProp(label, "LabelId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(label, "Name", typeof(string));

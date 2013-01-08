@@ -15,7 +15,7 @@ namespace Fabric.Db.Data.Setups {
 		public static DataSet SetupAll(bool pIsForTesting) {
 			var ds = new DataSet(pIsForTesting);
 			SetupAddNodeIndexes(ds);
-			SetupAddNodes(ds, pIsForTesting);
+			SetupAddNodes(ds);
 			return ds;
 		}
 
@@ -34,7 +34,7 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupAddNodes(DataSet pSet, bool pIsForTesting) {
+		public static void SetupAddNodes(DataSet pSet) {
 			SetupTypes.SetupAll(pSet);
 			SetupUsers.SetupAll(pSet);
 			SetupOauth.SetupAll(pSet);
