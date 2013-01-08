@@ -38,7 +38,7 @@ namespace Fabric.Api.Server {
 		/*--------------------------------------------------------------------------------------------*/
 		protected IOauthLoginFuncs NewLogin {
 			get {
-				return new OauthLoginFuncs(Context.Request.Query);
+				return new OauthLoginFuncs(Context.Request.Query, Context.Request.Form);
 			}
 		}
 

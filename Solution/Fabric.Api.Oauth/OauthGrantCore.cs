@@ -159,6 +159,11 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthException GetFault(GrantErrors pErr, GrantErrorDescs pDesc) {
+			return GetFaultStatic(pErr, pDesc);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static OauthException GetFaultStatic(GrantErrors pErr, GrantErrorDescs pDesc) {
 			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 

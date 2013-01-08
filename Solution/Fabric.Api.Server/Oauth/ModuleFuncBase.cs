@@ -14,24 +14,25 @@ namespace Fabric.Api.Server.Oauth {
 
 		private static CultureInfo EnUs = new CultureInfo("en-US");
 
-		protected DynamicDictionary Query { get; private set; }
 		protected IApiContext ApiCtx { get; private set; }
+		protected DynamicDictionary Query { get; private set; }
+		protected DynamicDictionary Form { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ModuleFuncBase(DynamicDictionary pQuery, IApiContext pApiContext) {
-			Query = pQuery;
+		public ModuleFuncBase(IApiContext pApiContext, DynamicDictionary pQuery,
+																			DynamicDictionary pForm) {
 			ApiCtx = pApiContext;
+			Query = pQuery;
+			Form = pForm;
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private TType GetParam<TType>(string pName, Func<DynamicDictionaryValue,TType> pConvert, 
-																				bool pRequired=true) {
+		private static TType GetValue<TType>(DynamicDictionary pDict, string pName,
+									Func<DynamicDictionaryValue, TType> pConvert, bool pRequired=true) {
 			try {
-				DynamicDictionaryValue val = Query[pName];
+				DynamicDictionaryValue val = pDict[pName];
 
 				if ( !pRequired && val == null ) {
 					return default(TType);
@@ -46,6 +47,14 @@ namespace Fabric.Api.Server.Oauth {
 			}
 		}
 		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private TType GetParam<TType>(string pName, Func<DynamicDictionaryValue,TType> pConvert, 
+																				bool pRequired=true) {
+			return GetValue(Query, pName, pConvert, pRequired);
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected string GetParamString(string pName, bool pRequired=true) {
 			return GetParam(pName, (v => v.ToString(EnUs)), pRequired);
@@ -54,6 +63,24 @@ namespace Fabric.Api.Server.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		protected int GetParamInt(string pName, bool pRequired=true) {
 			return GetParam(pName, (v => v.ToInt32(EnUs)), pRequired);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private TType GetPost<TType>(string pName, Func<DynamicDictionaryValue, TType> pConvert,
+																				bool pRequired=true) {
+			return GetValue(Form, pName, pConvert, pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected string GetPostString(string pName, bool pRequired=true) {
+			return GetPost(pName, (v => v.ToString(EnUs)), pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected int GetPostInt(string pName, bool pRequired=true) {
+			return GetPost(pName, (v => v.ToInt32(EnUs)), pRequired);
 		}
 
 	}

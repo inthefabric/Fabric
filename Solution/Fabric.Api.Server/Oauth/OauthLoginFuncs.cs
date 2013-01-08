@@ -1,10 +1,10 @@
 ﻿using System;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
+using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Paths.Steps.Functions.Oauth;
 using Fabric.Api.Server.Util;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 
@@ -12,6 +12,16 @@ namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
 	public class OauthLoginFuncs : ModuleFuncBase, IOauthLoginFuncs {
+		
+		public const string CancelAction = "CancelAction";
+		public const string LogoutAction = "LogoutAction";
+		public const string LoginAction = "LoginAction";
+		public const string AllowAction = "AllowAction";
+		public const string DenyAction = "DenyAction";
+
+		public const string Username = "Username";
+		public const string Password = "Password";
+		public const string RememberMe = "RememberMe";
 
 		private const string DbSvcUrl = "http://localhost:9001/";
 
@@ -32,7 +42,8 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLoginFuncs(DynamicDictionary pQuery) : base(pQuery, new ApiContext(DbSvcUrl)) {}
+		public OauthLoginFuncs(DynamicDictionary pQuery, DynamicDictionary pForm) :
+														base(new ApiContext(DbSvcUrl), pQuery, pForm) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private Response LoginInner(Func<Response> pFunc) {
@@ -49,17 +60,17 @@ namespace Fabric.Api.Server.Oauth {
 				return pFunc();
 			}
 			catch ( OauthException oe ) {
-				return LoginRedirect(oe.OauthError);
+				return Redirect(oe.OauthError);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Response LoginRedirect(string pRedir, string pCode) {
+		private Response Redirect(string pRedir, string pCode) {
 			return NancyUtil.Redirect(pRedir+"?code="+pCode+"&state="+vState);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Response LoginRedirect(FabOauthError pErr) {
+		private Response Redirect(FabOauthError pErr) {
 			return NancyUtil.Redirect(vRedirUri+"?error="+pErr.Error+
 				"&error_description="+pErr.ErrorDesc.Replace(' ', '+')+"&state="+vState);
 		}
@@ -73,8 +84,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Response LoginPost() {
-			//LoginInner(LoginPostInner);
-			return null;
+			return LoginInner(LoginPostInner);
 		}
 
 
@@ -82,14 +92,13 @@ namespace Fabric.Api.Server.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response LoginGetInner() {
 			if ( vIncomingError != null ) {
-				return ResponseErrorWithoutRedirect();
+				return ResponseErrorPage();
 			}
 
 			vLoggedUserId = 0; //TODO: obtain via HTTP request data
 
-			var code = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
-			var func = new OauthGrantLoginEntry(vRespType, vSwitchMode, code, new OauthTasks());
-
+			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
+			var func = new OauthGrantLoginEntry(vRespType, vSwitchMode, core, new OauthTasks());
 			FabOauthLogin log = func.Go(ApiCtx);
 
 			if ( log.ShowLoginPage ) {
@@ -97,22 +106,71 @@ namespace Fabric.Api.Server.Oauth {
 			}
 
 			if ( log.ScopeCode != null ) {
-				return LoginRedirect(log.ScopeRedirect, log.ScopeCode);
+				return Redirect(log.ScopeRedirect, log.ScopeCode);
 			}
 
 			return ResponseScopePage(log);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private Response ResponseErrorWithoutRedirect() {
-			string desc = GetParamString("error_description", false);
-			
-			if ( desc != null ) {
-				desc = desc.Replace('+', ' ');
+		private Response LoginPostInner() {
+			if ( GetPostString(CancelAction, false) != null ) { return PerformCancel(); }
+			if ( GetPostString(LogoutAction, false) != null ) { return PeformLogout(); }
+			if ( GetPostString(LoginAction, false) != null ) { return PerformLogin(); }
+			if ( GetPostString(AllowAction, false) != null ) { return PerformAllow(); }
+			if ( GetPostString(DenyAction, false) != null ) { return PerformDeny(); }
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response PerformCancel() {
+			throw OauthGrantCore.GetFaultStatic(GrantErrors.access_denied, GrantErrorDescs.LoginCancel);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response PeformLogout() {
+			Response r = NancyUtil.Redirect(vRedirUri);
+			//TODO: r.SetUserHeader(r, null, false);
+			return r;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response PerformLogin() {
+			string user = GetPostString("username", false);
+			string pass = GetPostString("password", false);
+
+			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
+			var func = new OauthGrantLoginAction(user, pass, core, new OauthTasks());
+			FabOauthLogin log = func.Go(ApiCtx);
+
+			if ( log.ShowLoginPage ) {
+				return ResponseLoginPage(log);
 			}
 
-			string html = "<b>"+vIncomingError+"</b><br/>"+desc;
-			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
+			bool scopeAllowed = (log.ScopeCode != null);
+
+			Response r = (scopeAllowed ?
+				Redirect(log.ScopeRedirect, log.ScopeCode) : ResponseScopePage(log));
+			//TODO: AuthUtil.SetUserHeader(r, log.LoggedUserId, Req.rememberMe);
+			return r;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response PerformAllow() {
+			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
+			var func = new OauthGrantScopeAction(true, core, new OauthTasks());
+			LoginScopeResult ls = func.Go(ApiCtx);
+			return Redirect(ls.Redirect, ls.Code);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response PerformDeny() {
+			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
+			var func = new OauthGrantScopeAction(false, core, new OauthTasks());
+			func.Go(ApiCtx); //throws fault
+			return null;
 		}
 
 
@@ -129,44 +187,61 @@ namespace Fabric.Api.Server.Oauth {
 				"	</body>\n"+
 				"</html>";
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response ResponseErrorPage() {
+			string desc = GetParamString("error_description", false);
+
+			if ( desc != null ) {
+				desc = desc.Replace('+', ' ');
+			}
+
+			string html = "<b>"+vIncomingError+"</b><br/>"+desc;
+			html = BuildHtmlPage("Fabric Login Page Error", html);
+			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private Response ResponseLoginPage(FabOauthLogin pLog) {
+			string err = pLog.LoginErrorText;
+
+			if ( err != null ) {
+				err += "<br/>";
+			}
+
 			string html = 
 				"<div>"+
 				"	<p>"+
 				"		The <b>"+pLog.AppName+"</b> Fabric App would like connect to your account. "+
 				"		Please sign in to accept this request for access."+
 				"	</p>"+
-				"	<div>"+
-				"		<form id='LoginForm' method='POST'>"+
-				"			<h3>"+
-				"				Login"+
-				"			</h3>"+
-				"			<div>"+
-				"				<div class='FormLabel'>"+
-				"					Username"+
-				"				</div>"+
-				"				<div class='FormField'>"+
-				"					<input type='text' name='username' value='"+pLog.LoggedUserName+"' />"+
-				"				</div>"+
-				"				<div class='FormLabel'>"+
-				"					Password"+
-				"				</div>"+
-				"				<div class='FormField'>"+
-				"					<input type='password' name='password' />"+
-				"				</div>"+
-				"				<div class='FormField'>"+
-				"					<input type='checkbox' name='rememberMe' value='true' /> Remember me?"+
-				"				</div>"+
-				"				<p class='ZeroBottom'>"+
-				"					<span class='field-validation-error'>"+pLog.LoginErrorText+"</span>"+
-				"					<input type='submit' name='LoginAction' value='Login' />"+
-				"					<input type='submit' name='CancelAction' value='Cancel' />"+
-				"				</p>"+
+				"	<form id='LoginForm' method='POST'>"+
+				"		<h3>"+
+				"			Login"+
+				"		</h3>"+
+				"		<div>"+
+				"			<div class='label'>"+
+				"				Username"+
 				"			</div>"+
-				"		</form>"+
-				"	</div>"+
+				"			<div class='field'>"+
+				"				<input type='text' name='"+Username+"' value='"+pLog.LoggedUserName+"' />"+
+				"			</div>"+
+				"			<div class='label'>"+
+				"				Password"+
+				"			</div>"+
+				"			<div class='field'>"+
+				"				<input type='password' name='"+Password+"' />"+
+				"			</div>"+
+				"			<div class='field'>"+
+				"				<input type='checkbox' name='"+RememberMe+"' value='1' /> Remember me?"+
+				"			</div>"+
+				"			<p>"+
+				"				<span class='fieldError'>"+err+"</span>"+
+				"				<input type='submit' name='"+LoginAction+"' value='Login' />"+
+				"				<input type='submit' name='"+CancelAction+"' value='Cancel' />"+
+				"			</p>"+
+				"		</div>"+
+				"	</form>"+
 				"</div>";
 
 			html = BuildHtmlPage("Fabric Login", html);

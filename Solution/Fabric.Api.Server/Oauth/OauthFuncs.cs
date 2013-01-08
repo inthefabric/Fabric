@@ -14,7 +14,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthFuncs(DynamicDictionary pQuery) : base(pQuery, new ApiContext(DbSvcUrl)) {}
+		public OauthFuncs(DynamicDictionary pQuery) : base(new ApiContext(DbSvcUrl), pQuery, null) {}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -22,8 +22,6 @@ namespace Fabric.Test.FabApiOauth {
 		private Mock<IOauthGrantCore> vMockCore;
 		private Mock<IOauthTasks> vMockTasks;
 		private App vCoreAppResult;
-		private LoginScopeResult vCoreScopeResult;
-		private User vTaskUserResult;
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,20 +32,13 @@ namespace Fabric.Test.FabApiOauth {
 			vPassword = "testpass";
 			
 			vCoreAppResult = new App() { AppId = 1234, Name = "TestApp" };
-			vTaskUserResult = new User() { UserId = 4325, Name = "TestUser" };
-			vCoreScopeResult = new LoginScopeResult() { Code = "FakeCode123", Redirect = "Redir" };
 			
 			vMockCtx = new Mock<IApiContext>();
 			
 			vMockTasks = new Mock<IOauthTasks>();
-			vMockTasks.Setup(x => x.GetUserAuth(vUsername, vPassword, vMockCtx.Object))
-				.Returns(vTaskUserResult);
 				
 			vMockCore = new Mock<IOauthGrantCore>();
 			vMockCore.Setup(x => x.GetApp(vMockCtx.Object)).Returns(vCoreAppResult);
-			vMockCore.Setup(x => x.GetGrantCodeIfScopeAlreadyAllowed(
-					vMockTasks.Object, vMockCtx.Object))
-				.Returns(vCoreScopeResult);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -60,8 +51,22 @@ namespace Fabric.Test.FabApiOauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void Success() {
+		[TestCase(true)]
+		[TestCase(false)]
+		public void Success(bool pAlreadyAllowedScope) {
+			var user = new User { UserId = 4325, Name = "TestUser" };
+			LoginScopeResult scope = null;
+
+			vMockTasks.Setup(x => x.GetUserAuth(vUsername, vPassword, vMockCtx.Object))
+				.Returns(user);
+
+			if ( pAlreadyAllowedScope ) {
+				scope = new LoginScopeResult { Code = "FakeCode123", Redirect = "Redir" };
+
+				vMockCore.Setup(x => x.GetGrantCodeIfScopeAlreadyAllowed(
+					vMockTasks.Object, vMockCtx.Object)).Returns(scope);
+			}
+
 			FabOauthLogin result = TestGo();
 			
 			Assert.NotNull(result, "Result should be filled.");
@@ -75,21 +80,24 @@ namespace Fabric.Test.FabApiOauth {
 			
 			Assert.AreEqual(vCoreAppResult.AppId, result.AppId, "Incorrect Result.AppId.");
 			Assert.AreEqual(vCoreAppResult.Name, result.AppName, "Incorrect Result.AppName.");
-			Assert.AreEqual(vTaskUserResult.UserId, result.LoggedUserId,
-				"Incorrect Result.LoggedUserId.");
-			Assert.AreEqual(vTaskUserResult.Name, result.LoggedUserName,
-				"Incorrect Result.LoggedUserName.");
-			
-			Assert.AreEqual(vCoreScopeResult.Redirect, result.ScopeRedirect, "Incorrect Result.ScopeRedirect.");
-			Assert.AreEqual(vCoreScopeResult.Code, result.ScopeCode, "Incorrect Result.ScopeCode.");
+			Assert.AreEqual(user.UserId, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
+			Assert.AreEqual(user.Name, result.LoggedUserName, "Incorrect Result.LoggedUserName.");
+
+			if ( pAlreadyAllowedScope ) {
+				Assert.AreEqual(scope.Redirect, result.ScopeRedirect, "Incorrect Result.ScopeRedirect.");
+				Assert.AreEqual(scope.Code, result.ScopeCode, "Incorrect Result.ScopeCode.");
+			}
+			else {
+				Assert.Null(result.ScopeRedirect, "Result.ScopeRedirect should be null.");
+				Assert.Null(result.ScopeCode, "Result.ScopeCode should be null.");
+			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LoginFailure() {
-			vTaskUserResult = null;
 			vMockTasks.Setup(x => x.GetUserAuth(vUsername, vPassword, vMockCtx.Object))
-				.Returns(vTaskUserResult);
+				.Returns((User)null);
 				
 			FabOauthLogin result = TestGo();
 			

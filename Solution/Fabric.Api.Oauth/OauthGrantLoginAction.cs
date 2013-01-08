@@ -57,11 +57,15 @@ namespace Fabric.Api.Oauth {
 			if ( user == null ) {
 				result.ShowLoginPage = true;
 				result.LoginErrorText = "Login was not successful.";
+				return result;
 			}
-			else {
-				LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, Context);
-				result.LoggedUserId = user.UserId;
-				result.LoggedUserName = user.Name;
+
+			result.LoggedUserId = user.UserId;
+			result.LoggedUserName = user.Name;
+
+			LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, Context);
+			
+			if ( scope != null ) {
 				result.ScopeCode = scope.Code;
 				result.ScopeRedirect = scope.Redirect;
 			}
