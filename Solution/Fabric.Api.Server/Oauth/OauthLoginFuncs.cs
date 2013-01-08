@@ -115,9 +115,62 @@ namespace Fabric.Api.Server.Oauth {
 			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private string BuildHtmlPage(string pTitle, string pHtmlContent) {
+			return
+				"<html>\n"+
+				"	<head>\n"+
+				"		<title>"+pTitle+"</title>\n"+
+				"	</head>\n"+
+				"	<body>\n"+
+				"		"+pHtmlContent+"\n"+
+				"	</body>\n"+
+				"</html>";
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		private Response ResponseLoginPage(FabOauthLogin pLog) {
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, pLog);
+			string html = 
+				"<div>"+
+				"	<p>"+
+				"		The <b>"+pLog.AppName+"</b> Fabric App would like connect to your account. "+
+				"		Please sign in to accept this request for access."+
+				"	</p>"+
+				"	<div>"+
+				"		<form id='LoginForm' method='POST'>"+
+				"			<h3>"+
+				"				Login"+
+				"			</h3>"+
+				"			<div>"+
+				"				<div class='FormLabel'>"+
+				"					Username"+
+				"				</div>"+
+				"				<div class='FormField'>"+
+				"					<input type='text' name='username' value='"+pLog.LoggedUserName+"' />"+
+				"				</div>"+
+				"				<div class='FormLabel'>"+
+				"					Password"+
+				"				</div>"+
+				"				<div class='FormField'>"+
+				"					<input type='password' name='password' />"+
+				"				</div>"+
+				"				<div class='FormField'>"+
+				"					<input type='checkbox' name='rememberMe' value='true' /> Remember me?"+
+				"				</div>"+
+				"				<p class='ZeroBottom'>"+
+				"					<span class='field-validation-error'>"+pLog.LoginErrorText+"</span>"+
+				"					<input type='submit' name='LoginAction' value='Login' />"+
+				"					<input type='submit' name='CancelAction' value='Cancel' />"+
+				"				</p>"+
+				"			</div>"+
+				"		</form>"+
+				"	</div>"+
+				"</div>";
+
+			html = BuildHtmlPage("Fabric Login", html);
+			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
