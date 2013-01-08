@@ -4,6 +4,7 @@ using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Paths.Steps.Functions.Oauth;
 using Fabric.Api.Server.Util;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 
@@ -14,12 +15,9 @@ namespace Fabric.Api.Server.Oauth {
 
 		private const string DbSvcUrl = "http://localhost:9001/";
 
-		/* 
-		response_type=code&
-		client_id=3&
-		redirect_uri=http%3a%2f%2flocalhost:9000&
-		state=33ce55b4b5a246f99001a3f75b4fc01a&
-		switchMode=0
+		/*
+		localhost:9000/api/oauth/login?
+			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316
 		*/
 
 		private string vIncomingError;

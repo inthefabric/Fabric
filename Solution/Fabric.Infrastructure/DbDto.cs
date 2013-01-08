@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using ServiceStack.Text;
 
 namespace Fabric.Infrastructure {
 	
@@ -91,13 +92,10 @@ namespace Fabric.Infrastructure {
 					Class+"' to type '"+resultType.Name+"'.");
 			}
 			
-			var result = new T();
+			string json = JsonSerializer.SerializeToString(Data);
+
+			T result = JsonSerializer.DeserializeFromString<T>(json);
 			result.Id = (long)Id;
-			
-			foreach ( string key in Data.Keys ) {
-				resultType.GetProperty(key).SetValue(result, Data[key], null);
-			}
-			
 			return result;
 		}
 
