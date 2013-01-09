@@ -89,12 +89,13 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver\Weaver.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.32\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -118,14 +119,6 @@
       <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
       <Name>Fabric.Api.Paths</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Server\Fabric.Api.Server.csproj">
-      <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
-      <Name>Fabric.Api.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Db.Server\Fabric.Db.Server.csproj">
-      <Project>{4109140D-8960-4FD7-A037-8B21AFC6659B}</Project>
-      <Name>Fabric.Db.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
@@ -142,7 +135,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

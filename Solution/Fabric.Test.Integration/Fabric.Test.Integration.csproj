@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{592F06B2-3845-47DC-896E-20B752BCE8DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fabric.Test.Integration</RootNamespace>
+    <AssemblyName>Fabric.Test.Integration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FirstTry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CsQuery">
+      <HintPath>..\..\Packages\CsQuery.1.3.3\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\..\Packages\Nancy.0.15.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Testing">
+      <HintPath>..\..\Packages\Nancy.Testing.0.15.1\lib\net40\Nancy.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Server\Fabric.Api.Server.csproj">
+      <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
+      <Name>Fabric.Api.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Db.Server\Fabric.Db.Server.csproj">
+      <Project>{4109140D-8960-4FD7-A037-8B21AFC6659B}</Project>
+      <Name>Fabric.Db.Server</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
