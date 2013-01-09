@@ -61,9 +61,12 @@ namespace Fabric.Api.Oauth.Tasks {
 			//provide good historical data about logins and app usage.
 
 			var oa = new OauthAccess();
+			oa.Token = "";
+			oa.Refresh = "";
+
 			var updates = new WeaverUpdates<OauthAccess>();
-			updates.AddUpdate(oa, x => x.Token); //set token to null
-			updates.AddUpdate(oa, x => x.Refresh); //set refresh to null
+			updates.AddUpdate(oa, x => x.Token); //set token to empty string
+			updates.AddUpdate(oa, x => x.Refresh); //set refresh to empty string
 
 			IWeaverFuncAs<OauthAccess> oaAlias;
 

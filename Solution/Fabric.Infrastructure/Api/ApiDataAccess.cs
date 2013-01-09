@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using ServiceStack.Text;
@@ -9,7 +10,7 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public class ApiDataAccess : IApiDataAccess {
 
-		public ApiContext Context { get; private set; }
+		public IApiContext Context { get; private set; }
 
 		public string Script { get; private set; }
 		public IDictionary<string, string> Params { get; private set; }
@@ -23,7 +24,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, string pScript, 
+		public ApiDataAccess(IApiContext pContext, string pScript, 
 														IDictionary<string, string> pParams=null) {
 			Context = pContext;
 			Script = pScript;
@@ -36,22 +37,18 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, IWeaverScript pScripted) :
+		public ApiDataAccess(IApiContext pContext, IWeaverScript pScripted) :
 												this(pContext, pScripted.Script, pScripted.Params) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
-			byte[] queryData = Encoding.UTF8.GetBytes(Query);
+			ResultString = GetResultString();
 
-			using ( var wc = new WebClient() ) {
-				ResultBytes = wc.UploadData(Context.DbServerUrl, "POST", queryData);
+			if ( ResultString.IndexOf("\"Exception\"") != -1 ) {
+				throw new Exception(ResultString);
 			}
-
-			ResultString = Encoding.UTF8.GetString(ResultBytes);
-
-			////
 
 			if ( ResultString == "[]" ) {
 				ResultDtoList = new List<IDbDto>();
@@ -62,6 +59,17 @@ namespace Fabric.Infrastructure.Api {
 			else if ( ResultString[0] == '{' ) {
 				ResultDto = JsonSerializer.DeserializeFromString<DbDto>(ResultString);
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual string GetResultString() {
+			byte[] queryData = Encoding.UTF8.GetBytes(Query);
+
+			using ( var wc = new WebClient() ) {
+				ResultBytes = wc.UploadData(Context.DbServerUrl, "POST", queryData);
+			}
+
+			return Encoding.UTF8.GetString(ResultBytes);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

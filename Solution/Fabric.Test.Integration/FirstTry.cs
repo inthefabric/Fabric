@@ -6,12 +6,12 @@ using NUnit.Framework;
 namespace Fabric.Test.Integration {
 
 	/*================================================================================================*/
-	[TestFixture]
+	//[TestFixture]
 	public class FirstTry {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void Attempt() {
 			var api = typeof(ApiModule);
@@ -20,8 +20,8 @@ namespace Fabric.Test.Integration {
 
 			BrowserResponse result = browser.Get("/", b => b.HttpRequest());
 
-			Assert.Fail(result.StatusCode+"");
-		}
+			Assert.Fail(result.Body.AsString()+"");
+		}*/
 
 	}
 

@@ -59,7 +59,7 @@ namespace Fabric.Db.Server.Query {
 					return;
 				}
 
-				ResponseString = "{\"exception\":\""+we.ToString().Replace("\"", "'")+"\"}";
+				ResponseString = "{\"Exception\":\""+we.ToString().Replace("\"", "'")+"\"}";
 				return;
 			}
 

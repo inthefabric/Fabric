@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\TestApiContext.cs" />
+    <Compile Include="Common\TestApiDataAccess.cs" />
+    <Compile Include="Common\TestApiDataAccessT.cs" />
+    <Compile Include="FabApiOauth\Tasks\TAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FirstTry.cs" />
   </ItemGroup>
@@ -47,11 +51,20 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Weaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
+      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
+      <Name>Fabric.Api.Oauth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Api.Server\Fabric.Api.Server.csproj">
       <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
       <Name>Fabric.Api.Server</Name>
@@ -59,6 +72,18 @@
     <ProjectReference Include="..\Fabric.Db.Server\Fabric.Db.Server.csproj">
       <Project>{4109140D-8960-4FD7-A037-8B21AFC6659B}</Project>
       <Name>Fabric.Db.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
+      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
+      <Name>Fabric.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
+      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
+      <Name>Fabric.Db.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

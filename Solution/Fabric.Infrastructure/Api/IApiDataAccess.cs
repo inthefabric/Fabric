@@ -5,7 +5,7 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public interface IApiDataAccess {
 
-		ApiContext Context { get; }
+		IApiContext Context { get; }
 
 		string Script { get; }
 		IDictionary<string, string> Params { get; }

@@ -25,7 +25,15 @@ namespace Fabric.Db.Server.Query {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Response GetResponse() {
+		public QueryHandler(string pQuery, Guid pReqId) {
+			vReqId = pReqId;
+			vQuery = pQuery;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetJson() {
 			string json;
 
 			try {
@@ -49,7 +57,12 @@ namespace Fabric.Db.Server.Query {
 				Log.Error(vReqId, "FAIL", json);
 			}
 
-			byte[] bytes = Encoding.UTF8.GetBytes(json);
+			return json;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Response GetResponse() {
+			byte[] bytes = Encoding.UTF8.GetBytes(GetJson());
 
 			return new Response {
 				ContentType = "application/json",

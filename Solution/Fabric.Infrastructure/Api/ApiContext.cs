@@ -7,7 +7,7 @@ using Weaver.Interfaces;
 using Weaver.Items;
 
 namespace Fabric.Infrastructure.Api {
-	
+
 	/*================================================================================================*/
 	public class ApiContext : IApiContext {
 
@@ -54,24 +54,24 @@ namespace Fabric.Infrastructure.Api {
 		public string Code32 {
 			get { return FabricUtil.Code32; }
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public long GetSharpflakeId<T>() where T : INode {
 			return Sharpflake.GetId<T>();
 		}
 
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted) {
-			var a = new ApiDataAccess(this, pScripted);
+			var a = NewAccess(pScripted);
 			return DbDataAccess(pQueryName, a);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbSingle<T>(string pQueryName, IWeaverScript pScripted)
 																where T : class, INodeWithId, new() {
-			var a = new ApiDataAccess<T>(this, pScripted);
+			var a = NewAccess<T>(pScripted);
 			IApiDataAccess<T> da = DbDataAccess(pQueryName, a);
 
 			if ( da.TypedResult != null ) {
@@ -84,36 +84,50 @@ namespace Fabric.Infrastructure.Api {
 
 			return default(T);
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted)
 																		where T : INodeWithId, new() {
-			var a = new ApiDataAccess<T>(this, pScripted);
+			var a = NewAccess<T>(pScripted);
 			return DbDataAccess(pQueryName, a).TypedResultList;
 		}
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbAddNode<T, TRootRel>(string pQueryName, T pNode,
-					Expression<Func<T,object>> pIndexProp) where T : class, INode, INodeWithId, new()
-											where TRootRel : WeaverRel<Root, Contains, T>, new() {
+					Expression<Func<T, object>> pIndexProp)
+			where T : class, INode, INodeWithId, new()
+			where TRootRel : WeaverRel<Root, Contains, T>, new() {
 			T newNode = DbSingle<T>(
 				pQueryName,
 				WeaverTasks.AddNode(pNode)
 			);
-			
+
 			DbData(
 				pQueryName,
 				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pIndexProp)
 			);
-			
+
 			DbData(
 				pQueryName,
 				WeaverTasks.AddRel(new Root { Id = 0 }, new TRootRel(), newNode)
 			);
-			
+
 			return newNode;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IApiDataAccess NewAccess(IWeaverScript pScripted) {
+			return new ApiDataAccess(this, pScripted);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted)
+																		where T : INodeWithId, new() {
+			return new ApiDataAccess<T>(this, pScripted);
 		}
 
 
@@ -121,7 +135,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
 			Log.Debug("Query ("+pQueryName+") "+DbQueryExecutionCount+": "+pDbQuery.Query);
-			
+
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;
@@ -132,7 +146,7 @@ namespace Fabric.Infrastructure.Api {
 																		where T : INodeWithId, new() {
 			Log.Debug("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
 				DbQueryExecutionCount+": "+pDbQuery.Query);
-			
+
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;

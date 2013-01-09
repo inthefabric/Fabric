@@ -14,11 +14,11 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, string pScript,
+		public ApiDataAccess(IApiContext pContext, string pScript,
 						IDictionary<string, string> pParams=null) : base(pContext, pScript, pParams) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(ApiContext pContext, IWeaverScript pScripted) : base(pContext, pScripted){}
+		public ApiDataAccess(IApiContext pContext, IWeaverScript pScripted) :base(pContext, pScripted){}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
