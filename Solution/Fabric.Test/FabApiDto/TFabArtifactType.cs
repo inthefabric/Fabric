@@ -18,7 +18,7 @@ namespace Fabric.Test.FabApiDto {
 			const string desc = "Ensure that the Name and Description properties are set correctly.";
 
 			var dd = new DbDto();
-			dd.Id = 99;
+			dd.NodeId = 99;
 			dd.Data = new Dictionary<string, string>();
 			dd.Data.Add("Name", name);
 			dd.Data.Add("Description", desc);

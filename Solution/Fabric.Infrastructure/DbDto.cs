@@ -16,7 +16,7 @@ namespace Fabric.Infrastructure {
 		}
 
 		public ItemType Item { get; set; }
-		public long? Id { get; set; }
+		public long? NodeId { get; set; }
 		public string Class { get; set; }
 
 		public long? ToNodeId { get; set; }
@@ -40,23 +40,23 @@ namespace Fabric.Infrastructure {
 				return;
 			}
 
-			Id = long.Parse(Data["_id"]);
 			string type = Data["_type"];
-
-			Data.Remove("_id");
-			Data.Remove("_type");
 
 			switch ( type ) {
 				case "vertex":
+					NodeId = long.Parse(Data["_id"]);
 					Item = ItemType.Node;
 					Class = GetClass(Data);
 					break;
 
 				case "edge":
+					string relId = Data["_id"];
+					NodeId = long.Parse(relId.Split(':')[0]);
 					Item = ItemType.Rel;
 					Class = Data["_label"];
 					FromNodeId = long.Parse(Data["_outV"]);
 					ToNodeId = long.Parse(Data["_inV"]);
+					Data.Remove("_label");
 					Data.Remove("_outV");
 					Data.Remove("_inV");
 					break;
@@ -64,11 +64,14 @@ namespace Fabric.Infrastructure {
 				default:
 					throw new Exception("Unknown ItemType: "+type);
 			}
+
+			Data.Remove("_id");
+			Data.Remove("_type");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public T ToNode<T>() where T : INodeWithId, new() {
-			if ( Id == null ) {
+			if ( NodeId == null ) {
 				throw new FabArgumentNullFault("DbDto.Id was null.");
 			}
 
@@ -82,7 +85,7 @@ namespace Fabric.Infrastructure {
 			string json = JsonSerializer.SerializeToString(Data);
 
 			T result = JsonSerializer.DeserializeFromString<T>(json);
-			result.Id = (long)Id;
+			result.Id = (long)NodeId;
 			return result;
 		}
 

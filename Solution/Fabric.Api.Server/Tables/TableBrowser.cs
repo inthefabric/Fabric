@@ -66,7 +66,7 @@ namespace Fabric.Api.Server.Tables {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildHtml(IApiDataAccess pData) {
-			vDtos = pData.Result.DbDtos;
+			vDtos = (IList<IDbDto>)pData.Result.DbDtos;
 
 			if ( vDtos == null ) {
 				return pData.ResultString;
@@ -77,12 +77,12 @@ namespace Fabric.Api.Server.Tables {
 			vNodes = new Dictionary<long, TableNode>();
 
 			foreach ( DbDto dto in vDtos ) {
-				if ( dto.Id == null || dto.Item != DbDto.ItemType.Node ) { continue; }
-				vNodes.Add((long)dto.Id, new TableNode(dto, vNodes.Count));
+				if ( dto.NodeId == null || dto.Item != DbDto.ItemType.Node ) { continue; }
+				vNodes.Add((long)dto.NodeId, new TableNode(dto, vNodes.Count));
 			}
 
 			foreach ( DbDto dto in vDtos ) {
-				if ( dto.Id == null || dto.ToNodeId == null || dto.FromNodeId == null ) { continue; }
+				if ( dto.NodeId == null || dto.ToNodeId == null || dto.FromNodeId == null ) { continue; }
 				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
 
 				TableNode toNode, fromNode;

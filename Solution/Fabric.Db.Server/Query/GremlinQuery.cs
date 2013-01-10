@@ -20,7 +20,7 @@ namespace Fabric.Db.Server.Query {
 		}
 
 		public const string GremlinPath = 
-			"http://localhost:8182/graphs/TitanCassLocal/tp/gremlin";
+			"http://localhost:8182/graphs/FabricTest/tp/gremlin";
 
 		private readonly byte[] vQueryData;
 

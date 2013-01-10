@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/2/2013 10:46:09 PM
+// Generated on 1/10/2013 1:59:41 PM
 
 using System;
 using System.Linq.Expressions;
@@ -1058,15 +1058,27 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public class Root : Node {
 	
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte RootId { get; set; }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return RootId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return 1; }
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+			return (x => (x as Root).RootId);
+		}
 
-
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsApp ContainsAppList {

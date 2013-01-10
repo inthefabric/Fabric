@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/8/2013 3:24:29 PM
+// Generated on 1/10/2013 1:59:43 PM
 
 using System.Collections.Generic;
 
@@ -86,6 +86,14 @@ namespace Fabric.Api.Spec {
 			dto.Abstract = dto.Description.Substring(0, dto.Description.IndexOf('.')+1);
 			list.Add(dto);
 	
+				p = new SpecDtoProp();
+				p.Name = "RootId";
+				p.Type = "byte";
+				p.Description = GetDtoPropText("Object_TypeId");
+				p.IsPrimaryKey = true;
+				p.IsUnique = true;
+				dto.PropertyList.Add(p);
+
 					l = new SpecDtoLink();
 					l.Name = "ContainsAppList";
 					l.IsOutgoing = true;

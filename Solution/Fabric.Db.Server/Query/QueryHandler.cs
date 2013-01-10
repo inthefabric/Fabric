@@ -34,6 +34,7 @@ namespace Fabric.Db.Server.Query {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetJson() {
+			long t = DateTime.UtcNow.Ticks;
 			string json;
 
 			try {
@@ -51,6 +52,7 @@ namespace Fabric.Db.Server.Query {
 				Log.Error(vReqId, "FAIL", json, ex);
 			}
 
+			Log.Debug("GetJson: "+(DateTime.UtcNow.Ticks-t)/10000.0+"ms");
 			return json;
 		}
 

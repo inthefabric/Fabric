@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/9/2013 4:37:33 PM
+// Generated on 1/10/2013 1:59:43 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -93,18 +93,23 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabRoot : FabNode {
 	
+		public byte RootId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			
+			"RootId"
 		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return 0; } }
+		protected override long TypeId { get { return RootId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
+			string val;
+
+			val = pData["RootId"];
+			RootId = byte.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

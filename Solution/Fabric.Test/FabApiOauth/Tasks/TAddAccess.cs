@@ -26,7 +26,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV" +
 				".has('"+typeof(User).Name+"Id',Tokens.T.eq,{{UserId}})" +
 			".back('step4')" +
-				".each{it.Token=null;it.Refresh=null};";
+				".each{it.Token=_P0;it.Refresh=_P1};";
 
 		private readonly static string QueryAddAccessTx =
 			"g.startTransaction();"+
@@ -127,6 +127,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UserId}}", (vUserId == null ? "null" : vUserId+"L"));
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pScripted.Params, "_P0", "");
+			TestUtil.CheckParam(pScripted.Params, "_P1", "");
 			return null;
 		}
 		

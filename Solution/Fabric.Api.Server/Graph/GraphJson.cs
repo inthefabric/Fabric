@@ -30,8 +30,8 @@ namespace Fabric.Api.Server.Graph {
 				string q = vContext.Request.Query["q"];
 
 				if ( String.IsNullOrEmpty(q) ) {
-					q = "x=[];g.V.aggregate(x).iterate();"+
-						"g.V.inE.outV.except([g.v(0)]).back(2).aggregate(x).iterate();x;";
+					q = "x=[];root=g.v(4);g.V.aggregate(x).iterate();"+
+						"g.V.inE.outV.except([root]).back(2).aggregate(x).iterate();x";
 				}
 
 				var ctx = new ApiContext("http://localhost:9001/");
@@ -46,10 +46,9 @@ namespace Fabric.Api.Server.Graph {
 				var linkIdMap = new Dictionary<long, dynamic>();
 
 				foreach ( IDbDto dto in data.ResultDtoList ) {
-					long id = (dto.Id ?? -1);
+					long id = (dto.NodeId ?? -1);
 
 					switch ( dto.Item ) {
-
 						case DbDto.ItemType.Node:
 							if ( nodeIdMap.ContainsKey(id) ) { continue; }
 							nodeIdMap.Add(id, dto);
@@ -81,7 +80,7 @@ namespace Fabric.Api.Server.Graph {
 				foreach ( DbDto n in nodes ) {
 					nodeObj = new ExpandoObject();
 					nodeObj.index = nodeI++;
-					nodeObj.id = n.Id;
+					nodeObj.id = n.NodeId;
 					nodeObj.Class = n.Class;
 					nodeObj.name = n.Class;
 					nodeObj.Data = "";
@@ -105,7 +104,7 @@ namespace Fabric.Api.Server.Graph {
 
 				foreach ( DbDto l in links ) {
 					dynamic linkObj = new ExpandoObject();
-					linkObj.id = l.Id;
+					linkObj.id = l.NodeId;
 					linkObj.type = ExtractRelType(l);
 
 					if ( l.FromNodeId != null ) {
@@ -116,7 +115,7 @@ namespace Fabric.Api.Server.Graph {
 						linkObj.end = linkObj.target = nodeIdMap[(long)l.ToNodeId].index;
 					}
 
-					if ( linkObj.start == 0 || linkObj.end == 0 ) { continue; }
+					if ( linkObj.start == 1 || linkObj.end == 1 ) { continue; }
 					obj.links.Add(linkObj);
 				}
 			}

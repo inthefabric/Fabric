@@ -27,11 +27,11 @@ namespace Fabric.Api.Dto {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Fill(IDbDto pDbDto) {
-			if ( pDbDto.Id == null ) {
+			if ( pDbDto.NodeId == null ) {
 				throw new Exception("DbDto.Id is null.");
 			}
 
-			NodeId = (long)pDbDto.Id;
+			NodeId = (long)pDbDto.NodeId;
 			FillResultData(pDbDto.Data);
 
 			NodeUri = "("+TypeId+")";

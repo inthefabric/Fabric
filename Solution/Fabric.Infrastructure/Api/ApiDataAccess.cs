@@ -45,15 +45,13 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
 			ResultString = GetResultString();
-			Log.Debug("ApiDataAccess.Execute(): Result = "+ResultString);
-
 			Result = JsonSerializer.DeserializeFromString<DbResult>(ResultString);
 
 			if ( Result.Exception != null ) {
 				throw new Exception(ResultString);
 			}
 
-			ResultDtoList = Result.DbDtos;
+			ResultDtoList = new List<IDbDto>(Result.DbDtos);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

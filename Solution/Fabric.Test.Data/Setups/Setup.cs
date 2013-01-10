@@ -1,45 +1,30 @@
-﻿using System;
-using System.Reflection;
-using Fabric.Domain;
-using Weaver;
-using Weaver.Items;
+﻿using Fabric.Domain;
 
 namespace Fabric.Db.Data.Setups {
 
 	/*================================================================================================*/
-	public class Setup {
+	public static class Setup {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static DataSet SetupAll(bool pIsForTesting) {
 			var ds = new DataSet(pIsForTesting);
-			SetupAddNodeIndexes(ds);
-			SetupAddNodes(ds);
+			ds.ClearPreviousData();
+
+			SetupIndexes.SetupAll(ds);
+
+			var r = new Root();
+			r.RootId = 0;
+			ds.AddNodeAndIndex(r, x => x.RootId, false);
+
+			SetupTypes.SetupAll(ds);
+			SetupUsers.SetupAll(ds);
+			SetupOauth.SetupAll(ds);
+			SetupObjects.SetupAll(ds);
+			SetupFactors.SetupAll(ds);
+
 			return ds;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupAddNodeIndexes(DataSet pSet) {
-			Type[] types = Assembly.GetAssembly(typeof(Root)).GetTypes();
-			Type nodeType = typeof(WeaverNode);
-
-			foreach ( Type t in types ) {
-				if ( t.IsAbstract ) { continue; }
-				if ( !nodeType.IsAssignableFrom(t) ) { continue; }
-				pSet.AddIndex(WeaverTasks.AddNodeIndex(t.Name));
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupAddNodes(DataSet pSet) {
-			SetupTypes.SetupAll(pSet);
-			SetupUsers.SetupAll(pSet);
-			SetupOauth.SetupAll(pSet);
-			SetupObjects.SetupAll(pSet);
-			SetupFactors.SetupAll(pSet);
 		}
 
 	}

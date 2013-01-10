@@ -17,27 +17,27 @@ namespace Fabric.Test.FabDbData {
 		[TestCase(false)]
 		public void SetupAll(bool pIsForTesting) {
 			DataSet ds = Setup.SetupAll(pIsForTesting);
-			long nodeI = 1;
+			long nodeI = 1000;
+
+			foreach ( WeaverQuery q in ds.Initialization ) {
+				string json = FabricUtil.WeaverQueryToJson(q);
+				Log.Debug(json);
+			}
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
 				string json = FabricUtil.WeaverQueryToJson(q);
-				//Log.Debug(json);
+				Log.Debug(json);
 			}
 
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = FabricUtil.WeaverQueryToJson(n.AddQuery);
-				//Log.Debug(json);
+				Log.Debug("["+nodeI+"] -- "+json);
 				n.Node.Id = nodeI++;
-			}
-
-			foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
-				string json = FabricUtil.WeaverQueryToJson(ni.AddToIndexQuery);
-				//Log.Debug(json);
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {
 				string json = FabricUtil.WeaverQueryToJson(r.AddQuery);
-				//Log.Debug(json);
+				Log.Debug(json);
 			}
 		}
 

@@ -107,10 +107,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
 			
-			//TODO: TAddGrant: quoted values seems like a bug
 			TestUtil.CheckParam(pScripted.Params, "_P0", typeof(User).Name);
-			TestUtil.CheckParam(pScripted.Params, "_P1", "'"+vRedirUri+"'");
-			TestUtil.CheckParam(pScripted.Params, "_P2", "'"+vGrantCode+"'");
+			TestUtil.CheckParam(pScripted.Params, "_P1", vRedirUri);
+			TestUtil.CheckParam(pScripted.Params, "_P2", vGrantCode);
 			
 			return vGrantResult;
 		}

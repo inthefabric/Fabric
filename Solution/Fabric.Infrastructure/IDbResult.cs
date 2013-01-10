@@ -13,7 +13,7 @@ namespace Fabric.Infrastructure {
 		string Message { get; set; }
 
 		IList<IDictionary<string, string>> Results { get; set; }
-		IList<IDbDto> DbDtos { get; set; }
+		IList<DbDto> DbDtos { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

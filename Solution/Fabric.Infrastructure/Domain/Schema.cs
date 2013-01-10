@@ -59,6 +59,8 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema root = AddNode("Root", "R");
 			root.IsRoot = true;
+			p = AddProp(root, "RootId", typeof(byte));
+				p.IsPrimaryKey = true;
 
 			////
 
