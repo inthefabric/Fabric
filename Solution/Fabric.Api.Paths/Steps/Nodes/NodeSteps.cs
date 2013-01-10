@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 12/21/2012 9:16:46 AM
+// Generated on 1/10/2013 5:06:43 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -625,7 +625,7 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep(Path pPath) : base(pPath) {
 			if ( pPath.Segments.Count == 0 ) {
-				Path.AddSegment(this, "g.v(0)");
+				Path.AddSegment(this, "g.V('RootId',0)[0]");
 			}
 
 			ConstructorHook();

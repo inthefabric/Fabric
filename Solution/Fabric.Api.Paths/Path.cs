@@ -42,9 +42,19 @@ namespace Fabric.Api.Paths {
 		public string Script {
 			get {
 				string s = "";
+				int startI = 0;
 
-				foreach ( PathSegment seg in Segments ) {
-					s += (s == "" ? "" : ".")+seg.Script;
+				if ( Segments.Count >= 2 ) {
+					IStep first = Segments[1].Step;
+
+					if ( first.TypeId != null ) {
+						s = first.GetKeyIndexScript();
+						startI = 2;
+					}
+				}
+
+				for ( int i = startI ; i < Segments.Count ; ++i ) {
+					s += (s == "" ? "" : ".")+Segments[i].Script;
 				}
 
 				return s;

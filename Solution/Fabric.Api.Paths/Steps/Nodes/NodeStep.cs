@@ -34,6 +34,12 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 				"has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: NodeStep.GetKeyIndexScript()
+		public override string GetKeyIndexScript() {
+			return "g.V('"+TypeIdName+"',"+TypeId+(TypeIdIsLong ? "L" : "")+")";
+		}
+
 	}
 
 }

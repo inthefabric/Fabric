@@ -48,6 +48,11 @@ namespace Fabric.Api.Paths.Steps {
 			return Path.GetSegmentIndexOfStep(this);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual string GetKeyIndexScript() {
+			throw new Exception("Invalid use of GetKeyIndexScript().");
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

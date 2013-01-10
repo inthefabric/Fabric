@@ -11,6 +11,7 @@ namespace Fabric.Api.Paths.Steps {
 		void SetDataAndUpdatePath(StepData pData);
 		IStep GetNextStep(string pStepText, bool pSetData=true, IFuncStep pProxyForFunc=null);
 		int GetPathIndex();
+		string GetKeyIndexScript();
 
 	}
 

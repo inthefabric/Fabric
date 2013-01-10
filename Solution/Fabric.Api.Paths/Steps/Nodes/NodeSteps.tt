@@ -82,7 +82,7 @@ foreach ( string name in nodeNames ) {
 	if ( node.Name == "Root" ) {
 #>
 			if ( pPath.Segments.Count == 0 ) {
-				Path.AddSegment(this, "g.v(0)");
+				Path.AddSegment(this, "g.V('RootId',0)[0]");
 			}
 
 <#
