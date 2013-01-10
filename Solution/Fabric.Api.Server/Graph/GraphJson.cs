@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Server.Graph {
@@ -32,14 +33,19 @@ namespace Fabric.Api.Server.Graph {
 					q = "x=[];g.V.aggregate(x).iterate();"+
 						"g.V.inE.outV.except([g.v(0)]).back(2).aggregate(x).iterate();x;";
 				}
-				
-				var req = new GremlinRequest(q);
-				var nodes = new List<DbDto>();
-				var links = new List<DbDto>();
+
+				var ctx = new ApiContext("http://localhost:9001/");
+
+				IWeaverQuery query = new WeaverQuery();
+				query.FinalizeQuery(q);
+				IApiDataAccess data = ctx.DbData("getGraphData", query);
+
+				var nodes = new List<IDbDto>();
+				var links = new List<IDbDto>();
 				var nodeIdMap = new Dictionary<long, dynamic>();
 				var linkIdMap = new Dictionary<long, dynamic>();
 
-				foreach ( DbDto dto in req.DtoList ) {
+				foreach ( IDbDto dto in data.ResultDtoList ) {
 					long id = (dto.Id ?? -1);
 
 					switch ( dto.Item ) {

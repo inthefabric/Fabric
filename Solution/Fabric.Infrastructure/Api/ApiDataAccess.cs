@@ -18,7 +18,7 @@ namespace Fabric.Infrastructure.Api {
 
 		public byte[] ResultBytes { get; private set; }
 		public string ResultString { get; private set; }
-		public IDbDto ResultDto { get; private set; }
+		public IDbResult Result { get; private set; }
 		public IList<IDbDto> ResultDtoList { get; private set; }
 
 
@@ -32,7 +32,7 @@ namespace Fabric.Infrastructure.Api {
 
 			string param = BuildParams();
 
-			Query = "{\"script\":\""+FabricUtil.JsonUnquote(Script)+"\""+
+			Query = "{\"script\":\"try{"+FabricUtil.JsonUnquote(Script)+"}catch(e){e;}\""+
 				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
 		}
 
@@ -45,20 +45,15 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
 			ResultString = GetResultString();
+			Log.Debug("ApiDataAccess.Execute(): Result = "+ResultString);
 
-			if ( ResultString.IndexOf("\"Exception\"") != -1 ) {
+			Result = JsonSerializer.DeserializeFromString<DbResult>(ResultString);
+
+			if ( Result.Exception != null ) {
 				throw new Exception(ResultString);
 			}
 
-			if ( ResultString == "[]" ) {
-				ResultDtoList = new List<IDbDto>();
-			}
-			else if ( ResultString[0] == '[' && ResultString[1] == '{' ) {
-				ResultDtoList = JsonSerializer.DeserializeFromString<List<IDbDto>>(ResultString);
-			}
-			else if ( ResultString[0] == '{' ) {
-				ResultDto = JsonSerializer.DeserializeFromString<DbDto>(ResultString);
-			}
+			ResultDtoList = Result.DbDtos;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

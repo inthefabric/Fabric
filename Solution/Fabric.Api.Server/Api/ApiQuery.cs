@@ -100,14 +100,6 @@ namespace Fabric.Api.Server.Api {
 				return;
 			}
 
-			if ( vReq.ResultDto != null ) {
-				vInfo.DtoList = new List<IDbDto>();
-				vInfo.DtoList.Add(vReq.ResultDto);
-				vInfo.IsSingleDto = true;
-				CheckDtoType(vReq.ResultDto);
-				return;
-			}
-
 			vInfo.NonDtoText = vReq.ResultString;
 		}
 		

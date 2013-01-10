@@ -11,7 +11,7 @@ namespace Fabric.Test.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(Dictionary<string, string> pData) {}
+		protected override void FillResultData(IDictionary<string, string> pData) {}
 
 	}
 

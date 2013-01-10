@@ -74,10 +74,6 @@ namespace Fabric.Infrastructure.Api {
 			var a = NewAccess<T>(pScripted);
 			IApiDataAccess<T> da = DbDataAccess(pQueryName, a);
 
-			if ( da.TypedResult != null ) {
-				return da.TypedResult;
-			}
-
 			if ( da.TypedResultList != null && da.TypedResultList.Count == 1 ) {
 				return da.TypedResultList[0];
 			}

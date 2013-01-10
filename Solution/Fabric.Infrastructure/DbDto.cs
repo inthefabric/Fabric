@@ -12,7 +12,6 @@ namespace Fabric.Infrastructure {
 		public enum ItemType {
 			Node = 1,
 			Rel,
-			Text,
 			Error
 		}
 
@@ -23,7 +22,7 @@ namespace Fabric.Infrastructure {
 		public long? ToNodeId { get; set; }
 		public long? FromNodeId { get; set; }
 
-		public Dictionary<string, string> Data { get; set; }
+		public IDictionary<string, string> Data { get; set; }
 
 		public string Message { get; set; }
 		public string Exception { get; set; }
@@ -34,48 +33,36 @@ namespace Fabric.Infrastructure {
 		public DbDto() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DbDto(DbResult pResult) {
-			Exception = pResult.Exception;
-			Message = pResult.Message;
+		public DbDto(IDictionary<string, string> pData) {
+			Data = pData;
 
-			if ( Exception != null ) {
-				Item = ItemType.Error;
+			if ( !Data.ContainsKey("_id") ) {
 				return;
 			}
 
-			////
+			Id = long.Parse(Data["_id"]);
+			string type = Data["_type"];
 
-			string self = pResult.Self;
+			Data.Remove("_id");
+			Data.Remove("_type");
 
-			if ( Message != null && string.IsNullOrEmpty(self) ) {
-				Item = ItemType.Text;
-				return;
-			}
-
-			////
-
-			Id = DbResult.GetIdFromPath(pResult.Self);
-
-			if ( pResult.Data != null && pResult.Data.Keys.Count > 0 ) {
-				Data = pResult.Data;
-			}
-
-			Class = GetClass(Data);
-
-			switch ( GetSelfType(self) ) {
-				case 'n':
+			switch ( type ) {
+				case "vertex":
 					Item = ItemType.Node;
+					Class = GetClass(Data);
 					break;
 
-				case 'r':
+				case "edge":
 					Item = ItemType.Rel;
-					Class = pResult.Type;
-					FromNodeId = DbResult.GetIdFromPath(pResult.Start);
-					ToNodeId = DbResult.GetIdFromPath(pResult.End);
+					Class = Data["_label"];
+					FromNodeId = long.Parse(Data["_outV"]);
+					ToNodeId = long.Parse(Data["_inV"]);
+					Data.Remove("_outV");
+					Data.Remove("_inV");
 					break;
 
 				default:
-					throw new Exception("Unknown ItemType: "+self[0]);
+					throw new Exception("Unknown ItemType: "+type);
 			}
 		}
 		
@@ -102,7 +89,7 @@ namespace Fabric.Infrastructure {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetClass(Dictionary<string, string> pData) {
+		private static string GetClass(IDictionary<string, string> pData) {
 			if ( pData == null ) { return null; }
 
 			foreach ( string key in pData.Keys ) {
@@ -112,13 +99,6 @@ namespace Fabric.Infrastructure {
 			}
 
 			return null;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static char GetSelfType(string pSelf) {
-			int i0 = pSelf.LastIndexOf('/');
-			int i1 = pSelf.LastIndexOf('/', i0-1);
-			return pSelf[i1+1];
 		}
 		
 	}

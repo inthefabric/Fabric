@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using Fabric.Api.Server.Util;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 using Nancy;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Server.Setups {
@@ -29,6 +27,47 @@ namespace Fabric.Api.Server.Setups {
 					return "Password required.";
 				}
 
+				var ctx = new ApiContext("http://localhost:9001/");
+				DataSet ds = Setup.SetupAll(true);
+
+				foreach ( IWeaverQuery q in ds.Indexes ) {
+					//new GremlinRequest(q);
+				}
+
+				foreach ( IDataNode n in ds.Nodes ) {
+					IApiDataAccess ad = ctx.DbData("addNode", n.AddQuery);
+					long? id = ad.Result.DbDtos[0].Id;
+
+					if ( id == null ) {
+						throw new Exception("Returned ID was null.");
+					}
+
+					n.Node.Id = (long)id;
+				}
+
+				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
+					//new GremlinRequest(ni.AddToIndexQuery);
+				}
+				
+				foreach ( IDataRel r in ds.Rels ) {
+					//new GremlinRequest(r.AddQuery);
+				}
+
+				return "success";
+			}
+			catch ( Exception ex ) {
+				Log.Error("error", ex);
+				return "error: "+ex.Message;
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public string GetResponse() {
+			try {
+				if ( vContext.Request.Query["pass"] != "asdfasdf" ) {
+					return "Password required.";
+				}
+
 				DataSet ds = Setup.SetupAll(true);
 				var queries = new List<IWeaverQuery>();
 				long nodeI = 1;
@@ -45,7 +84,7 @@ namespace Fabric.Api.Server.Setups {
 				foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
 					queries.Add(ni.AddToIndexQuery);
 				}
-				
+
 				foreach ( IDataRel r in ds.Rels ) {
 					queries.Add(r.AddQuery);
 				}
@@ -76,7 +115,7 @@ namespace Fabric.Api.Server.Setups {
 				Log.Error("error", ex);
 				return "error: "+ex.Message;
 			}
-		}
+		}*/
 
 	}
 

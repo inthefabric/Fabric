@@ -38,7 +38,7 @@ namespace Fabric.Api.Dto {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract void FillResultData(Dictionary<string,string> pData);
+		protected abstract void FillResultData(IDictionary<string,string> pData);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

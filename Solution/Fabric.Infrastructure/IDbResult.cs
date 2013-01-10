@@ -1,28 +1,25 @@
 ﻿using System.Collections.Generic;
-using Fabric.Domain;
 
 namespace Fabric.Infrastructure {
 	
 	/*================================================================================================*/
-	public interface IDbDto {
+	public interface IDbResult {
 
-		DbDto.ItemType Item { get; set; }
-		long? Id { get; set; }
-		string Class { get; set; }
-
-		long? ToNodeId { get; set; }
-		long? FromNodeId { get; set; }
-
-		IDictionary<string, string> Data { get; set; }
-
-		string Message { get; set; }
+		bool Success { get; set; }
+		string Version { get; set; }
+		double QueryTime { get; set; }
+		long ServerTicks { get; set; }
 		string Exception { get; set; }
+		string Message { get; set; }
+
+		IList<IDictionary<string, string>> Results { get; set; }
+		IList<IDbDto> DbDtos { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		T ToNode<T>() where T : INodeWithId, new();
-		
+		void BuildDbDtos(string pResultJson);
+
 	}
 
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 using Nancy;
 using Nancy.Responses.Negotiation;
+using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Server.Tables {
 
@@ -12,8 +14,8 @@ namespace Fabric.Api.Server.Tables {
 
 		private readonly NancyModule vModule;
 
-		private List<DbDto> vDtos;
-		private Dictionary<long, TableNode> vNodes;
+		private IList<IDbDto> vDtos;
+		private IDictionary<long, TableNode> vNodes;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +27,7 @@ namespace Fabric.Api.Server.Tables {
 		/*--------------------------------------------------------------------------------------------*/
 		public Negotiator GetResponse() {
 			var model = new TableModel();
+			var ctx = new ApiContext("http://localhost:9001/");
 
 			try {
 				string table = vModule.Context.Request.Path.Substring("/tables/browse/".Length);
@@ -44,10 +47,12 @@ namespace Fabric.Api.Server.Tables {
 				}
 
 				query += "g.V.retain(x).bothE.aggregate(x).iterate();";
-				query += "x;";
+				query += "x";
 
-				var req = new GremlinRequest(query);
-				model.TableHtml = BuildHtml(req);
+				IWeaverQuery q = new WeaverQuery();
+				q.FinalizeQuery(query);
+				IApiDataAccess data = ctx.DbData("getTable", q);
+				model.TableHtml = BuildHtml(data);
 			}
 			catch ( Exception ex ) {
 				Log.Error("TableBrowser error", ex);
@@ -60,16 +65,11 @@ namespace Fabric.Api.Server.Tables {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildHtml(GremlinRequest pReq) {
-			vDtos = pReq.DtoList;
-			
-			if ( pReq.Dto != null ) {
-				vDtos = new List<DbDto>();
-				vDtos.Add(pReq.Dto);
-			}
+		private string BuildHtml(IApiDataAccess pData) {
+			vDtos = pData.Result.DbDtos;
 
 			if ( vDtos == null ) {
-				return pReq.ResponseString;
+				return pData.ResultString;
 			}
 
 			////

@@ -1,7 +1,6 @@
 ﻿using Fabric.Api.Server.Api;
 using Fabric.Api.Server.ApiSpec;
 using Fabric.Api.Server.Graph;
-using Fabric.Api.Server.Gremlin;
 using Fabric.Api.Server.Setups;
 using Fabric.Api.Server.Tables;
 using Fabric.Infrastructure;
@@ -25,7 +24,6 @@ namespace Fabric.Api.Server {
 			Get["/graph/json"] = (p => new GraphJson(Context).GetResponse());
 			Get["/graph"] = (p => new GraphView(this).GetResponse());
 			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());
-			Get["/gremlin/(.*)"] = (p => new GremlinQuery(Context).GetResponse());
 			Get["/api"] = (p => new ApiQuery(Context).GetResponse());
 			Get["/api/(.*)"] = (p => new ApiQuery(Context).GetResponse());
 

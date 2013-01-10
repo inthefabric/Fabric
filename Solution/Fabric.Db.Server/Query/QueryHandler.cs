@@ -39,13 +39,7 @@ namespace Fabric.Db.Server.Query {
 			try {
 				var q = new GremlinQuery(vQuery);
 				q.Execute();
-
-				if ( q.ResultDtoList != null ) {
-					json = JsonSerializer.SerializeToString(q.ResultDtoList);
-				}
-				else {
-					json = JsonSerializer.SerializeToString(q.ResultDto);
-				}
+				json = JsonSerializer.SerializeToString(q.Result);
 			}
 			catch ( Exception ex ) {
 				var err = new DbDto {
@@ -54,7 +48,7 @@ namespace Fabric.Db.Server.Query {
 				};
 
 				json = JsonSerializer.SerializeToString(err);
-				Log.Error(vReqId, "FAIL", json);
+				Log.Error(vReqId, "FAIL", json, ex);
 			}
 
 			return json;

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using Fabric.Infrastructure;
@@ -20,15 +20,11 @@ namespace Fabric.Db.Server.Query {
 		}
 
 		public const string GremlinPath = 
-			"http://localhost:7474/db/data/ext/GremlinPlugin/graphdb/execute_script";
+			"http://localhost:8182/graphs/TitanCassLocal/tp/gremlin";
 
 		private readonly byte[] vQueryData;
 
-		private bool vResultSet;
 		private DbResult vResult;
-
-		private bool vResultListSet;
-		private List<DbResult> vResultList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,9 +37,11 @@ namespace Fabric.Db.Server.Query {
 		/*--------------------------------------------------------------------------------------------*/
 		public void Execute() {
 			ResponseString = "";
+			long t = DateTime.UtcNow.Ticks;
 
 			try {
 				var wc = new WebClient();
+				wc.Headers.Add("Content-Type", "application/json");
 				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
 				ResponseString = Encoding.UTF8.GetString(ResponseData);
 			}
@@ -56,31 +54,15 @@ namespace Fabric.Db.Server.Query {
 					var sr = new StreamReader(s);
 					ResponseString = sr.ReadToEnd();
 					Log.Error(ResponseString);
-					return;
 				}
-
-				ResponseString = "{\"Exception\":\""+we.ToString().Replace("\"", "'")+"\"}";
-				return;
+				else {
+					ResponseString = "{\"Exception\":\""+we.ToString().Replace("\"", "'")+"\"}";
+				}
 			}
 
-			////
-			
-			if ( ResponseString.Length < 3 ) {
-				ResultType = DbResultType.Text;
-				return;
-			}
-
-			char first = ResponseString[0];
-
-			if ( first == '[' && (ResponseString[2] == '{' || ResponseString == "[ ]") ) {
-				ResultType = DbResultType.List;
-			}
-			else if ( first == '{' ) {
-				ResultType = DbResultType.Single;
-			}
-			else {
-				ResultType = DbResultType.Text;
-			}
+			vResult = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
+			vResult.BuildDbDtos(ResponseString);
+			vResult.ServerTicks = (DateTime.UtcNow.Ticks-t);
 		}
 
 
@@ -93,7 +75,7 @@ namespace Fabric.Db.Server.Query {
 		/*--------------------------------------------------------------------------------------------*/
 		public DbResult Result {
 			get {
-				if ( vResultSet ) {
+				/*if ( vResultSet ) {
 					return vResult;
 				}
 
@@ -107,6 +89,7 @@ namespace Fabric.Db.Server.Query {
 
 				vResult = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
 				vResultSet = true;
+				return vResult;*/
 				return vResult;
 			}
 		}
@@ -114,7 +97,7 @@ namespace Fabric.Db.Server.Query {
 		/*--------------------------------------------------------------------------------------------*/
 		public List<DbResult> ResultList {
 			get {
-				if ( vResultListSet ) {
+				/*if ( vResultListSet ) {
 					return vResultList;
 				}
 
@@ -124,22 +107,23 @@ namespace Fabric.Db.Server.Query {
 
 				vResultList = JsonSerializer.DeserializeFromString<List<DbResult>>(ResponseString);
 				vResultListSet = true;
-				return vResultList;
+				return vResultList;*/
+				return null;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IDbDto ResultDto {
 			get {
-				return (Result != null ? new DbDto(Result) : null);
+				return null; //(Result != null ? new DbDto(ResultList[0].Results) : null);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public List<IDbDto> ResultDtoList {
 			get {
-				return (ResultList != null ?
-					ResultList.Select(r => new DbDto(r)).ToList<IDbDto>() : null);
+				return null; //(ResultList != null ?
+					//ResultList.Select(r => new DbDto(r)).ToList<IDbDto>() : null);
 			}
 		}
 

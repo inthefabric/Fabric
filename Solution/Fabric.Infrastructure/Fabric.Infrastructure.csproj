@@ -62,6 +62,7 @@
     <Compile Include="Api\Faults\FabPrivacyFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
+    <Compile Include="IDbResult.cs" />
     <Compile Include="DbDto.cs" />
     <Compile Include="DbResult.cs" />
     <Compile Include="Domain\SchemaHelper.cs">

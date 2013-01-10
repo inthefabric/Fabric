@@ -1,27 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Fabric.Infrastructure {
 	
 	/*================================================================================================*/
-	public class DbResult {
+	public class DbResult : IDbResult {
 
-		public string Self { get; set; }
-		public string Start { get; set; }
-		public string Type { get; set; }
-		public string End { get; set; }
-
-		public Dictionary<string, string> Data { get; set; }
-
-		public string Message { get; set; }
+		public bool Success { get; set; }
+		public string Version { get; set; }
+		public double QueryTime { get; set; }
+		public long ServerTicks { get; set; }
 		public string Exception { get; set; }
+		public string Message { get; set; }
+		public string Text { get; set; }
+
+		public IList<IDictionary<string, string>> Results { get; set; }
+		public IList<IDbDto> DbDtos { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static long GetIdFromPath(string pPath) {
-			if ( pPath == null ) { return -1; }
-			string idStr = pPath.Substring(pPath.LastIndexOf('/')+1);
-			return long.Parse(idStr);
+		public void BuildDbDtos(string pResultJson) {
+			if ( Results == null ) {
+				throw new Exception("The Results list is null.");
+			}
+
+			DbDtos = new List<IDbDto>();
+
+			foreach ( IDictionary<string, string> r in Results ) {
+				DbDtos.Add(new DbDto(r));
+			}
+
+			Results = null;
+
+			const string textResultStart = "\"results\":[\"";
+			int startI = pResultJson.IndexOf(textResultStart);
+
+			if ( startI == -1 ) {
+				return;
+			}
+
+			startI += textResultStart.Length;
+			int endI = pResultJson.IndexOf("\"],", startI);
+
+			Text = pResultJson.Substring(startI, endI-startI);
+			DbDtos = null;
 		}
 
 	}

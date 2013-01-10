@@ -7,9 +7,7 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : INodeWithId, new() {
 
-		public T TypedResult { get; private set; }
 		public IList<T> TypedResultList { get; private set; }
-
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,15 +24,14 @@ namespace Fabric.Infrastructure.Api {
 		public override void Execute() {
 			base.Execute();
 
-			if ( ResultDto != null ) {
-				TypedResult = ResultDto.ToNode<T>();
+			if ( Result.DbDtos == null ) {
+				return;
 			}
-			else if ( ResultDtoList != null ) {
-				TypedResultList = new List<T>();
 
-				foreach ( DbDto dbDto in ResultDtoList ) {
-					TypedResultList.Add(dbDto.ToNode<T>());
-				}
+			TypedResultList = new List<T>();
+
+			foreach ( DbDto dbDto in Result.DbDtos ) {
+				TypedResultList.Add(dbDto.ToNode<T>());
 			}
 		}
 
