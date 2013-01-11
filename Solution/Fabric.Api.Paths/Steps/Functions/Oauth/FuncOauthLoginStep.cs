@@ -5,7 +5,7 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
 	[Func("Login", typeof(FabOauthLogin), ResxKey="OauthLogin")]
-	public class FuncOauthLoginStep : FuncOauthFinal { //TEST: FuncOauthLoginStep
+	public class FuncOauthLoginStep : FuncOauthFinal {
 
 		public const string ResponseTypeName = "response_type";
 		public const string ClientIdName = "client_id";
@@ -31,22 +31,6 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 
 		[FuncParam(SwitchModeName, false)]
 		public string SwitchMode { get; set; }
-
-		//in case someone goes directly to the OAuth page.
-
-		public string Error { get; set; }
-
-		//Internal: POST vars
-
-		public string LoginAction { get; set; }
-		public string CancelAction { get; set; }
-		public string AllowAction { get; set; }
-		public string DenyAction { get; set; }
-		public string LogoutAction { get; set; }
-
-		public string Username { get; set; }
-		public string Password { get; set; }
-		public bool RememberMe { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

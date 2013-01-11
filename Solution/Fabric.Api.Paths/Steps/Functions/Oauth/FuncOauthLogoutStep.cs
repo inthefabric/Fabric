@@ -5,7 +5,7 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
 	[Func("Logout", typeof(FabOauthLogout), ResxKey="OauthLogout")]
-	public class FuncOauthLogoutStep : FuncOauthFinal { //TEST: FuncOauthLogoutStep
+	public class FuncOauthLogoutStep : FuncOauthFinal {
 
 		public const string AccessTokenName = "access_token";
 

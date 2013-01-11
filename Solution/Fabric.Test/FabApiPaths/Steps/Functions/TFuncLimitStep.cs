@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
@@ -26,6 +27,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 			Assert.Null(s.TypeId, "TypeId should be null.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
+			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 		}
 
 
@@ -102,6 +104,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(typeof(FabRoot), false)]
+		[TestCase(typeof(FabOauth), false)]
 		[TestCase(typeof(FabArtifact), true)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
 			bool result = FuncLimitStep.AllowedForStep(pDtoType);

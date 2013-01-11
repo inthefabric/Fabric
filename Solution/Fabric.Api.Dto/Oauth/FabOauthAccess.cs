@@ -26,16 +26,6 @@ namespace Fabric.Api.Dto.Oauth {
 		[DtoProp(true)]
 		public long? UserId { get; set; }
 
-		//[DtoProp(true)]
-		//public bool IsClientOnly { get; set; }
-
-		/*--------------------------------------------------------------------------------------------* /
-		public FabOauthAccessKey Key { get; set; }
-		public FabAppKey AppKey { get; set; }
-		public FabUserKey UserKey { get; set; }
-		public DateTime Expires { get; set; }
-		public bool IsClientOnly { get; set; }
-
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

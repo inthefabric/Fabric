@@ -102,7 +102,7 @@ namespace Fabric.Test.FabApiPaths {
 			Assert.NotNull(rs.Path, "Result.Path should be filled.");
 			Assert.NotNull(rs.Data, "Result.Data should be filled.");
 			Assert.AreEqual("api", rs.Data.RawString, "Incorrect Result.Data.RawString.");
-			Assert.AreEqual("g.v(0)", rs.Path.Script, "Incorrect Path.Script.");
+			Assert.AreEqual("g.V('RootId',0)[0]", rs.Path.Script, "Incorrect Path.Script.");
 			Assert.AreEqual(1, rs.Path.Segments.Count, "Incorrect Path.Segments.Count.");
 		}
 

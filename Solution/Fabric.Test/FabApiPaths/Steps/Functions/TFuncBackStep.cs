@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
@@ -156,6 +157,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(typeof(FabRoot), false)]
+		[TestCase(typeof(FabOauth), false)]
 		[TestCase(typeof(FabArtifact), true)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
 			bool result = FuncBackStep.AllowedForStep(pDtoType);

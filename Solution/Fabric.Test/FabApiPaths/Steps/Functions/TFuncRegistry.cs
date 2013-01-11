@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Paths.Steps.Nodes;
+using Fabric.Api.Paths.Steps.Oauth;
+using Fabric.Infrastructure;
 using Fabric.Test.Util;
 using NUnit.Framework;
 
@@ -17,22 +20,66 @@ namespace Fabric.Test.FabApiPaths.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(true, new[] { "/Oauth" })]
+		[TestCase(false, new[] { "oauth" })]
+		public void GetAvailableFuncsForRoot(bool pUri, string[] pExpect) {
+			var art = new RootStep(new Path());
+			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri);
+			Assert.AreEqual(pExpect, result, "Incorrect result.");
+
+			result = FuncRegistry.GetAvailableFuncs(typeof(FabRoot), pUri);
+			Assert.AreEqual(pExpect, result, "Incorrect result.");
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true, new [] { "/Back", "/Limit" })]
 		[TestCase(false, new[] { "back", "limit" })]
-		public void GetAvailableFuncsArtifactStep(bool pUri, string[] pExpect) {
+		public void GetAvailableFuncsForArtifact(bool pUri, string[] pExpect) {
 			var art = new ArtifactStep(new Path());
+
 			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri);
+			Assert.AreEqual(pExpect, result, "Incorrect result.");
+
+			result = FuncRegistry.GetAvailableFuncs(typeof(FabArtifact), pUri);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new[] { "/Back", "/Limit" })]
-		[TestCase(false, new[] { "back", "limit" })]
-		public void GetAvailableFuncsArtifactDto(bool pUri, string[] pExpect) {
-			List<string> result = FuncRegistry.GetAvailableFuncs(typeof(FabArtifact), pUri);
+		[TestCase(true, new[] {
+			"/AccessToken",
+			"/AccessTokenAuthCode",
+			"/AccessTokenRefresh",
+			"/AccessTokenClientCredentials",
+			"/AccessTokenClientDataProv",
+			"/Login",
+			"/Logout"
+		})]
+		[TestCase(false, new[] {
+			"accesstoken",
+			"accesstokenauthcode",
+			"accesstokenrefresh",
+			"accesstokenclientcredentials",
+			"accesstokenclientdataprov",
+			"login",
+			"logout",
+		})]
+		public void GetAvailableFuncsForOauth(bool pUri, string[] pExpect) {
+			var art = new OauthStep(new Path());
+
+			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri);
+
+			foreach ( string r in result ) {
+				Log.Debug(r);
+			}
+
+			Assert.AreEqual(pExpect, result, "Incorrect result.");
+
+			result = FuncRegistry.GetAvailableFuncs(typeof(FabOauth), pUri);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true)]
 		[TestCase(false)]

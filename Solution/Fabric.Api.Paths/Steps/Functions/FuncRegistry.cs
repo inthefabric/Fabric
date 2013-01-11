@@ -19,11 +19,14 @@ namespace Fabric.Api.Paths.Steps.Functions {
 			RegItems = new List<FuncRegistryItem>();
 			RegItemMap = new Dictionary<string, FuncRegistryItem>();
 
+			//Available for root
+			Register<FuncOauthStep>((p => new FuncOauthStep(p)), FuncOauthStep.AllowedForStep);
+
+			//Available for most DTOs
 			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);
 			Register<FuncLimitStep>((p => new FuncLimitStep(p)), FuncLimitStep.AllowedForStep);
 
-			//TEST: Oauth functions added to FuncRegistry
-			Register<FuncOauthStep>((p => new FuncOauthStep(p)), FuncOauthStep.AllowedForStep);
+			//Available for Oauth
 			Register<FuncOauthAtStep>((p => new FuncOauthAtStep(p)), FuncOauthAtStep.AllowedForStep);
 			Register<FuncOauthAtacStep>(
 				(p => new FuncOauthAtacStep(p)), FuncOauthAtacStep.AllowedForStep);

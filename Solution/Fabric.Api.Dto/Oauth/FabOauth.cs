@@ -3,7 +3,7 @@
 namespace Fabric.Api.Dto.Oauth {
 
 	/*================================================================================================*/
-	public class FabOauth : IFabDto { //TEST: all FabOauth DTOs
+	public class FabOauth : IFabDto {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

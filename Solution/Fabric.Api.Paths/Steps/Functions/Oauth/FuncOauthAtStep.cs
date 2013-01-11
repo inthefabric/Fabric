@@ -5,7 +5,7 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
 	[Func("AccessToken", typeof(FabOauthAccess), ResxKey="OauthAt")]
-	public class FuncOauthAtStep : FuncOauthFinal { //TEST: FuncOauthAtStep
+	public class FuncOauthAtStep : FuncOauthFinal {
 
 		public const string GrantTypeAc = "authorization_code";
 		public const string GrantTypeCc = "client_credentials";

@@ -3,7 +3,7 @@
 	/*================================================================================================*/
 	public interface IFinalStep : IBaseStep {
 
-		bool UseLocalData { get; } //TEST: IFinalStep.UseLocalData scenarios
+		bool UseLocalData { get; }
 		long Index { get; }
 		int Count { get; }
 

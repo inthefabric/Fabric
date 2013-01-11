@@ -7,7 +7,7 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
 	[Func("Oauth", typeof(FabOauth))]
-	public class FuncOauthStep : FuncOauthFinal { //TEST: FuncOauthStep
+	public class FuncOauthStep : FuncOauthFinal {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

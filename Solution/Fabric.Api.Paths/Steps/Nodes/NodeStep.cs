@@ -35,7 +35,6 @@ namespace Fabric.Api.Paths.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: NodeStep.GetKeyIndexScript()
 		public override string GetKeyIndexScript() {
 			return "g.V('"+TypeIdName+"',"+TypeId+(TypeIdIsLong ? "L" : "")+")";
 		}

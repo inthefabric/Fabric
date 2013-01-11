@@ -35,17 +35,40 @@ namespace Fabric.Test.FabApiPaths {
 			const string script4 = "outE('ArtifactUsesArtifactType')";
 			const string script5 = "inV";
 			const string expect = script0+"."+script1+"."+script2+"."+script3+"."+script4+"."+script5;
-			IStep step;
+			Mock<IStep> mockStep;
 
-			TestAddSegmentToPath(p, script0, out step);
-			TestAddSegmentToPath(p, script1, out step);
-			TestAddSegmentToPath(p, script2, out step);
-			TestAddSegmentToPath(p, script3, out step);
-			TestAddSegmentToPath(p, script4, out step);
-			TestAddSegmentToPath(p, script5, out step);
+			TestAddSegmentToPath(p, script0, out mockStep);
+			TestAddSegmentToPath(p, script1, out mockStep);
+			TestAddSegmentToPath(p, script2, out mockStep);
+			TestAddSegmentToPath(p, script3, out mockStep);
+			TestAddSegmentToPath(p, script4, out mockStep);
+			TestAddSegmentToPath(p, script5, out mockStep);
 
 			Assert.AreEqual(expect, p.Script, "Incorrect final Script.");
 			Assert.AreEqual(6, p.Segments.Count, "Incorrect final Segments.Count.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddSegmentShortcut() {
+			var p = new Path();
+			const string script0 = "g.v(0)";
+			const string script1 = "outE('RootContainsArtifact').inV.has('ArtifactId',Tokens.T.eq,5L)";
+			const string script2 = "outE('ArtifactUsesArtifactType').inV";
+			const string expectShortcut = "g.V('ArtifactId',5L)";
+			const string expectScript = expectShortcut+"."+script2;
+			Mock<IStep> mockStep;
+
+			TestAddSegmentToPath(p, script0, out mockStep);
+
+			TestAddSegmentToPath(p, script1, out mockStep);
+			mockStep.SetupGet(x => x.TypeId).Returns(5);
+			mockStep.Setup(x => x.GetKeyIndexScript()).Returns(expectShortcut);
+
+			TestAddSegmentToPath(p, script2, out mockStep);
+
+			Assert.AreEqual(expectScript, p.Script, "Incorrect final Script.");
+			Assert.AreEqual(3, p.Segments.Count, "Incorrect final Segments.Count.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -72,18 +95,18 @@ namespace Fabric.Test.FabApiPaths {
 			const string script3B = "(2)";
 			const string expect = script0A+"."+script0B+"."+
 				script1A+"."+script1B+"."+script1C+"."+script2+"."+script3A+script3B;
-			IStep step;
+			Mock<IStep> mockStep;
 
-			TestAddSegmentToPath(p, script0A, out step);
+			TestAddSegmentToPath(p, script0A, out mockStep);
 			TestAppendToPathSegment(p, script0B);
 
-			TestAddSegmentToPath(p, script1A, out step);
+			TestAddSegmentToPath(p, script1A, out mockStep);
 			TestAppendToPathSegment(p, script1B);
 			TestAppendToPathSegment(p, script1C);
 
-			TestAddSegmentToPath(p, script2, out step);
+			TestAddSegmentToPath(p, script2, out mockStep);
 
-			TestAddSegmentToPath(p, script3A, out step);
+			TestAddSegmentToPath(p, script3A, out mockStep);
 			TestAppendToPathSegment(p, script3B, false);
 
 			Assert.AreEqual(expect, p.Script, "Incorrect final Script.");
@@ -154,20 +177,20 @@ namespace Fabric.Test.FabApiPaths {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void TestAddSegmentToPath(Path pPath, string pScript, out IStep pStep) {
+		private static void TestAddSegmentToPath(Path pPath, string pScript, out Mock<IStep> pStep) {
 			string origScript = pPath.Script;
 			int origSegCount = pPath.Segments.Count;
 			string expectScript = origScript+(origScript == "" ? "" : ".")+pScript;
 			int expectSegIndex = origSegCount;
 
-			pStep = new Mock<IStep>().Object;
-			pPath.AddSegment(pStep, pScript);
+			pStep = new Mock<IStep>();
+			pPath.AddSegment(pStep.Object, pScript);
 
 			Assert.AreEqual(expectScript, pPath.Script, "Incorrect Script.");
 			Assert.AreEqual(origSegCount+1, pPath.Segments.Count, "Incorrect Segments.Count.");
 
 			PathSegment seg = pPath.Segments[expectSegIndex];
-			Assert.AreEqual(pStep, seg.Step, "Incorrect Segemnts["+expectSegIndex+"].Step.");
+			Assert.AreEqual(pStep.Object, seg.Step, "Incorrect Segemnts["+expectSegIndex+"].Step.");
 			Assert.AreEqual(pScript, seg.Script, "Incorrect Segemnts["+expectSegIndex+"].Script.");
 		}
 

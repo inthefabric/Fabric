@@ -5,7 +5,7 @@ namespace Fabric.Api.Paths.Steps.Functions.Oauth {
 	
 	/*================================================================================================*/
 	[Func("AccessTokenAuthCode", typeof(FabOauthAccess), ResxKey="OauthAtac")]
-	public class FuncOauthAtacStep : FuncOauthFinal { //TEST: FuncOauthAtacStep
+	public class FuncOauthAtacStep : FuncOauthFinal {
 
 		[FuncParam(FuncOauthAtStep.RedirectUriName, FuncResxKey="OauthAt")]
 		public string RedirectUri { get; private set; }

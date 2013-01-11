@@ -33,9 +33,11 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			const string fabDom = "Fabric.Domain";
 			Object domObj = Activator.CreateInstance(fabDom, fabDom+"."+pStepName).Unwrap();
 			Assert.True((domObj is Node), "Incorrect domain type: '"+domObj.GetType().Name+"'.");
+			Assert.AreEqual(isRoot, (step is IFinalStep), "Incorrect IFinalStep usage.");
 
 			if ( isRoot ) {
 				Assert.AreEqual(false, step.TypeIdIsLong, "Incorrect TypeIdListLong.");
+				Assert.True(((IFinalStep)step).UseLocalData, "Incorrect UseLocalData.");
 			}
 			else {
 				Node domNode = (Node)domObj;
@@ -43,8 +45,6 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 				Assert.AreEqual(nodeIdProp.PropertyType == typeof(long), step.TypeIdIsLong,
 					"Incorrect TypeIdIsLong.");
 			}
-
-			Assert.AreEqual(isRoot, (step is IFinalStep), "Incorrect IFinalStep usage.");
 
 			////
 

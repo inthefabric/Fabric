@@ -82,7 +82,7 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
 			if ( pDtoType == typeof(FabRoot) ) { return false; }
-			if ( pDtoType == typeof(FabOauth) ) { return false; } //TEST: FuncBackStep skip Oauth
+			if ( pDtoType == typeof(FabOauth) ) { return false; }
 			return true;
 		}
 

@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 		[TestCase("HasArtifact(1)", 1L)]
 		[TestCase("hasARTIFACT(999,888)", 999L)]
 		[TestCase("hasArtifact( 33 , asdf )", 33L)]
-		public void SetData(string pStepText, long? pExpectTypeId) {
+		public void SetDataAndUpdatePath(string pStepText, long? pExpectTypeId) {
 			IStep step = new Mock<IStep>().Object;
 			var p = new Path();
 			p.AddSegment(step, "test");
@@ -74,6 +74,21 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(d) );
 			Assert.AreEqual(StepException.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("HasArtifact", null)]
+		[TestCase("HasArtifact(123)", 123L)]
+		public void GetKeyIndexScript(string pStepText, long? pExpectTypeId) {
+			IStep step = new Mock<IStep>().Object;
+			var p = new Path();
+			p.AddSegment(step, "test");
+
+			var s = new TestNodeStep(p);
+			s.SetDataAndUpdatePath(new StepData(pStepText));
+
+			Assert.AreEqual("g.V('TestNodeStepId',"+pExpectTypeId+"L)",
+				s.GetKeyIndexScript(), "Incorrect result.");
 		}
 
 	}

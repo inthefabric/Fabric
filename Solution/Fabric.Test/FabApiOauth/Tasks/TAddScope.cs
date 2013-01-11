@@ -105,8 +105,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
-			
-			//TODO: TAddScope: quoted values seems like a bug
 			TestUtil.CheckParam(pScripted.Params, "_P0", typeof(User).Name);
 			
 			return vScopeResult;
