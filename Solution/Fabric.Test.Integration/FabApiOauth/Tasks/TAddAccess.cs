@@ -1,39 +1,32 @@
 ﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
-using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAddAccess {
+	public class TAddAccess : IntegTestBase {
 
-		protected long vAppId;
-		protected long? vUserId;
-		protected int vExpireSec;
-		protected bool vClientOnly;
+		private long vAppId;
+		private long? vUserId;
+		private int vExpireSec;
+		private bool vClientOnly;
 
-		protected TestApiContext vContext;
-
-		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public virtual void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = (long)SetupUsers.AppId.KinPhoGal;
 			vUserId = (long)SetupUsers.UserId.Penny;
 			vExpireSec = 3600;
 			vClientOnly = false;
-
-			vContext = new TestApiContext();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo() {
-			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(vContext);
+			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(Context);
 		}
 
 

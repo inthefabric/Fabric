@@ -51,7 +51,9 @@ namespace Fabric.Infrastructure.Api {
 				throw new Exception(ResultString);
 			}
 
-			ResultDtoList = new List<IDbDto>(Result.DbDtos);
+			if ( Result.DbDtos != null ) {
+				ResultDtoList = new List<IDbDto>(Result.DbDtos);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
