@@ -1,10 +1,10 @@
-﻿using Fabric.Infrastructure.Api;
-using Fabric.Domain;
+﻿using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Weaver.Interfaces;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
-using Fabric.Infrastructure.Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -80,7 +80,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			osBuild.SetUsesApp(vAppId);
 			osBuild.SetUsesUser(vUserId);
 			
-			txb.Transaction.Finish(WeaverTransaction.ConclusionType.Success, osBuild.NodeVar);
+			txb.Transaction.FinishWithoutStartStop(osBuild.NodeVar);
 			newOs = Context.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
 			return newOs;
 		}

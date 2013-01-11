@@ -17,9 +17,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetRefresh {
 
 		private readonly static string QueryGetAccessTx =
-			"g.startTransaction();"+
 			"_V0=[];"+
-			"g.v(0)"+
+			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
 					".has('Refresh',Tokens.T.eq,_TP0)"+
 					".has('IsClientOnly',Tokens.T.eq,false)"+
@@ -30,7 +29,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".outE('"+typeof(OauthAccessUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
 					".iterate();"+
-			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+
 			"_V0;";
 
 		private string vRefToken;

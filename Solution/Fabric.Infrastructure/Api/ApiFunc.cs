@@ -33,12 +33,12 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static Root NewPathFromRoot() {
-			return WeaverTasks.BeginPath(new Root()).BaseNode;
+			return WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
-			return WeaverTasks.BeginPath(typeof(T).Name, pNodeWithId.GetTypeIdProp<T>(),
+			return WeaverTasks.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
 				pNodeWithId.GetTypeId()).BaseNode;
 		}
 		

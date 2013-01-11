@@ -16,7 +16,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddAccess {
 
 		private readonly static string QueryClearTokens =
-			"g.v(0)"+
+			"g.V('RootId',0)[0]"+
 			".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
 				".has('Token',Tokens.T.neq,null)"+
 				".as('step4')" +
@@ -29,8 +29,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".each{it.Token=_P0;it.Refresh=_P1};";
 
 		private readonly static string QueryAddAccessTx =
-			"g.startTransaction();"+
-			"_V0=g.v(0);"+
+			"_V0=g.V('RootId',0)[0];"+
 			"_V1=g.addVertex(["+
 				typeof(OauthAccess).Name+"Id:{{OauthAccessId}}L,"+
 				"Token:_TP0,"+
@@ -38,17 +37,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Expires:{{UtcExpireTicks}}L,"+
 				"IsClientOnly:false"+
 			"]);"+
-			"g.idx(_TP2).put(_TP3,_V1."+typeof(OauthAccess).Name+"Id,_V1);"+
-			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.idx(_TP5).get('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
-			"g.addEdge(_V1,_V2,_TP6);"+
-			"_V3=g.idx(_TP7).get('"+typeof(User).Name+"Id',{{UserId}})[0];"+
-			"g.addEdge(_V1,_V3,_TP8);"+
-			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
+			"g.addEdge(_V0,_V1,_TP2);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
+			"g.addEdge(_V1,_V2,_TP3);"+
+			"_V3=g.V('"+typeof(User).Name+"Id',{{UserId}})[0];"+
+			"g.addEdge(_V1,_V3,_TP4);";
 
 		private readonly static string QueryAddAccessTxClientOnly =
-			"g.startTransaction();"+
-			"_V0=g.v(0);"+
+			"_V0=g.V('RootId',0)[0];"+
 			"_V1=g.addVertex(["+
 				typeof(OauthAccess).Name+"Id:{{OauthAccessId}}L,"+
 				"Token:_TP0,"+
@@ -56,11 +52,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Expires:{{UtcExpireTicks}}L,"+
 				"IsClientOnly:true"+
 			"]);"+
-			"g.idx(_TP2).put(_TP3,_V1."+typeof(OauthAccess).Name+"Id,_V1);"+
-			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.idx(_TP5).get('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
-			"g.addEdge(_V1,_V2,_TP6);"+
-			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);";
+			"g.addEdge(_V0,_V1,_TP2);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
+			"g.addEdge(_V1,_V2,_TP3);";
 
 		protected long vAddOauthAccessId;
 		protected DateTime vUtcNow;
@@ -146,15 +140,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pScripted.Params, "_TP0", vTokenCode);
 			TestUtil.CheckParam(pScripted.Params, "_TP1", vRefreshCode);
-			TestUtil.CheckParam(pScripted.Params, "_TP2", typeof(OauthAccess).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP3", typeof(OauthAccess).Name+"Id");
-			TestUtil.CheckParam(pScripted.Params, "_TP4", typeof(RootContainsOauthAccess).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP5", typeof(App).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", typeof(OauthAccessUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP2", typeof(RootContainsOauthAccess).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP3", typeof(OauthAccessUsesApp).Name);
 
 			if ( !pClientOnly ) {
-				TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(User).Name);
-				TestUtil.CheckParam(pScripted.Params, "_TP8", typeof(OauthAccessUsesUser).Name);
+				TestUtil.CheckParam(pScripted.Params, "_TP4", typeof(OauthAccessUsesUser).Name);
 			}
 
 			return null;

@@ -89,7 +89,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.End()
 			);
 
-			tx.Finish(WeaverTransaction.ConclusionType.Success, getListVar);
+			tx.FinishWithoutStartStop(getListVar);
 
 			////
 			

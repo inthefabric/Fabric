@@ -18,9 +18,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetGrant {
 
 		private readonly static string QueryGetAndUpdateTx =
-			"g.startTransaction();"+
 			"_V0=[];"+
-			"g.v(0)"+
+			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsOauthGrant).Name+"').inV"+
 					".has('Code',Tokens.T.eq,_TP0)"+
 					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
@@ -33,7 +32,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
 					".iterate();"+
-			"g.stopTransaction(TransactionalGraph.Conclusion.SUCCESS);"+
 			"_V0;";
 
 		private OauthGrant vOauthGrant;

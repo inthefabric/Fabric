@@ -15,10 +15,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetUserAuth {
 
 		private static readonly string QueryGetUserAuth =
-			"g.v(0)"+
-			".outE('"+typeof(RootContainsUser).Name+"').inV"+
-				".has('Password',Tokens.T.eq,_P0)"+
-				".filter{it.Name.toLowerCase()=='{{UsernameLower}}'};";
+			"g.V('RootId',0)[0]"+
+				".outE('"+typeof(RootContainsUser).Name+"').inV"+
+					".has('Password',Tokens.T.eq,_P0)"+
+					".filter{it.Name.toLowerCase()=='{{UsernameLower}}'};";
 
 		private string vUsername;
 		private string vPassword;

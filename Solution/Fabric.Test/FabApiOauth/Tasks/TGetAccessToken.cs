@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetAccessToken {
 
 		private readonly static string QueryGetAccess = 
-			"g.v(0)"+
+			"g.V('RootId',0)[0]"+
 			".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
 				".has('Token',Tokens.T.eq,_P0)"+
 				".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L);";

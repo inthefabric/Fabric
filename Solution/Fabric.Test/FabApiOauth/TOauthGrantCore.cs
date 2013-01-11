@@ -15,10 +15,10 @@ namespace Fabric.Test.FabApiOauth {
 	public class TOauthGrantCore {
 	
 		private readonly static string QueryGetApp =
-			"g.idx(_P0).get('"+typeof(App).Name+"Id',{{AppId}}L)[0];";
+			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];";
 			
 		private readonly static string QueryGetUser =
-			"g.idx(_P0).get('"+typeof(User).Name+"Id',{{UserId}}L)[0];";
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];";
 
 		private string vClientId;
 		private long vClientIdLong;
@@ -82,7 +82,6 @@ namespace Fabric.Test.FabApiOauth {
 			string expect = QueryGetApp.Replace("{{AppId}}", vClientId);
 			
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(App).Name);
 			
 			return vReturnApp;
 		}
@@ -95,7 +94,6 @@ namespace Fabric.Test.FabApiOauth {
 			string expect = QueryGetUser.Replace("{{UserId}}", vCoreUserId+"");
 			
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(User).Name);
 			
 			return vReturnUser;
 		}

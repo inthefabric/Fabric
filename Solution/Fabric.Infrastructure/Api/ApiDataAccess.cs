@@ -29,10 +29,19 @@ namespace Fabric.Infrastructure.Api {
 			Context = pContext;
 			Script = pScript;
 			Params = pParams;
+			
+			string script =
+				"try{"+
+					FabricUtil.JsonUnquote(Script)+
+				"}"+
+				"catch(e){"+
+					"g.stopTransaction(TransactionalGraph.Conclusion.FAILURE);"+
+					"e;"+
+				"}";
 
 			string param = BuildParams();
-
-			Query = "{\"script\":\"try{"+FabricUtil.JsonUnquote(Script)+"}catch(e){e;}\""+
+			
+			Query = "{\"script\":\""+script+"\""+
 				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
 		}
 

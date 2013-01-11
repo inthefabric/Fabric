@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDataProv {
 
 		private readonly static string QueryGetUser =
-			"g.idx(_P0).get('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".as('step1')"+
 			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".as('step4')"+
@@ -72,7 +72,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{MemberTypeId}}", ((byte)MemberTypeId.DataProvider)+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(User).Name);
 
 			return vGetUserResult;
 		}

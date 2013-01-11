@@ -23,7 +23,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverTransaction Finish() {
-			Transaction.Finish(WeaverTransaction.ConclusionType.Success);
+			Transaction.FinishWithoutStartStop();
 			return Transaction;
 		}
 
@@ -38,7 +38,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetRoot(out IWeaverVarAlias<Root> pRootVar) {
-			IWeaverQuery q = WeaverTasks.BeginPath(new Root()).BaseNode.End();
+			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode.End();
 			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pRootVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pRootVar);
@@ -47,7 +47,7 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
-			IWeaverQuery q = WeaverTasks.BeginPath(typeof(T).Name, pNodeWithId.GetTypeIdProp<T>(),
+			IWeaverQuery q = WeaverTasks.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
 				pNodeWithId.GetTypeId()).BaseNode.End();
 			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
 			Transaction.AddQuery(q);
@@ -68,9 +68,9 @@ namespace Fabric.Infrastructure.Weaver {
 
 			////
 			
-			Transaction.AddQuery(
+			/*Transaction.AddQuery(
 				WeaverTasks.AddNodeToIndex(typeof(T).Name, pNewNodeVar, pNode.GetTypeIdProp<T>())
-			);
+			);*/
 
 			AddRel<TRootRel>(pRootVar, pNewNodeVar);
 		}

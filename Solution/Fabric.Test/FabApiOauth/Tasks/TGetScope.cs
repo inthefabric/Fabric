@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetScope {
 
 		private readonly static string QueryGetMatchingScope =
-			"g.idx(_P0).get('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
 					".as('step3')"+
 				".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
@@ -69,7 +69,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{AppId}}", vAppId+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(User).Name);
 
 			return vOauthScopeResult;
 		}

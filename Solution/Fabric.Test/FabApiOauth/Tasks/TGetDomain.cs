@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDomain {
 
 		private static readonly string QueryGetDomain =
-			"g.idx(_P0).get('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
 				".filter{it.Domain.toLowerCase()=='{{RedirUriLower}}'};";
 
@@ -67,7 +67,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{RedirUriLower}}", vRedirDomain.ToLower());
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", typeof(App).Name);
 
 			return vGetDomainResult;
 		}
