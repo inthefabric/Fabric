@@ -24,7 +24,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".back('step4')"+
 			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
-				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,{{MemberTypeId}})"+
+				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,{{MemberTypeId}}L)"+
 			".back('step1');";
 
 		private long vAppId;
@@ -69,7 +69,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			string expect = QueryGetUser
 				.Replace("{{AppId}}", vAppId+"")
 				.Replace("{{UserId}}", vDataProvUserId+"")
-				.Replace("{{MemberTypeId}}", ((byte)MemberTypeId.DataProvider)+"");
+				.Replace("{{MemberTypeId}}", ((long)MemberTypeId.DataProvider)+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
 

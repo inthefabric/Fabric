@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/10/2013 1:59:43 PM
+// Generated on 1/11/2013 3:36:55 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -93,7 +93,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabRoot : FabNode {
 	
-		public byte RootId { get; set; }
+		public int RootId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"RootId"
@@ -109,7 +109,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["RootId"];
-			RootId = byte.Parse(val);
+			RootId = int.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -195,7 +195,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabArtifactType : FabNodeForType {
 	
-		public byte ArtifactTypeId { get; set; }
+		public long ArtifactTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"ArtifactTypeId"
@@ -213,7 +213,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["ArtifactTypeId"];
-			ArtifactTypeId = byte.Parse(val);
+			ArtifactTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -303,7 +303,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabCrowdianType : FabNodeForType {
 	
-		public byte CrowdianTypeId { get; set; }
+		public long CrowdianTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"CrowdianTypeId"
@@ -321,7 +321,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["CrowdianTypeId"];
-			CrowdianTypeId = byte.Parse(val);
+			CrowdianTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -434,7 +434,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabMemberType : FabNodeForType {
 	
-		public byte MemberTypeId { get; set; }
+		public long MemberTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"MemberTypeId"
@@ -452,7 +452,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["MemberTypeId"];
-			MemberTypeId = byte.Parse(val);
+			MemberTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -670,7 +670,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabFactorAssertion : FabNodeForType {
 	
-		public byte FactorAssertionId { get; set; }
+		public long FactorAssertionId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"FactorAssertionId"
@@ -688,7 +688,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["FactorAssertionId"];
-			FactorAssertionId = byte.Parse(val);
+			FactorAssertionId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -753,7 +753,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDescriptorType : FabNodeForType {
 	
-		public byte DescriptorTypeId { get; set; }
+		public long DescriptorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"DescriptorTypeId"
@@ -771,7 +771,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["DescriptorTypeId"];
-			DescriptorTypeId = byte.Parse(val);
+			DescriptorTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -815,7 +815,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDirectorType : FabNodeForType {
 	
-		public byte DirectorTypeId { get; set; }
+		public long DirectorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"DirectorTypeId"
@@ -833,7 +833,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["DirectorTypeId"];
-			DirectorTypeId = byte.Parse(val);
+			DirectorTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -846,7 +846,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabDirectorAction : FabNodeForType {
 	
-		public byte DirectorActionId { get; set; }
+		public long DirectorActionId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"DirectorActionId"
@@ -864,7 +864,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["DirectorActionId"];
-			DirectorActionId = byte.Parse(val);
+			DirectorActionId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -912,7 +912,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabEventorType : FabNodeForType {
 	
-		public byte EventorTypeId { get; set; }
+		public long EventorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"EventorTypeId"
@@ -930,7 +930,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["EventorTypeId"];
-			EventorTypeId = byte.Parse(val);
+			EventorTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -943,7 +943,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabEventorPrecision : FabNodeForType {
 	
-		public byte EventorPrecisionId { get; set; }
+		public long EventorPrecisionId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"EventorPrecisionId"
@@ -961,7 +961,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["EventorPrecisionId"];
-			EventorPrecisionId = byte.Parse(val);
+			EventorPrecisionId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1010,7 +1010,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabIdentorType : FabNodeForType {
 	
-		public byte IdentorTypeId { get; set; }
+		public long IdentorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"IdentorTypeId"
@@ -1028,7 +1028,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["IdentorTypeId"];
-			IdentorTypeId = byte.Parse(val);
+			IdentorTypeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1084,7 +1084,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabLocatorType : FabNodeForType {
 	
-		public byte LocatorTypeId { get; set; }
+		public long LocatorTypeId { get; set; }
 		public double MinX { get; set; }
 		public double MaxX { get; set; }
 		public double MinY { get; set; }
@@ -1108,7 +1108,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["LocatorTypeId"];
-			LocatorTypeId = byte.Parse(val);
+			LocatorTypeId = long.Parse(val);
 
 			val = pData["MinX"];
 			MinX = double.Parse(val);
@@ -1174,7 +1174,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorType : FabNodeForType {
 	
-		public byte VectorTypeId { get; set; }
+		public long VectorTypeId { get; set; }
 		public long Min { get; set; }
 		public long Max { get; set; }
 		
@@ -1194,7 +1194,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["VectorTypeId"];
-			VectorTypeId = byte.Parse(val);
+			VectorTypeId = long.Parse(val);
 
 			val = pData["Min"];
 			Min = long.Parse(val);
@@ -1213,7 +1213,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorRange : FabNodeForType {
 	
-		public byte VectorRangeId { get; set; }
+		public long VectorRangeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			"VectorRangeId"
@@ -1231,7 +1231,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["VectorRangeId"];
-			VectorRangeId = byte.Parse(val);
+			VectorRangeId = long.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1244,7 +1244,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorRangeLevel : FabNodeForType {
 	
-		public byte VectorRangeLevelId { get; set; }
+		public long VectorRangeLevelId { get; set; }
 		public float Position { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1263,7 +1263,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["VectorRangeLevelId"];
-			VectorRangeLevelId = byte.Parse(val);
+			VectorRangeLevelId = long.Parse(val);
 
 			val = pData["Position"];
 			Position = float.Parse(val);
@@ -1279,7 +1279,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorUnit : FabNodeForType {
 	
-		public byte VectorUnitId { get; set; }
+		public long VectorUnitId { get; set; }
 		public string Symbol { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1299,7 +1299,7 @@ namespace Fabric.Api.Dto {
 			bool found;
 
 			val = pData["VectorUnitId"];
-			VectorUnitId = byte.Parse(val);
+			VectorUnitId = long.Parse(val);
 
 			found = pData.TryGetValue("Symbol", out val);
 			if ( found ) { Symbol = val; }
@@ -1315,7 +1315,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorUnitPrefix : FabNodeForType {
 	
-		public byte VectorUnitPrefixId { get; set; }
+		public long VectorUnitPrefixId { get; set; }
 		public string Symbol { get; set; }
 		public double Amount { get; set; }
 		
@@ -1336,7 +1336,7 @@ namespace Fabric.Api.Dto {
 			bool found;
 
 			val = pData["VectorUnitPrefixId"];
-			VectorUnitPrefixId = byte.Parse(val);
+			VectorUnitPrefixId = long.Parse(val);
 
 			found = pData.TryGetValue("Symbol", out val);
 			if ( found ) { Symbol = val; }
@@ -1355,7 +1355,7 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabVectorUnitDerived : FabNodeForType {
 	
-		public byte VectorUnitDerivedId { get; set; }
+		public long VectorUnitDerivedId { get; set; }
 		public int Exponent { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1374,7 +1374,7 @@ namespace Fabric.Api.Dto {
 			string val;
 
 			val = pData["VectorUnitDerivedId"];
-			VectorUnitDerivedId = byte.Parse(val);
+			VectorUnitDerivedId = long.Parse(val);
 
 			val = pData["Exponent"];
 			Exponent = int.Parse(val);

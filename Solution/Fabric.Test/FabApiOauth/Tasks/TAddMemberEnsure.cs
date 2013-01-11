@@ -97,9 +97,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vNewMemId = 52923582934;
 			vUsageMap = new UsageMap();
 			
-			vMemberResult = new Member() { MemberId = 1253 };
-			vMemTypeResult = new MemberType() { MemberTypeId = (byte)MemberTypeId.Invite };
-			vMtaResult = new MemberTypeAssign() { MemberTypeAssignId = 9253 };
+			vMemberResult = new Member { MemberId = 1253 };
+			vMemTypeResult = new MemberType { MemberTypeId = (long)MemberTypeId.Invite };
+			vMtaResult = new MemberTypeAssign { MemberTypeAssignId = 9253 };
 			
 			var mockMemberDbDto = new Mock<IDbDto>();
 			mockMemberDbDto.Setup(x => x.ToNode<Member>()).Returns(vMemberResult);
@@ -175,7 +175,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{MtaId}}", vMtaResult.MemberTypeAssignId+"")
 				.Replace("{{NewMtaId}}", vNewMtaId+"")
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
-				.Replace("{{NewMemTypeId}}", ((byte)MemberTypeId.Member)+"")
+				.Replace("{{NewMemTypeId}}", ((long)MemberTypeId.Member)+"")
 				.Replace("{{CreatorMemId}}", ((long)MemberId.FabFabData)+"");
 			
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
@@ -201,7 +201,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{MtaId}}", vMtaResult.MemberTypeAssignId+"")
 				.Replace("{{NewMtaId}}", vNewMtaId+"")
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
-				.Replace("{{NewMemTypeId}}", ((byte)MemberTypeId.Member)+"")
+				.Replace("{{NewMemTypeId}}", ((long)MemberTypeId.Member)+"")
 				.Replace("{{CreatorMemId}}", ((long)MemberId.FabFabData)+"");
 			
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
@@ -221,7 +221,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void MemberAlreadyExists(bool pViaTask) {
-			vMemTypeResult.MemberTypeId = (byte)MemberTypeId.Member;
+			vMemTypeResult.MemberTypeId = (long)MemberTypeId.Member;
 			
 			bool result = TestGo(pViaTask);
 			

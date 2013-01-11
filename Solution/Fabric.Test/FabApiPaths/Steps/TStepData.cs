@@ -68,9 +68,9 @@ namespace Fabric.Test.FabApiPaths.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("x(123, abc)", 0, 123)]
 		[TestCase("x(abcdefg, 9)", 1, 9)]
-		public void ParamAtByte(string pRawString, int pIndex, byte pExpectValue) {
+		public void ParamAtint(string pRawString, int pIndex, int pExpectValue) {
 			var sd = new StepData(pRawString);
-			Assert.AreEqual(pExpectValue, sd.ParamAt<byte>(pIndex), "Incorrect result.");
+			Assert.AreEqual(pExpectValue, sd.ParamAt<int>(pIndex), "Incorrect result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

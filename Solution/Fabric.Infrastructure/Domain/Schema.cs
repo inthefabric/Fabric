@@ -59,7 +59,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema root = AddNode("Root", "R");
 			root.IsRoot = true;
-			p = AddProp(root, "RootId", typeof(byte));
+			p = AddProp(root, "RootId", typeof(int));
 				p.IsPrimaryKey = true;
 
 			////
@@ -87,7 +87,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema artifactType = AddNode("ArtifactType", "AT");
 			artifactType.BaseNode = nodeForType;
-			p = AddProp(artifactType, "ArtifactTypeId", typeof(byte));
+			p = AddProp(artifactType, "ArtifactTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema crowd = AddNode("Crowd", "C");
@@ -108,7 +108,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema crowdianType = AddNode("CrowdianType", "CT");
 			crowdianType.BaseNode = nodeForType;
-			p = AddProp(crowdianType, "CrowdianTypeId", typeof(byte));
+			p = AddProp(crowdianType, "CrowdianTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
@@ -151,7 +151,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema memberType = AddNode("MemberType", "MT");
 			memberType.BaseNode = nodeForType;
-			p = AddProp(memberType, "MemberTypeId", typeof(byte));
+			p = AddProp(memberType, "MemberTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema memberTypeAssign = AddNode("MemberTypeAssign", "MTA");
@@ -216,7 +216,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema factorAssertion = AddNode("FactorAssertion", "FA");
 			factorAssertion.BaseNode = nodeForType;
-			p = AddProp(factorAssertion, "FactorAssertionId", typeof(byte));
+			p = AddProp(factorAssertion, "FactorAssertionId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema factorElementNode = AddNode("FactorElementNode", null);
@@ -229,7 +229,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema descriptorType = AddNode("DescriptorType", "DeT");
 			descriptorType.BaseNode = nodeForType;
-			p = AddProp(descriptorType, "DescriptorTypeId", typeof(byte));
+			p = AddProp(descriptorType, "DescriptorTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema director = AddNode("Director", "Di");
@@ -239,12 +239,12 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema directorType = AddNode("DirectorType", "DiT");
 			directorType.BaseNode = nodeForType;
-			p = AddProp(directorType, "DirectorTypeId", typeof(byte));
+			p = AddProp(directorType, "DirectorTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema directorAction = AddNode("DirectorAction", "DiA");
 			directorAction.BaseNode = nodeForType;
-			p = AddProp(directorAction, "DirectorActionId", typeof(byte));
+			p = AddProp(directorAction, "DirectorActionId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema eventor = AddNode("Eventor", "Ev");
@@ -255,12 +255,12 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema eventorType = AddNode("EventorType", "EvT");
 			eventorType.BaseNode = nodeForType;
-			p = AddProp(eventorType, "EventorTypeId", typeof(byte));
+			p = AddProp(eventorType, "EventorTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema eventorPrecision = AddNode("EventorPrecision", "EvP");
 			eventorPrecision.BaseNode = nodeForType;
-			p = AddProp(eventorPrecision, "EventorPrecisionId", typeof(byte));
+			p = AddProp(eventorPrecision, "EventorPrecisionId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema identor = AddNode("Identor", "Id");
@@ -272,7 +272,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema identorType = AddNode("IdentorType", "IdT");
 			identorType.BaseNode = nodeForType;
-			p = AddProp(identorType, "IdentorTypeId", typeof(byte));
+			p = AddProp(identorType, "IdentorTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema locator = AddNode("Locator", "Lo");
@@ -285,7 +285,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema locatorType = AddNode("LocatorType", "LoT");
 			locatorType.BaseNode = nodeForType;
-			p = AddProp(locatorType, "LocatorTypeId", typeof(byte));
+			p = AddProp(locatorType, "LocatorTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(locatorType, "MinX", typeof(double));
 			p = AddProp(locatorType, "MaxX", typeof(double));
@@ -302,32 +302,32 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema vectorType = AddNode("VectorType", "VeT");
 			vectorType.BaseNode = nodeForType;
-			p = AddProp(vectorType, "VectorTypeId", typeof(byte));
+			p = AddProp(vectorType, "VectorTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vectorType, "Min", typeof(long));
 			p = AddProp(vectorType, "Max", typeof(long));
 
 			WeaverNodeSchema vectorRange = AddNode("VectorRange", "VeR");
 			vectorRange.BaseNode = nodeForType;
-			p = AddProp(vectorRange, "VectorRangeId", typeof(byte));
+			p = AddProp(vectorRange, "VectorRangeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema vectorRangeLevel = AddNode("VectorRangeLevel", "VeRL");
 			vectorRangeLevel.BaseNode = nodeForType;
-			p = AddProp(vectorRangeLevel, "VectorRangeLevelId", typeof(byte));
+			p = AddProp(vectorRangeLevel, "VectorRangeLevelId", typeof(long));
 				p.IsPrimaryKey = true;
 				p = AddProp(vectorRangeLevel, "Position", typeof(float));
 			
 			WeaverNodeSchema vectorUnit = AddNode("VectorUnit", "VeU");
 			vectorUnit.BaseNode = nodeForType;
-			p = AddProp(vectorUnit, "VectorUnitId", typeof(byte));
+			p = AddProp(vectorUnit, "VectorUnitId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vectorUnit, "Symbol", typeof(string));
 				p.LenMax = 8;
 			
 			WeaverNodeSchema vectorUnitPrefix = AddNode("VectorUnitPrefix", "VeUP");
 			vectorUnitPrefix.BaseNode = nodeForType;
-			p = AddProp(vectorUnitPrefix, "VectorUnitPrefixId", typeof(byte));
+			p = AddProp(vectorUnitPrefix, "VectorUnitPrefixId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vectorUnitPrefix, "Symbol", typeof(string));
 				p.LenMax = 8;
@@ -335,7 +335,7 @@ namespace Fabric.Infrastructure.Domain {
 			
 			WeaverNodeSchema vectorUnitDerived = AddNode("VectorUnitDerived", "VeUD");
 			vectorUnitDerived.BaseNode = nodeForType;
-			p = AddProp(vectorUnitDerived, "VectorUnitDerivedId", typeof(byte));
+			p = AddProp(vectorUnitDerived, "VectorUnitDerivedId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vectorUnitDerived, "Exponent", typeof(int));
 			

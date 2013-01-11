@@ -27,7 +27,6 @@ namespace Fabric.Infrastructure.Domain {
 			switch ( pType.Name ) {
 				case "Int32": n = "int"; break;
 				case "Int64": n = "long"; break;
-				case "Byte": n = "byte"; break;
 				case "String": n = "string"; break;
 				case "String[]": n = "string[]"; break;
 				case "Boolean": n = "bool"; break;

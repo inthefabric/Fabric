@@ -7,26 +7,26 @@ namespace Fabric.Db.Data.Setups {
 	/*================================================================================================*/
 	public static class SetupTypes {
 
-		public const byte NumArtifactTypes = 7;
-		public const byte NumCrowdUserTypes = 4;
-		public const byte NumMemberTypes = 8;
+		public const int NumArtifactTypes = 7;
+		public const int NumCrowdUserTypes = 4;
+		public const int NumMemberTypes = 8;
 
-		public const byte NumDescriptorRefineTypes = 3;
-		public const byte NumDescriptorTypes = 20;
-		public const byte NumDirectorActions = 17;
-		public const byte NumDirectorTypes = 5;
-		public const byte NumEventorPrecisions = 6;
-		public const byte NumEventorTypes = 7;
-		public const byte NumFactorAccesses = 2;
-		public const byte NumFactorAsserts = 4;
-		public const byte NumIdentorTypes = 2;
-		public const byte NumLocatorTypes = 6;
-		public const byte NumVectorRanges = 7;
-		public const byte NumVectorRangeLevels = 29;
-		public const byte NumVectorTypes = 10;
-		public const byte NumVectorUnitPrefixes = 19;
-		public const byte NumVectorUnits = 28;
-		public const byte NumVectorUnitDeriveds = 27;
+		public const int NumDescriptorRefineTypes = 3;
+		public const int NumDescriptorTypes = 20;
+		public const int NumDirectorActions = 17;
+		public const int NumDirectorTypes = 5;
+		public const int NumEventorPrecisions = 6;
+		public const int NumEventorTypes = 7;
+		public const int NumFactorAccesses = 2;
+		public const int NumFactorAsserts = 4;
+		public const int NumIdentorTypes = 2;
+		public const int NumLocatorTypes = 6;
+		public const int NumVectorRanges = 7;
+		public const int NumVectorRangeLevels = 29;
+		public const int NumVectorTypes = 10;
+		public const int NumVectorUnitPrefixes = 19;
+		public const int NumVectorUnits = 28;
+		public const int NumVectorUnitDeriveds = 27;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddArtifactType(DataSet pSet, ArtifactTypeId pId, string pName,
 																						string pDesc) {
 			var t = new ArtifactType();
-			t.ArtifactTypeId = (byte)pId;
+			t.ArtifactTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.ArtifactTypeId, false);
@@ -120,7 +120,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddCrowdianType(DataSet pSet, CrowdianTypeId pId, string pName,
 																						string pDesc) {
 			var t = new CrowdianType();
-			t.CrowdianTypeId = (byte)pId;
+			t.CrowdianTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.CrowdianTypeId, false);
@@ -130,7 +130,7 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void AddMemberType(DataSet pSet, MemberTypeId pId, string pName, string pDesc) {
 			var t = new MemberType();
-			t.MemberTypeId = (byte)pId;
+			t.MemberTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.MemberTypeId, false);
@@ -466,7 +466,7 @@ namespace Fabric.Db.Data.Setups {
 			AddVectorUnit(pSet, VectorUnitId.Candela, "Candela", "cd");
 			AddVectorUnit(pSet, VectorUnitId.Mole, "Mole", "mol");
 			AddVectorUnit(pSet, VectorUnitId.Bit, "Bit", "b");
-			AddVectorUnit(pSet, VectorUnitId.Byte, "Byte", "B");
+			AddVectorUnit(pSet, VectorUnitId.Byte, "long", "B");
 
 			AddVectorUnit(pSet, VectorUnitId.Hertz, "Hertz", "Hz");
 			AddVectorUnit(pSet, VectorUnitId.Radian, "Radian", "rad");
@@ -608,7 +608,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddDescriptorType(DataSet pSet, DescriptorTypeId pId, string pName,
 																						string pDesc) {
 			var t = new DescriptorType();
-			t.DescriptorTypeId = (byte)pId;
+			t.DescriptorTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.DescriptorTypeId, false);
@@ -619,7 +619,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddDirectorAction(DataSet pSet, DirectorActionId pId, string pName,
 																						string pDesc) {
 			var t = new DirectorAction();
-			t.DirectorActionId = (byte)pId;
+			t.DirectorActionId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.DirectorActionId, false);
@@ -630,7 +630,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddDirectorType(DataSet pSet, DirectorTypeId pId, string pName,
 																						string pDesc) {
 			var t = new DirectorType();
-			t.DirectorTypeId = (byte)pId;
+			t.DirectorTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.DirectorTypeId, false);
@@ -641,7 +641,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddEventorPrecision(DataSet pSet, EventorPrecisionId pId, string pName,
 																						string pDesc) {
 			var t = new EventorPrecision();
-			t.EventorPrecisionId = (byte)pId;
+			t.EventorPrecisionId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.EventorPrecisionId, false);
@@ -652,7 +652,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddEventorType(DataSet pSet, EventorTypeId pId, string pName,
 																						string pDesc) {
 			var t = new EventorType();
-			t.EventorTypeId = (byte)pId;
+			t.EventorTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.EventorTypeId, false);
@@ -663,7 +663,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddFactorAssertion(DataSet pSet, FactorAssertionId pId, string pName,
 																						string pDesc) {
 			var t = new FactorAssertion();
-			t.FactorAssertionId = (byte)pId;
+			t.FactorAssertionId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.FactorAssertionId, false);
@@ -674,7 +674,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddIdentorType(DataSet pSet, IdentorTypeId pId, string pName,
 																						string pDesc) {
 			var t = new IdentorType();
-			t.IdentorTypeId = (byte)pId;
+			t.IdentorTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.IdentorTypeId, false);
@@ -686,7 +686,7 @@ namespace Fabric.Db.Data.Setups {
 								string pDesc, double pMinX, double pMaxX, double pMinY, double pMaxY,
 																		double pMinZ, double pMaxZ) {
 			var t = new LocatorType();
-			t.LocatorTypeId = (byte)pId;
+			t.LocatorTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			t.MinX = pMinX;
@@ -712,7 +712,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddVectorRangeLevel(DataSet pSet, VectorRangeLevelId pId, float pPosition,
 																						string pName) {
 			var t = new VectorRangeLevel();
-			t.VectorRangeLevelId = (byte)pId;
+			t.VectorRangeLevelId = (long)pId;
 			t.Name = pName;
 			t.Description = "";
 			t.Position = pPosition;
@@ -724,7 +724,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddVectorRange(DataSet pSet, VectorRangeId pId, string pName,
 															IEnumerable<VectorRangeLevelId> pLevels) {
 			var t = new VectorRange();
-			t.VectorRangeId = (byte)pId;
+			t.VectorRangeId = (long)pId;
 			t.Name = pName;
 			t.Description = "";
 			pSet.AddNodeAndIndex(t, x => x.VectorRangeId, false);
@@ -741,7 +741,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddVectorType(DataSet pSet, VectorTypeId pId, VectorRangeId pRangeId,
 																long pMin, long pMax, string pName) {
 			var t = new VectorType();
-			t.VectorTypeId = (byte)pId;
+			t.VectorTypeId = (long)pId;
 			t.Name = pName;
 			t.Description = "";
 			t.Min = pMin;
@@ -757,7 +757,7 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void AddVectorUnit(DataSet pSet, VectorUnitId pId, string pName, string pDesc) {
 			var t = new VectorUnit();
-			t.VectorUnitId = (byte)pId;
+			t.VectorUnitId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.VectorUnitId, false);
@@ -768,7 +768,7 @@ namespace Fabric.Db.Data.Setups {
 		private static void AddVectorUnitPrefix(DataSet pSet, VectorUnitPrefixId pId, string pName,
 																		string pDesc, double pAmount) {
 			var t = new VectorUnitPrefix();
-			t.VectorUnitPrefixId = (byte)pId;
+			t.VectorUnitPrefixId = (long)pId;
 			t.Name = pName;
 			t.Description = pDesc;
 			t.Amount = pAmount;
@@ -781,7 +781,7 @@ namespace Fabric.Db.Data.Setups {
 											VectorUnitId pDefinesId, VectorUnitId pRaisesId, int pExp,
 											VectorUnitPrefixId pPrefix=VectorUnitPrefixId.Base) {
 			var t = new VectorUnitDerived();
-			t.VectorUnitDerivedId = (byte)pId;
+			t.VectorUnitDerivedId = (long)pId;
 			t.Name = "";
 			t.Description = "";
 			t.Exponent = pExp;

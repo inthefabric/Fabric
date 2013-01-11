@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/10/2013 1:59:41 PM
+// Generated on 1/11/2013 3:36:54 PM
 
 using System;
 using System.Linq.Expressions;
@@ -1061,7 +1061,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte RootId { get; set; }
+		public virtual int RootId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1467,7 +1467,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte ArtifactTypeId { get; set; }
+		public virtual long ArtifactTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1598,7 +1598,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte CrowdianTypeId { get; set; }
+		public virtual long CrowdianTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1838,7 +1838,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte MemberTypeId { get; set; }
+		public virtual long MemberTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2193,7 +2193,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte FactorAssertionId { get; set; }
+		public virtual long FactorAssertionId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2282,7 +2282,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte DescriptorTypeId { get; set; }
+		public virtual long DescriptorTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2361,7 +2361,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte DirectorTypeId { get; set; }
+		public virtual long DirectorTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2393,7 +2393,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte DirectorActionId { get; set; }
+		public virtual long DirectorActionId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2475,7 +2475,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte EventorTypeId { get; set; }
+		public virtual long EventorTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2507,7 +2507,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte EventorPrecisionId { get; set; }
+		public virtual long EventorPrecisionId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2580,7 +2580,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte IdentorTypeId { get; set; }
+		public virtual long IdentorTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2658,7 +2658,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte LocatorTypeId { get; set; }
+		public virtual long LocatorTypeId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual double MinX { get; set; }
@@ -2763,7 +2763,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte VectorTypeId { get; set; }
+		public virtual long VectorTypeId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual long Min { get; set; }
@@ -2806,7 +2806,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte VectorRangeId { get; set; }
+		public virtual long VectorRangeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2843,7 +2843,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte VectorRangeLevelId { get; set; }
+		public virtual long VectorRangeLevelId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual float Position { get; set; }
@@ -2878,7 +2878,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte VectorUnitId { get; set; }
+		public virtual long VectorUnitId { get; set; }
 
 		[WeaverItemProperty]
 		//[PropLenMax(8)]
@@ -2924,7 +2924,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte VectorUnitPrefixId { get; set; }
+		public virtual long VectorUnitPrefixId { get; set; }
 
 		[WeaverItemProperty]
 		//[PropLenMax(8)]
@@ -2968,7 +2968,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
-		public virtual byte VectorUnitDerivedId { get; set; }
+		public virtual long VectorUnitDerivedId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual int Exponent { get; set; }

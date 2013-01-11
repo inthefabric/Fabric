@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/8/2013 3:22:28 PM
+// Generated on 1/11/2013 3:36:54 PM
 
 using Weaver.Interfaces;
 using Fabric.Domain;
@@ -340,12 +340,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(byte pArtifactTypeId, out IWeaverVarAlias<ArtifactType> pNodeVar) {
+		public virtual void SetUsesArtifactType(long pArtifactTypeId, out IWeaverVarAlias<ArtifactType> pNodeVar) {
 			SetUsesArtifactType(new ArtifactType { ArtifactTypeId = pArtifactTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(byte pArtifactTypeId) {
+		public virtual void SetUsesArtifactType(long pArtifactTypeId) {
 			IWeaverVarAlias<ArtifactType> nodeVar;
 			SetUsesArtifactType(pArtifactTypeId, out nodeVar);
 		}
@@ -745,7 +745,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public ArtifactTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeBuilder(TxBuilder pTx, byte pArtifactTypeId) : 
+		public ArtifactTypeBuilder(TxBuilder pTx, long pArtifactTypeId) : 
 			base(pTx, new ArtifactType() { ArtifactTypeId = pArtifactTypeId }) {}
 		
 		
@@ -1032,7 +1032,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public CrowdianTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeBuilder(TxBuilder pTx, byte pCrowdianTypeId) : 
+		public CrowdianTypeBuilder(TxBuilder pTx, long pCrowdianTypeId) : 
 			base(pTx, new CrowdianType() { CrowdianTypeId = pCrowdianTypeId }) {}
 		
 		
@@ -1175,12 +1175,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(byte pCrowdianTypeId, out IWeaverVarAlias<CrowdianType> pNodeVar) {
+		public virtual void SetUsesCrowdianType(long pCrowdianTypeId, out IWeaverVarAlias<CrowdianType> pNodeVar) {
 			SetUsesCrowdianType(new CrowdianType { CrowdianTypeId = pCrowdianTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(byte pCrowdianTypeId) {
+		public virtual void SetUsesCrowdianType(long pCrowdianTypeId) {
 			IWeaverVarAlias<CrowdianType> nodeVar;
 			SetUsesCrowdianType(pCrowdianTypeId, out nodeVar);
 		}
@@ -1617,7 +1617,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public MemberTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeBuilder(TxBuilder pTx, byte pMemberTypeId) : 
+		public MemberTypeBuilder(TxBuilder pTx, long pMemberTypeId) : 
 			base(pTx, new MemberType() { MemberTypeId = pMemberTypeId }) {}
 		
 		
@@ -1791,12 +1791,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesMemberType(byte pMemberTypeId, out IWeaverVarAlias<MemberType> pNodeVar) {
+		public virtual void SetUsesMemberType(long pMemberTypeId, out IWeaverVarAlias<MemberType> pNodeVar) {
 			SetUsesMemberType(new MemberType { MemberTypeId = pMemberTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesMemberType(byte pMemberTypeId) {
+		public virtual void SetUsesMemberType(long pMemberTypeId) {
 			IWeaverVarAlias<MemberType> nodeVar;
 			SetUsesMemberType(pMemberTypeId, out nodeVar);
 		}
@@ -2332,12 +2332,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesFactorAssertion(byte pFactorAssertionId, out IWeaverVarAlias<FactorAssertion> pNodeVar) {
+		public virtual void SetUsesFactorAssertion(long pFactorAssertionId, out IWeaverVarAlias<FactorAssertion> pNodeVar) {
 			SetUsesFactorAssertion(new FactorAssertion { FactorAssertionId = pFactorAssertionId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesFactorAssertion(byte pFactorAssertionId) {
+		public virtual void SetUsesFactorAssertion(long pFactorAssertionId) {
 			IWeaverVarAlias<FactorAssertion> nodeVar;
 			SetUsesFactorAssertion(pFactorAssertionId, out nodeVar);
 		}
@@ -2576,7 +2576,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public FactorAssertionBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionBuilder(TxBuilder pTx, byte pFactorAssertionId) : 
+		public FactorAssertionBuilder(TxBuilder pTx, long pFactorAssertionId) : 
 			base(pTx, new FactorAssertion() { FactorAssertionId = pFactorAssertionId }) {}
 		
 		
@@ -2690,12 +2690,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesDescriptorType(byte pDescriptorTypeId, out IWeaverVarAlias<DescriptorType> pNodeVar) {
+		public virtual void SetUsesDescriptorType(long pDescriptorTypeId, out IWeaverVarAlias<DescriptorType> pNodeVar) {
 			SetUsesDescriptorType(new DescriptorType { DescriptorTypeId = pDescriptorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesDescriptorType(byte pDescriptorTypeId) {
+		public virtual void SetUsesDescriptorType(long pDescriptorTypeId) {
 			IWeaverVarAlias<DescriptorType> nodeVar;
 			SetUsesDescriptorType(pDescriptorTypeId, out nodeVar);
 		}
@@ -2810,7 +2810,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public DescriptorTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypeBuilder(TxBuilder pTx, byte pDescriptorTypeId) : 
+		public DescriptorTypeBuilder(TxBuilder pTx, long pDescriptorTypeId) : 
 			base(pTx, new DescriptorType() { DescriptorTypeId = pDescriptorTypeId }) {}
 		
 		
@@ -2923,12 +2923,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesDirectorType(byte pDirectorTypeId, out IWeaverVarAlias<DirectorType> pNodeVar) {
+		public virtual void SetUsesDirectorType(long pDirectorTypeId, out IWeaverVarAlias<DirectorType> pNodeVar) {
 			SetUsesDirectorType(new DirectorType { DirectorTypeId = pDirectorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesDirectorType(byte pDirectorTypeId) {
+		public virtual void SetUsesDirectorType(long pDirectorTypeId) {
 			IWeaverVarAlias<DirectorType> nodeVar;
 			SetUsesDirectorType(pDirectorTypeId, out nodeVar);
 		}
@@ -2954,12 +2954,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesPrimaryDirectorAction(byte pDirectorActionId, out IWeaverVarAlias<DirectorAction> pNodeVar) {
+		public virtual void SetUsesPrimaryDirectorAction(long pDirectorActionId, out IWeaverVarAlias<DirectorAction> pNodeVar) {
 			SetUsesPrimaryDirectorAction(new DirectorAction { DirectorActionId = pDirectorActionId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesPrimaryDirectorAction(byte pDirectorActionId) {
+		public virtual void SetUsesPrimaryDirectorAction(long pDirectorActionId) {
 			IWeaverVarAlias<DirectorAction> nodeVar;
 			SetUsesPrimaryDirectorAction(pDirectorActionId, out nodeVar);
 		}
@@ -2985,12 +2985,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesRelatedDirectorAction(byte pDirectorActionId, out IWeaverVarAlias<DirectorAction> pNodeVar) {
+		public virtual void SetUsesRelatedDirectorAction(long pDirectorActionId, out IWeaverVarAlias<DirectorAction> pNodeVar) {
 			SetUsesRelatedDirectorAction(new DirectorAction { DirectorActionId = pDirectorActionId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesRelatedDirectorAction(byte pDirectorActionId) {
+		public virtual void SetUsesRelatedDirectorAction(long pDirectorActionId) {
 			IWeaverVarAlias<DirectorAction> nodeVar;
 			SetUsesRelatedDirectorAction(pDirectorActionId, out nodeVar);
 		}
@@ -3012,7 +3012,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public DirectorTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypeBuilder(TxBuilder pTx, byte pDirectorTypeId) : 
+		public DirectorTypeBuilder(TxBuilder pTx, long pDirectorTypeId) : 
 			base(pTx, new DirectorType() { DirectorTypeId = pDirectorTypeId }) {}
 		
 		
@@ -3066,7 +3066,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public DirectorActionBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionBuilder(TxBuilder pTx, byte pDirectorActionId) : 
+		public DirectorActionBuilder(TxBuilder pTx, long pDirectorActionId) : 
 			base(pTx, new DirectorAction() { DirectorActionId = pDirectorActionId }) {}
 		
 		
@@ -3210,12 +3210,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEventorType(byte pEventorTypeId, out IWeaverVarAlias<EventorType> pNodeVar) {
+		public virtual void SetUsesEventorType(long pEventorTypeId, out IWeaverVarAlias<EventorType> pNodeVar) {
 			SetUsesEventorType(new EventorType { EventorTypeId = pEventorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEventorType(byte pEventorTypeId) {
+		public virtual void SetUsesEventorType(long pEventorTypeId) {
 			IWeaverVarAlias<EventorType> nodeVar;
 			SetUsesEventorType(pEventorTypeId, out nodeVar);
 		}
@@ -3241,12 +3241,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEventorPrecision(byte pEventorPrecisionId, out IWeaverVarAlias<EventorPrecision> pNodeVar) {
+		public virtual void SetUsesEventorPrecision(long pEventorPrecisionId, out IWeaverVarAlias<EventorPrecision> pNodeVar) {
 			SetUsesEventorPrecision(new EventorPrecision { EventorPrecisionId = pEventorPrecisionId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEventorPrecision(byte pEventorPrecisionId) {
+		public virtual void SetUsesEventorPrecision(long pEventorPrecisionId) {
 			IWeaverVarAlias<EventorPrecision> nodeVar;
 			SetUsesEventorPrecision(pEventorPrecisionId, out nodeVar);
 		}
@@ -3268,7 +3268,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public EventorTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypeBuilder(TxBuilder pTx, byte pEventorTypeId) : 
+		public EventorTypeBuilder(TxBuilder pTx, long pEventorTypeId) : 
 			base(pTx, new EventorType() { EventorTypeId = pEventorTypeId }) {}
 		
 		
@@ -3321,7 +3321,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public EventorPrecisionBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionBuilder(TxBuilder pTx, byte pEventorPrecisionId) : 
+		public EventorPrecisionBuilder(TxBuilder pTx, long pEventorPrecisionId) : 
 			base(pTx, new EventorPrecision() { EventorPrecisionId = pEventorPrecisionId }) {}
 		
 		
@@ -3432,12 +3432,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesIdentorType(byte pIdentorTypeId, out IWeaverVarAlias<IdentorType> pNodeVar) {
+		public virtual void SetUsesIdentorType(long pIdentorTypeId, out IWeaverVarAlias<IdentorType> pNodeVar) {
 			SetUsesIdentorType(new IdentorType { IdentorTypeId = pIdentorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesIdentorType(byte pIdentorTypeId) {
+		public virtual void SetUsesIdentorType(long pIdentorTypeId) {
 			IWeaverVarAlias<IdentorType> nodeVar;
 			SetUsesIdentorType(pIdentorTypeId, out nodeVar);
 		}
@@ -3459,7 +3459,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public IdentorTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypeBuilder(TxBuilder pTx, byte pIdentorTypeId) : 
+		public IdentorTypeBuilder(TxBuilder pTx, long pIdentorTypeId) : 
 			base(pTx, new IdentorType() { IdentorTypeId = pIdentorTypeId }) {}
 		
 		
@@ -3570,12 +3570,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesLocatorType(byte pLocatorTypeId, out IWeaverVarAlias<LocatorType> pNodeVar) {
+		public virtual void SetUsesLocatorType(long pLocatorTypeId, out IWeaverVarAlias<LocatorType> pNodeVar) {
 			SetUsesLocatorType(new LocatorType { LocatorTypeId = pLocatorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesLocatorType(byte pLocatorTypeId) {
+		public virtual void SetUsesLocatorType(long pLocatorTypeId) {
 			IWeaverVarAlias<LocatorType> nodeVar;
 			SetUsesLocatorType(pLocatorTypeId, out nodeVar);
 		}
@@ -3597,7 +3597,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public LocatorTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypeBuilder(TxBuilder pTx, byte pLocatorTypeId) : 
+		public LocatorTypeBuilder(TxBuilder pTx, long pLocatorTypeId) : 
 			base(pTx, new LocatorType() { LocatorTypeId = pLocatorTypeId }) {}
 		
 		
@@ -3742,12 +3742,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorType(byte pVectorTypeId, out IWeaverVarAlias<VectorType> pNodeVar) {
+		public virtual void SetUsesVectorType(long pVectorTypeId, out IWeaverVarAlias<VectorType> pNodeVar) {
 			SetUsesVectorType(new VectorType { VectorTypeId = pVectorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorType(byte pVectorTypeId) {
+		public virtual void SetUsesVectorType(long pVectorTypeId) {
 			IWeaverVarAlias<VectorType> nodeVar;
 			SetUsesVectorType(pVectorTypeId, out nodeVar);
 		}
@@ -3773,12 +3773,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorUnit(byte pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
+		public virtual void SetUsesVectorUnit(long pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
 			SetUsesVectorUnit(new VectorUnit { VectorUnitId = pVectorUnitId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorUnit(byte pVectorUnitId) {
+		public virtual void SetUsesVectorUnit(long pVectorUnitId) {
 			IWeaverVarAlias<VectorUnit> nodeVar;
 			SetUsesVectorUnit(pVectorUnitId, out nodeVar);
 		}
@@ -3804,12 +3804,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId, out IWeaverVarAlias<VectorUnitPrefix> pNodeVar) {
+		public virtual void SetUsesVectorUnitPrefix(long pVectorUnitPrefixId, out IWeaverVarAlias<VectorUnitPrefix> pNodeVar) {
 			SetUsesVectorUnitPrefix(new VectorUnitPrefix { VectorUnitPrefixId = pVectorUnitPrefixId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId) {
+		public virtual void SetUsesVectorUnitPrefix(long pVectorUnitPrefixId) {
 			IWeaverVarAlias<VectorUnitPrefix> nodeVar;
 			SetUsesVectorUnitPrefix(pVectorUnitPrefixId, out nodeVar);
 		}
@@ -3832,7 +3832,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public VectorTypeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeBuilder(TxBuilder pTx, byte pVectorTypeId) : 
+		public VectorTypeBuilder(TxBuilder pTx, long pVectorTypeId) : 
 			base(pTx, new VectorType() { VectorTypeId = pVectorTypeId }) {}
 		
 		
@@ -3889,12 +3889,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorRange(byte pVectorRangeId, out IWeaverVarAlias<VectorRange> pNodeVar) {
+		public virtual void SetUsesVectorRange(long pVectorRangeId, out IWeaverVarAlias<VectorRange> pNodeVar) {
 			SetUsesVectorRange(new VectorRange { VectorRangeId = pVectorRangeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorRange(byte pVectorRangeId) {
+		public virtual void SetUsesVectorRange(long pVectorRangeId) {
 			IWeaverVarAlias<VectorRange> nodeVar;
 			SetUsesVectorRange(pVectorRangeId, out nodeVar);
 		}
@@ -3917,7 +3917,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public VectorRangeBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeBuilder(TxBuilder pTx, byte pVectorRangeId) : 
+		public VectorRangeBuilder(TxBuilder pTx, long pVectorRangeId) : 
 			base(pTx, new VectorRange() { VectorRangeId = pVectorRangeId }) {}
 		
 		
@@ -3943,12 +3943,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorTypeListUses(byte pVectorTypeId, out IWeaverVarAlias<VectorType> pNodeVar) {
+		public virtual void AddInVectorTypeListUses(long pVectorTypeId, out IWeaverVarAlias<VectorType> pNodeVar) {
 			AddInVectorTypeListUses(new VectorType { VectorTypeId = pVectorTypeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorTypeListUses(byte pVectorTypeId) {
+		public virtual void AddInVectorTypeListUses(long pVectorTypeId) {
 			IWeaverVarAlias<VectorType> nodeVar;
 			AddInVectorTypeListUses(pVectorTypeId, out nodeVar);
 		}
@@ -3975,12 +3975,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddUsesVectorRangeLevelList(byte pVectorRangeLevelId, out IWeaverVarAlias<VectorRangeLevel> pNodeVar) {
+		public virtual void AddUsesVectorRangeLevelList(long pVectorRangeLevelId, out IWeaverVarAlias<VectorRangeLevel> pNodeVar) {
 			AddUsesVectorRangeLevelList(new VectorRangeLevel { VectorRangeLevelId = pVectorRangeLevelId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddUsesVectorRangeLevelList(byte pVectorRangeLevelId) {
+		public virtual void AddUsesVectorRangeLevelList(long pVectorRangeLevelId) {
 			IWeaverVarAlias<VectorRangeLevel> nodeVar;
 			AddUsesVectorRangeLevelList(pVectorRangeLevelId, out nodeVar);
 		}
@@ -4002,7 +4002,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public VectorRangeLevelBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelBuilder(TxBuilder pTx, byte pVectorRangeLevelId) : 
+		public VectorRangeLevelBuilder(TxBuilder pTx, long pVectorRangeLevelId) : 
 			base(pTx, new VectorRangeLevel() { VectorRangeLevelId = pVectorRangeLevelId }) {}
 		
 		
@@ -4028,12 +4028,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorRangeListUses(byte pVectorRangeId, out IWeaverVarAlias<VectorRange> pNodeVar) {
+		public virtual void AddInVectorRangeListUses(long pVectorRangeId, out IWeaverVarAlias<VectorRange> pNodeVar) {
 			AddInVectorRangeListUses(new VectorRange { VectorRangeId = pVectorRangeId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorRangeListUses(byte pVectorRangeId) {
+		public virtual void AddInVectorRangeListUses(long pVectorRangeId) {
 			IWeaverVarAlias<VectorRange> nodeVar;
 			AddInVectorRangeListUses(pVectorRangeId, out nodeVar);
 		}
@@ -4057,7 +4057,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public VectorUnitBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitBuilder(TxBuilder pTx, byte pVectorUnitId) : 
+		public VectorUnitBuilder(TxBuilder pTx, long pVectorUnitId) : 
 			base(pTx, new VectorUnit() { VectorUnitId = pVectorUnitId }) {}
 		
 		
@@ -4115,12 +4115,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorUnitDerivedListDefines(byte pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
+		public virtual void AddInVectorUnitDerivedListDefines(long pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
 			AddInVectorUnitDerivedListDefines(new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorUnitDerivedListDefines(byte pVectorUnitDerivedId) {
+		public virtual void AddInVectorUnitDerivedListDefines(long pVectorUnitDerivedId) {
 			IWeaverVarAlias<VectorUnitDerived> nodeVar;
 			AddInVectorUnitDerivedListDefines(pVectorUnitDerivedId, out nodeVar);
 		}
@@ -4147,12 +4147,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorUnitDerivedListRaisesToExp(byte pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
+		public virtual void AddInVectorUnitDerivedListRaisesToExp(long pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
 			AddInVectorUnitDerivedListRaisesToExp(new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorUnitDerivedListRaisesToExp(byte pVectorUnitDerivedId) {
+		public virtual void AddInVectorUnitDerivedListRaisesToExp(long pVectorUnitDerivedId) {
 			IWeaverVarAlias<VectorUnitDerived> nodeVar;
 			AddInVectorUnitDerivedListRaisesToExp(pVectorUnitDerivedId, out nodeVar);
 		}
@@ -4175,7 +4175,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public VectorUnitPrefixBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixBuilder(TxBuilder pTx, byte pVectorUnitPrefixId) : 
+		public VectorUnitPrefixBuilder(TxBuilder pTx, long pVectorUnitPrefixId) : 
 			base(pTx, new VectorUnitPrefix() { VectorUnitPrefixId = pVectorUnitPrefixId }) {}
 		
 		
@@ -4233,12 +4233,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorUnitDerivedListUses(byte pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
+		public virtual void AddInVectorUnitDerivedListUses(long pVectorUnitDerivedId, out IWeaverVarAlias<VectorUnitDerived> pNodeVar) {
 			AddInVectorUnitDerivedListUses(new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInVectorUnitDerivedListUses(byte pVectorUnitDerivedId) {
+		public virtual void AddInVectorUnitDerivedListUses(long pVectorUnitDerivedId) {
 			IWeaverVarAlias<VectorUnitDerived> nodeVar;
 			AddInVectorUnitDerivedListUses(pVectorUnitDerivedId, out nodeVar);
 		}
@@ -4262,7 +4262,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public VectorUnitDerivedBuilder(TxBuilder pTx) : base(pTx) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedBuilder(TxBuilder pTx, byte pVectorUnitDerivedId) : 
+		public VectorUnitDerivedBuilder(TxBuilder pTx, long pVectorUnitDerivedId) : 
 			base(pTx, new VectorUnitDerived() { VectorUnitDerivedId = pVectorUnitDerivedId }) {}
 		
 		
@@ -4287,12 +4287,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDefinesVectorUnit(byte pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
+		public virtual void SetDefinesVectorUnit(long pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
 			SetDefinesVectorUnit(new VectorUnit { VectorUnitId = pVectorUnitId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDefinesVectorUnit(byte pVectorUnitId) {
+		public virtual void SetDefinesVectorUnit(long pVectorUnitId) {
 			IWeaverVarAlias<VectorUnit> nodeVar;
 			SetDefinesVectorUnit(pVectorUnitId, out nodeVar);
 		}
@@ -4318,12 +4318,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRaisesToExpVectorUnit(byte pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
+		public virtual void SetRaisesToExpVectorUnit(long pVectorUnitId, out IWeaverVarAlias<VectorUnit> pNodeVar) {
 			SetRaisesToExpVectorUnit(new VectorUnit { VectorUnitId = pVectorUnitId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRaisesToExpVectorUnit(byte pVectorUnitId) {
+		public virtual void SetRaisesToExpVectorUnit(long pVectorUnitId) {
 			IWeaverVarAlias<VectorUnit> nodeVar;
 			SetRaisesToExpVectorUnit(pVectorUnitId, out nodeVar);
 		}
@@ -4349,12 +4349,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId, out IWeaverVarAlias<VectorUnitPrefix> pNodeVar) {
+		public virtual void SetUsesVectorUnitPrefix(long pVectorUnitPrefixId, out IWeaverVarAlias<VectorUnitPrefix> pNodeVar) {
 			SetUsesVectorUnitPrefix(new VectorUnitPrefix { VectorUnitPrefixId = pVectorUnitPrefixId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesVectorUnitPrefix(byte pVectorUnitPrefixId) {
+		public virtual void SetUsesVectorUnitPrefix(long pVectorUnitPrefixId) {
 			IWeaverVarAlias<VectorUnitPrefix> nodeVar;
 			SetUsesVectorUnitPrefix(pVectorUnitPrefixId, out nodeVar);
 		}

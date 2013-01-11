@@ -109,9 +109,9 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private bool AcceptableMembershipExists(MemberType pType) {
 			switch ( pType.MemberTypeId ) {
-				case (byte)MemberTypeId.None:
-				case (byte)MemberTypeId.Invite:
-				case (byte)MemberTypeId.Request:
+				case (long)MemberTypeId.None:
+				case (long)MemberTypeId.Invite:
+				case (long)MemberTypeId.Request:
 					return false;
 			}
 			
@@ -146,7 +146,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
 			mtaBuild.AddNode(pRootVar);
 			mtaBuild.SetInMemberHas(pMemVar);
-			mtaBuild.SetUsesMemberType((byte)MemberTypeId.Member);
+			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 		}
 

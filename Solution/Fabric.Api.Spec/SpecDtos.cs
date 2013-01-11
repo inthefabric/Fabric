@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/10/2013 1:59:43 PM
+// Generated on 1/11/2013 3:36:55 PM
 
 using System.Collections.Generic;
 
@@ -88,7 +88,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "RootId";
-				p.Type = "byte";
+				p.Type = "int";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -683,7 +683,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "ArtifactTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -843,7 +843,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "CrowdianTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1074,7 +1074,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "MemberTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1508,7 +1508,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "FactorAssertionId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1619,7 +1619,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "DescriptorTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1711,7 +1711,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "DirectorTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1742,7 +1742,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "DirectorActionId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1840,7 +1840,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "EventorTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1871,7 +1871,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "EventorPrecisionId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -1950,7 +1950,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "IdentorTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2040,7 +2040,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "LocatorTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2184,7 +2184,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "VectorTypeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2237,7 +2237,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "VectorRangeId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2278,7 +2278,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "VectorRangeLevelId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2315,7 +2315,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "VectorUnitId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2373,7 +2373,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "VectorUnitPrefixId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
@@ -2427,7 +2427,7 @@ namespace Fabric.Api.Spec {
 	
 				p = new SpecDtoProp();
 				p.Name = "VectorUnitDerivedId";
-				p.Type = "byte";
+				p.Type = "long";
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;

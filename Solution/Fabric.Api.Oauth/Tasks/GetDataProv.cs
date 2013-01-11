@@ -60,7 +60,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(memberAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 				.UsesMemberType.ToMemberType
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.EqualTo, (byte)MemberTypeId.DataProvider)
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.EqualTo, (long)MemberTypeId.DataProvider)
 				.Back(userAlias)
 				.End();
 
