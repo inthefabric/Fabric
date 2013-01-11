@@ -1,11 +1,11 @@
-﻿using Fabric.Test.Integration.Common;
+﻿using Fabric.Infrastructure;
+using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver;
 
 namespace Fabric.Test.Integration {
 
 	/*================================================================================================*/
-	[TestFixture]
 	public class IntegTestBase {
 
 		protected TestApiContext Context { get; private set; }
@@ -15,6 +15,7 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
+			Log.Debug("SetUp");
 			Context = new TestApiContext();
 			TestSetUp();
 		}
@@ -22,6 +23,7 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		[TearDown]
 		public void TearDown() {
+			Log.Debug("TearDown");
 			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
 			Context.DbData("ResetDatabase", q);
