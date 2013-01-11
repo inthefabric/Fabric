@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {

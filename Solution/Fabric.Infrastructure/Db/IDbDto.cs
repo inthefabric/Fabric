@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
 
-namespace Fabric.Infrastructure {
+namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
 	public interface IDbDto {

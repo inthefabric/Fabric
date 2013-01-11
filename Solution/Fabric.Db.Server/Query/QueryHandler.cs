@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 using Nancy;
 using ServiceStack.Text;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
 using Nancy;
 using Nancy.Responses.Negotiation;
 using Weaver;
@@ -14,7 +15,7 @@ namespace Fabric.Api.Server.Tables {
 
 		private readonly NancyModule vModule;
 
-		private IList<IDbDto> vDtos;
+		private IList<DbDto> vDtos;
 		private IDictionary<long, TableNode> vNodes;
 
 
@@ -66,7 +67,7 @@ namespace Fabric.Api.Server.Tables {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildHtml(IApiDataAccess pData) {
-			vDtos = (IList<IDbDto>)pData.Result.DbDtos;
+			vDtos = pData.Result.DbDtos;
 
 			if ( vDtos == null ) {
 				return pData.ResultString;
@@ -76,12 +77,12 @@ namespace Fabric.Api.Server.Tables {
 
 			vNodes = new Dictionary<long, TableNode>();
 
-			foreach ( DbDto dto in vDtos ) {
+			foreach ( IDbDto dto in vDtos ) {
 				if ( dto.NodeId == null || dto.Item != DbDto.ItemType.Node ) { continue; }
 				vNodes.Add((long)dto.NodeId, new TableNode(dto, vNodes.Count));
 			}
 
-			foreach ( DbDto dto in vDtos ) {
+			foreach ( IDbDto dto in vDtos ) {
 				if ( dto.NodeId == null || dto.ToNodeId == null || dto.FromNodeId == null ) { continue; }
 				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
 

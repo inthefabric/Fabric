@@ -62,9 +62,9 @@
     <Compile Include="Api\Faults\FabPrivacyFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
-    <Compile Include="IDbResult.cs" />
-    <Compile Include="DbDto.cs" />
-    <Compile Include="DbResult.cs" />
+    <Compile Include="Db\IDbResult.cs" />
+    <Compile Include="Db\DbDto.cs" />
+    <Compile Include="Db\DbResult.cs" />
     <Compile Include="Domain\SchemaHelper.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,7 +82,7 @@
     <Compile Include="Sharpflake.cs" />
     <Compile Include="Api\IApiDataAccess.cs" />
     <Compile Include="Api\IApiDataAccessT.cs" />
-    <Compile Include="IDbDto.cs" />
+    <Compile Include="Db\IDbDto.cs" />
     <Compile Include="Weaver\TxBuilder.cs" />
     <Compile Include="Weaver\DomainBuilders.cs">
       <DependentUpon>DomainBuilders.tt</DependentUpon>

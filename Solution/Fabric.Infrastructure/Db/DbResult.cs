@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.Infrastructure {
+namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
 	public class DbResult : IDbResult {

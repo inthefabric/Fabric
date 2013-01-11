@@ -5,6 +5,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;

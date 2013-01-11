@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Server.Util;
-using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Server.Tables {
@@ -9,35 +9,35 @@ namespace Fabric.Api.Server.Tables {
 	/*================================================================================================*/
 	public class TableNode {
 
-		public DbDto Dto { get; set; }
+		public IDbDto Dto { get; set; }
 		public int Index { get; set; }
 
-		public Dictionary<string, List<DbDto>> InMap;
-		public Dictionary<string, List<DbDto>> OutMap;
+		public Dictionary<string, List<IDbDto>> InMap { get; private set; }
+		public Dictionary<string, List<IDbDto>> OutMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TableNode(DbDto pDto, int pIndex) {
+		public TableNode(IDbDto pDto, int pIndex) {
 			Dto = pDto;
 			Index = pIndex;
-			InMap = new Dictionary<string, List<DbDto>>();
-			OutMap = new Dictionary<string, List<DbDto>>();
+			InMap = new Dictionary<string, List<IDbDto>>();
+			OutMap = new Dictionary<string, List<IDbDto>>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddRelIn(DbDto pRel) {
+		public void AddRelIn(IDbDto pRel) {
 			if ( !InMap.ContainsKey(pRel.Class) ) {
-				InMap.Add(pRel.Class, new List<DbDto>());
+				InMap.Add(pRel.Class, new List<IDbDto>());
 			}
 
 			InMap[pRel.Class].Add(pRel);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddRelOut(DbDto pRel) {
+		public void AddRelOut(IDbDto pRel) {
 			if ( !OutMap.ContainsKey(pRel.Class) ) {
-				OutMap.Add(pRel.Class, new List<DbDto>());
+				OutMap.Add(pRel.Class, new List<IDbDto>());
 			}
 
 			OutMap[pRel.Class].Add(pRel);
@@ -68,7 +68,7 @@ namespace Fabric.Api.Server.Tables {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string GetRelKey(DbDto pRel, bool pIsOutgoing) {
+		private string GetRelKey(IDbDto pRel, bool pIsOutgoing) {
 			string name = pRel.Class;
 			object o = Activator.CreateInstance("Fabric.Domain", "Fabric.Domain."+name).Unwrap();
 			
@@ -140,10 +140,10 @@ namespace Fabric.Api.Server.Tables {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillRelCols(string[] pDataCols, Dictionary<string, int> pColMap, bool pIsOut) {
-			Dictionary<string, List<DbDto>> map = (pIsOut ? OutMap : InMap);
+			Dictionary<string, List<IDbDto>> map = (pIsOut ? OutMap : InMap);
 
 			foreach ( string key in map.Keys ) {
-				List<DbDto> dtos = map[key];
+				List<IDbDto> dtos = map[key];
 				string rk = GetRelKey(dtos[0], pIsOut);
 				var nodeIds = new List<string>();
 

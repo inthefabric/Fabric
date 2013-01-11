@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Fabric.Api.Dto;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
 namespace Fabric.Api.Server.Api {

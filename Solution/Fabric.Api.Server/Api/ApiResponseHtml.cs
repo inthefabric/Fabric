@@ -2,6 +2,7 @@
 using System.Reflection;
 using Fabric.Api.Dto;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Server.Api {
 

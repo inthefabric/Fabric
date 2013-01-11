@@ -4,7 +4,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using ServiceStack.Text;
 
-namespace Fabric.Infrastructure {
+namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
 	public class DbDto : IDbDto {

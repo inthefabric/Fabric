@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
 

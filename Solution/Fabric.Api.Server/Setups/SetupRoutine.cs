@@ -3,6 +3,7 @@ using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
 using Nancy;
 using Weaver;
 using Weaver.Interfaces;

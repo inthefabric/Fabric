@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
 

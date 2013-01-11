@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
 using Nancy;
 using ServiceStack.Text;
 using Weaver;

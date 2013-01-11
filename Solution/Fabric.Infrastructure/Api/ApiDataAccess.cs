@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 using Weaver.Interfaces;
 

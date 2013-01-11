@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Infrastructure.Api {
 

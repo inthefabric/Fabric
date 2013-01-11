@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
 namespace Fabric.Db.Server.Query {
@@ -13,18 +13,19 @@ namespace Fabric.Db.Server.Query {
 
 		public enum DbResultType {
 			None = 0,
-			Single,
-			List,
-			Text,
+			Success,
 			Error
 		}
 
 		public const string GremlinPath = 
 			"http://localhost:8182/graphs/FabricTest/tp/gremlin";
 
-		private readonly byte[] vQueryData;
+		public byte[] ResponseData { get; private set; }
+		public string ResponseString { get; private set; }
+		public DbResultType ResultType { get; private set; }
+		public DbResult Result { get; private set; }
 
-		private DbResult vResult;
+		private readonly byte[] vQueryData;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,9 +45,9 @@ namespace Fabric.Db.Server.Query {
 				wc.Headers.Add("Content-Type", "application/json");
 				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
 				ResponseString = Encoding.UTF8.GetString(ResponseData);
+				ResultType = DbResultType.Success;
 			}
 			catch ( WebException we ) {
-				//Log.Error(we+"");
 				ResultType = DbResultType.Error;
 				Stream s = we.Response.GetResponseStream();
 
@@ -56,75 +57,18 @@ namespace Fabric.Db.Server.Query {
 					Log.Error(ResponseString);
 				}
 				else {
-					ResponseString = "{\"Exception\":\""+we.ToString().Replace("\"", "'")+"\"}";
+					Result = new DbResult();
+					Result.Exception = we.GetType().Name;
+					Result.Message = we.Message+"\n\n"+we.StackTrace;
 				}
 			}
 
-			vResult = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
-			vResult.BuildDbDtos(ResponseString);
-			vResult.ServerTicks = (DateTime.UtcNow.Ticks-t);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public byte[] ResponseData { get; private set; }
-		public string ResponseString { get; private set; }
-		public DbResultType ResultType { get; private set; }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public DbResult Result {
-			get {
-				/*if ( vResultSet ) {
-					return vResult;
-				}
-
-				if ( ResultType == DbResultType.Text ) {
-					return new DbResult { Message = ResponseString };
-				}
-
-				if ( ResultType != DbResultType.Single && ResultType != DbResultType.Error ) {
-					return null;
-				}
-
-				vResult = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
-				vResultSet = true;
-				return vResult;*/
-				return vResult;
+			if ( Result == null ) {
+				Result = JsonSerializer.DeserializeFromString<DbResult>(ResponseString);
+				Result.BuildDbDtos(ResponseString);
 			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public List<DbResult> ResultList {
-			get {
-				/*if ( vResultListSet ) {
-					return vResultList;
-				}
 
-				if ( ResultType != DbResultType.List ) {
-					return null;
-				}
-
-				vResultList = JsonSerializer.DeserializeFromString<List<DbResult>>(ResponseString);
-				vResultListSet = true;
-				return vResultList;*/
-				return null;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDbDto ResultDto {
-			get {
-				return null; //(Result != null ? new DbDto(ResultList[0].Results) : null);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public List<IDbDto> ResultDtoList {
-			get {
-				return null; //(ResultList != null ?
-					//ResultList.Select(r => new DbDto(r)).ToList<IDbDto>() : null);
-			}
+			Result.ServerTicks = (DateTime.UtcNow.Ticks-t);
 		}
 
 	}

@@ -6,6 +6,7 @@ using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
 using Nancy;
 using Weaver;
 
