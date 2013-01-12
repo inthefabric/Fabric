@@ -78,12 +78,12 @@ namespace Fabric.Api.Server.Tables {
 			vNodes = new Dictionary<long, TableNode>();
 
 			foreach ( IDbDto dto in vDtos ) {
-				if ( dto.NodeId == null || dto.Item != DbDto.ItemType.Node ) { continue; }
-				vNodes.Add((long)dto.NodeId, new TableNode(dto, vNodes.Count));
+				if ( dto.Id == null || dto.Item != DbDto.ItemType.Node ) { continue; }
+				vNodes.Add((long)dto.Id, new TableNode(dto, vNodes.Count));
 			}
 
 			foreach ( IDbDto dto in vDtos ) {
-				if ( dto.NodeId == null || dto.ToNodeId == null || dto.FromNodeId == null ) { continue; }
+				if ( dto.Id == null || dto.ToNodeId == null || dto.FromNodeId == null ) { continue; }
 				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
 
 				TableNode toNode, fromNode;

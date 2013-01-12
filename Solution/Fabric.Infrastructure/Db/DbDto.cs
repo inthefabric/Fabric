@@ -16,7 +16,7 @@ namespace Fabric.Infrastructure.Db {
 		}
 
 		public ItemType Item { get; set; }
-		public long? NodeId { get; set; }
+		public long? Id { get; set; }
 		public string Class { get; set; }
 
 		public long? ToNodeId { get; set; }
@@ -44,14 +44,14 @@ namespace Fabric.Infrastructure.Db {
 
 			switch ( type ) {
 				case "vertex":
-					NodeId = long.Parse(Data["_id"]);
+					Id = long.Parse(Data["_id"]);
 					Item = ItemType.Node;
 					Class = GetClass(Data);
 					break;
 
 				case "edge":
 					string relId = Data["_id"];
-					NodeId = long.Parse(relId.Split(':')[0]);
+					Id = long.Parse(relId.Split(':')[0]);
 					Item = ItemType.Rel;
 					Class = Data["_label"];
 					FromNodeId = long.Parse(Data["_outV"]);
@@ -71,7 +71,7 @@ namespace Fabric.Infrastructure.Db {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public T ToNode<T>() where T : INodeWithId, new() {
-			if ( NodeId == null ) {
+			if ( Id == null ) {
 				throw new FabArgumentNullFault("DbDto.Id was null.");
 			}
 
@@ -85,7 +85,7 @@ namespace Fabric.Infrastructure.Db {
 			string json = JsonSerializer.SerializeToString(Data);
 
 			T result = JsonSerializer.DeserializeFromString<T>(json);
-			result.Id = (long)NodeId;
+			result.Id = (long)Id;
 			return result;
 		}
 

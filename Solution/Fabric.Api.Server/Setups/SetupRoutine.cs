@@ -32,7 +32,7 @@ namespace Fabric.Api.Server.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(true);
+				vDataSet = Setup.SetupAll(false);
 				vApiCtx = new ApiContext("http://localhost:9001/");
 
 				SendSetupTx();
@@ -108,11 +108,11 @@ namespace Fabric.Api.Server.Setups {
 				for ( int i = 0 ; i < nodeData.ResultDtoList.Count ; ++i ) {
 					IDbDto n = nodeData.ResultDtoList[i];
 
-					if ( n.NodeId == null ) {
+					if ( n.Id == null ) {
 						throw new Exception("Node is null at index "+i+".");
 					}
 
-					vDataSet.Nodes[start+i].Node.Id = (long)n.NodeId;
+					vDataSet.Nodes[start+i].Node.Id = (long)n.Id;
 				}
 
 				if ( count >= vDataSet.Nodes.Count ) {

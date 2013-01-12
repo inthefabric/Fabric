@@ -43,6 +43,7 @@ namespace Fabric.Db.Server.Query {
 			try {
 				var wc = new WebClient();
 				wc.Headers.Add("Content-Type", "application/json");
+				long t2 = DateTime.UtcNow.Ticks;
 				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
 				ResponseString = Encoding.UTF8.GetString(ResponseData);
 				ResultType = DbResultType.Success;

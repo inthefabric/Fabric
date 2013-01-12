@@ -7,7 +7,7 @@ namespace Fabric.Infrastructure.Db {
 	public interface IDbDto {
 
 		DbDto.ItemType Item { get; set; }
-		long? NodeId { get; set; }
+		long? Id { get; set; }
 		string Class { get; set; }
 
 		long? ToNodeId { get; set; }

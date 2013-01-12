@@ -47,7 +47,7 @@ namespace Fabric.Api.Server.Graph {
 				var linkIdMap = new Dictionary<long, dynamic>();
 
 				foreach ( IDbDto dto in data.ResultDtoList ) {
-					long id = (dto.NodeId ?? -1);
+					long id = (dto.Id ?? -1);
 
 					switch ( dto.Item ) {
 						case DbDto.ItemType.Node:
@@ -81,7 +81,7 @@ namespace Fabric.Api.Server.Graph {
 				foreach ( DbDto n in nodes ) {
 					nodeObj = new ExpandoObject();
 					nodeObj.index = nodeI++;
-					nodeObj.id = n.NodeId;
+					nodeObj.id = n.Id;
 					nodeObj.Class = n.Class;
 					nodeObj.name = n.Class;
 					nodeObj.Data = "";
@@ -105,7 +105,7 @@ namespace Fabric.Api.Server.Graph {
 
 				foreach ( DbDto l in links ) {
 					dynamic linkObj = new ExpandoObject();
-					linkObj.id = l.NodeId;
+					linkObj.id = l.Id;
 					linkObj.type = ExtractRelType(l);
 
 					if ( l.FromNodeId != null ) {

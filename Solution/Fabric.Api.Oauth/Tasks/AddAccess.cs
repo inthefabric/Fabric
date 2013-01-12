@@ -70,13 +70,10 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			IWeaverFuncAs<OauthAccess> oaAlias;
 
-			IWeaverQuery updateOa = NewPathFromRoot()
-				.ContainsOauthAccessList.ToOauthAccess
+			IWeaverQuery updateOa = NewPathFromIndex(new App { AppId = vAppId })
+				.InOauthAccessListUses.FromOauthAccess
 					.Has(x => x.Token, WeaverFuncHasOp.NotEqualTo, null)
 					.As(out oaAlias)
-				.UsesApp.ToApp
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
-				.Back(oaAlias)
 				.UsesUser.ToUser
 					.Has(x => x.UserId, WeaverFuncHasOp.EqualTo, vUserId)
 				.Back(oaAlias)

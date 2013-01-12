@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -8,6 +9,7 @@ namespace Fabric.Db.Data {
 	public interface  IDataNode {
 
 		INode Node { get; }
+		Type NodeType { get; }
 		bool IsForTesting { get; }
 		IWeaverQuery AddQuery { get; }
 
@@ -29,6 +31,7 @@ namespace Fabric.Db.Data {
 	public class DataNode<T> : IDataNode where T : INode {
 
 		public T NodeT { get; private set; }
+		public Type NodeType { get; private set; }
 		public INode Node { get; private set; }
 
 		public bool IsForTesting { get; private set; }
@@ -40,6 +43,7 @@ namespace Fabric.Db.Data {
 		public DataNode(T pNode, bool pIsForTesting) {
 			Node = pNode;
 			NodeT = pNode;
+			NodeType = typeof(T);
 			IsForTesting = pIsForTesting;
 			AddQuery = WeaverTasks.AddNode(pNode);
 		}

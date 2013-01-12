@@ -101,7 +101,7 @@ namespace Fabric.Api.Server.Tables {
 			string html =
 				HtmlUtil.Wrap("td", "<a href='/tables/browse/"+Dto.Class+"'>"+Dto.Class+"</a>")+
 				//HtmlUtil.Wrap("td", "<a href='/tables/browse/"+Dto.Class+"/"+Dto.Id+"'>"+Dto.Id+"</a>");
-				HtmlUtil.Wrap("td", "<a href='/tables/browse/node/"+Dto.NodeId+"'>"+Dto.NodeId+"</a>");
+				HtmlUtil.Wrap("td", "<a href='/tables/browse/node/"+Dto.Id+"'>"+Dto.Id+"</a>");
 
 			var cols = new string[pColMap.Keys.Count-2];
 
