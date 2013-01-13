@@ -86,6 +86,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Aggregate(getListVar)
 				.UsesMemberType.ToMemberType
 					.Aggregate(getListVar)
+					.Iterate()
 				.End()
 			);
 

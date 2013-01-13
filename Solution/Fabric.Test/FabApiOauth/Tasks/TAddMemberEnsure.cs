@@ -29,7 +29,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 				".aggregate(_V0)"+
 			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
-				".aggregate(_V0);"+
+				".aggregate(_V0)"+
+				".iterate();"+
 			"_V0;";
 			
 		private readonly static string QueryAddMemberTx =

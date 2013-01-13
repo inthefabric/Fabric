@@ -37,7 +37,7 @@ namespace Fabric.Test.Integration.Common {
 			//the following will trim the "L" from all indexes.
 
 			string q = Regex.Replace(pQuery, @",([0-9]+)L\)", ",$1)");
-			Log.Debug("TEST: "+q);
+			//Log.Debug("TEST: "+q);
 			return q;
 		}
 

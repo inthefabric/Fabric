@@ -2,6 +2,7 @@
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver;
@@ -49,6 +50,8 @@ namespace Fabric.Test.Integration {
 			TestTearDown();
 			Context = null;
 
+			Log.Debug("");
+			Log.Debug("===============================");
 			Log.Debug("Total test time: "+(DateTime.UtcNow.Ticks-vStartTime)/10000.0+"ms");
 		}
 
@@ -75,7 +78,7 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNode<T>(long pId) where T : class, INodeWithId, new() {
 			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V('"+typeof(T).Name+"Id',"+pId+")[0]");
+			q.FinalizeQuery(GetNodeQuery<T>(pId));
 			return Context.DbSingle<T>("TEST.GetNode", q);
 		}
 
@@ -83,9 +86,29 @@ namespace Fabric.Test.Integration {
 		protected T GetNodeByProp<T>(string pProp, string pValWithQuotes)
 																where T : class, INodeWithId, new() {
 			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V('RootId',0)[0].outE('RootContains"+typeof(T).Name+"').inV"+
+			q.FinalizeQuery(GetNodeQuery<Root>(0)+".outE('RootContains"+typeof(T).Name+"').inV"+
 				".has('"+pProp+"',Tokens.T.eq,"+pValWithQuotes+")");
 			return Context.DbSingle<T>("TEST.GetNodeByProp", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected NodeConnections GetNodeConnections<T>(T pNode) where T : class, INodeWithId, new() {
+			string nodeQ = "g.v("+pNode.Id+")";
+
+			var q = new WeaverQuery();
+			q.FinalizeQuery("x=[];"+
+				nodeQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
+				nodeQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
+
+			IApiDataAccess data = Context.DbData("TEST.GetNodeConnections", q);
+			return new NodeConnections(pNode, data);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetNodeQuery<T>(long pId) where T : class, INodeWithId, new() {
+			return "g.V('"+typeof(T).Name+"Id',"+pId+")[0]";
 		}
 
 	}

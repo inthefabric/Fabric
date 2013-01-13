@@ -2,6 +2,7 @@
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
@@ -56,6 +57,13 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			OauthAccess newOa = GetNodeByProp<OauthAccess>("Token", "'"+result.AccessToken+"'");
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
+
+			NodeConnections conn = GetNodeConnections(newOa);
+			conn.AssertRelCount(true, 2);
+			conn.AssertRel<OauthAccessUsesApp, App>(true);
+			conn.AssertRel<OauthAccessUsesUser, User>(true);
+			conn.AssertRelCount(false, 1);
+			conn.AssertRel<RootContainsOauthAccess, Root>(false);
 
 			////
 
