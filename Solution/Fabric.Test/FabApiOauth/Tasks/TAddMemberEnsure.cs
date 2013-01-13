@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
@@ -34,12 +33,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V0;";
 			
 		private readonly static string QueryAddMemberTx =
-			"_V0=g.V('RootId',0)[0];"+
+			"g.V('RootId',0)[0]"+
+				".each{_V0=g.v(it.id)};"+
 			"_V1=g.addVertex(["+typeof(Member).Name+"Id:{{NewMemberId}}L]);"+
 			"g.addEdge(_V0,_V1,_TP0);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
+			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+				".each{_V2=g.v(it.id)};"+
 			"g.addEdge(_V2,_V1,_TP1);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+				".each{_V3=g.v(it.id)};"+
 			"g.addEdge(_V3,_V1,_TP2);"+
 			"_V4=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
@@ -48,18 +50,23 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP4);"+
 			"g.addEdge(_V1,_V4,_TP5);"+
-			"_V5=g.V('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0];"+
+			"g.V('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0]"+
+				".each{_V5=g.v(it.id)};"+
 			"g.addEdge(_V4,_V5,_TP6);"+
-			"_V6=g.V('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0];"+
+			"g.V('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0]"+
+				".each{_V6=g.v(it.id)};"+
 			"g.addEdge(_V6,_V4,_TP7);";
 
 		private readonly static string QueryUpdateMemberTx =
-			"_V0=g.V('RootId',0)[0];"+
+			"g.V('RootId',0)[0]"+
+				".each{_V0=g.v(it.id)};"+
 			"g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+
 			".inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".each{g.removeEdge(it)};"+
-			"_V1=g.V('"+typeof(Member).Name+"Id',{{MemId}}L)[0];"+
-			"_V2=g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0];"+
+			"g.V('"+typeof(Member).Name+"Id',{{MemId}}L)[0]"+
+				".each{_V1=g.v(it.id)};"+
+			"g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+
+				".each{_V2=g.v(it.id)};"+
 			"g.addEdge(_V1,_V2,_TP0);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
@@ -68,9 +75,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"]);"+
 			"g.addEdge(_V0,_V3,_TP2);"+
 			"g.addEdge(_V1,_V3,_TP3);"+
-			"_V4=g.V('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0];"+
+			"g.V('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0]"+
+				".each{_V4=g.v(it.id)};"+
 			"g.addEdge(_V3,_V4,_TP4);"+
-			"_V5=g.V('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0];"+
+			"g.V('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0]"+
+				".each{_V5=g.v(it.id)};"+
 			"g.addEdge(_V5,_V3,_TP5);";
 		
 		private long vAppId;

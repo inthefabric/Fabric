@@ -30,10 +30,6 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(Context);
 		}
 
-		//g.V('RootId',0)[0].each{x=g.v(it.id)};x.getClass();
-		//returns: class com.thinkaurelius.titan.graphdb.vertices.PersistStandardTitanVertex
-		//and then... g.addEdge(x,x,'TEST'); WORKS!
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

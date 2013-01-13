@@ -7,7 +7,7 @@ using Weaver;
 namespace Fabric.Test.FabDbData {
 
 	/*================================================================================================*/
-	[TestFixture]
+	//[TestFixture]
 	public class TSetup {
 
 

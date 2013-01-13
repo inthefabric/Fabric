@@ -28,18 +28,21 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"};";
 
 		private readonly static string QueryAddGrantTx =
-				"_V0=g.V('RootId',0)[0];"+
-				"_V1=g.addVertex(["+
-					typeof(OauthGrant).Name+"Id:{{OauthGrantId}}L,"+
-					"RedirectUri:_TP0,"+
-					"Code:_TP1,"+
-					"Expires:{{ExpireTicks}}L"+
-				"]);"+
-				"g.addEdge(_V0,_V1,_TP2);"+
-				"_V2=g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
-				"g.addEdge(_V1,_V2,_TP3);"+
-				"_V3=g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];"+
-				"g.addEdge(_V1,_V3,_TP4);";
+			"g.V('RootId',0)[0]"+
+				".each{_V0=g.v(it.id)};"+
+			"_V1=g.addVertex(["+
+				typeof(OauthGrant).Name+"Id:{{OauthGrantId}}L,"+
+				"RedirectUri:_TP0,"+
+				"Code:_TP1,"+
+				"Expires:{{ExpireTicks}}L"+
+			"]);"+
+			"g.addEdge(_V0,_V1,_TP2);"+
+			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+				".each{_V2=g.v(it.id)};"+
+			"g.addEdge(_V1,_V2,_TP3);"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+				".each{_V3=g.v(it.id)};"+
+			"g.addEdge(_V1,_V3,_TP4);";
 
 		protected long vAppId;
 		protected long vUserId;

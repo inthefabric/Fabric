@@ -27,16 +27,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"};";
 
 		private readonly static string QueryAddScopeTx =
-			"_V0=g.V('RootId',0)[0];"+
+			"g.V('RootId',0)[0]"+
+				".each{_V0=g.v(it.id)};"+
 			"_V1=g.addVertex(["+
 				typeof(OauthScope).Name+"Id:{{OauthScopeId}}L,"+
 				"Allow:{{Allow}},"+
 				"Created:{{UtcNowTicks}}L"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP0);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];"+
+			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+				".each{_V2=g.v(it.id)};"+
 			"g.addEdge(_V1,_V2,_TP1);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+				".each{_V3=g.v(it.id)};"+
 			"g.addEdge(_V1,_V3,_TP2);"+
 			"_V1;";
 
