@@ -38,8 +38,10 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetRoot(out IWeaverVarAlias<Root> pRootVar) {
-			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode.End();
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pRootVar);
+			pRootVar = new WeaverVarAlias<Root>(Transaction);
+
+			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0)
+				.BaseNode.ToNodeVar(pRootVar).End();
 			Transaction.AddQuery(q);
 			vVarHash.Add(pRootVar);
 		}
@@ -47,9 +49,10 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
+			pNodeVar = new WeaverVarAlias<T>(Transaction);
+
 			IWeaverQuery q = WeaverTasks.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
-				pNodeWithId.GetTypeId()).BaseNode.End();
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
+				pNodeWithId.GetTypeId()).BaseNode.ToNodeVar(pNodeVar).End();
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
