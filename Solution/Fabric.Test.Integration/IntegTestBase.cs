@@ -35,24 +35,36 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
+			Log.Info("SetUp started");
+
 			vStartTime = DateTime.UtcNow.Ticks;
 			Context = new TestApiContext();
 			TestSetUp();
+
+			Log.Info("SetUp complete at T = "+GetTime());
+			Log.Info("");
+			Log.Info("=====================================");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TearDown]
 		public void TearDown() {
+			Log.Info("");
+			Log.Info("=====================================");
+			Log.Info("");
+			Log.Info("TearDown started at T = "+GetTime());
+
 			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
-			Context.DbData("TearDown", q);
+
+			IApiDataAccess data = Context.DbData("TearDown", q);
+			Assert.Null(data.Result.Text, "There was an issue with the TearDown query!");
 
 			TestTearDown();
 			Context = null;
 
-			Log.Debug("");
-			Log.Debug("===============================");
-			Log.Debug("Total test time: "+(DateTime.UtcNow.Ticks-vStartTime)/10000.0+"ms");
+			Log.Info("");
+			Log.Info("TearDown complete at T = "+GetTime());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -109,6 +121,11 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetNodeQuery<T>(long pId) where T : class, INodeWithId, new() {
 			return "g.V('"+typeof(T).Name+"Id',"+pId+")[0]";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetTime() {
+			return (DateTime.UtcNow.Ticks-vStartTime)/10000+"ms";
 		}
 
 	}

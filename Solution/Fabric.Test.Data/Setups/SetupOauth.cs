@@ -131,15 +131,15 @@ namespace Fabric.Db.Data.Setups {
 			AddDomain(OauthDomainId.Book1, book, DomBook1);
 			AddDomain(OauthDomainId.Book2, book, DomBook2);
 			
-			AddAccess(OauthAccessId.GalZach_Past, gal, zach, null, -320);
-			AddAccess(OauthAccessId.GalMel_Past, gal, mel, null, -301);
-			AddAccess(OauthAccessId.Book_Past1, book, null, null, -299);
-			AddAccess(OauthAccessId.Gal_Past, gal, null, null, -271);
-			AddAccess(OauthAccessId.GalGalData_Past, gal, galData, null, -222);
+			AddAccess(OauthAccessId.GalZach_Past, gal, zach, "", -320);
+			AddAccess(OauthAccessId.GalMel_Past, gal, mel, "", -301);
+			AddAccess(OauthAccessId.Book_Past1, book, null, "", -299);
+			AddAccess(OauthAccessId.Gal_Past, gal, null, "", -271);
+			AddAccess(OauthAccessId.GalGalData_Past, gal, galData, "", -222);
 			AddAccess(OauthAccessId.GalEllie_Past, gal, ellie, TokenGalEllie, -186); //exp, not ref yet
-			AddAccess(OauthAccessId.BookBookData_Past, book, bookData, null, -143);
-			AddAccess(OauthAccessId.Book_Past2, book, null, null, -88);
-			AddAccess(OauthAccessId.BookMel_Past, book, mel, null, -3);
+			AddAccess(OauthAccessId.BookBookData_Past, book, bookData, "", -143);
+			AddAccess(OauthAccessId.Book_Past2, book, null, "", -88);
+			AddAccess(OauthAccessId.BookMel_Past, book, mel, "", -3);
 			AddAccess(OauthAccessId.GalZach, gal, zach, TokenGalZach, 2, RefreshGalZach);
 			AddAccess(OauthAccessId.GalMel, gal, mel, TokenGalMel, 7);
 			AddAccess(OauthAccessId.GalGalData, gal, galData, TokenGalGalData, 18);

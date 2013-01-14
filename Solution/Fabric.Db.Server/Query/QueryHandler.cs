@@ -53,7 +53,7 @@ namespace Fabric.Db.Server.Query {
 				Log.Error(vReqId, "FAIL", json, ex);
 			}
 
-			Log.Debug("GetJson: "+(DateTime.UtcNow.Ticks-t)/10000.0+"ms");
+			Log.Debug("QueryHandler.GetJson(): "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			return json;
 		}
 

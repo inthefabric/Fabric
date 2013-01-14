@@ -30,7 +30,7 @@ namespace Fabric.Infrastructure.Db {
 				Results = null;
 			}
 
-			const string textResultStart = "\"results\":[\"";
+			const string textResultStart = "\"results\":[";
 			int startI = pResultJson.IndexOf(textResultStart);
 
 			if ( startI == -1 ) {
@@ -38,7 +38,12 @@ namespace Fabric.Infrastructure.Db {
 			}
 
 			startI += textResultStart.Length;
-			int endI = pResultJson.IndexOf("\"],", startI);
+			
+			if ( pResultJson[startI] == '{' ) {
+				return;
+			}
+
+			int endI = pResultJson.IndexOf("],", startI);
 
 			Text = pResultJson.Substring(startI, endI-startI);
 			DbDtos = null;

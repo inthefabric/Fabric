@@ -43,14 +43,13 @@ namespace Fabric.Db.Server.Query {
 			try {
 				var wc = new WebClient();
 				wc.Headers.Add("Content-Type", "application/json");
-				long t2 = DateTime.UtcNow.Ticks;
 				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
 				ResponseString = Encoding.UTF8.GetString(ResponseData);
 				ResultType = DbResultType.Success;
 			}
 			catch ( WebException we ) {
 				ResultType = DbResultType.Error;
-				Stream s = we.Response.GetResponseStream();
+				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
 
 				if ( s != null ) {
 					var sr = new StreamReader(s);
@@ -60,8 +59,10 @@ namespace Fabric.Db.Server.Query {
 				else {
 					Result = new DbResult();
 					Result.Exception = we.GetType().Name;
-					Result.Message = we.Message+"\n\n"+we.StackTrace;
+					Result.Message = we.Message;
 				}
+
+				Log.Error("GremlinQuery "+Result.Exception+": "+Result.Message);
 			}
 
 			if ( Result == null ) {

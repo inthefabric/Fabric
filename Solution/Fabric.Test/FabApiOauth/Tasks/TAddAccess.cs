@@ -19,10 +19,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.V('AppId',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
 				".has('Token',Tokens.T.neq,null)"+
-				".as('step4')" +
+				".has('IsClientOnly',Tokens.T.eq,false)"+
+				".as('step5')" +
 			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV" +
 				".has('"+typeof(User).Name+"Id',Tokens.T.eq,{{UserId}})" +
-			".back('step4')" +
+			".back('step5')" +
+				".each{it.Token=_P0;it.Refresh=_P1};";
+
+		private readonly static string QueryClearTokensClientOnly =
+			"g.V('AppId',{{AppId}}L)[0]"+
+			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
+				".has('Token',Tokens.T.neq,null)"+
+				".has('IsClientOnly',Tokens.T.eq,true)"+
 				".each{it.Token=_P0;it.Refresh=_P1};";
 
 		private readonly static string QueryAddAccessTx =
@@ -99,7 +107,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 			vMockCtx
 				.Setup(x => x.DbData(AddAccess.Query.AddAccessTx+"", It.IsAny<IWeaverScript>()))
-				.Returns((string s, IWeaverScript ws) => AddAccessTx(ws, false));
+				.Returns((string s, IWeaverScript ws) => AddAccessTx(ws));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -118,7 +126,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddAccess.Query.ClearTokens+"");
 			
-			string expect = QueryClearTokens
+			string expect = (vClientOnly ? QueryClearTokensClientOnly : QueryClearTokens)
 				.Replace("{{AppId}}", vAppId+"")
 				.Replace("{{UserId}}", (vUserId == null ? "null" : vUserId+"L"));
 
@@ -129,11 +137,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess AddAccessTx(IWeaverScript pScripted, bool pClientOnly) {
+		private ApiDataAccess AddAccessTx(IWeaverScript pScripted) {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddAccess.Query.AddAccessTx+"");
 
-			string expect = (pClientOnly ? QueryAddAccessTxClientOnly : QueryAddAccessTx)
+			string expect = (vClientOnly ? QueryAddAccessTxClientOnly : QueryAddAccessTx)
 				.Replace("{{OauthAccessId}}", vAddOauthAccessId+"")
 				.Replace("{{UtcExpireTicks}}", vUtcNow.AddSeconds(vExpireSec).Ticks+"")
 				.Replace("{{AppId}}", vAppId+"")
@@ -145,7 +153,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pScripted.Params, "_TP2", typeof(RootContainsOauthAccess).Name);
 			TestUtil.CheckParam(pScripted.Params, "_TP3", typeof(OauthAccessUsesApp).Name);
 
-			if ( !pClientOnly ) {
+			if ( !vClientOnly ) {
 				TestUtil.CheckParam(pScripted.Params, "_TP4", typeof(OauthAccessUsesUser).Name);
 			}
 
@@ -174,10 +182,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 			if ( vClientOnly ) {
 				vUserId = null;
-
-				vMockCtx
-					.Setup(x => x.DbData(AddAccess.Query.AddAccessTx+"", It.IsAny<IWeaverScript>()))
-					.Returns((string s, IWeaverScript ws) => AddAccessTx(ws, true));
 			}
 									
 			FabOauthAccess result = TestGo(pViaTask);

@@ -2,8 +2,12 @@
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
+using Weaver;
+using Weaver.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
@@ -16,19 +20,22 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		private int vExpireSec;
 		private bool vClientOnly;
 
+		private AddAccess vAddAccess;
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAppId = (long)SetupUsers.AppId.KinPhoGal;
-			vUserId = (long)SetupUsers.UserId.Penny;
+			vAppId = -1;
+			vUserId = -1;
 			vExpireSec = 3600;
 			vClientOnly = false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo() {
-			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(Context);
+			vAddAccess = new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly);
+			return vAddAccess.Go(Context);
 		}
 
 
@@ -37,11 +44,13 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		[TestCase(AppGal, UserZach, SetupOauth.OauthAccessId.GalZach)]
 		[TestCase(AppGal, UserEllie, SetupOauth.OauthAccessId.GalEllie_Past)]
 		[TestCase(AppGal, UserGal, SetupOauth.OauthAccessId.GalGalData)]
-		public void SuccessAppAndUser(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId,
+		[TestCase(AppGal, null, SetupOauth.OauthAccessId.Gal)]
+		[TestCase(AppBook, null, SetupOauth.OauthAccessId.Book)]
+		public void Go(SetupUsers.AppId pAppId, SetupUsers.UserId? pUserId,
 														SetupOauth.OauthAccessId pClearedAccessId) {
-			vClientOnly = false;
+			vClientOnly = (pUserId == null);
 			vAppId = (long)pAppId;
-			vUserId = (long)pUserId;
+			vUserId = (pUserId == null ? (long?)null : (long)pUserId);
 
 			////
 
@@ -49,6 +58,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(clearOa, "Target OauthAccess is missing.");
 			Assert.NotNull(clearOa.Token, "Target OauthAccess must have a Token value.");
 			Assert.NotNull(clearOa.Refresh, "Target OauthAccess must have a Refresh value.");
+
+			int tokenCount = CountTokens();
 
 			////
 
@@ -59,11 +70,18 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
 
 			NodeConnections conn = GetNodeConnections(newOa);
-			conn.AssertRelCount(true, 2);
-			conn.AssertRel<OauthAccessUsesApp, App>(true);
-			conn.AssertRel<OauthAccessUsesUser, User>(true);
 			conn.AssertRelCount(false, 1);
 			conn.AssertRel<RootContainsOauthAccess, Root>(false);
+
+			if ( vClientOnly ) {
+				conn.AssertRelCount(true, 1);
+				conn.AssertRel<OauthAccessUsesApp, App>(true);
+			}
+			else {
+				conn.AssertRelCount(true, 2);
+				conn.AssertRel<OauthAccessUsesApp, App>(true);
+				conn.AssertRel<OauthAccessUsesUser, User>(true);
+			}
 
 			////
 
@@ -71,6 +89,23 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(clearOa, "Target OauthAccess was deleted.");
 			Assert.AreEqual("", clearOa.Token, "Target OauthAccess.Token was not cleared.");
 			Assert.AreEqual("", clearOa.Refresh, "Target OauthAccess.Refresh was not cleared.");
+
+			int updatedTokenCount = CountTokens();
+			Assert.AreEqual(tokenCount+1, updatedTokenCount, "Incorrect updated Token count.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private int CountTokens() {
+			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
+				.ContainsOauthAccessList.ToOauthAccess
+					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, "")
+					.CustomStep("count()")
+				.End();
+
+			IApiDataAccess data = Context.DbData("TEST.CountTokens", q);
+			return int.Parse(data.Result.Text);
 		}
 
 	}

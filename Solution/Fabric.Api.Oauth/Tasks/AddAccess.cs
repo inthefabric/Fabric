@@ -21,7 +21,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		private readonly long? vUserId;
 		private readonly int vExpireSec;
 		private readonly bool vClientOnly;
-		
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -68,17 +68,29 @@ namespace Fabric.Api.Oauth.Tasks {
 			updates.AddUpdate(oa, x => x.Token); //set token to empty string
 			updates.AddUpdate(oa, x => x.Refresh); //set refresh to empty string
 
-			IWeaverFuncAs<OauthAccess> oaAlias;
-
-			IWeaverQuery updateOa = NewPathFromIndex(new App { AppId = vAppId })
+			IWeaverQuery updateOa;
+			
+			OauthAccess pathOa = NewPathFromIndex(new App { AppId = vAppId })
 				.InOauthAccessListUses.FromOauthAccess
 					.Has(x => x.Token, WeaverFuncHasOp.NotEqualTo, null)
-					.As(out oaAlias)
-				.UsesUser.ToUser
-					.Has(x => x.UserId, WeaverFuncHasOp.EqualTo, vUserId)
-				.Back(oaAlias)
-					.UpdateEach(updates)
-				.End();
+					.Has(x => x.IsClientOnly, WeaverFuncHasOp.EqualTo, vClientOnly);
+
+			if ( vClientOnly ) {
+				updateOa = pathOa
+						.UpdateEach(updates)
+					.End();
+			}
+			else {
+				IWeaverFuncAs<OauthAccess> oaAlias;
+
+				updateOa = pathOa
+						.As(out oaAlias)
+					.UsesUser.ToUser
+						.Has(x => x.UserId, WeaverFuncHasOp.EqualTo, vUserId)
+					.Back(oaAlias)
+						.UpdateEach(updates)
+					.End();
+			}
 
 			Context.DbData(Query.ClearTokens+"", updateOa);
 		}

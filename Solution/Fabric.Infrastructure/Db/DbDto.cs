@@ -10,7 +10,8 @@ namespace Fabric.Infrastructure.Db {
 	public class DbDto : IDbDto {
 
 		public enum ItemType {
-			Node = 1,
+			Unknown = 0,
+			Node,
 			Rel,
 			Error
 		}
