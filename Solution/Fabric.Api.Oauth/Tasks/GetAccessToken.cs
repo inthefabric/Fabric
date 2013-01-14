@@ -51,6 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			var foa = new FabOauthAccess();
+			foa.OauthAccessId = oa.OauthAccessId;
 			foa.AccessToken = oa.Token;
 			foa.RefreshToken = oa.Refresh;
 			foa.TokenType = "bearer";

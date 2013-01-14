@@ -13,14 +13,12 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAddAccess : IntegTestBase {
+	public class XAddAccess : IntegTestBase {
 
 		private long vAppId;
 		private long? vUserId;
 		private int vExpireSec;
 		private bool vClientOnly;
-
-		private AddAccess vAddAccess;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,8 +32,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo() {
-			vAddAccess = new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly);
-			return vAddAccess.Go(Context);
+			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(Context);
 		}
 
 

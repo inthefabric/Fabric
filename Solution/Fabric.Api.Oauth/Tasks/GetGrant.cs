@@ -46,6 +46,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			tx.AddQuery(
 				WeaverTasks.InitListVar(tx, out listVar)
 			);
+
+			//TODO: determine if the no-User scenario is necessary
 			
 			tx.AddQuery(
 				NewPathFromRoot()

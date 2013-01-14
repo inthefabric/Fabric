@@ -15,8 +15,10 @@ namespace Fabric.Test.Integration {
 		//protected static readonly DataSet SetupData = Setup.SetupAll(true);
 
 		protected TestApiContext Context { get; private set; }
+		protected bool IsReadOnlyTest { get; set; }
 
 		private long vStartTime;
+		private long vStartTime2;
 
 		protected const SetupUsers.AppId AppFab = SetupUsers.AppId.FabSys;
 		protected const SetupUsers.AppId AppGal = SetupUsers.AppId.KinPhoGal;
@@ -44,6 +46,8 @@ namespace Fabric.Test.Integration {
 			Log.Info("SetUp complete at T = "+GetTime());
 			Log.Info("");
 			Log.Info("=====================================");
+
+			vStartTime2 = DateTime.UtcNow.Ticks;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -52,18 +56,22 @@ namespace Fabric.Test.Integration {
 			Log.Info("");
 			Log.Info("=====================================");
 			Log.Info("");
+			Log.Info("Core test time: "+(DateTime.UtcNow.Ticks-vStartTime2)/10000+"ms");
 			Log.Info("TearDown started at T = "+GetTime());
 
-			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
+			if ( !IsReadOnlyTest ) {
+				var q = new WeaverQuery();
+				q.FinalizeQuery("g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
 
-			IApiDataAccess data = Context.DbData("TearDown", q);
-			Assert.Null(data.Result.Text, "There was an issue with the TearDown query!");
+				IApiDataAccess data = Context.DbData("TearDown", q);
+				Assert.Null(data.Result.Text, "There was an issue with the TearDown query!");
+
+				Log.Info("");
+			}
 
 			TestTearDown();
 			Context = null;
 
-			Log.Info("");
 			Log.Info("TearDown complete at T = "+GetTime());
 		}
 

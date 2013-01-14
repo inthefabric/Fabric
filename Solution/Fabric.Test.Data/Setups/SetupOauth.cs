@@ -64,7 +64,7 @@ namespace Fabric.Db.Data.Setups {
 		public const int NumScopes = 11;
 		
 		public const string TokenFabZach	= "8f32fho2f8092uef0fdskl0383275fld";
-		public const string TokenGalEllie	= "dfjsdf87897df982ef0972ef082e7f89";
+		public const string TokenGalEllieExp	= "dfjsdf87897df982ef0972ef082e7f89";
 		public const string TokenGalZach	= "98dsf98sd9as8dcj9a8sdc9as8d7ff22";
 		public const string TokenGalMel	= "8dsfashdclasjdchasd87fas89dcdc98";
 		public const string TokenGalGalData= "293f9wfsd98sdfsdhcsjdf98sdfsfsqw";
@@ -136,7 +136,7 @@ namespace Fabric.Db.Data.Setups {
 			AddAccess(OauthAccessId.Book_Past1, book, null, "", -299);
 			AddAccess(OauthAccessId.Gal_Past, gal, null, "", -271);
 			AddAccess(OauthAccessId.GalGalData_Past, gal, galData, "", -222);
-			AddAccess(OauthAccessId.GalEllie_Past, gal, ellie, TokenGalEllie, -186); //exp, not ref yet
+			AddAccess(OauthAccessId.GalEllie_Past, gal, ellie, TokenGalEllieExp, -186); //not refreshed
 			AddAccess(OauthAccessId.BookBookData_Past, book, bookData, "", -143);
 			AddAccess(OauthAccessId.Book_Past2, book, null, "", -88);
 			AddAccess(OauthAccessId.BookMel_Past, book, mel, "", -3);

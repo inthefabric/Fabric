@@ -46,7 +46,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DateTime UtcNow {
+		public virtual DateTime UtcNow {
 			get { return DateTime.UtcNow; }
 		}
 
