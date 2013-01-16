@@ -46,6 +46,7 @@ namespace Fabric.Db.Server.Query {
 				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
 				ResponseString = Encoding.UTF8.GetString(ResponseData);
 				ResultType = DbResultType.Success;
+				//Log.Debug("RESPONSE: "+ResponseString);
 			}
 			catch ( WebException we ) {
 				ResultType = DbResultType.Error;

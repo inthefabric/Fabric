@@ -22,13 +22,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 			".back('step3')"+
 				".each{"+
-					"it.Allow={{Allow}};"+
-					"it.Created={{UtcNowTicks}}L"+
+					"it.setProperty('Allow',{{Allow}});"+
+					"it.setProperty('Created',{{UtcNowTicks}}L)"+
 				"};";
 
 		private readonly static string QueryAddScopeTx =
 			"g.V('RootId',0)[0]"+
-				".each{_V0=g.v(it.id)};"+
+				".each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
 				typeof(OauthScope).Name+"Id:{{OauthScopeId}}L,"+
 				"Allow:{{Allow}},"+
@@ -36,10 +36,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP0);"+
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
-				".each{_V2=g.v(it.id)};"+
+				".each{_V2=g.v(it)};"+
 			"g.addEdge(_V1,_V2,_TP1);"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".each{_V3=g.v(it.id)};"+
+				".each{_V3=g.v(it)};"+
 			"g.addEdge(_V1,_V3,_TP2);"+
 			"_V1;";
 

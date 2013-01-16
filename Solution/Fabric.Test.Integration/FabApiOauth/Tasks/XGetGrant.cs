@@ -3,7 +3,11 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using NUnit.Framework;
+using Weaver;
+using Weaver.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
@@ -30,29 +34,55 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(SetupOauth.GrantGalZach, SetupOauth.OauthGrantId.GalZach, AppGal, UserZach)]
-		[TestCase(SetupOauth.GrantBookElliePast, null, null, null)]
-		public void Go(string pCode, SetupOauth.OauthGrantId? pExpectId,																	SetupUsers.AppId? pExpectAppId, SetupUsers.UserId? pExpectUserId) {
+		[TestCase(SetupOauth.GrantBookMel, SetupOauth.OauthGrantId.BookMel, AppBook, UserMel)]
+		public void Go(string pCode, SetupOauth.OauthGrantId pExpectId,
+									SetupUsers.AppId pExpectAppId, SetupUsers.UserId pExpectUserId) {
 			vCode = pCode;
+			int codeCount = CountCodes();
 
 			GrantResult result = TestGo();
 
-			if ( pExpectId != null) {
-				Assert.NotNull(result, "Result should be filled.");
-				Assert.AreEqual((long)pExpectId, result.GrantId, "Incorrect GrantId.");
-				
-				Assert.NotNull(pExpectAppId, "pExpectAppId cannot be null.");
-				Assert.AreEqual((long)pExpectAppId, result.AppId, "Incorrect GrantId.");
+			Assert.NotNull(result, "Result should be filled.");
+			Assert.AreEqual((long)pExpectId, result.GrantId, "Incorrect GrantId.");
+			Assert.AreEqual((long)pExpectAppId, result.AppId, "Incorrect AppId.");
+			Assert.AreEqual((long)pExpectUserId, result.UserId, "Incorrect UserId.");
 
-				if ( pExpectUserId != null ) {
-					Assert.AreEqual((long)pExpectUserId, result.UserId, "Incorrect GrantId.");
-				}
-				else {
-					Assert.Null(result.UserId, "UserId should be null.");
-				}
-			}
-			else {
-				Assert.Null(result, "Result should be null.");
-			}
+			var clearOg = GetNode<OauthGrant>((long)pExpectId);
+			Assert.NotNull(clearOg, "Target OauthGrant was deleted.");
+			Assert.AreEqual("", clearOg.Code, "Target OauthGrant.Code was not cleared.");
+
+			int updatedCodeCount = CountCodes();
+			Assert.AreEqual(codeCount+1, updatedCodeCount, "Incorrect updated Code count.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(SetupOauth.GrantBookElliePast)]
+		[TestCase("x")]
+		[TestCase("")]
+		public void NotFound(string pCode) {
+			vCode = pCode;
+			int codeCount = CountCodes();
+
+			GrantResult result = TestGo();
+
+			Assert.Null(result, "Result should be null.");
+
+			int updatedCodeCount = CountCodes();
+			Assert.AreEqual(codeCount, updatedCodeCount, "Incorrect updated Code count.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private int CountCodes() {
+			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
+				.ContainsOauthGrantList.ToOauthGrant
+					.Has(x => x.Code, WeaverFuncHasOp.EqualTo, "")
+					.CustomStep("count()")
+				.End();
+
+			IApiDataAccess data = Context.DbData("TEST.CountCodes", q);
+			return int.Parse(data.Result.Text);
 		}
 
 	}

@@ -35,14 +35,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 		private readonly static string QueryAddMemberTx =
 			"g.V('RootId',0)[0]"+
-				".each{_V0=g.v(it.id)};"+
+				".each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+typeof(Member).Name+"Id:{{NewMemberId}}L]);"+
 			"g.addEdge(_V0,_V1,_TP0);"+
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
-				".each{_V2=g.v(it.id)};"+
+				".each{_V2=g.v(it)};"+
 			"g.addEdge(_V2,_V1,_TP1);"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".each{_V3=g.v(it.id)};"+
+				".each{_V3=g.v(it)};"+
 			"g.addEdge(_V3,_V1,_TP2);"+
 			"_V4=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
@@ -52,22 +52,22 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.addEdge(_V0,_V4,_TP4);"+
 			"g.addEdge(_V1,_V4,_TP5);"+
 			"g.V('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0]"+
-				".each{_V5=g.v(it.id)};"+
+				".each{_V5=g.v(it)};"+
 			"g.addEdge(_V4,_V5,_TP6);"+
 			"g.V('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0]"+
-				".each{_V6=g.v(it.id)};"+
+				".each{_V6=g.v(it)};"+
 			"g.addEdge(_V6,_V4,_TP7);";
 
 		private readonly static string QueryUpdateMemberTx =
 			"g.V('RootId',0)[0]"+
-				".each{_V0=g.v(it.id)};"+
+				".each{_V0=g.v(it)};"+
 			"g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+
 			".inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".each{g.removeEdge(it)};"+
 			"g.V('"+typeof(Member).Name+"Id',{{MemId}}L)[0]"+
-				".each{_V1=g.v(it.id)};"+
+				".each{_V1=g.v(it)};"+
 			"g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+
-				".each{_V2=g.v(it.id)};"+
+				".each{_V2=g.v(it)};"+
 			"g.addEdge(_V1,_V2,_TP0);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
@@ -77,10 +77,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.addEdge(_V0,_V3,_TP2);"+
 			"g.addEdge(_V1,_V3,_TP3);"+
 			"g.V('"+typeof(MemberType).Name+"Id',{{NewMemTypeId}}L)[0]"+
-				".each{_V4=g.v(it.id)};"+
+				".each{_V4=g.v(it)};"+
 			"g.addEdge(_V3,_V4,_TP4);"+
 			"g.V('"+typeof(Member).Name+"Id',{{CreatorMemId}}L)[0]"+
-				".each{_V5=g.v(it.id)};"+
+				".each{_V5=g.v(it)};"+
 			"g.addEdge(_V5,_V3,_TP5);";
 		
 		private long vAppId;

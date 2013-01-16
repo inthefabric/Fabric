@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Weaver;
@@ -50,8 +51,6 @@ namespace Fabric.Api.Oauth.Tasks {
 				WeaverTasks.InitListVar(tx, out listVar)
 			);
 
-			//TODO: determine if the no-User scenario is necessary
-
 			tx.AddQuery(
 				NewPathFromRoot()
 				.ContainsOauthGrantList.ToOauthGrant
@@ -74,29 +73,25 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 
 			IApiDataAccess data = Context.DbData(Query.GetAndUpdateTx+"", tx);
-			
+
 			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
 				return null;
 			}
 
-			if ( data.ResultDtoList.Count != 2 && data.ResultDtoList.Count != 3 ) {
+			if ( data.ResultDtoList.Count != 3 ) {
 				throw new Exception("Incorrect ResultDtoList.Count.");
 			}
 			
 			OauthGrant og = data.ResultDtoList[0].ToNode<OauthGrant>();
 			App app = data.ResultDtoList[1].ToNode<App>();
+			User user = data.ResultDtoList[2].ToNode<User>();
 			
 			var gr = new GrantResult();
 			gr.GrantId = og.OauthGrantId;
 			gr.AppId = app.AppId;
+			gr.UserId = user.UserId;
 			gr.Code = vCode;
 			gr.RedirectUri = og.RedirectUri;
-			
-			if ( data.ResultDtoList.Count == 3 ) {
-				User user = data.ResultDtoList[2].ToNode<User>();
-				gr.UserId = user.UserId;
-			}
-			
 			return gr;
 		}
 

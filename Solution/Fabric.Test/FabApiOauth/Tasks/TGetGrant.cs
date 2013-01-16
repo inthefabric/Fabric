@@ -31,7 +31,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
 				".back('step6')"+
-					".each{it.Code=_TP1};"+
+					".each{it.setProperty('Code',_TP1)};"+
 			"_V0;";
 
 		private OauthGrant vOauthGrant;
