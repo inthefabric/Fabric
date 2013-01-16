@@ -78,7 +78,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
 				.ContainsOauthGrantList.ToOauthGrant
 					.Has(x => x.Code, WeaverFuncHasOp.EqualTo, "")
-					.CustomStep("count()")
+					.Count()
 				.End();
 
 			IApiDataAccess data = Context.DbData("TEST.CountCodes", q);

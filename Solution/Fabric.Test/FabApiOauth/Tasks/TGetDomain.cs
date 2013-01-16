@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private static readonly string QueryGetDomain =
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".filter{it.Domain.toLowerCase()=='{{RedirUriLower}}'};";
+				".filter{it.getProperty('Domain').toLowerCase()=='{{RedirUriLower}}'};";
 
 		private long vAppId;
 		private string vRedirUri;

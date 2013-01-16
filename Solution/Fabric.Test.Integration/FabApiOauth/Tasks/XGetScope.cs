@@ -7,9 +7,10 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetRefresh : IntegTestBase {
+	public class XGetScope : IntegTestBase {
 
-		private string vRefreshToken;
+		private long vAppId;
+		private long vUserId;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,30 +20,36 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private RefreshResult TestGo() {
-			return new GetRefresh(vRefreshToken).Go(Context);
+		private ScopeResult TestGo() {
+			return new GetScope(vAppId, vUserId).Go(Context);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(SetupOauth.RefreshGalZach, AppGal, UserZach)]
-		public void Go(string pRefToken, SetupUsers.AppId pAppId, SetupUsers.UserId pUserId){
-			vRefreshToken = pRefToken;
+		[TestCase(AppGal, UserZach, SetupOauth.OauthScopeId.GalZach)]
+		[TestCase(AppBook, UserMel, SetupOauth.OauthScopeId.BookMel)]
+		[TestCase(AppFab, UserFab, SetupOauth.OauthScopeId.FabFabData)]
+		public void Go(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId,
+															SetupOauth.OauthScopeId pExpectScopeId) {
+			vAppId = (long)pAppId;
+			vUserId = (long)pUserId;
 
-			RefreshResult result = TestGo();
+			ScopeResult result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual((long)pAppId, result.AppId, "Incorrect AppId.");
-			Assert.AreEqual((long)pUserId, result.UserId, "Incorrect UserId.");
+			Assert.AreEqual((long)pExpectScopeId, result.ScopeId, "Incorrect ScopeId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("x")]
-		[TestCase("")]
-		public void NotFound(string pRefToken) {
-			vRefreshToken = pRefToken;
-			RefreshResult result = TestGo();
+		[TestCase(AppGal, UserFab)]
+		[TestCase(AppFab, UserZach)]
+		public void NotFound(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId) {
+			vAppId = (long)pAppId;
+			vUserId = (long)pUserId;
+
+			ScopeResult result = TestGo();
+
 			Assert.Null(result, "Result should be null.");
 		}
 

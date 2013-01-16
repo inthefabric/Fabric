@@ -18,7 +18,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsUser).Name+"').inV"+
 					".has('Password',Tokens.T.eq,_P0)"+
-					".filter{it.Name.toLowerCase()=='{{UsernameLower}}'};";
+					".filter{it.getProperty('Name').toLowerCase()=='{{UsernameLower}}'};";
 
 		private string vUsername;
 		private string vPassword;
