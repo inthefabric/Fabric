@@ -37,6 +37,11 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public static T NewPathFromVar<T>(IWeaverVarAlias<T> pVar) where T : class, INode, new() {
+			return WeaverTasks.BeginPath(pVar).BaseNode;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
 			return WeaverTasks.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
 				pNodeWithId.GetTypeId()).BaseNode;

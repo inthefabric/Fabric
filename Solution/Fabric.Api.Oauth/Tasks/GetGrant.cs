@@ -40,29 +40,32 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverVarAlias listVar;
 			IWeaverFuncAs<OauthGrant> grantAlias;
 			
+			////
+
+			var ogUpdate = new OauthGrant { Code = "" };
 			var grantUpdater = new WeaverUpdates<OauthGrant>();
-			grantUpdater.AddUpdate(new OauthGrant(), x => x.Code); //set to null
-			
+			grantUpdater.AddUpdate(ogUpdate, x => x.Code); //set to empty string
+
 			tx.AddQuery(
 				WeaverTasks.InitListVar(tx, out listVar)
 			);
 
 			//TODO: determine if the no-User scenario is necessary
-			
+
 			tx.AddQuery(
 				NewPathFromRoot()
 				.ContainsOauthGrantList.ToOauthGrant
 					.Has(x => x.Code, WeaverFuncHasOp.EqualTo, vCode)
 					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, Context.UtcNow.Ticks)
 					.Aggregate(listVar)
-					.UpdateEach(grantUpdater)
 					.As(out grantAlias)
 				.UsesApp.ToApp
 					.Aggregate(listVar)
 				.Back(grantAlias)
 				.UsesUser.ToUser
 					.Aggregate(listVar)
-					.Iterate()
+				.Back(grantAlias)
+					.UpdateEach(grantUpdater)
 				.End()
 			);
 

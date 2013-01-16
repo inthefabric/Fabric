@@ -37,7 +37,7 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		public enum OauthGrantId {
-			BookEllie = 1,
+			BookElliePast = 1,
 			GalMel,
 			GalZach,
 			GalPenny,
@@ -82,7 +82,7 @@ namespace Fabric.Db.Data.Setups {
 		public const string DomBook1	= "my.super.bookmarker.com";
 		public const string DomBook2	= "localhost:32123";
 
-		public const string GrantBookEllie	= "8923fh23f982362f27f7611fjhfjhfds";
+		public const string GrantBookElliePast	= "8923fh23f982362f27f7611fjhfjhfds";
 		public const string GrantGalMel		= "kjdcio2ejh237297wcjk121890872hfd";
 		public const string GrantGalZach	= "jf3982h8er7wv8dcsn29c2ec92efj29f";
 		public const string GrantGalPenny	= "hu198fe2h2f923h32f239823101h3484";
@@ -149,7 +149,7 @@ namespace Fabric.Db.Data.Setups {
 			AddAccess(OauthAccessId.BookMel, book, mel, TokenBookMel, 57);
 			AddAccess(OauthAccessId.FabZach, fab, zach, TokenFabZach, 62);
 
-			AddGrant(OauthGrantId.BookEllie, book, ellie, GrantBookEllie, GrantUrlBook,
+			AddGrant(OauthGrantId.BookElliePast, book, ellie, GrantBookElliePast, GrantUrlBook,
 				now.AddMinutes(-3));
 			AddGrant(OauthGrantId.GalMel, gal, mel, GrantGalMel, GrantUrlGal,
 				now.AddMinutes(20));
@@ -190,7 +190,7 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected void AddAccess(OauthAccessId pId, SetupUsers.AppId pAppId, SetupUsers.UserId? pUserId,
+		private void AddAccess(OauthAccessId pId, SetupUsers.AppId pAppId, SetupUsers.UserId? pUserId,
 													string pToken, int pMins, string pRefresh=null) {
 			var oa = new OauthAccess();
 			oa.OauthAccessId = (long)pId;
@@ -235,7 +235,7 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected void AddScope(OauthScopeId pId, SetupUsers.AppId pAppId, SetupUsers.UserId pUserId,
+		private void AddScope(OauthScopeId pId, SetupUsers.AppId pAppId, SetupUsers.UserId pUserId,
 																						bool pAllow) {
 			var os = new OauthScope();
 			os.OauthScopeId = (long)pId;

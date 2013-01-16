@@ -68,6 +68,9 @@ namespace Fabric.Test.Integration {
 
 				Log.Info("");
 			}
+			else {
+				Log.Info("READ ONLY MODE: skipped database reset");
+			}
 
 			TestTearDown();
 			Context = null;

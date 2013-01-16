@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
@@ -25,14 +24,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".has('Code',Tokens.T.eq,_TP0)"+
 					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
 					".aggregate(_V0)"+
-					".each{it.Code=null}"+
-					".as('step7')"+
+					".as('step6')"+
 				".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
 					".aggregate(_V0)"+
-				".back('step7')"+
+				".back('step6')"+
 				".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
-					".iterate();"+
+				".back('step6')"+
+					".each{it.Code=_TP1};"+
 			"_V0;";
 
 		private OauthGrant vOauthGrant;
@@ -108,6 +107,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pTx.Params, "_TP0", vOauthGrant.Code);
+			TestUtil.CheckParam(pTx.Params, "_TP1", "");
 
 			return vMockGetAndUpdateTxResult.Object;
 		}
