@@ -9,6 +9,7 @@ namespace Fabric.Test.Integration.Common {
 	public class TestApiContext : ApiContext {
 
 		public DateTime? TestUtcNow { get; set; }
+		public string TestCode32 { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,6 +21,11 @@ namespace Fabric.Test.Integration.Common {
 			get {
 				return (TestUtcNow == null ? base.UtcNow : (DateTime)TestUtcNow);
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override string Code32 {
+			get { return (TestUtcNow == null ? base.Code32 : TestCode32); }
 		}
 
 

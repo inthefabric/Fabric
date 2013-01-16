@@ -12,7 +12,7 @@ namespace Fabric.Api.Oauth.Tasks {
 	public class AddGrant : ApiFunc<string> {
 	
 		public enum Query {
-			UpdateGrant,
+			UpdateGrantTx,
 			AddGrantTx
 		}
 		
@@ -48,7 +48,9 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string Execute() {
+			var tx = new WeaverTransaction();
 			IWeaverFuncAs<OauthGrant> ogAlias;
+			IWeaverVarAlias aggVar;
 			
 			var newOg = new OauthGrant();
 			newOg.RedirectUri = vRedirectUri;
@@ -60,20 +62,28 @@ namespace Fabric.Api.Oauth.Tasks {
 			updates.AddUpdate(newOg, x => x.Expires);
 			updates.AddUpdate(newOg, x => x.Code);
 			
-			IWeaverQuery updateOg = 
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out aggVar)
+			);
+
+			tx.AddQuery(
 				NewPathFromIndex(new User { UserId = vUserId })
 				.InOauthGrantListUses.FromOauthGrant
 					.As(out ogAlias)
 				.UsesApp.ToApp
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(ogAlias)
-				.UpdateEach(updates)
-				.End();
+					.Aggregate(aggVar)
+					.UpdateEach(updates)
+				.End()
+			);
+
+			tx.FinishWithoutStartStop(aggVar);
 			
-			OauthGrant og = Context.DbSingle<OauthGrant>(Query.UpdateGrant+"", updateOg);
+			OauthGrant og = Context.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
 			
 			if ( og != null ) {
-				return og.Code;
+				return newOg.Code;
 			}
 			
 			////

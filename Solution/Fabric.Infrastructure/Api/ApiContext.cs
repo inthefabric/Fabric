@@ -51,7 +51,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string Code32 {
+		public virtual string Code32 {
 			get { return FabricUtil.Code32; }
 		}
 
@@ -74,11 +74,16 @@ namespace Fabric.Infrastructure.Api {
 			var a = NewAccess<T>(pScripted);
 			IApiDataAccess<T> da = DbDataAccess(pQueryName, a);
 
-			if ( da.TypedResultList != null && da.TypedResultList.Count == 1 ) {
-				return da.TypedResultList[0];
+			if ( da.TypedResultList == null || da.TypedResultList.Count == 0 ) {
+				return default(T);
+			}
+			
+			if ( da.TypedResultList.Count > 1 ) {
+				throw new Exception("DbSingle<"+typeof(T).Name+"> expects 1 result, but received "+
+					da.TypedResultList.Count);
 			}
 
-			return default(T);
+			return da.TypedResultList[0];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

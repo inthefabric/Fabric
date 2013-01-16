@@ -38,6 +38,11 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		public void Go(string pCode, SetupOauth.OauthGrantId pExpectId,
 									SetupUsers.AppId pExpectAppId, SetupUsers.UserId pExpectUserId) {
 			vCode = pCode;
+
+			OauthGrant clearOg = GetNode<OauthGrant>((long)pExpectId);
+			Assert.NotNull(clearOg, "Target OauthGrant is missing.");
+			Assert.NotNull(clearOg.Code, "Target OauthGrant must have a Token value.");
+
 			int codeCount = CountCodes();
 
 			GrantResult result = TestGo();
@@ -47,7 +52,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.AreEqual((long)pExpectAppId, result.AppId, "Incorrect AppId.");
 			Assert.AreEqual((long)pExpectUserId, result.UserId, "Incorrect UserId.");
 
-			var clearOg = GetNode<OauthGrant>((long)pExpectId);
+			clearOg = GetNode<OauthGrant>((long)pExpectId);
 			Assert.NotNull(clearOg, "Target OauthGrant was deleted.");
 			Assert.AreEqual("", clearOg.Code, "Target OauthGrant.Code was not cleared.");
 
