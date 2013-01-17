@@ -12,7 +12,7 @@ namespace Fabric.Api.Oauth.Tasks {
 	public class AddScope : ApiFunc<OauthScope> {
 		
 		public enum Query {
-			UpdateScope,
+			UpdateScopeTx,
 			AddScopeTx
 		}
 		
@@ -44,7 +44,9 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthScope Execute() {
-			IWeaverFuncAs<OauthScope> ogAlias;
+			var tx = new WeaverTransaction();
+			IWeaverFuncAs<OauthScope> osAlias;
+			IWeaverVarAlias aggVar;
 			
 			var newOs = new OauthScope();
 			newOs.Allow = vAllow;
@@ -53,18 +55,26 @@ namespace Fabric.Api.Oauth.Tasks {
 			var updates = new WeaverUpdates<OauthScope>();
 			updates.AddUpdate(newOs, x => x.Allow);
 			updates.AddUpdate(newOs, x => x.Created);
-			
-			IWeaverQuery updateOs = 
+
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out aggVar)
+			);
+
+			tx.AddQuery(
 				NewPathFromIndex(new User { UserId = vUserId })
 					.InOauthScopeListUses.FromOauthScope
-					.As(out ogAlias)
-					.UsesApp.ToApp
+					.As(out osAlias)
+				.UsesApp.ToApp
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
-					.Back(ogAlias)
+				.Back(osAlias)
+					.Aggregate(aggVar)
 					.UpdateEach(updates)
-					.End();
+				.End()
+			);
+
+			tx.FinishWithoutStartStop(aggVar);
 			
-			OauthScope os = Context.DbSingle<OauthScope>(Query.UpdateScope+"", updateOs);
+			OauthScope os = Context.DbSingle<OauthScope>(Query.UpdateScopeTx+"", tx);
 			
 			if ( os != null ) {
 				return os;

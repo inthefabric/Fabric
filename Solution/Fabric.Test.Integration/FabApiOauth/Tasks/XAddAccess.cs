@@ -63,7 +63,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			FabOauthAccess result = TestGo();
 			Assert.NotNull(result, "Result should be filled.");
 
-			OauthAccess newOa = GetNodeByProp<OauthAccess>("Token", "'"+result.AccessToken+"'");
+			OauthAccess newOa = GetNodeByProp<OauthAccess>(x => x.Token, "'"+result.AccessToken+"'");
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
 
 			NodeConnections conn = GetNodeConnections(newOa);

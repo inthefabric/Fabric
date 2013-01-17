@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure;
@@ -106,11 +107,11 @@ namespace Fabric.Test.Integration {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T GetNodeByProp<T>(string pProp, string pValWithQuotes)
+		protected T GetNodeByProp<T>(Expression<Func<T,object>> pProp, string pValWithQuotes)
 																where T : class, INodeWithId, new() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery(GetNodeQuery<Root>(0)+".outE('RootContains"+typeof(T).Name+"').inV"+
-				".has('"+pProp+"',Tokens.T.eq,"+pValWithQuotes+")");
+				".has('"+WeaverUtil.GetPropertyName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
 			return Context.DbSingle<T>("TEST.GetNodeByProp", q);
 		}
 

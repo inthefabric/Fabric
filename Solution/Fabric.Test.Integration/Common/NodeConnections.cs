@@ -104,7 +104,7 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override string ToString() {
-			string s = Node.GetType().Name+"["+Node.Id+"]";
+			string s = Node.GetType().Name+"["+Node.Id+", "+Node.GetTypeId()+"]";
 
 			foreach ( NodeConnectionRel rel in OutRels ) {
 				s += "\n\t* "+rel;

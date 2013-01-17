@@ -20,8 +20,8 @@ namespace Fabric.Test.Integration.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string ToString() {
-			return (IsOutgoing ? "--> " : "<-- ")+TargetNode.Class+"["+TargetNode.Id+"] / "+
-				Rel.Class+"["+Rel.Id+"]";
+			return (IsOutgoing ? "--> " : "<-- ")+TargetNode.Class+"["+TargetNode.Id+", "+
+				TargetNode.Data[TargetNode.Class+"Id"]+"] / "+Rel.Class+"["+Rel.Id+"]";
 		}
 
 	}

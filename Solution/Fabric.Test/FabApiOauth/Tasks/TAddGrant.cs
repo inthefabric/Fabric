@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddGrant {
 
-		private readonly static string QueryUpdateGrant =
+		private readonly static string QueryUpdateGrantTx =
 			"_V0=[];"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
@@ -103,7 +103,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddGrant.Query.UpdateGrantTx+"");
 			
-			string expect = QueryUpdateGrant
+			string expect = QueryUpdateGrantTx
 				.Replace("{{AppId}}", vAppId+"")
 				.Replace("{{UserId}}", vUserId+"")
 				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"");

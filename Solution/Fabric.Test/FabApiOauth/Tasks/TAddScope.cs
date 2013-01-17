@@ -14,17 +14,20 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddScope {
 
-		private readonly static string QueryUpdateScope =
+		private readonly static string QueryUpdateScopeTx =
+			"_V0=[];"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-			".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
-				".as('step3')"+
-			".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
-				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
-			".back('step3')"+
-				".each{"+
-					"it.setProperty('Allow',{{Allow}});"+
-					"it.setProperty('Created',{{UtcNowTicks}}L)"+
-				"};";
+				".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
+					".as('step3')"+
+				".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
+					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
+				".back('step3')"+
+					".aggregate(_V0)"+
+					".each{"+
+						"it.setProperty('Allow',{{Allow}});"+
+						"it.setProperty('Created',{{UtcNowTicks}}L)"+
+					"};"+
+			"_V0;";
 
 		private readonly static string QueryAddScopeTx =
 			"g.V('RootId',0)[0]"+
@@ -43,21 +46,21 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.addEdge(_V1,_V3,_TP2);"+
 			"_V1;";
 
-		protected long vAppId;
-		protected long vUserId;
-		protected bool vAllow;
-		protected DateTime vUtcNow;
-		protected long vAddOauthScopeId;
+		private long vAppId;
+		private long vUserId;
+		private bool vAllow;
+		private DateTime vUtcNow;
+		private long vAddOauthScopeId;
 		private OauthScope vScopeResult;
 		private OauthScope vAddScopeResult;
-		protected Mock<IApiContext> vMockCtx;
-		protected UsageMap vUsageMap;
+		private Mock<IApiContext> vMockCtx;
+		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public virtual void SetUp() {
+		public void SetUp() {
 			vAppId = 99;
 			vUserId = 1234;
 			vAllow = true;
@@ -74,7 +77,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 			vMockCtx
 				.Setup(x => x.DbSingle<OauthScope>(
-					AddScope.Query.UpdateScope+"", It.IsAny<IWeaverQuery>()))
+					AddScope.Query.UpdateScopeTx+"", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverScript ws) => UpdateScope(ws));
 			
 			vMockCtx
@@ -96,9 +99,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private OauthScope UpdateScope(IWeaverScript pScripted) {
 			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddScope.Query.UpdateScope+"");
+			vUsageMap.Increment(AddScope.Query.UpdateScopeTx+"");
 			
-			string expect = QueryUpdateScope
+			string expect = QueryUpdateScopeTx
 				.Replace("{{AppId}}", vAppId+"")
 				.Replace("{{UserId}}", vUserId+"")
 				.Replace("{{Allow}}", vAllow.ToString().ToLower())
@@ -137,7 +140,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void UpdateSuccess(bool pViaTask) {
 			OauthScope result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(AddScope.Query.UpdateScope+"", 1);
+			vUsageMap.AssertUses(AddScope.Query.UpdateScopeTx+"", 1);
 			vUsageMap.AssertUses(AddScope.Query.AddScopeTx+"", 0);
 			Assert.AreEqual(vScopeResult, result, "Incorrect Result.");
 		}
@@ -150,7 +153,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 			OauthScope result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddScope.Query.UpdateScope+"", 1);
+			vUsageMap.AssertUses(AddScope.Query.UpdateScopeTx+"", 1);
 			vUsageMap.AssertUses(AddScope.Query.AddScopeTx+"", 1);
 			Assert.AreEqual(vAddScopeResult, result, "Incorrect Result.");
 		}

@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
@@ -27,12 +28,12 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			return new AddGrant(vAppId, vUserId, vRedirUri).Go(Context);
 		}
 
-		//TEST: AddGrant's Add scenario
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(AppGal, UserZach, SetupOauth.OauthGrantId.GalZach)]
+		[TestCase(AppBook, UserMel, SetupOauth.OauthGrantId.BookMel)]
+		[TestCase(AppBook, UserEllie, SetupOauth.OauthGrantId.BookElliePast)]
 		public void GoUpdate(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId,
 															SetupOauth.OauthGrantId pUpdateGrantId) {
 			vAppId = (long)pAppId;
@@ -56,19 +57,26 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.AreNotEqual(origOg.Code, updateOg.Code, "Target OauthGrant.Code was not updated.");
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(AppGal, UserEllie)]
+		[TestCase(AppBook, UserBook)]
+		public void GoAdd(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId) {
+			vAppId = (long)pAppId;
+			vUserId = (long)pUserId;
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		private int CountTokens() {
-			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
-				.ContainsOauthAccessList.ToOauthAccess
-					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, "")
-					.Count()
-				.End();
+			string result = TestGo();
+			Assert.NotNull(result, "Result should not be null.");
 
-			IApiDataAccess data = Context.DbData("TEST.CountTokens", q);
-			return int.Parse(data.Result.Text);
-		}*/
+			OauthGrant newOg = GetNodeByProp<OauthGrant>(x => x.Code, "'"+result+"'");
+			Assert.NotNull(newOg, "New OauthGrant was not created.");
+
+			NodeConnections conn = GetNodeConnections(newOg);
+			conn.AssertRelCount(false, 1);
+			conn.AssertRel<RootContainsOauthGrant, Root>(false);
+			conn.AssertRelCount(true, 2);
+			conn.AssertRel<OauthGrantUsesApp, App>(true);
+			conn.AssertRel<OauthGrantUsesUser, User>(true);
+		}
 
 	}
 
