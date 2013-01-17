@@ -47,6 +47,9 @@
     <Compile Include="FabApiOauth\Tasks\XGetUserAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\XGetAppAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\XGetAccessToken.cs" />
+    <Compile Include="FabApiServer\Oauth\XOauthLoginFuncsGet.cs" />
+    <Compile Include="FabApiServer\Oauth\XOauthLoginFuncs.cs" />
+    <Compile Include="FabApiServer\Oauth\XOauthLoginFuncsPost.cs" />
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +58,10 @@
   <ItemGroup>
     <Reference Include="CsQuery">
       <HintPath>..\..\Packages\CsQuery.1.3.3\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq">
+      <HintPath>..\..\Packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\..\Packages\Nancy.0.15.1\lib\net40\Nancy.dll</HintPath>
@@ -101,6 +108,10 @@
     <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
       <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
       <Name>Fabric.Db.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Test\Fabric.Test.csproj">
+      <Project>{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}</Project>
+      <Name>Fabric.Test</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

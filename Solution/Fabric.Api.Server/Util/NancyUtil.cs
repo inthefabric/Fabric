@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Nancy;
+using Nancy.Cookies;
 using ServiceStack.Text;
 
 namespace Fabric.Api.Server.Util {
@@ -28,11 +29,11 @@ namespace Fabric.Api.Server.Util {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void SetUserHeader(Response pRes, long? pUserId, bool pRemember) {
+		public static void SetUserCookie(Response pRes, long? pUserId, bool pRemember) {
 			DateTime now = DateTime.UtcNow;
 
 			if ( pUserId == null ) {
-				pRes.AddCookie(FabricUserAuth, "", now.AddMinutes(-1));
+				pRes.AddCookie(FabricUserAuth, "", now.AddDays(-1));
 				return;
 			}
 
@@ -47,10 +48,11 @@ namespace Fabric.Api.Server.Util {
 			return (new Random()).Next(89)+10;
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public static NancyCookie NewUserCookie(long pUserId) {
+		/*--------------------------------------------------------------------------------------------*/
+		public static NancyCookie NewUserCookieForTesting(long pUserId) {
 			string val = TwoDigitRandom()+"|"+pUserId;
-			return new NancyCookie(FabricUserAuth, EncryptUtil.EncryptData(EncryptKey, val));
+			string encVal = EncryptUtil.EncryptData(EncryptKey, val);
+			return new NancyCookie(FabricUserAuth, encVal);
 		}
 		
 		

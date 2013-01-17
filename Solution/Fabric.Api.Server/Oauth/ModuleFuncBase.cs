@@ -38,6 +38,10 @@ namespace Fabric.Api.Server.Oauth {
 					return default(TType);
 				}
 
+				if ( pRequired && string.IsNullOrEmpty(val) ) {
+					throw new Exception("Value is null or empty.");
+				}
+
 				return pConvert(val);
 			}
 			catch ( Exception e ) {

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using Fabric.Infrastructure;
 using NUnit.Framework;
 using Weaver.Interfaces;
-using Fabric.Infrastructure;
-using System.Collections.Generic;
 
 namespace Fabric.Test.Util {
 
@@ -43,6 +44,23 @@ namespace Fabric.Test.Util {
 				.Replace(";", ";\n\t");
 
 			Log.Debug("Query:\n\n\t"+script+p);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static NameValueCollection BuildQuery(string pQuery) {
+			var q = new NameValueCollection();
+			if ( string.IsNullOrEmpty(pQuery) ) { return q; }
+
+			string[] pairs = pQuery.Split('&');
+
+			foreach ( string pair in pairs ) {
+				string[] nameVal = pair.Split('=');
+				q.Add(nameVal[0], nameVal[1]);
+			}
+
+			return q;
 		}
 
 	}

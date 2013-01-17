@@ -1,13 +1,13 @@
-﻿using Fabric.Api.Oauth;
-using Moq;
+﻿using System;
+using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth;
+using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
-using NUnit.Framework;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Results;
-using System;
 using Fabric.Test.Util;
+using Moq;
+using NUnit.Framework;
 
 namespace Fabric.Test.FabApiOauth {
 
@@ -91,6 +91,8 @@ namespace Fabric.Test.FabApiOauth {
 				Assert.Null(result.ScopeRedirect, "Result.ScopeRedirect should be null.");
 				Assert.Null(result.ScopeCode, "Result.ScopeCode should be null.");
 			}
+
+			vMockCore.Verify(x => x.SetUserId(user.UserId), Times.Once());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

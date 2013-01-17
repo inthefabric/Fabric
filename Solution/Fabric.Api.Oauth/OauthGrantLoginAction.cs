@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
@@ -60,6 +61,7 @@ namespace Fabric.Api.Oauth {
 				return result;
 			}
 
+			vCore.SetUserId(user.UserId);
 			result.LoggedUserId = user.UserId;
 			result.LoggedUserName = user.Name;
 

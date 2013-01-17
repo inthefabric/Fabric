@@ -12,6 +12,7 @@ using Nancy;
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
+	//TEST: OauthLoginFuncs unit tests. Move flows (like OauthGrantLoginEntry) into an interface.
 	public class OauthLoginFuncs : ModuleFuncBase, IOauthLoginFuncs {
 		
 		public const string CancelAction = "CancelAction";
@@ -24,10 +25,10 @@ namespace Fabric.Api.Server.Oauth {
 		public const string Password = "Password";
 		public const string RememberMe = "RememberMe";
 
-		private const string DbSvcUrl = "http://localhost:9001/";
-
 		/* localhost:9000/api/oauth/login?
 			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316 */
+
+		public FabOauthLogin LoginDto { get; private set; }
 
 		private readonly IDictionary<string, string> vCookies;
 
@@ -44,8 +45,8 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLoginFuncs(DynamicDictionary pQuery, DynamicDictionary pForm,
-				IDictionary<string,string> pCookies) : base(new ApiContext(DbSvcUrl), pQuery, pForm) {
+		public OauthLoginFuncs(IApiContext pApiCtx, DynamicDictionary pQuery, DynamicDictionary pForm,
+								IDictionary<string, string> pCookies) : base(pApiCtx, pQuery, pForm) {
 			vCookies = pCookies;
 		}
 		
@@ -60,7 +61,7 @@ namespace Fabric.Api.Server.Oauth {
 				vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName);
 				vScope = GetParamString(FuncOauthLoginStep.ScopeName, false);
 				vSwitchMode = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
-				vState = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
+				vState = GetParamString(FuncOauthLoginStep.StateName, false);
 
 				return pFunc();
 			}
@@ -102,17 +103,17 @@ namespace Fabric.Api.Server.Oauth {
 
 			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
 			var func = new OauthGrantLoginEntry(vRespType, vSwitchMode, core, new OauthTasks());
-			FabOauthLogin log = func.Go(ApiCtx);
+			LoginDto = func.Go(ApiCtx);
 
-			if ( log.ShowLoginPage ) {
-				return ResponseLoginPage(log);
+			if ( LoginDto.ShowLoginPage ) {
+				return ResponseLoginPage(LoginDto);
 			}
 
-			if ( log.ScopeCode != null ) {
-				return Redirect(log.ScopeRedirect, log.ScopeCode);
+			if ( LoginDto.ScopeCode != null ) {
+				return Redirect(LoginDto.ScopeRedirect, LoginDto.ScopeCode);
 			}
 
-			return ResponseScopePage(log);
+			return ResponseScopePage(LoginDto);
 		}
 
 
@@ -135,7 +136,7 @@ namespace Fabric.Api.Server.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response PeformLogout() {
 			Response r = NancyUtil.Redirect(vRedirUri);
-			NancyUtil.SetUserHeader(r, null, false);
+			NancyUtil.SetUserCookie(r, null, false);
 			return r;
 		}
 
@@ -147,17 +148,17 @@ namespace Fabric.Api.Server.Oauth {
 
 			var core = new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
 			var func = new OauthGrantLoginAction(user, pass, core, new OauthTasks());
-			FabOauthLogin log = func.Go(ApiCtx);
+			LoginDto = func.Go(ApiCtx);
 
-			if ( log.ShowLoginPage ) {
-				return ResponseLoginPage(log);
+			if ( LoginDto.ShowLoginPage ) {
+				return ResponseLoginPage(LoginDto);
 			}
 
-			bool scopeAllowed = (log.ScopeCode != null);
+			bool scopeAllowed = (LoginDto.ScopeCode != null);
 
 			Response r = (scopeAllowed ?
-				Redirect(log.ScopeRedirect, log.ScopeCode) : ResponseScopePage(log));
-			NancyUtil.SetUserHeader(r, log.LoggedUserId, rem);
+				Redirect(LoginDto.ScopeRedirect, LoginDto.ScopeCode) : ResponseScopePage(LoginDto));
+			NancyUtil.SetUserCookie(r, LoginDto.LoggedUserId, rem);
 			return r;
 		}
 
