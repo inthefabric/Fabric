@@ -71,11 +71,10 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOg, "New OauthGrant was not created.");
 
 			NodeConnections conn = GetNodeConnections(newOg);
-			conn.AssertRelCount(false, 1);
-			conn.AssertRel<RootContainsOauthGrant, Root>(false);
-			conn.AssertRelCount(true, 2);
-			conn.AssertRel<OauthGrantUsesApp, App>(true);
-			conn.AssertRel<OauthGrantUsesUser, User>(true);
+			conn.AssertRelCount(1, 2);
+			conn.AssertRel<RootContainsOauthGrant, Root>(false, 0);
+			conn.AssertRel<OauthGrantUsesApp, App>(true, vAppId);
+			conn.AssertRel<OauthGrantUsesUser, User>(true, vUserId);
 		}
 
 	}

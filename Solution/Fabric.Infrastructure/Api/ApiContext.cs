@@ -56,7 +56,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public long GetSharpflakeId<T>() where T : INode {
+		public virtual long GetSharpflakeId<T>() where T : INode {
 			return Sharpflake.GetId<T>();
 		}
 

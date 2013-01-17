@@ -45,13 +45,32 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRelCount(bool pIsOutgoing, int pCount) {
-			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
-			Assert.AreEqual(pCount, rels.Count, "Incorrect "+(pIsOutgoing ? "Out" : "In")+"Rel count.");
+		public void AssertRelCount(int pIncoming, int pOutgoing) {
+			string end = " count for "+Node.GetType().Name+".";
+			Assert.AreEqual(pOutgoing, OutRels.Count, "Incorrect OutRels"+end);
+			Assert.AreEqual(pIncoming, InRels.Count, "Incorrect InRels"+end);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRel<TRel, TNode>(bool pIsOutgoing)
+		public void AssertRelCount<TRel>(bool pIsOutgoing, int pCount) where TRel : IWeaverRel {
+			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
+			int count = 0;
+
+			foreach ( NodeConnectionRel rel in rels ) {
+				if ( rel.Rel.Class != typeof(TRel).Name ) {
+					continue;
+				}
+
+				count++;
+			}
+
+			Assert.AreEqual(pCount, count, "Incorrect "+(pIsOutgoing ? "Out" : "In")+"Rel ["+
+				typeof(TRel).Name+"] count for "+Node.GetType().Name+".");
+
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AssertRel<TRel, TNode>(bool pIsOutgoing, long pTargetId)
 													where TRel : IWeaverRel where TNode : INodeWithId {
 			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 
@@ -64,11 +83,17 @@ namespace Fabric.Test.Integration.Common {
 					continue;
 				}
 
+				string targId = rel.TargetNode.Data[rel.TargetNode.Class+"Id"];
+
+				if ( long.Parse(targId) != pTargetId ) {
+					continue;
+				}
+
 				return;
 			}
 
 			Assert.Fail((pIsOutgoing ? "Out" : "In")+"Rel ["+typeof(TRel).Name+"+"+typeof(TNode).Name+
-				"] was not found.");
+				"] was not found for "+Node.GetType().Name+".");
 		}
 
 

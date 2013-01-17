@@ -36,6 +36,7 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiOauth\Tasks\XAddMemberEnsure.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddScope.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddGrant.cs" />
     <Compile Include="FabApiOauth\Tasks\XGetScope.cs" />

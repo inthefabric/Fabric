@@ -45,33 +45,33 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool Execute() {
-			IApiDataAccess getData = GetMemberData();
+			Member mem;
+			MemberTypeAssign mta;
+			MemberType mt;
 
-			if ( getData == null ) {
+			bool hasMember = GetMemberData(out mem, out mta, out mt);
+
+			if ( !hasMember ) {
 				AddMember();
 				return true;
 			}
-
-			MemberType mt = getData.ResultDtoList[2].ToNode<MemberType>();
 			
 			if ( AcceptableMembershipExists(mt) ) {
 				return false;
 			}
 
-			Member mem = getData.ResultDtoList[0].ToNode<Member>();
-			MemberTypeAssign mta = getData.ResultDtoList[1].ToNode<MemberTypeAssign>();
 			UpdateMemberType(mem, mta);
 			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess GetMemberData() {
+		private bool GetMemberData(out Member pMem, out MemberTypeAssign pMta, out MemberType pType) {
 			var tx = new WeaverTransaction();
 			IWeaverFuncAs<Member> memberAlias;
-			IWeaverVarAlias getListVar;
+			IWeaverVarAlias aggVar;
 
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out getListVar)
+				WeaverTasks.InitListVar(tx, out aggVar)
 			);
 
 			tx.AddQuery(
@@ -81,30 +81,36 @@ namespace Fabric.Api.Oauth.Tasks {
 				.InAppDefines.FromApp
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(memberAlias)
-					.Aggregate(getListVar)
+					.Aggregate(aggVar)
 				.HasMemberTypeAssign.ToMemberTypeAssign
-					.Aggregate(getListVar)
+					.Aggregate(aggVar)
 				.UsesMemberType.ToMemberType
-					.Aggregate(getListVar)
+					.Aggregate(aggVar)
 					.Iterate()
 				.End()
 			);
 
-			tx.FinishWithoutStartStop(getListVar);
+			tx.FinishWithoutStartStop(aggVar);
 
 			////
 			
 			IApiDataAccess data = Context.DbData(Query.GetMemberTx+"", tx);
 
 			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
-				return null;
+				pMem = null;
+				pMta = null;
+				pType = null;
+				return false;
 			}
 
 			if ( data.ResultDtoList.Count != 3 ) {
 				throw new Exception("Incorrect GetMemberData() ResultDtoList.Count.");
 			}
 
-			return data;
+			pMem = data.ResultDtoList[0].ToNode<Member>();
+			pMta = data.ResultDtoList[1].ToNode<MemberTypeAssign>();
+			pType = data.ResultDtoList[2].ToNode<MemberType>();
+			return true;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -137,21 +143,6 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
-																	IWeaverVarAlias<Member> pMemVar) {
-			var newAssign = new MemberTypeAssign();
-			newAssign.MemberTypeAssignId = Context.GetSharpflakeId<MemberTypeAssign>();
-			newAssign.Performed = Context.UtcNow.Ticks;
-			newAssign.Note = "First login.";
-
-			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
-			mtaBuild.AddNode(pRootVar);
-			mtaBuild.SetInMemberHas(pMemVar);
-			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
-			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		private void UpdateMemberType(Member pMember, MemberTypeAssign pAssign) {
 			var txb = new TxBuilder();
 			IWeaverVarAlias<Root> rootVar;
@@ -176,6 +167,23 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			AddMemberTypeAssignWithTx(txb, rootVar, memVar);
 			Context.DbData(Query.UpdateMemberTx+"", txb.Finish());
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
+																	IWeaverVarAlias<Member> pMemVar) {
+			var newAssign = new MemberTypeAssign();
+			newAssign.MemberTypeAssignId = Context.GetSharpflakeId<MemberTypeAssign>();
+			newAssign.Performed = Context.UtcNow.Ticks;
+			newAssign.Note = "First login.";
+
+			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
+			mtaBuild.AddNode(pRootVar);
+			mtaBuild.SetInMemberHas(pMemVar);
+			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
+			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 		}
 
 	}

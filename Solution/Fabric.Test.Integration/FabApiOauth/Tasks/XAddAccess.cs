@@ -67,17 +67,16 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
 
 			NodeConnections conn = GetNodeConnections(newOa);
-			conn.AssertRelCount(false, 1);
-			conn.AssertRel<RootContainsOauthAccess, Root>(false);
+			conn.AssertRelCount(1, (vClientOnly ? 1 : 2));
+			conn.AssertRel<RootContainsOauthAccess, Root>(false, 0);
 
 			if ( vClientOnly ) {
-				conn.AssertRelCount(true, 1);
-				conn.AssertRel<OauthAccessUsesApp, App>(true);
+				conn.AssertRel<OauthAccessUsesApp, App>(true, vAppId);
 			}
 			else {
-				conn.AssertRelCount(true, 2);
-				conn.AssertRel<OauthAccessUsesApp, App>(true);
-				conn.AssertRel<OauthAccessUsesUser, User>(true);
+				Assert.NotNull(vUserId, "vUserId cannot be null.");
+				conn.AssertRel<OauthAccessUsesApp, App>(true, vAppId);
+				conn.AssertRel<OauthAccessUsesUser, User>(true, (long)vUserId);
 			}
 
 			////
