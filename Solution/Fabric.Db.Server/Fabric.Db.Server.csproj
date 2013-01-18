@@ -63,8 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbModule.cs" />
-    <Compile Include="Query\QueryHandler.cs" />
-    <Compile Include="Query\GremlinQuery.cs" />
+    <Compile Include="Gremlin\GremlinDbQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

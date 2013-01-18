@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Db.Server.Query;
+using Fabric.Db.Server.Gremlin;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Weaver.Interfaces;
 
@@ -25,9 +26,14 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetResultString() {
+			long t = DateTime.UtcNow.Ticks;
+
 			string q = TestApiDataAccess.CleanQueryIndexIds(Query);
-			var qh = new QueryHandler(q, new Guid(), TestApiDataAccess.GremlinUri);
-			return qh.GetJson();
+			var qh = new GremlinDbQuery(q, TestApiDataAccess.GremlinUri);
+			string json = qh.GetJson();
+
+			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
+			return json;
 		}
 
 	}

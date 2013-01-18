@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Db.Server.Query;
+﻿using Fabric.Db.Server.Gremlin;
 using Fabric.Infrastructure;
 using Nancy;
 
@@ -10,15 +9,12 @@ namespace Fabric.Db.Server {
 
 		public const string GremlinUri = "http://localhost:8182/graphs/Fabric/tp/gremlin";
 
-		private readonly Guid vRequestId;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DbModule() {
 			Log.ConfigureOnce();
-			vRequestId = Guid.NewGuid();
-			Post["/(.*)"] = (p => new QueryHandler(Context, vRequestId, GremlinUri).GetResponse());
+			Post["/gremlin"] = (p => new GremlinDbQuery(Context, GremlinUri).GetResponse());
 		}
 
 	}

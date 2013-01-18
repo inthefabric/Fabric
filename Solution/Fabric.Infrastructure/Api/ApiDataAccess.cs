@@ -26,7 +26,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiDataAccess(IApiContext pContext, string pScript, 
-														IDictionary<string, string> pParams=null) {
+															IDictionary<string, string> pParams=null) {
 			Context = pContext;
 			Script = pScript;
 			Params = pParams;
@@ -56,6 +56,7 @@ namespace Fabric.Infrastructure.Api {
 		public virtual void Execute() {
 			ResultString = GetResultString();
 			Result = JsonSerializer.DeserializeFromString<DbResult>(ResultString);
+			Result.BuildDbDtos(ResultString);
 
 			if ( Result.Exception != null ) {
 				throw new Exception(ResultString);
@@ -77,8 +78,10 @@ namespace Fabric.Infrastructure.Api {
 			return Encoding.UTF8.GetString(ResultBytes);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected string BuildParams() {
+		private string BuildParams() {
 			if ( Params == null ) { return ""; }
 			string p = "";
 
