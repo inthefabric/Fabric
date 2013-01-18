@@ -1,14 +1,21 @@
 ﻿using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Dto.Oauth {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabOauth : FabDto {
+	public abstract class FabDto : IFabDto {
+
+		public string Dto { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {}
+		protected FabDto() {
+			Dto = GetType().Name;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public abstract void Fill(IDbDto pDbDto);
 
 	}
 

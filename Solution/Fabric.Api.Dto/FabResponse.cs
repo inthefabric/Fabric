@@ -8,7 +8,6 @@ namespace Fabric.Api.Dto {
 	public class FabResponse {
 
 		public object Data { get; set; }
-		public string Type { get; set; }
 		public string BaseUri { get; set; }
 		public string RequestUri { get; set; }
 		public FabStepLink[] Links { get; set; }

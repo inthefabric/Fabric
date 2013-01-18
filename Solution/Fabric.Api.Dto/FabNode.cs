@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public abstract class FabNode : IFabNode {
+	public abstract class FabNode : FabDto, IFabNode {
 
-		public long NodeId { get; set; }
+		public string Uri { get; set; }
+
+		protected long NodeId { get; set; }
 		protected abstract long TypeId { get; }
 		protected virtual List<string> AvailableProps { get { return AvailProps; } }
-		public string NodeUri { get; set; }
 
 		public static readonly List<string> AvailProps = new List<string> {
 			"NodeId" 
@@ -27,7 +27,7 @@ namespace Fabric.Api.Dto {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Fill(IDbDto pDbDto) {
+		public override void Fill(IDbDto pDbDto) {
 			if ( pDbDto.Id == null ) {
 				throw new Exception("DbDto.Id is null.");
 			}
@@ -35,7 +35,7 @@ namespace Fabric.Api.Dto {
 			NodeId = (long)pDbDto.Id;
 			FillResultData(pDbDto.Data);
 
-			NodeUri = "("+TypeId+")";
+			Uri = "("+TypeId+")";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

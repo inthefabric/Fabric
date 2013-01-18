@@ -15,7 +15,6 @@ namespace Fabric.Api.Server.Api {
 		public HttpStatusCode HttpStatus { get; set; }
 
 		public List<IDbDto> DtoList { get; set; }
-		public bool IsSingleDto { get; set; }
 		public string NonDtoText { get; set; }
 		public FabError Error { get; set; }
 

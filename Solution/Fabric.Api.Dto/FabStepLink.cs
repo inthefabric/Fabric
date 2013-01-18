@@ -5,8 +5,8 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabStepLink {
 		
-		public bool IsOutgoing { get; set; }
-		public string Relation { get; set; }
+		public bool IsOut { get; set; }
+		public string Rel { get; set; }
 		public string Class { get; set; }
 		public string Uri { get; set; }
 
@@ -14,8 +14,8 @@ namespace Fabric.Api.Dto {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabStepLink(IStepLink pLink) {
-			IsOutgoing = pLink.IsOutgoing;
-			Relation = pLink.RelType;
+			IsOut = pLink.IsOutgoing;
+			Rel = pLink.RelType;
 			Class = "Fab"+pLink.Node;
 			Uri = pLink.Uri;
 		}

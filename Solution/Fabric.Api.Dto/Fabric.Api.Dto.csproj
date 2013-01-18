@@ -36,6 +36,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApiDtos.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApiDtoUtil.cs">
+      <DependentUpon>ApiDtoUtil.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FabDto.cs" />
     <Compile Include="FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />
     <Compile Include="IFabDto.cs" />
@@ -55,6 +61,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiDtos.cs</LastGenOutput>
     </None>
+    <None Include="ApiDtoUtil.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiDtoUtil.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -70,6 +80,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ServiceStack.Text, Version=3.9.33.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

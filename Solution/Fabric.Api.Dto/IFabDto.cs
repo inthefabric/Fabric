@@ -1,10 +1,11 @@
-﻿using Fabric.Infrastructure;
-using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
 	public interface IFabDto {
+
+		string Dto { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

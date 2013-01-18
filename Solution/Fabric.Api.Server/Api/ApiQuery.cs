@@ -66,7 +66,6 @@ namespace Fabric.Api.Server.Api {
 			vInfo.DtoType = vLastStep.DtoType;
 			vInfo.Resp.SetLinks(vLastStep.AvailableLinks);
 			vInfo.Resp.Functions = vLastStep.AvailableFuncs.ToArray();
-			vInfo.Resp.Type = vInfo.DtoType.Name;
 			vInfo.Query = vLastStep.Path.Script;
 
 			if ( !vLastStep.UseLocalData ) {
@@ -173,12 +172,6 @@ namespace Fabric.Api.Server.Api {
 				var se = (pEx as StepException);
 				vInfo.Error = se.ToFabError();
 				vInfo.HttpStatus = HttpStatusCode.BadRequest;
-
-				IStep s = se.Step;
-
-				if ( vInfo.Resp.Type == null && s != null && s.DtoType != null ) {
-					vInfo.Resp.Type = s.DtoType.Name;
-				}
 
 				/*switch ( step.ErrCode ) {
 					case StepException.Code.IncorrectParamCount:

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Fabric.Api.Dto;
+﻿using Fabric.Api.Dto;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
@@ -29,11 +26,7 @@ namespace Fabric.Api.Server.Api {
 				data = vInfo.Error.ToJson();
 			}
 			else {
-				var build = GetType()
-					.GetMethod("BuildTypedJson", (BindingFlags.NonPublic | BindingFlags.Instance))
-					.MakeGenericMethod(new[] { vInfo.DtoType });
-
-				data = (string)build.Invoke(this, new object[] { });
+				data = BuildJson();
 			}
 			
 			vInfo.Resp.Data = "{DATA}";
@@ -48,28 +41,18 @@ namespace Fabric.Api.Server.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildTypedJson<T>() where T : FabNode {
+		private string BuildJson() {
 			if ( vInfo.DtoList == null ) {
-				return "{}"; //"{\"Text\":\""+FabricUtil.JsonUnquote(vInfo.NonDtoText)+"\"}";
+				return "[]"; //"{\"Text\":\""+FabricUtil.JsonUnquote(vInfo.NonDtoText)+"\"}";
 			}
 
-			if ( vInfo.IsSingleDto ) {
-				T n = (T)Activator.CreateInstance(vInfo.DtoType);
-				n.Fill(vInfo.DtoList[0]);
-				vInfo.NodeAction(n);
-				return n.ToJson();
-			}
-
-			var nodeList = new List<T>();
+			var json = "";
 
 			foreach ( DbDto dbDto in vInfo.DtoList ) {
-				T n = (T)Activator.CreateInstance(vInfo.DtoType);
-				n.Fill(dbDto);
-				vInfo.NodeAction(n);
-				nodeList.Add(n);
+				json += (json == "" ? "" : ",")+ApiDtoUtil.ToDtoJson(dbDto);
 			}
 
-			return nodeList.ToJson();
+			return "["+json+"]";
 		}
 
 	}

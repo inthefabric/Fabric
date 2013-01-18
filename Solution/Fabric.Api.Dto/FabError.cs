@@ -1,11 +1,10 @@
 ﻿using System;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabError : IFabDto {
+	public class FabError : FabDto {
 
 		public int Code { get; set; }
 		public string CodeName { get; set; }
@@ -25,7 +24,7 @@ namespace Fabric.Api.Dto {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void Fill(IDbDto pDbDto) {}
+		public override void Fill(IDbDto pDbDto) {}
 
 	}
 

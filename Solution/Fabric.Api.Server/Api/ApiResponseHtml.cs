@@ -42,13 +42,6 @@ namespace Fabric.Api.Server.Api {
 			var html = "";
 			var i = 0;
 
-			if ( vInfo.IsSingleDto ) {
-				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
-				n.Fill(vInfo.DtoList[0]);
-				vInfo.NodeAction(n);
-				return BuildNodeHtml(n);
-			}
-
 			foreach ( DbDto dto in vInfo.DtoList ) {
 				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
 				n.Fill(dto);
@@ -133,7 +126,7 @@ namespace Fabric.Api.Server.Api {
 				FabStepLink sl = vInfo.Resp.Links[i];
 				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+sl.Uri;
 				html += (i == 0 ? "" : "<br/>")+"[ <a href='"+uri+"'>"+
-					(sl.IsOutgoing ? "Out" : "In")+" | "+sl.Relation+" | "+sl.Class+"</a> ]";
+					(sl.IsOut ? "Out" : "In")+" | "+sl.Rel+" | "+sl.Class+"</a> ]";
 			}
 
 			html += "</div>";

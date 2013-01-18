@@ -1,10 +1,9 @@
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Oauth {
 
 	/*================================================================================================*/
-	public class FabOauthLogout : IFabDto {
+	public class FabOauthLogout : FabDto {
 
 		[DtoProp("success")]
 		public int Success { get; set; }
@@ -15,7 +14,7 @@ namespace Fabric.Api.Dto.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Fill(IDbDto pDbDto) {}
+		public override void Fill(IDbDto pDbDto) {}
 
 	}
 
