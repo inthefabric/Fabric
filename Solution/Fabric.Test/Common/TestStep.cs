@@ -2,14 +2,16 @@
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Paths.Steps.Nodes;
+using Fabric.Infrastructure.Paths;
 
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
 	public class TestStep : Step<TestFabNode> {
 
-		public static readonly List<string> TestAvailLinks = new List<string> {
-			 "Test1", "TEST2"
+		public static readonly List<IStepLink> TestAvailLinks = new List<IStepLink> {
+			new StepLink("Test", "SomeNode", true, "/PathToSomeNode"),
+			new StepLink("TEST2", "OtherNode", false, "/PathToOtherNode")
 		};
 
 		public const string SegmentText = "testStep(x)";
@@ -22,7 +24,7 @@ namespace Fabric.Test.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableLinks { get { return TestAvailLinks; } }
+		public override List<IStepLink> AvailableLinks { get { return TestAvailLinks; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

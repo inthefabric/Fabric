@@ -18,12 +18,13 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 		public void New() {
 			var p = new Path();
 			var s = new TestNodeStep(p);
-			var expectAvail = new[] { "HasThing" };
 
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
 			Assert.Null(s.TypeId, "TypeId should be null.");
 			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
-			Assert.AreEqual(expectAvail, s.AvailableLinks, "Incorrect AvailableLinks.");
+			Assert.NotNull(s.AvailableLinks, "AvailableLinks should not be null.");
+			Assert.AreEqual(1, s.AvailableLinks.Count, "Incorrect AvailableLinks length.");
+			Assert.AreEqual("Has", s.AvailableLinks[0].RelType, "Incorrect AvailableLinks[0].");
 			Assert.Null(s.Data, "Data should be null.");
 		}
 

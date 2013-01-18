@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths.Steps.Functions;
+using Fabric.Infrastructure.Paths;
 
 namespace Fabric.Api.Paths.Steps {
 	
@@ -23,8 +24,8 @@ namespace Fabric.Api.Paths.Steps {
 		public abstract Type DtoType { get; }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual List<string> AvailableLinks {
-			get { return new List<string>(); }
+		public virtual List<IStepLink> AvailableLinks {
+			get { return new List<IStepLink>(); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

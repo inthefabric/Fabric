@@ -17,20 +17,19 @@ namespace Fabric.Db.Server.Query {
 			Error
 		}
 
-		public const string GremlinPath = 
-			"http://localhost:8182/graphs/FabricTest/tp/gremlin";
-
 		public byte[] ResponseData { get; private set; }
 		public string ResponseString { get; private set; }
 		public DbResultType ResultType { get; private set; }
 		public DbResult Result { get; private set; }
 
+		private readonly string vGremlinUri;
 		private readonly byte[] vQueryData;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public GremlinQuery(string pQuery) {
+		public GremlinQuery(string pGremlinUri, string pQuery) {
+			vGremlinUri = pGremlinUri;
 			vQueryData = Encoding.UTF8.GetBytes(pQuery);
 			ResultType = DbResultType.None;
 		}
@@ -43,7 +42,7 @@ namespace Fabric.Db.Server.Query {
 			try {
 				var wc = new WebClient();
 				wc.Headers.Add("Content-Type", "application/json");
-				ResponseData = wc.UploadData(GremlinPath, "POST", vQueryData);
+				ResponseData = wc.UploadData(vGremlinUri, "POST", vQueryData);
 				ResponseString = Encoding.UTF8.GetString(ResponseData);
 				ResultType = DbResultType.Success;
 				//Log.Debug("RESPONSE: "+ResponseString);

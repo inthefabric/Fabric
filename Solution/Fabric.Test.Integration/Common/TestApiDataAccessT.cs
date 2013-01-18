@@ -26,7 +26,7 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetResultString() {
 			string q = TestApiDataAccess.CleanQueryIndexIds(Query);
-			var qh = new QueryHandler(q, new Guid());
+			var qh = new QueryHandler(q, new Guid(), TestApiDataAccess.GremlinUri);
 			return qh.GetJson();
 		}
 

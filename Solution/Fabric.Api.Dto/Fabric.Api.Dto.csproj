@@ -36,6 +36,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApiDtos.tt</DependentUpon>
     </Compile>
+    <Compile Include="FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />
     <Compile Include="IFabDto.cs" />
     <Compile Include="FabError.cs" />

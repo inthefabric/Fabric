@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Fabric.Api.Dto;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Server.Api {
@@ -37,7 +36,7 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			if ( vInfo.DtoList == null ) {
-				return (vInfo.NonDtoText ?? "");
+				return "<i>No Results</i>";
 			}
 
 			var html = "";
@@ -131,9 +130,10 @@ namespace Fabric.Api.Server.Api {
 			html += "<div style='margin-left:20px;'>";
 
 			for ( int i = 0 ; i < vInfo.Resp.Links.Length ; ++i ) {
-				string au = vInfo.Resp.Links[i];
-				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+au;
-				html += (i == 0 ? "" : "<br/>")+"<a href='"+uri+"'>"+au+"</a>";
+				FabStepLink sl = vInfo.Resp.Links[i];
+				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+sl.Uri;
+				html += (i == 0 ? "" : "<br/>")+"[ <a href='"+uri+"'>"+
+					(sl.IsOutgoing ? "Out" : "In")+" | "+sl.Relation+" | "+sl.Class+"</a> ]";
 			}
 
 			html += "</div>";

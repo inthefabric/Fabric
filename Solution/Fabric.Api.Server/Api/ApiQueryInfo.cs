@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Dto;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 using Nancy;
 

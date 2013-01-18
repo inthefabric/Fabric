@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
@@ -16,6 +16,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto;
+using Fabric.Infrastructure.Paths;
 
 namespace Fabric.Api.Paths.Steps.Nodes {
 	
@@ -47,7 +48,6 @@ foreach ( string name in nodeNames ) {
 
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
 	string interfaces = "";
-	string steps = "";
 
 	if ( node.Name == "Root" ) {
 		interfaces += "IFinalStep";
@@ -55,8 +55,6 @@ foreach ( string name in nodeNames ) {
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		interfaces += (interfaces == "" ? "" : ", ")+"I"+hr.RelPropName;
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
-		steps += (steps == "" ? "" : ", ")+"\"/"+hr.RelPropName+"\"";
 	}
 	
 	string typeIdIsLong = "false";
@@ -70,8 +68,16 @@ foreach ( string name in nodeNames ) {
 	/*================================================================================================*/
 	public partial class <#= node.Name #>Step : NodeStep<<#= "Fab"+node.Name #>>, <#= interfaces #> {
 	
-		private static readonly List<string> AvailNodeLinks = new List<string> {
-			<#= steps #>
+		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+<#
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		interfaces += (interfaces == "" ? "" : ", ")+"I"+hr.RelPropName;
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+#>
+			new StepLink("<#= hr.RelTypeName #>", "<#= hr.TargetNodeType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
+<#
+	}
+#>
 		};
 
 
@@ -110,7 +116,7 @@ foreach ( string name in nodeNames ) {
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableLinks {
+		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		

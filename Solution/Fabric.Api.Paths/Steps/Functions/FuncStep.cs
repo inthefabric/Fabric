@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure;
+using Fabric.Infrastructure.Paths;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -19,13 +19,12 @@ namespace Fabric.Api.Paths.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override Type DtoType {
 			get {
-				Log.Debug("PROXY: "+ProxyStep+" / "+this);
 				return (ProxyStep != null ? ProxyStep.DtoType : null);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<string> AvailableLinks { get { return ProxyStep.AvailableLinks; } }
+		public override List<IStepLink> AvailableLinks { get { return ProxyStep.AvailableLinks; } }
 		public override List<string> AvailableFuncs { get { return ProxyStep.AvailableFuncs; } }
 
 		/*--------------------------------------------------------------------------------------------*/

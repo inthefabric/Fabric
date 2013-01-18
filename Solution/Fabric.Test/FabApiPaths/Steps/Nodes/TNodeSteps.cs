@@ -71,7 +71,15 @@ namespace Fabric.Test.FabApiPaths.Steps.Nodes {
 			////
 			
 			step = pNewStep(new Path());
-			Assert.AreEqual(expectSteps, step.AvailableLinks, "Incorrect AvailableLinks.");
+
+			Assert.NotNull(step.AvailableLinks, "AvailableLinks should be filled.");
+			Assert.AreEqual(expectSteps.Count, step.AvailableLinks.Count,
+				"Incorrect AvailableLinks length.");
+
+			for ( int i = 0 ; i < step.AvailableLinks.Count ; ++i ) {
+				Assert.AreEqual(expectSteps[i], step.AvailableLinks[i].Uri,
+					"Incorrect AvailableLinks["+i+"].");
+			}
 
 			if ( !isRoot ) {
 				step = pNewStep(new Path());

@@ -13,12 +13,14 @@ namespace Fabric.Db.Server.Query {
 
 		private readonly string vQuery;
 		private readonly Guid vReqId;
+		private readonly string vGremlinUri;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public QueryHandler(NancyContext pContext, Guid pReqId) {
+		public QueryHandler(NancyContext pContext, Guid pReqId, string pGremlinUri) {
 			vReqId = pReqId;
+			vGremlinUri = pGremlinUri;
 
 			StreamReader sr = new StreamReader(pContext.Request.Body);
 			vQuery = sr.ReadToEnd();
@@ -26,9 +28,10 @@ namespace Fabric.Db.Server.Query {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public QueryHandler(string pQuery, Guid pReqId) {
-			vReqId = pReqId;
+		public QueryHandler(string pQuery, Guid pReqId, string pGremlinUri) {
 			vQuery = pQuery;
+			vReqId = pReqId;
+			vGremlinUri = pGremlinUri;
 		}
 
 
@@ -39,7 +42,7 @@ namespace Fabric.Db.Server.Query {
 			string json;
 
 			try {
-				var q = new GremlinQuery(vQuery);
+				var q = new GremlinQuery(vGremlinUri, vQuery);
 				q.Execute();
 				json = JsonSerializer.SerializeToString(q.Result);
 			}

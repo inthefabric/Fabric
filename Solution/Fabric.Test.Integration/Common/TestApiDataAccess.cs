@@ -10,6 +10,8 @@ namespace Fabric.Test.Integration.Common {
 	/*================================================================================================*/
 	public class TestApiDataAccess : ApiDataAccess {
 
+		public const string GremlinUri = "http://localhost:8182/graphs/FabricTest/tp/gremlin";
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -25,7 +27,7 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetResultString() {
 			string q = CleanQueryIndexIds(Query);
-			var qh = new QueryHandler(q, new Guid());
+			var qh = new QueryHandler(q, new Guid(), GremlinUri);
 			return qh.GetJson();
 		}
 

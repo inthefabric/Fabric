@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Fabric.Api.Dto;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
@@ -24,7 +23,7 @@ namespace Fabric.Api.Server.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetContent() {
-			string data = null;
+			string data;
 
 			if ( vInfo.Error != null ) {
 				data = vInfo.Error.ToJson();
@@ -50,14 +49,8 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildTypedJson<T>() where T : FabNode {
-			
-
 			if ( vInfo.DtoList == null ) {
-				if ( vInfo.NonDtoText == null ) {
-					return "{}";
-				}
-
-				return "{\"Text\":\""+FabricUtil.JsonUnquote(vInfo.NonDtoText)+"\"}";
+				return "{}"; //"{\"Text\":\""+FabricUtil.JsonUnquote(vInfo.NonDtoText)+"\"}";
 			}
 
 			if ( vInfo.IsSingleDto ) {

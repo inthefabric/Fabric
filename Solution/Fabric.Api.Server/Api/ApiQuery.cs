@@ -64,7 +64,7 @@ namespace Fabric.Api.Server.Api {
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vUri);
 
 			vInfo.DtoType = vLastStep.DtoType;
-			vInfo.Resp.Links = vLastStep.AvailableLinks.ToArray();
+			vInfo.Resp.SetLinks(vLastStep.AvailableLinks);
 			vInfo.Resp.Functions = vLastStep.AvailableFuncs.ToArray();
 			vInfo.Resp.Type = vInfo.DtoType.Name;
 			vInfo.Query = vLastStep.Path.Script;
@@ -164,7 +164,7 @@ namespace Fabric.Api.Server.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response GetExceptionResponse(Exception pEx) {
 			vInfo.Resp.IsError = true;
-			vInfo.Resp.Links = new string[0];
+			vInfo.Resp.Links = new FabStepLink[0];
 			vInfo.Resp.Functions = new string[0];
 			vInfo.Resp.StartIndex = 0;
 			vInfo.Resp.Count = 0;
