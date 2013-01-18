@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Server.Oauth;
+﻿using Fabric.Api.Server.Common;
+using Fabric.Api.Server.Oauth;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
@@ -7,8 +8,6 @@ namespace Fabric.Api.Server {
 
 	/*================================================================================================*/
 	public class OauthModule : NancyModule {
-
-		private const string DbSvcUrl = "http://localhost:9001/";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +40,7 @@ namespace Fabric.Api.Server {
 		/*--------------------------------------------------------------------------------------------*/
 		protected IOauthLoginFuncs NewLogin {
 			get {
-				return new OauthLoginFuncs(new ApiContext(DbSvcUrl), Context.Request.Query, 
+				return new OauthLoginFuncs(new ApiContext(ApiModule.DbServerUrl), Context.Request.Query, 
 					Context.Request.Form, Context.Request.Cookies);
 			}
 		}

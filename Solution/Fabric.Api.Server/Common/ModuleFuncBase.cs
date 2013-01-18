@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using Fabric.Api.Oauth;
-using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
-using ServiceStack.Text;
 
-namespace Fabric.Api.Server.Oauth {
+namespace Fabric.Api.Server.Common {
 
 	/*================================================================================================*/
 	public abstract class ModuleFuncBase {
@@ -85,25 +83,6 @@ namespace Fabric.Api.Server.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		protected int GetPostInt(string pName, bool pRequired=true) {
 			return GetPost(pName, (v => v.ToInt32(EnUs)), pRequired);
-		}
-
-	}
-
-	
-	/*================================================================================================*/
-	public static class ApiFuncBaseExt {
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static Response ToResponse<T>(this IApiFunc<T> pFunc) {
-			try {
-				T result = pFunc.Go(pFunc.Context);
-				return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, result.ToJson());
-			}
-			catch ( OauthException oe ) {
-				return NancyUtil.BuildJsonResponse(HttpStatusCode.Forbidden, oe.OauthError.ToJson());
-			}
 		}
 
 	}

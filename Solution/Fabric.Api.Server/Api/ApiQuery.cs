@@ -18,7 +18,7 @@ namespace Fabric.Api.Server.Api {
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
 		private readonly NancyContext vContext;
-		private readonly ApiContext vReqContext;
+		private readonly IApiContext vApiCtx;
 		private readonly ApiQueryInfo vInfo;
 		private IFinalStep vLastStep;
 		private string vUri;
@@ -27,9 +27,9 @@ namespace Fabric.Api.Server.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiQuery(NancyContext pContext) {
+		public ApiQuery(NancyContext pContext, IApiContext pApiCtx) {
 			vContext = pContext;
-			vReqContext = new ApiContext("http://localhost:9001/");
+			vApiCtx = pApiCtx;
 			vInfo = new ApiQueryInfo();
 		}
 
@@ -73,7 +73,7 @@ namespace Fabric.Api.Server.Api {
 				vInfo.Resp.DbStartEvent();
 				var wq = new WeaverQuery();
 				wq.FinalizeQuery(vInfo.Query);
-				vReq = vReqContext.DbData("Api", wq);
+				vReq = vApiCtx.DbData("Api", wq);
 				vInfo.Resp.DbEndEvent();
 			}
 		}

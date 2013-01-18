@@ -94,6 +94,7 @@
     <Compile Include="Api\ApiResponseJson.cs" />
     <Compile Include="Api\ApiResponseHtml.cs" />
     <Compile Include="Api\ApiQueryInfo.cs" />
+    <Compile Include="Common\ApiFuncExt.cs" />
     <Compile Include="OauthModule.cs" />
     <Compile Include="Graph\GraphView.cs" />
     <Compile Include="Graph\GraphJson.cs" />
@@ -109,7 +110,7 @@
     <Compile Include="Util\EncryptUtil.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
-    <Compile Include="Oauth\ModuleFuncBase.cs" />
+    <Compile Include="Common\ModuleFuncBase.cs" />
     <Compile Include="Oauth\OauthFuncs.cs" />
   </ItemGroup>
   <ItemGroup>
