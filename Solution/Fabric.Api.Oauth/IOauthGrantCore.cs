@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Oauth.Results;
+﻿using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
@@ -32,7 +31,6 @@ namespace Fabric.Api.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		OauthException GetFaultOnException(Exception pEx);
 		OauthException GetFault(GrantErrors pErr, GrantErrorDescs pDesc);
 
 	}

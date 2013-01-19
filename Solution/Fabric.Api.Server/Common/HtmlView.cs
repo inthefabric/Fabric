@@ -5,14 +5,14 @@ using Nancy;
 namespace Fabric.Api.Server.Common {
 
 	/*================================================================================================*/
-	public abstract class ViewBase {
+	public abstract class HtmlView {
 
 		protected String MasterHtml { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected ViewBase() {
+		protected HtmlView() {
 			MasterHtml = 
 				"<html>\n"+
 				"	<head>\n"+

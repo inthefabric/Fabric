@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Fabric.Api.Dto;
 using Fabric.Infrastructure.Db;
 
@@ -8,12 +7,12 @@ namespace Fabric.Api.Server.Api {
 	/*================================================================================================*/
 	public class ApiResponseHtml {
 
-		private readonly ApiQueryInfo vInfo;
+		private readonly ApiModel vInfo;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiResponseHtml(ApiQueryInfo pInfo) {
+		public ApiResponseHtml(ApiModel pInfo) {
 			vInfo = pInfo;
 		}
 
@@ -42,11 +41,8 @@ namespace Fabric.Api.Server.Api {
 			var html = "";
 			var i = 0;
 
-			foreach ( DbDto dto in vInfo.DtoList ) {
-				FabNode n = (FabNode)Activator.CreateInstance(vInfo.DtoType);
-				n.Fill(dto);
-				vInfo.NodeAction(n);
-
+			foreach ( DbDto dbDto in vInfo.DtoList ) {
+				IFabNode n = ApiDtoUtil.ToDto(dbDto);
 				html += (i++ == 0 ? "" : "<br/>");
 				html += BuildNodeHtml(n);
 			}

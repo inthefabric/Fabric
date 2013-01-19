@@ -4,7 +4,7 @@ using Nancy;
 namespace Fabric.Api.Server.Oauth.Views {
 
 	/*================================================================================================*/
-	public class LoginErrorView : ViewBase {
+	public class LoginErrorView : HtmlView {
 
 		private readonly string vError;
 		private readonly string vErrDesc;

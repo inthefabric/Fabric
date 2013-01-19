@@ -35,14 +35,14 @@ namespace Fabric.Api.Server {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response ExecuteFunc(NancyContext pCtx, OauthController.Function pFunc) {
-			var oc = new OauthController(pCtx.Request.Query, NewApiCtx(), pFunc);
+			var oc = new OauthController(pCtx.Request, NewApiCtx(), pFunc);
 			return oc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response ExecuteLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
 			Request r = pCtx.Request;
-			var olc = new OauthLoginController(NewApiCtx(), r.Query, r.Form, r.Cookies, pMethod);
+			var olc = new OauthLoginController(pCtx.Request, NewApiCtx(), pMethod);
 			return olc.Execute();
 		}
 

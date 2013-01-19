@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Server.Oauth;
-using Fabric.Api.Server.Util;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
-using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using Nancy;
 using Nancy.Cookies;
@@ -64,7 +61,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response TestPost() {
-			var query = new DynamicDictionary();
+			/*var query = new DynamicDictionary();
 			query.Add("response_type", vResponseType);
 			query.Add("client_id", vClientId);
 			query.Add("redirect_uri", vRedirectUri);
@@ -81,8 +78,33 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			form.Add("Password", vPassword);
 			form.Add("RememberMe", vRememberMe);
 
-			vLoginCtrl = new OauthLoginController(vApiCtx, query, form, GetRequestCookies(),
-				OauthLoginController.Method.Post);
+			var cookies = GetRequestCookies();
+
+			var mockReq = new Mock<Request>();
+			mockReq.SetupGet(x => x.Query).Returns(query);
+			mockReq.SetupGet(x => x.Form).Returns(form);
+			mockReq.SetupGet(x => x.Cookies).Returns(cookies);*/
+
+			var req = new Request("POST", "test", "test");
+
+			req.Query.Add("response_type", vResponseType);
+			req.Query.Add("client_id", vClientId);
+			req.Query.Add("redirect_uri", vRedirectUri);
+			req.Query.Add("switchMode", vSwitchMode);
+			req.Query.Add("state", vState);
+
+			req.Form.Add("CancelAction", vCancelAction);
+			req.Form.Add("LogoutAction", vLogoutAction);
+			req.Form.Add("LoginAction", vLoginAction);
+			req.Form.Add("AllowAction", vAllowAction);
+			req.Form.Add("DenyAction", vDenyAction);
+			req.Form.Add("Username", vUsername);
+			req.Form.Add("Password", vPassword);
+			req.Form.Add("RememberMe", vRememberMe);
+
+			FillRequestCookies(req);
+
+			vLoginCtrl = new OauthLoginController(req, vApiCtx, OauthLoginController.Method.Post);
 			return vLoginCtrl.Execute();
 		}
 

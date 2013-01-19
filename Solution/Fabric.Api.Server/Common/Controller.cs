@@ -11,38 +11,93 @@ using ServiceStack.Text;
 namespace Fabric.Api.Server.Common {
 
 	/*================================================================================================*/
-	public abstract class ControllerBase {
+	public abstract class Controller {
 
 		private static readonly CultureInfo EnUs = new CultureInfo("en-US");
 
+		protected Request NancyReq { get; private set; }
 		protected IApiContext ApiCtx { get; private set; }
 		protected DynamicDictionary Query { get; private set; }
 		protected DynamicDictionary Form { get; private set; }
+		protected Exception UnhandedException { get; private set; }
+
+		private long vTicks;
+		private Response vResp;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected ControllerBase(IApiContext pApiContext, DynamicDictionary pQuery,
-																			DynamicDictionary pForm) {
+		protected Controller(Request pRequest, IApiContext pApiContext) {
+			NancyReq = pRequest;
 			ApiCtx = pApiContext;
-			Query = pQuery;
-			Form = pForm;
+			Query = NancyReq.Query;
+			Form = NancyReq.Form;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Response Execute() {
+			long t = DateTime.UtcNow.Ticks;
+
 			try {
-				return BuildResponse();
+				vResp = BuildResponse();
 			}
 			catch ( Exception e ) {
-				Log.Error(GetType().Name+" Unhandled Exception", e);
-				var err = FabError.ForInternalServerError();
-				return NancyUtil.BuildJsonResponse(HttpStatusCode.InternalServerError, err.ToJson());
+				UnhandedException = e;
+				vResp = BuildExceptionResponse(e);
+
+				if ( vResp == null ) {
+					var err = FabError.ForInternalServerError();
+					vResp = NancyUtil.BuildJsonResponse(
+						HttpStatusCode.InternalServerError, err.ToJson());
+				}
 			}
+
+			vTicks = DateTime.UtcNow.Ticks-t;
+			LogAction();
+			return vResp;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract Response BuildResponse();
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual Response BuildExceptionResponse(Exception pEx) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void ExceptionIsHandled() {
+			UnhandedException = null;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void LogAction() {
+			//LOGv1: 
+			//	Class, ip, QueryCount, TotalTicks, Timestamp, HttpStatus, Method, Path, Exception
+
+			const string name = "LOGv1";
+			const string x = " | ";
+
+			string v1 =
+				GetType().Name +x+
+				NancyReq.UserHostAddress +x+
+				ApiCtx.DbQueryExecutionCount +x+
+				vTicks +x+
+				DateTime.UtcNow.Ticks +x+
+				(int)vResp.StatusCode +x+
+				NancyReq.Method +x+
+				NancyReq.Path +x+
+				UnhandedException;
+
+			if ( UnhandedException == null ) {
+				Log.Info(ApiCtx.ContextId, name, v1);
+			}
+			else {
+				Log.Error(ApiCtx.ContextId, name, v1);
+			}
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,9 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
@@ -111,15 +109,6 @@ namespace Fabric.Test.FabApiOauth {
 			Assert.AreEqual(vCoreAppResult.Name, result.AppName, "Incorrect Result.AppName.");
 			Assert.AreEqual(0, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
 			Assert.Null(result.LoggedUserName, "Result.LoggedUserName should be null.");
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void UnhandledException() {
-			var ex = new Exception();
-			vMockTasks.Setup(x => x.GetUserAuth(vUsername, vPassword, vMockCtx.Object)).Throws(ex);
-			vMockCore.Setup(x => x.GetFaultOnException(ex)).Throws(new OauthException("x", "y"));
-			TestUtil.CheckThrows<OauthException>(true, () => TestGo());
 		}
 		
 	}

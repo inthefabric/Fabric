@@ -38,13 +38,13 @@ namespace Fabric.Api.Server {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response ExecuteApiQuery(NancyContext pContext) {
-			var aq = new ApiQuery(
-				pContext,
+			var aq = new ApiController(
+				pContext.Request,
 				new ApiContext(DbServerUrl),
 				new OauthTasks()
 			);
 			
-			return aq.GetResponse();
+			return aq.Execute();
 		}
 
 	}

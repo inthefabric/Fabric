@@ -103,6 +103,18 @@ namespace Fabric.Api.Server.Util {
 			};
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static bool ShouldReturnHtml(Request pRequest) {
+			var acc = pRequest.Headers.Accept;
+
+			foreach ( var a in acc ) {
+				if ( a.Item1 != "text/html" ) { continue; }
+				return true;
+			}
+
+			return false;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

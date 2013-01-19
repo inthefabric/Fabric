@@ -1,7 +1,5 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
@@ -52,19 +50,6 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthLogout Execute() {
-			try {
-				return DoLogout();
-			}
-			catch ( OauthException ) {
-				throw;
-			}
-			catch ( Exception e ) {
-				throw GetFaultOnException(e);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthLogout DoLogout() {
 			FabOauthAccess acc = vTasks.GetAccessToken(vToken, Context);
 
 			if ( acc == null ) {
@@ -83,16 +68,8 @@ namespace Fabric.Api.Oauth {
 			return log;
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthException GetFaultOnException(Exception pEx) {
-			Log.Error("OauthLogout", pEx);
-			return GetFault(LogoutErrors.logout_failure, LogoutErrorDescs.Unexpected);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		private OauthException GetFault(LogoutErrors pErr, LogoutErrorDescs pDesc) {
+		private static OauthException GetFault(LogoutErrors pErr, LogoutErrorDescs pDesc) {
 			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 

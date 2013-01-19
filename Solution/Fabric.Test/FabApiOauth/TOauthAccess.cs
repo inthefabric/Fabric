@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
@@ -99,22 +98,6 @@ namespace Fabric.Test.FabApiOauth {
 				.Returns(vGetAppAuthResult);
 
 			CheckOauthEx(TestGo, AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrUnhandled() {
-			vMockTasks
-				.Setup(x => x.AddAccess(
-					It.IsAny<long>(),
-					It.IsAny<long?>(),
-					It.IsAny<int>(),
-					It.IsAny<bool>(),
-					vMockCtx.Object
-				))
-				.Throws(new Exception());
-
-			CheckOauthEx(TestGo, AccessErrors.invalid_request, AccessErrorDescs.Unexpected);
 		}
 
 		

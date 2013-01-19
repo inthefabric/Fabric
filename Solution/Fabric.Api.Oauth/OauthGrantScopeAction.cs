@@ -1,7 +1,6 @@
-﻿using System;
-using Fabric.Infrastructure.Api;
-using Fabric.Api.Oauth.Results;
+﻿using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
 	
@@ -28,19 +27,6 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override LoginScopeResult Execute() {
-			try {
-				return DoScopeAction();
-			}
-			catch ( OauthException ) {
-				throw;
-			}
-			catch ( Exception e ) {
-				throw vCore.GetFaultOnException(e);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private LoginScopeResult DoScopeAction() {
 			if ( !vAllowScope ) {
 				vTasks.AddScope(vCore.AppId, (long)vCore.UserId, false, Context);
 				throw vCore.GetFault(GrantErrors.access_denied, GrantErrorDescs.AccessDeny);

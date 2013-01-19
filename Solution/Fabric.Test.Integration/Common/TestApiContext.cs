@@ -55,7 +55,6 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
-			Log.Info("");
 			Log.Info("Query ("+pQueryName+") "+DbQueryExecutionCount+": "+pDbQuery.Query);
 			return base.DbDataAccess(pQueryName, pDbQuery);
 		}
@@ -63,7 +62,6 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IApiDataAccess<T> DbDataAccess<T>(string pQueryName,
 																		IApiDataAccess<T> pDbQuery) {
-			Log.Info("");
 			Log.Info("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
 				DbQueryExecutionCount+": "+pDbQuery.Query);
 			return base.DbDataAccess(pQueryName, pDbQuery);

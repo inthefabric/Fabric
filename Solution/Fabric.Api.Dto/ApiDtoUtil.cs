@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/18/2013 4:27:06 PM
+// Generated on 1/19/2013 2:42:19 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -13,6 +13,49 @@ namespace Fabric.Api.Dto {
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IFabNode ToDto(DbDto pDbDto) {
+			switch ( pDbDto.Class ) {
+				case "Root": return ToDto<FabRoot>(pDbDto);
+				case "App": return ToDto<FabApp>(pDbDto);
+				case "Artifact": return ToDto<FabArtifact>(pDbDto);
+				case "ArtifactType": return ToDto<FabArtifactType>(pDbDto);
+				case "Crowd": return ToDto<FabCrowd>(pDbDto);
+				case "Crowdian": return ToDto<FabCrowdian>(pDbDto);
+				case "CrowdianType": return ToDto<FabCrowdianType>(pDbDto);
+				case "CrowdianTypeAssign": return ToDto<FabCrowdianTypeAssign>(pDbDto);
+				case "Label": return ToDto<FabLabel>(pDbDto);
+				case "Member": return ToDto<FabMember>(pDbDto);
+				case "MemberType": return ToDto<FabMemberType>(pDbDto);
+				case "MemberTypeAssign": return ToDto<FabMemberTypeAssign>(pDbDto);
+				case "Thing": return ToDto<FabThing>(pDbDto);
+				case "Url": return ToDto<FabUrl>(pDbDto);
+				case "User": return ToDto<FabUser>(pDbDto);
+				case "Factor": return ToDto<FabFactor>(pDbDto);
+				case "FactorAssertion": return ToDto<FabFactorAssertion>(pDbDto);
+				case "Descriptor": return ToDto<FabDescriptor>(pDbDto);
+				case "DescriptorType": return ToDto<FabDescriptorType>(pDbDto);
+				case "Director": return ToDto<FabDirector>(pDbDto);
+				case "DirectorType": return ToDto<FabDirectorType>(pDbDto);
+				case "DirectorAction": return ToDto<FabDirectorAction>(pDbDto);
+				case "Eventor": return ToDto<FabEventor>(pDbDto);
+				case "EventorType": return ToDto<FabEventorType>(pDbDto);
+				case "EventorPrecision": return ToDto<FabEventorPrecision>(pDbDto);
+				case "Identor": return ToDto<FabIdentor>(pDbDto);
+				case "IdentorType": return ToDto<FabIdentorType>(pDbDto);
+				case "Locator": return ToDto<FabLocator>(pDbDto);
+				case "LocatorType": return ToDto<FabLocatorType>(pDbDto);
+				case "Vector": return ToDto<FabVector>(pDbDto);
+				case "VectorType": return ToDto<FabVectorType>(pDbDto);
+				case "VectorRange": return ToDto<FabVectorRange>(pDbDto);
+				case "VectorRangeLevel": return ToDto<FabVectorRangeLevel>(pDbDto);
+				case "VectorUnit": return ToDto<FabVectorUnit>(pDbDto);
+				case "VectorUnitPrefix": return ToDto<FabVectorUnitPrefix>(pDbDto);
+				case "VectorUnitDerived": return ToDto<FabVectorUnitDerived>(pDbDto);
+				default: throw new Exception("Unknown DbDto class: "+pDbDto.Class);
+			}
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public static string ToDtoJson(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
@@ -54,6 +97,13 @@ namespace Fabric.Api.Dto {
 				case "VectorUnitDerived": return ToDtoJson<FabVectorUnitDerived>(pDbDto);
 				default: throw new Exception("Unknown DbDto class: "+pDbDto.Class);
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static T ToDto<T>(DbDto pDbDto) where T : IFabNode, new() {
+			var node = new T();
+			node.Fill(pDbDto);
+			return node;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

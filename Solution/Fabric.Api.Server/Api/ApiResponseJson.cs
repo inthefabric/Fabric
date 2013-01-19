@@ -9,12 +9,12 @@ namespace Fabric.Api.Server.Api {
 
 		private const string TotalMsJson = "\"TotalMs\":";
 
-		private readonly ApiQueryInfo vInfo;
+		private readonly ApiModel vInfo;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiResponseJson(ApiQueryInfo pInfo) {
+		public ApiResponseJson(ApiModel pInfo) {
 			vInfo = pInfo;
 		}
 

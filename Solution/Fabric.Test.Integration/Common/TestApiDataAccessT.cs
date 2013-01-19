@@ -33,6 +33,7 @@ namespace Fabric.Test.Integration.Common {
 			string json = qh.GetJson();
 
 			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
+			Log.Info("");
 			return json;
 		}
 

@@ -90,11 +90,12 @@
     <Compile Include="ApiBootstrap.cs" />
     <Compile Include="ApiSpec\ApiSpecBuilder.cs" />
     <Compile Include="ApiSpec\ApiSpecBuilderHtml.cs" />
-    <Compile Include="Api\ApiQuery.cs" />
+    <Compile Include="Api\ApiController.cs" />
     <Compile Include="Api\ApiResponseJson.cs" />
     <Compile Include="Api\ApiResponseHtml.cs" />
-    <Compile Include="Api\ApiQueryInfo.cs" />
-    <Compile Include="Common\ViewBase.cs" />
+    <Compile Include="Api\ApiModel.cs" />
+    <Compile Include="Common\FabResponseController.cs" />
+    <Compile Include="Common\HtmlView.cs" />
     <Compile Include="OauthModule.cs" />
     <Compile Include="Graph\GraphView.cs" />
     <Compile Include="Graph\GraphJson.cs" />
@@ -111,7 +112,7 @@
     <Compile Include="Util\EncryptUtil.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
-    <Compile Include="Common\ControllerBase.cs" />
+    <Compile Include="Common\Controller.cs" />
     <Compile Include="Oauth\OauthController.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -36,7 +36,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response TestGet() {
-			var query = new DynamicDictionary();
+			/*var query = new DynamicDictionary();
 			query.Add("response_type", vResponseType);
 			query.Add("client_id", vClientId);
 			query.Add("redirect_uri", vRedirectUri);
@@ -46,8 +46,25 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			var form = new DynamicDictionary();
 
-			vLoginCtrl = new OauthLoginController(vApiCtx, query, form, GetRequestCookies(),
-				OauthLoginController.Method.Get);
+			var cookies = GetRequestCookies();
+			
+			var mockReq = new Mock<Request>();
+			mockReq.SetupGet(x => x.Query).Returns(query);
+			mockReq.SetupGet(x => x.Form).Returns(form);
+			mockReq.SetupGet(x => x.Cookies).Returns(cookies);*/
+
+			var req = new Request("GET", "test", "test");
+
+			req.Query.Add("response_type", vResponseType);
+			req.Query.Add("client_id", vClientId);
+			req.Query.Add("redirect_uri", vRedirectUri);
+			req.Query.Add("switchMode", vSwitchMode);
+			req.Query.Add("state", vState);
+			req.Query.Add("error", vError);
+
+			FillRequestCookies(req);
+
+			vLoginCtrl = new OauthLoginController(req, vApiCtx, OauthLoginController.Method.Get);
 			return vLoginCtrl.Execute();
 		}
 

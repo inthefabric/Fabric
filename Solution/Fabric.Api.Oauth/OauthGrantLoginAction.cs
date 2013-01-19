@@ -1,9 +1,7 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
@@ -34,19 +32,6 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthLogin Execute() {
-			try {
-				return GetLogin();
-			}
-			catch ( OauthException ) {
-				throw;
-			}
-			catch ( Exception e ) {
-				throw vCore.GetFaultOnException(e);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthLogin GetLogin() {
 			var result = new FabOauthLogin();
 
 			App app = vCore.GetApp(Context);

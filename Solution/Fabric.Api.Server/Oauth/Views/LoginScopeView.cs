@@ -5,7 +5,7 @@ using Nancy;
 namespace Fabric.Api.Server.Oauth.Views {
 
 	/*================================================================================================*/
-	public class LoginScopeView : ViewBase {
+	public class LoginScopeView : HtmlView {
 
 		private readonly FabOauthLogin vLogin;
 

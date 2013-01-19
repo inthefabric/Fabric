@@ -1,13 +1,12 @@
-﻿using Fabric.Api.Oauth;
-using Moq;
+﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth;
+using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
-using NUnit.Framework;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Oauth.Results;
-using System;
 using Fabric.Test.Util;
+using Moq;
+using NUnit.Framework;
 
 namespace Fabric.Test.FabApiOauth {
 
@@ -177,17 +176,6 @@ namespace Fabric.Test.FabApiOauth {
 			
 			vMockCore.Verify(x => x.GetFault(
 				GrantErrors.invalid_request, GrantErrorDescs.RedirMismatch), Times.Once());
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void UnhandledException() {
-			var ex = new Exception();
-			vMockCore.Setup(x => x.GetApp(vMockCtx.Object)).Throws(ex);
-			vMockCore.Setup(x => x.GetFaultOnException(ex)).Throws(new OauthException("x", "y"));
-			TestUtil.CheckThrows<OauthException>(true, () => TestGo());
 		}
 		
 	}

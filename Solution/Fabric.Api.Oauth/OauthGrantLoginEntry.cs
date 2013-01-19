@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
@@ -65,19 +64,6 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthLogin Execute() {
-			try {
-				return GetPageData();
-			}
-			catch ( OauthException ) {
-				throw;
-			}
-			catch ( Exception e ) {
-				throw vCore.GetFaultOnException(e);
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthLogin GetPageData() {
 			App app = vCore.GetApp(Context); //throws fault on error
 			CheckDomain();
 			

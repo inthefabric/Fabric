@@ -1,8 +1,6 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
@@ -97,17 +95,8 @@ namespace Fabric.Api.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override FabOauthAccess Execute() {
-			try {
-				return PerformAccessRequestActions();
-			}
-			catch ( OauthException ) {
-				throw;
-			}
-			catch ( Exception e ) {
-				Log.Error("OAuthAccessBase", e);
-				throw GetFault(AccessErrors.invalid_request, AccessErrorDescs.Unexpected);
-			}
+		protected override sealed FabOauthAccess Execute() {
+			return PerformAccessRequestActions();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -142,7 +131,7 @@ namespace Fabric.Api.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected OauthException GetFault(AccessErrors pErr, AccessErrorDescs pDesc) {
+		protected static OauthException GetFault(AccessErrors pErr, AccessErrorDescs pDesc) {
 			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 

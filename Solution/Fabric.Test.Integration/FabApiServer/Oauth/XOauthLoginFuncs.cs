@@ -38,6 +38,16 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			return cookies;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected void FillRequestCookies(Request pReq) {
+			if ( vLoggedUserId <= 0 ) {
+				return;
+			}
+
+			NancyCookie c = NancyUtil.NewUserCookieForTesting(vLoggedUserId);
+			pReq.Cookies.Add(c.Name, c.Value);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

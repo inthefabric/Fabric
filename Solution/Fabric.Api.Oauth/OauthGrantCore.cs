@@ -2,7 +2,6 @@
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Oauth {
@@ -151,12 +150,6 @@ namespace Fabric.Api.Oauth {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthException GetFaultOnException(Exception pEx) {
-			Log.Error("OauthGrantCore", pEx);
-			return GetFault(GrantErrors.invalid_request, GrantErrorDescs.Unexpected);
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthException GetFault(GrantErrors pErr, GrantErrorDescs pDesc) {
 			return GetFaultStatic(pErr, pDesc);

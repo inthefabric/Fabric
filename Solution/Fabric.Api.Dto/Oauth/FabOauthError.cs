@@ -18,7 +18,18 @@ namespace Fabric.Api.Dto.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) { }
+		public override void Fill(IDbDto pDbDto) {}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabOauthError ForInternalServerError() {
+			var e = new FabOauthError();
+			e.Error = "internal_error";
+			e.ErrorDesc = "an+internal+server+error+occurred";
+			return e;
+		}
+
 
 	}
 

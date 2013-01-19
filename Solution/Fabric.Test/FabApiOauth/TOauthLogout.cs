@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure.Api;
@@ -79,13 +78,6 @@ namespace Fabric.Test.FabApiOauth {
 			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object))
 				.Returns((FabOauthAccess)null);
 			CheckOauthEx(() => TestGo(), LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrorUnexpected() {
-			vMockTasks.Setup(x => x.DoLogout(vGetAcc, vMockCtx.Object)).Throws(new Exception());
-			CheckOauthEx(() => TestGo(), LogoutErrors.logout_failure, LogoutErrorDescs.Unexpected);
 		}
 		
 		

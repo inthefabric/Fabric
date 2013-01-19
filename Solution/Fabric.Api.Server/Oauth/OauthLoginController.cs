@@ -15,7 +15,7 @@ namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
 	//TEST: OauthLoginFuncs unit tests. Move flows (like OauthGrantLoginEntry) into an interface.
-	public class OauthLoginController : ControllerBase {
+	public class OauthLoginController : Controller {
 
 		public enum Method {
 			Get,
@@ -61,36 +61,46 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLoginController(IApiContext pApiCtx, DynamicDictionary pQuery,
-										DynamicDictionary pForm, IDictionary<string, string> pCookies,
-										Method pMethod) : base(pApiCtx, pQuery, pForm) {
-			vCookies = pCookies;
+		public OauthLoginController(Request pRequest, IApiContext pApiCtx, Method pMethod) : 
+																			base(pRequest, pApiCtx) {
+			vCookies = NancyReq.Cookies;
 			vMethod = pMethod;
 		}
 
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildResponse() {
-			try {
-				vIncomingError = GetParamString("error", false);
-				vLoggedUserId = NancyUtil.GetUserIdFromCookies(vCookies);
+			vIncomingError = GetParamString("error", false);
+			vLoggedUserId = NancyUtil.GetUserIdFromCookies(vCookies);
 
-				vClientId = GetParamString(FuncOauthLoginStep.ClientIdName, false);
-				vRedirUri = GetParamString(FuncOauthLoginStep.RedirectUriName, false);
-				vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName, false);
-				vScope = GetParamString(FuncOauthLoginStep.ScopeName, false);
-				vSwitchMode = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
-				vState = GetParamString(FuncOauthLoginStep.StateName, false);
+			vClientId = GetParamString(FuncOauthLoginStep.ClientIdName, false);
+			vRedirUri = GetParamString(FuncOauthLoginStep.RedirectUriName, false);
+			vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName, false);
+			vScope = GetParamString(FuncOauthLoginStep.ScopeName, false);
+			vSwitchMode = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
+			vState = GetParamString(FuncOauthLoginStep.StateName, false);
 
-				switch ( vMethod ) {
-					case Method.Get: return LoginGet();
-					case Method.Post: return LoginPost();
-					default: throw new Exception("Unknown Method: "+vMethod);
-				}
+			switch ( vMethod ) {
+				case Method.Get: return LoginGet();
+				case Method.Post: return LoginPost();
 			}
-			catch ( OauthException oe ) {
-				return Redirect(oe.OauthError);
+
+			throw new Exception("Unknown Method: "+vMethod);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override Response BuildExceptionResponse(Exception pEx) {
+			FabOauthError fabErr;
+
+			if ( pEx is OauthException ) {
+				ExceptionIsHandled();
+				fabErr = (pEx as OauthException).OauthError;
 			}
+			else {
+				fabErr = FabOauthError.ForInternalServerError();
+			}
+
+			return Redirect(fabErr);
 		}
 
 

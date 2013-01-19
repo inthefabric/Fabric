@@ -12,7 +12,7 @@ using ServiceStack.Text;
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
-	public class OauthController : ControllerBase { //TEST: OauthFuncs
+	public class OauthController : Controller { //TEST: OauthController
 
 		public enum Function {
 			Access,
@@ -42,54 +42,63 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthController(DynamicDictionary pQuery, IApiContext pApiCtx, Function pFunc) :
-																		base(pApiCtx, pQuery, null) {
+		public OauthController(Request pRequest, IApiContext pApiCtx, Function pFunc) :
+																			base(pRequest, pApiCtx) {
 			vFunc = pFunc;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildResponse() {
-			try {
-				vClientId = GetParamString(FuncOauthAtStep.ClientIdName, false);
-				vRedirUri = GetParamString(FuncOauthAtStep.RedirectUriName, false);
-				vClientSecret = GetParamString(FuncOauthAtStep.ClientSecretName, false);
-				vCode = GetParamString(FuncOauthAtStep.CodeName, false);
-				vDataProvUserId = GetParamString(FuncOauthAtStep.DataProvUserIdName, false);
-				vRefreshToken = GetParamString(FuncOauthAtStep.RefreshTokenName, false);
-				vAccessToken = GetParamString(FuncOauthLogoutStep.AccessTokenName, false);
+			vClientId = GetParamString(FuncOauthAtStep.ClientIdName, false);
+			vRedirUri = GetParamString(FuncOauthAtStep.RedirectUriName, false);
+			vClientSecret = GetParamString(FuncOauthAtStep.ClientSecretName, false);
+			vCode = GetParamString(FuncOauthAtStep.CodeName, false);
+			vDataProvUserId = GetParamString(FuncOauthAtStep.DataProvUserIdName, false);
+			vRefreshToken = GetParamString(FuncOauthAtStep.RefreshTokenName, false);
+			vAccessToken = GetParamString(FuncOauthLogoutStep.AccessTokenName, false);
 
-				switch ( vFunc ) {
-					case Function.Access:
-						FabOauthAccess a = DoAccess();
-						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, a.ToJson());
+			switch ( vFunc ) {
+				case Function.Access:
+					FabOauthAccess a = DoAccess();
+					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, a.ToJson());
 
-					case Function.AuthCode:
-						FabOauthAccess ac = DoAccessAuthCode();
-						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, ac.ToJson());
+				case Function.AuthCode:
+					FabOauthAccess ac = DoAccessAuthCode(FuncOauthAtStep.GrantTypeAc);
+					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, ac.ToJson());
 
-					case Function.ClientCred:
-						FabOauthAccess acc = DoAccessClientCred();
-						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, acc.ToJson());
+				case Function.ClientCred:
+					FabOauthAccess acc = DoAccessClientCred();
+					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, acc.ToJson());
 
-					case Function.ClientDataProv:
-						FabOauthAccess acd = DoAccessClientDataProv();
-						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, acd.ToJson());
+				case Function.ClientDataProv:
+					FabOauthAccess acd = DoAccessClientDataProv();
+					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, acd.ToJson());
 
-					case Function.RefToken:
-						FabOauthAccess art = DoAccessRefToken();
-						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, art.ToJson());
+				case Function.RefToken:
+					FabOauthAccess art = DoAccessRefToken();
+					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, art.ToJson());
 
-					case Function.Logout:
-						FabOauthLogout log = DoLogout();
-						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, log.ToJson());
-
-					default:
-						throw new Exception("Unsupported function: "+vFunc);
-				}
+				case Function.Logout:
+					FabOauthLogout log = DoLogout();
+					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, log.ToJson());
 			}
-			catch ( OauthException oe ) {
-				return NancyUtil.BuildJsonResponse(HttpStatusCode.Forbidden, oe.OauthError.ToJson());
+
+			throw new Exception("Unsupported function: "+vFunc);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override Response BuildExceptionResponse(Exception pEx) {
+			FabOauthError fabErr;
+
+			if ( pEx is OauthException ) {
+				ExceptionIsHandled();
+				fabErr = (pEx as OauthException).OauthError;
 			}
+			else {
+				fabErr = FabOauthError.ForInternalServerError();
+			}
+
+			return NancyUtil.BuildJsonResponse(HttpStatusCode.Forbidden, fabErr.ToJson());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -102,18 +111,20 @@ namespace Fabric.Api.Server.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess DoAccess() {
-			switch ( GetParamString(FuncOauthAtStep.GrantTypeName) ) {
+			string grant = GetParamString(FuncOauthAtStep.GrantTypeName, false);
+
+			switch ( grant ) {
 				case FuncOauthAtStep.GrantTypeCc: return DoAccessClientCred();
 				case FuncOauthAtStep.GrantTypeCdp: return DoAccessClientDataProv();
 				case FuncOauthAtStep.GrantTypeRt: return DoAccessRefToken();
 			}
 
-			return DoAccessAuthCode();
+			return DoAccessAuthCode(grant);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthAccess DoAccessAuthCode() {
-			AccessAuthCode = new OauthAccessAuthCode(FuncOauthAtStep.GrantTypeAc,
+		private FabOauthAccess DoAccessAuthCode(string pGrant) {
+			AccessAuthCode = new OauthAccessAuthCode(pGrant,
 				vRedirUri, vClientSecret, vCode, new OauthTasks());
 			return AccessAuthCode.Go(ApiCtx);
 		}
