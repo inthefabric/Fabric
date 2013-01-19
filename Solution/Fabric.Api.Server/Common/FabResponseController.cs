@@ -11,7 +11,7 @@ namespace Fabric.Api.Server.Common {
 	/*================================================================================================*/
 	public abstract class FabResponseController : Controller {
 
-		private const string ApiBaseUri = "http://localhost:9000/api";
+		private const string ApiBaseUri = "http://localhost:9000";
 
 		protected FabResponse FabResp { get; private set; }
 		protected IOauthTasks OauthTasks { get; private set; }
@@ -28,7 +28,7 @@ namespace Fabric.Api.Server.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override sealed Response BuildResponse() {
-			ApiUri = NancyReq.Path.Substring(5); //removes "/api/"
+			ApiUri = NancyReq.Path.Substring(1); //remove "/"
 
 			FabResp.BaseUri = ApiBaseUri;
 			FabResp.RequestUri = (ApiUri.Length > 0 ? "/"+ApiUri : "");

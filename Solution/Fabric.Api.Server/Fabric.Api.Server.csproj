@@ -86,14 +86,14 @@
     <Reference Include="Weaver, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiModule.cs" />
-    <Compile Include="ApiBootstrap.cs" />
+    <Compile Include="RootModule.cs" />
+    <Compile Include="Bootstrap.cs" />
     <Compile Include="ApiSpec\ApiSpecBuilder.cs" />
     <Compile Include="ApiSpec\ApiSpecBuilderHtml.cs" />
-    <Compile Include="Api\ApiController.cs" />
-    <Compile Include="Api\ApiResponseJson.cs" />
-    <Compile Include="Api\ApiResponseHtml.cs" />
-    <Compile Include="Api\ApiModel.cs" />
+    <Compile Include="Root\RootController.cs" />
+    <Compile Include="Root\ApiResponseJson.cs" />
+    <Compile Include="Root\ApiResponseHtml.cs" />
+    <Compile Include="Root\ApiModel.cs" />
     <Compile Include="Common\FabResponseController.cs" />
     <Compile Include="Common\HtmlView.cs" />
     <Compile Include="OauthModule.cs" />

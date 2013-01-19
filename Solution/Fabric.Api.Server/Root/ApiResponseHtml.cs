@@ -2,7 +2,7 @@
 using Fabric.Api.Dto;
 using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Server.Api {
+namespace Fabric.Api.Server.Root {
 
 	/*================================================================================================*/
 	public class ApiResponseHtml {

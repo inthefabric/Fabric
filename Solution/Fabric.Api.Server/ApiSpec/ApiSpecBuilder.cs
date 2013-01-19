@@ -23,7 +23,7 @@ namespace Fabric.Api.Server.ApiSpec {
 			vSingleObj = pSingleObject;
 
 			if ( ApiSpec == null ) {
-				ApiSpec = new SpecDoc { ApiVersion = ApiModule.ApiVersion };
+				ApiSpec = new SpecDoc { ApiVersion = RootModule.ApiVersion };
 			}
 		}
 		

@@ -11,7 +11,7 @@ using Fabric.Infrastructure.Db;
 using Nancy;
 using Weaver;
 
-namespace Fabric.Api.Server.Api {
+namespace Fabric.Api.Server.Root {
 
 	/*================================================================================================*/
 	public class ApiController : FabResponseController { //TEST: ApiController

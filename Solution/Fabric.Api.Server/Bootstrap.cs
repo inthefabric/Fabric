@@ -4,7 +4,7 @@ using Nancy.Conventions;
 namespace Fabric.Api.Server {
 
 	/*================================================================================================*/
-	public class ApiBootstrap : DefaultNancyBootstrapper {
+	public class Bootstrap : DefaultNancyBootstrapper {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

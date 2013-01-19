@@ -2,7 +2,7 @@
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
-namespace Fabric.Api.Server.Api {
+namespace Fabric.Api.Server.Root {
 
 	/*================================================================================================*/
 	public class ApiResponseJson {
