@@ -26,8 +26,16 @@ namespace Fabric.Api.Server.Oauth {
 		public const string Password = "Password";
 		public const string RememberMe = "RememberMe";
 
-		/* localhost:9000/api/oauth/login?
-			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316 */
+		/*
+		
+		localhost:9000/api/oauth/login?
+			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316
+		 
+		localhost:9000/api/Oauth/AccessTokenAuthCode?
+			client_secret=0123456789abcdefghijkLMNOPqrstuv&code=INSERT&
+			redirect_uri=http%3a%2f%2flocalhost:49316
+		
+		*/
 
 		public FabOauthLogin LoginDto { get; private set; }
 

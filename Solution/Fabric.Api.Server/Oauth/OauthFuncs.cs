@@ -25,8 +25,6 @@ namespace Fabric.Api.Server.Oauth {
 			Logout
 		}
 
-		private const string DbSvcUrl = "http://localhost:9001/";
-
 		public OauthAccessAuthCode AccessAuthCode { get; private set; }
 		public OauthAccessClientCred AccessClientCred { get; private set; }
 		public OauthAccessClientDataProv AccessClientDataProv { get; private set; }
@@ -44,7 +42,7 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthFuncs(DynamicDictionary pQuery) : base(new ApiContext(DbSvcUrl), pQuery, null) {}
+		public OauthFuncs(DynamicDictionary pQuery, IApiContext pApiCtx) : base(pApiCtx, pQuery, null){}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Response Execute(Function pFunc) {

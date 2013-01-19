@@ -18,6 +18,8 @@ namespace Fabric.Api.Dto {
 		public long StartIndex { get; set; }
 		public int Count { get; set; }
 		public bool HasMore { get; set; }
+		public long AppId { get; set; }
+		public long UserId { get; set; }
 		public long Timestamp { get; set; }
 		public int HttpStatus { get; set; }
 		public bool IsError { get; set; }

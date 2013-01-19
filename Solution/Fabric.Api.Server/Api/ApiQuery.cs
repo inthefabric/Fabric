@@ -100,6 +100,8 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			vApiCtx.SetAppUserId(acc.AppId, acc.UserId);
+			vInfo.Resp.AppId = vApiCtx.AppId;
+			vInfo.Resp.UserId = vApiCtx.UserId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

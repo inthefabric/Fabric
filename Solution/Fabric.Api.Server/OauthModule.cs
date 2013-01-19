@@ -31,7 +31,7 @@ namespace Fabric.Api.Server {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response ExecuteFunc(NancyContext pContext, OauthFuncs.Function pFunc) {
-			var funcs = new OauthFuncs(pContext.Request.Query);
+			var funcs = new OauthFuncs(pContext.Request.Query, new ApiContext(ApiModule.DbServerUrl));
 			return funcs.Execute(pFunc);
 		}
 
