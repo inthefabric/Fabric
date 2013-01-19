@@ -15,7 +15,7 @@ namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
 	//TEST: OauthLoginFuncs unit tests. Move flows (like OauthGrantLoginEntry) into an interface.
-	public class OauthLoginController : ControllerBase, IOauthLoginController {
+	public class OauthLoginController : ControllerBase {
 
 		public enum Method {
 			Get,

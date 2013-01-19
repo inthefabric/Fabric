@@ -102,9 +102,7 @@
     <Compile Include="Oauth\Views\LoginErrorView.cs" />
     <Compile Include="Oauth\Views\LoginPageView.cs" />
     <Compile Include="Oauth\Views\LoginScopeView.cs" />
-    <Compile Include="Oauth\IOauthLoginController.cs" />
     <Compile Include="Oauth\OauthLoginController.cs" />
-    <Compile Include="Oauth\IOauthController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setups\SetupRoutine.cs" />
     <Compile Include="Tables\TableNode.cs" />

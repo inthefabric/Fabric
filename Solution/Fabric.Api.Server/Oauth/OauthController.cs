@@ -1,12 +1,10 @@
 ﻿using System;
-using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Paths.Steps.Functions.Oauth;
 using Fabric.Api.Server.Common;
 using Fabric.Api.Server.Util;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
@@ -14,7 +12,7 @@ using ServiceStack.Text;
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
-	public class OauthController : ControllerBase, IOauthController { //TEST: OauthFuncs
+	public class OauthController : ControllerBase { //TEST: OauthFuncs
 
 		public enum Function {
 			Access,
