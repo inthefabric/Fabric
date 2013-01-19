@@ -17,28 +17,38 @@ namespace Fabric.Api.Server {
 			const string ao = "/api/oauth/";
 			const string at = ao+"AccessToken";
 
-			Get[at] = (p => ExecuteFunc(Context, OauthFuncs.Function.Access));
-			Get[at+"AuthCode"] = (p => ExecuteFunc(Context, OauthFuncs.Function.AuthCode));
-			Get[at+"Refresh"] = (p => ExecuteFunc(Context, OauthFuncs.Function.RefToken));
-			Get[at+"ClientCredentials"] = (p => ExecuteFunc(Context, OauthFuncs.Function.ClientCred));
-			Get[at+"ClientDataProv"] = (p => ExecuteFunc(Context, OauthFuncs.Function.ClientDataProv));
+			Get[at] = (p => ExecuteFunc(Context, OauthController.Function.Access));
+			Get[at+"AuthCode"] = (p => ExecuteFunc(Context, OauthController.Function.AuthCode));
+			Get[at+"Refresh"] = (p => ExecuteFunc(Context, OauthController.Function.RefToken));
+			Get[at+"ClientCredentials"] = (p => ExecuteFunc(Context,
+				OauthController.Function.ClientCred));
+			Get[at+"ClientDataProv"] = (p => ExecuteFunc(Context,
+				OauthController.Function.ClientDataProv));
 
-			Get[ao+"Logout"] = (p => ExecuteFunc(Context, OauthFuncs.Function.Logout));
+			Get[ao+"Logout"] = (p => ExecuteFunc(Context, OauthController.Function.Logout));
 
-			Get[ao+"Login"] = (p => NewLogin().LoginGet());
-			Post[ao+"Login"] = (p => NewLogin().LoginPost());
+			Get[ao+"Login"] = (p => ExecuteLogin(Context, OauthLoginController.Method.Get));
+			Post[ao+"Login"] = (p => ExecuteLogin(Context, OauthLoginController.Method.Post));
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static Response ExecuteFunc(NancyContext pCtx, OauthController.Function pFunc) {
+			var oc = new OauthController(pCtx.Request.Query, NewApiCtx(), pFunc);
+			return oc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response ExecuteFunc(NancyContext pContext, OauthFuncs.Function pFunc) {
-			var funcs = new OauthFuncs(pContext.Request.Query, new ApiContext(ApiModule.DbServerUrl));
-			return funcs.Execute(pFunc);
+		private static Response ExecuteLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
+			Request r = pCtx.Request;
+			var olc = new OauthLoginController(NewApiCtx(), r.Query, r.Form, r.Cookies, pMethod);
+			return olc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IOauthLoginFuncs NewLogin() {
-			return new OauthLoginFuncs(new ApiContext(ApiModule.DbServerUrl), Context.Request.Query, 
-				Context.Request.Form, Context.Request.Cookies);
+		private static IApiContext NewApiCtx() {
+			return new ApiContext(ApiModule.DbServerUrl);
 		}
 
 	}

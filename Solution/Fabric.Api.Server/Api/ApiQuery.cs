@@ -20,7 +20,6 @@ namespace Fabric.Api.Server.Api {
 
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
-		private readonly Guid vReqId;
 		private readonly NancyContext vNanCtx;
 		private readonly IApiContext vApiCtx;
 		private readonly IOauthTasks vOauthTasks;
@@ -33,7 +32,6 @@ namespace Fabric.Api.Server.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiQuery(NancyContext pNanCtx, IApiContext pApiCtx, IOauthTasks pOauthTasks) {
-			vReqId = new Guid();
 			vNanCtx = pNanCtx;
 			vApiCtx = pApiCtx;
 			vOauthTasks = pOauthTasks;
@@ -42,16 +40,21 @@ namespace Fabric.Api.Server.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Response GetResponse() {
+			Response r;
+
 			try {
 				FillQueryInfo();
 				ExecuteOauthLookup();
 				ExecuteQuery();
 				BuildDtoList();
-				return BuildResponse();
+				r = BuildResponse();
 			}
 			catch ( Exception ex ) {
-				return GetExceptionResponse(ex);
+				r = GetExceptionResponse(ex);
 			}
+
+			LogAction();
+			return r;
 		}
 
 
@@ -91,9 +94,6 @@ namespace Fabric.Api.Server.Api {
 			}
 
 			FabOauthAccess acc = vOauthTasks.GetAccessToken(token, vApiCtx);
-
-			Log.Debug(vReqId, "OAUTH", "Token: "+token+", App/User: "+
-				(acc == null ? "0/0" : acc.AppId+"/"+acc.UserId));
 
 			if ( acc == null ) {
 				return;
@@ -231,6 +231,38 @@ namespace Fabric.Api.Server.Api {
 
 			vInfo.Resp.HttpStatus = (int)vInfo.HttpStatus;
 			return BuildResponse();
+		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void LogAction() {
+			//REQv1: 
+			//	ip, QueryCount, DbMs, TotalMs, DataLen, StartIndex, Count, HasMore,
+			//		AppId, UserId, Timestamp, HttpStatus, IsError, method, path
+
+			Request nr = vNanCtx.Request;
+			FabResponse fr = vInfo.Resp;
+			const string x = " | ";
+
+			string v1 =
+				nr.UserHostAddress +x+
+				vApiCtx.DbQueryExecutionCount +x+
+				fr.DbMs +x+
+				fr.TotalMs +x+
+				fr.DataLen +x+
+				fr.StartIndex +x+
+				fr.Count +x+
+				fr.HasMore +x+
+				fr.AppId +x+
+				fr.UserId +x+
+				fr.Timestamp +x+
+				fr.HttpStatus +x+
+				fr.IsError +x+
+				nr.Method +x+
+				vUri;
+
+			Log.Info(vApiCtx.ContextId, "APIv1", v1);
 		}
 
 	}

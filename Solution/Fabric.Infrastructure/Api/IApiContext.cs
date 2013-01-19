@@ -12,9 +12,10 @@ namespace Fabric.Infrastructure.Api {
 
 		string DbServerUrl { get; }
 
+		Guid ContextId { get; }
 		long UserId { get; }
 		long AppId { get; }
-		long MemberId { get; }
+		//long MemberId { get; }
 
 		long DbQueryExecutionCount { get; }
 
@@ -22,7 +23,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void SetAppUserId(long? pAppId, long? pUserId);
-		void SetMemberId(long pMemberId);
+		//void SetMemberId(long pMemberId);
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

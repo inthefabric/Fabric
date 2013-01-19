@@ -43,14 +43,30 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IApiDataAccess NewAccess(IWeaverScript pScripted) {
-			Log.Info("");
 			return new TestApiDataAccess(this, pScripted);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted) {
-			Log.Info("");
 			return new TestApiDataAccess<T>(this, pScripted);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
+			Log.Info("");
+			Log.Info("Query ("+pQueryName+") "+DbQueryExecutionCount+": "+pDbQuery.Query);
+			return base.DbDataAccess(pQueryName, pDbQuery);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IApiDataAccess<T> DbDataAccess<T>(string pQueryName,
+																		IApiDataAccess<T> pDbQuery) {
+			Log.Info("");
+			Log.Info("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
+				DbQueryExecutionCount+": "+pDbQuery.Query);
+			return base.DbDataAccess(pQueryName, pDbQuery);
 		}
 
 	}

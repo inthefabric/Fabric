@@ -35,7 +35,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		private string vPassword;
 		private string vRememberMe;
 
-		private OauthLoginFuncs vLoginFuncs;
+		private OauthLoginController vLoginCtrl;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +81,9 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			form.Add("Password", vPassword);
 			form.Add("RememberMe", vRememberMe);
 
-			vLoginFuncs = new OauthLoginFuncs(vApiCtx, query, form, GetRequestCookies());
-			return vLoginFuncs.LoginPost();
+			vLoginCtrl = new OauthLoginController(vApiCtx, query, form, GetRequestCookies(),
+				OauthLoginController.Method.Post);
+			return vLoginCtrl.Execute();
 		}
 
 
@@ -100,9 +101,9 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CheckScopeResult(OauthLoginFuncs pFuncs) {
-			Assert.False(pFuncs.LoginDto.ShowLoginPage, "Incorrect LoginDto.ShowLoginPage.");
-			Assert.Null(pFuncs.LoginDto.ScopeCode, "LoginDto.ScopeCode should be null.");
+		private void CheckScopeResult(OauthLoginController pController) {
+			Assert.False(pController.LoginDto.ShowLoginPage, "Incorrect LoginDto.ShowLoginPage.");
+			Assert.Null(pController.LoginDto.ScopeCode, "LoginDto.ScopeCode should be null.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -184,7 +185,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			Response result = TestPost();
 			CheckAuthCookie(result, true, DateTime.UtcNow.AddMinutes(20));
-			CheckScopeResult(vLoginFuncs);
+			CheckScopeResult(vLoginCtrl);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -200,7 +201,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			Response result = TestPost();
 			CheckAuthCookie(result, true, exp);
-			CheckScopeResult(vLoginFuncs);
+			CheckScopeResult(vLoginCtrl);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -212,7 +213,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			vPassword = pPassword;
 
 			TestPost();
-			FabOauthLogin login = vLoginFuncs.LoginDto;
+			FabOauthLogin login = vLoginCtrl.LoginDto;
 
 			Assert.True(login.ShowLoginPage, "Incorrect LoginDto.ShowLoginPage.");
 			Assert.AreEqual(int.Parse(vClientId), login.AppId, "Incorrect LoginDto.AppId.");

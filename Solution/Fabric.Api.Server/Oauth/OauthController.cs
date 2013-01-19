@@ -14,7 +14,7 @@ using ServiceStack.Text;
 namespace Fabric.Api.Server.Oauth {
 
 	/*================================================================================================*/
-	public class OauthFuncs : ModuleFuncBase, IOauthFuncs { //TEST: OauthFuncs
+	public class OauthController : ControllerBase, IOauthController { //TEST: OauthFuncs
 
 		public enum Function {
 			Access,
@@ -31,6 +31,8 @@ namespace Fabric.Api.Server.Oauth {
 		public OauthAccessRefToken AccessRefToken { get; private set; }
 		public OauthLogout Logout { get; private set; }
 
+		private readonly Function vFunc;
+
 		private string vRedirUri;
 		private string vClientId;
 		private string vClientSecret;
@@ -42,10 +44,13 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthFuncs(DynamicDictionary pQuery, IApiContext pApiCtx) : base(pApiCtx, pQuery, null){}
+		public OauthController(DynamicDictionary pQuery, IApiContext pApiCtx, Function pFunc) :
+																		base(pApiCtx, pQuery, null) {
+			vFunc = pFunc;
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Response Execute(Function pFunc) {
+		protected override Response BuildResponse() {
 			try {
 				vClientId = GetParamString(FuncOauthAtStep.ClientIdName, false);
 				vRedirUri = GetParamString(FuncOauthAtStep.RedirectUriName, false);
@@ -55,7 +60,7 @@ namespace Fabric.Api.Server.Oauth {
 				vRefreshToken = GetParamString(FuncOauthAtStep.RefreshTokenName, false);
 				vAccessToken = GetParamString(FuncOauthLogoutStep.AccessTokenName, false);
 
-				switch ( pFunc ) {
+				switch ( vFunc ) {
 					case Function.Access:
 						FabOauthAccess a = DoAccess();
 						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, a.ToJson());
@@ -81,16 +86,11 @@ namespace Fabric.Api.Server.Oauth {
 						return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, log.ToJson());
 
 					default:
-						throw new Exception("Unsupported function: "+pFunc);
+						throw new Exception("Unsupported function: "+vFunc);
 				}
 			}
 			catch ( OauthException oe ) {
 				return NancyUtil.BuildJsonResponse(HttpStatusCode.Forbidden, oe.OauthError.ToJson());
-			}
-			catch ( Exception e ) {
-				Log.Error("Oauth Unhandled Exception", e);
-				var err = FabError.ForInternalServerError();
-				return NancyUtil.BuildJsonResponse(HttpStatusCode.InternalServerError, err.ToJson());
 			}
 		}
 

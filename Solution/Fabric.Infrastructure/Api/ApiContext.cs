@@ -13,9 +13,10 @@ namespace Fabric.Infrastructure.Api {
 
 		public string DbServerUrl { get; private set; }
 
+		public Guid ContextId { get; private set; }
 		public long UserId { get; private set; }
 		public long AppId { get; private set; }
-		public long MemberId { get; private set; }
+		//public long MemberId { get; private set; }
 
 		public long DbQueryExecutionCount { get; private set; }
 
@@ -23,10 +24,11 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiContext(string pDbServerUrl) {
+			ContextId = Guid.NewGuid();
 			DbServerUrl = pDbServerUrl;
 			UserId = -1;
 			AppId = -1;
-			MemberId = -1;
+			//MemberId = -1;
 			DbQueryExecutionCount = 0;
 		}
 
@@ -37,7 +39,7 @@ namespace Fabric.Infrastructure.Api {
 			UserId = (pUserId ?? 0);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void SetMemberId(long pMemberId) {
 			if ( MemberId != -1 ) { throw new Exception("MemberId is already set."); }
 			MemberId = MemberId;
@@ -134,20 +136,15 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
-			Log.Info("Query ("+pQueryName+") "+DbQueryExecutionCount+": "+pDbQuery.Query);
-
+		protected virtual IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess<T> DbDataAccess<T>(string pQueryName, IApiDataAccess<T> pDbQuery)
-																		where T : INodeWithId, new() {
-			Log.Info("Query<"+typeof(T).Name+"> ("+pQueryName+") "+
-				DbQueryExecutionCount+": "+pDbQuery.Query);
-
+		protected virtual IApiDataAccess<T> DbDataAccess<T>(string pQueryName,
+											IApiDataAccess<T> pDbQuery) where T : INodeWithId, new() {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;

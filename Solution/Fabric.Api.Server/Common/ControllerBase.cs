@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Globalization;
+using Fabric.Api.Dto;
 using Fabric.Api.Oauth;
+using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
+using ServiceStack.Text;
 
 namespace Fabric.Api.Server.Common {
 
 	/*================================================================================================*/
-	public abstract class ModuleFuncBase {
+	public abstract class ControllerBase {
 
 		private static readonly CultureInfo EnUs = new CultureInfo("en-US");
 
@@ -19,13 +22,30 @@ namespace Fabric.Api.Server.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected ModuleFuncBase(IApiContext pApiContext, DynamicDictionary pQuery,
+		protected ControllerBase(IApiContext pApiContext, DynamicDictionary pQuery,
 																			DynamicDictionary pForm) {
 			ApiCtx = pApiContext;
 			Query = pQuery;
 			Form = pForm;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public Response Execute() {
+			try {
+				return BuildResponse();
+			}
+			catch ( Exception e ) {
+				Log.Error(GetType().Name+" Unhandled Exception", e);
+				var err = FabError.ForInternalServerError();
+				return NancyUtil.BuildJsonResponse(HttpStatusCode.InternalServerError, err.ToJson());
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected abstract Response BuildResponse();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static TType GetValue<TType>(DynamicDictionary pDict, string pName,
 									Func<DynamicDictionaryValue, TType> pConvert, bool pRequired=true) {

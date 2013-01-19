@@ -18,7 +18,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		private string vState;
 		private string vError;
 
-		private OauthLoginFuncs vLoginFuncs;
+		private OauthLoginController vLoginCtrl;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,8 +46,9 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			var form = new DynamicDictionary();
 
-			vLoginFuncs = new OauthLoginFuncs(vApiCtx, query, form, GetRequestCookies());
-			return vLoginFuncs.LoginGet();
+			vLoginCtrl = new OauthLoginController(vApiCtx, query, form, GetRequestCookies(),
+				OauthLoginController.Method.Get);
+			return vLoginCtrl.Execute();
 		}
 
 
@@ -60,7 +61,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			vSwitchMode = pSwitchMode;
 
 			TestGet();
-			FabOauthLogin login = vLoginFuncs.LoginDto;
+			FabOauthLogin login = vLoginCtrl.LoginDto;
 
 			Assert.True(login.ShowLoginPage, "Incorrect Login.ShowLoginPage.");
 			Assert.AreEqual(int.Parse(vClientId), login.AppId, "Incorrect Login.AppId.");
@@ -75,7 +76,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			vLoggedUserId = (long)UserZach;
 
 			TestGet();
-			FabOauthLogin login = vLoginFuncs.LoginDto;
+			FabOauthLogin login = vLoginCtrl.LoginDto;
 
 			Assert.AreEqual(pShowLoginPage, login.ShowLoginPage, "Incorrect LoginDto.ShowLoginPage.");
 
