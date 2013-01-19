@@ -69,7 +69,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetResultString() {
-			byte[] queryData = Encoding.UTF8.GetBytes(Query);
+			byte[] queryData = Encoding.UTF8.GetBytes(Context.ContextId+Query);
 
 			using ( var wc = new WebClient() ) {
 				ResultBytes = wc.UploadData(Context.DbServerUrl, "POST", queryData);

@@ -9,30 +9,47 @@ using HttpStatusCode = Nancy.HttpStatusCode;
 namespace Fabric.Db.Server.Gremlin {
 
 	/*================================================================================================*/
-	public class GremlinDbQuery {
+	public class GremlinController { //TEST: GremlinController
 
+		private readonly Guid vContextId;
 		private readonly string vQuery;
 		private readonly string vGremlinUri;
-		private readonly Guid vReqId;
+		private readonly string vData;
+
+		private long vTicks;
+		private string vResult;
+		private Exception vUnhandledException;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public GremlinDbQuery(string pQuery, string pGremlinUri) {
-			vQuery = pQuery;
+		public GremlinController(Guid pContextId, string pQuery, string pGremlinUri) {
+			vContextId = pContextId;
+			vQuery = vData = pQuery;
 			vGremlinUri = pGremlinUri;
-			vReqId = Guid.NewGuid();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public GremlinDbQuery(NancyContext pContext, string pGremlinUri) :
-																this(ReadQuery(pContext), pGremlinUri) {
-			Log.Info(vReqId, "QUERY", vQuery);
-		}
+		public GremlinController(Request pRequest, string pGremlinUri) {
+			vGremlinUri = pGremlinUri;
 
-		/*--------------------------------------------------------------------------------------------*/
-		private static string ReadQuery(NancyContext pContext) {
-			return new StreamReader(pContext.Request.Body).ReadToEnd();
+			vData = new StreamReader(pRequest.Body).ReadToEnd();
+			int curlyI = vData.IndexOf("{");
+
+			switch ( curlyI ) {
+				case 36:
+					vContextId = new Guid(vData.Substring(0, curlyI));
+					break;
+
+				case 0:
+					vContextId = new Guid();
+					break;
+
+				default:
+					return;
+			}
+
+			vQuery = vData.Substring(curlyI);
 		}
 
 
@@ -40,6 +57,8 @@ namespace Fabric.Db.Server.Gremlin {
 		/*--------------------------------------------------------------------------------------------*/
 		public Response GetResponse() {
 			byte[] bytes = Encoding.UTF8.GetBytes(GetJson());
+
+			LogAction();
 
 			return new Response {
 				ContentType = "application/json",
@@ -57,14 +76,14 @@ namespace Fabric.Db.Server.Gremlin {
 				json = ExecuteQuery();
 			}
 			catch ( Exception ex ) {
+				vUnhandledException = ex;
+
 				json = "{\"exception\": \""+FabricUtil.JsonUnquote(ex.GetType().Name)+"\", "+
 					"\"message\": \""+FabricUtil.JsonUnquote(ex.Message)+"\"}";
-				Log.Error(vReqId, "FAIL", json, ex);
 			}
 
-			t = DateTime.UtcNow.Ticks-t;
-			json = "{\"serverTicks\": "+t+", "+json.Substring(1);
-			//Log.Debug("GremlinDbQuery ("+t/10000+"ms): "+json);
+			vTicks = DateTime.UtcNow.Ticks-t;
+			json = "{\"serverTime\": "+vTicks/10000+", "+json.Substring(1);
 			return json;
 		}
 
@@ -72,8 +91,11 @@ namespace Fabric.Db.Server.Gremlin {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string ExecuteQuery() {
-			string resp = "";
-			long t = DateTime.UtcNow.Ticks;
+			if ( vQuery == null ) {
+				throw new Exception("Invalid request data: "+vData);
+			}
+
+			string resp;
 
 			try {
 				byte[] queryData = Encoding.UTF8.GetBytes(vQuery);
@@ -85,8 +107,10 @@ namespace Fabric.Db.Server.Gremlin {
 				}
 				
 				resp = Encoding.UTF8.GetString(respData);
+				vResult = resp;
 			}
 			catch ( WebException we ) {
+				vUnhandledException = we;
 				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
 
 				if ( s == null ) {
@@ -99,6 +123,42 @@ namespace Fabric.Db.Server.Gremlin {
 			}
 
 			return resp;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void LogAction() {
+			//DBv1: 
+			//	TotalMs, QueryMs, Timestamp, Query
+
+			const string name = "DBv1";
+			const string x = " | ";
+			const string qt = "\"queryTime\":";
+
+			int qti = vResult.LastIndexOf(qt);
+			string queryMs = "";
+
+			if ( qti != -1 ) {
+				int si = qti+qt.Length;
+				int ei = vResult.IndexOf('}', si);
+				int ei2 = vResult.IndexOf(',', si);
+				if ( ei2 != -1 && ei2 < ei ) { ei = ei2; }
+				queryMs = vResult.Substring(si, ei-si);
+			}
+
+			string v1 =
+				vTicks/10000 +x+
+				queryMs +x+
+				DateTime.UtcNow.Ticks +x+
+				vQuery;
+
+			if ( vUnhandledException == null ) {
+				Log.Info(vContextId, name, v1);
+			}
+			else {
+				Log.Error(vContextId, name, v1, vUnhandledException);
+			}
 		}
 
 	}

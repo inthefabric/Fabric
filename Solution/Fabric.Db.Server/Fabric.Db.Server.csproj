@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbModule.cs" />
-    <Compile Include="Gremlin\GremlinDbQuery.cs" />
+    <Compile Include="Gremlin\GremlinController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

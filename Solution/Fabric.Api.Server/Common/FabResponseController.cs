@@ -87,14 +87,13 @@ namespace Fabric.Api.Server.Common {
 				FabResp.HttpStatus +x+
 				FabResp.IsError +x+
 				NancyReq.Method +x+
-				NancyReq.Path +x+
-				UnhandedException;
+				NancyReq.Path;
 
-			if ( UnhandedException == null ) {
+			if ( UnhandledException == null ) {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
-				Log.Error(ApiCtx.ContextId, name, v1);
+				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}
 

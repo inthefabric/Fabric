@@ -19,7 +19,7 @@ namespace Fabric.Api.Server.Common {
 		protected IApiContext ApiCtx { get; private set; }
 		protected DynamicDictionary Query { get; private set; }
 		protected DynamicDictionary Form { get; private set; }
-		protected Exception UnhandedException { get; private set; }
+		protected Exception UnhandledException { get; private set; }
 
 		private long vTicks;
 		private Response vResp;
@@ -42,7 +42,7 @@ namespace Fabric.Api.Server.Common {
 				vResp = BuildResponse();
 			}
 			catch ( Exception e ) {
-				UnhandedException = e;
+				UnhandledException = e;
 				vResp = BuildExceptionResponse(e);
 
 				if ( vResp == null ) {
@@ -67,7 +67,7 @@ namespace Fabric.Api.Server.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void ExceptionIsHandled() {
-			UnhandedException = null;
+			UnhandledException = null;
 		}
 
 
@@ -75,7 +75,7 @@ namespace Fabric.Api.Server.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
 			//LOGv1: 
-			//	Class, ip, QueryCount, TotalTicks, Timestamp, HttpStatus, Method, Path, Exception
+			//	Class, ip, QueryCount, TotalMs, Timestamp, HttpStatus, Method, Path, Exception
 
 			const string name = "LOGv1";
 			const string x = " | ";
@@ -84,18 +84,17 @@ namespace Fabric.Api.Server.Common {
 				GetType().Name +x+
 				NancyReq.UserHostAddress +x+
 				ApiCtx.DbQueryExecutionCount +x+
-				vTicks +x+
+				vTicks/10000 +x+
 				DateTime.UtcNow.Ticks +x+
 				(int)vResp.StatusCode +x+
 				NancyReq.Method +x+
-				NancyReq.Path +x+
-				UnhandedException;
+				NancyReq.Path;
 
-			if ( UnhandedException == null ) {
+			if ( UnhandledException == null ) {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
-				Log.Error(ApiCtx.ContextId, name, v1);
+				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}
 

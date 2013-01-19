@@ -14,7 +14,7 @@ namespace Fabric.Db.Server {
 		/*--------------------------------------------------------------------------------------------*/
 		public DbModule() {
 			Log.ConfigureOnce();
-			Post["/gremlin"] = (p => new GremlinDbQuery(Context, GremlinUri).GetResponse());
+			Post["/gremlin"] = (p => new GremlinController(Context.Request, GremlinUri).GetResponse());
 		}
 
 	}

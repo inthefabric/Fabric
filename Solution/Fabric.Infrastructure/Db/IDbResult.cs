@@ -8,7 +8,7 @@ namespace Fabric.Infrastructure.Db {
 		bool Success { get; set; }
 		string Version { get; set; }
 		double QueryTime { get; set; }
-		long ServerTicks { get; set; }
+		long ServerTime { get; set; }
 		string Exception { get; set; }
 		string Message { get; set; }
 		string Text { get; set; }

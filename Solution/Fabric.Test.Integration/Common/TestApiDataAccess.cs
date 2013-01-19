@@ -30,7 +30,7 @@ namespace Fabric.Test.Integration.Common {
 			long t = DateTime.UtcNow.Ticks;
 
 			string q = CleanQueryIndexIds(Query);
-			var qh = new GremlinDbQuery(q, GremlinUri);
+			var qh = new GremlinController(Context.ContextId, q, GremlinUri);
 			string json = qh.GetJson();
 
 			Log.Info("Query: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
