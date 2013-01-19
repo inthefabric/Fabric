@@ -14,7 +14,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XOauthLoginFuncsPost : XOauthLoginFuncs {
+	public class XOauthLoginControllerPost : XOauthLoginController {
 
 		private string vResponseType;
 		private string vClientId;
@@ -61,30 +61,6 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response TestPost() {
-			/*var query = new DynamicDictionary();
-			query.Add("response_type", vResponseType);
-			query.Add("client_id", vClientId);
-			query.Add("redirect_uri", vRedirectUri);
-			query.Add("switchMode", vSwitchMode);
-			query.Add("state", vState);
-
-			var form = new DynamicDictionary();
-			form.Add("CancelAction", vCancelAction);
-			form.Add("LogoutAction", vLogoutAction);
-			form.Add("LoginAction", vLoginAction);
-			form.Add("AllowAction", vAllowAction);
-			form.Add("DenyAction", vDenyAction);
-			form.Add("Username", vUsername);
-			form.Add("Password", vPassword);
-			form.Add("RememberMe", vRememberMe);
-
-			var cookies = GetRequestCookies();
-
-			var mockReq = new Mock<Request>();
-			mockReq.SetupGet(x => x.Query).Returns(query);
-			mockReq.SetupGet(x => x.Form).Returns(form);
-			mockReq.SetupGet(x => x.Cookies).Returns(cookies);*/
-
 			var req = new Request("POST", "test", "test");
 
 			req.Query.Add("response_type", vResponseType);
@@ -172,7 +148,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(null)]
 		[TestCase(UserZach)]
-		public virtual void Cancel(SetupUsers.UserId? pLoggedUserId) {
+		public void Cancel(SetupUsers.UserId? pLoggedUserId) {
 			vCancelAction = "Cancel";
 			vLoggedUserId = (pLoggedUserId == null ? 0 : (long)pLoggedUserId);
 
@@ -182,7 +158,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public virtual void Logout() {
+		public void Logout() {
 			vLogoutAction = "Logout";
 			vLoggedUserId = (long)UserZach;
 
@@ -198,7 +174,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		[TestCase(null, "1")]
 		[TestCase(UserMel, "0")]
 		[TestCase(UserMel, "1")]
-		public virtual void LoginSuccess(SetupUsers.UserId? pLoggedUserId, string pSwitchMode) {
+		public void LoginSuccess(SetupUsers.UserId? pLoggedUserId, string pSwitchMode) {
 			vLoginAction = "Login";
 			vUsername = "zachkinstner";
 			vPassword = "asdfasdf";
@@ -213,7 +189,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true)]
 		[TestCase(false)]
-		public virtual void LoginRemember(bool pRememberMe) {
+		public void LoginRemember(bool pRememberMe) {
 			vLoginAction = "Login";
 			vUsername = "zachkinstner";
 			vPassword = "asdfasdf";
@@ -229,7 +205,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("zach", "asdf")]
 		[TestCase("", "")]
-		public virtual void LoginFailure(string pUsername, string pPassword) {
+		public void LoginFailure(string pUsername, string pPassword) {
 			vLoginAction = "Login";
 			vUsername = pUsername;
 			vPassword = pPassword;
@@ -248,7 +224,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		[TestCase("1234")]
 		[TestCase("")]
 		[TestCase(null)]
-		public virtual void LoginScope(string pState) {
+		public void LoginScope(string pState) {
 			vLoginAction = "Login";
 			vClientId = (long)AppGal+"";
 			vUsername = "zachkinstner";
@@ -264,7 +240,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public virtual void PerformAllow() {
+		public void PerformAllow() {
 			vAllowAction = "Allow";
 			vLoggedUserId = (long)UserZach;
 
@@ -274,7 +250,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public virtual void PerformDeny() {
+		public void PerformDeny() {
 			vDenyAction = "Deny";
 			vLoggedUserId = (long)UserZach;
 

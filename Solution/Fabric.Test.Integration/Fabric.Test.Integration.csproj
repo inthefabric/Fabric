@@ -47,9 +47,9 @@
     <Compile Include="FabApiOauth\Tasks\XGetUserAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\XGetAppAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\XGetAccessToken.cs" />
-    <Compile Include="FabApiServer\Oauth\XOauthLoginFuncsGet.cs" />
-    <Compile Include="FabApiServer\Oauth\XOauthLoginFuncs.cs" />
-    <Compile Include="FabApiServer\Oauth\XOauthLoginFuncsPost.cs" />
+    <Compile Include="FabApiServer\Oauth\XOauthLoginControllerGet.cs" />
+    <Compile Include="FabApiServer\Oauth\XOauthLoginController.cs" />
+    <Compile Include="FabApiServer\Oauth\XOauthLoginControllerPost.cs" />
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

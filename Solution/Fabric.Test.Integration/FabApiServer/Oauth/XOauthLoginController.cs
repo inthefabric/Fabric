@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using Fabric.Api.Server.Util;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using Nancy;
-using NUnit.Framework;
 using Nancy.Cookies;
+using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public abstract class XOauthLoginFuncs : IntegTestBase {
+	public abstract class XOauthLoginController : IntegTestBase {
 
 		protected long vLoggedUserId;
 		protected TestApiContext vApiCtx;
@@ -24,18 +23,6 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			vLoggedUserId = 0;
 			vApiCtx = new TestApiContext();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected Dictionary<string, string> GetRequestCookies() {
-			var cookies = new Dictionary<string, string>();
-
-			if ( vLoggedUserId > 0 ) {
-				NancyCookie c = NancyUtil.NewUserCookieForTesting(vLoggedUserId);
-				cookies.Add(c.Name, c.Value);
-			}
-
-			return cookies;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -51,7 +38,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void CheckRedirectSuccess(Response pResp, string pRedirectUri, string pState) {
+		protected void CheckRedirectSuccess(Response pResp, string pRedirectUri, string pState) {
 			Assert.NotNull(pResp, "Result should be filled.");
 			Assert.True(pResp.Headers.ContainsKey("Location"), "Header 'Location' is missing.");
 			string loc = pResp.Headers["Location"];

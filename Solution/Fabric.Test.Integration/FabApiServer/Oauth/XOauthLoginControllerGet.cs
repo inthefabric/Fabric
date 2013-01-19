@@ -9,7 +9,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XOauthLoginFuncsGet : XOauthLoginFuncs {
+	public class XOauthLoginControllerGet : XOauthLoginController {
 
 		private string vResponseType;
 		private string vClientId;
@@ -36,23 +36,6 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response TestGet() {
-			/*var query = new DynamicDictionary();
-			query.Add("response_type", vResponseType);
-			query.Add("client_id", vClientId);
-			query.Add("redirect_uri", vRedirectUri);
-			query.Add("switchMode", vSwitchMode);
-			query.Add("state", vState);
-			query.Add("error", vError);
-
-			var form = new DynamicDictionary();
-
-			var cookies = GetRequestCookies();
-			
-			var mockReq = new Mock<Request>();
-			mockReq.SetupGet(x => x.Query).Returns(query);
-			mockReq.SetupGet(x => x.Form).Returns(form);
-			mockReq.SetupGet(x => x.Cookies).Returns(cookies);*/
-
 			var req = new Request("GET", "test", "test");
 
 			req.Query.Add("response_type", vResponseType);
@@ -74,7 +57,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		[TestCase(null)]
 		[TestCase("0")]
 		[TestCase("1")]
-		public virtual void Unsigned(string pSwitchMode) {
+		public void Unsigned(string pSwitchMode) {
 			vSwitchMode = pSwitchMode;
 
 			TestGet();
@@ -88,7 +71,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		[TestCase(null, false)]
 		[TestCase("0", false)]
 		[TestCase("1", true)]
-		public virtual void Signed(string pSwitchMode, bool pShowLoginPage) {
+		public void Signed(string pSwitchMode, bool pShowLoginPage) {
 			vSwitchMode = pSwitchMode;
 			vLoggedUserId = (long)UserZach;
 
@@ -111,7 +94,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		[TestCase("12345")]
 		[TestCase("")]
 		[TestCase(null)]
-		public virtual void AlreadyAllowedScope(string pState) {
+		public void AlreadyAllowedScope(string pState) {
 			vRedirectUri = SetupOauth.GrantUrlGal;
 			vClientId = (long)AppGal+"";
 			vLoggedUserId = (long)UserZach;
@@ -124,7 +107,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("invalid_request")]
 		[TestCase("")]
-		public virtual void Error(string pError) {
+		public void Error(string pError) {
 			vError = pError;
 			TestGet();
 		}
