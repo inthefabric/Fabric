@@ -21,7 +21,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void SetUserAppId(long pUserId, long pAppId);
+		void SetAppUserId(long? pAppId, long? pUserId);
 		void SetMemberId(long pMemberId);
 
 		

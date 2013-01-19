@@ -57,9 +57,9 @@ namespace Fabric.Api.Server.Oauth {
 				vIncomingError = GetParamString("error", false);
 				vLoggedUserId = NancyUtil.GetUserIdFromCookies(vCookies);
 
-				vClientId = GetParamString(FuncOauthLoginStep.ClientIdName);
-				vRedirUri = GetParamString(FuncOauthLoginStep.RedirectUriName);
-				vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName);
+				vClientId = GetParamString(FuncOauthLoginStep.ClientIdName, false);
+				vRedirUri = GetParamString(FuncOauthLoginStep.RedirectUriName, false);
+				vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName, false);
 				vScope = GetParamString(FuncOauthLoginStep.ScopeName, false);
 				vSwitchMode = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
 				vState = GetParamString(FuncOauthLoginStep.StateName, false);
@@ -182,19 +182,6 @@ namespace Fabric.Api.Server.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildHtmlPage(string pTitle, string pHtmlContent) {
-			return
-				"<html>\n"+
-				"	<head>\n"+
-				"		<title>"+pTitle+"</title>\n"+
-				"	</head>\n"+
-				"	<body>\n"+
-				"		"+pHtmlContent+"\n"+
-				"	</body>\n"+
-				"</html>";
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		private Response ResponseErrorPage() {
 			string desc = GetParamString("error_description", false);
 
@@ -203,7 +190,7 @@ namespace Fabric.Api.Server.Oauth {
 			}
 
 			string html = "<b>"+vIncomingError+"</b><br/>"+desc;
-			html = BuildHtmlPage("Fabric Login Page Error", html);
+			html = HtmlUtil.BuildHtmlPage("Fabric Login Page Error", html);
 			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
 		}
 		
@@ -250,7 +237,7 @@ namespace Fabric.Api.Server.Oauth {
 				"	</form>"+
 				"</div>";
 
-			html = BuildHtmlPage("Fabric Login", html);
+			html = HtmlUtil.BuildHtmlPage("Fabric Login", html);
 			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
 		}
 
@@ -276,7 +263,7 @@ namespace Fabric.Api.Server.Oauth {
 				"	</form>"+
 				"</div>";
 
-			html = BuildHtmlPage("Fabric Login: Scope", html);
+			html = HtmlUtil.BuildHtmlPage("Fabric Login: Scope", html);
 			return NancyUtil.BuildHtmlResponse(HttpStatusCode.OK, html);
 		}
 

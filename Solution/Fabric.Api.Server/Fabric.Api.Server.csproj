@@ -94,7 +94,6 @@
     <Compile Include="Api\ApiResponseJson.cs" />
     <Compile Include="Api\ApiResponseHtml.cs" />
     <Compile Include="Api\ApiQueryInfo.cs" />
-    <Compile Include="Common\ApiFuncExt.cs" />
     <Compile Include="OauthModule.cs" />
     <Compile Include="Graph\GraphView.cs" />
     <Compile Include="Graph\GraphJson.cs" />

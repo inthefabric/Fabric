@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Server.Api;
+﻿using Fabric.Api.Oauth.Tasks;
+using Fabric.Api.Server.Api;
 using Fabric.Api.Server.ApiSpec;
 using Fabric.Api.Server.Graph;
 using Fabric.Api.Server.Setups;
@@ -26,8 +27,8 @@ namespace Fabric.Api.Server {
 			Get["/graph/json"] = (p => new GraphJson(Context).GetResponse());
 			Get["/graph"] = (p => new GraphView(this).GetResponse());
 			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());
-			Get["/api"] = (p => new ApiQuery(Context, NewApiCtx).GetResponse());
-			Get["/api/(.*)"] = (p => new ApiQuery(Context, NewApiCtx).GetResponse());
+			Get["/api"] = (p => ExecuteApiQuery(Context));
+			Get["/api/(.*)"] = (p => ExecuteApiQuery(Context));
 
 			Get["/apispec"] = (p => new ApiSpecBuilder(Context).GetResponse());
 			Get["/apispec/apiresponse"] = (p => new ApiSpecBuilder(Context, "res").GetResponse());
@@ -36,10 +37,14 @@ namespace Fabric.Api.Server {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected static IApiContext NewApiCtx {
-			get {
-				return new ApiContext(DbServerUrl);
-			}
+		private static Response ExecuteApiQuery(NancyContext pContext) {
+			var aq = new ApiQuery(
+				pContext,
+				new ApiContext(DbServerUrl),
+				new OauthTasks()
+			);
+			
+			return aq.GetResponse();
 		}
 
 	}

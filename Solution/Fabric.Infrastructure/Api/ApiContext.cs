@@ -31,10 +31,10 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetUserAppId(long pUserId, long pAppId) {
-			if ( UserId != -1 ) { throw new Exception("UserId and AppId are already set."); }
-			UserId = pUserId;
-			AppId = pAppId;
+		public void SetAppUserId(long? pAppId, long? pUserId) {
+			if ( AppId != -1 ) { throw new Exception("UserId and AppId are already set."); }
+			AppId = (pAppId ?? 0);
+			UserId = (pUserId ?? 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

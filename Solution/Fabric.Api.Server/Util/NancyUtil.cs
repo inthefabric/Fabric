@@ -54,6 +54,26 @@ namespace Fabric.Api.Server.Util {
 			string encVal = EncryptUtil.EncryptData(EncryptKey, val);
 			return new NancyCookie(FabricUserAuth, encVal);
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetBearerToken(RequestHeaders pHeaders) {
+			IEnumerable<string> authList = pHeaders["Authorization"];
+			string token = null;
+
+			foreach ( string auth in authList ) {
+				if ( auth.Substring(0, 7) != "Bearer " ) {
+					continue;
+				}
+
+				token = auth.Substring(7); //removes "Bearer " (with space)
+			}
+
+			if ( string.IsNullOrEmpty(token) || token.Length != 32 ) {
+				return null;
+			}
+
+			return token;
+		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

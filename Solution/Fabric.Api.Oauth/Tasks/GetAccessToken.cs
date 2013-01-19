@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
@@ -13,7 +14,7 @@ namespace Fabric.Api.Oauth.Tasks {
 	public class GetAccessToken : ApiFunc<FabOauthAccess> {
 		
 		public enum Query {
-			GetAccess
+			GetAccessTx
 		}
 
 		private readonly string vToken;
@@ -38,17 +39,46 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess Execute() {
-			IWeaverQuery getOa = NewPathFromRoot()
+			IWeaverTransaction tx = new WeaverTransaction();
+			IWeaverVarAlias agg;
+			IWeaverFuncAs<OauthAccess> oaAlias;
+
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out agg)
+			);
+
+			tx.AddQuery(
+				NewPathFromRoot()
 				.ContainsOauthAccessList.ToOauthAccess
 					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, vToken)
 					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, Context.UtcNow.Ticks)
-				.End();
+					.Aggregate(agg)
+					.As(out oaAlias)
+				.UsesApp.ToApp
+					.Aggregate(agg)
+				.Back(oaAlias)
+				.UsesUser.ToUser
+					.Aggregate(agg)
+					.Iterate()
+				.End()
+			);
 
-			OauthAccess oa = Context.DbSingle<OauthAccess>(Query.GetAccess+"", getOa);
+			tx.FinishWithoutStartStop(agg);
 
-			if ( oa == null ) {
+			IApiDataAccess data = Context.DbData(Query.GetAccessTx+"", tx);
+
+			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
 				return null;
 			}
+
+			int numResults = data.ResultDtoList.Count;
+
+			if ( numResults != 2 && numResults != 3 ) {
+				throw new Exception("Incorrect ResultDtoList.Count.");
+			}
+
+			OauthAccess oa = data.ResultDtoList[0].ToNode<OauthAccess>();
+			App app = data.ResultDtoList[1].ToNode<App>();
 
 			var foa = new FabOauthAccess();
 			foa.OauthAccessId = oa.OauthAccessId;
@@ -56,6 +86,13 @@ namespace Fabric.Api.Oauth.Tasks {
 			foa.RefreshToken = oa.Refresh;
 			foa.TokenType = "bearer";
 			foa.ExpiresIn = 3600;
+			foa.AppId = app.AppId;
+
+			if ( numResults == 3 ) {
+				User user = data.ResultDtoList[2].ToNode<User>();
+				foa.UserId = user.UserId;
+			}
+
 			return foa;
 		}
 

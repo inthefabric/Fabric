@@ -14,12 +14,12 @@ namespace Fabric.Api.Dto {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabError FromException(Exception pEx) {
+		public static FabError ForInternalServerError() {
 			var e = new FabError();
 			e.Code = 0;
-			e.CodeName = "UnexpectedError";
-			e.Type = pEx.GetType().Name;
-			e.Message = pEx.Message;
+			e.CodeName = "InternalError";
+			e.Type = typeof(Exception).Name;
+			e.Message = "An internal server error occurred.";
 			return e;
 		}
 

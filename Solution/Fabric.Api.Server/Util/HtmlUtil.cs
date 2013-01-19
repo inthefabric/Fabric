@@ -20,6 +20,20 @@
 			string type = (pType == DbDto.ItemType.Node ? "v" : "e");
 			return "/g/"+type+"("+pId+")";
 		}*/
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string BuildHtmlPage(string pTitle, string pHtmlContent) {
+			return
+				"<html>\n"+
+				"	<head>\n"+
+				"		<title>"+pTitle+"</title>\n"+
+				"	</head>\n"+
+				"	<body>\n"+
+				"		"+pHtmlContent+"\n"+
+				"	</body>\n"+
+				"</html>";
+		}
+
 	}
 
 }

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -16,16 +18,31 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetAccessToken {
 
-		private readonly static string QueryGetAccess = 
+		private readonly static string QueryGetAccessTx = 
+			"_V0=[];"+
 			"g.V('RootId',0)[0]"+
-			".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
-				".has('Token',Tokens.T.eq,_P0)"+
-				".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L);";
+				".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
+					".has('Token',Tokens.T.eq,_TP0)"+
+					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
+					".aggregate(_V0)"+
+					".as('step6')"+
+				".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
+					".aggregate(_V0)"+
+				".back('step6')"+
+				".outE('"+typeof(OauthAccessUsesUser).Name+"').inV"+
+					".aggregate(_V0)"+
+					".iterate();"+
+			"_V0;";
 
 		private string vToken;
 		private DateTime vUtcNow;
 		private Mock<IApiContext> vMockCtx;
-		private OauthAccess vGetAccessResult;
+		private Mock<IApiDataAccess> vMockGetAccessTxResult;
+		private OauthAccess vResultAccess;
+		private App vResultApp;
+		private User vResultUser;
+		private List<IDbDto> vResultList2;
+		private List<IDbDto> vResultList3;
 		private UsageMap vUsageMap;
 		
 		
@@ -36,18 +53,47 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vToken = "abcdefghijklmnopqrstuvwxyz789012";
 			vUtcNow = DateTime.UtcNow;
 			vUsageMap = new UsageMap();
-			
-			vGetAccessResult = new OauthAccess();
-			vGetAccessResult.Token = vToken;
-			vGetAccessResult.Refresh = FabricUtil.Code32;
+
+			vResultAccess = new OauthAccess();
+			vResultAccess.Token = vToken;
+			vResultAccess.Refresh = FabricUtil.Code32;
+
+			vResultApp = new App();
+			vResultApp.AppId = 456;
+
+			vResultUser = new User();
+			vResultUser.UserId = 9878;
+
+			//TODO: build utility for creating DataAccess results
+
+			var mockGrantDbDto = new Mock<IDbDto>();
+			mockGrantDbDto.Setup(x => x.ToNode<OauthAccess>()).Returns(vResultAccess);
+
+			var mockAppDbDto = new Mock<IDbDto>();
+			mockAppDbDto.Setup(x => x.ToNode<App>()).Returns(vResultApp);
+
+			var mockUserDbDto = new Mock<IDbDto>();
+			mockUserDbDto.Setup(x => x.ToNode<User>()).Returns(vResultUser);
+
+			vResultList2 = new List<IDbDto>();
+			vResultList2.Add(mockGrantDbDto.Object);
+			vResultList2.Add(mockAppDbDto.Object);
+
+			vResultList3 = new List<IDbDto>();
+			vResultList3.Add(mockGrantDbDto.Object);
+			vResultList3.Add(mockAppDbDto.Object);
+			vResultList3.Add(mockUserDbDto.Object);
+
+			vMockGetAccessTxResult = new Mock<IApiDataAccess>();
+			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(vResultList3);
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 
 			vMockCtx
-				.Setup(x => x.DbSingle<OauthAccess>(
-					GetAccessToken.Query.GetAccess+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetAccess(q));
+				.Setup(x => x.DbData(
+					GetAccessToken.Query.GetAccessTx+"", It.IsAny<IWeaverTransaction>()))
+				.Returns((string s, IWeaverTransaction tx) => GetAccess(tx));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -61,16 +107,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthAccess GetAccess(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(GetAccessToken.Query.GetAccess+"");
-			string expect = QueryGetAccess
+		private IApiDataAccess GetAccess(IWeaverTransaction pTx) {
+			TestUtil.LogWeaverScript(pTx);
+			vUsageMap.Increment(GetAccessToken.Query.GetAccessTx+"");
+			string expect = QueryGetAccessTx
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vToken);
+			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", vToken);
 
-			return vGetAccessResult;
+			return vMockGetAccessTxResult.Object;
 		}
 
 
@@ -81,28 +127,33 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			FabOauthAccess result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetAccessToken.Query.GetAccess+"", 1);
-			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vToken, result.AccessToken, "Incorrect Result.AccessToken.");
-			Assert.AreEqual(vGetAccessResult.Refresh, result.RefreshToken,
-				"Incorrect Result.RefreshToken.");
-			Assert.AreEqual("bearer", result.TokenType, "Incorrect Result.TokenType.");
-			Assert.AreEqual(3600, result.ExpiresIn, "Incorrect Result.ExpiresIn.");
+			CheckSuccessResult(result);
+			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void NotFound() {
-			vGetAccessResult = null;
+		[TestCase(true)]
+		[TestCase(false)]
+		public void SuccessNoUser(bool pViaTask) {
+			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(vResultList2);
 
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthAccess>(
-					GetAccessToken.Query.GetAccess+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetAccess(q));
+			FabOauthAccess result = TestGo(pViaTask);
+
+			CheckSuccessResult(result);
+			Assert.Null(result.UserId, "Result.UserId should be null.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(null)]
+		[TestCase(0)]
+		public void NotFound(int? pLen) {
+			IList<IDbDto> list = null;
+			if ( pLen == 0 ) { list = new List<IDbDto>(); }
+			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
 
 			FabOauthAccess result = TestGo();
 
-			vUsageMap.AssertUses(GetAccessToken.Query.GetAccess+"", 1);
+			vUsageMap.AssertUses(GetAccessToken.Query.GetAccessTx+"", 1);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -134,6 +185,20 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vToken = pToken;
 			TestUtil.CheckThrows<FabArgumentFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void CheckSuccessResult(FabOauthAccess pResult) {
+			vUsageMap.AssertUses(GetAccessToken.Query.GetAccessTx+"", 1);
+			Assert.NotNull(pResult, "Result should be filled.");
+			Assert.AreEqual(vToken, pResult.AccessToken, "Incorrect Result.AccessToken.");
+			Assert.AreEqual(vResultAccess.Refresh, pResult.RefreshToken,
+				"Incorrect Result.RefreshToken.");
+			Assert.AreEqual("bearer", pResult.TokenType, "Incorrect Result.TokenType.");
+			Assert.AreEqual(3600, pResult.ExpiresIn, "Incorrect Result.ExpiresIn.");
+			Assert.AreEqual(vResultApp.AppId, pResult.AppId, "Incorrect Result.AppId.");
 		}
 
 	}

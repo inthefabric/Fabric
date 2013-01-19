@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
+using Fabric.Api.Server.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
@@ -17,8 +20,10 @@ namespace Fabric.Api.Server.Api {
 
 		private const string ApiBaseUri = "http://localhost:9000/api";
 
-		private readonly NancyContext vContext;
+		private readonly Guid vReqId;
+		private readonly NancyContext vNanCtx;
 		private readonly IApiContext vApiCtx;
+		private readonly IOauthTasks vOauthTasks;
 		private readonly ApiQueryInfo vInfo;
 		private IFinalStep vLastStep;
 		private string vUri;
@@ -27,9 +32,11 @@ namespace Fabric.Api.Server.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiQuery(NancyContext pContext, IApiContext pApiCtx) {
-			vContext = pContext;
+		public ApiQuery(NancyContext pNanCtx, IApiContext pApiCtx, IOauthTasks pOauthTasks) {
+			vReqId = new Guid();
+			vNanCtx = pNanCtx;
 			vApiCtx = pApiCtx;
+			vOauthTasks = pOauthTasks;
 			vInfo = new ApiQueryInfo();
 		}
 
@@ -37,6 +44,8 @@ namespace Fabric.Api.Server.Api {
 		public Response GetResponse() {
 			try {
 				FillQueryInfo();
+				ExecuteOauthLookup();
+				ExecuteQuery();
 				BuildDtoList();
 				return BuildResponse();
 			}
@@ -56,7 +65,7 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.StartEvent();
 			vInfo.Resp.HttpStatus = (int)vInfo.HttpStatus;
 
-			vUri = vContext.Request.Path.Substring(5);
+			vUri = vNanCtx.Request.Path.Substring(5); //removes "/api/"
 
 			vInfo.Resp.BaseUri = ApiBaseUri;
 			vInfo.Resp.RequestUri = (vUri.Length > 0 ? "/"+vUri : "");
@@ -67,14 +76,45 @@ namespace Fabric.Api.Server.Api {
 			vInfo.Resp.SetLinks(vLastStep.AvailableLinks);
 			vInfo.Resp.Functions = vLastStep.AvailableFuncs.ToArray();
 			vInfo.Query = vLastStep.Path.Script;
+		}
 
-			if ( !vLastStep.UseLocalData ) {
-				vInfo.Resp.DbStartEvent();
-				var wq = new WeaverQuery();
-				wq.FinalizeQuery(vInfo.Query);
-				vReq = vApiCtx.DbData("Api", wq);
-				vInfo.Resp.DbEndEvent();
+		/*--------------------------------------------------------------------------------------------*/
+		private void ExecuteOauthLookup() {
+			if ( vUri.Length >= 5 && vUri.Substring(0,5).ToLower() == "oauth" ) {
+				return; //skip when performing an OAuth function
 			}
+
+			string token = NancyUtil.GetBearerToken(vNanCtx.Request.Headers);
+
+			if ( token == null ) {
+				return;
+			}
+
+			FabOauthAccess acc = vOauthTasks.GetAccessToken(token, vApiCtx);
+
+			Log.Debug(vReqId, "OAUTH", "Token: "+token+", App/User: "+
+				(acc == null ? "0/0" : acc.AppId+"/"+acc.UserId));
+
+			if ( acc == null ) {
+				return;
+			}
+
+			vApiCtx.SetAppUserId(acc.AppId, acc.UserId);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void ExecuteQuery() {
+			if ( vLastStep.UseLocalData ) {
+				return;
+			}
+
+			vInfo.Resp.DbStartEvent();
+
+			var wq = new WeaverQuery();
+			wq.FinalizeQuery(vInfo.Query);
+			vReq = vApiCtx.DbData("Api", wq);
+
+			vInfo.Resp.DbEndEvent();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -141,7 +181,7 @@ namespace Fabric.Api.Server.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private bool ShouldReturnHtml() {
-			var acc = vContext.Request.Headers.Accept;
+			var acc = vNanCtx.Request.Headers.Accept;
 
 			foreach ( var a in acc ) {
 				if ( a.Item1 != "text/html" ) { continue; }
@@ -183,12 +223,7 @@ namespace Fabric.Api.Server.Api {
 			}
 			else {
 				Log.Error("API Unhandled Exception", pEx);
-
-				vInfo.Error = new FabError();
-				vInfo.Error.Code = 0;
-				vInfo.Error.CodeName = "InternalError";
-				vInfo.Error.Type = typeof(Exception).Name;
-				vInfo.Error.Message = "An internal server error occurred.";
+				vInfo.Error = FabError.ForInternalServerError();
 				vInfo.HttpStatus = HttpStatusCode.InternalServerError;
 			}
 

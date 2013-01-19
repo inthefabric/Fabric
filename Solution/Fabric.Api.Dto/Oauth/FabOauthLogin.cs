@@ -1,19 +1,25 @@
+using System.Runtime.Serialization;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Oauth {
 
 	/*================================================================================================*/
+	[DataContract]
 	public class FabOauthLogin : FabDto {
 
+		[DataMember(Name="code")]
 		[DtoProp("code")]
 		public string Code { get; set; }
 
+		[DataMember(Name="state")]
 		[DtoProp("state")]
 		public string State { get; set; }
 
+		[DataMember(Name="error")]
 		[DtoProp("error")]
 		public string Error { get; set; }
 
+		[DataMember(Name="error_description")]
 		[DtoProp("error_description")]
 		public string ErrorDesc { get; set; }
 
