@@ -88,53 +88,51 @@
   <ItemGroup>
     <Compile Include="RootModule.cs" />
     <Compile Include="Bootstrap.cs" />
-    <Compile Include="ApiSpec\ApiSpecBuilder.cs" />
-    <Compile Include="ApiSpec\ApiSpecBuilderHtml.cs" />
+    <Compile Include="Root\SpecController.cs" />
     <Compile Include="Root\RootController.cs" />
     <Compile Include="Root\ApiResponseJson.cs" />
     <Compile Include="Root\ApiResponseHtml.cs" />
     <Compile Include="Root\ApiModel.cs" />
     <Compile Include="Common\FabResponseController.cs" />
     <Compile Include="Common\HtmlView.cs" />
-    <Compile Include="OauthModule.cs" />
-    <Compile Include="Graph\GraphView.cs" />
-    <Compile Include="Graph\GraphJson.cs" />
-    <Compile Include="Graph\GraphModel.cs" />
-    <Compile Include="Oauth\Views\LoginErrorView.cs" />
-    <Compile Include="Oauth\Views\LoginPageView.cs" />
-    <Compile Include="Oauth\Views\LoginScopeView.cs" />
-    <Compile Include="Oauth\OauthLoginController.cs" />
+    <Compile Include="Internal\Graph\GraphView.cs" />
+    <Compile Include="Internal\Graph\GraphJson.cs" />
+    <Compile Include="Internal\Graph\GraphModel.cs" />
+    <Compile Include="Root\Views\LoginErrorView.cs" />
+    <Compile Include="Root\Views\LoginPageView.cs" />
+    <Compile Include="Root\Views\LoginScopeView.cs" />
+    <Compile Include="Root\OauthLoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setups\SetupRoutine.cs" />
-    <Compile Include="Tables\TableNode.cs" />
-    <Compile Include="Tables\TableModel.cs" />
-    <Compile Include="Tables\TableBrowser.cs" />
+    <Compile Include="Internal\Setups\SetupRoutine.cs" />
+    <Compile Include="Internal\Tables\TableNode.cs" />
+    <Compile Include="Internal\Tables\TableModel.cs" />
+    <Compile Include="Internal\Tables\TableBrowser.cs" />
     <Compile Include="Util\EncryptUtil.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Common\Controller.cs" />
-    <Compile Include="Oauth\OauthController.cs" />
+    <Compile Include="Root\OauthController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Graph\index.html" />
-    <Content Include="Graph\js\d3.min.js" />
-    <Content Include="Graph\js\jquery-1.6.4.min.js" />
-    <Content Include="Graph\js\viz.js" />
-    <Content Include="Graph\styles\Colors.css">
+    <Content Include="Internal\Graph\index.html" />
+    <Content Include="Internal\Graph\js\d3.min.js" />
+    <Content Include="Internal\Graph\js\jquery-1.6.4.min.js" />
+    <Content Include="Internal\Graph\js\viz.js" />
+    <Content Include="Internal\Graph\styles\Colors.css">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Colors.tt</DependentUpon>
     </Content>
-    <Content Include="Graph\styles\main.css" />
+    <Content Include="Internal\Graph\styles\main.css" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tables\index.html" />
-    <Content Include="Tables\styles\tables.css" />
+    <Content Include="Internal\Tables\index.html" />
+    <Content Include="Internal\Tables\styles\tables.css" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Graph\styles\Colors.tt">
+    <None Include="Internal\Graph\styles\Colors.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Colors.css</LastGenOutput>
     </None>
@@ -142,6 +140,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

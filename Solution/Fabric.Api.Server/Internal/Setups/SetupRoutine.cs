@@ -8,7 +8,7 @@ using Nancy;
 using Weaver;
 using Weaver.Interfaces;
 
-namespace Fabric.Api.Server.Setups {
+namespace Fabric.Api.Server.Internal.Setups {
 
 	/*================================================================================================*/
 	public class SetupRoutine {

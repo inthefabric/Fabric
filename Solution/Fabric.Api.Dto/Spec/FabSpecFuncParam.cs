@@ -1,7 +1,7 @@
-﻿namespace Fabric.Api.Spec {
+﻿namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class SpecFuncParam {
+	public class FabSpecFuncParam {
 
 		public int Index { get; set; }
 		public string Name { get; set; }

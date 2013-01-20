@@ -55,6 +55,12 @@
     <Compile Include="Oauth\FabOauthLogin.cs" />
     <Compile Include="Oauth\FabOauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spec\FabSpec.cs" />
+    <Compile Include="Spec\FabSpecDto.cs" />
+    <Compile Include="Spec\FabSpecDtoLink.cs" />
+    <Compile Include="Spec\FabSpecDtoProp.cs" />
+    <Compile Include="Spec\FabSpecFunc.cs" />
+    <Compile Include="Spec\FabSpecFuncParam.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ApiDtos.tt">

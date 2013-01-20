@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Dto;
 using Fabric.Api.Paths.Steps.Functions.Oauth;
+using Fabric.Api.Paths.Steps.Functions.Spec;
 
 namespace Fabric.Api.Paths.Steps.Functions {
 	
@@ -21,6 +22,8 @@ namespace Fabric.Api.Paths.Steps.Functions {
 
 			//Available for root
 			Register<FuncOauthStep>((p => new FuncOauthStep(p)), FuncOauthStep.AllowedForStep);
+			Register<FuncSpecStep>((p => new FuncSpecStep(p)), FuncSpecStep.AllowedForStep);
+			//TEST: FuncRegistry -> SpecStep
 
 			//Available for most DTOs
 			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);

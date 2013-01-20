@@ -1,7 +1,7 @@
 ﻿using Nancy;
 using Nancy.Responses.Negotiation;
 
-namespace Fabric.Api.Server.Graph {
+namespace Fabric.Api.Server.Internal.Graph {
 
 	/*================================================================================================*/
 	public class GraphView {

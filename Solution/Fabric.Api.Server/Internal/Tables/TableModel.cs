@@ -1,4 +1,4 @@
-﻿namespace Fabric.Api.Server.Tables {
+﻿namespace Fabric.Api.Server.Internal.Tables {
 
 	/*================================================================================================*/
 	public class TableModel {

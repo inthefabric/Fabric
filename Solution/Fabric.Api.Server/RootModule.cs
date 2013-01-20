@@ -10,8 +10,8 @@ namespace Fabric.Api.Server {
 	/*================================================================================================*/
 	public class RootModule : NancyModule {
 
-		public const string ApiVersion = "1.0.0.10f7771a29e1";
-		public const string DbServerUrl = "http://localhost:9001/gremlin";
+		private const string ApiVersion = "1.0.0.10f7771a29e1";
+		private const string DbServerUrl = "http://localhost:9001/gremlin";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,26 +20,14 @@ namespace Fabric.Api.Server {
 			Log.ConfigureOnce();
 
 			Get["/(.*)"] = (p => GetRoot(Context));
+			Get["/spec"] = (p => GetSpec(Context));
 
-			////
+			const string ao = "/oauth/";
+			Get[ao+"Logout"] = (p => GetOauth(Context, OauthController.Function.Logout));
+			Get[ao+"Login"] = (p => GetLogin(Context, OauthLoginController.Method.Get));
+			Post[ao+"Login"] = (p => GetLogin(Context, OauthLoginController.Method.Post));
 
-			/*Get["/setup"] = (p => new SetupRoutine(Context).GetResponse());
-			Get["/graph/json"] = (p => new GraphJson(Context).GetResponse());
-			Get["/graph"] = (p => new GraphView(this).GetResponse());
-			Get["/tables/browse/(.*)"] = (p => new TableBrowser(this).GetResponse());*/
-
-			////
-			
-			/*Get["/spec"] = (p => new ApiSpecBuilder(Context).GetResponse());
-			Get["/spec/apiresponse"] = (p => new ApiSpecBuilder(Context, "res").GetResponse());
-			Get["/spec/dtolist/{name}"] = (p => new ApiSpecBuilder(Context, "dto").GetResponse());
-			Get["/spec/functionlist/{name}"] = (p => new ApiSpecBuilder(Context, "fun").GetResponse());*/
-
-			////
-
-			const string ao = "/api/oauth/";
 			const string at = ao+"AccessToken";
-
 			Get[at] = (p => GetOauth(Context, OauthController.Function.Access));
 			Get[at+"AuthCode"] = (p => GetOauth(Context, OauthController.Function.AuthCode));
 			Get[at+"Refresh"] = (p => GetOauth(Context, OauthController.Function.RefToken));
@@ -47,19 +35,20 @@ namespace Fabric.Api.Server {
 				OauthController.Function.ClientCred));
 			Get[at+"ClientDataProv"] = (p => GetOauth(Context,
 				OauthController.Function.ClientDataProv));
-
-			Get[ao+"Logout"] = (p => GetOauth(Context, OauthController.Function.Logout));
-
-			Get[ao+"Login"] = (p => GetLogin(Context, OauthLoginController.Method.Get));
-			Post[ao+"Login"] = (p => GetLogin(Context, OauthLoginController.Method.Post));
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetRoot(NancyContext pContext) {
-			var aq = new ApiController(pContext.Request, NewApiCtx(), new OauthTasks());
-			return aq.Execute();
+		private static Response GetRoot(NancyContext pCtx) {
+			var ac = new ApiController(pCtx.Request, NewApiCtx(), new OauthTasks());
+			return ac.Execute();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static Response GetSpec(NancyContext pCtx) {
+			var sc = new SpecController(pCtx.Request, NewApiCtx(), new OauthTasks(), ApiVersion);
+			return sc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -70,7 +59,6 @@ namespace Fabric.Api.Server {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response GetLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
-			Request r = pCtx.Request;
 			var olc = new OauthLoginController(pCtx.Request, NewApiCtx(), pMethod);
 			return olc.Execute();
 		}

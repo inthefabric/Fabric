@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Dto.Spec;
 using Fabric.Api.Paths.Steps.Functions;
 using Fabric.Api.Spec.Lang;
 using Fabric.Infrastructure.Domain;
@@ -13,28 +14,35 @@ namespace Fabric.Api.Spec {
 	/*================================================================================================*/
 	public partial class SpecDoc {
 
-		public string ApiVersion { get; set; }
-		public SpecApiResponse ApiResponse { get; set; }
-		public List<SpecDto> DtoList { get; set; }
-		public List<SpecFunc> FunctionList { get; set; }
+		private readonly FabSpecDto vFabResp;
+		private readonly List<FabSpecDto> vDtoList;
+		private readonly List<FabSpecFunc> vFuncList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecDoc() {
-			ApiResponse = new SpecApiResponse();
-			DtoList = BuildDtoList();
-			DtoList.Insert(0, GetSpecDto<FabNode>());
-			DtoList.Add(GetSpecDto<FabOauth>());
-			DtoList.Add(GetSpecDto<FabOauthAccess>());
-			DtoList.Add(GetSpecDto<FabOauthError>());
-			DtoList.Add(GetSpecDto<FabOauthLogin>());
-			DtoList.Add(GetSpecDto<FabOauthLogout>());
-			DtoList.Add(GetSpecDto<FabError>());
+			vFabResp = new FabSpecDto();
+			vFabResp.Name = typeof(FabResponse).Name;
+			vFabResp.Description = GetDtoText(vFabResp.Name.Substring(3));
+
+			Dictionary<string, FabSpecDtoProp> propMap = ReflectProps<FabResponse>();
+			vFabResp.PropertyList = propMap.Values.ToList();
 
 			////
 
-			FunctionList = new List<SpecFunc>();
+			vDtoList = BuildDtoList();
+			vDtoList.Insert(0, GetSpecDto<FabNode>());
+			vDtoList.Add(GetSpecDto<FabOauth>());
+			vDtoList.Add(GetSpecDto<FabOauthAccess>());
+			vDtoList.Add(GetSpecDto<FabOauthError>());
+			vDtoList.Add(GetSpecDto<FabOauthLogin>());
+			vDtoList.Add(GetSpecDto<FabOauthLogout>());
+			vDtoList.Add(GetSpecDto<FabError>());
+
+			////
+
+			vFuncList = new List<FabSpecFunc>();
 			Assembly a = Assembly.GetAssembly(typeof(FuncBackStep));
 
 			foreach ( Type t in a.GetTypes() ) {
@@ -42,20 +50,29 @@ namespace Fabric.Api.Spec {
 					continue;
 				}
 
-				FunctionList.Add(new SpecFunc(t));
+				vFuncList.Add(GetSpecFunc(t));
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static Dictionary<string,SpecDtoProp> ReflectProps<T>() {
+		public FabSpec GetFabSpec() {
+			var fs = new FabSpec();
+			fs.ApiResponse = vFabResp;
+			fs.DtoList = vDtoList;
+			fs.FunctionList = vFuncList;
+			return fs;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static Dictionary<string,FabSpecDtoProp> ReflectProps<T>() {
 			PropertyInfo[] props = typeof(T).GetProperties();
-			var results = new Dictionary<string,SpecDtoProp>();
+			var results = new Dictionary<string,FabSpecDtoProp>();
 
 			foreach ( PropertyInfo pi in props ) {
 				object[] dpaList = pi.GetCustomAttributes(typeof(DtoPropAttribute), true);
 				DtoPropAttribute dpa = (dpaList.Length > 0 ? (DtoPropAttribute)dpaList[0] : null);
 
-				var specProp = new SpecDtoProp();
+				var specProp = new FabSpecDtoProp();
 				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
@@ -90,8 +107,8 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public SpecDto GetSpecDto(string pName) {
-			foreach ( SpecDto dto in DtoList ) {
+		public FabSpecDto GetSpecDto(string pName) {
+			foreach ( FabSpecDto dto in vDtoList ) {
 				if ( dto.Name == pName ) { return dto; }
 			}
 
@@ -101,13 +118,12 @@ namespace Fabric.Api.Spec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private SpecDto GetSpecDto<T>() {
-			var sd = new SpecDto();
+		private FabSpecDto GetSpecDto<T>() {
+			var sd = new FabSpecDto();
 			sd.Name = typeof(T).Name;
 			sd.Description = GetDtoText(sd.Name.Substring(3));
-			sd.Abstract = sd.Description.Substring(0, sd.Description.IndexOf('.')+1);
 
-			Dictionary<string, SpecDtoProp> propMap = ReflectProps<T>();
+			Dictionary<string, FabSpecDtoProp> propMap = ReflectProps<T>();
 			sd.PropertyList = propMap.Values.ToList();
 
 			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(typeof(T), true);
@@ -118,6 +134,41 @@ namespace Fabric.Api.Spec {
 			}
 
 			return sd;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public FabSpecFunc GetSpecFunc(Type pFuncType) {
+			var fa = (FuncAttribute)pFuncType.GetCustomAttributes(typeof(FuncAttribute), false)[0];
+
+			var func = new FabSpecFunc();
+			func.Name = fa.Name;
+			func.ReturnType = fa.ReturnType;
+			string resxKey = (fa.ResxKey ?? func.Name);
+			func.Description = SpecDoc.GetFuncText(resxKey);
+			func.ParameterList = new List<FabSpecFuncParam>();
+
+			PropertyInfo[] props = pFuncType.GetProperties();
+
+			foreach ( PropertyInfo pi in props ) {
+				object[] fpaList = pi.GetCustomAttributes(typeof(FuncParamAttribute), true);
+				if ( fpaList.Length == 0 ) { continue; }
+				FuncParamAttribute fpa = (FuncParamAttribute)fpaList[0];
+				
+				var p = new FabSpecFuncParam();
+				p.Name = pi.Name;
+				p.Description = SpecDoc.GetFuncParamText((fpa.FuncResxKey ?? resxKey)+"_"+p.Name);
+				p.Index = fpa.ParamIndex;
+				p.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
+				p.Min = fpa.Min;
+				p.Max = fpa.Max;
+				p.IsRequired = fpa.IsRequired;
+				p.DisplayName = fpa.DisplayName;
+				p.UsesQueryString = fpa.UsesQueryString;
+				func.ParameterList.Add(p);
+			}
+
+			func.ParameterList.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index == b.Index ? 0 : -1)));
+			return func;
 		}
 
 	}

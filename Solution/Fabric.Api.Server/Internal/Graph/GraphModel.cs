@@ -1,4 +1,4 @@
-﻿namespace Fabric.Api.Server.Graph {
+﻿namespace Fabric.Api.Server.Internal.Graph {
 
 	/*================================================================================================*/
 	public class GraphModel {

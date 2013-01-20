@@ -1,7 +1,7 @@
-﻿namespace Fabric.Api.Spec {
+﻿namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class SpecDtoLink {
+	public class FabSpecDtoLink {
 
 		public string Name { get; set; }
 		public bool IsOutgoing { get; set; }

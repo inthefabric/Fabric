@@ -34,7 +34,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpecFuncParam.cs" />
     <Compile Include="Lang\FuncParamText.Designer.cs">
       <DependentUpon>FuncParamText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -45,7 +44,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="SpecFunc.cs" />
     <Compile Include="Lang\DtoPropText.Designer.cs">
       <DependentUpon>DtoPropText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -57,16 +55,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecApiResponse.cs" />
     <Compile Include="SpecDoc.cs" />
-    <Compile Include="SpecDto.cs" />
-    <Compile Include="SpecDtos.cs">
-      <DependentUpon>SpecDtos.tt</DependentUpon>
+    <Compile Include="SpecDocDtos.cs">
+      <DependentUpon>SpecDocDtos.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="SpecDtoLink.cs" />
-    <Compile Include="SpecDtoProp.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lang\FuncParamText.resx">
@@ -89,9 +83,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SpecDtos.tt">
+    <None Include="SpecDocDtos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SpecDtos.cs</LastGenOutput>
+      <LastGenOutput>SpecDocDtos.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

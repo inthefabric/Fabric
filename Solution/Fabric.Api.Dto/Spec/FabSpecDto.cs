@@ -1,24 +1,23 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.Api.Spec {
+namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class SpecDto {
+	public class FabSpecDto {
 
 		public string Name { get; set; }
 		public string Extends { get; set; }
-		public string Abstract { get; set; }
 		public string Description { get; set; }
-		public List<SpecDtoProp> PropertyList { get; set; }
-		public List<SpecDtoLink> LinkList { get; set; }
+		public List<FabSpecDtoProp> PropertyList { get; set; }
+		public List<FabSpecDtoLink> LinkList { get; set; }
 		public List<string> FunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SpecDto() {
-			PropertyList = new List<SpecDtoProp>();
-			LinkList = new List<SpecDtoLink>();
+		public FabSpecDto() {
+			PropertyList = new List<FabSpecDtoProp>();
+			LinkList = new List<FabSpecDtoLink>();
 			FunctionList = new List<string>();
 		}
 

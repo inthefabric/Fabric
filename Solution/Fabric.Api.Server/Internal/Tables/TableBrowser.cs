@@ -8,7 +8,7 @@ using Nancy.Responses.Negotiation;
 using Weaver;
 using Weaver.Interfaces;
 
-namespace Fabric.Api.Server.Tables {
+namespace Fabric.Api.Server.Internal.Tables {
 
 	/*================================================================================================*/
 	public class TableBrowser {

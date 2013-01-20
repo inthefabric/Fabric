@@ -9,7 +9,7 @@ using ServiceStack.Text;
 using Weaver;
 using Weaver.Interfaces;
 
-namespace Fabric.Api.Server.Graph {
+namespace Fabric.Api.Server.Internal.Graph {
 
 	/*================================================================================================*/
 	public class GraphJson {

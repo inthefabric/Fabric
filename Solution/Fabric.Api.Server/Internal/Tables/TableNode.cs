@@ -4,7 +4,7 @@ using Fabric.Api.Server.Util;
 using Fabric.Infrastructure.Db;
 using Weaver.Interfaces;
 
-namespace Fabric.Api.Server.Tables {
+namespace Fabric.Api.Server.Internal.Tables {
 
 	/*================================================================================================*/
 	public class TableNode {
