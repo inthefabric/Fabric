@@ -475,6 +475,15 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The name of the current DTO class..
+        /// </summary>
+        internal static string Dto_Dto {
+            get {
+                return ResourceManager.GetString("Dto_Dto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A numeric value which identifies the specific error type..
         /// </summary>
         internal static string Error_Code {
@@ -693,18 +702,9 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string Node_NodeId {
+        internal static string Node_Uri {
             get {
-                return ResourceManager.GetString("Node_NodeId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Node_NodeUri {
-            get {
-                return ResourceManager.GetString("Node_NodeUri", resourceCulture);
+                return ResourceManager.GetString("Node_Uri", resourceCulture);
             }
         }
         
@@ -864,6 +864,15 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
+        internal static string Response_AppId {
+            get {
+                return ResourceManager.GetString("Response_AppId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string Response_BaseUri {
             get {
                 return ResourceManager.GetString("Response_BaseUri", resourceCulture);
@@ -993,6 +1002,15 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Response_Type {
             get {
                 return ResourceManager.GetString("Response_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Response_UserId {
+            get {
+                return ResourceManager.GetString("Response_UserId", resourceCulture);
             }
         }
         

@@ -348,10 +348,10 @@
   <data name="NodeForType_Name" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Node_NodeId" xml:space="preserve">
-    <value>TODO</value>
+  <data name="Dto_Dto" xml:space="preserve">
+    <value>The name of the current DTO class.</value>
   </data>
-  <data name="Node_NodeUri" xml:space="preserve">
+  <data name="Node_Uri" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="Object_TypeId" xml:space="preserve">
@@ -479,5 +479,11 @@
   </data>
   <data name="OauthLogout_Success" xml:space="preserve">
     <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
+  </data>
+  <data name="Response_AppId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_UserId" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>

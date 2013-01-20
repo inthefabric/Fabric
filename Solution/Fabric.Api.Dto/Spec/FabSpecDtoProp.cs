@@ -1,7 +1,9 @@
-﻿namespace Fabric.Api.Dto.Spec {
+﻿using Fabric.Infrastructure.Db;
+
+namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecDtoProp {
+	public class FabSpecDtoProp : FabDto {
 
 		public string Name { get; set; }
 		public string Type { get; set; }
@@ -17,6 +19,11 @@
 		public int? LenMax { get; set; }
 		public int? LenMin { get; set; }
 		public string ValidRegex { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {}
 
 	}
 

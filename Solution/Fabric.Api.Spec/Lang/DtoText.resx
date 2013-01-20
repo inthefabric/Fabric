@@ -536,4 +536,7 @@ This redirect is used in one particular scenario: the [[OAuth login process|Req|
   <data name="Oauth" xml:space="preserve">
     <value>TODO</value>
   </data>
+  <data name="Dto" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

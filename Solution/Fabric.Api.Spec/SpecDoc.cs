@@ -32,13 +32,23 @@ namespace Fabric.Api.Spec {
 			////
 
 			vDtoList = BuildDtoList();
+
+			vDtoList.Insert(0, GetSpecDto<FabDto>());
 			vDtoList.Insert(0, GetSpecDto<FabNode>());
+			vDtoList.Add(GetSpecDto<FabError>());
+
 			vDtoList.Add(GetSpecDto<FabOauth>());
 			vDtoList.Add(GetSpecDto<FabOauthAccess>());
 			vDtoList.Add(GetSpecDto<FabOauthError>());
 			vDtoList.Add(GetSpecDto<FabOauthLogin>());
 			vDtoList.Add(GetSpecDto<FabOauthLogout>());
-			vDtoList.Add(GetSpecDto<FabError>());
+
+			vDtoList.Add(GetSpecDto<FabSpec>());
+			vDtoList.Add(GetSpecDto<FabSpecDto>());
+			vDtoList.Add(GetSpecDto<FabSpecDtoLink>());
+			vDtoList.Add(GetSpecDto<FabSpecDtoProp>());
+			vDtoList.Add(GetSpecDto<FabSpecFunc>());
+			vDtoList.Add(GetSpecDto<FabSpecFuncParam>());
 
 			////
 
@@ -63,25 +73,8 @@ namespace Fabric.Api.Spec {
 			return fs;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public static Dictionary<string,FabSpecDtoProp> ReflectProps<T>() {
-			PropertyInfo[] props = typeof(T).GetProperties();
-			var results = new Dictionary<string,FabSpecDtoProp>();
 
-			foreach ( PropertyInfo pi in props ) {
-				object[] dpaList = pi.GetCustomAttributes(typeof(DtoPropAttribute), true);
-				DtoPropAttribute dpa = (dpaList.Length > 0 ? (DtoPropAttribute)dpaList[0] : null);
-
-				var specProp = new FabSpecDtoProp();
-				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
-				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
-				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
-				results.Add(pi.Name, specProp);
-			}
-
-			return results;
-		}
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetDtoText(string pName) {
 			string s = DtoText.ResourceManager.GetString(pName);
@@ -106,7 +99,7 @@ namespace Fabric.Api.Spec {
 			return (s ?? "MISSING:"+pName);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public FabSpecDto GetSpecDto(string pName) {
 			foreach ( FabSpecDto dto in vDtoList ) {
 				if ( dto.Name == pName ) { return dto; }
@@ -118,10 +111,14 @@ namespace Fabric.Api.Spec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabSpecDto GetSpecDto<T>() {
+		private FabSpecDto GetSpecDto<T>() where T : FabDto {
 			var sd = new FabSpecDto();
 			sd.Name = typeof(T).Name;
 			sd.Description = GetDtoText(sd.Name.Substring(3));
+
+			if ( typeof(T) != typeof(FabDto) ) {
+				sd.Extends = typeof(FabDto).Name;
+			}
 
 			Dictionary<string, FabSpecDtoProp> propMap = ReflectProps<T>();
 			sd.PropertyList = propMap.Values.ToList();
@@ -137,14 +134,33 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FabSpecFunc GetSpecFunc(Type pFuncType) {
+		private static Dictionary<string, FabSpecDtoProp> ReflectProps<T>() {
+			PropertyInfo[] props = typeof(T).GetProperties();
+			var results = new Dictionary<string, FabSpecDtoProp>();
+
+			foreach ( PropertyInfo pi in props ) {
+				object[] dpaList = pi.GetCustomAttributes(typeof(DtoPropAttribute), true);
+				DtoPropAttribute dpa = (dpaList.Length > 0 ? (DtoPropAttribute)dpaList[0] : null);
+
+				var specProp = new FabSpecDtoProp();
+				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
+				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
+				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
+				results.Add(pi.Name, specProp);
+			}
+
+			return results;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private FabSpecFunc GetSpecFunc(Type pFuncType) {
 			var fa = (FuncAttribute)pFuncType.GetCustomAttributes(typeof(FuncAttribute), false)[0];
 
 			var func = new FabSpecFunc();
 			func.Name = fa.Name;
-			func.ReturnType = fa.ReturnType;
+			func.ReturnType = (fa.ReturnType == null ? null : fa.ReturnType.Name);
 			string resxKey = (fa.ResxKey ?? func.Name);
-			func.Description = SpecDoc.GetFuncText(resxKey);
+			func.Description = GetFuncText(resxKey);
 			func.ParameterList = new List<FabSpecFuncParam>();
 
 			PropertyInfo[] props = pFuncType.GetProperties();
@@ -156,7 +172,7 @@ namespace Fabric.Api.Spec {
 				
 				var p = new FabSpecFuncParam();
 				p.Name = pi.Name;
-				p.Description = SpecDoc.GetFuncParamText((fpa.FuncResxKey ?? resxKey)+"_"+p.Name);
+				p.Description = GetFuncParamText((fpa.FuncResxKey ?? resxKey)+"_"+p.Name);
 				p.Index = fpa.ParamIndex;
 				p.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				p.Min = fpa.Min;

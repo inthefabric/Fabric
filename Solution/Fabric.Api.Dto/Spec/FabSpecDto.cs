@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecDto {
+	public class FabSpecDto : FabDto {
 
 		public string Name { get; set; }
 		public string Extends { get; set; }
@@ -20,6 +21,9 @@ namespace Fabric.Api.Dto.Spec {
 			LinkList = new List<FabSpecDtoLink>();
 			FunctionList = new List<string>();
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {}
 
 	}
 
