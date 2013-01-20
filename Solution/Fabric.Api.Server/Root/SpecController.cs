@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Dto.Spec;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Server.Common;
+using Fabric.Api.Server.Root.Views;
 using Fabric.Api.Server.Util;
 using Fabric.Api.Spec;
 using Fabric.Infrastructure.Api;
@@ -14,7 +15,7 @@ namespace Fabric.Api.Server.Root {
 
 		private static SpecDoc Doc;
 		private static FabSpec Dto;
-		private static string DtoJson;
+		private static string ResponseJson;
 		private static string ApiVers;
 
 
@@ -27,17 +28,20 @@ namespace Fabric.Api.Server.Root {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
+			FabResp.StartEvent();
+			FabResp.HttpStatus = (int)HttpStatusCode.OK;
+
 			if ( Doc == null ) {
 				Doc = new SpecDoc();
 
 				Dto = Doc.GetFabSpec();
 				Dto.ApiVersion = ApiVers;
 
-				DtoJson = Dto.ToJson();
+				ResponseJson = new SpecJsonView(FabResp, Dto.ToJson()).GetContent();
 			}
 
 			ExecuteOauthLookup();
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, DtoJson);
+			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, ResponseJson);
 		}
 
 	}

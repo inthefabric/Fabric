@@ -1,7 +1,7 @@
 ﻿using Fabric.Api.Server.Common;
 using Nancy;
 
-namespace Fabric.Api.Server.Oauth.Views {
+namespace Fabric.Api.Server.Root.Views {
 
 	/*================================================================================================*/
 	public class LoginErrorView : HtmlView {

@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Oauth.Tasks;
-using Fabric.Api.Server.Oauth;
 using Fabric.Api.Server.Root;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;

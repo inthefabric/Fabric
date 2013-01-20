@@ -1,18 +1,19 @@
 ﻿using System.Reflection;
 using Fabric.Api.Dto;
+using Fabric.Api.Server.Root.Models;
 using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Server.Root {
+namespace Fabric.Api.Server.Root.Views {
 
 	/*================================================================================================*/
-	public class ApiResponseHtml {
+	public class ApiHtmlView {
 
 		private readonly ApiModel vInfo;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiResponseHtml(ApiModel pInfo) {
+		public ApiHtmlView(ApiModel pInfo) {
 			vInfo = pInfo;
 		}
 

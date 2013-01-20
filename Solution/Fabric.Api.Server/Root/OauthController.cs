@@ -9,7 +9,7 @@ using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
 
-namespace Fabric.Api.Server.Oauth {
+namespace Fabric.Api.Server.Root {
 
 	/*================================================================================================*/
 	public class OauthController : Controller { //TEST: OauthController

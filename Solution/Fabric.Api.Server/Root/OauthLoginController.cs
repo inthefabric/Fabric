@@ -6,12 +6,12 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Paths.Steps.Functions.Oauth;
 using Fabric.Api.Server.Common;
-using Fabric.Api.Server.Oauth.Views;
+using Fabric.Api.Server.Root.Views;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure.Api;
 using Nancy;
 
-namespace Fabric.Api.Server.Oauth {
+namespace Fabric.Api.Server.Root {
 
 	/*================================================================================================*/
 	//TEST: OauthLoginFuncs unit tests. Move flows (like OauthGrantLoginEntry) into an interface.

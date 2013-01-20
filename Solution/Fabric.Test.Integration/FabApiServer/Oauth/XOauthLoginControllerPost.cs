@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
-using Fabric.Api.Server.Oauth;
+using Fabric.Api.Server.Root;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Test.Util;

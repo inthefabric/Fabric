@@ -2,7 +2,7 @@
 using Fabric.Api.Dto;
 using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Server.Root {
+namespace Fabric.Api.Server.Root.Models {
 
 	/*================================================================================================*/
 	public class ApiModel {

@@ -5,6 +5,8 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Paths;
 using Fabric.Api.Paths.Steps;
 using Fabric.Api.Server.Common;
+using Fabric.Api.Server.Root.Models;
+using Fabric.Api.Server.Root.Views;
 using Fabric.Api.Server.Util;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
@@ -44,8 +46,8 @@ namespace Fabric.Api.Server.Root {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillQueryInfo() {
-			FabResp.HttpStatus = (int)vStatus;
 			FabResp.StartEvent();
+			FabResp.HttpStatus = (int)vStatus;
 
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), ApiUri);
 			FabResp.SetLinks(vLastStep.AvailableLinks);
@@ -132,10 +134,10 @@ namespace Fabric.Api.Server.Root {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildViewResponse() {
 			if ( NancyUtil.ShouldReturnHtml(NancyReq) ) {
-				return NancyUtil.BuildHtmlResponse(vStatus, new ApiResponseHtml(vModel).GetContent());
+				return NancyUtil.BuildHtmlResponse(vStatus, new ApiHtmlView(vModel).GetContent());
 			}
 			
-			return NancyUtil.BuildJsonResponse(vStatus, new ApiResponseJson(vModel).GetContent());
+			return NancyUtil.BuildJsonResponse(vStatus, new ApiJsonView(vModel).GetContent());
 		}
 
 	}

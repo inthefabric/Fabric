@@ -1,11 +1,12 @@
 ﻿using Fabric.Api.Dto;
+using Fabric.Api.Server.Root.Models;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
-namespace Fabric.Api.Server.Root {
+namespace Fabric.Api.Server.Root.Views {
 
 	/*================================================================================================*/
-	public class ApiResponseJson {
+	public class ApiJsonView {
 
 		private const string TotalMsJson = "\"TotalMs\":";
 
@@ -14,7 +15,7 @@ namespace Fabric.Api.Server.Root {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiResponseJson(ApiModel pInfo) {
+		public ApiJsonView(ApiModel pInfo) {
 			vInfo = pInfo;
 		}
 
@@ -35,6 +36,7 @@ namespace Fabric.Api.Server.Root {
 			string wrap = vInfo.Resp.ToJson().Replace("\"{DATA}\"", data);
 			vInfo.Resp.Data = data;
 			vInfo.Resp.Complete(); //last possible moment
+
 			return wrap.Replace(TotalMsJson+"0", TotalMsJson+vInfo.Resp.TotalMs);
 		}
 
