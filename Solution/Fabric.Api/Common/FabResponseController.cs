@@ -15,7 +15,6 @@ namespace Fabric.Api.Common {
 
 		protected FabResponse FabResp { get; private set; }
 		protected IOauthTasks OauthTasks { get; private set; }
-		protected string ApiUri { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,11 +27,8 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override sealed Response BuildResponse() {
-			ApiUri = NancyReq.Path.Substring(1); //remove "/"
-
 			FabResp.BaseUri = ApiBaseUri;
-			FabResp.RequestUri = (ApiUri.Length > 0 ? "/"+ApiUri : "");
-
+			FabResp.RequestUri = NancyReq.Path;
 			return BuildFabResponse();
 		}
 

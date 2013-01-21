@@ -10,12 +10,16 @@ namespace Fabric.Api.Dto.Spec {
 		public string Extends { get; set; }
 		public string Description { get; set; }
 		public List<FabSpecDtoProp> PropertyList { get; set; }
+		public List<FabSpecDtoLink> LinkList { get; set; }
+		public List<string> FunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpecDto() {
 			PropertyList = new List<FabSpecDtoProp>();
+			LinkList = new List<FabSpecDtoLink>();
+			FunctionList = new List<string>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

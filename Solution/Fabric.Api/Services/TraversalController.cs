@@ -23,6 +23,7 @@ namespace Fabric.Api.Services {
 		private IFinalStep vLastStep;
 		private IApiDataAccess vReq;
 		private HttpStatusCode vStatus;
+		private string vApiUri;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,10 +48,16 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillQueryInfo() {
+			vApiUri = NancyReq.Path.Substring(5); //remove "/Root"
+			
+			if ( vApiUri.Length > 0 ) {
+				vApiUri = vApiUri.Substring(1); //remove "/"
+			}
+
 			FabResp.StartEvent();
 			FabResp.HttpStatus = (int)vStatus;
 
-			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), ApiUri);
+			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vApiUri);
 			FabResp.SetLinks(vLastStep.AvailableLinks);
 			FabResp.Functions = vLastStep.AvailableFuncs.ToArray();
 			vModel.Query = vLastStep.Path.Script;

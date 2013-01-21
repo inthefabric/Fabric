@@ -106,7 +106,7 @@ namespace Fabric.Api.Spec {
 			vSpecDtoList = new List<FabSpecDto>();
 			vSpecDtoList.Add(GetSpecDto<FabSpec>());
 			vSpecDtoList.Add(GetSpecDto<FabSpecDto>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecDtoTravLink>());
+			vSpecDtoList.Add(GetSpecDto<FabSpecDtoLink>());
 			vSpecDtoList.Add(GetSpecDto<FabSpecDtoProp>());
 			vSpecDtoList.Add(GetSpecDto<FabSpecFunc>());
 			vSpecDtoList.Add(GetSpecDto<FabSpecFuncParam>());
@@ -157,35 +157,35 @@ namespace Fabric.Api.Spec {
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetServiceText(string pName) {
 			string s = ServiceText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = AddSmartLinks(s); }
+			if ( s != null ) { s = FormatMarkup(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetDtoText(string pName) {
 			string s = DtoText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = AddSmartLinks(s); }
+			if ( s != null ) { s = FormatMarkup(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetDtoPropText(string pName) {
 			string s = DtoPropText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = AddSmartLinks(s); }
+			if ( s != null ) { s = FormatMarkup(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetFuncText(string pName) {
 			string s = FuncText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = AddSmartLinks(s); }
+			if ( s != null ) { s = FormatMarkup(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetFuncParamText(string pName) {
 			string s = FuncParamText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = AddSmartLinks(s); }
+			if ( s != null ) { s = FormatMarkup(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 
@@ -273,14 +273,8 @@ namespace Fabric.Api.Spec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private string AddSmartLinks(string pText) {
+		private string FormatMarkup(string pText) {
 			pText = pText+"";
-
-			MatchCollection matches = Regex.Matches(pText, @"\[\[.*?\]\]");
-
-			foreach ( Match m in matches ) {
-				Log.Debug("MATCH: "+m.Value);
-			}
 
 			for ( int i = 0 ; i < vDtoNames.Count ; ++i ) {
 				string dto = vDtoNames[i];

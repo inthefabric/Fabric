@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Spec\FabSpecDtoTrav.cs" />
     <Compile Include="Spec\FabSpecService.cs" />
     <Compile Include="Traversal\ApiDtos.cs">
       <AutoGen>True</AutoGen>
@@ -59,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spec\FabSpec.cs" />
     <Compile Include="Spec\FabSpecDto.cs" />
-    <Compile Include="Spec\FabSpecDtoTravLink.cs" />
+    <Compile Include="Spec\FabSpecDtoLink.cs" />
     <Compile Include="Spec\FabSpecDtoProp.cs" />
     <Compile Include="Spec\FabSpecFunc.cs" />
     <Compile Include="Spec\FabSpecFuncParam.cs" />

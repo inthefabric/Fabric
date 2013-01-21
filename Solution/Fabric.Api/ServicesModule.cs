@@ -9,7 +9,7 @@ namespace Fabric.Api {
 	/*================================================================================================*/
 	public class ServicesModule : NancyModule {
 
-		private const string ApiVersion = "1.0.0.10f7771a29e1";
+		private const string ApiVersion = "1.0.0.b364a81c24f1";
 		private const string DbServerUrl = "http://localhost:9001/gremlin";
 
 
@@ -18,7 +18,8 @@ namespace Fabric.Api {
 		public ServicesModule() {
 			Log.ConfigureOnce();
 
-			Get["/Root(.*)"] = (p => GetTraversal(Context));
+			Get["/Root"] = (p => GetTraversal(Context));
+			Get["/Root/(.*)"] = (p => GetTraversal(Context));
 			Get["/Spec"] = (p => GetSpec(Context));
 
 			const string ao = "/Oauth";
