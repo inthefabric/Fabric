@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public abstract class FabNode : FabDto, IFabNode {

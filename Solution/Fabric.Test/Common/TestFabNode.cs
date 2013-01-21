@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
 
 namespace Fabric.Test.Common {
 

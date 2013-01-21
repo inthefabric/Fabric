@@ -31,24 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApiDtos.cs">
+    <Compile Include="Traversal\ApiDtos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ApiDtos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ApiDtoUtil.cs">
+    <Compile Include="Traversal\ApiDtoUtil.cs">
       <DependentUpon>ApiDtoUtil.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="FabDto.cs" />
-    <Compile Include="FabStepLink.cs" />
+    <Compile Include="Traversal\FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />
     <Compile Include="IFabDto.cs" />
     <Compile Include="FabError.cs" />
     <Compile Include="FabResponse.cs" />
-    <Compile Include="IFabNode.cs" />
-    <Compile Include="FabNode.cs" />
+    <Compile Include="Traversal\IFabNode.cs" />
+    <Compile Include="Traversal\FabNode.cs" />
     <Compile Include="Oauth\FabOauth.cs" />
     <Compile Include="Oauth\FabOauthAccess.cs" />
     <Compile Include="Oauth\FabOauthError.cs" />
@@ -63,11 +63,11 @@
     <Compile Include="Spec\FabSpecFuncParam.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApiDtos.tt">
+    <None Include="Traversal\ApiDtos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiDtos.cs</LastGenOutput>
     </None>
-    <None Include="ApiDtoUtil.tt">
+    <None Include="Traversal\ApiDtoUtil.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiDtoUtil.cs</LastGenOutput>
     </None>

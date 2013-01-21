@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Dto.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	

@@ -1,6 +1,6 @@
-﻿using Fabric.Infrastructure.Paths;
+﻿using Fabric.Infrastructure.Traversal;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabStepLink {

@@ -1,12 +1,12 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/19/2013 2:42:19 PM
+// Generated on 1/21/2013 12:07:16 PM
 
 using System;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public static class ApiDtoUtil {

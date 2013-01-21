@@ -1,4 +1,4 @@
-﻿namespace Fabric.Infrastructure.Paths {
+﻿namespace Fabric.Infrastructure.Traversal {
 	
 	/*================================================================================================*/
 	public interface IStepLink {

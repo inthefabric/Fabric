@@ -1,4 +1,4 @@
-﻿namespace Fabric.Api.Dto {
+﻿namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public interface IFabNode : IFabDto {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Common;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Models;
 using Fabric.Api.Services.Views;

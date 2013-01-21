@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;

@@ -73,8 +73,8 @@
     <Compile Include="Domain\SchemaHelperBase.cs" />
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Paths\IStepLink.cs" />
-    <Compile Include="Paths\StepLink.cs" />
+    <Compile Include="Traversal\IStepLink.cs" />
+    <Compile Include="Traversal\StepLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Schema.cs" />
     <Compile Include="Domain\SchemaHelperNode.cs" />

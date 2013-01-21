@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure.Paths;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps {
 

@@ -16,7 +16,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Traversal {
 	
 <#
 IList<string> nodes = SchemaHelper.GetNodes();

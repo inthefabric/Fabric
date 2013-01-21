@@ -2,7 +2,7 @@
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Nodes;
-using Fabric.Infrastructure.Paths;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Test.Common {
 

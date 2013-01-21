@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure.Paths;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Dto {
 

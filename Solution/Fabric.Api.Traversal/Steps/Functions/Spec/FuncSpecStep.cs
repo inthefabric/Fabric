@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Spec;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Spec;
 
 namespace Fabric.Api.Traversal.Steps.Functions.Spec {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	

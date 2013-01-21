@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Dto;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Infrastructure.Paths;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps {
 	

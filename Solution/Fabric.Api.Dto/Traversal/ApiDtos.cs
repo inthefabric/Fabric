@@ -1,11 +1,11 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/17/2013 7:13:44 PM
+// Generated on 1/21/2013 12:07:02 PM
 
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Traversal {
 	
 	/*================================================================================================*/
 	public abstract class FabNodeForType : FabNode {

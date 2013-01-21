@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Services.Models;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
