@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Db.Server.Gremlin;
+using Fabric.Db.Gremlin;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;

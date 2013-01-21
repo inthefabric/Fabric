@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Fabric.Db.Server.Gremlin;
+using Fabric.Db.Gremlin;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Weaver.Interfaces;

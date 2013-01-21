@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Server", "Fabric.Api.Server\Fabric.Api.Server.csproj", "{B8B58824-60DC-40A8-88CF-7048493D5517}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api", "Fabric.Api\Fabric.Api.csproj", "{B8B58824-60DC-40A8-88CF-7048493D5517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db.Server", "Fabric.Db.Server\Fabric.Db.Server.csproj", "{4109140D-8960-4FD7-A037-8B21AFC6659B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db", "Fabric.Db\Fabric.Db.csproj", "{4109140D-8960-4FD7-A037-8B21AFC6659B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain", "Fabric.Domain\Fabric.Domain.csproj", "{E28CDF51-883C-4A8F-8C27-C681AF79F591}"
 EndProject

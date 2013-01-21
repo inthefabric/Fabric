@@ -1,5 +1,5 @@
 ﻿using System.Collections.Specialized;
-using Fabric.Api.Server.Util;
+using Fabric.Api.Util;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using Nancy;

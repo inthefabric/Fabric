@@ -16,3 +16,4 @@ DbServer/Neo4j/data/graph.db/*
 Solution/test-results
 Solution/Fabric.Test/test-results
 Weaver.dll.mdb
+*/Bin/*

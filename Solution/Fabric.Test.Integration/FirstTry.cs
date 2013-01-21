@@ -1,5 +1,4 @@
-﻿using Fabric.Api.Server;
-using Nancy;
+﻿using Nancy;
 using Nancy.Testing;
 using NUnit.Framework;
 
