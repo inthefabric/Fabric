@@ -96,9 +96,9 @@
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Paths\Fabric.Api.Paths.csproj">
+    <ProjectReference Include="..\Fabric.Api.Traversal\Fabric.Api.Traversal.csproj">
       <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
-      <Name>Fabric.Api.Paths</Name>
+      <Name>Fabric.Api.Traversal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Fabric.Api.Paths;
-using Fabric.Api.Paths.Steps;
-using Fabric.Api.Paths.Steps.Nodes;
+using Fabric.Api.Traversal;
+using Fabric.Api.Traversal.Steps;
+using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Infrastructure.Paths;
 
 namespace Fabric.Test.Common {

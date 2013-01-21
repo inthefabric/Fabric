@@ -5,7 +5,7 @@ using System.Reflection;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Spec;
-using Fabric.Api.Paths.Steps.Functions;
+using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Spec.Lang;
 using Fabric.Infrastructure.Domain;
 

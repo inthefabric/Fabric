@@ -1,5 +1,5 @@
-﻿using Fabric.Api.Paths;
-using Fabric.Api.Paths.Steps.Functions;
+﻿using Fabric.Api.Traversal;
+using Fabric.Api.Traversal.Steps.Functions;
 
 namespace Fabric.Test.Common {
 

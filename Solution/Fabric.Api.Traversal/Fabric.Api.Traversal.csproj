@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8AD70384-1405-41EE-BA61-25BD053CD56B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fabric.Api.Traversal</RootNamespace>
+    <AssemblyName>Fabric.Api.Traversal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PathSegment.cs" />
+    <Compile Include="Steps\Spec\SpecStep.cs" />
+    <Compile Include="Steps\Functions\Spec\FuncSpecStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthLogoutStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthLoginStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthFinal.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthAtcdStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthAtccStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthAtrStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthAtacStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthStep.cs" />
+    <Compile Include="Steps\Functions\Oauth\FuncOauthAtStep.cs" />
+    <Compile Include="Steps\Functions\FuncAttribute.cs" />
+    <Compile Include="Steps\Functions\FuncParamAttribute.cs" />
+    <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
+    <Compile Include="Steps\Functions\IFuncStep.cs" />
+    <Compile Include="Steps\Functions\FuncRegistry.cs" />
+    <Compile Include="Steps\IStepData.cs" />
+    <Compile Include="Steps\IBaseStep.cs" />
+    <Compile Include="Steps\IFinalStep.cs" />
+    <Compile Include="Steps\Functions\FuncStep.cs" />
+    <Compile Include="Steps\Functions\FuncLimitStep.cs" />
+    <Compile Include="Steps\Oauth\OauthStep.cs" />
+    <Compile Include="Steps\StepException.cs" />
+    <Compile Include="Steps\Functions\FuncBackStep.cs" />
+    <Compile Include="Steps\Nodes\INodeStep.cs" />
+    <Compile Include="Steps\StepData.cs" />
+    <Compile Include="Steps\Nodes\NodeSteps.cs">
+      <DependentUpon>NodeSteps.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Steps\Nodes\NodeStep.cs" />
+    <Compile Include="PathRouter.cs" />
+    <Compile Include="Path.cs" />
+    <Compile Include="Steps\IStep.cs" />
+    <Compile Include="Steps\Step.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Steps\Nodes\NodeSteps.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NodeSteps.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

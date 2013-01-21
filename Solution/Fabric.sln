@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Infrastructure", "Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Dto", "Fabric.Api.Dto\Fabric.Api.Dto.csproj", "{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Paths", "Fabric.Api.Paths\Fabric.Api.Paths.csproj", "{8AD70384-1405-41EE-BA61-25BD053CD56B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Traversal", "Fabric.Api.Traversal\Fabric.Api.Traversal.csproj", "{8AD70384-1405-41EE-BA61-25BD053CD56B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Spec", "Fabric.Api.Spec\Fabric.Api.Spec.csproj", "{4E9769D7-BC92-4717-88CA-F82CDE950F44}"
 EndProject
