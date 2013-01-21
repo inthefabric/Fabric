@@ -1,11 +1,11 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Infrastructure.Traversal;
 
-namespace Fabric.Api.Traversal.Steps.Functions.Oauth {
+namespace Fabric.Api.Oauth.Functions {
 	
 	/*================================================================================================*/
 	[Func("AccessToken", typeof(FabOauthAccess), ResxKey="OauthAt")]
-	public class FuncOauthAtStep : FuncOauthFinal {
+	public class FuncOauthAtStep {
 
 		public const string GrantTypeAc = "authorization_code";
 		public const string GrantTypeCc = "client_credentials";
@@ -40,18 +40,6 @@ namespace Fabric.Api.Traversal.Steps.Functions.Oauth {
 		
 		[FuncParam(DataProvUserIdName, false, FuncResxKey="OauthAt")]
 		public string DataProvUserId { get; private set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FuncOauthAtStep(Path pPath) : base(pPath) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabOauth));
-		}
 
 	}
 

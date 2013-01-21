@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Spec\FabSpecService.cs" />
     <Compile Include="Traversal\ApiDtos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

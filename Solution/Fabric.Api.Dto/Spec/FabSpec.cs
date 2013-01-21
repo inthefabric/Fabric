@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Spec {
 
@@ -8,8 +7,9 @@ namespace Fabric.Api.Dto.Spec {
 		
 		public string ApiVersion { get; set; }
 		public FabSpecDto ApiResponse { get; set; }
-		public List<FabSpecDto> DtoList { get; set; }
-		public List<FabSpecFunc> FunctionList { get; set; }
+		public FabSpecService TraversalService { get; set; }
+		public FabSpecService OauthService { get; set; }
+		public FabSpecService SpecService { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -6,9 +6,12 @@ using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Spec;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Api.Oauth.Functions;
+using Fabric.Api.Spec.Functions;
 using Fabric.Api.Spec.Lang;
+using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Spec {
 
@@ -16,8 +19,15 @@ namespace Fabric.Api.Spec {
 	public partial class SpecDoc {
 
 		private readonly FabSpecDto vFabResp;
-		private readonly List<FabSpecDto> vDtoList;
-		private readonly List<FabSpecFunc> vFuncList;
+
+		private readonly List<FabSpecDto> vTravDtoList;
+		private readonly List<FabSpecFunc> vTravFuncList;
+
+		private readonly List<FabSpecDto> vOauthDtoList;
+		private readonly List<FabSpecFunc> vOauthFuncList;
+
+		private readonly List<FabSpecDto> vSpecDtoList;
+		private readonly List<FabSpecFunc> vSpecFuncList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,28 +42,12 @@ namespace Fabric.Api.Spec {
 
 			////
 
-			vDtoList = BuildDtoList();
+			vTravDtoList = BuildDtoList();
+			vTravDtoList.Insert(0, GetSpecDto<FabDto>());
+			vTravDtoList.Insert(0, GetSpecDto<FabNode>());
+			vTravDtoList.Add(GetSpecDto<FabError>());
 
-			vDtoList.Insert(0, GetSpecDto<FabDto>());
-			vDtoList.Insert(0, GetSpecDto<FabNode>());
-			vDtoList.Add(GetSpecDto<FabError>());
-
-			vDtoList.Add(GetSpecDto<FabOauth>());
-			vDtoList.Add(GetSpecDto<FabOauthAccess>());
-			vDtoList.Add(GetSpecDto<FabOauthError>());
-			vDtoList.Add(GetSpecDto<FabOauthLogin>());
-			vDtoList.Add(GetSpecDto<FabOauthLogout>());
-
-			vDtoList.Add(GetSpecDto<FabSpec>());
-			vDtoList.Add(GetSpecDto<FabSpecDto>());
-			vDtoList.Add(GetSpecDto<FabSpecDtoLink>());
-			vDtoList.Add(GetSpecDto<FabSpecDtoProp>());
-			vDtoList.Add(GetSpecDto<FabSpecFunc>());
-			vDtoList.Add(GetSpecDto<FabSpecFuncParam>());
-
-			////
-
-			vFuncList = new List<FabSpecFunc>();
+			vTravFuncList = new List<FabSpecFunc>();
 			Assembly a = Assembly.GetAssembly(typeof(FuncBackStep));
 
 			foreach ( Type t in a.GetTypes() ) {
@@ -61,16 +55,67 @@ namespace Fabric.Api.Spec {
 					continue;
 				}
 
-				vFuncList.Add(GetSpecFunc(t));
+				vTravFuncList.Add(GetSpecFunc(t));
 			}
+
+			////
+			
+			vOauthDtoList = new List<FabSpecDto>();
+			vOauthDtoList.Add(GetSpecDto<FabOauth>(true));
+			vOauthDtoList.Add(GetSpecDto<FabOauthAccess>(true));
+			vOauthDtoList.Add(GetSpecDto<FabOauthError>(true));
+			vOauthDtoList.Add(GetSpecDto<FabOauthLogin>(true));
+			vOauthDtoList.Add(GetSpecDto<FabOauthLogout>(true));
+
+			vOauthFuncList = new List<FabSpecFunc>();
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtStep), "/AccessToken"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtacStep), "/AccessTokenAuthCode"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtrStep), "/AccessTokenRefresh"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtccStep), "/AccessTokenClientCredentials"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtcdStep), "/AccessTokenClientDataProv"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLoginStep), "/"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLogoutStep), "/Logout"));
+
+			////
+			
+			vSpecDtoList = new List<FabSpecDto>();
+			vSpecDtoList.Add(GetSpecDto<FabSpec>(true));
+			vSpecDtoList.Add(GetSpecDto<FabSpecDto>(true));
+			vSpecDtoList.Add(GetSpecDto<FabSpecDtoLink>(true));
+			vSpecDtoList.Add(GetSpecDto<FabSpecDtoProp>(true));
+			vSpecDtoList.Add(GetSpecDto<FabSpecFunc>(true));
+			vSpecDtoList.Add(GetSpecDto<FabSpecFuncParam>(true));
+
+			vSpecFuncList = new List<FabSpecFunc>();
+			vSpecFuncList.Add(GetSpecFunc(typeof(FuncSpecStep), "/"));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpec GetFabSpec() {
 			var fs = new FabSpec();
 			fs.ApiResponse = vFabResp;
-			fs.DtoList = vDtoList;
-			fs.FunctionList = vFuncList;
+
+			fs.TraversalService = new FabSpecService();
+			fs.TraversalService.Name = "TODO";
+			fs.TraversalService.Description = "TODO";
+			fs.TraversalService.Uri = "/Root";
+			fs.TraversalService.DtoList = vTravDtoList;
+			fs.TraversalService.FunctionList = vTravFuncList;
+
+			fs.OauthService = new FabSpecService();
+			fs.OauthService.Name = "TODO";
+			fs.OauthService.Description = "TODO";
+			fs.OauthService.Uri = "/Oauth";
+			fs.OauthService.DtoList = vOauthDtoList;
+			fs.OauthService.FunctionList = vOauthFuncList;
+
+			fs.SpecService = new FabSpecService();
+			fs.SpecService.Name = "TODO";
+			fs.SpecService.Description = "TODO";
+			fs.SpecService.Uri = "/Spec";
+			fs.SpecService.DtoList = vSpecDtoList;
+			fs.SpecService.FunctionList = vSpecFuncList;
+
 			return fs;
 		}
 
@@ -112,7 +157,7 @@ namespace Fabric.Api.Spec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabSpecDto GetSpecDto<T>() where T : FabDto {
+		private FabSpecDto GetSpecDto<T>(bool pNoLinksFuncs=false) where T : FabDto {
 			var sd = new FabSpecDto();
 			sd.Name = typeof(T).Name;
 			sd.Description = GetDtoText(sd.Name.Substring(3));
@@ -123,6 +168,12 @@ namespace Fabric.Api.Spec {
 
 			Dictionary<string, FabSpecDtoProp> propMap = ReflectProps<T>();
 			sd.PropertyList = propMap.Values.ToList();
+
+			if ( pNoLinksFuncs ) {
+				sd.LinkList = null;
+				sd.FunctionList = null;
+				return sd;
+			}
 
 			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(typeof(T), true);
 			sd.FunctionList = new List<string>();
@@ -154,7 +205,7 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabSpecFunc GetSpecFunc(Type pFuncType) {
+		private FabSpecFunc GetSpecFunc(Type pFuncType, string pUri=null) {
 			var fa = (FuncAttribute)pFuncType.GetCustomAttributes(typeof(FuncAttribute), false)[0];
 
 			var func = new FabSpecFunc();
@@ -162,6 +213,7 @@ namespace Fabric.Api.Spec {
 			func.ReturnType = (fa.ReturnType == null ? null : fa.ReturnType.Name);
 			string resxKey = (fa.ResxKey ?? func.Name);
 			func.Description = GetFuncText(resxKey);
+			func.Uri = pUri;
 			func.ParameterList = new List<FabSpecFuncParam>();
 
 			PropertyInfo[] props = pFuncType.GetProperties();

@@ -2,8 +2,8 @@
 using Fabric.Api.Common;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
+using Fabric.Api.Oauth.Functions;
 using Fabric.Api.Oauth.Tasks;
-using Fabric.Api.Traversal.Steps.Functions.Oauth;
 using Fabric.Api.Util;
 using Fabric.Infrastructure.Api;
 using Nancy;

@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Api.Dto;
-using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
-using Fabric.Api.Traversal.Steps.Oauth;
-using Fabric.Infrastructure;
 using Fabric.Test.Util;
 using NUnit.Framework;
 
@@ -20,7 +16,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[TestCase(true, new[] { "/Oauth" })]
 		[TestCase(false, new[] { "oauth" })]
 		public void GetAvailableFuncsForRoot(bool pUri, string[] pExpect) {
@@ -42,40 +38,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 
 			result = FuncRegistry.GetAvailableFuncs(typeof(FabArtifact), pUri);
-			Assert.AreEqual(pExpect, result, "Incorrect result.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new[] {
-			"/AccessToken",
-			"/AccessTokenAuthCode",
-			"/AccessTokenRefresh",
-			"/AccessTokenClientCredentials",
-			"/AccessTokenClientDataProv",
-			"/Login",
-			"/Logout"
-		})]
-		[TestCase(false, new[] {
-			"accesstoken",
-			"accesstokenauthcode",
-			"accesstokenrefresh",
-			"accesstokenclientcredentials",
-			"accesstokenclientdataprov",
-			"login",
-			"logout",
-		})]
-		public void GetAvailableFuncsForOauth(bool pUri, string[] pExpect) {
-			var art = new OauthStep(new Path());
-
-			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri);
-
-			foreach ( string r in result ) {
-				Log.Debug(r);
-			}
-
-			Assert.AreEqual(pExpect, result, "Incorrect result.");
-
-			result = FuncRegistry.GetAvailableFuncs(typeof(FabOauth), pUri);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 

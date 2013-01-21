@@ -4,13 +4,13 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecFunc : FabDto {
+	public class FabSpecService : FabDto {
 
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public string ReturnType { get; set; }
 		public string Uri { get; set; }
-		public List<FabSpecFuncParam> ParameterList { get; set; }
+		public List<FabSpecDto> DtoList { get; set; }
+		public List<FabSpecFunc> FunctionList { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,11 @@
-﻿using System;
-using Fabric.Api.Dto.Oauth;
+﻿using Fabric.Api.Dto.Oauth;
+using Fabric.Infrastructure.Traversal;
 
-namespace Fabric.Api.Traversal.Steps.Functions.Oauth {
+namespace Fabric.Api.Oauth.Functions {
 	
 	/*================================================================================================*/
 	[Func("Login", typeof(FabOauthLogin), ResxKey="OauthLogin")]
-	public class FuncOauthLoginStep : FuncOauthFinal {
+	public class FuncOauthLoginStep {
 
 		public const string ResponseTypeName = "response_type";
 		public const string ClientIdName = "client_id";
@@ -31,18 +31,6 @@ namespace Fabric.Api.Traversal.Steps.Functions.Oauth {
 
 		[FuncParam(SwitchModeName, false)]
 		public string SwitchMode { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FuncOauthLoginStep(Path pPath) : base(pPath) { }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabOauth));
-		}
 
 	}
 

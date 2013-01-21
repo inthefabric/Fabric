@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.Api.Traversal.Steps.Functions {
+namespace Fabric.Infrastructure.Traversal {
 	
 	/*================================================================================================*/
 	[AttributeUsage(AttributeTargets.Property)]

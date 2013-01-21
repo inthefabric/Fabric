@@ -36,19 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
-    <Compile Include="Steps\Spec\SpecStep.cs" />
-    <Compile Include="Steps\Functions\Spec\FuncSpecStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthLogoutStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthLoginStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthFinal.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthAtcdStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthAtccStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthAtrStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthAtacStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthStep.cs" />
-    <Compile Include="Steps\Functions\Oauth\FuncOauthAtStep.cs" />
-    <Compile Include="Steps\Functions\FuncAttribute.cs" />
-    <Compile Include="Steps\Functions\FuncParamAttribute.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFuncStep.cs" />
     <Compile Include="Steps\Functions\FuncRegistry.cs" />
@@ -57,7 +44,6 @@
     <Compile Include="Steps\IFinalStep.cs" />
     <Compile Include="Steps\Functions\FuncStep.cs" />
     <Compile Include="Steps\Functions\FuncLimitStep.cs" />
-    <Compile Include="Steps\Oauth\OauthStep.cs" />
     <Compile Include="Steps\StepException.cs" />
     <Compile Include="Steps\Functions\FuncBackStep.cs" />
     <Compile Include="Steps\Nodes\INodeStep.cs" />

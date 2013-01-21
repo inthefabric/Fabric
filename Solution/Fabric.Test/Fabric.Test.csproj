@@ -48,15 +48,6 @@
     <Compile Include="FabApiOauth\TOauthAccessAuthCode.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetAppAuth.cs" />
     <Compile Include="FabApiOauth\TOauthLogout.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthLoginStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthLogoutStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthAtcdStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthAtStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthAtccStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthAtrStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthFinal.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\Oauth\TFuncOauthAtacStep.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncRegistry.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncStep.cs" />
     <Compile Include="FabApiTraversal\Steps\TStepException.cs" />
