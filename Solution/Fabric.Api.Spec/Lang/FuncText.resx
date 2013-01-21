@@ -123,9 +123,6 @@
   <data name="Limit" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Oauth" xml:space="preserve">
-    <value>TODO</value>
-  </data>
   <data name="OauthAt" xml:space="preserve">
     <value>Get an OAuth access token using one of four 'flows'.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the '[[Client Credentials|Func|AccessTokenClientCredentials]]' flow) for information about the available OAuth flows.
 
@@ -174,5 +171,8 @@ See this request's [[return type|Dto|FabOauthLogin]] for the query string parame
     <value>Terminates a particular OAuth session by invalidating the session's access token. Any further OAuth requests made with this particular access token are rejected.
 
 Logging out of an OAuth session does not revoke the the App scope accepted by the User (during the first OAuth login process).  Furthermore, it does not end the User's authenticated session with Fabric.  Thus, a subsequent OAuth entry by the same user may actually require zero input from the user -- they could potentially bypass both OAuth entry steps (login and scope acceptance).  This allows a user to begin a new OAuth session seamlessly, even after logging out.</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>The latest specification and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now.</value>
   </data>
 </root>

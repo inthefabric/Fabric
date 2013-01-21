@@ -79,15 +79,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Oauth {
-            get {
-                return ResourceManager.GetString("Oauth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Get an OAuth access token using one of four &apos;flows&apos;.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos; flow) for information about the available OAuth flows.
         ///
         ///An OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the result of [rest of string was truncated]&quot;;.
@@ -163,6 +154,15 @@ namespace Fabric.Api.Spec.Lang {
         internal static string OauthLogout {
             get {
                 return ResourceManager.GetString("OauthLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The latest specification and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now..
+        /// </summary>
+        internal static string Specification {
+            get {
+                return ResourceManager.GetString("Specification", resourceCulture);
             }
         }
     }

@@ -35,6 +35,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions\FuncSpec.cs" />
+    <Compile Include="Lang\ServiceText.Designer.cs">
+      <DependentUpon>ServiceText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Lang\FuncParamText.Designer.cs">
       <DependentUpon>FuncParamText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -57,13 +62,18 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecDoc.cs" />
-    <Compile Include="SpecDocDtos.cs">
-      <DependentUpon>SpecDocDtos.tt</DependentUpon>
+    <Compile Include="SpecDocTraversal.cs">
+      <DependentUpon>SpecDocTraversal.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lang\ServiceText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\FuncParamText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FuncParamText.Designer.cs</LastGenOutput>
@@ -84,9 +94,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SpecDocDtos.tt">
+    <None Include="SpecDocTraversal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SpecDocDtos.cs</LastGenOutput>
+      <LastGenOutput>SpecDocTraversal.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

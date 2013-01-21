@@ -6,6 +6,7 @@
 <#@ import namespace="System" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="Fabric.Api.Dto" #>
+<#@ import namespace="Fabric.Api.Dto.Traversal" #>
 <#@ import namespace="Fabric.Api.Traversal.Steps.Functions" #>
 <#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
@@ -28,9 +29,9 @@ namespace Fabric.Api.Spec {
 		public List<FabSpecDto> BuildDtoList() {
 			var list = new List<FabSpecDto>();
 			
-			FabSpecDto dto;
+			FabSpecDtoTrav dto;
 			FabSpecDtoProp p;
-			FabSpecDtoLink l;
+			FabSpecDtoTravLink l;
 
 <#
 IList<string> nodes = SchemaHelper.GetNodes();
@@ -45,7 +46,7 @@ foreach ( string name in nodes ) {
 #>
 			////
 
-			dto = new FabSpecDto();
+			dto = new FabSpecDtoTrav();
 			dto.Name = "Fab<#= node.Name #>";
 			dto.Extends = "<#= baseNode #>";
 			dto.Description = GetDtoText("<#= node.Name #>");
@@ -114,7 +115,7 @@ foreach ( string name in nodes ) {
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
 #>
-					l = new FabSpecDtoLink();
+					l = new FabSpecDtoTravLink();
 					l.Name = "<#= hr.RelPropName #>";
 					l.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
 					l.FromDto = "Fab<#= hr.FromNodeName #>";
