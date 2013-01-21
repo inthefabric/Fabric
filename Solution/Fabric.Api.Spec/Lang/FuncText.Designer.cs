@@ -79,9 +79,9 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get an OAuth access token using one of four &apos;flows&apos;.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos; flow) for information about the available OAuth flows.
+        ///   Looks up a localized string similar to Get an OAuth access token using one of four &apos;flows&apos;.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the &apos;[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]&apos; flow) for information about the available OAuth flows.
         ///
-        ///An OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the result of [rest of string was truncated]&quot;;.
+        ///An OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the res [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string OauthAt {
             get {
@@ -92,7 +92,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used immediately after obtaining an authorization code from the OAuth entry process. Fabric verifies the authorization code, determines the associated App and User IDs, and generates a new access token.
         ///
-        ///See [[Access Token|Func|AccessToken]] for general information about the OAuth process..
+        ///See [[Access Token|Func|Oauth.AccessToken]] for general information about the OAuth process..
         /// </summary>
         internal static string OauthAtac {
             get {
@@ -103,7 +103,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used to begin an OAuth session for your Fabric App. This flow does not require an authorization code from the typical OAuth entry process.
         ///
-        ///See [[Access Token|Func|AccessToken]] or general information about the OAuth process..
+        ///See [[Access Token|Func|Oauth.AccessToken]] or general information about the OAuth process..
         /// </summary>
         internal static string OauthAtcc {
             get {
@@ -114,7 +114,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used to begin an OAuth session for your Fabric App&apos;s Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App&apos;s OAuth needs.
         ///
-        ///See [[Access Token|Func|AccessToken]]] for general information about the OAuth process..
+        ///See [[Access Token|Func|Oauth.AccessToken]]] for general information about the OAuth process..
         /// </summary>
         internal static string OauthAtcd {
             get {
@@ -125,9 +125,9 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used to refresh an expired access token. If the refresh token is valid, Fabric generates new access and refresh tokens for the given OAuth session. This process also invalidates the original refresh token.
         ///
-        ///App-only access tokens (obtained with the &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos; flow) should not be refreshed; the App should simply request a new access token.
+        ///App-only access tokens (obtained with the &apos;[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]&apos; flow) should not be refreshed; the App should simply request a new access token.
         ///
-        ///See [[Access Token|Func|AccessToken]] for general information about the OAuth process..
+        ///See [[Access Token|Func|Oauth.AccessToken]] for general information about the OAuth pr [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string OauthAtr {
             get {

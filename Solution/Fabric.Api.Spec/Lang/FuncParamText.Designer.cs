@@ -88,7 +88,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The App ID value (an integer) for the App making the request. This parameter is only used by the &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos; and &apos;[[Client Data Provider|Func|AccessTokenClientDataProv]]&apos; flows..
+        ///   Looks up a localized string similar to The App ID value (an integer) for the App making the request. This parameter is only used by the &apos;[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]&apos; and &apos;[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]&apos; flows..
         /// </summary>
         internal static string OauthAt_ClientId {
             get {
@@ -106,7 +106,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The authorization code obtained after a successful OAuth entry process. This parameter is only used by the &apos;[[Authorization Code|Func|AccessTokenAuthCode]]&apos; flow..
+        ///   Looks up a localized string similar to The authorization code obtained after a successful OAuth entry process. This parameter is only used by the &apos;[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]&apos; flow..
         /// </summary>
         internal static string OauthAt_Code {
             get {
@@ -115,7 +115,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special &apos;Data Provider&apos; User which the App uses for creating items in the Fabric system. This parameter is only used by the &apos;[[Client Data Provider|Func|AccessTokenClientDataProv]]&apos; flow..
+        ///   Looks up a localized string similar to The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special &apos;Data Provider&apos; User which the App uses for creating items in the Fabric system. This parameter is only used by the &apos;[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]&apos; flow..
         /// </summary>
         internal static string OauthAt_DataProvUserId {
             get {
@@ -124,7 +124,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Defines the desired access token flow.  The four accepted (case-sensitive) values are &apos;[[Authorization Code|Func|AccessTokenAuthCode]]&apos;, &apos;[[Refresh|Func|AccessTokenRefresh]]&apos;, &apos;[[Client Credentials|Func|AccessTokenClientCredentials]]&apos;, and &apos;[[Client Data Provider|Func|AccessTokenClientDataProv]]&apos;..
+        ///   Looks up a localized string similar to Defines the desired access token flow.  The four accepted (case-sensitive) values are &apos;[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]&apos;, &apos;[[Refresh|Func|Oauth.AccessTokenRefresh]]&apos;, &apos;[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]&apos;, and &apos;[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]&apos;..
         /// </summary>
         internal static string OauthAt_GrantType {
             get {
@@ -142,7 +142,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The refresh token obtained after a successful &apos;[[Authorization Code|Func|AccessTokenAuthCode]]&apos; access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the &apos;[[Refresh|Func|AccessTokenRefresh]]&apos; flow..
+        ///   Looks up a localized string similar to The refresh token obtained after a successful &apos;[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]&apos; access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the &apos;[[Refresh|Func|Oauth.AccessTokenRefresh]]&apos; flow..
         /// </summary>
         internal static string OauthAt_RefreshToken {
             get {

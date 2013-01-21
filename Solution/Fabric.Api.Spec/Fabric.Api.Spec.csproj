@@ -87,10 +87,12 @@
     <EmbeddedResource Include="Lang\DtoPropText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\DtoText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DtoText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Spec;
@@ -10,6 +11,7 @@ using Fabric.Api.Oauth.Functions;
 using Fabric.Api.Spec.Functions;
 using Fabric.Api.Spec.Lang;
 using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Traversal;
 
@@ -19,6 +21,7 @@ namespace Fabric.Api.Spec {
 	public partial class SpecDoc {
 
 		private readonly FabSpecDto vFabResp;
+		private readonly List<string> vDtoNames;
 
 		private readonly List<FabSpecDto> vTravDtoList;
 		private readonly List<FabSpecFunc> vTravFuncList;
@@ -33,6 +36,28 @@ namespace Fabric.Api.Spec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecDoc() {
+			vDtoNames = new List<string>();
+
+			foreach ( Type t in Assembly.GetAssembly(typeof(FabDto)).GetTypes() ) {
+				if ( t.FullName == null ) {
+					continue;
+				}
+
+				if ( t.Name.Substring(0, 3) != "Fab" ) {
+					continue;
+				}
+
+				string name = t.FullName.Replace("Fabric.Api.Dto.", "");
+
+				if ( name.IndexOf('.') == -1 && t != typeof(FabResponse) ) {
+					name = "Traversal."+name;
+				}
+
+				vDtoNames.Add(name);
+			}
+
+			////
+
 			vFabResp = new FabSpecDto();
 			vFabResp.Name = typeof(FabResponse).Name;
 			vFabResp.Description = GetDtoText(vFabResp.Name.Substring(3));
@@ -130,39 +155,44 @@ namespace Fabric.Api.Spec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetServiceText(string pName) {
+		private string GetServiceText(string pName) {
 			string s = ServiceText.ResourceManager.GetString(pName);
+			if ( s != null ) { s = AddSmartLinks(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetDtoText(string pName) {
+		private string GetDtoText(string pName) {
 			string s = DtoText.ResourceManager.GetString(pName);
+			if ( s != null ) { s = AddSmartLinks(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetDtoPropText(string pName) {
+		private string GetDtoPropText(string pName) {
 			string s = DtoPropText.ResourceManager.GetString(pName);
+			if ( s != null ) { s = AddSmartLinks(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetFuncText(string pName) {
+		private string GetFuncText(string pName) {
 			string s = FuncText.ResourceManager.GetString(pName);
+			if ( s != null ) { s = AddSmartLinks(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetFuncParamText(string pName) {
+		private string GetFuncParamText(string pName) {
 			string s = FuncParamText.ResourceManager.GetString(pName);
+			if ( s != null ) { s = AddSmartLinks(s); }
 			return (s ?? "MISSING:"+pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static FabSpecDto GetSpecDto<T>() where T : FabDto {
+		private FabSpecDto GetSpecDto<T>() where T : FabDto {
 			var sd = new FabSpecDto();
 			sd.Name = typeof(T).Name;
 			sd.Description = GetDtoText(sd.Name.Substring(3));
@@ -177,7 +207,7 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Dictionary<string, FabSpecDtoProp> ReflectProps<T>() {
+		private Dictionary<string, FabSpecDtoProp> ReflectProps<T>() {
 			PropertyInfo[] props = typeof(T).GetProperties(
 				BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
 			var results = new Dictionary<string, FabSpecDtoProp>();
@@ -201,7 +231,7 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static FabSpecFunc GetSpecFunc(Type pFuncType, string pUri=null) {
+		private FabSpecFunc GetSpecFunc(Type pFuncType, string pUri=null) {
 			var fa = (FuncAttribute)pFuncType.GetCustomAttributes(typeof(FuncAttribute), false)[0];
 
 			var func = new FabSpecFunc();
@@ -238,6 +268,74 @@ namespace Fabric.Api.Spec {
 
 			func.ParameterList.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index == b.Index ? 0 : -1)));
 			return func;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private string AddSmartLinks(string pText) {
+			pText = pText+"";
+
+			MatchCollection matches = Regex.Matches(pText, @"\[\[.*?\]\]");
+
+			foreach ( Match m in matches ) {
+				Log.Debug("MATCH: "+m.Value);
+			}
+
+			for ( int i = 0 ; i < vDtoNames.Count ; ++i ) {
+				string dto = vDtoNames[i];
+				pText = FindSmartLinks(pText, dto, true);
+				pText = FindSmartLinks(pText, dto, false);
+			}
+
+			return pText;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string FindSmartLinks(string pText, string pDtoNameAndPath, bool pFabMode) {
+			int dotI = pDtoNameAndPath.LastIndexOf('.');
+			string dtoName = (dotI == -1 ? pDtoNameAndPath : pDtoNameAndPath.Substring(dotI+1));
+			string item = dtoName.Substring(pFabMode ? 0 : 3); //remove "Fab"
+			var re = new Regex(@"\b"+item+@"(\b|s\b|es\b)"); //ends normally, or with 's' or 'es'
+			int pos = 0;
+
+			while ( true ) {
+				Match m = re.Match(pText, pos);
+				if ( !m.Success ) { break; }
+
+				//ensure the match is not within a link.
+
+				//int anchorI = HtmlText.LastIndexOf("<a href", m.Index, m.Index-pos);
+				int anchorI = pText.LastIndexOf("[[", m.Index, m.Index-pos);
+
+				if ( anchorI != -1 ) {
+					//int anchorEndI = HtmlText.IndexOf("</a>", anchorI+7);
+					int anchorEndI = pText.IndexOf("]]", anchorI+7);
+
+					if ( anchorEndI > m.Index ) {
+						pos = anchorEndI;
+						continue;
+					}
+				}
+
+				//ensure the match does not use the escape character
+
+				if ( m.Index > 0 && pText[m.Index-1] == '!' ) {
+					pText = pText.Remove(m.Index-1, 1);
+					pos = m.Index+m.Length-1;
+					continue;
+				}
+
+				//replace the match with a link
+
+				//string link = "<a href='"+DocsUtil.DtosUrl+pDtoName+"'>"+m.Captures[0]+"</a>";
+				string link = "[["+m.Captures[0]+"|Dto|"+pDtoNameAndPath+"]]";
+				pos = m.Index+(link.Length-m.Length);
+				pText = pText.Remove(m.Index, m.Length);
+				pText = pText.Insert(m.Index, link);
+			}
+
+			return pText;
 		}
 
 	}

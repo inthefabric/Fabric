@@ -503,7 +503,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This DTO is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
         ///
-        ///This redirect is used in one particular scenario: the [[OAuth login process|Req|oauth.get]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the &apos;c [rest of string was truncated]&quot;;.
+        ///This redirect is used in one particular scenario: the [[OAuth login process|Func|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string OauthLogin {
             get {

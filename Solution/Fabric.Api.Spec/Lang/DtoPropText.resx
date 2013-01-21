@@ -451,7 +451,7 @@
     <value>The number of seconds until the access token expires.</value>
   </data>
   <data name="OauthAccess_RefreshToken" xml:space="preserve">
-    <value>A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Req|oauth.access_token.client_credentials.get]].</value>
+    <value>A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]].</value>
   </data>
   <data name="OauthAccess_TokenType" xml:space="preserve">
     <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>
