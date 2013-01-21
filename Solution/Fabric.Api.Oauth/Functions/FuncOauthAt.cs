@@ -5,7 +5,7 @@ namespace Fabric.Api.Oauth.Functions {
 	
 	/*================================================================================================*/
 	[Func("AccessToken", typeof(FabOauthAccess), ResxKey="OauthAt")]
-	public class FuncOauthAtStep {
+	public class FuncOauthAt {
 
 		public const string GrantTypeAc = "authorization_code";
 		public const string GrantTypeCc = "client_credentials";

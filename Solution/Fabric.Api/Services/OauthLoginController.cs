@@ -73,12 +73,12 @@ namespace Fabric.Api.Services {
 			vIncomingError = GetParamString("error", false);
 			vLoggedUserId = NancyUtil.GetUserIdFromCookies(vCookies);
 
-			vClientId = GetParamString(FuncOauthLoginStep.ClientIdName, false);
-			vRedirUri = GetParamString(FuncOauthLoginStep.RedirectUriName, false);
-			vRespType = GetParamString(FuncOauthLoginStep.ResponseTypeName, false);
-			vScope = GetParamString(FuncOauthLoginStep.ScopeName, false);
-			vSwitchMode = GetParamString(FuncOauthLoginStep.SwitchModeName, false);
-			vState = GetParamString(FuncOauthLoginStep.StateName, false);
+			vClientId = GetParamString(FuncOauthLogin.ClientIdName, false);
+			vRedirUri = GetParamString(FuncOauthLogin.RedirectUriName, false);
+			vRespType = GetParamString(FuncOauthLogin.ResponseTypeName, false);
+			vScope = GetParamString(FuncOauthLogin.ScopeName, false);
+			vSwitchMode = GetParamString(FuncOauthLogin.SwitchModeName, false);
+			vState = GetParamString(FuncOauthLogin.StateName, false);
 
 			switch ( vMethod ) {
 				case Method.Get: return LoginGet();

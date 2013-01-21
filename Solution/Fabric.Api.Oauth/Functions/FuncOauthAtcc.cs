@@ -5,15 +5,15 @@ namespace Fabric.Api.Oauth.Functions {
 	
 	/*================================================================================================*/
 	[Func("AccessTokenClientCredentials", typeof(FabOauthAccess), ResxKey="OauthAtcc")]
-	public class FuncOauthAtccStep {
+	public class FuncOauthAtcc {
 
-		[FuncParam(FuncOauthAtStep.RedirectUriName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAt.RedirectUriName, FuncResxKey="OauthAt")]
 		public string RedirectUri { get; private set; }
 
-		[FuncParam(FuncOauthAtStep.ClientSecretName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAt.ClientSecretName, FuncResxKey="OauthAt")]
 		public string ClientSecret { get; private set; }
 
-		[FuncParam(FuncOauthAtStep.ClientIdName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAt.ClientIdName, FuncResxKey="OauthAt")]
 		public string ClientId { get; private set; }
 
 	}

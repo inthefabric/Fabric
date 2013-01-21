@@ -68,13 +68,13 @@ namespace Fabric.Api.Spec {
 			vOauthDtoList.Add(GetSpecDto<FabOauthLogout>(true));
 
 			vOauthFuncList = new List<FabSpecFunc>();
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtStep), "/AccessToken"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtacStep), "/AccessTokenAuthCode"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtrStep), "/AccessTokenRefresh"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtccStep), "/AccessTokenClientCredentials"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtcdStep), "/AccessTokenClientDataProv"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLoginStep), "/"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLogoutStep), "/Logout"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAt), "/AccessToken"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtac), "/AccessTokenAuthCode"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtr), "/AccessTokenRefresh"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtcc), "/AccessTokenClientCredentials"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtcd), "/AccessTokenClientDataProv"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLogin), "/"));
+			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLogout), "/Logout"));
 
 			////
 			
@@ -87,7 +87,7 @@ namespace Fabric.Api.Spec {
 			vSpecDtoList.Add(GetSpecDto<FabSpecFuncParam>(true));
 
 			vSpecFuncList = new List<FabSpecFunc>();
-			vSpecFuncList.Add(GetSpecFunc(typeof(FuncSpecStep), "/"));
+			vSpecFuncList.Add(GetSpecFunc(typeof(FuncSpec), "/"));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

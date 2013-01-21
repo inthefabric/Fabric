@@ -5,7 +5,7 @@ namespace Fabric.Api.Oauth.Functions {
 	
 	/*================================================================================================*/
 	[Func("Login", typeof(FabOauthLogin), ResxKey="OauthLogin")]
-	public class FuncOauthLoginStep {
+	public class FuncOauthLogin {
 
 		public const string ResponseTypeName = "response_type";
 		public const string ClientIdName = "client_id";

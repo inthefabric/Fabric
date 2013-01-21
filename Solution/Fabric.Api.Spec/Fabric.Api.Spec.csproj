@@ -34,7 +34,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Functions\FuncSpecStep.cs" />
+    <Compile Include="Functions\FuncSpec.cs" />
     <Compile Include="Lang\FuncParamText.Designer.cs">
       <DependentUpon>FuncParamText.resx</DependentUpon>
       <AutoGen>True</AutoGen>

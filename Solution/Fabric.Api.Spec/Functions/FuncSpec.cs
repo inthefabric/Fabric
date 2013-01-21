@@ -5,9 +5,7 @@ namespace Fabric.Api.Spec.Functions {
 	
 	/*================================================================================================*/
 	[Func("Specification", typeof(FabSpec))]
-	public class FuncSpecStep {
-
-
+	public class FuncSpec {
 
 	}
 

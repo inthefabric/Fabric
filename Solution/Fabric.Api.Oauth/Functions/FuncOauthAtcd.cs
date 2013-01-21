@@ -5,9 +5,9 @@ namespace Fabric.Api.Oauth.Functions {
 	
 	/*================================================================================================*/
 	[Func("AccessTokenClientDataProv", typeof(FabOauthAccess), ResxKey="OauthAtcd")]
-	public class FuncOauthAtcdStep : FuncOauthAtccStep {
+	public class FuncOauthAtcd : FuncOauthAtcc {
 
-		[FuncParam(FuncOauthAtStep.DataProvUserIdName, FuncResxKey="OauthAt")]
+		[FuncParam(FuncOauthAt.DataProvUserIdName, FuncResxKey="OauthAt")]
 		public string DataProvUserId { get; private set; }
 
 	}
