@@ -130,22 +130,28 @@ namespace Fabric.Api.Spec {
 
 			fs.TraversalService = new FabSpecService();
 			fs.TraversalService.Name = GetServiceText("Traversal");
+			fs.TraversalService.Abstract = GetServiceText("TraversalAbstract");
 			fs.TraversalService.Description = GetServiceText("TraversalDesc");
 			fs.TraversalService.Uri = "/Root";
+			fs.TraversalService.ResponseWrapper = typeof(FabResponse).Name;
 			fs.TraversalService.DtoList = vTravDtoList;
 			fs.TraversalService.FunctionList = vTravFuncList;
 
 			fs.OauthService = new FabSpecService();
 			fs.OauthService.Name = GetServiceText("Oauth");
+			fs.OauthService.Abstract = GetServiceText("OauthAbstract");
 			fs.OauthService.Description = GetServiceText("OauthDesc");
 			fs.OauthService.Uri = "/Oauth";
+			fs.OauthService.ResponseWrapper = null;
 			fs.OauthService.DtoList = vOauthDtoList;
 			fs.OauthService.FunctionList = vOauthFuncList;
 
 			fs.SpecService = new FabSpecService();
 			fs.SpecService.Name = GetServiceText("Spec");
+			fs.SpecService.Abstract = GetServiceText("SpecAbstract");
 			fs.SpecService.Description = GetServiceText("SpecDesc");
 			fs.SpecService.Uri = "/Spec";
+			fs.SpecService.ResponseWrapper = typeof(FabResponse).Name;
 			fs.SpecService.DtoList = vSpecDtoList;
 			fs.SpecService.FunctionList = vSpecFuncList;
 
@@ -172,6 +178,14 @@ namespace Fabric.Api.Spec {
 		private string GetDtoPropText(string pName) {
 			string s = DtoPropText.ResourceManager.GetString(pName);
 			if ( s != null ) { s = FormatMarkup(s); }
+			return (s ?? "MISSING:"+pName);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetDtoLinkText(string pName) {
+			string s = DtoLinkText.ResourceManager.GetString(pName);
+			if ( s != null ) { s = FormatMarkup(s); }
+			Log.Debug(pName);
 			return (s ?? "MISSING:"+pName);
 		}
 		

@@ -72,6 +72,15 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Update the Fabric graph with new items and modifications..
         /// </summary>
+        internal static string ModificationAbstract {
+            get {
+                return ResourceManager.GetString("ModificationAbstract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string ModificationDesc {
             get {
                 return ResourceManager.GetString("ModificationDesc", resourceCulture);
@@ -89,6 +98,15 @@ namespace Fabric.Api.Spec.Lang {
         
         /// <summary>
         ///   Looks up a localized string similar to Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification..
+        /// </summary>
+        internal static string OauthAbstract {
+            get {
+                return ResourceManager.GetString("OauthAbstract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
         internal static string OauthDesc {
             get {
@@ -108,6 +126,15 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Access Fabric data snapshots..
         /// </summary>
+        internal static string OpendataAbstract {
+            get {
+                return ResourceManager.GetString("OpendataAbstract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string OpendataDesc {
             get {
                 return ResourceManager.GetString("OpendataDesc", resourceCulture);
@@ -126,6 +153,15 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Load the latest specifications and documentation for all Fabric API services..
         /// </summary>
+        internal static string SpecAbstract {
+            get {
+                return ResourceManager.GetString("SpecAbstract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string SpecDesc {
             get {
                 return ResourceManager.GetString("SpecDesc", resourceCulture);
@@ -143,6 +179,15 @@ namespace Fabric.Api.Spec.Lang {
         
         /// <summary>
         ///   Looks up a localized string similar to Query the Fabric graph using predefined traversal steps and functions..
+        /// </summary>
+        internal static string TraversalAbstract {
+            get {
+                return ResourceManager.GetString("TraversalAbstract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
         internal static string TraversalDesc {
             get {

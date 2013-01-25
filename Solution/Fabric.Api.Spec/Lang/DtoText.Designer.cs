@@ -61,66 +61,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {{Item}} is one of seven Artifact Owners. Each {{Item}}-owned Artifact {{Access}} and {{Talk}}..
-        /// </summary>
-        internal static string _ArtItem_Main {
-            get {
-                return ResourceManager.GetString("_ArtItem_Main", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is accessible only to the User who created it.
-        /// </summary>
-        internal static string _ArtItem_Private {
-            get {
-                return ResourceManager.GetString("_ArtItem_Private", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is publicly accessible.
-        /// </summary>
-        internal static string _ArtItem_Public {
-            get {
-                return ResourceManager.GetString("_ArtItem_Public", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to can have either public or private accessibility.
-        /// </summary>
-        internal static string _ArtItem_VariedAccess {
-            get {
-                return ResourceManager.GetString("_ArtItem_VariedAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The essential data for a particular {{Item}}..
-        /// </summary>
-        internal static string _Core_Common {
-            get {
-                return ResourceManager.GetString("_Core_Common", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current version information for the Fabric API. 
-        ///
-        ///The API versioning format is: &apos;Major.Minor.ReleaseIndex.Build&apos;. Major, Minor, and ReleaseIndex values are sequential integer values. Minor resets to zero after each Major increase. ReleaseIndex resets to zero after each Minor increase. Build is a 12-character hashtag, and can typically be ignored.
-        ///
-        ///In general, each increment of...
-        ///- ReleaseIndex represents internal improvements and fixes.
-        ///- Minor represents external additions, such as a new API request [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string _Version {
-            get {
-                return ResourceManager.GetString("_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A registered project, application, or business that has direct access to the Fabric API.
         ///
         ///An !App&apos;s primary purpose is to facilitate User interaction with Fabric. To accomplish this, an !App typically creates an interface for its Users. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
@@ -136,7 +76,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to An object which is able to (via Factor connections) accumulate meaning, context, user sentiment, and relationships.  !Artifacts and Factors are the central components of the Fabric architecture.
         ///
-        ///Every !Artifact maps exclusively to one other item in the Fabric architecture (such as an App, Crowd, or User). Fabric generates an !Artifact automatically each time a new !Artifact-enabled item is created.  Technically, each of these items &apos;has&apos; an associated !Artifact. However, due to the item&apos;s exclusive owner [rest of string was truncated]&quot;;.
+        ///Every !Artifact maps exclusively to one other item in the Fabric architecture (such as an App, Class, Instance, or User). Fabric generates an !Artifact automatically each time a new !Artifact-enabled item is created.  Technically, each of these items &apos;has&apos; an associated !Artifact. However, due to the item&apos;s exclu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Artifact {
             get {
@@ -154,11 +94,23 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact. Example types include: !App, !Thing, !Comment, etc..
+        ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact. Example types include: !App, !Class, !Instance, etc..
         /// </summary>
         internal static string ArtifactType {
             get {
                 return ResourceManager.GetString("ArtifactType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
+        ///[(EX|Documentation Note|To explain the !Class DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
+        ///- A !Class receives Factors via its associated Artifact.
+        ///- Each Factor references two Artifa [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Class {
+            get {
+                return ResourceManager.GetString("Class", resourceCulture);
             }
         }
         
@@ -383,9 +335,21 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.
+        ///[(EX|Documentation Note|To explain the !Instance DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
+        ///- An !Instance receives Factors via its associated Artifact.
+        ///- Each Factor references two [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Instance {
+            get {
+                return ResourceManager.GetString("Instance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A word, phrase, code, or other text-based value.
         ///
-        ///!Labels are less formal (and less effective) than a Thing, and should only be used in certain circumstances.  For example, some value or code (like &apos;A-1234&apos; or &apos;study for science test&apos;) might have a useful purpose for a particular User..
+        ///!Labels are less formal (and less effective) than a Class or Instance, and should only be used in certain circumstances.  For example, some value or code (like &apos;A-1234&apos; or &apos;study for science test&apos;) might have a useful purpose for a particular User..
         /// </summary>
         internal static string Label {
             get {
@@ -539,23 +503,11 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. A !Thing is the primary method for generating new Artifacts. There are two distinct !Thing types: Class and Instance.
-        ///[(EX|Documentation Note|To explain the !Thing DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
-        ///- A !Thing receives Factors via its associated Artifact.
-        ///- Each Factor refe [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Thing {
-            get {
-                return ResourceManager.GetString("Thing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A hyperlink or path (uniform resource locator) to some web page, a file, or some other type of content.
         ///
-        ///While a !Url does have an associated Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Thing for both the news article and photo. With this method:
+        ///While a !Url does have an associated Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:
         ///- The news article and photo (via their Artifacts) can receive Factors independently.
-        ///- The !Url (via its Artifact) should onl [rest of string was truncated]&quot;;.
+        ///- The !Url (via its Artifact) should  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Url {
             get {

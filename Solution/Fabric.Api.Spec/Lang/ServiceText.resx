@@ -120,31 +120,46 @@
   <data name="Modification" xml:space="preserve">
     <value>Modification</value>
   </data>
-  <data name="ModificationDesc" xml:space="preserve">
+  <data name="ModificationAbstract" xml:space="preserve">
     <value>Update the Fabric graph with new items and modifications.</value>
+  </data>
+  <data name="ModificationDesc" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Oauth" xml:space="preserve">
     <value>OAuth</value>
   </data>
-  <data name="OauthDesc" xml:space="preserve">
+  <data name="OauthAbstract" xml:space="preserve">
     <value>Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.</value>
+  </data>
+  <data name="OauthDesc" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Opendata" xml:space="preserve">
     <value>Open Data</value>
   </data>
-  <data name="OpendataDesc" xml:space="preserve">
+  <data name="OpendataAbstract" xml:space="preserve">
     <value>Access Fabric data snapshots.</value>
+  </data>
+  <data name="OpendataDesc" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Spec" xml:space="preserve">
     <value>Specification</value>
   </data>
-  <data name="SpecDesc" xml:space="preserve">
+  <data name="SpecAbstract" xml:space="preserve">
     <value>Load the latest specifications and documentation for all Fabric API services.</value>
+  </data>
+  <data name="SpecDesc" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Traversal" xml:space="preserve">
     <value>Traversal</value>
   </data>
-  <data name="TraversalDesc" xml:space="preserve">
+  <data name="TraversalAbstract" xml:space="preserve">
     <value>Query the Fabric graph using predefined traversal steps and functions.</value>
+  </data>
+  <data name="TraversalDesc" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>

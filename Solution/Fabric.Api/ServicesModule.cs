@@ -10,7 +10,7 @@ namespace Fabric.Api {
 	/*================================================================================================*/
 	public class ServicesModule : NancyModule {
 
-		private const string ApiVersion = "1.0.0.b364a81c24f1";
+		private const string ApiVersion = "1.0.1.3f89168b44f7";
 		private const string DbServerUrl = "http://localhost:9001/gremlin";
 
 
@@ -38,7 +38,7 @@ namespace Fabric.Api {
 			Get[at+"ClientDataProv"] = (p => GetOauth(Context,
 				OauthController.Function.ClientDataProv));
 
-			Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
+			//Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
 		}
 
 

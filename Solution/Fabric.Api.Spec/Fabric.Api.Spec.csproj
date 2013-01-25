@@ -35,6 +35,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions\FuncSpec.cs" />
+    <Compile Include="Lang\DtoLinkText.Designer.cs">
+      <DependentUpon>DtoLinkText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Lang\ServiceText.Designer.cs">
       <DependentUpon>ServiceText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -69,6 +74,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lang\DtoLinkText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoLinkText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\ServiceText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceText.Designer.cs</LastGenOutput>

@@ -117,10 +117,12 @@ foreach ( string name in nodes ) {
 #>
 					l = new FabSpecDtoLink();
 					l.Name = "<#= hr.RelPropName #>";
+					l.Type = "<#= hr.RelName #>";
+					l.Description = GetDtoLinkText("<#= hr.RelName #>");
 					l.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
 					l.FromDto = "Fab<#= hr.FromNodeName #>";
 					l.FromDtoConn = "<#= hr.RelSchema.FromNodeConn+"" #>";
-					l.Verb = "<#= hr.RelName #>";
+					l.Relation = "<#= hr.RelTypeName #>";
 					l.ToDto = "Fab<#= hr.ToNodeName #>";
 					l.ToDtoConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
 					dto.LinkList.Add(l);

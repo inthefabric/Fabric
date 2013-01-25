@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_Crowdian_CrowdianTypeKey" xml:space="preserve">
+    <value>Idenfies membership status and access privileges.</value>
+  </data>
+  <data name="AppDefinesMember" xml:space="preserve">
+    <value>Links an App to a particular Member.</value>
+  </data>
+  <data name="AppHasArtifact" xml:space="preserve">
+    <value>Links an App to the Artifact that it owns.</value>
+  </data>
+  <data name="ArtifactUsesArtifactType" xml:space="preserve">
+    <value>Links an Artifact to an ArtifactType that describes the type of the associated ArtifactOwnerNode.</value>
+  </data>
+  <data name="ClassHasArtifact" xml:space="preserve">
+    <value>Links an App to the Class that it owns.</value>
+  </data>
+  <data name="DescriptorRefinesPrimaryWithArtifact" xml:space="preserve">
+    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the Factor's primary Artifact.</value>
+  </data>
+  <data name="DescriptorRefinesRelatedWithArtifact" xml:space="preserve">
+    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the Factor's related Artifact.</value>
+  </data>
+  <data name="DescriptorRefinesTypeWithArtifact" xml:space="preserve">
+    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the DescriptorType's meaning or purpose.</value>
+  </data>
+  <data name="DescriptorUsesDescriptorType" xml:space="preserve">
+    <value>Links a Descriptor to a DescriptorType that specifies the type of relationship or connection.</value>
+  </data>
+  <data name="DirectorUsesDirectorType" xml:space="preserve">
+    <value>Links a Director to a DirectorType that specifies the type and reason for the pathway.</value>
+  </data>
+  <data name="DirectorUsesPrimaryDirectorAction" xml:space="preserve">
+    <value>Links a Director to a DirectorAction that specifies the action to be performed on the Factor's primary Artifact.</value>
+  </data>
+  <data name="DirectorUsesRelatedDirectorAction" xml:space="preserve">
+    <value>Links a Director to a DirectorAction that specifies the action to be performed on the Factor's related Artifact.</value>
+  </data>
+  <data name="EventorUsesEventorPrecision" xml:space="preserve">
+    <value>Links an Eventor to an EventorPrecision that specifies the level of accuracy given to this point in time.</value>
+  </data>
+  <data name="EventorUsesEventorType" xml:space="preserve">
+    <value>Links an Eventor to an EventorType that specifies the significance of this point in time.</value>
+  </data>
+  <data name="FactorReplacesFactor" xml:space="preserve">
+    <value>Links a new Factor to the Factor that it has replaced.</value>
+  </data>
+  <data name="FactorUsesDescriptor" xml:space="preserve">
+    <value>Links a Factor to its Descriptor Element, which defines the relationship between the primary and related Artifact.</value>
+  </data>
+  <data name="FactorUsesDirector" xml:space="preserve">
+    <value>Links a Factor to its Director Element, which creates a directional pathway between the primary and related Artifacts.</value>
+  </data>
+  <data name="FactorUsesEventor" xml:space="preserve">
+    <value>Links a Factor to its Eventor Element, which applies the concept of time.</value>
+  </data>
+  <data name="FactorUsesFactorAssertion" xml:space="preserve">
+    <value>Links a Factor to a FactorAssertion that specifies the type of information and/or level of confidence.</value>
+  </data>
+  <data name="FactorUsesIdentor" xml:space="preserve">
+    <value>Links a Factor to its Identor Element, which applies a name or identifier.</value>
+  </data>
+  <data name="FactorUsesLocator" xml:space="preserve">
+    <value>Links a Factor to its Locator Element, which provides a geographical or relative position.</value>
+  </data>
+  <data name="FactorUsesPrimaryArtifact" xml:space="preserve">
+    <value>Links a Factor to its primary Artifact, which represents the starting point of the Factor's directional Artifact relationship.</value>
+  </data>
+  <data name="FactorUsesRelatedArtifact" xml:space="preserve">
+    <value>Links a Factor to its related Artifact, which represents the ending point of the Factor's directional Artifact relationship.</value>
+  </data>
+  <data name="FactorUsesVector" xml:space="preserve">
+    <value>Links a Factor to its Vector Element, which applies a numeric axis and value.</value>
+  </data>
+  <data name="IdentorUsesIdentorType" xml:space="preserve">
+    <value>Links an Identor to an IdentorType that specifies the value's purpose or intent.</value>
+  </data>
+  <data name="InstanceHasArtifact" xml:space="preserve">
+    <value>Links an App to the Instance that it owns.</value>
+  </data>
+  <data name="LocatorUsesLocatorType" xml:space="preserve">
+    <value>Links a Locator to a LocatorType that specifies the spatial context of the coordinate.</value>
+  </data>
+  <data name="MemberCreatesArtifact" xml:space="preserve">
+    <value>Links a Member to the Artifact that it created.</value>
+  </data>
+  <data name="MemberCreatesFactor" xml:space="preserve">
+    <value>Links a Member to the Factor that it created.</value>
+  </data>
+  <data name="MemberCreatesMemberTypeAssign" xml:space="preserve">
+    <value>Links a Member to the MemberTypeAssign that it created.</value>
+  </data>
+  <data name="MemberHasHistoricMemberTypeAssign" xml:space="preserve">
+    <value>Links a Member to a historical MemberTypeAssign.</value>
+  </data>
+  <data name="MemberHasMemberTypeAssign" xml:space="preserve">
+    <value>Links a Member to its active MemberTypeAssign.</value>
+  </data>
+  <data name="MemberTypeAssignUsesMemberType" xml:space="preserve">
+    <value>Links a MemberTypeAssign to a MemberType that specifies the Member's state and/or access privileges.</value>
+  </data>
+  <data name="RootContainsApp" xml:space="preserve">
+    <value>Links the Root node to an App.</value>
+  </data>
+  <data name="RootContainsArtifact" xml:space="preserve">
+    <value>Links the Root node to an Artifact.</value>
+  </data>
+  <data name="RootContainsArtifactType" xml:space="preserve">
+    <value>Links the Root node to an ArtifactType.</value>
+  </data>
+  <data name="RootContainsClass" xml:space="preserve">
+    <value>Links the Root node to a Class.</value>
+  </data>
+  <data name="RootContainsDescriptor" xml:space="preserve">
+    <value>Links the Root node to a Descriptor.</value>
+  </data>
+  <data name="RootContainsDescriptorType" xml:space="preserve">
+    <value>Links the Root node to a DescriptorType.</value>
+  </data>
+  <data name="RootContainsDirector" xml:space="preserve">
+    <value>Links the Root node to a Director.</value>
+  </data>
+  <data name="RootContainsDirectorAction" xml:space="preserve">
+    <value>Links the Root node to a DirectorAction.</value>
+  </data>
+  <data name="RootContainsDirectorType" xml:space="preserve">
+    <value>Links the Root node to a DirectorType.</value>
+  </data>
+  <data name="RootContainsEventor" xml:space="preserve">
+    <value>Links the Root node to an Eventor.</value>
+  </data>
+  <data name="RootContainsEventorPrecision" xml:space="preserve">
+    <value>Links the Root node to an EventorPrecision.</value>
+  </data>
+  <data name="RootContainsEventorType" xml:space="preserve">
+    <value>Links the Root node to an EventorType.</value>
+  </data>
+  <data name="RootContainsFactor" xml:space="preserve">
+    <value>Links the Root node to a Factor.</value>
+  </data>
+  <data name="RootContainsFactorAssertion" xml:space="preserve">
+    <value>Links the Root node to a FactorAssertion.</value>
+  </data>
+  <data name="RootContainsIdentor" xml:space="preserve">
+    <value>Links the Root node to an Identor.</value>
+  </data>
+  <data name="RootContainsIdentorType" xml:space="preserve">
+    <value>Links the Root node to an IdentorType.</value>
+  </data>
+  <data name="RootContainsInstance" xml:space="preserve">
+    <value>Links the Root node to an Instance.</value>
+  </data>
+  <data name="RootContainsLocator" xml:space="preserve">
+    <value>Links the Root node to a Locator.</value>
+  </data>
+  <data name="RootContainsLocatorType" xml:space="preserve">
+    <value>Links the Root node to a LocatorType.</value>
+  </data>
+  <data name="RootContainsMember" xml:space="preserve">
+    <value>Links the Root node to a Member.</value>
+  </data>
+  <data name="RootContainsMemberType" xml:space="preserve">
+    <value>Links the Root node to a MemberType.</value>
+  </data>
+  <data name="RootContainsMemberTypeAssign" xml:space="preserve">
+    <value>Links the Root node to a MemberTypeAssign.</value>
+  </data>
+  <data name="RootContainsUrl" xml:space="preserve">
+    <value>Links the Root node to a Url.</value>
+  </data>
+  <data name="RootContainsUser" xml:space="preserve">
+    <value>Links the Root node to a User.</value>
+  </data>
+  <data name="RootContainsVector" xml:space="preserve">
+    <value>Links the Root node to a Vector.</value>
+  </data>
+  <data name="RootContainsVectorRange" xml:space="preserve">
+    <value>Links the Root node to a VectorRange.</value>
+  </data>
+  <data name="RootContainsVectorRangeLevel" xml:space="preserve">
+    <value>Links the Root node to a VectorRangeLevel.</value>
+  </data>
+  <data name="RootContainsVectorType" xml:space="preserve">
+    <value>Links the Root node to a VectorType.</value>
+  </data>
+  <data name="RootContainsVectorUnit" xml:space="preserve">
+    <value>Links the Root node to a VectorUnit.</value>
+  </data>
+  <data name="RootContainsVectorUnitDerived" xml:space="preserve">
+    <value>Links the Root node to a VectorUnitDerived.</value>
+  </data>
+  <data name="RootContainsVectorUnitPrefix" xml:space="preserve">
+    <value>Links the Root node to a VectorUnitPrefix.</value>
+  </data>
+  <data name="UrlHasArtifact" xml:space="preserve">
+    <value>Links a Url to the Artifact that it owns.</value>
+  </data>
+  <data name="UserDefinesMember" xml:space="preserve">
+    <value>Links a User to a particular Member.</value>
+  </data>
+  <data name="UserHasArtifact" xml:space="preserve">
+    <value>Links a User to the Artifact that it owns.</value>
+  </data>
+  <data name="VectorRangeUsesVectorRangeLevel" xml:space="preserve">
+    <value>Links a VectorRange to one of the VectorRangeLevels that help give it meaning.</value>
+  </data>
+  <data name="VectorTypeUsesVectorRange" xml:space="preserve">
+    <value>Links a VectorType to a VectorRange that specifies a meaningful points/labels mapped to the numerical range.</value>
+  </data>
+  <data name="VectorUnitDerivedDefinesVectorUnit" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="VectorUnitDerivedRaisesToExpVectorUnit" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="VectorUnitDerivedUsesVectorUnitPrefix" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="VectorUsesAxisArtifact" xml:space="preserve">
+    <value>Links a Vector to an Artifact that 'labels' its value's axis.</value>
+  </data>
+  <data name="VectorUsesVectorType" xml:space="preserve">
+    <value>Links a Vector to a VectorType that specifies its value's boundaries and context.</value>
+  </data>
+  <data name="VectorUsesVectorUnit" xml:space="preserve">
+    <value>Links a Vector to a VectorUnit that specifies its value's unit of measurement.</value>
+  </data>
+  <data name="VectorUsesVectorUnitPrefix" xml:space="preserve">
+    <value>Links a Vector to a VectorUnitPrefix that specifies its value's order of magnitude.</value>
+  </data>
+</root>
