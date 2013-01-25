@@ -23,7 +23,7 @@ namespace Fabric.Db.Data.Setups {
 			Url_YahooFin,
 			Url_CutePhoto,
 
-			Label_A1234,
+			/*Label_A1234,
 			Label_EpicFail,
 			Label_LOL,
 
@@ -35,7 +35,7 @@ namespace Fabric.Db.Data.Setups {
 			Cro_PhoCrit,
 			Cro_PhoLove,
 			Cro_Crowd3,
-			Cro_DataProv,
+			Cro_DataProv,*/
 
 			Thi_Human,
 			Thi_Male,

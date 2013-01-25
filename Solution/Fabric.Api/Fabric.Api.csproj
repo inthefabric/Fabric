@@ -104,7 +104,7 @@
     <Compile Include="Services\Views\LoginScopeView.cs" />
     <Compile Include="Services\OauthLoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Internal\Setups\SetupRoutine.cs" />
+    <Compile Include="Internal\Setups\SetupController.cs" />
     <Compile Include="Internal\Tables\TableNode.cs" />
     <Compile Include="Internal\Tables\TableModel.cs" />
     <Compile Include="Internal\Tables\TableBrowser.cs" />

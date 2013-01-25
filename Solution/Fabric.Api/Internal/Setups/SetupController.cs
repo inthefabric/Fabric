@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Api.Common;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
@@ -11,29 +12,24 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Internal.Setups {
 
 	/*================================================================================================*/
-	public class SetupRoutine {
+	public class SetupController : Controller {
 
-		private readonly NancyContext vContext;
 		private DataSet vDataSet;
-		private ApiContext vApiCtx;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SetupRoutine(NancyContext pContext) {
-			vContext = pContext;
-		}
+		public SetupController(Request pRequest, IApiContext pApiCtx) : base(pRequest, pApiCtx) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetResponse() {
+		protected override Response BuildResponse() {
 			try {
-				if ( vContext.Request.Query["pass"] != "asdfasdf" ) {
+				if ( NancyReq.Query["pass"] != "asdfasdf" ) {
 					return "Password required.";
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(false);
-				vApiCtx = new ApiContext("http://localhost:9001/");
+				vDataSet = Setup.SetupAll(true);
 
 				SendSetupTx();
 				SendIndexTx();
@@ -59,7 +55,7 @@ namespace Fabric.Api.Internal.Setups {
 			}
 
 			tx.FinishWithoutStartStop();
-			vApiCtx.DbData("initTx", tx);
+			ApiCtx.DbData("initTx", tx);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -71,7 +67,7 @@ namespace Fabric.Api.Internal.Setups {
 			}
 
 			tx.FinishWithoutStartStop();
-			vApiCtx.DbData("addIndexesTx", tx);
+			ApiCtx.DbData("addIndexesTx", tx);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -103,7 +99,7 @@ namespace Fabric.Api.Internal.Setups {
 				tx.AddQuery(listQ);
 
 				tx.FinishWithoutStartStop();
-				IApiDataAccess nodeData = vApiCtx.DbData("addNodeTx", tx);
+				IApiDataAccess nodeData = ApiCtx.DbData("addNodeTx", tx);
 
 				for ( int i = 0 ; i < nodeData.ResultDtoList.Count ; ++i ) {
 					IDbDto n = nodeData.ResultDtoList[i];
@@ -140,7 +136,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				tx.FinishWithoutStartStop();
-				vApiCtx.DbData("addRelsTx", tx);
+				ApiCtx.DbData("addRelsTx", tx);
 
 				if ( count >= vDataSet.Rels.Count ) {
 					break;

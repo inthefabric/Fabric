@@ -13,7 +13,7 @@ namespace Fabric.Db.Data.Setups {
 			CutePhoto
 		}
 		
-		public enum LabelId {
+		/*public enum LabelId {
 			A1234 = 1,
 			EpicFail,
 			LOL
@@ -109,7 +109,7 @@ namespace Fabric.Db.Data.Setups {
 			DpFabAdminByFab,
 			DbGalMemberByFab,
 			DbBookMemberByFab
-		}
+		}*/
 
 		public enum ThingId {
 			Human = 1,
@@ -212,7 +212,7 @@ namespace Fabric.Db.Data.Setups {
 			AddUrl(UrlId.CutePhoto, "http://zachkinstner.com/gallery/Photo/View/4165",
 				"Super Cute Photo", SetupArtifacts.ArtifactId.Url_CutePhoto,SetupUsers.MemberId.GalMel);
 
-			AddLabel(LabelId.A1234, "A1234",
+			/*AddLabel(LabelId.A1234, "A1234",
 				SetupArtifacts.ArtifactId.Label_A1234, SetupUsers.MemberId.BookZach);
 			AddLabel(LabelId.EpicFail, "Epic Fail",
 				SetupArtifacts.ArtifactId.Label_EpicFail, SetupUsers.MemberId.GalZach);
@@ -315,6 +315,7 @@ namespace Fabric.Db.Data.Setups {
 				CrowdianTypeAssignId.DbGalMemberByFab, SetupUsers.UserId.FabData);
 			AddCrowdian(CrowdianId.Dp_BookData, CrowdId.DataProv, bookData, CrowdianTypeId.Member, 1.0f,
 				CrowdianTypeAssignId.DbBookMemberByFab, SetupUsers.UserId.FabData);
+			*/
 
 			const SetupUsers.MemberId ffd = SetupUsers.MemberId.FabFabData;
 			const SetupUsers.MemberId ggd = SetupUsers.MemberId.GalGalData;
@@ -444,7 +445,7 @@ namespace Fabric.Db.Data.Setups {
 			vSet.ElapseTime();
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddLabel(LabelId pId, string pName,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var l = new Label();
@@ -468,7 +469,7 @@ namespace Fabric.Db.Data.Setups {
 			vSet.ElapseTime();
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddCrowd(CrowdId pId, string pName, string pDesc, bool pIsPrivate, bool pIsInvOnly,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var c = new Crowd();
@@ -495,7 +496,7 @@ namespace Fabric.Db.Data.Setups {
 			vSet.ElapseTime();
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddCrowdian(CrowdianId pId, CrowdId pCrowdId, SetupUsers.UserId pUserId,
 									CrowdianTypeId pTypeId, float pWeight, CrowdianTypeAssignId pCtaId,
 									SetupUsers.UserId pAssignerId){

@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Oauth.Tasks;
+﻿using Fabric.Api.Internal.Setups;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -18,6 +19,7 @@ namespace Fabric.Api {
 		public ServicesModule() {
 			Log.ConfigureOnce();
 
+			Get["/"] = (p => "Root | Spec | Oauth");
 			Get["/Root"] = (p => GetTraversal(Context));
 			Get["/Root/(.*)"] = (p => GetTraversal(Context));
 			Get["/Spec"] = (p => GetSpec(Context));
@@ -35,6 +37,8 @@ namespace Fabric.Api {
 				OauthController.Function.ClientCred));
 			Get[at+"ClientDataProv"] = (p => GetOauth(Context,
 				OauthController.Function.ClientDataProv));
+
+			Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
 		}
 
 
@@ -61,6 +65,14 @@ namespace Fabric.Api {
 		private static Response GetLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
 			var olc = new OauthLoginController(pCtx.Request, NewApiCtx(), pMethod);
 			return olc.Execute();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static Response GetInternalSetup(NancyContext pCtx) {
+			var ac = new SetupController(pCtx.Request, NewApiCtx());
+			return ac.Execute();
 		}
 
 
