@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:46 PM
+// Generated on 1/25/2013 2:43:15 PM
 
 using System.Collections.Generic;
 
@@ -21,10 +21,11 @@ namespace Fabric.Test.Util {
 				"/ContainsAppList",
 				"/ContainsArtifactList",
 				"/ContainsArtifactTypeList",
+				"/ContainsClassList",
+				"/ContainsInstanceList",
 				"/ContainsMemberList",
 				"/ContainsMemberTypeList",
 				"/ContainsMemberTypeAssignList",
-				"/ContainsThingList",
 				"/ContainsUrlList",
 				"/ContainsUserList",
 				"/ContainsFactorList",
@@ -58,8 +59,9 @@ namespace Fabric.Test.Util {
 			map.Add("Artifact", new [] {
 				"/InAppHas",
 				"/UsesArtifactType",
+				"/InClassHas",
+				"/InInstanceHas",
 				"/InMemberCreates",
-				"/InThingHas",
 				"/InUrlHas",
 				"/InUserHas",
 				"/InFactorListUsesPrimary",
@@ -72,6 +74,14 @@ namespace Fabric.Test.Util {
 
 			map.Add("ArtifactType", new [] {
 				"/InArtifactListUses",
+			});
+
+			map.Add("Class", new [] {
+				"/HasArtifact",
+			});
+
+			map.Add("Instance", new [] {
+				"/HasArtifact",
 			});
 
 			map.Add("Member", new [] {
@@ -93,10 +103,6 @@ namespace Fabric.Test.Util {
 				"/InMemberHasHistoric",
 				"/InMemberCreates",
 				"/UsesMemberType",
-			});
-
-			map.Add("Thing", new [] {
-				"/HasArtifact",
 			});
 
 			map.Add("Url", new [] {
@@ -254,6 +260,18 @@ namespace Fabric.Test.Util {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
+		public void ClassStep() {
+			TestStep("Class", (tn, p) => new ClassStep(tn, p));
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		[Test]
+		public void InstanceStep() {
+			TestStep("Instance", (tn, p) => new InstanceStep(tn, p));
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		[Test]
 		public void MemberStep() {
 			TestStep("Member", (tn, p) => new MemberStep(tn, p));
 		}
@@ -268,12 +286,6 @@ namespace Fabric.Test.Util {
 		[Test]
 		public void MemberTypeAssignStep() {
 			TestStep("MemberTypeAssign", (tn, p) => new MemberTypeAssignStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void ThingStep() {
-			TestStep("Thing", (tn, p) => new ThingStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

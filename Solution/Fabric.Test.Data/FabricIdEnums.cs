@@ -14,13 +14,14 @@
 	public enum ArtifactTypeId {
 		App = 1,
 		User,
-		Thing,
-		Url,
-		Label,
-		Crowd
+		Class,
+		Instance,
+		Url
+		//Label,
+		//Crowd
 	}
 
-	/*================================================================================================*/
+	/*================================================================================================* /
 	public enum CrowdianTypeId {
 		None = 1,
 		Request,

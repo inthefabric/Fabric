@@ -111,7 +111,7 @@ namespace Fabric.Db.Data.Setups {
 			DbBookMemberByFab
 		}*/
 
-		public enum ThingId {
+		public enum ClassId {
 			Human = 1,
 			Male,
 			Female,
@@ -119,19 +119,12 @@ namespace Fabric.Db.Data.Setups {
 			Legal,
 			Home,
 			Muskegon,
-			Neimeyer,
-			CampusView,
 			Location,
-			AppleRidge,
 			Caldonia,
-			FabricPlatform,
 			Attend,
-			ReethsPufferHS,
 			GradePointAvg,
 			ACTTest,
 			Overall,
-			GrandValley,
-			AestheticInteractive,
 			Software,
 			Art,
 			Graphics,
@@ -143,17 +136,11 @@ namespace Fabric.Db.Data.Setups {
 			Height,
 			Weight,
 			Beauty,
-			TigersGame,
 			MlbGame,
-			DetroitTigers,
-			BostonRedSox,
-			ComericaPark,
-			Bottom11,
 			Inning,
 			Attendance,
 			Excitement,
 			WebPage,
-			CutePhoto,
 			Photo,
 			Digital,
 			Favorite,
@@ -169,17 +156,34 @@ namespace Fabric.Db.Data.Setups {
 			Rope,
 			Blue,
 			Swing,
-			FisherPrice,
 			Happiness,
 			Fun,
 			Cuteness
+		}
+
+		public enum InstanceId {
+			Neimeyer = 1,
+			CampusView,
+			AppleRidge,
+			FabricPlatform,
+			ReethsPufferHS,
+			GrandValley,
+			AestheticInteractive,
+			TigersGame,
+			DetroitTigers,
+			BostonRedSox,
+			ComericaPark,
+			Bottom11,
+			CutePhoto,
+			FisherPrice
 		}
 		
 		public const int NumUrls = 5;
 		public const int NumLabels = 3;
 		public const int NumCrowds = 9;
 		public const int NumCrowdians = 31;
-		public const int NumThings = 61;
+		public const int NumClasses = 45;
+		public const int NumInstances = 16;
 
 		public const string ThingGvsuName = "Grand Valley State University";
 		public const string ThingGvsuDisamb = "Allendale, MI";
@@ -321,101 +325,92 @@ namespace Fabric.Db.Data.Setups {
 			const SetupUsers.MemberId ggd = SetupUsers.MemberId.GalGalData;
 			const SetupUsers.MemberId bbd = SetupUsers.MemberId.BookBookData;
 
-			AddThing(ThingId.Human, true, "Human", "", SetupArtifacts.ArtifactId.Thi_Human, ffd);
-			AddThing(ThingId.Male, true, "Male", "", SetupArtifacts.ArtifactId.Thi_Male, ffd);
-			AddThing(ThingId.Female, true, "Female", "", SetupArtifacts.ArtifactId.Thi_Female, ffd);
-			AddThing(ThingId.Name, true, "Name", "", SetupArtifacts.ArtifactId.Thi_Name, ffd);
-			AddThing(ThingId.Legal, true, "Legal", "", SetupArtifacts.ArtifactId.Thi_Legal, ffd);
-			AddThing(ThingId.Home, true, "Home", "", SetupArtifacts.ArtifactId.Thi_Home, ffd);
-			AddThing(ThingId.Muskegon, true, "Muskegon", "MI, USA", 
+			AddClass(ClassId.Human, "Human", "", SetupArtifacts.ArtifactId.Thi_Human, ffd);
+			AddClass(ClassId.Male, "Male", "", SetupArtifacts.ArtifactId.Thi_Male, ffd);
+			AddClass(ClassId.Female, "Female", "", SetupArtifacts.ArtifactId.Thi_Female, ffd);
+			AddClass(ClassId.Name, "Name", "", SetupArtifacts.ArtifactId.Thi_Name, ffd);
+			AddClass(ClassId.Legal, "Legal", "", SetupArtifacts.ArtifactId.Thi_Legal, ffd);
+			AddClass(ClassId.Home, "Home", "", SetupArtifacts.ArtifactId.Thi_Home, ffd);
+			AddClass(ClassId.Muskegon, "Muskegon", "MI, USA",
 				SetupArtifacts.ArtifactId.Thi_Muskegon, ffd);
-			AddThing(ThingId.Neimeyer, false, "Neimeyer Living Center", "GVSU", 
+			AddInstance(InstanceId.Neimeyer, "Neimeyer Living Center", "GVSU", 
 				SetupArtifacts.ArtifactId.Thi_Neimeyer, ffd);
-			AddThing(ThingId.CampusView, false, "Campus View Apartments", "Allendale, MI", 
+			AddInstance(InstanceId.CampusView, "Campus View Apartments", "Allendale, MI", 
 				SetupArtifacts.ArtifactId.Thi_CampusView, ffd);
-			AddThing(ThingId.Location, true, "Location", "geographical", 
+			AddClass(ClassId.Location, "Location", "geographical", 
 				SetupArtifacts.ArtifactId.Thi_Location, ffd);
-			AddThing(ThingId.AppleRidge, false, "Apple Ridge Apartments", "Standale, MI", 
+			AddInstance(InstanceId.AppleRidge, "Apple Ridge Apartments", "Standale, MI", 
 				SetupArtifacts.ArtifactId.Thi_AppleRidge, ffd);
-			AddThing(ThingId.Caldonia, true, "Caldonia", "MI, USA", 
+			AddClass(ClassId.Caldonia, "Caldonia", "MI, USA", 
 				SetupArtifacts.ArtifactId.Thi_Caldonia, ffd);
-			AddThing(ThingId.FabricPlatform, false, "Fabric Platform", "", 
+			AddInstance(InstanceId.FabricPlatform, "Fabric Platform", "", 
 				SetupArtifacts.ArtifactId.Thi_FabricPlat, ffd);
-			AddThing(ThingId.Attend, false, "Attend", "", 
-				SetupArtifacts.ArtifactId.Thi_Attend, ffd);
-			AddThing(ThingId.ReethsPufferHS, false, "Reeths Puffer High School", "Muskegon, MI, USA", 
+			AddClass(ClassId.Attend, "Attend", "", SetupArtifacts.ArtifactId.Thi_Attend, ffd);
+			AddInstance(InstanceId.ReethsPufferHS, "Reeths Puffer High School", "Muskegon, MI, USA", 
 				SetupArtifacts.ArtifactId.Thi_RPHS, ffd);
-			AddThing(ThingId.GradePointAvg, true, "Grade Point Average", "", 
+			AddClass(ClassId.GradePointAvg, "Grade Point Average", "", 
 				SetupArtifacts.ArtifactId.Thi_GradePointAvg, ffd);
-			AddThing(ThingId.ACTTest, true, "ACT Test", "", SetupArtifacts.ArtifactId.Thi_ACTTest, ffd);
-			AddThing(ThingId.Overall, true, "Overall", "", SetupArtifacts.ArtifactId.Thi_Overall, ffd);
-			AddThing(ThingId.GrandValley, false, ThingGvsuName, ThingGvsuDisamb, 
+			AddClass(ClassId.ACTTest, "ACT Test", "", SetupArtifacts.ArtifactId.Thi_ACTTest, ffd);
+			AddClass(ClassId.Overall, "Overall", "", SetupArtifacts.ArtifactId.Thi_Overall, ffd);
+			AddInstance(InstanceId.GrandValley, ThingGvsuName, ThingGvsuDisamb, 
 				SetupArtifacts.ArtifactId.Thi_GrandValley, ffd);
-			AddThing(ThingId.AestheticInteractive, false, "Aesthetic Interactive", "software firm", 
+			AddInstance(InstanceId.AestheticInteractive, "Aesthetic Interactive", "software firm", 
 				SetupArtifacts.ArtifactId.Thi_Aei, ffd);
-			AddThing(ThingId.Software, true, "Software", "", 
-				SetupArtifacts.ArtifactId.Thi_Software, ffd);
-			AddThing(ThingId.Art, true, "Art", "", SetupArtifacts.ArtifactId.Thi_Art, ffd);
-			AddThing(ThingId.Graphics, true, "Graphics", "", 
-				SetupArtifacts.ArtifactId.Thi_Graphics, ffd);
-			AddThing(ThingId.Games, true, "Games", "", SetupArtifacts.ArtifactId.Thi_Games, ffd);
-			AddThing(ThingId.Music, true, "Music", "", SetupArtifacts.ArtifactId.Thi_Music, ffd);
-			AddThing(ThingId.Evolution, true, "Evolution", "", 
-				SetupArtifacts.ArtifactId.Thi_Evolution, ffd);
-			AddThing(ThingId.ArtificialIntel, true, "Artificial Intelligence", "", 
+			AddClass(ClassId.Software, "Software", "", SetupArtifacts.ArtifactId.Thi_Software, ffd);
+			AddClass(ClassId.Art, "Art", "", SetupArtifacts.ArtifactId.Thi_Art, ffd);
+			AddClass(ClassId.Graphics, "Graphics", "", SetupArtifacts.ArtifactId.Thi_Graphics, ffd);
+			AddClass(ClassId.Games, "Games", "", SetupArtifacts.ArtifactId.Thi_Games, ffd);
+			AddClass(ClassId.Music, "Music", "", SetupArtifacts.ArtifactId.Thi_Music, ffd);
+			AddClass(ClassId.Evolution, "Evolution", "", SetupArtifacts.ArtifactId.Thi_Evolution, ffd);
+			AddClass(ClassId.ArtificialIntel, "Artificial Intelligence", "", 
 				SetupArtifacts.ArtifactId.Thi_ArtlIntel, ffd);
-			AddThing(ThingId.Physics, true, "Physics", "", SetupArtifacts.ArtifactId.Thi_Physics, ffd);
-			AddThing(ThingId.Height, true, "Height", "", SetupArtifacts.ArtifactId.Thi_Height, ffd);
-			AddThing(ThingId.Weight, true, "Weight", "", SetupArtifacts.ArtifactId.Thi_Weight, ffd);
-			AddThing(ThingId.Beauty, true, "Beauty", "", SetupArtifacts.ArtifactId.Thi_Beauty, ffd);
+			AddClass(ClassId.Physics, "Physics", "", SetupArtifacts.ArtifactId.Thi_Physics, ffd);
+			AddClass(ClassId.Height, "Height", "", SetupArtifacts.ArtifactId.Thi_Height, ffd);
+			AddClass(ClassId.Weight, "Weight", "", SetupArtifacts.ArtifactId.Thi_Weight, ffd);
+			AddClass(ClassId.Beauty, "Beauty", "", SetupArtifacts.ArtifactId.Thi_Beauty, ffd);
 
-			AddThing(ThingId.TigersGame, false, "Tigers Game", "", 
+			AddInstance(InstanceId.TigersGame, "Tigers Game", "", 
 				SetupArtifacts.ArtifactId.Thi_TigersGame, bbd);
-			AddThing(ThingId.MlbGame, true, "MLB Game", "", SetupArtifacts.ArtifactId.Thi_MlbGame, bbd);
-			AddThing(ThingId.DetroitTigers, false, "Detroit Tigers", "", 
+			AddClass(ClassId.MlbGame, "MLB Game", "", SetupArtifacts.ArtifactId.Thi_MlbGame, bbd);
+			AddInstance(InstanceId.DetroitTigers, "Detroit Tigers", "", 
 				SetupArtifacts.ArtifactId.Thi_DetroitTigers, bbd);
-			AddThing(ThingId.BostonRedSox, false, "Boston Red Sox", "", 
+			AddInstance(InstanceId.BostonRedSox, "Boston Red Sox", "", 
 				SetupArtifacts.ArtifactId.Thi_BostonRedSox, bbd);
-			AddThing(ThingId.ComericaPark, false, "Comerica Park", "", 
+			AddInstance(InstanceId.ComericaPark, "Comerica Park", "", 
 				SetupArtifacts.ArtifactId.Thi_ComericaPark, bbd);
-			AddThing(ThingId.Bottom11, false, "Bottom 11th", "", 
+			AddInstance(InstanceId.Bottom11, "Bottom 11th", "", 
 				SetupArtifacts.ArtifactId.Thi_Bottom11, bbd);
-			AddThing(ThingId.Inning, true, "Inning", "", 
-				SetupArtifacts.ArtifactId.Thi_Inning, bbd);
-			AddThing(ThingId.Attendance, true, "Attendance", "", 
+			AddClass(ClassId.Inning, "Inning", "", SetupArtifacts.ArtifactId.Thi_Inning, bbd);
+			AddClass(ClassId.Attendance, "Attendance", "", 
 				SetupArtifacts.ArtifactId.Thi_Attendance, ffd);
-			AddThing(ThingId.Excitement, true, "Excitement", "", 
+			AddClass(ClassId.Excitement, "Excitement", "", 
 				SetupArtifacts.ArtifactId.Thi_Excitement, ffd);
 
-			AddThing(ThingId.WebPage, true, "Web Page", "", SetupArtifacts.ArtifactId.Thi_WebPage, ffd);
-			AddThing(ThingId.CutePhoto, false, "Cute Photo", "", 
+			AddClass(ClassId.WebPage, "Web Page", "", SetupArtifacts.ArtifactId.Thi_WebPage, ffd);
+			AddInstance(InstanceId.CutePhoto, "Cute Photo", "", 
 				SetupArtifacts.ArtifactId.Thi_CutePhoto, ggd);
-			AddThing(ThingId.Photo, true, "Photo", "", SetupArtifacts.ArtifactId.Thi_Photo, ggd);
-			AddThing(ThingId.Digital, true, "Digital", "", SetupArtifacts.ArtifactId.Thi_Digital, ggd);
-			AddThing(ThingId.Favorite, true, "Favorite", "", 
+			AddClass(ClassId.Photo, "Photo", "", SetupArtifacts.ArtifactId.Thi_Photo, ggd);
+			AddClass(ClassId.Digital, "Digital", "", SetupArtifacts.ArtifactId.Thi_Digital, ggd);
+			AddClass(ClassId.Favorite, "Favorite", "", 
 				SetupArtifacts.ArtifactId.Thi_Favorite, ggd);
-			AddThing(ThingId.FocalLength, true, "Focal Length", "", 
+			AddClass(ClassId.FocalLength, "Focal Length", "", 
 				SetupArtifacts.ArtifactId.Thi_FocalLength, ggd);
-			AddThing(ThingId.Exposure, true, "Exposure", "", 
-				SetupArtifacts.ArtifactId.Thi_Exposure, ggd);
-			AddThing(ThingId.FStop, true, "F-Stop", "", SetupArtifacts.ArtifactId.Thi_FStop, ggd);
-			AddThing(ThingId.IsoSpeed, true, "ISO Speed", "", 
-				SetupArtifacts.ArtifactId.Thi_IsoSpeed, ggd);
-			AddThing(ThingId.Quality, true, "Quality", "", SetupArtifacts.ArtifactId.Thi_Quality, ggd);
-			AddThing(ThingId.Subject, true, "Subject", "", SetupArtifacts.ArtifactId.Thi_Subject, ggd);
-			AddThing(ThingId.Object, true, "Object", "", SetupArtifacts.ArtifactId.Thi_Object, ggd);
-			AddThing(ThingId.Smile, true, "Smile", "", SetupArtifacts.ArtifactId.Thi_Smile, ggd);
-			AddThing(ThingId.Pigtail, true, "Pigtail", "", SetupArtifacts.ArtifactId.Thi_Pigtail, ggd);
-			AddThing(ThingId.Rope, true, "Rope", "", SetupArtifacts.ArtifactId.Thi_Rope, ggd);
-			AddThing(ThingId.Blue, true, "Blue", "", SetupArtifacts.ArtifactId.Thi_Blue, ggd);
-			AddThing(ThingId.Swing, true, "Swing", "", SetupArtifacts.ArtifactId.Thi_Swing, ggd);
-			AddThing(ThingId.FisherPrice, false, "Fisher-Price", "company", 
+			AddClass(ClassId.Exposure, "Exposure", "", SetupArtifacts.ArtifactId.Thi_Exposure, ggd);
+			AddClass(ClassId.FStop, "F-Stop", "", SetupArtifacts.ArtifactId.Thi_FStop, ggd);
+			AddClass(ClassId.IsoSpeed, "ISO Speed", "", SetupArtifacts.ArtifactId.Thi_IsoSpeed, ggd);
+			AddClass(ClassId.Quality, "Quality", "", SetupArtifacts.ArtifactId.Thi_Quality, ggd);
+			AddClass(ClassId.Subject, "Subject", "", SetupArtifacts.ArtifactId.Thi_Subject, ggd);
+			AddClass(ClassId.Object, "Object", "", SetupArtifacts.ArtifactId.Thi_Object, ggd);
+			AddClass(ClassId.Smile, "Smile", "", SetupArtifacts.ArtifactId.Thi_Smile, ggd);
+			AddClass(ClassId.Pigtail, "Pigtail", "", SetupArtifacts.ArtifactId.Thi_Pigtail, ggd);
+			AddClass(ClassId.Rope, "Rope", "", SetupArtifacts.ArtifactId.Thi_Rope, ggd);
+			AddClass(ClassId.Blue, "Blue", "", SetupArtifacts.ArtifactId.Thi_Blue, ggd);
+			AddClass(ClassId.Swing, "Swing", "", SetupArtifacts.ArtifactId.Thi_Swing, ggd);
+			AddInstance(InstanceId.FisherPrice, "Fisher-Price", "company", 
 				SetupArtifacts.ArtifactId.Thi_FisherPrice, ggd);
-			AddThing(ThingId.Happiness, true, "Happiness", "", 
-				SetupArtifacts.ArtifactId.Thi_Happiness, ggd);
-			AddThing(ThingId.Fun, true, "Fun", "", SetupArtifacts.ArtifactId.Thi_Fun, ggd);
-			AddThing(ThingId.Cuteness, true, "Cuteness", "", 
-				SetupArtifacts.ArtifactId.Thi_Cuteness, ggd);
+			AddClass(ClassId.Happiness, "Happiness", "", SetupArtifacts.ArtifactId.Thi_Happiness, ggd);
+			AddClass(ClassId.Fun, "Fun", "", SetupArtifacts.ArtifactId.Thi_Fun, ggd);
+			AddClass(ClassId.Cuteness, "Cuteness", "", SetupArtifacts.ArtifactId.Thi_Cuteness, ggd);
 		}
 
 
@@ -542,29 +537,54 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddThing(ThingId pId, bool pIsClass, string pName, string pDisamb,
+		public void AddClass(ClassId pId, string pName, string pDisamb,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
-			var t = new Thing();
-			t.ThingId = (long)pId;
-			t.IsClass = pIsClass;
-			t.Name = pName;
-			t.Disamb = pDisamb;
-			t.Note = null;
+			var c = new Class();
+			c.ClassId = (long)pId;
+			c.Name = pName;
+			c.Disamb = pDisamb;
+			c.Note = null;
 
-			vSet.AddNodeAndIndex(t, x => x.ThingId, vTestMode);
-			vSet.AddRootRel<RootContainsThing>(t, vTestMode);
+			vSet.AddNodeAndIndex(c, x => x.ClassId, vTestMode);
+			vSet.AddRootRel<RootContainsClass>(c, vTestMode);
 
 			////
 
 			Artifact a = SetupArtifacts.AddArtifact(
-				vSet, pArtId, ArtifactTypeId.Thing, pMemberId, vTestMode);
+				vSet, pArtId, ArtifactTypeId.Class, pMemberId, vTestMode);
 
 			var rel = DataRel.Create(
-				vSet.GetNode<Thing>((long)pId), new ThingHasArtifact(), a, vTestMode);
+				vSet.GetNode<Class>((long)pId), new ClassHasArtifact(), a, vTestMode);
 			vSet.AddRel(rel);
 
 			////
 			
+			vSet.ElapseTime();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AddInstance(InstanceId pId, string pName, string pDisamb,
+									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
+			var c = new Instance();
+			c.InstanceId = (long)pId;
+			c.Name = pName;
+			c.Disamb = pDisamb;
+			c.Note = null;
+
+			vSet.AddNodeAndIndex(c, x => x.InstanceId, vTestMode);
+			vSet.AddRootRel<RootContainsInstance>(c, vTestMode);
+
+			////
+
+			Artifact a = SetupArtifacts.AddArtifact(
+				vSet, pArtId, ArtifactTypeId.Instance, pMemberId, vTestMode);
+
+			var rel = DataRel.Create(
+				vSet.GetNode<Instance>((long)pId), new InstanceHasArtifact(), a, vTestMode);
+			vSet.AddRel(rel);
+
+			////
+
 			vSet.ElapseTime();
 		}
 

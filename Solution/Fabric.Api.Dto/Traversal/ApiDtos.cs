@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:47 PM
+// Generated on 1/25/2013 2:43:15 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -224,6 +224,94 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
+	public class FabClass : FabArtifactOwnerNode {
+	
+		public long ClassId { get; set; }
+		public string Name { get; set; }
+		public string Disamb { get; set; }
+		public string Note { get; set; }
+		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"ClassId", "Name", "Disamb", "Note"
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return ClassId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void FillResultData(IDictionary<string,string> pData) {
+			base.FillResultData(pData);
+
+			string val;
+			bool found;
+
+			val = pData["ClassId"];
+			ClassId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Disamb", out val);
+			if ( found ) { Disamb = val; }
+
+			found = pData.TryGetValue("Note", out val);
+			if ( found ) { Note = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class FabInstance : FabArtifactOwnerNode {
+	
+		public long InstanceId { get; set; }
+		public string Name { get; set; }
+		public string Disamb { get; set; }
+		public string Note { get; set; }
+		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"InstanceId", "Name", "Disamb", "Note"
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return InstanceId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void FillResultData(IDictionary<string,string> pData) {
+			base.FillResultData(pData);
+
+			string val;
+			bool found;
+
+			val = pData["InstanceId"];
+			InstanceId = long.Parse(val);
+
+			found = pData.TryGetValue("Name", out val);
+			if ( found ) { Name = val; }
+
+			found = pData.TryGetValue("Disamb", out val);
+			if ( found ) { Disamb = val; }
+
+			found = pData.TryGetValue("Note", out val);
+			if ( found ) { Note = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
+
+	}
+
+	/*================================================================================================*/
 	public class FabMember : FabNode {
 	
 		public long MemberId { get; set; }
@@ -305,54 +393,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["MemberTypeAssignId"];
 			MemberTypeAssignId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabThing : FabArtifactOwnerNode {
-	
-		public long ThingId { get; set; }
-		public bool IsClass { get; set; }
-		public string Name { get; set; }
-		public string Disamb { get; set; }
-		public string Note { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"ThingId", "IsClass", "Name", "Disamb", "Note"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return ThingId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-			bool found;
-
-			val = pData["ThingId"];
-			ThingId = long.Parse(val);
-
-			val = pData["IsClass"];
-			IsClass = bool.Parse(val);
-
-			found = pData.TryGetValue("Name", out val);
-			if ( found ) { Name = val; }
-
-			found = pData.TryGetValue("Disamb", out val);
-			if ( found ) { Disamb = val; }
-
-			found = pData.TryGetValue("Note", out val);
-			if ( found ) { Note = val; }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

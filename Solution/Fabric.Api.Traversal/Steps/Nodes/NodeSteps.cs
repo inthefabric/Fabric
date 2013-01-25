@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:47 PM
+// Generated on 1/25/2013 2:43:16 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +25,16 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
+	public interface IContainsClassList {
+		ClassStep ContainsClassList { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IContainsInstanceList {
+		InstanceStep ContainsInstanceList { get; }
+	}
+
+	/*================================================================================================*/
 	public interface IContainsMemberList {
 		MemberStep ContainsMemberList { get; }
 	}
@@ -37,11 +47,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IContainsMemberTypeAssignList {
 		MemberTypeAssignStep ContainsMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsThingList {
-		ThingStep ContainsThingList { get; }
 	}
 
 	/*================================================================================================*/
@@ -185,13 +190,18 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInMemberCreates {
-		MemberStep InMemberCreates { get; }
+	public interface IInClassHas {
+		ClassStep InClassHas { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInThingHas {
-		ThingStep InThingHas { get; }
+	public interface IInInstanceHas {
+		InstanceStep InInstanceHas { get; }
+	}
+
+	/*================================================================================================*/
+	public interface IInMemberCreates {
+		MemberStep InMemberCreates { get; }
 	}
 
 	/*================================================================================================*/
@@ -535,16 +545,17 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class RootStep : NodeStep<FabRoot>, IFinalStep, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
+	public partial class RootStep : NodeStep<FabRoot>, IFinalStep, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsClassList, IContainsInstanceList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Contains", "App", true, "/ContainsAppList"),
 			new StepLink("Contains", "Artifact", true, "/ContainsArtifactList"),
 			new StepLink("Contains", "ArtifactType", true, "/ContainsArtifactTypeList"),
+			new StepLink("Contains", "Class", true, "/ContainsClassList"),
+			new StepLink("Contains", "Instance", true, "/ContainsInstanceList"),
 			new StepLink("Contains", "Member", true, "/ContainsMemberList"),
 			new StepLink("Contains", "MemberType", true, "/ContainsMemberTypeList"),
 			new StepLink("Contains", "MemberTypeAssign", true, "/ContainsMemberTypeAssignList"),
-			new StepLink("Contains", "Thing", true, "/ContainsThingList"),
 			new StepLink("Contains", "Url", true, "/ContainsUrlList"),
 			new StepLink("Contains", "User", true, "/ContainsUserList"),
 			new StepLink("Contains", "Factor", true, "/ContainsFactorList"),
@@ -604,10 +615,11 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				case "containsapplist": return ContainsAppList;
 				case "containsartifactlist": return ContainsArtifactList;
 				case "containsartifacttypelist": return ContainsArtifactTypeList;
+				case "containsclasslist": return ContainsClassList;
+				case "containsinstancelist": return ContainsInstanceList;
 				case "containsmemberlist": return ContainsMemberList;
 				case "containsmembertypelist": return ContainsMemberTypeList;
 				case "containsmembertypeassignlist": return ContainsMemberTypeAssignList;
-				case "containsthinglist": return ContainsThingList;
 				case "containsurllist": return ContainsUrlList;
 				case "containsuserlist": return ContainsUserList;
 				case "containsfactorlist": return ContainsFactorList;
@@ -666,6 +678,24 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public ClassStep ContainsClassList {
+			get {
+				var step = new ClassStep(Path);
+				Path.AddSegment(step, "outE('RootContainsClass').inV");
+				return step;
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public InstanceStep ContainsInstanceList {
+			get {
+				var step = new InstanceStep(Path);
+				Path.AddSegment(step, "outE('RootContainsInstance').inV");
+				return step;
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public MemberStep ContainsMemberList {
 			get {
 				var step = new MemberStep(Path);
@@ -688,15 +718,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				Path.AddSegment(step, "outE('RootContainsMemberTypeAssign').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ThingStep ContainsThingList {
-			get {
-				var step = new ThingStep(Path);
-				Path.AddSegment(step, "outE('RootContainsThing').inV");
 				return step;
 			}
 		}
@@ -979,13 +1000,14 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
+	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInClassHas, IInInstanceHas, IInMemberCreates, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Has", "App", false, "/InAppHas"),
 			new StepLink("Uses", "ArtifactType", true, "/UsesArtifactType"),
+			new StepLink("Has", "Class", false, "/InClassHas"),
+			new StepLink("Has", "Instance", false, "/InInstanceHas"),
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
-			new StepLink("Has", "Thing", false, "/InThingHas"),
 			new StepLink("Has", "Url", false, "/InUrlHas"),
 			new StepLink("Has", "User", false, "/InUserHas"),
 			new StepLink("UsesPrimary", "Factor", false, "/InFactorListUsesPrimary"),
@@ -1020,8 +1042,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			switch ( pData.Command ) {
 				case "inapphas": return InAppHas;
 				case "usesartifacttype": return UsesArtifactType;
+				case "inclasshas": return InClassHas;
+				case "ininstancehas": return InInstanceHas;
 				case "inmembercreates": return InMemberCreates;
-				case "inthinghas": return InThingHas;
 				case "inurlhas": return InUrlHas;
 				case "inuserhas": return InUserHas;
 				case "infactorlistusesprimary": return InFactorListUsesPrimary;
@@ -1065,19 +1088,28 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberCreates {
+		public ClassStep InClassHas {
 			get {
-				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberCreatesArtifact').outV");
+				var step = new ClassStep(Path);
+				Path.AddSegment(step, "inE('ClassHasArtifact').outV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ThingStep InThingHas {
+		public InstanceStep InInstanceHas {
 			get {
-				var step = new ThingStep(Path);
-				Path.AddSegment(step, "inE('ThingHasArtifact').outV");
+				var step = new InstanceStep(Path);
+				Path.AddSegment(step, "inE('InstanceHasArtifact').outV");
+				return step;
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public MemberStep InMemberCreates {
+			get {
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "inE('MemberCreatesArtifact').outV");
 				return step;
 			}
 		}
@@ -1207,6 +1239,120 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "inE('ArtifactUsesArtifactType').outV");
+				return step;
+			}
+		}
+
+	}
+
+	/*================================================================================================*/
+	public partial class ClassStep : NodeStep<FabClass>, IInRootContains, IHasArtifact {
+	
+		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+			new StepLink("Has", "Artifact", true, "/HasArtifact"),
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public ClassStep(Path pPath) : base(pPath) {
+			ConstructorHook();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return "ClassId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<IStepLink> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IStep GetLink(StepData pData) {
+			switch ( pData.Command ) {
+				case "hasartifact": return HasArtifact;
+			}
+
+			return base.GetLink(pData);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public RootStep InRootContains {
+			get {
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsClass').outV");
+				return step;
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public ArtifactStep HasArtifact {
+			get {
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('ClassHasArtifact').inV");
+				return step;
+			}
+		}
+
+	}
+
+	/*================================================================================================*/
+	public partial class InstanceStep : NodeStep<FabInstance>, IInRootContains, IHasArtifact {
+	
+		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+			new StepLink("Has", "Artifact", true, "/HasArtifact"),
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public InstanceStep(Path pPath) : base(pPath) {
+			ConstructorHook();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return "InstanceId"; } }
+		public override bool TypeIdIsLong { get { return true; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<IStepLink> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IStep GetLink(StepData pData) {
+			switch ( pData.Command ) {
+				case "hasartifact": return HasArtifact;
+			}
+
+			return base.GetLink(pData);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public RootStep InRootContains {
+			get {
+				var step = new RootStep(Path);
+				Path.AddSegment(step, "inE('RootContainsInstance').outV");
+				return step;
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public ArtifactStep HasArtifact {
+			get {
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('InstanceHasArtifact').inV");
 				return step;
 			}
 		}
@@ -1477,63 +1623,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new MemberTypeStep(Path);
 				Path.AddSegment(step, "outE('MemberTypeAssignUsesMemberType').inV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class ThingStep : NodeStep<FabThing>, IInRootContains, IHasArtifact {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ThingStep(Path pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "ThingId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsThing').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('ThingHasArtifact').inV");
 				return step;
 			}
 		}

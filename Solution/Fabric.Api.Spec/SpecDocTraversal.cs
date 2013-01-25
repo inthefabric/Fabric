@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:48 PM
+// Generated on 1/25/2013 2:43:16 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -122,6 +122,26 @@ namespace Fabric.Api.Spec {
 					dto.LinkList.Add(l);
 
 					l = new FabSpecDtoLink();
+					l.Name = "ContainsClassList";
+					l.IsOutgoing = true;
+					l.FromDto = "FabRoot";
+					l.FromDtoConn = "OutToZeroOrMore";
+					l.Verb = "RootContainsClass";
+					l.ToDto = "FabClass";
+					l.ToDtoConn = "InFromOne";
+					dto.LinkList.Add(l);
+
+					l = new FabSpecDtoLink();
+					l.Name = "ContainsInstanceList";
+					l.IsOutgoing = true;
+					l.FromDto = "FabRoot";
+					l.FromDtoConn = "OutToZeroOrMore";
+					l.Verb = "RootContainsInstance";
+					l.ToDto = "FabInstance";
+					l.ToDtoConn = "InFromOne";
+					dto.LinkList.Add(l);
+
+					l = new FabSpecDtoLink();
 					l.Name = "ContainsMemberList";
 					l.IsOutgoing = true;
 					l.FromDto = "FabRoot";
@@ -148,16 +168,6 @@ namespace Fabric.Api.Spec {
 					l.FromDtoConn = "OutToZeroOrMore";
 					l.Verb = "RootContainsMemberTypeAssign";
 					l.ToDto = "FabMemberTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "ContainsThingList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "RootContainsThing";
-					l.ToDto = "FabThing";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
@@ -492,6 +502,26 @@ namespace Fabric.Api.Spec {
 					dto.LinkList.Add(l);
 
 					l = new FabSpecDtoLink();
+					l.Name = "InClassHas";
+					l.IsOutgoing = false;
+					l.FromDto = "FabClass";
+					l.FromDtoConn = "OutToOne";
+					l.Verb = "ClassHasArtifact";
+					l.ToDto = "FabArtifact";
+					l.ToDtoConn = "InFromZeroOrOne";
+					dto.LinkList.Add(l);
+
+					l = new FabSpecDtoLink();
+					l.Name = "InInstanceHas";
+					l.IsOutgoing = false;
+					l.FromDto = "FabInstance";
+					l.FromDtoConn = "OutToOne";
+					l.Verb = "InstanceHasArtifact";
+					l.ToDto = "FabArtifact";
+					l.ToDtoConn = "InFromZeroOrOne";
+					dto.LinkList.Add(l);
+
+					l = new FabSpecDtoLink();
 					l.Name = "InMemberCreates";
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
@@ -499,16 +529,6 @@ namespace Fabric.Api.Spec {
 					l.Verb = "MemberCreatesArtifact";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InThingHas";
-					l.IsOutgoing = false;
-					l.FromDto = "FabThing";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "ThingHasArtifact";
-					l.ToDto = "FabArtifact";
-					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
 					l = new FabSpecDtoLink();
@@ -619,6 +639,110 @@ namespace Fabric.Api.Spec {
 					l.Verb = "ArtifactUsesArtifactType";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
+					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
+			////
+
+			dto = new FabSpecDto();
+			dto.Name = "FabClass";
+			dto.Extends = "FabArtifactOwnerNode";
+			dto.Description = GetDtoText("Class");
+			list.Add(dto);
+	
+				p = new FabSpecDtoProp();
+				p.Name = "ClassId";
+				p.Type = "long";
+				p.Description = GetDtoPropText("Object_TypeId");
+				p.IsPrimaryKey = true;
+				p.IsUnique = true;
+				dto.PropertyList.Add(p);
+
+				p = new FabSpecDtoProp();
+				p.Name = "Name";
+				p.Type = "string";
+				p.Description = GetDtoPropText("Class_Name");
+				p.LenMax = 128;
+				dto.PropertyList.Add(p);
+
+				p = new FabSpecDtoProp();
+				p.Name = "Disamb";
+				p.Type = "string";
+				p.Description = GetDtoPropText("Class_Disamb");
+				p.LenMax = 128;
+				dto.PropertyList.Add(p);
+
+				p = new FabSpecDtoProp();
+				p.Name = "Note";
+				p.Type = "string";
+				p.Description = GetDtoPropText("Class_Note");
+				p.IsNullable = true;
+				p.LenMax = 256;
+				dto.PropertyList.Add(p);
+
+					l = new FabSpecDtoLink();
+					l.Name = "HasArtifact";
+					l.IsOutgoing = true;
+					l.FromDto = "FabClass";
+					l.FromDtoConn = "OutToOne";
+					l.Verb = "ClassHasArtifact";
+					l.ToDto = "FabArtifact";
+					l.ToDtoConn = "InFromZeroOrOne";
+					dto.LinkList.Add(l);
+
+						dto.FunctionList.Add("Back");
+
+						dto.FunctionList.Add("Limit");
+
+			////
+
+			dto = new FabSpecDto();
+			dto.Name = "FabInstance";
+			dto.Extends = "FabArtifactOwnerNode";
+			dto.Description = GetDtoText("Instance");
+			list.Add(dto);
+	
+				p = new FabSpecDtoProp();
+				p.Name = "InstanceId";
+				p.Type = "long";
+				p.Description = GetDtoPropText("Object_TypeId");
+				p.IsPrimaryKey = true;
+				p.IsUnique = true;
+				dto.PropertyList.Add(p);
+
+				p = new FabSpecDtoProp();
+				p.Name = "Name";
+				p.Type = "string";
+				p.Description = GetDtoPropText("Instance_Name");
+				p.LenMax = 128;
+				dto.PropertyList.Add(p);
+
+				p = new FabSpecDtoProp();
+				p.Name = "Disamb";
+				p.Type = "string";
+				p.Description = GetDtoPropText("Instance_Disamb");
+				p.LenMax = 128;
+				dto.PropertyList.Add(p);
+
+				p = new FabSpecDtoProp();
+				p.Name = "Note";
+				p.Type = "string";
+				p.Description = GetDtoPropText("Instance_Note");
+				p.IsNullable = true;
+				p.LenMax = 256;
+				dto.PropertyList.Add(p);
+
+					l = new FabSpecDtoLink();
+					l.Name = "HasArtifact";
+					l.IsOutgoing = true;
+					l.FromDto = "FabInstance";
+					l.FromDtoConn = "OutToOne";
+					l.Verb = "InstanceHasArtifact";
+					l.ToDto = "FabArtifact";
+					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
 						dto.FunctionList.Add("Back");
@@ -799,64 +923,6 @@ namespace Fabric.Api.Spec {
 					l.Verb = "MemberTypeAssignUsesMemberType";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-						dto.FunctionList.Add("Back");
-
-						dto.FunctionList.Add("Limit");
-
-			////
-
-			dto = new FabSpecDto();
-			dto.Name = "FabThing";
-			dto.Extends = "FabArtifactOwnerNode";
-			dto.Description = GetDtoText("Thing");
-			list.Add(dto);
-	
-				p = new FabSpecDtoProp();
-				p.Name = "ThingId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "IsClass";
-				p.Type = "bool";
-				p.Description = GetDtoPropText("Thing_IsClass");
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Name";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Thing_Name");
-				p.LenMax = 128;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Disamb";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Thing_Disamb");
-				p.LenMax = 128;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Note";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Thing_Note");
-				p.IsNullable = true;
-				p.LenMax = 256;
-				dto.PropertyList.Add(p);
-
-					l = new FabSpecDtoLink();
-					l.Name = "HasArtifact";
-					l.IsOutgoing = true;
-					l.FromDto = "FabThing";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "ThingHasArtifact";
-					l.ToDto = "FabArtifact";
-					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
 						dto.FunctionList.Add("Back");

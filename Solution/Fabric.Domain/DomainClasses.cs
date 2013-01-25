@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:46 PM
+// Generated on 1/25/2013 2:43:14 PM
 
 using System;
 using System.Linq.Expressions;
@@ -143,6 +143,15 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class RootContainsClass : WeaverRel<Root, Contains, Class> {
+			
+		public virtual Root FromRoot { get { return FromNode; } }
+		public virtual Class ToClass { get { return ToNode; } }
+		public override string Label { get { return "RootContainsClass"; } }
+
+	}
+
+	/*================================================================================================*/
 	public class RootContainsCrowd : WeaverRel<Root, Contains, Crowd> {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
@@ -197,6 +206,15 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class RootContainsInstance : WeaverRel<Root, Contains, Instance> {
+			
+		public virtual Root FromRoot { get { return FromNode; } }
+		public virtual Instance ToInstance { get { return ToNode; } }
+		public override string Label { get { return "RootContainsInstance"; } }
+
+	}
+
+	/*================================================================================================*/
 	public class RootContainsMember : WeaverRel<Root, Contains, Member> {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
@@ -220,15 +238,6 @@ namespace Fabric.Domain {
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
 		public override string Label { get { return "RootContainsMemberTypeAssign"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsThing : WeaverRel<Root, Contains, Thing> {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Thing ToThing { get { return ToNode; } }
-		public override string Label { get { return "RootContainsThing"; } }
 
 	}
 
@@ -512,6 +521,15 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class ClassHasArtifact : WeaverRel<Class, Has, Artifact> {
+			
+		public virtual Class FromClass { get { return FromNode; } }
+		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public override string Label { get { return "ClassHasArtifact"; } }
+
+	}
+
+	/*================================================================================================*/
 	public class CrowdHasArtifact : WeaverRel<Crowd, Has, Artifact> {
 			
 		public virtual Crowd FromCrowd { get { return FromNode; } }
@@ -553,6 +571,15 @@ namespace Fabric.Domain {
 		public virtual CrowdianTypeAssign FromCrowdianTypeAssign { get { return FromNode; } }
 		public virtual CrowdianType ToCrowdianType { get { return ToNode; } }
 		public override string Label { get { return "CrowdianTypeAssignUsesCrowdianType"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class InstanceHasArtifact : WeaverRel<Instance, Has, Artifact> {
+			
+		public virtual Instance FromInstance { get { return FromNode; } }
+		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public override string Label { get { return "InstanceHasArtifact"; } }
 
 	}
 
@@ -616,15 +643,6 @@ namespace Fabric.Domain {
 		public virtual MemberTypeAssign FromMemberTypeAssign { get { return FromNode; } }
 		public virtual MemberType ToMemberType { get { return ToNode; } }
 		public override string Label { get { return "MemberTypeAssignUsesMemberType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class ThingHasArtifact : WeaverRel<Thing, Has, Artifact> {
-			
-		public virtual Thing FromThing { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "ThingHasArtifact"; } }
 
 	}
 
@@ -1096,6 +1114,11 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsClass ContainsClassList {
+			get { return NewRel<RootContainsClass>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsCrowd ContainsCrowdList {
 			get { return NewRel<RootContainsCrowd>(WeaverRelConn.OutToZeroOrMore); }
 		}
@@ -1126,6 +1149,11 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsInstance ContainsInstanceList {
+			get { return NewRel<RootContainsInstance>(WeaverRelConn.OutToZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsMember ContainsMemberList {
 			get { return NewRel<RootContainsMember>(WeaverRelConn.OutToZeroOrMore); }
 		}
@@ -1138,11 +1166,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsMemberTypeAssign ContainsMemberTypeAssignList {
 			get { return NewRel<RootContainsMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsThing ContainsThingList {
-			get { return NewRel<RootContainsThing>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1400,8 +1423,18 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual ClassHasArtifact InClassHas {
+			get { return NewRel<ClassHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual CrowdHasArtifact InCrowdHas {
 			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual InstanceHasArtifact InInstanceHas {
+			get { return NewRel<InstanceHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1412,11 +1445,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesArtifact InMemberCreates {
 			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual ThingHasArtifact InThingHas {
-			get { return NewRel<ThingHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1489,6 +1517,51 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual ArtifactUsesArtifactType InArtifactListUses {
 			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class Class : ArtifactOwnerNode {
+	
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual long ClassId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropLenMax(128)]
+		public virtual string Name { get; set; }
+
+		[WeaverItemProperty]
+		//[PropLenMax(128)]
+		public virtual string Disamb { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsNullable(True)]
+		//[PropLenMax(256)]
+		public virtual string Note { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return ClassId; }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+			return (x => (x as Class).ClassId);
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsClass InRootContains {
+			get { return NewRel<RootContainsClass>(WeaverRelConn.InFromOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual ClassHasArtifact HasArtifact {
+			get { return NewRel<ClassHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -1731,6 +1804,51 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	public class Instance : ArtifactOwnerNode {
+	
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual long InstanceId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropLenMax(128)]
+		public virtual string Name { get; set; }
+
+		[WeaverItemProperty]
+		//[PropLenMax(128)]
+		public virtual string Disamb { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsNullable(True)]
+		//[PropLenMax(256)]
+		public virtual string Note { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return InstanceId; }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+			return (x => (x as Instance).InstanceId);
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual RootContainsInstance InRootContains {
+			get { return NewRel<RootContainsInstance>(WeaverRelConn.InFromOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual InstanceHasArtifact HasArtifact {
+			get { return NewRel<InstanceHasArtifact>(WeaverRelConn.OutToOne); }
+		}
+
+	}
+
+	/*================================================================================================*/
 	public class Label : ArtifactOwnerNode {
 	
 		[WeaverItemProperty]
@@ -1907,54 +2025,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberTypeAssignUsesMemberType UsesMemberType {
 			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class Thing : ArtifactOwnerNode {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long ThingId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual bool IsClass { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(128)]
-		public virtual string Name { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(128)]
-		public virtual string Disamb { get; set; }
-
-		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		public virtual string Note { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return ThingId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Thing).ThingId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsThing InRootContains {
-			get { return NewRel<RootContainsThing>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual ThingHasArtifact HasArtifact {
-			get { return NewRel<ThingHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 	}

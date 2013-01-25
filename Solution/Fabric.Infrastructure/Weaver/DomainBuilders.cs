@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:47 PM
+// Generated on 1/25/2013 2:43:15 PM
 
 using Weaver.Interfaces;
 using Fabric.Domain;
@@ -262,10 +262,11 @@ namespace Fabric.Infrastructure.Weaver {
 
 		public virtual IWeaverVarAlias<App> InAppHas { get; private set; }
 		public virtual IWeaverVarAlias<ArtifactType> UsesArtifactType { get; private set; }
+		public virtual IWeaverVarAlias<Class> InClassHas { get; private set; }
 		public virtual IWeaverVarAlias<Crowd> InCrowdHas { get; private set; }
+		public virtual IWeaverVarAlias<Instance> InInstanceHas { get; private set; }
 		public virtual IWeaverVarAlias<Label> InLabelHas { get; private set; }
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
-		public virtual IWeaverVarAlias<Thing> InThingHas { get; private set; }
 		public virtual IWeaverVarAlias<Url> InUrlHas { get; private set; }
 		public virtual IWeaverVarAlias<User> InUserHas { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesPrimary { get; private set; }
@@ -353,6 +354,37 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInClassHas(IWeaverVarAlias<Class> pTargetNodeVar) {
+			TxBuild.AddRel<ClassHasArtifact>(pTargetNodeVar, NodeVar);
+			InClassHas = pTargetNodeVar;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInClassHas(Class pClass, out IWeaverVarAlias<Class> pNodeVar) {
+			TxBuild.GetNode(pClass, out pNodeVar);
+			SetInClassHas(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInClassHas(Class pClass) {
+			IWeaverVarAlias<Class> nodeVar;
+			SetInClassHas(pClass, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInClassHas(long pClassId, out IWeaverVarAlias<Class> pNodeVar) {
+			SetInClassHas(new Class { ClassId = pClassId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInClassHas(long pClassId) {
+			IWeaverVarAlias<Class> nodeVar;
+			SetInClassHas(pClassId, out nodeVar);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInCrowdHas(IWeaverVarAlias<Crowd> pTargetNodeVar) {
 			TxBuild.AddRel<CrowdHasArtifact>(pTargetNodeVar, NodeVar);
 			InCrowdHas = pTargetNodeVar;
@@ -379,6 +411,37 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual void SetInCrowdHas(long pCrowdId) {
 			IWeaverVarAlias<Crowd> nodeVar;
 			SetInCrowdHas(pCrowdId, out nodeVar);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInInstanceHas(IWeaverVarAlias<Instance> pTargetNodeVar) {
+			TxBuild.AddRel<InstanceHasArtifact>(pTargetNodeVar, NodeVar);
+			InInstanceHas = pTargetNodeVar;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInInstanceHas(Instance pInstance, out IWeaverVarAlias<Instance> pNodeVar) {
+			TxBuild.GetNode(pInstance, out pNodeVar);
+			SetInInstanceHas(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInInstanceHas(Instance pInstance) {
+			IWeaverVarAlias<Instance> nodeVar;
+			SetInInstanceHas(pInstance, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInInstanceHas(long pInstanceId, out IWeaverVarAlias<Instance> pNodeVar) {
+			SetInInstanceHas(new Instance { InstanceId = pInstanceId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetInInstanceHas(long pInstanceId) {
+			IWeaverVarAlias<Instance> nodeVar;
+			SetInInstanceHas(pInstanceId, out nodeVar);
 		}
 		
 		
@@ -441,37 +504,6 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual void SetInMemberCreates(long pMemberId) {
 			IWeaverVarAlias<Member> nodeVar;
 			SetInMemberCreates(pMemberId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInThingHas(IWeaverVarAlias<Thing> pTargetNodeVar) {
-			TxBuild.AddRel<ThingHasArtifact>(pTargetNodeVar, NodeVar);
-			InThingHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInThingHas(Thing pThing, out IWeaverVarAlias<Thing> pNodeVar) {
-			TxBuild.GetNode(pThing, out pNodeVar);
-			SetInThingHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInThingHas(Thing pThing) {
-			IWeaverVarAlias<Thing> nodeVar;
-			SetInThingHas(pThing, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInThingHas(long pThingId, out IWeaverVarAlias<Thing> pNodeVar) {
-			SetInThingHas(new Thing { ThingId = pThingId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInThingHas(long pThingId) {
-			IWeaverVarAlias<Thing> nodeVar;
-			SetInThingHas(pThingId, out nodeVar);
 		}
 		
 		
@@ -779,6 +811,58 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual void AddInArtifactListUses(long pArtifactId) {
 			IWeaverVarAlias<Artifact> nodeVar;
 			AddInArtifactListUses(pArtifactId, out nodeVar);
+		}
+		
+
+	}
+
+	/*================================================================================================*/
+	public class ClassBuilder : DomainBuilder<Class, RootContainsClass> {
+
+		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public ClassBuilder(TxBuilder pTx, Class pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public ClassBuilder(TxBuilder pTx) : base(pTx) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public ClassBuilder(TxBuilder pTx, long pClassId) : 
+			base(pTx, new Class() { ClassId = pClassId }) {}
+		
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
+			TxBuild.AddRel<ClassHasArtifact>(NodeVar, pTargetNodeVar);
+			HasArtifact = pTargetNodeVar;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
+			TxBuild.GetNode(pArtifact, out pNodeVar);
+			SetHasArtifact(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
+			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 
@@ -1304,6 +1388,58 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
+	public class InstanceBuilder : DomainBuilder<Instance, RootContainsInstance> {
+
+		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public InstanceBuilder(TxBuilder pTx, Instance pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public InstanceBuilder(TxBuilder pTx) : base(pTx) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public InstanceBuilder(TxBuilder pTx, long pInstanceId) : 
+			base(pTx, new Instance() { InstanceId = pInstanceId }) {}
+		
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
+			TxBuild.AddRel<InstanceHasArtifact>(NodeVar, pTargetNodeVar);
+			HasArtifact = pTargetNodeVar;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
+			TxBuild.GetNode(pArtifact, out pNodeVar);
+			SetHasArtifact(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifact, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
+			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetHasArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetHasArtifact(pArtifactId, out nodeVar);
+		}
+		
+
+	}
+
+	/*================================================================================================*/
 	public class LabelBuilder : DomainBuilder<Label, RootContainsLabel> {
 
 		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
@@ -1799,58 +1935,6 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual void SetUsesMemberType(long pMemberTypeId) {
 			IWeaverVarAlias<MemberType> nodeVar;
 			SetUsesMemberType(pMemberTypeId, out nodeVar);
-		}
-		
-
-	}
-
-	/*================================================================================================*/
-	public class ThingBuilder : DomainBuilder<Thing, RootContainsThing> {
-
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ThingBuilder(TxBuilder pTx, Thing pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public ThingBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public ThingBuilder(TxBuilder pTx, long pThingId) : 
-			base(pTx, new Thing() { ThingId = pThingId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<ThingHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
 		}
 		
 

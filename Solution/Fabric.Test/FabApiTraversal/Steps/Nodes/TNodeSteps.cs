@@ -116,7 +116,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void TotalNodeStepKeys() {
-			Assert.AreEqual(31, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+			Assert.AreEqual(32, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
 		}
 
 
@@ -143,6 +143,12 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void ArtifactTypeStep() {
 			TestStep("ArtifactType", p => new ArtifactTypeStep(p));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ClassStep() {
+			TestStep("Class", p => new ClassStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
@@ -175,6 +181,12 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			TestStep("Email", p => new EmailStep(p));
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void InstanceStep() {
+			TestStep("Instance", p => new InstanceStep(p));
+		}
+
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void LabelStep() {
@@ -197,12 +209,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void MemberTypeAssignStep() {
 			TestStep("MemberTypeAssign", p => new MemberTypeAssignStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ThingStep() {
-			TestStep("Thing", p => new ThingStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

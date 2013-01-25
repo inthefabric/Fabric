@@ -29,7 +29,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(true);
+				vDataSet = Setup.SetupAll(false);
 
 				SendSetupTx();
 				SendIndexTx();

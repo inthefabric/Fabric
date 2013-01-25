@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 1:38:46 PM
+// Generated on 1/25/2013 2:43:15 PM
 
 using Fabric.Domain;
 using Weaver;
@@ -20,16 +20,17 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<App>(x => x.AppId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Artifact>(x => x.ArtifactId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<ArtifactType>(x => x.ArtifactTypeId, n));
+			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Class>(x => x.ClassId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Crowd>(x => x.CrowdId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Crowdian>(x => x.CrowdianId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<CrowdianType>(x => x.CrowdianTypeId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<CrowdianTypeAssign>(x => x.CrowdianTypeAssignId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Email>(x => x.EmailId, n));
+			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Instance>(x => x.InstanceId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Label>(x => x.LabelId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Member>(x => x.MemberId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<MemberType>(x => x.MemberTypeId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<MemberTypeAssign>(x => x.MemberTypeAssignId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Thing>(x => x.ThingId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Url>(x => x.UrlId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<User>(x => x.UserId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Factor>(x => x.FactorId, n));

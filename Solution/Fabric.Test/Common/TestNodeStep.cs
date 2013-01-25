@@ -10,7 +10,7 @@ namespace Fabric.Test.Common {
 	public class TestNodeStep : NodeStep<TestFabNode> {
 
 		public static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Thing", true, "/HasThing")
+			new StepLink("Has", "Class", true, "/HasClass")
 		};
 
 
@@ -30,7 +30,7 @@ namespace Fabric.Test.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "HasThing": return new ThingStep(Path);
+				case "HasClass": return new ClassStep(Path);
 			}
 
 			return null;

@@ -90,6 +90,18 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(artifactType, "ArtifactTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
+			WeaverNodeSchema clas = AddNode("Class", "Cl");
+			clas.BaseNode = artOwnerNode;
+			p = AddProp(clas, "ClassId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(clas, "Name", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(clas, "Disamb", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(clas, "Note", typeof(string));
+				p.LenMax = 256;
+				p.IsNullable = true;
+
 			WeaverNodeSchema crowd = AddNode("Crowd", "C");
 			crowd.BaseNode = artOwnerNode;
 			crowd.IsInternal = true;
@@ -136,6 +148,18 @@ namespace Fabric.Infrastructure.Domain {
 				p.IsTimestamp = true;
 			p = AddProp(email, "Verified", typeof(DateTime));
 				p.IsNullable = true;
+			
+			WeaverNodeSchema instance = AddNode("Instance", "In");
+			instance.BaseNode = artOwnerNode;
+			p = AddProp(instance, "InstanceId", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(instance, "Name", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(instance, "Disamb", typeof(string));
+				p.LenMax = 128;
+			p = AddProp(instance, "Note", typeof(string));
+				p.LenMax = 256;
+				p.IsNullable = true;
 
 			WeaverNodeSchema label = AddNode("Label", "L");
 			label.IsInternal = true;
@@ -162,19 +186,6 @@ namespace Fabric.Infrastructure.Domain {
 			memberTypeAssign.BaseNode = nodeForAction;
 			p = AddProp(memberTypeAssign, "MemberTypeAssignId", typeof(long));
 				p.IsPrimaryKey = true;
-
-			WeaverNodeSchema thing = AddNode("Thing", "T");
-			thing.BaseNode = artOwnerNode;
-			p = AddProp(thing, "ThingId", typeof(long));
-				p.IsPrimaryKey = true;
-			p = AddProp(thing, "IsClass", typeof(bool));
-			p = AddProp(thing, "Name", typeof(string));
-				p.LenMax = 128;
-			p = AddProp(thing, "Disamb", typeof(string));
-				p.LenMax = 128;
-			p = AddProp(thing, "Note", typeof(string));
-				p.LenMax = 256;
-				p.IsNullable = true;
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
 			url.BaseNode = artOwnerNode;
@@ -414,16 +425,17 @@ namespace Fabric.Infrastructure.Domain {
 			AddRel(root, contains, app, otzom, ifo);
 			AddRel(root, contains, artifact, otzom, ifo);
 			AddRel(root, contains, artifactType, otzom, ifo);
+			AddRel(root, contains, clas, otzom, ifo);
 			AddRel(root, contains, crowd, otzom, ifo);
 			AddRel(root, contains, crowdian, otzom, ifo);
 			AddRel(root, contains, crowdianType, otzom, ifo);
 			AddRel(root, contains, crowdianTypeAssign, otzom, ifo);
 			AddRel(root, contains, email, otzom, ifo);
 			AddRel(root, contains, label, otzom, ifo);
+			AddRel(root, contains, instance, otzom, ifo);
 			AddRel(root, contains, member, otzom, ifo);
 			AddRel(root, contains, memberType, otzom, ifo);
 			AddRel(root, contains, memberTypeAssign, otzom, ifo);
-			AddRel(root, contains, thing, otzom, ifo);
 			AddRel(root, contains, url, otzom, ifo);
 			AddRel(root, contains, user, otzom, ifo);
 			
@@ -460,6 +472,8 @@ namespace Fabric.Infrastructure.Domain {
 
 			AddRel(artifact, uses, artifactType, oto, ifzom);
 
+			AddRel(clas, has, artifact, oto, ifzoo);
+
 			AddRel(crowd, has, artifact, oto, ifzoo);
 			AddRel(crowd, defines, crowdian, otoom, ifo);
 
@@ -467,6 +481,8 @@ namespace Fabric.Infrastructure.Domain {
 			AddRel(crowdian, hasHistoric, crowdianTypeAssign, otzom, ifo);
 
 			AddRel(crowdianTypeAssign, uses, crowdianType, oto, ifzom);
+
+			AddRel(instance, has, artifact, oto, ifzoo);
 
 			AddRel(label, has, artifact, oto, ifzoo);
 
@@ -477,8 +493,6 @@ namespace Fabric.Infrastructure.Domain {
 			AddRel(member, creates, factor, otzom, ifo);
 
 			AddRel(memberTypeAssign, uses, memberType, oto, ifzom);
-
-			AddRel(thing, has, artifact, oto, ifzoo);
 
 			AddRel(url, has, artifact, oto, ifzoo);
 
