@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/17/2013 7:13:44 PM
+// Generated on 1/25/2013 1:38:46 PM
 
 using System;
 using System.Linq.Expressions;
@@ -2088,9 +2088,6 @@ namespace Fabric.Domain {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long FactorId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual bool IsPublic { get; set; }
 
 		[WeaverItemProperty]
 		public virtual bool IsDefining { get; set; }

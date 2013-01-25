@@ -995,7 +995,7 @@ namespace Fabric.Db.Data.Setups {
 
 			var f = new Factor();
 			f.FactorId = ++vIdCount;
-			f.IsPublic = (pAccId == FactorAccessId.Public);
+			//f.IsPublic = (pAccId == FactorAccessId.Public);
 			f.IsDefining = pIsDefining;
 			f.Created = dt.AddMinutes(-1).Ticks;
 			f.Note = pNote;

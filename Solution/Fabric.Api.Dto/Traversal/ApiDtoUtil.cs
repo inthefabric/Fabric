@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/21/2013 12:07:16 PM
+// Generated on 1/25/2013 1:38:47 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -20,11 +20,6 @@ namespace Fabric.Api.Dto.Traversal {
 				case "App": return ToDto<FabApp>(pDbDto);
 				case "Artifact": return ToDto<FabArtifact>(pDbDto);
 				case "ArtifactType": return ToDto<FabArtifactType>(pDbDto);
-				case "Crowd": return ToDto<FabCrowd>(pDbDto);
-				case "Crowdian": return ToDto<FabCrowdian>(pDbDto);
-				case "CrowdianType": return ToDto<FabCrowdianType>(pDbDto);
-				case "CrowdianTypeAssign": return ToDto<FabCrowdianTypeAssign>(pDbDto);
-				case "Label": return ToDto<FabLabel>(pDbDto);
 				case "Member": return ToDto<FabMember>(pDbDto);
 				case "MemberType": return ToDto<FabMemberType>(pDbDto);
 				case "MemberTypeAssign": return ToDto<FabMemberTypeAssign>(pDbDto);
@@ -63,11 +58,6 @@ namespace Fabric.Api.Dto.Traversal {
 				case "App": return ToDtoJson<FabApp>(pDbDto);
 				case "Artifact": return ToDtoJson<FabArtifact>(pDbDto);
 				case "ArtifactType": return ToDtoJson<FabArtifactType>(pDbDto);
-				case "Crowd": return ToDtoJson<FabCrowd>(pDbDto);
-				case "Crowdian": return ToDtoJson<FabCrowdian>(pDbDto);
-				case "CrowdianType": return ToDtoJson<FabCrowdianType>(pDbDto);
-				case "CrowdianTypeAssign": return ToDtoJson<FabCrowdianTypeAssign>(pDbDto);
-				case "Label": return ToDtoJson<FabLabel>(pDbDto);
 				case "Member": return ToDtoJson<FabMember>(pDbDto);
 				case "MemberType": return ToDtoJson<FabMemberType>(pDbDto);
 				case "MemberTypeAssign": return ToDtoJson<FabMemberTypeAssign>(pDbDto);

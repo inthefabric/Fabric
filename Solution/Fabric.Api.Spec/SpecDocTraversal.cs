@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/21/2013 4:21:27 PM
+// Generated on 1/25/2013 1:38:48 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -118,56 +118,6 @@ namespace Fabric.Api.Spec {
 					l.FromDtoConn = "OutToZeroOrMore";
 					l.Verb = "RootContainsArtifactType";
 					l.ToDto = "FabArtifactType";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "ContainsCrowdList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "RootContainsCrowd";
-					l.ToDto = "FabCrowd";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "ContainsCrowdianList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "RootContainsCrowdian";
-					l.ToDto = "FabCrowdian";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "ContainsCrowdianTypeList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "RootContainsCrowdianType";
-					l.ToDto = "FabCrowdianType";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "ContainsCrowdianTypeAssignList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "RootContainsCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "ContainsLabelList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabRoot";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "RootContainsLabel";
-					l.ToDto = "FabLabel";
 					l.ToDtoConn = "InFromOne";
 					dto.LinkList.Add(l);
 
@@ -542,26 +492,6 @@ namespace Fabric.Api.Spec {
 					dto.LinkList.Add(l);
 
 					l = new FabSpecDtoLink();
-					l.Name = "InCrowdHas";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowd";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "CrowdHasArtifact";
-					l.ToDto = "FabArtifact";
-					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InLabelHas";
-					l.IsOutgoing = false;
-					l.FromDto = "FabLabel";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "LabelHasArtifact";
-					l.ToDto = "FabArtifact";
-					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
 					l.Name = "InMemberCreates";
 					l.IsOutgoing = false;
 					l.FromDto = "FabMember";
@@ -689,270 +619,6 @@ namespace Fabric.Api.Spec {
 					l.Verb = "ArtifactUsesArtifactType";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-						dto.FunctionList.Add("Back");
-
-						dto.FunctionList.Add("Limit");
-
-			////
-
-			dto = new FabSpecDto();
-			dto.Name = "FabCrowd";
-			dto.Extends = "FabArtifactOwnerNode";
-			dto.Description = GetDtoText("Crowd");
-			list.Add(dto);
-	
-				p = new FabSpecDtoProp();
-				p.Name = "CrowdId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Name";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Crowd_Name");
-				p.LenMax = 64;
-				p.LenMin = 3;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Description";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Crowd_Description");
-				p.LenMax = 256;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "IsPrivate";
-				p.Type = "bool";
-				p.Description = GetDtoPropText("Crowd_IsPrivate");
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "IsInviteOnly";
-				p.Type = "bool";
-				p.Description = GetDtoPropText("Crowd_IsInviteOnly");
-				dto.PropertyList.Add(p);
-
-					l = new FabSpecDtoLink();
-					l.Name = "HasArtifact";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowd";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "CrowdHasArtifact";
-					l.ToDto = "FabArtifact";
-					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "DefinesCrowdianList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowd";
-					l.FromDtoConn = "OutToOneOrMore";
-					l.Verb = "CrowdDefinesCrowdian";
-					l.ToDto = "FabCrowdian";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-						dto.FunctionList.Add("Back");
-
-						dto.FunctionList.Add("Limit");
-
-			////
-
-			dto = new FabSpecDto();
-			dto.Name = "FabCrowdian";
-			dto.Extends = "FabNode";
-			dto.Description = GetDtoText("Crowdian");
-			list.Add(dto);
-	
-				p = new FabSpecDtoProp();
-				p.Name = "CrowdianId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InCrowdDefines";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowd";
-					l.FromDtoConn = "OutToOneOrMore";
-					l.Verb = "CrowdDefinesCrowdian";
-					l.ToDto = "FabCrowdian";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "HasCrowdianTypeAssign";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "CrowdianHasCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "HasHistoricCrowdianTypeAssignList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "CrowdianHasHistoricCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InUserDefines";
-					l.IsOutgoing = false;
-					l.FromDto = "FabUser";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "UserDefinesCrowdian";
-					l.ToDto = "FabCrowdian";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-						dto.FunctionList.Add("Back");
-
-						dto.FunctionList.Add("Limit");
-
-			////
-
-			dto = new FabSpecDto();
-			dto.Name = "FabCrowdianType";
-			dto.Extends = "FabNodeForType";
-			dto.Description = GetDtoText("CrowdianType");
-			list.Add(dto);
-	
-				p = new FabSpecDtoProp();
-				p.Name = "CrowdianTypeId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InCrowdianTypeAssignListUses";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowdianTypeAssign";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "CrowdianTypeAssignUsesCrowdianType";
-					l.ToDto = "FabCrowdianType";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-						dto.FunctionList.Add("Back");
-
-						dto.FunctionList.Add("Limit");
-
-			////
-
-			dto = new FabSpecDto();
-			dto.Name = "FabCrowdianTypeAssign";
-			dto.Extends = "FabNodeForAction";
-			dto.Description = GetDtoText("CrowdianTypeAssign");
-			list.Add(dto);
-	
-				p = new FabSpecDtoProp();
-				p.Name = "CrowdianTypeAssignId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Weight";
-				p.Type = "float";
-				p.Description = GetDtoPropText("CrowdianTypeAssign_Weight");
-				dto.PropertyList.Add(p);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InCrowdianHas";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "CrowdianHasCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InCrowdianHasHistoric";
-					l.IsOutgoing = false;
-					l.FromDto = "FabCrowdian";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "CrowdianHasHistoricCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "UsesCrowdianType";
-					l.IsOutgoing = true;
-					l.FromDto = "FabCrowdianTypeAssign";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "CrowdianTypeAssignUsesCrowdianType";
-					l.ToDto = "FabCrowdianType";
-					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "InUserCreates";
-					l.IsOutgoing = false;
-					l.FromDto = "FabUser";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "UserCreatesCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-						dto.FunctionList.Add("Back");
-
-						dto.FunctionList.Add("Limit");
-
-			////
-
-			dto = new FabSpecDto();
-			dto.Name = "FabLabel";
-			dto.Extends = "FabArtifactOwnerNode";
-			dto.Description = GetDtoText("Label");
-			list.Add(dto);
-	
-				p = new FabSpecDtoProp();
-				p.Name = "LabelId";
-				p.Type = "long";
-				p.Description = GetDtoPropText("Object_TypeId");
-				p.IsPrimaryKey = true;
-				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "Name";
-				p.Type = "string";
-				p.Description = GetDtoPropText("Label_Name");
-				p.IsCaseInsensitive = true;
-				p.IsUnique = true;
-				p.LenMax = 128;
-				p.LenMin = 1;
-				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
-
-					l = new FabSpecDtoLink();
-					l.Name = "HasArtifact";
-					l.IsOutgoing = true;
-					l.FromDto = "FabLabel";
-					l.FromDtoConn = "OutToOne";
-					l.Verb = "LabelHasArtifact";
-					l.ToDto = "FabArtifact";
-					l.ToDtoConn = "InFromZeroOrOne";
 					dto.LinkList.Add(l);
 
 						dto.FunctionList.Add("Back");
@@ -1280,26 +946,6 @@ namespace Fabric.Api.Spec {
 					dto.LinkList.Add(l);
 
 					l = new FabSpecDtoLink();
-					l.Name = "CreatesCrowdianTypeAssignList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabUser";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "UserCreatesCrowdianTypeAssign";
-					l.ToDto = "FabCrowdianTypeAssign";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
-					l.Name = "DefinesCrowdianList";
-					l.IsOutgoing = true;
-					l.FromDto = "FabUser";
-					l.FromDtoConn = "OutToZeroOrMore";
-					l.Verb = "UserDefinesCrowdian";
-					l.ToDto = "FabCrowdian";
-					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
-
-					l = new FabSpecDtoLink();
 					l.Name = "DefinesMemberList";
 					l.IsOutgoing = true;
 					l.FromDto = "FabUser";
@@ -1327,12 +973,6 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
-
-				p = new FabSpecDtoProp();
-				p.Name = "IsPublic";
-				p.Type = "bool";
-				p.Description = GetDtoPropText("Factor_IsPublic");
 				dto.PropertyList.Add(p);
 
 				p = new FabSpecDtoProp();

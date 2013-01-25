@@ -92,6 +92,7 @@ namespace Fabric.Infrastructure.Domain {
 
 			WeaverNodeSchema crowd = AddNode("Crowd", "C");
 			crowd.BaseNode = artOwnerNode;
+			crowd.IsInternal = true;
 			p = AddProp(crowd, "CrowdId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(crowd, "Name", typeof(string));
@@ -103,15 +104,18 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(crowd, "IsInviteOnly", typeof(bool));
 
 			WeaverNodeSchema crowdian = AddNode("Crowdian", "Cn");
+			crowdian.IsInternal = true;
 			p = AddProp(crowdian, "CrowdianId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema crowdianType = AddNode("CrowdianType", "CT");
+			crowdianType.IsInternal = true;
 			crowdianType.BaseNode = nodeForType;
 			p = AddProp(crowdianType, "CrowdianTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
+			crowdianTypeAssign.IsInternal = true;
 			crowdianTypeAssign.BaseNode = nodeForAction;
 			p = AddProp(crowdianTypeAssign, "CrowdianTypeAssignId", typeof(long));
 				p.IsPrimaryKey = true;
@@ -134,8 +138,8 @@ namespace Fabric.Infrastructure.Domain {
 				p.IsNullable = true;
 
 			WeaverNodeSchema label = AddNode("Label", "L");
+			label.IsInternal = true;
 			label.BaseNode = artOwnerNode;
-			
 			p = AddProp(label, "LabelId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(label, "Name", typeof(string));
@@ -201,7 +205,7 @@ namespace Fabric.Infrastructure.Domain {
 			WeaverNodeSchema factor = AddNode("Factor", "F");
 			p = AddProp(factor, "FactorId", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(factor, "IsPublic", typeof(bool));
+			//p = AddProp(factor, "IsPublic", typeof(bool));
 			p = AddProp(factor, "IsDefining", typeof(bool));
 			p = AddProp(factor, "Created", typeof(DateTime));
 				p.IsTimestamp = true;

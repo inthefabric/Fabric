@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/11/2013 3:36:54 PM
+// Generated on 1/25/2013 1:38:47 PM
 
 using Weaver.Interfaces;
 using Fabric.Domain;

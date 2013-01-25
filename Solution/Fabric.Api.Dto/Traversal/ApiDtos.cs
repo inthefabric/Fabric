@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/21/2013 12:07:02 PM
+// Generated on 1/25/2013 1:38:47 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -214,185 +214,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["ArtifactTypeId"];
 			ArtifactTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabCrowd : FabArtifactOwnerNode {
-	
-		public long CrowdId { get; set; }
-		public string Name { get; set; }
-		public string Description { get; set; }
-		public bool IsPrivate { get; set; }
-		public bool IsInviteOnly { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"CrowdId", "Name", "Description", "IsPrivate", "IsInviteOnly"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return CrowdId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-			bool found;
-
-			val = pData["CrowdId"];
-			CrowdId = long.Parse(val);
-
-			found = pData.TryGetValue("Name", out val);
-			if ( found ) { Name = val; }
-
-			found = pData.TryGetValue("Description", out val);
-			if ( found ) { Description = val; }
-
-			val = pData["IsPrivate"];
-			IsPrivate = bool.Parse(val);
-
-			val = pData["IsInviteOnly"];
-			IsInviteOnly = bool.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabCrowdian : FabNode {
-	
-		public long CrowdianId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"CrowdianId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return CrowdianId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			string val;
-
-			val = pData["CrowdianId"];
-			CrowdianId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabCrowdianType : FabNodeForType {
-	
-		public long CrowdianTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"CrowdianTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return CrowdianTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["CrowdianTypeId"];
-			CrowdianTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabCrowdianTypeAssign : FabNodeForAction {
-	
-		public long CrowdianTypeAssignId { get; set; }
-		public float Weight { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"CrowdianTypeAssignId", "Weight"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return CrowdianTypeAssignId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["CrowdianTypeAssignId"];
-			CrowdianTypeAssignId = long.Parse(val);
-
-			val = pData["Weight"];
-			Weight = float.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabLabel : FabArtifactOwnerNode {
-	
-		public long LabelId { get; set; }
-		public string Name { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"LabelId", "Name"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return LabelId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-			bool found;
-
-			val = pData["LabelId"];
-			LabelId = long.Parse(val);
-
-			found = pData.TryGetValue("Name", out val);
-			if ( found ) { Name = val; }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -621,14 +442,13 @@ namespace Fabric.Api.Dto.Traversal {
 	public class FabFactor : FabNode {
 	
 		public long FactorId { get; set; }
-		public bool IsPublic { get; set; }
 		public bool IsDefining { get; set; }
 		public long Created { get; set; }
 		public long? Completed { get; set; }
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"FactorId", "IsPublic", "IsDefining", "Created", "Completed", "Note"
+			"FactorId", "IsDefining", "Created", "Completed", "Note"
 		};
 
 
@@ -643,9 +463,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["FactorId"];
 			FactorId = long.Parse(val);
-
-			val = pData["IsPublic"];
-			IsPublic = bool.Parse(val);
 
 			val = pData["IsDefining"];
 			IsDefining = bool.Parse(val);

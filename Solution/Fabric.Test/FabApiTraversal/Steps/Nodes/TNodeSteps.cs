@@ -116,7 +116,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void TotalNodeStepKeys() {
-			Assert.AreEqual(36, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+			Assert.AreEqual(31, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
 		}
 
 
@@ -145,25 +145,25 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			TestStep("ArtifactType", p => new ArtifactTypeStep(p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void CrowdStep() {
 			TestStep("Crowd", p => new CrowdStep(p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void CrowdianStep() {
 			TestStep("Crowdian", p => new CrowdianStep(p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void CrowdianTypeStep() {
 			TestStep("CrowdianType", p => new CrowdianTypeStep(p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void CrowdianTypeAssignStep() {
 			TestStep("CrowdianTypeAssign", p => new CrowdianTypeAssignStep(p));
@@ -175,7 +175,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			TestStep("Email", p => new EmailStep(p));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void LabelStep() {
 			TestStep("Label", p => new LabelStep(p));

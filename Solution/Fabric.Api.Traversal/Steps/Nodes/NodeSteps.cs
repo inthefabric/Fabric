@@ -1,10 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/21/2013 11:43:23 AM
+// Generated on 1/25/2013 1:38:47 PM
 
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
 
@@ -23,31 +22,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IContainsArtifactTypeList {
 		ArtifactTypeStep ContainsArtifactTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsCrowdList {
-		CrowdStep ContainsCrowdList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsCrowdianList {
-		CrowdianStep ContainsCrowdianList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsCrowdianTypeList {
-		CrowdianTypeStep ContainsCrowdianTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsCrowdianTypeAssignList {
-		CrowdianTypeAssignStep ContainsCrowdianTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsLabelList {
-		LabelStep ContainsLabelList { get; }
 	}
 
 	/*================================================================================================*/
@@ -211,16 +185,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInCrowdHas {
-		CrowdStep InCrowdHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInLabelHas {
-		LabelStep InLabelHas { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IInMemberCreates {
 		MemberStep InMemberCreates { get; }
 	}
@@ -276,48 +240,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IDefinesCrowdianList {
-		CrowdianStep DefinesCrowdianList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdDefines {
-		CrowdStep InCrowdDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasCrowdianTypeAssign {
-		CrowdianTypeAssignStep HasCrowdianTypeAssign { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasHistoricCrowdianTypeAssignList {
-		CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IInUserDefines {
 		UserStep InUserDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdianTypeAssignListUses {
-		CrowdianTypeAssignStep InCrowdianTypeAssignListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdianHas {
-		CrowdianStep InCrowdianHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInCrowdianHasHistoric {
-		CrowdianStep InCrowdianHasHistoric { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesCrowdianType {
-		CrowdianTypeStep UsesCrowdianType { get; }
 	}
 
 	/*================================================================================================*/
@@ -383,11 +307,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IUsesMemberType {
 		MemberTypeStep UsesMemberType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesCrowdianTypeAssignList {
-		CrowdianTypeAssignStep CreatesCrowdianTypeAssignList { get; }
 	}
 
 	/*================================================================================================*/
@@ -616,17 +535,12 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class RootStep : NodeStep<FabRoot>, IFinalStep, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsCrowdList, IContainsCrowdianList, IContainsCrowdianTypeList, IContainsCrowdianTypeAssignList, IContainsLabelList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
+	public partial class RootStep : NodeStep<FabRoot>, IFinalStep, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsThingList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Contains", "App", true, "/ContainsAppList"),
 			new StepLink("Contains", "Artifact", true, "/ContainsArtifactList"),
 			new StepLink("Contains", "ArtifactType", true, "/ContainsArtifactTypeList"),
-			new StepLink("Contains", "Crowd", true, "/ContainsCrowdList"),
-			new StepLink("Contains", "Crowdian", true, "/ContainsCrowdianList"),
-			new StepLink("Contains", "CrowdianType", true, "/ContainsCrowdianTypeList"),
-			new StepLink("Contains", "CrowdianTypeAssign", true, "/ContainsCrowdianTypeAssignList"),
-			new StepLink("Contains", "Label", true, "/ContainsLabelList"),
 			new StepLink("Contains", "Member", true, "/ContainsMemberList"),
 			new StepLink("Contains", "MemberType", true, "/ContainsMemberTypeList"),
 			new StepLink("Contains", "MemberTypeAssign", true, "/ContainsMemberTypeAssignList"),
@@ -690,11 +604,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				case "containsapplist": return ContainsAppList;
 				case "containsartifactlist": return ContainsArtifactList;
 				case "containsartifacttypelist": return ContainsArtifactTypeList;
-				case "containscrowdlist": return ContainsCrowdList;
-				case "containscrowdianlist": return ContainsCrowdianList;
-				case "containscrowdiantypelist": return ContainsCrowdianTypeList;
-				case "containscrowdiantypeassignlist": return ContainsCrowdianTypeAssignList;
-				case "containslabellist": return ContainsLabelList;
 				case "containsmemberlist": return ContainsMemberList;
 				case "containsmembertypelist": return ContainsMemberTypeList;
 				case "containsmembertypeassignlist": return ContainsMemberTypeAssignList;
@@ -752,51 +661,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new ArtifactTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsArtifactType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep ContainsCrowdList {
-			get {
-				var step = new CrowdStep(Path);
-				Path.AddSegment(step, "outE('RootContainsCrowd').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep ContainsCrowdianList {
-			get {
-				var step = new CrowdianStep(Path);
-				Path.AddSegment(step, "outE('RootContainsCrowdian').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeStep ContainsCrowdianTypeList {
-			get {
-				var step = new CrowdianTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsCrowdianType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep ContainsCrowdianTypeAssignList {
-			get {
-				var step = new CrowdianTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('RootContainsCrowdianTypeAssign').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public LabelStep ContainsLabelList {
-			get {
-				var step = new LabelStep(Path);
-				Path.AddSegment(step, "outE('RootContainsLabel').inV");
 				return step;
 			}
 		}
@@ -1115,13 +979,11 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInCrowdHas, IInLabelHas, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
+	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInMemberCreates, IInThingHas, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Has", "App", false, "/InAppHas"),
 			new StepLink("Uses", "ArtifactType", true, "/UsesArtifactType"),
-			new StepLink("Has", "Crowd", false, "/InCrowdHas"),
-			new StepLink("Has", "Label", false, "/InLabelHas"),
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
 			new StepLink("Has", "Thing", false, "/InThingHas"),
 			new StepLink("Has", "Url", false, "/InUrlHas"),
@@ -1158,8 +1020,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			switch ( pData.Command ) {
 				case "inapphas": return InAppHas;
 				case "usesartifacttype": return UsesArtifactType;
-				case "incrowdhas": return InCrowdHas;
-				case "inlabelhas": return InLabelHas;
 				case "inmembercreates": return InMemberCreates;
 				case "inthinghas": return InThingHas;
 				case "inurlhas": return InUrlHas;
@@ -1200,24 +1060,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new ArtifactTypeStep(Path);
 				Path.AddSegment(step, "outE('ArtifactUsesArtifactType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep InCrowdHas {
-			get {
-				var step = new CrowdStep(Path);
-				Path.AddSegment(step, "inE('CrowdHasArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public LabelStep InLabelHas {
-			get {
-				var step = new LabelStep(Path);
-				Path.AddSegment(step, "inE('LabelHasArtifact').outV");
 				return step;
 			}
 		}
@@ -1365,368 +1207,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "inE('ArtifactUsesArtifactType').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class CrowdStep : NodeStep<FabCrowd>, IInRootContains, IHasArtifact, IDefinesCrowdianList {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
-			new StepLink("Defines", "Crowdian", true, "/DefinesCrowdianList"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep(Path pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "CrowdId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
-				case "definescrowdianlist": return DefinesCrowdianList;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsCrowd').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('CrowdHasArtifact').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep DefinesCrowdianList {
-			get {
-				var step = new CrowdianStep(Path);
-				Path.AddSegment(step, "outE('CrowdDefinesCrowdian').inV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class CrowdianStep : NodeStep<FabCrowdian>, IInRootContains, IInCrowdDefines, IHasCrowdianTypeAssign, IHasHistoricCrowdianTypeAssignList, IInUserDefines {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Defines", "Crowd", false, "/InCrowdDefines"),
-			new StepLink("Has", "CrowdianTypeAssign", true, "/HasCrowdianTypeAssign"),
-			new StepLink("HasHistoric", "CrowdianTypeAssign", true, "/HasHistoricCrowdianTypeAssignList"),
-			new StepLink("Defines", "User", false, "/InUserDefines"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep(Path pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "CrowdianId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "incrowddefines": return InCrowdDefines;
-				case "hascrowdiantypeassign": return HasCrowdianTypeAssign;
-				case "hashistoriccrowdiantypeassignlist": return HasHistoricCrowdianTypeAssignList;
-				case "inuserdefines": return InUserDefines;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsCrowdian').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdStep InCrowdDefines {
-			get {
-				var step = new CrowdStep(Path);
-				Path.AddSegment(step, "inE('CrowdDefinesCrowdian').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep HasCrowdianTypeAssign {
-			get {
-				var step = new CrowdianTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('CrowdianHasCrowdianTypeAssign').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep HasHistoricCrowdianTypeAssignList {
-			get {
-				var step = new CrowdianTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('CrowdianHasHistoricCrowdianTypeAssign').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep InUserDefines {
-			get {
-				var step = new UserStep(Path);
-				Path.AddSegment(step, "inE('UserDefinesCrowdian').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class CrowdianTypeStep : NodeStep<FabCrowdianType>, IInRootContains, IInCrowdianTypeAssignListUses {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "CrowdianTypeAssign", false, "/InCrowdianTypeAssignListUses"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeStep(Path pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "CrowdianTypeId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "incrowdiantypeassignlistuses": return InCrowdianTypeAssignListUses;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsCrowdianType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep InCrowdianTypeAssignListUses {
-			get {
-				var step = new CrowdianTypeAssignStep(Path);
-				Path.AddSegment(step, "inE('CrowdianTypeAssignUsesCrowdianType').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class CrowdianTypeAssignStep : NodeStep<FabCrowdianTypeAssign>, IInRootContains, IInCrowdianHas, IInCrowdianHasHistoric, IUsesCrowdianType, IInUserCreates {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Crowdian", false, "/InCrowdianHas"),
-			new StepLink("HasHistoric", "Crowdian", false, "/InCrowdianHasHistoric"),
-			new StepLink("Uses", "CrowdianType", true, "/UsesCrowdianType"),
-			new StepLink("Creates", "User", false, "/InUserCreates"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep(Path pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "CrowdianTypeAssignId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "incrowdianhas": return InCrowdianHas;
-				case "incrowdianhashistoric": return InCrowdianHasHistoric;
-				case "usescrowdiantype": return UsesCrowdianType;
-				case "inusercreates": return InUserCreates;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsCrowdianTypeAssign').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep InCrowdianHas {
-			get {
-				var step = new CrowdianStep(Path);
-				Path.AddSegment(step, "inE('CrowdianHasCrowdianTypeAssign').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep InCrowdianHasHistoric {
-			get {
-				var step = new CrowdianStep(Path);
-				Path.AddSegment(step, "inE('CrowdianHasHistoricCrowdianTypeAssign').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeStep UsesCrowdianType {
-			get {
-				var step = new CrowdianTypeStep(Path);
-				Path.AddSegment(step, "outE('CrowdianTypeAssignUsesCrowdianType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep InUserCreates {
-			get {
-				var step = new UserStep(Path);
-				Path.AddSegment(step, "inE('UserCreatesCrowdianTypeAssign').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class LabelStep : NodeStep<FabLabel>, IInRootContains, IHasArtifact {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public LabelStep(Path pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "LabelId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsLabel').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('LabelHasArtifact').inV");
 				return step;
 			}
 		}
@@ -2118,12 +1598,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IHasArtifact, ICreatesCrowdianTypeAssignList, IDefinesCrowdianList, IDefinesMemberList {
+	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IHasArtifact, IDefinesMemberList {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Has", "Artifact", true, "/HasArtifact"),
-			new StepLink("Creates", "CrowdianTypeAssign", true, "/CreatesCrowdianTypeAssignList"),
-			new StepLink("Defines", "Crowdian", true, "/DefinesCrowdianList"),
 			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
 
@@ -2150,8 +1628,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "hasartifact": return HasArtifact;
-				case "createscrowdiantypeassignlist": return CreatesCrowdianTypeAssignList;
-				case "definescrowdianlist": return DefinesCrowdianList;
 				case "definesmemberlist": return DefinesMemberList;
 			}
 
@@ -2174,24 +1650,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('UserHasArtifact').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignStep CreatesCrowdianTypeAssignList {
-			get {
-				var step = new CrowdianTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('UserCreatesCrowdianTypeAssign').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianStep DefinesCrowdianList {
-			get {
-				var step = new CrowdianStep(Path);
-				Path.AddSegment(step, "outE('UserDefinesCrowdian').inV");
 				return step;
 			}
 		}

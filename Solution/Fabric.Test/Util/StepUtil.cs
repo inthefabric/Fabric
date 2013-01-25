@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/17/2013 7:13:44 PM
+// Generated on 1/25/2013 1:38:46 PM
 
 using System.Collections.Generic;
 
@@ -21,11 +21,6 @@ namespace Fabric.Test.Util {
 				"/ContainsAppList",
 				"/ContainsArtifactList",
 				"/ContainsArtifactTypeList",
-				"/ContainsCrowdList",
-				"/ContainsCrowdianList",
-				"/ContainsCrowdianTypeList",
-				"/ContainsCrowdianTypeAssignList",
-				"/ContainsLabelList",
 				"/ContainsMemberList",
 				"/ContainsMemberTypeList",
 				"/ContainsMemberTypeAssignList",
@@ -63,8 +58,6 @@ namespace Fabric.Test.Util {
 			map.Add("Artifact", new [] {
 				"/InAppHas",
 				"/UsesArtifactType",
-				"/InCrowdHas",
-				"/InLabelHas",
 				"/InMemberCreates",
 				"/InThingHas",
 				"/InUrlHas",
@@ -79,33 +72,6 @@ namespace Fabric.Test.Util {
 
 			map.Add("ArtifactType", new [] {
 				"/InArtifactListUses",
-			});
-
-			map.Add("Crowd", new [] {
-				"/HasArtifact",
-				"/DefinesCrowdianList",
-			});
-
-			map.Add("Crowdian", new [] {
-				"/InCrowdDefines",
-				"/HasCrowdianTypeAssign",
-				"/HasHistoricCrowdianTypeAssignList",
-				"/InUserDefines",
-			});
-
-			map.Add("CrowdianType", new [] {
-				"/InCrowdianTypeAssignListUses",
-			});
-
-			map.Add("CrowdianTypeAssign", new [] {
-				"/InCrowdianHas",
-				"/InCrowdianHasHistoric",
-				"/UsesCrowdianType",
-				"/InUserCreates",
-			});
-
-			map.Add("Label", new [] {
-				"/HasArtifact",
 			});
 
 			map.Add("Member", new [] {
@@ -139,8 +105,6 @@ namespace Fabric.Test.Util {
 
 			map.Add("User", new [] {
 				"/HasArtifact",
-				"/CreatesCrowdianTypeAssignList",
-				"/DefinesCrowdianList",
 				"/DefinesMemberList",
 			});
 
@@ -286,36 +250,6 @@ namespace Fabric.Test.Util {
 		[Test]
 		public void ArtifactTypeStep() {
 			TestStep("ArtifactType", (tn, p) => new ArtifactTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdStep() {
-			TestStep("Crowd", (tn, p) => new CrowdStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdianStep() {
-			TestStep("Crowdian", (tn, p) => new CrowdianStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdianTypeStep() {
-			TestStep("CrowdianType", (tn, p) => new CrowdianTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdianTypeAssignStep() {
-			TestStep("CrowdianTypeAssign", (tn, p) => new CrowdianTypeAssignStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void LabelStep() {
-			TestStep("Label", (tn, p) => new LabelStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

@@ -114,7 +114,7 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to This OAuth flow should be used to begin an OAuth session for your Fabric App&apos;s Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App&apos;s OAuth needs.
         ///
-        ///See [[Access Token|Func|Oauth.AccessToken]]] for general information about the OAuth process..
+        ///See [[Access Token|Func|Oauth.AccessToken]] for general information about the OAuth process..
         /// </summary>
         internal static string OauthAtcd {
             get {

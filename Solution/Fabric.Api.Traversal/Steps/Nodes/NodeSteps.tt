@@ -15,8 +15,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.Api.Dto;
-using Fabric.Infrastructure.Paths;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
