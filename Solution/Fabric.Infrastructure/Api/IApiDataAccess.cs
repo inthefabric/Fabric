@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Infrastructure.Api {
@@ -21,6 +22,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void Execute();
+		T GetResultAt<T>(int pIndex) where T : INodeWithId, new();
 
 	}
 

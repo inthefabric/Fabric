@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Oauth", "Fabric.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test.Integration", "Fabric.Test.Integration\Fabric.Test.Integration.csproj", "{592F06B2-3845-47DC-896E-20B752BCE8DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Modify", "Fabric.Api.Modify\Fabric.Api.Modify.csproj", "{0871F5F4-CF33-4072-9619-F94E24D611E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,16 @@ Global
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0871F5F4-CF33-4072-9619-F94E24D611E8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

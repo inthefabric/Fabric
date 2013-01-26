@@ -28,6 +28,12 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public IWeaverTransaction Finish(IWeaverVarAlias pFinalOutput) {
+			Transaction.FinishWithoutStartStop(pFinalOutput);
+			return Transaction;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyVar(IWeaverVarAlias pVar) {
 			if ( pVar == null || !vVarHash.Contains(pVar) ) {
 				throw new Exception("No matching IWeaverVarAlias found.");

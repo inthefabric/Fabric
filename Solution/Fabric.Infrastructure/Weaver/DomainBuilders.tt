@@ -64,7 +64,7 @@ foreach ( string name in nodes ) {
 		
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		string method = (hr.IsMany ? "Add" : "Set")+hr.RelPropName;
+		string method = (hr.IsMany ? "AddTo" : "Set")+hr.RelPropName;
 		string t = hr.TargetNodeType;
 		bool isRoot = (t == "Root");
 		SchemaHelperProp targKeyProp = SchemaHelper.GetNode(hr.TargetNodeType).GetPrimaryKeyProp();

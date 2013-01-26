@@ -202,12 +202,14 @@ namespace Fabric.Infrastructure.Domain {
 			user.BaseNode = artOwnerNode;
 			p = AddProp(user, "UserId", typeof(long));
 			p = AddProp(user, "Name", typeof(string));
+				p.LenMin = 4;
 				p.LenMax = 16;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidUserRegex;
 			p = AddProp(user, "Password", typeof(string));
-				p.Len = 32; //MD5
+				p.LenMin = 8;
+				p.LenMax = 32;
 				p.IsInternal = true;
 				p.IsPassword = true;
 

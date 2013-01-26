@@ -1,0 +1,121 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)../Packages/Weaver.1.0.0/Weaver.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Infrastructure.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System;
+
+namespace Fabric.Api.Modify.Validators {
+
+
+	/*================================================================================================*/
+	public interface IDomainValidator {
+	
+	
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+<#
+IList<string> nodes = SchemaHelper.GetNodes();
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	
+	if ( node.IsAbstract || node.IsRoot ) { continue; }
+	
+	IList<SchemaHelperProp> nodeProps = hn.GetProps();
+
+	foreach ( SchemaHelperProp hp in nodeProps ) {
+		WeaverPropSchema prop = hp.PropSchema;
+		string method = (prop.IsPrimaryKey == true ? "" : node.Name)+prop.Name;
+#>
+		void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pProp);
+<#
+	} //end prop loop
+} //end node loop
+#>
+	}
+
+
+	/*================================================================================================*/
+	public partial class DomainValidator : IDomainValidator {
+
+<#
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	
+	if ( node.IsAbstract || node.IsRoot ) { continue; }
+	
+	IList<SchemaHelperProp> nodeProps = hn.GetProps();
+#>
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	foreach ( SchemaHelperProp hp in nodeProps ) {
+		WeaverPropSchema prop = hp.PropSchema;
+		string method = (prop.IsPrimaryKey == true ? "" : node.Name)+prop.Name;
+		int count = 0;
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pProp) {
+<#
+		if ( prop.IsNullable != true && !prop.Type.IsValueType ) {
+			count++;
+#>
+			NotNull("<#= prop.Name #>", pProp);
+<#
+		}
+
+		if ( prop.IsPrimaryKey == true || prop.IsTimestamp == true ) {
+			count++;
+#>
+			LongGreaterThan("<#= prop.Name #>", pProp, 0);
+<#
+		}
+
+		if ( prop.LenMin == null && prop.LenMax > 0 ) {
+			count++;
+#>
+			LengthLessThanOrEqual("<#= prop.Name #>", pProp, <#= prop.LenMax #>);
+<#
+		}
+
+		if ( prop.LenMin > 0 && prop.LenMax > 0 ) {
+			count++;
+#>
+			LengthBetween("<#= prop.Name #>", pProp, <#= prop.LenMin #>, <#= prop.LenMax #>);
+<#
+		}
+
+		if ( prop.ValidRegex != null ) {
+			count++;
+			string pattern = prop.ValidRegex.Replace("\"", "\"\"");
+#>
+			MatchesRegex("<#= prop.Name #>", pProp, @"<#= pattern #>");
+<#
+		}
+
+		if ( count == 0 ) {
+#>
+			throw new Exception("<#= prop.Name #> has no validation. Property value was "+pProp);
+<#
+		}
+#>
+		}
+
+<#
+	} //end prop loop
+} //end node loop
+#>
+	}
+
+}

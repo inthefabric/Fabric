@@ -10,7 +10,7 @@ namespace Fabric.Api {
 	/*================================================================================================*/
 	public class ServicesModule : NancyModule {
 
-		private const string ApiVersion = "1.0.1.3f89168b44f7";
+		private const string ApiVersion = "1.0.1.50fef226b57e";
 		private const string DbServerUrl = "http://localhost:9001/gremlin";
 
 
