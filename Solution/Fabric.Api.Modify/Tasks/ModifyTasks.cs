@@ -21,19 +21,25 @@ namespace Fabric.Api.Modify.Tasks {
 			Validator = new DomainValidator();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private Root BeginPathFromRoot() {
+			return WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
 			string propName = WeaverUtil.GetPropertyName<User>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase() =='"+pName+"'}";
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
 
 			IWeaverQuery q = 
-				WeaverTasks.BeginPath(new Root()).BaseNode
+				BeginPathFromRoot()
 				.ContainsUserList.ToUser
 					.CustomStep(filterStep)
 				.End();
 
+			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
 			return pApiCtx.DbSingle<User>("GetUserByName", q);
 
 		}
@@ -41,7 +47,7 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUser(IApiContext pApiCtx, long pUserId) {
 			IWeaverQuery q = 
-				WeaverTasks.BeginPath(new User { UserId =  pUserId }).BaseNode
+				WeaverTasks.BeginPath<User>(x => x.UserId, pUserId).BaseNode
 				.End();
 			return pApiCtx.DbSingle<User>("GetUser", q);
 		}
@@ -49,14 +55,15 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
 			string propName = WeaverUtil.GetPropertyName<App>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase() =='"+pName+"'}";
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
 
 			IWeaverQuery q = 
-				WeaverTasks.BeginPath(new Root()).BaseNode
+				BeginPathFromRoot()
 				.ContainsAppList.ToApp
 					.CustomStep(filterStep)
 				.End();
 
+			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
 		}
 

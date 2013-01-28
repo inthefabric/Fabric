@@ -36,6 +36,9 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\XGetAppByName.cs" />
+    <Compile Include="FabApiModify\XGetUserByName.cs" />
+    <Compile Include="FabApiModify\XGetUser.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddMemberEnsure.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddScope.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddGrant.cs" />
@@ -84,6 +87,10 @@
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
+      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
+      <Name>Fabric.Api.Modify</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
       <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>

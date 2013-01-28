@@ -18,7 +18,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsUser).Name+"').inV"+
 					".has('Password',Tokens.T.eq,_P0)"+
-					".filter{it.getProperty('Name').toLowerCase()=='{{UsernameLower}}'};";
+					".filter{it.getProperty('Name').toLowerCase()==NAME};";
 
 		private string vUsername;
 		private string vPassword;
@@ -60,11 +60,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetUserAuth.Query.GetUser+"");
 
-			string expect = QueryGetUserAuth
-				.Replace("{{UsernameLower}}", vUsername.ToLower());
-
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(QueryGetUserAuth, pQuery.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pQuery.Params, "_P0", FabricUtil.HashPassword(vPassword));
+			TestUtil.CheckParam(pQuery.Params, "NAME", vUsername.ToLower());
 
 			return vGetUserAuthResult;
 		}

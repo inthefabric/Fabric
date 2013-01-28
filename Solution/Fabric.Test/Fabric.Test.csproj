@@ -36,6 +36,10 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetUser.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetAppByName.cs" />
+    <Compile Include="FabApiModify\Tasks\TModifyTasks.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetUserByName.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetScope.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetUserAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetRefresh.cs" />
@@ -113,6 +117,10 @@
     <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
       <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
       <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
+      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
+      <Name>Fabric.Api.Modify</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
       <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
