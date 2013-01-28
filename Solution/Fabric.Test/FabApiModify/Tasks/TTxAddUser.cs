@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=[];"+ //Email
 			"_V2=g.addVertex(["+
-				typeof(User).Name+"Id:0L,"+
+				typeof(User).Name+"Id:{{NewUserId}}L,"+
 				"Name:_TP0,"+
 				"Password:_TP1"+
 			"]);"+
@@ -23,6 +23,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private string vName;
 		private string vPassword;
+		private long vNewUserId;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,6 +31,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		protected override void TestSetUp() {
 			vName = "NewUser";
 			vPassword = "TestPassword";
+			vNewUserId = 346137173314;
+
+			MockApiCtx.Setup(x => x.GetSharpflakeId<User>()).Returns(vNewUserId);
 		}
 
 
@@ -48,7 +52,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(userVar, "UserVar should not be null.");
 			Assert.AreEqual("_V2", userVar.Name, "Incorrect UserVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			string expect = Query
+				.Replace("{{NewUserId}}", vNewUserId+"");
+
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", FabricUtil.HashPassword(vPassword));
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(RootContainsUser).Name);

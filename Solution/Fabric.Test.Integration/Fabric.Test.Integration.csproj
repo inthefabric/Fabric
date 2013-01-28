@@ -36,6 +36,12 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\XTxAddApp.cs" />
+    <Compile Include="FabApiModify\XTxAddArtifact.cs" />
+    <Compile Include="FabApiModify\XTxAddMember.cs" />
+    <Compile Include="FabApiModify\XTxAddUser.cs" />
+    <Compile Include="FabApiModify\XTxAddEmail.cs" />
+    <Compile Include="FabApiModify\XModifyTasks.cs" />
     <Compile Include="FabApiModify\XGetAppByName.cs" />
     <Compile Include="FabApiModify\XGetUserByName.cs" />
     <Compile Include="FabApiModify\XGetUser.cs" />

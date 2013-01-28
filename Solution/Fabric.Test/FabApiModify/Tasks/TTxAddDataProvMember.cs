@@ -13,14 +13,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=[];"+ //App
 			"_V2=g.addVertex(["+
-				typeof(Member).Name+"Id:0L"+
+				typeof(Member).Name+"Id:{{NewMemberId}}L"+
 			"]);"+
 			"g.addEdge(_V0,_V2,_TP0);"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0].each{_V3=g.v(it)};"+
 			"g.addEdge(_V3,_V2,_TP1);"+
 			"g.addEdge(_V1,_V2,_TP2);"+
 			"_V4=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:0L,"+
+				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
 				"Performed:0L"+
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP3);"+
@@ -31,12 +31,19 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.addEdge(_V4,_V6,_TP6);";
 
 		private long vUserId;
+		private long vNewMemberId;
+		private long vNewMtaId;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vUserId = 2532;
+			vNewMemberId = 43562742344;
+			vNewMtaId = 346137173314;
+
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Member>()).Returns(vNewMemberId);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<MemberTypeAssign>()).Returns(vNewMtaId);
 		}
 
 
@@ -55,7 +62,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(memberVar, "MemberVar should not be null.");
 			Assert.AreEqual("_V2", memberVar.Name, "Incorrect MemberVar name.");
 
-			string expect = Query.Replace("{{UserId}}", vUserId+"");
+			string expect = Query
+				.Replace("{{NewMemberId}}", vNewMemberId+"")
+				.Replace("{{NewMtaId}}", vNewMtaId+"")
+				.Replace("{{UserId}}", vUserId+"");
+
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(UserDefinesMember).Name);

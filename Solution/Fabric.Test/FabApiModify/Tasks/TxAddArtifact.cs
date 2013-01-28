@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V1=[];"+ //User
 			"_V2=[];"+ //Member
 			"_V3=g.addVertex(["+
-				typeof(Artifact).Name+"Id:0L,"+
+				typeof(Artifact).Name+"Id:{{NewArtId}}L,"+
 				"IsPrivate:false,"+
 				"Created:0L"+
 			"]);"+
@@ -26,11 +26,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.addEdge(_V1,_V3,_TP3);";
 
 		private ArtifactTypeId vArtTypeId;
+		private long vNewArtId;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void TestSetUp() {}
+		protected override void TestSetUp() {
+			vNewArtId = 346137173314;
+
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtId);
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +56,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(artVar, "ArtifactVar should not be null.");
 			Assert.AreEqual("_V3", artVar.Name, "Incorrect ArtifactVar name.");
 
-			string expect = Query.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
+			string expect = Query
+				.Replace("{{NewArtId}}", vNewArtId+"")
+				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
+
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsArtifact).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(ArtifactUsesArtifactType).Name);
@@ -76,7 +84,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(artVar, "ArtifactVar should not be null.");
 			Assert.AreEqual("_V3", artVar.Name, "Incorrect ArtifactVar name.");
 
-			string expect = Query.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
+			string expect = Query
+				.Replace("{{NewArtId}}", vNewArtId+"")
+				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
+
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsArtifact).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(ArtifactUsesArtifactType).Name);

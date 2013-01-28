@@ -13,14 +13,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=[];"+ //User
 			"_V2=g.addVertex(["+
-				typeof(Member).Name+"Id:0L"+
+				typeof(Member).Name+"Id:{{NewMemberId}}L"+
 			"]);"+
 			"g.addEdge(_V0,_V2,_TP0);"+
 			"g.addEdge(_V1,_V2,_TP1);"+
 			"g.V('"+typeof(App).Name+"Id',1L)[0].each{_V3=g.v(it)};"+
 			"g.addEdge(_V3,_V2,_TP2);"+
 			"_V4=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:0L,"+
+				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
 				"Performed:0L"+
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP3);"+
@@ -29,11 +29,20 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.addEdge(_V2,_V4,_TP5);"+
 			"g.V('"+typeof(MemberType).Name+"Id',4L)[0].each{_V6=g.v(it)};"+
 			"g.addEdge(_V4,_V6,_TP6);";
+
+		private long vNewMemberId;
+		private long vNewMtaId;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void TestSetUp() {}
+		protected override void TestSetUp() {
+			vNewMemberId = 43562742344;
+			vNewMtaId = 346137173314;
+
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Member>()).Returns(vNewMemberId);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<MemberTypeAssign>()).Returns(vNewMtaId);
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +59,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(memberVar, "MemberVar should not be null.");
 			Assert.AreEqual("_V2", memberVar.Name, "Incorrect MemberVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			string expect = Query
+				.Replace("{{NewMemberId}}", vNewMemberId+"")
+				.Replace("{{NewMtaId}}", vNewMtaId+"");
+
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(UserDefinesMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(AppDefinesMember).Name);

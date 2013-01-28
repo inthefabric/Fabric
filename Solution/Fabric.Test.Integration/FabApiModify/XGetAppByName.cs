@@ -1,12 +1,11 @@
-﻿using Fabric.Api.Modify.Tasks;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetAppByName : IntegTestBase {
+	public class XGetAppByName : XModifyTasks {
 
 		private string vName;
 
@@ -14,12 +13,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
+			base.TestSetUp();
 			IsReadOnlyTest = true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private App TestGo() {
-			return new ModifyTasks().GetAppByName(Context, vName);
+			return Tasks.GetAppByName(Context, vName);
 		}
 
 

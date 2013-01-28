@@ -1,5 +1,4 @@
-﻿using Fabric.Api.Modify.Tasks;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using NUnit.Framework;
 
@@ -7,7 +6,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetUser : IntegTestBase {
+	public class XGetUser : XModifyTasks {
 
 		private long vUserId;
 
@@ -15,12 +14,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
+			base.TestSetUp();
 			IsReadOnlyTest = true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User TestGo() {
-			return new ModifyTasks().GetUser(Context, vUserId);
+			return Tasks.GetUser(Context, vUserId);
 		}
 
 

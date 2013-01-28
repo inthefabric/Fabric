@@ -12,19 +12,23 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
-				typeof(Email).Name+"Id:0L,"+
+				typeof(Email).Name+"Id:{{NewEmailId}}L,"+
 				"Address:_TP0,"+
 				"Created:0L"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP1);";
 
 		private string vAddress;
+		private long vNewEmailId;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vAddress = "test@test.com";
+			vNewEmailId = 43562742344;
+
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Email>()).Returns(vNewEmailId);
 		}
 
 
@@ -41,7 +45,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(emailVar, "EmailVar should not be null.");
 			Assert.AreEqual("_V1", emailVar.Name, "Incorrect EmailVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			string expect = Query.Replace("{{NewEmailId}}", vNewEmailId+"");
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vAddress);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsEmail).Name);
 		}
