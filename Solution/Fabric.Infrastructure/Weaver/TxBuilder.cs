@@ -33,10 +33,18 @@ namespace Fabric.Infrastructure.Weaver {
 			return Transaction;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void RegisterVarWithTxBuilder(IWeaverVarAlias pVar) {
+			vVarHash.Add(pVar);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyVar(IWeaverVarAlias pVar) {
 			if ( pVar == null || !vVarHash.Contains(pVar) ) {
-				throw new Exception("No matching IWeaverVarAlias found.");
+				throw new Exception("No matching IWeaverVarAlias found with name '"+
+					(pVar == null ? "<NULL>" : pVar.Name)+"'.");
 			}
 		}
 

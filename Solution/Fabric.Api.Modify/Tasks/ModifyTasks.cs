@@ -108,7 +108,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pMemVar = memBuild.NodeVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
-			mtaBuild.AddNode();
+			mtaBuild.AddNode(pRootVar);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
@@ -136,12 +136,17 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, 
 					IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar) {
-			IWeaverQuery q = WeaverTasks.BeginPath(new User { UserId = pUserId }).BaseNode
+			IWeaverQuery q = WeaverTasks.BeginPath<User>(x => x.UserId, pUserId).BaseNode
 				.UsesEmail.ToEmail
 				.End();
 
 			IWeaverVarAlias<Email> emailVar;
-			WeaverTasks.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar);
+
+			pTxBuild.Transaction.AddQuery(
+				WeaverTasks.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar)
+			);
+
+			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 
 			var app = new App();
 			app.Name = pName;
@@ -167,7 +172,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pMemVar = memBuild.NodeVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
-			mtaBuild.AddNode();
+			mtaBuild.AddNode(pRootVar);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.DataProvider);

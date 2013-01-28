@@ -8,7 +8,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateApp : BaseModifyFunc<App> {
+	public class CreateApp : BaseModifyFunc<App> { //TEST: CreateApp
 		
 		private readonly string vName;
 		private readonly long vUserId;
