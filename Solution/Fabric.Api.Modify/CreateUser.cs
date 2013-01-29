@@ -12,7 +12,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateUser : BaseModifyFunc<CreateUserResult> { //TEST: CreateUser
+	public class CreateUser : BaseModifyFunc<CreateUserResult> {
 		
 		private readonly string vEmail;
 		private readonly string vName;
@@ -59,11 +59,14 @@ namespace Fabric.Api.Modify {
 
 			var list = new List<IWeaverVarAlias> { userVar, emailVar };
 			IWeaverVarAlias listVar;
-			WeaverTasks.InitListVar(txb.Transaction, list, out listVar);
+
+			txb.Transaction.AddQuery(
+				WeaverTasks.InitListVar(txb.Transaction, list, out listVar)
+			);
 
 			////
 
-			IApiDataAccess data = Context.DbData("CreateUserTx", txb.Finish(listVar));
+			IApiDataAccess data = Context.DbData("CreateUserTx", txb.Finish());
 			
 			var result = new CreateUserResult();
 			result.NewUser = data.GetResultAt<User>(0);
