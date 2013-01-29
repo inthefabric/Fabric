@@ -11,8 +11,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
-			"_V1=g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".outE('"+typeof(UserUsesEmail).Name+"').inV;"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+				".outE('"+typeof(UserUsesEmail).Name+"').inV"+
+				".each{_V1=g.v(it)};"+
 			"_V2=g.addVertex(["+
 				typeof(App).Name+"Id:{{NewAppId}}L,"+
 				"Name:_TP0"+
