@@ -36,6 +36,7 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\XTxAddDataProvMember.cs" />
     <Compile Include="FabApiModify\XTxAddApp.cs" />
     <Compile Include="FabApiModify\XTxAddArtifact.cs" />
     <Compile Include="FabApiModify\XTxAddMember.cs" />
@@ -62,7 +63,6 @@
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FirstTry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsQuery">

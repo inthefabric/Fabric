@@ -43,6 +43,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, useMem.MemberId);
 			conn.AssertRel<UserHasArtifact, User>(false, useUser.UserId);
 			conn.AssertRel<ArtifactUsesArtifactType, ArtifactType>(true, (long)ArtifactTypeId.User);
+
+			NewNodeCount = 1;
+			NewRelCount = 4;
 		}
 
 	}

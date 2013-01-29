@@ -38,6 +38,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 			conn.AssertRelCount(1, 1);
 			conn.AssertRel<RootContainsUser, Root>(false, 0);
 			conn.AssertRel<UserUsesEmail, Email>(true, useEmail.EmailId);
+
+			NewNodeCount = 1;
+			NewRelCount = 2;
 		}
 
 	}

@@ -166,7 +166,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddDataProvMember
 		public void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,
 							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<App> pAppVar, long pUserId,
 							out IWeaverVarAlias<Member> pMemVar) {

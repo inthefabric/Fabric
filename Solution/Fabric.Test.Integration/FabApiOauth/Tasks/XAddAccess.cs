@@ -88,6 +88,9 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			int updatedTokenCount = CountTokens();
 			Assert.AreEqual(tokenCount+1, updatedTokenCount, "Incorrect updated Token count.");
+
+			NewNodeCount = 1;
+			NewRelCount = (vClientOnly ? 2 : 3);
 		}
 
 

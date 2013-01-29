@@ -73,6 +73,9 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
+
+			NewNodeCount = 2;
+			NewRelCount = 7;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -120,6 +123,9 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
+
+			NewNodeCount = 1;
+			NewRelCount = 5-1; //original Member-Has-MemberTypeAssign relationship is removed
 		}
 
 	}

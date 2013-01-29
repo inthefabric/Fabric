@@ -17,9 +17,12 @@ namespace Fabric.Test.Integration {
 
 		protected TestApiContext Context { get; private set; }
 		protected bool IsReadOnlyTest { get; set; }
+		protected int NewNodeCount { get; set; }
+		protected int NewRelCount { get; set; }
 
 		private long vStartTime;
 		private long vStartTime2;
+		private Tuple<int,int> vCounts;
 
 		protected const SetupUsers.AppId AppFab = SetupUsers.AppId.FabSys;
 		protected const SetupUsers.AppId AppGal = SetupUsers.AppId.KinPhoGal;
@@ -42,9 +45,15 @@ namespace Fabric.Test.Integration {
 
 			vStartTime = DateTime.UtcNow.Ticks;
 			Context = new TestApiContext();
+			NewNodeCount = 0;
+			NewRelCount = 0;
+
 			TestSetUp();
 
+			vCounts = CountNodesAndRels();
+
 			Log.Info("SetUp complete at T = "+GetTime());
+			Log.Info("Counts { V = "+vCounts.Item1+", E = "+vCounts.Item2+" }");
 			Log.Info("");
 			Log.Info("=====================================");
 
@@ -60,9 +69,14 @@ namespace Fabric.Test.Integration {
 			Log.Info("Core test time: "+(DateTime.UtcNow.Ticks-vStartTime2)/10000+"ms");
 			Log.Info("TearDown started at T = "+GetTime());
 
+			////
+			
+			Tuple<int, int> c = CountNodesAndRels();
+
 			if ( !IsReadOnlyTest ) {
 				var q = new WeaverQuery();
-				q.FinalizeQuery("g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
+				q.FinalizeQuery(
+					"g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
 
 				IApiDataAccess data = Context.DbData("TearDown", q);
 				Assert.Null(data.Result.Text, "There was an issue with the TearDown query!");
@@ -72,6 +86,12 @@ namespace Fabric.Test.Integration {
 			else {
 				Log.Info("READ ONLY MODE: skipped database reset");
 			}
+
+			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
+			Assert.AreEqual(NewNodeCount, c.Item1-vCounts.Item1, "Incorrect new node count.");
+			Assert.AreEqual(NewRelCount, c.Item2-vCounts.Item2, "Incorrect new rel count.");
+
+			////
 
 			TestTearDown();
 			Context = null;
@@ -130,6 +150,15 @@ namespace Fabric.Test.Integration {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private Tuple<int,int> CountNodesAndRels() {
+			var q = new WeaverQuery();
+			q.FinalizeQuery("[g.V.count(),g.E.count()]");
+			IApiDataAccess data = Context.DbData("TEST.CountVE", q);
+			string[] items = data.Result.Text.Split(',');
+			return new Tuple<int, int>(int.Parse(items[0]), int.Parse(items[1]));
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetNodeQuery<T>(long pId) where T : class, INodeWithId, new() {
 			return "g.V('"+typeof(T).Name+"Id',"+pId+")[0]";

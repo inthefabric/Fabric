@@ -75,6 +75,9 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			conn.AssertRel<RootContainsOauthGrant, Root>(false, 0);
 			conn.AssertRel<OauthGrantUsesApp, App>(true, vAppId);
 			conn.AssertRel<OauthGrantUsesUser, User>(true, vUserId);
+
+			NewNodeCount = 1;
+			NewRelCount = 3;
 		}
 
 	}

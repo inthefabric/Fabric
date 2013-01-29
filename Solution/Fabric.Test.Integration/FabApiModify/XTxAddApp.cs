@@ -35,8 +35,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			NodeConnections conn = GetNodeConnections(newApp);
 			conn.AssertRelCount(1, 1);
-			conn.AssertRel<RootContainsUser, Root>(false, 0);
+			conn.AssertRel<RootContainsApp, Root>(false, 0);
 			conn.AssertRel<AppUsesEmail, Email>(true, (long)pExpectEmailId);
+
+			NewNodeCount = 1;
+			NewRelCount = 2;
 		}
 
 	}
