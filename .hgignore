@@ -17,3 +17,5 @@ Solution/test-results
 Solution/Fabric.Test/test-results
 Weaver.dll.mdb
 */Bin/*
+*.resources
+Fabric.Test.Integration.csproj-Debug-*.xml

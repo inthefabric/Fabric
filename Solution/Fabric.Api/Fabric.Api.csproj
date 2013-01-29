@@ -66,24 +66,22 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nancy, Version=0.15.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System" />
+    <Reference Include="Nancy">
       <HintPath>..\..\Packages\Nancy.0.15.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet, Version=0.15.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Nancy.Hosting.Aspnet">
       <HintPath>..\..\Packages\Nancy.Hosting.Aspnet.0.15.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Serialization.ServiceStack, Version=0.15.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Nancy.Serialization.ServiceStack">
       <HintPath>..\..\Packages\Nancy.Serialization.ServiceStack.0.15.1\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.33.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="Weaver, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Weaver">
+      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ServicesModule.cs" />

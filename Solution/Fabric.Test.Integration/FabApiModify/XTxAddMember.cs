@@ -15,7 +15,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(UserPenny)] //already has a membership, but still a valid test
-		public void Success(SetupUsers.MemberId pUserId) {
+		public void Success(SetupUsers.UserId pUserId) {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<User> userVar;
 			IWeaverVarAlias<Member> memVar;
