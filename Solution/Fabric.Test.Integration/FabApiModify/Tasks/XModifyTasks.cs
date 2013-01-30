@@ -1,7 +1,7 @@
 ﻿using Fabric.Api.Modify.Tasks;
 using Fabric.Infrastructure.Weaver;
 
-namespace Fabric.Test.Integration.FabApiModify {
+namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	public class XModifyTasks : IntegTestBase {

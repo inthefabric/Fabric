@@ -1,14 +1,13 @@
-﻿using Fabric.Db.Data.Setups;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using NUnit.Framework;
 
-namespace Fabric.Test.Integration.FabApiModify {
+namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetUser : XModifyTasks {
+	public class XGetAppByName : XModifyTasks {
 
-		private long vUserId;
+		private string vName;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,31 +18,31 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private User TestGo() {
-			return Tasks.GetUser(Context, vUserId);
+		private App TestGo() {
+			return Tasks.GetAppByName(Context, vName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(UserZach)]
-		[TestCase(UserMel)]
-		public void Found(SetupUsers.UserId pUserId) {
-			vUserId = (long)pUserId;
+		[TestCase("KINSTNER photo GallerY")]
+		[TestCase("fabric system")]
+		public void Found(string pName) {
+			vName = pName;
 
-			User result = TestGo();
+			App result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vUserId, result.UserId, "Incorrect UserId.");
+			Assert.AreEqual(vName.ToLower(), result.Name.ToLower(), "Incorrect Name.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(999)]
-		public void NotFound(long pUserId) {
-			vUserId = pUserId;
+		[TestCase("Kinstner Photo Galleryy")]
+		[TestCase("Kinstner Photo Galler")]
+		public void NotFound(string pName) {
+			vName = pName;
 
-			User result = TestGo();
+			App result = TestGo();
 
 			Assert.Null(result, "Result should be null.");
 		}

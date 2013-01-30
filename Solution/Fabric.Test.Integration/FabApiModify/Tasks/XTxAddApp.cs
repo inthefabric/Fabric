@@ -4,7 +4,7 @@ using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
-namespace Fabric.Test.Integration.FabApiModify {
+namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]

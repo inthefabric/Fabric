@@ -1,7 +1,7 @@
 ﻿using Fabric.Domain;
 using NUnit.Framework;
 
-namespace Fabric.Test.Integration.FabApiModify {
+namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]

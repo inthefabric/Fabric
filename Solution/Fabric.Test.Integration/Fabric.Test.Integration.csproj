@@ -35,18 +35,16 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
-    <Compile Include="FabApiModify\XTxAddDataProvMember.cs" />
-    <Compile Include="FabApiModify\XTxAddApp.cs" />
-    <Compile Include="FabApiModify\XTxAddArtifact.cs" />
-    <Compile Include="FabApiModify\XTxAddMember.cs" />
-    <Compile Include="FabApiModify\XTxAddUser.cs">
-      <DependentUpon>XTxAddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FabApiModify\XTxAddEmail.cs" />
-    <Compile Include="FabApiModify\XModifyTasks.cs" />
-    <Compile Include="FabApiModify\XGetAppByName.cs" />
-    <Compile Include="FabApiModify\XGetUserByName.cs" />
-    <Compile Include="FabApiModify\XGetUser.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddDataProvMember.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddApp.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddArtifact.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddMember.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddUser.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddEmail.cs" />
+    <Compile Include="FabApiModify\Tasks\XModifyTasks.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetAppByName.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetUserByName.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetUser.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddMemberEnsure.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddScope.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddGrant.cs" />
