@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/26/2013 4:16:59 PM
+// Generated on 1/30/2013 2:52:16 PM
 
 using System;
 
@@ -13,105 +13,204 @@ namespace Fabric.Api.Modify.Validators {
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AppId(long pProp);
-		void AppName(string pProp);
-		void AppSecret(string pProp);
-		void ArtifactId(long pProp);
-		void ArtifactIsPrivate(bool pProp);
-		void ArtifactCreated(long pProp);
-		void ArtifactTypeId(long pProp);
-		void ClassId(long pProp);
-		void ClassName(string pProp);
-		void ClassDisamb(string pProp);
-		void ClassNote(string pProp);
-		void CrowdId(long pProp);
-		void CrowdName(string pProp);
-		void CrowdDescription(string pProp);
-		void CrowdIsPrivate(bool pProp);
-		void CrowdIsInviteOnly(bool pProp);
-		void CrowdianId(long pProp);
-		void CrowdianTypeId(long pProp);
-		void CrowdianTypeAssignId(long pProp);
-		void CrowdianTypeAssignWeight(float pProp);
-		void EmailId(long pProp);
-		void EmailAddress(string pProp);
-		void EmailCode(string pProp);
-		void EmailCreated(long pProp);
-		void EmailVerified(long pProp);
-		void InstanceId(long pProp);
-		void InstanceName(string pProp);
-		void InstanceDisamb(string pProp);
-		void InstanceNote(string pProp);
-		void LabelId(long pProp);
-		void LabelName(string pProp);
-		void MemberId(long pProp);
-		void MemberTypeId(long pProp);
-		void MemberTypeAssignId(long pProp);
-		void UrlId(long pProp);
-		void UrlName(string pProp);
-		void UrlAbsoluteUrl(string pProp);
-		void UserId(long pProp);
-		void UserName(string pProp);
-		void UserPassword(string pProp);
-		void FactorId(long pProp);
-		void FactorIsDefining(bool pProp);
-		void FactorCreated(long pProp);
-		void FactorDeleted(long pProp);
-		void FactorCompleted(long pProp);
-		void FactorNote(string pProp);
-		void FactorAssertionId(long pProp);
-		void DescriptorId(long pProp);
-		void DescriptorTypeId(long pProp);
-		void DirectorId(long pProp);
-		void DirectorTypeId(long pProp);
-		void DirectorActionId(long pProp);
-		void EventorId(long pProp);
-		void EventorDateTime(long pProp);
-		void EventorTypeId(long pProp);
-		void EventorPrecisionId(long pProp);
-		void IdentorId(long pProp);
-		void IdentorValue(string pProp);
-		void IdentorTypeId(long pProp);
-		void LocatorId(long pProp);
-		void LocatorValueX(double pProp);
-		void LocatorValueY(double pProp);
-		void LocatorValueZ(double pProp);
-		void LocatorTypeId(long pProp);
-		void LocatorTypeMinX(double pProp);
-		void LocatorTypeMaxX(double pProp);
-		void LocatorTypeMinY(double pProp);
-		void LocatorTypeMaxY(double pProp);
-		void LocatorTypeMinZ(double pProp);
-		void LocatorTypeMaxZ(double pProp);
-		void VectorId(long pProp);
-		void VectorValue(long pProp);
-		void VectorTypeId(long pProp);
-		void VectorTypeMin(long pProp);
-		void VectorTypeMax(long pProp);
-		void VectorRangeId(long pProp);
-		void VectorRangeLevelId(long pProp);
-		void VectorRangeLevelPosition(float pProp);
-		void VectorUnitId(long pProp);
-		void VectorUnitSymbol(string pProp);
-		void VectorUnitPrefixId(long pProp);
-		void VectorUnitPrefixSymbol(string pProp);
-		void VectorUnitPrefixAmount(double pProp);
-		void VectorUnitDerivedId(long pProp);
-		void VectorUnitDerivedExponent(int pProp);
-		void OauthAccessId(long pProp);
-		void OauthAccessToken(string pProp);
-		void OauthAccessRefresh(string pProp);
-		void OauthAccessExpires(long pProp);
-		void OauthAccessIsClientOnly(bool pProp);
-		void OauthDomainId(long pProp);
-		void OauthDomainDomain(string pProp);
-		void OauthGrantId(long pProp);
-		void OauthGrantRedirectUri(string pProp);
-		void OauthGrantCode(string pProp);
-		void OauthGrantExpires(long pProp);
-		void OauthScopeId(long pProp);
-		void OauthScopeAllow(bool pProp);
-		void OauthScopeCreated(long pProp);
+		void AppId(long pValue, string pParamName);
+		void AppId(long pValue);
+		void AppName(string pValue, string pParamName);
+		void AppName(string pValue);
+		void AppSecret(string pValue, string pParamName);
+		void AppSecret(string pValue);
+		void ArtifactId(long pValue, string pParamName);
+		void ArtifactId(long pValue);
+		void ArtifactIsPrivate(bool pValue, string pParamName);
+		void ArtifactIsPrivate(bool pValue);
+		void ArtifactCreated(long pValue, string pParamName);
+		void ArtifactCreated(long pValue);
+		void ArtifactTypeId(long pValue, string pParamName);
+		void ArtifactTypeId(long pValue);
+		void ClassId(long pValue, string pParamName);
+		void ClassId(long pValue);
+		void ClassName(string pValue, string pParamName);
+		void ClassName(string pValue);
+		void ClassDisamb(string pValue, string pParamName);
+		void ClassDisamb(string pValue);
+		void ClassNote(string pValue, string pParamName);
+		void ClassNote(string pValue);
+		void CrowdId(long pValue, string pParamName);
+		void CrowdId(long pValue);
+		void CrowdName(string pValue, string pParamName);
+		void CrowdName(string pValue);
+		void CrowdDescription(string pValue, string pParamName);
+		void CrowdDescription(string pValue);
+		void CrowdIsPrivate(bool pValue, string pParamName);
+		void CrowdIsPrivate(bool pValue);
+		void CrowdIsInviteOnly(bool pValue, string pParamName);
+		void CrowdIsInviteOnly(bool pValue);
+		void CrowdianId(long pValue, string pParamName);
+		void CrowdianId(long pValue);
+		void CrowdianTypeId(long pValue, string pParamName);
+		void CrowdianTypeId(long pValue);
+		void CrowdianTypeAssignId(long pValue, string pParamName);
+		void CrowdianTypeAssignId(long pValue);
+		void CrowdianTypeAssignWeight(float pValue, string pParamName);
+		void CrowdianTypeAssignWeight(float pValue);
+		void EmailId(long pValue, string pParamName);
+		void EmailId(long pValue);
+		void EmailAddress(string pValue, string pParamName);
+		void EmailAddress(string pValue);
+		void EmailCode(string pValue, string pParamName);
+		void EmailCode(string pValue);
+		void EmailCreated(long pValue, string pParamName);
+		void EmailCreated(long pValue);
+		void EmailVerified(long pValue, string pParamName);
+		void EmailVerified(long pValue);
+		void InstanceId(long pValue, string pParamName);
+		void InstanceId(long pValue);
+		void InstanceName(string pValue, string pParamName);
+		void InstanceName(string pValue);
+		void InstanceDisamb(string pValue, string pParamName);
+		void InstanceDisamb(string pValue);
+		void InstanceNote(string pValue, string pParamName);
+		void InstanceNote(string pValue);
+		void LabelId(long pValue, string pParamName);
+		void LabelId(long pValue);
+		void LabelName(string pValue, string pParamName);
+		void LabelName(string pValue);
+		void MemberId(long pValue, string pParamName);
+		void MemberId(long pValue);
+		void MemberTypeId(long pValue, string pParamName);
+		void MemberTypeId(long pValue);
+		void MemberTypeAssignId(long pValue, string pParamName);
+		void MemberTypeAssignId(long pValue);
+		void UrlId(long pValue, string pParamName);
+		void UrlId(long pValue);
+		void UrlName(string pValue, string pParamName);
+		void UrlName(string pValue);
+		void UrlAbsoluteUrl(string pValue, string pParamName);
+		void UrlAbsoluteUrl(string pValue);
+		void UserId(long pValue, string pParamName);
+		void UserId(long pValue);
+		void UserName(string pValue, string pParamName);
+		void UserName(string pValue);
+		void UserPassword(string pValue, string pParamName);
+		void UserPassword(string pValue);
+		void FactorId(long pValue, string pParamName);
+		void FactorId(long pValue);
+		void FactorIsDefining(bool pValue, string pParamName);
+		void FactorIsDefining(bool pValue);
+		void FactorCreated(long pValue, string pParamName);
+		void FactorCreated(long pValue);
+		void FactorDeleted(long pValue, string pParamName);
+		void FactorDeleted(long pValue);
+		void FactorCompleted(long pValue, string pParamName);
+		void FactorCompleted(long pValue);
+		void FactorNote(string pValue, string pParamName);
+		void FactorNote(string pValue);
+		void FactorAssertionId(long pValue, string pParamName);
+		void FactorAssertionId(long pValue);
+		void DescriptorId(long pValue, string pParamName);
+		void DescriptorId(long pValue);
+		void DescriptorTypeId(long pValue, string pParamName);
+		void DescriptorTypeId(long pValue);
+		void DirectorId(long pValue, string pParamName);
+		void DirectorId(long pValue);
+		void DirectorTypeId(long pValue, string pParamName);
+		void DirectorTypeId(long pValue);
+		void DirectorActionId(long pValue, string pParamName);
+		void DirectorActionId(long pValue);
+		void EventorId(long pValue, string pParamName);
+		void EventorId(long pValue);
+		void EventorDateTime(long pValue, string pParamName);
+		void EventorDateTime(long pValue);
+		void EventorTypeId(long pValue, string pParamName);
+		void EventorTypeId(long pValue);
+		void EventorPrecisionId(long pValue, string pParamName);
+		void EventorPrecisionId(long pValue);
+		void IdentorId(long pValue, string pParamName);
+		void IdentorId(long pValue);
+		void IdentorValue(string pValue, string pParamName);
+		void IdentorValue(string pValue);
+		void IdentorTypeId(long pValue, string pParamName);
+		void IdentorTypeId(long pValue);
+		void LocatorId(long pValue, string pParamName);
+		void LocatorId(long pValue);
+		void LocatorValueX(double pValue, string pParamName);
+		void LocatorValueX(double pValue);
+		void LocatorValueY(double pValue, string pParamName);
+		void LocatorValueY(double pValue);
+		void LocatorValueZ(double pValue, string pParamName);
+		void LocatorValueZ(double pValue);
+		void LocatorTypeId(long pValue, string pParamName);
+		void LocatorTypeId(long pValue);
+		void LocatorTypeMinX(double pValue, string pParamName);
+		void LocatorTypeMinX(double pValue);
+		void LocatorTypeMaxX(double pValue, string pParamName);
+		void LocatorTypeMaxX(double pValue);
+		void LocatorTypeMinY(double pValue, string pParamName);
+		void LocatorTypeMinY(double pValue);
+		void LocatorTypeMaxY(double pValue, string pParamName);
+		void LocatorTypeMaxY(double pValue);
+		void LocatorTypeMinZ(double pValue, string pParamName);
+		void LocatorTypeMinZ(double pValue);
+		void LocatorTypeMaxZ(double pValue, string pParamName);
+		void LocatorTypeMaxZ(double pValue);
+		void VectorId(long pValue, string pParamName);
+		void VectorId(long pValue);
+		void VectorValue(long pValue, string pParamName);
+		void VectorValue(long pValue);
+		void VectorTypeId(long pValue, string pParamName);
+		void VectorTypeId(long pValue);
+		void VectorTypeMin(long pValue, string pParamName);
+		void VectorTypeMin(long pValue);
+		void VectorTypeMax(long pValue, string pParamName);
+		void VectorTypeMax(long pValue);
+		void VectorRangeId(long pValue, string pParamName);
+		void VectorRangeId(long pValue);
+		void VectorRangeLevelId(long pValue, string pParamName);
+		void VectorRangeLevelId(long pValue);
+		void VectorRangeLevelPosition(float pValue, string pParamName);
+		void VectorRangeLevelPosition(float pValue);
+		void VectorUnitId(long pValue, string pParamName);
+		void VectorUnitId(long pValue);
+		void VectorUnitSymbol(string pValue, string pParamName);
+		void VectorUnitSymbol(string pValue);
+		void VectorUnitPrefixId(long pValue, string pParamName);
+		void VectorUnitPrefixId(long pValue);
+		void VectorUnitPrefixSymbol(string pValue, string pParamName);
+		void VectorUnitPrefixSymbol(string pValue);
+		void VectorUnitPrefixAmount(double pValue, string pParamName);
+		void VectorUnitPrefixAmount(double pValue);
+		void VectorUnitDerivedId(long pValue, string pParamName);
+		void VectorUnitDerivedId(long pValue);
+		void VectorUnitDerivedExponent(int pValue, string pParamName);
+		void VectorUnitDerivedExponent(int pValue);
+		void OauthAccessId(long pValue, string pParamName);
+		void OauthAccessId(long pValue);
+		void OauthAccessToken(string pValue, string pParamName);
+		void OauthAccessToken(string pValue);
+		void OauthAccessRefresh(string pValue, string pParamName);
+		void OauthAccessRefresh(string pValue);
+		void OauthAccessExpires(long pValue, string pParamName);
+		void OauthAccessExpires(long pValue);
+		void OauthAccessIsClientOnly(bool pValue, string pParamName);
+		void OauthAccessIsClientOnly(bool pValue);
+		void OauthDomainId(long pValue, string pParamName);
+		void OauthDomainId(long pValue);
+		void OauthDomainDomain(string pValue, string pParamName);
+		void OauthDomainDomain(string pValue);
+		void OauthGrantId(long pValue, string pParamName);
+		void OauthGrantId(long pValue);
+		void OauthGrantRedirectUri(string pValue, string pParamName);
+		void OauthGrantRedirectUri(string pValue);
+		void OauthGrantCode(string pValue, string pParamName);
+		void OauthGrantCode(string pValue);
+		void OauthGrantExpires(long pValue, string pParamName);
+		void OauthGrantExpires(long pValue);
+		void OauthScopeId(long pValue, string pParamName);
+		void OauthScopeId(long pValue);
+		void OauthScopeAllow(bool pValue, string pParamName);
+		void OauthScopeAllow(bool pValue);
+		void OauthScopeCreated(long pValue, string pParamName);
+		void OauthScopeCreated(long pValue);
 	}
 
 
@@ -121,600 +220,1095 @@ namespace Fabric.Api.Modify.Validators {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AppId(long pProp) {
-			LongGreaterThan("AppId", pProp, 0);
+		public void AppId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AppName(string pProp) {
-			NotNull("Name", pProp);
-			LengthBetween("Name", pProp, 3, 64);
-			MatchesRegex("Name", pProp, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+		public void AppId(long pValue) {
+			AppId(pValue, "AppId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AppSecret(string pProp) {
-			NotNull("Secret", pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactId(long pProp) {
-			LongGreaterThan("ArtifactId", pProp, 0);
+		public void AppName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 3, 64);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactIsPrivate(bool pProp) {
-			throw new Exception("IsPrivate has no validation. Property value was "+pProp);
+		public void AppName(string pValue) {
+			AppName(pValue, "Name");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactCreated(long pProp) {
-			LongGreaterThan("Created", pProp, 0);
+		public void AppSecret(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactTypeId(long pProp) {
-			LongGreaterThan("ArtifactTypeId", pProp, 0);
+		public void AppSecret(string pValue) {
+			AppSecret(pValue, "Secret");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void ClassId(long pProp) {
-			LongGreaterThan("ClassId", pProp, 0);
+		public void ArtifactId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void ClassName(string pProp) {
-			NotNull("Name", pProp);
-			LengthLessThanOrEqual("Name", pProp, 128);
+		public void ArtifactId(long pValue) {
+			ArtifactId(pValue, "ArtifactId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void ClassDisamb(string pProp) {
-			NotNull("Disamb", pProp);
-			LengthLessThanOrEqual("Disamb", pProp, 128);
+		public void ArtifactIsPrivate(bool pValue, string pParamName) {
+			throw new Exception("IsPrivate has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void ClassNote(string pProp) {
-			LengthLessThanOrEqual("Note", pProp, 256);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdId(long pProp) {
-			LongGreaterThan("CrowdId", pProp, 0);
+		public void ArtifactIsPrivate(bool pValue) {
+			ArtifactIsPrivate(pValue, "IsPrivate");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdName(string pProp) {
-			NotNull("Name", pProp);
-			LengthBetween("Name", pProp, 3, 64);
+		public void ArtifactCreated(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdDescription(string pProp) {
-			NotNull("Description", pProp);
-			LengthLessThanOrEqual("Description", pProp, 256);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdIsPrivate(bool pProp) {
-			throw new Exception("IsPrivate has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdIsInviteOnly(bool pProp) {
-			throw new Exception("IsInviteOnly has no validation. Property value was "+pProp);
+		public void ArtifactCreated(long pValue) {
+			ArtifactCreated(pValue, "Created");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianId(long pProp) {
-			LongGreaterThan("CrowdianId", pProp, 0);
+		public void ArtifactTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ArtifactTypeId(long pValue) {
+			ArtifactTypeId(pValue, "ArtifactTypeId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeId(long pProp) {
-			LongGreaterThan("CrowdianTypeId", pProp, 0);
+		public void ClassId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassId(long pValue) {
+			ClassId(pValue, "ClassId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 128);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassName(string pValue) {
+			ClassName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassDisamb(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 128);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassDisamb(string pValue) {
+			ClassDisamb(pValue, "Disamb");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassNote(string pValue, string pParamName) {
+			LengthLessThanOrEqual(pParamName, pValue, 256);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassNote(string pValue) {
+			ClassNote(pValue, "Note");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeAssignId(long pProp) {
-			LongGreaterThan("CrowdianTypeAssignId", pProp, 0);
+		public void CrowdId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeAssignWeight(float pProp) {
-			throw new Exception("Weight has no validation. Property value was "+pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void EmailId(long pProp) {
-			LongGreaterThan("EmailId", pProp, 0);
+		public void CrowdId(long pValue) {
+			CrowdId(pValue, "CrowdId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EmailAddress(string pProp) {
-			NotNull("Address", pProp);
-			LengthLessThanOrEqual("Address", pProp, 256);
-			MatchesRegex("Address", pProp, @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
+		public void CrowdName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 3, 64);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EmailCode(string pProp) {
-			NotNull("Code", pProp);
+		public void CrowdName(string pValue) {
+			CrowdName(pValue, "Name");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EmailCreated(long pProp) {
-			LongGreaterThan("Created", pProp, 0);
+		public void CrowdDescription(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EmailVerified(long pProp) {
-			throw new Exception("Verified has no validation. Property value was "+pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void InstanceId(long pProp) {
-			LongGreaterThan("InstanceId", pProp, 0);
+		public void CrowdDescription(string pValue) {
+			CrowdDescription(pValue, "Description");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void InstanceName(string pProp) {
-			NotNull("Name", pProp);
-			LengthLessThanOrEqual("Name", pProp, 128);
+		public void CrowdIsPrivate(bool pValue, string pParamName) {
+			throw new Exception("IsPrivate has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void InstanceDisamb(string pProp) {
-			NotNull("Disamb", pProp);
-			LengthLessThanOrEqual("Disamb", pProp, 128);
+		public void CrowdIsPrivate(bool pValue) {
+			CrowdIsPrivate(pValue, "IsPrivate");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void InstanceNote(string pProp) {
-			LengthLessThanOrEqual("Note", pProp, 256);
+		public void CrowdIsInviteOnly(bool pValue, string pParamName) {
+			throw new Exception("IsInviteOnly has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void CrowdIsInviteOnly(bool pValue) {
+			CrowdIsInviteOnly(pValue, "IsInviteOnly");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void LabelId(long pProp) {
-			LongGreaterThan("LabelId", pProp, 0);
+		public void CrowdianId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LabelName(string pProp) {
-			NotNull("Name", pProp);
-			LengthBetween("Name", pProp, 1, 128);
-			MatchesRegex("Name", pProp, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void MemberId(long pProp) {
-			LongGreaterThan("MemberId", pProp, 0);
+		public void CrowdianId(long pValue) {
+			CrowdianId(pValue, "CrowdianId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void MemberTypeId(long pProp) {
-			LongGreaterThan("MemberTypeId", pProp, 0);
+		public void CrowdianTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void CrowdianTypeId(long pValue) {
+			CrowdianTypeId(pValue, "CrowdianTypeId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void MemberTypeAssignId(long pProp) {
-			LongGreaterThan("MemberTypeAssignId", pProp, 0);
+		public void CrowdianTypeAssignId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void CrowdianTypeAssignId(long pValue) {
+			CrowdianTypeAssignId(pValue, "CrowdianTypeAssignId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void CrowdianTypeAssignWeight(float pValue, string pParamName) {
+			throw new Exception("Weight has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void CrowdianTypeAssignWeight(float pValue) {
+			CrowdianTypeAssignWeight(pValue, "Weight");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void UrlId(long pProp) {
-			LongGreaterThan("UrlId", pProp, 0);
+		public void EmailId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UrlName(string pProp) {
-			NotNull("Name", pProp);
-			LengthLessThanOrEqual("Name", pProp, 128);
+		public void EmailId(long pValue) {
+			EmailId(pValue, "EmailId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UrlAbsoluteUrl(string pProp) {
-			NotNull("AbsoluteUrl", pProp);
-			LengthLessThanOrEqual("AbsoluteUrl", pProp, 2048);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void UserId(long pProp) {
-			LongGreaterThan("UserId", pProp, 0);
+		public void EmailAddress(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 256);
+			MatchesRegex(pParamName, pValue, @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UserName(string pProp) {
-			NotNull("Name", pProp);
-			LengthBetween("Name", pProp, 4, 16);
-			MatchesRegex("Name", pProp, @"^[a-zA-Z0-9_]*$");
+		public void EmailAddress(string pValue) {
+			EmailAddress(pValue, "Address");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UserPassword(string pProp) {
-			NotNull("Password", pProp);
-			LengthBetween("Password", pProp, 8, 32);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void FactorId(long pProp) {
-			LongGreaterThan("FactorId", pProp, 0);
+		public void EmailCode(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorIsDefining(bool pProp) {
-			throw new Exception("IsDefining has no validation. Property value was "+pProp);
+		public void EmailCode(string pValue) {
+			EmailCode(pValue, "Code");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorCreated(long pProp) {
-			LongGreaterThan("Created", pProp, 0);
+		public void EmailCreated(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorDeleted(long pProp) {
-			throw new Exception("Deleted has no validation. Property value was "+pProp);
+		public void EmailCreated(long pValue) {
+			EmailCreated(pValue, "Created");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorCompleted(long pProp) {
-			throw new Exception("Completed has no validation. Property value was "+pProp);
+		public void EmailVerified(long pValue, string pParamName) {
+			throw new Exception("Verified has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorNote(string pProp) {
-			LengthLessThanOrEqual("Note", pProp, 256);
+		public void EmailVerified(long pValue) {
+			EmailVerified(pValue, "Verified");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorAssertionId(long pProp) {
-			LongGreaterThan("FactorAssertionId", pProp, 0);
+		public void InstanceId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceId(long pValue) {
+			InstanceId(pValue, "InstanceId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 128);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceName(string pValue) {
+			InstanceName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceDisamb(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 128);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceDisamb(string pValue) {
+			InstanceDisamb(pValue, "Disamb");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceNote(string pValue, string pParamName) {
+			LengthLessThanOrEqual(pParamName, pValue, 256);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void InstanceNote(string pValue) {
+			InstanceNote(pValue, "Note");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorId(long pProp) {
-			LongGreaterThan("DescriptorId", pProp, 0);
+		public void LabelId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LabelId(long pValue) {
+			LabelId(pValue, "LabelId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LabelName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 1, 128);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LabelName(string pValue) {
+			LabelName(pValue, "Name");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorTypeId(long pProp) {
-			LongGreaterThan("DescriptorTypeId", pProp, 0);
+		public void MemberId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void MemberId(long pValue) {
+			MemberId(pValue, "MemberId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorId(long pProp) {
-			LongGreaterThan("DirectorId", pProp, 0);
+		public void MemberTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void MemberTypeId(long pValue) {
+			MemberTypeId(pValue, "MemberTypeId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorTypeId(long pProp) {
-			LongGreaterThan("DirectorTypeId", pProp, 0);
+		public void MemberTypeAssignId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void MemberTypeAssignId(long pValue) {
+			MemberTypeAssignId(pValue, "MemberTypeAssignId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorActionId(long pProp) {
-			LongGreaterThan("DirectorActionId", pProp, 0);
+		public void UrlId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UrlId(long pValue) {
+			UrlId(pValue, "UrlId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UrlName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 128);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UrlName(string pValue) {
+			UrlName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UrlAbsoluteUrl(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 2048);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UrlAbsoluteUrl(string pValue) {
+			UrlAbsoluteUrl(pValue, "AbsoluteUrl");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void EventorId(long pProp) {
-			LongGreaterThan("EventorId", pProp, 0);
+		public void UserId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EventorDateTime(long pProp) {
-			throw new Exception("DateTime has no validation. Property value was "+pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorTypeId(long pProp) {
-			LongGreaterThan("EventorTypeId", pProp, 0);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorPrecisionId(long pProp) {
-			LongGreaterThan("EventorPrecisionId", pProp, 0);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorId(long pProp) {
-			LongGreaterThan("IdentorId", pProp, 0);
+		public void UserId(long pValue) {
+			UserId(pValue, "UserId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorValue(string pProp) {
-			NotNull("Value", pProp);
-			LengthLessThanOrEqual("Value", pProp, 128);
+		public void UserName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 4, 16);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9_]*$");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UserName(string pValue) {
+			UserName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UserPassword(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 8, 32);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UserPassword(string pValue) {
+			UserPassword(pValue, "Password");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorTypeId(long pProp) {
-			LongGreaterThan("IdentorTypeId", pProp, 0);
+		public void FactorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorId(long pValue) {
+			FactorId(pValue, "FactorId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorIsDefining(bool pValue, string pParamName) {
+			throw new Exception("IsDefining has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorIsDefining(bool pValue) {
+			FactorIsDefining(pValue, "IsDefining");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorCreated(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorCreated(long pValue) {
+			FactorCreated(pValue, "Created");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorDeleted(long pValue, string pParamName) {
+			throw new Exception("Deleted has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorDeleted(long pValue) {
+			FactorDeleted(pValue, "Deleted");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorCompleted(long pValue, string pParamName) {
+			throw new Exception("Completed has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorCompleted(long pValue) {
+			FactorCompleted(pValue, "Completed");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorNote(string pValue, string pParamName) {
+			LengthLessThanOrEqual(pParamName, pValue, 256);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorNote(string pValue) {
+			FactorNote(pValue, "Note");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorId(long pProp) {
-			LongGreaterThan("LocatorId", pProp, 0);
+		public void FactorAssertionId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueX(double pProp) {
-			throw new Exception("ValueX has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueY(double pProp) {
-			throw new Exception("ValueY has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueZ(double pProp) {
-			throw new Exception("ValueZ has no validation. Property value was "+pProp);
+		public void FactorAssertionId(long pValue) {
+			FactorAssertionId(pValue, "FactorAssertionId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeId(long pProp) {
-			LongGreaterThan("LocatorTypeId", pProp, 0);
+		public void DescriptorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinX(double pProp) {
-			throw new Exception("MinX has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxX(double pProp) {
-			throw new Exception("MaxX has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinY(double pProp) {
-			throw new Exception("MinY has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxY(double pProp) {
-			throw new Exception("MaxY has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinZ(double pProp) {
-			throw new Exception("MinZ has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxZ(double pProp) {
-			throw new Exception("MaxZ has no validation. Property value was "+pProp);
+		public void DescriptorId(long pValue) {
+			DescriptorId(pValue, "DescriptorId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorId(long pProp) {
-			LongGreaterThan("VectorId", pProp, 0);
+		public void DescriptorTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorValue(long pProp) {
-			throw new Exception("Value has no validation. Property value was "+pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeId(long pProp) {
-			LongGreaterThan("VectorTypeId", pProp, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeMin(long pProp) {
-			throw new Exception("Min has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeMax(long pProp) {
-			throw new Exception("Max has no validation. Property value was "+pProp);
+		public void DescriptorTypeId(long pValue) {
+			DescriptorTypeId(pValue, "DescriptorTypeId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeId(long pProp) {
-			LongGreaterThan("VectorRangeId", pProp, 0);
+		public void DirectorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void DirectorId(long pValue) {
+			DirectorId(pValue, "DirectorId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeLevelId(long pProp) {
-			LongGreaterThan("VectorRangeLevelId", pProp, 0);
+		public void DirectorTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeLevelPosition(float pProp) {
-			throw new Exception("Position has no validation. Property value was "+pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitId(long pProp) {
-			LongGreaterThan("VectorUnitId", pProp, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitSymbol(string pProp) {
-			NotNull("Symbol", pProp);
-			LengthLessThanOrEqual("Symbol", pProp, 8);
+		public void DirectorTypeId(long pValue) {
+			DirectorTypeId(pValue, "DirectorTypeId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixId(long pProp) {
-			LongGreaterThan("VectorUnitPrefixId", pProp, 0);
+		public void DirectorActionId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixSymbol(string pProp) {
-			NotNull("Symbol", pProp);
-			LengthLessThanOrEqual("Symbol", pProp, 8);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixAmount(double pProp) {
-			throw new Exception("Amount has no validation. Property value was "+pProp);
+		public void DirectorActionId(long pValue) {
+			DirectorActionId(pValue, "DirectorActionId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitDerivedId(long pProp) {
-			LongGreaterThan("VectorUnitDerivedId", pProp, 0);
+		public void EventorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitDerivedExponent(int pProp) {
-			throw new Exception("Exponent has no validation. Property value was "+pProp);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthAccessId(long pProp) {
-			LongGreaterThan("OauthAccessId", pProp, 0);
+		public void EventorId(long pValue) {
+			EventorId(pValue, "EventorId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthAccessToken(string pProp) {
-			throw new Exception("Token has no validation. Property value was "+pProp);
+		public void EventorDateTime(long pValue, string pParamName) {
+			throw new Exception("DateTime has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthAccessRefresh(string pProp) {
-			throw new Exception("Refresh has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthAccessExpires(long pProp) {
-			throw new Exception("Expires has no validation. Property value was "+pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthAccessIsClientOnly(bool pProp) {
-			throw new Exception("IsClientOnly has no validation. Property value was "+pProp);
+		public void EventorDateTime(long pValue) {
+			EventorDateTime(pValue, "DateTime");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthDomainId(long pProp) {
-			LongGreaterThan("OauthDomainId", pProp, 0);
+		public void EventorTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthDomainDomain(string pProp) {
-			NotNull("Domain", pProp);
-			LengthLessThanOrEqual("Domain", pProp, 256);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthGrantId(long pProp) {
-			LongGreaterThan("OauthGrantId", pProp, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthGrantRedirectUri(string pProp) {
-			NotNull("RedirectUri", pProp);
-			LengthLessThanOrEqual("RedirectUri", pProp, 450);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthGrantCode(string pProp) {
-			NotNull("Code", pProp);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void OauthGrantExpires(long pProp) {
-			throw new Exception("Expires has no validation. Property value was "+pProp);
+		public void EventorTypeId(long pValue) {
+			EventorTypeId(pValue, "EventorTypeId");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthScopeId(long pProp) {
-			LongGreaterThan("OauthScopeId", pProp, 0);
+		public void EventorPrecisionId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthScopeAllow(bool pProp) {
-			throw new Exception("Allow has no validation. Property value was "+pProp);
+		public void EventorPrecisionId(long pValue) {
+			EventorPrecisionId(pValue, "EventorPrecisionId");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void OauthScopeCreated(long pProp) {
-			LongGreaterThan("Created", pProp, 0);
+		public void IdentorId(long pValue) {
+			IdentorId(pValue, "IdentorId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorValue(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 128);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorValue(string pValue) {
+			IdentorValue(pValue, "Value");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorTypeId(long pValue) {
+			IdentorTypeId(pValue, "IdentorTypeId");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorId(long pValue) {
+			LocatorId(pValue, "LocatorId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorValueX(double pValue, string pParamName) {
+			throw new Exception("ValueX has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorValueX(double pValue) {
+			LocatorValueX(pValue, "ValueX");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorValueY(double pValue, string pParamName) {
+			throw new Exception("ValueY has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorValueY(double pValue) {
+			LocatorValueY(pValue, "ValueY");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorValueZ(double pValue, string pParamName) {
+			throw new Exception("ValueZ has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorValueZ(double pValue) {
+			LocatorValueZ(pValue, "ValueZ");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeId(long pValue) {
+			LocatorTypeId(pValue, "LocatorTypeId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMinX(double pValue, string pParamName) {
+			throw new Exception("MinX has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMinX(double pValue) {
+			LocatorTypeMinX(pValue, "MinX");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMaxX(double pValue, string pParamName) {
+			throw new Exception("MaxX has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMaxX(double pValue) {
+			LocatorTypeMaxX(pValue, "MaxX");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMinY(double pValue, string pParamName) {
+			throw new Exception("MinY has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMinY(double pValue) {
+			LocatorTypeMinY(pValue, "MinY");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMaxY(double pValue, string pParamName) {
+			throw new Exception("MaxY has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMaxY(double pValue) {
+			LocatorTypeMaxY(pValue, "MaxY");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMinZ(double pValue, string pParamName) {
+			throw new Exception("MinZ has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMinZ(double pValue) {
+			LocatorTypeMinZ(pValue, "MinZ");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMaxZ(double pValue, string pParamName) {
+			throw new Exception("MaxZ has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeMaxZ(double pValue) {
+			LocatorTypeMaxZ(pValue, "MaxZ");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorId(long pValue) {
+			VectorId(pValue, "VectorId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorValue(long pValue, string pParamName) {
+			throw new Exception("Value has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorValue(long pValue) {
+			VectorValue(pValue, "Value");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeId(long pValue) {
+			VectorTypeId(pValue, "VectorTypeId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeMin(long pValue, string pParamName) {
+			throw new Exception("Min has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeMin(long pValue) {
+			VectorTypeMin(pValue, "Min");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeMax(long pValue, string pParamName) {
+			throw new Exception("Max has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeMax(long pValue) {
+			VectorTypeMax(pValue, "Max");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorRangeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorRangeId(long pValue) {
+			VectorRangeId(pValue, "VectorRangeId");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorRangeLevelId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorRangeLevelId(long pValue) {
+			VectorRangeLevelId(pValue, "VectorRangeLevelId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorRangeLevelPosition(float pValue, string pParamName) {
+			throw new Exception("Position has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorRangeLevelPosition(float pValue) {
+			VectorRangeLevelPosition(pValue, "Position");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitId(long pValue) {
+			VectorUnitId(pValue, "VectorUnitId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitSymbol(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 8);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitSymbol(string pValue) {
+			VectorUnitSymbol(pValue, "Symbol");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixId(long pValue) {
+			VectorUnitPrefixId(pValue, "VectorUnitPrefixId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixSymbol(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 8);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixSymbol(string pValue) {
+			VectorUnitPrefixSymbol(pValue, "Symbol");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixAmount(double pValue, string pParamName) {
+			throw new Exception("Amount has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixAmount(double pValue) {
+			VectorUnitPrefixAmount(pValue, "Amount");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitDerivedId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitDerivedId(long pValue) {
+			VectorUnitDerivedId(pValue, "VectorUnitDerivedId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitDerivedExponent(int pValue, string pParamName) {
+			throw new Exception("Exponent has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitDerivedExponent(int pValue) {
+			VectorUnitDerivedExponent(pValue, "Exponent");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessId(long pValue) {
+			OauthAccessId(pValue, "OauthAccessId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessToken(string pValue, string pParamName) {
+			throw new Exception("Token has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessToken(string pValue) {
+			OauthAccessToken(pValue, "Token");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessRefresh(string pValue, string pParamName) {
+			throw new Exception("Refresh has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessRefresh(string pValue) {
+			OauthAccessRefresh(pValue, "Refresh");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessExpires(long pValue, string pParamName) {
+			throw new Exception("Expires has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessExpires(long pValue) {
+			OauthAccessExpires(pValue, "Expires");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessIsClientOnly(bool pValue, string pParamName) {
+			throw new Exception("IsClientOnly has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthAccessIsClientOnly(bool pValue) {
+			OauthAccessIsClientOnly(pValue, "IsClientOnly");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthDomainId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthDomainId(long pValue) {
+			OauthDomainId(pValue, "OauthDomainId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthDomainDomain(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 256);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthDomainDomain(string pValue) {
+			OauthDomainDomain(pValue, "Domain");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantId(long pValue) {
+			OauthGrantId(pValue, "OauthGrantId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantRedirectUri(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthLessThanOrEqual(pParamName, pValue, 450);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantRedirectUri(string pValue) {
+			OauthGrantRedirectUri(pValue, "RedirectUri");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantCode(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantCode(string pValue) {
+			OauthGrantCode(pValue, "Code");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantExpires(long pValue, string pParamName) {
+			throw new Exception("Expires has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthGrantExpires(long pValue) {
+			OauthGrantExpires(pValue, "Expires");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthScopeId(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthScopeId(long pValue) {
+			OauthScopeId(pValue, "OauthScopeId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthScopeAllow(bool pValue, string pParamName) {
+			throw new Exception("Allow has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthScopeAllow(bool pValue) {
+			OauthScopeAllow(pValue, "Allow");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthScopeCreated(long pValue, string pParamName) {
+			LongGreaterThan(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OauthScopeCreated(long pValue) {
+			OauthScopeCreated(pValue, "Created");
 		}
 
 	}

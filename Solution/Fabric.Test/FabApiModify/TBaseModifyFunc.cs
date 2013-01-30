@@ -14,6 +14,10 @@ namespace Fabric.Test.FabApiModify {
 		protected Mock<IApiContext> MockApiCtx { get; private set; }
 		protected Mock<IDomainValidator> MockValidator { get; private set; }
 		protected Mock<IModifyTasks> MockTasks { get; private set; }
+
+		protected long ApiCtxAppId { get; private set; }
+		protected long ApiCtxUserId { get; private set; }
+		protected Member ApiCtxMember { get; private set; }
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +31,17 @@ namespace Fabric.Test.FabApiModify {
 			MockTasks.SetupGet(x => x.Validator).Returns(MockValidator.Object);
 
 			TestSetUp();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void SetUpMember(long pAppId, long pUserId, Member pMember) {
+			ApiCtxAppId = pAppId;
+			ApiCtxUserId = pUserId;
+			ApiCtxMember = pMember;
+
+			MockApiCtx.SetupGet(x => x.AppId).Returns(pAppId);
+			MockApiCtx.SetupGet(x => x.UserId).Returns(pUserId);
+			MockTasks.Setup(x => x.GetValidMemberByContext(MockApiCtx.Object)).Returns(ApiCtxMember);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

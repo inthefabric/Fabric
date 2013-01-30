@@ -37,7 +37,8 @@ foreach ( string name in nodes ) {
 		WeaverPropSchema prop = hp.PropSchema;
 		string method = (prop.IsPrimaryKey == true ? "" : node.Name)+prop.Name;
 #>
-		void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pProp);
+		void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue, string pParamName);
+		void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue);
 <#
 	} //end prop loop
 } //end node loop
@@ -66,33 +67,33 @@ foreach ( string name in nodes ) {
 		int count = 0;
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pProp) {
+		public void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue, string pParamName) {
 <#
 		if ( prop.IsNullable != true && !prop.Type.IsValueType ) {
 			count++;
 #>
-			NotNull("<#= prop.Name #>", pProp);
+			NotNull(pParamName, pValue);
 <#
 		}
 
 		if ( prop.IsPrimaryKey == true || prop.IsTimestamp == true ) {
 			count++;
 #>
-			LongGreaterThan("<#= prop.Name #>", pProp, 0);
+			LongGreaterThan(pParamName, pValue, 0);
 <#
 		}
 
 		if ( prop.LenMin == null && prop.LenMax > 0 ) {
 			count++;
 #>
-			LengthLessThanOrEqual("<#= prop.Name #>", pProp, <#= prop.LenMax #>);
+			LengthLessThanOrEqual(pParamName, pValue, <#= prop.LenMax #>);
 <#
 		}
 
 		if ( prop.LenMin > 0 && prop.LenMax > 0 ) {
 			count++;
 #>
-			LengthBetween("<#= prop.Name #>", pProp, <#= prop.LenMin #>, <#= prop.LenMax #>);
+			LengthBetween(pParamName, pValue, <#= prop.LenMin #>, <#= prop.LenMax #>);
 <#
 		}
 
@@ -100,16 +101,21 @@ foreach ( string name in nodes ) {
 			count++;
 			string pattern = prop.ValidRegex.Replace("\"", "\"\"");
 #>
-			MatchesRegex("<#= prop.Name #>", pProp, @"<#= pattern #>");
+			MatchesRegex(pParamName, pValue, @"<#= pattern #>");
 <#
 		}
 
 		if ( count == 0 ) {
 #>
-			throw new Exception("<#= prop.Name #> has no validation. Property value was "+pProp);
+			throw new Exception("<#= prop.Name #> has no validation. Property value was "+pValue);
 <#
 		}
 #>
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue) {
+			<#= method #>(pValue, "<#= prop.Name #>");
 		}
 
 <#

@@ -35,8 +35,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetUserByName");
 
-			string expect = Query.Replace("{{Name}}", vName);
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pQuery.Params, "NAME", vName.ToLower());
 
 			return vUserResult;

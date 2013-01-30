@@ -5,6 +5,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
+using Weaver.Functions;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify.Tasks {
@@ -65,6 +66,45 @@ namespace Fabric.Api.Modify.Tasks {
 
 			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetUrlByAbsoluteUrl() integration
+		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
+			string propName = WeaverUtil.GetPropertyName<Url>(x => x.AbsoluteUrl);
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==URL}";
+
+			IWeaverQuery q = 
+				BeginPathFromRoot()
+				.ContainsUrlList.ToUrl
+					.CustomStep(filterStep)
+				.End();
+
+			q.AddParam("URL", new WeaverQueryVal(pAbsoluteUrl.ToLower(), false));
+			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetValidMemberByContext() integration
+		public Member GetValidMemberByContext(IApiContext pApiCtx) {
+			IWeaverFuncAs<Member> memAlias;
+
+			IWeaverQuery q = 
+				WeaverTasks.BeginPath<User>(x => x.UserId, pApiCtx.UserId).BaseNode
+				.DefinesMemberList.ToMember
+					.As(out memAlias)
+				.InAppDefines.FromApp
+					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, pApiCtx.AppId)
+				.Back(memAlias)
+				.HasMemberTypeAssign.ToMemberTypeAssign
+				.UsesMemberType.ToMemberType
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (long)MemberTypeId.None)
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (long)MemberTypeId.Invite)
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (long)MemberTypeId.Request)
+				.Back(memAlias)
+				.End();
+
+			return pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
 		}
 
 
@@ -186,6 +226,20 @@ namespace Fabric.Api.Modify.Tasks {
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.DataProvider);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddUrl() integration
+		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
+									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar) {
+			var url = new Url();
+			url.UrlId = pApiCtx.GetSharpflakeId<Url>();
+			url.AbsoluteUrl = pAbsoluteUrl;
+			url.Name = pName;
+
+			var urlBuild = new UrlBuilder(pTxBuild, url);
+			urlBuild.AddNode(pRootVar);
+			pUrlVar = urlBuild.NodeVar;
 		}
 
 	}

@@ -9,7 +9,10 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	public class CreateApp : BaseModifyFunc<App> {
-		
+
+		public const string NameParam = "Name";
+		public const string UserIdParam = "UserId";
+
 		private readonly string vName;
 		private readonly long vUserId;
 
@@ -23,14 +26,15 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.AppName(vName);
-			Tasks.Validator.UserId(vUserId);
+			EnsureFabricSystem();
+			Tasks.Validator.AppName(vName, NameParam);
+			Tasks.Validator.UserId(vUserId, UserIdParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override App Execute() {
 			if ( Tasks.GetAppByName(Context, vName) != null ) {
-				throw new FabDuplicateFault("Name", vName);
+				throw new FabDuplicateFault(typeof(App), NameParam, vName);
 			}
 
 			////

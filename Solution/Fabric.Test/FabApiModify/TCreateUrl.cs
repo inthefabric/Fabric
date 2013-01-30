@@ -12,64 +12,61 @@ namespace Fabric.Test.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateApp : TBaseModifyFunc {
+	public class TCreateUrl : TBaseModifyFunc {
 
+		private string vAbsoluteUrl;
 		private string vName;
-		private long vUserId;
 
-		private IWeaverVarAlias<App> vOutAppVar;
-		private App vResultApp;
-		private App vResult;
+		private IWeaverVarAlias<Url> vOutUrlVar;
+		private Url vResultUrl;
+		private Url vResult;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vName = "New Test App";
-			vUserId = 987654;
+			vAbsoluteUrl = "http://www.mywebsite.com";
+			vName = "My Web Site";
 
-			vOutAppVar = GetTxVar<App>("APP");
+			vOutUrlVar = GetTxVar<Url>("URL");
+			vResultUrl = new Url();
 
 			MockTasks
-				.Setup(x => x.TxAddApp(
+				.Setup(x => x.TxAddUrl(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
+						vAbsoluteUrl,
 						vName,
 						It.IsAny<IWeaverVarAlias<Root>>(),
-						vUserId,
-						out vOutAppVar
+						out vOutUrlVar
 					)
 				);
 
-			vResultApp = new App();
-			var findUser = new User { UserId = vUserId };
-
-			MockTasks
-				.Setup(x => x.GetUser(MockApiCtx.Object, vUserId))
-				.Returns(findUser);
-			
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
 			MockApiCtx
-				.Setup(x => x.DbSingle<App>("CreateAppTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateAppTx(q));
+				.Setup(x => x.DbSingle<Url>("CreateUrlTx", It.IsAny<IWeaverTransaction>()))
+				.Returns((string s, IWeaverTransaction q) => CreateUrlTx(q));
+
+			SetUpMember(1, 2, new Member { MemberId = 234623 });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private App CreateAppTx(IWeaverTransaction pTx) {
+		private Url CreateUrlTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			const string expectPartial = 
+			string expectPartial = 
 				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
-				"APP;";
+				"g.V('MemberId',"+ApiCtxMember.MemberId+"L)[0].each{_V1=g.v(it)};"+
+				"URL;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			return vResultApp;
+			return vResultUrl;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateApp(MockTasks.Object, vName, vUserId);
+			var func = new CreateUrl(MockTasks.Object, vAbsoluteUrl, vName);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -80,33 +77,21 @@ namespace Fabric.Test.FabApiModify {
 		public void Success() {
 			TestGo();
 
-			Assert.AreEqual(vResultApp, vResult, "Incorrect Result.");
+			Assert.AreEqual(vResultUrl, vResult, "Incorrect Result.");
 
-			MockValidator.Verify(x => x.AppName(vName, CreateApp.NameParam), Times.Once());
-			MockValidator.Verify(x => x.UserId(vUserId, CreateApp.UserIdParam), Times.Once());
+			MockValidator.Verify(x => x.UrlAbsoluteUrl(vAbsoluteUrl,
+				CreateUrl.AbsoluteUrlParam), Times.Once());
+			MockValidator.Verify(x => x.UserName(vName, CreateUrl.NameParam), Times.Once());
 
-			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Artifact> artVar;
 
 			MockTasks
-				.Verify(x => x.TxAddDataProvMember(
+				.Verify(x => x.TxAddArtifact<Url, UrlHasArtifact>(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
+						ArtifactTypeId.Url,
 						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutAppVar,
-						vUserId,
-						out memVar
-					),
-					Times.Once()
-				);
-
-			MockTasks
-				.Verify(x => x.TxAddArtifact<App, AppHasArtifact>(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						ArtifactTypeId.App,
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutAppVar,
+						vOutUrlVar,
 						It.IsAny<IWeaverVarAlias<Member>>(),
 						out artVar
 					),
@@ -117,31 +102,33 @@ namespace Fabric.Test.FabApiModify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(2)]
-		public void ErrAppPrevented(long pAppId) {
-			MockApiCtx.SetupGet(x => x.AppId).Returns(pAppId);
-			TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
+		[TestCase("x")]
+		[TestCase("://")]
+		[TestCase("x://")]
+		[TestCase("http://")]
+		[TestCase("http//")]
+		[TestCase("http:/")]
+		[TestCase("http//:www.test.com")]
+		public void ErrInvalidUrl(string pUrl) {
+			vAbsoluteUrl = pUrl;
+			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrDuplicateApp() {
+		public void ErrDuplicateUrl() {
 			MockTasks
-				.Setup(x => x.GetAppByName(MockApiCtx.Object, vName))
-				.Returns(new App());
+				.Setup(x => x.GetUrlByAbsoluteUrl(MockApiCtx.Object, vAbsoluteUrl))
+				.Returns(new Url());
 
 			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrUserNotFound() {
-			MockTasks
-				.Setup(x => x.GetUser(MockApiCtx.Object, vUserId))
-				.Returns((User)null);
-
-			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
+		public void ErrMemberNotFound() {
+			SetUpMember(1, 2, null);
+			TestUtil.CheckThrows<FabMembershipFault>(true, TestGo);
 		}
 
 	}

@@ -23,6 +23,12 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		App GetAppByName(IApiContext pApiCtx, string pName);
 
+		/*--------------------------------------------------------------------------------------------*/
+		Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl);
+
+		/*--------------------------------------------------------------------------------------------*/
+		Member GetValidMemberByContext(IApiContext pApiCtx);
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -46,12 +52,16 @@ namespace Fabric.Api.Modify.Tasks {
 							where TNode : INode where TNodeHasArt : IWeaverRel<TNode, Artifact>, new();
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddApp(IApiContext pApiCtx, TxBuilder pTxb, string pName, IWeaverVarAlias<Root> pRootVar,
-													long pUserId, out IWeaverVarAlias<App> pAppVar);
+		void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName,
+						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxb, IWeaverVarAlias<Root> pRootVar, 
+		void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,IWeaverVarAlias<Root> pRootVar, 
 					IWeaverVarAlias<App> pAppVar, long pUserId, out IWeaverVarAlias<Member> pMemVar);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
+									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar);
 
 	}
 

@@ -13,7 +13,11 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	public class CreateUser : BaseModifyFunc<CreateUserResult> {
-		
+
+		public const string EmailParam = "Email";
+		public const string NameParam = "Name";
+		public const string PasswordParam = "Password";
+
 		private readonly string vEmail;
 		private readonly string vName;
 		private readonly string vPass;
@@ -29,15 +33,16 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.UserName(vName);
-			Tasks.Validator.UserPassword(vPass);
-			Tasks.Validator.EmailAddress(vEmail);
+			EnsureFabricSystem();
+			Tasks.Validator.EmailAddress(vEmail, EmailParam);
+			Tasks.Validator.UserName(vName, NameParam);
+			Tasks.Validator.UserPassword(vPass, PasswordParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override CreateUserResult Execute() {
 			if ( Tasks.GetUserByName(Context, vName) != null ) {
-				throw new FabDuplicateFault("Name", vName);
+				throw new FabDuplicateFault(typeof(User), NameParam, vName);
 			}
 
 			////

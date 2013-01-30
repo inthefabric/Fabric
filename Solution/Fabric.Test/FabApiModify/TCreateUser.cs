@@ -68,6 +68,8 @@ namespace Fabric.Test.FabApiModify {
 			mockData.Setup(x => x.GetResultAt<Email>(1)).Returns(vResultEmail);
 			vResultData = mockData.Object;
 
+			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
+
 			MockApiCtx
 				.Setup(x => x.DbData("CreateUserTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction q) => CreateUserTx(q));
@@ -102,9 +104,9 @@ namespace Fabric.Test.FabApiModify {
 			Assert.AreEqual(vResultUser, vResult.NewUser, "Incorrect Result.NewUser.");
 			Assert.AreEqual(vResultEmail, vResult.NewEmail, "Incorrect Result.NewEmail.");
 
-			MockValidator.Verify(x => x.UserName(vName), Times.Once());
-			MockValidator.Verify(x => x.UserPassword(vPassword), Times.Once());
-			MockValidator.Verify(x => x.EmailAddress(vEmail), Times.Once());
+			MockValidator.Verify(x => x.UserName(vName, CreateUser.NameParam), Times.Once());
+			MockValidator.Verify(x => x.UserPassword(vPassword, CreateUser.PasswordParam),Times.Once());
+			MockValidator.Verify(x => x.EmailAddress(vEmail, CreateUser.EmailParam), Times.Once());
 
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Artifact> artVar;
@@ -134,9 +136,19 @@ namespace Fabric.Test.FabApiModify {
 				);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(2)]
+		public void ErrAppPrevented(long pAppId) {
+			MockApiCtx.SetupGet(x => x.AppId).Returns(pAppId);
+			TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void DuplicateUser() {
+		public void ErrDuplicateUser() {
 			MockTasks
 				.Setup(x => x.GetUserByName(MockApiCtx.Object, vName))
 				.Returns(new User());

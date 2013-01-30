@@ -48,7 +48,6 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\IApiContext.cs" />
-    <Compile Include="Api\Faults\FabAlreadyVerifiedFault.cs" />
     <Compile Include="Api\Faults\FabArgumentFault.cs" />
     <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
     <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="Api\Faults\FabMembershipFault.cs" />
     <Compile Include="Api\Faults\FabNotFoundFault.cs" />
     <Compile Include="Api\Faults\FabPreventedFault.cs" />
-    <Compile Include="Api\Faults\FabPrivacyFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
     <Compile Include="Db\IDbResult.cs" />

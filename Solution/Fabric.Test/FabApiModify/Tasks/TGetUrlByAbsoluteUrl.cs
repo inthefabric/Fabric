@@ -8,37 +8,37 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetAppByName : TModifyTasks {
+	public class TGetUrlByAbsoluteUrl : TModifyTasks {
 
 		private readonly static string Query =
 			"g.V('RootId',0)[0]"+
-				".outE('"+typeof(RootContainsApp).Name+"').inV"+
-				".filter{it.getProperty('Name').toLowerCase()==NAME};";
+				".outE('"+typeof(RootContainsUrl).Name+"').inV"+
+				".filter{it.getProperty('AbsoluteUrl').toLowerCase()==URL};";
 
-		private string vName;
-		private App vAppResult;
+		private string vAbsoluteUrl;
+		private Url vUrlResult;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vName = "TestApp";
-			vAppResult = new App();
+			vAbsoluteUrl = "http://www.duplicate.com";
+			vUrlResult = new Url();
 
 			MockApiCtx
-				.Setup(x => x.DbSingle<App>("GetAppByName", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetApp(q));
+				.Setup(x => x.DbSingle<Url>("GetUrlByAbsoluteUrl", It.IsAny<IWeaverQuery>()))
+				.Returns((string s, IWeaverQuery q) => GetUrl(q));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private App GetApp(IWeaverQuery pQuery) {
+		private Url GetUrl(IWeaverQuery pQuery) {
 			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetAppByName");
+			UsageMap.Increment("GetUrlByAbsoluteUrl");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "NAME", vName.ToLower());
+			TestUtil.CheckParam(pQuery.Params, "URL", vAbsoluteUrl.ToLower());
 
-			return vAppResult;
+			return vUrlResult;
 		}
 
 
@@ -46,10 +46,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
-			App result = Tasks.GetAppByName(MockApiCtx.Object, vName);
+			Url result = Tasks.GetUrlByAbsoluteUrl(MockApiCtx.Object, vAbsoluteUrl);
 
-			UsageMap.AssertUses("GetAppByName", 1);
-			Assert.AreEqual(vAppResult, result, "Incorrect Result.");
+			UsageMap.AssertUses("GetUrlByAbsoluteUrl", 1);
+			Assert.AreEqual(vUrlResult, result, "Incorrect Result.");
 		}
 
 	}

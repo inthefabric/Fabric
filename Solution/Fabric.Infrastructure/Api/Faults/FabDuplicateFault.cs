@@ -1,4 +1,6 @@
-﻿namespace Fabric.Infrastructure.Api.Faults {
+﻿using System;
+
+namespace Fabric.Infrastructure.Api.Faults {
 
 	/*================================================================================================*/
 	public class FabDuplicateFault : FabFault {
@@ -6,13 +8,8 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabDuplicateFault(string pItemDotProp, string pValue)
-								: base("The "+pItemDotProp+" value '"+pValue+"' already exists; "+
-														"duplicate values are not permitted.") {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDuplicateFault(string pKeyComboItem)
-							: base("There is already a "+pKeyComboItem+" with this key combination; "+
+		public FabDuplicateFault(Type pType, string pProp, string pValue) :
+								base("The "+pType.Name+"."+pProp+" value '"+pValue+"' already exists; "+
 														"duplicate values are not permitted.") {}
 
 	}

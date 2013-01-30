@@ -6,9 +6,9 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabMembershipFault(uint pAppKeyId) 
-										: base("The authenticated User does not have a membership "+
-												"with the App specified by AppKey.Id="+pAppKeyId) {}
+		public FabMembershipFault(long pAppId, long pUserId) : base("There is no Member which "+
+													"associates the active App (AppId="+pAppId+
+													") with the active User (UserId="+pUserId+").") {}
 
 	}
 
