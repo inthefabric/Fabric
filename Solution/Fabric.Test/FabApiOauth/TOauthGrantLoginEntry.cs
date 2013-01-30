@@ -26,7 +26,7 @@ namespace Fabric.Test.FabApiOauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public virtual void SetUp() {
+		public void SetUp() {
 			vResponseType = "code";
 			vSwitchMode = "0";
 			
@@ -48,7 +48,7 @@ namespace Fabric.Test.FabApiOauth {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin TestGo() {
+		private FabOauthLogin TestGo() {
 			var func = new OauthGrantLoginEntry(vResponseType, vSwitchMode,
 				vMockCore.Object, vMockTasks.Object);
 			return func.Go(vMockCtx.Object);

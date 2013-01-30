@@ -1,7 +1,6 @@
 ﻿using System;
 using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Weaver;
@@ -73,23 +72,22 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 
 			IApiDataAccess data = Context.DbData(Query.GetAndUpdateTx+"", tx);
+			int count = data.GetResultCount();
 
-			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
+			if ( count <= 0 ) {
 				return null;
 			}
 
-			if ( data.ResultDtoList.Count != 3 ) {
-				throw new Exception("Incorrect ResultDtoList.Count.");
+			if ( count != 3 ) {
+				throw new Exception("Incorrect result count: "+count);
 			}
 			
-			OauthGrant og = data.ResultDtoList[0].ToNode<OauthGrant>();
-			App app = data.ResultDtoList[1].ToNode<App>();
-			User user = data.ResultDtoList[2].ToNode<User>();
+			OauthGrant og = data.GetResultAt<OauthGrant>(0);
 			
 			var gr = new GrantResult();
 			gr.GrantId = og.OauthGrantId;
-			gr.AppId = app.AppId;
-			gr.UserId = user.UserId;
+			gr.AppId = data.GetResultAt<App>(1).AppId;
+			gr.UserId = data.GetResultAt<User>(2).UserId;
 			gr.Code = vCode;
 			gr.RedirectUri = og.RedirectUri;
 			return gr;

@@ -25,11 +25,11 @@ namespace Fabric.Test.FabApiOauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public virtual void SetUp() {
+		public void SetUp() {
 			vUsername = "zachkinstner";
 			vPassword = "testpass";
 			
-			vCoreAppResult = new App() { AppId = 1234, Name = "TestApp" };
+			vCoreAppResult = new App { AppId = 1234, Name = "TestApp" };
 			
 			vMockCtx = new Mock<IApiContext>();
 			
@@ -40,7 +40,7 @@ namespace Fabric.Test.FabApiOauth {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin TestGo() {
+		private FabOauthLogin TestGo() {
 			var func = new OauthGrantLoginAction(
 				vUsername, vPassword, vMockCore.Object, vMockTasks.Object);
 			return func.Go(vMockCtx.Object);

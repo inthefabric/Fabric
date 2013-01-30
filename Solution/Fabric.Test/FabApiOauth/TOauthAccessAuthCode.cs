@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiOauth {
 
 		private string vCode;
 
-		protected GrantResult vGrantResult;
+		private GrantResult vGrantResult;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

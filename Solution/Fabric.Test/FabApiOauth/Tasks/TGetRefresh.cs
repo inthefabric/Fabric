@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using Fabric.Api.Oauth.Results;
+﻿using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -33,8 +30,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V0;";
 
 		private string vRefToken;
-		private App vUsesApp;
-		private User vUsesUser;
+		private App vResultApp;
+		private User vResultUser;
 		private Mock<IApiContext> vMockCtx;
 		private Mock<IApiDataAccess> vMockGetAccessTxResult;
 		private UsageMap vUsageMap;
@@ -47,24 +44,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vRefToken = "abcdefghijklmnopqrstuvwxyz789012";
 			vUsageMap = new UsageMap();
 			
-			vUsesApp = new App();
-			vUsesApp.AppId = 456;
+			vResultApp = new App();
+			vResultApp.AppId = 456;
 			
-			vUsesUser = new User();
-			vUsesUser.UserId = 9878;
-			
-			var mockAppDbDto = new Mock<IDbDto>();
-			mockAppDbDto.Setup(x => x.ToNode<App>()).Returns(vUsesApp);
-			
-			var mockUserDbDto = new Mock<IDbDto>();
-			mockUserDbDto.Setup(x => x.ToNode<User>()).Returns(vUsesUser);
-			
-			var list = new List<IDbDto>();
-			list.Add(mockAppDbDto.Object);
-			list.Add(mockUserDbDto.Object);
-			
+			vResultUser = new User();
+			vResultUser.UserId = 9878;
+
 			vMockGetAccessTxResult = new Mock<IApiDataAccess>();
-			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
+			vMockGetAccessTxResult.Setup(x => x.GetResultAt<App>(0)).Returns(vResultApp);
+			vMockGetAccessTxResult.Setup(x => x.GetResultAt<User>(1)).Returns(vResultUser);
+			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(2);
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx
@@ -106,17 +95,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			vUsageMap.AssertUses(GetRefresh.Query.GetAppUserTx+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vUsesApp.AppId, result.AppId, "Incorrect Result.AppId.");
-			Assert.AreEqual(vUsesUser.UserId, result.UserId, "Incorrect Result.UserId.");
+			Assert.AreEqual(vResultApp.AppId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(null)]
+		[TestCase(-1)]
 		[TestCase(0)]
-		public void NotFound(int? pLen) {
-			IList<IDbDto> list = null;
-			if ( pLen == 0 ) { list = new List<IDbDto>(); }
-			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
+		public void NotFound(int pCount) {
+			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(pCount);
 
 			RefreshResult result = TestGo();
 

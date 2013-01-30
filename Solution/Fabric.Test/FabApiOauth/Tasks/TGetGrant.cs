@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -34,9 +32,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".each{it.setProperty('Code',_TP1)};"+
 			"_V0;";
 
-		private OauthGrant vOauthGrant;
-		private App vUsesApp;
-		private User vUsesUser;
+		private OauthGrant vResultGrant;
+		private App vResultApp;
+		private User vResultUser;
 		private DateTime vUtcNow;
 		private Mock<IApiContext> vMockCtx;
 		private Mock<IApiDataAccess> vMockGetAndUpdateTxResult;
@@ -50,34 +48,23 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUtcNow = DateTime.UtcNow;
 			vUsageMap = new UsageMap();
 			
-			vOauthGrant = new OauthGrant();
-			vOauthGrant.Id = 99;
-			vOauthGrant.OauthGrantId = 123;
-			vOauthGrant.Code = "abcdefghijklmnopqrstuvwxyz789012";
-			vOauthGrant.RedirectUri = "test.com/redir";
+			vResultGrant = new OauthGrant();
+			vResultGrant.Id = 99;
+			vResultGrant.OauthGrantId = 123;
+			vResultGrant.Code = "abcdefghijklmnopqrstuvwxyz789012";
+			vResultGrant.RedirectUri = "test.com/redir";
 			
-			vUsesApp = new App();
-			vUsesApp.AppId = 456;
+			vResultApp = new App();
+			vResultApp.AppId = 456;
 			
-			vUsesUser = new User();
-			vUsesUser.UserId = 9878;
-			
-			var mockGrantDbDto = new Mock<IDbDto>();
-			mockGrantDbDto.Setup(x => x.ToNode<OauthGrant>()).Returns(vOauthGrant);
-			
-			var mockAppDbDto = new Mock<IDbDto>();
-			mockAppDbDto.Setup(x => x.ToNode<App>()).Returns(vUsesApp);
-			
-			var mockUserDbDto = new Mock<IDbDto>();
-			mockUserDbDto.Setup(x => x.ToNode<User>()).Returns(vUsesUser);
-			
-			var list = new List<IDbDto>();
-			list.Add(mockGrantDbDto.Object);
-			list.Add(mockAppDbDto.Object);
-			list.Add(mockUserDbDto.Object);
-			
+			vResultUser = new User();
+			vResultUser.UserId = 9878;
+
 			vMockGetAndUpdateTxResult = new Mock<IApiDataAccess>();
-			vMockGetAndUpdateTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
+			vMockGetAndUpdateTxResult.Setup(x => x.GetResultAt<OauthGrant>(0)).Returns(vResultGrant);
+			vMockGetAndUpdateTxResult.Setup(x => x.GetResultAt<App>(1)).Returns(vResultApp);
+			vMockGetAndUpdateTxResult.Setup(x => x.GetResultAt<User>(2)).Returns(vResultUser);
+			vMockGetAndUpdateTxResult.Setup(x => x.GetResultCount()).Returns(3);
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
@@ -91,10 +78,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private GrantResult TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().GetGrant(vOauthGrant.Code, vMockCtx.Object);
+				return new OauthTasks().GetGrant(vResultGrant.Code, vMockCtx.Object);
 			}
 
-			var task = new GetGrant(vOauthGrant.Code);
+			var task = new GetGrant(vResultGrant.Code);
 			return task.Go(vMockCtx.Object);
 		}
 		
@@ -106,7 +93,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vOauthGrant.Code);
+			TestUtil.CheckParam(pTx.Params, "_TP0", vResultGrant.Code);
 			TestUtil.CheckParam(pTx.Params, "_TP1", "");
 
 			return vMockGetAndUpdateTxResult.Object;
@@ -122,21 +109,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			vUsageMap.AssertUses(GetGrant.Query.GetAndUpdateTx+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vOauthGrant.OauthGrantId, result.GrantId, "Incorrect Result.GrantId.");
-			Assert.AreEqual(vOauthGrant.Code, result.Code, "Incorrect Result.AccessToken.");
-			Assert.AreEqual(vOauthGrant.RedirectUri, result.RedirectUri,
+			Assert.AreEqual(vResultGrant.OauthGrantId, result.GrantId, "Incorrect Result.GrantId.");
+			Assert.AreEqual(vResultGrant.Code, result.Code, "Incorrect Result.AccessToken.");
+			Assert.AreEqual(vResultGrant.RedirectUri, result.RedirectUri,
 				"Incorrect Result.RedirectUri.");
-			Assert.AreEqual(vUsesApp.AppId, result.AppId, "Incorrect Result.AppId.");
-			Assert.AreEqual(vUsesUser.UserId, result.UserId, "Incorrect Result.UserId.");
+			Assert.AreEqual(vResultApp.AppId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(null)]
+		[TestCase(-1)]
 		[TestCase(0)]
-		public void NotFound(int? pLen) {
-			IList<IDbDto> list = null;
-			if ( pLen == 0 ) { list = new List<IDbDto>(); }
-			vMockGetAndUpdateTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
+		public void NotFound(int pCount) {
+			vMockGetAndUpdateTxResult.Setup(x => x.GetResultCount()).Returns(pCount);
 
 			GrantResult result = TestGo();
 
@@ -149,7 +134,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrNullCode() {
-			vOauthGrant.Code = null;
+			vResultGrant.Code = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}

@@ -12,7 +12,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateUser : BaseModifyFunc<CreateUserResult> { //TEST: CreateUser
+	public class CreateUser : BaseModifyFunc<CreateUserResult> {
 		
 		private readonly string vEmail;
 		private readonly string vName;

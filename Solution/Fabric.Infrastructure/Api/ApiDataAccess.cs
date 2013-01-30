@@ -99,6 +99,11 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public int GetResultCount() {
+			return (ResultDtoList == null ? -1 : ResultDtoList.Count);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public T GetResultAt<T>(int pIndex) where T : INodeWithId, new() {
 			return ResultDtoList[pIndex].ToNode<T>();
 		}

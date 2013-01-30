@@ -10,7 +10,7 @@ namespace Fabric.Test.FabApiOauth {
 	public class TOauthAccessClientCred : TOauthAccess {
 
 		protected string vClientId;
-		protected long vClientIdLong;
+		private long vClientIdLong;
 
 		private DomainResult vDomainResult;
 

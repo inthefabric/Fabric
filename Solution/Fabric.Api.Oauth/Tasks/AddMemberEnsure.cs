@@ -95,21 +95,22 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 			
 			IApiDataAccess data = Context.DbData(Query.GetMemberTx+"", tx);
+			int count = data.GetResultCount();
 
-			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
+			if ( count <= 0 ) {
 				pMem = null;
 				pMta = null;
 				pType = null;
 				return false;
 			}
 
-			if ( data.ResultDtoList.Count != 3 ) {
-				throw new Exception("Incorrect GetMemberData() ResultDtoList.Count.");
+			if ( count != 3 ) {
+				throw new Exception("Incorrect result count: "+count);
 			}
 
-			pMem = data.ResultDtoList[0].ToNode<Member>();
-			pMta = data.ResultDtoList[1].ToNode<MemberTypeAssign>();
-			pType = data.ResultDtoList[2].ToNode<MemberType>();
+			pMem = data.GetResultAt<Member>(0);
+			pMta = data.GetResultAt<MemberTypeAssign>(1);
+			pType = data.GetResultAt<MemberType>(2);
 			return true;
 		}
 		

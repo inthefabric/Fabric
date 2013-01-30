@@ -62,20 +62,21 @@ namespace Fabric.Api.Oauth.Tasks {
 			tx.FinishWithoutStartStop(listVar);
 
 			////
-			
-			IApiDataAccess data = Context.DbData(Query.GetAppUserTx+"", tx);
 
-			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
+			IApiDataAccess data = Context.DbData(Query.GetAppUserTx+"", tx);
+			int count = data.GetResultCount();
+
+			if ( count <= 0 ) {
 				return null;
 			}
 
-			if ( data.ResultDtoList.Count != 2 ) {
-				throw new Exception("Incorrect ResultDtoList.Count.");
+			if ( count != 2 ) {
+				throw new Exception("Incorrect result count: "+count);
 			}
 
 			var rr = new RefreshResult();
-			rr.AppId = data.ResultDtoList[0].ToNode<App>().AppId;
-			rr.UserId = data.ResultDtoList[1].ToNode<User>().UserId;
+			rr.AppId = data.GetResultAt<App>(0).AppId;
+			rr.UserId = data.GetResultAt<User>(1).UserId;
 			return rr;
 		}
 

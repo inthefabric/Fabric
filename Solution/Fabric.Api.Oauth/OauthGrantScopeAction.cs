@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Api;
 namespace Fabric.Api.Oauth {
 	
 	/*================================================================================================*/
-	public class OauthGrantScopeAction : ApiFunc<LoginScopeResult> { //TEST: OauthGrantScopeAction
+	public class OauthGrantScopeAction : ApiFunc<LoginScopeResult> {
 
 		private readonly bool vAllowScope;
 		private readonly IOauthGrantCore vCore;

@@ -10,7 +10,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 	[TestFixture]
 	public class XTxAddUser : XModifyTasks {
 
-		//NOTE: check for duplicate username occurs above the 'Task' level
+		//Check for duplicate username occurs above the 'Task' level
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -66,19 +66,17 @@ namespace Fabric.Api.Oauth.Tasks {
 			tx.FinishWithoutStartStop(agg);
 
 			IApiDataAccess data = Context.DbData(Query.GetAccessTx+"", tx);
+			int count = data.GetResultCount();
 
-			if ( data.ResultDtoList == null || data.ResultDtoList.Count == 0 ) {
+			if ( count <= 0 ) {
 				return null;
 			}
 
-			int numResults = data.ResultDtoList.Count;
-
-			if ( numResults != 2 && numResults != 3 ) {
-				throw new Exception("Incorrect ResultDtoList.Count.");
+			if ( count != 2 && count != 3 ) {
+				throw new Exception("Incorrect result count: "+count);
 			}
 
-			OauthAccess oa = data.ResultDtoList[0].ToNode<OauthAccess>();
-			App app = data.ResultDtoList[1].ToNode<App>();
+			OauthAccess oa = data.GetResultAt<OauthAccess>(0);
 
 			var foa = new FabOauthAccess();
 			foa.OauthAccessId = oa.OauthAccessId;
@@ -86,11 +84,10 @@ namespace Fabric.Api.Oauth.Tasks {
 			foa.RefreshToken = oa.Refresh;
 			foa.TokenType = "bearer";
 			foa.ExpiresIn = 3600;
-			foa.AppId = app.AppId;
+			foa.AppId = data.GetResultAt<App>(1).AppId;
 
-			if ( numResults == 3 ) {
-				User user = data.ResultDtoList[2].ToNode<User>();
-				foa.UserId = user.UserId;
+			if ( count == 3 ) {
+				foa.UserId = data.GetResultAt<User>(2).UserId;
 			}
 
 			return foa;

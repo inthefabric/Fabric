@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -106,27 +104,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vNewMtaId = 82395829385;
 			vNewMemId = 52923582934;
 			vUsageMap = new UsageMap();
-			
+
 			vMemberResult = new Member { MemberId = 1253 };
-			vMemTypeResult = new MemberType { MemberTypeId = (long)MemberTypeId.Invite };
 			vMtaResult = new MemberTypeAssign { MemberTypeAssignId = 9253 };
-			
-			var mockMemberDbDto = new Mock<IDbDto>();
-			mockMemberDbDto.Setup(x => x.ToNode<Member>()).Returns(vMemberResult);
-			
-			var mockMtaDbDto = new Mock<IDbDto>();
-			mockMtaDbDto.Setup(x => x.ToNode<MemberTypeAssign>()).Returns(vMtaResult);
-			
-			var mockMemTypeDbDto = new Mock<IDbDto>();
-			mockMemTypeDbDto.Setup(x => x.ToNode<MemberType>()).Returns(vMemTypeResult);
-			
-			var list = new List<IDbDto>();
-			list.Add(mockMemberDbDto.Object);
-			list.Add(mockMtaDbDto.Object);
-			list.Add(mockMemTypeDbDto.Object);
+			vMemTypeResult = new MemberType { MemberTypeId = (long)MemberTypeId.Invite };
 			
 			vMockGetMemberTxResult = new Mock<IApiDataAccess>();
-			vMockGetMemberTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
+			vMockGetMemberTxResult.Setup(x => x.GetResultAt<Member>(0)).Returns(vMemberResult);
+			vMockGetMemberTxResult.Setup(x => x.GetResultAt<MemberTypeAssign>(1)).Returns(vMtaResult);
+			vMockGetMemberTxResult.Setup(x => x.GetResultAt<MemberType>(2)).Returns(vMemTypeResult);
+			vMockGetMemberTxResult.Setup(x => x.GetResultCount()).Returns(3);
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
@@ -254,10 +241,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true)]
-		[TestCase(false)]
-		public void AddMember(bool pViaTask) {
-			vMockGetMemberTxResult.SetupGet(x => x.ResultDtoList).Returns((IList<IDbDto>)null);
+		[TestCase(true, -1)]
+		[TestCase(true, 0)]
+		[TestCase(false, -1)]
+		[TestCase(false, 0)]
+		public void AddMember(bool pViaTask, int pCount) {
+			vMockGetMemberTxResult.Setup(x => x.GetResultCount()).Returns(pCount);
 			
 			bool result = TestGo(pViaTask);
 			

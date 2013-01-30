@@ -22,6 +22,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void Execute();
+		int GetResultCount();
 		T GetResultAt<T>(int pIndex) where T : INodeWithId, new();
 
 	}

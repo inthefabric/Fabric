@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -41,8 +39,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private OauthAccess vResultAccess;
 		private App vResultApp;
 		private User vResultUser;
-		private List<IDbDto> vResultList2;
-		private List<IDbDto> vResultList3;
 		private UsageMap vUsageMap;
 		
 		
@@ -64,28 +60,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vResultUser = new User();
 			vResultUser.UserId = 9878;
 
-			//TODO: build utility for creating DataAccess results
-
-			var mockGrantDbDto = new Mock<IDbDto>();
-			mockGrantDbDto.Setup(x => x.ToNode<OauthAccess>()).Returns(vResultAccess);
-
-			var mockAppDbDto = new Mock<IDbDto>();
-			mockAppDbDto.Setup(x => x.ToNode<App>()).Returns(vResultApp);
-
-			var mockUserDbDto = new Mock<IDbDto>();
-			mockUserDbDto.Setup(x => x.ToNode<User>()).Returns(vResultUser);
-
-			vResultList2 = new List<IDbDto>();
-			vResultList2.Add(mockGrantDbDto.Object);
-			vResultList2.Add(mockAppDbDto.Object);
-
-			vResultList3 = new List<IDbDto>();
-			vResultList3.Add(mockGrantDbDto.Object);
-			vResultList3.Add(mockAppDbDto.Object);
-			vResultList3.Add(mockUserDbDto.Object);
-
 			vMockGetAccessTxResult = new Mock<IApiDataAccess>();
-			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(vResultList3);
+			vMockGetAccessTxResult.Setup(x => x.GetResultAt<OauthAccess>(0)).Returns(vResultAccess);
+			vMockGetAccessTxResult.Setup(x => x.GetResultAt<App>(1)).Returns(vResultApp);
+			vMockGetAccessTxResult.Setup(x => x.GetResultAt<User>(2)).Returns(vResultUser);
+			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(3);
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
@@ -135,7 +114,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void SuccessNoUser(bool pViaTask) {
-			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(vResultList2);
+			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(2);
 
 			FabOauthAccess result = TestGo(pViaTask);
 
@@ -144,12 +123,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(null)]
+		[TestCase(-1)]
 		[TestCase(0)]
-		public void NotFound(int? pLen) {
-			IList<IDbDto> list = null;
-			if ( pLen == 0 ) { list = new List<IDbDto>(); }
-			vMockGetAccessTxResult.SetupGet(x => x.ResultDtoList).Returns(list);
+		public void NotFound(int pCount) {
+			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(pCount);
 
 			FabOauthAccess result = TestGo();
 

@@ -23,7 +23,7 @@ namespace Fabric.Test.FabApiOauth {
 		protected Mock<IApiContext> vMockCtx;
 		protected Mock<IOauthTasks> vMockTasks;
 		protected FabOauthAccess vAccessResult;
-		protected App vGetAppAuthResult;
+		private App vGetAppAuthResult;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

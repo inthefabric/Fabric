@@ -10,7 +10,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 	[TestFixture]
 	public class XTxAddApp : XModifyTasks {
 
-		//NOTE: check for duplicate app name occurs above the 'Task' level
+		//Check for duplicate app name occurs above the 'Task' level
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

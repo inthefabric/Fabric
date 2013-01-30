@@ -24,7 +24,7 @@ namespace Fabric.Test.FabApiOauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public virtual void SetUp() {
+		public void SetUp() {
 			vAllowScope = true;
 			
 			vCoreScopeResult = new LoginScopeResult() { Code = "FakeCode123", Redirect = "Redir" };
@@ -45,7 +45,7 @@ namespace Fabric.Test.FabApiOauth {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public LoginScopeResult TestGo() {
+		private LoginScopeResult TestGo() {
 			var func = new OauthGrantScopeAction(vAllowScope, vMockCore.Object, vMockTasks.Object);
 			return func.Go(vMockCtx.Object);
 		}

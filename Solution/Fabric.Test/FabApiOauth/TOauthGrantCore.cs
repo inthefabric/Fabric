@@ -1,12 +1,12 @@
-﻿using Moq;
-using NUnit.Framework;
-using Fabric.Api.Oauth;
+﻿using Fabric.Api.Oauth;
+using Fabric.Api.Oauth.Results;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Test.Util;
+using Moq;
+using NUnit.Framework;
 using Weaver.Interfaces;
-using Fabric.Api.Oauth.Tasks;
-using Fabric.Api.Oauth.Results;
 
 namespace Fabric.Test.FabApiOauth {
 
@@ -38,7 +38,7 @@ namespace Fabric.Test.FabApiOauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public virtual void SetUp() {
+		public void SetUp() {
 			vClientIdLong = 12345;
 			vClientId = vClientIdLong+"";
 			vRedirUri = "http://www.test.com/oauth";
@@ -70,7 +70,7 @@ namespace Fabric.Test.FabApiOauth {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected OauthGrantCore NewCore() {
+		private OauthGrantCore NewCore() {
 			return new OauthGrantCore(vClientId, vRedirUri, vLoggedUserId);
 		}
 		
@@ -238,7 +238,7 @@ namespace Fabric.Test.FabApiOauth {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CheckOauthEx(TestDelegate pFunc, GrantErrors pErr, GrantErrorDescs pDesc) {
+		private static void CheckOauthEx(TestDelegate pFunc, GrantErrors pErr, GrantErrorDescs pDesc) {
 			OauthException oe = TestUtil.CheckThrows<OauthException>(true, pFunc);
 			
 			Assert.NotNull(oe.OauthError, "OauthError should filled.");
