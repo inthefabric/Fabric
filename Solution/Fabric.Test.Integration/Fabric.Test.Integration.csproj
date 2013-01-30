@@ -10,13 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.Test.Integration</RootNamespace>
     <AssemblyName>Fabric.Test.Integration</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -24,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -40,7 +39,9 @@
     <Compile Include="FabApiModify\XTxAddApp.cs" />
     <Compile Include="FabApiModify\XTxAddArtifact.cs" />
     <Compile Include="FabApiModify\XTxAddMember.cs" />
-    <Compile Include="FabApiModify\XTxAddUser.cs" />
+    <Compile Include="FabApiModify\XTxAddUser.cs">
+      <DependentUpon>XTxAddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FabApiModify\XTxAddEmail.cs" />
     <Compile Include="FabApiModify\XModifyTasks.cs" />
     <Compile Include="FabApiModify\XGetAppByName.cs" />
@@ -63,6 +64,9 @@
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FabApiModify\XBaseModifyFunc.cs" />
+    <Compile Include="FabApiModify\XCreateUser.cs" />
+    <Compile Include="FabApiModify\XCreateApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsQuery">

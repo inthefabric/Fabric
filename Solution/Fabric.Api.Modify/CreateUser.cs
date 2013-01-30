@@ -59,7 +59,10 @@ namespace Fabric.Api.Modify {
 
 			var list = new List<IWeaverVarAlias> { userVar, emailVar };
 			IWeaverVarAlias listVar;
-			WeaverTasks.InitListVar(txb.Transaction, list, out listVar);
+			
+			txb.Transaction.AddQuery(
+				WeaverTasks.InitListVar(txb.Transaction, list, out listVar)
+			);
 
 			////
 
