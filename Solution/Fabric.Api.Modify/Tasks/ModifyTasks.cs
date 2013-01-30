@@ -105,6 +105,33 @@ namespace Fabric.Api.Modify.Tasks {
 			return pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetClassByNameDisamb()
+		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
+			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
+
+			Class path = 
+				BeginPathFromRoot()
+				.ContainsClassList.ToClass
+					.CustomStep(filterStep);
+
+			if ( pDisamb != null ) {
+				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
+				filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==DISAMB}";
+				path.CustomStep(filterStep);
+			}
+
+			IWeaverQuery q = path.End();
+			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
+
+			if ( pDisamb != null ) {
+				q.AddParam("DISAMB", new WeaverQueryVal(pDisamb.ToLower(), false));
+			}
+
+			return pApiCtx.DbSingle<Class>("GetClassByNameDisamb", q);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -237,6 +264,21 @@ namespace Fabric.Api.Modify.Tasks {
 			var urlBuild = new UrlBuilder(pTxBuild, url);
 			urlBuild.AddNode(pRootVar);
 			pUrlVar = urlBuild.NodeVar;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddClass()
+		public void TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
+				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar) {
+			var c = new Class();
+			c.ClassId = pApiCtx.GetSharpflakeId<Class>();
+			c.Name = pName;
+			c.Disamb = pDisamb;
+			c.Note = pNote;
+
+			var classBuild = new ClassBuilder(pTxBuild, c);
+			classBuild.AddNode(pRootVar);
+			pClassVar = classBuild.NodeVar;
 		}
 
 	}

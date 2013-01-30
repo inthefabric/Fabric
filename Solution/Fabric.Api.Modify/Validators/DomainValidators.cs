@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/30/2013 2:52:16 PM
+// Generated on 1/30/2013 4:50:17 PM
 
 using System;
 
@@ -320,7 +320,6 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassDisamb(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
 			LengthLessThanOrEqual(pParamName, pValue, 128);
 		}
 
@@ -507,7 +506,6 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceName(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
 			LengthLessThanOrEqual(pParamName, pValue, 128);
 		}
 
@@ -518,7 +516,6 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceDisamb(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
 			LengthLessThanOrEqual(pParamName, pValue, 128);
 		}
 

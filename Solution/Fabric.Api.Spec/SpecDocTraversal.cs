@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 3:16:10 PM
+// Generated on 1/30/2013 4:50:16 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -766,6 +766,7 @@ namespace Fabric.Api.Spec {
 				p.Name = "Disamb";
 				p.Type = "string";
 				p.Description = GetDtoPropText("Class_Disamb");
+				p.IsNullable = true;
 				p.LenMax = 128;
 				dto.PropertyList.Add(p);
 
@@ -813,6 +814,7 @@ namespace Fabric.Api.Spec {
 				p.Name = "Name";
 				p.Type = "string";
 				p.Description = GetDtoPropText("Instance_Name");
+				p.IsNullable = true;
 				p.LenMax = 128;
 				dto.PropertyList.Add(p);
 
@@ -820,6 +822,7 @@ namespace Fabric.Api.Spec {
 				p.Name = "Disamb";
 				p.Type = "string";
 				p.Description = GetDtoPropText("Instance_Disamb");
+				p.IsNullable = true;
 				p.LenMax = 128;
 				dto.PropertyList.Add(p);
 
@@ -1122,6 +1125,7 @@ namespace Fabric.Api.Spec {
 				p.IsCaseInsensitive = true;
 				p.IsUnique = true;
 				p.LenMax = 16;
+				p.LenMin = 4;
 				p.ValidRegex = @"^[a-zA-Z0-9_]*$";
 				dto.PropertyList.Add(p);
 

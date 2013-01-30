@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 2:43:14 PM
+// Generated on 1/30/2013 4:50:14 PM
 
 using System;
 using System.Linq.Expressions;
@@ -1534,6 +1534,7 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
 		public virtual string Disamb { get; set; }
 
@@ -1812,10 +1813,12 @@ namespace Fabric.Domain {
 		public virtual long InstanceId { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
 		public virtual string Disamb { get; set; }
 
@@ -2083,13 +2086,15 @@ namespace Fabric.Domain {
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(16)]
+		//[PropLenMin(4)]
 		//[PropValidRegex(@"^[a-zA-Z0-9_]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsInternal(True)]
 		//[PropIsPassword(True)]
-		//[PropLen(32)]
+		//[PropLenMax(32)]
+		//[PropLenMin(8)]
 		public virtual string Password { get; set; }
 
 

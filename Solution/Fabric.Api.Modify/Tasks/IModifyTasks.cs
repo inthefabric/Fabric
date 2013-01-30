@@ -29,6 +29,9 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		Member GetValidMemberByContext(IApiContext pApiCtx);
 
+		/*--------------------------------------------------------------------------------------------*/
+		Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb);
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -62,6 +65,10 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
 									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
+					string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar);
 
 	}
 
