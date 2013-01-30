@@ -69,10 +69,9 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetUrlByAbsoluteUrl() integration
 		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
 			string propName = WeaverUtil.GetPropertyName<Url>(x => x.AbsoluteUrl);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==URL}";
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==AU}";
 
 			IWeaverQuery q = 
 				BeginPathFromRoot()
@@ -80,12 +79,11 @@ namespace Fabric.Api.Modify.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddParam("URL", new WeaverQueryVal(pAbsoluteUrl.ToLower(), false));
+			q.AddParam("AU", new WeaverQueryVal(pAbsoluteUrl.ToLower(), false));
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetValidMemberByContext() integration
 		public Member GetValidMemberByContext(IApiContext pApiCtx) {
 			IWeaverFuncAs<Member> memAlias;
 
@@ -229,7 +227,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddUrl() integration
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
 									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();

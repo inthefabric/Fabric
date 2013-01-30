@@ -35,6 +35,10 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddUrl.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetValidMemberByContext.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetUrlByAbsoluteUrl.cs" />
+    <Compile Include="FabApiModify\XCreateUrl.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddDataProvMember.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddApp.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddArtifact.cs" />

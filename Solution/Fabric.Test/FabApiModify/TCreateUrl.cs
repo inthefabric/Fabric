@@ -28,7 +28,7 @@ namespace Fabric.Test.FabApiModify {
 			vAbsoluteUrl = "http://www.mywebsite.com";
 			vName = "My Web Site";
 
-			vOutUrlVar = GetTxVar<Url>("URL");
+			vOutUrlVar = GetTxVar<Url>("AU");
 			vResultUrl = new Url();
 
 			MockTasks
@@ -58,7 +58,7 @@ namespace Fabric.Test.FabApiModify {
 			string expectPartial = 
 				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
 				"g.V('MemberId',"+ApiCtxMember.MemberId+"L)[0].each{_V1=g.v(it)};"+
-				"URL;";
+				"AU;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
 			return vResultUrl;
@@ -81,7 +81,7 @@ namespace Fabric.Test.FabApiModify {
 
 			MockValidator.Verify(x => x.UrlAbsoluteUrl(vAbsoluteUrl,
 				CreateUrl.AbsoluteUrlParam), Times.Once());
-			MockValidator.Verify(x => x.UserName(vName, CreateUrl.NameParam), Times.Once());
+			MockValidator.Verify(x => x.UrlName(vName, CreateUrl.NameParam), Times.Once());
 
 			IWeaverVarAlias<Artifact> artVar;
 

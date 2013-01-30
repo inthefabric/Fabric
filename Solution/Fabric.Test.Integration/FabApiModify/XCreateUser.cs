@@ -29,6 +29,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vEmail = "new@user.com";
 			vName = "NewUser";
 			vPassword = "NewPassword";
+
+			Context.SetAppUserId((long)AppFab, (long)UserFab);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

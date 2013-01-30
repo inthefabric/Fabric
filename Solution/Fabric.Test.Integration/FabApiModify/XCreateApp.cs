@@ -29,6 +29,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vName = "New Test App";
 			vUserId = (long)UserZach;
 			vExpectEmailId = SetupUsers.EmailId.Zach_AEI;
+
+			Context.SetAppUserId((long)AppFab, (long)UserFab);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

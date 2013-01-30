@@ -8,7 +8,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateUrl : BaseModifyFunc<Url> { //TEST: CreateUrl
+	public class CreateUrl : BaseModifyFunc<Url> {
 
 		public const string AbsoluteUrlParam = "AbsoluteUrl";
 		public const string NameParam = "Name";
@@ -27,7 +27,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			Tasks.Validator.UrlAbsoluteUrl(vAbsoluteUrl, AbsoluteUrlParam);
-			Tasks.Validator.UserName(vName, NameParam);
+			Tasks.Validator.UrlName(vName, NameParam);
 
 			////
 

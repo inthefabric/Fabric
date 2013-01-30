@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private readonly static string Query =
 			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsUrl).Name+"').inV"+
-				".filter{it.getProperty('AbsoluteUrl').toLowerCase()==URL};";
+				".filter{it.getProperty('AbsoluteUrl').toLowerCase()==AU};";
 
 		private string vAbsoluteUrl;
 		private Url vUrlResult;
@@ -36,7 +36,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetUrlByAbsoluteUrl");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "URL", vAbsoluteUrl.ToLower());
+			TestUtil.CheckParam(pQuery.Params, "AU", vAbsoluteUrl.ToLower());
 
 			return vUrlResult;
 		}
