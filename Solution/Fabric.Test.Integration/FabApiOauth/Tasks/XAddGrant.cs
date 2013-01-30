@@ -25,7 +25,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string TestGo() {
-			return new AddGrant(vAppId, vUserId, vRedirUri).Go(Context);
+			return new AddGrant(vAppId, vUserId, vRedirUri).Go(ApiCtx);
 		}
 
 

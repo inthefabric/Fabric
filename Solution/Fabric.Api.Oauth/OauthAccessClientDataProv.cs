@@ -39,7 +39,7 @@ namespace Fabric.Api.Oauth {
 		protected override FabOauthAccess PerformAccessRequestActions() {
 			RedirectOnBadDomain();
 
-			User dp = vTasks.GetDataProv(vClientId, vDataProvId, Context);
+			User dp = vTasks.GetDataProv(vClientId, vDataProvId, ApiCtx);
 			
 			if ( dp == null ) {
 				throw GetFault(AccessErrors.unauthorized_client, AccessErrorDescs.BadDataProvId);

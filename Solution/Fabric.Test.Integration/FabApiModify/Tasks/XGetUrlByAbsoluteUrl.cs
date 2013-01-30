@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Url TestGo() {
-			return Tasks.GetUrlByAbsoluteUrl(Context, vAbsoluteUrl);
+			return Tasks.GetUrlByAbsoluteUrl(ApiCtx, vAbsoluteUrl);
 		}
 
 

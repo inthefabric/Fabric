@@ -22,12 +22,12 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			OauthGrant og = GetNode<OauthGrant>((long)SetupOauth.OauthGrantId.GalMel);
-			Context.TestUtcNow = new DateTime(og.Expires).AddMinutes(-20);
+			ApiCtx.TestUtcNow = new DateTime(og.Expires).AddMinutes(-20);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private GrantResult TestGo() {
-			return new GetGrant(vCode).Go(Context);
+			return new GetGrant(vCode).Go(ApiCtx);
 		}
 
 
@@ -86,7 +86,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 					.Count()
 				.End();
 
-			IApiDataAccess data = Context.DbData("TEST.CountCodes", q);
+			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
 			return int.Parse(data.Result.Text);
 		}
 

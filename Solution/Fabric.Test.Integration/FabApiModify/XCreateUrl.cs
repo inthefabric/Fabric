@@ -29,14 +29,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vAbsoluteUrl = "http://www.mywebsite.com";
 			vName = "My Web Site";
 
-			Context.SetAppUserId((long)AppGal, (long)UserZach);
+			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);
 			vExpectMemberId = (long)SetupUsers.MemberId.GalZach;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
 			var func = new CreateUrl(Tasks, vAbsoluteUrl, vName);
-			vResult = func.Go(Context);
+			vResult = func.Go(ApiCtx);
 		}
 		
 		
@@ -52,11 +52,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 			
-			Url newUrl = GetNode<Url>(Context.SharpflakeIds[0]);
+			Url newUrl = GetNode<Url>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUrl, "New Url was not created.");
 			Assert.AreEqual(newUrl.UrlId, vResult.UrlId, "Incorrect Result.UrlId.");
 
-			Artifact newArtifact = GetNode<Artifact>(Context.SharpflakeIds[1]);
+			Artifact newArtifact = GetNode<Artifact>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newArtifact, "New Artifact was not created.");
 			
 			NodeConnections conn = GetNodeConnections(newUrl);

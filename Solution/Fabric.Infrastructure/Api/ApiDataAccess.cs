@@ -12,7 +12,7 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public class ApiDataAccess : IApiDataAccess {
 
-		public IApiContext Context { get; private set; }
+		public IApiContext ApiCtx { get; private set; }
 
 		public string Script { get; private set; }
 		public IDictionary<string, string> Params { get; private set; }
@@ -28,7 +28,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiDataAccess(IApiContext pContext, string pScript, 
 															IDictionary<string, string> pParams=null) {
-			Context = pContext;
+			ApiCtx = pContext;
 			Script = pScript;
 			Params = pParams;
 			
@@ -71,10 +71,10 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetResultString() {
-			byte[] queryData = Encoding.UTF8.GetBytes(Context.ContextId+Query);
+			byte[] queryData = Encoding.UTF8.GetBytes(ApiCtx.ContextId+Query);
 
 			using ( var wc = new WebClient() ) {
-				ResultBytes = wc.UploadData(Context.DbServerUrl, "POST", queryData);
+				ResultBytes = wc.UploadData(ApiCtx.DbServerUrl, "POST", queryData);
 			}
 
 			return Encoding.UTF8.GetString(ResultBytes);

@@ -36,7 +36,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess PerformAccessRequestActions() {
-			RefreshResult orr = vTasks.GetRefresh(vRefreshToken, Context);
+			RefreshResult orr = vTasks.GetRefresh(vRefreshToken, ApiCtx);
 
 			if ( orr == null ) {
 				throw GetFault(AccessErrors.invalid_request, AccessErrorDescs.BadRefresh);

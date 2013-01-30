@@ -15,7 +15,7 @@ namespace Fabric.Test.Integration {
 
 		//protected static readonly DataSet SetupData = Setup.SetupAll(true);
 
-		protected TestApiContext Context { get; private set; }
+		protected TestApiContext ApiCtx { get; private set; }
 		protected bool IsReadOnlyTest { get; set; }
 		protected int NewNodeCount { get; set; }
 		protected int NewRelCount { get; set; }
@@ -44,7 +44,7 @@ namespace Fabric.Test.Integration {
 			Log.Info("SetUp started");
 
 			vStartTime = DateTime.UtcNow.Ticks;
-			Context = new TestApiContext();
+			ApiCtx = new TestApiContext();
 			NewNodeCount = 0;
 			NewRelCount = 0;
 
@@ -78,7 +78,7 @@ namespace Fabric.Test.Integration {
 				q.FinalizeQuery(
 					"g.V.each{g.removeVertex(it)};g.loadGraphSON('data/FabricTestFull.json')");
 
-				IApiDataAccess data = Context.DbData("TearDown", q);
+				IApiDataAccess data = ApiCtx.DbData("TearDown", q);
 				Assert.Null(data.Result.Text, "There was an issue with the TearDown query!");
 
 				Log.Info("");
@@ -91,10 +91,15 @@ namespace Fabric.Test.Integration {
 			Assert.AreEqual(NewNodeCount, c.Item1-vCounts.Item1, "Incorrect new node count.");
 			Assert.AreEqual(NewRelCount, c.Item2-vCounts.Item2, "Incorrect new rel count.");
 
+			if ( IsReadOnlyTest ) {
+				Assert.AreEqual(0, NewNodeCount, "NewNodeCount should be zero!");
+				Assert.AreEqual(0, NewRelCount, "NewRelCount should be zero!");
+			}
+
 			////
 
 			TestTearDown();
-			Context = null;
+			ApiCtx = null;
 
 			Log.Info("TearDown complete at T = "+GetTime());
 		}
@@ -123,7 +128,7 @@ namespace Fabric.Test.Integration {
 		protected T GetNode<T>(long pId) where T : class, INodeWithId, new() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery(GetNodeQuery<T>(pId));
-			return Context.DbSingle<T>("TEST.GetNode", q);
+			return ApiCtx.DbSingle<T>("TEST.GetNode", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -132,7 +137,7 @@ namespace Fabric.Test.Integration {
 			var q = new WeaverQuery();
 			q.FinalizeQuery(GetNodeQuery<Root>(0)+".outE('RootContains"+typeof(T).Name+"').inV"+
 				".has('"+WeaverUtil.GetPropertyName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
-			return Context.DbSingle<T>("TEST.GetNodeByProp", q);
+			return ApiCtx.DbSingle<T>("TEST.GetNodeByProp", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -144,7 +149,7 @@ namespace Fabric.Test.Integration {
 				nodeQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
 				nodeQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
 
-			IApiDataAccess data = Context.DbData("TEST.GetNodeConnections", q);
+			IApiDataAccess data = ApiCtx.DbData("TEST.GetNodeConnections", q);
 			return new NodeConnections(pNode, data);
 		}
 
@@ -154,7 +159,7 @@ namespace Fabric.Test.Integration {
 		private Tuple<int,int> CountNodesAndRels() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
-			IApiDataAccess data = Context.DbData("TEST.CountVE", q);
+			IApiDataAccess data = ApiCtx.DbData("TEST.CountVE", q);
 			string[] items = data.Result.Text.Split(',');
 			return new Tuple<int, int>(int.Parse(items[0]), int.Parse(items[1]));
 		}

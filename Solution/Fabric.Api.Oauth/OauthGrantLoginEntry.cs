@@ -64,14 +64,14 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthLogin Execute() {
-			App app = vCore.GetApp(Context); //throws fault on error
+			App app = vCore.GetApp(ApiCtx); //throws fault on error
 			CheckDomain();
 			
 			var result = new FabOauthLogin();
 			bool switchBool = (vSwitchMode == "1");
 
 			if ( !switchBool ) {
-				LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, Context);
+				LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, ApiCtx);
 				
 				if ( scope != null ) {
 					result.ScopeCode = scope.Code;
@@ -80,7 +80,7 @@ namespace Fabric.Api.Oauth {
 				}
 			}
 
-			User user = vCore.GetUser(Context);
+			User user = vCore.GetUser(ApiCtx);
 			
 			result.ShowLoginPage = (user == null || switchBool);
 			result.AppId = app.AppId;
@@ -92,7 +92,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void CheckDomain() {
-			DomainResult dom = vTasks.GetDomain(vCore.AppId, vCore.RedirectUri, Context);
+			DomainResult dom = vTasks.GetDomain(vCore.AppId, vCore.RedirectUri, ApiCtx);
 
 			if ( dom == null ) {
 				throw vCore.GetFault(GrantErrors.invalid_request, GrantErrorDescs.RedirMismatch);

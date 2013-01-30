@@ -22,17 +22,17 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected void EnsureFabricSystem() { //TEST: BaseModifyFunc.EnsureFabricSystem()
-			if ( Context.AppId != (long)AppId.FabricSystem ) {
-				throw new FabPreventedFault(Context.AppId);
+			if ( ApiCtx.AppId != (long)AppId.FabricSystem ) {
+				throw new FabPreventedFault(ApiCtx.AppId);
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected Member GetContextMember() { //TEST: BaseModifyFunc.GetContextMember()
-			Member m = Tasks.GetValidMemberByContext(Context);
+			Member m = Tasks.GetValidMemberByContext(ApiCtx);
 
 			if ( m == null ) {
-				throw new FabMembershipFault(Context.AppId, Context.UserId);
+				throw new FabMembershipFault(ApiCtx.AppId, ApiCtx.UserId);
 			}
 
 			return m;

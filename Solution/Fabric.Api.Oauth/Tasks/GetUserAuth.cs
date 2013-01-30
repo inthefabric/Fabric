@@ -53,7 +53,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			q.AddParam("NAME", new WeaverQueryVal(vUsername.ToLower(), false));
 				
-			return Context.DbSingle<User>(Query.GetUser+"", q);
+			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
 		}
 		
 	}

@@ -64,7 +64,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(userAlias)
 				.End();
 
-			return Context.DbSingle<User>(Query.GetUser+"", q);
+			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
 		}
 
 	}

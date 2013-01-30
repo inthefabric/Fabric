@@ -34,7 +34,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess PerformAccessRequestActions() {
-			GrantResult g = vTasks.GetGrant(vCode, Context);
+			GrantResult g = vTasks.GetGrant(vCode, ApiCtx);
 
 			if ( g == null ) {
 				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);

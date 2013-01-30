@@ -92,7 +92,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.End();
 			}
 
-			Context.DbData(Query.ClearTokens+"", updateOa);
+			ApiCtx.DbData(Query.ClearTokens+"", updateOa);
 		}
 
 
@@ -102,10 +102,10 @@ namespace Fabric.Api.Oauth.Tasks {
 			var txb = new TxBuilder();
 		
 			var oa = new OauthAccess();
-			oa.OauthAccessId = Context.GetSharpflakeId<OauthAccess>();
-			oa.Expires = Context.UtcNow.AddSeconds(vExpireSec).Ticks;
-			oa.Token = Context.Code32;
-			oa.Refresh = Context.Code32;
+			oa.OauthAccessId = ApiCtx.GetSharpflakeId<OauthAccess>();
+			oa.Expires = ApiCtx.UtcNow.AddSeconds(vExpireSec).Ticks;
+			oa.Token = ApiCtx.Code32;
+			oa.Refresh = ApiCtx.Code32;
 			oa.IsClientOnly = vClientOnly;
 			
 			var oaBuild = new OauthAccessBuilder(txb, oa);
@@ -116,7 +116,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				oaBuild.SetUsesUser((long)vUserId);
 			}
 
-			Context.DbData(Query.AddAccessTx+"", txb.Finish());
+			ApiCtx.DbData(Query.AddAccessTx+"", txb.Finish());
 
 			////
 

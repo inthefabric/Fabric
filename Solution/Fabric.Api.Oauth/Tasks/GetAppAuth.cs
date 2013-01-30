@@ -45,7 +45,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.Secret, WeaverFuncHasOp.EqualTo, vAppSecret)
 				.End();
 				
-			return Context.DbSingle<App>(Query.GetApp+"", getApp);
+			return ApiCtx.DbSingle<App>(Query.GetApp+"", getApp);
 		}
 		
 	}

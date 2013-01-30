@@ -20,14 +20,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			IWeaverVarAlias<Url> urlVar;
 
 			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddUrl(Context, TxBuild, pAbsoluteUrl, pName, rootVar, out urlVar);
+			Tasks.TxAddUrl(ApiCtx, TxBuild, pAbsoluteUrl, pName, rootVar, out urlVar);
 			FinishTx();
 
-			Context.DbData("TEST.TxAddUrl", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddUrl", TxBuild.Transaction);
 
 			////
 
-			Url newUrl = GetNode<Url>(Context.SharpflakeIds[0]);
+			Url newUrl = GetNode<Url>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUrl, "New Url was not created.");
 
 			NodeConnections conn = GetNodeConnections(newUrl);

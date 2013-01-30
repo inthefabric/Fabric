@@ -54,8 +54,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			var newOg = new OauthGrant();
 			newOg.RedirectUri = vRedirectUri;
-			newOg.Expires = Context.UtcNow.AddMinutes(2).Ticks;
-			newOg.Code = Context.Code32;
+			newOg.Expires = ApiCtx.UtcNow.AddMinutes(2).Ticks;
+			newOg.Code = ApiCtx.Code32;
 			
 			var updates = new WeaverUpdates<OauthGrant>();
 			updates.AddUpdate(newOg, x => x.RedirectUri);
@@ -80,7 +80,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.FinishWithoutStartStop(aggVar);
 			
-			OauthGrant og = Context.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
+			OauthGrant og = ApiCtx.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
 			
 			if ( og != null ) {
 				return newOg.Code;
@@ -89,14 +89,14 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 			
 			var txb = new TxBuilder();
-			newOg.OauthGrantId = Context.GetSharpflakeId<OauthGrant>();
+			newOg.OauthGrantId = ApiCtx.GetSharpflakeId<OauthGrant>();
 			
 			var ogBuild = new OauthGrantBuilder(txb, newOg);
 			ogBuild.AddNode();
 			ogBuild.SetUsesApp(vAppId);
 			ogBuild.SetUsesUser(vUserId);
 			
-			Context.DbData(Query.AddGrantTx+"", txb.Finish());
+			ApiCtx.DbData(Query.AddGrantTx+"", txb.Finish());
 			return newOg.Code;
 		}
 

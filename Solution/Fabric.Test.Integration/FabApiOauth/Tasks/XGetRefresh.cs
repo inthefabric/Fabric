@@ -20,7 +20,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private RefreshResult TestGo() {
-			return new GetRefresh(vRefreshToken).Go(Context);
+			return new GetRefresh(vRefreshToken).Go(ApiCtx);
 		}
 
 

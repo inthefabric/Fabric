@@ -28,11 +28,11 @@ namespace Fabric.Api.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override LoginScopeResult Execute() {
 			if ( !vAllowScope ) {
-				vTasks.AddScope(vCore.AppId, (long)vCore.UserId, false, Context);
+				vTasks.AddScope(vCore.AppId, (long)vCore.UserId, false, ApiCtx);
 				throw vCore.GetFault(GrantErrors.access_denied, GrantErrorDescs.AccessDeny);
 			}
 			
-			return vCore.AddGrantCode(false, vTasks, Context);
+			return vCore.AddGrantCode(false, vTasks, ApiCtx);
 		}
 
 	}

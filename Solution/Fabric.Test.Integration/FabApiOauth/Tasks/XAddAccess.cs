@@ -32,7 +32,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo() {
-			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(Context);
+			return new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly).Go(ApiCtx);
 		}
 
 
@@ -103,7 +103,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 					.Count()
 				.End();
 
-			IApiDataAccess data = Context.DbData("TEST.CountTokens", q);
+			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
 			return int.Parse(data.Result.Text);
 		}
 

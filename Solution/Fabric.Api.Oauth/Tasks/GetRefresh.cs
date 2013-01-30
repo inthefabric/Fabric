@@ -63,7 +63,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			IApiDataAccess data = Context.DbData(Query.GetAppUserTx+"", tx);
+			IApiDataAccess data = ApiCtx.DbData(Query.GetAppUserTx+"", tx);
 			int count = data.GetResultCount();
 
 			if ( count <= 0 ) {

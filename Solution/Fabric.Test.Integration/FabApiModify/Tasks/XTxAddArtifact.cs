@@ -27,14 +27,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			TxBuild.GetNode(useUser, out nodeVar);
 			TxBuild.GetNode(useMem, out memVar);
 			Tasks.TxAddArtifact<User, UserHasArtifact>(
-				Context, TxBuild, ArtifactTypeId.User, rootVar, nodeVar, memVar, out artVar);
+				ApiCtx, TxBuild, ArtifactTypeId.User, rootVar, nodeVar, memVar, out artVar);
 			FinishTx();
 
-			Context.DbData("TEST.TxAddArtifact", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddArtifact", TxBuild.Transaction);
 
 			////
 
-			Artifact newArt = GetNode<Artifact>(Context.SharpflakeIds[0]);
+			Artifact newArt = GetNode<Artifact>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newArt, "New Artifact was not created.");
 
 			NodeConnections conn = GetNodeConnections(newArt);

@@ -41,7 +41,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override CreateUserResult Execute() {
-			if ( Tasks.GetUserByName(Context, vName) != null ) {
+			if ( Tasks.GetUserByName(ApiCtx, vName) != null ) {
 				throw new FabDuplicateFault(typeof(User), NameParam, vName);
 			}
 
@@ -56,11 +56,11 @@ namespace Fabric.Api.Modify {
 			var txb = new TxBuilder();
 
 			txb.GetRoot(out rootVar);
-			Tasks.TxAddEmail(Context, txb, vEmail, rootVar, out emailVar);
-			Tasks.TxAddUser(Context, txb, vName, vPass, rootVar, emailVar, out userVar);
-			Tasks.TxAddMember(Context, txb, rootVar, userVar, out memVar);
+			Tasks.TxAddEmail(ApiCtx, txb, vEmail, rootVar, out emailVar);
+			Tasks.TxAddUser(ApiCtx, txb, vName, vPass, rootVar, emailVar, out userVar);
+			Tasks.TxAddMember(ApiCtx, txb, rootVar, userVar, out memVar);
 			Tasks.TxAddArtifact<User, UserHasArtifact>(
-				Context, txb, ArtifactTypeId.User, rootVar, userVar, memVar, out artVar);
+				ApiCtx, txb, ArtifactTypeId.User, rootVar, userVar, memVar, out artVar);
 
 			var list = new List<IWeaverVarAlias> { userVar, emailVar };
 			IWeaverVarAlias listVar;
@@ -71,7 +71,7 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			IApiDataAccess data = Context.DbData("CreateUserTx", txb.Finish());
+			IApiDataAccess data = ApiCtx.DbData("CreateUserTx", txb.Finish());
 			
 			var result = new CreateUserResult();
 			result.NewUser = data.GetResultAt<User>(0);

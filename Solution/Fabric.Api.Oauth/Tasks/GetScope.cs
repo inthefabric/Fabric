@@ -53,7 +53,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(scopeAlias)
 				.End();
 
-			OauthScope scope = Context.DbSingle<OauthScope>(Query.GetMatchingScope+"", q);
+			OauthScope scope = ApiCtx.DbSingle<OauthScope>(Query.GetMatchingScope+"", q);
 
 			if ( scope == null ) {
 				return null;

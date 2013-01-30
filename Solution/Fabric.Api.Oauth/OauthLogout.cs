@@ -50,13 +50,13 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthLogout Execute() {
-			FabOauthAccess acc = vTasks.GetAccessToken(vToken, Context);
+			FabOauthAccess acc = vTasks.GetAccessToken(vToken, ApiCtx);
 
 			if ( acc == null ) {
 				throw GetFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
 			}
 
-			acc = vTasks.DoLogout(acc, Context);
+			acc = vTasks.DoLogout(acc, ApiCtx);
 
 			if ( acc == null ) {
 				throw GetFault(LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);

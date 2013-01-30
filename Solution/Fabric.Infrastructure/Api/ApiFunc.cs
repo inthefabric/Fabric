@@ -7,13 +7,13 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public abstract class ApiFunc<TReturn> : ApiFunc, IApiFunc<TReturn> {
 
-		public IApiContext Context { get; private set; }
+		public IApiContext ApiCtx { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TReturn Go(IApiContext pContext) {
-			Context = pContext;
+			ApiCtx = pContext;
 			ValidateParams();
 			return Execute();
 		}

@@ -50,7 +50,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			var newOs = new OauthScope();
 			newOs.Allow = vAllow;
-			newOs.Created = Context.UtcNow.Ticks;
+			newOs.Created = ApiCtx.UtcNow.Ticks;
 			
 			var updates = new WeaverUpdates<OauthScope>();
 			updates.AddUpdate(newOs, x => x.Allow);
@@ -74,7 +74,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.FinishWithoutStartStop(aggVar);
 			
-			OauthScope os = Context.DbSingle<OauthScope>(Query.UpdateScopeTx+"", tx);
+			OauthScope os = ApiCtx.DbSingle<OauthScope>(Query.UpdateScopeTx+"", tx);
 			
 			if ( os != null ) {
 				return os;
@@ -83,7 +83,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 			
 			var txb = new TxBuilder();
-			newOs.OauthScopeId = Context.GetSharpflakeId<OauthScope>();
+			newOs.OauthScopeId = ApiCtx.GetSharpflakeId<OauthScope>();
 			
 			var osBuild = new OauthScopeBuilder(txb, newOs);
 			osBuild.AddNode();
@@ -91,7 +91,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			osBuild.SetUsesUser(vUserId);
 			
 			txb.Transaction.FinishWithoutStartStop(osBuild.NodeVar);
-			newOs = Context.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
+			newOs = ApiCtx.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
 			return newOs;
 		}
 

@@ -51,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				NewPathFromRoot()
 				.ContainsOauthAccessList.ToOauthAccess
 					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, vToken)
-					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, Context.UtcNow.Ticks)
+					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
 					.Aggregate(agg)
 					.As(out oaAlias)
 				.UsesApp.ToApp
@@ -65,7 +65,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.FinishWithoutStartStop(agg);
 
-			IApiDataAccess data = Context.DbData(Query.GetAccessTx+"", tx);
+			IApiDataAccess data = ApiCtx.DbData(Query.GetAccessTx+"", tx);
 			int count = data.GetResultCount();
 
 			if ( count <= 0 ) {

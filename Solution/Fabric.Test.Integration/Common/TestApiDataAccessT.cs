@@ -29,7 +29,7 @@ namespace Fabric.Test.Integration.Common {
 			long t = DateTime.UtcNow.Ticks;
 
 			string q = TestApiDataAccess.CleanQueryIndexIds(Query);
-			var qh = new GremlinController(Context.ContextId, q, TestApiDataAccess.GremlinUri);
+			var qh = new GremlinController(ApiCtx.ContextId, q, TestApiDataAccess.GremlinUri);
 			string json = qh.GetJson();
 
 			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");

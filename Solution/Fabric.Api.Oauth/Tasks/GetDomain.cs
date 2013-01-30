@@ -72,7 +72,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			q.AddParam("REDIR", new WeaverQueryVal(vRedirectDomain.ToLower(), false));
 
-			OauthDomain od = Context.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);
+			OauthDomain od = ApiCtx.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);
 			
 			if ( od == null ) {
 				return null;

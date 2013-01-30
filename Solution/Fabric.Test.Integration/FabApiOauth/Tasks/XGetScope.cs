@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private ScopeResult TestGo() {
-			return new GetScope(vAppId, vUserId).Go(Context);
+			return new GetScope(vAppId, vUserId).Go(ApiCtx);
 		}
 
 

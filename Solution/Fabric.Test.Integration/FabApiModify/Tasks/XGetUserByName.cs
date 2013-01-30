@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User TestGo() {
-			return Tasks.GetUserByName(Context, vName);
+			return Tasks.GetUserByName(ApiCtx, vName);
 		}
 
 

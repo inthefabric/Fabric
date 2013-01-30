@@ -34,11 +34,11 @@ namespace Fabric.Api.Oauth {
 		protected override FabOauthLogin Execute() {
 			var result = new FabOauthLogin();
 
-			App app = vCore.GetApp(Context);
+			App app = vCore.GetApp(ApiCtx);
 			result.AppId = app.AppId;
 			result.AppName = app.Name;
 
-			User user = vTasks.GetUserAuth(vUsername, vPassword, Context);
+			User user = vTasks.GetUserAuth(vUsername, vPassword, ApiCtx);
 
 			if ( user == null ) {
 				result.ShowLoginPage = true;
@@ -50,7 +50,7 @@ namespace Fabric.Api.Oauth {
 			result.LoggedUserId = user.UserId;
 			result.LoggedUserName = user.Name;
 
-			LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, Context);
+			LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, ApiCtx);
 			
 			if ( scope != null ) {
 				result.ScopeCode = scope.Code;

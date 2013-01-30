@@ -94,7 +94,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 			
-			IApiDataAccess data = Context.DbData(Query.GetMemberTx+"", tx);
+			IApiDataAccess data = ApiCtx.DbData(Query.GetMemberTx+"", tx);
 			int count = data.GetResultCount();
 
 			if ( count <= 0 ) {
@@ -132,7 +132,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			var txb = new TxBuilder();
 			
 			var newMem = new Member();
-			newMem.MemberId = Context.GetSharpflakeId<Member>();
+			newMem.MemberId = ApiCtx.GetSharpflakeId<Member>();
 			
 			var memBuild = new MemberBuilder(txb, newMem);
 			memBuild.AddNode();
@@ -140,7 +140,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			memBuild.SetInUserDefines(vUserId);
 
 			AddMemberTypeAssignWithTx(txb, memBuild.InRootContains, memBuild.NodeVar);
-			Context.DbData(Query.AddMemberTx+"", txb.Finish());
+			ApiCtx.DbData(Query.AddMemberTx+"", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -167,7 +167,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Finish transaction
 			
 			AddMemberTypeAssignWithTx(txb, rootVar, memVar);
-			Context.DbData(Query.UpdateMemberTx+"", txb.Finish());
+			ApiCtx.DbData(Query.UpdateMemberTx+"", txb.Finish());
 		}
 
 
@@ -176,8 +176,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
 																	IWeaverVarAlias<Member> pMemVar) {
 			var newAssign = new MemberTypeAssign();
-			newAssign.MemberTypeAssignId = Context.GetSharpflakeId<MemberTypeAssign>();
-			newAssign.Performed = Context.UtcNow.Ticks;
+			newAssign.MemberTypeAssignId = ApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			newAssign.Performed = ApiCtx.UtcNow.Ticks;
 			newAssign.Note = "First login.";
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);

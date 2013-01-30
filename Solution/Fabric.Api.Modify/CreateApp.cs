@@ -33,13 +33,13 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override App Execute() {
-			if ( Tasks.GetAppByName(Context, vName) != null ) {
+			if ( Tasks.GetAppByName(ApiCtx, vName) != null ) {
 				throw new FabDuplicateFault(typeof(App), NameParam, vName);
 			}
 
 			////
 
-			User user = Tasks.GetUser(Context, vUserId);
+			User user = Tasks.GetUser(ApiCtx, vUserId);
 
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User).Name);
@@ -55,14 +55,14 @@ namespace Fabric.Api.Modify {
 			var txb = new TxBuilder();
 
 			txb.GetRoot(out rootVar);
-			Tasks.TxAddApp(Context, txb, vName, rootVar, user.UserId, out appVar);
-			Tasks.TxAddDataProvMember(Context, txb, rootVar, appVar, user.UserId, out memVar);
+			Tasks.TxAddApp(ApiCtx, txb, vName, rootVar, user.UserId, out appVar);
+			Tasks.TxAddDataProvMember(ApiCtx, txb, rootVar, appVar, user.UserId, out memVar);
 			Tasks.TxAddArtifact<App, AppHasArtifact>(
-				Context, txb, ArtifactTypeId.App, rootVar, appVar, memVar, out artVar);
+				ApiCtx, txb, ArtifactTypeId.App, rootVar, appVar, memVar, out artVar);
 
 			////
 
-			return Context.DbSingle<App>("CreateAppTx", txb.Finish(appVar));
+			return ApiCtx.DbSingle<App>("CreateAppTx", txb.Finish(appVar));
 		}
 
 	}

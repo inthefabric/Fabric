@@ -42,7 +42,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Url Execute() {
-			if ( Tasks.GetUrlByAbsoluteUrl(Context, vAbsoluteUrl) != null ) {
+			if ( Tasks.GetUrlByAbsoluteUrl(ApiCtx, vAbsoluteUrl) != null ) {
 				throw new FabDuplicateFault(typeof(Url), AbsoluteUrlParam, vAbsoluteUrl);
 			}
 
@@ -59,11 +59,11 @@ namespace Fabric.Api.Modify {
 
 			txb.GetRoot(out rootVar);
 			txb.GetNode(m, out memVar);
-			Tasks.TxAddUrl(Context, txb, vAbsoluteUrl, vName, rootVar, out urlVar);
+			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, rootVar, out urlVar);
 			Tasks.TxAddArtifact<Url, UrlHasArtifact>(
-				Context, txb, ArtifactTypeId.Url, rootVar, urlVar, memVar, out artVar);
+				ApiCtx, txb, ArtifactTypeId.Url, rootVar, urlVar, memVar, out artVar);
 
-			return Context.DbSingle<Url>("CreateUrlTx", txb.Finish(urlVar));
+			return ApiCtx.DbSingle<Url>("CreateUrlTx", txb.Finish(urlVar));
 		}
 
 	}

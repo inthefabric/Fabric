@@ -23,17 +23,17 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			TxBuild.GetRoot(out rootVar);
 			TxBuild.GetNode(useApp, out appVar);
-			Tasks.TxAddDataProvMember(Context, TxBuild, rootVar, appVar, (long)pUserId, out memVar);
+			Tasks.TxAddDataProvMember(ApiCtx, TxBuild, rootVar, appVar, (long)pUserId, out memVar);
 			FinishTx();
 
-			Context.DbData("TEST.TxAddDataProvMember", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddDataProvMember", TxBuild.Transaction);
 
 			////
 
-			Member newMember = GetNode<Member>(Context.SharpflakeIds[0]);
+			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMember, "New Member was not created.");
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(Context.SharpflakeIds[1]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			NodeConnections conn = GetNodeConnections(newMember);

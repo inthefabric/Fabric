@@ -47,7 +47,7 @@ namespace Fabric.Api.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void RedirectOnBadDomain() {
-			DomainResult dom = vTasks.GetDomain(vClientId, vRedirectUri, Context);
+			DomainResult dom = vTasks.GetDomain(vClientId, vRedirectUri, ApiCtx);
 
 			if ( dom == null ) {
 				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);

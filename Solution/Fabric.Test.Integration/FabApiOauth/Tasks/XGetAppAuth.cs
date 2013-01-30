@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private App TestGo() {
-			return new GetAppAuth(vAppId, vSecret).Go(Context);
+			return new GetAppAuth(vAppId, vSecret).Go(ApiCtx);
 		}
 
 

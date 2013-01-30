@@ -24,14 +24,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			TxBuild.GetRoot(out rootVar);
 			TxBuild.GetNode(useEmail, out emailVar);
-			Tasks.TxAddUser(Context, TxBuild, pName, pPassword, rootVar, emailVar, out userVar);
+			Tasks.TxAddUser(ApiCtx, TxBuild, pName, pPassword, rootVar, emailVar, out userVar);
 			FinishTx();
 
-			Context.DbData("TEST.TxAddUser", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddUser", TxBuild.Transaction);
 
 			////
 
-			User newUser = GetNode<User>(Context.SharpflakeIds[0]);
+			User newUser = GetNode<User>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUser, "New User was not created.");
 
 			NodeConnections conn = GetNodeConnections(newUser);

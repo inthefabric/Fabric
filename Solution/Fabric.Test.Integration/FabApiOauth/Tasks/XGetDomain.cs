@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private DomainResult TestGo() {
-			return new GetDomain(vAppId, vRedirUri).Go(Context);
+			return new GetDomain(vAppId, vRedirUri).Go(ApiCtx);
 		}
 
 

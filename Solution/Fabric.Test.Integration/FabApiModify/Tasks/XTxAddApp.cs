@@ -23,14 +23,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			IWeaverVarAlias<App> appVar;
 
 			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddApp(Context, TxBuild, pName, rootVar, (long)pCreatorUserId, out appVar);
+			Tasks.TxAddApp(ApiCtx, TxBuild, pName, rootVar, (long)pCreatorUserId, out appVar);
 			FinishTx();
 
-			Context.DbData("TEST.TxAddApp", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddApp", TxBuild.Transaction);
 
 			////
 
-			App newApp = GetNode<App>(Context.SharpflakeIds[0]);
+			App newApp = GetNode<App>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newApp, "New App was not created.");
 
 			NodeConnections conn = GetNodeConnections(newApp);

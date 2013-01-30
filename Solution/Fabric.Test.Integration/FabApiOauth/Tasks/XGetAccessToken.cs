@@ -20,12 +20,12 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			IsReadOnlyTest = true;
 
 			OauthAccess oa = GetNode<OauthAccess>((long)SetupOauth.OauthAccessId.GalZach);
-			Context.TestUtcNow = new DateTime(oa.Expires).AddMinutes(-2);
+			ApiCtx.TestUtcNow = new DateTime(oa.Expires).AddMinutes(-2);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo() {
-			return new GetAccessToken(vToken).Go(Context);
+			return new GetAccessToken(vToken).Go(ApiCtx);
 		}
 
 

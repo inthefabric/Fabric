@@ -18,14 +18,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			IWeaverVarAlias<Email> emailVar;
 
 			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddEmail(Context, TxBuild, pAddress, rootVar, out emailVar);
+			Tasks.TxAddEmail(ApiCtx, TxBuild, pAddress, rootVar, out emailVar);
 			FinishTx();
 
-			Context.DbData("TEST.TxAddEmail", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddEmail", TxBuild.Transaction);
 
 			////
 
-			Email newEmail = GetNode<Email>(Context.SharpflakeIds[0]);
+			Email newEmail = GetNode<Email>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newEmail, "New Email was not created.");
 
 			NodeConnections conn = GetNodeConnections(newEmail);

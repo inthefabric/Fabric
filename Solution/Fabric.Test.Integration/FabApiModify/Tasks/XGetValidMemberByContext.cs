@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Member TestGo() {
-			return Tasks.GetValidMemberByContext(Context);
+			return Tasks.GetValidMemberByContext(ApiCtx);
 		}
 
 
@@ -30,7 +30,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		[TestCase(AppBook, UserBook, SetupUsers.MemberId.BookBookData)]
 		public void Found(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId,
 																SetupUsers.MemberId pExpectMemberId) {
-			Context.SetAppUserId((long)pAppId, (long)pUserId);
+			ApiCtx.SetAppUserId((long)pAppId, (long)pUserId);
 
 			Member result = TestGo();
 
@@ -43,7 +43,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		[TestCase(AppBook, UserPenny)]
 		[TestCase(AppGal, UserBook)] //has a "None" MemberType
 		public void NotFound(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId) {
-			Context.SetAppUserId((long)pAppId, (long)pUserId);
+			ApiCtx.SetAppUserId((long)pAppId, (long)pUserId);
 
 			Member result = TestGo();
 

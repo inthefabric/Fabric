@@ -24,7 +24,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private bool TestGo() {
-			return new AddMemberEnsure(vAppId, vUserId).Go(Context);
+			return new AddMemberEnsure(vAppId, vUserId).Go(ApiCtx);
 		}
 
 
@@ -52,10 +52,10 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			////
 			
-			Member newMem = GetNode<Member>(Context.SharpflakeIds[0]);
+			Member newMem = GetNode<Member>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMem, "New Member was not created.");
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(Context.SharpflakeIds[1]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			NodeConnections conn = GetNodeConnections(newMem);
@@ -103,7 +103,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Member updateMem = GetNode<Member>((long)pUpdateMemberId);
 			Assert.NotNull(updateMem, "The Member was deleted.");
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(Context.SharpflakeIds[0]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			conn = GetNodeConnections(updateMem);

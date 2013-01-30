@@ -108,7 +108,7 @@ namespace Fabric.Api.Oauth {
 		protected FabOauthAccess SendAccessCode(long pAppId, long? pUserId, bool pClientMode=false) {
 			long appId = VerifyAppWithSecret(pAppId);
 
-			FabOauthAccess oa = vTasks.AddAccess(appId, pUserId, 3600, pClientMode, Context);
+			FabOauthAccess oa = vTasks.AddAccess(appId, pUserId, 3600, pClientMode, ApiCtx);
 			
 			if ( pClientMode ) {
 				oa.RefreshToken = null;
@@ -119,7 +119,7 @@ namespace Fabric.Api.Oauth {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private long VerifyAppWithSecret(long pAppId) {
-			App app = vTasks.GetAppAuth(pAppId, vClientSecret, Context);
+			App app = vTasks.GetAppAuth(pAppId, vClientSecret, ApiCtx);
 
 			if ( app == null ) {
 				throw GetFault(AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);

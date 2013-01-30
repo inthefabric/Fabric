@@ -30,13 +30,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vName = "NewUser";
 			vPassword = "NewPassword";
 
-			Context.SetAppUserId((long)AppFab, (long)UserFab);
+			ApiCtx.SetAppUserId((long)AppFab, (long)UserFab);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
 			var func = new CreateUser(Tasks, vName, vPassword, vEmail);
-			vResult = func.Go(Context);
+			vResult = func.Go(ApiCtx);
 		}
 		
 		
@@ -54,23 +54,23 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 			
-			Email newEmail = GetNode<Email>(Context.SharpflakeIds[0]);
+			Email newEmail = GetNode<Email>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newEmail, "New Email was not created.");
 			Assert.AreEqual(newEmail.EmailId, vResult.NewEmail.EmailId,
 				"Incorrect Result.NewEmail.EmailId.");
 			
-			User newUser = GetNode<User>(Context.SharpflakeIds[1]);
+			User newUser = GetNode<User>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newUser, "New User was not created.");
 			Assert.AreEqual(newUser.UserId, vResult.NewUser.UserId,
 				"Incorrect Result.NewUser.UserId.");
 			                
-			Member newMember = GetNode<Member>(Context.SharpflakeIds[2]);
+			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[2]);
 			Assert.NotNull(newMember, "New Member was not created.");
 			
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(Context.SharpflakeIds[3]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[3]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			
-			Artifact newArtifact = GetNode<Artifact>(Context.SharpflakeIds[4]);
+			Artifact newArtifact = GetNode<Artifact>(ApiCtx.SharpflakeIds[4]);
 			Assert.NotNull(newArtifact, "New Artifact was not created.");
 			
 			NewNodeCount = 5;

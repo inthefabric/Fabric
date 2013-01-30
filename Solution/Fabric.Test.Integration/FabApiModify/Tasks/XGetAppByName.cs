@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private App TestGo() {
-			return Tasks.GetAppByName(Context, vName);
+			return Tasks.GetAppByName(ApiCtx, vName);
 		}
 
 
