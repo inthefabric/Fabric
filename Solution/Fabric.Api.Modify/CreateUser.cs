@@ -66,7 +66,7 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			IApiDataAccess data = Context.DbData("CreateUserTx", txb.Finish(listVar));
+			IApiDataAccess data = Context.DbData("CreateUserTx", txb.Finish());
 			
 			var result = new CreateUserResult();
 			result.NewUser = data.GetResultAt<User>(0);
