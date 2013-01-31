@@ -281,6 +281,21 @@ namespace Fabric.Api.Modify.Tasks {
 			pClassVar = classBuild.NodeVar;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddInstance()
+		public void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
+				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar) {
+			var c = new Instance();
+			c.InstanceId = pApiCtx.GetSharpflakeId<Instance>();
+			c.Name = pName;
+			c.Disamb = pDisamb;
+			c.Note = pNote;
+
+			var classBuild = new InstanceBuilder(pTxBuild, c);
+			classBuild.AddNode(pRootVar);
+			pInstVar = classBuild.NodeVar;
+		}
+
 	}
 
 }

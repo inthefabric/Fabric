@@ -70,6 +70,10 @@ namespace Fabric.Api.Modify.Tasks {
 		void TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 					string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar);
 
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
+				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar);
+
 	}
 
 }

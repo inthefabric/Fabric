@@ -96,9 +96,11 @@ namespace Fabric.Infrastructure.Domain {
 				p.IsPrimaryKey = true;
 			p = AddProp(clas, "Name", typeof(string));
 				p.LenMax = 128;
+				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(clas, "Disamb", typeof(string));
 				p.LenMax = 128;
 				p.IsNullable = true;
+				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(clas, "Note", typeof(string));
 				p.LenMax = 256;
 				p.IsNullable = true;
@@ -157,9 +159,11 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(instance, "Name", typeof(string));
 				p.LenMax = 128;
 				p.IsNullable = true;
+				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(instance, "Disamb", typeof(string));
 				p.LenMax = 128;
 				p.IsNullable = true;
+				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(instance, "Note", typeof(string));
 				p.LenMax = 256;
 				p.IsNullable = true;

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/30/2013 4:50:17 PM
+// Generated on 1/31/2013 1:47:31 PM
 
 using System;
 
@@ -311,6 +311,7 @@ namespace Fabric.Api.Modify.Validators {
 		public void ClassName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
 			LengthLessThanOrEqual(pParamName, pValue, 128);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -321,6 +322,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassDisamb(string pValue, string pParamName) {
 			LengthLessThanOrEqual(pParamName, pValue, 128);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -507,6 +509,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceName(string pValue, string pParamName) {
 			LengthLessThanOrEqual(pParamName, pValue, 128);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -517,6 +520,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceDisamb(string pValue, string pParamName) {
 			LengthLessThanOrEqual(pParamName, pValue, 128);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

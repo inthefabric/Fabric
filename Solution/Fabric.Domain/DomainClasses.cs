@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/30/2013 4:50:14 PM
+// Generated on 1/31/2013 1:47:29 PM
 
 using System;
 using System.Linq.Expressions;
@@ -1531,11 +1531,13 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(128)]
+		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
+		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
@@ -1815,11 +1817,13 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
+		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
+		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]

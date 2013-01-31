@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/30/2013 4:50:16 PM
+// Generated on 1/31/2013 1:47:31 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -760,6 +760,7 @@ namespace Fabric.Api.Spec {
 				p.Type = "string";
 				p.Description = GetDtoPropText("Class_Name");
 				p.LenMax = 128;
+				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 				dto.PropertyList.Add(p);
 
 				p = new FabSpecDtoProp();
@@ -768,6 +769,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Class_Disamb");
 				p.IsNullable = true;
 				p.LenMax = 128;
+				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 				dto.PropertyList.Add(p);
 
 				p = new FabSpecDtoProp();
@@ -816,6 +818,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Instance_Name");
 				p.IsNullable = true;
 				p.LenMax = 128;
+				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 				dto.PropertyList.Add(p);
 
 				p = new FabSpecDtoProp();
@@ -824,6 +827,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Instance_Disamb");
 				p.IsNullable = true;
 				p.LenMax = 128;
+				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 				dto.PropertyList.Add(p);
 
 				p = new FabSpecDtoProp();

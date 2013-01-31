@@ -8,7 +8,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateClass : BaseModifyFunc<Class> { //TEST: CreateClass
+	public class CreateInstance : BaseModifyFunc<Instance> { //TEST: CreateInstance
 
 		public const string NameParam = "Name";
 		public const string DisambParam = "Disamb";
@@ -21,7 +21,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateClass(IModifyTasks pTasks, string pName, string pDisamb, string pNote) : 
+		public CreateInstance(IModifyTasks pTasks, string pName, string pDisamb, string pNote) : 
 																						base(pTasks) {
 			vName = pName;
 			vDisamb = pDisamb;
@@ -30,24 +30,23 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.ClassName(vName, NameParam);
-			Tasks.Validator.ClassDisamb(vDisamb, DisambParam);
-			Tasks.Validator.ClassNote(vNote, NoteParam);
+			Tasks.Validator.InstanceName(vName, NameParam);
+			Tasks.Validator.InstanceDisamb(vDisamb, DisambParam);
+			Tasks.Validator.InstanceNote(vNote, NoteParam);
+
+			if ( vName == null && vDisamb != null ) {
+				throw new FabArgumentFault("Use of "+DisambParam+" requires a non-null "+NameParam);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Class Execute() {
-			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
-				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
-				throw new FabDuplicateFault(typeof(Class), NameParam, name);
-			}
-
+		protected override Instance Execute() {
 			Member m = GetContextMember();
 
 			////
 
 			IWeaverVarAlias<Root> rootVar;
-			IWeaverVarAlias<Class> classVar;
+			IWeaverVarAlias<Instance> classVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Artifact> artVar;
 
@@ -55,11 +54,11 @@ namespace Fabric.Api.Modify {
 
 			txb.GetRoot(out rootVar);
 			txb.GetNode(m, out memVar);
-			Tasks.TxAddClass(ApiCtx, txb, vName, vDisamb, vNote, rootVar, out classVar);
-			Tasks.TxAddArtifact<Class, ClassHasArtifact>(
-				ApiCtx, txb, ArtifactTypeId.Class, rootVar, classVar, memVar, out artVar);
+			Tasks.TxAddInstance(ApiCtx, txb, vName, vDisamb, vNote, rootVar, out classVar);
+			Tasks.TxAddArtifact<Instance, InstanceHasArtifact>(
+				ApiCtx, txb, ArtifactTypeId.Instance, rootVar, classVar, memVar, out artVar);
 
-			return ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
+			return ApiCtx.DbSingle<Instance>("CreateInstanceTx", txb.Finish(classVar));
 		}
 
 	}
