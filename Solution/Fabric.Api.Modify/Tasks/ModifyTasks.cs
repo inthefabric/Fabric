@@ -106,7 +106,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetClassByNameDisamb()
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
 			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
@@ -267,7 +266,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddClass()
 		public void TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
 				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar) {
 			var c = new Class();
@@ -282,7 +280,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddInstance()
 		public void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
 				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar) {
 			var c = new Instance();

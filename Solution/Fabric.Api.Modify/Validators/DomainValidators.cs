@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/31/2013 1:47:31 PM
+// Generated on 1/31/2013 2:25:03 PM
 
 using System;
 
@@ -321,6 +321,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassDisamb(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthLessThanOrEqual(pParamName, pValue, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
@@ -332,6 +333,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassNote(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthLessThanOrEqual(pParamName, pValue, 256);
 		}
 
@@ -486,7 +488,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void EmailVerified(long pValue, string pParamName) {
-			throw new Exception("Verified has no validation. Property value was "+pValue);
+			if ( pValue == null ) { return; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -508,6 +510,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceName(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthLessThanOrEqual(pParamName, pValue, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
@@ -519,6 +522,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceDisamb(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthLessThanOrEqual(pParamName, pValue, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
@@ -530,6 +534,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceNote(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthLessThanOrEqual(pParamName, pValue, 256);
 		}
 
@@ -701,7 +706,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorDeleted(long pValue, string pParamName) {
-			throw new Exception("Deleted has no validation. Property value was "+pValue);
+			if ( pValue == null ) { return; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -711,7 +716,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorCompleted(long pValue, string pParamName) {
-			throw new Exception("Completed has no validation. Property value was "+pValue);
+			if ( pValue == null ) { return; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -721,6 +726,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorNote(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthLessThanOrEqual(pParamName, pValue, 256);
 		}
 
@@ -1176,7 +1182,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthAccessToken(string pValue, string pParamName) {
-			throw new Exception("Token has no validation. Property value was "+pValue);
+			if ( pValue == null ) { return; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1186,7 +1192,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthAccessRefresh(string pValue, string pParamName) {
-			throw new Exception("Refresh has no validation. Property value was "+pValue);
+			if ( pValue == null ) { return; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

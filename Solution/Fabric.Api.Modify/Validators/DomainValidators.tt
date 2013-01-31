@@ -69,6 +69,13 @@ foreach ( string name in nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		public void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue, string pParamName) {
 <#
+		if ( prop.IsNullable == true ) {
+			count++;
+#>
+			if ( pValue == null ) { return; }
+<#
+		}
+		
 		if ( prop.IsNullable != true && !prop.Type.IsValueType ) {
 			count++;
 #>

@@ -36,6 +36,11 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiModify\TCreateInstance.cs" />
+    <Compile Include="FabApiModify\TCreateClass.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddInstance.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddClass.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetClassByNameDisamb.cs" />
     <Compile Include="FabApiModify\TCreateUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />

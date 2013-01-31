@@ -8,7 +8,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateInstance : BaseModifyFunc<Instance> { //TEST: CreateInstance
+	public class CreateInstance : BaseModifyFunc<Instance> {
 
 		public const string NameParam = "Name";
 		public const string DisambParam = "Disamb";
