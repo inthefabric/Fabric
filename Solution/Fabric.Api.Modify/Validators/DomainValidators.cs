@@ -1,8 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/31/2013 2:25:03 PM
+// Generated on 1/31/2013 3:13:36 PM
 
 using System;
+using Fabric.Db.Data;
 
 namespace Fabric.Api.Modify.Validators {
 
@@ -287,7 +288,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void ArtifactTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(ArtifactTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -488,7 +489,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void EmailVerified(long pValue, string pParamName) {
-			if ( pValue == null ) { return; }
+			throw new Exception("Verified has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -583,7 +584,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void MemberTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(MemberTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -706,7 +707,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorDeleted(long pValue, string pParamName) {
-			if ( pValue == null ) { return; }
+			throw new Exception("Deleted has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -716,7 +717,7 @@ namespace Fabric.Api.Modify.Validators {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorCompleted(long pValue, string pParamName) {
-			if ( pValue == null ) { return; }
+			throw new Exception("Completed has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -739,7 +740,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorAssertionId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(FactorAssertionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -763,7 +764,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void DescriptorTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DescriptorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -787,7 +788,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void DirectorTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -799,7 +800,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void DirectorActionId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorActionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -833,7 +834,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void EventorTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -845,7 +846,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void EventorPrecisionId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorPrecisionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -880,7 +881,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void IdentorTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(IdentorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -934,7 +935,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void LocatorTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(LocatorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1028,7 +1029,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorTypeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1060,7 +1061,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorRangeId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorRangeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1072,7 +1073,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorRangeLevelId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorRangeLevelId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1094,7 +1095,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorUnitId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1117,7 +1118,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorUnitPrefixId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitPrefixId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1150,7 +1151,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorUnitDerivedId(long pValue, string pParamName) {
-			LongGreaterThan(pParamName, pValue, 0);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitDerivedId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

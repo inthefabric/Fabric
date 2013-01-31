@@ -38,8 +38,15 @@ namespace Fabric.Api.Modify.Validators {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void LongGreaterThan(string pName, long pValue, int pMin) {
+		public static void LongGreaterThan(string pName, long pValue, long pMin) {
 			if ( pValue <= pMin ) {
+				throw new FabArgumentOutOfRangeFault(pName);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void LongBetween(string pName, long pValue, long pMin, long pMax) {
+			if ( pValue < pMin || pValue > pMax ) {
 				throw new FabArgumentOutOfRangeFault(pName);
 			}
 		}

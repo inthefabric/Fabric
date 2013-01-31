@@ -1,7 +1,9 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)../Packages/Weaver.1.0.0/Weaver.dll" #>
 <#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Infrastructure.dll" #>
+<#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Domain.dll" #>
 <#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Infrastructure.Domain" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
@@ -12,6 +14,7 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System;
+using Fabric.Db.Data;
 
 namespace Fabric.Api.Modify.Validators {
 
@@ -69,7 +72,7 @@ foreach ( string name in nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		public void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue, string pParamName) {
 <#
-		if ( prop.IsNullable == true ) {
+		if ( prop.IsNullable == true && !prop.Type.IsValueType ) {
 			count++;
 #>
 			if ( pValue == null ) { return; }
@@ -83,7 +86,14 @@ foreach ( string name in nodes ) {
 <#
 		}
 
-		if ( prop.IsPrimaryKey == true || prop.IsTimestamp == true ) {
+		if ( prop.IsPrimaryKey == true && !node.IsInternal && 
+				node.BaseNode != null && node.BaseNode.Name == "NodeForType" ) {
+			count++;
+#>
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(<#= node.Name #>Id)).Length);
+<#
+		}
+		else if ( prop.IsPrimaryKey == true || prop.IsTimestamp == true ) {
 			count++;
 #>
 			LongGreaterThan(pParamName, pValue, 0);

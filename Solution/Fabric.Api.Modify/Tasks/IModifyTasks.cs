@@ -32,6 +32,9 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb);
 
+		/*--------------------------------------------------------------------------------------------*/
+		Artifact GetArtifact(IApiContext pApiCtx, long pArtifactId);
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -73,6 +76,11 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId, long pRelArtId,
+						long pAssertId, bool pIsDefining, string pNote, IWeaverVarAlias<Root> pRootVar,
+						IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Factor> pFactorVar);
 
 	}
 

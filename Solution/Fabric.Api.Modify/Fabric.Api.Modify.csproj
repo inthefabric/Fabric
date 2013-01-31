@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BaseModifyFunc.cs" />
+    <Compile Include="CreateFactor.cs" />
     <Compile Include="CreateInstance.cs" />
     <Compile Include="CreateClass.cs" />
     <Compile Include="CreateUrl.cs" />

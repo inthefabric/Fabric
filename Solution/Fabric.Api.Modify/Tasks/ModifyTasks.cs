@@ -22,11 +22,6 @@ namespace Fabric.Api.Modify.Tasks {
 			Validator = new DomainValidator();
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		private Root BeginPathFromRoot() {
-			return WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode;
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -35,7 +30,7 @@ namespace Fabric.Api.Modify.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
 
 			IWeaverQuery q = 
-				BeginPathFromRoot()
+				ApiFunc.NewPathFromRoot()
 				.ContainsUserList.ToUser
 					.CustomStep(filterStep)
 				.End();
@@ -47,9 +42,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUser(IApiContext pApiCtx, long pUserId) {
-			IWeaverQuery q = 
-				WeaverTasks.BeginPath<User>(x => x.UserId, pUserId).BaseNode
-				.End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { UserId = pUserId }).End();
 			return pApiCtx.DbSingle<User>("GetUser", q);
 		}
 
@@ -59,7 +52,7 @@ namespace Fabric.Api.Modify.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
 
 			IWeaverQuery q = 
-				BeginPathFromRoot()
+				ApiFunc.NewPathFromRoot()
 				.ContainsAppList.ToApp
 					.CustomStep(filterStep)
 				.End();
@@ -74,7 +67,7 @@ namespace Fabric.Api.Modify.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==AU}";
 
 			IWeaverQuery q = 
-				BeginPathFromRoot()
+				ApiFunc.NewPathFromRoot()
 				.ContainsUrlList.ToUrl
 					.CustomStep(filterStep)
 				.End();
@@ -88,7 +81,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverFuncAs<Member> memAlias;
 
 			IWeaverQuery q = 
-				WeaverTasks.BeginPath<User>(x => x.UserId, pApiCtx.UserId).BaseNode
+				ApiFunc.NewPathFromIndex(new User { UserId = pApiCtx.UserId })
 				.DefinesMemberList.ToMember
 					.As(out memAlias)
 				.InAppDefines.FromApp
@@ -111,7 +104,7 @@ namespace Fabric.Api.Modify.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
 
 			Class path = 
-				BeginPathFromRoot()
+				ApiFunc.NewPathFromRoot()
 				.ContainsClassList.ToClass
 					.CustomStep(filterStep);
 
@@ -129,6 +122,12 @@ namespace Fabric.Api.Modify.Tasks {
 			}
 
 			return pApiCtx.DbSingle<Class>("GetClassByNameDisamb", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Artifact GetArtifact(IApiContext pApiCtx, long pArtifactId) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new Artifact { ArtifactId = pArtifactId }).End();
+			return pApiCtx.DbSingle<Artifact>("GetArtifact", q);
 		}
 
 
@@ -210,7 +209,8 @@ namespace Fabric.Api.Modify.Tasks {
 					IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar) {
 			var emailVar = new WeaverVarAlias<Email>(pTxBuild.Transaction);
 
-			IWeaverQuery q = WeaverTasks.BeginPath<User>(x => x.UserId, pUserId).BaseNode
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(new User { UserId = pUserId })
 				.UsesEmail.ToEmail
 					.ToNodeVar(emailVar)
 				.End();
@@ -291,6 +291,25 @@ namespace Fabric.Api.Modify.Tasks {
 			var classBuild = new InstanceBuilder(pTxBuild, c);
 			classBuild.AddNode(pRootVar);
 			pInstVar = classBuild.NodeVar;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId,long pRelArtId,
+						long pAssertId, bool pIsDefining, string pNote, IWeaverVarAlias<Root> pRootVar,
+						IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Factor> pFactorVar) {
+			var fac = new Factor();
+			fac.FactorId = pApiCtx.GetSharpflakeId<Factor>();
+			fac.IsDefining = pIsDefining;
+			fac.Note = pNote;
+			fac.Created = pApiCtx.UtcNow.Ticks;
+
+			var facBuild = new FactorBuilder(pTxBuild, fac);
+			facBuild.AddNode(pRootVar);
+			facBuild.SetUsesPrimaryArtifact(pPrimArtId);
+			facBuild.SetUsesRelatedArtifact(pRelArtId);
+			facBuild.SetUsesFactorAssertion(pAssertId);
+			facBuild.SetInMemberCreates(pMemVar);
+			pFactorVar = facBuild.NodeVar;
 		}
 
 	}

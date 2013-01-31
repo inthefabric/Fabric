@@ -42,7 +42,7 @@ namespace Fabric.Api.Modify {
 			User user = Tasks.GetUser(ApiCtx, vUserId);
 
 			if ( user == null ) {
-				throw new FabNotFoundFault(typeof(User).Name);
+				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);
 			}
 
 			////

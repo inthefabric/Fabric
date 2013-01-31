@@ -36,6 +36,9 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiModify\TCreateFactor.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddFactor.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetArtifact.cs" />
     <Compile Include="FabApiModify\TCreateInstance.cs" />
     <Compile Include="FabApiModify\TCreateClass.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddInstance.cs" />
@@ -49,7 +52,7 @@
     <Compile Include="FabApiModify\TBaseModifyFunc.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddDataProvMember.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddApp.cs" />
-    <Compile Include="FabApiModify\Tasks\TxAddArtifact.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddArtifact.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddMember.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddUser.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddEmail.cs" />
