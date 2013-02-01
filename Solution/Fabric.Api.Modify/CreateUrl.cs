@@ -63,6 +63,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddArtifact<Url, UrlHasArtifact>(
 				ApiCtx, txb, ArtifactTypeId.Url, rootVar, urlVar, memVar, out artVar);
 
+			txb.RegisterVarWithTxBuilder(urlVar);
 			return ApiCtx.DbSingle<Url>("CreateUrlTx", txb.Finish(urlVar));
 		}
 

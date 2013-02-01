@@ -1,6 +1,8 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Db.Data;
 using Fabric.Domain;
+using Fabric.Infrastructure;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
@@ -19,6 +21,7 @@ namespace Fabric.Test.FabApiModify {
 		private long vAssertId;
 		private bool vIsDefining;
 		private string vNote;
+		private Member vCreator;
 
 		private IWeaverVarAlias<Factor> vOutFactorVar;
 		private Factor vResultFactor;
@@ -33,9 +36,12 @@ namespace Fabric.Test.FabApiModify {
 			vAssertId = 1;
 			vIsDefining = true;
 			vNote = "note here";
+			vCreator = new Member { MemberId = 151235 };
 
 			vOutFactorVar = GetTxVar<Factor>("FACTOR");
 			vResultFactor = new Factor();
+
+			SetUpMember(1, 2, new Member { MemberId = 234623 });
 
 			MockTasks
 				.Setup(x => x.TxAddFactor(
@@ -47,7 +53,7 @@ namespace Fabric.Test.FabApiModify {
 						vIsDefining,
 						vNote,
 						It.IsAny<IWeaverVarAlias<Root>>(),
-						It.IsAny<IWeaverVarAlias<Member>>(),
+						ApiCtxMember,
 						out vOutFactorVar
 					)
 				);
@@ -60,17 +66,14 @@ namespace Fabric.Test.FabApiModify {
 
 			MockTasks.Setup(x => x.GetArtifact(MockApiCtx.Object, vPrimArtId)).Returns(new Artifact());
 			MockTasks.Setup(x => x.GetArtifact(MockApiCtx.Object, vRelArtId)).Returns(new Artifact());
-
-			SetUpMember(1, 2, new Member { MemberId = 234623 });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Factor CreateFactorTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			string expectPartial = 
+			const string expectPartial = 
 				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
-				"g.V('MemberId',"+ApiCtxMember.MemberId+"L)[0].each{_V1=g.v(it)};"+
 				"FACTOR;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

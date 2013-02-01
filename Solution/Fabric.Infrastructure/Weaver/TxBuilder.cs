@@ -29,6 +29,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverTransaction Finish(IWeaverVarAlias pFinalOutput) {
+			VerifyVar(pFinalOutput);
 			Transaction.FinishWithoutStartStop(pFinalOutput);
 			return Transaction;
 		}

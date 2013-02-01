@@ -60,16 +60,15 @@ namespace Fabric.Api.Modify {
 			////
 
 			IWeaverVarAlias<Root> rootVar;
-			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Factor> factorVar;
 
 			var txb = new TxBuilder();
 
 			txb.GetRoot(out rootVar);
-			txb.GetNode(m, out memVar);
-			Tasks.TxAddFactor(ApiCtx, txb, vPrimArtId, vRelArtId, vAssertId, vIsDefining, vNote,
-				rootVar, memVar, out factorVar);
+			Tasks.TxAddFactor(ApiCtx, txb, vPrimArtId, vRelArtId, vAssertId, 
+				vIsDefining, vNote, rootVar, m, out factorVar);
 			
+			txb.RegisterVarWithTxBuilder(factorVar);
 			return ApiCtx.DbSingle<Factor>("CreateFactorTx", txb.Finish(factorVar));
 		}
 

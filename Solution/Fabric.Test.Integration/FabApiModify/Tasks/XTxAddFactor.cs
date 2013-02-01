@@ -19,13 +19,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		public void Success(SetupArtifacts.ArtifactId pPrimArtId, SetupArtifacts.ArtifactId pRelArtId,
 				FactorAssertionId pAssertId, bool pIsDef, string pNote, SetupUsers.MemberId pMemberId) {
 			IWeaverVarAlias<Root> rootVar;
-			IWeaverVarAlias<Member> memVar;
+			var mem = new Member { MemberId = (long)pMemberId };
 			IWeaverVarAlias<Factor> factorVar;
 
 			TxBuild.GetRoot(out rootVar);
-			TxBuild.GetNode(new Member { MemberId = (long)pMemberId }, out memVar);
-			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (long)pAssertId, pIsDef, pNote,
-				rootVar, memVar, out factorVar);
+			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (long)pAssertId, 
+				pIsDef, pNote, rootVar, mem, out factorVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddFactor", TxBuild.Transaction);

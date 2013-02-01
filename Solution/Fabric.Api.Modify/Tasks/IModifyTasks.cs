@@ -38,6 +38,29 @@ namespace Fabric.Api.Modify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasFactorDescriptor(IApiContext pApiCtx, Factor pFactor);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasFactorDirector(IApiContext pApiCtx, Factor pFactor);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasFactorEventor(IApiContext pApiCtx, Factor pFactor);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasFactorIdentor(IApiContext pApiCtx, Factor pFactor);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasFactorLocator(IApiContext pApiCtx, Factor pFactor);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasFactorVector(IApiContext pApiCtx, Factor pFactor);
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		void TxAddEmail(IApiContext pApiCtx, TxBuilder pTxBuild, string pAddress,
 								IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Email> pEmailVar);
 		
@@ -77,10 +100,17 @@ namespace Fabric.Api.Modify.Tasks {
 		void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar);
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId, long pRelArtId,
 						long pAssertId, bool pIsDefining, string pNote, IWeaverVarAlias<Root> pRootVar,
-						IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Factor> pFactorVar);
+						Member pCreator, out IWeaverVarAlias<Factor> pFactorVar);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
+						long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId, Factor pFactor,
+						Member pMember, out IWeaverVarAlias<Descriptor> pDescVar);
 
 	}
 

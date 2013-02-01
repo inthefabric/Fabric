@@ -12,21 +12,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
-			"_V1=[];"+ //Member
-			"_V2=g.addVertex(["+
+			"_V1=g.addVertex(["+
 				typeof(Factor).Name+"Id:{{NewFactorId}}L,"+
 				"IsDefining:true,"+
 				"Created:{{UtcNowTicks}}L,"+
 				"Note:_TP0"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP1);"+
-			"g.V('"+typeof(Artifact).Name+"Id',1251253L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V2,_V3,_TP2);"+
-			"g.V('"+typeof(Artifact).Name+"Id',64362346L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V2,_V4,_TP3);"+
-			"g.V('"+typeof(FactorAssertion).Name+"Id',1L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V2,_V5,_TP4);"+
-			"g.addEdge(_V1,_V2,_TP5);";
+			"g.addEdge(_V0,_V1,_TP1);"+
+			"g.V('"+typeof(Artifact).Name+"Id',{{PrimArtId}}L)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V1,_V2,_TP2);"+
+			"g.V('"+typeof(Artifact).Name+"Id',{{RelArtId}}L)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP3);"+
+			"g.V('"+typeof(FactorAssertion).Name+"Id',{{AssertId}}L)[0].each{_V4=g.v(it)};"+
+			"g.addEdge(_V1,_V4,_TP4);"+
+			"g.V('"+typeof(Member).Name+"Id',{{MemberId}}L)[0].each{_V5=g.v(it)};"+
+			"g.addEdge(_V5,_V1,_TP5);";
 
 		private long vPrimArtId;
 		private long vRelArtId;
@@ -57,20 +57,24 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
-			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
+			var rootVar = GetTxVar<Root>();
+			var mem = new Member { MemberId = 12345 };
 			IWeaverVarAlias<Factor> factorVar;
 
 			Tasks.TxAddFactor(MockApiCtx.Object, TxBuild, vPrimArtId, vRelArtId, vAssertId, vIsDefining,
-				vNote, rootVar, memVar, out factorVar);
+				vNote, rootVar, mem, out factorVar);
 			FinishTx();
 
 			Assert.NotNull(factorVar, "FactorVar should not be null.");
-			Assert.AreEqual("_V2", factorVar.Name, "Incorrect FactorVar name.");
+			Assert.AreEqual("_V1", factorVar.Name, "Incorrect FactorVar name.");
 
 			string expect = Query
 				.Replace("{{NewFactorId}}", vNewFactorId+"")
-				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
+				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
+				.Replace("{{PrimArtId}}", vPrimArtId+"")
+				.Replace("{{RelArtId}}", vRelArtId+"")
+				.Replace("{{AssertId}}", vAssertId+"")
+				.Replace("{{MemberId}}", mem.MemberId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNote);

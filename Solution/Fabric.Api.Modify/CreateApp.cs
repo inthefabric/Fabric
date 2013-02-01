@@ -61,7 +61,8 @@ namespace Fabric.Api.Modify {
 				ApiCtx, txb, ArtifactTypeId.App, rootVar, appVar, memVar, out artVar);
 
 			////
-
+			
+			txb.RegisterVarWithTxBuilder(appVar);
 			return ApiCtx.DbSingle<App>("CreateAppTx", txb.Finish(appVar));
 		}
 

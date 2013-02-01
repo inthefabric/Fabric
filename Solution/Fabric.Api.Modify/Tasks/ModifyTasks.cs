@@ -132,6 +132,172 @@ namespace Fabric.Api.Modify.Tasks {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		//TEST: ModifyTasks.GetActiveFactorFromMember()
+		/*--------------------------------------------------------------------------------------------*/
+		public Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId) {
+			IWeaverFuncAs<Factor> factorAlias;
+
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
+					.Has(x => x.Deleted, WeaverFuncHasOp.NotEqualTo, null)
+					.As(out factorAlias)
+				.InMemberCreates.FromMember
+					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
+				.Back(factorAlias)
+				.End();
+
+			return pApiCtx.DbSingle<Factor>("GetActiveFactorFromMember", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.HasFactorDescriptor()
+		public bool HasFactorDescriptor(IApiContext pApiCtx, Factor pFactor) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDescriptor.End();
+			return (pApiCtx.DbData("HasFactorDescriptor", q).GetResultCount() > 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.HasFactorDirector()
+		public bool HasFactorDirector(IApiContext pApiCtx, Factor pFactor) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDirector.End();
+			return (pApiCtx.DbData("HasFactorDirector", q).GetResultCount() > 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.HasFactorEventor()
+		public bool HasFactorEventor(IApiContext pApiCtx, Factor pFactor) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesEventor.End();
+			return (pApiCtx.DbData("HasFactorEventor", q).GetResultCount() > 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.HasFactorIdentor()
+		public bool HasFactorIdentor(IApiContext pApiCtx, Factor pFactor) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesIdentor.End();
+			return (pApiCtx.DbData("HasFactorIdentor", q).GetResultCount() > 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.HasFactorLocator()
+		public bool HasFactorLocator(IApiContext pApiCtx, Factor pFactor) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesLocator.End();
+			return (pApiCtx.DbData("HasFactorLocator", q).GetResultCount() > 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.HasFactorVector()
+		public bool HasFactorVector(IApiContext pApiCtx, Factor pFactor) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesVector.End();
+			return (pApiCtx.DbData("HasFactorVector", q).GetResultCount() > 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetDescriptorMatch()
+		public Descriptor GetDescriptorMatch(IApiContext pApiCtx, long pDescTypeId,
+										long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId) {
+			IWeaverVarAlias matches;
+			IWeaverVarAlias nulls;
+			IWeaverFuncAs<Descriptor> descMatchAlias;
+			IWeaverFuncAs<Descriptor> descNotAlias;
+
+			IWeaverTransaction tx = new WeaverTransaction();
+
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out matches)
+			);
+
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, out nulls)
+			);
+
+			////
+
+			Descriptor descPath =
+				ApiFunc.NewPathFromRoot()
+				.ContainsDescriptorList.ToDescriptor
+					.As(out descMatchAlias)
+				.UsesDescriptorType.ToDescriptorType
+					.Has(x => x.DescriptorTypeId, WeaverFuncHasOp.EqualTo, pDescTypeId)
+				.Back(descMatchAlias);
+
+			if ( pPrimArtModId != null ) {
+				descPath = descPath
+					.RefinesPrimaryWithArtifact.ToArtifact
+						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)pPrimArtModId)
+					.Back(descMatchAlias);
+			}
+
+			if ( pRelArtModId != null ) {
+				descPath = descPath
+					.RefinesRelatedWithArtifact.ToArtifact
+						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)pRelArtModId)
+					.Back(descMatchAlias);
+			}
+
+			if ( pDescTypeModId != null ) {
+				descPath = descPath
+					.RefinesTypeWithArtifact.ToArtifact
+						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)pDescTypeModId)
+					.Back(descMatchAlias);
+			}
+
+			tx.AddQuery(
+				descPath
+					.Aggregate(matches)
+					.Iterate()
+				.End()
+			);
+
+			////
+
+			Descriptor descNotPath =
+				ApiFunc.NewPathFromRoot()
+				.ContainsDescriptorList.ToDescriptor
+					.Except(matches)
+					.As(out descNotAlias);
+
+			if ( pPrimArtModId == null ) {
+				descNotPath = descNotPath
+					.RefinesPrimaryWithArtifact.ToArtifact
+						.Aggregate(nulls)
+					.Back(descNotAlias)
+						.Except(nulls);
+			}
+
+			if ( pRelArtModId == null ) {
+				descNotPath = descNotPath
+					.RefinesRelatedWithArtifact.ToArtifact
+						.Aggregate(nulls)
+					.Back(descNotAlias)
+						.Except(nulls);
+			}
+
+			if ( pDescTypeModId == null ) {
+				descNotPath = descNotPath
+					.RefinesTypeWithArtifact.ToArtifact
+						.Aggregate(nulls)
+					.Back(descNotAlias)
+						.Except(nulls);
+			}
+
+			tx.AddQuery(
+				descNotPath.End()
+			);
+
+			////
+
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromRoot()
+				.ContainsDescriptorList.ToDescriptor
+					.Retain(matches)
+					.Except(nulls)
+				.End();
+
+			return pApiCtx.DbSingle<Descriptor>("GetDescriptorMatch", q);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddEmail(IApiContext pApiCtx, TxBuilder pTxBuild, string pAddress, 
 								IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Email> pEmailVar) {
@@ -293,10 +459,13 @@ namespace Fabric.Api.Modify.Tasks {
 			pInstVar = classBuild.NodeVar;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId,long pRelArtId,
-						long pAssertId, bool pIsDefining, string pNote, IWeaverVarAlias<Root> pRootVar,
-						IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Factor> pFactorVar) {
+										long pAssertId, bool pIsDefining, string pNote, 
+										IWeaverVarAlias<Root> pRootVar, Member pCreator,
+										out IWeaverVarAlias<Factor> pFactorVar) {
 			var fac = new Factor();
 			fac.FactorId = pApiCtx.GetSharpflakeId<Factor>();
 			fac.IsDefining = pIsDefining;
@@ -308,8 +477,35 @@ namespace Fabric.Api.Modify.Tasks {
 			facBuild.SetUsesPrimaryArtifact(pPrimArtId);
 			facBuild.SetUsesRelatedArtifact(pRelArtId);
 			facBuild.SetUsesFactorAssertion(pAssertId);
-			facBuild.SetInMemberCreates(pMemVar);
+			facBuild.SetInMemberCreates(pCreator);
 			pFactorVar = facBuild.NodeVar;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddDescriptor()
+		public void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
+						long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId, Factor pFactor,
+						Member pMember, out IWeaverVarAlias<Descriptor> pDescVar) {
+			var desc = new Descriptor();
+			desc.DescriptorId = pApiCtx.GetSharpflakeId<Descriptor>();
+
+			var descBuild = new DescriptorBuilder(pTxBuild, desc);
+			descBuild.AddNode();
+			descBuild.SetUsesDescriptorType(pDescTypeId);
+
+			if ( pPrimArtModId != null ) {
+				descBuild.SetRefinesPrimaryWithArtifact((long)pPrimArtModId);
+			}
+
+			if ( pRelArtModId != null ) {
+				descBuild.SetRefinesRelatedWithArtifact((long)pRelArtModId);
+			}
+
+			if ( pDescTypeModId != null ) {
+				descBuild.SetRefinesTypeWithArtifact((long)pDescTypeModId);
+			}
+
+			pDescVar = descBuild.NodeVar;
 		}
 
 	}

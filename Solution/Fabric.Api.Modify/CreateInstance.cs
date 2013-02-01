@@ -58,6 +58,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddArtifact<Instance, InstanceHasArtifact>(
 				ApiCtx, txb, ArtifactTypeId.Instance, rootVar, classVar, memVar, out artVar);
 
+			txb.RegisterVarWithTxBuilder(classVar);
 			return ApiCtx.DbSingle<Instance>("CreateInstanceTx", txb.Finish(classVar));
 		}
 
