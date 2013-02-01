@@ -192,7 +192,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetDescriptorMatch()
 		public Descriptor GetDescriptorMatch(IApiContext pApiCtx, long pDescTypeId,
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) {
 			IWeaverVarAlias matches;
@@ -257,7 +256,7 @@ namespace Fabric.Api.Modify.Tasks {
 					.ContainsDescriptorList.ToDescriptor
 						.Retain(matches)
 						.As(out descNullAlias)
-					.RefinesPrimaryWithArtifact.FromDescriptor
+					.RefinesPrimaryWithArtifact
 					.Back(descNullAlias)
 						.Aggregate(nulls)
 						.Iterate()
@@ -285,7 +284,7 @@ namespace Fabric.Api.Modify.Tasks {
 					.ContainsDescriptorList.ToDescriptor
 						.Retain(matches)
 						.As(out descNullAlias)
-					.RefinesTypeWithArtifact.FromDescriptor
+					.RefinesTypeWithArtifact
 					.Back(descNullAlias)
 						.Aggregate(nulls)
 						.Iterate()
@@ -296,19 +295,15 @@ namespace Fabric.Api.Modify.Tasks {
 
 			////
 
-			IWeaverVarAlias<Descriptor> descAlias;
-
-			q = ApiFunc.NewPathFromRoot()
+			tx.AddQuery(
+				ApiFunc.NewPathFromRoot()
 				.ContainsDescriptorList.ToDescriptor
 					.Retain(matches)
 					.Except(nulls)
-				.End();
-
-			tx.AddQuery(
-				WeaverTasks.StoreQueryResultAsVar(tx, q, out descAlias)
+				.End()
 			);
 
-			tx.FinishWithoutStartStop(descAlias);
+			tx.FinishWithoutStartStop();
 			return pApiCtx.DbSingle<Descriptor>("GetDescriptorMatch", tx);
 		}
 

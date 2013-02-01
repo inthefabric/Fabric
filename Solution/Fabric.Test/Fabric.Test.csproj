@@ -36,6 +36,7 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetDescriptorMatch.cs" />
     <Compile Include="FabApiModify\TCreateFactor.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddFactor.cs" />
     <Compile Include="FabApiModify\Tasks\TGetArtifact.cs" />

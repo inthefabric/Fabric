@@ -4,7 +4,6 @@ using Fabric.Db.Gremlin;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Test.Util;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.Common {
@@ -33,7 +32,7 @@ namespace Fabric.Test.Integration.Common {
 			var qh = new GremlinController(ApiCtx.ContextId, q, TestApiDataAccess.GremlinUri);
 			string json = qh.GetJson();
 
-			TestUtil.LogWeaverScript(Script, "");
+			//TestUtil.LogWeaverScript(Script, "");
 			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			Log.Info("");
 			return json;

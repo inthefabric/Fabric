@@ -10,9 +10,9 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 	public class XGetDescriptorMatch : XModifyTasks {
 
 		private long vDescTypeId;
-		private long? vPrimArtModId;
-		private long? vRelArtModId;
-		private long? vDescTypeModId;
+		private long? vPrimArtRefId;
+		private long? vRelArtRefId;
+		private long? vDescTypeRefId;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,19 +23,9 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void SetParams(DescriptorTypeId pDescTypeId, SetupArtifacts.ArtifactId? pPrimArtModId,
-				SetupArtifacts.ArtifactId? pRelArtModId, SetupArtifacts.ArtifactId? pDescTypeModId) {
-			vDescTypeId = (long)pDescTypeId;
-			vPrimArtModId = (long?)pPrimArtModId;
-			vRelArtModId = (pRelArtModId == null ? (long?)null : (long)pRelArtModId);
-			vDescTypeModId = (pDescTypeModId == null ? (long?)null : (long)pDescTypeModId);
-
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		private Descriptor TestGo() {
 			return Tasks.GetDescriptorMatch(ApiCtx, vDescTypeId,
-				vPrimArtModId, vRelArtModId, vDescTypeModId);
+				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 		}
 
 
@@ -48,12 +38,15 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			SetupFactors.DescriptorId.IsFoundIn_Home)]
 		[TestCase(DescriptorTypeId.HasA, SetupArtifacts.ArtifactId.Thi_Subject, null, null,
 			SetupFactors.DescriptorId.HasA_Subject)]
-		[TestCase(DescriptorTypeId.HasA, SetupArtifacts.ArtifactId.Thi_Object, 
-			SetupArtifacts.ArtifactId.Thi_Blue, null, SetupFactors.DescriptorId.HasA_Object_Blue)]
-		public void Found(DescriptorTypeId pDescTypeId, SetupArtifacts.ArtifactId? pPrimArtModId,
-				SetupArtifacts.ArtifactId? pRelArtModId, SetupArtifacts.ArtifactId? pDescTypeModId,
+		[TestCase(DescriptorTypeId.HasA, SetupArtifacts.ArtifactId.Thi_Object,
+			null, SetupArtifacts.ArtifactId.Thi_Blue, SetupFactors.DescriptorId.HasA_Object_Blue)]
+		public void Found(DescriptorTypeId pDescTypeId, SetupArtifacts.ArtifactId? pPrimArtRefId,
+				SetupArtifacts.ArtifactId? pDescTypeRefId, SetupArtifacts.ArtifactId? pRelArtRefId,
 				SetupFactors.DescriptorId pExpectDescId) {
-			SetParams(pDescTypeId, pPrimArtModId, pRelArtModId, pDescTypeModId);
+			vDescTypeId = (long)pDescTypeId;
+			vPrimArtRefId = (long?)pPrimArtRefId;
+			vRelArtRefId = (long?)pRelArtRefId;
+			vDescTypeRefId = (long?)pDescTypeRefId;
 
 			Descriptor result = TestGo();
 
@@ -62,10 +55,19 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void NotFound(DescriptorTypeId pDescTypeId, SetupArtifacts.ArtifactId? pPrimArtModId,
-				SetupArtifacts.ArtifactId? pRelArtModId, SetupArtifacts.ArtifactId? pDescTypeModId,
-				SetupFactors.DescriptorId pExpectDescId) {
-			SetParams(pDescTypeId, pPrimArtModId, pRelArtModId, pDescTypeModId);
+		[TestCase(DescriptorTypeId.IsA, null, SetupArtifacts.ArtifactId.Thi_Male, null)]
+		[TestCase(DescriptorTypeId.IsA, SetupArtifacts.ArtifactId.Thi_Male, null, null)]
+		[TestCase(DescriptorTypeId.HasA, null, SetupArtifacts.ArtifactId.Thi_Object,
+			SetupArtifacts.ArtifactId.Thi_Blue)]
+		[TestCase(DescriptorTypeId.HasA, SetupArtifacts.ArtifactId.Thi_Object,
+			SetupArtifacts.ArtifactId.Thi_Blue, null)]
+		[TestCase(DescriptorTypeId.HasA, null, null, SetupArtifacts.ArtifactId.Thi_FocalLength)]
+		public void NotFound(DescriptorTypeId pDescTypeId, SetupArtifacts.ArtifactId? pPrimArtRefId,
+				SetupArtifacts.ArtifactId? pDescTypeRefId, SetupArtifacts.ArtifactId? pRelArtRefId) {
+			vDescTypeId = (long)pDescTypeId;
+			vPrimArtRefId = (long?)pPrimArtRefId;
+			vRelArtRefId = (long?)pRelArtRefId;
+			vDescTypeRefId = (long?)pDescTypeRefId;
 
 			Descriptor result = TestGo();
 
