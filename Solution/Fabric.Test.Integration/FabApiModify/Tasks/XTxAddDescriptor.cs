@@ -39,40 +39,52 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			ApiCtx.DbData("TEST.TxAddDescriptor", TxBuild.Transaction);
 
-			////
-
 			Descriptor newDescriptor = GetNode<Descriptor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newDescriptor, "New Descriptor was not created.");
+
+			NodeConnections conn = GetNodeConnections(newDescriptor);
+			int relCount;
+
+			CheckNewDescriptorConns(conn, f.FactorId, (long)pDescTypeId, (long?)pPrimArtRefId,
+				(long?)pRelArtRefId, (long?)pDescTypeRefId, out relCount);
+
+			NewNodeCount = 1;
+			NewRelCount = relCount;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void CheckNewDescriptorConns(NodeConnections pConn, long pFactorId,
+											long pDescTypeId, long? pPrimArtRefId, long? pRelArtRefId, 
+											long? pDescTypeRefId, out int pRelCount) {
 
 			int refRels = 0;
 			if ( pPrimArtRefId != null ) { refRels++; }
 			if ( pRelArtRefId != null ) { refRels++; }
 			if ( pDescTypeRefId != null ) { refRels++; }
 
-			NodeConnections conn = GetNodeConnections(newDescriptor);
-			Log.Debug(conn+"");
-			conn.AssertRelCount(2, 1+refRels);
-			conn.AssertRel<RootContainsDescriptor, Root>(false, 0);
-			conn.AssertRel<FactorUsesDescriptor, Factor>(false, f.FactorId);
-			conn.AssertRel<DescriptorUsesDescriptorType, DescriptorType>(true, (long)pDescTypeId);
+			pConn.AssertRelCount(2, 1+refRels);
+			pConn.AssertRel<RootContainsDescriptor, Root>(false, 0);
+			pConn.AssertRel<FactorUsesDescriptor, Factor>(false, pFactorId);
+			pConn.AssertRel<DescriptorUsesDescriptorType, DescriptorType>(true, pDescTypeId);
 
 			if ( pPrimArtRefId != null ) {
-				conn.AssertRel<DescriptorRefinesPrimaryWithArtifact, Artifact>(
+				pConn.AssertRel<DescriptorRefinesPrimaryWithArtifact, Artifact>(
 					true, (long)pPrimArtRefId);
 			}
 
 			if ( pRelArtRefId != null ) {
-				conn.AssertRel<DescriptorRefinesRelatedWithArtifact, Artifact>(
+				pConn.AssertRel<DescriptorRefinesRelatedWithArtifact, Artifact>(
 					true, (long)pRelArtRefId);
 			}
 
 			if ( pDescTypeRefId != null ) {
-				conn.AssertRel<DescriptorRefinesTypeWithArtifact, Artifact>(
+				pConn.AssertRel<DescriptorRefinesTypeWithArtifact, Artifact>(
 					true, (long)pDescTypeRefId);
 			}
 
-			NewNodeCount = 1;
-			NewRelCount = 3+refRels;
+			pRelCount = 3+refRels;
 		}
 
 	}

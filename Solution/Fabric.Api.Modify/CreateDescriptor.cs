@@ -7,7 +7,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateDescriptor : CreateFactorElement<Descriptor> { //TEST: CreateDescriptor
+	public class CreateDescriptor : CreateFactorElement<Descriptor> {
 
 		public const string DescTypeParam = "DescriptorTypeId";
 		public const string PrimArtRefParam = "PrimaryArtifactRefineId";
@@ -33,8 +33,6 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
-			base.ValidateParams();
-
 			Tasks.Validator.DescriptorTypeId(vDescTypeId, DescTypeParam);
 
 			if ( vPrimArtRefId != null ) {
@@ -89,6 +87,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddDescriptor(ApiCtx, txb, vDescTypeId, 
 				vPrimArtRefId, vRelArtRefId, vDescTypeRefId, pFactor, out descVar);
 
+			txb.RegisterVarWithTxBuilder(descVar);
 			return ApiCtx.DbSingle<Descriptor>("CreateDescriptorTx", txb.Finish(descVar));
 		}
 
