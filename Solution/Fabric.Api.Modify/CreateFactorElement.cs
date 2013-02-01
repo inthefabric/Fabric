@@ -43,7 +43,7 @@ namespace Fabric.Api.Modify {
 				throw new FabPreventedFault("This "+typeof(Factor).Name+" is already completed.");
 			}
 
-			if ( HasFactorElement(f) ) {
+			if ( FactorHasElement(f) ) {
 				throw new FabPreventedFault("This "+typeof(Factor).Name+
 					" already has an attached "+typeof(T).Name+".");
 			}
@@ -55,7 +55,7 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void ValidateElementParams();
-		protected abstract bool HasFactorElement(Factor pFactor);
+		protected abstract bool FactorHasElement(Factor pFactor);
 		protected abstract T AddElementToFactor(Factor pFactor, Member pMember);
 
 	}

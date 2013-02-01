@@ -41,22 +41,22 @@ namespace Fabric.Api.Modify.Tasks {
 		Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		bool HasFactorDescriptor(IApiContext pApiCtx, Factor pFactor);
+		bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
-		bool HasFactorDirector(IApiContext pApiCtx, Factor pFactor);
+		bool FactorHasDirector(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
-		bool HasFactorEventor(IApiContext pApiCtx, Factor pFactor);
+		bool FactorHasEventor(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
-		bool HasFactorIdentor(IApiContext pApiCtx, Factor pFactor);
+		bool FactorHasIdentor(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
-		bool HasFactorLocator(IApiContext pApiCtx, Factor pFactor);
+		bool FactorHasLocator(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
-		bool HasFactorVector(IApiContext pApiCtx, Factor pFactor);
+		bool FactorHasVector(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
 		Descriptor GetDescriptorMatch(IApiContext pApiCtx, long pDescTypeId,

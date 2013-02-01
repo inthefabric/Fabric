@@ -53,8 +53,8 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool HasFactorElement(Factor pFactor) {
-			return Tasks.HasFactorDescriptor(ApiCtx, pFactor);
+		protected override bool FactorHasElement(Factor pFactor) {
+			return Tasks.FactorHasDescriptor(ApiCtx, pFactor);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

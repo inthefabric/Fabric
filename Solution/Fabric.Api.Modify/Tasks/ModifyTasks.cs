@@ -149,45 +149,39 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.HasFactorDescriptor()
-		public bool HasFactorDescriptor(IApiContext pApiCtx, Factor pFactor) {
+		public bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDescriptor.End();
-			return (pApiCtx.DbData("HasFactorDescriptor", q).GetResultCount() > 0);
+			return (pApiCtx.DbData("FactorHasDescriptor", q).GetResultCount() > 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.HasFactorDirector()
-		public bool HasFactorDirector(IApiContext pApiCtx, Factor pFactor) {
+		public bool FactorHasDirector(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDirector.End();
-			return (pApiCtx.DbData("HasFactorDirector", q).GetResultCount() > 0);
+			return (pApiCtx.DbData("FactorHasDirector", q).GetResultCount() > 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.HasFactorEventor()
-		public bool HasFactorEventor(IApiContext pApiCtx, Factor pFactor) {
+		public bool FactorHasEventor(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesEventor.End();
-			return (pApiCtx.DbData("HasFactorEventor", q).GetResultCount() > 0);
+			return (pApiCtx.DbData("FactorHasEventor", q).GetResultCount() > 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.HasFactorIdentor()
-		public bool HasFactorIdentor(IApiContext pApiCtx, Factor pFactor) {
+		public bool FactorHasIdentor(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesIdentor.End();
-			return (pApiCtx.DbData("HasFactorIdentor", q).GetResultCount() > 0);
+			return (pApiCtx.DbData("FactorHasIdentor", q).GetResultCount() > 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.HasFactorLocator()
-		public bool HasFactorLocator(IApiContext pApiCtx, Factor pFactor) {
+		public bool FactorHasLocator(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesLocator.End();
-			return (pApiCtx.DbData("HasFactorLocator", q).GetResultCount() > 0);
+			return (pApiCtx.DbData("FactorHasLocator", q).GetResultCount() > 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.HasFactorVector()
-		public bool HasFactorVector(IApiContext pApiCtx, Factor pFactor) {
+		public bool FactorHasVector(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesVector.End();
-			return (pApiCtx.DbData("HasFactorVector", q).GetResultCount() > 0);
+			return (pApiCtx.DbData("FactorHasVector", q).GetResultCount() > 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
