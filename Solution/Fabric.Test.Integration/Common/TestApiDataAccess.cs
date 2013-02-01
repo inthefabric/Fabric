@@ -33,6 +33,7 @@ namespace Fabric.Test.Integration.Common {
 			var qh = new GremlinController(ApiCtx.ContextId, q, GremlinUri);
 			string json = qh.GetJson();
 
+			//TestUtil.LogWeaverScript(Script, "");
 			Log.Info("Query: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			Log.Info("");
 			return json;

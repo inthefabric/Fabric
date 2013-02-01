@@ -58,7 +58,7 @@ namespace Fabric.Infrastructure.Api {
 			ResultString = GetResultString();
 			Result = JsonSerializer.DeserializeFromString<DbResult>(ResultString);
 			Result.BuildDbDtos(ResultString);
-			//Log.Debug("RESULT: "+ResultString);
+			Log.Debug("RESULT: "+ResultString);
 
 			if ( Result.Exception != null ) {
 				throw new Exception(ResultString);

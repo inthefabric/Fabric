@@ -15,20 +15,20 @@ namespace Fabric.Api.Modify {
 		public const string DescTypeRefParam = "DescriptorTypeRefineId";
 
 		private readonly long vDescTypeId;
-		private readonly long? vPrimArtModId;
-		private readonly long? vRelArtModId;
-		private readonly long? vDescTypeModId;
+		private readonly long? vPrimArtRefId;
+		private readonly long? vRelArtRefId;
+		private readonly long? vDescTypeRefId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public CreateDescriptor(IModifyTasks pTasks, long pFactorId, long pDescTypeId, 
-										long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId) : 
+										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) : 
 										base(pTasks, pFactorId) {
 			vDescTypeId = pDescTypeId; 
-			vPrimArtModId = pPrimArtModId;
-			vRelArtModId = pRelArtModId;
-			vDescTypeModId = pDescTypeModId;
+			vPrimArtRefId = pPrimArtRefId;
+			vRelArtRefId = pRelArtRefId;
+			vDescTypeRefId = pDescTypeRefId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -37,16 +37,16 @@ namespace Fabric.Api.Modify {
 
 			Tasks.Validator.DescriptorTypeId(vDescTypeId, DescTypeParam);
 
-			if ( vPrimArtModId != null ) {
-				Tasks.Validator.ArtifactId((long)vPrimArtModId, PrimArtRefParam);
+			if ( vPrimArtRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vPrimArtRefId, PrimArtRefParam);
 			}
 
-			if ( vRelArtModId != null ) {
-				Tasks.Validator.ArtifactId((long)vRelArtModId, RelArtRefParam);
+			if ( vRelArtRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vRelArtRefId, RelArtRefParam);
 			}
 
-			if ( vDescTypeModId != null ) {
-				Tasks.Validator.ArtifactId((long)vDescTypeModId, DescTypeRefParam);
+			if ( vDescTypeRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vDescTypeRefId, DescTypeRefParam);
 			}
 		}
 
@@ -59,22 +59,22 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Descriptor AddElementToFactor(Factor pFactor, Member pMember) {
-			if ( vPrimArtModId != null && Tasks.GetArtifact(ApiCtx, (long)vPrimArtModId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vPrimArtModId);
+			if ( vPrimArtRefId != null && Tasks.GetArtifact(ApiCtx, (long)vPrimArtRefId) == null ) {
+				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vPrimArtRefId);
 			}
 
-			if ( vRelArtModId != null && Tasks.GetArtifact(ApiCtx, (long)vRelArtModId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vRelArtModId);
+			if ( vRelArtRefId != null && Tasks.GetArtifact(ApiCtx, (long)vRelArtRefId) == null ) {
+				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vRelArtRefId);
 			}
 
-			if ( vDescTypeModId != null && Tasks.GetArtifact(ApiCtx, (long)vDescTypeModId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeModId);
+			if ( vDescTypeRefId != null && Tasks.GetArtifact(ApiCtx, (long)vDescTypeRefId) == null ) {
+				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeRefId);
 			}
 
 			////
 
 			Descriptor desc = Tasks.GetDescriptorMatch(
-				ApiCtx, vDescTypeId, vPrimArtModId, vRelArtModId, vDescTypeModId);
+				ApiCtx, vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 
 			if ( desc != null ) {
 				Tasks.AttachDescriptor(ApiCtx, pFactor, desc);
@@ -87,7 +87,7 @@ namespace Fabric.Api.Modify {
 			var txb = new TxBuilder();
 
 			Tasks.TxAddDescriptor(ApiCtx, txb, vDescTypeId, 
-				vPrimArtModId, vRelArtModId, vDescTypeModId, pFactor, out descVar);
+				vPrimArtRefId, vRelArtRefId, vDescTypeRefId, pFactor, out descVar);
 
 			return ApiCtx.DbSingle<Descriptor>("CreateDescriptorTx", txb.Finish(descVar));
 		}

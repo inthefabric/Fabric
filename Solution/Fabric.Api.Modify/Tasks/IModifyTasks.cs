@@ -60,7 +60,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		Descriptor GetDescriptorMatch(IApiContext pApiCtx, long pDescTypeId,
-										long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId);
+										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, Descriptor pDesc);
@@ -116,7 +116,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
-						long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId, Factor pFactor,
+						long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId, Factor pFactor,
 						out IWeaverVarAlias<Descriptor> pDescVar);
 
 	}

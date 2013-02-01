@@ -37,13 +37,18 @@ namespace Fabric.Test.Util {
 				p += "\n\t"+key+" = "+pScripted.Params[key];
 			}
 
-			string script = pScripted.Script
+			LogWeaverScript(pScripted.Script, p);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void LogWeaverScript(string pScript, string pParamOutput) {
+			string script = pScript
 				.Replace(".outE", "\n\t\t.outE")
 				.Replace(".inE", "\n\t\t.inE")
 				.Replace(".back", "\n\t\t.back")
 				.Replace(";", ";\n\t");
 
-			Log.Debug("Query:\n\n\t"+script+p);
+			Log.Debug("Query:\n\n\t"+script+pParamOutput);
 		}
 
 
