@@ -10,7 +10,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetUser : TModifyTasks {
 
-		private const string Query = "g.V('UserId',{{UserId}}L)[0];";
+		private static readonly string Query =
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];";
 
 		private long vUserId;
 		private User vUserResult;

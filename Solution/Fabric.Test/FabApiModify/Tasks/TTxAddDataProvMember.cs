@@ -24,7 +24,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Performed:0L"+
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP3);"+
-			"g.V('MemberId',1L)[0].each{_V5=g.v(it)};"+
+			"g.V('"+typeof(Member).Name+"Id',1L)[0].each{_V5=g.v(it)};"+
 			"g.addEdge(_V5,_V4,_TP4);"+
 			"g.addEdge(_V2,_V4,_TP5);"+
 			"g.V('"+typeof(MemberType).Name+"Id',8L)[0].each{_V6=g.v(it)};"+

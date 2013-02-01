@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
 				typeof(Factor).Name+"Id:{{NewFactorId}}L,"+
 				"IsDefining:true,"+

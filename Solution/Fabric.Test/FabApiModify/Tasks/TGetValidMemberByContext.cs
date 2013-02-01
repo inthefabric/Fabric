@@ -12,17 +12,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetValidMemberByContext : TModifyTasks {
 
 		private readonly static string Query =
-			"g.V('UserId',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 					".as('step3')"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-					".has('AppId',Tokens.T.eq,{{AppId}}L)"+
+					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 				".back('step3')"+
 				".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 				".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
-					".has('MemberTypeId',Tokens.T.neq,"+(long)MemberTypeId.None+"L)"+
-					".has('MemberTypeId',Tokens.T.neq,"+(long)MemberTypeId.Invite+"L)"+
-					".has('MemberTypeId',Tokens.T.neq,"+(long)MemberTypeId.Request+"L)"+
+					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,"+(long)MemberTypeId.None+"L)"+
+					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,"+(long)MemberTypeId.Invite+"L)"+
+					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,"+(long)MemberTypeId.Request+"L)"+
 				".back('step3');";
 
 		private long vUserId;

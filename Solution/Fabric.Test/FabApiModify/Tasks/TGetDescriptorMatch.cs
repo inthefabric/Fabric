@@ -47,7 +47,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				".back('step3')";
 
 		private static readonly string QueryPrimRefNull = 
-			"g.V('RootId',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".as('step4')"+
@@ -57,7 +57,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryRelRefNull = 
-			"g.V('RootId',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".as('step4')"+
@@ -67,7 +67,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryTypeRefNull = 
-			"g.V('RootId',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".as('step4')"+

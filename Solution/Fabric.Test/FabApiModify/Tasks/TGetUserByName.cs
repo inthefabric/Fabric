@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetUserByName : TModifyTasks {
 
 		private readonly static string Query =
-			"g.V('RootId',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".outE('"+typeof(RootContainsUser).Name+"').inV"+
 				".filter{it.getProperty('Name').toLowerCase()==NAME};";
 

@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetClassByNameDisamb : TModifyTasks {
 
 		private readonly static string QueryStart =
-			"g.V('RootId',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".outE('"+typeof(RootContainsClass).Name+"').inV"+
 				".filter{it.getProperty('Name').toLowerCase()==NAME}";
 

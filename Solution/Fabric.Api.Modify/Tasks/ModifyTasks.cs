@@ -132,14 +132,13 @@ namespace Fabric.Api.Modify.Tasks {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		//TEST: ModifyTasks.GetActiveFactorFromMember()
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId) {
 			IWeaverFuncAs<Factor> factorAlias;
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
-					.Has(x => x.Deleted, WeaverFuncHasOp.NotEqualTo, null)
+					.Has(x => x.Deleted, WeaverFuncHasOp.EqualTo, null) //Factor is not deleted
 					.As(out factorAlias)
 				.InMemberCreates.FromMember
 					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
@@ -308,7 +307,7 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TODO: ModifyTasks.AttachDescriptor()
+		//TEST: ModifyTasks.AttachDescriptor()
 		public void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, Descriptor pDesc) {
 			
 		}

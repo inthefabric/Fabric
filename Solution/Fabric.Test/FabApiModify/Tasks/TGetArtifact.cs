@@ -10,7 +10,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetArtifact : TModifyTasks {
 
-		private const string Query = "g.V('ArtifactId',{{ArtifactId}}L)[0];";
+		private static readonly string Query = 
+			"g.V('"+typeof(Artifact).Name+"Id',{{ArtifactId}}L)[0];";
 
 		private long vArtifactId;
 		private Artifact vArtifactResult;
