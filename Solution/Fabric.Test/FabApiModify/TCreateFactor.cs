@@ -1,8 +1,6 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Db.Data;
 using Fabric.Domain;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
@@ -52,7 +50,6 @@ namespace Fabric.Test.FabApiModify {
 						vAssertId,
 						vIsDefining,
 						vNote,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						ApiCtxMember,
 						out vOutFactorVar
 					)
@@ -72,10 +69,7 @@ namespace Fabric.Test.FabApiModify {
 		private Factor CreateFactorTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			const string expectPartial = 
-				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
-				"FACTOR;";
-
+			const string expectPartial = "FACTOR;";
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
 			return vResultFactor;
 		}

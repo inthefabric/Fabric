@@ -296,6 +296,12 @@ namespace Fabric.Api.Modify.Tasks {
 			return pApiCtx.DbSingle<Descriptor>("GetDescriptorMatch", q);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		//TODO: ModifyTasks.AttachDescriptor()
+		public void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, Descriptor pDesc) {
+			
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -463,8 +469,7 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId,long pRelArtId,
-										long pAssertId, bool pIsDefining, string pNote, 
-										IWeaverVarAlias<Root> pRootVar, Member pCreator,
+										long pAssertId, bool pIsDefining, string pNote, Member pCreator,
 										out IWeaverVarAlias<Factor> pFactorVar) {
 			var fac = new Factor();
 			fac.FactorId = pApiCtx.GetSharpflakeId<Factor>();
@@ -473,7 +478,7 @@ namespace Fabric.Api.Modify.Tasks {
 			fac.Created = pApiCtx.UtcNow.Ticks;
 
 			var facBuild = new FactorBuilder(pTxBuild, fac);
-			facBuild.AddNode(pRootVar);
+			facBuild.AddNode();
 			facBuild.SetUsesPrimaryArtifact(pPrimArtId);
 			facBuild.SetUsesRelatedArtifact(pRelArtId);
 			facBuild.SetUsesFactorAssertion(pAssertId);
@@ -484,13 +489,14 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		//TEST: ModifyTasks.TxAddDescriptor()
 		public void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
-						long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId, Factor pFactor,
-						Member pMember, out IWeaverVarAlias<Descriptor> pDescVar) {
+						long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId, Factor pFactor, 
+						out IWeaverVarAlias<Descriptor> pDescVar) {
 			var desc = new Descriptor();
 			desc.DescriptorId = pApiCtx.GetSharpflakeId<Descriptor>();
 
 			var descBuild = new DescriptorBuilder(pTxBuild, desc);
 			descBuild.AddNode();
+			descBuild.AddToInFactorListUses(pFactor);
 			descBuild.SetUsesDescriptorType(pDescTypeId);
 
 			if ( pPrimArtModId != null ) {

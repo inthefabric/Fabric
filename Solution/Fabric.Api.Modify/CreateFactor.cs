@@ -59,14 +59,12 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Factor> factorVar;
 
 			var txb = new TxBuilder();
 
-			txb.GetRoot(out rootVar);
 			Tasks.TxAddFactor(ApiCtx, txb, vPrimArtId, vRelArtId, vAssertId, 
-				vIsDefining, vNote, rootVar, m, out factorVar);
+				vIsDefining, vNote, m, out factorVar);
 			
 			txb.RegisterVarWithTxBuilder(factorVar);
 			return ApiCtx.DbSingle<Factor>("CreateFactorTx", txb.Finish(factorVar));

@@ -7,7 +7,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateDescriptor : CreateFactorElement<Descriptor> {
+	public class CreateDescriptor : CreateFactorElement<Descriptor> { //TEST: CreateDescriptor
 
 		public const string DescTypeParam = "DescriptorTypeId";
 		public const string PrimArtRefParam = "PrimaryArtifactRefineId";
@@ -73,11 +73,21 @@ namespace Fabric.Api.Modify {
 
 			////
 
+			Descriptor desc = Tasks.GetDescriptorMatch(
+				ApiCtx, vDescTypeId, vPrimArtModId, vRelArtModId, vDescTypeModId);
+
+			if ( desc != null ) {
+				Tasks.AttachDescriptor(ApiCtx, pFactor, desc);
+				return desc;
+			}
+
+			////
+
 			IWeaverVarAlias<Descriptor> descVar;
 			var txb = new TxBuilder();
 
-			Tasks.TxAddDescriptor(ApiCtx, txb, vDescTypeId, vPrimArtModId, vRelArtModId, vDescTypeModId,
-				pFactor, pMember, out descVar);
+			Tasks.TxAddDescriptor(ApiCtx, txb, vDescTypeId, 
+				vPrimArtModId, vRelArtModId, vDescTypeModId, pFactor, out descVar);
 
 			return ApiCtx.DbSingle<Descriptor>("CreateDescriptorTx", txb.Finish(descVar));
 		}

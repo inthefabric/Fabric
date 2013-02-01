@@ -24,7 +24,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			TxBuild.GetRoot(out rootVar);
 			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (long)pAssertId, 
-				pIsDef, pNote, rootVar, mem, out factorVar);
+				pIsDef, pNote, mem, out factorVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddFactor", TxBuild.Transaction);

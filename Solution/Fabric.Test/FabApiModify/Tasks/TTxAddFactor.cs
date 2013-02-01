@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=[];"+ //Root
+			"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
 				typeof(Factor).Name+"Id:{{NewFactorId}}L,"+
 				"IsDefining:true,"+
@@ -57,12 +57,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			var rootVar = GetTxVar<Root>();
 			var mem = new Member { MemberId = 12345 };
 			IWeaverVarAlias<Factor> factorVar;
 
 			Tasks.TxAddFactor(MockApiCtx.Object, TxBuild, vPrimArtId, vRelArtId, vAssertId, vIsDefining,
-				vNote, rootVar, mem, out factorVar);
+				vNote, mem, out factorVar);
 			FinishTx();
 
 			Assert.NotNull(factorVar, "FactorVar should not be null.");

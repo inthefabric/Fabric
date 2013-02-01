@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateFactorElement {
+	public class CreateFactorElement { //TEST: CreateFactorElement
 
 		public const string FactorParam = "FactorId";
 

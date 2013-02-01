@@ -58,6 +58,13 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		bool HasFactorVector(IApiContext pApiCtx, Factor pFactor);
 
+		/*--------------------------------------------------------------------------------------------*/
+		Descriptor GetDescriptorMatch(IApiContext pApiCtx, long pDescTypeId,
+										long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, Descriptor pDesc);
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -104,13 +111,13 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId, long pRelArtId,
-						long pAssertId, bool pIsDefining, string pNote, IWeaverVarAlias<Root> pRootVar,
-						Member pCreator, out IWeaverVarAlias<Factor> pFactorVar);
+											long pAssertId, bool pIsDefining, string pNote,
+											Member pCreator, out IWeaverVarAlias<Factor> pFactorVar);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
 						long? pPrimArtModId, long? pRelArtModId, long? pDescTypeModId, Factor pFactor,
-						Member pMember, out IWeaverVarAlias<Descriptor> pDescVar);
+						out IWeaverVarAlias<Descriptor> pDescVar);
 
 	}
 
