@@ -63,7 +63,8 @@ namespace Fabric.Api.Modify.Tasks {
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, Descriptor pDesc);
+		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
+								where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

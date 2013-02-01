@@ -35,6 +35,8 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddDescriptor.cs" />
+    <Compile Include="FabApiModify\Tasks\XAttachExistingElement.cs" />
     <Compile Include="FabApiModify\Tasks\XFactorHasElement.cs" />
     <Compile Include="FabApiModify\Tasks\XFactorHasElements.cs" />
     <Compile Include="FabApiModify\Tasks\XGetActiveFactorFromMember.cs" />

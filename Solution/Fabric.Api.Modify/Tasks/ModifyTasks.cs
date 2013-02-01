@@ -301,9 +301,17 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.AttachDescriptor()
-		public void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, Descriptor pDesc) {
+		public void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
+							where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new() {
+			IWeaverVarAlias<Factor> factorVar;
+			IWeaverVarAlias<T> elemVar;
+
+			var txb = new TxBuilder();
+			txb.GetNode(pFactor, out factorVar);
+			txb.GetNode(pElement, out elemVar);
+			txb.AddRel<TRel>(factorVar, elemVar);
 			
+			pApiCtx.DbData("AttachExisting"+typeof(T).Name, txb.Finish());
 		}
 
 
@@ -491,7 +499,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddDescriptor()
 		public void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
 						long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId, Factor pFactor, 
 						out IWeaverVarAlias<Descriptor> pDescVar) {

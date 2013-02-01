@@ -36,6 +36,8 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddDescriptor.cs" />
+    <Compile Include="FabApiModify\Tasks\TAttachExistingElement.cs" />
     <Compile Include="FabApiModify\Tasks\TFactorHasElement.cs" />
     <Compile Include="FabApiModify\Tasks\TFactorHasElements.cs" />
     <Compile Include="FabApiModify\Tasks\TGetActiveFactorFromMember.cs" />

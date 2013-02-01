@@ -77,7 +77,7 @@ namespace Fabric.Api.Modify {
 				ApiCtx, vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 
 			if ( desc != null ) {
-				Tasks.AttachDescriptor(ApiCtx, pFactor, desc);
+				Tasks.AttachExistingElement<Descriptor, FactorUsesDescriptor>(ApiCtx, pFactor, desc);
 				return desc;
 			}
 
