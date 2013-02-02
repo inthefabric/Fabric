@@ -2,7 +2,6 @@
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Integration.FabApiModify.Tasks;
@@ -13,13 +12,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XCreateDescriptor : XBaseModifyFunc {
+	public class XCreateDescriptor : XCreateFactorElement {
 
 		private const SetupArtifacts.ArtifactId ArtA = SetupArtifacts.ArtifactId.Thi_Male;
 		private const SetupArtifacts.ArtifactId ArtB = SetupArtifacts.ArtifactId.User_Ellie;
 		private const SetupArtifacts.ArtifactId ArtC = SetupArtifacts.ArtifactId.App_Bookmarker;
-
-		private long vFactorId; //TODO: base class
 
 		private long vDescTypeId;
 		private long? vPrimArtRefId;
@@ -35,18 +32,15 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vFactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete; //TODO: base class
-			ApiCtx.SetAppUserId((long)AppFab, (long)UserZach); //TODO: base class
-
-			/*vDescTypeId = (long)DescriptorTypeId.IsA;
+			vDescTypeId = (long)DescriptorTypeId.IsA;
 			vPrimArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Aei;
 			vRelArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Evolution;
-			vDescTypeRefId = (long)SetupArtifacts.ArtifactId.Thi_Blue;*/
+			vDescTypeRefId = (long)SetupArtifacts.ArtifactId.Thi_Blue;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestGo() {
-			var func = new CreateDescriptor(Tasks, vFactorId, vDescTypeId,
+		protected override void TestGo() {
+			var func = new CreateDescriptor(Tasks, FactorId, vDescTypeId,
 				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 			vResult = func.Go(ApiCtx);
 		}
@@ -85,7 +79,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			NodeConnections conn = GetNodeConnections(newDescriptor);
 			int relCount;
 
-			XTxAddDescriptor.CheckNewDescriptorConns(conn, vFactorId, vDescTypeId, vPrimArtRefId,
+			XTxAddDescriptor.CheckNewDescriptorConns(conn, FactorId, vDescTypeId, vPrimArtRefId,
 				vRelArtRefId, vDescTypeRefId, out relCount);
 
 			NewNodeCount = 1;
@@ -120,44 +114,42 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			Descriptor newDescriptor = GetNode<Descriptor>((long)pExpectDescId);
 			NodeConnections conn = GetNodeConnections(newDescriptor);
-			conn.AssertRel<FactorUsesDescriptor, Factor>(false, vFactorId);
+			conn.AssertRel<FactorUsesDescriptor, Factor>(false, FactorId);
 
 			NewNodeCount = 0;
 			NewRelCount = 1;
 		}
 
-		
-		//TEST: XCreateDescriptor validation
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void ErrNameNull() {
-			vName = null;
-			TestUtil.CheckThrows<FabArgumentNullFault>(true, TestGo);
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(SetupTypes.NumDescriptorTypes+1)]
+		public void ErrDescriptorTypeRange(int pId) {
+			vDescTypeId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
-		
-		/*--------------------------------------------------------------------------------------------* /
-		[TestCase(3)]
-		[TestCase(17)]
-		public void ErrNameLength(int pLength) {
-			vName = new string('a', pLength);
-			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		public void ErrPrimaryArtifactRange(int pId) {
+			vPrimArtRefId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
-		
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void ErrNameInvalid() {
-			vName = "zach@test";
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		public void ErrRelatedArtifactRange(int pId) {
+			vRelArtRefId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
-		
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void ErrNameDuplicate() {
-			vName = "ZachKinstner";
-			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
-		}*/
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		public void ErrTypeArtifactRange(int pId) {
+			vDescTypeRefId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
 
 	}
 

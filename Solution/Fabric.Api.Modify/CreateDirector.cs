@@ -6,9 +6,9 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class CreateDirector : CreateFactorElement<Director> { //TEST: CreateDirector
+	public class CreateDirector : CreateFactorElement<Director> {
 
-		public const string DescTypeParam = "DirectorTypeId";
+		public const string DirTypeParam = "DirectorTypeId";
 		public const string PrimActionParam = "PrimaryDirectorActionId";
 		public const string RelActionParam = "RelatedDirectorActionId";
 
@@ -28,7 +28,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
-			Tasks.Validator.DirectorTypeId(vDescTypeId, DescTypeParam);
+			Tasks.Validator.DirectorTypeId(vDescTypeId, DirTypeParam);
 			Tasks.Validator.DirectorActionId(vPrimActId, PrimActionParam);
 			Tasks.Validator.DirectorActionId(vRelActId, RelActionParam);
 		}

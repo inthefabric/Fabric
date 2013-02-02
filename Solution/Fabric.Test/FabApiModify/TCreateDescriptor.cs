@@ -63,8 +63,7 @@ namespace Fabric.Test.FabApiModify {
 			vResultDescriptor = new Descriptor();
 
 			MockApiCtx
-				.Setup(x => x.DbSingle<Descriptor>("CreateDescriptorTx",
-					It.IsAny<IWeaverTransaction>()))
+				.Setup(x => x.DbSingle<Descriptor>("CreateDescriptorTx",It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction q) => CreateDescriptorTx(q));
 		}
 
