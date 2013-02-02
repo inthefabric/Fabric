@@ -36,6 +36,8 @@
     <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabArtifactType.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddDirector.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetDirectorMatch.cs" />
     <Compile Include="FabApiModify\TCreateDescriptor.cs" />
     <Compile Include="FabApiModify\TCreateFactorElement.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddDescriptor.cs" />

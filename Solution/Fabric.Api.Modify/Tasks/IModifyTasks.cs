@@ -63,6 +63,9 @@ namespace Fabric.Api.Modify.Tasks {
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId);
 
 		/*--------------------------------------------------------------------------------------------*/
+		Director GetDirectorMatch(IApiContext pApiCtx, long pDirTypeId,long pPrimActId,long pRelActId);
+
+		/*--------------------------------------------------------------------------------------------*/
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 								where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new();
 
@@ -120,6 +123,9 @@ namespace Fabric.Api.Modify.Tasks {
 						long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId, Factor pFactor,
 						out IWeaverVarAlias<Descriptor> pDescVar);
 
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddDirector(IApiContext pApiCtx, TxBuilder pTxBuild, long pDirTypeId, long pPrimActId,
+			long pRelActId, Factor pFactor, out IWeaverVarAlias<Director> pDirVar);
 	}
 
 }

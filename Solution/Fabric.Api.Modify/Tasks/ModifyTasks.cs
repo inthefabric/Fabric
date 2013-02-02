@@ -301,6 +301,28 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public Director GetDirectorMatch(IApiContext pApiCtx, long pDirTypeId, long pPrimActId,
+																					long pRelActId) {
+			IWeaverFuncAs<Director> dirAlias;
+
+			IWeaverQuery q = ApiFunc.NewPathFromRoot()
+				.ContainsDirectorList.ToDirector
+					.As(out dirAlias)
+				.UsesDirectorType.ToDirectorType
+					.Has(x => x.DirectorTypeId, WeaverFuncHasOp.EqualTo, pDirTypeId)
+				.Back(dirAlias)
+				.UsesPrimaryDirectorAction.ToDirectorAction
+					.Has(x => x.DirectorActionId, WeaverFuncHasOp.EqualTo, pPrimActId)
+				.Back(dirAlias)
+				.UsesRelatedDirectorAction.ToDirectorAction
+					.Has(x => x.DirectorActionId, WeaverFuncHasOp.EqualTo, pRelActId)
+				.Back(dirAlias)
+				.End();
+
+			return pApiCtx.DbSingle<Director>("GetDirectorMatch", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 							where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new() {
 			IWeaverVarAlias<Factor> factorVar;
@@ -523,6 +545,22 @@ namespace Fabric.Api.Modify.Tasks {
 			}
 
 			pDescVar = descBuild.NodeVar;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void TxAddDirector(IApiContext pApiCtx, TxBuilder pTxBuild, long pDirTypeId,
+														long pPrimActId, long pRelActId, Factor pFactor,
+														out IWeaverVarAlias<Director> pDirVar) {
+			var dir = new Director();
+			dir.DirectorId = pApiCtx.GetSharpflakeId<Director>();
+
+			var dirBuild = new DirectorBuilder(pTxBuild, dir);
+			dirBuild.AddNode();
+			dirBuild.AddToInFactorListUses(pFactor);
+			dirBuild.SetUsesDirectorType(pDirTypeId);
+			dirBuild.SetUsesPrimaryDirectorAction(pPrimActId);
+			dirBuild.SetUsesRelatedDirectorAction(pRelActId);
+			pDirVar = dirBuild.NodeVar;
 		}
 
 	}
