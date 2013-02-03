@@ -36,6 +36,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Artifact newArt = GetNode<Artifact>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newArt, "New Artifact was not created.");
+			Assert.AreNotEqual(0, newArt.ArtifactId, "Incorrect ArtifactId.");
+			Assert.AreNotEqual(0, newArt.Created, "Incorrect Created.");
 
 			NodeConnections conn = GetNodeConnections(newArt);
 			conn.AssertRelCount(3, 1);

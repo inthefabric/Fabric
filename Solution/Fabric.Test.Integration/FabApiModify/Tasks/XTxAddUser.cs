@@ -3,6 +3,7 @@ using Fabric.Domain;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
+using Fabric.Infrastructure;
 
 namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
@@ -33,6 +34,10 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			User newUser = GetNode<User>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUser, "New User was not created.");
+			Assert.AreNotEqual(0, newUser.UserId, "Incorrect UserId.");
+			Assert.AreEqual(pName, newUser.Name, "Incorrect Name.");
+			Assert.AreEqual(FabricUtil.HashPassword(pPassword), newUser.Password,
+				"Incorrect Password.");
 
 			NodeConnections conn = GetNodeConnections(newUser);
 			conn.AssertRelCount(1, 1);

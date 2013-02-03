@@ -32,6 +32,9 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			App newApp = GetNode<App>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newApp, "New App was not created.");
+			Assert.AreNotEqual(0, newApp.AppId, "Incorrect AppId.");
+			Assert.AreEqual(pName, newApp.Name, "Incorrect Name.");
+			Assert.AreEqual(32, newApp.Secret.Length, "Incorrect Secret length.");
 
 			NodeConnections conn = GetNodeConnections(newApp);
 			conn.AssertRelCount(1, 1);

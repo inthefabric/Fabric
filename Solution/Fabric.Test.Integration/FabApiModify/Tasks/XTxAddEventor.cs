@@ -27,6 +27,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Eventor newEventor = GetNode<Eventor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newEventor, "New Eventor was not created.");
+			Assert.AreNotEqual(0, newEventor.EventorId, "Incorrect EventorId.");
+			Assert.AreEqual(pDateTime, newEventor.DateTime, "Incorrect DateTime.");
 
 			NodeConnections conn = GetNodeConnections(newEventor);
 			conn.AssertRelCount(2, 2);

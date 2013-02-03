@@ -28,6 +28,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Director newDirector = GetNode<Director>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newDirector, "New Director was not created.");
+			Assert.AreNotEqual(0, newDirector.DirectorId, "Incorrect DirectorId.");
 
 			NodeConnections conn = GetNodeConnections(newDirector);
 			conn.AssertRelCount(2, 3);

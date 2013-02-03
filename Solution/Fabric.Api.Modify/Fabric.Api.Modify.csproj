@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="CreateEventor.cs" />
     <Compile Include="CreateIdentor.cs" />
+    <Compile Include="CreateLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">

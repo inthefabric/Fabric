@@ -26,6 +26,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Identor newIdentor = GetNode<Identor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newIdentor, "New Identor was not created.");
+			Assert.AreNotEqual(0, newIdentor.IdentorId, "Incorrect IdentorId.");
+			Assert.AreEqual(pValue, newIdentor.Value, "Incorrect Value.");
 
 			NodeConnections conn = GetNodeConnections(newIdentor);
 			conn.AssertRelCount(2, 1);

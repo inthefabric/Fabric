@@ -41,6 +41,9 @@ namespace Fabric.Api.Modify.Tasks {
 		Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId);
 
 		/*--------------------------------------------------------------------------------------------*/
+		LocatorType GetLocatorType(IApiContext pApiCtx, long pLocTypeId);
+
+		/*--------------------------------------------------------------------------------------------*/
 		bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -70,6 +73,9 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		Identor GetIdentorMatch(IApiContext pApiCtx, long pIdenTypeId, string pValue);
+
+		/*--------------------------------------------------------------------------------------------*/
+		Locator GetLocatorMatch(IApiContext pApiCtx, long pLocTypeId, double pX, double pY, double pZ);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
@@ -140,6 +146,10 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, long pIdenTypeId, string pValue,
 												Factor pFactor, out IWeaverVarAlias<Identor> pIdenVar);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, long pLocTypeId, double pX,
+							double pY, double pZ, Factor pFactor, out IWeaverVarAlias<Locator> pLocVar);
 		
 	}
 

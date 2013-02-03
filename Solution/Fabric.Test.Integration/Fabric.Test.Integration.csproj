@@ -94,6 +94,10 @@
     <Compile Include="FabApiModify\Tasks\XTxAddIdentor.cs" />
     <Compile Include="FabApiModify\Tasks\XGetIdentorMatch.cs" />
     <Compile Include="FabApiModify\XCreateIdentor.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetLocatorType.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetLocatorMatch.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddLocator.cs" />
+    <Compile Include="FabApiModify\XCreateLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsQuery">

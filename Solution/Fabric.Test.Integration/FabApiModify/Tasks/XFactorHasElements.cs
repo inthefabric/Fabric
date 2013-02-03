@@ -7,7 +7,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFactorHasDescriptor : XFactorHasElement<Descriptor, FactorUsesDescriptor> {
+	public class XFactorHasDescriptor : XFactorHasElement<Descriptor, FactorUsesDescriptor> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFactorHasDirector : XFactorHasElement<Director, FactorUsesDirector> {
+	public class XFactorHasDirector : XFactorHasElement<Director, FactorUsesDirector> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFactorHasEventor : XFactorHasElement<Eventor, FactorUsesEventor> {
+	public class XFactorHasEventor : XFactorHasElement<Eventor, FactorUsesEventor> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFactorHasIdentor : XFactorHasElement<Identor, FactorUsesIdentor> {
+	public class XFactorHasIdentor : XFactorHasElement<Identor, FactorUsesIdentor> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFactorHasLocator : XFactorHasElement<Locator, FactorUsesLocator> {
+	public class XFactorHasLocator : XFactorHasElement<Locator, FactorUsesLocator> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,7 +156,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFactorHasVector : XFactorHasElement<Vector, FactorUsesVector> {
+	public class XFactorHasVector : XFactorHasElement<Vector, FactorUsesVector> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

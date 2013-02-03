@@ -40,6 +40,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Descriptor newDescriptor = GetNode<Descriptor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newDescriptor, "New Descriptor was not created.");
+			Assert.AreNotEqual(0, newDescriptor.DescriptorId, "Incorrect DescriptorId.");
 
 			NodeConnections conn = GetNodeConnections(newDescriptor);
 			int relCount;

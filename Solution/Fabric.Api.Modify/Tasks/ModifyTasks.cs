@@ -147,6 +147,13 @@ namespace Fabric.Api.Modify.Tasks {
 
 			return pApiCtx.DbSingle<Factor>("GetActiveFactorFromMember", q);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public LocatorType GetLocatorType(IApiContext pApiCtx, long pLocTypeId) {
+			var lt = new LocatorType { LocatorTypeId = pLocTypeId };
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(lt).End();
+			return pApiCtx.DbSingle<LocatorType>("GetLocatorType", q);
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor) {
@@ -343,7 +350,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetIdentorMatch()
 		public Identor GetIdentorMatch(IApiContext pApiCtx, long pIdenTypeId, string pValue) {
 			IWeaverFuncAs<Identor> idenAlias;
 			
@@ -357,6 +363,26 @@ namespace Fabric.Api.Modify.Tasks {
 					.End();
 			
 			return pApiCtx.DbSingle<Identor>("GetIdentorMatch", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetLocatorMatch()
+		public Locator GetLocatorMatch(IApiContext pApiCtx, long pLocTypeId, double pX, double pY,
+																						double pZ) {
+			IWeaverFuncAs<Locator> locAlias;
+			
+			IWeaverQuery q = ApiFunc.NewPathFromRoot()
+				.ContainsLocatorList.ToLocator
+						.Has(x => x.ValueX, WeaverFuncHasOp.EqualTo, pX)
+						.Has(x => x.ValueY, WeaverFuncHasOp.EqualTo, pY)
+						.Has(x => x.ValueZ, WeaverFuncHasOp.EqualTo, pZ)
+						.As(out locAlias)
+					.UsesLocatorType.ToLocatorType
+						.Has(x => x.LocatorTypeId, WeaverFuncHasOp.EqualTo, pLocTypeId)
+					.Back(locAlias)
+					.End();
+			
+			return pApiCtx.DbSingle<Locator>("GetLocatorMatch", q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -617,7 +643,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddIdentor()
 		public void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, long pIdenTypeId,
 								string pValue, Factor pFactor, out IWeaverVarAlias<Identor> pIdenVar) {
 			var iden = new Identor();
@@ -629,6 +654,23 @@ namespace Fabric.Api.Modify.Tasks {
 			idenBuild.AddToInFactorListUses(pFactor);
 			idenBuild.SetUsesIdentorType(pIdenTypeId);
 			pIdenVar = idenBuild.NodeVar;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddLocator()
+		public void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, long pLocTypeId, double pX,
+		                  double pY, double pZ, Factor pFactor, out IWeaverVarAlias<Locator> pLocVar) {
+			var loc = new Locator();
+			loc.LocatorId = pApiCtx.GetSharpflakeId<Locator>();
+			loc.ValueX = pX;
+			loc.ValueY = pY;
+			loc.ValueZ = pZ;
+			
+			var locBuild = new LocatorBuilder(pTxBuild, loc);
+			locBuild.AddNode();
+			locBuild.AddToInFactorListUses(pFactor);
+			locBuild.SetUsesLocatorType(pLocTypeId);
+			pLocVar = locBuild.NodeVar;
 		}
 		
 	}

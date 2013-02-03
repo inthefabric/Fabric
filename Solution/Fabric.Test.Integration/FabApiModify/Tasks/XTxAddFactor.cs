@@ -33,7 +33,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Factor newFactor = GetNode<Factor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newFactor, "New Factor was not created.");
-
+			Assert.AreNotEqual(0, newFactor.FactorId, "Incorrect FactorId.");
+			Assert.AreEqual(pIsDef, newFactor.IsDefining, "Incorrect IsDefining.");
+			Assert.AreEqual(pNote, newFactor.Note, "Incorrect Note.");
+			Assert.AreNotEqual(0, newFactor.Created, "Incorrect Created.");
+			Assert.Null(newFactor.Completed, "Incorrect Completed.");
+			Assert.Null(newFactor.Deleted, "Incorrect Deleted.");
+			
 			NodeConnections conn = GetNodeConnections(newFactor);
 			conn.AssertRelCount(2, 3);
 			conn.AssertRel<RootContainsFactor, Root>(false, 0);

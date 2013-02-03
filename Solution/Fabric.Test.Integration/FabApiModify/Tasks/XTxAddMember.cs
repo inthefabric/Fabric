@@ -32,9 +32,11 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMember, "New Member was not created.");
+			Assert.AreNotEqual(0, newMember.MemberId, "Incorrect MemberId.");
 
 			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
+			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
 			NodeConnections conn = GetNodeConnections(newMember);
 			conn.AssertRelCount(3, 1);
