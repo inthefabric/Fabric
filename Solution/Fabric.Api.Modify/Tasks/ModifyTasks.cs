@@ -343,6 +343,23 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetIdentorMatch()
+		public Identor GetIdentorMatch(IApiContext pApiCtx, long pIdenTypeId, string pValue) {
+			IWeaverFuncAs<Identor> idenAlias;
+			
+			IWeaverQuery q = ApiFunc.NewPathFromRoot()
+				.ContainsIdentorList.ToIdentor
+					.Has(x => x.Value, WeaverFuncHasOp.EqualTo, pValue)
+					.As(out idenAlias)
+					.UsesIdentorType.ToIdentorType
+					.Has(x => x.IdentorTypeId, WeaverFuncHasOp.EqualTo, pIdenTypeId)
+					.Back(idenAlias)
+					.End();
+			
+			return pApiCtx.DbSingle<Identor>("GetIdentorMatch", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 							where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new() {
 			IWeaverVarAlias<Factor> factorVar;
@@ -598,6 +615,22 @@ namespace Fabric.Api.Modify.Tasks {
 			eveBuild.SetUsesEventorPrecision(pEvePrecId);
 			pEveVar = eveBuild.NodeVar;
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddIdentor()
+		public void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, long pIdenTypeId,
+								string pValue, Factor pFactor, out IWeaverVarAlias<Identor> pIdenVar) {
+			var iden = new Identor();
+			iden.IdentorId = pApiCtx.GetSharpflakeId<Identor>();
+			iden.Value = pValue;
+			
+			var idenBuild = new IdentorBuilder(pTxBuild, iden);
+			idenBuild.AddNode();
+			idenBuild.AddToInFactorListUses(pFactor);
+			idenBuild.SetUsesIdentorType(pIdenTypeId);
+			pIdenVar = idenBuild.NodeVar;
+		}
+		
 	}
 
 }

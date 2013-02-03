@@ -120,6 +120,9 @@
     <Compile Include="FabApiModify\Tasks\TGetEventorMatch.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddEventor.cs" />
     <Compile Include="FabApiModify\TCreateEventor.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetIdentorMatch.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddIdentor.cs" />
+    <Compile Include="FabApiModify\TCreateIdentor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">

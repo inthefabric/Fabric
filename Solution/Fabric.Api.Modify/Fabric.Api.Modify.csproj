@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="CreateEventor.cs" />
+    <Compile Include="CreateIdentor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">

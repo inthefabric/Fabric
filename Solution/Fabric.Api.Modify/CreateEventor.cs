@@ -30,6 +30,7 @@ namespace Fabric.Api.Modify {
 		protected override void ValidateElementParams() {
 			Tasks.Validator.EventorTypeId(vEveTypeId, EveTypeParam);
 			Tasks.Validator.EventorPrecisionId(vEvePrecId, EvePrecParam);
+			//TODO: ensure DateTime is >= 0?
 		}
 
 

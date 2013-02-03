@@ -69,6 +69,9 @@ namespace Fabric.Api.Modify.Tasks {
 		Eventor GetEventorMatch(IApiContext pApiCtx, long pEveTypeId, long pEvePrecId, long pDateTime);
 
 		/*--------------------------------------------------------------------------------------------*/
+		Identor GetIdentorMatch(IApiContext pApiCtx, long pIdenTypeId, string pValue);
+
+		/*--------------------------------------------------------------------------------------------*/
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 								where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new();
 
@@ -133,6 +136,10 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddEventor(IApiContext pApiCtx, TxBuilder pTxBuild, long pEveTypeId, long pEvePrecId,
 								long pDateTime, Factor pFactor, out IWeaverVarAlias<Eventor> pEveVar);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, long pIdenTypeId, string pValue,
+												Factor pFactor, out IWeaverVarAlias<Identor> pIdenVar);
 		
 	}
 
