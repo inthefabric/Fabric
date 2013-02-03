@@ -127,6 +127,10 @@
     <Compile Include="FabApiModify\Tasks\TTxAddLocator.cs" />
     <Compile Include="FabApiModify\TCreateLocator.cs" />
     <Compile Include="FabApiModify\Tasks\TGetLocatorType.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetVectorType.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetVectorMatch.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddVector.cs" />
+    <Compile Include="FabApiModify\TCreateVector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">

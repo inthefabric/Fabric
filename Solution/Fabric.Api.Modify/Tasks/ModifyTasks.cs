@@ -156,6 +156,13 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public VectorType GetVectorType(IApiContext pApiCtx, long pVecTypeId) {
+			var vt = new VectorType { VectorTypeId = pVecTypeId };
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(vt).End();
+			return pApiCtx.DbSingle<VectorType>("GetVectorType", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor) {
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDescriptor.End();
 			return (pApiCtx.DbData("FactorHasDescriptor", q).GetResultCount() > 0);
@@ -366,7 +373,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetLocatorMatch()
 		public Locator GetLocatorMatch(IApiContext pApiCtx, long pLocTypeId, double pX, double pY,
 																						double pZ) {
 			IWeaverFuncAs<Locator> locAlias;
@@ -383,6 +389,33 @@ namespace Fabric.Api.Modify.Tasks {
 					.End();
 			
 			return pApiCtx.DbSingle<Locator>("GetLocatorMatch", q);
+		}
+		
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public Vector GetVectorMatch(IApiContext pApiCtx, long pVecTypeId, long pValue, long pAxisArtId, 
+		                      									long pVecUnitId, long pVecUnitPrefId) {
+			IWeaverFuncAs<Vector> locAlias;
+			
+			IWeaverQuery q = ApiFunc.NewPathFromRoot()
+				.ContainsVectorList.ToVector
+						.Has(x => x.Value, WeaverFuncHasOp.EqualTo, pValue)
+						.As(out locAlias)
+					.UsesVectorType.ToVectorType
+						.Has(x => x.VectorTypeId, WeaverFuncHasOp.EqualTo, pVecTypeId)
+					.Back(locAlias)
+					.UsesAxisArtifact.ToArtifact
+						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, pAxisArtId)
+					.Back(locAlias)
+					.UsesVectorUnit.ToVectorUnit
+						.Has(x => x.VectorUnitId, WeaverFuncHasOp.EqualTo, pVecUnitId)
+					.Back(locAlias)
+					.UsesVectorUnitPrefix.ToVectorUnitPrefix
+						.Has(x => x.VectorUnitPrefixId, WeaverFuncHasOp.EqualTo, pVecUnitPrefId)
+					.Back(locAlias)
+					.End();
+			
+			return pApiCtx.DbSingle<Vector>("GetVectorMatch", q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -657,7 +690,6 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddLocator()
 		public void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, long pLocTypeId, double pX,
 		                  double pY, double pZ, Factor pFactor, out IWeaverVarAlias<Locator> pLocVar) {
 			var loc = new Locator();
@@ -671,6 +703,24 @@ namespace Fabric.Api.Modify.Tasks {
 			locBuild.AddToInFactorListUses(pFactor);
 			locBuild.SetUsesLocatorType(pLocTypeId);
 			pLocVar = locBuild.NodeVar;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void TxAddVector(IApiContext pApiCtx, TxBuilder pTxBuild, long pVecTypeId, long pValue, 
+								                 long pAxisArtId, long pVecUnitId, long pVecUnitPrefId, 
+								                 Factor pFactor, out IWeaverVarAlias<Vector> pVecVar) {
+			var vec = new Vector();
+			vec.VectorId = pApiCtx.GetSharpflakeId<Vector>();
+			vec.Value = pValue;
+			
+			var vecBuild = new VectorBuilder(pTxBuild, vec);
+			vecBuild.AddNode();
+			vecBuild.AddToInFactorListUses(pFactor);
+			vecBuild.SetUsesVectorType(pVecTypeId);
+			vecBuild.SetUsesAxisArtifact(pAxisArtId);
+			vecBuild.SetUsesVectorUnit(pVecUnitId);
+			vecBuild.SetUsesVectorUnitPrefix(pVecUnitPrefId);
+			pVecVar = vecBuild.NodeVar;
 		}
 		
 	}

@@ -44,6 +44,9 @@ namespace Fabric.Api.Modify.Tasks {
 		LocatorType GetLocatorType(IApiContext pApiCtx, long pLocTypeId);
 
 		/*--------------------------------------------------------------------------------------------*/
+		VectorType GetVectorType(IApiContext pApiCtx, long pVecTypeId);
+
+		/*--------------------------------------------------------------------------------------------*/
 		bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -76,6 +79,10 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		Locator GetLocatorMatch(IApiContext pApiCtx, long pLocTypeId, double pX, double pY, double pZ);
+
+		/*--------------------------------------------------------------------------------------------*/
+		Vector GetVectorMatch(IApiContext pApiCtx, long pVecTypeId, long pValue, long pAxisArtId, 
+																long pVecUnitId, long pVecUnitPrefId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
@@ -150,6 +157,11 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, long pLocTypeId, double pX,
 							double pY, double pZ, Factor pFactor, out IWeaverVarAlias<Locator> pLocVar);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddVector(IApiContext pApiCtx, TxBuilder pTxBuild, long pVecTypeId, long pValue, 
+												long pAxisArtId, long pVecUnitId, long pVecUnitPrefId, 
+												Factor pFactor, out IWeaverVarAlias<Vector> pVecVar);
 		
 	}
 

@@ -9,7 +9,8 @@ namespace Fabric.Infrastructure {
 
 	/*================================================================================================*/
 	public static class FabricUtil {
-
+		
+		//TODO: see if this DoubleMin/Max restriction still applies with Rexster/Titan
 		//Reduced bounds stop the Gremlin/Neo4j Java complaints
 		public const double DoubleMin = double.MinValue+1E+294;
 		public const double DoubleMax = double.MaxValue-1E+294;
@@ -98,7 +99,7 @@ namespace Fabric.Infrastructure {
 
 			return false;
 		}*/
-
+		
 	}
 
 }

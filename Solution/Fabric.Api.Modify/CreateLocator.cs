@@ -10,12 +10,18 @@ namespace Fabric.Api.Modify {
 	public class CreateLocator : CreateFactorElement<Locator> { //TEST: CreateLocator
 
 		//FAB
+		
 		//2/3 10:10am
 		//2/3 10:50am
 		//Implemented CreateLocator func/tasks and some tests.
+		
 		//2/3 1:10pm
-		//2/3 x
-		//
+		//2/3 2:00pm
+		//Finished the CreateLocator unit/integ tests. Improved several integ tests.  All 548u, 294i tests pass.
+		
+		//2/3 2:20pm
+		//2/3 3:50pm
+		//Implemented CreateVector func/tasks/tests. All 558u, 310i tests pass.
 		
 		public const string LocTypeParam = "LocatorTypeId";
 		public const string XParam = "ValueX";

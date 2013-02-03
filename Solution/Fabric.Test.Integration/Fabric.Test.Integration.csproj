@@ -98,6 +98,10 @@
     <Compile Include="FabApiModify\Tasks\XGetLocatorMatch.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddLocator.cs" />
     <Compile Include="FabApiModify\XCreateLocator.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetVectorType.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetVectorMatch.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddVector.cs" />
+    <Compile Include="FabApiModify\XCreateVector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsQuery">
