@@ -11,7 +11,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private static readonly string QueryStart = 
 			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
-			"_V1=g.addVertex(["+typeof(Descriptor).Name+"Id:{{NewDescriptorId}}L]);"+
+			"_V1=g.addVertex(["+
+				typeof(Descriptor).Name+"Id:{{NewDescriptorId}}L"+
+			"]);"+
 			"g.addEdge(_V0,_V1,_TP0);"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
 			"g.addEdge(_V2,_V1,_TP1);"+

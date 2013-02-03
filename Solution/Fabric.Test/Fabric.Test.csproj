@@ -117,6 +117,9 @@
     <Compile Include="FabApiOauth\TOauthGrantLoginAction.cs" />
     <Compile Include="FabApiOauth\TOauthGrantScopeAction.cs" />
     <Compile Include="FabApiOauth\TOauthGrantLoginEntry.cs" />
+    <Compile Include="FabApiModify\Tasks\TGetEventorMatch.cs" />
+    <Compile Include="FabApiModify\Tasks\TTxAddEventor.cs" />
+    <Compile Include="FabApiModify\TCreateEventor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">
@@ -128,14 +131,13 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.33.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -88,6 +88,9 @@
     <Compile Include="FabApiModify\XBaseModifyFunc.cs" />
     <Compile Include="FabApiModify\XCreateUser.cs" />
     <Compile Include="FabApiModify\XCreateApp.cs" />
+    <Compile Include="FabApiModify\Tasks\XGetEventorMatch.cs" />
+    <Compile Include="FabApiModify\Tasks\XTxAddEventor.cs" />
+    <Compile Include="FabApiModify\XCreateEventor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsQuery">

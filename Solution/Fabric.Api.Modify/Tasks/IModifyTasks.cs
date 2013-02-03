@@ -66,6 +66,9 @@ namespace Fabric.Api.Modify.Tasks {
 		Director GetDirectorMatch(IApiContext pApiCtx, long pDirTypeId,long pPrimActId,long pRelActId);
 
 		/*--------------------------------------------------------------------------------------------*/
+		Eventor GetEventorMatch(IApiContext pApiCtx, long pEveTypeId, long pEvePrecId, long pDateTime);
+
+		/*--------------------------------------------------------------------------------------------*/
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 								where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new();
 
@@ -126,6 +129,11 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddDirector(IApiContext pApiCtx, TxBuilder pTxBuild, long pDirTypeId, long pPrimActId,
 			long pRelActId, Factor pFactor, out IWeaverVarAlias<Director> pDirVar);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void TxAddEventor(IApiContext pApiCtx, TxBuilder pTxBuild, long pEveTypeId, long pEvePrecId,
+								long pDateTime, Factor pFactor, out IWeaverVarAlias<Eventor> pEveVar);
+		
 	}
 
 }

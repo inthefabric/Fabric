@@ -18,7 +18,6 @@ namespace Fabric.Test.FabApiModify {
 		private long? vRelArtRefId;
 		private long? vDescTypeRefId;
 
-		private IWeaverVarAlias<Descriptor> vOutDescriptorVar;
 		private Descriptor vResultDescriptor;
 		private Descriptor vResult;
 		
@@ -33,7 +32,7 @@ namespace Fabric.Test.FabApiModify {
 			vRelArtRefId = 25323;
 			vDescTypeRefId = 5439225;
 
-			vOutDescriptorVar = GetTxVar<Descriptor>("DESC");
+			IWeaverVarAlias<Descriptor> outVar = GetTxVar<Descriptor>("DESC");
 
 			MockTasks
 				.Setup(x => x.GetArtifact(MockApiCtx.Object, (long)vPrimArtRefId))
@@ -56,7 +55,7 @@ namespace Fabric.Test.FabApiModify {
 						vRelArtRefId,
 						vDescTypeRefId,
 						ActiveFactor,
-						out vOutDescriptorVar
+						out outVar
 					)
 				);
 

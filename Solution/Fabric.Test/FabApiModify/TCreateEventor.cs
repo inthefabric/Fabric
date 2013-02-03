@@ -10,14 +10,14 @@ namespace Fabric.Test.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateDirector : TCreateFactorElement<Director> {
+	public class TCreateEventor : TCreateFactorElement<Eventor> {
 
-		private long vDirTypeId;
-		private long vPrimActId;
-		private long vRelActId;
+		private long vEveTypeId;
+		private long vEvePrecId;
+		private long vDateTime;
 
-		private Director vResultDirector;
-		private Director vResult;
+		private Eventor vResultEventor;
+		private Eventor vResult;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,50 +25,50 @@ namespace Fabric.Test.FabApiModify {
 		protected override void TestSetUp() {
 			base.TestSetUp();
 
-			vDirTypeId = 9;
-			vPrimActId = 935823;
-			vRelActId = 25323;
+			vEveTypeId = 9;
+			vEvePrecId = 935823;
+			vDateTime = 2529342323;
 
-			IWeaverVarAlias<Director> outVar = GetTxVar<Director>("DIR");
+			IWeaverVarAlias<Eventor> outVar = GetTxVar<Eventor>("EVE");
 
 			MockTasks
-				.Setup(x => x.TxAddDirector(
+				.Setup(x => x.TxAddEventor(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
-						vDirTypeId,
-						vPrimActId,
-						vRelActId,
+						vEveTypeId,
+						vEvePrecId,
+						vDateTime,
 						ActiveFactor,
-					out outVar
+						out outVar
 					)
 				);
 
-			vResultDirector = new Director();
+			vResultEventor = new Eventor();
 
 			MockApiCtx
-				.Setup(x => x.DbSingle<Director>("CreateDirectorTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateDirectorTx(q));
+				.Setup(x => x.DbSingle<Eventor>("CreateEventorTx", It.IsAny<IWeaverTransaction>()))
+				.Returns((string s, IWeaverTransaction q) => CreateEventorTx(q));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Director CreateDirectorTx(IWeaverTransaction pTx) {
+		private Eventor CreateEventorTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			const string expectPartial = "DIR;";
+			const string expectPartial = "EVE;";
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			return vResultDirector;
+			return vResultEventor;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetupFactorHasElement(bool pResult) {
 			MockTasks
-				.Setup(x => x.FactorHasDirector(MockApiCtx.Object, ActiveFactor))
+				.Setup(x => x.FactorHasEventor(MockApiCtx.Object, ActiveFactor))
 				.Returns(pResult);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateDirector(MockTasks.Object, FactorId, vDirTypeId, vPrimActId,vRelActId);
+			var func = new CreateEventor(MockTasks.Object, FactorId, vEveTypeId, vEvePrecId,vDateTime);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -76,24 +76,24 @@ namespace Fabric.Test.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void NewDirector() {
+		public void NewEventor() {
 			TestGo();
-			Assert.AreEqual(vResultDirector, vResult, "Incorrect Result.");
+			Assert.AreEqual(vResultEventor, vResult, "Incorrect Result.");
 			CheckValidation();
 		}
 
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ExistingDirector() {
-			var existing = new Director();
+		public void ExistingEventor() {
+			var existing = new Eventor();
 
 			MockTasks
-				.Setup(x => x.GetDirectorMatch(
+				.Setup(x => x.GetEventorMatch(
 						MockApiCtx.Object,
-						vDirTypeId,
-						vPrimActId,
-						vRelActId
+						vEveTypeId,
+						vEvePrecId,
+						vDateTime
 					)
 				)
 				.Returns(existing);
@@ -104,7 +104,7 @@ namespace Fabric.Test.FabApiModify {
 			CheckValidation();
 
 			MockTasks
-				.Verify(x => x.AttachExistingElement<Director, FactorUsesDirector>(
+				.Verify(x => x.AttachExistingElement<Eventor, FactorUsesEventor>(
 						MockApiCtx.Object,
 						ActiveFactor,
 						existing
@@ -117,12 +117,10 @@ namespace Fabric.Test.FabApiModify {
 		protected override void CheckValidation() {
 			base.CheckValidation();
 
-			MockValidator.Verify(x => x.DirectorTypeId(vDirTypeId,
-				CreateDirector.DirTypeParam), Times.Once());
-			MockValidator.Verify(x => x.DirectorActionId(vPrimActId,
-				CreateDirector.PrimActionParam), Times.Once());
-			MockValidator.Verify(x => x.DirectorActionId(vRelActId,
-				CreateDirector.RelActionParam), Times.Once());
+			MockValidator.Verify(x => x.EventorTypeId(vEveTypeId,
+				CreateEventor.EveTypeParam), Times.Once());
+			MockValidator.Verify(x => x.EventorPrecisionId(vEvePrecId,
+				CreateEventor.EvePrecParam), Times.Once());
 		}
 
 	}

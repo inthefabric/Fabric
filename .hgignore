@@ -19,3 +19,4 @@ Weaver.dll.mdb
 */Bin/*
 *.resources
 Fabric.Test.Integration.csproj-Debug-*.xml
+Fabric.Test.Integration.csproj.test-cache

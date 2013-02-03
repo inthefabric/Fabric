@@ -323,6 +323,26 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public Eventor GetEventorMatch(IApiContext pApiCtx, long pEveTypeId, long pEvePrecId,
+																					long pDateTime) {
+			IWeaverFuncAs<Eventor> eveAlias;
+			
+			IWeaverQuery q = ApiFunc.NewPathFromRoot()
+				.ContainsEventorList.ToEventor
+						.Has(x => x.DateTime, WeaverFuncHasOp.EqualTo, pDateTime)
+						.As(out eveAlias)
+					.UsesEventorType.ToEventorType
+						.Has(x => x.EventorTypeId, WeaverFuncHasOp.EqualTo, pEveTypeId)
+					.Back(eveAlias)
+					.UsesEventorPrecision.ToEventorPrecision
+						.Has(x => x.EventorPrecisionId, WeaverFuncHasOp.EqualTo, pEvePrecId)
+					.Back(eveAlias)
+					.End();
+			
+			return pApiCtx.DbSingle<Eventor>("GetEventorMatch", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 							where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new() {
 			IWeaverVarAlias<Factor> factorVar;
@@ -563,6 +583,21 @@ namespace Fabric.Api.Modify.Tasks {
 			pDirVar = dirBuild.NodeVar;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public void TxAddEventor(IApiContext pApiCtx, TxBuilder pTxBuild, long pEveTypeId,
+														long pEvePrecId, long pDateTime, Factor pFactor,
+														out IWeaverVarAlias<Eventor> pEveVar) {
+			var eve = new Eventor();
+			eve.EventorId = pApiCtx.GetSharpflakeId<Eventor>();
+			eve.DateTime = pDateTime;
+			
+			var eveBuild = new EventorBuilder(pTxBuild, eve);
+			eveBuild.AddNode();
+			eveBuild.AddToInFactorListUses(pFactor);
+			eveBuild.SetUsesEventorType(pEveTypeId);
+			eveBuild.SetUsesEventorPrecision(pEvePrecId);
+			pEveVar = eveBuild.NodeVar;
+		}
 	}
 
 }
