@@ -88,6 +88,9 @@ namespace Fabric.Api.Modify.Tasks {
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
 								where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new();
 
+		/*--------------------------------------------------------------------------------------------*/
+		Factor UpdateFactor(IApiContext pApiCtx, Factor pFactor, bool pCompleted, bool pDeleted);
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -162,7 +165,7 @@ namespace Fabric.Api.Modify.Tasks {
 		void TxAddVector(IApiContext pApiCtx, TxBuilder pTxBuild, long pVecTypeId, long pValue, 
 												long pAxisArtId, long pVecUnitId, long pVecUnitPrefId, 
 												Factor pFactor, out IWeaverVarAlias<Vector> pVecVar);
-		
+
 	}
 
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -35,6 +35,8 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\XUpdateFactor.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactor.cs" />
     <Compile Include="FabApiModify\XCreateFactorElement.cs" />
     <Compile Include="FabApiModify\XCreateDirector.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddDirector.cs" />

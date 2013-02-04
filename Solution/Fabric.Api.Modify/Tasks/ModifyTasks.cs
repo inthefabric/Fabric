@@ -432,6 +432,27 @@ namespace Fabric.Api.Modify.Tasks {
 			pApiCtx.DbData("AttachExisting"+typeof(T).Name, txb.Finish());
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public Factor UpdateFactor(IApiContext pApiCtx, Factor pFactor, bool pCompleted, bool pDeleted){
+			var f = new Factor();
+			var updates = new WeaverUpdates<Factor>();
+
+			if ( pCompleted ) {
+				f.Completed = pApiCtx.UtcNow.Ticks;
+				updates.AddUpdate(f, x => x.Completed);
+			}
+			else if ( pDeleted ) {
+				f.Deleted = pApiCtx.UtcNow.Ticks;
+				updates.AddUpdate(f, x => x.Deleted);
+			}
+
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+				.UpdateEach(updates)
+				.End();
+
+			return pApiCtx.DbSingle<Factor>("UpdateFactor", q);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

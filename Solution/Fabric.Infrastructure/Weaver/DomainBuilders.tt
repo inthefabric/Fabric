@@ -59,7 +59,7 @@ foreach ( string name in nodes ) {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= node.Name #>Builder(TxBuilder pTx, <#= idType #> p<#= node.Name #>Id) : 
-			base(pTx, new <#= node.Name #>() { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
+			base(pTx, new <#= node.Name #> { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
 		
 		
 <#

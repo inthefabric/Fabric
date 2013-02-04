@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/26/2013 3:17:42 PM
+// Generated on 2/4/2013 4:34:52 PM
 
 using Weaver.Interfaces;
 using Fabric.Domain;
@@ -29,7 +29,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public AppBuilder(TxBuilder pTx, long pAppId) : 
-			base(pTx, new App() { AppId = pAppId }) {}
+			base(pTx, new App { AppId = pAppId }) {}
 		
 		
 		
@@ -286,7 +286,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactBuilder(TxBuilder pTx, long pArtifactId) : 
-			base(pTx, new Artifact() { ArtifactId = pArtifactId }) {}
+			base(pTx, new Artifact { ArtifactId = pArtifactId }) {}
 		
 		
 		
@@ -778,7 +778,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactTypeBuilder(TxBuilder pTx, long pArtifactTypeId) : 
-			base(pTx, new ArtifactType() { ArtifactTypeId = pArtifactTypeId }) {}
+			base(pTx, new ArtifactType { ArtifactTypeId = pArtifactTypeId }) {}
 		
 		
 		
@@ -831,7 +831,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassBuilder(TxBuilder pTx, long pClassId) : 
-			base(pTx, new Class() { ClassId = pClassId }) {}
+			base(pTx, new Class { ClassId = pClassId }) {}
 		
 		
 		
@@ -884,7 +884,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdBuilder(TxBuilder pTx, long pCrowdId) : 
-			base(pTx, new Crowd() { CrowdId = pCrowdId }) {}
+			base(pTx, new Crowd { CrowdId = pCrowdId }) {}
 		
 		
 		
@@ -971,7 +971,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianBuilder(TxBuilder pTx, long pCrowdianId) : 
-			base(pTx, new Crowdian() { CrowdianId = pCrowdianId }) {}
+			base(pTx, new Crowdian { CrowdianId = pCrowdianId }) {}
 		
 		
 		
@@ -1117,7 +1117,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeBuilder(TxBuilder pTx, long pCrowdianTypeId) : 
-			base(pTx, new CrowdianType() { CrowdianTypeId = pCrowdianTypeId }) {}
+			base(pTx, new CrowdianType { CrowdianTypeId = pCrowdianTypeId }) {}
 		
 		
 		
@@ -1173,7 +1173,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public CrowdianTypeAssignBuilder(TxBuilder pTx, long pCrowdianTypeAssignId) : 
-			base(pTx, new CrowdianTypeAssign() { CrowdianTypeAssignId = pCrowdianTypeAssignId }) {}
+			base(pTx, new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }) {}
 		
 		
 		
@@ -1319,7 +1319,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailBuilder(TxBuilder pTx, long pEmailId) : 
-			base(pTx, new Email() { EmailId = pEmailId }) {}
+			base(pTx, new Email { EmailId = pEmailId }) {}
 		
 		
 		
@@ -1402,7 +1402,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceBuilder(TxBuilder pTx, long pInstanceId) : 
-			base(pTx, new Instance() { InstanceId = pInstanceId }) {}
+			base(pTx, new Instance { InstanceId = pInstanceId }) {}
 		
 		
 		
@@ -1454,7 +1454,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public LabelBuilder(TxBuilder pTx, long pLabelId) : 
-			base(pTx, new Label() { LabelId = pLabelId }) {}
+			base(pTx, new Label { LabelId = pLabelId }) {}
 		
 		
 		
@@ -1512,7 +1512,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberBuilder(TxBuilder pTx, long pMemberId) : 
-			base(pTx, new Member() { MemberId = pMemberId }) {}
+			base(pTx, new Member { MemberId = pMemberId }) {}
 		
 		
 		
@@ -1754,7 +1754,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeBuilder(TxBuilder pTx, long pMemberTypeId) : 
-			base(pTx, new MemberType() { MemberTypeId = pMemberTypeId }) {}
+			base(pTx, new MemberType { MemberTypeId = pMemberTypeId }) {}
 		
 		
 		
@@ -1810,7 +1810,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignBuilder(TxBuilder pTx, long pMemberTypeAssignId) : 
-			base(pTx, new MemberTypeAssign() { MemberTypeAssignId = pMemberTypeAssignId }) {}
+			base(pTx, new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }) {}
 		
 		
 		
@@ -1955,7 +1955,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlBuilder(TxBuilder pTx, long pUrlId) : 
-			base(pTx, new Url() { UrlId = pUrlId }) {}
+			base(pTx, new Url { UrlId = pUrlId }) {}
 		
 		
 		
@@ -2014,7 +2014,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public UserBuilder(TxBuilder pTx, long pUserId) : 
-			base(pTx, new User() { UserId = pUserId }) {}
+			base(pTx, new User { UserId = pUserId }) {}
 		
 		
 		
@@ -2299,7 +2299,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorBuilder(TxBuilder pTx, long pFactorId) : 
-			base(pTx, new Factor() { FactorId = pFactorId }) {}
+			base(pTx, new Factor { FactorId = pFactorId }) {}
 		
 		
 		
@@ -2661,7 +2661,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionBuilder(TxBuilder pTx, long pFactorAssertionId) : 
-			base(pTx, new FactorAssertion() { FactorAssertionId = pFactorAssertionId }) {}
+			base(pTx, new FactorAssertion { FactorAssertionId = pFactorAssertionId }) {}
 		
 		
 		
@@ -2718,7 +2718,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorBuilder(TxBuilder pTx, long pDescriptorId) : 
-			base(pTx, new Descriptor() { DescriptorId = pDescriptorId }) {}
+			base(pTx, new Descriptor { DescriptorId = pDescriptorId }) {}
 		
 		
 		
@@ -2895,7 +2895,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeBuilder(TxBuilder pTx, long pDescriptorTypeId) : 
-			base(pTx, new DescriptorType() { DescriptorTypeId = pDescriptorTypeId }) {}
+			base(pTx, new DescriptorType { DescriptorTypeId = pDescriptorTypeId }) {}
 		
 		
 		
@@ -2951,7 +2951,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorBuilder(TxBuilder pTx, long pDirectorId) : 
-			base(pTx, new Director() { DirectorId = pDirectorId }) {}
+			base(pTx, new Director { DirectorId = pDirectorId }) {}
 		
 		
 		
@@ -3097,7 +3097,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeBuilder(TxBuilder pTx, long pDirectorTypeId) : 
-			base(pTx, new DirectorType() { DirectorTypeId = pDirectorTypeId }) {}
+			base(pTx, new DirectorType { DirectorTypeId = pDirectorTypeId }) {}
 		
 		
 		
@@ -3151,7 +3151,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionBuilder(TxBuilder pTx, long pDirectorActionId) : 
-			base(pTx, new DirectorAction() { DirectorActionId = pDirectorActionId }) {}
+			base(pTx, new DirectorAction { DirectorActionId = pDirectorActionId }) {}
 		
 		
 		
@@ -3238,7 +3238,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorBuilder(TxBuilder pTx, long pEventorId) : 
-			base(pTx, new Eventor() { EventorId = pEventorId }) {}
+			base(pTx, new Eventor { EventorId = pEventorId }) {}
 		
 		
 		
@@ -3353,7 +3353,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeBuilder(TxBuilder pTx, long pEventorTypeId) : 
-			base(pTx, new EventorType() { EventorTypeId = pEventorTypeId }) {}
+			base(pTx, new EventorType { EventorTypeId = pEventorTypeId }) {}
 		
 		
 		
@@ -3406,7 +3406,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionBuilder(TxBuilder pTx, long pEventorPrecisionId) : 
-			base(pTx, new EventorPrecision() { EventorPrecisionId = pEventorPrecisionId }) {}
+			base(pTx, new EventorPrecision { EventorPrecisionId = pEventorPrecisionId }) {}
 		
 		
 		
@@ -3460,7 +3460,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorBuilder(TxBuilder pTx, long pIdentorId) : 
-			base(pTx, new Identor() { IdentorId = pIdentorId }) {}
+			base(pTx, new Identor { IdentorId = pIdentorId }) {}
 		
 		
 		
@@ -3544,7 +3544,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeBuilder(TxBuilder pTx, long pIdentorTypeId) : 
-			base(pTx, new IdentorType() { IdentorTypeId = pIdentorTypeId }) {}
+			base(pTx, new IdentorType { IdentorTypeId = pIdentorTypeId }) {}
 		
 		
 		
@@ -3598,7 +3598,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorBuilder(TxBuilder pTx, long pLocatorId) : 
-			base(pTx, new Locator() { LocatorId = pLocatorId }) {}
+			base(pTx, new Locator { LocatorId = pLocatorId }) {}
 		
 		
 		
@@ -3682,7 +3682,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeBuilder(TxBuilder pTx, long pLocatorTypeId) : 
-			base(pTx, new LocatorType() { LocatorTypeId = pLocatorTypeId }) {}
+			base(pTx, new LocatorType { LocatorTypeId = pLocatorTypeId }) {}
 		
 		
 		
@@ -3739,7 +3739,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorBuilder(TxBuilder pTx, long pVectorId) : 
-			base(pTx, new Vector() { VectorId = pVectorId }) {}
+			base(pTx, new Vector { VectorId = pVectorId }) {}
 		
 		
 		
@@ -3917,7 +3917,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeBuilder(TxBuilder pTx, long pVectorTypeId) : 
-			base(pTx, new VectorType() { VectorTypeId = pVectorTypeId }) {}
+			base(pTx, new VectorType { VectorTypeId = pVectorTypeId }) {}
 		
 		
 		
@@ -4002,7 +4002,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeBuilder(TxBuilder pTx, long pVectorRangeId) : 
-			base(pTx, new VectorRange() { VectorRangeId = pVectorRangeId }) {}
+			base(pTx, new VectorRange { VectorRangeId = pVectorRangeId }) {}
 		
 		
 		
@@ -4087,7 +4087,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelBuilder(TxBuilder pTx, long pVectorRangeLevelId) : 
-			base(pTx, new VectorRangeLevel() { VectorRangeLevelId = pVectorRangeLevelId }) {}
+			base(pTx, new VectorRangeLevel { VectorRangeLevelId = pVectorRangeLevelId }) {}
 		
 		
 		
@@ -4142,7 +4142,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitBuilder(TxBuilder pTx, long pVectorUnitId) : 
-			base(pTx, new VectorUnit() { VectorUnitId = pVectorUnitId }) {}
+			base(pTx, new VectorUnit { VectorUnitId = pVectorUnitId }) {}
 		
 		
 		
@@ -4260,7 +4260,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixBuilder(TxBuilder pTx, long pVectorUnitPrefixId) : 
-			base(pTx, new VectorUnitPrefix() { VectorUnitPrefixId = pVectorUnitPrefixId }) {}
+			base(pTx, new VectorUnitPrefix { VectorUnitPrefixId = pVectorUnitPrefixId }) {}
 		
 		
 		
@@ -4347,7 +4347,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedBuilder(TxBuilder pTx, long pVectorUnitDerivedId) : 
-			base(pTx, new VectorUnitDerived() { VectorUnitDerivedId = pVectorUnitDerivedId }) {}
+			base(pTx, new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }) {}
 		
 		
 		
@@ -4462,7 +4462,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessBuilder(TxBuilder pTx, long pOauthAccessId) : 
-			base(pTx, new OauthAccess() { OauthAccessId = pOauthAccessId }) {}
+			base(pTx, new OauthAccess { OauthAccessId = pOauthAccessId }) {}
 		
 		
 		
@@ -4545,7 +4545,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainBuilder(TxBuilder pTx, long pOauthDomainId) : 
-			base(pTx, new OauthDomain() { OauthDomainId = pOauthDomainId }) {}
+			base(pTx, new OauthDomain { OauthDomainId = pOauthDomainId }) {}
 		
 		
 		
@@ -4598,7 +4598,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantBuilder(TxBuilder pTx, long pOauthGrantId) : 
-			base(pTx, new OauthGrant() { OauthGrantId = pOauthGrantId }) {}
+			base(pTx, new OauthGrant { OauthGrantId = pOauthGrantId }) {}
 		
 		
 		
@@ -4682,7 +4682,7 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeBuilder(TxBuilder pTx, long pOauthScopeId) : 
-			base(pTx, new OauthScope() { OauthScopeId = pOauthScopeId }) {}
+			base(pTx, new OauthScope { OauthScopeId = pOauthScopeId }) {}
 		
 		
 		
