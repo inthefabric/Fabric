@@ -46,7 +46,6 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override OauthScope Execute() {
 			var tx = new WeaverTransaction();
 			IWeaverFuncAs<OauthScope> osAlias;
-			IWeaverVarAlias aggVar;
 			
 			var newOs = new OauthScope();
 			newOs.Allow = vAllow;
@@ -57,23 +56,17 @@ namespace Fabric.Api.Oauth.Tasks {
 			updates.AddUpdate(newOs, x => x.Created);
 
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out aggVar)
-			);
-
-			tx.AddQuery(
 				NewPathFromIndex(new User { UserId = vUserId })
 					.InOauthScopeListUses.FromOauthScope
 					.As(out osAlias)
 				.UsesApp.ToApp
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(osAlias)
-					.Aggregate(aggVar)
 					.UpdateEach(updates)
 				.End()
 			);
 
-			tx.FinishWithoutStartStop(aggVar);
-			
+			tx.FinishWithoutStartStop();
 			OauthScope os = ApiCtx.DbSingle<OauthScope>(Query.UpdateScopeTx+"", tx);
 			
 			if ( os != null ) {

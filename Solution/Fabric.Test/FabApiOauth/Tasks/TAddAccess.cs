@@ -24,14 +24,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV" +
 				".has('"+typeof(User).Name+"Id',Tokens.T.eq,{{UserId}})" +
 			".back('step5')" +
-				".each{it.setProperty('Token',_P0);it.setProperty('Refresh',_P1)};";
+				".sideEffect{it.setProperty('Token',_P0);it.setProperty('Refresh',_P1)};";
 
 		private readonly static string QueryClearTokensClientOnly =
 			"g.V('AppId',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
 				".has('Token',Tokens.T.neq,null)"+
 				".has('IsClientOnly',Tokens.T.eq,true)"+
-				".each{it.setProperty('Token',_P0);it.setProperty('Refresh',_P1)};";
+				".sideEffect{it.setProperty('Token',_P0);it.setProperty('Refresh',_P1)};";
 
 		private readonly static string QueryAddAccessTx =
 			"g.V('RootId',0)[0]"+

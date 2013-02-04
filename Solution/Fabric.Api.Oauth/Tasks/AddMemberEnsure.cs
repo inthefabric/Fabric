@@ -155,7 +155,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Remove original Member-Has-MemberTypeAssign relationship
 
 			txb.Transaction.AddQuery(
-				NewPathFromIndex(pAssign).InMemberHas.RemoveEach().End()
+				NewPathFromIndex(pAssign)
+				.InMemberHas
+					.RemoveEach()
+					.Iterate()
+				.End()
 			);
 
 			//Move original to use Member-HasHistoric-MemberTypeAssign relationship

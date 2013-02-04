@@ -15,19 +15,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddScope {
 
 		private readonly static string QueryUpdateScopeTx =
-			"_V0=[];"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
 					".as('step3')"+
 				".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
 					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 				".back('step3')"+
-					".aggregate(_V0)"+
-					".each{"+
+					".sideEffect{"+
 						"it.setProperty('Allow',{{Allow}});"+
 						"it.setProperty('Created',{{UtcNowTicks}}L)"+
-					"};"+
-			"_V0;";
+					"};";
 
 		private readonly static string QueryAddScopeTx =
 			"g.V('RootId',0)[0]"+

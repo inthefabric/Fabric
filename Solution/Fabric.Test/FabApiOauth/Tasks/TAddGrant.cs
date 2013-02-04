@@ -15,20 +15,17 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddGrant {
 
 		private readonly static string QueryUpdateGrantTx =
-			"_V0=[];"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
 					".as('step3')"+
 				".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
 					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 				".back('step3')"+
-					".aggregate(_V0)"+
-					".each{"+
+					".sideEffect{"+
 						"it.setProperty('RedirectUri',_TP0);"+
 						"it.setProperty('Expires',{{ExpireTicks}}L);"+
 						"it.setProperty('Code',_TP1)"+
-					"};"+
-			"_V0;";
+					"};";
 
 		private readonly static string QueryAddGrantTx =
 			"g.V('RootId',0)[0]"+

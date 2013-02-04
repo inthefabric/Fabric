@@ -50,7 +50,6 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override string Execute() {
 			var tx = new WeaverTransaction();
 			IWeaverFuncAs<OauthGrant> ogAlias;
-			IWeaverVarAlias aggVar;
 			
 			var newOg = new OauthGrant();
 			newOg.RedirectUri = vRedirectUri;
@@ -63,23 +62,17 @@ namespace Fabric.Api.Oauth.Tasks {
 			updates.AddUpdate(newOg, x => x.Code);
 			
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out aggVar)
-			);
-
-			tx.AddQuery(
 				NewPathFromIndex(new User { UserId = vUserId })
 				.InOauthGrantListUses.FromOauthGrant
 					.As(out ogAlias)
 				.UsesApp.ToApp
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(ogAlias)
-					.Aggregate(aggVar)
 					.UpdateEach(updates)
 				.End()
 			);
 
-			tx.FinishWithoutStartStop(aggVar);
-			
+			tx.FinishWithoutStartStop();
 			OauthGrant og = ApiCtx.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
 			
 			if ( og != null ) {
