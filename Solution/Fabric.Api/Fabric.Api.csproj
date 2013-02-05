@@ -86,6 +86,8 @@
   <ItemGroup>
     <Compile Include="ServicesModule.cs" />
     <Compile Include="Bootstrap.cs" />
+    <Compile Include="Services\OauthController.cs" />
+    <Compile Include="Services\HomeController.cs" />
     <Compile Include="Services\SpecController.cs" />
     <Compile Include="Services\TraversalController.cs" />
     <Compile Include="Services\Views\ApiJsonView.cs" />
@@ -96,7 +98,7 @@
     <Compile Include="Internal\Graph\GraphView.cs" />
     <Compile Include="Internal\Graph\GraphJson.cs" />
     <Compile Include="Internal\Graph\GraphModel.cs" />
-    <Compile Include="Services\Views\SpecJsonView.cs" />
+    <Compile Include="Services\Views\HomeJsonView.cs" />
     <Compile Include="Services\Views\LoginErrorView.cs" />
     <Compile Include="Services\Views\LoginPageView.cs" />
     <Compile Include="Services\Views\LoginScopeView.cs" />
@@ -110,7 +112,7 @@
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Common\Controller.cs" />
-    <Compile Include="Services\OauthController.cs" />
+    <Compile Include="Services\OauthAccessController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Internal\Graph\index.html" />

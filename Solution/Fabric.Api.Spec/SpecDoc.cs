@@ -86,7 +86,6 @@ namespace Fabric.Api.Spec {
 			////
 			
 			vOauthDtoList = new List<FabSpecDto>();
-			vOauthDtoList.Add(GetSpecDto<FabOauth>());
 			vOauthDtoList.Add(GetSpecDto<FabOauthAccess>());
 			vOauthDtoList.Add(GetSpecDto<FabOauthError>());
 			vOauthDtoList.Add(GetSpecDto<FabOauthLogin>());
@@ -110,6 +109,7 @@ namespace Fabric.Api.Spec {
 			vSpecDtoList.Add(GetSpecDto<FabSpecDtoProp>());
 			vSpecDtoList.Add(GetSpecDto<FabSpecFunc>());
 			vSpecDtoList.Add(GetSpecDto<FabSpecFuncParam>());
+			vSpecDtoList.Add(GetSpecDto<FabSpecService>());
 
 			foreach ( FabSpecDto sd in vSpecDtoList ) {
 				sd.Description = null;
@@ -185,7 +185,6 @@ namespace Fabric.Api.Spec {
 		private string GetDtoLinkText(string pName) {
 			string s = DtoLinkText.ResourceManager.GetString(pName);
 			if ( s != null ) { s = FormatMarkup(s); }
-			Log.Debug(pName);
 			return (s ?? "MISSING:"+pName);
 		}
 		

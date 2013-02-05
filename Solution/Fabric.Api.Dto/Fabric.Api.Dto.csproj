@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FabServices.cs" />
+    <Compile Include="FabServiceOperation.cs" />
+    <Compile Include="FabService.cs" />
     <Compile Include="Spec\FabSpecService.cs" />
     <Compile Include="Traversal\ApiDtos.cs">
       <AutoGen>True</AutoGen>
@@ -49,7 +52,6 @@
     <Compile Include="FabResponse.cs" />
     <Compile Include="Traversal\IFabNode.cs" />
     <Compile Include="Traversal\FabNode.cs" />
-    <Compile Include="Oauth\FabOauth.cs" />
     <Compile Include="Oauth\FabOauthAccess.cs" />
     <Compile Include="Oauth\FabOauthError.cs" />
     <Compile Include="Oauth\FabOauthLogin.cs" />

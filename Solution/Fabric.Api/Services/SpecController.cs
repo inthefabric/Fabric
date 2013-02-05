@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Common;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Spec;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
@@ -13,17 +14,24 @@ namespace Fabric.Api.Services {
 	/*================================================================================================*/
 	public class SpecController : FabResponseController {
 
-		private static SpecDoc Doc;
-		private static FabSpec Dto;
-		private static string ResponseJson;
+		public enum Route {
+			Home,
+			Document
+		}
+
+		private static FabService ServiceDto;
+		private static FabSpec DocDto;
 		private static string ApiVers;
+
+		private readonly Route vRoute;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecController(Request pRequest, IApiContext pApiCtx, IOauthTasks pOauthTasks,
-											string pApiVers) : base(pRequest, pApiCtx, pOauthTasks) {
+							string pApiVers, Route pRoute) : base(pRequest, pApiCtx, pOauthTasks) {
 			ApiVers = pApiVers;
+			vRoute = pRoute;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -31,17 +39,43 @@ namespace Fabric.Api.Services {
 			FabResp.StartEvent();
 			FabResp.HttpStatus = (int)HttpStatusCode.OK;
 
-			if ( Doc == null ) {
-				Doc = new SpecDoc();
+			string json = "";
 
-				Dto = Doc.GetFabSpec();
-				Dto.ApiVersion = ApiVers;
+			switch ( vRoute ) {
+				case Route.Home:
+					json = GetServiceJson();
+					break;
 
-				ResponseJson = new SpecJsonView(FabResp, Dto.ToJson()).GetContent();
+				case Route.Document:
+					json = GetDocJson();
+					break;
 			}
 
+
 			ExecuteOauthLookup();
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, ResponseJson);
+			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, json);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetServiceJson() {
+			if ( ServiceDto == null ) {
+				ServiceDto = FabServices.NewSpecService(true);
+			}
+
+			return new HomeJsonView(FabResp, ServiceDto.ToJson()).GetContent();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetDocJson() {
+			if ( DocDto == null ) {
+				var doc = new SpecDoc();
+				DocDto = doc.GetFabSpec();
+				DocDto.ApiVersion = ApiVers;
+			}
+
+			return new HomeJsonView(FabResp, DocDto.ToJson()).GetContent();
 		}
 
 	}

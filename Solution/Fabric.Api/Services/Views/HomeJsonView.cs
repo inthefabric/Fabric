@@ -4,9 +4,9 @@ using ServiceStack.Text;
 namespace Fabric.Api.Services.Views {
 
 	/*================================================================================================*/
-	public class SpecJsonView {
+	public class HomeJsonView {
 
-		private const string TotalMsJson = "\"TotalMs\":";
+		public const string TotalMsJson = "\"TotalMs\":";
 
 		private readonly FabResponse vFabResp;
 		private readonly string vSpecJson;
@@ -14,7 +14,7 @@ namespace Fabric.Api.Services.Views {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SpecJsonView(FabResponse pResp, string pSpecJson) {
+		public HomeJsonView(FabResponse pResp, string pSpecJson) {
 			vFabResp = pResp;
 			vSpecJson = pSpecJson;
 		}

@@ -19,24 +19,30 @@ namespace Fabric.Api {
 		public ServicesModule() {
 			Log.ConfigureOnce();
 
-			Get["/"] = (p => "Root | Spec | Oauth");
-			Get["/Root"] = (p => GetTraversal(Context));
-			Get["/Root/(.*)"] = (p => GetTraversal(Context));
-			Get["/Spec"] = (p => GetSpec(Context));
+			Get["/"] = (p => GetHome(Context));
+			
+			Get["/Traversal"] = (p => GetTraversal(Context, TraversalController.Route.Home));
+			Get["/Traversal/Root"] = (p => GetTraversal(Context, TraversalController.Route.Root));
+			Get["/Traversal/Root/(.*)"] = (p => GetTraversal(Context, TraversalController.Route.Root));
+
+			Get["/Spec"] = (p => GetSpec(Context, SpecController.Route.Home));
+			Get["/Spec/Full"] = (p => GetSpec(Context, SpecController.Route.Document));
 
 			const string ao = "/Oauth";
-			Get[ao] = (p => GetLogin(Context, OauthLoginController.Method.Get));
-			Post[ao] = (p => GetLogin(Context, OauthLoginController.Method.Post));
-			Get[ao+"/Logout"] = (p => GetOauth(Context, OauthController.Function.Logout));
+			Get[ao] = (p => GetOauth(Context, OauthController.Route.Home));
+
+			Get[ao+"/Login"] = (p => GetOaLogin(Context, OauthLoginController.Method.Get));
+			Post[ao+"/Login"] = (p => GetOaLogin(Context, OauthLoginController.Method.Post));
+			Get[ao+"/Logout"] = (p => GetOaAcc(Context, OauthAccessController.Function.Logout));
 
 			const string at = ao+"/AccessToken";
-			Get[at] = (p => GetOauth(Context, OauthController.Function.Access));
-			Get[at+"AuthCode"] = (p => GetOauth(Context, OauthController.Function.AuthCode));
-			Get[at+"Refresh"] = (p => GetOauth(Context, OauthController.Function.RefToken));
-			Get[at+"ClientCredentials"] = (p => GetOauth(Context,
-				OauthController.Function.ClientCred));
-			Get[at+"ClientDataProv"] = (p => GetOauth(Context,
-				OauthController.Function.ClientDataProv));
+			Get[at] = (p => GetOaAcc(Context, OauthAccessController.Function.Access));
+			Get[at+"AuthCode"] = (p => GetOaAcc(Context, OauthAccessController.Function.AuthCode));
+			Get[at+"Refresh"] = (p => GetOaAcc(Context, OauthAccessController.Function.RefToken));
+			Get[at+"ClientCredentials"] = (p => GetOaAcc(Context,
+				OauthAccessController.Function.ClientCred));
+			Get[at+"ClientDataProv"] = (p => GetOaAcc(Context,
+				OauthAccessController.Function.ClientDataProv));
 
 			//Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
 		}
@@ -44,25 +50,37 @@ namespace Fabric.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetTraversal(NancyContext pCtx) {
-			var ac = new TraversalController(pCtx.Request, NewApiCtx(), new OauthTasks());
+		private static Response GetHome(NancyContext pCtx) {
+			var ac = new HomeController(pCtx.Request, NewApiCtx(), new OauthTasks());
+			return ac.Execute();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private static Response GetTraversal(NancyContext pCtx, TraversalController.Route pRoute) {
+			var ac = new TraversalController(pCtx.Request, NewApiCtx(), new OauthTasks(), pRoute);
 			return ac.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetSpec(NancyContext pCtx) {
-			var sc = new SpecController(pCtx.Request, NewApiCtx(), new OauthTasks(), ApiVersion);
+		private static Response GetSpec(NancyContext pCtx, SpecController.Route pFunc) {
+			var sc = new SpecController(pCtx.Request, NewApiCtx(), new OauthTasks(), ApiVersion, pFunc);
 			return sc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetOauth(NancyContext pCtx, OauthController.Function pFunc) {
-			var oc = new OauthController(pCtx.Request, NewApiCtx(), pFunc);
+		private static Response GetOauth(NancyContext pCtx, OauthController.Route pFunc) {
+			var sc = new OauthController(pCtx.Request, NewApiCtx(), new OauthTasks(), pFunc);
+			return sc.Execute();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static Response GetOaAcc(NancyContext pCtx, OauthAccessController.Function pFunc) {
+			var oc = new OauthAccessController(pCtx.Request, NewApiCtx(), pFunc);
 			return oc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
+		private static Response GetOaLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
 			var olc = new OauthLoginController(pCtx.Request, NewApiCtx(), pMethod);
 			return olc.Execute();
 		}

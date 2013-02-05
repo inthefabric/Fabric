@@ -12,6 +12,7 @@ using Fabric.Api.Util;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using Nancy;
+using ServiceStack.Text;
 using Weaver;
 
 namespace Fabric.Api.Services {
@@ -19,7 +20,16 @@ namespace Fabric.Api.Services {
 	/*================================================================================================*/
 	public class TraversalController : FabResponseController { //TEST: TraversalController
 
+		public enum Route {
+			Home,
+			Root
+		}
+
+		public static FabService ServiceDto { get; private set; }
+
+		private readonly Route vRoute;
 		private readonly ApiModel vModel;
+
 		private IFinalStep vLastStep;
 		private IApiDataAccess vReq;
 		private HttpStatusCode vStatus;
@@ -28,8 +38,9 @@ namespace Fabric.Api.Services {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TraversalController(Request pRequest, IApiContext pApiCtx, IOauthTasks pOauthTasks) :
-																base(pRequest, pApiCtx, pOauthTasks) {
+		public TraversalController(Request pRequest, IApiContext pApiCtx, IOauthTasks pOauthTasks,
+												Route pRoute) : base(pRequest, pApiCtx, pOauthTasks) {
+			vRoute = pRoute;
 			vStatus = HttpStatusCode.OK;
 			vModel = new ApiModel();
 			vModel.Resp = FabResp;
@@ -37,6 +48,34 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
+			switch ( vRoute ) {
+				case Route.Home: return BuildHomeResponse();
+				case Route.Root: return BuildRootResponse();
+			}
+
+			return null;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private Response BuildHomeResponse() {
+			FabResp.StartEvent();
+			FabResp.HttpStatus = (int)HttpStatusCode.OK;
+
+			if ( ServiceDto == null ) {
+				ServiceDto = FabServices.NewTraversalService(true);
+			}
+
+			string json = new HomeJsonView(FabResp, ServiceDto.ToJson()).GetContent();
+			ExecuteOauthLookup();
+			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, json);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private Response BuildRootResponse() {
 			FillQueryInfo();
 			ExecuteOauthLookup();
 			ExecuteQuery();
@@ -48,7 +87,7 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillQueryInfo() {
-			vApiUri = NancyReq.Path.Substring(5); //remove "/Root"
+			vApiUri = NancyReq.Path.Substring(15); //remove "/Traversal/Root"
 			
 			if ( vApiUri.Length > 0 ) {
 				vApiUri = vApiUri.Substring(1); //remove "/"

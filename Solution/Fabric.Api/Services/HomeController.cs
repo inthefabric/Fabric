@@ -10,40 +10,26 @@ using ServiceStack.Text;
 namespace Fabric.Api.Services {
 
 	/*================================================================================================*/
-	public class OauthController : FabResponseController { //TEST: OauthController
+	public class HomeController : FabResponseController {
 
-		public enum Route {
-			Home
-		}
-
-		public static FabService ServiceDto { get; private set; }
-
-		private readonly Route vRoute;
+		private static FabServices Dto;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthController(Request pRequest, IApiContext pApiCtx, IOauthTasks pTasks,
-													Route pRoute) : base(pRequest, pApiCtx, pTasks) {
-			vRoute = pRoute;
-		}
+		public HomeController(Request pRequest, IApiContext pApiCtx, IOauthTasks pOauthTasks) : 
+																base(pRequest, pApiCtx, pOauthTasks) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
 			FabResp.StartEvent();
 			FabResp.HttpStatus = (int)HttpStatusCode.OK;
 
-			if ( ServiceDto == null ) {
-				ServiceDto = FabServices.NewOauthService(true);
+			if ( Dto == null ) {
+				Dto = new FabServices();
 			}
 
-			string json = "";
-
-			switch ( vRoute ) {
-				case Route.Home:
-					json = new HomeJsonView(FabResp, ServiceDto.ToJson()).GetContent();
-					break;
-			}
+			string json = new HomeJsonView(FabResp, Dto.ToJson()).GetContent();
 
 			ExecuteOauthLookup();
 			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, json);

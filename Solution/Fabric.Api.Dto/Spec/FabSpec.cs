@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Spec {
 

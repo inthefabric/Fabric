@@ -9,8 +9,6 @@ namespace Fabric.Api.Services.Views {
 	/*================================================================================================*/
 	public class ApiJsonView {
 
-		private const string TotalMsJson = "\"TotalMs\":";
-
 		private readonly ApiModel vInfo;
 
 
@@ -38,7 +36,8 @@ namespace Fabric.Api.Services.Views {
 			vInfo.Resp.Data = data;
 			vInfo.Resp.Complete(); //last possible moment
 
-			return wrap.Replace(TotalMsJson+"0", TotalMsJson+vInfo.Resp.TotalMs);
+			return wrap
+				.Replace(HomeJsonView.TotalMsJson+"0", HomeJsonView.TotalMsJson+vInfo.Resp.TotalMs);
 		}
 
 

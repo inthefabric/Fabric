@@ -1,9 +1,14 @@
 ﻿using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Dto.Oauth {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabOauth : FabDto {
+	public class FabServiceOperation : FabDto {
+
+		public string Name { get; set; }
+		public string Uri { get; set; }
+		public string Method { get; set; }
+		public string ReturnType { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
