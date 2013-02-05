@@ -4,14 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Fabric.Api.Dto;
-using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Spec;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Oauth.Functions;
-using Fabric.Api.Spec.Functions;
+using Fabric.Api.Modify;
+using Fabric.Api.Oauth;
 using Fabric.Api.Spec.Lang;
-using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Infrastructure;
+using Fabric.Api.Traversal;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Traversal;
 
@@ -20,17 +18,16 @@ namespace Fabric.Api.Spec {
 	/*================================================================================================*/
 	public partial class SpecDoc {
 
-		private readonly FabSpecDto vFabResp;
+		private const string DtoNamespace = "Fabric.Api.Dto.";
+		private const string OauthDtoNamespace = DtoNamespace+"Oauth";
+		private const string ModDtoNamespace = DtoNamespace+"Modify";
+		private const string TravDtoNamespace = DtoNamespace+"Traversal";
+		private const string SpecDtoNamespace = DtoNamespace+"Spec";
+
 		private readonly List<string> vDtoNames;
-
-		private readonly List<FabSpecDto> vTravDtoList;
-		private readonly List<FabSpecFunc> vTravFuncList;
-
-		private readonly List<FabSpecDto> vOauthDtoList;
-		private readonly List<FabSpecFunc> vOauthFuncList;
-
-		private readonly List<FabSpecDto> vSpecDtoList;
-		private readonly List<FabSpecFunc> vSpecFuncList;
+		private readonly List<FabSpecDto> vDtoList;
+		private readonly List<FabSpecService> vServiceList;
+		private readonly Dictionary<string, Assembly> vAssemblyMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,13 +36,8 @@ namespace Fabric.Api.Spec {
 			vDtoNames = new List<string>();
 
 			foreach ( Type t in Assembly.GetAssembly(typeof(FabDto)).GetTypes() ) {
-				if ( t.FullName == null ) {
-					continue;
-				}
-
-				if ( t.Name.Substring(0, 3) != "Fab" ) {
-					continue;
-				}
+				if ( t.FullName == null ) { continue; }
+				if ( t.Name.Substring(0, 3) != "Fab" ) { continue; }
 
 				string name = t.FullName.Replace("Fabric.Api.Dto.", "");
 
@@ -58,170 +50,173 @@ namespace Fabric.Api.Spec {
 
 			////
 
-			vFabResp = new FabSpecDto();
-			vFabResp.Name = typeof(FabResponse).Name;
-			vFabResp.Description = GetDtoText(vFabResp.Name.Substring(3));
+			var specFabResp = new FabSpecDto();
+			specFabResp.Name = typeof(FabResponse).Name;
+			specFabResp.Description = GetDtoText(specFabResp.Name.Substring(3));
+			specFabResp.Properties = ReflectProps(typeof(FabResponse));
 
-			Dictionary<string, FabSpecDtoProp> propMap = ReflectProps<FabResponse>();
-			vFabResp.PropertyList = propMap.Values.ToList();
+			vDtoList = new List<FabSpecDto>();
+			vDtoList.Add(specFabResp);
+			vDtoList.Add(GetSpecDto(typeof(FabDto)));
+			vDtoList.Add(GetSpecDto(typeof(FabError)));
+			vDtoList.Add(GetSpecDto(typeof(FabHome)));
+			vDtoList.Add(GetSpecDto(typeof(FabService)));
+			vDtoList.Add(GetSpecDto(typeof(FabServiceOperation)));
 
 			////
 
-			vTravDtoList = BuildDtoList();
-			vTravDtoList.Insert(0, GetSpecDto<FabNode>());
-			vTravDtoList.Insert(0, GetSpecDto<FabDto>());
-			vTravDtoList.Add(GetSpecDto<FabError>());
+			vAssemblyMap = new Dictionary<string, Assembly>();
+			vAssemblyMap.Add("Oauth", Assembly.GetAssembly(typeof(OauthAccessBase)));
+			vAssemblyMap.Add("Modify", Assembly.GetAssembly(typeof(CreateApp)));
+			vAssemblyMap.Add("Traversal", Assembly.GetAssembly(typeof(PathSegment)));
+			vAssemblyMap.Add("Spec", Assembly.GetAssembly(typeof(SpecDoc)));
 
-			vTravFuncList = new List<FabSpecFunc>();
-			Assembly a = Assembly.GetAssembly(typeof(FuncBackStep));
+			////
 
-			foreach ( Type t in a.GetTypes() ) {
-				if ( t.GetCustomAttributes(typeof(FuncAttribute), false).Length == 0 ) {
-					continue;
-				}
+			vServiceList = new List<FabSpecService>();
+			var home = new FabHome(true);
 
-				vTravFuncList.Add(GetSpecFunc(t));
+			foreach ( FabService svc in home.Services ) {
+				vServiceList.Add(GetSpecService(svc));
 			}
 
-			////
-			
-			vOauthDtoList = new List<FabSpecDto>();
-			vOauthDtoList.Add(GetSpecDto<FabOauthAccess>());
-			vOauthDtoList.Add(GetSpecDto<FabOauthError>());
-			vOauthDtoList.Add(GetSpecDto<FabOauthLogin>());
-			vOauthDtoList.Add(GetSpecDto<FabOauthLogout>());
-
-			vOauthFuncList = new List<FabSpecFunc>();
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAt), "/AccessToken"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtac), "/AccessTokenAuthCode"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtr), "/AccessTokenRefresh"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtcc), "/AccessTokenClientCredentials"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthAtcd), "/AccessTokenClientDataProv"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLogin), "/"));
-			vOauthFuncList.Add(GetSpecFunc(typeof(FuncOauthLogout), "/Logout"));
-
-			////
-			
-			vSpecDtoList = new List<FabSpecDto>();
-			vSpecDtoList.Add(GetSpecDto<FabSpec>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecDto>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecDtoLink>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecDtoProp>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecFunc>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecFuncParam>());
-			vSpecDtoList.Add(GetSpecDto<FabSpecService>());
-
-			foreach ( FabSpecDto sd in vSpecDtoList ) {
-				sd.Description = null;
-
-				foreach ( FabSpecDtoProp p in sd.PropertyList ) {
-					p.Description = null;
-				}
-			}
-
-			vSpecFuncList = new List<FabSpecFunc>();
-			vSpecFuncList.Add(GetSpecFunc(typeof(FuncSpec), "/"));
+			//TODO: load links and availablefunctions for Traversal
+			//TODO: load ServiceOpParams
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpec GetFabSpec() {
 			var fs = new FabSpec();
-			fs.ApiResponse = vFabResp;
-
-			fs.TraversalService = new FabSpecService();
-			fs.TraversalService.Name = GetServiceText("Traversal");
-			fs.TraversalService.Abstract = GetServiceText("TraversalAbstract");
-			fs.TraversalService.Description = GetServiceText("TraversalDesc");
-			fs.TraversalService.Uri = "/Root";
-			fs.TraversalService.ResponseWrapper = typeof(FabResponse).Name;
-			fs.TraversalService.DtoList = vTravDtoList;
-			fs.TraversalService.FunctionList = vTravFuncList;
-
-			fs.OauthService = new FabSpecService();
-			fs.OauthService.Name = GetServiceText("Oauth");
-			fs.OauthService.Abstract = GetServiceText("OauthAbstract");
-			fs.OauthService.Description = GetServiceText("OauthDesc");
-			fs.OauthService.Uri = "/Oauth";
-			fs.OauthService.ResponseWrapper = null;
-			fs.OauthService.DtoList = vOauthDtoList;
-			fs.OauthService.FunctionList = vOauthFuncList;
-
-			fs.SpecService = new FabSpecService();
-			fs.SpecService.Name = GetServiceText("Spec");
-			fs.SpecService.Abstract = GetServiceText("SpecAbstract");
-			fs.SpecService.Description = GetServiceText("SpecDesc");
-			fs.SpecService.Uri = "/Spec";
-			fs.SpecService.ResponseWrapper = typeof(FabResponse).Name;
-			fs.SpecService.DtoList = vSpecDtoList;
-			fs.SpecService.FunctionList = vSpecFuncList;
-
+			fs.DtoList = vDtoList;
+			fs.Services = vServiceList;
 			return fs;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		private string FormatResourceString(string pName, string pText) {
+			return (pText == null ? "MISSING:"+pName : FormatMarkup(pText));
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		private string GetServiceText(string pName) {
 			string s = ServiceText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = FormatMarkup(s); }
-			return (s ?? "MISSING:"+pName);
+			return FormatResourceString(pName, s);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetDtoText(string pName) {
 			string s = DtoText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = FormatMarkup(s); }
-			return (s ?? "MISSING:"+pName);
+			return FormatResourceString(pName, s);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetDtoPropText(string pName) {
 			string s = DtoPropText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = FormatMarkup(s); }
-			return (s ?? "MISSING:"+pName);
+			return FormatResourceString(pName, s);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetDtoLinkText(string pName) {
 			string s = DtoLinkText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = FormatMarkup(s); }
-			return (s ?? "MISSING:"+pName);
+			return FormatResourceString(pName, s);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetFuncText(string pName) {
 			string s = FuncText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = FormatMarkup(s); }
-			return (s ?? "MISSING:"+pName);
+			return FormatResourceString(pName, s);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetFuncParamText(string pName) {
 			string s = FuncParamText.ResourceManager.GetString(pName);
-			if ( s != null ) { s = FormatMarkup(s); }
-			return (s ?? "MISSING:"+pName);
+			return FormatResourceString(pName, s);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabSpecDto GetSpecDto<T>() where T : FabDto {
+		private FabSpecService GetSpecService(FabService pService) {
+			var ss = new FabSpecService();
+			ss.Name = pService.Name;
+			ss.Uri = pService.Uri;
+			ss.ResponseWrapper = (ss.Uri == FabHome.OauthUri ? null : typeof(FabResponse).Name);
+			ss.Abstract = GetServiceText(pService.Name+"Abstract");
+			ss.Description = GetServiceText(pService.Name+"Desc");
+
+			////
+
+			string dtoNamespace;
+
+			switch ( ss.Name ) {
+				case "Traversal": dtoNamespace = TravDtoNamespace; break;
+				case "Modify": dtoNamespace = ModDtoNamespace; break;
+				case "Oauth": dtoNamespace = OauthDtoNamespace; break;
+				case "Spec": dtoNamespace = SpecDtoNamespace; break;
+				default: throw new FabPreventedFault("Unknown service name: '"+ss.Name+"'.");
+			}
+
+			foreach ( FabServiceOperation svcOp in pService.Operations ) {
+				var sso = new FabSpecServiceOperation();
+				sso.Name = svcOp.Name;
+				sso.Uri = svcOp.Uri;
+				sso.Method = svcOp.Method;
+				sso.Description = "MISSING";
+				ss.Operations.Add(sso);
+			}
+
+			////
+
+			var dtoAssembly = Assembly.GetAssembly(typeof(FabDto));
+
+			foreach ( Type dtoType in dtoAssembly.GetTypes() ) {
+				if ( dtoType.IsInterface || dtoType.IsAbstract ) { continue; }
+				if ( !typeof(IFabDto).IsAssignableFrom(dtoType) ) { continue; }
+				if ( dtoType.Namespace != dtoNamespace ) { continue; }
+				ss.Objects.Add(GetSpecDto(dtoType));
+			}
+
+			////
+
+			Assembly assembly = vAssemblyMap[ss.Name];
+
+			foreach ( Type t in assembly.GetTypes() ) {
+				if ( t.GetCustomAttributes(typeof(FuncAttribute), false).Length == 0 ) {
+					continue;
+				}
+
+				ss.Functions.Add(GetSpecFunc(t));
+			}
+
+			////
+
+			ss.Objects.Sort((a, b) => string.Compare(a.Name, b.Name));
+			ss.Functions.Sort((a, b) => string.Compare(a.Name, b.Name));
+			ss.Operations.Sort((a, b) => string.Compare(a.Name, b.Name));
+			return ss;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private FabSpecDto GetSpecDto(Type pType) {
 			var sd = new FabSpecDto();
-			sd.Name = typeof(T).Name;
+			sd.Name = pType.Name;
 			sd.Description = GetDtoText(sd.Name.Substring(3));
 
-			if ( typeof(T) != typeof(FabDto) ) {
+			if ( pType != typeof(FabDto) ) {
 				sd.Extends = typeof(FabDto).Name;
 			}
 
-			Dictionary<string, FabSpecDtoProp> propMap = ReflectProps<T>();
-			sd.PropertyList = propMap.Values.ToList();
+			sd.Properties = ReflectProps(pType);
 			return sd;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Dictionary<string, FabSpecDtoProp> ReflectProps<T>() {
-			PropertyInfo[] props = typeof(T).GetProperties(
+		private List<FabSpecDtoProp> ReflectProps(Type pType) {
+			PropertyInfo[] props = pType.GetProperties(
 				BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
 			var results = new Dictionary<string, FabSpecDtoProp>();
 
@@ -236,11 +231,13 @@ namespace Fabric.Api.Spec {
 				var specProp = new FabSpecDtoProp();
 				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
-				specProp.Description = GetDtoPropText(typeof(T).Name.Substring(3)+"_"+pi.Name);
+				specProp.Description = GetDtoPropText(pType.Name.Substring(3)+"_"+pi.Name);
 				results.Add(pi.Name, specProp);
 			}
-			
-			return results;
+
+			List<FabSpecDtoProp> list = results.Values.ToList();
+			list.Sort((a, b) => string.Compare(a.Name, b.Name));
+			return list;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -253,7 +250,7 @@ namespace Fabric.Api.Spec {
 			string resxKey = (fa.ResxKey ?? func.Name);
 			func.Description = GetFuncText(resxKey);
 			func.Uri = pUri;
-			func.ParameterList = new List<FabSpecFuncParam>();
+			func.Parameters = new List<FabSpecFuncParam>();
 
 			PropertyInfo[] props = pFuncType.GetProperties();
 
@@ -276,10 +273,10 @@ namespace Fabric.Api.Spec {
 				p.IsRequired = fpa.IsRequired;
 				p.DisplayName = fpa.DisplayName;
 				p.UsesQueryString = fpa.UsesQueryString;
-				func.ParameterList.Add(p);
+				func.Parameters.Add(p);
 			}
 
-			func.ParameterList.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index == b.Index ? 0 : -1)));
+			func.Parameters.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index == b.Index ? 0 : -1)));
 			return func;
 		}
 

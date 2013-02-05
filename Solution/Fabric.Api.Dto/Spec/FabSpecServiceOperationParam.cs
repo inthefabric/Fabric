@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpec : FabDto {
-		
-		public string ApiVersion { get; set; }
-		public List<FabSpecDto> DtoList { get; set; }
-		public List<FabSpecService> Services { get; set; }
+	public class FabSpecServiceOperationParam : FabDto {
+
+		public string ParamType { get; set; }
+		public string Name { get; set; }
+		public string Type { get; set; }
+		public string Description { get; set; }
+		public bool IsRequired { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

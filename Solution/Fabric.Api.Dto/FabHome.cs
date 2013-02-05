@@ -48,12 +48,15 @@ namespace Fabric.Api.Dto {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabHome() {
+		public FabHome() : this(false) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabHome(bool pIncludeOps) {
 			Services = new List<FabService>();
-			Services.Add(NewTraversalService(false));
-			Services.Add(NewOauthService(false));
-			Services.Add(NewModifyService(false));
-			Services.Add(NewSpecService(false));
+			Services.Add(NewTraversalService(pIncludeOps));
+			Services.Add(NewOauthService(pIncludeOps));
+			Services.Add(NewModifyService(pIncludeOps));
+			Services.Add(NewSpecService(pIncludeOps));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -64,7 +67,7 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		public static FabService NewOauthService(bool pIncludeOps) {
 			var s = new FabService();
-			s.Name = "OAuthService";
+			s.Name = "Oauth";
 			s.Uri = OauthUri;
 
 			if ( pIncludeOps ) {
@@ -76,28 +79,28 @@ namespace Fabric.Api.Dto {
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessToken_AuthCode";
+				op.Name = "AccessTokenAuthCode";
 				op.Uri = OauthAccessTokenAuthCodeUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessToken_Refresh";
+				op.Name = "AccessTokenRefresh";
 				op.Uri = OauthAccessTokenRefreshUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessToken_ClientCredentials";
+				op.Name = "AccessTokenClientCredentials";
 				op.Uri = OauthAccessTokenClientCredentialsUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessToken_ClientDataProv";
+				op.Name = "AccessTokenClientDataProv";
 				op.Uri = OauthAccessTokenClientDataProvUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
@@ -127,7 +130,7 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		public static FabService NewSpecService(bool pIncludeOps) {
 			var s = new FabService();
-			s.Name = "SpecService";
+			s.Name = "Spec";
 			s.Uri = SpecUri;
 
 			if ( pIncludeOps ) {
@@ -148,7 +151,7 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		public static FabService NewTraversalService(bool pIncludeOps) {
 			var s = new FabService();
-			s.Name = "TraversalService";
+			s.Name = "Traversal";
 			s.Uri = TravUri;
 
 			if ( pIncludeOps ) {
@@ -169,7 +172,7 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		public static FabService NewModifyService(bool pIncludeOps) {
 			var s = new FabService();
-			s.Name = "ModifyService";
+			s.Name = "Modify";
 			s.Uri = ModUri;
 
 			if ( pIncludeOps ) {

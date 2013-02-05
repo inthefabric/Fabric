@@ -1,9 +1,10 @@
-﻿using Fabric.Infrastructure.Traversal;
+﻿using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
-	public class FabStepLink {
+	public class FabStepLink : FabDto {
 		
 		public bool IsOut { get; set; }
 		public string Rel { get; set; }
@@ -13,12 +14,18 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabStepLink() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public FabStepLink(IStepLink pLink) {
 			IsOut = pLink.IsOutgoing;
 			Rel = pLink.RelType;
 			Class = "Fab"+pLink.Node;
 			Uri = pLink.Uri;
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
 
 	}
 

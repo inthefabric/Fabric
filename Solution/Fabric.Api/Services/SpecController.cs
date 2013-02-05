@@ -32,7 +32,10 @@ namespace Fabric.Api.Services {
 							string pApiVers, Route pRoute) : base(pRequest, pApiCtx, pOauthTasks) {
 			ApiVers = pApiVers;
 			vRoute = pRoute;
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected override Response BuildFabResponse() {
 			if ( ServiceDto == null ) {
 				ServiceDto = FabHome.NewSpecService(true);
 				ServiceDtoJson = ServiceDto.ToJson();
@@ -42,10 +45,7 @@ namespace Fabric.Api.Services {
 				DocDto.ApiVersion = ApiVers;
 				DocDtoJson = DocDto.ToJson();
 			}
-		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected override Response BuildFabResponse() {
 			switch ( vRoute ) {
 				case Route.Home:
 					return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));

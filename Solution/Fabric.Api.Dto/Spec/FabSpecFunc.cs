@@ -10,7 +10,7 @@ namespace Fabric.Api.Dto.Spec {
 		public string Description { get; set; }
 		public string ReturnType { get; set; }
 		public string Uri { get; set; }
-		public List<FabSpecFuncParam> ParameterList { get; set; }
+		public List<FabSpecFuncParam> Parameters { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

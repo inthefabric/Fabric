@@ -34,7 +34,7 @@ namespace Fabric.Api.Spec {
 				p.LenMax = 32;
 				p.LenMin = 1;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Description";
@@ -42,7 +42,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("NodeForType_Description");
 				p.LenMax = 256;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 			////
 
@@ -57,7 +57,7 @@ namespace Fabric.Api.Spec {
 				p.Type = "long";
 				p.Description = GetDtoPropText("NodeForAction_Performed");
 				p.IsTimestamp = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Note";
@@ -65,7 +65,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("NodeForAction_Note");
 				p.IsNullable = true;
 				p.LenMax = 256;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 			////
 
@@ -89,7 +89,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsAppList";
@@ -101,7 +101,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabApp";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsArtifactList";
@@ -113,7 +113,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsArtifactTypeList";
@@ -125,7 +125,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsClassList";
@@ -137,7 +137,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabClass";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsInstanceList";
@@ -149,7 +149,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabInstance";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsMemberList";
@@ -161,7 +161,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsMemberTypeList";
@@ -173,7 +173,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsMemberTypeAssignList";
@@ -185,7 +185,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsUrlList";
@@ -197,7 +197,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabUrl";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsUserList";
@@ -209,7 +209,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabUser";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsFactorList";
@@ -221,7 +221,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsFactorAssertionList";
@@ -233,7 +233,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsDescriptorList";
@@ -245,7 +245,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabDescriptor";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsDescriptorTypeList";
@@ -257,7 +257,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsDirectorList";
@@ -269,7 +269,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabDirector";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsDirectorTypeList";
@@ -281,7 +281,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsDirectorActionList";
@@ -293,7 +293,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsEventorList";
@@ -305,7 +305,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabEventor";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsEventorTypeList";
@@ -317,7 +317,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabEventorType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsEventorPrecisionList";
@@ -329,7 +329,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsIdentorList";
@@ -341,7 +341,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabIdentor";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsIdentorTypeList";
@@ -353,7 +353,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsLocatorList";
@@ -365,7 +365,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabLocator";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsLocatorTypeList";
@@ -377,7 +377,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorList";
@@ -389,7 +389,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVector";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorTypeList";
@@ -401,7 +401,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVectorType";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorRangeList";
@@ -413,7 +413,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVectorRange";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorRangeLevelList";
@@ -425,7 +425,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorUnitList";
@@ -437,7 +437,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorUnitPrefixList";
@@ -449,7 +449,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ContainsVectorUnitDerivedList";
@@ -461,7 +461,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Contains";
 					l.ToDto = "FabVectorUnitDerived";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 			////
 
@@ -477,7 +477,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Name";
@@ -488,7 +488,7 @@ namespace Fabric.Api.Spec {
 				p.LenMax = 64;
 				p.LenMin = 3;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasArtifact";
@@ -500,7 +500,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "DefinesMemberList";
@@ -512,11 +512,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Defines";
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -532,20 +532,20 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "IsPrivate";
 				p.Type = "bool";
 				p.Description = GetDtoPropText("Artifact_IsPrivate");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Created";
 				p.Type = "long";
 				p.Description = GetDtoPropText("Artifact_Created");
 				p.IsTimestamp = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InAppHas";
@@ -557,7 +557,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesArtifactType";
@@ -569,7 +569,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InClassHas";
@@ -581,7 +581,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InInstanceHas";
@@ -593,7 +593,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InMemberCreates";
@@ -605,7 +605,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Creates";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InUrlHas";
@@ -617,7 +617,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InUserHas";
@@ -629,7 +629,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUsesPrimary";
@@ -641,7 +641,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesPrimary";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUsesRelated";
@@ -653,7 +653,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesRelated";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDescriptorListRefinesPrimaryWith";
@@ -665,7 +665,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RefinesPrimaryWith";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDescriptorListRefinesRelatedWith";
@@ -677,7 +677,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RefinesRelatedWith";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDescriptorListRefinesTypeWith";
@@ -689,7 +689,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RefinesTypeWith";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorListUsesAxis";
@@ -701,11 +701,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesAxis";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -721,7 +721,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InArtifactListUses";
@@ -733,11 +733,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabArtifactType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -753,7 +753,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Name";
@@ -761,7 +761,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Class_Name");
 				p.LenMax = 128;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Disamb";
@@ -770,7 +770,7 @@ namespace Fabric.Api.Spec {
 				p.IsNullable = true;
 				p.LenMax = 128;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Note";
@@ -778,7 +778,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Class_Note");
 				p.IsNullable = true;
 				p.LenMax = 256;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasArtifact";
@@ -790,11 +790,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -810,7 +810,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Name";
@@ -819,7 +819,7 @@ namespace Fabric.Api.Spec {
 				p.IsNullable = true;
 				p.LenMax = 128;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Disamb";
@@ -828,7 +828,7 @@ namespace Fabric.Api.Spec {
 				p.IsNullable = true;
 				p.LenMax = 128;
 				p.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Note";
@@ -836,7 +836,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Instance_Note");
 				p.IsNullable = true;
 				p.LenMax = 256;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasArtifact";
@@ -848,11 +848,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -868,7 +868,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InAppDefines";
@@ -880,7 +880,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Defines";
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasMemberTypeAssign";
@@ -892,7 +892,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasHistoricMemberTypeAssignList";
@@ -904,7 +904,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "HasHistoric";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "CreatesArtifactList";
@@ -916,7 +916,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Creates";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "CreatesMemberTypeAssignList";
@@ -928,7 +928,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Creates";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "CreatesFactorList";
@@ -940,7 +940,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Creates";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InUserDefines";
@@ -952,11 +952,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Defines";
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -972,7 +972,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InMemberTypeAssignListUses";
@@ -984,11 +984,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1004,7 +1004,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InMemberHas";
@@ -1016,7 +1016,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InMemberHasHistoric";
@@ -1028,7 +1028,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "HasHistoric";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InMemberCreates";
@@ -1040,7 +1040,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Creates";
 					l.ToDto = "FabMemberTypeAssign";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesMemberType";
@@ -1052,11 +1052,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabMemberType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1072,14 +1072,14 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Name";
 				p.Type = "string";
 				p.Description = GetDtoPropText("Url_Name");
 				p.LenMax = 128;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "AbsoluteUrl";
@@ -1088,7 +1088,7 @@ namespace Fabric.Api.Spec {
 				p.IsCaseInsensitive = true;
 				p.IsUnique = true;
 				p.LenMax = 2048;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasArtifact";
@@ -1100,11 +1100,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1120,7 +1120,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Name";
@@ -1131,7 +1131,7 @@ namespace Fabric.Api.Spec {
 				p.LenMax = 16;
 				p.LenMin = 4;
 				p.ValidRegex = @"^[a-zA-Z0-9_]*$";
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "HasArtifact";
@@ -1143,7 +1143,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Has";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "DefinesMemberList";
@@ -1155,11 +1155,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Defines";
 					l.ToDto = "FabMember";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1175,27 +1175,27 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "IsDefining";
 				p.Type = "bool";
 				p.Description = GetDtoPropText("Factor_IsDefining");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Created";
 				p.Type = "long";
 				p.Description = GetDtoPropText("Factor_Created");
 				p.IsTimestamp = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Completed";
 				p.Type = "long?";
 				p.Description = GetDtoPropText("Factor_Completed");
 				p.IsNullable = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Note";
@@ -1203,7 +1203,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Factor_Note");
 				p.IsNullable = true;
 				p.LenMax = 256;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InMemberCreates";
@@ -1215,7 +1215,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Creates";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesPrimaryArtifact";
@@ -1227,7 +1227,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesPrimary";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesRelatedArtifact";
@@ -1239,7 +1239,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesRelated";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesFactorAssertion";
@@ -1251,7 +1251,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "ReplacesFactor";
@@ -1263,7 +1263,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Replaces";
 					l.ToDto = "FabFactor";
 					l.ToDtoConn = "InFromZeroOrOne";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesDescriptor";
@@ -1275,7 +1275,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDescriptor";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesDirector";
@@ -1287,7 +1287,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDirector";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesEventor";
@@ -1299,7 +1299,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabEventor";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesIdentor";
@@ -1311,7 +1311,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabIdentor";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesLocator";
@@ -1323,7 +1323,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabLocator";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVector";
@@ -1335,11 +1335,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVector";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1355,7 +1355,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -1367,11 +1367,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabFactorAssertion";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1395,7 +1395,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -1407,7 +1407,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDescriptor";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesDescriptorType";
@@ -1419,7 +1419,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "RefinesPrimaryWithArtifact";
@@ -1431,7 +1431,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RefinesPrimaryWith";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "RefinesRelatedWithArtifact";
@@ -1443,7 +1443,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RefinesRelatedWith";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "RefinesTypeWithArtifact";
@@ -1455,11 +1455,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RefinesTypeWith";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1475,7 +1475,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDescriptorListUses";
@@ -1487,11 +1487,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDescriptorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1507,7 +1507,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -1519,7 +1519,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDirector";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesDirectorType";
@@ -1531,7 +1531,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesPrimaryDirectorAction";
@@ -1543,7 +1543,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesPrimary";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesRelatedDirectorAction";
@@ -1555,11 +1555,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesRelated";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1575,7 +1575,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDirectorListUses";
@@ -1587,11 +1587,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabDirectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1607,7 +1607,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDirectorListUsesPrimary";
@@ -1619,7 +1619,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesPrimary";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InDirectorListUsesRelated";
@@ -1631,11 +1631,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesRelated";
 					l.ToDto = "FabDirectorAction";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1651,13 +1651,13 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "DateTime";
 				p.Type = "long";
 				p.Description = GetDtoPropText("Eventor_DateTime");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -1669,7 +1669,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabEventor";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesEventorType";
@@ -1681,7 +1681,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabEventorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesEventorPrecision";
@@ -1693,11 +1693,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1713,7 +1713,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InEventorListUses";
@@ -1725,11 +1725,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabEventorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1745,7 +1745,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InEventorListUses";
@@ -1757,11 +1757,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabEventorPrecision";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1777,14 +1777,14 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Value";
 				p.Type = "string";
 				p.Description = GetDtoPropText("Identor_Value");
 				p.LenMax = 128;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -1796,7 +1796,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabIdentor";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesIdentorType";
@@ -1808,11 +1808,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1828,7 +1828,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InIdentorListUses";
@@ -1840,11 +1840,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabIdentorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1860,25 +1860,25 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "ValueX";
 				p.Type = "double";
 				p.Description = GetDtoPropText("Locator_ValueX");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "ValueY";
 				p.Type = "double";
 				p.Description = GetDtoPropText("Locator_ValueY");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "ValueZ";
 				p.Type = "double";
 				p.Description = GetDtoPropText("Locator_ValueZ");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -1890,7 +1890,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabLocator";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesLocatorType";
@@ -1902,11 +1902,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1922,43 +1922,43 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "MinX";
 				p.Type = "double";
 				p.Description = GetDtoPropText("LocatorType_MinX");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "MaxX";
 				p.Type = "double";
 				p.Description = GetDtoPropText("LocatorType_MaxX");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "MinY";
 				p.Type = "double";
 				p.Description = GetDtoPropText("LocatorType_MinY");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "MaxY";
 				p.Type = "double";
 				p.Description = GetDtoPropText("LocatorType_MaxY");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "MinZ";
 				p.Type = "double";
 				p.Description = GetDtoPropText("LocatorType_MinZ");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "MaxZ";
 				p.Type = "double";
 				p.Description = GetDtoPropText("LocatorType_MaxZ");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InLocatorListUses";
@@ -1970,11 +1970,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabLocatorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -1990,13 +1990,13 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Value";
 				p.Type = "long";
 				p.Description = GetDtoPropText("Vector_Value");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InFactorListUses";
@@ -2008,7 +2008,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVector";
 					l.ToDtoConn = "InFromOneOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesAxisArtifact";
@@ -2020,7 +2020,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "UsesAxis";
 					l.ToDto = "FabArtifact";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVectorType";
@@ -2032,7 +2032,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVectorUnit";
@@ -2044,7 +2044,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVectorUnitPrefix";
@@ -2056,11 +2056,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -2076,19 +2076,19 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Min";
 				p.Type = "long";
 				p.Description = GetDtoPropText("VectorType_Min");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Max";
 				p.Type = "long";
 				p.Description = GetDtoPropText("VectorType_Max");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorListUses";
@@ -2100,7 +2100,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorType";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVectorRange";
@@ -2112,11 +2112,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorRange";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -2132,7 +2132,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorTypeListUses";
@@ -2144,7 +2144,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorRange";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVectorRangeLevelList";
@@ -2156,11 +2156,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -2176,13 +2176,13 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Position";
 				p.Type = "float";
 				p.Description = GetDtoPropText("VectorRangeLevel_Position");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorRangeListUses";
@@ -2194,11 +2194,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorRangeLevel";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -2214,14 +2214,14 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Symbol";
 				p.Type = "string";
 				p.Description = GetDtoPropText("VectorUnit_Symbol");
 				p.LenMax = 8;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorListUses";
@@ -2233,7 +2233,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorUnitDerivedListDefines";
@@ -2245,7 +2245,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Defines";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorUnitDerivedListRaisesToExp";
@@ -2257,11 +2257,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RaisesToExp";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -2277,20 +2277,20 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Symbol";
 				p.Type = "string";
 				p.Description = GetDtoPropText("VectorUnitPrefix_Symbol");
 				p.LenMax = 8;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Amount";
 				p.Type = "double";
 				p.Description = GetDtoPropText("VectorUnitPrefix_Amount");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorListUses";
@@ -2302,7 +2302,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "InVectorUnitDerivedListUses";
@@ -2314,11 +2314,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			////
 
@@ -2334,13 +2334,13 @@ namespace Fabric.Api.Spec {
 				p.Description = GetDtoPropText("Object_TypeId");
 				p.IsPrimaryKey = true;
 				p.IsUnique = true;
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 				p = new FabSpecDtoProp();
 				p.Name = "Exponent";
 				p.Type = "int";
 				p.Description = GetDtoPropText("VectorUnitDerived_Exponent");
-				dto.PropertyList.Add(p);
+				dto.Properties.Add(p);
 
 					l = new FabSpecDtoLink();
 					l.Name = "DefinesVectorUnit";
@@ -2352,7 +2352,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Defines";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "RaisesToExpVectorUnit";
@@ -2364,7 +2364,7 @@ namespace Fabric.Api.Spec {
 					l.Relation = "RaisesToExp";
 					l.ToDto = "FabVectorUnit";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
 					l = new FabSpecDtoLink();
 					l.Name = "UsesVectorUnitPrefix";
@@ -2376,11 +2376,11 @@ namespace Fabric.Api.Spec {
 					l.Relation = "Uses";
 					l.ToDto = "FabVectorUnitPrefix";
 					l.ToDtoConn = "InFromZeroOrMore";
-					dto.LinkList.Add(l);
+					dto.Links.Add(l);
 
-						dto.FunctionList.Add("Back");
+						dto.AvailableFunctions.Add("Back");
 
-						dto.FunctionList.Add("Limit");
+						dto.AvailableFunctions.Add("Limit");
 
 			return list;
 		}
