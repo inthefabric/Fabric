@@ -14,7 +14,7 @@ namespace Fabric.Api.Services {
 	/*================================================================================================*/
 	public class OauthAccessController : Controller { //TEST: OauthAccessController
 
-		public enum Function {
+		public enum Route {
 			Access,
 			AuthCode,
 			ClientCred,
@@ -29,7 +29,7 @@ namespace Fabric.Api.Services {
 		public OauthAccessRefToken AccessRefToken { get; private set; }
 		public OauthLogout Logout { get; private set; }
 
-		private readonly Function vFunc;
+		private readonly Route vFunc;
 
 		private string vRedirUri;
 		private string vClientId;
@@ -42,7 +42,7 @@ namespace Fabric.Api.Services {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessController(Request pRequest, IApiContext pApiCtx, Function pFunc) :
+		public OauthAccessController(Request pRequest, IApiContext pApiCtx, Route pFunc) :
 																			base(pRequest, pApiCtx) {
 			vFunc = pFunc;
 		}
@@ -58,27 +58,27 @@ namespace Fabric.Api.Services {
 			vAccessToken = GetParamString(FuncOauthLogout.AccessTokenName, false);
 
 			switch ( vFunc ) {
-				case Function.Access:
+				case Route.Access:
 					FabOauthAccess a = DoAccess();
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, a.ToJson());
 
-				case Function.AuthCode:
+				case Route.AuthCode:
 					FabOauthAccess ac = DoAccessAuthCode(FuncOauthAt.GrantTypeAc);
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, ac.ToJson());
 
-				case Function.ClientCred:
+				case Route.ClientCred:
 					FabOauthAccess acc = DoAccessClientCred();
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, acc.ToJson());
 
-				case Function.ClientDataProv:
+				case Route.ClientDataProv:
 					FabOauthAccess acd = DoAccessClientDataProv();
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, acd.ToJson());
 
-				case Function.RefToken:
+				case Route.RefToken:
 					FabOauthAccess art = DoAccessRefToken();
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, art.ToJson());
 
-				case Function.Logout:
+				case Route.Logout:
 					FabOauthLogout log = DoLogout();
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, log.ToJson());
 			}

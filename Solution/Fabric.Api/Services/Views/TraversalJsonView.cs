@@ -1,4 +1,4 @@
-﻿using Fabric.Api.Dto;
+﻿using Fabric.Api.Common;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Services.Models;
 using Fabric.Infrastructure.Db;
@@ -7,14 +7,14 @@ using ServiceStack.Text;
 namespace Fabric.Api.Services.Views {
 
 	/*================================================================================================*/
-	public class ApiJsonView {
+	public class TraversalJsonView : IView {
 
-		private readonly ApiModel vInfo;
+		private readonly TraversalModel vInfo;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiJsonView(ApiModel pInfo) {
+		public TraversalJsonView(TraversalModel pInfo) {
 			vInfo = pInfo;
 		}
 
@@ -36,8 +36,8 @@ namespace Fabric.Api.Services.Views {
 			vInfo.Resp.Data = data;
 			vInfo.Resp.Complete(); //last possible moment
 
-			return wrap
-				.Replace(HomeJsonView.TotalMsJson+"0", HomeJsonView.TotalMsJson+vInfo.Resp.TotalMs);
+			return wrap.Replace(FabRespJsonView.TotalMsJson+"0",
+				FabRespJsonView.TotalMsJson+vInfo.Resp.TotalMs);
 		}
 
 

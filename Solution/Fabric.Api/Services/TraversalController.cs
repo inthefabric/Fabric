@@ -25,10 +25,11 @@ namespace Fabric.Api.Services {
 			Root
 		}
 
-		public static FabService ServiceDto { get; private set; }
+		private static FabService ServiceDto;
+		private static string ServiceDtoJson;
 
 		private readonly Route vRoute;
-		private readonly ApiModel vModel;
+		private readonly TraversalModel vModel;
 
 		private IFinalStep vLastStep;
 		private IApiDataAccess vReq;
@@ -42,8 +43,13 @@ namespace Fabric.Api.Services {
 												Route pRoute) : base(pRequest, pApiCtx, pOauthTasks) {
 			vRoute = pRoute;
 			vStatus = HttpStatusCode.OK;
-			vModel = new ApiModel();
+			vModel = new TraversalModel();
 			vModel.Resp = FabResp;
+
+			if ( ServiceDto == null ) {
+				ServiceDto = FabServices.NewTraversalService(true);
+				ServiceDtoJson = ServiceDto.ToJson();
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -60,16 +66,7 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildHomeResponse() {
-			FabResp.StartEvent();
-			FabResp.HttpStatus = (int)HttpStatusCode.OK;
-
-			if ( ServiceDto == null ) {
-				ServiceDto = FabServices.NewTraversalService(true);
-			}
-
-			string json = new HomeJsonView(FabResp, ServiceDto.ToJson()).GetContent();
-			ExecuteOauthLookup();
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, json);
+			return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));
 		}
 
 
@@ -77,7 +74,6 @@ namespace Fabric.Api.Services {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildRootResponse() {
 			FillQueryInfo();
-			ExecuteOauthLookup();
 			ExecuteQuery();
 			BuildDtoList();
 			return BuildViewResponse();
@@ -92,9 +88,6 @@ namespace Fabric.Api.Services {
 			if ( vApiUri.Length > 0 ) {
 				vApiUri = vApiUri.Substring(1); //remove "/"
 			}
-
-			FabResp.StartEvent();
-			FabResp.HttpStatus = (int)vStatus;
 
 			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vApiUri);
 			FabResp.SetLinks(vLastStep.AvailableLinks);
@@ -181,10 +174,10 @@ namespace Fabric.Api.Services {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildViewResponse() {
 			if ( NancyUtil.ShouldReturnHtml(NancyReq) ) {
-				return NancyUtil.BuildHtmlResponse(vStatus, new ApiHtmlView(vModel).GetContent());
+				return NancyUtil.BuildHtmlResponse(vStatus, new TraversalHtmlView(vModel).GetContent());
 			}
 			
-			return NancyUtil.BuildJsonResponse(vStatus, new ApiJsonView(vModel).GetContent());
+			return NancyUtil.BuildJsonResponse(vStatus, new TraversalJsonView(vModel).GetContent());
 		}
 
 	}

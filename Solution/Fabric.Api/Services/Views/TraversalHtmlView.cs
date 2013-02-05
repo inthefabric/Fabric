@@ -7,14 +7,14 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Services.Views {
 
 	/*================================================================================================*/
-	public class ApiHtmlView {
+	public class TraversalHtmlView : IView {
 
-		private readonly ApiModel vInfo;
+		private readonly TraversalModel vInfo;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiHtmlView(ApiModel pInfo) {
+		public TraversalHtmlView(TraversalModel pInfo) {
 			vInfo = pInfo;
 		}
 

@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
+using Fabric.Api.Services.Views;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -27,13 +28,21 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override sealed Response BuildResponse() {
+			FabResp.StartEvent();
+			FabResp.HttpStatus = (int)HttpStatusCode.OK;
 			FabResp.BaseUri = ApiBaseUri;
 			FabResp.RequestUri = NancyReq.Path;
+			ExecuteOauthLookup();
 			return BuildFabResponse();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract Response BuildFabResponse();
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected Response NewResponse(IView pView) {
+			return NancyUtil.BuildJsonResponse((HttpStatusCode)FabResp.HttpStatus, pView.GetContent());
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

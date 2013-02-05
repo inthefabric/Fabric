@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Services.Models {
 
 	/*================================================================================================*/
-	public class ApiModel {
+	public class TraversalModel {
 
 		public string Query { get; set; }
 		public FabResponse Resp { get; set; }

@@ -98,7 +98,8 @@
     <Compile Include="Internal\Graph\GraphView.cs" />
     <Compile Include="Internal\Graph\GraphJson.cs" />
     <Compile Include="Internal\Graph\GraphModel.cs" />
-    <Compile Include="Services\Views\HomeJsonView.cs" />
+    <Compile Include="Services\Views\IView.cs" />
+    <Compile Include="Common\FabRespJsonView.cs" />
     <Compile Include="Services\Views\LoginErrorView.cs" />
     <Compile Include="Services\Views\LoginPageView.cs" />
     <Compile Include="Services\Views\LoginScopeView.cs" />

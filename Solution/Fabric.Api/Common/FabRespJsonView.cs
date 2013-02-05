@@ -1,10 +1,11 @@
 ﻿using Fabric.Api.Dto;
+using Fabric.Api.Services.Views;
 using ServiceStack.Text;
 
-namespace Fabric.Api.Services.Views {
+namespace Fabric.Api.Common {
 
 	/*================================================================================================*/
-	public class HomeJsonView {
+	public class FabRespJsonView : IView {
 
 		public const string TotalMsJson = "\"TotalMs\":";
 
@@ -14,7 +15,7 @@ namespace Fabric.Api.Services.Views {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public HomeJsonView(FabResponse pResp, string pSpecJson) {
+		public FabRespJsonView(FabResponse pResp, string pSpecJson) {
 			vFabResp = pResp;
 			vSpecJson = pSpecJson;
 		}

@@ -17,11 +17,6 @@ namespace Fabric.Api.Services {
 	//TEST: OauthLoginFuncs unit tests. Move flows (like OauthGrantLoginEntry) into an interface.
 	public class OauthLoginController : Controller {
 
-		public enum Method {
-			Get,
-			Post
-		}
-		
 		public const string CancelAction = "CancelAction";
 		public const string LogoutAction = "LogoutAction";
 		public const string LoginAction = "LoginAction";
@@ -46,7 +41,6 @@ namespace Fabric.Api.Services {
 		public FabOauthLogin LoginDto { get; private set; }
 
 		private readonly IDictionary<string, string> vCookies;
-		private readonly Method vMethod;
 
 		private string vIncomingError;
 		private long vLoggedUserId;
@@ -61,10 +55,8 @@ namespace Fabric.Api.Services {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthLoginController(Request pRequest, IApiContext pApiCtx, Method pMethod) : 
-																			base(pRequest, pApiCtx) {
+		public OauthLoginController(Request pRequest, IApiContext pApiCtx) : base(pRequest, pApiCtx) {
 			vCookies = NancyReq.Cookies;
-			vMethod = pMethod;
 		}
 
 
@@ -80,12 +72,12 @@ namespace Fabric.Api.Services {
 			vSwitchMode = GetParamString(FuncOauthLogin.SwitchModeName, false);
 			vState = GetParamString(FuncOauthLogin.StateName, false);
 
-			switch ( vMethod ) {
-				case Method.Get: return LoginGet();
-				case Method.Post: return LoginPost();
+			switch ( NancyReq.Method ) {
+				case "GET": return LoginGet();
+				case "POST": return LoginPost();
 			}
 
-			throw new Exception("Unknown Method: "+vMethod);
+			throw new Exception("Unknown Method: "+NancyReq.Method);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

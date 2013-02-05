@@ -31,18 +31,18 @@ namespace Fabric.Api {
 			const string ao = "/Oauth";
 			Get[ao] = (p => GetOauth(Context, OauthController.Route.Home));
 
-			Get[ao+"/Login"] = (p => GetOaLogin(Context, OauthLoginController.Method.Get));
-			Post[ao+"/Login"] = (p => GetOaLogin(Context, OauthLoginController.Method.Post));
-			Get[ao+"/Logout"] = (p => GetOaAcc(Context, OauthAccessController.Function.Logout));
+			Get[ao+"/Login"] = (p => GetOaLogin(Context));
+			Post[ao+"/Login"] = (p => GetOaLogin(Context));
+			Get[ao+"/Logout"] = (p => GetOaAcc(Context, OauthAccessController.Route.Logout));
 
 			const string at = ao+"/AccessToken";
-			Get[at] = (p => GetOaAcc(Context, OauthAccessController.Function.Access));
-			Get[at+"AuthCode"] = (p => GetOaAcc(Context, OauthAccessController.Function.AuthCode));
-			Get[at+"Refresh"] = (p => GetOaAcc(Context, OauthAccessController.Function.RefToken));
+			Get[at] = (p => GetOaAcc(Context, OauthAccessController.Route.Access));
+			Get[at+"AuthCode"] = (p => GetOaAcc(Context, OauthAccessController.Route.AuthCode));
+			Get[at+"Refresh"] = (p => GetOaAcc(Context, OauthAccessController.Route.RefToken));
 			Get[at+"ClientCredentials"] = (p => GetOaAcc(Context,
-				OauthAccessController.Function.ClientCred));
+				OauthAccessController.Route.ClientCred));
 			Get[at+"ClientDataProv"] = (p => GetOaAcc(Context,
-				OauthAccessController.Function.ClientDataProv));
+				OauthAccessController.Route.ClientDataProv));
 
 			//Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
 		}
@@ -74,14 +74,14 @@ namespace Fabric.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetOaAcc(NancyContext pCtx, OauthAccessController.Function pFunc) {
+		private static Response GetOaAcc(NancyContext pCtx, OauthAccessController.Route pFunc) {
 			var oc = new OauthAccessController(pCtx.Request, NewApiCtx(), pFunc);
 			return oc.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetOaLogin(NancyContext pCtx, OauthLoginController.Method pMethod) {
-			var olc = new OauthLoginController(pCtx.Request, NewApiCtx(), pMethod);
+		private static Response GetOaLogin(NancyContext pCtx) {
+			var olc = new OauthLoginController(pCtx.Request, NewApiCtx());
 			return olc.Execute();
 		}
 

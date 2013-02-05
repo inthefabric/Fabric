@@ -8,7 +8,7 @@ namespace Fabric.Api.Util {
 	//adapted from http://www.4guysfromrolla.com/webtech/090501-1.shtml
 
 	/*================================================================================================*/
-	public class EncryptUtil {
+	public static class EncryptUtil {
 
 		static private readonly Byte[] Key = new Byte[8];
 		static private readonly Byte[] Iv = new Byte[8];
