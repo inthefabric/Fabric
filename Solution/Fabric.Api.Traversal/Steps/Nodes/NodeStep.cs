@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -27,7 +28,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				TypeId = Data.ParamAt<long>(0);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepException(StepException.Code.IncorrectParamType, this,
+				throw new StepFault(FabFault.Code.IncorrectParamType, this,
 					"Could not convert to type 'long'.", 0, ex);
 			}
 

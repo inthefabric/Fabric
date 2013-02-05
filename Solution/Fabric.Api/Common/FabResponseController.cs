@@ -79,8 +79,15 @@ namespace Fabric.Api.Common {
 			FabResp.StartIndex = 0;
 			FabResp.Count = 0;
 
-			FabResp.HttpStatus = (int)HttpStatusCode.InternalServerError;
-			FabError err = FabError.ForInternalServerError();
+			FabError err;
+
+			if ( pEx is FabParamFault ) {
+				err = FabError.ForFault(pEx as FabParamFault);
+			}
+			else {
+				FabResp.HttpStatus = (int)HttpStatusCode.InternalServerError;
+				err = FabError.ForInternalServerError();
+			}
 
 			return NewResponse(new FabRespJsonView(FabResp, err.ToJson()));
 		}

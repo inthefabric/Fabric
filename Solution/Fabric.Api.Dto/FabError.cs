@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
@@ -25,6 +26,16 @@ namespace Fabric.Api.Dto {
 			e.CodeName = "InternalError";
 			e.Type = typeof(Exception).Name;
 			e.Message = "An internal server error occurred.";
+			return e;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabError ForFault(FabFault pFault) {
+			var e = new FabError();
+			e.Code = (int)pFault.ErrCode;
+			e.CodeName = pFault.ErrCode+"";
+			e.Type = pFault.GetType().Name;
+			e.Message = pFault.Message;
 			return e;
 		}
 

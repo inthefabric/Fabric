@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Dto;
 using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps {
@@ -64,7 +65,7 @@ namespace Fabric.Api.Traversal.Steps {
 
 			if ( next == null ) {
 				IStep step = (pProxyForFunc == null ? this : (IStep)pProxyForFunc);
-				throw new StepException(StepException.Code.InvalidStep, step,
+				throw new StepFault(FabFault.Code.InvalidStep, step,
 					"The attempted next step ('"+pStepText+"') is not supported by the current step.");
 			}
 

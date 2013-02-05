@@ -44,7 +44,7 @@
     <Compile Include="Steps\IFinalStep.cs" />
     <Compile Include="Steps\Functions\FuncStep.cs" />
     <Compile Include="Steps\Functions\FuncLimitStep.cs" />
-    <Compile Include="Steps\StepException.cs" />
+    <Compile Include="Steps\StepFault.cs" />
     <Compile Include="Steps\Functions\FuncBackStep.cs" />
     <Compile Include="Steps\Nodes\INodeStep.cs" />
     <Compile Include="Steps\StepData.cs" />

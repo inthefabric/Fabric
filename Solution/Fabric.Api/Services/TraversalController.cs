@@ -147,11 +147,11 @@ namespace Fabric.Api.Services {
 			vModel.Resp.StartIndex = 0;
 			vModel.Resp.Count = 0;
 
-			if ( pEx is StepException ) {
+			if ( pEx is StepFault ) {
 				ExceptionIsHandled();
 
-				var se = (pEx as StepException);
-				vModel.Error = se.ToFabError();
+				var sf = (pEx as StepFault);
+				vModel.Error = FabError.ForFault(sf);
 				vStatus = HttpStatusCode.BadRequest;
 
 				/*switch ( step.ErrCode ) {

@@ -3,6 +3,7 @@ using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
@@ -109,9 +110,9 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			s.SetDataAndUpdatePath(new StepData("start"));
 			const string stepText = "abcd(1,2)";
 
-			StepException se = 
-				TestUtil.CheckThrows<StepException>(true, () => s.GetNextStep(stepText));
-			Assert.AreEqual(StepException.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
+			StepFault se = 
+				TestUtil.CheckThrows<StepFault>(true, () => s.GetNextStep(stepText));
+			Assert.AreEqual(FabFault.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 			Assert.Less(-1, se.Message.IndexOf(stepText), "Message did not include the step text.");
 		}
 
@@ -135,9 +136,9 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 
 			p.AddSegment(funcMock.Object, funcText);
 
-			StepException se = TestUtil.CheckThrows<StepException>(true,
+			StepFault se = TestUtil.CheckThrows<StepFault>(true,
 				() => s.GetNextStep(stepText, true, funcMock.Object));
-			Assert.AreEqual(StepException.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(FabFault.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(funcStepI, se.StepIndex, "Incorrect StepIndex.");
 		}
 

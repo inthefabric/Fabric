@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
+using Fabric.Infrastructure.Api.Faults;
 using Moq;
 using NUnit.Framework;
 
@@ -60,11 +61,11 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase(0, Step0Raw)]
 		[TestCase(2, Step2Raw)]
 		public void New(int pStepIndex, string pStepText) {
-			const StepException.Code code = StepException.Code.IncorrectParamCount;
+			const FabFault.Code code = FabFault.Code.IncorrectParamCount;
 			IStep step = vSteps[pStepIndex];
 			const string msg = "this is a test.";
 
-			var se = new StepException(code, step, msg);
+			var se = new StepFault(code, step, msg);
 
 			Assert.AreEqual(code, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(step, se.Step, "Incorrect Step.");
@@ -82,11 +83,11 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase(0)]
 		[TestCase(1)]
 		public void NewParamIndex(int pParamIndex) {
-			const StepException.Code code = StepException.Code.IncorrectParamValue;
+			const FabFault.Code code = FabFault.Code.IncorrectParamValue;
 			IStep step = vSteps[2];
 			const string msg = "this is a test.";
 
-			var se = new StepException(code, step, msg, pParamIndex);
+			var se = new StepFault(code, step, msg, pParamIndex);
 
 			Assert.AreEqual(code, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(step, se.Step, "Incorrect Step.");
@@ -104,11 +105,11 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase(-2)]
 		[TestCase(2)]
 		public void NewParamIndexOutOfBounds(int pParamIndex) {
-			const StepException.Code code = StepException.Code.IncorrectParamValue;
+			const FabFault.Code code = FabFault.Code.IncorrectParamValue;
 			IStep step = vSteps[2];
 			const string msg = "this is a test.";
 
-			var se = new StepException(code, step, msg, pParamIndex);
+			var se = new StepFault(code, step, msg, pParamIndex);
 
 			Assert.AreEqual(code, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(step, se.Step, "Incorrect Step.");
@@ -126,7 +127,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[Test]
 		public void NewInnerException() {
 			var e = new Exception("inner");
-			var se = new StepException(StepException.Code.IncorrectParamCount, vSteps[2], "x", -1, e);
+			var se = new StepFault(FabFault.Code.IncorrectParamCount, vSteps[2], "x", -1, e);
 			Assert.AreEqual(e, se.InnerException, "Incorrect InnerException.");
 		}
 

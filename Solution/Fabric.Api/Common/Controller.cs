@@ -4,6 +4,7 @@ using Fabric.Api.Dto;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
 using Nancy;
 using ServiceStack.Text;
 
@@ -102,23 +103,22 @@ namespace Fabric.Api.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		private static TType GetValue<TType>(DynamicDictionary pDict, string pName,
 									Func<DynamicDictionaryValue, TType> pConvert, bool pRequired=true) {
+			DynamicDictionaryValue val = pDict[pName];
+
+			if ( !pRequired && val == null ) {
+				return default(TType);
+			}
+
+			if ( pRequired && string.IsNullOrEmpty(val) ) {
+				throw new FabParamFault(FabFault.Code.IncorrectParamValue, pName, typeof(TType));
+			}
+
 			try {
-				DynamicDictionaryValue val = pDict[pName];
-
-				if ( !pRequired && val == null ) {
-					return default(TType);
-				}
-
-				if ( pRequired && string.IsNullOrEmpty(val) ) {
-					throw new Exception("Value is null or empty.");
-				}
-
 				return pConvert(val);
 			}
 			catch ( Exception e ) {
 				Log.Error("OAuth query string: "+pName, e);
-				throw new ParameterException("InvalidParameter",
-					"Parameter '"+pName+"' is required, and must be of type '"+typeof(TType).Name+"'.");
+				throw new FabParamFault(FabFault.Code.IncorrectParamType, pName, typeof(TType), e);
 			}
 		}
 		
@@ -136,8 +136,8 @@ namespace Fabric.Api.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected int GetParamInt(string pName, bool pRequired=true) {
-			return GetParam(pName, (v => v.ToInt32(EnUs)), pRequired);
+		protected long GetParamLong(string pName, bool pRequired=true) {
+			return GetParam(pName, (v => v.ToInt64(EnUs)), pRequired);
 		}
 
 

@@ -1,5 +1,6 @@
 ﻿using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
@@ -71,9 +72,9 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			var s = new TestNodeStep(new Path());
 			var d = new StepData(pStepText);
 
-			StepException se =
-				TestUtil.CheckThrows<StepException>(true, () => s.SetDataAndUpdatePath(d) );
-			Assert.AreEqual(StepException.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
+			StepFault se =
+				TestUtil.CheckThrows<StepFault>(true, () => s.SetDataAndUpdatePath(d) );
+			Assert.AreEqual(FabFault.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
 		}
 
