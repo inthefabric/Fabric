@@ -84,15 +84,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServicesModule.cs" />
+    <Compile Include="BaseModule.cs" />
+    <Compile Include="TraversalModule.cs" />
+    <Compile Include="SpecModule.cs" />
+    <Compile Include="OauthModule.cs" />
+    <Compile Include="HomeModule.cs" />
     <Compile Include="Bootstrap.cs" />
     <Compile Include="Services\OauthController.cs" />
     <Compile Include="Services\HomeController.cs" />
     <Compile Include="Services\SpecController.cs" />
     <Compile Include="Services\TraversalController.cs" />
-    <Compile Include="Services\Views\ApiJsonView.cs" />
-    <Compile Include="Services\Views\ApiHtmlView.cs" />
-    <Compile Include="Services\Models\ApiModel.cs" />
+    <Compile Include="Services\Views\TraversalJsonView.cs" />
+    <Compile Include="Services\Views\TraversalHtmlView.cs" />
+    <Compile Include="Services\Models\TraversalModel.cs" />
     <Compile Include="Common\FabResponseController.cs" />
     <Compile Include="Common\HtmlView.cs" />
     <Compile Include="Internal\Graph\GraphView.cs" />

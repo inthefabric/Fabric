@@ -9,10 +9,25 @@ namespace Fabric.Api.Dto {
 	/*================================================================================================*/
 	public class FabServices : FabDto {
 
-		private const string Get = "GET";
-		private const string Post = "POST";
-		private const string Put = "PUT";
-		private const string Delete = "DELETE";
+		public const string Get = "GET";
+		public const string Post = "POST";
+		public const string Put = "PUT";
+		public const string Delete = "DELETE";
+
+		public const string OauthUri = "/Oauth";
+		public const string OauthAccessTokenUri = "/AccessToken";
+		public const string OauthAccessTokenAuthCodeUri = "/AccessTokenAuthCode";
+		public const string OauthAccessTokenRefreshUri = "/AccessTokenRefresh";
+		public const string OauthAccessTokenClientCredentialsUri = "/AccessTokenClientCredentials";
+		public const string OauthAccessTokenClientDataProvUri = "/AccessTokenClientDataProv";
+		public const string OauthLoginUri = "/Login";
+		public const string OauthLogoutUri = "/Logout";
+
+		public const string SpecUri = "/Spec";
+		public const string SpecDocUri = "/Doc";
+
+		public const string TravUri = "/Trav";
+		public const string TravRootUri = "/Root";
 
 		public IList<FabService> Services { get; set; }
 
@@ -37,54 +52,54 @@ namespace Fabric.Api.Dto {
 		public static FabService NewOauthService(bool pIncludeOps) {
 			var s = new FabService();
 			s.Name = "OAuthService";
-			s.Uri = "/Oauth";
+			s.Uri = OauthUri;
 
 			if ( pIncludeOps ) {
 				var op = new FabServiceOperation();
 				op.Name = "AccessToken";
-				op.Uri = "/"+op.Name;
+				op.Uri = OauthAccessTokenUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessTokenAuthCode";
-				op.Uri = "/"+op.Name;
+				op.Name = "AccessToken_AuthCode";
+				op.Uri = OauthAccessTokenAuthCodeUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessTokenRefresh";
-				op.Uri = "/"+op.Name;
+				op.Name = "AccessToken_Refresh";
+				op.Uri = OauthAccessTokenRefreshUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessTokenClientCredentials";
-				op.Uri = "/"+op.Name;
+				op.Name = "AccessToken_ClientCredentials";
+				op.Uri = OauthAccessTokenClientCredentialsUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
-				op.Name = "AccessTokenClientDataProv";
-				op.Uri = "/"+op.Name;
+				op.Name = "AccessToken_ClientDataProv";
+				op.Uri = OauthAccessTokenClientDataProvUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthAccess).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
 				op.Name = "Login";
-				op.Uri = "/"+op.Name;
+				op.Uri = OauthLoginUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthLogin).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
 				op.Name = "Logout";
-				op.Uri = "/"+op.Name;
+				op.Uri = OauthLogoutUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthLogout).Name;
 				s.Operations.Add(op);
@@ -100,12 +115,12 @@ namespace Fabric.Api.Dto {
 		public static FabService NewSpecService(bool pIncludeOps) {
 			var s = new FabService();
 			s.Name = "SpecService";
-			s.Uri = "/Spec";
+			s.Uri = SpecUri;
 
 			if ( pIncludeOps ) {
 				var op = new FabServiceOperation();
-				op.Name = "FullSpecDoc";
-				op.Uri = "/Full";
+				op.Name = "Document";
+				op.Uri = SpecDocUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabSpec).Name;
 				s.Operations.Add(op);
@@ -121,12 +136,12 @@ namespace Fabric.Api.Dto {
 		public static FabService NewTraversalService(bool pIncludeOps) {
 			var s = new FabService();
 			s.Name = "TraversalService";
-			s.Uri = "/Traversal";
+			s.Uri = TravUri;
 
 			if ( pIncludeOps ) {
 				var op = new FabServiceOperation();
 				op.Name = "Root";
-				op.Uri = "/Root";
+				op.Uri = TravRootUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabRoot).Name;
 				s.Operations.Add(op);

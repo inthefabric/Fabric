@@ -27,6 +27,7 @@ namespace Fabric.Api.Services {
 
 		private static FabService ServiceDto;
 		private static string ServiceDtoJson;
+		private static int TravRootUriLength;
 
 		private readonly Route vRoute;
 		private readonly TraversalModel vModel;
@@ -49,6 +50,7 @@ namespace Fabric.Api.Services {
 			if ( ServiceDto == null ) {
 				ServiceDto = FabServices.NewTraversalService(true);
 				ServiceDtoJson = ServiceDto.ToJson();
+				TravRootUriLength = (FabServices.TravUri+FabServices.TravRootUri).Length;
 			}
 		}
 
@@ -83,7 +85,7 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillQueryInfo() {
-			vApiUri = NancyReq.Path.Substring(15); //remove "/Traversal/Root"
+			vApiUri = NancyReq.Path.Substring(TravRootUriLength);
 			
 			if ( vApiUri.Length > 0 ) {
 				vApiUri = vApiUri.Substring(1); //remove "/"

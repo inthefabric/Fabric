@@ -61,7 +61,7 @@ namespace Fabric.Api.Services.Views {
 				html += "<b>"+pi.Name+":</b> ";
 				var val = pi.GetValue(pNode, null);
 
-				if ( pi.Name == "NodeUri" ) {
+				if ( pi.Name == "Uri" ) {
 					var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+val;
 					html += "<a href='"+uri+"'>"+val+"</a>";
 				}
@@ -80,6 +80,9 @@ namespace Fabric.Api.Services.Views {
 			PropertyInfo[] props = vInfo.Resp.GetType().GetProperties();
 			string html = "";
 
+			string uri = vInfo.Resp.BaseUri+FabServices.TravUri+FabServices.TravRootUri;
+			html += "<a href='"+uri+"'>&lt; Reset</a>";
+
 			html += "<h3>Response</h3>";
 			html += "<div style='margin-left:20px;'>";
 
@@ -97,7 +100,7 @@ namespace Fabric.Api.Services.Views {
 						break;
 
 					case "RequestUri":
-						var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri;
+						uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri;
 						html += "<a href='"+uri+"'>"+val+"</a>";
 						break;
 
@@ -122,7 +125,7 @@ namespace Fabric.Api.Services.Views {
 
 			for ( int i = 0 ; i < vInfo.Resp.Links.Length ; ++i ) {
 				FabStepLink sl = vInfo.Resp.Links[i];
-				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+sl.Uri;
+				uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+sl.Uri;
 				html += (i == 0 ? "" : "<br/>")+"[ <a href='"+uri+"'>"+
 					(sl.IsOut ? "Out" : "In")+" | "+sl.Rel+" | "+sl.Class+"</a> ]";
 			}
@@ -136,7 +139,7 @@ namespace Fabric.Api.Services.Views {
 
 			for ( int i = 0 ; i < vInfo.Resp.Functions.Length ; ++i ) {
 				string au = vInfo.Resp.Functions[i];
-				var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+au;
+				uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+au;
 				html += (i == 0 ? "" : "<br/>")+"<a href='"+uri+"'>"+au+"</a>";
 			}
 
