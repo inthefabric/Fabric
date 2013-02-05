@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using Fabric.Api.Dto;
-using Fabric.Api.Oauth;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -118,7 +117,7 @@ namespace Fabric.Api.Common {
 			}
 			catch ( Exception e ) {
 				Log.Error("OAuth query string: "+pName, e);
-				throw new OauthException("InvalidParameter",
+				throw new ParameterException("InvalidParameter",
 					"Parameter '"+pName+"' is required, and must be of type '"+typeof(TType).Name+"'.");
 			}
 		}
@@ -155,8 +154,8 @@ namespace Fabric.Api.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected int GetPostInt(string pName, bool pRequired=true) {
-			return GetPost(pName, (v => v.ToInt32(EnUs)), pRequired);
+		protected long GetPostLong(string pName, bool pRequired=true) {
+			return GetPost(pName, (v => v.ToInt64(EnUs)), pRequired);
 		}
 
 	}

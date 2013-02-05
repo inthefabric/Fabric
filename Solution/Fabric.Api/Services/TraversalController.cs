@@ -48,9 +48,9 @@ namespace Fabric.Api.Services {
 			vModel.Resp = FabResp;
 
 			if ( ServiceDto == null ) {
-				ServiceDto = FabServices.NewTraversalService(true);
+				ServiceDto = FabHome.NewTraversalService(true);
 				ServiceDtoJson = ServiceDto.ToJson();
-				TravRootUriLength = (FabServices.TravUri+FabServices.TravRootUri).Length;
+				TravRootUriLength = (FabHome.TravUri+FabHome.TravRootUri).Length;
 			}
 		}
 

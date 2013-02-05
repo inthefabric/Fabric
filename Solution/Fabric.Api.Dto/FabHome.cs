@@ -7,7 +7,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabServices : FabDto {
+	public class FabHome : FabDto {
 
 		public const string Get = "GET";
 		public const string Post = "POST";
@@ -29,18 +29,31 @@ namespace Fabric.Api.Dto {
 		public const string TravUri = "/Trav";
 		public const string TravRootUri = "/Root";
 
+		public const string ModUri = "/Mod";
+		public const string ModAppsUri = "/Apps";
+		public const string ModClassesUri = "/Classes";
+		public const string ModDescriptorsUri = "/Descriptors";
+		public const string ModDirectorsUri = "/Directors";
+		public const string ModEventorsUri = "/Eventors";
+		public const string ModFactorsUri = "/Factors";
+		public const string ModIdentorsUri = "/Identors";
+		public const string ModInstancesUri = "/Instances";
+		public const string ModLocatorsUri = "/Locators";
+		public const string ModUrlsUri = "/Urls";
+		public const string ModUsersUri = "/Users";
+		public const string ModVectorsUri = "/Vectors";
+
 		public IList<FabService> Services { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabServices() {
-			const bool includeOps = false;
-
+		public FabHome() {
 			Services = new List<FabService>();
-			Services.Add(NewTraversalService(includeOps));
-			Services.Add(NewOauthService(includeOps));
-			Services.Add(NewSpecService(includeOps));
+			Services.Add(NewTraversalService(false));
+			Services.Add(NewOauthService(false));
+			Services.Add(NewModifyService(false));
+			Services.Add(NewSpecService(false));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -144,6 +157,118 @@ namespace Fabric.Api.Dto {
 				op.Uri = TravRootUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabRoot).Name;
+				s.Operations.Add(op);
+			}
+			else {
+				s.Operations = null;
+			}
+
+			return s;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabService NewModifyService(bool pIncludeOps) {
+			var s = new FabService();
+			s.Name = "ModifyService";
+			s.Uri = ModUri;
+
+			if ( pIncludeOps ) {
+				var op = new FabServiceOperation();
+				op.Name = "AddApp";
+				op.Uri = ModAppsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabApp).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddClass";
+				op.Uri = ModClassesUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabClass).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AttachDescriptorToFactor";
+				op.Uri = ModDescriptorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabDescriptor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AttachDirectorToFactor";
+				op.Uri = ModDirectorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabDirector).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AttachEventorToFactor";
+				op.Uri = ModEventorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabEventor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddFactor";
+				op.Uri = ModFactorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabFactor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "CompleteFactor";
+				op.Uri = ModFactorsUri;
+				op.Method = Put;
+				op.ReturnType = typeof(FabFactor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "DeleteFactor";
+				op.Uri = ModFactorsUri;
+				op.Method = Delete;
+				op.ReturnType = typeof(FabFactor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AttachIdentorToFactor";
+				op.Uri = ModIdentorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabIdentor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddInstance";
+				op.Uri = ModInstancesUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabInstance).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AttachLocatorToFactor";
+				op.Uri = ModLocatorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabLocator).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddUrl";
+				op.Uri = ModUrlsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabUrl).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddUser";
+				op.Uri = ModUsersUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabUser).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AttachVectorToFactor";
+				op.Uri = ModVectorsUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabVector).Name;
 				s.Operations.Add(op);
 			}
 			else {

@@ -12,14 +12,14 @@ namespace Fabric.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthModule() {
-			const string oauth = FabServices.OauthUri;
-			const string at = oauth+FabServices.OauthAccessTokenUri;
-			const string atac = oauth+FabServices.OauthAccessTokenAuthCodeUri;
-			const string atr = oauth+FabServices.OauthAccessTokenRefreshUri;
-			const string atcc = oauth+FabServices.OauthAccessTokenClientCredentialsUri;
-			const string atcdp = oauth+FabServices.OauthAccessTokenClientDataProvUri;
-			const string login = oauth+FabServices.OauthLoginUri;
-			const string logout = oauth+FabServices.OauthLogoutUri;
+			const string oauth = FabHome.OauthUri;
+			const string at = oauth+FabHome.OauthAccessTokenUri;
+			const string atac = oauth+FabHome.OauthAccessTokenAuthCodeUri;
+			const string atr = oauth+FabHome.OauthAccessTokenRefreshUri;
+			const string atcc = oauth+FabHome.OauthAccessTokenClientCredentialsUri;
+			const string atcdp = oauth+FabHome.OauthAccessTokenClientDataProvUri;
+			const string login = oauth+FabHome.OauthLoginUri;
+			const string logout = oauth+FabHome.OauthLogoutUri;
 
 			Get[oauth] = (p => Oauth(Context, OauthController.Route.Home));
 

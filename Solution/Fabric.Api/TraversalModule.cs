@@ -12,8 +12,8 @@ namespace Fabric.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TraversalModule() {
-			const string trav = FabServices.TravUri;
-			const string root = trav+FabServices.TravRootUri;
+			const string trav = FabHome.TravUri;
+			const string root = trav+FabHome.TravRootUri;
 
 			Get[trav] = (p => Trav(Context, TraversalController.Route.Home));
 			Get[root] = (p => Trav(Context, TraversalController.Route.Root));

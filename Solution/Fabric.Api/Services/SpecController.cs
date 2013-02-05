@@ -34,7 +34,7 @@ namespace Fabric.Api.Services {
 			vRoute = pRoute;
 
 			if ( ServiceDto == null ) {
-				ServiceDto = FabServices.NewSpecService(true);
+				ServiceDto = FabHome.NewSpecService(true);
 				ServiceDtoJson = ServiceDto.ToJson();
 
 				var doc = new SpecDoc();

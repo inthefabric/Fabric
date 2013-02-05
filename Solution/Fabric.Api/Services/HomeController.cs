@@ -10,7 +10,7 @@ namespace Fabric.Api.Services {
 	/*================================================================================================*/
 	public class HomeController : FabResponseController {
 
-		private static FabServices Dto;
+		private static FabHome Dto;
 		private static string DtoJson;
 
 
@@ -19,7 +19,7 @@ namespace Fabric.Api.Services {
 		public HomeController(Request pRequest, IApiContext pApiCtx, IOauthTasks pOauthTasks) : 
 																base(pRequest, pApiCtx, pOauthTasks) {
 			if ( Dto == null ) {
-				Dto = new FabServices();
+				Dto = new FabHome();
 				DtoJson = Dto.ToJson();
 			}
 		}

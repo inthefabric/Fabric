@@ -1,25 +1,32 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Db.Data;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
-	
+
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModAppsUri, typeof(FabApp))]
 	public class CreateApp : BaseModifyFunc<App> {
 
 		public const string NameParam = "Name";
 		public const string UserIdParam = "UserId";
 
+		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(App))]
 		private readonly string vName;
+
+		[ServiceOpParam(ServiceOpParamType.Form, UserIdParam, typeof(User))]
 		private readonly long vUserId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateApp(IModifyTasks pTasks, string pName, long pUserId) :base(pTasks){
+		public CreateApp(IModifyTasks pTasks, string pName, long pUserId) : base(pTasks){
 			vName = pName;
 			vUserId = pUserId;
 		}

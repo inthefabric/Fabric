@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FabServices.cs" />
+    <Compile Include="FabHome.cs" />
     <Compile Include="FabServiceOperation.cs" />
     <Compile Include="FabService.cs" />
     <Compile Include="Spec\FabSpecService.cs" />

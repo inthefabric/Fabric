@@ -28,7 +28,7 @@ namespace Fabric.Api.Services {
 			vRoute = pRoute;
 
 			if ( ServiceDto == null ) {
-				ServiceDto = FabServices.NewOauthService(true);
+				ServiceDto = FabHome.NewOauthService(true);
 				ServiceDtoJson = ServiceDto.ToJson();
 			}
 		}

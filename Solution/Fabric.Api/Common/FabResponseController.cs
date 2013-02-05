@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
@@ -6,6 +7,7 @@ using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
+using ServiceStack.Text;
 
 namespace Fabric.Api.Common {
 
@@ -26,6 +28,8 @@ namespace Fabric.Api.Common {
 			OauthTasks = pOauthTasks;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override sealed Response BuildResponse() {
 			FabResp.StartEvent();
@@ -63,6 +67,22 @@ namespace Fabric.Api.Common {
 			ApiCtx.SetAppUserId(acc.AppId, acc.UserId);
 			FabResp.AppId = ApiCtx.AppId;
 			FabResp.UserId = ApiCtx.UserId;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override Response BuildExceptionResponse(Exception pEx) {
+			FabResp.IsError = true;
+			FabResp.Links = null;
+			FabResp.Functions = null;
+			FabResp.StartIndex = 0;
+			FabResp.Count = 0;
+
+			FabResp.HttpStatus = (int)HttpStatusCode.InternalServerError;
+			FabError err = FabError.ForInternalServerError();
+
+			return NewResponse(new FabRespJsonView(FabResp, err.ToJson()));
 		}
 
 

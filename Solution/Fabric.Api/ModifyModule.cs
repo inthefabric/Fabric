@@ -6,22 +6,22 @@ using Nancy;
 namespace Fabric.Api {
 
 	/*================================================================================================*/
-	public class SpecModule : BaseModule {
+	public class ModifyModule : BaseModule {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SpecModule() {
-			const string spec = FabHome.SpecUri;
-			const string full = spec+FabHome.SpecDocUri;
+		public ModifyModule() {
+			const string mod = FabHome.ModUri;
+			const string apps = mod+FabHome.ModAppsUri;
 
-			Get[spec] = (p => Spec(Context, SpecController.Route.Home));
-			Get[full] = (p => Spec(Context, SpecController.Route.Document));
+			Get[mod] = (p => Spec(Context, ModifyController.Route.Home));
+			Post[apps] = (p => Spec(Context, ModifyController.Route.Apps));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response Spec(NancyContext pCtx, SpecController.Route pRoute) {
-			var sc = new SpecController(pCtx.Request, NewApiCtx(), new OauthTasks(), ApiVersion,pRoute);
+		private static Response Spec(NancyContext pCtx, ModifyController.Route pRoute) {
+			var sc = new ModifyController(pCtx.Request, NewApiCtx(), new OauthTasks(), pRoute);
 			return sc.Execute();
 		}
 

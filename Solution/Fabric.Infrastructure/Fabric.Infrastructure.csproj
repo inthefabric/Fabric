@@ -47,6 +47,8 @@
     <Compile Include="Api\ApiContext.cs" />
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
+    <Compile Include="Api\ServiceOpAttribute.cs" />
+    <Compile Include="Api\ServiceOpParamAttribute.cs" />
     <Compile Include="Api\IApiContext.cs" />
     <Compile Include="Api\Faults\FabArgumentFault.cs" />
     <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />

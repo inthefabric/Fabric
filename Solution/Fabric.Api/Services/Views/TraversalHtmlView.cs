@@ -80,7 +80,7 @@ namespace Fabric.Api.Services.Views {
 			PropertyInfo[] props = vInfo.Resp.GetType().GetProperties();
 			string html = "";
 
-			string uri = vInfo.Resp.BaseUri+FabServices.TravUri+FabServices.TravRootUri;
+			string uri = vInfo.Resp.BaseUri+FabHome.TravUri+FabHome.TravRootUri;
 			html += "<a href='"+uri+"'>&lt; Reset</a>";
 
 			html += "<h3>Response</h3>";
