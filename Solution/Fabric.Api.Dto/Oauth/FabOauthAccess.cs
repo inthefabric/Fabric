@@ -5,7 +5,7 @@ namespace Fabric.Api.Dto.Oauth {
 
 	/*================================================================================================*/
 	[DataContract]
-	public class FabOauthAccess : FabDto {
+	public class FabOauthAccess : FabObject {
 
 		[DataMember(Name="access_token")]
 		[DtoProp("access_token")]

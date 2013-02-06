@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
-	public class FabStepLink : FabDto {
+	public class FabStepLink : FabObject {
 		
 		public bool IsOut { get; set; }
 		public string Rel { get; set; }

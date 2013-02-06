@@ -1,15 +1,15 @@
-﻿using Fabric.Infrastructure.Db;
+﻿using System.Collections.Generic;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecDtoProp : FabSpecValue {
+	public class FabSpecTravFunc : FabObject {
 
-		public bool? IsCaseInsensitive { get; set; }
-		public bool? IsNullable { get; set; }
-		public bool? IsPrimaryKey { get; set; }
-		public bool? IsTimestamp { get; set; }
-		public bool? IsUnique { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
+		public string Uri { get; set; }
+		public List<FabSpecTravFuncParam> Parameters { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

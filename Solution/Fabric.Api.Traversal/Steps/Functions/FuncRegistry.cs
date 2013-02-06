@@ -56,7 +56,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		public static List<string> GetAvailableFuncs(Type pDtoType, bool pUri) {
 			Init();
 
-			if ( !typeof(IFabDto).IsAssignableFrom(pDtoType) ) {
+			if ( !typeof(IFabObject).IsAssignableFrom(pDtoType) ) {
 				throw new Exception("DtoType must implement IFabDto.");
 			}
 

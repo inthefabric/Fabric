@@ -5,7 +5,7 @@ namespace Fabric.Api.Dto.Oauth {
 
 	/*================================================================================================*/
 	[DataContract]
-	public class FabOauthError : FabDto {
+	public class FabOauthError : FabObject {
 
 		[DataMember(Name="error")]
 		[DtoProp("error")]

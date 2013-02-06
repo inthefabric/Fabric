@@ -61,6 +61,7 @@ namespace Fabric.Infrastructure.Domain {
 					n = "object";
 					break;
 
+				case "IList`1":
 				case "List`1":
 					n = GetTypeName(pType.GetGenericArguments()[0])+"[]";
 					break;

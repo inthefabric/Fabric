@@ -1,16 +1,16 @@
 ﻿using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Dto.Spec {
+namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabSpecFuncParam : FabSpecValue {
+	public interface IFabObject {
 
-		public int Index { get; set; }
+		string Dto { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {}
+		void Fill(IDbDto pDbDto);
 
 	}
 

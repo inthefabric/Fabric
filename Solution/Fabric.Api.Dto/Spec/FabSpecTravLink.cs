@@ -3,7 +3,7 @@
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecDtoLink : FabDto {
+	public class FabSpecTravLink : FabObject {
 
 		public string Name { get; set; }
 		public string Type { get; set; }

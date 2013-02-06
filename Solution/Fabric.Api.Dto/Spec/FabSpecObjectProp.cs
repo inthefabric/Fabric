@@ -1,21 +1,20 @@
 ﻿using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public abstract class FabDto : IFabDto {
+	public class FabSpecObjectProp : FabSpecValue {
 
-		public string Dto { get; set; }
+		public bool? IsCaseInsensitive { get; set; }
+		public bool? IsNullable { get; set; }
+		public bool? IsPrimaryKey { get; set; }
+		public bool? IsTimestamp { get; set; }
+		public bool? IsUnique { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected FabDto() {
-			Dto = GetType().Name;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public abstract void Fill(IDbDto pDbDto);
+		public override void Fill(IDbDto pDbDto) {}
 
 	}
 

@@ -4,21 +4,21 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecService : FabDto {
+	public class FabSpecService : FabObject {
 		
 		public string Name { get; set; }
 		public string Uri { get; set; }
 		public string Abstract { get; set; }
 		public string Description { get; set; }
 		public string ResponseWrapper { get; set; }
-		public List<FabSpecFunc> Functions { get; set; }
+		public List<FabSpecTravFunc> Functions { get; set; }
 		public List<FabSpecServiceOperation> Operations { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpecService() {
-			Functions = new List<FabSpecFunc>();
+			Functions = new List<FabSpecTravFunc>();
 			Operations = new List<FabSpecServiceOperation>();
 		}
 

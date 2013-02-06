@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabService : FabDto {
+	public class FabService : FabObject {
 
 		public string Name { get; set; }
 		public string Uri { get; set; }

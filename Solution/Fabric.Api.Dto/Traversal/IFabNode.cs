@@ -1,7 +1,7 @@
 ﻿namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
-	public interface IFabNode : IFabDto {
+	public interface IFabNode : IFabObject {
 
 		string Uri { get; set; }
 

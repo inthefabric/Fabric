@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabError : FabDto {
+	public class FabError : FabObject {
 
 		public int Code { get; set; }
 		public string CodeName { get; set; }

@@ -7,7 +7,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabHome : FabDto {
+	public class FabHome : FabObject {
 
 		public const string Get = "GET";
 		public const string Post = "POST";

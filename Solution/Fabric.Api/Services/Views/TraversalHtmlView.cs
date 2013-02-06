@@ -53,7 +53,7 @@ namespace Fabric.Api.Services.Views {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildNodeHtml(IFabDto pNode) {
+		private string BuildNodeHtml(IFabObject pNode) {
 			PropertyInfo[] props = pNode.GetType().GetProperties();
 			string html = "";
 

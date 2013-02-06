@@ -5,7 +5,7 @@ namespace Fabric.Api.Dto.Oauth {
 
 	/*================================================================================================*/
 	[DataContract]
-	public class FabOauthLogout : FabDto {
+	public class FabOauthLogout : FabObject {
 
 		[DataMember(Name="success")]
 		[DtoProp("success")]

@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
-	public abstract class FabNode : FabDto, IFabNode {
+	public abstract class FabNode : FabObject, IFabNode {
 
 		public string Uri { get; set; }
 

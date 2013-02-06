@@ -47,10 +47,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="FabDto.cs" />
+    <Compile Include="FabObject.cs" />
     <Compile Include="Traversal\FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />
-    <Compile Include="IFabDto.cs" />
+    <Compile Include="IFabObject.cs" />
     <Compile Include="FabError.cs" />
     <Compile Include="FabResponse.cs" />
     <Compile Include="Traversal\IFabNode.cs" />
@@ -61,11 +61,11 @@
     <Compile Include="Oauth\FabOauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spec\FabSpec.cs" />
-    <Compile Include="Spec\FabSpecDto.cs" />
-    <Compile Include="Spec\FabSpecDtoLink.cs" />
-    <Compile Include="Spec\FabSpecDtoProp.cs" />
-    <Compile Include="Spec\FabSpecFunc.cs" />
-    <Compile Include="Spec\FabSpecFuncParam.cs" />
+    <Compile Include="Spec\FabSpecObject.cs" />
+    <Compile Include="Spec\FabSpecTravLink.cs" />
+    <Compile Include="Spec\FabSpecObjectProp.cs" />
+    <Compile Include="Spec\FabSpecTravFunc.cs" />
+    <Compile Include="Spec\FabSpecTravFuncParam.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Traversal\ApiDtos.tt">

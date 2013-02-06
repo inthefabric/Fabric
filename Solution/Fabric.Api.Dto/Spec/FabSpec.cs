@@ -4,10 +4,10 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpec : FabDto {
+	public class FabSpec : FabObject {
 		
 		public string ApiVersion { get; set; }
-		public List<FabSpecDto> Objects { get; set; }
+		public List<FabSpecObject> Objects { get; set; }
 		public List<FabSpecService> Services { get; set; }
 
 

@@ -102,7 +102,7 @@ namespace Fabric.Api.Traversal.Steps {
 	}
 
 	/*================================================================================================*/
-	public abstract class Step<T> : Step where T : IFabDto, new() {
+	public abstract class Step<T> : Step where T : IFabObject, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

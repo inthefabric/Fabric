@@ -3,7 +3,7 @@
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public class FabServiceOperation : FabDto {
+	public class FabServiceOperation : FabObject {
 
 		public string Name { get; set; }
 		public string Uri { get; set; }

@@ -3,14 +3,19 @@
 namespace Fabric.Api.Dto {
 
 	/*================================================================================================*/
-	public interface IFabDto {
+	public abstract class FabObject : IFabObject {
 
-		string Dto { get; set; }
+		public string Dto { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Fill(IDbDto pDbDto);
+		protected FabObject() {
+			Dto = GetType().Name;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public abstract void Fill(IDbDto pDbDto);
 
 	}
 

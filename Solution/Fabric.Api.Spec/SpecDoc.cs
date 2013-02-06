@@ -26,7 +26,7 @@ namespace Fabric.Api.Spec {
 		private const string SpecDtoNamespace = DtoNamespace+"Spec";
 
 		private static List<string> ObjectNames;
-		private static List<FabSpecDto> Objects;
+		private static List<FabSpecObject> Objects;
 		private static List<FabSpecService> Services;
 		private static Dictionary<string, Assembly> AssemblyMap;
 
@@ -35,7 +35,7 @@ namespace Fabric.Api.Spec {
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecDoc() {
 			ObjectNames = new List<string>();
-			var objectAssembly = Assembly.GetAssembly(typeof(FabDto));
+			var objectAssembly = Assembly.GetAssembly(typeof(FabObject));
 
 			foreach ( Type t in objectAssembly.GetTypes() ) {
 				if ( t.FullName == null ) { continue; }
@@ -52,25 +52,25 @@ namespace Fabric.Api.Spec {
 
 			////
 
-			var resp = new FabSpecDto();
+			var resp = new FabSpecObject();
 			resp.Name = typeof(FabResponse).Name;
 			resp.Description = GetDtoText(resp.Name.Substring(3));
 			resp.Properties = ReflectProps(typeof(FabResponse));
 
-			Objects = new List<FabSpecDto>();
+			Objects = new List<FabSpecObject>();
 			Objects.Add(resp);
 
 			foreach ( Type t in objectAssembly.GetTypes() ) {
 				if ( t.IsInterface || t.IsAbstract ) { continue; }
-				if ( !typeof(IFabDto).IsAssignableFrom(t) ) { continue; }
+				if ( !typeof(IFabObject).IsAssignableFrom(t) ) { continue; }
 
-				FabSpecDto sd = GetSpecDto(t);
+				FabSpecObject sd = GetSpecDto(t);
 				Objects.Add(sd);
 
 				if ( t.Namespace == SpecDtoNamespace ) {
 					sd.Description = null;
 
-					foreach ( FabSpecDtoProp p in sd.Properties ) {
+					foreach ( FabSpecObjectProp p in sd.Properties ) {
 						p.Description = null;
 					}
 				}
@@ -270,16 +270,16 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabSpecDto GetSpecDto(Type pType) {
+		private FabSpecObject GetSpecDto(Type pType) {
 
-			var sd = new FabSpecDto();
+			var sd = new FabSpecObject();
 			sd.Name = pType.Name;
 
 			string n = sd.Name.Substring(3);
 			sd.Description = GetDtoText(n);
 
-			if ( pType != typeof(FabDto) ) {
-				sd.Extends = typeof(FabDto).Name;
+			if ( pType != typeof(FabObject) ) {
+				sd.Extends = typeof(FabObject).Name;
 			}
 
 			sd.Properties = ReflectProps(pType);
@@ -289,10 +289,10 @@ namespace Fabric.Api.Spec {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private List<FabSpecDtoProp> ReflectProps(Type pType) {
+		private List<FabSpecObjectProp> ReflectProps(Type pType) {
 			PropertyInfo[] props = pType.GetProperties(
 				BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-			var results = new Dictionary<string, FabSpecDtoProp>();
+			var results = new Dictionary<string, FabSpecObjectProp>();
 
 			foreach ( PropertyInfo pi in props ) {
 				object[] dpaList = pi.GetCustomAttributes(typeof(DtoPropAttribute), true);
@@ -304,7 +304,7 @@ namespace Fabric.Api.Spec {
 
 				string n = pType.Name.Substring(3);
 
-				var specProp = new FabSpecDtoProp();
+				var specProp = new FabSpecObjectProp();
 				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(n+"_"+pi.Name);
@@ -312,21 +312,21 @@ namespace Fabric.Api.Spec {
 				results.Add(pi.Name, specProp);
 			}
 
-			List<FabSpecDtoProp> list = results.Values.ToList();
+			List<FabSpecObjectProp> list = results.Values.ToList();
 			list.Sort((a, b) => string.Compare(a.Name, b.Name));
 			return list;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabSpecFunc GetSpecFunc(Type pFuncType, string pUri=null) {
+		private FabSpecTravFunc GetSpecFunc(Type pFuncType, string pUri=null) {
 			var fa = (FuncAttribute)pFuncType.GetCustomAttributes(typeof(FuncAttribute), false)[0];
 
-			var func = new FabSpecFunc();
+			var func = new FabSpecTravFunc();
 			func.Name = fa.Name;
 			string resxKey = (fa.ResxKey ?? func.Name);
 			func.Description = GetFuncText(resxKey);
 			func.Uri = pUri;
-			func.Parameters = new List<FabSpecFuncParam>();
+			func.Parameters = new List<FabSpecTravFuncParam>();
 
 			PropertyInfo[] props = pFuncType.GetProperties();
 
@@ -339,7 +339,7 @@ namespace Fabric.Api.Spec {
 
 				FuncParamAttribute fpa = (FuncParamAttribute)fpaList[0];
 				
-				var p = new FabSpecFuncParam();
+				var p = new FabSpecTravFuncParam();
 				p.Name = fpa.DisplayName;
 				p.Description = GetFuncParamText((fpa.FuncResxKey ?? resxKey)+"_"+pi.Name);
 				p.Index = fpa.ParamIndex;
