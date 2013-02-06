@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fabric.Api.Common;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
-using Fabric.Api.Oauth.Functions;
+using Fabric.Api.Oauth.Operations;
 using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
@@ -65,12 +65,12 @@ namespace Fabric.Api.Services {
 			vIncomingError = GetParamString("error", false);
 			vLoggedUserId = NancyUtil.GetUserIdFromCookies(vCookies);
 
-			vClientId = GetParamString(FuncOauthLogin.ClientIdName, false);
-			vRedirUri = GetParamString(FuncOauthLogin.RedirectUriName, false);
-			vRespType = GetParamString(FuncOauthLogin.ResponseTypeName, false);
-			vScope = GetParamString(FuncOauthLogin.ScopeName, false);
-			vSwitchMode = GetParamString(FuncOauthLogin.SwitchModeName, false);
-			vState = GetParamString(FuncOauthLogin.StateName, false);
+			vClientId = GetParamString(OperOauthLogin.ClientIdParam, false);
+			vRedirUri = GetParamString(OperOauthLogin.RedirectUriParam, false);
+			vRespType = GetParamString(OperOauthLogin.ResponseTypeParam, false);
+			vScope = GetParamString(OperOauthLogin.ScopeParam, false);
+			vSwitchMode = GetParamString(OperOauthLogin.SwitchModeParam, false);
+			vState = GetParamString(OperOauthLogin.StateParam, false);
 
 			switch ( NancyReq.Method ) {
 				case "GET": return LoginGet();

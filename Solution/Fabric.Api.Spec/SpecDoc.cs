@@ -20,9 +20,9 @@ namespace Fabric.Api.Spec {
 	public partial class SpecDoc {
 
 		private const string DtoNamespace = "Fabric.Api.Dto.";
-		private const string OauthDtoNamespace = DtoNamespace+"Oauth";
-		private const string ModDtoNamespace = DtoNamespace+"Modify";
-		private const string TravDtoNamespace = DtoNamespace+"Traversal";
+		//private const string OauthDtoNamespace = DtoNamespace+"Oauth";
+		//private const string ModDtoNamespace = DtoNamespace+"Modify";
+		//private const string TravDtoNamespace = DtoNamespace+"Traversal";
 		private const string SpecDtoNamespace = DtoNamespace+"Spec";
 
 		private static List<string> ObjectNames;
@@ -149,6 +149,18 @@ namespace Fabric.Api.Spec {
 			string s = FuncParamText.ResourceManager.GetString(pName);
 			return FormatResourceString(pName, s);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetServiceOpText(string pName) {
+			string s = ServiceOpText.ResourceManager.GetString(pName);
+			return FormatResourceString(pName, s);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetServiceOpParamText(string pName) {
+			string s = ServiceOpParamText.ResourceManager.GetString(pName);
+			return FormatResourceString(pName, s);
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +200,7 @@ namespace Fabric.Api.Spec {
 			sso.Uri = pServiceOp.Uri;
 			sso.Method = pServiceOp.Method;
 			sso.ReturnType = pServiceOp.ReturnType;
-			sso.Description = "MISSING";
+			sso.Description = GetServiceOpText(pService.Name+"_"+sso.Name);
 
 			Assembly assembly = AssemblyMap[pService.Name];
 
@@ -213,7 +225,7 @@ namespace Fabric.Api.Spec {
 						att.ReturnType.Name+" vs. "+sso.ReturnType);
 				}
 
-				sso.Parameters = GetSpecServiceOperationParams(sso, t);
+				sso.Parameters = GetSpecServiceOperationParams(pService, sso, att, t);
 			}
 
 			return sso;
@@ -221,8 +233,10 @@ namespace Fabric.Api.Spec {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private List<FabSpecServiceOperationParam> GetSpecServiceOperationParams(
-												FabSpecServiceOperation pServiceOp, Type pSvcOpClass) {
-			FieldInfo[] fields = pSvcOpClass.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+											FabSpecService pService, FabSpecServiceOperation pServiceOp,
+											ServiceOpAttribute pServiceOppAtt, Type pSvcOpClass) {
+			FieldInfo[] fields = pSvcOpClass.GetFields(
+				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 			var list = new List<FabSpecServiceOperationParam>();
 
 			foreach ( FieldInfo field in fields ) {
@@ -235,12 +249,20 @@ namespace Fabric.Api.Spec {
 				ServiceOpParamAttribute att = (ServiceOpParamAttribute)opParams[0];
 
 				var p = new FabSpecServiceOperationParam();
-				SpecBuilder.FillSpecValue(att.DomainClass.Name, att.DomainPropertyName, p);
+
+				if ( att.DomainClass != null ) {
+					SpecBuilder.FillSpecValue(att.DomainClass.Name, att.DomainPropertyName, p);
+				}
+
 				p.Name = att.Name;
 				p.ParamType = att.ParamType+"";
 				p.Type = SchemaHelperProp.GetTypeName(field.FieldType);
 				p.IsRequired = att.IsRequired;
-				p.Description = "MISSING:"+pServiceOp.Name+"_"+p.Name;
+				p.Description = GetServiceOpParamText(
+					pService.Name+"_"+
+					(pServiceOppAtt.ResxKey ?? pServiceOp.Name)+"_"+
+					att.DomainPropertyName
+				);
 				list.Add(p);
 			}
 
@@ -301,7 +323,6 @@ namespace Fabric.Api.Spec {
 
 			var func = new FabSpecFunc();
 			func.Name = fa.Name;
-			func.ReturnType = (fa.ReturnType == null ? null : fa.ReturnType.Name);
 			string resxKey = (fa.ResxKey ?? func.Name);
 			func.Description = GetFuncText(resxKey);
 			func.Uri = pUri;
@@ -326,7 +347,6 @@ namespace Fabric.Api.Spec {
 				p.Min = fpa.Min;
 				p.Max = fpa.Max;
 				p.IsRequired = fpa.IsRequired;
-				p.UsesQueryString = fpa.UsesQueryString;
 				func.Parameters.Add(p);
 			}
 

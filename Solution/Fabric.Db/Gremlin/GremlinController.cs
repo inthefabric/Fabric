@@ -9,7 +9,7 @@ using HttpStatusCode = Nancy.HttpStatusCode;
 namespace Fabric.Db.Gremlin {
 
 	/*================================================================================================*/
-	public class GremlinController { //TEST: GremlinController
+	public class GremlinController {
 
 		private readonly Guid vContextId;
 		private readonly string vQuery;

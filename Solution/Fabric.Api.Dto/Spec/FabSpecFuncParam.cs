@@ -6,7 +6,6 @@ namespace Fabric.Api.Dto.Spec {
 	public class FabSpecFuncParam : FabSpecValue {
 
 		public int Index { get; set; }
-		public bool UsesQueryString { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

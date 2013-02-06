@@ -30,13 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Functions\FuncOauthAtac.cs" />
-    <Compile Include="Functions\FuncOauthAtcc.cs" />
-    <Compile Include="Functions\FuncOauthAtcd.cs" />
-    <Compile Include="Functions\FuncOauthAtr.cs" />
-    <Compile Include="Functions\FuncOauthAt.cs" />
-    <Compile Include="Functions\FuncOauthLogin.cs" />
-    <Compile Include="Functions\FuncOauthLogout.cs" />
+    <Compile Include="Operations\OperOauthLogout.cs" />
+    <Compile Include="Operations\OperOauthAtac.cs" />
+    <Compile Include="Operations\OperOauthAtcc.cs" />
+    <Compile Include="Operations\OperOauthAtcd.cs" />
+    <Compile Include="Operations\OperOauthAtr.cs" />
+    <Compile Include="Operations\OperOauthAt.cs" />
+    <Compile Include="Operations\OperOauthLogin.cs" />
     <Compile Include="IOauthGrantCore.cs" />
     <Compile Include="Results\AccessResult.cs" />
     <Compile Include="OauthException.cs" />

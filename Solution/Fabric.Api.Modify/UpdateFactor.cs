@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public class UpdateFactor : BaseModifyFunc<Factor> { //TEST: UpdateFactor
+	public class UpdateFactor : BaseModifyFunc<Factor> {
 		
 		public const string FactorParam = "FactorId";
 		public const string CompletedParam = "Completed";
@@ -36,7 +36,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Factor Execute() {
-			//Note: GetActiveFactorFromMember filters out deleted Factors
+			//GetActiveFactorFromMember filters out deleted Factors
 			Member m = GetContextMember();
 			Factor f = Tasks.GetActiveFactorFromMember(ApiCtx, vFactorId, m.MemberId);
 

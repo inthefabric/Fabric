@@ -2,7 +2,7 @@
 using Fabric.Api.Common;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth;
-using Fabric.Api.Oauth.Functions;
+using Fabric.Api.Oauth.Operations;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Util;
 using Fabric.Infrastructure.Api;
@@ -12,7 +12,7 @@ using ServiceStack.Text;
 namespace Fabric.Api.Services {
 
 	/*================================================================================================*/
-	public class OauthAccessController : Controller { //TEST: OauthAccessController
+	public class OauthAccessController : Controller {
 
 		public enum Route {
 			Access,
@@ -49,13 +49,13 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildResponse() {
-			vClientId = GetParamString(FuncOauthAt.ClientIdName, false);
-			vRedirUri = GetParamString(FuncOauthAt.RedirectUriName, false);
-			vClientSecret = GetParamString(FuncOauthAt.ClientSecretName, false);
-			vCode = GetParamString(FuncOauthAt.CodeName, false);
-			vDataProvUserId = GetParamString(FuncOauthAt.DataProvUserIdName, false);
-			vRefreshToken = GetParamString(FuncOauthAt.RefreshTokenName, false);
-			vAccessToken = GetParamString(FuncOauthLogout.AccessTokenName, false);
+			vClientId = GetParamString(OperOauthAt.ClientIdParam, false);
+			vRedirUri = GetParamString(OperOauthAt.RedirectUriParam, false);
+			vClientSecret = GetParamString(OperOauthAt.ClientSecretParam, false);
+			vCode = GetParamString(OperOauthAt.CodeParam, false);
+			vDataProvUserId = GetParamString(OperOauthAt.DataProvUserIdParam, false);
+			vRefreshToken = GetParamString(OperOauthAt.RefreshTokenParam, false);
+			vAccessToken = GetParamString(OperOauthLogout.AccessTokenParam, false);
 
 			switch ( vFunc ) {
 				case Route.Access:
@@ -63,7 +63,7 @@ namespace Fabric.Api.Services {
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, a.ToJson());
 
 				case Route.AuthCode:
-					FabOauthAccess ac = DoAccessAuthCode(FuncOauthAt.GrantTypeAc);
+					FabOauthAccess ac = DoAccessAuthCode(OperOauthAt.GrantTypeAc);
 					return NancyUtil.BuildJsonResponse(HttpStatusCode.OK, ac.ToJson());
 
 				case Route.ClientCred:
@@ -111,12 +111,12 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess DoAccess() {
-			string grant = GetParamString(FuncOauthAt.GrantTypeName, false);
+			string grant = GetParamString(OperOauthAt.GrantTypeParam, false);
 
 			switch ( grant ) {
-				case FuncOauthAt.GrantTypeCc: return DoAccessClientCred();
-				case FuncOauthAt.GrantTypeCdp: return DoAccessClientDataProv();
-				case FuncOauthAt.GrantTypeRt: return DoAccessRefToken();
+				case OperOauthAt.GrantTypeCc: return DoAccessClientCred();
+				case OperOauthAt.GrantTypeCdp: return DoAccessClientDataProv();
+				case OperOauthAt.GrantTypeRt: return DoAccessRefToken();
 			}
 
 			return DoAccessAuthCode(grant);
@@ -131,21 +131,21 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess DoAccessClientCred() {
-			AccessClientCred = new OauthAccessClientCred(FuncOauthAt.GrantTypeCc,
+			AccessClientCred = new OauthAccessClientCred(OperOauthAt.GrantTypeCc,
 				vRedirUri, vClientSecret, vClientId, new OauthTasks());
 			return AccessClientCred.Go(ApiCtx);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess DoAccessClientDataProv() {
-			AccessClientDataProv = new OauthAccessClientDataProv(FuncOauthAt.GrantTypeCdp,
+			AccessClientDataProv = new OauthAccessClientDataProv(OperOauthAt.GrantTypeCdp,
 				vRedirUri, vClientSecret, vClientId, vDataProvUserId, new OauthTasks());
 			return AccessClientDataProv.Go(ApiCtx);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess DoAccessRefToken() {
-			AccessRefToken = new OauthAccessRefToken(FuncOauthAt.GrantTypeRt,
+			AccessRefToken = new OauthAccessRefToken(OperOauthAt.GrantTypeRt,
 				vRedirUri, vClientSecret, vRefreshToken, new OauthTasks());
 			return AccessRefToken.Go(ApiCtx);
 		}

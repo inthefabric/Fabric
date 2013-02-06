@@ -8,7 +8,7 @@ using ServiceStack.Text;
 namespace Fabric.Api.Services {
 
 	/*================================================================================================*/
-	public class OauthController : FabResponseController { //TEST: OauthController
+	public class OauthController : FabResponseController {
 
 		public enum Route {
 			Home

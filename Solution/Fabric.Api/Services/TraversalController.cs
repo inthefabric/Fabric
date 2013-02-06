@@ -18,7 +18,7 @@ using Weaver;
 namespace Fabric.Api.Services {
 
 	/*================================================================================================*/
-	public class TraversalController : FabResponseController { //TEST: TraversalController
+	public class TraversalController : FabResponseController {
 
 		public enum Route {
 			Home,

@@ -7,6 +7,8 @@ using Nancy;
 namespace Fabric.Api {
 
 	/*================================================================================================*/
+	//TEST: All Modules
+	//TEST: All Controllers
 	public class HomeModule : BaseModule {
 
 
