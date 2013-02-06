@@ -61,7 +61,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A unique title or identifier, with length between 3 and 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]]..
+        ///   Looks up a localized string similar to A unique title or identifier..
         /// </summary>
         internal static string App_Name {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters..
+        ///   Looks up a localized string similar to A secondary label or identifier, used to resolve unique-name conflicts..
         /// </summary>
         internal static string Class_Disamb {
             get {
@@ -115,7 +115,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A summary of the !Class&apos;s intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.  Maximum length: 256 characters..
+        ///   Looks up a localized string similar to A summary of the !Class&apos;s intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors..
         /// </summary>
         internal static string Class_Note {
             get {
@@ -259,7 +259,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A summary of the !Factor&apos;s intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor&apos;s Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase. Maximum length: 256 characters..
+        ///   Looks up a localized string similar to A summary of the !Factor&apos;s intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor&apos;s Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase..
         /// </summary>
         internal static string Factor_Note {
             get {
@@ -286,7 +286,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A text-based value that can represent names, numbers, IDs, GUIDs, etc. Maximum length: 256 characters..
+        ///   Looks up a localized string similar to A text-based value that can represent names, numbers, IDs, GUIDs, etc..
         /// </summary>
         internal static string Identor_Value {
             get {
@@ -295,7 +295,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters..
+        ///   Looks up a localized string similar to A secondary label or identifier, used to resolve unique-name conflicts..
         /// </summary>
         internal static string Instance_Disamb {
             get {
@@ -313,7 +313,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A summary of the !Instance&apos;s intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.  Maximum length: 256 characters..
+        ///   Looks up a localized string similar to A summary of the !Instance&apos;s intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors..
         /// </summary>
         internal static string Instance_Note {
             get {
@@ -340,7 +340,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A unique title or identifier. Maximum length: 128 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]]..
+        ///   Looks up a localized string similar to A unique title or identifier..
         /// </summary>
         internal static string Label_Name {
             get {
@@ -475,7 +475,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A 32-character code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User..
+        ///   Looks up a localized string similar to A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User..
         /// </summary>
         internal static string OauthAccess_AccessToken {
             get {
@@ -493,7 +493,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]]..
+        ///   Looks up a localized string similar to A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]]..
         /// </summary>
         internal static string OauthAccess_RefreshToken {
             get {
@@ -529,7 +529,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use this 32-character string (also called the &apos;authorization code&apos;) to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation..
+        ///   Looks up a localized string similar to Use this code (also called the &apos;authorization code&apos;) to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation..
         /// </summary>
         internal static string OauthLogin_Code {
             get {
@@ -853,7 +853,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A unique, valid absolute URL. The string must include the link&apos;s protocol (such as &apos;http://&apos;). Maximum length: 450 characters..
+        ///   Looks up a localized string similar to A unique, valid absolute URL. The string must include the link&apos;s protocol (such as &apos;http://&apos;)..
         /// </summary>
         internal static string Url_AbsoluteUrl {
             get {
@@ -871,7 +871,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A unique username, with length between 4 and 16 characters. This string is restricted to the [[Username character set|Note|UsernameCharSet]]..
+        ///   Looks up a localized string similar to A unique username..
         /// </summary>
         internal static string User_Name {
             get {
@@ -925,7 +925,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A unique symbol or abbreviation. Maximum length: 16 characters..
+        ///   Looks up a localized string similar to A unique symbol or abbreviation..
         /// </summary>
         internal static string VectorUnit_Symbol {
             get {
@@ -952,7 +952,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An abbreviation, which is typically placed directly before the VectorUnit symbol.  Maximum length: 2 characters..
+        ///   Looks up a localized string similar to An abbreviation, which is typically placed directly before the VectorUnit symbol..
         /// </summary>
         internal static string VectorUnitPrefix_Symbol {
             get {

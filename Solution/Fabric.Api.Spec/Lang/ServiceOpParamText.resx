@@ -139,7 +139,7 @@
     <value>The refresh token obtained after a successful '[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]' access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the '[[Refresh|Func|Oauth.AccessTokenRefresh]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_Secret" xml:space="preserve">
-    <value>The 32-letter (alpha-numeric) secret code for the Fabric App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone.</value>
+    <value>The alpha-numeric Secret for the App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone.</value>
   </data>
   <data name="Oauth_AccessToken_UserId" xml:space="preserve">
     <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]' flow.</value>

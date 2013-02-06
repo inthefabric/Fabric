@@ -11,14 +11,14 @@ namespace Fabric.Api.Dto.Spec {
 		public string Abstract { get; set; }
 		public string Description { get; set; }
 		public string ResponseWrapper { get; set; }
-		public List<FabSpecTravFunc> Functions { get; set; }
+		public List<FabSpecTravFunc> TraversalFunctions { get; set; }
 		public List<FabSpecServiceOperation> Operations { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpecService() {
-			Functions = new List<FabSpecTravFunc>();
+			TraversalFunctions = new List<FabSpecTravFunc>();
 			Operations = new List<FabSpecServiceOperation>();
 		}
 

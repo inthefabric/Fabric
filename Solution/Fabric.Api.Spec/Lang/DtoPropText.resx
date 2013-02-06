@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="App_Name" xml:space="preserve">
-    <value>A unique title or identifier, with length between 3 and 64 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
+    <value>A unique title or identifier.</value>
   </data>
   <data name="Artifact_IsPrivate" xml:space="preserve">
     <value>Specifies the accessibility level. When true, access is limited to the creating User.</value>
@@ -154,10 +154,10 @@
     <value>The API request path to get information about this Key's object.</value>
   </data>
   <data name="Label_Name" xml:space="preserve">
-    <value>A unique title or identifier. Maximum length: 128 characters. This string is restricted to the [[Title character set|Note|TitleCharSet]].</value>
+    <value>A unique title or identifier.</value>
   </data>
   <data name="User_Name" xml:space="preserve">
-    <value>A unique username, with length between 4 and 16 characters. This string is restricted to the [[Username character set|Note|UsernameCharSet]].</value>
+    <value>A unique username.</value>
   </data>
   <data name="VectorRangeLevel_Position" xml:space="preserve">
     <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
@@ -175,25 +175,25 @@
     <value>The difference in magnitude (a multipler) relative to the base unit.</value>
   </data>
   <data name="VectorUnitPrefix_Symbol" xml:space="preserve">
-    <value>An abbreviation, which is typically placed directly before the VectorUnit symbol.  Maximum length: 2 characters.</value>
+    <value>An abbreviation, which is typically placed directly before the VectorUnit symbol.</value>
   </data>
   <data name="VectorUnit_Symbol" xml:space="preserve">
-    <value>A unique symbol or abbreviation. Maximum length: 16 characters.</value>
+    <value>A unique symbol or abbreviation.</value>
   </data>
   <data name="Class_Disamb" xml:space="preserve">
-    <value>A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters.</value>
+    <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
   </data>
   <data name="Class_Note" xml:space="preserve">
-    <value>A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.  Maximum length: 256 characters.</value>
+    <value>A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.</value>
   </data>
   <data name="Url_AbsoluteUrl" xml:space="preserve">
-    <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://'). Maximum length: 450 characters.</value>
+    <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').</value>
   </data>
   <data name="Eventor_DateTime" xml:space="preserve">
     <value>A particular point in time, with a level of accuracy defined by EventorPrecision.</value>
   </data>
   <data name="Identor_Value" xml:space="preserve">
-    <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc. Maximum length: 256 characters.</value>
+    <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc.</value>
   </data>
   <data name="Locator_ValueX" xml:space="preserve">
     <value>A value representing longitude, time/progress, width, or a particular three-dimensional axis.</value>
@@ -217,7 +217,7 @@
     <value>Specifies the level of access.</value>
   </data>
   <data name="Factor_Note" xml:space="preserve">
-    <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase. Maximum length: 256 characters.</value>
+    <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
   </data>
   <data name="TODO" xml:space="preserve">
     <value>TODO</value>
@@ -331,13 +331,13 @@
     <value>TODO</value>
   </data>
   <data name="OauthAccess_AccessToken" xml:space="preserve">
-    <value>A 32-character code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
+    <value>A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
   </data>
   <data name="OauthAccess_ExpiresIn" xml:space="preserve">
     <value>The number of seconds until the access token expires.</value>
   </data>
   <data name="OauthAccess_RefreshToken" xml:space="preserve">
-    <value>A 32-character code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]].</value>
+    <value>A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]].</value>
   </data>
   <data name="OauthAccess_TokenType" xml:space="preserve">
     <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>
@@ -349,7 +349,7 @@
     <value>Provides specific details about the error. A single error code may have one or more possible error descriptions.</value>
   </data>
   <data name="OauthLogin_Code" xml:space="preserve">
-    <value>Use this 32-character string (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.</value>
+    <value>Use this code (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.</value>
   </data>
   <data name="OauthLogin_Error" xml:space="preserve">
     <value>An error code as defined by the OAuth 2.0 specification.</value>
@@ -373,13 +373,13 @@
     <value>TODO</value>
   </data>
   <data name="Instance_Disamb" xml:space="preserve">
-    <value>A secondary label or identifier, used to resolve unique-name conflicts. Maximum length: 128 characters.</value>
+    <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
   </data>
   <data name="Instance_Name" xml:space="preserve">
     <value>A descriptive name or title.</value>
   </data>
   <data name="Instance_Note" xml:space="preserve">
-    <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.  Maximum length: 256 characters.</value>
+    <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.</value>
   </data>
   <data name="StepLink_Class" xml:space="preserve">
     <value>TODO</value>

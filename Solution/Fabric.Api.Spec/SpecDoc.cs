@@ -184,10 +184,10 @@ namespace Fabric.Api.Spec {
 					continue;
 				}
 
-				ss.Functions.Add(GetSpecFunc(t));
+				ss.TraversalFunctions.Add(GetSpecFunc(t));
 			}
 
-			ss.Functions.Sort((a, b) => string.Compare(a.Name, b.Name));
+			ss.TraversalFunctions.Sort((a, b) => string.Compare(a.Name, b.Name));
 			ss.Operations.Sort((a, b) => string.Compare(a.Name, b.Name));
 			return ss;
 		}

@@ -124,7 +124,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The 32-letter (alpha-numeric) secret code for the Fabric App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone..
+        ///   Looks up a localized string similar to The alpha-numeric Secret for the App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone..
         /// </summary>
         internal static string Oauth_AccessToken_Secret {
             get {
