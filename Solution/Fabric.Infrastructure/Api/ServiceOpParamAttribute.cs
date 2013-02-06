@@ -10,7 +10,7 @@ namespace Fabric.Infrastructure.Api {
 
 
 	/*================================================================================================*/
-	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+	[AttributeUsage(AttributeTargets.Field)]
 	public class ServiceOpParamAttribute : Attribute {
 
 		public ServiceOpParamType ParamType { get; set; }
@@ -28,7 +28,7 @@ namespace Fabric.Infrastructure.Api {
 			Name = pName;
 			DomainClass = pDomClass;
 			IsRequired = true;
-			DomainPropertyName = null;
+			DomainPropertyName = Name;
 		}
 
 	}

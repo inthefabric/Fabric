@@ -9,6 +9,7 @@ using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Spec.Lang;
 using Fabric.Api.Traversal;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Traversal;
@@ -24,18 +25,19 @@ namespace Fabric.Api.Spec {
 		private const string TravDtoNamespace = DtoNamespace+"Traversal";
 		private const string SpecDtoNamespace = DtoNamespace+"Spec";
 
-		private readonly List<string> vDtoNames;
-		private readonly List<FabSpecDto> vDtoList;
-		private readonly List<FabSpecService> vServiceList;
+		private readonly List<string> vObjectNames;
+		private readonly List<FabSpecDto> vObjects;
+		private readonly List<FabSpecService> vServices;
 		private readonly Dictionary<string, Assembly> vAssemblyMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SpecDoc() {
-			vDtoNames = new List<string>();
+			vObjectNames = new List<string>();
+			var objectAssembly = Assembly.GetAssembly(typeof(FabDto));
 
-			foreach ( Type t in Assembly.GetAssembly(typeof(FabDto)).GetTypes() ) {
+			foreach ( Type t in objectAssembly.GetTypes() ) {
 				if ( t.FullName == null ) { continue; }
 				if ( t.Name.Substring(0, 3) != "Fab" ) { continue; }
 
@@ -45,23 +47,36 @@ namespace Fabric.Api.Spec {
 					name = "Traversal."+name;
 				}
 
-				vDtoNames.Add(name);
+				vObjectNames.Add(name);
 			}
 
 			////
 
-			var specFabResp = new FabSpecDto();
-			specFabResp.Name = typeof(FabResponse).Name;
-			specFabResp.Description = GetDtoText(specFabResp.Name.Substring(3));
-			specFabResp.Properties = ReflectProps(typeof(FabResponse));
+			var resp = new FabSpecDto();
+			resp.Name = typeof(FabResponse).Name;
+			resp.Description = GetDtoText(resp.Name.Substring(3));
+			resp.Properties = ReflectProps(typeof(FabResponse));
 
-			vDtoList = new List<FabSpecDto>();
-			vDtoList.Add(specFabResp);
-			vDtoList.Add(GetSpecDto(typeof(FabDto)));
-			vDtoList.Add(GetSpecDto(typeof(FabError)));
-			vDtoList.Add(GetSpecDto(typeof(FabHome)));
-			vDtoList.Add(GetSpecDto(typeof(FabService)));
-			vDtoList.Add(GetSpecDto(typeof(FabServiceOperation)));
+			vObjects = new List<FabSpecDto>();
+			vObjects.Add(resp);
+
+			foreach ( Type t in objectAssembly.GetTypes() ) {
+				if ( t.IsInterface || t.IsAbstract ) { continue; }
+				if ( !typeof(IFabDto).IsAssignableFrom(t) ) { continue; }
+
+				FabSpecDto sd = GetSpecDto(t);
+				vObjects.Add(sd);
+
+				if ( t.Namespace == SpecDtoNamespace ) {
+					sd.Description = null;
+
+					foreach ( FabSpecDtoProp p in sd.Properties ) {
+						p.Description = null;
+					}
+				}
+			}
+
+			vObjects.Sort((a, b) => string.Compare(a.Name, b.Name));
 
 			////
 
@@ -73,11 +88,11 @@ namespace Fabric.Api.Spec {
 
 			////
 
-			vServiceList = new List<FabSpecService>();
+			vServices = new List<FabSpecService>();
 			var home = new FabHome(true);
 
 			foreach ( FabService svc in home.Services ) {
-				vServiceList.Add(GetSpecService(svc));
+				vServices.Add(GetSpecService(svc));
 			}
 
 			//TODO: load links and availablefunctions for Traversal
@@ -87,8 +102,8 @@ namespace Fabric.Api.Spec {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpec GetFabSpec() {
 			var fs = new FabSpec();
-			fs.DtoList = vDtoList;
-			fs.Services = vServiceList;
+			fs.Objects = vObjects;
+			fs.Services = vServices;
 			return fs;
 		}
 
@@ -146,39 +161,9 @@ namespace Fabric.Api.Spec {
 			ss.Abstract = GetServiceText(pService.Name+"Abstract");
 			ss.Description = GetServiceText(pService.Name+"Desc");
 
-			////
-
-			string dtoNamespace;
-
-			switch ( ss.Name ) {
-				case "Traversal": dtoNamespace = TravDtoNamespace; break;
-				case "Modify": dtoNamespace = ModDtoNamespace; break;
-				case "Oauth": dtoNamespace = OauthDtoNamespace; break;
-				case "Spec": dtoNamespace = SpecDtoNamespace; break;
-				default: throw new FabPreventedFault("Unknown service name: '"+ss.Name+"'.");
-			}
-
 			foreach ( FabServiceOperation svcOp in pService.Operations ) {
-				var sso = new FabSpecServiceOperation();
-				sso.Name = svcOp.Name;
-				sso.Uri = svcOp.Uri;
-				sso.Method = svcOp.Method;
-				sso.Description = "MISSING";
-				ss.Operations.Add(sso);
+				ss.Operations.Add(GetSpecServiceOperation(ss, svcOp));
 			}
-
-			////
-
-			var dtoAssembly = Assembly.GetAssembly(typeof(FabDto));
-
-			foreach ( Type dtoType in dtoAssembly.GetTypes() ) {
-				if ( dtoType.IsInterface || dtoType.IsAbstract ) { continue; }
-				if ( !typeof(IFabDto).IsAssignableFrom(dtoType) ) { continue; }
-				if ( dtoType.Namespace != dtoNamespace ) { continue; }
-				ss.Objects.Add(GetSpecDto(dtoType));
-			}
-
-			////
 
 			Assembly assembly = vAssemblyMap[ss.Name];
 
@@ -190,16 +175,76 @@ namespace Fabric.Api.Spec {
 				ss.Functions.Add(GetSpecFunc(t));
 			}
 
-			////
-
-			ss.Objects.Sort((a, b) => string.Compare(a.Name, b.Name));
 			ss.Functions.Sort((a, b) => string.Compare(a.Name, b.Name));
 			ss.Operations.Sort((a, b) => string.Compare(a.Name, b.Name));
 			return ss;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private FabSpecServiceOperation GetSpecServiceOperation(
+											FabSpecService pService, FabServiceOperation pServiceOp) {
+			var sso = new FabSpecServiceOperation();
+			sso.Name = pServiceOp.Name;
+			sso.Uri = pServiceOp.Uri;
+			sso.Method = pServiceOp.Method;
+			sso.ReturnType = pServiceOp.ReturnType;
+			sso.Description = "MISSING";
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
+			Assembly assembly = vAssemblyMap[pService.Name];
+
+			foreach ( Type t in assembly.GetTypes() ) {
+				object[] ops = t.GetCustomAttributes(typeof(ServiceOpAttribute), false);
+
+				if ( ops.Length == 0 ) {
+					continue;
+				}
+
+				ServiceOpAttribute att = (ServiceOpAttribute)ops[0];
+				string attKey = att.Method+" "+att.ServiceUri+att.ServiceOperationUri;
+				string ssoKey = sso.Method+" "+pService.Uri+sso.Uri;
+				//Log.Debug("ATT: "+attKey+" [vs] "+ssoKey);
+
+				if ( attKey != ssoKey ) {
+					continue;
+				}
+
+				if ( att.ReturnType.Name != sso.ReturnType ) {
+					throw new FabPreventedFault("ServiceOperation ReturnType mismatch: "+
+						att.ReturnType.Name+" vs. "+sso.ReturnType);
+				}
+
+				sso.Parameters = GetSpecServiceOperationParams(t);
+			}
+
+			return sso;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private List<FabSpecServiceOperationParam> GetSpecServiceOperationParams(Type pSvcOpClass) {
+			FieldInfo[] fields = pSvcOpClass.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+			var list = new List<FabSpecServiceOperationParam>();
+
+			foreach ( FieldInfo field in fields ) {
+				object[] opParams = field.GetCustomAttributes(typeof(ServiceOpParamAttribute), false);
+
+				if ( opParams.Length == 0 ) {
+					continue;
+				}
+
+				ServiceOpParamAttribute att = (ServiceOpParamAttribute)opParams[0];
+
+				var p = new FabSpecServiceOperationParam();
+				p.Name = att.Name;
+				p.ParamType = att.ParamType+"";
+				p.Type = SchemaHelperProp.GetTypeName(field.FieldType);
+				p.IsRequired = att.IsRequired;
+				p.Description = "MISSING_"+att.DomainClass.Name+"."+att.DomainPropertyName;
+				list.Add(p);
+			}
+
+			return list;
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		private FabSpecDto GetSpecDto(Type pType) {
 			var sd = new FabSpecDto();
@@ -286,8 +331,8 @@ namespace Fabric.Api.Spec {
 		private string FormatMarkup(string pText) {
 			pText = pText+"";
 
-			for ( int i = 0 ; i < vDtoNames.Count ; ++i ) {
-				string dto = vDtoNames[i];
+			for ( int i = 0 ; i < vObjectNames.Count ; ++i ) {
+				string dto = vObjectNames[i];
 				pText = FindSmartLinks(pText, dto, true);
 				pText = FindSmartLinks(pText, dto, false);
 			}

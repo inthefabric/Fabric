@@ -11,7 +11,6 @@ namespace Fabric.Api.Dto.Spec {
 		public string Abstract { get; set; }
 		public string Description { get; set; }
 		public string ResponseWrapper { get; set; }
-		public List<FabSpecDto> Objects { get; set; }
 		public List<FabSpecFunc> Functions { get; set; }
 		public List<FabSpecServiceOperation> Operations { get; set; }
 
@@ -19,7 +18,6 @@ namespace Fabric.Api.Dto.Spec {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabSpecService() {
-			Objects = new List<FabSpecDto>();
 			Functions = new List<FabSpecFunc>();
 			Operations = new List<FabSpecServiceOperation>();
 		}
