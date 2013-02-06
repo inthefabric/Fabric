@@ -1,7 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/5/2013 10:25:50 PM
+// Generated on 2/6/2013 12:37:35 PM
 
+using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
 
 namespace Fabric.Api.Spec {
@@ -293,7 +294,7 @@ namespace Fabric.Api.Spec {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FillSpecDtoProp(string pTypeName, string pPropName, FabSpecObjectProp pProp) {
+		public static void FillSpecDtoProp(string pTypeName, string pPropName, FabSpecObjectProp pProp){
 			FillSpecValue(pTypeName, pPropName, pProp);
 
 			switch ( pTypeName+"."+pPropName ) {
@@ -811,163 +812,194 @@ namespace Fabric.Api.Spec {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FillSpecDtoFuncs(string pTypeName, FabSpecObject pObject) {
+		public static void FillSpecObjectTravFuncs(string pTypeName, FabSpecObject pObject) {
 			switch ( pTypeName ) {
 
 				case "Root":
 					break;
 
 				case "App":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Artifact":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "ArtifactType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Class":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Instance":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Member":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "MemberType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "MemberTypeAssign":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Url":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "User":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Factor":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "FactorAssertion":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Descriptor":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "DescriptorType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Director":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "DirectorType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "DirectorAction":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Eventor":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "EventorType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "EventorPrecision":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Identor":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "IdentorType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Locator":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "LocatorType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Vector":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "VectorType":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "VectorRange":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "VectorRangeLevel":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "VectorUnit":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "VectorUnitPrefix":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "VectorUnitDerived":
+					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					break;
@@ -992,6 +1024,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Root":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsAppList";
@@ -1005,7 +1038,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsArtifactList";
 					link.Type = "RootContainsArtifact";
@@ -1017,7 +1049,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsArtifactTypeList";
@@ -1031,7 +1062,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsClassList";
 					link.Type = "RootContainsClass";
@@ -1043,7 +1073,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabClass";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsInstanceList";
@@ -1057,7 +1086,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsMemberList";
 					link.Type = "RootContainsMember";
@@ -1069,7 +1097,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabMember";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsMemberTypeList";
@@ -1083,7 +1110,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsMemberTypeAssignList";
 					link.Type = "RootContainsMemberTypeAssign";
@@ -1095,7 +1121,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabMemberTypeAssign";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsUrlList";
@@ -1109,7 +1134,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsUserList";
 					link.Type = "RootContainsUser";
@@ -1121,7 +1145,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabUser";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsFactorList";
@@ -1135,7 +1158,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsFactorAssertionList";
 					link.Type = "RootContainsFactorAssertion";
@@ -1147,7 +1169,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabFactorAssertion";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsDescriptorList";
@@ -1161,7 +1182,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsDescriptorTypeList";
 					link.Type = "RootContainsDescriptorType";
@@ -1173,7 +1193,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabDescriptorType";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsDirectorList";
@@ -1187,7 +1206,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsDirectorTypeList";
 					link.Type = "RootContainsDirectorType";
@@ -1199,7 +1217,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabDirectorType";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsDirectorActionList";
@@ -1213,7 +1230,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsEventorList";
 					link.Type = "RootContainsEventor";
@@ -1225,7 +1241,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabEventor";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsEventorTypeList";
@@ -1239,7 +1254,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsEventorPrecisionList";
 					link.Type = "RootContainsEventorPrecision";
@@ -1251,7 +1265,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabEventorPrecision";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsIdentorList";
@@ -1265,7 +1278,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsIdentorTypeList";
 					link.Type = "RootContainsIdentorType";
@@ -1277,7 +1289,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabIdentorType";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsLocatorList";
@@ -1291,7 +1302,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsLocatorTypeList";
 					link.Type = "RootContainsLocatorType";
@@ -1303,7 +1313,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabLocatorType";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorList";
@@ -1317,7 +1326,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorTypeList";
 					link.Type = "RootContainsVectorType";
@@ -1329,7 +1337,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorType";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorRangeList";
@@ -1343,7 +1350,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorRangeLevelList";
 					link.Type = "RootContainsVectorRangeLevel";
@@ -1355,7 +1361,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorRangeLevel";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorUnitList";
@@ -1369,7 +1374,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorUnitPrefixList";
 					link.Type = "RootContainsVectorUnitPrefix";
@@ -1381,7 +1385,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorUnitPrefix";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ContainsVectorUnitDerivedList";
@@ -1398,6 +1401,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "App":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "HasArtifact";
@@ -1410,7 +1414,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "DefinesMemberList";
@@ -1427,6 +1430,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Artifact":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InAppHas";
@@ -1440,7 +1444,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesArtifactType";
 					link.Type = "ArtifactUsesArtifactType";
@@ -1452,7 +1455,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifactType";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InClassHas";
@@ -1466,7 +1468,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InInstanceHas";
 					link.Type = "InstanceHasArtifact";
@@ -1478,7 +1479,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InMemberCreates";
@@ -1492,7 +1492,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InUrlHas";
 					link.Type = "UrlHasArtifact";
@@ -1504,7 +1503,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InUserHas";
@@ -1518,7 +1516,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUsesPrimary";
 					link.Type = "FactorUsesPrimaryArtifact";
@@ -1530,7 +1527,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUsesRelated";
@@ -1544,7 +1540,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InDescriptorListRefinesPrimaryWith";
 					link.Type = "DescriptorRefinesPrimaryWithArtifact";
@@ -1556,7 +1551,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InDescriptorListRefinesRelatedWith";
@@ -1570,7 +1564,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InDescriptorListRefinesTypeWith";
 					link.Type = "DescriptorRefinesTypeWithArtifact";
@@ -1582,7 +1575,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorListUsesAxis";
@@ -1599,6 +1591,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "ArtifactType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InArtifactListUses";
@@ -1615,6 +1608,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Class":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "HasArtifact";
@@ -1631,6 +1625,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Instance":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "HasArtifact";
@@ -1647,6 +1642,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Member":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InAppDefines";
@@ -1660,7 +1656,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "HasMemberTypeAssign";
 					link.Type = "MemberHasMemberTypeAssign";
@@ -1672,7 +1667,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabMemberTypeAssign";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "HasHistoricMemberTypeAssignList";
@@ -1686,7 +1680,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "CreatesArtifactList";
 					link.Type = "MemberCreatesArtifact";
@@ -1698,7 +1691,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "CreatesMemberTypeAssignList";
@@ -1712,7 +1704,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "CreatesFactorList";
 					link.Type = "MemberCreatesFactor";
@@ -1724,7 +1715,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabFactor";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InUserDefines";
@@ -1741,6 +1731,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "MemberType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InMemberTypeAssignListUses";
@@ -1757,6 +1748,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "MemberTypeAssign":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InMemberHas";
@@ -1770,7 +1762,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InMemberHasHistoric";
 					link.Type = "MemberHasHistoricMemberTypeAssign";
@@ -1783,7 +1774,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InMemberCreates";
 					link.Type = "MemberCreatesMemberTypeAssign";
@@ -1795,7 +1785,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabMemberTypeAssign";
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesMemberType";
@@ -1812,6 +1801,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Url":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "HasArtifact";
@@ -1828,6 +1818,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "User":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "HasArtifact";
@@ -1840,7 +1831,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "DefinesMemberList";
@@ -1857,6 +1847,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Factor":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InMemberCreates";
@@ -1870,7 +1861,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesPrimaryArtifact";
 					link.Type = "FactorUsesPrimaryArtifact";
@@ -1882,7 +1872,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesRelatedArtifact";
@@ -1896,7 +1885,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesFactorAssertion";
 					link.Type = "FactorUsesFactorAssertion";
@@ -1908,7 +1896,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabFactorAssertion";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "ReplacesFactor";
@@ -1922,7 +1909,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesDescriptor";
 					link.Type = "FactorUsesDescriptor";
@@ -1934,7 +1920,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabDescriptor";
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesDirector";
@@ -1948,7 +1933,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesEventor";
 					link.Type = "FactorUsesEventor";
@@ -1960,7 +1944,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabEventor";
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesIdentor";
@@ -1974,7 +1957,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesLocator";
 					link.Type = "FactorUsesLocator";
@@ -1986,7 +1968,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabLocator";
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesVector";
@@ -2003,6 +1984,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "FactorAssertion":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2022,6 +2004,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Descriptor":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2035,7 +2018,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesDescriptorType";
 					link.Type = "DescriptorUsesDescriptorType";
@@ -2047,7 +2029,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabDescriptorType";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "RefinesPrimaryWithArtifact";
@@ -2061,7 +2042,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "RefinesRelatedWithArtifact";
 					link.Type = "DescriptorRefinesRelatedWithArtifact";
@@ -2073,7 +2053,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "RefinesTypeWithArtifact";
@@ -2090,6 +2069,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "DescriptorType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InDescriptorListUses";
@@ -2106,6 +2086,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Director":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2119,7 +2100,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesDirectorType";
 					link.Type = "DirectorUsesDirectorType";
@@ -2132,7 +2112,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesPrimaryDirectorAction";
 					link.Type = "DirectorUsesPrimaryDirectorAction";
@@ -2144,7 +2123,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabDirectorAction";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesRelatedDirectorAction";
@@ -2161,6 +2139,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "DirectorType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InDirectorListUses";
@@ -2177,6 +2156,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "DirectorAction":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InDirectorListUsesPrimary";
@@ -2189,7 +2169,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabDirectorAction";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InDirectorListUsesRelated";
@@ -2206,6 +2185,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Eventor":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2219,7 +2199,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesEventorType";
 					link.Type = "EventorUsesEventorType";
@@ -2231,7 +2210,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabEventorType";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesEventorPrecision";
@@ -2248,6 +2226,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "EventorType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InEventorListUses";
@@ -2264,6 +2243,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "EventorPrecision":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InEventorListUses";
@@ -2280,6 +2260,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Identor":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2292,7 +2273,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabIdentor";
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesIdentorType";
@@ -2309,6 +2289,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "IdentorType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InIdentorListUses";
@@ -2325,6 +2306,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Locator":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2337,7 +2319,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabLocator";
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesLocatorType";
@@ -2354,6 +2335,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "LocatorType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InLocatorListUses";
@@ -2370,6 +2352,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Vector":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InFactorListUses";
@@ -2383,7 +2366,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesAxisArtifact";
 					link.Type = "VectorUsesAxisArtifact";
@@ -2395,7 +2377,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabArtifact";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesVectorType";
@@ -2409,7 +2390,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesVectorUnit";
 					link.Type = "VectorUsesVectorUnit";
@@ -2421,7 +2401,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorUnit";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesVectorUnitPrefix";
@@ -2438,6 +2417,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorType":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorListUses";
@@ -2450,7 +2430,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorType";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesVectorRange";
@@ -2467,6 +2446,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorRange":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorTypeListUses";
@@ -2479,7 +2459,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorRange";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesVectorRangeLevelList";
@@ -2496,6 +2475,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorRangeLevel":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorRangeListUses";
@@ -2512,6 +2492,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorUnit":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorListUses";
@@ -2525,7 +2506,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "InVectorUnitDerivedListDefines";
 					link.Type = "VectorUnitDerivedDefinesVectorUnit";
@@ -2537,7 +2517,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorUnit";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorUnitDerivedListRaisesToExp";
@@ -2554,6 +2533,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorUnitPrefix":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorListUses";
@@ -2566,7 +2546,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorUnitPrefix";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "InVectorUnitDerivedListUses";
@@ -2583,6 +2562,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorUnitDerived":
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
 					link.Name = "DefinesVectorUnit";
@@ -2596,7 +2576,6 @@ namespace Fabric.Api.Spec {
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-
 					link = new FabSpecTravLink();
 					link.Name = "RaisesToExpVectorUnit";
 					link.Type = "VectorUnitDerivedRaisesToExpVectorUnit";
@@ -2608,7 +2587,6 @@ namespace Fabric.Api.Spec {
 					link.ToDto = "FabVectorUnit";
 					link.ToDtoConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
-
 
 					link = new FabSpecTravLink();
 					link.Name = "UsesVectorUnitPrefix";
@@ -2624,6 +2602,7 @@ namespace Fabric.Api.Spec {
 
 					break;
 			}
+
 		}
 
 	}

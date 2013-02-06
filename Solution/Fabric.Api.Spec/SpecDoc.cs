@@ -172,6 +172,7 @@ namespace Fabric.Api.Spec {
 			ss.ResponseWrapper = (ss.Uri == FabHome.OauthUri ? null : typeof(FabResponse).Name);
 			ss.Abstract = GetServiceText(pService.Name+"Abstract");
 			ss.Description = GetServiceText(pService.Name+"Desc");
+			ss.Operations = new List<FabSpecServiceOperation>();
 
 			foreach ( FabServiceOperation svcOp in pService.Operations ) {
 				ss.Operations.Add(GetSpecServiceOperation(ss, svcOp));
@@ -184,10 +185,17 @@ namespace Fabric.Api.Spec {
 					continue;
 				}
 
+				if ( ss.TraversalFunctions == null ) {
+					ss.TraversalFunctions = new List<FabSpecTravFunc>();
+				}
+
 				ss.TraversalFunctions.Add(GetSpecFunc(t));
 			}
 
-			ss.TraversalFunctions.Sort((a, b) => string.Compare(a.Name, b.Name));
+			if ( ss.TraversalFunctions != null ) {
+				ss.TraversalFunctions.Sort((a, b) => string.Compare(a.Name, b.Name));
+			}
+
 			ss.Operations.Sort((a, b) => string.Compare(a.Name, b.Name));
 			return ss;
 		}
@@ -226,6 +234,7 @@ namespace Fabric.Api.Spec {
 				}
 
 				sso.Parameters = GetSpecServiceOperationParams(pService, sso, att, t);
+				break;
 			}
 
 			return sso;
@@ -266,7 +275,7 @@ namespace Fabric.Api.Spec {
 				list.Add(p);
 			}
 
-			return list;
+			return (list.Count > 0 ? list : null);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -283,7 +292,7 @@ namespace Fabric.Api.Spec {
 			}
 
 			sd.Properties = ReflectProps(pType);
-			SpecBuilder.FillSpecDtoFuncs(n, sd);
+			SpecBuilder.FillSpecObjectTravFuncs(n, sd);
 			SpecBuilder.FillSpecDtoLinks(n, sd);
 			return sd;
 		}

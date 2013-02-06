@@ -17,12 +17,6 @@ namespace Fabric.Api.Dto.Spec {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabSpecService() {
-			TraversalFunctions = new List<FabSpecTravFunc>();
-			Operations = new List<FabSpecServiceOperation>();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDbDto pDbDto) {}
 
 	}

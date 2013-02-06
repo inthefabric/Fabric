@@ -17,6 +17,7 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
 
 namespace Fabric.Api.Spec {
@@ -81,7 +82,7 @@ foreach ( string name in nodes ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FillSpecDtoProp(string pTypeName, string pPropName, FabSpecDtoProp pProp) {
+		public static void FillSpecDtoProp(string pTypeName, string pPropName, FabSpecObjectProp pProp){
 			FillSpecValue(pTypeName, pPropName, pProp);
 
 			switch ( pTypeName+"."+pPropName ) {
@@ -140,7 +141,7 @@ foreach ( string name in nodes ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FillSpecDtoFuncs(string pTypeName, FabSpecDto pObject) {
+		public static void FillSpecObjectTravFuncs(string pTypeName, FabSpecObject pObject) {
 			switch ( pTypeName ) {
 <#
 foreach ( string name in nodes ) {
@@ -154,10 +155,17 @@ foreach ( string name in nodes ) {
 	string dtoAqn = fabApiDtoNamespace.Replace("FabNode", "Fab"+node.Name);
 	Type dtoType = Type.GetType(dtoAqn);
 	List<string> availFuncs = FuncRegistry.GetAvailableFuncs(dtoType, true);
+	bool first = true;
 		
 	foreach ( string funcUri in availFuncs ) {
+		if ( first ) {
+			first = false;
 #>
-					pObject.AvailableFunctions.Add("<#= funcUri.Substring(1) #>");
+					pObject.TraversalFunctions = new List<string>();
+<#
+		}
+#>
+					pObject.TraversalFunctions.Add("<#= funcUri.Substring(1) #>");
 <#
 	} //end func loop
 #>
@@ -171,8 +179,8 @@ foreach ( string name in nodes ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FillSpecDtoLinks(string pTypeName, FabSpecDto pObject) {
-			FabSpecDtoLink link;
+		public static void FillSpecDtoLinks(string pTypeName, FabSpecObject pObject) {
+			FabSpecTravLink link;
 
 			switch ( pTypeName ) {
 <#
@@ -186,12 +194,18 @@ foreach ( string name in nodes ) {
 <#
 	
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	bool first = true;
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }if ( first ) {
+			first = false;
 #>
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
-					link = new FabSpecDtoLink();
+<#
+		}
+#>
+					link = new FabSpecTravLink();
 					link.Name = "<#= hr.RelPropName #>";
 					link.Type = "<#= hr.RelName #>";
 					link.Description = SpecDoc.GetDtoLinkText("<#= hr.RelName #>");
@@ -201,7 +215,7 @@ foreach ( string name in nodes ) {
 					link.Relation = "<#= hr.RelTypeName #>";
 					link.ToDto = "Fab<#= hr.ToNodeName #>";
 					link.ToDtoConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
-					pObject.Links.Add(link);
+					pObject.TraversalLinks.Add(link);
 
 <#
 	} //end rel loop
@@ -211,6 +225,7 @@ foreach ( string name in nodes ) {
 } // end node loop
 #>
 			}
+
 		}
 
 	}
