@@ -18,13 +18,9 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Fabric)]
 	public class CreateUser : BaseModifyFunc<CreateUserResult> {
 
-		public const string EmailParam = "Email";
 		public const string NameParam = "Name";
 		public const string PasswordParam = "Password";
-
-		[ServiceOpParam(ServiceOpParamType.Form, EmailParam, typeof(Email),
-			DomainPropertyName="Address")]
-		private readonly string vEmail;
+		public const string EmailParam = "Email";
 
 		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(User))]
 		private readonly string vName;
@@ -32,21 +28,25 @@ namespace Fabric.Api.Modify {
 		[ServiceOpParam(ServiceOpParamType.Form, PasswordParam, typeof(User))]
 		private readonly string vPass;
 
+		[ServiceOpParam(ServiceOpParamType.Form, EmailParam, typeof(Email),
+			DomainPropertyName="Address")]
+		private readonly string vEmail;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public CreateUser(IModifyTasks pTasks, string pName, string pPass, string pEmail) :base(pTasks){
-			vEmail = pEmail;
 			vName = pName;
 			vPass = pPass;
+			vEmail = pEmail;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			EnsureFabricSystem();
-			Tasks.Validator.EmailAddress(vEmail, EmailParam);
 			Tasks.Validator.UserName(vName, NameParam);
 			Tasks.Validator.UserPassword(vPass, PasswordParam);
+			Tasks.Validator.EmailAddress(vEmail, EmailParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

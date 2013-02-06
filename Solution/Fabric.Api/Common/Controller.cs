@@ -117,7 +117,6 @@ namespace Fabric.Api.Common {
 				return pConvert(val);
 			}
 			catch ( Exception e ) {
-				Log.Error("OAuth query string: "+pName, e);
 				throw new FabParamFault(FabFault.Code.IncorrectParamType, pName, typeof(TType), e);
 			}
 		}
@@ -156,6 +155,23 @@ namespace Fabric.Api.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected long GetPostLong(string pName, bool pRequired=true) {
 			return GetPost(pName, (v => v.ToInt64(EnUs)), pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected double GetPostDouble(string pName, bool pRequired=true) {
+			return GetPost(pName, (v => v.ToDouble(EnUs)), pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected bool GetPostBool(string pName, bool pRequired=true) {
+			string val = GetPost(pName, (v => v.ToString(EnUs)), pRequired);
+
+			switch ( val.ToLower() ) {
+				case "true": return true;
+				case "false": return false;
+			}
+
+			throw new FabParamFault(FabFault.Code.IncorrectParamType, pName, typeof(bool));
 		}
 
 	}

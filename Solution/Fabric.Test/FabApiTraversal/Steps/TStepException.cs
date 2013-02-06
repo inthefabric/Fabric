@@ -74,7 +74,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(pStepText, se.StepText, "Incorrect StepText.");
 			Assert.AreEqual(null, se.ParamText, "Incorrect ParamText.");
 
-			var expectMsg = "IncorrectParamCount (1001): "+msg+
+			var expectMsg = "IncorrectParamCount (2001): "+msg+
 				"\nStep "+pStepIndex+": '"+pStepText+"'";
 			Assert.AreEqual(expectMsg, se.Message, "Incorrect Message.");
 		}
@@ -96,7 +96,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(Step2Raw, se.StepText, "Incorrect StepText.");
 			Assert.AreEqual("p"+pParamIndex, se.ParamText, "Incorrect ParamText.");
 
-			var expectMsg = "IncorrectParamValue (1002): "+msg+
+			var expectMsg = "IncorrectParamValue (2002): "+msg+
 				"\nStep 2: '"+Step2Raw+"'"+"\nParam "+pParamIndex+": 'p"+pParamIndex+"'";
 			Assert.AreEqual(expectMsg, se.Message, "Incorrect Message.");
 		}
@@ -118,7 +118,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(Step2Raw, se.StepText, "Incorrect StepText.");
 			Assert.AreEqual(null, se.ParamText, "Incorrect ParamText.");
 
-			var expectMsg = "IncorrectParamValue (1002): "+msg+
+			var expectMsg = "IncorrectParamValue (2002): "+msg+
 				"\nStep 2: '"+Step2Raw+"'"+"\nParam "+pParamIndex+": ''";
 			Assert.AreEqual(expectMsg, se.Message, "Incorrect Message.");
 		}
