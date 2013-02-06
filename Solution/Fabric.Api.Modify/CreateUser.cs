@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Results;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Db.Data;
@@ -12,14 +14,22 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModUsersUri, typeof(FabUser),
+		Auth=ServiceAuthType.Fabric)]
 	public class CreateUser : BaseModifyFunc<CreateUserResult> {
 
 		public const string EmailParam = "Email";
 		public const string NameParam = "Name";
 		public const string PasswordParam = "Password";
 
+		[ServiceOpParam(ServiceOpParamType.Form, EmailParam, typeof(Email),
+			DomainPropertyName="Address")]
 		private readonly string vEmail;
+
+		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(User))]
 		private readonly string vName;
+
+		[ServiceOpParam(ServiceOpParamType.Form, PasswordParam, typeof(User))]
 		private readonly string vPass;
 
 

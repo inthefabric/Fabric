@@ -23,33 +23,33 @@ namespace Fabric.Api.Oauth.Operations {
 		public const string DataProvUserIdParam = "data_prov_userid";
 
 		[ServiceOpParam(ServiceOpParamType.Query, GrantTypeParam, null,
-			DomainPropertyName="GrantType")]
+			DomainPropertyName="GrantType", ResxKey="GrantType")]
 		public string GrantType;
 
 		[ServiceOpParam(ServiceOpParamType.Query, RedirectUriParam, typeof(OauthGrant),
-			DomainPropertyName="RedirectUri")]
+			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
 		public string RedirectUri;
 
 		[ServiceOpParam(ServiceOpParamType.Query, ClientSecretParam, typeof(App),
-			DomainPropertyName="Secret")]
+			DomainPropertyName="Secret", ResxKey="Secret")]
 		public string ClientSecret;
 
 		[ServiceOpParam(ServiceOpParamType.Query, CodeParam, typeof(OauthGrant),
-			DomainPropertyName="Code")]
+			DomainPropertyName="Code", ResxKey="Code")]
 		public string Code;
 
 		[ServiceOpParam(ServiceOpParamType.Query, RefreshTokenParam, typeof(OauthAccess),
-			DomainPropertyName="Refresh")]
+			DomainPropertyName="Refresh", ResxKey="Refresh")]
 		public string RefreshToken;
 
 		[ServiceOpParam(ServiceOpParamType.Query, ClientIdParam, typeof(App),
-			DomainPropertyName="AppId")]
+			DomainPropertyName="AppId", ResxKey="ClientId")]
 		public string ClientId;
 
 		[ServiceOpParam(ServiceOpParamType.Query, DataProvUserIdParam, typeof(User),
-			DomainPropertyName="UserId")]
+			DomainPropertyName="UserId", ResxKey="DataProvUserId")]
 		public string DataProvUserId;
-
+		
 	}
 
 }

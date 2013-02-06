@@ -1,6 +1,9 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Db.Data;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
@@ -8,14 +11,21 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModClassesUri, typeof(FabClass),
+		Auth=ServiceAuthType.Member)]
 	public class CreateClass : BaseModifyFunc<Class> {
 
 		public const string NameParam = "Name";
 		public const string DisambParam = "Disamb";
 		public const string NoteParam = "Note";
 
+		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(Class))]
 		private readonly string vName;
+
+		[ServiceOpParam(ServiceOpParamType.Form, DisambParam, typeof(Class), IsRequired=false)]
 		private readonly string vDisamb;
+
+		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, typeof(Class), IsRequired=false)]
 		private readonly string vNote;
 
 

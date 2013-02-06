@@ -1,5 +1,6 @@
 ﻿using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Modify {
@@ -14,7 +15,8 @@ namespace Fabric.Api.Modify {
 	/*================================================================================================*/
 	public abstract class CreateFactorElement<T> : BaseModifyFunc<T> where T : FactorElementNode {
 
-		private readonly long vFactorId;
+		[ServiceOpParam(ServiceOpParamType.Form, CreateFactorElement.FactorParam, typeof(Factor))]
+		protected readonly long vFactorId; //use 'protected' so SpecDoc can find it
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

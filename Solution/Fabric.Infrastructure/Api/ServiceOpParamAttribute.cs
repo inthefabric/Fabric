@@ -19,6 +19,7 @@ namespace Fabric.Infrastructure.Api {
 
 		public bool IsRequired { get; set; }
 		public string DomainPropertyName { get; set; }
+		public string ResxKey { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +30,7 @@ namespace Fabric.Infrastructure.Api {
 			DomainClass = pDomClass;
 			IsRequired = true;
 			DomainPropertyName = Name;
+			ResxKey = Name;
 		}
 
 	}

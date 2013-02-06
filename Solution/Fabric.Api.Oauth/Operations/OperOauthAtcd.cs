@@ -11,7 +11,7 @@ namespace Fabric.Api.Oauth.Operations {
 	public class OperOauthAtcd : OperOauthAtcc {
 
 		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.DataProvUserIdParam, typeof(User),
-			DomainPropertyName="UserId")]
+			DomainPropertyName="UserId", ResxKey="DataProvUserId")]
 		public string DataProvUserId;
 
 	}

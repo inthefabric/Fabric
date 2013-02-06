@@ -3,13 +3,13 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Modify {
-	
+
 	/*================================================================================================*/
 	public class UpdateFactor : BaseModifyFunc<Factor> {
 		
 		public const string FactorParam = "FactorId";
-		public const string CompletedParam = "Completed";
-		public const string DeletedParam = "Deleted";
+		public const string CompletedParam = "IsCompleted";
+		public const string DeletedParam = "IsDeleted";
 
 		private readonly long vFactorId;
 		private readonly bool vCompleted;

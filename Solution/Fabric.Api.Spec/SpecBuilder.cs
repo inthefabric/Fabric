@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/6/2013 12:37:35 PM
+// Generated on 2/6/2013 3:33:04 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -48,6 +48,10 @@ namespace Fabric.Api.Spec {
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
+				case "App.Secret":
+					pValue.Len = 32;
+					break;
+
 				case "Artifact.ArtifactId":
 					pValue.Min = 1;
 					break;
@@ -80,6 +84,59 @@ namespace Fabric.Api.Spec {
 					pValue.LenMax = 256;
 					break;
 
+				case "Crowd.CrowdId":
+					pValue.Min = 1;
+					break;
+
+				case "Crowd.Name":
+					pValue.LenMax = 64;
+					pValue.LenMin = 3;
+					break;
+
+				case "Crowd.Description":
+					pValue.LenMax = 256;
+					break;
+
+				case "Crowd.IsPrivate":
+					break;
+
+				case "Crowd.IsInviteOnly":
+					break;
+
+				case "Crowdian.CrowdianId":
+					pValue.Min = 1;
+					break;
+
+				case "CrowdianType.CrowdianTypeId":
+					pValue.Min = 1;
+					break;
+
+				case "CrowdianTypeAssign.CrowdianTypeAssignId":
+					pValue.Min = 1;
+					break;
+
+				case "CrowdianTypeAssign.Weight":
+					break;
+
+				case "Email.EmailId":
+					pValue.Min = 1;
+					break;
+
+				case "Email.Address":
+					pValue.LenMax = 256;
+					pValue.ValidRegex = @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
+					break;
+
+				case "Email.Code":
+					pValue.Len = 32;
+					break;
+
+				case "Email.Created":
+					break;
+
+				case "Email.Verified":
+					break;
+
 				case "Instance.InstanceId":
 					pValue.Min = 1;
 					break;
@@ -96,6 +153,16 @@ namespace Fabric.Api.Spec {
 
 				case "Instance.Note":
 					pValue.LenMax = 256;
+					break;
+
+				case "Label.LabelId":
+					pValue.Min = 1;
+					break;
+
+				case "Label.Name":
+					pValue.LenMax = 128;
+					pValue.LenMin = 1;
+					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
 				case "Member.MemberId":
@@ -132,6 +199,11 @@ namespace Fabric.Api.Spec {
 					pValue.ValidRegex = @"^[a-zA-Z0-9_]*$";
 					break;
 
+				case "User.Password":
+					pValue.LenMax = 32;
+					pValue.LenMin = 8;
+					break;
+
 				case "Factor.FactorId":
 					pValue.Min = 1;
 					break;
@@ -140,6 +212,9 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Factor.Created":
+					break;
+
+				case "Factor.Deleted":
 					break;
 
 				case "Factor.Completed":
@@ -287,6 +362,57 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorUnitDerived.Exponent":
+					break;
+
+				case "OauthAccess.OauthAccessId":
+					pValue.Min = 1;
+					break;
+
+				case "OauthAccess.Token":
+					pValue.Len = 32;
+					break;
+
+				case "OauthAccess.Refresh":
+					pValue.Len = 32;
+					break;
+
+				case "OauthAccess.Expires":
+					break;
+
+				case "OauthAccess.IsClientOnly":
+					break;
+
+				case "OauthDomain.OauthDomainId":
+					pValue.Min = 1;
+					break;
+
+				case "OauthDomain.Domain":
+					pValue.LenMax = 256;
+					break;
+
+				case "OauthGrant.OauthGrantId":
+					pValue.Min = 1;
+					break;
+
+				case "OauthGrant.RedirectUri":
+					pValue.LenMax = 450;
+					break;
+
+				case "OauthGrant.Code":
+					pValue.Len = 32;
+					break;
+
+				case "OauthGrant.Expires":
+					break;
+
+				case "OauthScope.OauthScopeId":
+					pValue.Min = 1;
+					break;
+
+				case "OauthScope.Allow":
+					break;
+
+				case "OauthScope.Created":
 					break;
 			}
 		}

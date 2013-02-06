@@ -9,6 +9,7 @@ using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Spec.Lang;
 using Fabric.Api.Traversal;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
@@ -222,7 +223,6 @@ namespace Fabric.Api.Spec {
 				ServiceOpAttribute att = (ServiceOpAttribute)ops[0];
 				string attKey = att.Method+" "+att.ServiceUri+att.ServiceOperationUri;
 				string ssoKey = sso.Method+" "+pService.Uri+sso.Uri;
-				//Log.Debug("ATT: "+attKey+" [vs] "+ssoKey);
 
 				if ( attKey != ssoKey ) {
 					continue;
@@ -232,9 +232,16 @@ namespace Fabric.Api.Spec {
 					throw new FabPreventedFault("ServiceOperation ReturnType mismatch: "+
 						att.ReturnType.Name+" vs. "+sso.ReturnType);
 				}
+				Log.Debug("ATT: "+attKey+" [vs] "+ssoKey);
 
+				sso.RequiredAuth = att.Auth+"";
+				sso.AuthMemberOwns = (att.AuthMemberOwns == null ? null : att.AuthMemberOwns.Name);
 				sso.Parameters = GetSpecServiceOperationParams(pService, sso, att, t);
 				break;
+			}
+
+			if ( sso.Parameters != null ) {
+				sso.Parameters.Sort((a, b) => string.Compare(a.Name, b.Name));
 			}
 
 			return sso;
@@ -248,12 +255,16 @@ namespace Fabric.Api.Spec {
 				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 			var list = new List<FabSpecServiceOperationParam>();
 
+			Log.Debug(" - Fields: "+fields.Length);
+
 			foreach ( FieldInfo field in fields ) {
-				object[] opParams = field.GetCustomAttributes(typeof(ServiceOpParamAttribute), false);
+				object[] opParams = field.GetCustomAttributes(typeof(ServiceOpParamAttribute), true);
 
 				if ( opParams.Length == 0 ) {
 					continue;
 				}
+
+				Log.Debug("   * FOUND: "+field.Name);
 
 				ServiceOpParamAttribute att = (ServiceOpParamAttribute)opParams[0];
 
@@ -270,7 +281,7 @@ namespace Fabric.Api.Spec {
 				p.Description = GetServiceOpParamText(
 					pService.Name+"_"+
 					(pServiceOppAtt.ResxKey ?? pServiceOp.Name)+"_"+
-					att.DomainPropertyName
+					att.ResxKey
 				);
 				list.Add(p);
 			}
@@ -280,7 +291,6 @@ namespace Fabric.Api.Spec {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabSpecObject GetSpecDto(Type pType) {
-
 			var sd = new FabSpecObject();
 			sd.Name = pType.Name;
 
@@ -312,12 +322,14 @@ namespace Fabric.Api.Spec {
 				}
 
 				string n = pType.Name.Substring(3);
+				string domPropName = (dpa != null && dpa.DomainPropName != null ? 
+					dpa.DomainPropName : pi.Name);
 
 				var specProp = new FabSpecObjectProp();
 				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(n+"_"+pi.Name);
-				SpecBuilder.FillSpecDtoProp(n, pi.Name, specProp); //overwrites in most cases
+				SpecBuilder.FillSpecDtoProp(n, domPropName, specProp); //overwrites in most cases
 				results.Add(pi.Name, specProp);
 			}
 

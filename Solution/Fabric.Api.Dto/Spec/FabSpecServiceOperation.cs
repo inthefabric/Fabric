@@ -11,6 +11,9 @@ namespace Fabric.Api.Dto.Spec {
 		public string Method { get; set; }
 		public string ReturnType { get; set; }
 		public string Description { get; set; }
+
+		public string RequiredAuth { get; set; }
+		public string AuthMemberOwns { get; set; }
 		public List<FabSpecServiceOperationParam> Parameters { get; set; }
 
 

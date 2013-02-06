@@ -1,12 +1,17 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
-using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModLocatorsUri, typeof(FabLocator),
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
 	public class CreateLocator : CreateFactorElement<Locator> {
 		
 		public const string LocTypeParam = "LocatorTypeId";
@@ -14,9 +19,16 @@ namespace Fabric.Api.Modify {
 		public const string YParam = "ValueY";
 		public const string ZParam = "ValueZ";
 
+		[ServiceOpParam(ServiceOpParamType.Form, LocTypeParam, typeof(LocatorType))]
 		private readonly long vLocTypeId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, XParam, typeof(Locator))]
 		private readonly double vX;
+
+		[ServiceOpParam(ServiceOpParamType.Form, YParam, typeof(Locator))]
 		private readonly double vY;
+
+		[ServiceOpParam(ServiceOpParamType.Form, ZParam, typeof(Locator))]
 		private readonly double vZ;
 
 

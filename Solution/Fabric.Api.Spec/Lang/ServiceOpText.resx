@@ -118,46 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Modify_AddApp" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new App.</value>
   </data>
   <data name="Modify_AddClass" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
   <data name="Modify_AddFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Factor. The Factor begins in the 'incomplete' state, with no FactorElements attached.</value>
   </data>
   <data name="Modify_AddInstance" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
   <data name="Modify_AddUrl" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Url.</value>
   </data>
   <data name="Modify_AddUser" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new User.</value>
   </data>
   <data name="Modify_AttachDescriptorToFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Descriptor and attach it to the specified Factor.</value>
   </data>
   <data name="Modify_AttachDirectorToFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Director and attach it to the specified Factor.</value>
   </data>
   <data name="Modify_AttachEventorToFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Eventor and attach it to the specified Factor.</value>
   </data>
   <data name="Modify_AttachIdentorToFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Identor and attach it to the specified Factor.</value>
   </data>
   <data name="Modify_AttachLocatorToFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Locator and attach it to the specified Factor.</value>
   </data>
   <data name="Modify_AttachVectorToFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Vector and attach it to the specified Factor.</value>
   </data>
   <data name="Modify_CompleteFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Move a Factor from the 'incomplete' state to the 'complete' state.  A Factor must have a Descriptor before it can be completed. Once a Factor is completed, it can only be deleted -- no further modifications are permitted.</value>
   </data>
   <data name="Modify_DeleteFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Delete a Factor. The authenticated Member must be the Factor's creator.</value>
   </data>
   <data name="Oauth_AccessToken" xml:space="preserve">
     <value>Get an OAuth access token using one of four 'flows'.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the '[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]' flow) for information about the available OAuth flows.
@@ -212,6 +212,6 @@ Logging out of an OAuth session does not revoke the the App scope accepted by th
     <value>The latest specification and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now.</value>
   </data>
   <data name="Traversal_Root" xml:space="preserve">
-    <value>TODO</value>
+    <value>The starting point for all traversal queries. Use traversal links and traversal functions to navigate through Fabric's objects. These links and functions are capable of performing both simple and highly complex queries.</value>
   </data>
 </root>

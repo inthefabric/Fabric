@@ -11,15 +11,15 @@ namespace Fabric.Api.Oauth.Operations {
 	public class OperOauthAtr {
 
 		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.RedirectUriParam, typeof(OauthGrant),
-			DomainPropertyName="RedirectUri")]
+			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
 		public string RedirectUri;
 
 		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.ClientSecretParam, typeof(App),
-			DomainPropertyName="Secret")]
+			DomainPropertyName="Secret", ResxKey="Secret")]
 		public string ClientSecret;
 
 		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.RefreshTokenParam, typeof(OauthAccess),
-			DomainPropertyName="Refresh")]
+			DomainPropertyName="Refresh", ResxKey="Refresh")]
 		public string RefreshToken;
 
 	}

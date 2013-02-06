@@ -118,16 +118,160 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Modify_AddApp_Name" xml:space="preserve">
-    <value>TODO</value>
+    <value>The name of the new App.</value>
   </data>
   <data name="Modify_AddApp_UserId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Identifies the User that is creating the App. This User will receive the App's 'DataProvider' Member.</value>
   </data>
-  <data name="Oauth_AccessToken_AppId" xml:space="preserve">
+  <data name="Modify_AddClass_Disamb" xml:space="preserve">
+    <value>The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.</value>
+  </data>
+  <data name="Modify_AddClass_Name" xml:space="preserve">
+    <value>The name of the new Class. It must be unique on its own, or be unique in combination with the disambiguation text.</value>
+  </data>
+  <data name="Modify_AddClass_Note" xml:space="preserve">
+    <value>A brief description of the new Class. It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="Modify_AddFactor_FactorAssertionId" xml:space="preserve">
+    <value>Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the 'Undefined' FactorAssertion.</value>
+  </data>
+  <data name="Modify_AddFactor_IsDefining" xml:space="preserve">
+    <value>The IsDefining value for the new Factor.</value>
+  </data>
+  <data name="Modify_AddFactor_Note" xml:space="preserve">
+    <value>A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new Factor. A descriptive note can help others understand the creator's intended purpose or meaning for the Factor.</value>
+  </data>
+  <data name="Modify_AddFactor_PrimaryArtifactId" xml:space="preserve">
+    <value>Identifies the primary Artifact for the new Factor.</value>
+  </data>
+  <data name="Modify_AddFactor_RelatedArtifactId" xml:space="preserve">
+    <value>Identifies the related Artifact for the new Factor. The related Artifact cannot be the same as the primary Artifact.</value>
+  </data>
+  <data name="Modify_AddInstance_Disamb" xml:space="preserve">
+    <value>The disambiguation text for the new Instance. When provided, the disambiguation text permits the use of a non-unique name.</value>
+  </data>
+  <data name="Modify_AddInstance_Name" xml:space="preserve">
+    <value>The name of the new Instance. It does not need to be unique.</value>
+  </data>
+  <data name="Modify_AddInstance_Note" xml:space="preserve">
+    <value>A brief description of the new Instance.  It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="Modify_AddUrl_AbsoluteUrl" xml:space="preserve">
+    <value>The complete absolute URL for new Url object. It must include the URL's protocol (such as 'http://').</value>
+  </data>
+  <data name="Modify_AddUrl_Name" xml:space="preserve">
+    <value>The name of the new Url.</value>
+  </data>
+  <data name="Modify_AddUser_Email" xml:space="preserve">
+    <value>The email address for the new User.</value>
+  </data>
+  <data name="Modify_AddUser_Name" xml:space="preserve">
+    <value>The username for the new User.</value>
+  </data>
+  <data name="Modify_AddUser_Password" xml:space="preserve">
+    <value>The password for the new User.</value>
+  </data>
+  <data name="Modify_AttachDescriptorToFactor_DescriptorTypeId" xml:space="preserve">
+    <value>Identifies the DescriptorType for the new Descriptor.</value>
+  </data>
+  <data name="Modify_AttachDescriptorToFactor_DescriptorTypeRefineId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the new Descriptor's DescriptorType.</value>
+  </data>
+  <data name="Modify_AttachDescriptorToFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor that will receive the Descriptor attachment.</value>
+  </data>
+  <data name="Modify_AttachDescriptorToFactor_PrimaryArtifactRefineId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the Factor's primary Artifact.</value>
+  </data>
+  <data name="Modify_AttachDescriptorToFactor_RelatedArtifactRefineId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the Factor's related Artifact.</value>
+  </data>
+  <data name="Modify_AttachDirectorToFactor_DirectorTypeId" xml:space="preserve">
+    <value>Identifies the DirectorType for the new Director.</value>
+  </data>
+  <data name="Modify_AttachDirectorToFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor that will receive the Director attachment.</value>
+  </data>
+  <data name="Modify_AttachDirectorToFactor_PrimaryDirectorActionId" xml:space="preserve">
+    <value>Identifies the DirectorAction associated with the Factor's primary Artifact.</value>
+  </data>
+  <data name="Modify_AttachDirectorToFactor_RelatedDirectorActionId" xml:space="preserve">
+    <value>Identifies the DirectorAction associated with the Factor's related Artifact.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_DateTime" xml:space="preserve">
+    <value>The date and time for the new Eventor. This value must be accurate to the level of precision defined by the specified EventorPrecision. Set unused month/day values to 1, and unused hour/minute values (and beyond) to 0.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_EventorPrecisionId" xml:space="preserve">
+    <value>Identifies the EventorPrecision for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_EventorTypeId" xml:space="preserve">
+    <value>Identifies the EventorType for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor that will receive the Eventor attachment.</value>
+  </data>
+  <data name="Modify_AttachIdentorToFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor that will receive the Identor attachment.</value>
+  </data>
+  <data name="Modify_AttachIdentorToFactor_IdentorTypeId" xml:space="preserve">
+    <value>Identifies the IdentorType for the new Identor.</value>
+  </data>
+  <data name="Modify_AttachIdentorToFactor_Value" xml:space="preserve">
+    <value>The text-based value for the new Identor.</value>
+  </data>
+  <data name="Modify_AttachLocatorToFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor that will receive the Locator attachment.</value>
+  </data>
+  <data name="Modify_AttachLocatorToFactor_LocatorTypeId" xml:space="preserve">
+    <value>Identifies the LocatorType for the new Locator.</value>
+  </data>
+  <data name="Modify_AttachLocatorToFactor_ValueX" xml:space="preserve">
+    <value>The X value for the new Locator.</value>
+  </data>
+  <data name="Modify_AttachLocatorToFactor_ValueY" xml:space="preserve">
+    <value>The Y value for the new Locator.</value>
+  </data>
+  <data name="Modify_AttachLocatorToFactor_ValueZ" xml:space="preserve">
+    <value>The Z value for the new Locator.</value>
+  </data>
+  <data name="Modify_AttachVectorToFactor_AxisArtifactId" xml:space="preserve">
+    <value>The Artifact which provides meaning for the new Vector.</value>
+  </data>
+  <data name="Modify_AttachVectorToFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor that will receive the Vector attachment.</value>
+  </data>
+  <data name="Modify_AttachVectorToFactor_Value" xml:space="preserve">
+    <value>The value for the new Vector. This value must be within the range specified by the VectorType. Decimal values are not supported; if additional precision is required, use a VectorUnitPrefix such as Milli or Micro.</value>
+  </data>
+  <data name="Modify_AttachVectorToFactor_VectorTypeId" xml:space="preserve">
+    <value>Identifies the VectorType for the new Vector.</value>
+  </data>
+  <data name="Modify_AttachVectorToFactor_VectorUnitId" xml:space="preserve">
+    <value>Identifies the VectorUnit for the new Vector.</value>
+  </data>
+  <data name="Modify_AttachVectorToFactor_VectorUnitPrefixId" xml:space="preserve">
+    <value>Identifies the VectorUnitPrefix for the new Vector.</value>
+  </data>
+  <data name="Modify_CompleteFactor_FactorId" xml:space="preserve">
+    <value>Identifies the incomplete Factor to be completed.</value>
+  </data>
+  <data name="Modify_CompleteFactor_IsCompleted" xml:space="preserve">
+    <value>The IsCompleted value must be 'true'.</value>
+  </data>
+  <data name="Modify_DeleteFactor_FactorId" xml:space="preserve">
+    <value>Identifies the Factor to be deleted.</value>
+  </data>
+  <data name="Modify_DeleteFactor_IsDeleted" xml:space="preserve">
+    <value>The IsDeleted value must be 'true'.</value>
+  </data>
+  <data name="Oauth_AccessToken_ClientId" xml:space="preserve">
     <value>The App ID value (an integer) for the App making the request. This parameter is only used by the '[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]' and '[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]' flows.</value>
   </data>
   <data name="Oauth_AccessToken_Code" xml:space="preserve">
     <value>The authorization code obtained after a successful OAuth entry process. This parameter is only used by the '[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]' flow.</value>
+  </data>
+  <data name="Oauth_AccessToken_DataProvUserId" xml:space="preserve">
+    <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_GrantType" xml:space="preserve">
     <value>Defines the desired access token flow.  The four accepted (case-sensitive) values are '[[authorization_code|Func|Oauth.AccessTokenAuthCode]]', '[[refresh|Func|Oauth.AccessTokenRefresh]]', '[[client_credentials|Func|Oauth.AccessTokenClientCredentials]]', and '[[client_data_provider|Func|Oauth.AccessTokenClientDataProv]]'.</value>
@@ -141,10 +285,7 @@
   <data name="Oauth_AccessToken_Secret" xml:space="preserve">
     <value>The alpha-numeric Secret for the App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone.</value>
   </data>
-  <data name="Oauth_AccessToken_UserId" xml:space="preserve">
-    <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]' flow.</value>
-  </data>
-  <data name="Oauth_Login_AppId" xml:space="preserve">
+  <data name="Oauth_Login_ClientId" xml:space="preserve">
     <value>The ID of the Fabric App making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this App ID and the authenticated User's ID.</value>
   </data>
   <data name="Oauth_Login_RedirectUri" xml:space="preserve">

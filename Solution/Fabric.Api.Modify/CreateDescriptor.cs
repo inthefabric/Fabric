@@ -1,12 +1,17 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
-	
+
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModDescriptorsUri, typeof(FabDescriptor),
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
 	public class CreateDescriptor : CreateFactorElement<Descriptor> {
 
 		public const string DescTypeParam = "DescriptorTypeId";
@@ -14,9 +19,19 @@ namespace Fabric.Api.Modify {
 		public const string RelArtRefParam = "RelatedArtifactRefineId";
 		public const string DescTypeRefParam = "DescriptorTypeRefineId";
 
+		[ServiceOpParam(ServiceOpParamType.Form, DescTypeParam, typeof(DescriptorType))]
 		private readonly long vDescTypeId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, PrimArtRefParam, typeof(Artifact),
+			DomainPropertyName="ArtifactId", IsRequired=false)]
 		private readonly long? vPrimArtRefId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, RelArtRefParam, typeof(Artifact),
+			DomainPropertyName="ArtifactId", IsRequired=false)]
 		private readonly long? vRelArtRefId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, DescTypeRefParam, typeof(Artifact),
+			DomainPropertyName="ArtifactId", IsRequired=false)]
 		private readonly long? vDescTypeRefId;
 
 

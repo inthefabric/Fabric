@@ -61,7 +61,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new App..
         /// </summary>
         internal static string Modify_AddApp {
             get {
@@ -70,7 +70,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric..
         /// </summary>
         internal static string Modify_AddClass {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Factor. The Factor begins in the &apos;incomplete&apos; state, with no FactorElements attached..
         /// </summary>
         internal static string Modify_AddFactor {
             get {
@@ -88,7 +88,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric..
         /// </summary>
         internal static string Modify_AddInstance {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Url..
         /// </summary>
         internal static string Modify_AddUrl {
             get {
@@ -106,7 +106,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new User..
         /// </summary>
         internal static string Modify_AddUser {
             get {
@@ -115,7 +115,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Descriptor and attach it to the specified Factor..
         /// </summary>
         internal static string Modify_AttachDescriptorToFactor {
             get {
@@ -124,7 +124,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Director and attach it to the specified Factor..
         /// </summary>
         internal static string Modify_AttachDirectorToFactor {
             get {
@@ -133,7 +133,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Eventor and attach it to the specified Factor..
         /// </summary>
         internal static string Modify_AttachEventorToFactor {
             get {
@@ -142,7 +142,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Identor and attach it to the specified Factor..
         /// </summary>
         internal static string Modify_AttachIdentorToFactor {
             get {
@@ -151,7 +151,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Locator and attach it to the specified Factor..
         /// </summary>
         internal static string Modify_AttachLocatorToFactor {
             get {
@@ -160,7 +160,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Vector and attach it to the specified Factor..
         /// </summary>
         internal static string Modify_AttachVectorToFactor {
             get {
@@ -169,7 +169,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Move a Factor from the &apos;incomplete&apos; state to the &apos;complete&apos; state.  A Factor must have a Descriptor before it can be completed. Once a Factor is completed, it can only be deleted -- no further modifications are permitted..
         /// </summary>
         internal static string Modify_CompleteFactor {
             get {
@@ -178,7 +178,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Delete a Factor. The authenticated Member must be the Factor&apos;s creator..
         /// </summary>
         internal static string Modify_DeleteFactor {
             get {
@@ -275,7 +275,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The starting point for all traversal queries. Use traversal links and traversal functions to navigate through Fabric&apos;s objects. These links and functions are capable of performing both simple and highly complex queries..
         /// </summary>
         internal static string Traversal_Root {
             get {

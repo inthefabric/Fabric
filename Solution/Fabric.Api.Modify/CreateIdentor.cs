@@ -1,17 +1,25 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModIdentorsUri, typeof(FabIdentor),
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
 	public class CreateIdentor : CreateFactorElement<Identor> {
 
 		public const string IdenTypeParam = "IdentorTypeId";
 		public const string ValueParam = "Value";
 
+		[ServiceOpParam(ServiceOpParamType.Form, IdenTypeParam, typeof(IdentorType))]
 		private readonly long vIdenTypeId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, typeof(Identor))]
 		private readonly string vValue;
 
 

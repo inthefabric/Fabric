@@ -37,10 +37,9 @@ string fabApiDtoNamespace = typeof(FabNode).AssemblyQualifiedName;
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
-	if ( node.IsInternal ) { continue; }
 
 	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseNode.Name : "Node");
-	IList<SchemaHelperProp> props = hn.GetProps(true);
+	IList<SchemaHelperProp> props = hn.GetProps(false);
 
 	foreach ( SchemaHelperProp hp in props ) {
 		WeaverPropSchema prop = hp.PropSchema;

@@ -8,7 +8,7 @@ namespace Fabric.Api.Dto.Oauth {
 	public class FabOauthAccess : FabObject {
 
 		[DataMember(Name="access_token")]
-		[DtoProp("access_token")]
+		[DtoProp("access_token", DomainPropName="Token")]
 		public string AccessToken { get; set; }
 
 		[DataMember(Name="token_type")]
@@ -16,11 +16,11 @@ namespace Fabric.Api.Dto.Oauth {
 		public string TokenType { get; set; }
 
 		[DataMember(Name="refresh_token")]
-		[DtoProp("refresh_token")]
+		[DtoProp("refresh_token", DomainPropName="Refresh")]
 		public string RefreshToken { get; set; }
 
 		[DataMember(Name="expires_in")]
-		[DtoProp("expires_in")]
+		[DtoProp("expires_in", DomainPropName="Expires")]
 		public int ExpiresIn { get; set; }
 
 		[DtoProp(true)]

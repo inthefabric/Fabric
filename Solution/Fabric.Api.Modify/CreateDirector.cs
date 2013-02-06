@@ -1,19 +1,31 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModDirectorsUri, typeof(FabDirector),
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
 	public class CreateDirector : CreateFactorElement<Director> {
 
 		public const string DirTypeParam = "DirectorTypeId";
 		public const string PrimActionParam = "PrimaryDirectorActionId";
 		public const string RelActionParam = "RelatedDirectorActionId";
 
+		[ServiceOpParam(ServiceOpParamType.Form, DirTypeParam, typeof(DirectorType))]
 		private readonly long vDescTypeId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, PrimActionParam, typeof(DirectorAction),
+			DomainPropertyName="DirectorActionId")]
 		private readonly long vPrimActId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, RelActionParam, typeof(DirectorAction),
+			DomainPropertyName="DirectorActionId")]
 		private readonly long vRelActId;
 
 

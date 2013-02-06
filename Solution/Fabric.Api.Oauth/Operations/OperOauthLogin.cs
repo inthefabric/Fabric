@@ -17,25 +17,27 @@ namespace Fabric.Api.Oauth.Operations {
 		public const string SwitchModeParam = "switchMode";
 
 		[ServiceOpParam(ServiceOpParamType.Query, ResponseTypeParam, null,
-			DomainPropertyName="ResponseType")]
+			DomainPropertyName="ResponseType", ResxKey="ResponseType")]
 		public string ResponseType;
 
 		[ServiceOpParam(ServiceOpParamType.Query, SwitchModeParam, null,
-			DomainPropertyName="SwitchMode")]
+			DomainPropertyName="SwitchMode", ResxKey="SwitchMode")]
 		public string SwitchMode;
 
 		[ServiceOpParam(ServiceOpParamType.Query, ClientIdParam, typeof(App),
-			DomainPropertyName="AppId")]
+			DomainPropertyName="AppId", ResxKey="ClientId")]
 		public string ClientId;
 
 		[ServiceOpParam(ServiceOpParamType.Query, RedirectUriParam, typeof(OauthGrant),
-			DomainPropertyName="RedirectUri")]
+			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
 		public string RedirectUri;
 
-		[ServiceOpParam(ServiceOpParamType.Query, ScopeParam, null, DomainPropertyName="Scope")]
+		[ServiceOpParam(ServiceOpParamType.Query, ScopeParam, null,
+			DomainPropertyName="Scope", ResxKey="Scope")]
 		public string Scope;
 
-		[ServiceOpParam(ServiceOpParamType.Query, StateParam, null, DomainPropertyName="State")]
+		[ServiceOpParam(ServiceOpParamType.Query, StateParam, null,
+			DomainPropertyName="State", ResxKey="State")]
 		public string State;
 
 	}

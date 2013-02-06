@@ -11,7 +11,8 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModAppsUri, typeof(FabApp))]
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModAppsUri, typeof(FabApp),
+		Auth=ServiceAuthType.Fabric)]
 	public class CreateApp : BaseModifyFunc<App> {
 
 		public const string NameParam = "Name";

@@ -1,5 +1,8 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
@@ -7,20 +10,33 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModFactorsUri, typeof(FabFactor),
+		Auth=ServiceAuthType.Member)]
 	public class CreateFactor : BaseModifyFunc<Factor> {
 
 		public const string PrimArtParam = "PrimaryArtifactId";
 		public const string RelArtParam = "RelatedArtifactId";
-		public const string AssertParam = "FactorAssertId";
+		public const string AssertParam = "FactorAssertionId";
 		public const string IsDefParam = "IsDefining";
 		public const string NoteParam = "Note";
 
+		[ServiceOpParam(ServiceOpParamType.Form, PrimArtParam, typeof(Artifact),
+			DomainPropertyName="ArtifactId")]
 		private readonly long vPrimArtId;
-		private readonly long vRelArtId;
-		private readonly long vAssertId;
-		private readonly bool vIsDefining;
-		private readonly string vNote;
 
+		[ServiceOpParam(ServiceOpParamType.Form, RelArtParam, typeof(Artifact),
+			DomainPropertyName="ArtifactId")]
+		private readonly long vRelArtId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, AssertParam, typeof(FactorAssertion))]
+		private readonly long vAssertId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, IsDefParam, typeof(Factor))]
+		private readonly bool vIsDefining;
+
+		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, typeof(Factor), IsRequired=false)]
+		private readonly string vNote;
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

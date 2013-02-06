@@ -1,19 +1,29 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Dto;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModEventorsUri, typeof(FabEventor),
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
 	public class CreateEventor : CreateFactorElement<Eventor> {
 
 		public const string EveTypeParam = "EventorTypeId";
 		public const string EvePrecParam = "EventorPrecisionId";
 		public const string DateTimeParam = "DateTime";
 
+		[ServiceOpParam(ServiceOpParamType.Form, EveTypeParam, typeof(EventorType))]
 		private readonly long vEveTypeId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, EvePrecParam, typeof(EventorPrecision))]
 		private readonly long vEvePrecId;
+
+		[ServiceOpParam(ServiceOpParamType.Form, DateTimeParam, typeof(Eventor))]
 		private readonly long vDateTime;
 
 

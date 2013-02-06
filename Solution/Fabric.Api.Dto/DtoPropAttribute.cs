@@ -6,8 +6,9 @@ namespace Fabric.Api.Dto {
 	[AttributeUsage(AttributeTargets.Property)]
 	public class DtoPropAttribute : Attribute {
 
-		public bool IsInternal { get; set; }
-		public string DisplayName { get; set; }
+		public bool IsInternal { get; private set; }
+		public string DisplayName { get; private set; }
+		public string DomainPropName { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
