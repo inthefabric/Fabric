@@ -3,10 +3,19 @@
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecFuncParam : FabSpecValue {
+	public class FabSpecValue : FabDto {
 
-		public int Index { get; set; }
-		public bool UsesQueryString { get; set; }
+		public string Name { get; set; }
+		public string Type { get; set; }
+		public string Description { get; set; }
+
+		public bool IsRequired { get; set; }
+		public int? Len { get; set; }
+		public int? LenMax { get; set; }
+		public int? LenMin { get; set; }
+		public int? Min { get; set; }
+		public int? Max { get; set; }
+		public string ValidRegex { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -33,6 +33,7 @@
     <Compile Include="FabHome.cs" />
     <Compile Include="FabServiceOperation.cs" />
     <Compile Include="FabService.cs" />
+    <Compile Include="Spec\FabSpecValue.cs" />
     <Compile Include="Spec\FabSpecServiceOperationParam.cs" />
     <Compile Include="Spec\FabSpecServiceOperation.cs" />
     <Compile Include="Spec\FabSpecService.cs" />

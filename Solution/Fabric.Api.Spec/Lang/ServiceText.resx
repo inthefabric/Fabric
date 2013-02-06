@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Modification" xml:space="preserve">
+  <data name="Modify" xml:space="preserve">
     <value>Modification</value>
   </data>
-  <data name="ModificationAbstract" xml:space="preserve">
+  <data name="ModifyAbstract" xml:space="preserve">
     <value>Update the Fabric graph with new items and modifications.</value>
   </data>
-  <data name="ModificationDesc" xml:space="preserve">
+  <data name="ModifyDesc" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="Oauth" xml:space="preserve">

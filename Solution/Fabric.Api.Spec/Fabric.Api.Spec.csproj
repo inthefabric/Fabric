@@ -35,6 +35,11 @@
     <Reference Include="Weaver, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpecBuilder.cs">
+      <DependentUpon>SpecBuilder.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Functions\FuncSpec.cs" />
     <Compile Include="Lang\DtoLinkText.Designer.cs">
       <DependentUpon>DtoLinkText.resx</DependentUpon>
@@ -68,11 +73,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecDoc.cs" />
-    <Compile Include="SpecDocTraversal.cs">
-      <DependentUpon>SpecDocTraversal.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lang\DtoLinkText.resx">
@@ -107,9 +107,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SpecDocTraversal.tt">
+    <None Include="SpecBuilder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SpecDocTraversal.cs</LastGenOutput>
+      <LastGenOutput>SpecBuilder.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

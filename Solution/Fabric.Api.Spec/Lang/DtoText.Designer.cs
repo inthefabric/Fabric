@@ -313,6 +313,15 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Applies a name or identifier to a particular Factor.
         ///
         ///An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
@@ -499,6 +508,33 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Root {
             get {
                 return ResourceManager.GetString("Root", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Service {
+            get {
+                return ResourceManager.GetString("Service", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ServiceOperation {
+            get {
+                return ResourceManager.GetString("ServiceOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string StepLink {
+            get {
+                return ResourceManager.GetString("StepLink", resourceCulture);
             }
         }
         

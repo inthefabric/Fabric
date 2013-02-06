@@ -3,13 +3,9 @@
 namespace Fabric.Api.Dto.Spec {
 
 	/*================================================================================================*/
-	public class FabSpecServiceOperationParam : FabDto {
+	public class FabSpecServiceOperationParam : FabSpecValue {
 
 		public string ParamType { get; set; }
-		public string Name { get; set; }
-		public string Type { get; set; }
-		public string Description { get; set; }
-		public bool IsRequired { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

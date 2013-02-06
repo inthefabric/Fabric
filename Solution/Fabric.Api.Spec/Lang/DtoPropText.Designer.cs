@@ -277,6 +277,15 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Home_Services {
+            get {
+                return ResourceManager.GetString("Home_Services", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A text-based value that can represent names, numbers, IDs, GUIDs, etc. Maximum length: 256 characters..
         /// </summary>
         internal static string Identor_Value {
@@ -732,6 +741,105 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Response_UserId {
             get {
                 return ResourceManager.GetString("Response_UserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Service_Name {
+            get {
+                return ResourceManager.GetString("Service_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Service_Operations {
+            get {
+                return ResourceManager.GetString("Service_Operations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Service_Uri {
+            get {
+                return ResourceManager.GetString("Service_Uri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ServiceOperation_Method {
+            get {
+                return ResourceManager.GetString("ServiceOperation_Method", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ServiceOperation_Name {
+            get {
+                return ResourceManager.GetString("ServiceOperation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ServiceOperation_ReturnType {
+            get {
+                return ResourceManager.GetString("ServiceOperation_ReturnType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ServiceOperation_Uri {
+            get {
+                return ResourceManager.GetString("ServiceOperation_Uri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string StepLink_Class {
+            get {
+                return ResourceManager.GetString("StepLink_Class", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string StepLink_IsOut {
+            get {
+                return ResourceManager.GetString("StepLink_IsOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string StepLink_Rel {
+            get {
+                return ResourceManager.GetString("StepLink_Rel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string StepLink_Uri {
+            get {
+                return ResourceManager.GetString("StepLink_Uri", resourceCulture);
             }
         }
         

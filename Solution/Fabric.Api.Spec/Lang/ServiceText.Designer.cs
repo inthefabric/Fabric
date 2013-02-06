@@ -63,27 +63,27 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Modification.
         /// </summary>
-        internal static string Modification {
+        internal static string Modify {
             get {
-                return ResourceManager.GetString("Modification", resourceCulture);
+                return ResourceManager.GetString("Modify", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Update the Fabric graph with new items and modifications..
         /// </summary>
-        internal static string ModificationAbstract {
+        internal static string ModifyAbstract {
             get {
-                return ResourceManager.GetString("ModificationAbstract", resourceCulture);
+                return ResourceManager.GetString("ModifyAbstract", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string ModificationDesc {
+        internal static string ModifyDesc {
             get {
-                return ResourceManager.GetString("ModificationDesc", resourceCulture);
+                return ResourceManager.GetString("ModifyDesc", resourceCulture);
             }
         }
         

@@ -521,4 +521,16 @@ After completing her new Classes, Ellie would like to add her own dog. She creat
 
 When Users rate a particular meal, they also specify the restaurant, the day/time the meal was served, and the meal type. Behind the scenes, the App uses this data to construct a new !Instance and its relationships. Because Zach's !Instances are well-defined, one User could rate the same meal (at the same restaurant) every day, creating a unique and meaningful Instance each time.)]</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

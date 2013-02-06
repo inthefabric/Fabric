@@ -381,4 +381,40 @@
   <data name="Instance_Note" xml:space="preserve">
     <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.  Maximum length: 256 characters.</value>
   </data>
+  <data name="StepLink_Class" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink_IsOut" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink_Rel" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Home_Services" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_Method" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_Name" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_ReturnType" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service_Name" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service_Operations" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

@@ -11,7 +11,7 @@ namespace Fabric.Api.Dto.Spec {
 		public string Description { get; set; }
 		public List<FabSpecDtoProp> Properties { get; set; }
 		public List<FabSpecDtoLink> Links { get; set; }
-		public List<string> AvailableFunctions { get; set; }
+		public List<string> Functions { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +19,7 @@ namespace Fabric.Api.Dto.Spec {
 		public FabSpecDto() {
 			Properties = new List<FabSpecDtoProp>();
 			Links = new List<FabSpecDtoLink>();
-			AvailableFunctions = new List<string>();
+			Functions = new List<string>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
