@@ -9,11 +9,11 @@ namespace Fabric.Api.Dto.Spec {
 		public string Type { get; set; }
 		public string Description { get; set; }
 		public bool IsOutgoing { get; set; }
-		public string FromDto { get; set; }
-		public string FromDtoConn { get; set; }
+		public string From { get; set; }
+		public string FromConn { get; set; }
 		public string Relation { get; set; }
-		public string ToDto { get; set; }
-		public string ToDtoConn { get; set; }
+		public string To { get; set; }
+		public string ToConn { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

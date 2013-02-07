@@ -104,9 +104,9 @@ namespace Fabric.Api.Spec.Lang {
         
         /// <summary>
         ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
-        ///[(EX|Documentation Note|To explain the !Class DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
+        ///[(EX|Documentation Note|To explain the !Class object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
         ///- A !Class receives Factors via its associated Artifact.
-        ///- Each Factor references two Artifa [rest of string was truncated]&quot;;.
+        ///- Each Factor references two Art [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Class {
             get {
@@ -336,9 +336,9 @@ namespace Fabric.Api.Spec.Lang {
         
         /// <summary>
         ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.
-        ///[(EX|Documentation Note|To explain the !Instance DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
+        ///[(EX|Documentation Note|To explain the !Instance object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
         ///- An !Instance receives Factors via its associated Artifact.
-        ///- Each Factor references two [rest of string was truncated]&quot;;.
+        ///- Each Factor references  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Instance {
             get {
@@ -465,9 +465,9 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This DTO is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
+        ///   Looks up a localized string similar to This object is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
         ///
-        ///This redirect is used in one particular scenario: the [[OAuth login process|Func|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the [rest of string was truncated]&quot;;.
+        ///This redirect is used in one particular scenario: the [[OAuth login process|Oper|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string OauthLogin {
             get {
@@ -503,7 +503,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Represents the root, or starting point, of all [[Traversal Service|Service|Traversal]] queries. The !Root provides traversal links to all other available objects..
+        ///   Looks up a localized string similar to Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects..
         /// </summary>
         internal static string Root {
             get {

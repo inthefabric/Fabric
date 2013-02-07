@@ -265,22 +265,22 @@
     <value>The IsDeleted value must be 'true'.</value>
   </data>
   <data name="Oauth_AccessToken_ClientId" xml:space="preserve">
-    <value>The App ID value (an integer) for the App making the request. This parameter is only used by the '[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]' and '[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]' flows.</value>
+    <value>The App ID value (an integer) for the App making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' and '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flows.</value>
   </data>
   <data name="Oauth_AccessToken_Code" xml:space="preserve">
-    <value>The authorization code obtained after a successful OAuth entry process. This parameter is only used by the '[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]' flow.</value>
+    <value>The authorization code obtained after a successful OAuth entry process. This parameter is only used by the '[[Authorization Code|Oper|Oauth.AccessTokenAuthCode]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_DataProvUserId" xml:space="preserve">
-    <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Func|Oauth.AccessTokenClientDataProv]]' flow.</value>
+    <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_GrantType" xml:space="preserve">
-    <value>Defines the desired access token flow.  The four accepted (case-sensitive) values are '[[authorization_code|Func|Oauth.AccessTokenAuthCode]]', '[[refresh|Func|Oauth.AccessTokenRefresh]]', '[[client_credentials|Func|Oauth.AccessTokenClientCredentials]]', and '[[client_data_provider|Func|Oauth.AccessTokenClientDataProv]]'.</value>
+    <value>Defines the desired access token flow.  The four accepted (case-sensitive) values are '[[authorization_code|Oper|Oauth.AccessTokenAuthCode]]', '[[refresh|Oper|Oauth.AccessTokenRefresh]]', '[[client_credentials|Oper|Oauth.AccessTokenClientCredentials]]', and '[[client_data_provider|Oper|Oauth.AccessTokenClientDataProv]]'.</value>
   </data>
   <data name="Oauth_AccessToken_RedirectUri" xml:space="preserve">
     <value>This value must be exactly the same as the redirect URI provided for the OAuth entry process.</value>
   </data>
   <data name="Oauth_AccessToken_Refresh" xml:space="preserve">
-    <value>The refresh token obtained after a successful '[[Authorization Code|Func|Oauth.AccessTokenAuthCode]]' access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the '[[Refresh|Func|Oauth.AccessTokenRefresh]]' flow.</value>
+    <value>The refresh token obtained after a successful '[[Authorization Code|Oper|Oauth.AccessTokenAuthCode]]' access token flow.  A refresh token only applies to User-based OAuth sessions, not for App-based OAuth sessions.  This parameter is only used by the '[[Refresh|Oper|Oauth.AccessTokenRefresh]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_Secret" xml:space="preserve">
     <value>The alpha-numeric Secret for the App making the request. This verifies that the App itself is making the request, and not an imposter.  For this reason, the secret code should not be shared with anyone.</value>

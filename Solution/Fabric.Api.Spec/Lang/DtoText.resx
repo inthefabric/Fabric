@@ -229,7 +229,7 @@ Every item added to Fabric is associated with (via Member) a !User and and an Ap
   </data>
   <data name="Class" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
-[(EX|Documentation Note|To explain the !Class DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
+[(EX|Documentation Note|To explain the !Class object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
 - A !Class receives Factors via its associated Artifact.
 - Each Factor references two Artifacts, which creates a relationship between them.
 - An 'is a' relationship refers to a Factor that uses an 'Is A' Descriptor.)]
@@ -479,7 +479,7 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
     <value>TODO</value>
   </data>
   <data name="Root" xml:space="preserve">
-    <value>Represents the root, or starting point, of all [[Traversal Service|Service|Traversal]] queries. The !Root provides traversal links to all other available objects.</value>
+    <value>Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects.</value>
   </data>
   <data name="VectorUnitDerived" xml:space="preserve">
     <value>TODO</value>
@@ -494,9 +494,9 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
     <value>To comply with the OAuth 2.0 specification, all Fabric OAuth requests return a FabOauthError (instead of FabFault or FabError) when errors occur.</value>
   </data>
   <data name="OauthLogin" xml:space="preserve">
-    <value>This DTO is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
+    <value>This object is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
 
-This redirect is used in one particular scenario: the [[OAuth login process|Func|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the 'code' and 'state' parameters. The failure redirect includes the 'error', 'error_description', and 'state' parameters.</value>
+This redirect is used in one particular scenario: the [[OAuth login process|Oper|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the 'code' and 'state' parameters. The failure redirect includes the 'error', 'error_description', and 'state' parameters.</value>
   </data>
   <data name="OauthLogout" xml:space="preserve">
     <value>The result of an OAuth logout.</value>
@@ -509,7 +509,7 @@ This redirect is used in one particular scenario: the [[OAuth login process|Func
   </data>
   <data name="Instance" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.
-[(EX|Documentation Note|To explain the !Instance DTO more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
+[(EX|Documentation Note|To explain the !Instance object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
 - An !Instance receives Factors via its associated Artifact.
 - Each Factor references two Artifacts, which creates a relationship between them.
 - An 'is a' relationship refers to a Factor that uses an 'Is A' Descriptor.)]

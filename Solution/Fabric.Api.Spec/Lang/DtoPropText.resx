@@ -151,7 +151,7 @@
     <value>Identifies a particular object.</value>
   </data>
   <data name="Key_Uri" xml:space="preserve">
-    <value>The API request path to get information about this Key's object.</value>
+    <value>The API path to get information about this Key's object.</value>
   </data>
   <data name="Label_Name" xml:space="preserve">
     <value>A unique title or identifier.</value>
@@ -331,7 +331,7 @@
     <value>The number of seconds until the access token expires.</value>
   </data>
   <data name="OauthAccess_RefreshToken" xml:space="preserve">
-    <value>A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]].</value>
+    <value>A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Oper|Oauth.AccessTokenClientCredentials]].</value>
   </data>
   <data name="OauthAccess_TokenType" xml:space="preserve">
     <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>

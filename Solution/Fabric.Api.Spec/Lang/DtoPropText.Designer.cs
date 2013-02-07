@@ -313,7 +313,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The API request path to get information about this Key&apos;s object..
+        ///   Looks up a localized string similar to The API path to get information about this Key&apos;s object..
         /// </summary>
         internal static string Key_Uri {
             get {
@@ -475,7 +475,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Func|Oauth.AccessTokenClientCredentials]]..
+        ///   Looks up a localized string similar to A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Oper|Oauth.AccessTokenClientCredentials]]..
         /// </summary>
         internal static string OauthAccess_RefreshToken {
             get {

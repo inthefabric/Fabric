@@ -1157,11 +1157,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsApp";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsApp");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabApp";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabApp";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1169,11 +1169,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1181,11 +1181,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsArtifactType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsArtifactType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabArtifactType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabArtifactType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1193,11 +1193,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsClass";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsClass");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabClass";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabClass";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1205,11 +1205,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsInstance";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsInstance");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabInstance";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabInstance";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1217,11 +1217,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsMember";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsMember");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabMember";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMember";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1229,11 +1229,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsMemberType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsMemberType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabMemberType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1241,11 +1241,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsMemberTypeAssign");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1253,11 +1253,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsUrl";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsUrl");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabUrl";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabUrl";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1265,11 +1265,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsUser";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsUser");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabUser";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabUser";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1277,11 +1277,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsFactor";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsFactor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabFactor";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabFactor";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1289,11 +1289,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsFactorAssertion";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsFactorAssertion");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabFactorAssertion";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabFactorAssertion";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1301,11 +1301,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsDescriptor";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsDescriptor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabDescriptor";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabDescriptor";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1313,11 +1313,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsDescriptorType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsDescriptorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabDescriptorType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabDescriptorType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1325,11 +1325,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsDirector";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsDirector");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabDirector";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabDirector";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1337,11 +1337,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsDirectorType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsDirectorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabDirectorType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabDirectorType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1349,11 +1349,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsDirectorAction";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsDirectorAction");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabDirectorAction";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabDirectorAction";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1361,11 +1361,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsEventor";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsEventor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabEventor";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabEventor";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1373,11 +1373,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsEventorType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsEventorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabEventorType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabEventorType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1385,11 +1385,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsEventorPrecision";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsEventorPrecision");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabEventorPrecision";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabEventorPrecision";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1397,11 +1397,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsIdentor";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsIdentor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabIdentor";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabIdentor";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1409,11 +1409,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsIdentorType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsIdentorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabIdentorType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabIdentorType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1421,11 +1421,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsLocator";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsLocator");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabLocator";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabLocator";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1433,11 +1433,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsLocatorType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsLocatorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabLocatorType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabLocatorType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1445,11 +1445,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVector";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVector");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVector";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVector";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1457,11 +1457,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVectorType";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVectorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVectorType";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVectorType";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1469,11 +1469,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVectorRange";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVectorRange");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVectorRange";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVectorRange";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1481,11 +1481,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVectorRangeLevel";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVectorRangeLevel");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVectorRangeLevel";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVectorRangeLevel";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1493,11 +1493,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVectorUnit");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1505,11 +1505,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVectorUnitPrefix";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVectorUnitPrefix");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVectorUnitPrefix";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVectorUnitPrefix";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1517,11 +1517,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "RootContainsVectorUnitDerived";
 					link.Description = SpecDoc.GetDtoLinkText("RootContainsVectorUnitDerived");
 					link.IsOutgoing = true;
-					link.FromDto = "FabRoot";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabRoot";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
-					link.ToDto = "FabVectorUnitDerived";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabVectorUnitDerived";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1534,11 +1534,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "AppHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("AppHasArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabApp";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabApp";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1546,11 +1546,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "AppDefinesMember";
 					link.Description = SpecDoc.GetDtoLinkText("AppDefinesMember");
 					link.IsOutgoing = true;
-					link.FromDto = "FabApp";
-					link.FromDtoConn = "OutToOneOrMore";
+					link.From = "FabApp";
+					link.FromConn = "OutToOneOrMore";
 					link.Relation = "Defines";
-					link.ToDto = "FabMember";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMember";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1563,11 +1563,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "AppHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("AppHasArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabApp";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabApp";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1575,11 +1575,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "ArtifactUsesArtifactType";
 					link.Description = SpecDoc.GetDtoLinkText("ArtifactUsesArtifactType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabArtifact";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabArtifact";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabArtifactType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifactType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1587,11 +1587,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "ClassHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("ClassHasArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabClass";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabClass";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1599,11 +1599,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "InstanceHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("InstanceHasArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabInstance";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabInstance";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1611,11 +1611,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberCreatesArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("MemberCreatesArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Creates";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1623,11 +1623,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "UrlHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("UrlHasArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabUrl";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabUrl";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1635,11 +1635,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "UserHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("UserHasArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabUser";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabUser";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1647,11 +1647,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesPrimaryArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesPrimaryArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesPrimary";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1659,11 +1659,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesRelatedArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesRelatedArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesRelated";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1671,11 +1671,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorRefinesPrimaryWithArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesPrimaryWithArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesPrimaryWith";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1683,11 +1683,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorRefinesRelatedWithArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesRelatedWithArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesRelatedWith";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1695,11 +1695,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorRefinesTypeWithArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesTypeWithArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesTypeWith";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1707,11 +1707,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesAxisArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesAxisArtifact");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesAxis";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1724,11 +1724,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "ArtifactUsesArtifactType";
 					link.Description = SpecDoc.GetDtoLinkText("ArtifactUsesArtifactType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabArtifact";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabArtifact";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabArtifactType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifactType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1741,11 +1741,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "ClassHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("ClassHasArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabClass";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabClass";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1758,11 +1758,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "InstanceHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("InstanceHasArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabInstance";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabInstance";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1775,11 +1775,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "AppDefinesMember";
 					link.Description = SpecDoc.GetDtoLinkText("AppDefinesMember");
 					link.IsOutgoing = false;
-					link.FromDto = "FabApp";
-					link.FromDtoConn = "OutToOneOrMore";
+					link.From = "FabApp";
+					link.FromConn = "OutToOneOrMore";
 					link.Relation = "Defines";
-					link.ToDto = "FabMember";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMember";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1787,11 +1787,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberHasMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("MemberHasMemberTypeAssign");
 					link.IsOutgoing = true;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabMember";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1799,11 +1799,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberHasHistoricMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("MemberHasHistoricMemberTypeAssign");
 					link.IsOutgoing = true;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "HasHistoric";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1811,11 +1811,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberCreatesArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("MemberCreatesArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Creates";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1823,11 +1823,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberCreatesMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("MemberCreatesMemberTypeAssign");
 					link.IsOutgoing = true;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Creates";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1835,11 +1835,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberCreatesFactor";
 					link.Description = SpecDoc.GetDtoLinkText("MemberCreatesFactor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Creates";
-					link.ToDto = "FabFactor";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabFactor";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1847,11 +1847,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "UserDefinesMember";
 					link.Description = SpecDoc.GetDtoLinkText("UserDefinesMember");
 					link.IsOutgoing = false;
-					link.FromDto = "FabUser";
-					link.FromDtoConn = "OutToOneOrMore";
+					link.From = "FabUser";
+					link.FromConn = "OutToOneOrMore";
 					link.Relation = "Defines";
-					link.ToDto = "FabMember";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMember";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1864,11 +1864,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberTypeAssignUsesMemberType";
 					link.Description = SpecDoc.GetDtoLinkText("MemberTypeAssignUsesMemberType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabMemberTypeAssign";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabMemberTypeAssign";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabMemberType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabMemberType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1881,11 +1881,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberHasMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("MemberHasMemberTypeAssign");
 					link.IsOutgoing = false;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabMember";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1893,11 +1893,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberHasHistoricMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("MemberHasHistoricMemberTypeAssign");
 					link.IsOutgoing = false;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "HasHistoric";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1905,11 +1905,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberCreatesMemberTypeAssign";
 					link.Description = SpecDoc.GetDtoLinkText("MemberCreatesMemberTypeAssign");
 					link.IsOutgoing = false;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Creates";
-					link.ToDto = "FabMemberTypeAssign";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMemberTypeAssign";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1917,11 +1917,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberTypeAssignUsesMemberType";
 					link.Description = SpecDoc.GetDtoLinkText("MemberTypeAssignUsesMemberType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabMemberTypeAssign";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabMemberTypeAssign";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabMemberType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabMemberType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1934,11 +1934,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "UrlHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("UrlHasArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabUrl";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabUrl";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1951,11 +1951,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "UserHasArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("UserHasArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabUser";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabUser";
+					link.FromConn = "OutToOne";
 					link.Relation = "Has";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1963,11 +1963,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "UserDefinesMember";
 					link.Description = SpecDoc.GetDtoLinkText("UserDefinesMember");
 					link.IsOutgoing = true;
-					link.FromDto = "FabUser";
-					link.FromDtoConn = "OutToOneOrMore";
+					link.From = "FabUser";
+					link.FromConn = "OutToOneOrMore";
 					link.Relation = "Defines";
-					link.ToDto = "FabMember";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabMember";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -1980,11 +1980,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "MemberCreatesFactor";
 					link.Description = SpecDoc.GetDtoLinkText("MemberCreatesFactor");
 					link.IsOutgoing = false;
-					link.FromDto = "FabMember";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabMember";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Creates";
-					link.ToDto = "FabFactor";
-					link.ToDtoConn = "InFromOne";
+					link.To = "FabFactor";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1992,11 +1992,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesPrimaryArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesPrimaryArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesPrimary";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2004,11 +2004,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesRelatedArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesRelatedArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesRelated";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2016,11 +2016,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesFactorAssertion";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesFactorAssertion");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabFactorAssertion";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabFactorAssertion";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2028,11 +2028,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorReplacesFactor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorReplacesFactor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Replaces";
-					link.ToDto = "FabFactor";
-					link.ToDtoConn = "InFromZeroOrOne";
+					link.To = "FabFactor";
+					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2040,11 +2040,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesDescriptor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDescriptor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDescriptor";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabDescriptor";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2052,11 +2052,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesDirector";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDirector");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDirector";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabDirector";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2064,11 +2064,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesEventor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesEventor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabEventor";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabEventor";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2076,11 +2076,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesIdentor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesIdentor");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabIdentor";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabIdentor";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2088,11 +2088,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesLocator";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesLocator");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabLocator";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabLocator";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2100,11 +2100,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesVector";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesVector");
 					link.IsOutgoing = true;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVector";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabVector";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2117,11 +2117,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesFactorAssertion";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesFactorAssertion");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabFactorAssertion";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabFactorAssertion";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2137,11 +2137,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesDescriptor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDescriptor");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDescriptor";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabDescriptor";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2149,11 +2149,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorUsesDescriptorType";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorUsesDescriptorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDescriptorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDescriptorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2161,11 +2161,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorRefinesPrimaryWithArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesPrimaryWithArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesPrimaryWith";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2173,11 +2173,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorRefinesRelatedWithArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesRelatedWithArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesRelatedWith";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2185,11 +2185,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorRefinesTypeWithArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesTypeWithArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesTypeWith";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2202,11 +2202,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DescriptorUsesDescriptorType";
 					link.Description = SpecDoc.GetDtoLinkText("DescriptorUsesDescriptorType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDescriptor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDescriptor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDescriptorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDescriptorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2219,11 +2219,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesDirector";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDirector");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDirector";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabDirector";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2231,11 +2231,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DirectorUsesDirectorType";
 					link.Description = SpecDoc.GetDtoLinkText("DirectorUsesDirectorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDirector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDirector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDirectorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDirectorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2243,11 +2243,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DirectorUsesPrimaryDirectorAction";
 					link.Description = SpecDoc.GetDtoLinkText("DirectorUsesPrimaryDirectorAction");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDirector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDirector";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesPrimary";
-					link.ToDto = "FabDirectorAction";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDirectorAction";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2255,11 +2255,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DirectorUsesRelatedDirectorAction";
 					link.Description = SpecDoc.GetDtoLinkText("DirectorUsesRelatedDirectorAction");
 					link.IsOutgoing = true;
-					link.FromDto = "FabDirector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDirector";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesRelated";
-					link.ToDto = "FabDirectorAction";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDirectorAction";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2272,11 +2272,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DirectorUsesDirectorType";
 					link.Description = SpecDoc.GetDtoLinkText("DirectorUsesDirectorType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDirector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDirector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabDirectorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDirectorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2289,11 +2289,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DirectorUsesPrimaryDirectorAction";
 					link.Description = SpecDoc.GetDtoLinkText("DirectorUsesPrimaryDirectorAction");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDirector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDirector";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesPrimary";
-					link.ToDto = "FabDirectorAction";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDirectorAction";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2301,11 +2301,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "DirectorUsesRelatedDirectorAction";
 					link.Description = SpecDoc.GetDtoLinkText("DirectorUsesRelatedDirectorAction");
 					link.IsOutgoing = false;
-					link.FromDto = "FabDirector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabDirector";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesRelated";
-					link.ToDto = "FabDirectorAction";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabDirectorAction";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2318,11 +2318,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesEventor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesEventor");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabEventor";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabEventor";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2330,11 +2330,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "EventorUsesEventorType";
 					link.Description = SpecDoc.GetDtoLinkText("EventorUsesEventorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabEventor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabEventor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabEventorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabEventorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2342,11 +2342,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "EventorUsesEventorPrecision";
 					link.Description = SpecDoc.GetDtoLinkText("EventorUsesEventorPrecision");
 					link.IsOutgoing = true;
-					link.FromDto = "FabEventor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabEventor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabEventorPrecision";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabEventorPrecision";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2359,11 +2359,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "EventorUsesEventorType";
 					link.Description = SpecDoc.GetDtoLinkText("EventorUsesEventorType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabEventor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabEventor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabEventorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabEventorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2376,11 +2376,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "EventorUsesEventorPrecision";
 					link.Description = SpecDoc.GetDtoLinkText("EventorUsesEventorPrecision");
 					link.IsOutgoing = false;
-					link.FromDto = "FabEventor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabEventor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabEventorPrecision";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabEventorPrecision";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2393,11 +2393,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesIdentor";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesIdentor");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabIdentor";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabIdentor";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2405,11 +2405,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "IdentorUsesIdentorType";
 					link.Description = SpecDoc.GetDtoLinkText("IdentorUsesIdentorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabIdentor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabIdentor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabIdentorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabIdentorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2422,11 +2422,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "IdentorUsesIdentorType";
 					link.Description = SpecDoc.GetDtoLinkText("IdentorUsesIdentorType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabIdentor";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabIdentor";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabIdentorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabIdentorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2439,11 +2439,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesLocator";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesLocator");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabLocator";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabLocator";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2451,11 +2451,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "LocatorUsesLocatorType";
 					link.Description = SpecDoc.GetDtoLinkText("LocatorUsesLocatorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabLocator";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabLocator";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabLocatorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabLocatorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2468,11 +2468,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "LocatorUsesLocatorType";
 					link.Description = SpecDoc.GetDtoLinkText("LocatorUsesLocatorType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabLocator";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabLocator";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabLocatorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabLocatorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2485,11 +2485,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "FactorUsesVector";
 					link.Description = SpecDoc.GetDtoLinkText("FactorUsesVector");
 					link.IsOutgoing = false;
-					link.FromDto = "FabFactor";
-					link.FromDtoConn = "OutToZeroOrOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVector";
-					link.ToDtoConn = "InFromOneOrMore";
+					link.To = "FabVector";
+					link.ToConn = "InFromOneOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2497,11 +2497,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesAxisArtifact";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesAxisArtifact");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "UsesAxis";
-					link.ToDto = "FabArtifact";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabArtifact";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2509,11 +2509,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesVectorType";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesVectorType");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2521,11 +2521,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesVectorUnit");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2533,11 +2533,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesVectorUnitPrefix";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesVectorUnitPrefix");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorUnitPrefix";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnitPrefix";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2550,11 +2550,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesVectorType";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesVectorType");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorType";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorType";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2562,11 +2562,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorTypeUsesVectorRange";
 					link.Description = SpecDoc.GetDtoLinkText("VectorTypeUsesVectorRange");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVectorType";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorType";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorRange";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorRange";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2579,11 +2579,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorTypeUsesVectorRange";
 					link.Description = SpecDoc.GetDtoLinkText("VectorTypeUsesVectorRange");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVectorType";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorType";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorRange";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorRange";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2591,11 +2591,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorRangeUsesVectorRangeLevel";
 					link.Description = SpecDoc.GetDtoLinkText("VectorRangeUsesVectorRangeLevel");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVectorRange";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabVectorRange";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorRangeLevel";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorRangeLevel";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2608,11 +2608,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorRangeUsesVectorRangeLevel";
 					link.Description = SpecDoc.GetDtoLinkText("VectorRangeUsesVectorRangeLevel");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVectorRange";
-					link.FromDtoConn = "OutToZeroOrMore";
+					link.From = "FabVectorRange";
+					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorRangeLevel";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorRangeLevel";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2625,11 +2625,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesVectorUnit");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2637,11 +2637,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUnitDerivedDefinesVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUnitDerivedDefinesVectorUnit");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVectorUnitDerived";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorUnitDerived";
+					link.FromConn = "OutToOne";
 					link.Relation = "Defines";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2649,11 +2649,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUnitDerivedRaisesToExpVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUnitDerivedRaisesToExpVectorUnit");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVectorUnitDerived";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorUnitDerived";
+					link.FromConn = "OutToOne";
 					link.Relation = "RaisesToExp";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2666,11 +2666,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUsesVectorUnitPrefix";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUsesVectorUnitPrefix");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVector";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVector";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorUnitPrefix";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnitPrefix";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2678,11 +2678,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUnitDerivedUsesVectorUnitPrefix";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUnitDerivedUsesVectorUnitPrefix");
 					link.IsOutgoing = false;
-					link.FromDto = "FabVectorUnitDerived";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorUnitDerived";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorUnitPrefix";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnitPrefix";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
@@ -2695,11 +2695,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUnitDerivedDefinesVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUnitDerivedDefinesVectorUnit");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVectorUnitDerived";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorUnitDerived";
+					link.FromConn = "OutToOne";
 					link.Relation = "Defines";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2707,11 +2707,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUnitDerivedRaisesToExpVectorUnit";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUnitDerivedRaisesToExpVectorUnit");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVectorUnitDerived";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorUnitDerived";
+					link.FromConn = "OutToOne";
 					link.Relation = "RaisesToExp";
-					link.ToDto = "FabVectorUnit";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnit";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -2719,11 +2719,11 @@ namespace Fabric.Api.Spec {
 					link.Type = "VectorUnitDerivedUsesVectorUnitPrefix";
 					link.Description = SpecDoc.GetDtoLinkText("VectorUnitDerivedUsesVectorUnitPrefix");
 					link.IsOutgoing = true;
-					link.FromDto = "FabVectorUnitDerived";
-					link.FromDtoConn = "OutToOne";
+					link.From = "FabVectorUnitDerived";
+					link.FromConn = "OutToOne";
 					link.Relation = "Uses";
-					link.ToDto = "FabVectorUnitPrefix";
-					link.ToDtoConn = "InFromZeroOrMore";
+					link.To = "FabVectorUnitPrefix";
+					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					break;
