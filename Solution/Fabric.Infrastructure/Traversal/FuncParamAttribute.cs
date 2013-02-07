@@ -11,7 +11,6 @@ namespace Fabric.Infrastructure.Traversal {
 		public int? Max { get; set; }
 
 		public bool IsRequired { get; set; }
-		public string DisplayName { get; set; }
 		public string FuncResxKey { get; set; }
 
 
@@ -20,7 +19,6 @@ namespace Fabric.Infrastructure.Traversal {
 		public FuncParamAttribute(int pParamIndex) {
 			ParamIndex = pParamIndex;
 			IsRequired = true;
-			DisplayName = null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

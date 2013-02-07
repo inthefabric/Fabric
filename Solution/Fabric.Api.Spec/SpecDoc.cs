@@ -9,7 +9,6 @@ using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Spec.Lang;
 using Fabric.Api.Traversal;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Traversal;
@@ -251,8 +250,6 @@ namespace Fabric.Api.Spec {
 				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 			var list = new List<FabSpecServiceOperationParam>();
 
-			Log.Debug(" - Fields: "+fields.Length);
-
 			foreach ( FieldInfo field in fields ) {
 				object[] opParams = field.GetCustomAttributes(typeof(ServiceOpParamAttribute), true);
 
@@ -260,10 +257,7 @@ namespace Fabric.Api.Spec {
 					continue;
 				}
 
-				Log.Debug("   * FOUND: "+field.Name);
-
 				ServiceOpParamAttribute att = (ServiceOpParamAttribute)opParams[0];
-
 				var p = new FabSpecServiceOperationParam();
 
 				if ( att.DomainClass != null ) {
@@ -357,7 +351,7 @@ namespace Fabric.Api.Spec {
 				FuncParamAttribute fpa = (FuncParamAttribute)fpaList[0];
 				
 				var p = new FabSpecTravFuncParam();
-				p.Name = fpa.DisplayName;
+				p.Name = pi.Name;
 				p.Description = GetFuncParamText((fpa.FuncResxKey ?? resxKey)+"_"+pi.Name);
 				p.Index = fpa.ParamIndex;
 				p.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
