@@ -10,7 +10,7 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModEventorsUri, typeof(FabEventor),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CreateEventor : CreateFactorElement<Eventor> {
 
 		public const string EveTypeParam = "EventorTypeId";

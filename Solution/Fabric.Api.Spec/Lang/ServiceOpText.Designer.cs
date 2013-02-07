@@ -178,7 +178,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete a Factor. The authenticated Member must be the Factor&apos;s creator..
+        ///   Looks up a localized string similar to Delete a Factor..
         /// </summary>
         internal static string Modify_DeleteFactor {
             get {

@@ -10,7 +10,7 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModDirectorsUri, typeof(FabDirector),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CreateDirector : CreateFactorElement<Director> {
 
 		public const string DirTypeParam = "DirectorTypeId";

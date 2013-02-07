@@ -157,7 +157,7 @@
     <value>Move a Factor from the 'incomplete' state to the 'complete' state.  A Factor must have a Descriptor before it can be completed. Once a Factor is completed, it can only be deleted -- no further modifications are permitted.</value>
   </data>
   <data name="Modify_DeleteFactor" xml:space="preserve">
-    <value>Delete a Factor. The authenticated Member must be the Factor's creator.</value>
+    <value>Delete a Factor.</value>
   </data>
   <data name="Oauth_AccessToken" xml:space="preserve">
     <value>Get an OAuth access token using one of four 'flows'.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the '[[Client Credentials|Func|Oauth.AccessTokenClientCredentials]]' flow) for information about the available OAuth flows.

@@ -9,7 +9,7 @@ namespace Fabric.Api.Modify {
 
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Put, FabHome.ModFactorsUri, typeof(FabFactor),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CompleteFactor : UpdateFactor { //TEST: CompleteFactor
 		
 		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, typeof(FactorAssertion))]

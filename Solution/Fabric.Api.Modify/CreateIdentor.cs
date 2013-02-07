@@ -10,7 +10,7 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModIdentorsUri, typeof(FabIdentor),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CreateIdentor : CreateFactorElement<Identor> {
 
 		public const string IdenTypeParam = "IdentorTypeId";

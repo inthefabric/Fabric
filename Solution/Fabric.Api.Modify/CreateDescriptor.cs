@@ -11,7 +11,7 @@ namespace Fabric.Api.Modify {
 
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModDescriptorsUri, typeof(FabDescriptor),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CreateDescriptor : CreateFactorElement<Descriptor> {
 
 		public const string DescTypeParam = "DescriptorTypeId";

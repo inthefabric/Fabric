@@ -205,6 +205,7 @@ namespace Fabric.Api.Spec {
 			sso.Method = pServiceOp.Method;
 			sso.ReturnType = pServiceOp.ReturnType;
 			sso.Description = GetServiceOpText(pService.Name+"_"+sso.Name);
+			sso.RequiredAuth = ServiceAuthType.None+"";
 
 			Assembly assembly = AssemblyMap[pService.Name];
 

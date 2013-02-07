@@ -11,7 +11,7 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModLocatorsUri, typeof(FabLocator),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CreateLocator : CreateFactorElement<Locator> {
 		
 		public const string LocTypeParam = "LocatorTypeId";

@@ -12,7 +12,7 @@ namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModVectorsUri, typeof(FabVector),
-		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(Factor))]
+		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CreateVector : CreateFactorElement<Vector> {
 
 		public const string VecTypeParam = "VectorTypeId";
