@@ -201,7 +201,7 @@ The second step is 'scope' acceptance.  The page tells the user that a particula
 	
 Similar to the login step, if a user has already accepted 'scope' for a particular App, the second step is skipped.  Thus, in the case where a user is already authenticated with Fabric and has already allowed App access, the entire process results in a success redirect.
 	
-See the FabOauthLogin object for the query string parameters that can be included in the success and error redirects.</value>
+See FabOauthLogin for the query string parameters that can be included in the success and error redirects.</value>
   </data>
   <data name="Oauth_Logout" xml:space="preserve">
     <value>Terminates a particular OAuth session by invalidating the session's access token. Any further OAuth requests made with this particular access token are rejected.

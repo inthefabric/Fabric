@@ -268,7 +268,7 @@ namespace Fabric.Api.Spec {
 				p.Name = att.Name;
 				p.ParamType = att.ParamType+"";
 				p.Type = SchemaHelperProp.GetTypeName(field.FieldType);
-				p.IsRequired = att.IsRequired;
+				p.IsOptional = (att.IsRequired ? (bool?)null : true);
 				p.Description = GetServiceOpParamText(
 					pService.Name+"_"+
 					(pServiceOppAtt.ResxKey ?? pServiceOp.Name)+"_"+
@@ -320,7 +320,8 @@ namespace Fabric.Api.Spec {
 				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(n+"_"+pi.Name);
-				SpecBuilder.FillSpecDtoProp(n, domPropName, specProp); //overwrites in most cases
+				specProp.IsOptional = (dpa != null && dpa.IsOptional ? true : (bool?)null);
+				SpecBuilder.FillSpecDtoProp(n, domPropName, specProp); //overwrites in many cases
 				results.Add(pi.Name, specProp);
 			}
 
@@ -358,7 +359,7 @@ namespace Fabric.Api.Spec {
 				p.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				p.Min = fpa.Min;
 				p.Max = fpa.Max;
-				p.IsRequired = fpa.IsRequired;
+				p.IsOptional = (fpa.IsRequired ? (bool?)null : true);
 				func.Parameters.Add(p);
 			}
 

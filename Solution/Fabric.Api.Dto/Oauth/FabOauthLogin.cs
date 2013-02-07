@@ -23,28 +23,28 @@ namespace Fabric.Api.Dto.Oauth {
 		[DtoProp("error_description")]
 		public string ErrorDesc { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public bool ShowLoginPage { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public long AppId { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public string AppName { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public long LoggedUserId { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public string LoggedUserName { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public string LoginErrorText { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public string ScopeRedirect { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public string ScopeCode { get; set; }
 
 

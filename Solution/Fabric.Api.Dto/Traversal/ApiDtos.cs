@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 2:43:15 PM
+// Generated on 2/7/2013 5:12:52 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,11 @@ namespace Fabric.Api.Dto.Traversal {
 	
 	/*================================================================================================*/
 	public abstract class FabNodeForType : FabNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Description { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -40,8 +43,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public abstract class FabNodeForAction : FabNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long Performed { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -71,7 +77,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public abstract class FabArtifactOwnerNode : FabNode {
-	
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			
@@ -92,7 +97,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabRoot : FabNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public int RootId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -121,8 +127,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabApp : FabArtifactOwnerNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long AppId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -157,9 +166,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabArtifact : FabNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long ArtifactId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public bool IsPrivate { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long Created { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -194,7 +208,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabArtifactType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long ArtifactTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -225,10 +240,17 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabClass : FabArtifactOwnerNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long ClassId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Disamb { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -269,10 +291,17 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabInstance : FabArtifactOwnerNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long InstanceId { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Name { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Disamb { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -313,7 +342,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabMember : FabNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long MemberId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -342,7 +372,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabMemberType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long MemberTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -373,7 +404,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabMemberTypeAssign : FabNodeForAction {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long MemberTypeAssignId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -404,9 +436,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabUrl : FabArtifactOwnerNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long UrlId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string AbsoluteUrl { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -444,8 +481,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabUser : FabArtifactOwnerNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long UserId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -480,11 +520,20 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabFactor : FabNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long FactorId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public bool IsDefining { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long Created { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public long? Completed { get; set; }
+		
+		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -526,7 +575,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabFactorAssertion : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long FactorAssertionId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -557,7 +607,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public abstract class FabFactorElementNode : FabNode {
-	
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
 			
@@ -578,7 +627,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabDescriptor : FabFactorElementNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long DescriptorId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -609,7 +659,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabDescriptorType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long DescriptorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -640,7 +691,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabDirector : FabFactorElementNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long DirectorId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -671,7 +723,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabDirectorType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long DirectorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -702,7 +755,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabDirectorAction : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long DirectorActionId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -733,8 +787,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabEventor : FabFactorElementNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long EventorId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long DateTime { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -768,7 +825,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabEventorType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long EventorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -799,7 +857,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabEventorPrecision : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long EventorPrecisionId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -830,8 +889,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabIdentor : FabFactorElementNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long IdentorId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Value { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -866,7 +928,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabIdentorType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long IdentorTypeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -897,10 +960,17 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabLocator : FabFactorElementNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long LocatorId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double ValueX { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double ValueY { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double ValueZ { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -940,13 +1010,26 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabLocatorType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long LocatorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double MinX { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double MaxX { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double MinY { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double MaxY { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double MinZ { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double MaxZ { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -995,8 +1078,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVector : FabFactorElementNode {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long Value { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1030,9 +1116,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVectorType : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long Min { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long Max { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1069,7 +1160,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVectorRange : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorRangeId { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1100,8 +1192,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVectorRangeLevel : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorRangeLevelId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public float Position { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1135,8 +1230,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVectorUnit : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorUnitId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Symbol { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1171,9 +1269,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVectorUnitPrefix : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorUnitPrefixId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Symbol { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double Amount { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
@@ -1211,8 +1314,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
 	public class FabVectorUnitDerived : FabNodeForType {
-	
+		
+		[DtoProp(IsOptional=false)]
 		public long VectorUnitDerivedId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public int Exponent { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {

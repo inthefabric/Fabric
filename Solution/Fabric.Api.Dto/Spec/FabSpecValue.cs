@@ -9,7 +9,7 @@ namespace Fabric.Api.Dto.Spec {
 		public string Type { get; set; }
 		public string Description { get; set; }
 
-		public bool IsRequired { get; set; }
+		public bool? IsOptional { get; set; }
 		public int? Len { get; set; }
 		public int? LenMax { get; set; }
 		public int? LenMin { get; set; }

@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Infrastructure.Api.Faults;
+﻿using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {

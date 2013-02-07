@@ -32,7 +32,6 @@ foreach ( string name in nodes ) {
 #>
 	/*================================================================================================*/
 	public <#= abs #>class Fab<#= node.Name #> : Fab<#= baseNode #> {
-	
 <#
 	IList<SchemaHelperProp> props = hn.GetProps(true);
 	string propList = "";
@@ -41,6 +40,7 @@ foreach ( string name in nodes ) {
 		WeaverPropSchema prop = hp.PropSchema;
 		string propType = hp.TypeName;
 		string propName = prop.Name;
+		string isOpt = (prop.IsNullable == true ? "true" : "false");
 
 		if ( propName == node.Name+"Id" ) {
 			hasTypeId = true;
@@ -48,6 +48,8 @@ foreach ( string name in nodes ) {
 
 		propList += (propList == "" ? "" : ", ")+"\""+propName+"\"";
 #>
+		
+		[DtoProp(IsOptional=<#= isOpt #>)]
 		public <#= propType+" "+propName #> { get; set; }
 <#
 	} //end prop loop

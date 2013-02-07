@@ -23,13 +23,13 @@ namespace Fabric.Api.Dto.Oauth {
 		[DtoProp("expires_in", DomainPropName="Expires")]
 		public int ExpiresIn { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public long OauthAccessId { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public long AppId { get; set; }
 
-		[DtoProp(true)]
+		[DtoProp(IsInternal=true)]
 		public long? UserId { get; set; }
 		
 		
