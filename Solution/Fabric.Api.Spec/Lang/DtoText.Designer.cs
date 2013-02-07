@@ -215,15 +215,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Dto {
-            get {
-                return ResourceManager.GetString("Dto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to When a fault or error occurs, a !FabError is returned in place of the expected response data. The information it provides should help determine what caused the issue for the given request..
         /// </summary>
         internal static string Error {
@@ -494,6 +485,15 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The base class for all !Objects returned by Fabric&apos;s services..
+        /// </summary>
+        internal static string Object {
+            get {
+                return ResourceManager.GetString("Object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The API response wrapper; contains the Data payload and other metadata..
         /// </summary>
         internal static string Response {
@@ -503,7 +503,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Represents the root, or starting point, of all [[Traversal Service|Service|Traversal]] queries. The !Root provides traversal links to all other available objects..
         /// </summary>
         internal static string Root {
             get {
@@ -512,7 +512,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A collection of similar ServiceOperations which all share a similar purpose..
         /// </summary>
         internal static string Service {
             get {
@@ -521,7 +521,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A task, query, or operation that belongs to a Service..
         /// </summary>
         internal static string ServiceOperation {
             get {

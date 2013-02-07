@@ -11,7 +11,6 @@ using Fabric.Api.Spec.Lang;
 using Fabric.Api.Traversal;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Traversal;
 
@@ -62,7 +61,7 @@ namespace Fabric.Api.Spec {
 			Objects.Add(resp);
 
 			foreach ( Type t in objectAssembly.GetTypes() ) {
-				if ( t.IsInterface || t.IsAbstract ) { continue; }
+				if ( t.IsInterface ) { continue; }
 				if ( !typeof(IFabObject).IsAssignableFrom(t) ) { continue; }
 
 				FabSpecObject sd = GetSpecDto(t);
@@ -95,9 +94,6 @@ namespace Fabric.Api.Spec {
 			foreach ( FabService svc in home.Services ) {
 				Services.Add(GetSpecService(svc));
 			}
-
-			//TODO: load links and availablefunctions for Traversal
-			//TODO: load ServiceOpParams
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

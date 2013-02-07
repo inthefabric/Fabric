@@ -169,15 +169,6 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The name of the current DTO class..
-        /// </summary>
-        internal static string Dto_Dto {
-            get {
-                return ResourceManager.GetString("Dto_Dto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A numeric value which identifies the specific error type..
         /// </summary>
         internal static string Error_Code {
@@ -187,16 +178,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The name associated with the error code..
-        /// </summary>
-        internal static string Error_CodeName {
-            get {
-                return ResourceManager.GetString("Error_CodeName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Information about the error..
+        ///   Looks up a localized string similar to A sentence or paragraph providing details about the error..
         /// </summary>
         internal static string Error_Message {
             get {
@@ -205,11 +187,11 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A descriptive name that is associated with the error code..
         /// </summary>
-        internal static string Error_Type {
+        internal static string Error_Name {
             get {
-                return ResourceManager.GetString("Error_Type", resourceCulture);
+                return ResourceManager.GetString("Error_Name", resourceCulture);
             }
         }
         
@@ -457,7 +439,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A summary of this object&apos;s intended meaning or purpose..
         /// </summary>
         internal static string NodeForType_Description {
             get {
@@ -466,7 +448,7 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A descriptive name or title..
         /// </summary>
         internal static string NodeForType_Name {
             get {
@@ -579,6 +561,15 @@ namespace Fabric.Api.Spec.Lang {
         internal static string OauthLogout_Success {
             get {
                 return ResourceManager.GetString("OauthLogout_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data type of this object..
+        /// </summary>
+        internal static string Object_FabType {
+            get {
+                return ResourceManager.GetString("Object_FabType", resourceCulture);
             }
         }
         
@@ -840,15 +831,6 @@ namespace Fabric.Api.Spec.Lang {
         internal static string StepLink_Uri {
             get {
                 return ResourceManager.GetString("StepLink_Uri", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string TODO {
-            get {
-                return ResourceManager.GetString("TODO", resourceCulture);
             }
         }
         

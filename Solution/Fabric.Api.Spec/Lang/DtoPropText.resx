@@ -136,10 +136,10 @@
     <value>Specifies the level of accessibility. A private !Crowd is called a 'Circle'.</value>
   </data>
   <data name="Error_Message" xml:space="preserve">
-    <value>Information about the error.</value>
+    <value>A sentence or paragraph providing details about the error.</value>
   </data>
-  <data name="Error_CodeName" xml:space="preserve">
-    <value>The name associated with the error code.</value>
+  <data name="Error_Name" xml:space="preserve">
+    <value>A descriptive name that is associated with the error code.</value>
   </data>
   <data name="Error_Code" xml:space="preserve">
     <value>A numeric value which identifies the specific error type.</value>
@@ -219,9 +219,6 @@
   <data name="Factor_Note" xml:space="preserve">
     <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
   </data>
-  <data name="TODO" xml:space="preserve">
-    <value>TODO</value>
-  </data>
   <data name="NodeForAction_Note" xml:space="preserve">
     <value>TODO</value>
   </data>
@@ -229,13 +226,13 @@
     <value>TODO</value>
   </data>
   <data name="NodeForType_Description" xml:space="preserve">
-    <value>TODO</value>
+    <value>A summary of this object's intended meaning or purpose.</value>
   </data>
   <data name="NodeForType_Name" xml:space="preserve">
-    <value>TODO</value>
+    <value>A descriptive name or title.</value>
   </data>
-  <data name="Dto_Dto" xml:space="preserve">
-    <value>The name of the current DTO class.</value>
+  <data name="Object_FabType" xml:space="preserve">
+    <value>The data type of this object.</value>
   </data>
   <data name="Node_Uri" xml:space="preserve">
     <value>TODO</value>
@@ -322,9 +319,6 @@
     <value>TODO</value>
   </data>
   <data name="Response_IsError" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="Error_Type" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="Response_Functions" xml:space="preserve">
