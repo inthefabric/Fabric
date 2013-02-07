@@ -28,7 +28,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				TypeId = Data.ParamAt<long>(0);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepFault(FabFault.Code.IncorrectParamType, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
 					"Could not convert to type 'long'.", 0, ex);
 			}
 

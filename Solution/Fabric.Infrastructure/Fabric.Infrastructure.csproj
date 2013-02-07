@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="Weaver\DomainBuilder.cs" />
     <Compile Include="Api\Faults\FabPreventedFault.cs" />
-    <Compile Include="Api\Faults\FabInternalFault.cs" />
     <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
   </ItemGroup>
   <ItemGroup>

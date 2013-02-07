@@ -65,7 +65,7 @@ namespace Fabric.Api.Traversal.Steps {
 
 			if ( next == null ) {
 				IStep step = (pProxyForFunc == null ? this : (IStep)pProxyForFunc);
-				throw new StepFault(FabFault.Code.InvalidStep, step,
+				throw new FabStepFault(FabFault.Code.InvalidStep, step,
 					"The attempted next step ('"+pStepText+"') is not supported by the current step.");
 			}
 

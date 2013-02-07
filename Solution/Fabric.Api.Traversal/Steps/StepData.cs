@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
+using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Traversal.Steps {
 	
@@ -23,7 +24,8 @@ namespace Fabric.Api.Traversal.Steps {
 			int pi2 = Command.LastIndexOf(')');
 
 			if ( (pi != -1 && pi2 < pi) || (pi == -1 && pi2 != -1) ) {
-				throw new Exception("Invalid parameter syntax: '"+RawString+"'.");
+				throw new FabStepDataFault(FabFault.Code.InvalidParamSyntax,
+					"Invalid parameter syntax: '"+RawString+"'.");
 			}
 
 			if ( pi == -1 ) {
@@ -35,13 +37,15 @@ namespace Fabric.Api.Traversal.Steps {
 			int len = p.Length;
 
 			if ( len == 0 || p[len-1] != ')' ) {
-				throw new Exception("Invalid parameter syntax: '"+RawString+"'.");
+				throw new FabStepDataFault(FabFault.Code.InvalidParamSyntax,
+					"Invalid parameter syntax: '"+RawString+"'.");
 			}
 
 			p = p.Substring(0, len-1);
 
 			if ( p.Length == 0 ) {
-				throw new Exception("Empty parameter list: '"+RawString+"'.");
+				throw new FabStepDataFault(FabFault.Code.IncorrectParamCount,
+					"Empty parameter list: '"+RawString+"'.");
 			}
 
 			Params = Regex.Replace(p, @"\s*", "").Split(',');

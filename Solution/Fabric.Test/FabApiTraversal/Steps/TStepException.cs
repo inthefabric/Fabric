@@ -65,7 +65,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			IStep step = vSteps[pStepIndex];
 			const string msg = "this is a test.";
 
-			var se = new StepFault(code, step, msg);
+			var se = new FabStepFault(code, step, msg);
 
 			Assert.AreEqual(code, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(step, se.Step, "Incorrect Step.");
@@ -74,9 +74,9 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(pStepText, se.StepText, "Incorrect StepText.");
 			Assert.AreEqual(null, se.ParamText, "Incorrect ParamText.");
 
-			var expectMsg = "IncorrectParamCount (2001): "+msg+
-				"\nStep "+pStepIndex+": '"+pStepText+"'";
+			var expectMsg = msg+"\nStep "+pStepIndex+": '"+pStepText+"'";
 			Assert.AreEqual(expectMsg, se.Message, "Incorrect Message.");
+			Assert.AreEqual(2001, (int)se.ErrCode, "Incorrect ErrCode.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -87,7 +87,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			IStep step = vSteps[2];
 			const string msg = "this is a test.";
 
-			var se = new StepFault(code, step, msg, pParamIndex);
+			var se = new FabStepFault(code, step, msg, pParamIndex);
 
 			Assert.AreEqual(code, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(step, se.Step, "Incorrect Step.");
@@ -96,9 +96,9 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(Step2Raw, se.StepText, "Incorrect StepText.");
 			Assert.AreEqual("p"+pParamIndex, se.ParamText, "Incorrect ParamText.");
 
-			var expectMsg = "IncorrectParamValue (2002): "+msg+
-				"\nStep 2: '"+Step2Raw+"'"+"\nParam "+pParamIndex+": 'p"+pParamIndex+"'";
+			var expectMsg = msg+"\nStep 2: '"+Step2Raw+"'"+"\nParam "+pParamIndex+": 'p"+pParamIndex+"'";
 			Assert.AreEqual(expectMsg, se.Message, "Incorrect Message.");
+			Assert.AreEqual(2002, (int)se.ErrCode, "Incorrect ErrCode.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -109,7 +109,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			IStep step = vSteps[2];
 			const string msg = "this is a test.";
 
-			var se = new StepFault(code, step, msg, pParamIndex);
+			var se = new FabStepFault(code, step, msg, pParamIndex);
 
 			Assert.AreEqual(code, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(step, se.Step, "Incorrect Step.");
@@ -118,16 +118,16 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(Step2Raw, se.StepText, "Incorrect StepText.");
 			Assert.AreEqual(null, se.ParamText, "Incorrect ParamText.");
 
-			var expectMsg = "IncorrectParamValue (2002): "+msg+
-				"\nStep 2: '"+Step2Raw+"'"+"\nParam "+pParamIndex+": ''";
+			var expectMsg = msg+"\nStep 2: '"+Step2Raw+"'"+"\nParam "+pParamIndex+": ''";
 			Assert.AreEqual(expectMsg, se.Message, "Incorrect Message.");
+			Assert.AreEqual(2002, (int)se.ErrCode, "Incorrect ErrCode.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NewInnerException() {
 			var e = new Exception("inner");
-			var se = new StepFault(FabFault.Code.IncorrectParamCount, vSteps[2], "x", -1, e);
+			var se = new FabStepFault(FabFault.Code.IncorrectParamCount, vSteps[2], "x", -1, e);
 			Assert.AreEqual(e, se.InnerException, "Incorrect InnerException.");
 		}
 

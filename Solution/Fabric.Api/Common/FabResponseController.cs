@@ -6,9 +6,9 @@ using Fabric.Api.Services.Views;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
 using Nancy;
 using ServiceStack.Text;
-using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Common {
 
@@ -83,6 +83,7 @@ namespace Fabric.Api.Common {
 			FabError err;
 
 			if ( pEx is FabFault ) {
+				ExceptionIsHandled();
 				err = FabError.ForFault(pEx as FabFault);
 			}
 			else {

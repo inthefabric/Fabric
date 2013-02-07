@@ -72,8 +72,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			var s = new TestNodeStep(new Path());
 			var d = new StepData(pStepText);
 
-			StepFault se =
-				TestUtil.CheckThrows<StepFault>(true, () => s.SetDataAndUpdatePath(d) );
+			FabStepFault se =
+				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(d) );
 			Assert.AreEqual(FabFault.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
 		}

@@ -65,8 +65,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var s = new FuncLimitStep(p);
 			var sd = new StepData("Limit"+pParams);
 			
-			StepFault se =
-				TestUtil.CheckThrows<StepFault>(true, () => s.SetDataAndUpdatePath(sd));
+			FabStepFault se =
+				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamCount, se.ErrCode, "Incorrect ErrCode.");
 		}
 
@@ -78,8 +78,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var s = new FuncLimitStep(p);
 			var sd = new StepData("Limit("+pParams+")");
 
-			StepFault se =
-				TestUtil.CheckThrows<StepFault>(true, () => s.SetDataAndUpdatePath(sd));
+			FabStepFault se =
+				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(pParamI, se.ParamIndex, "Incorrect StepException.ParamIndex.");
 		}
@@ -94,8 +94,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var s = new FuncLimitStep(p);
 			var sd = new StepData("Limit("+pIndex+","+pCount+")");
 
-			StepFault se =
-				TestUtil.CheckThrows<StepFault>(true, () => s.SetDataAndUpdatePath(sd));
+			FabStepFault se =
+				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(pParamI, se.ParamIndex, "Incorrect StepException.ParamIndex.");
 		}

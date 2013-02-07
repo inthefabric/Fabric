@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
+    <Compile Include="Steps\FabStepDataFault.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFuncStep.cs" />
     <Compile Include="Steps\Functions\FuncRegistry.cs" />
@@ -44,7 +45,7 @@
     <Compile Include="Steps\IFinalStep.cs" />
     <Compile Include="Steps\Functions\FuncStep.cs" />
     <Compile Include="Steps\Functions\FuncLimitStep.cs" />
-    <Compile Include="Steps\StepFault.cs" />
+    <Compile Include="Steps\FabStepFault.cs" />
     <Compile Include="Steps\Functions\FuncBackStep.cs" />
     <Compile Include="Steps\Nodes\INodeStep.cs" />
     <Compile Include="Steps\StepData.cs" />

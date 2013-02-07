@@ -44,7 +44,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase("x(2(")]
 		[TestCase("x)2(")]
 		public void NewInvalidParam(string pRawString) {
-			TestUtil.CheckThrows<Exception>(true, () => new StepData(pRawString));
+			TestUtil.CheckThrows<FabStepDataFault>(true, () => new StepData(pRawString));
 		}
 
 

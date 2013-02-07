@@ -229,7 +229,7 @@ namespace Fabric.Api.Spec {
 				}
 
 				if ( att.ReturnType.Name != sso.ReturnType ) {
-					throw new FabInternalFault("ServiceOperation ReturnType mismatch: "+
+					throw new Exception("ServiceOperation ReturnType mismatch: "+
 						att.ReturnType.Name+" vs. "+sso.ReturnType);
 				}
 				//Log.Debug("ATT: "+attKey+" [vs] "+ssoKey);

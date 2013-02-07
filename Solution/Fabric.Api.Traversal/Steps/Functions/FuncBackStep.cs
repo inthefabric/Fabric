@@ -34,7 +34,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			base.SetDataAndUpdatePath(pData);
 
 			if ( Data.Params == null || Data.Params.Length != 1 ) {
-				throw new StepFault(FabFault.Code.IncorrectParamCount, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamCount, this,
 					"One parameter required.");
 			}
 
@@ -46,12 +46,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				segCount = Data.ParamAt<int>(0);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepFault(FabFault.Code.IncorrectParamType, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
 					"Could not convert to type 'int'.", 0, ex);
 			}
 
 			if ( segCount <= 0 ) {
-				throw new StepFault(FabFault.Code.IncorrectParamValue, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,
 					"Cannot be less than 1.", 0);
 			}
 
@@ -61,7 +61,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			int maxSegCount = numSegs-1;
 
 			if ( segCount > maxSegCount ) {
-				throw new StepFault(FabFault.Code.IncorrectParamValue, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,
 					"Exceeds the maximum 'back' steps ("+maxSegCount+") for the current path.", 0);
 			}
 

@@ -110,8 +110,8 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			s.SetDataAndUpdatePath(new StepData("start"));
 			const string stepText = "abcd(1,2)";
 
-			StepFault se = 
-				TestUtil.CheckThrows<StepFault>(true, () => s.GetNextStep(stepText));
+			FabStepFault se = 
+				TestUtil.CheckThrows<FabStepFault>(true, () => s.GetNextStep(stepText));
 			Assert.AreEqual(FabFault.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 			Assert.Less(-1, se.Message.IndexOf(stepText), "Message did not include the step text.");
 		}
@@ -136,7 +136,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 
 			p.AddSegment(funcMock.Object, funcText);
 
-			StepFault se = TestUtil.CheckThrows<StepFault>(true,
+			FabStepFault se = TestUtil.CheckThrows<FabStepFault>(true,
 				() => s.GetNextStep(stepText, true, funcMock.Object));
 			Assert.AreEqual(FabFault.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(funcStepI, se.StepIndex, "Incorrect StepIndex.");

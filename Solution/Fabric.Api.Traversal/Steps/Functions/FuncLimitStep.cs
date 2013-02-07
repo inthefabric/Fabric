@@ -33,7 +33,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			base.SetDataAndUpdatePath(pData);
 
 			if ( Data.Params == null || Data.Params.Length != 2 ) {
-				throw new StepFault(FabFault.Code.IncorrectParamCount, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamCount, this,
 					"Two parameters required.");
 			}
 
@@ -43,12 +43,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				Index = Data.ParamAt<long>(0);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepFault(FabFault.Code.IncorrectParamType, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
 					"Could not convert to type 'long'.", 0, ex);
 			}
 
 			if ( Index < 0 ) {
-				throw new StepFault(FabFault.Code.IncorrectParamValue, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,
 					"Cannot be less than 0.", 0);
 			}
 
@@ -58,12 +58,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				Count = Data.ParamAt<int>(1);
 			}
 			catch ( InvalidCastException ex ) {
-				throw new StepFault(FabFault.Code.IncorrectParamType, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
 					"Could not convert to type 'int'.", 1, ex);
 			}
 
 			if ( Count <= 0 || Count > 50 ) {
-				throw new StepFault(FabFault.Code.IncorrectParamValue, this,
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,
 					"Must be between 1 and 50.", 1);
 			}
 

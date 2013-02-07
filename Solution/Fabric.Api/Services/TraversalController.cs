@@ -10,6 +10,7 @@ using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Util;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 using Nancy;
 using ServiceStack.Text;
@@ -147,20 +148,10 @@ namespace Fabric.Api.Services {
 			vModel.Resp.StartIndex = 0;
 			vModel.Resp.Count = 0;
 
-			if ( pEx is StepFault ) {
+			if ( pEx is FabFault ) {
 				ExceptionIsHandled();
-
-				var sf = (pEx as StepFault);
-				vModel.Error = FabError.ForFault(sf);
+				vModel.Error = FabError.ForFault(pEx as FabFault);
 				vStatus = HttpStatusCode.BadRequest;
-
-				/*switch ( step.ErrCode ) {
-					case StepException.Code.IncorrectParamCount:
-					case StepException.Code.IncorrectParamValue:
-					case StepException.Code.IncorrectParamType:
-						vStatus = HttpStatusCode.BadRequest;
-						break;
-				}*/
 			}
 			else {
 				vModel.Error = FabError.ForInternalServerError();

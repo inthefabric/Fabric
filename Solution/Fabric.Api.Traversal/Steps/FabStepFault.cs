@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Traversal.Steps {
 	
 	/*================================================================================================*/
-	public class StepFault : FabFault {
+	public class FabStepFault : FabFault {
 
 		public IStep Step { get; private set; }
 		public int StepIndex { get; private set; }
@@ -15,7 +15,7 @@ namespace Fabric.Api.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public StepFault(Code pErrCode, IStep pStep, string pMessage, int pParamIndex=-1,
+		public FabStepFault(Code pErrCode, IStep pStep, string pMessage, int pParamIndex=-1,
 											Exception pInner=null) : base(pErrCode, pMessage, pInner) {
 			Step = pStep;
 

@@ -20,7 +20,8 @@ namespace Fabric.Infrastructure.Api.Faults {
 			IncorrectParamCount = 2001,
 			IncorrectParamValue = 2002,
 			IncorrectParamType = 2003,
-			InvalidStep = 2004,
+			InvalidParamSyntax = 2004,
+			InvalidStep = 2204,
 			
 			FactorAlreadyCompleted = 3001,
 			FactorElementConflict = 3002
@@ -36,7 +37,7 @@ namespace Fabric.Infrastructure.Api.Faults {
 		protected FabFault(Code pErrCode, string pMessage, Exception pInner=null) :
 																				base(pMessage, pInner) {
 			ErrCode = pErrCode;
-			vMessage = ErrCode+" ("+(int)ErrCode+"): "+pMessage;
+			vMessage = (pMessage ?? "");
 		}
 
 		
