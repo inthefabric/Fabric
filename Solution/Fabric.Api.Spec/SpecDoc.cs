@@ -287,7 +287,7 @@ namespace Fabric.Api.Spec {
 			string n = sd.Name.Substring(3);
 			sd.Description = GetDtoText(n);
 
-			if ( pType.BaseType != null ) {
+			if ( pType.BaseType != null && pType.BaseType != typeof(Object) ) {
 				sd.Extends = pType.BaseType.Name;
 			}
 
