@@ -4,12 +4,18 @@ namespace Fabric.Infrastructure.Api.Faults {
 
 	/*================================================================================================*/
 	public class FabNotFoundFault : FabFault {
+	
+		public Type ItemType { get; private set; }
+		public string Criteria { get; private set; }
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabNotFoundFault(Type pType, string pCriteria) :
-							base("No "+pType.Name+" was found with the criteria ("+pCriteria+").") {}
+		public FabNotFoundFault(Type pItemType, string pCriteria) : base(Code.ObjectNotFound, "") {
+			ItemType = pItemType;
+			Criteria = pCriteria;
+			AppendMessage("No "+ItemType.Name+" was found with the criteria ("+Criteria+").");
+		}
 		
 	}
 

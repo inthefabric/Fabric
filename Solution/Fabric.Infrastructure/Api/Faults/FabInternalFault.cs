@@ -3,17 +3,17 @@
 namespace Fabric.Infrastructure.Api.Faults {
 
 	/*================================================================================================*/
-	public class FabPreventedFault : FabFault {
+	public class FabInternalFault : FabFault {
 		
 		public string Note { get; private set; }
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabPreventedFault(Code pCode, string pNote, Exception pInner=null) : 
-																			base(pCode, "", pInner) {
+		public FabInternalFault(string pNote, Exception pInner=null) : 
+																base(Code.InternalError, "", pInner) {
 			Note = pNote;
-			AppendMessage("This action was prevented. "+Note);
+			AppendMessage("This action was prevented. "+pNote);
 		}
 		
 	}

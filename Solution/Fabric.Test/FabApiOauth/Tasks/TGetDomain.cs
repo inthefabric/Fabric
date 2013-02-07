@@ -142,7 +142,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase("http://www.t'est.com")]
 		public void ErrInvalidRedirUri(string pRedirUri) {
 			vRedirUri = pRedirUri;
-			TestUtil.CheckThrows<FabArgumentFault>(true, () => TestGo());
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 

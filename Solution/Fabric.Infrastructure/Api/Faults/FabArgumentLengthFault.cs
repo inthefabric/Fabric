@@ -10,34 +10,36 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArgumentLengthFault(string pArgName, int pMaxChars)
-														: base(GetMessage(pArgName, 0, pMaxChars)) {
+		public FabArgumentLengthFault(string pArgName, int pMaxChars) : 
+																	base(Code.ArgumentLengthFault, "") {
 			ArgName = pArgName;
 			MinChars = 0;
 			MaxChars = pMaxChars;
+			AppendMessage(GetMessage());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArgumentLengthFault(string pArgName, int pMinChars, int pMaxChars)
-												: base(GetMessage(pArgName, pMinChars, pMaxChars)) {
+		public FabArgumentLengthFault(string pArgName, int pMinChars, int pMaxChars) :
+																	base(Code.ArgumentLengthFault, "") {
 			ArgName = pArgName;
 			MinChars = pMinChars;
 			MaxChars = pMaxChars;
+			AppendMessage(GetMessage());
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetMessage(string pArgName, int pMinChars, int pMaxChars) {
-			if ( pMinChars == 0 ) {
-				return pArgName+" length cannot exceed "+pMaxChars+" characters.";
+		private string GetMessage() {
+			if ( MinChars == 0 ) {
+				return ArgName+" length cannot exceed "+MaxChars+" characters.";
 			}
 
-			if ( pMinChars == pMaxChars ) {
-				return pArgName+" length must be "+pMinChars+" characters.";
+			if ( MinChars == MaxChars ) {
+				return ArgName+" length must be "+MinChars+" characters.";
 			}
 
-			return pArgName+" length must be between "+pMinChars+" and "+pMaxChars+" characters.";
+			return ArgName+" length must be between "+MinChars+" and "+MaxChars+" characters.";
 		}
 		
 	}

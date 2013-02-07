@@ -111,7 +111,7 @@ namespace Fabric.Test.FabApiModify {
 		[TestCase("http//:www.test.com")]
 		public void ErrInvalidUrl(string pUrl) {
 			vAbsoluteUrl = pUrl;
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-﻿using Fabric.Api.Modify.Tasks;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
@@ -23,7 +23,9 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void EnsureFabricSystem() { //TEST: BaseModifyFunc.EnsureFabricSystem()
 			if ( ApiCtx.AppId != (long)AppId.FabricSystem ) {
-				throw new FabPreventedFault(ApiCtx.AppId);
+				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
+					"The authenticated App (AppId="+ApiCtx.AppId+") is not permitted "+
+					"to perform this action.");
 			}
 		}
 		

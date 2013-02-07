@@ -42,12 +42,13 @@ namespace Fabric.Api.Modify {
 			}
 
 			if ( f.Completed != null ) {
-				throw new FabPreventedFault("This "+typeof(Factor).Name+" is already completed.");
+				throw new FabPreventedFault(FabFault.Code.FactorAlreadyCompleted,
+					"This "+typeof(Factor).Name+" is already completed.");
 			}
 
 			if ( FactorHasElement(f) ) {
-				throw new FabPreventedFault("This "+typeof(Factor).Name+
-					" already has an attached "+typeof(T).Name+".");
+				throw new FabPreventedFault(FabFault.Code.FactorElementConflict,
+					"This "+typeof(Factor).Name+" already has an attached "+typeof(T).Name+".");
 			}
 
 			return AddElementToFactor(f, m);

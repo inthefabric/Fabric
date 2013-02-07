@@ -3,13 +3,16 @@
 	/*================================================================================================*/
 	public class FabArgumentOutOfRangeFault : FabFault {
 		
-		//TODO: improve FabArgumentOutOfRangeFault message for full sentences
+		public string ArgName { get; private set; }
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArgumentOutOfRangeFault(string pArgName)
-													: base("Value "+pArgName+" is out of range.") {}
+		public FabArgumentOutOfRangeFault(string pArgName) : base(Code.ArgumentOutOfRange, "") {
+			ArgName = pArgName;
+			//TODO: improve FabArgumentOutOfRangeFault message for full sentences
+			AppendMessage("Value "+ArgName+" is out of range.");
+		}
 		
 	}
 

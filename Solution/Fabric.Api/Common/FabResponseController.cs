@@ -8,6 +8,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
+using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Common {
 
@@ -81,8 +82,8 @@ namespace Fabric.Api.Common {
 
 			FabError err;
 
-			if ( pEx is FabParamFault ) {
-				err = FabError.ForFault(pEx as FabParamFault);
+			if ( pEx is FabFault ) {
+				err = FabError.ForFault(pEx as FabFault);
 			}
 			else {
 				FabResp.HttpStatus = (int)HttpStatusCode.InternalServerError;

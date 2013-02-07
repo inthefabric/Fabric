@@ -90,7 +90,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[TestCase("test`")]
 		public void ErrNameInvalid(string pName) {
 			vName = pName;
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
 
@@ -106,7 +106,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[TestCase("test`")]
 		public void ErrDisambInvalid(string pDisamb) {
 			vDisamb = pDisamb;
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
 

@@ -125,7 +125,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[Test]
 		public void ErrNameInvalid() {
 			vName = "test`";
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

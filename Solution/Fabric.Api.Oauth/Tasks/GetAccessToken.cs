@@ -32,7 +32,10 @@ namespace Fabric.Api.Oauth.Tasks {
 			if ( vToken.Length != 32 ) { throw new FabArgumentLengthFault("Token", 32, 32); }
 
 			var r = new Regex("^[a-zA-Z0-9]*$");
-			if ( !r.IsMatch(vToken) ) { throw new FabArgumentFault("Token must be alpha-numeric."); }
+			
+			if ( !r.IsMatch(vToken) ) {
+				throw new FabArgumentValueFault("Token must be alpha-numeric.");
+			}
 		}
 		
 

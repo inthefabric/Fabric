@@ -108,7 +108,7 @@ namespace Fabric.Test.FabApiModify {
 		[Test]
 		public void ErrDisambWithoutName() {
 			vName = null;
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

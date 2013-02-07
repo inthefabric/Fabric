@@ -30,7 +30,7 @@ namespace Fabric.Api.Modify {
 			Tasks.Validator.FactorId(vFactorId, FactorParam);
 
 			if ( vCompleted == vDeleted ) {
-				throw new FabArgumentFault(CompletedParam+" cannot equal "+DeletedParam);
+				throw new FabArgumentValueFault(CompletedParam+" cannot equal "+DeletedParam);
 			}
 		}
 
@@ -55,11 +55,13 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void DoCompletedChecks(Factor pFactor) {
 			if ( pFactor.Completed != null ) {
-				throw new FabPreventedFault("This "+typeof(Factor).Name+" is already completed.");
+				throw new FabPreventedFault(FabFault.Code.FactorAlreadyCompleted,
+					"This "+typeof(Factor).Name+" is already completed.");
 			}
 
 			if ( !Tasks.FactorHasDescriptor(ApiCtx, pFactor) ) {
-				throw new FabPreventedFault("This "+typeof(Factor).Name+" does not have a "+
+				throw new FabPreventedFault(FabFault.Code.FactorElementConflict,
+					"This "+typeof(Factor).Name+" does not have a "+
 					typeof(Descriptor).Name+" attached to it, so it cannot be completed.");
 			}
 		}

@@ -33,14 +33,13 @@
     <Reference Include="log4net">
       <HintPath>..\..\Packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.33.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,16 +50,13 @@
     <Compile Include="Api\ServiceOpAttribute.cs" />
     <Compile Include="Api\ServiceOpParamAttribute.cs" />
     <Compile Include="Api\IApiContext.cs" />
-    <Compile Include="Api\Faults\FabArgumentFault.cs" />
     <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
     <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
     <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
-    <Compile Include="Api\Faults\FabAuthorizationFault.cs" />
     <Compile Include="Api\Faults\FabDuplicateFault.cs" />
     <Compile Include="Api\Faults\FabFault.cs" />
     <Compile Include="Api\Faults\FabMembershipFault.cs" />
     <Compile Include="Api\Faults\FabNotFoundFault.cs" />
-    <Compile Include="Api\Faults\FabPreventedFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
     <Compile Include="Db\IDbResult.cs" />
@@ -95,6 +91,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Weaver\DomainBuilder.cs" />
+    <Compile Include="Api\Faults\FabPreventedFault.cs" />
+    <Compile Include="Api\Faults\FabInternalFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

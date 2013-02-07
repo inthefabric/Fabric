@@ -57,7 +57,7 @@ namespace Fabric.Api.Modify {
 			Tasks.Validator.FactorNote(vNote, NoteParam);
 
 			if ( vPrimArtId == vRelArtId ) {
-				throw new FabArgumentFault(PrimArtParam+" cannot be equal to "+RelArtParam);
+				throw new FabArgumentValueFault(PrimArtParam+" cannot be equal to "+RelArtParam);
 			}
 		}
 

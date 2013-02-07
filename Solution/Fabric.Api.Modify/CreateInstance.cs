@@ -45,7 +45,8 @@ namespace Fabric.Api.Modify {
 			Tasks.Validator.InstanceNote(vNote, NoteParam);
 
 			if ( vName == null && vDisamb != null ) {
-				throw new FabArgumentFault("Use of "+DisambParam+" requires a non-null "+NameParam);
+				throw new FabArgumentValueFault(
+					"Use of "+DisambParam+" requires a non-null "+NameParam);
 			}
 		}
 

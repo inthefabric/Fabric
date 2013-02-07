@@ -1,18 +1,13 @@
 ﻿namespace Fabric.Infrastructure.Api.Faults {
 
 	/*================================================================================================*/
-	public class FabArgumentNullFault : FabFault {
-		
-		public string ArgName { get; private set; }
+	public class FabArgumentValueFault : FabFault {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArgumentNullFault(string pArgName) : base(Code.ArgumentNullFault, "") {
-			ArgName = pArgName;
-			AppendMessage("Value "+ArgName+" cannot be null.");
-		}
-		
+		public FabArgumentValueFault(string pMessage) : base(Code.ArgumentInvalidValue, pMessage) {}
+
 	}
 
 }

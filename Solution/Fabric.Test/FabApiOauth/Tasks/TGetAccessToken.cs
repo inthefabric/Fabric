@@ -160,7 +160,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase("123456789 1234567890123456789012")]
 		public void ErrTokenChars(string pToken) {
 			vToken = pToken;
-			TestUtil.CheckThrows<FabArgumentFault>(true, () => TestGo());
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 

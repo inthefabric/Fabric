@@ -139,7 +139,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[Test]
 		public void ErrNameInvalid() {
 			vName = "zach@test";
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -186,7 +186,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[Test]
 		public void ErrEmailInvalid() {
 			vEmail = "zach@test";
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
 	}

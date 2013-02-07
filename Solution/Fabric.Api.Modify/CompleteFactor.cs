@@ -30,7 +30,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			if ( !vCompleted ) {
-				throw new FabArgumentFault(CompletedParam+" must be true.");
+				throw new FabArgumentValueFault(CompletedParam+" must be true.");
 			}
 
 			base.ValidateParams();

@@ -37,13 +37,13 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			if ( vRedirectUri.IndexOf('\'') != -1 ) {
-				throw new FabArgumentFault("RedirectUri");
+				throw new FabArgumentValueFault("RedirectUri");
 			}
 			
 			int protoI = vRedirectUri.IndexOf("://");
 
 			if ( protoI <= 0 ) {
-				throw new FabArgumentFault("RedirectUri");
+				throw new FabArgumentValueFault("RedirectUri");
 			}
 
 			vRedirectDomain = vRedirectUri.Substring(protoI+3);

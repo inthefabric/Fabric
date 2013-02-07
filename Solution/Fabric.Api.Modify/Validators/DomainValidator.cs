@@ -32,7 +32,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void MatchesRegex(string pName, string pValue, string pPattern) {
 			if ( !Regex.IsMatch(pValue, pPattern) ) {
-				throw new FabArgumentFault(
+				throw new FabArgumentValueFault(
 					pName+" has an invalid format. Valid regex pattern: "+pPattern);
 			}
 		}

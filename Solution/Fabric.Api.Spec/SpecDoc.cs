@@ -229,10 +229,10 @@ namespace Fabric.Api.Spec {
 				}
 
 				if ( att.ReturnType.Name != sso.ReturnType ) {
-					throw new FabPreventedFault("ServiceOperation ReturnType mismatch: "+
+					throw new FabInternalFault("ServiceOperation ReturnType mismatch: "+
 						att.ReturnType.Name+" vs. "+sso.ReturnType);
 				}
-				Log.Debug("ATT: "+attKey+" [vs] "+ssoKey);
+				//Log.Debug("ATT: "+attKey+" [vs] "+ssoKey);
 
 				sso.RequiredAuth = att.Auth+"";
 				sso.AuthMemberOwns = (att.AuthMemberOwns == null ? null : att.AuthMemberOwns.Name);

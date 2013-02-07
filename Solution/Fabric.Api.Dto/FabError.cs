@@ -8,8 +8,7 @@ namespace Fabric.Api.Dto {
 	public class FabError : FabObject {
 
 		public int Code { get; set; }
-		public string CodeName { get; set; }
-		public string Type { get; set; }
+		public string Name { get; set; }
 		public string Message { get; set; }
 
 
@@ -22,9 +21,8 @@ namespace Fabric.Api.Dto {
 		/*--------------------------------------------------------------------------------------------*/
 		public static FabError ForInternalServerError() {
 			var e = new FabError();
-			e.Code = 0;
-			e.CodeName = "InternalError";
-			e.Type = typeof(Exception).Name;
+			e.Code = (int)FabFault.Code.InternalError;
+			e.Name = FabFault.Code.InternalError+"";
 			e.Message = "An internal server error occurred.";
 			return e;
 		}
@@ -33,8 +31,7 @@ namespace Fabric.Api.Dto {
 		public static FabError ForFault(FabFault pFault) {
 			var e = new FabError();
 			e.Code = (int)pFault.ErrCode;
-			e.CodeName = pFault.ErrCode+"";
-			e.Type = pFault.GetType().Name;
+			e.Name = pFault.ErrCode+"";
 			e.Message = pFault.Message;
 			return e;
 		}

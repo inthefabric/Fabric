@@ -1,4 +1,4 @@
-﻿using Fabric.Api.Modify;
+using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
@@ -81,7 +81,7 @@ namespace Fabric.Test.FabApiModify {
 		[TestCase(false)]
 		public void ErrCompletedEqualsDeleted(bool pValue) {
 			vCompleted = vDeleted = pValue;
-			TestUtil.CheckThrows<FabArgumentFault>(true, TestGo);
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

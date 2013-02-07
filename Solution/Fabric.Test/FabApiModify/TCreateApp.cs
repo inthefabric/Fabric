@@ -1,4 +1,4 @@
-﻿using Fabric.Api.Modify;
+using Fabric.Api.Modify;
 using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;

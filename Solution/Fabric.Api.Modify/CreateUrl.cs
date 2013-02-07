@@ -43,8 +43,8 @@ namespace Fabric.Api.Modify {
 			int protoEnd = protoI+3;
 
 			if ( protoI < 2 || vAbsoluteUrl.Length <= protoEnd ) {
-				throw new FabArgumentFault(AbsoluteUrlParam+" uses an invalid format. "+
-					"Try starting the URL with 'http://'.");
+				throw new FabArgumentValueFault(
+					AbsoluteUrlParam+" uses an invalid format. Try starting the URL with 'http://'.");
 			}
 		}
 
