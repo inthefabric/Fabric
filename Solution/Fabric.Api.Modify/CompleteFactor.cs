@@ -12,10 +12,10 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CompleteFactor : UpdateFactor { //TEST: CompleteFactor
 		
-		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, typeof(FactorAssertion))]
+		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, typeof(Factor))]
 		private readonly long vFactorId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, CompletedParam, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, CompletedParam, null)]
 		private readonly bool vCompleted;
 
 
