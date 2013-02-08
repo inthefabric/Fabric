@@ -128,7 +128,7 @@ namespace Fabric.Db.Gremlin {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void LogAction() {
+		private void LogAction() {
 			//DBv1: 
 			//	TotalMs, QueryMs, Timestamp, Query
 

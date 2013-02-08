@@ -11,7 +11,7 @@ namespace Fabric.Test.Integration.Common {
 	/*================================================================================================*/
 	public class TestApiDataAccess : ApiDataAccess {
 
-		public const string GremlinUri = "http://localhost:8182/graphs/FabricTest/tp/gremlin";
+		public const string GremlinUri = "http://rexster:8182/graphs/FabricTest/tp/gremlin";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

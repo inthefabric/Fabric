@@ -1,58 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
+using Fabric.Infrastructure.Api;
 using Nancy;
 using Nancy.Cookies;
 using ServiceStack.Text;
+using HttpStatusCode = Nancy.HttpStatusCode;
 
 namespace Fabric.Api.Util {
 
 	/*================================================================================================*/
 	public static class NancyUtil {
 
-		private const string FabricUserAuth = "FabricUserAuth";
-		private const string EncryptKey = "Gu11iverIsMyD0gAuth";
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static long GetUserIdFromCookies(IDictionary<string, string> pCookies) {
 			string c;
-			pCookies.TryGetValue(FabricUserAuth, out c);
+			pCookies.TryGetValue(AuthUtil.FabricUserAuth, out c);
 
 			if ( c == null || c == "0" ) {
 				return 0;
 			}
 
-			string val = EncryptUtil.DecryptData(EncryptKey, Uri.UnescapeDataString(c));
-			return long.Parse(val.Split('|')[1]);
+			return AuthUtil.GetUserIdFromCookieString(Uri.UnescapeDataString(c));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetUserCookie(Response pRes, long? pUserId, bool pRemember) {
-			DateTime now = DateTime.UtcNow;
-
-			if ( pUserId == null ) {
-				pRes.AddCookie(FabricUserAuth, "", now.AddDays(-1));
-				return;
-			}
-
-			string val = TwoDigitRandom()+"|"+pUserId;
-			string encVal = EncryptUtil.EncryptData(EncryptKey, val);
-			DateTime expires = (pRemember ? now.AddDays(30) : now.AddMinutes(20));
-			pRes.AddCookie(FabricUserAuth, encVal, expires);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static int TwoDigitRandom() {
-			return (new Random()).Next(89)+10;
+			Tuple<Cookie, TimeSpan> pair = AuthUtil.CreateUserIdCookie(pUserId, pRemember);
+			DateTime expires = DateTime.UtcNow.Add(pair.Item2);
+			pRes.AddCookie(pair.Item1.Name, pair.Item1.Value, expires);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static NancyCookie NewUserCookieForTesting(long pUserId) {
-			string val = TwoDigitRandom()+"|"+pUserId;
-			string encVal = EncryptUtil.EncryptData(EncryptKey, val);
-			return new NancyCookie(FabricUserAuth, encVal);
+			Tuple<Cookie, TimeSpan> pair = AuthUtil.CreateUserIdCookie(pUserId, false);
+			return new NancyCookie(pair.Item1.Name, pair.Item1.Value);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

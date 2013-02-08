@@ -120,7 +120,6 @@
     <Compile Include="Internal\Tables\TableNode.cs" />
     <Compile Include="Internal\Tables\TableModel.cs" />
     <Compile Include="Internal\Tables\TableBrowser.cs" />
-    <Compile Include="Util\EncryptUtil.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Common\Controller.cs" />

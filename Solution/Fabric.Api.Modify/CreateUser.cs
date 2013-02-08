@@ -55,6 +55,8 @@ namespace Fabric.Api.Modify {
 				throw new FabDuplicateFault(typeof(User), NameParam, vName);
 			}
 
+			//NEXT: Add unique email validation
+
 			////
 
 			IWeaverVarAlias<Root> rootVar;

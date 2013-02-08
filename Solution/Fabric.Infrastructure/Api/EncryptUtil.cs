@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Fabric.Api.Util {
+namespace Fabric.Infrastructure.Api {
 
 	//adapted from http://www.4guysfromrolla.com/webtech/090501-1.shtml
 

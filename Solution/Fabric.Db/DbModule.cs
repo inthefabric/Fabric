@@ -7,7 +7,7 @@ namespace Fabric.Db {
 	/*================================================================================================*/
 	public class DbModule : NancyModule {
 
-		public const string GremlinUri = "http://localhost:8182/graphs/Fabric/tp/gremlin";
+		public const string GremlinUri = "http://rexster:8182/graphs/Fabric/tp/gremlin";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
