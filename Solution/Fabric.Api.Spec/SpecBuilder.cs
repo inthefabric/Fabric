@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/6/2013 3:33:04 PM
+// Generated on 2/7/2013 9:06:12 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -50,6 +50,7 @@ namespace Fabric.Api.Spec {
 
 				case "App.Secret":
 					pValue.Len = 32;
+					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
 					break;
 
 				case "Artifact.ArtifactId":
@@ -129,6 +130,7 @@ namespace Fabric.Api.Spec {
 
 				case "Email.Code":
 					pValue.Len = 32;
+					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
 					break;
 
 				case "Email.Created":
@@ -370,10 +372,12 @@ namespace Fabric.Api.Spec {
 
 				case "OauthAccess.Token":
 					pValue.Len = 32;
+					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
 					break;
 
 				case "OauthAccess.Refresh":
 					pValue.Len = 32;
+					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
 					break;
 
 				case "OauthAccess.Expires":
@@ -400,6 +404,7 @@ namespace Fabric.Api.Spec {
 
 				case "OauthGrant.Code":
 					pValue.Len = 32;
+					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
 					break;
 
 				case "OauthGrant.Expires":

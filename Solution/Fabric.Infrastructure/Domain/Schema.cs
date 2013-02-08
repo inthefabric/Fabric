@@ -14,6 +14,9 @@ namespace Fabric.Infrastructure.Domain {
 			+ @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+" 
 			+ @"[a-zA-Z]{2,}))$";
 
+		private const string ValidCodeRegex = 
+			@"^[a-zA-Z0-9]*$";
+
 		private const string ValidUserRegex = 
 			@"^[a-zA-Z0-9_]*$";
 
@@ -77,6 +80,7 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(app, "Secret", typeof(string));
 				p.Len = 32;
 				p.IsInternal = true;
+				p.ValidRegex = ValidCodeRegex;
 
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
 			p = AddProp(artifact, "ArtifactId", typeof(long));
@@ -147,6 +151,7 @@ namespace Fabric.Infrastructure.Domain {
 				p.ValidRegex = ValidEmailRegex;
 			p = AddProp(email, "Code", typeof(string));
 				p.Len = 32;
+				p.ValidRegex = ValidCodeRegex;
 			p = AddProp(email, "Created", typeof(DateTime));
 				p.IsTimestamp = true;
 			p = AddProp(email, "Verified", typeof(DateTime));
@@ -373,9 +378,11 @@ namespace Fabric.Infrastructure.Domain {
 				p.Len = 32;
 				p.IsNullable = true;
 				p.IsUnique = true;
+				p.ValidRegex = ValidCodeRegex;
 			p = AddProp(oauthAccess, "Refresh", typeof(string));
 				p.Len = 32;
 				p.IsNullable = true;
+				p.ValidRegex = ValidCodeRegex;
 			p = AddProp(oauthAccess, "Expires", typeof(DateTime));
 			p = AddProp(oauthAccess, "IsClientOnly", typeof(bool));
 
@@ -395,6 +402,7 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(oauthGrant, "Code", typeof(string));
 				p.Len = 32;
 				p.IsUnique = true;
+				p.ValidRegex = ValidCodeRegex;
 			p = AddProp(oauthGrant, "Expires", typeof(DateTime));
 
 			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");

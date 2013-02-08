@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/31/2013 3:13:36 PM
+// Generated on 2/7/2013 9:06:13 PM
 
 using System;
 using Fabric.Db.Data;
@@ -245,6 +245,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void AppSecret(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -470,6 +471,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void EmailCode(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1184,6 +1186,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthAccessToken(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1194,6 +1197,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthAccessRefresh(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1270,6 +1274,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthGrantCode(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]*$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

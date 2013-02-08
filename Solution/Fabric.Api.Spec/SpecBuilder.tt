@@ -209,11 +209,11 @@ foreach ( string name in nodes ) {
 					link.Type = "<#= hr.RelName #>";
 					link.Description = SpecDoc.GetDtoLinkText("<#= hr.RelName #>");
 					link.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
-					link.FromDto = "Fab<#= hr.FromNodeName #>";
-					link.FromDtoConn = "<#= hr.RelSchema.FromNodeConn+"" #>";
+					link.From = "Fab<#= hr.FromNodeName #>";
+					link.FromConn = "<#= hr.RelSchema.FromNodeConn+"" #>";
 					link.Relation = "<#= hr.RelTypeName #>";
-					link.ToDto = "Fab<#= hr.ToNodeName #>";
-					link.ToDtoConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
+					link.To = "Fab<#= hr.ToNodeName #>";
+					link.ToConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
 					pObject.TraversalLinks.Add(link);
 
 <#

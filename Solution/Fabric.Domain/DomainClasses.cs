@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/31/2013 1:47:29 PM
+// Generated on 2/7/2013 9:06:11 PM
 
 using System;
 using System.Linq.Expressions;
@@ -1324,6 +1324,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsInternal(True)]
 		//[PropLen(32)]
+		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Secret { get; set; }
 
 
@@ -1767,6 +1768,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLen(32)]
+		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Code { get; set; }
 
 		[WeaverItemProperty]
@@ -3095,11 +3097,13 @@ namespace Fabric.Domain {
 		//[PropIsNullable(True)]
 		//[PropIsUnique(True)]
 		//[PropLen(32)]
+		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Token { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLen(32)]
+		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Refresh { get; set; }
 
 		[WeaverItemProperty]
@@ -3188,6 +3192,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsUnique(True)]
 		//[PropLen(32)]
+		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Code { get; set; }
 
 		[WeaverItemProperty]
