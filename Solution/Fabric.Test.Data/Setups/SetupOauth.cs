@@ -108,7 +108,6 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		public SetupOauth(DataSet pSet) {
 			vSet = pSet;
-			vTestMode = true;
 
 			const SetupUsers.AppId fab = SetupUsers.AppId.FabSys;
 			const SetupUsers.AppId gal = SetupUsers.AppId.KinPhoGal;
@@ -124,8 +123,10 @@ namespace Fabric.Db.Data.Setups {
 
 			DateTime now = new DateTime(vSet.NowTimestamp);
 
+			vTestMode = false;
 			AddDomain(OauthDomainId.Fab1, fab, DomFab1);
 			AddDomain(OauthDomainId.Fab2, fab, DomFab2);
+			vTestMode = true;
 			AddDomain(OauthDomainId.Gal1, gal, DomGal1);
 			AddDomain(OauthDomainId.Gal2, gal, DomGal2);
 			AddDomain(OauthDomainId.Book1, book, DomBook1);

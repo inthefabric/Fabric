@@ -29,10 +29,13 @@ namespace Fabric.Api.Services {
 
 		/*
 		
-		localhost:9000/api/oauth/login?
+		localhost:9000/oauth/login?
 			response_type=code&client_id=2&redirect_uri=http%3a%2f%2flocalhost:49316
+		  
+		localhost:9000/oauth/login?response_type=code&client_id=1
+			&redirect_uri=http%3a%2f%2finthefabric.com%2foauth&switchMode=1
 		 
-		localhost:9000/api/Oauth/AccessTokenAuthCode?
+		localhost:9000/Oauth/AccessTokenAuthCode?
 			client_secret=0123456789abcdefghijkLMNOPqrstuv&code=INSERT&
 			redirect_uri=http%3a%2f%2flocalhost:49316
 		
