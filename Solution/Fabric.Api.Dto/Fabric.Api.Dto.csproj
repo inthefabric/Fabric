@@ -50,7 +50,6 @@
     <Compile Include="FabObject.cs" />
     <Compile Include="Traversal\FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />
-    <Compile Include="IFabObject.cs" />
     <Compile Include="FabError.cs" />
     <Compile Include="FabResponse.cs" />
     <Compile Include="Traversal\IFabNode.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Spec\FabSpecObjectProp.cs" />
     <Compile Include="Spec\FabSpecTravFunc.cs" />
     <Compile Include="Spec\FabSpecTravFuncParam.cs" />
+    <Compile Include="IFabObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Traversal\ApiDtos.tt">

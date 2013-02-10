@@ -28,6 +28,9 @@ namespace Fabric.Api.Dto {
 
 		public const string TravUri = "/Trav";
 		public const string TravRootUri = "/Root";
+		public const string TravAppUri = "/App";
+		public const string TravUserUri = "/User";
+		public const string TravMemberUri = "/Member";
 
 		public const string ModUri = "/Mod";
 		public const string ModAppsUri = "/Apps";
@@ -156,10 +159,31 @@ namespace Fabric.Api.Dto {
 
 			if ( pIncludeOps ) {
 				var op = new FabServiceOperation();
-				op.Name = "Root";
+				op.Name = "GetRoot";
 				op.Uri = TravRootUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabRoot).Name;
+				s.Operations.Add(op);
+				
+				op = new FabServiceOperation();
+				op.Name = "GetActiveApp";
+				op.Uri = TravAppUri;
+				op.Method = Get;
+				op.ReturnType = typeof(FabApp).Name;
+				s.Operations.Add(op);
+				
+				op = new FabServiceOperation();
+				op.Name = "GetActiveUser";
+				op.Uri = TravUserUri;
+				op.Method = Get;
+				op.ReturnType = typeof(FabUser).Name;
+				s.Operations.Add(op);
+				
+				op = new FabServiceOperation();
+				op.Name = "GetActiveMember";
+				op.Uri = TravMemberUri;
+				op.Method = Get;
+				op.ReturnType = typeof(FabMember).Name;
 				s.Operations.Add(op);
 			}
 			else {

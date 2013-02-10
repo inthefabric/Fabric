@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,13 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.Api.Traversal</RootNamespace>
     <AssemblyName>Fabric.Api.Traversal</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -24,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -33,6 +32,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Weaver">
+      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathSegment.cs" />
@@ -60,6 +62,11 @@
     <Compile Include="Steps\IStep.cs" />
     <Compile Include="Steps\Step.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\ITraversalTasks.cs" />
+    <Compile Include="Tasks\TraversalTasks.cs" />
+    <Compile Include="Operations\GetActiveApp.cs" />
+    <Compile Include="Operations\GetActiveUser.cs" />
+    <Compile Include="Operations\GetActiveMember.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Steps\Nodes\NodeSteps.tt">
@@ -79,6 +86,14 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
+      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
+      <Name>Fabric.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
+      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
+      <Name>Fabric.Db.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -89,4 +104,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Tasks\" />
+    <Folder Include="Operations\" />
+  </ItemGroup>
 </Project>

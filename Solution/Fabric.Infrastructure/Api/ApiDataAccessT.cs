@@ -30,7 +30,7 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			TypedResultList = new List<T>();
-
+			
 			foreach ( DbDto dbDto in Result.DbDtos ) {
 				TypedResultList.Add(dbDto.ToNode<T>());
 			}

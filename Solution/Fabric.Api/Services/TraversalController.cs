@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Fabric.Api.Common;
 using Fabric.Api.Dto;
@@ -15,6 +15,8 @@ using Fabric.Infrastructure.Db;
 using Nancy;
 using ServiceStack.Text;
 using Weaver;
+using Fabric.Api.Traversal.Operations;
+using Fabric.Api.Traversal.Tasks;
 
 namespace Fabric.Api.Services {
 
@@ -23,7 +25,10 @@ namespace Fabric.Api.Services {
 
 		public enum Route {
 			Home,
-			Root
+			Root,
+			CurrApp,
+			CurrUser,
+			CurrMember
 		}
 
 		private static FabService ServiceDto;
@@ -60,6 +65,10 @@ namespace Fabric.Api.Services {
 			switch ( vRoute ) {
 				case Route.Home: return BuildHomeResponse();
 				case Route.Root: return BuildRootResponse();
+				case Route.CurrApp:
+				case Route.CurrUser:
+				case Route.CurrMember:
+					return BuildCurrResponse();
 			}
 
 			return null;
@@ -72,14 +81,37 @@ namespace Fabric.Api.Services {
 			return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildRootResponse() {
 			FillQueryInfo();
 			ExecuteQuery();
 			BuildDtoList();
 			return BuildViewResponse();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected Response BuildCurrResponse() {
+			var tasks = new TraversalTasks();
+			string json = null;
+			
+			switch ( vRoute ) {
+				case Route.CurrApp:
+					var a = new GetActiveApp(tasks);
+					json = a.Go(ApiCtx).ToJson();
+					break;
+					
+				case Route.CurrUser:
+					var u = new GetActiveUser(tasks);
+					json = u.Go(ApiCtx).ToJson();
+					break;
+					
+				case Route.CurrMember:
+					var m = new GetActiveMember(tasks);
+					json = m.Go(ApiCtx).ToJson();
+					break;
+			}
+			
+			return NewResponse(new FabRespJsonView(FabResp, json));
 		}
 
 
