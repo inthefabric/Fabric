@@ -34,7 +34,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.IdentorTypeId(vIdenTypeId, IdenTypeParam);
-			Tasks.Validator.IdentorValue(vValue, ValueParam); //TODO: update to 1 <= value <= 256
+			Tasks.Validator.IdentorValue(vValue, ValueParam);
 		}
 
 

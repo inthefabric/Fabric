@@ -10,7 +10,7 @@ namespace Fabric.Api.Modify {
 	/*================================================================================================*/
 	[ServiceOp(FabHome.ModUri, FabHome.Delete, FabHome.ModFactorsUri, typeof(FabFactor),
 		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
-	public class DeleteFactor : UpdateFactor { //TEST: DeleteFactor
+	public class DeleteFactor : UpdateFactor {
 
 		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, typeof(Factor))]
 		private readonly long vFactorId;

@@ -6,7 +6,6 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
-using System;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -70,7 +69,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			vIdenTypeId = (long)IdentorTypeId.Key;
 			vValue = "4165";
-			long expectIdentorId = (long)SetupFactors.IdentorId.Key_4165;
+			const long expectIdentorId = (long)SetupFactors.IdentorId.Key_4165;
 
 			TestGo();
 
@@ -104,7 +103,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(129)]
+		[TestCase(257)]
 		public void ErrValueLength(int pLength) {
 			vValue = new string('a', pLength);
 			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);

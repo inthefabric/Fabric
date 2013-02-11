@@ -298,7 +298,7 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(identor, "IdentorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(identor, "Value", typeof(string));
-				p.LenMax = 128;
+				p.LenMax = 256;
 
 			WeaverNodeSchema identorType = AddNode("IdentorType", "IdT");
 			identorType.BaseNode = nodeForType;

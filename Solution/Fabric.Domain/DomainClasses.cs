@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/11/2013 3:18:00 PM
+// Generated on 2/11/2013 4:04:38 PM
 
 using System;
 using System.Linq.Expressions;
@@ -2620,7 +2620,7 @@ namespace Fabric.Domain {
 		public virtual long IdentorId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropLenMax(128)]
+		//[PropLenMax(256)]
 		public virtual string Value { get; set; }
 
 

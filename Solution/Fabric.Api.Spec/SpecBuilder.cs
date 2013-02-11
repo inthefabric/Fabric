@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/11/2013 3:18:01 PM
+// Generated on 2/11/2013 4:04:40 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -242,7 +242,7 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Identor.Value":
-					pValue.LenMax = 128;
+					pValue.LenMax = 256;
 					break;
 
 				case "IdentorType.IdentorTypeId":

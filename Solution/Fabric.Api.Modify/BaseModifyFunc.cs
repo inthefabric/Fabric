@@ -21,7 +21,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void EnsureFabricSystem() { //TEST: BaseModifyFunc.EnsureFabricSystem()
+		protected void EnsureFabricSystem() {
 			if ( ApiCtx.AppId != (long)AppId.FabricSystem ) {
 				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
 					"The authenticated App (AppId="+ApiCtx.AppId+") is not permitted "+
@@ -30,7 +30,7 @@ namespace Fabric.Api.Modify {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected Member GetContextMember() { //TEST: BaseModifyFunc.GetContextMember()
+		protected Member GetContextMember() {
 			Member m = Tasks.GetValidMemberByContext(ApiCtx);
 
 			if ( m == null ) {

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/11/2013 3:19:53 PM
+// Generated on 2/11/2013 4:04:41 PM
 
 using System;
 using Fabric.Db.Data;
@@ -871,7 +871,7 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public void IdentorValue(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 128);
+			LengthLessThanOrEqual(pParamName, pValue, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
