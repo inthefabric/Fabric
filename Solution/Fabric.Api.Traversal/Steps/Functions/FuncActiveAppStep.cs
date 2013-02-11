@@ -6,6 +6,7 @@ using Weaver.Interfaces;
 using Fabric.Infrastructure.Api;
 using Fabric.Domain;
 using Weaver;
+using Fabric.Api.Traversal.Steps.Nodes;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
@@ -35,11 +36,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 			
 			Path.AddSegment(this, QueryStart+Path.AppId+QueryEnd);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Type DtoType {
-			get { return typeof(FabApp); }
+			ProxyStep = new AppStep(Path);
 		}
 		
 

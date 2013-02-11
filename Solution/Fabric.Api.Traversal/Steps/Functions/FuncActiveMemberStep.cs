@@ -7,6 +7,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Domain;
 using Weaver;
 using Weaver.Functions;
+using Fabric.Api.Traversal.Steps.Nodes;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
@@ -45,6 +46,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 			
 			Path.AddSegment(this, QueryStart+Path.UserId+QueryMid+Path.AppId+QueryEnd);
+			ProxyStep = new MemberStep(Path);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

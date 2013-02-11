@@ -102,7 +102,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Tasks\" />
-  </ItemGroup>
 </Project>
