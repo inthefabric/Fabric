@@ -42,6 +42,7 @@ namespace Fabric.Api.Services {
 		private IApiDataAccess vReq;
 		private HttpStatusCode vStatus;
 		private string vApiUri;
+		private bool vStartAtRoot;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,12 +103,14 @@ namespace Fabric.Api.Services {
 			switch ( vRoute ) {
 				case Route.Root:
 					vApiUri = vApiUri.Substring(TravRootUriLength);
+					vStartAtRoot = true;
 					break;
 					
 				case Route.CurrApp:
 				case Route.CurrUser:
 				case Route.CurrMember:
 					vApiUri = vApiUri.Substring(TravUriLength);
+					vStartAtRoot = false;
 					break;
 			}
 		}
@@ -118,7 +121,7 @@ namespace Fabric.Api.Services {
 				vApiUri = vApiUri.Substring(1); //remove "/"
 			}
 
-			RootStep r = PathRouter.NewRootStep(ApiCtx.AppId, ApiCtx.UserId);
+			RootStep r = PathRouter.NewRootStep(vStartAtRoot, ApiCtx.AppId, ApiCtx.UserId);
 			vLastStep = PathRouter.GetPath(r, vApiUri);
 			FabResp.SetLinks(vLastStep.AvailableLinks);
 			FabResp.Functions = vLastStep.AvailableFuncs.ToArray();

@@ -94,17 +94,25 @@ namespace Fabric.Test.FabApiTraversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void NewRootStep() {
+		[TestCase(true)]
+		[TestCase(false)]
+		public void NewRootStep(bool pStartAtRoot) {
 			long appId = 1234;
 			long userId = 65432;
-			RootStep rs = PathRouter.NewRootStep(appId, userId);
+			RootStep rs = PathRouter.NewRootStep(pStartAtRoot, appId, userId);
 
 			Assert.NotNull(rs, "Result should be filled.");
 			Assert.NotNull(rs.Path, "Result.Path should be filled.");
 			Assert.NotNull(rs.Data, "Result.Data should be filled.");
-			Assert.AreEqual("api", rs.Data.RawString, "Incorrect Result.Data.RawString.");
-			Assert.AreEqual("g.V('RootId',0)[0]", rs.Path.Script, "Incorrect Path.Script.");
+			Assert.AreEqual("Root", rs.Data.RawString, "Incorrect Result.Data.RawString.");
+
+			if ( pStartAtRoot ) {
+				Assert.AreEqual("g.V('RootId',0)[0]", rs.Path.Script, "Incorrect Path.Script.");
+			}
+			else {
+				Assert.AreEqual("g", rs.Path.Script, "Incorrect Path.Script.");
+			}
+
 			Assert.AreEqual(1, rs.Path.Segments.Count, "Incorrect Path.Segments.Count.");
 			Assert.AreEqual(appId, rs.Path.AppId, "Incorrect Path.AppId.");
 			Assert.AreEqual(userId, rs.Path.UserId, "Incorrect Path.UserId.");

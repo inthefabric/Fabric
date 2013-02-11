@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 1/25/2013 2:43:16 PM
+// Generated on 2/11/2013 2:15:13 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -585,8 +585,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep(Path pPath) : base(pPath) {
-			if ( pPath.Segments.Count == 0 ) {
-				Path.AddSegment(this, "g.V('RootId',0)[0]");
+			if ( Path.Segments.Count == 0 ) {
+				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
 			}
 
 			ConstructorHook();

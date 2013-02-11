@@ -25,10 +25,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var s = new FuncActiveMemberStep(p);
 			
 			string expectScript = 
-				"g.V('"+typeof(User).Name+"Id',"+userId+"L)[0]"+
+				"V('"+typeof(User).Name+"Id',"+userId+"L)[0]"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,"+appId+")"+
+					".has('"+typeof(App).Name+"Id',Tokens.T.eq,"+appId+"L)"+
 				".back(3)";
 			
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");

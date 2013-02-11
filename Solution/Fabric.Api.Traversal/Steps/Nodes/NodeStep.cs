@@ -1,5 +1,4 @@
 ﻿using System;
-using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Api.Faults;
 

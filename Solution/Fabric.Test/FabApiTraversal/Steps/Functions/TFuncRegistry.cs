@@ -22,10 +22,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(false, new[] { "activeapp", "activeuser", "activemember" })]
 		public void GetAvailableFuncsForRoot(bool pUri, string[] pExpect) {
 			var art = new RootStep(new Path());
-			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri);
+			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri, true);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 
-			result = FuncRegistry.GetAvailableFuncs(typeof(FabRoot), pUri);
+			result = FuncRegistry.GetAvailableFuncs(typeof(FabRoot), pUri, true);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 		
@@ -35,10 +35,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		public void GetAvailableFuncsForArtifact(bool pUri, string[] pExpect) {
 			var art = new ArtifactStep(new Path());
 
-			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri);
+			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri, true);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 
-			result = FuncRegistry.GetAvailableFuncs(typeof(FabArtifact), pUri);
+			result = FuncRegistry.GetAvailableFuncs(typeof(FabArtifact), pUri, true);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
@@ -49,7 +49,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(false)]
 		public void GetAvailableFuncsNotFabNode(bool pUri) {
 			TestUtil.CheckThrows<Exception>(true, () =>
-				FuncRegistry.GetAvailableFuncs(typeof(string), pUri));
+				FuncRegistry.GetAvailableFuncs(typeof(string), pUri, true));
 		}
 
 

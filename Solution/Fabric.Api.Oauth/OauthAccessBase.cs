@@ -47,7 +47,7 @@ namespace Fabric.Api.Oauth {
 			"The code is invalid or expired",
 			"The refresh_token is invalid or expired",
 			"The redirect_uri does not match this code",
-			"The app_secret does not match the client_id",
+			"The client_secret does not match the client_id",
 			"The data_prov_userid was not supplied.",
 			"The data_prov_userid does not match the client_id",
 			"An unexpected error occurred"

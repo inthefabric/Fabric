@@ -49,7 +49,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			////
 
 			var expectSteps = new List<string>();
-			List<string> expectFuncs = FuncRegistry.GetAvailableFuncs(step, true);
+			List<string> expectFuncs = FuncRegistry.GetAvailableFuncs(step, true, true);
 
 			foreach ( string a in availSteps ) {
 				expectSteps.Add(a);

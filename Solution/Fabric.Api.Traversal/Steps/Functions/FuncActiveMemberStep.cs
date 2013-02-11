@@ -32,14 +32,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 					ApiFunc.NewPathFromIndex(new User { UserId = 888 })
 						.DefinesMemberList.ToMember
 						.InAppDefines.FromApp
-						.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, 999)
+						.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, (long)999)
 						.End();
 				
 				string script = q.Script;
 				int userIdIndex = script.IndexOf("888");
 				int appIdIndex = script.IndexOf("999");
 				
-				QueryStart = script.Substring(0, userIdIndex);
+				QueryStart = script.Substring(2, userIdIndex-2); //remove "g."
 				QueryMid = script.Substring(userIdIndex+3, appIdIndex-userIdIndex-3);
 				QueryEnd = script.Substring(appIdIndex+3);
 				QueryEnd = QueryEnd.Substring(0, QueryEnd.Length-1)+".back(3)";

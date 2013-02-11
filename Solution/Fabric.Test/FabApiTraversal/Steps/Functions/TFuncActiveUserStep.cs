@@ -23,7 +23,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var p = new Path() { UserId = userId };
 			var s = new FuncActiveUserStep(p);
 			
-			string expectScript = "g.V('"+typeof(User).Name+"Id',"+userId+"L)[0]";
+			string expectScript = "V('"+typeof(User).Name+"Id',"+userId+"L)[0]";
 			
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
 			Assert.AreEqual(expectScript, s.Path.Script, "Incorrect Path.Script.");

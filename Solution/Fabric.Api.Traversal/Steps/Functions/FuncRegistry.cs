@@ -57,12 +57,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static List<string> GetAvailableFuncs(IStep pStep, bool pUri) {
-			return GetAvailableFuncs(pStep.DtoType, pUri);
+		public static List<string> GetAvailableFuncs(IStep pStep, bool pUri, bool pIncludeInternal) {
+			return GetAvailableFuncs(pStep.DtoType, pUri, pIncludeInternal);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static List<string> GetAvailableFuncs(Type pDtoType, bool pUri) {
+		public static List<string> GetAvailableFuncs(Type pDtoType, bool pUri, bool pIncludeInternal) {
 			Init();
 
 			if ( !typeof(IFabObject).IsAssignableFrom(pDtoType) ) {
@@ -72,7 +72,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			var list = new List<string>();
 
 			foreach ( FuncRegistryItem ri in RegItems ) {
-				if ( ri.IsInternal ) { continue; }
+				if ( ri.IsInternal && !pIncludeInternal ) { continue; }
 				if ( !ri.Allow(pDtoType) ) { continue; }
 				list.Add(pUri ? ri.Uri : ri.Command);
 			}

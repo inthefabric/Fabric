@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
-using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
 	public class Path {
 
+		public bool StartAtRoot { get; set; }
 		public long UserId { get; set; }
 		public long AppId { get; set; }
 		public List<PathSegment> Segments { get; private set; }

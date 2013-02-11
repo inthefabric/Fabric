@@ -30,7 +30,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				string script = q.Script;
 				int idIndex = script.IndexOf("999");
 				
-				QueryStart = script.Substring(0, idIndex);
+				QueryStart = script.Substring(2, idIndex-2); //remove "g."
 				QueryEnd = script.Substring(idIndex+3);
 				QueryEnd = QueryEnd.Substring(0, QueryEnd.Length-1);
 			}

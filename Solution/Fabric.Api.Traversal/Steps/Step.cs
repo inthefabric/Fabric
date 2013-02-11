@@ -31,7 +31,7 @@ namespace Fabric.Api.Traversal.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual List<string> AvailableFuncs {
-			get { return FuncRegistry.GetAvailableFuncs(this, true); }
+			get { return FuncRegistry.GetAvailableFuncs(this, true, false); }
 		}
 
 
@@ -84,7 +84,7 @@ namespace Fabric.Api.Traversal.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private IStep GetFunc(StepData pData) {
-			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(this, false);
+			List<string> availFuncs = FuncRegistry.GetAvailableFuncs(this, false, true);
 
 			foreach ( string comm in availFuncs ) {
 				if ( comm != pData.Command ) { continue; }
