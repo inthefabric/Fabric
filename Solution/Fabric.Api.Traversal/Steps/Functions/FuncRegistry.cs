@@ -43,6 +43,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			
 			var ri = new FuncRegistryItem {
 				FuncType = typeof(T),
+				IsInternal = fa.IsInternal,
 				Uri = "/"+command,
 				Command = command.ToLower(),
 				New = pNew,
@@ -71,6 +72,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			var list = new List<string>();
 
 			foreach ( FuncRegistryItem ri in RegItems ) {
+				if ( ri.IsInternal ) { continue; }
 				if ( !ri.Allow(pDtoType) ) { continue; }
 				list.Add(pUri ? ri.Uri : ri.Command);
 			}

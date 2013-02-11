@@ -1,17 +1,17 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
+using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
-using Weaver.Interfaces;
-using Fabric.Infrastructure.Api;
-using Fabric.Domain;
 using Weaver;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	[Func("ActiveUser")]
+	[Func("ActiveUser", IsInternal=true)]
 	public class FuncActiveUserStep : FuncStep, IFinalStep {
 
 		private static string QueryStart;

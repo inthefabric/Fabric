@@ -8,6 +8,7 @@ using Fabric.Api.Services.Models;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
+using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Api.Util;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -15,7 +16,6 @@ using Fabric.Infrastructure.Db;
 using Nancy;
 using ServiceStack.Text;
 using Weaver;
-using Fabric.Api.Traversal.Steps.Nodes;
 
 namespace Fabric.Api.Services {
 

@@ -3,12 +3,10 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Fabric.Domain;
-using Fabric.Infrastructure;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
