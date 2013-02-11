@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
 	public class Path {
 
+		public long UserId { get; set; }
+		public long AppId { get; set; }
 		public List<PathSegment> Segments { get; private set; }
 
 
@@ -21,7 +24,7 @@ namespace Fabric.Api.Traversal {
 			if ( string.IsNullOrWhiteSpace(pScript) ) {
 				throw new Exception("Script is null or empty.");
 			}
-
+			
 			Segments.Add(new PathSegment(pStep, pScript));
 		}
 

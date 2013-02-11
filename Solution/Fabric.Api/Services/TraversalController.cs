@@ -15,8 +15,7 @@ using Fabric.Infrastructure.Db;
 using Nancy;
 using ServiceStack.Text;
 using Weaver;
-using Fabric.Api.Traversal.Operations;
-using Fabric.Api.Traversal.Tasks;
+using Fabric.Api.Traversal.Steps.Nodes;
 
 namespace Fabric.Api.Services {
 
@@ -33,6 +32,7 @@ namespace Fabric.Api.Services {
 
 		private static FabService ServiceDto;
 		private static string ServiceDtoJson;
+		private static int TravUriLength;
 		private static int TravRootUriLength;
 
 		private readonly Route vRoute;
@@ -56,19 +56,22 @@ namespace Fabric.Api.Services {
 			if ( ServiceDto == null ) {
 				ServiceDto = FabHome.NewTraversalService(true);
 				ServiceDtoJson = ServiceDto.ToJson();
-				TravRootUriLength = (FabHome.TravUri+FabHome.TravRootUri).Length;
+				TravUriLength = FabHome.TravUri.Length;
+				TravRootUriLength = TravUriLength+FabHome.TravRootUri.Length;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
 			switch ( vRoute ) {
-				case Route.Home: return BuildHomeResponse();
-				case Route.Root: return BuildRootResponse();
+				case Route.Home: 
+					return BuildHomeResponse();
+					
+				case Route.Root: 
 				case Route.CurrApp:
 				case Route.CurrUser:
 				case Route.CurrMember:
-					return BuildCurrResponse();
+					return BuildRootResponse();
 			}
 
 			return null;
@@ -80,51 +83,43 @@ namespace Fabric.Api.Services {
 		private Response BuildHomeResponse() {
 			return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildRootResponse() {
+			AdjustApiUrl();
 			FillQueryInfo();
 			ExecuteQuery();
 			BuildDtoList();
 			return BuildViewResponse();
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected Response BuildCurrResponse() {
-			var tasks = new TraversalTasks();
-			string json = null;
-			
-			switch ( vRoute ) {
-				case Route.CurrApp:
-					var a = new GetActiveApp(tasks);
-					json = a.Go(ApiCtx).ToJson();
-					break;
-					
-				case Route.CurrUser:
-					var u = new GetActiveUser(tasks);
-					json = u.Go(ApiCtx).ToJson();
-					break;
-					
-				case Route.CurrMember:
-					var m = new GetActiveMember(tasks);
-					json = m.Go(ApiCtx).ToJson();
-					break;
-			}
-			
-			return NewResponse(new FabRespJsonView(FabResp, json));
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void FillQueryInfo() {
-			vApiUri = NancyReq.Path.Substring(TravRootUriLength);
+		private void AdjustApiUrl() {
+			vApiUri = NancyReq.Path;
 			
+			switch ( vRoute ) {
+				case Route.Root:
+					vApiUri = vApiUri.Substring(TravRootUriLength);
+					break;
+					
+				case Route.CurrApp:
+				case Route.CurrUser:
+				case Route.CurrMember:
+					vApiUri = vApiUri.Substring(TravUriLength);
+					break;
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private void FillQueryInfo() {
 			if ( vApiUri.Length > 0 ) {
 				vApiUri = vApiUri.Substring(1); //remove "/"
 			}
 
-			vLastStep = PathRouter.GetPath(PathRouter.NewRootStep(), vApiUri);
+			RootStep r = PathRouter.NewRootStep(ApiCtx.AppId, ApiCtx.UserId);
+			vLastStep = PathRouter.GetPath(r, vApiUri);
 			FabResp.SetLinks(vLastStep.AvailableLinks);
 			FabResp.Functions = vLastStep.AvailableFuncs.ToArray();
 			vModel.Query = vLastStep.Path.Script;

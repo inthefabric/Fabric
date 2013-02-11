@@ -62,11 +62,9 @@
     <Compile Include="Steps\IStep.cs" />
     <Compile Include="Steps\Step.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\ITraversalTasks.cs" />
-    <Compile Include="Tasks\TraversalTasks.cs" />
-    <Compile Include="Operations\GetActiveApp.cs" />
-    <Compile Include="Operations\GetActiveUser.cs" />
-    <Compile Include="Operations\GetActiveMember.cs" />
+    <Compile Include="Steps\Functions\FuncActiveAppStep.cs" />
+    <Compile Include="Steps\Functions\FuncActiveUserStep.cs" />
+    <Compile Include="Steps\Functions\FuncActiveMemberStep.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Steps\Nodes\NodeSteps.tt">
@@ -106,6 +104,5 @@
   -->
   <ItemGroup>
     <Folder Include="Tasks\" />
-    <Folder Include="Operations\" />
   </ItemGroup>
 </Project>

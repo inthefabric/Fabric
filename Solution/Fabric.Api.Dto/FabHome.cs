@@ -28,9 +28,9 @@ namespace Fabric.Api.Dto {
 
 		public const string TravUri = "/Trav";
 		public const string TravRootUri = "/Root";
-		public const string TravAppUri = "/App";
-		public const string TravUserUri = "/User";
-		public const string TravMemberUri = "/Member";
+		public const string TravAppUri = "/ActiveApp";
+		public const string TravUserUri = "/ActiveUser";
+		public const string TravMemberUri = "/ActiveMember";
 
 		public const string ModUri = "/Mod";
 		public const string ModAppsUri = "/Apps";

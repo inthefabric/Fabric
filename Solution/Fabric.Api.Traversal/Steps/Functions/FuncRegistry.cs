@@ -18,6 +18,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			if ( RegItems != null ) { return; }
 			RegItems = new List<FuncRegistryItem>();
 			RegItemMap = new Dictionary<string, FuncRegistryItem>();
+			
+			//Available for FabRoot
+			Register<FuncActiveAppStep>(
+				(p => new FuncActiveAppStep(p)), FuncActiveAppStep.AllowedForStep);
+			Register<FuncActiveUserStep>(
+				(p => new FuncActiveUserStep(p)), FuncActiveUserStep.AllowedForStep);
+			Register<FuncActiveMemberStep>(
+				(p => new FuncActiveMemberStep(p)), FuncActiveMemberStep.AllowedForStep);
 
 			//Available for most DTOs
 			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);

@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Infrastructure.Api;
 
 namespace Fabric.Api.Traversal {
 
@@ -14,7 +15,7 @@ namespace Fabric.Api.Traversal {
 			string[] parts = (pUri.Length > 0 ? pUri.Split('/') : new string[0]);
 			int n = parts.Length;
 			IStep step = pRoot;
-
+			
 			for ( int i = 0 ; i < n ; ++i ) {
 				string p = parts[i];
 				
@@ -29,8 +30,11 @@ namespace Fabric.Api.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static RootStep NewRootStep() {
-			var rs = new RootStep(new Path());
+		public static RootStep NewRootStep(long pAppId, long pUserId) {
+			var p = new Path();
+			p.AppId = pAppId;
+			p.UserId = pUserId;
+			var rs = new RootStep(p);
 			rs.SetDataAndUpdatePath(new StepData("api"));
 			return rs;
 		}
