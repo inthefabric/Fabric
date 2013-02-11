@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Modify {
 
 	/*================================================================================================*/
-	public class UpdateFactor : BaseModifyFunc<Factor> {
+	public abstract class UpdateFactor : BaseModifyFunc<Factor> {
 		
 		public const string FactorParam = "FactorId";
 		public const string CompletedParam = "IsCompleted";
