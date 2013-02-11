@@ -3,6 +3,7 @@ using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using NUnit.Framework;
 using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabDbData {
 
@@ -20,23 +21,23 @@ namespace Fabric.Test.FabDbData {
 			long nodeI = 1000;
 
 			foreach ( WeaverQuery q in ds.Initialization ) {
-				string json = FabricUtil.WeaverQueryToJson(q);
+				string json = WeaverQueryToJson(q);
 				Log.Debug(json);
 			}
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
-				string json = FabricUtil.WeaverQueryToJson(q);
+				string json = WeaverQueryToJson(q);
 				Log.Debug(json);
 			}
 
 			foreach ( IDataNode n in ds.Nodes ) {
-				string json = FabricUtil.WeaverQueryToJson(n.AddQuery);
+				string json = WeaverQueryToJson(n.AddQuery);
 				Log.Debug("["+nodeI+"] -- "+json);
 				n.Node.Id = nodeI++;
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {
-				string json = FabricUtil.WeaverQueryToJson(r.AddQuery);
+				string json = WeaverQueryToJson(r.AddQuery);
 				Log.Debug(json);
 			}
 		}
@@ -68,6 +69,11 @@ namespace Fabric.Test.FabDbData {
 
 			tx.Finish(WeaverTransaction.ConclusionType.Success);
 			//Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public static string WeaverQueryToJson(IWeaverQuery pQuery) {
+			return FabricUtil.ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
 		}*/
 
 	}

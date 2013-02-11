@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using Weaver;
-using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure {
 
 	/*================================================================================================*/
 	public static class FabricUtil {
 		
-		//TODO: see if this DoubleMin/Max restriction still applies with Rexster/Titan
 		//Reduced bounds stop the Gremlin/Neo4j Java complaints
 		public const double DoubleMin = double.MinValue+1E+294;
 		public const double DoubleMax = double.MaxValue-1E+294;
@@ -29,16 +26,6 @@ namespace Fabric.Infrastructure {
 			}
 
 			return json+"}}";
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static string WeaverQueryToJson(IWeaverQuery pQuery) {
-			return ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static string WeaverTransactionToJson(WeaverTransaction pTx) {
-			return ScriptAndParamsToJson(pTx.Script, pTx.Params);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
