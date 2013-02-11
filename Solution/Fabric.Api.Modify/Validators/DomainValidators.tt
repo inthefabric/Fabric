@@ -93,24 +93,42 @@ foreach ( string name in nodes ) {
 			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(<#= node.Name #>Id)).Length);
 <#
 		}
-		else if ( prop.IsPrimaryKey == true || prop.IsTimestamp == true ) {
+
+		if ( prop.LenMin != null && prop.LenMax != null ) {
 			count++;
 #>
-			LongGreaterThan(pParamName, pValue, 0);
+			LengthBetween(pParamName, pValue, <#= prop.LenMin #>, <#= prop.LenMax #>);
 <#
 		}
-
-		if ( prop.LenMin == null && prop.LenMax > 0 ) {
+		else if ( prop.LenMin != null ) {
+			count++;
+#>
+			LengthGreaterThanOrEqual(pParamName, pValue, <#= prop.LenMin #>);
+<#
+		}
+		else if ( prop.LenMax != null ) {
 			count++;
 #>
 			LengthLessThanOrEqual(pParamName, pValue, <#= prop.LenMax #>);
 <#
 		}
 
-		if ( prop.LenMin > 0 && prop.LenMax > 0 ) {
+		if ( prop.Min != null && prop.Max != null ) {
 			count++;
 #>
-			LengthBetween(pParamName, pValue, <#= prop.LenMin #>, <#= prop.LenMax #>);
+			LongBetween(pParamName, pValue, <#= prop.Min #>, <#= prop.Max #>);
+<#
+		}
+		else if ( prop.Min != null ) {
+			count++;
+#>
+			LongGreaterThanOrEqual(pParamName, pValue, <#= prop.Min #>);
+<#
+		}
+		else if ( prop.Max != null ) {
+			count++;
+#>
+			LongLessThanOrEqual(pParamName, pValue, <#= prop.Max #>);
 <#
 		}
 

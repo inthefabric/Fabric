@@ -6,7 +6,6 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
-using System;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -74,7 +73,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vEveTypeId = (long)EventorTypeId.Occur;
 			vEvePrecId = (long)EventorPrecisionId.Year;
 			vDateTime = 631769760000000000;
-			long expectEventorId = (long)SetupFactors.EventorId.Occur_Year_2003;
+			const long expectEventorId = (long)SetupFactors.EventorId.Occur_Year_2003;
 
 			TestGo();
 
@@ -105,6 +104,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[TestCase(SetupTypes.NumEventorPrecisions+1)]
 		public void ErrEventorPrecisionRange(int pId) {
 			vEvePrecId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(-1)]
+		public void ErrEventorDateTimeRange(long pDateTime) {
+			vDateTime = pDateTime;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

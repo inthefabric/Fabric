@@ -55,7 +55,9 @@ namespace Fabric.Api.Modify {
 				throw new FabDuplicateFault(typeof(User), NameParam, vName);
 			}
 
-			//NEXT: Add unique email validation
+			//Allow users to reuse email address. They may not want certain apps/factors associated
+			//with their primary identity. Email address is not part of "open data" so they can use
+			//one email address for several different User identities.
 
 			////
 

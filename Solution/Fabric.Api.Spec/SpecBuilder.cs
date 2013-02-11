@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/7/2013 9:06:12 PM
+// Generated on 2/11/2013 3:18:01 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -35,11 +35,9 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Root.RootId":
-					pValue.Min = 1;
 					break;
 
 				case "App.AppId":
-					pValue.Min = 1;
 					break;
 
 				case "App.Name":
@@ -54,7 +52,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Artifact.ArtifactId":
-					pValue.Min = 1;
 					break;
 
 				case "Artifact.IsPrivate":
@@ -64,11 +61,9 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "ArtifactType.ArtifactTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "Class.ClassId":
-					pValue.Min = 1;
 					break;
 
 				case "Class.Name":
@@ -86,7 +81,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Crowd.CrowdId":
-					pValue.Min = 1;
 					break;
 
 				case "Crowd.Name":
@@ -105,22 +99,18 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Crowdian.CrowdianId":
-					pValue.Min = 1;
 					break;
 
 				case "CrowdianType.CrowdianTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "CrowdianTypeAssign.CrowdianTypeAssignId":
-					pValue.Min = 1;
 					break;
 
 				case "CrowdianTypeAssign.Weight":
 					break;
 
 				case "Email.EmailId":
-					pValue.Min = 1;
 					break;
 
 				case "Email.Address":
@@ -140,7 +130,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Instance.InstanceId":
-					pValue.Min = 1;
 					break;
 
 				case "Instance.Name":
@@ -158,7 +147,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Label.LabelId":
-					pValue.Min = 1;
 					break;
 
 				case "Label.Name":
@@ -168,19 +156,15 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Member.MemberId":
-					pValue.Min = 1;
 					break;
 
 				case "MemberType.MemberTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "MemberTypeAssign.MemberTypeAssignId":
-					pValue.Min = 1;
 					break;
 
 				case "Url.UrlId":
-					pValue.Min = 1;
 					break;
 
 				case "Url.Name":
@@ -192,7 +176,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "User.UserId":
-					pValue.Min = 1;
 					break;
 
 				case "User.Name":
@@ -207,7 +190,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Factor.FactorId":
-					pValue.Min = 1;
 					break;
 
 				case "Factor.IsDefining":
@@ -227,46 +209,36 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "FactorAssertion.FactorAssertionId":
-					pValue.Min = 1;
 					break;
 
 				case "Descriptor.DescriptorId":
-					pValue.Min = 1;
 					break;
 
 				case "DescriptorType.DescriptorTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "Director.DirectorId":
-					pValue.Min = 1;
 					break;
 
 				case "DirectorType.DirectorTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "DirectorAction.DirectorActionId":
-					pValue.Min = 1;
 					break;
 
 				case "Eventor.EventorId":
-					pValue.Min = 1;
 					break;
 
 				case "Eventor.DateTime":
 					break;
 
 				case "EventorType.EventorTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "EventorPrecision.EventorPrecisionId":
-					pValue.Min = 1;
 					break;
 
 				case "Identor.IdentorId":
-					pValue.Min = 1;
 					break;
 
 				case "Identor.Value":
@@ -274,11 +246,9 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "IdentorType.IdentorTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "Locator.LocatorId":
-					pValue.Min = 1;
 					break;
 
 				case "Locator.ValueX":
@@ -291,7 +261,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "LocatorType.LocatorTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "LocatorType.MinX":
@@ -313,14 +282,12 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "Vector.VectorId":
-					pValue.Min = 1;
 					break;
 
 				case "Vector.Value":
 					break;
 
 				case "VectorType.VectorTypeId":
-					pValue.Min = 1;
 					break;
 
 				case "VectorType.Min":
@@ -330,18 +297,15 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorRange.VectorRangeId":
-					pValue.Min = 1;
 					break;
 
 				case "VectorRangeLevel.VectorRangeLevelId":
-					pValue.Min = 1;
 					break;
 
 				case "VectorRangeLevel.Position":
 					break;
 
 				case "VectorUnit.VectorUnitId":
-					pValue.Min = 1;
 					break;
 
 				case "VectorUnit.Symbol":
@@ -349,7 +313,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorUnitPrefix.VectorUnitPrefixId":
-					pValue.Min = 1;
 					break;
 
 				case "VectorUnitPrefix.Symbol":
@@ -360,14 +323,12 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "VectorUnitDerived.VectorUnitDerivedId":
-					pValue.Min = 1;
 					break;
 
 				case "VectorUnitDerived.Exponent":
 					break;
 
 				case "OauthAccess.OauthAccessId":
-					pValue.Min = 1;
 					break;
 
 				case "OauthAccess.Token":
@@ -387,7 +348,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "OauthDomain.OauthDomainId":
-					pValue.Min = 1;
 					break;
 
 				case "OauthDomain.Domain":
@@ -395,7 +355,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "OauthGrant.OauthGrantId":
-					pValue.Min = 1;
 					break;
 
 				case "OauthGrant.RedirectUri":
@@ -411,7 +370,6 @@ namespace Fabric.Api.Spec {
 					break;
 
 				case "OauthScope.OauthScopeId":
-					pValue.Min = 1;
 					break;
 
 				case "OauthScope.Allow":

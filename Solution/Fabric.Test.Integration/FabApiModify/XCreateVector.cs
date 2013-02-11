@@ -83,7 +83,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vAxisArtId = (long)SetupArtifacts.ArtifactId.Thi_Quality;
 			vVecUnitId = (long)VectorUnitId.None;
 			vVecUnitPrefId = (long)VectorUnitPrefixId.Base;
-			long expectVectorId = (long)SetupFactors.VectorId.Quality_92_None;
+			const long expectVectorId = (long)SetupFactors.VectorId.Quality_92_None;
 
 			TestGo();
 

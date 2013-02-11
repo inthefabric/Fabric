@@ -137,21 +137,6 @@ namespace Fabric.Test.FabApiModify {
 
 			MockValidator.Verify(x => x.DescriptorTypeId(vDescTypeId,
 				CreateDescriptor.DescTypeParam), Times.Once());
-
-			if ( vPrimArtRefId != null ) {
-				MockValidator.Verify(x => x.ArtifactId((long)vPrimArtRefId,
-					CreateDescriptor.PrimArtRefParam), Times.Once());
-			}
-
-			if ( vRelArtRefId != null ) {
-				MockValidator.Verify(x => x.ArtifactId((long)vRelArtRefId,
-					CreateDescriptor.RelArtRefParam), Times.Once());
-			}
-
-			if ( vDescTypeRefId != null ) {
-				MockValidator.Verify(x => x.ArtifactId((long)vDescTypeRefId,
-					CreateDescriptor.DescTypeRefParam), Times.Once());
-			}
 		}
 
 

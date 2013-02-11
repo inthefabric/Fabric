@@ -281,6 +281,7 @@ namespace Fabric.Infrastructure.Domain {
 			p = AddProp(eventor, "EventorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(eventor, "DateTime", typeof(DateTime));
+				p.Min = 1;
 
 			WeaverNodeSchema eventorType = AddNode("EventorType", "EvT");
 			eventorType.BaseNode = nodeForType;

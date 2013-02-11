@@ -47,10 +47,6 @@ foreach ( string name in nodes ) {
 		string propItems = "";
 		string lineEnd = "\r\n\t\t\t\t\t";
 		
-		if ( prop.IsPrimaryKey == true ) {
-			propItems += "pValue.Min = 1;"+lineEnd;
-		}
-
 		if ( prop.Len != null ) {
 			propItems += "pValue.Len = "+prop.Len+";"+lineEnd;
 		}
@@ -153,7 +149,7 @@ foreach ( string name in nodes ) {
 <#
 	string dtoAqn = fabApiDtoNamespace.Replace("FabNode", "Fab"+node.Name);
 	Type dtoType = Type.GetType(dtoAqn);
-	List<string> availFuncs = FuncRegistry.GetAvailableFuncs(dtoType, true);
+	List<string> availFuncs = FuncRegistry.GetAvailableFuncs(dtoType, true, false);
 	bool first = true;
 		
 	foreach ( string funcUri in availFuncs ) {

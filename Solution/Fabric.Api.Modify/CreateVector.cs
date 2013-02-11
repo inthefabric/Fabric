@@ -52,7 +52,6 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.VectorTypeId(vVecTypeId, VecTypeParam);
-			Tasks.Validator.ArtifactId(vAxisArtId, AxisArtParam);
 			Tasks.Validator.VectorUnitId(vVecUnitId, UnitParam);
 			Tasks.Validator.VectorUnitPrefixId(vVecUnitPrefId, UnitPrefParam);
 		}

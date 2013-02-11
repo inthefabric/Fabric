@@ -90,32 +90,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 			NewRelCount = 1;
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(SetupTypes.NumDirectorTypes+1)]
-		public void ErrDirectorTypeRange(int pId) {
-			vDirTypeId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(SetupTypes.NumDirectorActions+1)]
-		public void ErrPrimaryDirectorActionRange(int pId) {
-			vDirTypeId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(SetupTypes.NumDirectorActions+1)]
-		public void ErrRelatedDirectorActionRange(int pId) {
-			vDirTypeId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
 	}
 
 }

@@ -1,7 +1,4 @@
 ﻿using Fabric.Db.Data.Setups;
-using Fabric.Infrastructure.Api.Faults;
-using Fabric.Test.Util;
-using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -21,15 +18,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void TestGo();
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		public void ErrFactorId(int pId) {
-			FactorId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
 
 	}
 

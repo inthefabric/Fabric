@@ -130,27 +130,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		public void ErrPrimaryArtifactRange(int pId) {
-			vPrimArtRefId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		public void ErrRelatedArtifactRange(int pId) {
-			vRelArtRefId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		public void ErrTypeArtifactRange(int pId) {
-			vDescTypeRefId = pId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
 	}
 
 }

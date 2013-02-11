@@ -82,7 +82,6 @@ namespace Fabric.Test.FabApiModify {
 			CheckValidation();
 		}
 
-
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ExistingEventor() {
@@ -121,6 +120,8 @@ namespace Fabric.Test.FabApiModify {
 				CreateEventor.EveTypeParam), Times.Once());
 			MockValidator.Verify(x => x.EventorPrecisionId(vEvePrecId,
 				CreateEventor.EvePrecParam), Times.Once());
+			MockValidator.Verify(x => x.EventorDateTime(vDateTime,
+				CreateEventor.DateTimeParam), Times.Once());
 		}
 
 	}

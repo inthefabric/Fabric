@@ -83,7 +83,6 @@ namespace Fabric.Test.FabApiModify {
 			Assert.AreEqual(vResultApp, vResult, "Incorrect Result.");
 
 			MockValidator.Verify(x => x.AppName(vName, CreateApp.NameParam), Times.Once());
-			MockValidator.Verify(x => x.UserId(vUserId, CreateApp.UserIdParam), Times.Once());
 
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Artifact> artVar;

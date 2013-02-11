@@ -71,7 +71,6 @@ namespace Fabric.Test.FabApiModify {
 			TestGo();
 
 			Assert.AreEqual(vResultFactor, vResult, "Incorrect Result.");
-			MockValidator.Verify(x => x.FactorId(vFactorId, UpdateFactor.FactorParam), Times.Once());
 		}
 
 

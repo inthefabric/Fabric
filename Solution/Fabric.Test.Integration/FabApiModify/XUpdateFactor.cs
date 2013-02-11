@@ -2,8 +2,6 @@
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Api.Faults;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver;
 using Weaver.Functions;
@@ -157,15 +155,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountDeleted", q);
 			return int.Parse(data.Result.Text);
-		}
-		
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrFactorIdRange() {
-			vFactorId = 0;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 	}

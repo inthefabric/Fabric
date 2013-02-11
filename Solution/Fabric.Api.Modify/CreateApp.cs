@@ -36,7 +36,6 @@ namespace Fabric.Api.Modify {
 		protected override void ValidateParams() {
 			EnsureFabricSystem();
 			Tasks.Validator.AppName(vName, NameParam);
-			Tasks.Validator.UserId(vUserId, UserIdParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
