@@ -1,4 +1,7 @@
 ﻿using Fabric.Db.Data.Setups;
+using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Util;
+using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -18,6 +21,15 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void TestGo();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrFactorIdValue() {
+			FactorId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
+		}
 
 	}
 

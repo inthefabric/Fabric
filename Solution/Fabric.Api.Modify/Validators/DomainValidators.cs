@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/11/2013 4:04:41 PM
+// Generated on 2/12/2013 2:02:28 PM
 
 using System;
 using Fabric.Db.Data;
@@ -222,7 +222,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AppId(long pValue, string pParamName) {
-			throw new Exception("AppId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -257,7 +257,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void ArtifactId(long pValue, string pParamName) {
-			throw new Exception("ArtifactId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -301,7 +301,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassId(long pValue, string pParamName) {
-			throw new Exception("ClassId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -348,7 +348,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void CrowdId(long pValue, string pParamName) {
-			throw new Exception("CrowdId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -402,7 +402,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void CrowdianId(long pValue, string pParamName) {
-			throw new Exception("CrowdianId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -414,7 +414,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void CrowdianTypeId(long pValue, string pParamName) {
-			throw new Exception("CrowdianTypeId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -426,7 +426,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void CrowdianTypeAssignId(long pValue, string pParamName) {
-			throw new Exception("CrowdianTypeAssignId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -448,7 +448,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void EmailId(long pValue, string pParamName) {
-			throw new Exception("EmailId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -503,7 +503,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceId(long pValue, string pParamName) {
-			throw new Exception("InstanceId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -550,7 +550,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void LabelId(long pValue, string pParamName) {
-			throw new Exception("LabelId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -574,7 +574,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void MemberId(long pValue, string pParamName) {
-			throw new Exception("MemberId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -598,7 +598,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void MemberTypeAssignId(long pValue, string pParamName) {
-			throw new Exception("MemberTypeAssignId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -610,7 +610,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void UrlId(long pValue, string pParamName) {
-			throw new Exception("UrlId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -644,7 +644,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void UserId(long pValue, string pParamName) {
-			throw new Exception("UserId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -679,7 +679,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorId(long pValue, string pParamName) {
-			throw new Exception("FactorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -754,7 +754,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void DescriptorId(long pValue, string pParamName) {
-			throw new Exception("DescriptorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -778,7 +778,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void DirectorId(long pValue, string pParamName) {
-			throw new Exception("DirectorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -814,7 +814,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void EventorId(long pValue, string pParamName) {
-			throw new Exception("EventorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -860,7 +860,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void IdentorId(long pValue, string pParamName) {
-			throw new Exception("IdentorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -895,7 +895,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void LocatorId(long pValue, string pParamName) {
-			throw new Exception("LocatorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1009,7 +1009,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorId(long pValue, string pParamName) {
-			throw new Exception("VectorId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1175,7 +1175,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthAccessId(long pValue, string pParamName) {
-			throw new Exception("OauthAccessId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1229,7 +1229,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthDomainId(long pValue, string pParamName) {
-			throw new Exception("OauthDomainId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1252,7 +1252,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthGrantId(long pValue, string pParamName) {
-			throw new Exception("OauthGrantId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1296,7 +1296,7 @@ namespace Fabric.Api.Modify.Validators {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthScopeId(long pValue, string pParamName) {
-			throw new Exception("OauthScopeId has no validation. Property value was "+pValue);
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

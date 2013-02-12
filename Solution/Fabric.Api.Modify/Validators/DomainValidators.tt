@@ -93,6 +93,12 @@ foreach ( string name in nodes ) {
 			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(<#= node.Name #>Id)).Length);
 <#
 		}
+		else if ( prop.IsPrimaryKey == true ) {
+			count++;
+#>
+			LongNotEqualTo(pParamName, pValue, 0);
+<#
+		}
 
 		if ( prop.LenMin != null && prop.LenMax != null ) {
 			count++;

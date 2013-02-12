@@ -51,6 +51,13 @@ namespace Fabric.Api.Modify.Validators {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static void LongNotEqualTo(string pName, long pValue, long pNotEqualToValue) {
+			if ( pValue == pNotEqualToValue ) {
+				throw new FabArgumentValueFault(pName+" cannot be equal to "+pNotEqualToValue+".");
+			}
+		}
+
 	}
 
 }

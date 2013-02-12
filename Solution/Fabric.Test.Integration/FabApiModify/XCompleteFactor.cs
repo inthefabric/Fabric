@@ -23,7 +23,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected void TestGo() {
+		protected override void TestGo() {
 			var func = new CompleteFactor(Tasks, vFactorId, vCompleted);
 			vResult = func.Go(ApiCtx);
 		}

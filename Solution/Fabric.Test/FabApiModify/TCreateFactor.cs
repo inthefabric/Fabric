@@ -90,6 +90,8 @@ namespace Fabric.Test.FabApiModify {
 
 			Assert.AreEqual(vResultFactor, vResult, "Incorrect Result.");
 
+			MockValidator.Verify(x => x.ArtifactId(vPrimArtId, CreateFactor.PrimArtParam),Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vRelArtId, CreateFactor.RelArtParam), Times.Once());
 			MockValidator.Verify(x => x.FactorAssertionId(
 				vAssertId, CreateFactor.AssertParam), Times.Once());
 			MockValidator.Verify(x => x.FactorNote(vNote, CreateFactor.NoteParam), Times.Once());

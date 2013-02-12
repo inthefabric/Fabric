@@ -68,13 +68,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void ExistingDirector() {
 			IsReadOnlyTest = false;
 
 			vDirTypeId = (long)DirectorTypeId.SuggestPath;
 			vPrimActId = (long)DirectorActionId.View;
 			vRelActId = (long)DirectorActionId.Learn;
-			long expectDirectorId = (long)SetupFactors.DirectorId.View_Sugg_Learn;
+			const long expectDirectorId = (long)SetupFactors.DirectorId.View_Sugg_Learn;
 
 			TestGo();
 
@@ -88,6 +89,32 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			NewNodeCount = 0;
 			NewRelCount = 1;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(SetupTypes.NumDirectorTypes+1)]
+		public void ErrDirectorTypeRange(int pId) {
+			vDirTypeId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(SetupTypes.NumDirectorActions+1)]
+		public void ErrPrimaryDirectorActionRange(int pId) {
+			vDirTypeId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(SetupTypes.NumDirectorActions+1)]
+		public void ErrRelatedDirectorActionRange(int pId) {
+			vDirTypeId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 	}

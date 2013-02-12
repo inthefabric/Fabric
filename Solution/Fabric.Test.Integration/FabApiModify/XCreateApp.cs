@@ -139,6 +139,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
+		public void ErrUserIdValue() {
+			vUserId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void ErrUserIdNotFound() {
 			vUserId = 999;
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);

@@ -49,6 +49,18 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.DescriptorTypeId(vDescTypeId, DescTypeParam);
+
+			if ( vPrimArtRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vPrimArtRefId, PrimArtRefParam);
+			}
+
+			if ( vRelArtRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vRelArtRefId, RelArtRefParam);
+			}
+
+			if ( vDescTypeRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vDescTypeRefId, DescTypeRefParam);
+			}
 		}
 
 

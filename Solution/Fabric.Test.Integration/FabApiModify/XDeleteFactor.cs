@@ -22,7 +22,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected void TestGo() {
+		protected override void TestGo() {
 			var func = new DeleteFactor(Tasks, vFactorId, vDeleted);
 			vResult = func.Go(ApiCtx);
 		}

@@ -27,6 +27,8 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
+			Tasks.Validator.FactorId(vFactorId, FactorParam);
+
 			if ( vCompleted == vDeleted ) {
 				throw new FabArgumentValueFault(CompletedParam+" cannot equal "+DeletedParam);
 			}

@@ -1,6 +1,8 @@
+using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiModify {
@@ -42,7 +44,10 @@ namespace Fabric.Test.FabApiModify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void CheckValidation() {}
+		protected virtual void CheckValidation() {
+			MockValidator.Verify(x => x.FactorId(FactorId,
+				CreateFactorElement.FactorParam), Times.Once());
+		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

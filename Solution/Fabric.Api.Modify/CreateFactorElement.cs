@@ -27,6 +27,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
+			Tasks.Validator.FactorId(vFactorId, CreateFactorElement.FactorParam);
 			ValidateElementParams();
 		}
 

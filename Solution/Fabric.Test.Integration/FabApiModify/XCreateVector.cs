@@ -6,7 +6,6 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
-using System;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -106,6 +105,29 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[TestCase(SetupTypes.NumVectorTypes+1)]
 		public void ErrVectorTypeRange(int pId) {
 			vVecTypeId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrAxisArtifactValue() {
+			vAxisArtId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(SetupTypes.NumVectorUnits+1)]
+		public void ErrVectorUnitRange(int pId) {
+			vVecUnitId = pId;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(SetupTypes.NumVectorUnitPrefixes+1)]
+		public void ErrVectorUnitPrefixRange(int pId) {
+			vVecUnitPrefId = pId;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

@@ -1,5 +1,8 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Util;
+using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -24,6 +27,18 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vDeleted = false;
 
 			ApiCtx.SetAppUserId((long)AppFab, (long)UserZach);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected abstract void TestGo();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrFactorIdValue() {
+			vFactorId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
 	}
