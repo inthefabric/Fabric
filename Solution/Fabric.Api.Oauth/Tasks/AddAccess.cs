@@ -34,16 +34,16 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			if ( vAppId <= 0 ) {
-				throw new FabArgumentOutOfRangeFault("AppId");
+			if ( vAppId == 0 ) {
+				throw new FabArgumentValueFault("AppId", 0);
 			}
 			
 			if ( vClientOnly && vUserId != null ) {
-				throw new FabArgumentOutOfRangeFault("UserId");
+				throw new FabArgumentValueFault("UserId cannot be filled in client-only mode.");
 			}
 			
-			if ( !vClientOnly && (vUserId == null || vUserId <= 0) ) {
-				throw new FabArgumentOutOfRangeFault("UserId");
+			if ( !vClientOnly && (vUserId == null || vUserId == 0) ) {
+				throw new FabArgumentValueFault("UserId", 0);
 			}
 		}
 		

@@ -197,25 +197,23 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(-1)]
-		public virtual void ErrAppId(long pAppId) {
-			vAppId = pAppId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, () => TestGo());
+		[Test]
+		public virtual void ErrAppId() {
+			vAppId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(false, null)]
 		[TestCase(false, 0L)]
-		[TestCase(false, -1L)]
 		[TestCase(true, 1L)]
 		[TestCase(true, 0L)]
 		[TestCase(true, -1L)]
 		public virtual void ErrUserId(bool pIsClientOnly, long? pUserId) {
 			vClientOnly = pIsClientOnly;
 			vUserId = pUserId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, () => TestGo());
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 

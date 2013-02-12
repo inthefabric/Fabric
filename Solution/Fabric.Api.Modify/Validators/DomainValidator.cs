@@ -40,21 +40,21 @@ namespace Fabric.Api.Modify.Validators {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void LongGreaterThanOrEqual(string pName, long pValue, long pMin) {
 			if ( pValue < pMin ) {
-				throw new FabArgumentOutOfRangeFault(pName);
+				throw new FabArgumentOutOfRangeFault(pName, pMin);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void LongBetween(string pName, long pValue, long pMin, long pMax) {
 			if ( pValue < pMin || pValue > pMax ) {
-				throw new FabArgumentOutOfRangeFault(pName);
+				throw new FabArgumentOutOfRangeFault(pName, pMin, pMax);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void LongNotEqualTo(string pName, long pValue, long pNotEqualToValue) {
 			if ( pValue == pNotEqualToValue ) {
-				throw new FabArgumentValueFault(pName+" cannot be equal to "+pNotEqualToValue+".");
+				throw new FabArgumentValueFault(pName, pNotEqualToValue);
 			}
 		}
 

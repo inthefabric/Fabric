@@ -106,20 +106,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(-1)]
-		public void ErrInvalidAppId(long pAppId) {
-			vAppId = pAppId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, () => TestGo());
+		[Test]
+		public void ErrInvalidAppId() {
+			vAppId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(-1)]
-		public void ErrInvalidUserId(long pUserId) {
-			vUserId = pUserId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, () => TestGo());
+		[Test]
+		public void ErrInvalidUserId() {
+			vUserId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 

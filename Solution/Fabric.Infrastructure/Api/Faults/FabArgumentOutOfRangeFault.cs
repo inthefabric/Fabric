@@ -8,10 +8,7 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArgumentOutOfRangeFault(string pProp) : base(Code.ArgumentOutOfRange, "") {
-			Property = pProp;
-			AppendMessage("The '"+Property+"' value is out of range.");
-		}
+		public FabArgumentOutOfRangeFault(string pMessage) : base(Code.ArgumentOutOfRange, pMessage) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public FabArgumentOutOfRangeFault(string pProp, long pMin) : base(Code.ArgumentOutOfRange, "") {

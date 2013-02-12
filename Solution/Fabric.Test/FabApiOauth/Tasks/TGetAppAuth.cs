@@ -91,11 +91,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(-1)]
-		public void ErrAppIdRange(int pAppId) {
-			vAppId = pAppId;
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, () => TestGo());
+		[Test]
+		public void ErrAppIdRange() {
+			vAppId = 0;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
 			vUsageMap.AssertNoOverallUses();
 		}
 		

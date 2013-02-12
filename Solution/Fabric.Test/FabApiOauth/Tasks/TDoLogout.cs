@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ErrAppId(long pAppId) {}
+		public override void ErrAppId() {}
 		public override void ErrUserId(bool pIsClientOnly, long? pUserId) {}
 		
 		

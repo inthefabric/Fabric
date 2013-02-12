@@ -27,8 +27,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			if ( vAppId <= 0 ) {
-				throw new FabArgumentOutOfRangeFault("AppId");
+			if ( vAppId == 0 ) {
+				throw new FabArgumentValueFault("AppId", 0);
 			}
 			
 			if ( vAppSecret == null ) {
