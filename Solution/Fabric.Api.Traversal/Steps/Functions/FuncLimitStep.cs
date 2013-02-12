@@ -31,11 +31,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
-
-			if ( Data.Params == null || Data.Params.Length != 2 ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamCount, this,
-					"Two parameters required.");
-			}
+			ExpectParamCount(2);
 
 			////
 

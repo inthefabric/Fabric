@@ -1,6 +1,8 @@
 ﻿using System;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
+using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -52,23 +54,26 @@ namespace Fabric.Test.FabApiTraversal {
 		[Test]
 		public void AddSegmentShortcut() {
 			var p = new Path();
+			const long typeId = 125235;
+			string expectShortcut = "g.V('ArtifactId',"+typeId+"L)[0]";
 			const string script0 = "g.v(0)";
-			const string script1 = "outE('RootContainsArtifact').inV.has('ArtifactId',Tokens.T.eq,5L)";
-			const string script2 = "outE('ArtifactUsesArtifactType').inV";
-			const string expectShortcut = "g.V('ArtifactId',5L)";
-			const string expectScript = expectShortcut+"."+script2;
+			const string script3 = "outE('ArtifactUsesArtifactType').inV";
+			string expectScript = expectShortcut+"."+script3;
 			Mock<IStep> mockStep;
 
+			var nodeStep = new Mock<INodeStep>();
+			nodeStep.Setup(x => x.GetKeyIndexScript(typeId)).Returns(expectShortcut);
+
+			var whereId = new Mock<IFuncWhereIdStep>();
+			whereId.SetupGet(x => x.Id).Returns(typeId);
+
 			TestAddSegmentToPath(p, script0, out mockStep);
-
-			TestAddSegmentToPath(p, script1, out mockStep);
-			mockStep.SetupGet(x => x.TypeId).Returns(5);
-			mockStep.Setup(x => x.GetKeyIndexScript()).Returns(expectShortcut);
-
-			TestAddSegmentToPath(p, script2, out mockStep);
+			p.AddSegment(nodeStep.Object, "XXX");
+			p.AddSegment(whereId.Object, "XXX");
+			TestAddSegmentToPath(p, script3, out mockStep);
 
 			Assert.AreEqual(expectScript, p.Script, "Incorrect final Script.");
-			Assert.AreEqual(3, p.Segments.Count, "Incorrect final Segments.Count.");
+			Assert.AreEqual(4, p.Segments.Count, "Incorrect final Segments.Count.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

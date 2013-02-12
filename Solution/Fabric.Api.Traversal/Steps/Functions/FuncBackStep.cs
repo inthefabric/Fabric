@@ -17,6 +17,17 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		// * BACK == 3: after "something(1,2)."
 		// * BACK == 4: after "inV(x)."
 
+		//TODO: Fix issues with multiple "Back" functions
+		
+		//given: g.A.B.C.D.E.F.G.back(4) == C
+		//given: g.A.B.C.D.E.F.G.back(4).back(1) == C
+		//given: g.A.B.C.D.E.F.G.back(4).back(3) == A
+
+		//given: g.A.as('a').B.C.as('c').D.E.back('c') == C
+		//given: g.A.as('a').B.C.as('c').D.E.back('a') == A
+		//given: g.A.as('a').B.C.as('c').D.E.back('c').back('a') == A
+		//given: g.A.as('a').B.C.as('c').D.E.back('a').back('c') == exception
+
 		[FuncParam(0, 1)]
 		public int Count { get; private set; }
 
@@ -32,11 +43,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
-
-			if ( Data.Params == null || Data.Params.Length != 1 ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamCount, this,
-					"One parameter required.");
-			}
+			ExpectParamCount(1);
 
 			////
 

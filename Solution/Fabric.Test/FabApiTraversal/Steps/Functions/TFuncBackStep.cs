@@ -23,7 +23,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var s = new FuncBackStep(p);
 
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
-			Assert.Null(s.TypeId, "TypeId should be null.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 		}

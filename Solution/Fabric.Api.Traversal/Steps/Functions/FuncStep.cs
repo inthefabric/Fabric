@@ -7,7 +7,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	public abstract class FuncStep : Step, IFuncStep {
 
-		protected IStep ProxyStep { get; set; }
+		public IStep ProxyStep { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

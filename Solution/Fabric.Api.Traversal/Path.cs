@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
+using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Api.Traversal.Steps.Nodes;
 
 namespace Fabric.Api.Traversal {
 
@@ -47,12 +49,13 @@ namespace Fabric.Api.Traversal {
 				string s = "";
 				int startI = 0;
 
-				if ( Segments.Count >= 2 ) {
-					IStep first = Segments[1].Step;
+				if ( Segments.Count >= 3 ) {
+					INodeStep node = (Segments[1].Step as INodeStep);
+					IFuncWhereIdStep whereId = (Segments[2].Step as IFuncWhereIdStep);
 
-					if ( first.TypeId != null ) {
-						s = first.GetKeyIndexScript();
-						startI = 2;
+					if ( node != null && whereId != null ) {
+						s = node.GetKeyIndexScript(whereId.Id);
+						startI = 3;
 					}
 				}
 

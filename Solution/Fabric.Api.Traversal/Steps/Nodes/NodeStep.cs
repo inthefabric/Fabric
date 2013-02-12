@@ -1,6 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Infrastructure.Api.Faults;
+﻿using Fabric.Api.Dto.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -21,23 +19,12 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
-			if ( Data.Params == null ) { return; }
-
-			try {
-				TypeId = Data.ParamAt<long>(0);
-			}
-			catch ( InvalidCastException ex ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'long'.", 0, ex);
-			}
-
-			Path.AppendToCurrentSegment(
-				"has('"+TypeIdName+"',Tokens.T.eq,"+TypeId+(TypeIdIsLong ? "L" : "")+")");
+			ExpectParamCount(0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string GetKeyIndexScript() {
-			return "g.V('"+TypeIdName+"',"+TypeId+(TypeIdIsLong ? "L" : "")+")";
+		public string GetKeyIndexScript(long pTypeId) {
+			return "g.V('"+TypeIdName+"',"+pTypeId+(TypeIdIsLong ? "L" : "")+")[0]";
 		}
 
 	}

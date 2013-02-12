@@ -30,6 +30,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			//Available for most DTOs
 			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);
 			Register<FuncLimitStep>((p => new FuncLimitStep(p)), FuncLimitStep.AllowedForStep);
+			Register<FuncWhereIdStep>((p => new FuncWhereIdStep(p)), FuncWhereIdStep.AllowedForStep);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

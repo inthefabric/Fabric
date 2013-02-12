@@ -7,6 +7,9 @@
 		string TypeIdName { get; }
 		bool TypeIdIsLong { get; }
 
+		/*--------------------------------------------------------------------------------------------*/
+		string GetKeyIndexScript(long pTypeId);
+
 	}
 
 }

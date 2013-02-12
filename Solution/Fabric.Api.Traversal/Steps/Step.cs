@@ -10,7 +10,6 @@ namespace Fabric.Api.Traversal.Steps {
 	/*================================================================================================*/
 	public abstract class Step : IStep {
 
-		public long? TypeId { get; protected set; }
 		public Path Path { get; protected set; }
 		public IStepData Data { get; private set; }
 
@@ -48,11 +47,6 @@ namespace Fabric.Api.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public int GetPathIndex() {
 			return Path.GetSegmentIndexOfStep(this);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual string GetKeyIndexScript() {
-			throw new Exception("Invalid use of GetKeyIndexScript().");
 		}
 
 
@@ -97,6 +91,21 @@ namespace Fabric.Api.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IStep GetLink(StepData pData) {
 			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void ExpectParamCount(int pCount) {
+			if ( pCount == 0 ) {
+				if ( Data.Params == null || Data.Params.Length == 0 ) {
+					return;
+				}
+			}
+			else if ( Data.Params != null && Data.Params.Length == pCount ) {
+				return;
+			}
+
+			throw new FabStepFault(FabFault.Code.IncorrectParamCount, this,
+				pCount+" parameter(s) required.");
 		}
 
 	}

@@ -3,7 +3,6 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 using Weaver;
 using Weaver.Functions;
@@ -59,11 +58,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
-
-			if ( Data.Params != null && Data.Params.Length != 0 ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamCount, this,
-					"Zero parameters required.");
-			}
+			ExpectParamCount(0);
 		}
 
 

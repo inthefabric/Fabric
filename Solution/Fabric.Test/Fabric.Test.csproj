@@ -88,6 +88,7 @@
     <Compile Include="FabApiOauth\TOauthAccessAuthCode.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetAppAuth.cs" />
     <Compile Include="FabApiOauth\TOauthLogout.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TFuncWhereIdStep.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncRegistry.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncStep.cs" />
     <Compile Include="FabApiTraversal\Steps\TStepException.cs" />

@@ -33,7 +33,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
 			Assert.AreEqual(expectScript, s.Path.Script, "Incorrect Path.Script.");
-			Assert.Null(s.TypeId, "TypeId should be null.");
 			Assert.AreEqual(typeof(FabMember), s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");

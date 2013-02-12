@@ -25,7 +25,6 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			var expectAvail = new[] { "Test", "TEST2" };
 
 			Assert.AreEqual(p, s.Path, "Incorrect Path.");
-			Assert.Null(s.TypeId, "TypeId should be null.");
 			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
 			Assert.NotNull(s.AvailableLinks, "AvailableLinks should not be null.");
 			Assert.AreEqual(2, s.AvailableLinks.Count, "Incorrect AvailableLinks length.");
@@ -62,7 +61,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			var s = new TestStep(new Path());
 			const string comm = "teST1";
 
-			IStep result = s.GetNextStep(comm+"(1,2)", pSetData);
+			IStep result = s.GetNextStep(comm, pSetData);
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(typeof(ArtifactStep), result.GetType(), "Incorrect Result Type.");

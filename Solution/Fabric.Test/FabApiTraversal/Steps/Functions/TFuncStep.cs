@@ -24,7 +24,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.AreEqual(p, func.Path, "Incorrect Path.");
 			Assert.AreEqual(TestFuncStep.SegmentText, func.Path.Segments[1].Script,
 				"Incorrect Path.Segment[1].Script.");
-			Assert.Null(func.TypeId, "TypeId should be null.");
 			Assert.Null(func.DtoType, "Incorrect DtoType.");
 			Assert.Null(func.Data, "Data should be null.");
 		}
