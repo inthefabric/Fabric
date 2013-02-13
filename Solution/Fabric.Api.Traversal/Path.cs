@@ -13,14 +13,18 @@ namespace Fabric.Api.Traversal {
 		public long UserId { get; set; }
 		public long AppId { get; set; }
 		public List<PathSegment> Segments { get; private set; }
+		public Dictionary<string, IFuncAsStep> AliasMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Path() {
 			Segments = new List<PathSegment>();
+			AliasMap = new Dictionary<string, IFuncAsStep>();
 		}
+		
 
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddSegment(IStep pStep, string pScript) {
 			if ( string.IsNullOrWhiteSpace(pScript) ) {
@@ -42,7 +46,23 @@ namespace Fabric.Api.Traversal {
 
 			Segments[Segments.Count-1].Append(pScript, pAddDot);
 		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void RegisterAlias(IFuncAsStep pAsStep) {
+			AliasMap.Add(pAsStep.Alias, pAsStep);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public IFuncAsStep GetAlias(string pAlias) {
+			IFuncAsStep asStep;
+			AliasMap.TryGetValue(pAlias, out asStep);
+			return asStep;
+		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public string Script {
 			get {

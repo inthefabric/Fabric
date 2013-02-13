@@ -9,6 +9,9 @@ namespace Fabric.Infrastructure.Traversal {
 		public int ParamIndex { get; set; }
 		public int? Min { get; set; }
 		public int? Max { get; set; }
+		public int? LenMin { get; set; }
+		public int? LenMax { get; set; }
+		public string ValidRegex { get; set; }
 
 		public bool IsRequired { get; set; }
 		public string FuncResxKey { get; set; }
@@ -29,6 +32,14 @@ namespace Fabric.Infrastructure.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public FuncParamAttribute(int pParamIndex, int pMin, int pMax) : this(pParamIndex, pMin) {
 			Max = pMax;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FuncParamAttribute(int pParamIndex, int pLenMin, int pLenMax, string pValidRegex) : 
+																					this(pParamIndex) {
+			LenMin = pLenMin;
+			LenMax = pLenMax;
+			ValidRegex = pValidRegex;
 		}
 
 	}

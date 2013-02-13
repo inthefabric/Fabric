@@ -139,6 +139,7 @@
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncActiveAppStep.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncActiveUserStep.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncActiveMemberStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TFuncAsStep.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">

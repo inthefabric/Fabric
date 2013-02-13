@@ -28,6 +28,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				(p => new FuncActiveMemberStep(p)), FuncActiveMemberStep.AllowedForStep);
 
 			//Available for most DTOs
+			Register<FuncAsStep>((p => new FuncAsStep(p)), FuncAsStep.AllowedForStep);
 			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);
 			Register<FuncLimitStep>((p => new FuncLimitStep(p)), FuncLimitStep.AllowedForStep);
 			Register<FuncWhereIdStep>((p => new FuncWhereIdStep(p)), FuncWhereIdStep.AllowedForStep);
@@ -35,7 +36,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void Register<T>(Func<Path, IFuncStep> pNew,
-													Func<Type, bool> pAllow) where T : IFuncStep {
+														Func<Type, bool> pAllow) where T : IFuncStep {
 			Init();
 
 			FuncAttribute fa = (FuncAttribute)typeof(T)

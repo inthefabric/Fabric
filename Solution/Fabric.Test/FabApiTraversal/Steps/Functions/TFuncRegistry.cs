@@ -18,8 +18,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new[] { "/ActiveApp", "/ActiveUser", "/ActiveMember" })]
-		[TestCase(false, new[] { "activeapp", "activeuser", "activemember" })]
+		[TestCase(true, new[] { "/ActiveApp", "/ActiveUser", "/ActiveMember", "/As" })]
+		[TestCase(false, new[] { "activeapp", "activeuser", "activemember", "as" })]
 		public void GetAvailableFuncsForRoot(bool pUri, string[] pExpect) {
 			var art = new RootStep(new Path());
 			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri, true);
@@ -30,8 +30,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new [] { "/Back", "/Limit", "/WhereId" })]
-		[TestCase(false, new[] { "back", "limit", "whereid" })]
+		[TestCase(true, new [] { "/As", "/Back", "/Limit", "/WhereId" })]
+		[TestCase(false, new[] { "as", "back", "limit", "whereid" })]
 		public void GetAvailableFuncsForArtifact(bool pUri, string[] pExpect) {
 			var art = new ArtifactStep(new Path());
 
