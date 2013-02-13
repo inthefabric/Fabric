@@ -7,6 +7,7 @@ using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
@@ -18,14 +19,15 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestStep<T>(string pStepName, Func<Path, T> pNewStep) where T : INodeStep {
+		private void TestStep<T>(string pStepName, Func<IPath, T> pNewStep) where T : INodeStep {
 			string[] availSteps;
 			bool isRoot = (pStepName == "Root");
 
 			bool found = StepUtil.NodeStepMap.TryGetValue(pStepName, out availSteps);
 			Assert.True(found, pStepName+" is not an accepted NodeStep name.");
 
-			INodeStep step = pNewStep(new Path());
+			IPath p = new Mock<IPath>().Object;
+			INodeStep step = pNewStep(p);
 			Assert.AreEqual(pStepName+"Id", step.TypeIdName, "Incorrect TypeIdName.");
 
 			////
@@ -54,13 +56,15 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			foreach ( string a in availSteps ) {
 				expectSteps.Add(a);
 
-				step = pNewStep(new Path());
+				var mockPath = new Mock<IPath>();
+				step = pNewStep(mockPath.Object);
 				string text = a.Substring(1); //remove leading slash char
-				TestNextStep(step, text);
+				TestNextStep(step, text, mockPath);
 			}
 
 			try {
-				step = pNewStep(new Path());
+				p = new Mock<IPath>().Object;
+				step = pNewStep(p);
 				IStep next = step.GetNextStep("fake");
 				Assert.Fail("Expected 'fake' step to fail.");
 			}
@@ -69,8 +73,9 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			}
 
 			////
-			
-			step = pNewStep(new Path());
+
+			p = new Mock<IPath>().Object;
+			step = pNewStep(p);
 
 			Assert.NotNull(step.AvailableLinks, "AvailableLinks should be filled.");
 			Assert.AreEqual(expectSteps.Count, step.AvailableLinks.Count,
@@ -82,7 +87,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			}
 
 			if ( !isRoot ) {
-				step = pNewStep(new Path());
+				p = new Mock<IPath>().Object;
+				step = pNewStep(p);
 				IInRootContains rc = (step as IInRootContains);
 				Assert.NotNull(rc, "All non-Root NodeSteps must implement IInRootContains.");
 
@@ -92,10 +98,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestNextStep(INodeStep pStep, string pStepText) {
+		private void TestNextStep(INodeStep pStep, string pStepText, Mock<IPath> pMockPath) {
 			pStep.SetDataAndUpdatePath(new StepData("first"));
-			string origPathScript = pStep.Path.Script;
-			int origPathSegCount = pStep.Path.Segments.Count;
 
 			IStep next = pStep.GetNextStep(pStepText);
 			Assert.NotNull(next, "GetNextStep result should not be null.");
@@ -105,10 +109,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			Assert.AreNotEqual(-1, lowerSt.IndexOf(lowerTn),
 				"Next step '"+pStepText+"' does not contain expected name '"+lowerTn+"'.");
 
-			Assert.Less((origPathScript+".").Length, next.Path.Script.Length,
-				"Not enough characters were added to Path.Script.");
-			Assert.AreEqual(origPathSegCount+1, next.Path.Segments.Count,
-				"Incorrect Path.Segment count.");
+			Times t = Times.Exactly(pStep is RootStep ? 2 : 1);
+			pMockPath.Verify(x => x.AddSegment(It.IsAny<INodeStep>(), It.IsAny<string>()), t);
 		}
 
 

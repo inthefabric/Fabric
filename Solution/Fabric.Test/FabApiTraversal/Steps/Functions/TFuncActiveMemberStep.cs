@@ -6,6 +6,7 @@ using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
@@ -19,23 +20,26 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			long appId = 1234;
-			long userId = 9876;
-			var p = new Path() { AppId = appId, UserId = userId };
-			var s = new FuncActiveMemberStep(p);
+			const long appId = 1234;
+			const long userId = 9876;
+			var p = new Mock<IPath>();
+			p.SetupGet(x => x.AppId).Returns(appId);
+			p.SetupGet(x => x.UserId).Returns(userId);
+			var s = new FuncActiveMemberStep(p.Object);
 			
-			string expectScript = 
+			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
+			Assert.AreEqual(typeof(FabMember), s.DtoType, "Incorrect DtoType.");
+			Assert.Null(s.Data, "Data should be null.");
+			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
+
+			string script = 
 				"V('"+typeof(User).Name+"Id',"+userId+"L)[0]"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
 					".has('"+typeof(App).Name+"Id',Tokens.T.eq,"+appId+"L)"+
 				".back(3)";
-			
-			Assert.AreEqual(p, s.Path, "Incorrect Path.");
-			Assert.AreEqual(expectScript, s.Path.Script, "Incorrect Path.Script.");
-			Assert.AreEqual(typeof(FabMember), s.DtoType, "Incorrect DtoType.");
-			Assert.Null(s.Data, "Data should be null.");
-			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
+
+			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}
 
 
@@ -45,8 +49,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("(1)", false)]
 		[TestCase("(1,2)", false)]
 		public void SetDataAndUpdatePath(string pParams, bool pPass) {
-			var p = new Path();
-			var s = new FuncActiveMemberStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncActiveMemberStep(p.Object);
 			var sd = new StepData("ActiveMember"+pParams);
 			
 			FabStepFault se =

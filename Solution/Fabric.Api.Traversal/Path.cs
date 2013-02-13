@@ -7,20 +7,28 @@ using Fabric.Api.Traversal.Steps.Nodes;
 namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
-	public class Path {
+	public class Path : IPath {
 
-		public bool StartAtRoot { get; set; }
-		public long UserId { get; set; }
-		public long AppId { get; set; }
-		public List<PathSegment> Segments { get; private set; }
-		public Dictionary<string, IFuncAsStep> AliasMap { get; private set; }
+		public bool StartAtRoot { get; private set; }
+		public long UserId { get; private set; }
+		public long AppId { get; private set; }
+
+		private readonly List<PathSegment> vSegments;
+		private readonly Dictionary<string, IFuncAsStep> vAliasMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Path() {
-			Segments = new List<PathSegment>();
-			AliasMap = new Dictionary<string, IFuncAsStep>();
+			vSegments = new List<PathSegment>();
+			vAliasMap = new Dictionary<string, IFuncAsStep>();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Path(bool pStartAtRoot, long pAppId, long pUserId) : this() {
+			StartAtRoot = pStartAtRoot;
+			AppId = pAppId;
+			UserId = pUserId;
 		}
 		
 
@@ -31,7 +39,7 @@ namespace Fabric.Api.Traversal {
 				throw new Exception("Script is null or empty.");
 			}
 			
-			Segments.Add(new PathSegment(pStep, pScript));
+			vSegments.Add(new PathSegment(pStep, pScript));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -40,24 +48,75 @@ namespace Fabric.Api.Traversal {
 				throw new Exception("Script is null or empty.");
 			}
 
-			if ( Segments.Count == 0 ) {
+			if ( vSegments.Count == 0 ) {
 				throw new Exception("Path has no segments.");
 			}
 
-			Segments[Segments.Count-1].Append(pScript, pAddDot);
+			vSegments[vSegments.Count-1].Append(pScript, pAddDot);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetSegmentCount() { //TEST: Path.GetSegmentCount()
+			return vSegments.Count;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IPathSegment GetSegmentAt(int pIndex) { //TEST: Path.GetStepAt()
+			return vSegments[pIndex];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IPathSegment GetSegmentBeforeLast(int pCount) { //TEST: Path.GetSegmentBeforeLast()
+			return vSegments[vSegments.Count-pCount-1];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetSegmentIndexOfStep(IStep pStep) { //TEST: Path.GetSegmentIndexOfStep()
+			int n = vSegments.Count;
+
+			for ( int i = 0 ; i < n ; ++i ) {
+				if ( vSegments[i].Step != pStep ) { continue; }
+				return i;
+			}
+
+			return -1;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: Path.GetSegmentIndexesWithStepType()
+		public IEnumerable<int> GetSegmentIndexesWithStepType<T>(int pStopAtIndex=int.MaxValue)
+																			where T : class, IStep {
+			int n = vSegments.Count;
+			var list = new List<int>();
+
+			for ( int i = 0 ; i < n ; ++i ) {
+				if ( i >= pStopAtIndex ) {
+					break;
+				}
+
+				T back = (vSegments[i].Step as T);
+
+				if ( back == null ) {
+					break;
+				}
+
+				list.Add(i);
+			}
+
+			return list;
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void RegisterAlias(IFuncAsStep pAsStep) {
-			AliasMap.Add(pAsStep.Alias, pAsStep);
+		public void RegisterAlias(IFuncAsStep pAsStep) { //TEST: Path.RegisterAlias()
+			vAliasMap.Add(pAsStep.Alias, pAsStep);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IFuncAsStep GetAlias(string pAlias) {
+		public IFuncAsStep GetAlias(string pAlias) { //TEST: Path.GetAlias()
 			IFuncAsStep asStep;
-			AliasMap.TryGetValue(pAlias, out asStep);
+			vAliasMap.TryGetValue(pAlias, out asStep);
 			return asStep;
 		}
 
@@ -69,9 +128,9 @@ namespace Fabric.Api.Traversal {
 				string s = "";
 				int startI = 0;
 
-				if ( Segments.Count >= 3 ) {
-					INodeStep node = (Segments[1].Step as INodeStep);
-					IFuncWhereIdStep whereId = (Segments[2].Step as IFuncWhereIdStep);
+				if ( vSegments.Count >= 3 ) {
+					INodeStep node = (vSegments[1].Step as INodeStep);
+					IFuncWhereIdStep whereId = (vSegments[2].Step as IFuncWhereIdStep);
 
 					if ( node != null && whereId != null ) {
 						s = node.GetKeyIndexScript(whereId.Id);
@@ -79,27 +138,12 @@ namespace Fabric.Api.Traversal {
 					}
 				}
 
-				for ( int i = startI ; i < Segments.Count ; ++i ) {
-					s += (s == "" ? "" : ".")+Segments[i].Script;
+				for ( int i = startI ; i < vSegments.Count ; ++i ) {
+					s += (s == "" ? "" : ".")+vSegments[i].Script;
 				}
 
 				return s;
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static int GetSegmentIndexOfStep(IStep pStep) {
-			Path p = pStep.Path;
-			int n = p.Segments.Count;
-
-			for ( int i = 0 ; i < n ; ++i ) {
-				if ( p.Segments[i].Step != pStep ) { continue; }
-				return i;
-			}
-
-			return -1;
 		}
 
 	}

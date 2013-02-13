@@ -23,7 +23,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncActiveUserStep(Path pPath) : base(pPath) {
+		public FuncActiveUserStep(IPath pPath) : base(pPath) {
 			if ( QueryStart == null ) {
 				IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { UserId = 999 }).End();
 				string script = q.Script;

@@ -19,14 +19,15 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			var p = new Path();
-			var s = new FuncLimitStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncLimitStep(p.Object);
 
-			Assert.AreEqual(p, s.Path, "Incorrect Path.");
-			Assert.AreEqual("dedup", s.Path.Script, "Incorrect Path.Script.");
+			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
+
+			p.Verify(x => x.AddSegment(s, "dedup"), Times.Once());
 		}
 
 
@@ -34,25 +35,31 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		//[0..20] actually returns 21 items, as the item at index 20 is included.
 		//The last item is not included in the API response; it determines FabResponse.HasMore value
-		[TestCase(0, 20, "dedup[0..20]")]
-		[TestCase(55, 5, "dedup[55..60]")]
-		[TestCase(9999, 50, "dedup[9999..10049]")]
-		public void SetDataAndUpdatePath(int pIndex, int pCount, string pExpectSegScript) {
-			var p = new Path();
+		[TestCase(0, 20, "[0..20]")]
+		[TestCase(55, 5, "[55..60]")]
+		[TestCase(9999, 50, "[9999..10049]")]
+		public void SetDataAndUpdatePath(int pIndex, int pCount, string pExpectScript) {
+			var proxy = new Mock<IStep>();
+			var proxySeg = new Mock<IPathSegment>();
+			proxySeg.SetupGet(x => x.Step).Returns(proxy.Object);
 
-			var mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabArtifact));
-			p.AddSegment(mockStep.Object, "g.artifact");
+			var p = new Mock<IPath>();
+			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
 
-			var limit = new FuncLimitStep(p);
+			var limit = new FuncLimitStep(p.Object);
 			var sd = new StepData("Limit("+pIndex+","+pCount+")");
+
+			////
+
 			limit.SetDataAndUpdatePath(sd);
 
-			PathSegment seg = limit.Path.Segments[limit.Path.Segments.Count-1];
+			////
+
 			Assert.AreEqual(pIndex, limit.Index, "Incorrect Index.");
 			Assert.AreEqual(pCount, limit.Count, "Incorrect Count.");
-			Assert.AreEqual(pExpectSegScript, seg.Script, "Incorrect segment Script.");
-			Assert.AreEqual("FabArtifact", limit.DtoType.Name, "Incorrect DtoType.");
+			Assert.AreEqual(proxy.Object, limit.ProxyStep, "Incorrect ProxyStep.");
+
+			p.Verify(x => x.AppendToCurrentSegment(pExpectScript, false), Times.Once());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -60,8 +67,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("(1)")]
 		[TestCase("(1,2,3)")]
 		public void SetDataAndUpdatePathNoParams(string pParams) {
-			var p = new Path();
-			var s = new FuncLimitStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncLimitStep(p.Object);
 			var sd = new StepData("Limit"+pParams);
 			
 			FabStepFault se =
@@ -73,8 +80,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("a,0", 0)]
 		[TestCase("0,a", 1)]
 		public void SetDataAndUpdatePathCannotConvert(string pParams, int pParamI) {
-			var p = new Path();
-			var s = new FuncLimitStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncLimitStep(p.Object);
 			var sd = new StepData("Limit("+pParams+")");
 
 			FabStepFault se =
@@ -89,8 +96,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(0, 0, 1)]
 		[TestCase(0, 51, 1)]
 		public void SetDataAndUpdatePathOutOfRange(int pIndex, int pCount, int pParamI) {
-			var p = new Path();
-			var s = new FuncLimitStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncLimitStep(p.Object);
 			var sd = new StepData("Limit("+pIndex+","+pCount+")");
 
 			FabStepFault se =

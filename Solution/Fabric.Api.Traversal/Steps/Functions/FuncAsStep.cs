@@ -1,9 +1,7 @@
 ﻿using System;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Nodes;
+using System.Text.RegularExpressions;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
-using System.Text.RegularExpressions;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
@@ -29,7 +27,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncAsStep(Path pPath) : base(pPath) {
+		public FuncAsStep(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "as");
 		}
 
@@ -67,8 +65,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 			
 			////
-			
-			ProxyStep = Path.Segments[Path.Segments.Count-2].Step;
+
+			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
 			Path.AppendToCurrentSegment("('"+Alias+"')", false);
 			Path.RegisterAlias(this);
 		}

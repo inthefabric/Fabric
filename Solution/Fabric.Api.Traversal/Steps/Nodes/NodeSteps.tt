@@ -83,11 +83,11 @@ foreach ( string name in nodeNames ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Step(Path pPath) : base(pPath) {
+		public <#= node.Name #>Step(IPath pPath) : base(pPath) {
 <#
 	if ( node.Name == "Root" ) {
 #>
-			if ( Path.Segments.Count == 0 ) {
+			if ( Path.GetSegmentCount() == 0 ) {
 				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
 			}
 

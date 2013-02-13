@@ -97,8 +97,8 @@ namespace Fabric.Test.FabApiTraversal {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void NewRootStep(bool pStartAtRoot) {
-			long appId = 1234;
-			long userId = 65432;
+			const long appId = 1234;
+			const long userId = 65432;
 			RootStep rs = PathRouter.NewRootStep(pStartAtRoot, appId, userId);
 
 			Assert.NotNull(rs, "Result should be filled.");
@@ -113,7 +113,7 @@ namespace Fabric.Test.FabApiTraversal {
 				Assert.AreEqual("g", rs.Path.Script, "Incorrect Path.Script.");
 			}
 
-			Assert.AreEqual(1, rs.Path.Segments.Count, "Incorrect Path.Segments.Count.");
+			Assert.AreEqual(1, rs.Path.GetSegmentCount(), "Incorrect Path.GetSegmentCount().");
 			Assert.AreEqual(appId, rs.Path.AppId, "Incorrect Path.AppId.");
 			Assert.AreEqual(userId, rs.Path.UserId, "Incorrect Path.UserId.");
 		}

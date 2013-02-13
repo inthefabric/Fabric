@@ -35,7 +35,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void Register<T>(Func<Path, IFuncStep> pNew,
+		private static void Register<T>(Func<IPath, IFuncStep> pNew,
 														Func<Type, bool> pAllow) where T : IFuncStep {
 			Init();
 
@@ -83,7 +83,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IFuncStep GetFuncStep(string pCommand, Path pPath) {
+		public static IFuncStep GetFuncStep(string pCommand, IPath pPath) {
 			if ( !RegItemMap.ContainsKey(pCommand) ) { return null; }
 			return RegItemMap[pCommand].New(pPath);
 		}

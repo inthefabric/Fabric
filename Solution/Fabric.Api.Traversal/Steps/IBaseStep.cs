@@ -7,7 +7,7 @@ namespace Fabric.Api.Traversal.Steps {
 	/*================================================================================================*/
 	public interface IBaseStep {
 
-		Path Path { get; }
+		IPath Path { get; }
 		Type DtoType { get; }
 		List<IStepLink> AvailableLinks { get; }
 		List<string> AvailableFuncs { get; }

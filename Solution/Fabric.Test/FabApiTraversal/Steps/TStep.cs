@@ -20,11 +20,11 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			var p = new Path();
-			var s = new TestStep(p);
+			var p = new Mock<IPath>();
+			var s = new TestStep(p.Object);
 			var expectAvail = new[] { "Test", "TEST2" };
 
-			Assert.AreEqual(p, s.Path, "Incorrect Path.");
+			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
 			Assert.NotNull(s.AvailableLinks, "AvailableLinks should not be null.");
 			Assert.AreEqual(2, s.AvailableLinks.Count, "Incorrect AvailableLinks length.");
@@ -36,7 +36,8 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void SetDataAndUpdatePath() {
-			var s = new TestStep(new Path());
+			var p = new Mock<IPath>();
+			var s = new TestStep(p.Object);
 			var d = new StepData("Testing(1,2,3)");
 			s.SetDataAndUpdatePath(d);
 
@@ -46,7 +47,8 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void SetDataAndUpdatePathAlreadySet() {
-			var s = new TestStep(new Path());
+			var p = new Mock<IPath>();
+			var s = new TestStep(p.Object);
 			var d = new StepData("Testing(1,2,3)");
 			s.SetDataAndUpdatePath(d);
 			TestUtil.CheckThrows<Exception>(true, () => s.SetDataAndUpdatePath(d));
@@ -58,7 +60,8 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void GetNextStep(bool pSetData) {
-			var s = new TestStep(new Path());
+			var p = new Mock<IPath>();
+			var s = new TestStep(p.Object);
 			const string comm = "teST1";
 
 			IStep result = s.GetNextStep(comm, pSetData);
@@ -77,24 +80,15 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void GetNextStepBack() {
-			var p = new Path();
-			p.AddSegment(null, "g.v(0).outE");
-			p.AddSegment(null, "inV");
-			var s = new TestStep(p);
-
-			IStep result = s.GetNextStep("Back(1)");
-
-			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(typeof(FuncBackStep), result.GetType(), "Incorrect Result type.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
 		public void GetNextStepLimit() {
-			var p = new Path();
-			p.AddSegment(null, "g.V");
-			var s = new TestStep(p);
+			var proxy = new Mock<IStep>();
+			var proxySeg = new Mock<IPathSegment>();
+			proxySeg.SetupGet(x => x.Step).Returns(proxy.Object);
+
+			var p = new Mock<IPath>();
+			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
+
+			var s = new TestStep(p.Object);
 
 			IStep result = s.GetNextStep("Limit(0,10)");
 
@@ -105,7 +99,8 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetNextStepInvalid() {
-			var s = new TestStep(new Path());
+			var p = new Mock<IPath>();
+			var s = new TestStep(p.Object);
 			s.SetDataAndUpdatePath(new StepData("start"));
 			const string stepText = "abcd(1,2)";
 
@@ -118,25 +113,21 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetNextStepInvalidProxyForFunc() {
-			var p = new Path();
-			var s = new TestStep(p);
-			const string funcText = "TestFunc";
-			const string stepText = "unknownLink(1)";
-			const int funcStepI = 1;
+			var p = new Mock<IPath>();
+			var s = new TestStep(p.Object);
+			const int funcStepI = 3;
 
 			var mockData = new Mock<IStepData>();
-			mockData.SetupGet(x => x.RawString).Returns(funcText);
+			mockData.SetupGet(x => x.RawString).Returns("TestFunc");
 			mockData.SetupGet(x => x.Params).Returns((string[])null);
 
 			var funcMock = new Mock<IFuncStep>();
-			funcMock.SetupGet(x => x.Path).Returns(p);
+			funcMock.SetupGet(x => x.Path).Returns(p.Object);
 			funcMock.Setup(x => x.GetPathIndex()).Returns(funcStepI);
 			funcMock.SetupGet(x => x.Data).Returns(mockData.Object);
 
-			p.AddSegment(funcMock.Object, funcText);
-
 			FabStepFault se = TestUtil.CheckThrows<FabStepFault>(true,
-				() => s.GetNextStep(stepText, true, funcMock.Object));
+				() => s.GetNextStep("unknownLink(1)", true, funcMock.Object));
 			Assert.AreEqual(FabFault.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 			Assert.AreEqual(funcStepI, se.StepIndex, "Incorrect StepIndex.");
 		}

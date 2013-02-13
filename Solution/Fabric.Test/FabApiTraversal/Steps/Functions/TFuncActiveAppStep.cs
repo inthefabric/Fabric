@@ -6,6 +6,7 @@ using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
@@ -19,17 +20,18 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			long appId = 1234;
-			var p = new Path() { AppId = appId };
-			var s = new FuncActiveAppStep(p);
+			const long appId = 1234;
+			var p = new Mock<IPath>();
+			p.SetupGet(x => x.AppId).Returns(appId);
+			var s = new FuncActiveAppStep(p.Object);
 			
-			string expectScript = "V('"+typeof(App).Name+"Id',"+appId+"L)[0]";
-			
-			Assert.AreEqual(p, s.Path, "Incorrect Path.");
-			Assert.AreEqual(expectScript, s.Path.Script, "Incorrect Path.Script.");
+			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.AreEqual(typeof(FabApp), s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
+
+			string script = "V('"+typeof(App).Name+"Id',"+appId+"L)[0]";
+			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}
 
 
@@ -39,8 +41,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("(1)", false)]
 		[TestCase("(1,2)", false)]
 		public void SetDataAndUpdatePath(string pParams, bool pPass) {
-			var p = new Path();
-			var s = new FuncActiveAppStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncActiveAppStep(p.Object);
 			var sd = new StepData("ActiveApp"+pParams);
 			
 			FabStepFault se =

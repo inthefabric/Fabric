@@ -12,7 +12,7 @@ namespace Fabric.Test.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestFuncStep(Path pPath) : base(pPath) {
+		public TestFuncStep(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, SegmentText);
 		}
 
@@ -20,13 +20,9 @@ namespace Fabric.Test.Common {
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
 
-			int segI = Path.Segments.Count-2;
-
-			if ( segI < 0 ) {
-				return;
+			if ( Path.GetSegmentCount()-2 >= 0 ) {
+				ProxyStep = Path.GetSegmentBeforeLast(1).Step;
 			}
-
-			ProxyStep = Path.Segments[segI].Step;
 		}
 	}
 

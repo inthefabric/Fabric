@@ -4,7 +4,7 @@ using Fabric.Api.Traversal.Steps;
 namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
-	public class PathSegment {
+	public class PathSegment : IPathSegment {
 
 		public IStep Step { get; private set; }
 		public string Script { get; private set; }

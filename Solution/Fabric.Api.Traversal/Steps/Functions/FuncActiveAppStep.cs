@@ -23,7 +23,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncActiveAppStep(Path pPath) : base(pPath) {
+		public FuncActiveAppStep(IPath pPath) : base(pPath) {
 			if ( QueryStart == null ) {
 				IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { AppId = 999 }).End();
 				string script = q.Script;

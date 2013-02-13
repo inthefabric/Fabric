@@ -30,10 +30,7 @@ namespace Fabric.Api.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static RootStep NewRootStep(bool pStartAtRoot, long pAppId, long pUserId) {
-			var p = new Path();
-			p.StartAtRoot = pStartAtRoot;
-			p.AppId = pAppId;
-			p.UserId = pUserId;
+			var p = new Path(pStartAtRoot, pAppId, pUserId);
 			var rs = new RootStep(p);
 			rs.SetDataAndUpdatePath(new StepData("Root"));
 			return rs;

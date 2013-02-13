@@ -4,6 +4,7 @@ using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
@@ -17,15 +18,14 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			var p = new Path();
-			var root = new RootStep(p);
-			var func = new TestFuncStep(p);
+			var p = new Mock<IPath>();
+			var func = new TestFuncStep(p.Object);
 
-			Assert.AreEqual(p, func.Path, "Incorrect Path.");
-			Assert.AreEqual(TestFuncStep.SegmentText, func.Path.Segments[1].Script,
-				"Incorrect Path.Segment[1].Script.");
+			Assert.AreEqual(p.Object, func.Path, "Incorrect Path.");
 			Assert.Null(func.DtoType, "Incorrect DtoType.");
 			Assert.Null(func.Data, "Data should be null.");
+
+			p.Verify(x => x.AddSegment(func, TestFuncStep.SegmentText), Times.Once());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -58,30 +58,40 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void GetNextStep(bool pSetData) {
-			var p = new Path();
-			var root = new RootStep(p);
+			string stepText = StepUtil.NodeStepMap["Root"][0].Substring(1);
 
-			var func = new TestFuncStep(p);
+			var next = new Mock<IStep>();
+			var proxy = new Mock<IStep>();
+			var proxySeg = new Mock<IPathSegment>();
+			proxySeg.SetupGet(x => x.Step).Returns(proxy.Object);
+
+			var p = new Mock<IPath>();
+			p.Setup(x => x.GetSegmentCount()).Returns(2);
+			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
+
+			var func = new TestFuncStep(p.Object);
+			proxy.Setup(x => x.GetNextStep(stepText, false, func)).Returns(next.Object);
+
 			var sd = new StepData("x");
 			func.SetDataAndUpdatePath(sd);
 
-			string stepText = StepUtil.NodeStepMap["Root"][0].Substring(1);
-			IStep next = func.GetNextStep(stepText, pSetData);
+			////
 
-			Assert.NotNull(next, "Result should be filled.");
+			IStep nextResult = func.GetNextStep(stepText, pSetData);
 
-			if ( pSetData ) {
-				Assert.NotNull(next.Data, "Result.Data should be filled.");
-			}
-			else {
-				Assert.Null(next.Data, "Result.Data should be null.");
-			}
+			////
+
+			Assert.AreEqual(next.Object, nextResult, "Incorrect Result.");
+
+			Times t = Times.Exactly(pSetData ? 1 : 0);
+			next.Verify(x => x.SetDataAndUpdatePath(It.Is<StepData>(d => d.RawString == stepText)), t);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetNextStepNullProxy() {
-			var func = new TestFuncStep(new Path());
+			var p = new Mock<IPath>().Object;
+			var func = new TestFuncStep(p);
 			TestUtil.CheckThrows<Exception>(true, () => func.GetNextStep(null));
 		}
 
@@ -89,10 +99,16 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private TestFuncStep GetFuncAfterRoot(out RootStep pRoot) {
-			var p = new Path();
-			pRoot = new RootStep(p);
-			
-			var func = new TestFuncStep(p);
+			var p = new Mock<IPath>();
+			pRoot = new RootStep(p.Object);
+
+			var proxySeg = new Mock<IPathSegment>();
+			proxySeg.SetupGet(x => x.Step).Returns(pRoot);
+
+			p.Setup(x => x.GetSegmentCount()).Returns(2);
+			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
+
+			var func = new TestFuncStep(p.Object);
 			func.SetDataAndUpdatePath(new StepData("x"));
 			return func;
 		}

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/11/2013 3:18:01 PM
+// Generated on 2/13/2013 2:51:04 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -584,8 +584,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep(Path pPath) : base(pPath) {
-			if ( Path.Segments.Count == 0 ) {
+		public RootStep(IPath pPath) : base(pPath) {
+			if ( Path.GetSegmentCount() == 0 ) {
 				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
 			}
 
@@ -942,7 +942,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppStep(Path pPath) : base(pPath) {
+		public AppStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1021,7 +1021,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep(Path pPath) : base(pPath) {
+		public ArtifactStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1198,7 +1198,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeStep(Path pPath) : base(pPath) {
+		public ArtifactTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1255,7 +1255,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassStep(Path pPath) : base(pPath) {
+		public ClassStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1312,7 +1312,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public InstanceStep(Path pPath) : base(pPath) {
+		public InstanceStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1375,7 +1375,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep(Path pPath) : base(pPath) {
+		public MemberStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1492,7 +1492,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeStep(Path pPath) : base(pPath) {
+		public MemberTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1552,7 +1552,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep(Path pPath) : base(pPath) {
+		public MemberTypeAssignStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1639,7 +1639,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlStep(Path pPath) : base(pPath) {
+		public UrlStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1697,7 +1697,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UserStep(Path pPath) : base(pPath) {
+		public UserStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1774,7 +1774,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep(Path pPath) : base(pPath) {
+		public FactorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1931,7 +1931,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionStep(Path pPath) : base(pPath) {
+		public FactorAssertionStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1992,7 +1992,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep(Path pPath) : base(pPath) {
+		public DescriptorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2089,7 +2089,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypeStep(Path pPath) : base(pPath) {
+		public DescriptorTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2149,7 +2149,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep(Path pPath) : base(pPath) {
+		public DirectorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2236,7 +2236,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypeStep(Path pPath) : base(pPath) {
+		public DirectorTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2294,7 +2294,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionStep(Path pPath) : base(pPath) {
+		public DirectorActionStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2363,7 +2363,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep(Path pPath) : base(pPath) {
+		public EventorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2440,7 +2440,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypeStep(Path pPath) : base(pPath) {
+		public EventorTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2497,7 +2497,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionStep(Path pPath) : base(pPath) {
+		public EventorPrecisionStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2555,7 +2555,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep(Path pPath) : base(pPath) {
+		public IdentorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2622,7 +2622,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypeStep(Path pPath) : base(pPath) {
+		public IdentorTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2680,7 +2680,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep(Path pPath) : base(pPath) {
+		public LocatorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2747,7 +2747,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypeStep(Path pPath) : base(pPath) {
+		public LocatorTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2808,7 +2808,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep(Path pPath) : base(pPath) {
+		public VectorStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2906,7 +2906,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeStep(Path pPath) : base(pPath) {
+		public VectorTypeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -2974,7 +2974,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeStep(Path pPath) : base(pPath) {
+		public VectorRangeStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -3041,7 +3041,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelStep(Path pPath) : base(pPath) {
+		public VectorRangeLevelStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -3100,7 +3100,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep(Path pPath) : base(pPath) {
+		public VectorUnitStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -3178,7 +3178,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixStep(Path pPath) : base(pPath) {
+		public VectorUnitPrefixStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -3247,7 +3247,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep(Path pPath) : base(pPath) {
+		public VectorUnitDerivedStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		

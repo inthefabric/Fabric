@@ -16,7 +16,7 @@ namespace Fabric.Test.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestNodeStep(Path pPath) : base(pPath) { }
+		public TestNodeStep(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "TestNodeStepId"; } }

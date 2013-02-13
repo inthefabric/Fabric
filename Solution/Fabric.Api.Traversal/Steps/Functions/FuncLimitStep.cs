@@ -22,7 +22,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncLimitStep(Path pPath) : base(pPath) {
+		public FuncLimitStep(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "dedup");
 		}
 
@@ -65,7 +65,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 
-			ProxyStep = Path.Segments[Path.Segments.Count-2].Step;
+			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
 			Path.AppendToCurrentSegment("["+Index+".."+(Index+Count)+"]", false);
 		}
 

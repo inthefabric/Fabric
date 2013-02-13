@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
-using System.Text.RegularExpressions;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
 	[Func("Back")]
-	public class FuncBackStep : FuncStep { //NEXT //TEST: FuncBackStep
+	public class FuncBackStep : FuncStep { //TEST: FuncBackStep
 
 		//The correct way to read the "back" command is to count the period chars BEFORE ".back".
 		//The next command will be issued from that period.
@@ -17,8 +18,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		// * BACK == 1: next command will be issued as if it were after "inV(y)."
 		// * BACK == 3: after "something(1,2)."
 		// * BACK == 4: after "inV(x)."
-
-		//TODO: Fix issues with multiple "Back" functions
 		
 		//given: g.A.B.C.D.E.F.G.back(4) == C
 		//given: g.A.B.C.D.E.F.G.back(4).back(1) == C
@@ -35,7 +34,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncBackStep(Path pPath) : base(pPath) {
+		public FuncBackStep(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "back");
 		}
 
@@ -76,33 +75,24 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			//Ensure that a Back which occurs BEFORE this Back...
 			//...is not linked to an Alias which occurs BEFORE this Alias
 			
-			int thisBackIndex = Path.GetSegmentIndexOfStep(this);
-			int thisAliasIndex = Path.GetSegmentIndexOfStep(asStep);
-			
-			for ( int i = 0 ; i < Path.Segments.Count ; ++i ) {
-				if ( i >= thisBackIndex ) {
-					continue;
-				}
-			
-				FuncBackStep back = (Path.Segments[i].Step as FuncBackStep);
-				
-				if ( back == null ) {
-					continue;
-				}
-				
+			int backI = Path.GetSegmentIndexOfStep(this);
+			int aliasI = Path.GetSegmentIndexOfStep(asStep);
+			IEnumerable<int> backSteps = Path.GetSegmentIndexesWithStepType<FuncBackStep>(backI);
+
+			foreach ( int i in backSteps ) {
+				FuncBackStep back = (FuncBackStep)Path.GetSegmentAt(i).Step;
 				IFuncAsStep checkAlias = Path.GetAlias(back.Alias);
 				int checkAliasI = Path.GetSegmentIndexOfStep(checkAlias);
 				
-				if ( checkAliasI >= thisAliasIndex ) {
+				if ( checkAliasI >= aliasI ) {
 					continue;
 				}
-				
+
 				throw new FabStepFault(FabFault.Code.InvalidStep, this,
-					"This step (at index "+thisBackIndex+") links to alias at index "+thisAliasIndex+
-					". This is invalid because "+
-					"the Back("+back.Alias+") step: A) occurs before this step (at index "+i+")"+
-					", and also B) links to an alias (at index "+checkAliasI+") that occurs before "+
-					"this step's alias.", 0);
+					"This step (at index "+backI+") links to alias at index "+aliasI+
+					". This is invalid because the Back("+back.Alias+") step: A) occurs before this "+
+					"step (at index "+i+"), and also B) links to an alias (at index "+checkAliasI+
+					") that occurs before this step's alias.", 0);
 			}
 			
 			////

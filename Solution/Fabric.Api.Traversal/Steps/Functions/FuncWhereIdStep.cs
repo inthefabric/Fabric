@@ -28,7 +28,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncWhereIdStep(Path pPath) : base(pPath) {
+		public FuncWhereIdStep(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "has");
 		}
 
@@ -55,7 +55,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 
-			ProxyStep = Path.Segments[Path.Segments.Count-2].Step;
+			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
 			INodeStep ns = (INodeStep)ProxyStep;
 			Path.AppendToCurrentSegment("('"+ns.TypeIdName+"',Tokens.T.eq,"+Id+"L)", false);
 		}

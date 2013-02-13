@@ -25,7 +25,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncActiveMemberStep(Path pPath) : base(pPath) {
+		public FuncActiveMemberStep(IPath pPath) : base(pPath) {
 			if ( QueryStart == null ) {
 				IWeaverQuery q = 
 					ApiFunc.NewPathFromIndex(new User { UserId = 888 })

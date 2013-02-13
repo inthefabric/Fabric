@@ -19,7 +19,7 @@ namespace Fabric.Test.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestStep(Path pPath) : base(pPath) {
+		public TestStep(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, SegmentText);
 		}
 

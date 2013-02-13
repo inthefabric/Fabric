@@ -20,8 +20,7 @@ namespace Fabric.Test.FabApiTraversal {
 		public void New() {
 			var p = new Path();
 			Assert.AreEqual("", p.Script, "Incorrect Script.");
-			Assert.NotNull(p.Segments, "Segments should not be null.");
-			Assert.AreEqual(0, p.Segments.Count, "Incorrect Segments.Count.");
+			Assert.AreEqual(0, p.GetSegmentCount(), "Incorrect GetSegmentCount().");
 		}
 
 
@@ -47,7 +46,7 @@ namespace Fabric.Test.FabApiTraversal {
 			TestAddSegmentToPath(p, script5, out mockStep);
 
 			Assert.AreEqual(expect, p.Script, "Incorrect final Script.");
-			Assert.AreEqual(6, p.Segments.Count, "Incorrect final Segments.Count.");
+			Assert.AreEqual(6, p.GetSegmentCount(), "Incorrect final GetSegmentCount().");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -73,7 +72,7 @@ namespace Fabric.Test.FabApiTraversal {
 			TestAddSegmentToPath(p, script3, out mockStep);
 
 			Assert.AreEqual(expectScript, p.Script, "Incorrect final Script.");
-			Assert.AreEqual(4, p.Segments.Count, "Incorrect final Segments.Count.");
+			Assert.AreEqual(4, p.GetSegmentCount(), "Incorrect final GetSegmentCount().");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -115,7 +114,7 @@ namespace Fabric.Test.FabApiTraversal {
 			TestAppendToPathSegment(p, script3B, false);
 
 			Assert.AreEqual(expect, p.Script, "Incorrect final Script.");
-			Assert.AreEqual(4, p.Segments.Count, "Incorrect final Segments.Count.");
+			Assert.AreEqual(4, p.GetSegmentCount(), "Incorrect final GetSegmentCount().");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -161,10 +160,10 @@ namespace Fabric.Test.FabApiTraversal {
 			p.AddSegment(step2, "2");
 			p.AddSegment(step3, "3");
 
-			Assert.AreEqual(0, Path.GetSegmentIndexOfStep(step0), "Incorrect index for step 0.");
-			Assert.AreEqual(1, Path.GetSegmentIndexOfStep(step1), "Incorrect index for step 1.");
-			Assert.AreEqual(2, Path.GetSegmentIndexOfStep(step2), "Incorrect index for step 2.");
-			Assert.AreEqual(3, Path.GetSegmentIndexOfStep(step3), "Incorrect index for step 3.");
+			Assert.AreEqual(0, p.GetSegmentIndexOfStep(step0), "Incorrect index for step 0.");
+			Assert.AreEqual(1, p.GetSegmentIndexOfStep(step1), "Incorrect index for step 1.");
+			Assert.AreEqual(2, p.GetSegmentIndexOfStep(step2), "Incorrect index for step 2.");
+			Assert.AreEqual(3, p.GetSegmentIndexOfStep(step3), "Incorrect index for step 3.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -176,15 +175,15 @@ namespace Fabric.Test.FabApiTraversal {
 			s0.SetupGet(x => x.Path).Returns(p);
 			IStep step0 = s0.Object;
 
-			Assert.AreEqual(-1, Path.GetSegmentIndexOfStep(step0), "Incorrect index for step 0.");
+			Assert.AreEqual(-1, p.GetSegmentIndexOfStep(step0), "Incorrect index for step 0.");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void TestAddSegmentToPath(Path pPath, string pScript, out Mock<IStep> pStep) {
+		private static void TestAddSegmentToPath(IPath pPath, string pScript, out Mock<IStep> pStep) {
 			string origScript = pPath.Script;
-			int origSegCount = pPath.Segments.Count;
+			int origSegCount = pPath.GetSegmentCount();
 			string expectScript = origScript+(origScript == "" ? "" : ".")+pScript;
 			int expectSegIndex = origSegCount;
 
@@ -192,28 +191,28 @@ namespace Fabric.Test.FabApiTraversal {
 			pPath.AddSegment(pStep.Object, pScript);
 
 			Assert.AreEqual(expectScript, pPath.Script, "Incorrect Script.");
-			Assert.AreEqual(origSegCount+1, pPath.Segments.Count, "Incorrect Segments.Count.");
+			Assert.AreEqual(origSegCount+1, pPath.GetSegmentCount(), "Incorrect GetSegmentCount().");
 
-			PathSegment seg = pPath.Segments[expectSegIndex];
+			IPathSegment seg = pPath.GetSegmentAt(expectSegIndex);
 			Assert.AreEqual(pStep.Object, seg.Step, "Incorrect Segemnts["+expectSegIndex+"].Step.");
 			Assert.AreEqual(pScript, seg.Script, "Incorrect Segemnts["+expectSegIndex+"].Script.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void TestAppendToPathSegment(Path pPath, string pScript, bool pAddDot=true) {
-			int origSegCount = pPath.Segments.Count;
+		private static void TestAppendToPathSegment(IPath pPath, string pScript, bool pAddDot=true) {
+			int origSegCount = pPath.GetSegmentCount();
 			int expectSegIndex = origSegCount-1;
-			string origSegScript = pPath.Segments[expectSegIndex].Script;
+			string origSegScript = pPath.GetSegmentAt(expectSegIndex).Script;
 			string expectScript = pPath.Script+(pPath.Script == "" || !pAddDot ? "" : ".")+pScript;
 			string expectSegScript = origSegScript+(pAddDot ? "." : "")+pScript;
-			IStep origStep = pPath.Segments[expectSegIndex].Step;
+			IStep origStep = pPath.GetSegmentAt(expectSegIndex).Step;
 
 			pPath.AppendToCurrentSegment(pScript, pAddDot);
 
 			Assert.AreEqual(expectScript, pPath.Script, "Incorrect Script.");
-			Assert.AreEqual(origSegCount, pPath.Segments.Count, "Incorrect Segments.Count.");
+			Assert.AreEqual(origSegCount, pPath.GetSegmentCount(), "Incorrect GetSegmentCount().");
 
-			PathSegment seg = pPath.Segments[expectSegIndex];
+			IPathSegment seg = pPath.GetSegmentAt(expectSegIndex);
 			Assert.AreEqual(origStep, seg.Step, "Incorrect Segemnts["+expectSegIndex+"].Step.");
 			Assert.AreEqual(expectSegScript, seg.Script,
 				"Incorrect Segemnts["+expectSegIndex+"].Script.");

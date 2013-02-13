@@ -8,7 +8,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected NodeStep(Path pPath) : base(pPath) {}
+		protected NodeStep(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract string TypeIdName { get; }

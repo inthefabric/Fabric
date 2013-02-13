@@ -1,16 +1,18 @@
-﻿using Fabric.Api.Traversal;
-using Fabric.Api.Traversal.Steps.Functions;
-using Moq;
+﻿using Fabric.Api.Traversal.Steps;
 
-namespace Fabric.Test.Common {
+namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
-	public abstract class TestFinalStep : FuncLimitStep {
+	public interface IPathSegment {
+
+		IStep Step { get; }
+		string Script { get; }
+		int SubstepCount { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TestFinalStep() : base(new Mock<IPath>().Object) {}
+		void Append(string pScript, bool pAddDot=true);
 
 	}
 

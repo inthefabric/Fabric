@@ -20,16 +20,17 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			var p = new Path();
-			var s = new FuncWhereIdStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncWhereIdStep(p.Object);
 
-			Assert.AreEqual(p, s.Path, "Incorrect Path.");
-			Assert.AreEqual("has", s.Path.Script, "Incorrect Path.Script.");
+			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.AreEqual(0, s.Index, "Incorrect Index.");
 			Assert.AreEqual(1, s.Count, "Incorrect Count.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
+
+			p.Verify(x => x.AddSegment(s, "has"), Times.Once());
 		}
 
 
@@ -41,32 +42,41 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(1)]
 		[TestCase(998764)]
 		public void SetDataAndUpdatePath(long pId) {
-			var p = new Path();
 			const string typeIdName = "ArtifactId";
+			string script = "('"+typeIdName+"',Tokens.T.eq,"+pId+"L)";
 
-			var mockStep = new Mock<INodeStep>();
-			mockStep.SetupGet(x => x.TypeIdName).Returns(typeIdName);
-			p.AddSegment(mockStep.Object, "g.artifact");
+			var proxy = new Mock<INodeStep>();
+			proxy.SetupGet(x => x.TypeIdName).Returns(typeIdName);
 
-			var wi = new FuncWhereIdStep(p);
+			var proxySeg = new Mock<IPathSegment>();
+			proxySeg.SetupGet(x => x.Step).Returns(proxy.Object);
+
+			var p = new Mock<IPath>();
+			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
+
+			var wi = new FuncWhereIdStep(p.Object);
 			var sd = new StepData("WhereId("+pId+")");
+
+			////
+
 			wi.SetDataAndUpdatePath(sd);
 
-			string expect = "has('"+typeIdName+"',Tokens.T.eq,"+pId+"L)";
+			////
 
-			PathSegment seg = wi.Path.Segments[wi.Path.Segments.Count-1];
 			Assert.AreEqual(pId, wi.Id, "Incorrect Id.");
 			Assert.AreEqual(0, wi.Index, "Incorrect Index.");
 			Assert.AreEqual(1, wi.Count, "Incorrect Count.");
-			Assert.AreEqual(expect, seg.Script, "Incorrect segment Script.");
+			Assert.AreEqual(proxy.Object, wi.ProxyStep, "Incorrect ProxyStep.");
+
+			p.Verify(x => x.AppendToCurrentSegment(script, false), Times.Once());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("")]
 		[TestCase("(1,2)")]
 		public void SetDataAndUpdatePathNoParams(string pParams) {
-			var p = new Path();
-			var s = new FuncWhereIdStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncWhereIdStep(p.Object);
 			var sd = new StepData("WhereId"+pParams);
 			
 			FabStepFault se =
@@ -77,8 +87,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("a", 0)]
 		public void SetDataAndUpdatePathCannotConvert(string pParams, int pParamI) {
-			var p = new Path();
-			var s = new FuncWhereIdStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncWhereIdStep(p.Object);
 			var sd = new StepData("WhereId("+pParams+")");
 
 			FabStepFault se =
@@ -90,8 +100,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
 		public void SetDataAndUpdatePathOutOfRange(long pId) {
-			var p = new Path();
-			var s = new FuncWhereIdStep(p);
+			var p = new Mock<IPath>();
+			var s = new FuncWhereIdStep(p.Object);
 			var sd = new StepData("WhereId("+pId+")");
 
 			FabStepFault se =

@@ -10,13 +10,13 @@ namespace Fabric.Api.Traversal.Steps {
 	/*================================================================================================*/
 	public abstract class Step : IStep {
 
-		public Path Path { get; protected set; }
+		public IPath Path { get; protected set; }
 		public IStepData Data { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected Step(Path pPath) {
+		protected Step(IPath pPath) {
 			Path = pPath;
 		}
 
@@ -116,7 +116,7 @@ namespace Fabric.Api.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected Step(Path pPath) : base(pPath) {}
+		protected Step(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override Type DtoType { get { return typeof(T); } }
