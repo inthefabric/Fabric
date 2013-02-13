@@ -19,9 +19,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	[Func("As")]
 	public class FuncAsStep : FuncStep, IFuncAsStep {
 		
-		private const int LenMin = 1;
-		private const int LenMax = 8;
-		private const string ValidRegex = "^[a-zA-Z]+[a-zA-Z0-9]*$";
+		public const int LenMin = 1;
+		public const int LenMax = 8;
+		public const string ValidRegex = "^[a-zA-Z]+[a-zA-Z0-9]*$";
 
 		[FuncParam(0, LenMin, LenMax, ValidRegex)]
 		public string Alias { get; private set; }
