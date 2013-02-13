@@ -15,7 +15,9 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------*/
 		public static TEx CheckThrows<TEx>(bool pThrows, TestDelegate pFunc) where TEx : Exception {
 			if ( pThrows ) {
-				return (TEx)Assert.Throws(typeof(TEx), pFunc);
+				TEx e = (TEx)Assert.Throws(typeof(TEx), pFunc);
+				Log.Info(e.Message);
+				return e;
 			}
 
 			Assert.DoesNotThrow(pFunc);

@@ -8,6 +8,13 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
+	public interface IFuncBackStep : IFuncStep {
+
+		string Alias { get; }
+
+	}
+	
+	/*================================================================================================*/
 	[Func("Back")]
 	public class FuncBackStep : FuncStep { //TEST: FuncBackStep
 
@@ -79,20 +86,18 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			int aliasI = Path.GetSegmentIndexOfStep(asStep);
 			IEnumerable<int> backSteps = Path.GetSegmentIndexesWithStepType<FuncBackStep>(backI);
 
-			foreach ( int i in backSteps ) {
-				FuncBackStep back = (FuncBackStep)Path.GetSegmentAt(i).Step;
-				IFuncAsStep checkAlias = Path.GetAlias(back.Alias);
+			foreach ( int checkBackI in backSteps ) {
+				IFuncBackStep checkBack = (IFuncBackStep)Path.GetSegmentAt(checkBackI).Step;
+				IFuncAsStep checkAlias = Path.GetAlias(checkBack.Alias);
 				int checkAliasI = Path.GetSegmentIndexOfStep(checkAlias);
-				
+
 				if ( checkAliasI >= aliasI ) {
 					continue;
 				}
 
 				throw new FabStepFault(FabFault.Code.InvalidStep, this,
-					"This step (at index "+backI+") links to alias at index "+aliasI+
-					". This is invalid because the Back("+back.Alias+") step: A) occurs before this "+
-					"step (at index "+i+"), and also B) links to an alias (at index "+checkAliasI+
-					") that occurs before this step's alias.", 0);
+					"Cannot traverse back to the As("+Alias+") step because it exists within the "+
+					"As("+checkBack.Alias+") and Back("+checkBack.Alias+") traversal path.", 0);
 			}
 			
 			////

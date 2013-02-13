@@ -9,7 +9,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TStepException {
+	public class TStepFault {
 
 		private const string Step0Raw = "Root";
 		private const string Step1Raw = "First";

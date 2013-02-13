@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
@@ -25,83 +26,91 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
+
+			p.Verify(x => x.AddSegment(s, "back"), Times.Once());
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(1, 3, "FabFactor")]
-		[TestCase(2, 4, "FabArtifact")]
-		[TestCase(3, 7, "FabRoot")]
-		public void SetDataAndUpdatePath(int pUriCount, int pExpectCount, string pExpectDtoType) {
+		[Test]
+		public void SetDataAndUpdatePath() {
+			const string alias = "X";
+			const int backI = 8;
+			var list = new List<int>();
+			const string script = "('"+alias+"')";
+
 			var p = new Mock<IPath>();
+			var asStep = new Mock<IFuncAsStep>();
+			var func = new FuncBackStep(p.Object);
 
-			var mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabRoot));
-			//p.AddSegment(mockStep.Object, "g.first"); //2 steps
+			p.Setup(x => x.GetAlias(alias)).Returns(asStep.Object);
+			p.Setup(x => x.GetSegmentIndexOfStep(func)).Returns(backI);
+			p.Setup(x => x.GetSegmentIndexOfStep(asStep.Object)).Returns(2);
+			p.Setup(x => x.GetSegmentIndexesWithStepType<FuncBackStep>(backI)).Returns(list);
 
-			mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabArtifact));
-			//p.AddSegment(mockStep.Object, "second(x).has(this).and(that)"); //3 steps
+			var sd = new StepData("Back("+alias+")");
 
-			mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabFactor));
-			//p.AddSegment(mockStep.Object, "third(1,2)"); //1 step
+			////
 
-			mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabDescriptor));
-			//p.AddSegment(mockStep.Object, "fourth.where(x,y).then(99)"); //3 steps
+			func.SetDataAndUpdatePath(sd);
 
-			var back = new FuncBackStep(p.Object);
-			var sd = new StepData("Back("+pUriCount+")");
-			back.SetDataAndUpdatePath(sd);
+			////
 
-			IPathSegment seg = back.Path.GetSegmentBeforeLast(0);
-			//Assert.AreEqual(pExpectCount, back.Count, "Incorrect Count.");
-			Assert.AreEqual("back("+pExpectCount+")", seg.Script, "Incorrect segment Script.");
-			Assert.AreEqual(pExpectDtoType, back.DtoType.Name, "Incorrect DtoType.");
+			Assert.AreEqual(asStep.Object, func.ProxyStep, "Incorrect ProxyStep.");
+
+			p.Verify(x => x.AppendToCurrentSegment(script, false), Times.Once());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(1, 2, "FabUser")]
-		[TestCase(2, 4, "FabArtifact")]
-		[TestCase(3, 6, "FabRoot")]
-		public void SetDataAndUpdatePathFuncs(int pUriCount, int pExpectCount, string pExpectDtoType) {
+		[Test]
+		public void SetDataAndUpdatePathInvalid() {
+			const string alias = "X";
+			const string beforeAlias = "A";
+			const int backI = 8;
+			const int beforeBackI = 6;
+			const int asI = 4;
+			const int beforeAsI = 2;
+
+			var list = new List<int>();
+			list.Add(beforeBackI);
+
 			var p = new Mock<IPath>();
+			var asStep = new Mock<IFuncAsStep>();
+			var beforeAsStep = new Mock<IFuncAsStep>();
+			var backStep = new FuncBackStep(p.Object);
+			var beforeBackStep = new Mock<IFuncBackStep>();
+			beforeBackStep.SetupGet(x => x.Alias).Returns(beforeAlias);
+			
+			var beforeBackSegment = new Mock<IPathSegment>();
+			beforeBackSegment.SetupGet(x => x.Step).Returns(beforeBackStep.Object);
 
-			var mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabRoot));
-			//p.AddSegment(mockStep.Object, "g.v(0)"); //2 steps
+			p.Setup(x => x.GetAlias(alias)).Returns(asStep.Object);
+			p.Setup(x => x.GetSegmentIndexOfStep(backStep)).Returns(backI);
+			p.Setup(x => x.GetSegmentIndexOfStep(asStep.Object)).Returns(asI);
+			p.Setup(x => x.GetSegmentAt(beforeBackI)).Returns(beforeBackSegment.Object);
+			p.Setup(x => x.GetAlias(beforeAlias)).Returns(beforeAsStep.Object);
+			p.Setup(x => x.GetSegmentIndexOfStep(beforeAsStep.Object)).Returns(beforeAsI);
+			p.Setup(x => x.GetSegmentIndexesWithStepType<FuncBackStep>(backI)).Returns(list);
 
-			mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabArtifact));
-			//p.AddSegment(mockStep.Object, "outE('RootContainsArtifact').inV"); //2 steps
+			var sd = new StepData("Back("+alias+")");
 
-			mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabUser));
-			//p.AddSegment(mockStep.Object, "inE('UserHasArtifact').outV"); //2 steps
+			////
 
-			mockStep = new Mock<IStep>();
-			mockStep.SetupGet(x => x.DtoType).Returns(typeof(FabUser));
-			//p.AddSegment(mockStep.Object, "dedup[0..9]"); //2 steps
-
-			var back = new FuncBackStep(p.Object);
-			var sd = new StepData("Back("+pUriCount+")");
-			back.SetDataAndUpdatePath(sd);
-
-			IPathSegment seg = back.Path.GetSegmentBeforeLast(0);
-			//Assert.AreEqual(pExpectCount, back.Count, "Incorrect Count.");
-			Assert.AreEqual("back("+pExpectCount+")", seg.Script, "Incorrect segment Script.");
-			Assert.AreEqual(pExpectDtoType, back.DtoType.Name, "Incorrect DtoType.");
+			FabStepFault se =
+				TestUtil.CheckThrows<FabStepFault>(true, () => backStep.SetDataAndUpdatePath(sd));
+			Assert.AreEqual(FabFault.Code.InvalidStep, se.ErrCode, "Incorrect ErrCode.");
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("")]
 		[TestCase("(1,2)")]
-		public void SetDataAndUpdatePathNoParams(string pParams) {
+		public void SetDataAndUpdatePathParamCount(string pParams) {
 			var p = new Mock<IPath>();
 			var s = new FuncBackStep(p.Object);
-			var sd = new StepData("back"+pParams);
+			var sd = new StepData("Back"+pParams);
 			
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
@@ -109,47 +118,44 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void SetDataAndUpdatePathCannotConvert() {
+		[TestCase("abcdefghi")]
+		public void SetDataAndUpdatePathLength(string pAlias) {
 			var p = new Mock<IPath>();
 			var s = new FuncBackStep(p.Object);
-			var sd = new StepData("back(i)");
-
-			FabStepFault se =
-				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
-			Assert.AreEqual(FabFault.Code.IncorrectParamType, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(-1)]
-		public void SetDataAndUpdatePathLessThanOne(int pCount) {
-			var p = new Mock<IPath>();
-			var s = new FuncBackStep(p.Object);
-			var sd = new StepData("back("+pCount+")");
+			var sd = new StepData("Back("+pAlias+")");
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void SetDataAndUpdatePathBackTooFar() {
+		[TestCase("0abc")]
+		[TestCase("123")]
+		public void SetDataAndUpdatePathFormat(string pAlias) {
 			var p = new Mock<IPath>();
-			//p.AddSegment(null, "first");
-			//p.AddSegment(null, "second(x).has(x,y,z).and(1,2,3)");
-			//p.AddSegment(null, "third(1,2)");
-
 			var s = new FuncBackStep(p.Object);
-			var sd = new StepData("back(3)");
+			var sd = new StepData("Back("+pAlias+")");
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect ParamIndex.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("abc")]
+		public void SetDataAndUpdatePathNoMatch(string pAlias) {
+			var p = new Mock<IPath>();
+			var s = new FuncBackStep(p.Object);
+			var sd = new StepData("Back("+pAlias+")");
+
+			FabStepFault se =
+				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
+			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
+			Assert.AreNotEqual(-1, se.Message.IndexOf(pAlias), "Incorrect StepFault.Message.");
 		}
 
 

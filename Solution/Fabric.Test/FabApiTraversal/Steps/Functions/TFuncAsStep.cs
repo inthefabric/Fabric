@@ -80,7 +80,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepException.ParamIndex.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -94,7 +94,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepException.ParamIndex.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -114,7 +114,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepException.ParamIndex.");
+			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
 		}
 
 
