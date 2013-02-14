@@ -56,22 +56,22 @@ namespace Fabric.Api.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public int GetSegmentCount() { //TEST: Path.GetSegmentCount()
+		public int GetSegmentCount() {
 			return vSegments.Count;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IPathSegment GetSegmentAt(int pIndex) { //TEST: Path.GetStepAt()
+		public IPathSegment GetSegmentAt(int pIndex) {
 			return vSegments[pIndex];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IPathSegment GetSegmentBeforeLast(int pCount) { //TEST: Path.GetSegmentBeforeLast()
+		public IPathSegment GetSegmentBeforeLast(int pCount) {
 			return vSegments[vSegments.Count-pCount-1];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public int GetSegmentIndexOfStep(IStep pStep) { //TEST: Path.GetSegmentIndexOfStep()
+		public int GetSegmentIndexOfStep(IStep pStep) {
 			int n = vSegments.Count;
 
 			for ( int i = 0 ; i < n ; ++i ) {
@@ -83,9 +83,8 @@ namespace Fabric.Api.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: Path.GetSegmentIndexesWithStepType()
 		public IEnumerable<int> GetSegmentIndexesWithStepType<T>(int pStopAtIndex=int.MaxValue)
-																			where T : class, IStep {
+																					where T : IStep {
 			int n = vSegments.Count;
 			var list = new List<int>();
 
@@ -94,10 +93,8 @@ namespace Fabric.Api.Traversal {
 					break;
 				}
 
-				T back = (vSegments[i].Step as T);
-
-				if ( back == null ) {
-					break;
+				if ( !(vSegments[i].Step is T) ) {
+					continue;
 				}
 
 				list.Add(i);
@@ -109,12 +106,12 @@ namespace Fabric.Api.Traversal {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void RegisterAlias(IFuncAsStep pAsStep) { //TEST: Path.RegisterAlias()
+		public void RegisterAlias(IFuncAsStep pAsStep) {
 			vAliasMap.Add(pAsStep.Alias, pAsStep);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IFuncAsStep GetAlias(string pAlias) { //TEST: Path.GetAlias()
+		public IFuncAsStep GetAlias(string pAlias) {
 			IFuncAsStep asStep;
 			vAliasMap.TryGetValue(pAlias, out asStep);
 			return asStep;

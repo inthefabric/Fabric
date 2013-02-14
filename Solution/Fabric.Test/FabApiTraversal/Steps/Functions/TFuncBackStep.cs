@@ -91,7 +91,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			p.Setup(x => x.GetSegmentAt(beforeBackI)).Returns(beforeBackSegment.Object);
 			p.Setup(x => x.GetAlias(beforeAlias)).Returns(beforeAsStep.Object);
 			p.Setup(x => x.GetSegmentIndexOfStep(beforeAsStep.Object)).Returns(beforeAsI);
-			p.Setup(x => x.GetSegmentIndexesWithStepType<FuncBackStep>(backI)).Returns(list);
+			p.Setup(x => x.GetSegmentIndexesWithStepType<IFuncBackStep>(backI)).Returns(list);
 
 			var sd = new StepData("Back("+alias+")");
 

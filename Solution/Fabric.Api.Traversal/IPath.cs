@@ -22,7 +22,7 @@ namespace Fabric.Api.Traversal {
 		IPathSegment GetSegmentBeforeLast(int pCount);
 		int GetSegmentIndexOfStep(IStep pStep);
 		IEnumerable<int> GetSegmentIndexesWithStepType<T>(int pStopAtIndex=int.MaxValue)
-																				where T : class, IStep;
+																						where T : IStep;
 		
 		/*--------------------------------------------------------------------------------------------*/
 		void RegisterAlias(IFuncAsStep pAsStep);

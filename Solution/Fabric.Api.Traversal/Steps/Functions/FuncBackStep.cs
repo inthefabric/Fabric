@@ -84,7 +84,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			
 			int backI = Path.GetSegmentIndexOfStep(this);
 			int aliasI = Path.GetSegmentIndexOfStep(asStep);
-			IEnumerable<int> backSteps = Path.GetSegmentIndexesWithStepType<FuncBackStep>(backI);
+			IEnumerable<int> backSteps = Path.GetSegmentIndexesWithStepType<IFuncBackStep>(backI);
 
 			foreach ( int checkBackI in backSteps ) {
 				IFuncBackStep checkBack = (IFuncBackStep)Path.GetSegmentAt(checkBackI).Step;

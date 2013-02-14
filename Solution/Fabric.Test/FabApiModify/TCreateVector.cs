@@ -1,12 +1,12 @@
 ﻿using Fabric.Api.Modify;
+using Fabric.Db.Data;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Interfaces;
-using Fabric.Infrastructure.Api.Faults;
-using Fabric.Db.Data;
 
 namespace Fabric.Test.FabApiModify {
 
@@ -160,6 +160,17 @@ namespace Fabric.Test.FabApiModify {
 		public void ErrMax() {
 			vRangeVecType.Max = 0;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrAxisArtifactNotFound() {
+			MockTasks
+				.Setup(x => x.GetArtifact(MockApiCtx.Object, vAxisArtId))
+				.Returns((Artifact)null);
+
+			FabNotFoundFault f = TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
+			Assert.AreEqual(typeof(Artifact), f.ItemType, "Incorrect Fault.ItemType.");
 		}
 
 	}
