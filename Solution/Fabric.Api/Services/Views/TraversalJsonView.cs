@@ -1,6 +1,6 @@
 ﻿using Fabric.Api.Common;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Services.Models;
+using Fabric.Api.Traversal;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
 

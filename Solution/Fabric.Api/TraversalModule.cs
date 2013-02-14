@@ -21,9 +21,9 @@ namespace Fabric.Api {
 			Get[trav] = (p => Trav(Context, TraversalController.Route.Home));
 			Get[root] = (p => Trav(Context, TraversalController.Route.Root));
 			Get[root+"/(.*)"] = (p => Trav(Context, TraversalController.Route.Root));
-			Get[app] = (p => Trav(Context, TraversalController.Route.CurrApp));
-			Get[user] = (p => Trav(Context, TraversalController.Route.CurrUser));
-			Get[mem] = (p => Trav(Context, TraversalController.Route.CurrMember));
+			Get[app] = (p => Trav(Context, TraversalController.Route.ActiveApp));
+			Get[user] = (p => Trav(Context, TraversalController.Route.ActiveUser));
+			Get[mem] = (p => Trav(Context, TraversalController.Route.ActiveMember));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

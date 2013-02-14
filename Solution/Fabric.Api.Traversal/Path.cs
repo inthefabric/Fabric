@@ -9,7 +9,7 @@ namespace Fabric.Api.Traversal {
 	/*================================================================================================*/
 	public class Path : IPath {
 
-		public bool StartAtRoot { get; private set; }
+		public bool StartAtRoot { get; private set; } //used for Current App/User/Member paths
 		public long UserId { get; private set; }
 		public long AppId { get; private set; }
 

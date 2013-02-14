@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Services.Models;
+using Fabric.Api.Traversal;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Services.Views {

@@ -69,6 +69,8 @@
     <Compile Include="Steps\Functions\FuncActiveUserStep.cs" />
     <Compile Include="Steps\Functions\FuncActiveMemberStep.cs" />
     <Compile Include="Steps\Functions\FuncAsStep.cs" />
+    <Compile Include="TraversalBuilder.cs" />
+    <Compile Include="TraversalModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Steps\Nodes\NodeSteps.tt">

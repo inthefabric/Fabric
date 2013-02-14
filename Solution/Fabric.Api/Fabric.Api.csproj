@@ -103,7 +103,6 @@
     <Compile Include="Services\TraversalController.cs" />
     <Compile Include="Services\Views\TraversalJsonView.cs" />
     <Compile Include="Services\Views\TraversalHtmlView.cs" />
-    <Compile Include="Services\Models\TraversalModel.cs" />
     <Compile Include="Common\FabResponseController.cs" />
     <Compile Include="Common\HtmlView.cs" />
     <Compile Include="Internal\Graph\GraphView.cs" />

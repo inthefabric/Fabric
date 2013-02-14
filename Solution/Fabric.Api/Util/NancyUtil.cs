@@ -116,6 +116,26 @@ namespace Fabric.Api.Util {
 			return pResponse;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static HttpStatusCode ToNancyStatus(System.Net.HttpStatusCode pStatus) {
+			switch ( pStatus ) {
+
+				case System.Net.HttpStatusCode.OK:
+					return HttpStatusCode.OK;
+
+				case System.Net.HttpStatusCode.BadRequest:
+					return HttpStatusCode.BadRequest;
+
+				case System.Net.HttpStatusCode.InternalServerError:
+					return HttpStatusCode.InternalServerError;
+
+			}
+
+			throw new Exception("Unmatched HttpStatusCode: "+pStatus+" ("+(int)pStatus+")");
+		}
+
 	}
 
 }

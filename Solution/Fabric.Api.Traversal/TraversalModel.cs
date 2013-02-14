@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using Fabric.Api.Dto;
 using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Services.Models {
+namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
 	public class TraversalModel {
@@ -13,6 +14,8 @@ namespace Fabric.Api.Services.Models {
 		public List<IDbDto> DtoList { get; set; }
 		public string NonDtoText { get; set; }
 		public FabError Error { get; set; }
+		public bool IsErrorHandled { get; set; }
+		public HttpStatusCode HttpStatus { get; set; }
 
 	}
 
