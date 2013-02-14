@@ -63,6 +63,15 @@ namespace Fabric.Api.Spec.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
+        internal static string As {
+            get {
+                return ResourceManager.GetString("As", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
@@ -75,6 +84,15 @@ namespace Fabric.Api.Spec.Lang {
         internal static string Limit {
             get {
                 return ResourceManager.GetString("Limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereId {
+            get {
+                return ResourceManager.GetString("WhereId", resourceCulture);
             }
         }
     }

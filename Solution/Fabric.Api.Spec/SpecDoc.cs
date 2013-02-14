@@ -19,9 +19,6 @@ namespace Fabric.Api.Spec {
 	public partial class SpecDoc {
 
 		private const string DtoNamespace = "Fabric.Api.Dto.";
-		//private const string OauthDtoNamespace = DtoNamespace+"Oauth";
-		//private const string ModDtoNamespace = DtoNamespace+"Modify";
-		//private const string TravDtoNamespace = DtoNamespace+"Traversal";
 		private const string SpecDtoNamespace = DtoNamespace+"Spec";
 
 		private static List<string> ObjectNames;
@@ -185,7 +182,13 @@ namespace Fabric.Api.Spec {
 					ss.TraversalFunctions = new List<FabSpecTravFunc>();
 				}
 
-				ss.TraversalFunctions.Add(GetSpecFunc(t));
+				FabSpecTravFunc func = GetSpecFunc(t);
+
+				if ( func == null ) {
+					continue;
+				}
+
+				ss.TraversalFunctions.Add(func);
 			}
 
 			if ( ss.TraversalFunctions != null ) {
@@ -334,6 +337,10 @@ namespace Fabric.Api.Spec {
 		private FabSpecTravFunc GetSpecFunc(Type pFuncType, string pUri=null) {
 			var fa = (FuncAttribute)pFuncType.GetCustomAttributes(typeof(FuncAttribute), false)[0];
 
+			if ( fa.IsInternal ) {
+				return null;
+			}
+
 			var func = new FabSpecTravFunc();
 			func.Name = fa.Name;
 			string resxKey = (fa.ResxKey ?? func.Name);
@@ -351,7 +358,7 @@ namespace Fabric.Api.Spec {
 				}
 
 				FuncParamAttribute fpa = (FuncParamAttribute)fpaList[0];
-				
+
 				var p = new FabSpecTravFuncParam();
 				p.Name = pi.Name;
 				p.Description = GetFuncParamText((fpa.FuncResxKey ?? resxKey)+"_"+pi.Name);

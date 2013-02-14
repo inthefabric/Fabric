@@ -275,11 +275,38 @@ namespace Fabric.Api.Spec.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Traversal_GetActiveApp {
+            get {
+                return ResourceManager.GetString("Traversal_GetActiveApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Traversal_GetActiveMember {
+            get {
+                return ResourceManager.GetString("Traversal_GetActiveMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Traversal_GetActiveUser {
+            get {
+                return ResourceManager.GetString("Traversal_GetActiveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The starting point for all traversal queries. Use traversal links and traversal functions to navigate through Fabric&apos;s objects. These links and functions are capable of performing both simple and highly complex queries..
         /// </summary>
-        internal static string Traversal_Root {
+        internal static string Traversal_GetRoot {
             get {
-                return ResourceManager.GetString("Traversal_Root", resourceCulture);
+                return ResourceManager.GetString("Traversal_GetRoot", resourceCulture);
             }
         }
     }
