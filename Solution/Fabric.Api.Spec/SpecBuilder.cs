@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/11/2013 4:04:40 PM
+// Generated on 2/13/2013 8:54:20 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Spec;
@@ -905,192 +905,256 @@ namespace Fabric.Api.Spec {
 			switch ( pTypeName ) {
 
 				case "Root":
+					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					break;
 
 				case "App":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Artifact":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "ArtifactType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Class":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Instance":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Member":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "MemberType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "MemberTypeAssign":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Url":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "User":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Factor":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "FactorAssertion":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Descriptor":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "DescriptorType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Director":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "DirectorType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "DirectorAction":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Eventor":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "EventorType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "EventorPrecision":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Identor":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "IdentorType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Locator":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "LocatorType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "Vector":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "VectorType":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "VectorRange":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "VectorRangeLevel":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "VectorUnit":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "VectorUnitPrefix":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
 				case "VectorUnitDerived":
 					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
 					break;
 			}
 		}
