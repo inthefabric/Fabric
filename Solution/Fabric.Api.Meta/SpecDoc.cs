@@ -18,9 +18,6 @@ namespace Fabric.Api.Meta {
 	/*================================================================================================*/
 	public class SpecDoc {
 
-		private const string DtoNamespace = "Fabric.Api.Dto.";
-		private const string MetaDtoNamespace = DtoNamespace+"Meta";
-
 		private static List<string> ObjectNames;
 		private static List<FabSpecObject> Objects;
 		private static List<FabSpecService> Services;
@@ -63,7 +60,7 @@ namespace Fabric.Api.Meta {
 				FabSpecObject sd = GetSpecDto(t);
 				Objects.Add(sd);
 
-				if ( t.Namespace == MetaDtoNamespace ) {
+				if ( sd.Name.IndexOf("FabSpec") == 0 ) { //t.Namespace == MetaDtoNamespace) ) {
 					sd.Description = null;
 
 					foreach ( FabSpecObjectProp p in sd.Properties ) {
