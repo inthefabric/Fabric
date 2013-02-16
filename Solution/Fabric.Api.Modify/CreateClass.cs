@@ -19,13 +19,13 @@ namespace Fabric.Api.Modify {
 		public const string DisambParam = "Disamb";
 		public const string NoteParam = "Note";
 
-		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(Class))]
+		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 0, typeof(Class))]
 		private readonly string vName;
 
-		[ServiceOpParam(ServiceOpParamType.Form, DisambParam, typeof(Class), IsRequired=false)]
+		[ServiceOpParam(ServiceOpParamType.Form, DisambParam, 1, typeof(Class), IsRequired=false)]
 		private readonly string vDisamb;
 
-		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, typeof(Class), IsRequired=false)]
+		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, 2, typeof(Class), IsRequired=false)]
 		private readonly string vNote;
 
 

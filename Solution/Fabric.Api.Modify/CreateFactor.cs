@@ -20,21 +20,21 @@ namespace Fabric.Api.Modify {
 		public const string IsDefParam = "IsDefining";
 		public const string NoteParam = "Note";
 
-		[ServiceOpParam(ServiceOpParamType.Form, PrimArtParam, typeof(Artifact),
+		[ServiceOpParam(ServiceOpParamType.Form, PrimArtParam, 0, typeof(Artifact),
 			DomainPropertyName="ArtifactId")]
 		private readonly long vPrimArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, RelArtParam, typeof(Artifact),
+		[ServiceOpParam(ServiceOpParamType.Form, RelArtParam, 1, typeof(Artifact),
 			DomainPropertyName="ArtifactId")]
 		private readonly long vRelArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, AssertParam, typeof(FactorAssertion))]
+		[ServiceOpParam(ServiceOpParamType.Form, AssertParam, 2, typeof(FactorAssertion))]
 		private readonly long vAssertId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, IsDefParam, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, IsDefParam, 3, typeof(Factor))]
 		private readonly bool vIsDefining;
 
-		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, typeof(Factor), IsRequired=false)]
+		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, 4, typeof(Factor), IsRequired=false)]
 		private readonly string vNote;
 		
 

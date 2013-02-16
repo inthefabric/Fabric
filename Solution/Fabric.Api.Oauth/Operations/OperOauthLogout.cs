@@ -11,7 +11,7 @@ namespace Fabric.Api.Oauth.Operations {
 
 		public const string AccessTokenParam = "access_token";
 
-		[ServiceOpParam(ServiceOpParamType.Query, AccessTokenParam,
+		[ServiceOpParam(ServiceOpParamType.Query, AccessTokenParam, 0, 
 			typeof(OauthAccess), DomainPropertyName="Token", ResxKey="Token")]
 		public string Token;
 

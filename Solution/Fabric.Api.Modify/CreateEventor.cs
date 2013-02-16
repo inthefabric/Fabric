@@ -17,13 +17,13 @@ namespace Fabric.Api.Modify {
 		public const string EvePrecParam = "EventorPrecisionId";
 		public const string DateTimeParam = "DateTime";
 
-		[ServiceOpParam(ServiceOpParamType.Form, EveTypeParam, typeof(EventorType))]
+		[ServiceOpParam(ServiceOpParamType.Form, EveTypeParam, 1, typeof(EventorType))]
 		private readonly long vEveTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, EvePrecParam, typeof(EventorPrecision))]
+		[ServiceOpParam(ServiceOpParamType.Form, EvePrecParam, 2, typeof(EventorPrecision))]
 		private readonly long vEvePrecId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, DateTimeParam, typeof(Eventor))]
+		[ServiceOpParam(ServiceOpParamType.Form, DateTimeParam, 3, typeof(Eventor))]
 		private readonly long vDateTime;
 
 

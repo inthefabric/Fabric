@@ -16,29 +16,29 @@ namespace Fabric.Api.Oauth.Operations {
 		public const string StateParam = "state";
 		public const string SwitchModeParam = "switchMode";
 
-		[ServiceOpParam(ServiceOpParamType.Query, ResponseTypeParam, null,
+		[ServiceOpParam(ServiceOpParamType.Query, ResponseTypeParam, 0, null,
 			DomainPropertyName="ResponseType", ResxKey="ResponseType")]
 		public string ResponseType;
 
-		[ServiceOpParam(ServiceOpParamType.Query, SwitchModeParam, null,
-			DomainPropertyName="SwitchMode", ResxKey="SwitchMode")]
-		public string SwitchMode;
-
-		[ServiceOpParam(ServiceOpParamType.Query, ClientIdParam, typeof(App),
+		[ServiceOpParam(ServiceOpParamType.Query, ClientIdParam, 1, typeof(App),
 			DomainPropertyName="AppId", ResxKey="ClientId")]
 		public string ClientId;
 
-		[ServiceOpParam(ServiceOpParamType.Query, RedirectUriParam, typeof(OauthGrant),
+		[ServiceOpParam(ServiceOpParamType.Query, RedirectUriParam, 2, typeof(OauthGrant),
 			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
 		public string RedirectUri;
 
-		[ServiceOpParam(ServiceOpParamType.Query, ScopeParam, null,
+		[ServiceOpParam(ServiceOpParamType.Query, ScopeParam, 3, null,
 			DomainPropertyName="Scope", ResxKey="Scope")]
 		public string Scope;
 
-		[ServiceOpParam(ServiceOpParamType.Query, StateParam, null,
+		[ServiceOpParam(ServiceOpParamType.Query, StateParam, 4, null,
 			DomainPropertyName="State", ResxKey="State")]
 		public string State;
+
+		[ServiceOpParam(ServiceOpParamType.Query, SwitchModeParam, 5, null,
+			DomainPropertyName="SwitchMode", ResxKey="SwitchMode")]
+		public string SwitchMode;
 
 	}
 

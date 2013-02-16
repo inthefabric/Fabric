@@ -19,16 +19,16 @@ namespace Fabric.Api.Modify {
 		public const string YParam = "ValueY";
 		public const string ZParam = "ValueZ";
 
-		[ServiceOpParam(ServiceOpParamType.Form, LocTypeParam, typeof(LocatorType))]
+		[ServiceOpParam(ServiceOpParamType.Form, LocTypeParam, 1, typeof(LocatorType))]
 		private readonly long vLocTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, XParam, typeof(Locator))]
+		[ServiceOpParam(ServiceOpParamType.Form, XParam, 2, typeof(Locator))]
 		private readonly double vX;
 
-		[ServiceOpParam(ServiceOpParamType.Form, YParam, typeof(Locator))]
+		[ServiceOpParam(ServiceOpParamType.Form, YParam, 3, typeof(Locator))]
 		private readonly double vY;
 
-		[ServiceOpParam(ServiceOpParamType.Form, ZParam, typeof(Locator))]
+		[ServiceOpParam(ServiceOpParamType.Form, ZParam, 4, typeof(Locator))]
 		private readonly double vZ;
 
 

@@ -15,7 +15,7 @@ namespace Fabric.Api.Modify {
 	/*================================================================================================*/
 	public abstract class CreateFactorElement<T> : BaseModifyFunc<T> where T : FactorElementNode {
 
-		[ServiceOpParam(ServiceOpParamType.Form, CreateFactorElement.FactorParam, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, CreateFactorElement.FactorParam, 0, typeof(Factor))]
 		protected readonly long vFactorId; //use 'protected' so SpecDoc can find it
 
 

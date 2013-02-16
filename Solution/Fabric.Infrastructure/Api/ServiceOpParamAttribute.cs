@@ -15,6 +15,7 @@ namespace Fabric.Infrastructure.Api {
 
 		public ServiceOpParamType ParamType { get; set; }
 		public string Name { get; set; }
+		public int Index { get; set; }
 		public Type DomainClass { get; set; }
 
 		public bool IsRequired { get; set; }
@@ -24,9 +25,11 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ServiceOpParamAttribute(ServiceOpParamType pParamType, string pName, Type pDomClass) {
+		public ServiceOpParamAttribute(ServiceOpParamType pParamType, string pName, int pIndex,
+																						Type pDomClass) {
 			ParamType = pParamType;
 			Name = pName;
+			Index = pIndex;
 			DomainClass = pDomClass;
 			IsRequired = true;
 			DomainPropertyName = Name;

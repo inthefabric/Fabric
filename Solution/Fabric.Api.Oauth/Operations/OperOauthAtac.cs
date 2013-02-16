@@ -10,17 +10,17 @@ namespace Fabric.Api.Oauth.Operations {
 		typeof(FabOauthAccess), ResxKey="AccessToken")]
 	public class OperOauthAtac {
 
-		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.RedirectUriParam, typeof(OauthGrant),
-			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
-		public string RedirectUri;
+		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.CodeParam, 0, typeof(OauthGrant),
+			DomainPropertyName="Code", ResxKey="Code")]
+		public string Code;
 
-		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.ClientSecretParam, typeof(App),
+		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.ClientSecretParam, 1, typeof(App),
 			DomainPropertyName="Secret", ResxKey="Secret")]
 		public string ClientSecret;
 
-		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.CodeParam, typeof(OauthGrant),
-			DomainPropertyName="Code", ResxKey="Code")]
-		public string Code;
+		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.RedirectUriParam, 2, typeof(OauthGrant),
+			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
+		public string RedirectUri;
 
 	}
 

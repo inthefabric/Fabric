@@ -22,31 +22,31 @@ namespace Fabric.Api.Oauth.Operations {
 		public const string ClientIdParam = "client_id";
 		public const string DataProvUserIdParam = "data_prov_userid";
 
-		[ServiceOpParam(ServiceOpParamType.Query, GrantTypeParam, null,
+		[ServiceOpParam(ServiceOpParamType.Query, GrantTypeParam, 0, null,
 			DomainPropertyName="GrantType", ResxKey="GrantType")]
 		public string GrantType;
 
-		[ServiceOpParam(ServiceOpParamType.Query, RedirectUriParam, typeof(OauthGrant),
-			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
-		public string RedirectUri;
-
-		[ServiceOpParam(ServiceOpParamType.Query, ClientSecretParam, typeof(App),
-			DomainPropertyName="Secret", ResxKey="Secret")]
-		public string ClientSecret;
-
-		[ServiceOpParam(ServiceOpParamType.Query, CodeParam, typeof(OauthGrant),
-			DomainPropertyName="Code", ResxKey="Code")]
-		public string Code;
-
-		[ServiceOpParam(ServiceOpParamType.Query, RefreshTokenParam, typeof(OauthAccess),
-			DomainPropertyName="Refresh", ResxKey="Refresh")]
-		public string RefreshToken;
-
-		[ServiceOpParam(ServiceOpParamType.Query, ClientIdParam, typeof(App),
+		[ServiceOpParam(ServiceOpParamType.Query, ClientIdParam, 1, typeof(App),
 			DomainPropertyName="AppId", ResxKey="ClientId")]
 		public string ClientId;
 
-		[ServiceOpParam(ServiceOpParamType.Query, DataProvUserIdParam, typeof(User),
+		[ServiceOpParam(ServiceOpParamType.Query, ClientSecretParam, 2, typeof(App),
+			DomainPropertyName="Secret", ResxKey="Secret")]
+		public string ClientSecret;
+
+		[ServiceOpParam(ServiceOpParamType.Query, CodeParam, 3, typeof(OauthGrant),
+			DomainPropertyName="Code", ResxKey="Code")]
+		public string Code;
+
+		[ServiceOpParam(ServiceOpParamType.Query, RefreshTokenParam, 4, typeof(OauthAccess),
+			DomainPropertyName="Refresh", ResxKey="Refresh")]
+		public string RefreshToken;
+
+		[ServiceOpParam(ServiceOpParamType.Query, RedirectUriParam, 5, typeof(OauthGrant),
+			DomainPropertyName="RedirectUri", ResxKey="RedirectUri")]
+		public string RedirectUri;
+
+		[ServiceOpParam(ServiceOpParamType.Query, DataProvUserIdParam, 6, typeof(User),
 			DomainPropertyName="UserId", ResxKey="DataProvUserId")]
 		public string DataProvUserId;
 		

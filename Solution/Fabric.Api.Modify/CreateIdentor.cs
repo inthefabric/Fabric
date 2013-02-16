@@ -16,10 +16,10 @@ namespace Fabric.Api.Modify {
 		public const string IdenTypeParam = "IdentorTypeId";
 		public const string ValueParam = "Value";
 
-		[ServiceOpParam(ServiceOpParamType.Form, IdenTypeParam, typeof(IdentorType))]
+		[ServiceOpParam(ServiceOpParamType.Form, IdenTypeParam, 1, typeof(IdentorType))]
 		private readonly long vIdenTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, typeof(Identor))]
+		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, 2, typeof(Identor))]
 		private readonly string vValue;
 
 

@@ -18,10 +18,10 @@ namespace Fabric.Api.Modify {
 		public const string NameParam = "Name";
 		public const string UserIdParam = "UserId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(App))]
+		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 0, typeof(App))]
 		private readonly string vName;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UserIdParam, typeof(User))]
+		[ServiceOpParam(ServiceOpParamType.Form, UserIdParam, 1, typeof(User))]
 		private readonly long vUserId;
 
 

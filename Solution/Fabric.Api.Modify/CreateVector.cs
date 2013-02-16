@@ -21,20 +21,20 @@ namespace Fabric.Api.Modify {
 		public const string UnitParam = "VectorUnitId";
 		public const string UnitPrefParam = "VectorUnitPrefixId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, VecTypeParam, typeof(VectorType))]
+		[ServiceOpParam(ServiceOpParamType.Form, VecTypeParam, 1, typeof(VectorType))]
 		private readonly long vVecTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, typeof(Vector))]
+		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, 2, typeof(Vector))]
 		private readonly long vValue;
 
-		[ServiceOpParam(ServiceOpParamType.Form, AxisArtParam, typeof(Artifact),
+		[ServiceOpParam(ServiceOpParamType.Form, AxisArtParam, 3, typeof(Artifact),
 			DomainPropertyName="ArtifactId")]
 		private readonly long vAxisArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UnitParam, typeof(VectorUnit))]
+		[ServiceOpParam(ServiceOpParamType.Form, UnitParam, 4, typeof(VectorUnit))]
 		private readonly long vVecUnitId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UnitPrefParam, typeof(VectorUnitPrefix))]
+		[ServiceOpParam(ServiceOpParamType.Form, UnitPrefParam, 5, typeof(VectorUnitPrefix))]
 		private readonly long vVecUnitPrefId;
 
 

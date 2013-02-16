@@ -18,10 +18,10 @@ namespace Fabric.Api.Modify {
 		public const string AbsoluteUrlParam = "AbsoluteUrl";
 		public const string NameParam = "Name";
 
-		[ServiceOpParam(ServiceOpParamType.Form, AbsoluteUrlParam, typeof(Url))]
+		[ServiceOpParam(ServiceOpParamType.Form, AbsoluteUrlParam, 0, typeof(Url))]
 		private readonly string vAbsoluteUrl;
 
-		[ServiceOpParam(ServiceOpParamType.Form, NameParam, typeof(Url))]
+		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 1, typeof(Url))]
 		private readonly string vName;
 
 

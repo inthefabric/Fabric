@@ -11,11 +11,11 @@ namespace Fabric.Api.Modify {
 	[ServiceOp(FabHome.ModUri, FabHome.Put, FabHome.ModFactorsUri, typeof(FabFactor),
 		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class CompleteFactor : UpdateFactor {
-		
-		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, typeof(Factor))]
+
+		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, 0, typeof(Factor))]
 		private readonly long vFactorId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, CompletedParam, null)]
+		[ServiceOpParam(ServiceOpParamType.Form, CompletedParam, 1, null)]
 		private readonly bool vCompleted;
 
 

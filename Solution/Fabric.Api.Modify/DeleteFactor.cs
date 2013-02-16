@@ -12,10 +12,10 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
 	public class DeleteFactor : UpdateFactor {
 
-		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, 0, typeof(Factor))]
 		private readonly long vFactorId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, DeletedParam, null)]
+		[ServiceOpParam(ServiceOpParamType.Form, DeletedParam, 1, null)]
 		private readonly bool vDeleted;
 
 

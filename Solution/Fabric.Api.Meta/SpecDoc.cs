@@ -239,10 +239,6 @@ namespace Fabric.Api.Meta {
 				break;
 			}
 
-			if ( sso.Parameters != null ) {
-				sso.Parameters.Sort((a, b) => string.Compare(a.Name, b.Name));
-			}
-
 			return sso;
 		}
 
@@ -270,6 +266,7 @@ namespace Fabric.Api.Meta {
 
 				p.Name = att.Name;
 				p.ParamType = att.ParamType+"";
+				p.Index = att.Index;
 				p.Type = SchemaHelperProp.GetTypeName(field.FieldType);
 				p.IsOptional = (att.IsRequired ? (bool?)null : true);
 				p.Description = GetServiceOpParamText(
@@ -280,6 +277,7 @@ namespace Fabric.Api.Meta {
 				list.Add(p);
 			}
 
+			list.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index < b.Index ? -1 : 0)));
 			return (list.Count > 0 ? list : null);
 		}
 
@@ -370,7 +368,7 @@ namespace Fabric.Api.Meta {
 				func.Parameters.Add(p);
 			}
 
-			func.Parameters.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index == b.Index ? 0 : -1)));
+			func.Parameters.Sort((a, b) => (a.Index > b.Index ? 1 : (a.Index < b.Index ? -1 : 0)));
 			return func;
 		}
 

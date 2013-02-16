@@ -17,14 +17,14 @@ namespace Fabric.Api.Modify {
 		public const string PrimActionParam = "PrimaryDirectorActionId";
 		public const string RelActionParam = "RelatedDirectorActionId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, DirTypeParam, typeof(DirectorType))]
+		[ServiceOpParam(ServiceOpParamType.Form, DirTypeParam, 1, typeof(DirectorType))]
 		private readonly long vDescTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, PrimActionParam, typeof(DirectorAction),
+		[ServiceOpParam(ServiceOpParamType.Form, PrimActionParam, 2, typeof(DirectorAction),
 			DomainPropertyName="DirectorActionId")]
 		private readonly long vPrimActId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, RelActionParam, typeof(DirectorAction),
+		[ServiceOpParam(ServiceOpParamType.Form, RelActionParam, 3, typeof(DirectorAction),
 			DomainPropertyName="DirectorActionId")]
 		private readonly long vRelActId;
 
