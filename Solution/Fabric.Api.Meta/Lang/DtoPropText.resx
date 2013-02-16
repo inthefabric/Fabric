@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App_Name" xml:space="preserve">
+    <value>A unique title or identifier.</value>
+  </data>
+  <data name="Artifact_IsPrivate" xml:space="preserve">
+    <value>Specifies the accessibility level. When true, access is limited to the creating User.</value>
+  </data>
+  <data name="Artifact_Name" xml:space="preserve">
+    <value>A decriptive (but non-unique) title, based on the name of the corresponding item.</value>
+  </data>
+  <data name="CrowdianTypeAssign_Weight" xml:space="preserve">
+    <value>A value (between 0.0 and 1.0) which represents relative impact on Crowd-based data analysis. The default value is 0.5.</value>
+  </data>
+  <data name="Crowd_IsInviteOnly" xml:space="preserve">
+    <value>Specifies the membership requirement. Refer to an invite-only !Crowd as 'restricted'. Otherwise, refer to it as 'open'.</value>
+  </data>
+  <data name="Crowd_IsPrivate" xml:space="preserve">
+    <value>Specifies the level of accessibility. A private !Crowd is called a 'Circle'.</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>A sentence or paragraph providing details about the error.</value>
+  </data>
+  <data name="Error_Name" xml:space="preserve">
+    <value>A descriptive name that is associated with the error code.</value>
+  </data>
+  <data name="Error_Code" xml:space="preserve">
+    <value>A numeric value which identifies the specific error type.</value>
+  </data>
+  <data name="Fault_Message" xml:space="preserve">
+    <value>Information about the details and/or causes of the Fault.</value>
+  </data>
+  <data name="Key_Id" xml:space="preserve">
+    <value>Identifies a particular object.</value>
+  </data>
+  <data name="Key_Uri" xml:space="preserve">
+    <value>The API path to get information about this Key's object.</value>
+  </data>
+  <data name="Label_Name" xml:space="preserve">
+    <value>A unique title or identifier.</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>A unique username.</value>
+  </data>
+  <data name="VectorRangeLevel_Position" xml:space="preserve">
+    <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
+  </data>
+  <data name="VectorRange_Levels" xml:space="preserve">
+    <value>The set of points/labels that describe a numerical range.</value>
+  </data>
+  <data name="VectorType_Max" xml:space="preserve">
+    <value>The maximum Vector value allowed.</value>
+  </data>
+  <data name="VectorType_Min" xml:space="preserve">
+    <value>The minimum Vector value allowed.</value>
+  </data>
+  <data name="VectorUnitPrefix_Amount" xml:space="preserve">
+    <value>The difference in magnitude (a multipler) relative to the base unit.</value>
+  </data>
+  <data name="VectorUnitPrefix_Symbol" xml:space="preserve">
+    <value>An abbreviation, which is typically placed directly before the VectorUnit symbol.</value>
+  </data>
+  <data name="VectorUnit_Symbol" xml:space="preserve">
+    <value>A unique symbol or abbreviation.</value>
+  </data>
+  <data name="Class_Disamb" xml:space="preserve">
+    <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
+  </data>
+  <data name="Class_Note" xml:space="preserve">
+    <value>A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.</value>
+  </data>
+  <data name="Url_AbsoluteUrl" xml:space="preserve">
+    <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').</value>
+  </data>
+  <data name="Eventor_DateTime" xml:space="preserve">
+    <value>A particular point in time, with a level of accuracy defined by EventorPrecision.</value>
+  </data>
+  <data name="Identor_Value" xml:space="preserve">
+    <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc.</value>
+  </data>
+  <data name="Locator_ValueX" xml:space="preserve">
+    <value>A value representing longitude, time/progress, width, or a particular three-dimensional axis.</value>
+  </data>
+  <data name="Locator_ValueY" xml:space="preserve">
+    <value>A value representing latitude, height, or a particular three-dimensional axis.</value>
+  </data>
+  <data name="Locator_ValueZ" xml:space="preserve">
+    <value>A value representing elevation or a particular three-dimensional axis.</value>
+  </data>
+  <data name="Vector_Value" xml:space="preserve">
+    <value>An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.</value>
+  </data>
+  <data name="Factor_Completed" xml:space="preserve">
+    <value>The date/time of completion. This value is null if the !Factor is not complete.</value>
+  </data>
+  <data name="Factor_IsDefining" xml:space="preserve">
+    <value>Specifies whether this !Factor helps to uniquely define the primary Artifact.</value>
+  </data>
+  <data name="Factor_IsPublic" xml:space="preserve">
+    <value>Specifies the level of access.</value>
+  </data>
+  <data name="Factor_Note" xml:space="preserve">
+    <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
+  </data>
+  <data name="NodeForAction_Note" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="NodeForAction_Performed" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="NodeForType_Description" xml:space="preserve">
+    <value>A summary of this object's intended meaning or purpose.</value>
+  </data>
+  <data name="NodeForType_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Object_FabType" xml:space="preserve">
+    <value>The data type of this object.</value>
+  </data>
+  <data name="Node_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Object_TypeId" xml:space="preserve">
+    <value>Uniquely identifies this object amongst all other objects of this type.</value>
+  </data>
+  <data name="Response_Links" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_BaseUri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Count" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Data" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_DataLen" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_DbMs" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_HasMore" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_RequestUri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_StartIndex" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Timestamp" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_TotalMs" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Type" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Artifact_Created" xml:space="preserve">
+    <value>The date/time of creation.</value>
+  </data>
+  <data name="Crowd_Description" xml:space="preserve">
+    <value>A brief summary of purpose, usage, and/or guidelines.</value>
+  </data>
+  <data name="Crowd_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Factor_Created" xml:space="preserve">
+    <value>The date/time of creation.</value>
+  </data>
+  <data name="LocatorType_MaxX" xml:space="preserve">
+    <value>The maximum Locator X-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MaxY" xml:space="preserve">
+    <value>The maximum Locator Y-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MaxZ" xml:space="preserve">
+    <value>The maximum Locator Z-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MinX" xml:space="preserve">
+    <value>The minimum Locator X-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MinY" xml:space="preserve">
+    <value>The minimum Locator Y-coordinate value.</value>
+  </data>
+  <data name="LocatorType_MinZ" xml:space="preserve">
+    <value>The minimum Locator Z-coordinate value.</value>
+  </data>
+  <data name="Class_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Url_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="VectorUnitDerived_Exponent" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_HttpStatus" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_IsError" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_Functions" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="OauthAccess_AccessToken" xml:space="preserve">
+    <value>A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
+  </data>
+  <data name="OauthAccess_ExpiresIn" xml:space="preserve">
+    <value>The number of seconds until the access token expires.</value>
+  </data>
+  <data name="OauthAccess_RefreshToken" xml:space="preserve">
+    <value>A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Oper|Oauth.AccessTokenClientCredentials]].</value>
+  </data>
+  <data name="OauthAccess_TokenType" xml:space="preserve">
+    <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>
+  </data>
+  <data name="OauthError_Error" xml:space="preserve">
+    <value>An error code as defined by the OAuth 2.0 specification.</value>
+  </data>
+  <data name="OauthError_ErrorDesc" xml:space="preserve">
+    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions.</value>
+  </data>
+  <data name="OauthLogin_Code" xml:space="preserve">
+    <value>Use this code (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.</value>
+  </data>
+  <data name="OauthLogin_Error" xml:space="preserve">
+    <value>An error code as defined by the OAuth 2.0 specification.</value>
+  </data>
+  <data name="OauthLogin_ErrorDesc" xml:space="preserve">
+    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a '+' character in place of each space character.</value>
+  </data>
+  <data name="OauthLogin_State" xml:space="preserve">
+    <value>Returns the 'state' value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal.</value>
+  </data>
+  <data name="OauthLogout_AccessToken" xml:space="preserve">
+    <value>Identifies a particular OAuth session.</value>
+  </data>
+  <data name="OauthLogout_Success" xml:space="preserve">
+    <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
+  </data>
+  <data name="Response_AppId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Response_UserId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Instance_Disamb" xml:space="preserve">
+    <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
+  </data>
+  <data name="Instance_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Instance_Note" xml:space="preserve">
+    <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.</value>
+  </data>
+  <data name="StepLink_Class" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink_IsOut" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink_Rel" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="StepLink_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Home_Services" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_Method" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_Name" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_ReturnType" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ServiceOperation_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service_Name" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service_Operations" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Service_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Day" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Hour" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Millisecond" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Minute" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Month" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Second" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Ticks" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Unix" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaTime_Year" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Day" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Major" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Minor" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Month" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Patch" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Revision" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Version" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MetaVersion_Year" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+</root>

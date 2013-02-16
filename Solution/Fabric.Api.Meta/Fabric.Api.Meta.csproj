@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E9769D7-BC92-4717-88CA-F82CDE950F44}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fabric.Api.Meta</RootNamespace>
+    <AssemblyName>Fabric.Api.Meta</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Weaver">
+      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GetSpec.cs" />
+    <Compile Include="GetTime.cs" />
+    <Compile Include="GetVersion.cs" />
+    <Compile Include="Lang\ServiceOpParamText.Designer.cs">
+      <DependentUpon>ServiceOpParamText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\ServiceOpText.Designer.cs">
+      <DependentUpon>ServiceOpText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SpecBuilder.cs">
+      <DependentUpon>SpecBuilder.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\DtoLinkText.Designer.cs">
+      <DependentUpon>DtoLinkText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\ServiceText.Designer.cs">
+      <DependentUpon>ServiceText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\FuncParamText.Designer.cs">
+      <DependentUpon>FuncParamText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\FuncText.Designer.cs">
+      <DependentUpon>FuncText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\DtoPropText.Designer.cs">
+      <DependentUpon>DtoPropText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\DtoText.Designer.cs">
+      <DependentUpon>DtoText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecDoc.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lang\ServiceOpParamText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceOpParamText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ServiceOpText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceOpText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\DtoLinkText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoLinkText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ServiceText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\FuncParamText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncParamText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\FuncText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\DtoPropText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\DtoText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SpecBuilder.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SpecBuilder.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
+      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
+      <Name>Fabric.Api.Modify</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
+      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
+      <Name>Fabric.Api.Oauth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Traversal\Fabric.Api.Traversal.csproj">
+      <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
+      <Name>Fabric.Api.Traversal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
+      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
+      <Name>Fabric.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,228 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Api.Dto\bin\Debug\Fabric.Api.Dto.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Api.Traversal\bin\Debug\Fabric.Api.Traversal.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Fabric.Api.Dto" #>
+<#@ import namespace="Fabric.Api.Dto.Traversal" #>
+<#@ import namespace="Fabric.Api.Traversal.Steps.Functions" #>
+<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+using Fabric.Api.Dto.Meta;
+
+namespace Fabric.Api.Meta {
+
+	/*================================================================================================*/
+	public static class SpecBuilder {
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FillSpecValue(string pTypeName, string pPropName, FabSpecValue pValue) {
+			switch ( pTypeName+"."+pPropName ) {
+<#
+IList<string> nodes = SchemaHelper.GetNodes();
+string fabApiDtoNamespace = typeof(FabNode).AssemblyQualifiedName;
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+
+	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseNode.Name : "Node");
+	IList<SchemaHelperProp> props = hn.GetProps(false);
+
+	foreach ( SchemaHelperProp hp in props ) {
+		WeaverPropSchema prop = hp.PropSchema;
+		string propName = prop.Name;
+		string propItems = "";
+		string lineEnd = "\r\n\t\t\t\t\t";
+		
+		if ( prop.Len != null ) {
+			propItems += "pValue.Len = "+prop.Len+";"+lineEnd;
+		}
+
+		if ( prop.LenMax != null ) {
+			propItems += "pValue.LenMax = "+prop.LenMax+";"+lineEnd;
+		}
+
+		if ( prop.LenMin != null ) {
+			propItems += "pValue.LenMin = "+prop.LenMin+";"+lineEnd;
+		}
+
+		if ( prop.ValidRegex != null ) {
+			propItems += "pValue.ValidRegex = @\""+prop.ValidRegex.Replace("\"", "\"\"")+"\";"+lineEnd;
+		}
+
+#>
+
+				case "<#= node.Name #>.<#= propName #>":
+					<#= propItems #>break;
+<#
+	} //end prop loop
+} // end node loop
+#>
+			}
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FillSpecDtoProp(string pTypeName, string pPropName, FabSpecObjectProp pProp){
+			FillSpecValue(pTypeName, pPropName, pProp);
+
+			switch ( pTypeName+"."+pPropName ) {
+<#
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	if ( node.IsInternal ) { continue; }
+
+	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseNode.Name : "Node");
+	IList<SchemaHelperProp> props = hn.GetProps(true);
+
+	foreach ( SchemaHelperProp hp in props ) {
+		WeaverPropSchema prop = hp.PropSchema;
+		string propType = hp.TypeName;
+		string propName = prop.Name;
+		string propItems = "";
+		string lineEnd = "\r\n\t\t\t\t\t";
+		
+		if ( prop.IsCaseInsensitive != null ) {
+			propItems += "pProp.IsCaseInsensitive = "+prop.IsCaseInsensitive.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.IsNullable != null ) {
+			propItems += "pProp.IsNullable = "+prop.IsNullable.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.IsPrimaryKey != null ) {
+			propItems += "pProp.IsPrimaryKey = "+prop.IsPrimaryKey.ToString().ToLower()+";"+lineEnd;
+		}
+
+		if ( prop.IsTimestamp != null ) {
+			propItems += "pProp.IsTimestamp = "+prop.IsTimestamp.ToString().ToLower()+";"+lineEnd;
+		}
+		
+		if ( prop.IsUnique != null ) {
+			propItems += "pProp.IsUnique = "+prop.IsUnique.ToString().ToLower()+";"+lineEnd;
+		}
+
+		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : node.Name+"_"+propName);
+
+#>
+
+				case "<#= node.Name #>.<#= propName #>":
+					pProp.Name = "<#= propName #>";
+					pProp.Type = "<#= propType #>";
+					pProp.Description = SpecDoc.GetDtoPropText("<#= resxDesc #>");
+					<#= propItems #>break;
+<#
+	} //end prop loop
+} // end node loop
+#>
+			}
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FillSpecObjectTravFuncs(string pTypeName, FabSpecObject pObject) {
+			switch ( pTypeName ) {
+<#
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	if ( node.IsInternal || node.IsAbstract ) { continue; }
+#>
+
+				case "<#= node.Name #>":
+<#
+	string dtoAqn = fabApiDtoNamespace.Replace("FabNode", "Fab"+node.Name);
+	Type dtoType = Type.GetType(dtoAqn);
+	List<string> availFuncs = FuncRegistry.GetAvailableFuncs(dtoType, true, false);
+	bool first = true;
+		
+	foreach ( string funcUri in availFuncs ) {
+		if ( first ) {
+			first = false;
+#>
+					pObject.TraversalFunctions = new List<string>();
+<#
+		}
+#>
+					pObject.TraversalFunctions.Add("<#= funcUri.Substring(1) #>");
+<#
+	} //end func loop
+#>
+					break;
+<#
+} // end node loop
+#>
+			}
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FillSpecDtoLinks(string pTypeName, FabSpecObject pObject) {
+			FabSpecTravLink link;
+
+			switch ( pTypeName ) {
+<#
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	if ( node.IsInternal ) { continue; }
+#>
+
+				case "<#= node.Name #>":
+<#
+	
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	bool first = true;
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }if ( first ) {
+			first = false;
+#>
+					pObject.TraversalLinks = new List<FabSpecTravLink>();
+
+<#
+		}
+#>
+					link = new FabSpecTravLink();
+					link.Name = "<#= hr.RelPropName #>";
+					link.Type = "<#= hr.RelName #>";
+					link.Description = SpecDoc.GetDtoLinkText("<#= hr.RelName #>");
+					link.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
+					link.From = "Fab<#= hr.FromNodeName #>";
+					link.FromConn = "<#= hr.RelSchema.FromNodeConn+"" #>";
+					link.Relation = "<#= hr.RelTypeName #>";
+					link.To = "Fab<#= hr.ToNodeName #>";
+					link.ToConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
+					pObject.TraversalLinks.Add(link);
+
+<#
+	} //end rel loop
+#>
+					break;
+<#
+} // end node loop
+#>
+			}
+
+		}
+
+	}
+
+}

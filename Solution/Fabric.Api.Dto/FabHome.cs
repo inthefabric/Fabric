@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Fabric.Api.Dto.Meta;
 using Fabric.Api.Dto.Oauth;
-using Fabric.Api.Dto.Spec;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Db;
 
@@ -23,9 +23,6 @@ namespace Fabric.Api.Dto {
 		public const string OauthLoginUri = "/Login";
 		public const string OauthLogoutUri = "/Logout";
 
-		public const string SpecUri = "/Spec";
-		public const string SpecDocUri = "/Doc";
-
 		public const string TravUri = "/Trav";
 		public const string TravRootUri = "/Root";
 		public const string TravAppUri = "/ActiveApp";
@@ -46,6 +43,11 @@ namespace Fabric.Api.Dto {
 		public const string ModUsersUri = "/Users";
 		public const string ModVectorsUri = "/Vectors";
 
+		public const string MetaUri = "/Meta";
+		public const string MetaSpecUri = "/Spec";
+		public const string MetaVersionUri = "/Version";
+		public const string MetaTimeUri = "/Time";
+
 		public IList<FabService> Services { get; set; }
 
 
@@ -59,7 +61,7 @@ namespace Fabric.Api.Dto {
 			Services.Add(NewTraversalService(pIncludeOps));
 			Services.Add(NewOauthService(pIncludeOps));
 			Services.Add(NewModifyService(pIncludeOps));
-			Services.Add(NewSpecService(pIncludeOps));
+			Services.Add(NewMetaService(pIncludeOps));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -121,27 +123,6 @@ namespace Fabric.Api.Dto {
 				op.Uri = OauthLogoutUri;
 				op.Method = Get;
 				op.ReturnType = typeof(FabOauthLogout).Name;
-				s.Operations.Add(op);
-			}
-			else {
-				s.Operations = null;
-			}
-
-			return s;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabService NewSpecService(bool pIncludeOps) {
-			var s = new FabService();
-			s.Name = "Spec";
-			s.Uri = SpecUri;
-
-			if ( pIncludeOps ) {
-				var op = new FabServiceOperation();
-				op.Name = "Document";
-				op.Uri = SpecDocUri;
-				op.Method = Get;
-				op.ReturnType = typeof(FabSpec).Name;
 				s.Operations.Add(op);
 			}
 			else {
@@ -296,6 +277,41 @@ namespace Fabric.Api.Dto {
 				op.Uri = ModVectorsUri;
 				op.Method = Post;
 				op.ReturnType = typeof(FabVector).Name;
+				s.Operations.Add(op);
+			}
+			else {
+				s.Operations = null;
+			}
+
+			return s;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabService NewMetaService(bool pIncludeOps) {
+			var s = new FabService();
+			s.Name = "Meta";
+			s.Uri = MetaUri;
+
+			if ( pIncludeOps ) {
+				var op = new FabServiceOperation();
+				op.Name = "GetSpecification";
+				op.Uri = MetaSpecUri;
+				op.Method = Get;
+				op.ReturnType = typeof(FabSpec).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "GetVersion";
+				op.Uri = MetaVersionUri;
+				op.Method = Get;
+				op.ReturnType = typeof(FabMetaVersion).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "GetTime";
+				op.Uri = MetaTimeUri;
+				op.Method = Get;
+				op.ReturnType = typeof(FabMetaTime).Name;
 				s.Operations.Add(op);
 			}
 			else {
