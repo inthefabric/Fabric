@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Api.Content;
 using Fabric.Api.Util;
 using Nancy;
 
@@ -13,15 +14,7 @@ namespace Fabric.Api.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected HtmlView() {
-			MasterHtml = 
-				"<html>\n"+
-				"	<head>\n"+
-				"		<title>@TITLE</title>\n"+
-				"	</head>\n"+
-				"	<body>\n"+
-				"		@CONTENT\n"+
-				"	</body>\n"+
-				"</html>";
+			MasterHtml = WebResources.LayoutHtml;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

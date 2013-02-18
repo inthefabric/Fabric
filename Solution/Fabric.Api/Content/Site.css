@@ -1,0 +1,367 @@
+
+body {
+	background: #f8f8f8;
+	margin: 0;
+	padding: 0;
+	font-family: "Tahoma" , "Helvetica Neue" , "Helvetica" , "Arial" , "Verdana" , sans-serif;
+	overflow-y: scroll;
+}
+
+p, h1, h2, h3, h4, h5, h6, ul, li {
+	font-family: "Tahoma" , "Helvetica Neue" , "Helvetica" , "Arial" , "Verdana" , sans-serif;
+	font-weight: normal;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+}
+
+h4, h5 {
+	margin-bottom: 12px;
+}
+
+p + p, p + ul {
+	margin-top: 12px;
+}
+
+p + h3, p + h4, p + h5, h5 + h4, ul + h3, ul + h4, div + h3, div + h4 {
+	margin-top: 24px;
+}
+
+.row + .row {
+	margin-top: 24px;
+}
+
+.row {
+	min-width: 320px;
+}
+
+p, label {
+	font-size: 14px;
+	color: #555;
+}
+
+h3 {
+	font-size: 24px;
+	color: #808080;
+	margin-bottom: 16px;
+}
+
+h3 a {
+	color: #808080;
+}
+
+h4 {
+	font-size: 18px;
+	color: #111;
+}
+
+h4 a {
+	font-size: 18px;
+	color: #111;
+}
+
+h5 {
+	font-size: 16px;
+	line-height: 32px;
+	color: #370;
+}
+
+h5 a {
+	color: #555;
+}
+
+a {
+	color: #590;
+}
+
+a:hover {
+	color: #370;
+}
+
+ul {
+	margin-left: 20px;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+div.bgLayer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#Bg3 {
+	background-image: url('bg3.png');
+	z-index: -130;
+}
+
+#Bg2 {
+	background-image: url('bg2.png');
+	z-index: -120;
+}
+
+#Bg1 {
+	background-image: url('bg1.png');
+	z-index: -110;
+}
+
+#Bg0 {
+	background-image: url('bg0.png');
+	z-index: -100;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+#HeaderSpacer {
+	height: 60px;
+}
+
+#Header {
+	margin-top: 8px;
+	min-height: 40px;
+	z-index: 100;
+}
+
+#HeaderLogo {
+	position: absolute;
+	height: 30px;
+}
+
+#HeaderLogo .area {
+	position: absolute;
+	top: 9px;
+	left: 153px;
+	text-transform: lowercase;
+}
+
+#HeaderLogo img {
+	min-width: 133px;
+	width: 133px;
+	height: 30px;
+}
+
+#HeaderLogo a {
+	font-size: 18px;
+}
+
+#HeaderLogo a:hover {
+}
+
+#HeaderNav {
+	text-align: right;
+}
+
+#HeaderNav p {
+	margin: 0;
+}
+
+#HeaderNav a {
+	color: #888;
+	font-size: 18px;
+}
+
+#HeaderNav a:hover {
+	color: #444;
+}
+
+#HeaderNav .item {
+	padding: 9px 0 0 10px;
+	text-transform: lowercase;
+	display: inline-block;
+}
+
+#HeaderNav .active a {
+	color: #590;
+}
+
+#HeaderNav .arrow {
+	background-image: url('arrow.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 3px;
+	margin-top: 4px;
+}
+
+#HeaderTopLine {
+	position: relative;
+	width: 100%;
+	border-bottom: 1px #590 solid;
+	top: 40px;
+}
+
+#HeaderBotLine {
+	position: relative;
+	width: 100%;
+	border-bottom: 1px #ccc solid;
+	top: 42px;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+#Page {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#Page .calloutBox {
+	background-color: rgba(85, 155, 0, 0.08);
+	padding: 6px 10px 9px 10px;
+	margin-bottom: 12px;
+}
+
+#Page .smallColumnSpacer {
+	height: 24px;
+}
+
+#Page #Menu .item {
+	display: block;
+}
+
+#Page #Menu .item + .item, .nest + .item, .item + .nest {
+	margin-top: 10px;
+}
+
+#Page #Menu .nest {
+	border-left: 2px solid #ccc;
+	padding-left: 8px;
+}
+
+#Page #MenuFooter p {
+}
+
+#Page h3:last-child, #Page h4:last-child, #Page h5:last-child, #Page p:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+#Page .docsItem {
+	margin: 20px 0 0 2px;
+	padding: 0 0 0 10px;
+	border-left: 3px solid #ccc;
+}
+
+#Page .docsItem + .docsItem {
+	margin-top: 25px;
+}
+
+#Page .docsItem .tag {
+	background-color: #fdfdfd;
+	padding: 0 4px 1px 4px;
+	border: #e4e4e4 solid 1px;
+	color: #888;
+	font-size: 12px;
+}
+
+#Page .docsItem .tag a {
+	color: #888;
+}
+
+#Page .docsItem .tag a:hover {
+	color: #370;
+}
+
+#Page .exampleBox {
+	display: inline-block;
+	padding: 2px 8px 3px 8px;
+	background-color: #eee;
+	background-color: rgba(0, 0, 0, 0.05);
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+#Page .exampleBox.open {
+	padding-bottom: 5px;
+	width: 100%;
+}
+
+#Page .exampleBox a.toggle {
+	font-weight: bold;
+	color: #555;
+}
+
+#Page .exampleBox a.toggle:hover {
+	color: #333;
+}
+
+#Page .exampleBox .text {
+	display: none;
+	width: 100%;
+	border-top: 1px #ccc solid;
+	margin-top: 3px;
+	padding: 2px 0 0 0;
+}
+
+#Page .exampleBox .text i {
+	font-style: normal;
+	color: #888;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+#Page fieldset {
+	border: solid 1px #ddd;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	padding: 10px;
+	margin: 0;
+	border:transparent;
+}
+
+#Page .checkbox {
+	display: inline;
+}
+
+#Page .validation-summary-errors {
+	color: #c00;
+	margin-bottom: 10px;
+	background-color: #ecc;
+	background-color: rgba(204,100,100,0.25);
+	padding:10px;
+	font-weight: bold;
+	border: #d88 solid 1px;
+}
+
+#Page .validation-summary-errors span {
+	display: block;
+	margin-bottom: 2px;
+}
+
+#Page input.formButton {
+	padding: 5px 12px;
+	color: #111;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+#Footer {
+	border-top: 1px #ccc solid;
+	padding-top: 10px;
+	padding-bottom: 60px;
+	text-align: center;
+	z-index: 80;
+}
+
+#Footer p {
+	color: #999;
+	font-size: 12px;
+}

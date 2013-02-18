@@ -152,6 +152,7 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response PeformLogout() {
+			//TODO: OauthLoginController: send back to login page upon Scope page logout
 			Response r = NancyUtil.Redirect(vRedirUri);
 			NancyUtil.SetUserCookie(r, null, false);
 			return r;

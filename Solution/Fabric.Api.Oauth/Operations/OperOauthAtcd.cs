@@ -10,7 +10,7 @@ namespace Fabric.Api.Oauth.Operations {
 		typeof(FabOauthAccess), ResxKey="AccessToken")]
 	public class OperOauthAtcd : OperOauthAtcc {
 
-		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.DataProvUserIdParam, 0, typeof(User),
+		[ServiceOpParam(ServiceOpParamType.Query, OperOauthAt.DataProvUserIdParam, 4, typeof(User),
 			DomainPropertyName="UserId", ResxKey="DataProvUserId")]
 		public string DataProvUserId;
 

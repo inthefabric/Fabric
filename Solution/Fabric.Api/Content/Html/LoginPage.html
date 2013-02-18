@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="twelve columns">
+		<p>
+			<b>@AppName</b> would like to connect to your Fabric account. Please log in to continue.
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+		<form id="LoginForm" method="POST">
+			<fieldset class="calloutBox">
+				<div class="validation-summary-errors" style="margin-top:5px; display: @ErrorDisplayStyle">
+					<span>Oops! Here&#39;s why your login failed:</span>
+					<ul>
+						<li>@ErrorReason</li>
+					</ul>
+				</div>
+
+				<label>Username</label>
+				<input type="text" name="@UsernameInput" value="@LoggedUserName" />
+
+				<label>Password</label>
+				<input type="password" name="@PasswordInput" />
+
+				<input type="checkbox" name="@RememberInput" value="1" />
+				<label class="checkbox">Remember Me</label><br/>
+				<br/>
+
+				<input type="submit" name="@LoginAction" value="Login" class="formButton" />
+				<input type="submit" name="@CancelAction" value="Cancel" class="formButton" />
+			</fieldset>
+		</form>
+	</div>
+</div>

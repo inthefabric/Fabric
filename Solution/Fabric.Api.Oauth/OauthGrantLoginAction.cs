@@ -42,7 +42,7 @@ namespace Fabric.Api.Oauth {
 
 			if ( user == null ) {
 				result.ShowLoginPage = true;
-				result.LoginErrorText = "Login was not successful.";
+				result.LoginErrorText = "The Username or Password was incorrect.";
 				return result;
 			}
 

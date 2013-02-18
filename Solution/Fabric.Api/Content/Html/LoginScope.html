@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="twelve columns">
+		<p>Hello! You are logged in as <b>@LoggedUserName</b>. Please choose an option below.</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+		
+		<form id="ScopeForm" method="POST">
+			<fieldset class="calloutBox">
+				<p>Will you allow <b>@AppName</b> to connect to your Fabric account?</p>
+				<input type="submit" name="@AllowAction" value="Allow" class="formButton" />
+				<input type="submit" name="@DenyAction" value="Deny" class="formButton" />
+			</fieldset>
+		</form>
+
+		<form id="LogoutForm" method="POST">
+			<fieldset class="calloutBox">
+				<p>Not the owner of this account?</p>
+				<input type="submit" name="@LogoutAction" value="Logout" class="formButton" />
+			</fieldset>
+		</form>
+
+	</div>
+</div>

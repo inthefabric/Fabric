@@ -13,6 +13,10 @@ namespace Fabric.Api {
 			base.ConfigureConventions(pConv);
 
 			pConv.StaticContentsConventions.Add(
+				StaticContentConventionBuilder.AddDirectory("/Services/Web", @"/Services/Web")
+			);
+
+			/*pConv.StaticContentsConventions.Add(
 				StaticContentConventionBuilder.AddDirectory("/graph/js", @"/graph/js")
 			);
 
@@ -22,7 +26,7 @@ namespace Fabric.Api {
 
 			pConv.StaticContentsConventions.Add(
 				StaticContentConventionBuilder.AddDirectory("/tables/styles", @"/tables/styles")
-			);
+			);*/
 		}
 
 	}
