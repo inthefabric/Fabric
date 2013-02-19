@@ -86,23 +86,36 @@ namespace Fabric.Api.Content {
         ///   Looks up a localized string similar to &lt;div class=&quot;row&quot;&gt;
         ///	&lt;div class=&quot;twelve columns&quot;&gt;
         ///		&lt;p&gt;
-        ///			&lt;b&gt;@AppName&lt;/b&gt; would like to connect to your Fabric account.
+        ///			&lt;b&gt;@ErrorName&lt;/b&gt;&lt;br/&gt;
+        ///			@ErrorDesc
+        ///		&lt;/p&gt;
+        ///	&lt;/div&gt;
+        ///&lt;/div&gt;.
+        /// </summary>
+        public static string LoginErrorHtml {
+            get {
+                return ResourceManager.GetString("LoginErrorHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;div class=&quot;row&quot;&gt;
+        ///	&lt;div class=&quot;twelve columns&quot;&gt;
+        ///		&lt;p&gt;
+        ///			&lt;b&gt;@AppName&lt;/b&gt; would like to connect to your Fabric account. Please log in to continue.
         ///		&lt;/p&gt;
         ///	&lt;/div&gt;
         ///&lt;/div&gt;
         ///
         ///&lt;div class=&quot;row&quot;&gt;
         ///	&lt;div class=&quot;twelve columns&quot;&gt;
-        ///		&lt;form id=&quot;LoginForm&quot; method=&quot;POST&quot;&gt;
+        ///		&lt;form id=&quot;LoginForm&quot; action=&quot;&quot; method=&quot;POST&quot;&gt;
         ///			&lt;fieldset class=&quot;calloutBox&quot;&gt;
         ///				&lt;div class=&quot;validation-summary-errors&quot; style=&quot;margin-top:5px; display: @ErrorDisplayStyle&quot;&gt;
         ///					&lt;span&gt;Oops! Here&amp;#39;s why your login failed:&lt;/span&gt;
         ///					&lt;ul&gt;
         ///						&lt;li&gt;@ErrorReason&lt;/li&gt;
-        ///					&lt;/ul&gt;
-        ///				&lt;/div&gt;
-        ///
-        ///				&lt;label&gt;Userna [rest of string was truncated]&quot;;.
+        ///					&lt; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LoginPageHtml {
             get {
@@ -113,20 +126,18 @@ namespace Fabric.Api.Content {
         /// <summary>
         ///   Looks up a localized string similar to &lt;div class=&quot;row&quot;&gt;
         ///	&lt;div class=&quot;twelve columns&quot;&gt;
-        ///		&lt;p&gt;
-        ///			Hello &lt;b&gt;@LoggedUserName&lt;/b&gt;! Do you want to allow &lt;b&gt;@AppName&lt;/b&gt; to connect to your Fabric				account?
-        ///		&lt;/p&gt;
+        ///		&lt;p&gt;Hello! You are logged in as &lt;b&gt;@LoggedUserName&lt;/b&gt;. Please choose an option below.&lt;/p&gt;
         ///	&lt;/div&gt;
         ///&lt;/div&gt;
         ///
         ///&lt;div class=&quot;row&quot;&gt;
         ///	&lt;div class=&quot;twelve columns&quot;&gt;
-        ///		&lt;fieldset class=&quot;calloutBox&quot;&gt;
-        ///			&lt;form id=&quot;ScopeForm&quot; method=&quot;POST&quot;&gt;
-        ///				&lt;input type=&quot;submit&quot; name=&quot;@AllowAction&quot; value=&quot;Allow Access&quot; class=&quot;formButton&quot; /&gt;
-        ///				&lt;input type=&quot;submit&quot; name=&quot;@DenyAction&quot; value=&quot;Deny Access&quot; class=&quot;formButton&quot; /&gt;
-        ///			&lt;/form&gt;
-        ///			&lt;form [rest of string was truncated]&quot;;.
+        ///		
+        ///		&lt;form id=&quot;ScopeForm&quot; action=&quot;&quot; method=&quot;POST&quot;&gt;
+        ///			&lt;fieldset class=&quot;calloutBox&quot;&gt;
+        ///				&lt;p&gt;Will you allow &lt;b&gt;@AppName&lt;/b&gt; to connect to your Fabric account?&lt;/p&gt;
+        ///				&lt;input type=&quot;submit&quot; name=&quot;@AllowAction&quot; value=&quot;Allow&quot; class=&quot;formButton&quot; /&gt;
+        ///				&lt;input type=&quot;submit&quot; name=&quot;@DenyAction&quot; value=&quot;De [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LoginScopeHtml {
             get {

@@ -133,6 +133,7 @@
     <Content Include="Content\arrow.png" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\Foundation.css" />
+    <Content Include="Content\Html\LoginError.html" />
     <Content Include="Content\Html\LoginScope.html" />
     <Content Include="Content\Html\LoginPage.html" />
     <Content Include="Internal\Graph\index.html" />

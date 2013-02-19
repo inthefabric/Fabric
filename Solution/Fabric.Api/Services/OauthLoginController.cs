@@ -30,12 +30,12 @@ namespace Fabric.Api.Services {
 		/*
 		
 		localhost:9000/oauth/login?response_type=code&client_id=1
-			&redirect_uri=http%3a%2f%2finthefabric.com%2foauth
+			&redirect_uri=http%3a%2f%2flocalhost:55555%2foauth
 			&switchMode=1
 		 
 		localhost:9000/Oauth/AccessTokenAuthCode?
 			client_secret=abcdefghijklmnopqrstuvwxyZ012345
-			&code=INSERT&redirect_uri=http%3a%2f%2finthefabric.com%2foauth
+			&code=INSERT&redirect_uri=http%3a%2f%2flocalhost:55555%2foauth
 		
 		*/
 
@@ -152,8 +152,7 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response PeformLogout() {
-			//TODO: OauthLoginController: send back to login page upon Scope page logout
-			Response r = NancyUtil.Redirect(vRedirUri);
+			Response r = NancyUtil.Redirect(NancyReq.Url.ToString());
 			NancyUtil.SetUserCookie(r, null, false);
 			return r;
 		}

@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Common;
+using Fabric.Api.Content;
 using Nancy;
 
 namespace Fabric.Api.Services.Views {
@@ -19,11 +20,11 @@ namespace Fabric.Api.Services.Views {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override Response ToResponse() {
-			string html = "<b>"+vError+"</b>";
+			string desc = (vErrDesc != null ? vErrDesc.Replace('+', ' ') : "");
 
-			if ( vErrDesc != null ) {
-				html += "<br/>"+vErrDesc.Replace('+', ' ');
-			}
+			string html = WebResources.LoginErrorHtml
+				.Replace("@ErrorName", vError)
+				.Replace("@ErrorDesc", desc);
 
 			return BuildResponse("Fabirc Login Page Error", html);
 		}
