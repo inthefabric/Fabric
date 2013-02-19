@@ -1,12 +1,11 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Integration.FabApiModify.Tasks;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetAppByName : XModifyTasks {
+	public class XGetAppByName : XWebTasks {
 
 		private string vName;
 

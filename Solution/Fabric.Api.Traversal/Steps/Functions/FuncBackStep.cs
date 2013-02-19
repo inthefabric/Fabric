@@ -16,7 +16,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
 	[Func("Back")]
-	public class FuncBackStep : FuncStep { //TEST: FuncBackStep
+	public class FuncBackStep : FuncStep {
 
 		//The correct way to read the "back" command is to count the period chars BEFORE ".back".
 		//The next command will be issued from that period.

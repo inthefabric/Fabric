@@ -2,7 +2,6 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
-using Fabric.Test.Integration.FabApiModify.Tasks;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -10,7 +9,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XTxAddDataProvMember : XModifyTasks {
+	public class XTxAddDataProvMember : XWebTasks {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

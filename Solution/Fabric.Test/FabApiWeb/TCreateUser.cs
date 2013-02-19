@@ -139,14 +139,6 @@ namespace Fabric.Test.FabApiWeb {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(2)]
-		public void ErrAppPrevented(long pAppId) {
-			MockApiCtx.SetupGet(x => x.AppId).Returns(pAppId);
-			TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicateUser() {
 			MockTasks

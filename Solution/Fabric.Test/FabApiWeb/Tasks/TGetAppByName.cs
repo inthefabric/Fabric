@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.FabApiModify.Tasks;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -9,7 +8,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetAppByName : TModifyTasks {
+	public class TGetAppByName : TWebTasks {
 
 		private readonly static string Query =
 			"g.V('"+typeof(Root).Name+"Id',0)[0]"+

@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Modify_AddApp_Name" xml:space="preserve">
-    <value>The name of the new App.</value>
-  </data>
-  <data name="Modify_AddApp_UserId" xml:space="preserve">
-    <value>Identifies the User that is creating the App. This User will receive the App's 'DataProvider' Member.</value>
-  </data>
   <data name="Modify_AddClass_Disamb" xml:space="preserve">
     <value>The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.</value>
   </data>
@@ -161,15 +155,6 @@
   </data>
   <data name="Modify_AddUrl_Name" xml:space="preserve">
     <value>The name of the new Url.</value>
-  </data>
-  <data name="Modify_AddUser_Email" xml:space="preserve">
-    <value>The email address for the new User.</value>
-  </data>
-  <data name="Modify_AddUser_Name" xml:space="preserve">
-    <value>The username for the new User.</value>
-  </data>
-  <data name="Modify_AddUser_Password" xml:space="preserve">
-    <value>The password for the new User.</value>
   </data>
   <data name="Modify_AttachDescriptorToFactor_DescriptorTypeId" xml:space="preserve">
     <value>Identifies the DescriptorType for the new Descriptor.</value>

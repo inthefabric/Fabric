@@ -1,16 +1,15 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Test.Integration.Common;
-using Fabric.Test.Integration.FabApiModify.Tasks;
 using NUnit.Framework;
 using Weaver.Interfaces;
-using Fabric.Infrastructure;
 
 namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XTxAddUser : XModifyTasks {
+	public class XTxAddUser : XWebTasks {
 
 		//Check for duplicate username occurs above the 'Task' level
 

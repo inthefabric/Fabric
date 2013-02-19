@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.FabApiModify.Tasks;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -8,7 +7,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TTxAddEmail : TModifyTasks {
+	public class TTxAddEmail : TWebTasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root

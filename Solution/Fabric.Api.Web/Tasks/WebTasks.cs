@@ -60,6 +60,23 @@ namespace Fabric.Api.Web.Tasks {
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword) {
+			var user = new User();
+			user.UserId = pUserId;
+			user.Password = FabricUtil.HashPassword(pPassword);
+
+			WeaverUpdates<User> updates = new WeaverUpdates<User>();
+			updates.AddUpdate(user, u => u.Password);
+
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(user)
+				.UpdateEach(updates)
+				.End();
+
+			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -161,7 +178,7 @@ namespace Fabric.Api.Web.Tasks {
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.DataProvider);
 		}
-		
+
 	}
 
 }

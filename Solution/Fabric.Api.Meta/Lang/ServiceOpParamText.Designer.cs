@@ -61,24 +61,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The name of the new App..
-        /// </summary>
-        internal static string Modify_AddApp_Name {
-            get {
-                return ResourceManager.GetString("Modify_AddApp_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the User that is creating the App. This User will receive the App&apos;s &apos;DataProvider&apos; Member..
-        /// </summary>
-        internal static string Modify_AddApp_UserId {
-            get {
-                return ResourceManager.GetString("Modify_AddApp_UserId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name..
         /// </summary>
         internal static string Modify_AddClass_Disamb {
@@ -192,33 +174,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Modify_AddUrl_Name {
             get {
                 return ResourceManager.GetString("Modify_AddUrl_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The email address for the new User..
-        /// </summary>
-        internal static string Modify_AddUser_Email {
-            get {
-                return ResourceManager.GetString("Modify_AddUser_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The username for the new User..
-        /// </summary>
-        internal static string Modify_AddUser_Name {
-            get {
-                return ResourceManager.GetString("Modify_AddUser_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The password for the new User..
-        /// </summary>
-        internal static string Modify_AddUser_Password {
-            get {
-                return ResourceManager.GetString("Modify_AddUser_Password", resourceCulture);
             }
         }
         

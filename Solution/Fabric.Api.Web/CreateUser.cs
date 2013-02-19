@@ -19,14 +19,8 @@ namespace Fabric.Api.Web {
 		public const string PasswordParam = "Password";
 		public const string EmailParam = "Email";
 
-		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 0, typeof(User))]
 		private readonly string vName;
-
-		[ServiceOpParam(ServiceOpParamType.Form, PasswordParam, 1, typeof(User))]
 		private readonly string vPass;
-
-		[ServiceOpParam(ServiceOpParamType.Form, EmailParam, 2, typeof(Email),
-			DomainPropertyName="Address")]
 		private readonly string vEmail;
 
 		private readonly IModifyTasks vModTasks;
@@ -44,7 +38,6 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			EnsureFabricSystem();
 			Tasks.Validator.UserName(vName, NameParam);
 			Tasks.Validator.UserPassword(vPass, PasswordParam);
 			Tasks.Validator.EmailAddress(vEmail, EmailParam);

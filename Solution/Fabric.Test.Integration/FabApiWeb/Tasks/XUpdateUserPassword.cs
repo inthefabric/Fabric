@@ -1,51 +1,47 @@
-﻿using Fabric.Db.Data.Setups;
-using Fabric.Domain;
+﻿using Fabric.Domain;
+using Fabric.Infrastructure;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetUser : XWebTasks {
+	public class XUpdateUserPassword : XWebTasks {
 
 		private long vUserId;
+		private string vPassword;
 
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			base.TestSetUp();
-			IsReadOnlyTest = true;
+
+			vUserId = (long)UserZach;
+			vPassword = "MyNewPassword!";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User TestGo() {
-			return Tasks.GetUser(ApiCtx, vUserId);
+			return Tasks.UpdateUserPassword(ApiCtx, vUserId, vPassword);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(UserZach)]
-		[TestCase(UserMel)]
-		public void Found(SetupUsers.UserId pUserId) {
-			vUserId = (long)pUserId;
+		[Test]
+		public void Updated() {
+			string expectPass = FabricUtil.HashPassword(vPassword);
+
+			User oldUser = GetNode<User>(vUserId);
+			Assert.NotNull(oldUser, "Target User is missing.");
+			Assert.AreNotEqual(expectPass, oldUser.Password, "Target User.Password is incorrect.");
 
 			User result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vUserId, result.UserId, "Incorrect UserId.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(999)]
-		public void NotFound(long pUserId) {
-			vUserId = pUserId;
-
-			User result = TestGo();
-
-			Assert.Null(result, "Result should be null.");
+			Assert.AreEqual(expectPass, result.Password, "Incorrect Password.");
 		}
 
 	}

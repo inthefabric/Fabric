@@ -32,6 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BaseWebFunc.cs" />
+    <Compile Include="Results\SuccessResult.cs" />
+    <Compile Include="ChangeUserPassword.cs" />
     <Compile Include="CreateApp.cs" />
     <Compile Include="CreateUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

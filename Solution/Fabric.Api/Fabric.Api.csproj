@@ -99,10 +99,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WebResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="WebModule.cs" />
     <Compile Include="MetaModule.cs" />
     <Compile Include="ModifyModule.cs" />
-    <Compile Include="Services\WebController.cs" />
     <Compile Include="Services\MetaController.cs" />
     <Compile Include="Services\ModifyController.cs" />
     <Compile Include="TraversalModule.cs" />

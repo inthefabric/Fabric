@@ -126,9 +126,6 @@
   <data name="Meta_GetVersion" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Modify_AddApp" xml:space="preserve">
-    <value>Create a new App.</value>
-  </data>
   <data name="Modify_AddClass" xml:space="preserve">
     <value>Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
@@ -140,9 +137,6 @@
   </data>
   <data name="Modify_AddUrl" xml:space="preserve">
     <value>Create a new Url.</value>
-  </data>
-  <data name="Modify_AddUser" xml:space="preserve">
-    <value>Create a new User.</value>
   </data>
   <data name="Modify_AttachDescriptorToFactor" xml:space="preserve">
     <value>Create a new Descriptor and attach it to the specified Factor.</value>

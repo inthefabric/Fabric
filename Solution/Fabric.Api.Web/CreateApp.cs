@@ -1,7 +1,6 @@
 ﻿using Fabric.Api.Modify.Tasks;
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
@@ -15,10 +14,7 @@ namespace Fabric.Api.Web {
 		public const string NameParam = "Name";
 		public const string UserIdParam = "UserId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 0, typeof(App))]
 		private readonly string vName;
-
-		[ServiceOpParam(ServiceOpParamType.Form, UserIdParam, 1, typeof(User))]
 		private readonly long vUserId;
 
 		private readonly IModifyTasks vModTasks;
@@ -35,7 +31,6 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			EnsureFabricSystem();
 			Tasks.Validator.AppName(vName, NameParam);
 			Tasks.Validator.UserId(vUserId, UserIdParam);
 		}

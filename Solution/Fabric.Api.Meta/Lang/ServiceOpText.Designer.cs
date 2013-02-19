@@ -88,15 +88,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a new App..
-        /// </summary>
-        internal static string Modify_AddApp {
-            get {
-                return ResourceManager.GetString("Modify_AddApp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric..
         /// </summary>
         internal static string Modify_AddClass {
@@ -129,15 +120,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Modify_AddUrl {
             get {
                 return ResourceManager.GetString("Modify_AddUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new User..
-        /// </summary>
-        internal static string Modify_AddUser {
-            get {
-                return ResourceManager.GetString("Modify_AddUser", resourceCulture);
             }
         }
         
