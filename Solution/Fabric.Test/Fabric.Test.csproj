@@ -63,19 +63,20 @@
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
-    <Compile Include="FabApiModify\TCreateApp.cs" />
+    <Compile Include="FabApiWeb\TBaseWebFunc.cs" />
+    <Compile Include="FabApiWeb\TCreateApp.cs" />
     <Compile Include="FabApiModify\TBaseModifyFunc.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddDataProvMember.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddApp.cs" />
+    <Compile Include="FabApiWeb\Tasks\TTxAddDataProvMember.cs" />
+    <Compile Include="FabApiWeb\Tasks\TTxAddApp.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddArtifact.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddMember.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddUser.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddEmail.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetUser.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetAppByName.cs" />
+    <Compile Include="FabApiWeb\Tasks\TTxAddMember.cs" />
+    <Compile Include="FabApiWeb\Tasks\TTxAddUser.cs" />
+    <Compile Include="FabApiWeb\Tasks\TTxAddEmail.cs" />
+    <Compile Include="FabApiWeb\Tasks\TGetUser.cs" />
+    <Compile Include="FabApiWeb\Tasks\TGetAppByName.cs" />
     <Compile Include="FabApiModify\Tasks\TModifyTasks.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetUserByName.cs" />
-    <Compile Include="FabApiModify\TCreateUser.cs" />
+    <Compile Include="FabApiWeb\Tasks\TGetUserByName.cs" />
+    <Compile Include="FabApiWeb\TCreateUser.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetScope.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetUserAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetRefresh.cs" />
@@ -183,6 +184,10 @@
     <ProjectReference Include="..\Fabric.Api.Traversal\Fabric.Api.Traversal.csproj">
       <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
       <Name>Fabric.Api.Traversal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
+      <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
+      <Name>Fabric.Api.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>

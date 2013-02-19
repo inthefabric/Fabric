@@ -32,8 +32,6 @@
   <ItemGroup>
     <Compile Include="BaseModifyFunc.cs" />
     <Compile Include="CompleteFactor.cs" />
-    <Compile Include="CreateApp.cs" />
-    <Compile Include="CreateUser.cs" />
     <Compile Include="DeleteFactor.cs" />
     <Compile Include="UpdateFactor.cs" />
     <Compile Include="CreateDirector.cs" />
@@ -44,7 +42,6 @@
     <Compile Include="CreateClass.cs" />
     <Compile Include="CreateUrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Results\CreateUserResult.cs" />
     <Compile Include="Tasks\IModifyTasks.cs" />
     <Compile Include="Tasks\ModifyTasks.cs" />
     <Compile Include="CreateEventor.cs" />
@@ -79,9 +76,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validators\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

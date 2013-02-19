@@ -30,7 +30,6 @@ namespace Fabric.Api.Dto {
 		public const string TravMemberUri = "/ActiveMember";
 
 		public const string ModUri = "/Mod";
-		public const string ModAppsUri = "/Apps";
 		public const string ModClassesUri = "/Classes";
 		public const string ModDescriptorsUri = "/Descriptors";
 		public const string ModDirectorsUri = "/Directors";
@@ -40,7 +39,6 @@ namespace Fabric.Api.Dto {
 		public const string ModInstancesUri = "/Instances";
 		public const string ModLocatorsUri = "/Locators";
 		public const string ModUrlsUri = "/Urls";
-		public const string ModUsersUri = "/Users";
 		public const string ModVectorsUri = "/Vectors";
 
 		public const string MetaUri = "/Meta";
@@ -182,13 +180,6 @@ namespace Fabric.Api.Dto {
 
 			if ( pIncludeOps ) {
 				var op = new FabServiceOperation();
-				op.Name = "AddApp";
-				op.Uri = ModAppsUri;
-				op.Method = Post;
-				op.ReturnType = typeof(FabApp).Name;
-				s.Operations.Add(op);
-
-				op = new FabServiceOperation();
 				op.Name = "AddClass";
 				op.Uri = ModClassesUri;
 				op.Method = Post;
@@ -263,13 +254,6 @@ namespace Fabric.Api.Dto {
 				op.Uri = ModUrlsUri;
 				op.Method = Post;
 				op.ReturnType = typeof(FabUrl).Name;
-				s.Operations.Add(op);
-
-				op = new FabServiceOperation();
-				op.Name = "AddUser";
-				op.Uri = ModUsersUri;
-				op.Method = Post;
-				op.ReturnType = typeof(FabUser).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();

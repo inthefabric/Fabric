@@ -75,7 +75,7 @@ namespace Fabric.Api.Meta {
 
 			AssemblyMap = new Dictionary<string, Assembly>();
 			AssemblyMap.Add("Oauth", Assembly.GetAssembly(typeof(OauthAccessBase)));
-			AssemblyMap.Add("Modify", Assembly.GetAssembly(typeof(CreateApp)));
+			AssemblyMap.Add("Modify", Assembly.GetAssembly(typeof(CreateFactor)));
 			AssemblyMap.Add("Traversal", Assembly.GetAssembly(typeof(PathSegment)));
 			AssemblyMap.Add("Meta", Assembly.GetAssembly(typeof(SpecDoc)));
 

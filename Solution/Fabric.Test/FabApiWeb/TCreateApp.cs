@@ -1,5 +1,4 @@
-using Fabric.Api.Modify;
-using Fabric.Db.Data;
+using Fabric.Api.Web;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
@@ -9,11 +8,11 @@ using Moq;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
-namespace Fabric.Test.FabApiModify {
+namespace Fabric.Test.FabApiWeb {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateApp : TBaseModifyFunc {
+	public class TCreateApp : TBaseWebFunc {
 
 		private string vName;
 		private long vUserId;
@@ -70,7 +69,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateApp(MockTasks.Object, vName, vUserId);
+			var func = new CreateApp(MockTasks.Object, MockModTasks.Object, vName, vUserId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -101,7 +100,7 @@ namespace Fabric.Test.FabApiModify {
 					Times.Once()
 				);
 
-			MockTasks
+			MockModTasks
 				.Verify(x => x.TxAddArtifact<App, AppHasArtifact>(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),

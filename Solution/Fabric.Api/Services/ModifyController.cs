@@ -20,7 +20,6 @@ namespace Fabric.Api.Services {
 
 		public enum Route {
 			Home,
-			Apps,
 			Classes,
 			Descriptors,
 			Directors,
@@ -30,7 +29,6 @@ namespace Fabric.Api.Services {
 			Instances,
 			Locators,
 			Urls,
-			Users,
 			Vectors
 		}
 
@@ -62,7 +60,6 @@ namespace Fabric.Api.Services {
 		private string GetRouteJson() {
 			switch ( vRoute ) {
 				case Route.Home: return ServiceDtoJson;
-				case Route.Apps: return Apps();
 				case Route.Classes: return Classes();
 				case Route.Descriptors: return Descriptors();
 				case Route.Directors: return Directors();
@@ -72,7 +69,6 @@ namespace Fabric.Api.Services {
 				case Route.Instances: return Instances();
 				case Route.Locators: return Locators();
 				case Route.Urls: return Urls();
-				case Route.Users: return Users();
 				case Route.Vectors: return Vectors();
 				default: return "";
 			}
@@ -97,20 +93,6 @@ namespace Fabric.Api.Services {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private string Apps() {
-			switch ( NancyReq.Method ) {
-				case "POST":
-					return FuncGo(new CreateApp(
-						NewModTasks(),
-						GetPostString(CreateApp.NameParam),
-						GetPostLong(CreateApp.UserIdParam)
-					));
-			}
-
-			throw BadRequest();
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		private string Classes() {
 			switch ( NancyReq.Method ) {
@@ -261,21 +243,6 @@ namespace Fabric.Api.Services {
 						NewModTasks(),
 						GetPostString(CreateUrl.AbsoluteUrlParam),
 						GetPostString(CreateUrl.NameParam)
-					));
-			}
-
-			throw BadRequest();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private string Users() {
-			switch ( NancyReq.Method ) {
-				case "POST":
-					return FuncGo(new CreateUser(
-						NewModTasks(),
-						GetPostString(CreateUser.NameParam),
-						GetPostString(CreateUser.PasswordParam),
-						GetPostString(CreateUser.EmailParam)
 					));
 			}
 

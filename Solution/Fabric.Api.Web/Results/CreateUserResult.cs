@@ -1,6 +1,6 @@
 ﻿using Fabric.Domain;
 
-namespace Fabric.Api.Modify.Results {
+namespace Fabric.Api.Web.Results {
 
 	/*================================================================================================*/
 	public class CreateUserResult {

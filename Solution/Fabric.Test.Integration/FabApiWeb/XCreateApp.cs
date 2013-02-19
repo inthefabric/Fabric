@@ -1,5 +1,4 @@
-﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
+﻿using Fabric.Api.Web;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -8,11 +7,11 @@ using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
 
-namespace Fabric.Test.Integration.FabApiModify {
+namespace Fabric.Test.Integration.FabApiWeb {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XCreateApp : XBaseModifyFunc {
+	public class XCreateApp : XBaseWebFunc {
 		
 		private string vName;
 		private long vUserId;
@@ -36,7 +35,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateApp(Tasks, vName, vUserId);
+			var func = new CreateApp(Tasks, ModTasks, vName, vUserId);
 			vResult = func.Go(ApiCtx);
 		}
 		

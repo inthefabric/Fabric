@@ -62,16 +62,16 @@
     <Compile Include="FabApiModify\Tasks\XGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\XGetUrlByAbsoluteUrl.cs" />
     <Compile Include="FabApiModify\XCreateUrl.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddDataProvMember.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddApp.cs" />
+    <Compile Include="FabApiWeb\Tasks\XTxAddDataProvMember.cs" />
+    <Compile Include="FabApiWeb\Tasks\XTxAddApp.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddArtifact.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddMember.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddUser.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddEmail.cs" />
+    <Compile Include="FabApiWeb\Tasks\XTxAddMember.cs" />
+    <Compile Include="FabApiWeb\Tasks\XTxAddUser.cs" />
+    <Compile Include="FabApiWeb\Tasks\XTxAddEmail.cs" />
     <Compile Include="FabApiModify\Tasks\XModifyTasks.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetAppByName.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetUserByName.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetUser.cs" />
+    <Compile Include="FabApiWeb\Tasks\XGetAppByName.cs" />
+    <Compile Include="FabApiWeb\Tasks\XGetUserByName.cs" />
+    <Compile Include="FabApiWeb\Tasks\XGetUser.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddMemberEnsure.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddScope.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddGrant.cs" />
@@ -87,12 +87,13 @@
     <Compile Include="FabApiServer\Oauth\XOauthLoginController.cs" />
     <Compile Include="FabApiServer\Oauth\XOauthLoginControllerPost.cs" />
     <Compile Include="FabApiTraversal\XPathRouter.cs" />
+    <Compile Include="FabApiWeb\XBaseWebFunc.cs" />
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FabApiModify\XBaseModifyFunc.cs" />
-    <Compile Include="FabApiModify\XCreateUser.cs" />
-    <Compile Include="FabApiModify\XCreateApp.cs" />
+    <Compile Include="FabApiWeb\XCreateUser.cs" />
+    <Compile Include="FabApiWeb\XCreateApp.cs" />
     <Compile Include="FabApiModify\Tasks\XGetEventorMatch.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddEventor.cs" />
     <Compile Include="FabApiModify\XCreateEventor.cs" />
@@ -150,6 +151,10 @@
       <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
       <Name>Fabric.Api.Traversal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
+      <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
+      <Name>Fabric.Api.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Api\Fabric.Api.csproj">
       <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
       <Name>Fabric.Api</Name>
@@ -175,6 +180,7 @@
       <Name>Fabric.Test</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

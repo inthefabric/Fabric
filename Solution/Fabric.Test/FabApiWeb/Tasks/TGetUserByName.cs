@@ -1,40 +1,43 @@
 ﻿using Fabric.Domain;
+using Fabric.Test.FabApiModify.Tasks;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
-namespace Fabric.Test.FabApiModify.Tasks {
+namespace Fabric.Test.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetUser : TModifyTasks {
+	public class TGetUserByName : TModifyTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];";
+		private readonly static string Query =
+			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+				".outE('"+typeof(RootContainsUser).Name+"').inV"+
+				".filter{it.getProperty('Name').toLowerCase()==NAME};";
 
-		private long vUserId;
+		private string vName;
 		private User vUserResult;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vUserId = 3456;
+			vName = "TestUser";
 			vUserResult = new User();
 
 			MockApiCtx
-				.Setup(x => x.DbSingle<User>("GetUser", It.IsAny<IWeaverQuery>()))
+				.Setup(x => x.DbSingle<User>("GetUserByName", It.IsAny<IWeaverQuery>()))
 				.Returns((string s, IWeaverQuery q) => GetUser(q));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User GetUser(IWeaverQuery pQuery) {
 			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetUser");
+			UsageMap.Increment("GetUserByName");
 
-			string expect = Query.Replace("{{UserId}}", vUserId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "NAME", vName.ToLower());
 
 			return vUserResult;
 		}
@@ -44,9 +47,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
-			User result = Tasks.GetUser(MockApiCtx.Object, vUserId);
+			User result = Tasks.GetUserByName(MockApiCtx.Object, vName);
 
-			UsageMap.AssertUses("GetUser", 1);
+			UsageMap.AssertUses("GetUserByName", 1);
 			Assert.AreEqual(vUserResult, result, "Incorrect Result.");
 		}
 

@@ -32,6 +32,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		private string vPassword;
 		private string vRememberMe;
 
+		private Request vReq;
 		private OauthLoginController vLoginCtrl;
 
 
@@ -61,26 +62,26 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Response TestPost() {
-			var req = new Request("POST", "test", "test");
+			vReq = new Request("POST", "test", "test");
 
-			req.Query.Add("response_type", vResponseType);
-			req.Query.Add("client_id", vClientId);
-			req.Query.Add("redirect_uri", vRedirectUri);
-			req.Query.Add("switchMode", vSwitchMode);
-			req.Query.Add("state", vState);
+			vReq.Query.Add("response_type", vResponseType);
+			vReq.Query.Add("client_id", vClientId);
+			vReq.Query.Add("redirect_uri", vRedirectUri);
+			vReq.Query.Add("switchMode", vSwitchMode);
+			vReq.Query.Add("state", vState);
 
-			req.Form.Add("CancelAction", vCancelAction);
-			req.Form.Add("LogoutAction", vLogoutAction);
-			req.Form.Add("LoginAction", vLoginAction);
-			req.Form.Add("AllowAction", vAllowAction);
-			req.Form.Add("DenyAction", vDenyAction);
-			req.Form.Add("Username", vUsername);
-			req.Form.Add("Password", vPassword);
-			req.Form.Add("RememberMe", vRememberMe);
+			vReq.Form.Add("CancelAction", vCancelAction);
+			vReq.Form.Add("LogoutAction", vLogoutAction);
+			vReq.Form.Add("LoginAction", vLoginAction);
+			vReq.Form.Add("AllowAction", vAllowAction);
+			vReq.Form.Add("DenyAction", vDenyAction);
+			vReq.Form.Add("Username", vUsername);
+			vReq.Form.Add("Password", vPassword);
+			vReq.Form.Add("RememberMe", vRememberMe);
 
-			FillRequestCookies(req);
+			FillRequestCookies(vReq);
 
-			vLoginCtrl = new OauthLoginController(req, vApiCtx);
+			vLoginCtrl = new OauthLoginController(vReq, vApiCtx);
 			return vLoginCtrl.Execute();
 		}
 
@@ -164,7 +165,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			Response result = TestPost();
 			CheckAuthCookie(result, false, DateTime.UtcNow.AddDays(-1));
-			CheckRedirectToRequest(result, vRedirectUri);
+			CheckRedirectToRequest(result, vReq.Url.ToString());
 		}
 
 

@@ -1,9 +1,7 @@
 using Fabric.Api.Modify.Tasks;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Modify {
 	
@@ -19,17 +17,6 @@ namespace Fabric.Api.Modify {
 			Tasks = pTasks;
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected void EnsureFabricSystem() {
-			if ( ApiCtx.AppId != (long)AppId.FabricSystem ) {
-				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
-					"The authenticated App (AppId="+ApiCtx.AppId+") is not permitted "+
-					"to perform this action.");
-			}
-		}
-		
 		/*--------------------------------------------------------------------------------------------*/
 		protected Member GetContextMember() {
 			Member m = Tasks.GetValidMemberByContext(ApiCtx);

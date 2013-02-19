@@ -1,9 +1,10 @@
 ﻿using Fabric.Domain;
+using Fabric.Test.FabApiModify.Tasks;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
-namespace Fabric.Test.FabApiModify.Tasks {
+namespace Fabric.Test.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]

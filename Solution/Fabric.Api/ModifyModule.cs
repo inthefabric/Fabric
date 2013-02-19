@@ -13,7 +13,6 @@ namespace Fabric.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public ModifyModule() {
 			const string mod = FabHome.ModUri;
-			const string apps = mod+FabHome.ModAppsUri;
 			const string classes = mod+FabHome.ModClassesUri;
 			const string descriptors = mod+FabHome.ModDescriptorsUri;
 			const string directors = mod+FabHome.ModDirectorsUri;
@@ -23,11 +22,9 @@ namespace Fabric.Api {
 			const string instances = mod+FabHome.ModInstancesUri;
 			const string locators = mod+FabHome.ModLocatorsUri;
 			const string urls = mod+FabHome.ModUrlsUri;
-			const string users = mod+FabHome.ModUsersUri;
 			const string vectors = mod+FabHome.ModVectorsUri;
 
 			Get[mod] = (p => Spec(Context, ModifyController.Route.Home));
-			Post[apps] = (p => Spec(Context, ModifyController.Route.Apps));
 			Post[classes] = (p => Spec(Context, ModifyController.Route.Classes));
 			Post[descriptors] = (p => Spec(Context, ModifyController.Route.Descriptors));
 			Post[directors] = (p => Spec(Context, ModifyController.Route.Directors));
@@ -39,7 +36,6 @@ namespace Fabric.Api {
 			Post[instances] = (p => Spec(Context, ModifyController.Route.Instances));
 			Post[locators] = (p => Spec(Context, ModifyController.Route.Locators));
 			Post[urls] = (p => Spec(Context, ModifyController.Route.Urls));
-			Post[users] = (p => Spec(Context, ModifyController.Route.Users));
 			Post[vectors] = (p => Spec(Context, ModifyController.Route.Vectors));
 		}
 

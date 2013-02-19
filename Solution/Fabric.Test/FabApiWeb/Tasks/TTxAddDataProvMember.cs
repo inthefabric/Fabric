@@ -1,24 +1,25 @@
 ﻿using Fabric.Domain;
+using Fabric.Test.FabApiModify.Tasks;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
-namespace Fabric.Test.FabApiModify.Tasks {
+namespace Fabric.Test.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TTxAddMember : TModifyTasks {
+	public class TTxAddDataProvMember : TModifyTasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
-			"_V1=[];"+ //User
+			"_V1=[];"+ //App
 			"_V2=g.addVertex(["+
 				typeof(Member).Name+"Id:{{NewMemberId}}L"+
 			"]);"+
 			"g.addEdge(_V0,_V2,_TP0);"+
-			"g.addEdge(_V1,_V2,_TP1);"+
-			"g.V('"+typeof(App).Name+"Id',1L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V3,_V2,_TP2);"+
+			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V3,_V2,_TP1);"+
+			"g.addEdge(_V1,_V2,_TP2);"+
 			"_V4=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
 				"Performed:0L"+
@@ -27,16 +28,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.V('"+typeof(Member).Name+"Id',1L)[0].each{_V5=g.v(it)};"+
 			"g.addEdge(_V5,_V4,_TP4);"+
 			"g.addEdge(_V2,_V4,_TP5);"+
-			"g.V('"+typeof(MemberType).Name+"Id',4L)[0].each{_V6=g.v(it)};"+
+			"g.V('"+typeof(MemberType).Name+"Id',8L)[0].each{_V6=g.v(it)};"+
 			"g.addEdge(_V4,_V6,_TP6);";
 
+		private long vUserId;
 		private long vNewMemberId;
 		private long vNewMtaId;
-		
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
+			vUserId = 2532;
 			vNewMemberId = 43562742344;
 			vNewMtaId = 346137173314;
 
@@ -50,10 +53,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[Test]
 		public void BuildTx() {
 			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
-			IWeaverVarAlias<User> userVar = GetTxVar<User>();
+			IWeaverVarAlias<App> appVar = GetTxVar<App>();
 			IWeaverVarAlias<Member> memberVar;
 
-			Tasks.TxAddMember(MockApiCtx.Object, TxBuild, rootVar, userVar, out memberVar);
+			Tasks.TxAddDataProvMember(MockApiCtx.Object, TxBuild,
+				rootVar, appVar, vUserId, out memberVar);
 			FinishTx();
 
 			Assert.NotNull(memberVar, "MemberVar should not be null.");
@@ -61,7 +65,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			string expect = Query
 				.Replace("{{NewMemberId}}", vNewMemberId+"")
-				.Replace("{{NewMtaId}}", vNewMtaId+"");
+				.Replace("{{NewMtaId}}", vNewMtaId+"")
+				.Replace("{{UserId}}", vUserId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsMember).Name);

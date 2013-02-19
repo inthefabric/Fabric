@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Fabric.Api.Dto;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Modify.Results;
 using Fabric.Api.Modify.Tasks;
+using Fabric.Api.Web.Results;
+using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -11,12 +10,10 @@ using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Interfaces;
 
-namespace Fabric.Api.Modify {
+namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModUsersUri, typeof(FabUser),
-		Auth=ServiceAuthType.Fabric)]
-	public class CreateUser : BaseModifyFunc<CreateUserResult> {
+	public class CreateUser : BaseWebFunc<CreateUserResult> {
 
 		public const string NameParam = "Name";
 		public const string PasswordParam = "Password";
@@ -32,10 +29,14 @@ namespace Fabric.Api.Modify {
 			DomainPropertyName="Address")]
 		private readonly string vEmail;
 
+		private readonly IModifyTasks vModTasks;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateUser(IModifyTasks pTasks, string pName, string pPass, string pEmail) :base(pTasks){
+		public CreateUser(IWebTasks pTasks, IModifyTasks pModTasks, string pName, string pPass,
+																		string pEmail) : base(pTasks) {
+			vModTasks = pModTasks;
 			vName = pName;
 			vPass = pPass;
 			vEmail = pEmail;
@@ -73,7 +74,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddEmail(ApiCtx, txb, vEmail, rootVar, out emailVar);
 			Tasks.TxAddUser(ApiCtx, txb, vName, vPass, rootVar, emailVar, out userVar);
 			Tasks.TxAddMember(ApiCtx, txb, rootVar, userVar, out memVar);
-			Tasks.TxAddArtifact<User, UserHasArtifact>(
+			vModTasks.TxAddArtifact<User, UserHasArtifact>(
 				ApiCtx, txb, ArtifactTypeId.User, rootVar, userVar, memVar, out artVar);
 
 			var list = new List<IWeaverVarAlias> { userVar, emailVar };

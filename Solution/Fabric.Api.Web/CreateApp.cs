@@ -1,6 +1,5 @@
-﻿using Fabric.Api.Dto;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Modify.Tasks;
+﻿using Fabric.Api.Modify.Tasks;
+using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -8,12 +7,10 @@ using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
-namespace Fabric.Api.Modify {
+namespace Fabric.Api.Web {
 
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModAppsUri, typeof(FabApp),
-		Auth=ServiceAuthType.Fabric)]
-	public class CreateApp : BaseModifyFunc<App> {
+	public class CreateApp : BaseWebFunc<App> {
 
 		public const string NameParam = "Name";
 		public const string UserIdParam = "UserId";
@@ -24,10 +21,14 @@ namespace Fabric.Api.Modify {
 		[ServiceOpParam(ServiceOpParamType.Form, UserIdParam, 1, typeof(User))]
 		private readonly long vUserId;
 
+		private readonly IModifyTasks vModTasks;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateApp(IModifyTasks pTasks, string pName, long pUserId) : base(pTasks){
+		public CreateApp(IWebTasks pTasks, IModifyTasks pModTasks, string pName, long pUserId) : 
+																						base(pTasks) {
+			vModTasks = pModTasks;
 			vName = pName;
 			vUserId = pUserId;
 		}
@@ -65,7 +66,7 @@ namespace Fabric.Api.Modify {
 			txb.GetRoot(out rootVar);
 			Tasks.TxAddApp(ApiCtx, txb, vName, rootVar, user.UserId, out appVar);
 			Tasks.TxAddDataProvMember(ApiCtx, txb, rootVar, appVar, user.UserId, out memVar);
-			Tasks.TxAddArtifact<App, AppHasArtifact>(
+			vModTasks.TxAddArtifact<App, AppHasArtifact>(
 				ApiCtx, txb, ArtifactTypeId.App, rootVar, appVar, memVar, out artVar);
 
 			////

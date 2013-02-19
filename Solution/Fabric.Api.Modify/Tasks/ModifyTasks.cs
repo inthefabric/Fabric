@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;

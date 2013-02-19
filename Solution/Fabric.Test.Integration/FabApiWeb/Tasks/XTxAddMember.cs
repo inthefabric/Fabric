@@ -1,33 +1,33 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
+using Fabric.Test.Integration.FabApiModify.Tasks;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
-namespace Fabric.Test.Integration.FabApiModify.Tasks {
+namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XTxAddDataProvMember : XModifyTasks {
+	public class XTxAddMember : XModifyTasks {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(AppGal, UserPenny)] //already has a membership, but still a valid test
-		public void Success(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId) {
+		[TestCase(UserPenny)] //already has a membership, but still a valid test
+		public void Success(SetupUsers.UserId pUserId) {
 			IWeaverVarAlias<Root> rootVar;
-			IWeaverVarAlias<App> appVar;
+			IWeaverVarAlias<User> userVar;
 			IWeaverVarAlias<Member> memVar;
-			var useApp = new App { AppId = (long)pAppId };
+			var useUser = new User { UserId = (long)pUserId };
 
 			TxBuild.GetRoot(out rootVar);
-			TxBuild.GetNode(useApp, out appVar);
-			Tasks.TxAddDataProvMember(ApiCtx, TxBuild, rootVar, appVar, (long)pUserId, out memVar);
+			TxBuild.GetNode(useUser, out userVar);
+			Tasks.TxAddMember(ApiCtx, TxBuild, rootVar, userVar, out memVar);
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddDataProvMember", TxBuild.Transaction);
+			ApiCtx.DbData("TEST.TxAddMember", TxBuild.Transaction);
 
 			////
 
@@ -42,8 +42,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			NodeConnections conn = GetNodeConnections(newMember);
 			conn.AssertRelCount(3, 1);
 			conn.AssertRel<RootContainsMember, Root>(false, 0);
-			conn.AssertRel<UserDefinesMember, User>(false, (long)pUserId);
-			conn.AssertRel<AppDefinesMember, App>(false, useApp.AppId);
+			conn.AssertRel<UserDefinesMember, User>(false, useUser.UserId);
+			conn.AssertRel<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
 
@@ -52,8 +52,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			conn.AssertRel<RootContainsMemberTypeAssign, Root>(false, 0);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(
-				true, (long)MemberTypeId.DataProvider);
+			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
 
 			NewNodeCount = 2;
 			NewRelCount = 7;

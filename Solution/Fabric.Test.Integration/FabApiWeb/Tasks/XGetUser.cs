@@ -1,13 +1,15 @@
-﻿using Fabric.Domain;
+﻿using Fabric.Db.Data.Setups;
+using Fabric.Domain;
+using Fabric.Test.Integration.FabApiModify.Tasks;
 using NUnit.Framework;
 
-namespace Fabric.Test.Integration.FabApiModify.Tasks {
+namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XGetUserByName : XModifyTasks {
+	public class XGetUser : XModifyTasks {
 
-		private string vName;
+		private long vUserId;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,28 +21,28 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User TestGo() {
-			return Tasks.GetUserByName(ApiCtx, vName);
+			return Tasks.GetUser(ApiCtx, vUserId);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("ZachKinstner")]
-		[TestCase("MELkins")]
-		public void Found(string pName) {
-			vName = pName;
+		[TestCase(UserZach)]
+		[TestCase(UserMel)]
+		public void Found(SetupUsers.UserId pUserId) {
+			vUserId = (long)pUserId;
 
 			User result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vName.ToLower(), result.Name.ToLower(), "Incorrect Name.");
+			Assert.AreEqual(vUserId, result.UserId, "Incorrect UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("zachkinstnerr")]
-		[TestCase("melkin")]
-		public void NotFound(string pName) {
-			vName = pName;
+		[TestCase(0)]
+		[TestCase(999)]
+		public void NotFound(long pUserId) {
+			vUserId = pUserId;
 
 			User result = TestGo();
 

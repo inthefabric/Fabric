@@ -1,11 +1,12 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Test.Integration.Common;
+using Fabric.Test.Integration.FabApiModify.Tasks;
 using NUnit.Framework;
 using Weaver.Interfaces;
 using Fabric.Infrastructure;
 
-namespace Fabric.Test.Integration.FabApiModify.Tasks {
+namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
