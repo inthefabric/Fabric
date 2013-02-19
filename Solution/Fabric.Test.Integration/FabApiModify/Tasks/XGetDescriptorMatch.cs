@@ -1,6 +1,7 @@
 ﻿using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiModify.Tasks {

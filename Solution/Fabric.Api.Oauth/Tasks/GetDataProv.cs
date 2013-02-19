@@ -2,6 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Db;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;

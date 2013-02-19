@@ -14,9 +14,9 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System;
-using Fabric.Db.Data;
+using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Modify.Validators {
+namespace Fabric.Infrastructure.Domain {
 
 
 	/*================================================================================================*/

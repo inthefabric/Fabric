@@ -61,9 +61,16 @@
     <Compile Include="Api\Faults\FabNotFoundFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
+    <Compile Include="Db\FabricIdEnums.cs" />
     <Compile Include="Db\IDbResult.cs" />
     <Compile Include="Db\DbDto.cs" />
     <Compile Include="Db\DbResult.cs" />
+    <Compile Include="Domain\DomainValidator.cs" />
+    <Compile Include="Domain\DomainValidators.cs">
+      <DependentUpon>DomainValidators.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Domain\SchemaHelper.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,6 +104,10 @@
     <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Domain\DomainValidators.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DomainValidators.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Domain\SchemaHelper.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

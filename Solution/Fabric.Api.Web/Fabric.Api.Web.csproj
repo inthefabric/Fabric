@@ -5,17 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{878B57C3-E251-4F77-8427-463693F033AF}</ProjectGuid>
+    <ProjectGuid>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.Db.Data</RootNamespace>
-    <AssemblyName>Fabric.Db.Data</AssemblyName>
+    <RootNamespace>Fabric.Api.Web</RootNamespace>
+    <AssemblyName>Fabric.Api.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -23,56 +24,20 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Weaver">
-      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DataRel.cs" />
-    <Compile Include="DataNodeIndex.cs" />
-    <Compile Include="DataSet.cs" />
-    <Compile Include="Setups\SetupIndexes.cs">
-      <DependentUpon>SetupIndexes.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Setups\SetupFactors.cs" />
-    <Compile Include="Setups\SetupObjects.cs" />
-    <Compile Include="Setups\SetupOauth.cs" />
-    <Compile Include="Setups\SetupArtifacts.cs" />
-    <Compile Include="Setups\SetupUsers.cs" />
-    <Compile Include="Setups\Setup.cs" />
-    <Compile Include="DataNode.cs" />
-    <Compile Include="Setups\SetupTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Setups\SetupIndexes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SetupIndexes.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

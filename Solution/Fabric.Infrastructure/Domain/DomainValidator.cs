@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Fabric.Infrastructure.Api.Faults;
 
-namespace Fabric.Api.Modify.Validators {
+namespace Fabric.Infrastructure.Domain {
 	
 	/*================================================================================================*/
 	public partial class DomainValidator {

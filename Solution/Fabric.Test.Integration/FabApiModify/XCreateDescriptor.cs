@@ -3,6 +3,7 @@ using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Integration.FabApiModify.Tasks;
 using Fabric.Test.Util;

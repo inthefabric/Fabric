@@ -1,7 +1,8 @@
-﻿using Fabric.Api.Modify.Validators;
-using Fabric.Db.Data;
+﻿using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 

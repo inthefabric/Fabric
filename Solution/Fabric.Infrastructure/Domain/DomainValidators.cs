@@ -1,11 +1,11 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/16/2013 1:07:44 PM
+// Generated on 2/19/2013 2:14:13 PM
 
 using System;
-using Fabric.Db.Data;
+using Fabric.Infrastructure.Db;
 
-namespace Fabric.Api.Modify.Validators {
+namespace Fabric.Infrastructure.Domain {
 
 
 	/*================================================================================================*/

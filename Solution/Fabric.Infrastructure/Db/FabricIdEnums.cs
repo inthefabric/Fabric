@@ -1,4 +1,6 @@
-﻿using System;namespace Fabric.Db.Data {
+﻿using System;
+
+namespace Fabric.Infrastructure.Db {
 
 	/*================================================================================================*/
 	public enum AppId {

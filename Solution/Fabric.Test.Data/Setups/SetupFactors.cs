@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Db.Data.Setups {
 

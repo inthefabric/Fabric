@@ -32,6 +32,8 @@
   <ItemGroup>
     <Compile Include="BaseModifyFunc.cs" />
     <Compile Include="CompleteFactor.cs" />
+    <Compile Include="CreateApp.cs" />
+    <Compile Include="CreateUser.cs" />
     <Compile Include="DeleteFactor.cs" />
     <Compile Include="UpdateFactor.cs" />
     <Compile Include="CreateDirector.cs" />
@@ -41,18 +43,10 @@
     <Compile Include="CreateInstance.cs" />
     <Compile Include="CreateClass.cs" />
     <Compile Include="CreateUrl.cs" />
-    <Compile Include="CreateApp.cs" />
-    <Compile Include="CreateUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\CreateUserResult.cs" />
     <Compile Include="Tasks\IModifyTasks.cs" />
     <Compile Include="Tasks\ModifyTasks.cs" />
-    <Compile Include="Validators\DomainValidator.cs" />
-    <Compile Include="Validators\DomainValidators.cs">
-      <DependentUpon>DomainValidators.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="CreateEventor.cs" />
     <Compile Include="CreateIdentor.cs" />
     <Compile Include="CreateLocator.cs" />
@@ -83,15 +77,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Validators\DomainValidators.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainValidators.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

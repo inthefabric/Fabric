@@ -1,5 +1,6 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 using NUnit.Framework;
 using Fabric.Db.Data;
 

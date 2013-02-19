@@ -1,7 +1,7 @@
 ﻿using Fabric.Api.Modify.Tasks;
-using Fabric.Api.Modify.Validators;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Domain;
 using Moq;
 using NUnit.Framework;
 using Weaver.Interfaces;

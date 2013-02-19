@@ -1,5 +1,6 @@
 ﻿using Fabric.Db.Data;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
