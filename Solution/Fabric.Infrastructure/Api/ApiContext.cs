@@ -72,7 +72,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbSingle<T>(string pQueryName, IWeaverScript pScripted)
-																where T : class, INodeWithId, new() {
+																where T : class, IItemWithId, new() {
 			var a = NewAccess<T>(pScripted);
 			IApiDataAccess<T> da = DbDataAccess(pQueryName, a);
 
@@ -90,7 +90,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted)
-																		where T : INodeWithId, new() {
+																		where T : IItemWithId, new() {
 			var a = NewAccess<T>(pScripted);
 			return DbDataAccess(pQueryName, a).TypedResultList;
 		}
@@ -99,9 +99,9 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbAddNode<T, TRootRel>(string pQueryName, T pNode,
-					Expression<Func<T, object>> pIndexProp)
-			where T : class, INode, INodeWithId, new()
-			where TRootRel : WeaverRel<Root, Contains, T>, new() {
+															Expression<Func<T, object>> pIndexProp)
+												where T : class, INode, IItemWithId, new()
+												where TRootRel : WeaverRel<Root, Contains, T>, new() {
 			T newNode = DbSingle<T>(
 				pQueryName,
 				WeaverTasks.AddNode(pNode)
@@ -129,7 +129,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted)
-																		where T : INodeWithId, new() {
+																		where T : IItemWithId, new() {
 			return new ApiDataAccess<T>(this, pScripted);
 		}
 
@@ -144,7 +144,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess<T> DbDataAccess<T>(string pQueryName,
-											IApiDataAccess<T> pDbQuery) where T : INodeWithId, new() {
+											IApiDataAccess<T> pDbQuery) where T : IItemWithId, new() {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			return pDbQuery;

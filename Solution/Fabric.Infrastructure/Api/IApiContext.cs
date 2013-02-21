@@ -38,14 +38,14 @@ namespace Fabric.Infrastructure.Api {
 		IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : class, INodeWithId, new();
+		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : class, IItemWithId, new();
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted) where T : INodeWithId, new();
+		IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted) where T : IItemWithId, new();
 
 		/*--------------------------------------------------------------------------------------------*/
 		T DbAddNode<T, TRootRel>(string pQueryName, T pNode, Expression<Func<T,object>> pIndexProp)
-												where T : class, INode, INodeWithId, new()
+												where T : class, INode, IItemWithId, new()
 												where TRootRel : WeaverRel<Root, Contains, T>, new();
 
 	}

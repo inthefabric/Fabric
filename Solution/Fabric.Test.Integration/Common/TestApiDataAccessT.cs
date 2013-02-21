@@ -9,7 +9,7 @@ using Weaver.Interfaces;
 namespace Fabric.Test.Integration.Common {
 
 	/*================================================================================================*/
-	public class TestApiDataAccess<T> : ApiDataAccess<T> where T : INodeWithId, new() {
+	public class TestApiDataAccess<T> : ApiDataAccess<T> where T : IItemWithId, new() {
 
 		
 
