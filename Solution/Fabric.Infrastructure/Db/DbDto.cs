@@ -94,7 +94,7 @@ namespace Fabric.Infrastructure.Db {
 
 			IRel rel = (result as IRel);
 
-			if ( rel == null ) {
+			if ( rel != null ) {
 				rel.FromNodeId = (long)FromNodeId;
 				rel.ToNodeId = (long)ToNodeId;
 			}
