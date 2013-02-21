@@ -91,6 +91,14 @@ namespace Fabric.Infrastructure.Db {
 
 			T result = JsonSerializer.DeserializeFromString<T>(json);
 			result.Id = (long)Id;
+
+			IRel rel = (result as IRel);
+
+			if ( rel == null ) {
+				rel.FromNodeId = (long)FromNodeId;
+				rel.ToNodeId = (long)ToNodeId;
+			}
+
 			return result;
 		}
 

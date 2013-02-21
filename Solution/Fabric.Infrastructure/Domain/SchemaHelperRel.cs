@@ -26,8 +26,7 @@ namespace Fabric.Infrastructure.Domain {
 			ToNodeName = RelSchema.ToNode.Name;
 			RelName = FromNodeName+RelSchema.Name+ToNodeName;
 
-			WeaverBaseClass = typeof(WeaverRel).Name+
-				"<"+FromNodeName+", "+RelTypeName+", "+ToNodeName+">";
+			WeaverBaseClass = "Rel<"+FromNodeName+", "+RelTypeName+", "+ToNodeName+">";
 		}
 
 

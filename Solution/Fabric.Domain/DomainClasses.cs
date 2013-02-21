@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/21/2013 4:42:07 PM
+// Generated on 2/21/2013 5:17:08 PM
 
 using System;
 using System.Linq.Expressions;
@@ -116,7 +116,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public class RootContainsApp : WeaverRel<Root, Contains, App>, IItemWithId {
+	public class RootContainsApp : Rel<Root, Contains, App>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual App ToApp { get { return ToNode; } }
@@ -125,7 +125,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsArtifact : WeaverRel<Root, Contains, Artifact>, IItemWithId {
+	public class RootContainsArtifact : Rel<Root, Contains, Artifact>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -134,7 +134,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsArtifactType : WeaverRel<Root, Contains, ArtifactType>, IItemWithId {
+	public class RootContainsArtifactType : Rel<Root, Contains, ArtifactType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual ArtifactType ToArtifactType { get { return ToNode; } }
@@ -143,7 +143,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsClass : WeaverRel<Root, Contains, Class>, IItemWithId {
+	public class RootContainsClass : Rel<Root, Contains, Class>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Class ToClass { get { return ToNode; } }
@@ -152,7 +152,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsCrowd : WeaverRel<Root, Contains, Crowd>, IItemWithId {
+	public class RootContainsCrowd : Rel<Root, Contains, Crowd>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Crowd ToCrowd { get { return ToNode; } }
@@ -161,7 +161,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsCrowdian : WeaverRel<Root, Contains, Crowdian>, IItemWithId {
+	public class RootContainsCrowdian : Rel<Root, Contains, Crowdian>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Crowdian ToCrowdian { get { return ToNode; } }
@@ -170,7 +170,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsCrowdianType : WeaverRel<Root, Contains, CrowdianType>, IItemWithId {
+	public class RootContainsCrowdianType : Rel<Root, Contains, CrowdianType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual CrowdianType ToCrowdianType { get { return ToNode; } }
@@ -179,7 +179,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsCrowdianTypeAssign : WeaverRel<Root, Contains, CrowdianTypeAssign>, IItemWithId {
+	public class RootContainsCrowdianTypeAssign : Rel<Root, Contains, CrowdianTypeAssign>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
@@ -188,7 +188,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsEmail : WeaverRel<Root, Contains, Email>, IItemWithId {
+	public class RootContainsEmail : Rel<Root, Contains, Email>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Email ToEmail { get { return ToNode; } }
@@ -197,7 +197,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsLabel : WeaverRel<Root, Contains, Label>, IItemWithId {
+	public class RootContainsLabel : Rel<Root, Contains, Label>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Label ToLabel { get { return ToNode; } }
@@ -206,7 +206,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsInstance : WeaverRel<Root, Contains, Instance>, IItemWithId {
+	public class RootContainsInstance : Rel<Root, Contains, Instance>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Instance ToInstance { get { return ToNode; } }
@@ -215,7 +215,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsMember : WeaverRel<Root, Contains, Member>, IItemWithId {
+	public class RootContainsMember : Rel<Root, Contains, Member>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Member ToMember { get { return ToNode; } }
@@ -224,7 +224,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsMemberType : WeaverRel<Root, Contains, MemberType>, IItemWithId {
+	public class RootContainsMemberType : Rel<Root, Contains, MemberType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual MemberType ToMemberType { get { return ToNode; } }
@@ -233,7 +233,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsMemberTypeAssign : WeaverRel<Root, Contains, MemberTypeAssign>, IItemWithId {
+	public class RootContainsMemberTypeAssign : Rel<Root, Contains, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
@@ -242,7 +242,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsUrl : WeaverRel<Root, Contains, Url>, IItemWithId {
+	public class RootContainsUrl : Rel<Root, Contains, Url>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Url ToUrl { get { return ToNode; } }
@@ -251,7 +251,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsUser : WeaverRel<Root, Contains, User>, IItemWithId {
+	public class RootContainsUser : Rel<Root, Contains, User>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual User ToUser { get { return ToNode; } }
@@ -260,7 +260,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsFactor : WeaverRel<Root, Contains, Factor>, IItemWithId {
+	public class RootContainsFactor : Rel<Root, Contains, Factor>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Factor ToFactor { get { return ToNode; } }
@@ -269,7 +269,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsFactorAssertion : WeaverRel<Root, Contains, FactorAssertion>, IItemWithId {
+	public class RootContainsFactorAssertion : Rel<Root, Contains, FactorAssertion>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual FactorAssertion ToFactorAssertion { get { return ToNode; } }
@@ -278,7 +278,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsDescriptor : WeaverRel<Root, Contains, Descriptor>, IItemWithId {
+	public class RootContainsDescriptor : Rel<Root, Contains, Descriptor>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Descriptor ToDescriptor { get { return ToNode; } }
@@ -287,7 +287,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsDescriptorType : WeaverRel<Root, Contains, DescriptorType>, IItemWithId {
+	public class RootContainsDescriptorType : Rel<Root, Contains, DescriptorType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual DescriptorType ToDescriptorType { get { return ToNode; } }
@@ -296,7 +296,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsDirector : WeaverRel<Root, Contains, Director>, IItemWithId {
+	public class RootContainsDirector : Rel<Root, Contains, Director>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Director ToDirector { get { return ToNode; } }
@@ -305,7 +305,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsDirectorType : WeaverRel<Root, Contains, DirectorType>, IItemWithId {
+	public class RootContainsDirectorType : Rel<Root, Contains, DirectorType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual DirectorType ToDirectorType { get { return ToNode; } }
@@ -314,7 +314,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsDirectorAction : WeaverRel<Root, Contains, DirectorAction>, IItemWithId {
+	public class RootContainsDirectorAction : Rel<Root, Contains, DirectorAction>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual DirectorAction ToDirectorAction { get { return ToNode; } }
@@ -323,7 +323,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsEventor : WeaverRel<Root, Contains, Eventor>, IItemWithId {
+	public class RootContainsEventor : Rel<Root, Contains, Eventor>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Eventor ToEventor { get { return ToNode; } }
@@ -332,7 +332,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsEventorType : WeaverRel<Root, Contains, EventorType>, IItemWithId {
+	public class RootContainsEventorType : Rel<Root, Contains, EventorType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual EventorType ToEventorType { get { return ToNode; } }
@@ -341,7 +341,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsEventorPrecision : WeaverRel<Root, Contains, EventorPrecision>, IItemWithId {
+	public class RootContainsEventorPrecision : Rel<Root, Contains, EventorPrecision>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual EventorPrecision ToEventorPrecision { get { return ToNode; } }
@@ -350,7 +350,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsIdentor : WeaverRel<Root, Contains, Identor>, IItemWithId {
+	public class RootContainsIdentor : Rel<Root, Contains, Identor>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Identor ToIdentor { get { return ToNode; } }
@@ -359,7 +359,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsIdentorType : WeaverRel<Root, Contains, IdentorType>, IItemWithId {
+	public class RootContainsIdentorType : Rel<Root, Contains, IdentorType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual IdentorType ToIdentorType { get { return ToNode; } }
@@ -368,7 +368,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsLocator : WeaverRel<Root, Contains, Locator>, IItemWithId {
+	public class RootContainsLocator : Rel<Root, Contains, Locator>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Locator ToLocator { get { return ToNode; } }
@@ -377,7 +377,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsLocatorType : WeaverRel<Root, Contains, LocatorType>, IItemWithId {
+	public class RootContainsLocatorType : Rel<Root, Contains, LocatorType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual LocatorType ToLocatorType { get { return ToNode; } }
@@ -386,7 +386,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVector : WeaverRel<Root, Contains, Vector>, IItemWithId {
+	public class RootContainsVector : Rel<Root, Contains, Vector>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Vector ToVector { get { return ToNode; } }
@@ -395,7 +395,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVectorType : WeaverRel<Root, Contains, VectorType>, IItemWithId {
+	public class RootContainsVectorType : Rel<Root, Contains, VectorType>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorType ToVectorType { get { return ToNode; } }
@@ -404,7 +404,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVectorRange : WeaverRel<Root, Contains, VectorRange>, IItemWithId {
+	public class RootContainsVectorRange : Rel<Root, Contains, VectorRange>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorRange ToVectorRange { get { return ToNode; } }
@@ -413,7 +413,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVectorRangeLevel : WeaverRel<Root, Contains, VectorRangeLevel>, IItemWithId {
+	public class RootContainsVectorRangeLevel : Rel<Root, Contains, VectorRangeLevel>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorRangeLevel ToVectorRangeLevel { get { return ToNode; } }
@@ -422,7 +422,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVectorUnit : WeaverRel<Root, Contains, VectorUnit>, IItemWithId {
+	public class RootContainsVectorUnit : Rel<Root, Contains, VectorUnit>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
@@ -431,7 +431,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVectorUnitPrefix : WeaverRel<Root, Contains, VectorUnitPrefix>, IItemWithId {
+	public class RootContainsVectorUnitPrefix : Rel<Root, Contains, VectorUnitPrefix>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
@@ -440,7 +440,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsVectorUnitDerived : WeaverRel<Root, Contains, VectorUnitDerived>, IItemWithId {
+	public class RootContainsVectorUnitDerived : Rel<Root, Contains, VectorUnitDerived>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual VectorUnitDerived ToVectorUnitDerived { get { return ToNode; } }
@@ -449,7 +449,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsOauthAccess : WeaverRel<Root, Contains, OauthAccess>, IItemWithId {
+	public class RootContainsOauthAccess : Rel<Root, Contains, OauthAccess>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual OauthAccess ToOauthAccess { get { return ToNode; } }
@@ -458,7 +458,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsOauthDomain : WeaverRel<Root, Contains, OauthDomain>, IItemWithId {
+	public class RootContainsOauthDomain : Rel<Root, Contains, OauthDomain>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual OauthDomain ToOauthDomain { get { return ToNode; } }
@@ -467,7 +467,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsOauthGrant : WeaverRel<Root, Contains, OauthGrant>, IItemWithId {
+	public class RootContainsOauthGrant : Rel<Root, Contains, OauthGrant>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual OauthGrant ToOauthGrant { get { return ToNode; } }
@@ -476,7 +476,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsOauthScope : WeaverRel<Root, Contains, OauthScope>, IItemWithId {
+	public class RootContainsOauthScope : Rel<Root, Contains, OauthScope>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual OauthScope ToOauthScope { get { return ToNode; } }
@@ -485,7 +485,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class AppHasArtifact : WeaverRel<App, Has, Artifact>, IItemWithId {
+	public class AppHasArtifact : Rel<App, Has, Artifact>, IItemWithId {
 			
 		public virtual App FromApp { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -494,7 +494,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class AppUsesEmail : WeaverRel<App, Uses, Email>, IItemWithId {
+	public class AppUsesEmail : Rel<App, Uses, Email>, IItemWithId {
 			
 		public virtual App FromApp { get { return FromNode; } }
 		public virtual Email ToEmail { get { return ToNode; } }
@@ -503,7 +503,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class AppDefinesMember : WeaverRel<App, Defines, Member>, IItemWithId {
+	public class AppDefinesMember : Rel<App, Defines, Member>, IItemWithId {
 			
 		public virtual App FromApp { get { return FromNode; } }
 		public virtual Member ToMember { get { return ToNode; } }
@@ -512,7 +512,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class ArtifactUsesArtifactType : WeaverRel<Artifact, Uses, ArtifactType>, IItemWithId {
+	public class ArtifactUsesArtifactType : Rel<Artifact, Uses, ArtifactType>, IItemWithId {
 			
 		public virtual Artifact FromArtifact { get { return FromNode; } }
 		public virtual ArtifactType ToArtifactType { get { return ToNode; } }
@@ -521,7 +521,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class ClassHasArtifact : WeaverRel<Class, Has, Artifact>, IItemWithId {
+	public class ClassHasArtifact : Rel<Class, Has, Artifact>, IItemWithId {
 			
 		public virtual Class FromClass { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -530,7 +530,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdHasArtifact : WeaverRel<Crowd, Has, Artifact>, IItemWithId {
+	public class CrowdHasArtifact : Rel<Crowd, Has, Artifact>, IItemWithId {
 			
 		public virtual Crowd FromCrowd { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -539,7 +539,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdDefinesCrowdian : WeaverRel<Crowd, Defines, Crowdian>, IItemWithId {
+	public class CrowdDefinesCrowdian : Rel<Crowd, Defines, Crowdian>, IItemWithId {
 			
 		public virtual Crowd FromCrowd { get { return FromNode; } }
 		public virtual Crowdian ToCrowdian { get { return ToNode; } }
@@ -548,7 +548,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianHasCrowdianTypeAssign : WeaverRel<Crowdian, Has, CrowdianTypeAssign>, IItemWithId {
+	public class CrowdianHasCrowdianTypeAssign : Rel<Crowdian, Has, CrowdianTypeAssign>, IItemWithId {
 			
 		public virtual Crowdian FromCrowdian { get { return FromNode; } }
 		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
@@ -557,7 +557,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianHasHistoricCrowdianTypeAssign : WeaverRel<Crowdian, HasHistoric, CrowdianTypeAssign>, IItemWithId {
+	public class CrowdianHasHistoricCrowdianTypeAssign : Rel<Crowdian, HasHistoric, CrowdianTypeAssign>, IItemWithId {
 			
 		public virtual Crowdian FromCrowdian { get { return FromNode; } }
 		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
@@ -566,7 +566,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class CrowdianTypeAssignUsesCrowdianType : WeaverRel<CrowdianTypeAssign, Uses, CrowdianType>, IItemWithId {
+	public class CrowdianTypeAssignUsesCrowdianType : Rel<CrowdianTypeAssign, Uses, CrowdianType>, IItemWithId {
 			
 		public virtual CrowdianTypeAssign FromCrowdianTypeAssign { get { return FromNode; } }
 		public virtual CrowdianType ToCrowdianType { get { return ToNode; } }
@@ -575,7 +575,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class InstanceHasArtifact : WeaverRel<Instance, Has, Artifact>, IItemWithId {
+	public class InstanceHasArtifact : Rel<Instance, Has, Artifact>, IItemWithId {
 			
 		public virtual Instance FromInstance { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -584,7 +584,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class LabelHasArtifact : WeaverRel<Label, Has, Artifact>, IItemWithId {
+	public class LabelHasArtifact : Rel<Label, Has, Artifact>, IItemWithId {
 			
 		public virtual Label FromLabel { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -593,7 +593,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberHasMemberTypeAssign : WeaverRel<Member, Has, MemberTypeAssign>, IItemWithId {
+	public class MemberHasMemberTypeAssign : Rel<Member, Has, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return FromNode; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
@@ -602,7 +602,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberHasHistoricMemberTypeAssign : WeaverRel<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
+	public class MemberHasHistoricMemberTypeAssign : Rel<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return FromNode; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
@@ -611,7 +611,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberCreatesArtifact : WeaverRel<Member, Creates, Artifact>, IItemWithId {
+	public class MemberCreatesArtifact : Rel<Member, Creates, Artifact>, IItemWithId {
 			
 		public virtual Member FromMember { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -620,7 +620,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberCreatesMemberTypeAssign : WeaverRel<Member, Creates, MemberTypeAssign>, IItemWithId {
+	public class MemberCreatesMemberTypeAssign : Rel<Member, Creates, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return FromNode; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
@@ -629,7 +629,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberCreatesFactor : WeaverRel<Member, Creates, Factor>, IItemWithId {
+	public class MemberCreatesFactor : Rel<Member, Creates, Factor>, IItemWithId {
 			
 		public virtual Member FromMember { get { return FromNode; } }
 		public virtual Factor ToFactor { get { return ToNode; } }
@@ -638,7 +638,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssignUsesMemberType : WeaverRel<MemberTypeAssign, Uses, MemberType>, IItemWithId {
+	public class MemberTypeAssignUsesMemberType : Rel<MemberTypeAssign, Uses, MemberType>, IItemWithId {
 			
 		public virtual MemberTypeAssign FromMemberTypeAssign { get { return FromNode; } }
 		public virtual MemberType ToMemberType { get { return ToNode; } }
@@ -647,7 +647,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UrlHasArtifact : WeaverRel<Url, Has, Artifact>, IItemWithId {
+	public class UrlHasArtifact : Rel<Url, Has, Artifact>, IItemWithId {
 			
 		public virtual Url FromUrl { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -656,7 +656,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UserHasArtifact : WeaverRel<User, Has, Artifact>, IItemWithId {
+	public class UserHasArtifact : Rel<User, Has, Artifact>, IItemWithId {
 			
 		public virtual User FromUser { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -665,7 +665,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UserCreatesCrowdianTypeAssign : WeaverRel<User, Creates, CrowdianTypeAssign>, IItemWithId {
+	public class UserCreatesCrowdianTypeAssign : Rel<User, Creates, CrowdianTypeAssign>, IItemWithId {
 			
 		public virtual User FromUser { get { return FromNode; } }
 		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
@@ -674,7 +674,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UserDefinesCrowdian : WeaverRel<User, Defines, Crowdian>, IItemWithId {
+	public class UserDefinesCrowdian : Rel<User, Defines, Crowdian>, IItemWithId {
 			
 		public virtual User FromUser { get { return FromNode; } }
 		public virtual Crowdian ToCrowdian { get { return ToNode; } }
@@ -683,7 +683,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UserUsesEmail : WeaverRel<User, Uses, Email>, IItemWithId {
+	public class UserUsesEmail : Rel<User, Uses, Email>, IItemWithId {
 			
 		public virtual User FromUser { get { return FromNode; } }
 		public virtual Email ToEmail { get { return ToNode; } }
@@ -692,7 +692,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class UserDefinesMember : WeaverRel<User, Defines, Member>, IItemWithId {
+	public class UserDefinesMember : Rel<User, Defines, Member>, IItemWithId {
 			
 		public virtual User FromUser { get { return FromNode; } }
 		public virtual Member ToMember { get { return ToNode; } }
@@ -701,7 +701,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesPrimaryArtifact : WeaverRel<Factor, UsesPrimary, Artifact>, IItemWithId {
+	public class FactorUsesPrimaryArtifact : Rel<Factor, UsesPrimary, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -710,7 +710,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesRelatedArtifact : WeaverRel<Factor, UsesRelated, Artifact>, IItemWithId {
+	public class FactorUsesRelatedArtifact : Rel<Factor, UsesRelated, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -719,7 +719,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesFactorAssertion : WeaverRel<Factor, Uses, FactorAssertion>, IItemWithId {
+	public class FactorUsesFactorAssertion : Rel<Factor, Uses, FactorAssertion>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual FactorAssertion ToFactorAssertion { get { return ToNode; } }
@@ -728,7 +728,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorReplacesFactor : WeaverRel<Factor, Replaces, Factor>, IItemWithId {
+	public class FactorReplacesFactor : Rel<Factor, Replaces, Factor>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Factor ToFactor { get { return ToNode; } }
@@ -737,7 +737,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesDescriptor : WeaverRel<Factor, Uses, Descriptor>, IItemWithId {
+	public class FactorUsesDescriptor : Rel<Factor, Uses, Descriptor>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Descriptor ToDescriptor { get { return ToNode; } }
@@ -746,7 +746,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesDirector : WeaverRel<Factor, Uses, Director>, IItemWithId {
+	public class FactorUsesDirector : Rel<Factor, Uses, Director>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Director ToDirector { get { return ToNode; } }
@@ -755,7 +755,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesEventor : WeaverRel<Factor, Uses, Eventor>, IItemWithId {
+	public class FactorUsesEventor : Rel<Factor, Uses, Eventor>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Eventor ToEventor { get { return ToNode; } }
@@ -764,7 +764,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesIdentor : WeaverRel<Factor, Uses, Identor>, IItemWithId {
+	public class FactorUsesIdentor : Rel<Factor, Uses, Identor>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Identor ToIdentor { get { return ToNode; } }
@@ -773,7 +773,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesLocator : WeaverRel<Factor, Uses, Locator>, IItemWithId {
+	public class FactorUsesLocator : Rel<Factor, Uses, Locator>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Locator ToLocator { get { return ToNode; } }
@@ -782,7 +782,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorUsesVector : WeaverRel<Factor, Uses, Vector>, IItemWithId {
+	public class FactorUsesVector : Rel<Factor, Uses, Vector>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Vector ToVector { get { return ToNode; } }
@@ -791,7 +791,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorUsesDescriptorType : WeaverRel<Descriptor, Uses, DescriptorType>, IItemWithId {
+	public class DescriptorUsesDescriptorType : Rel<Descriptor, Uses, DescriptorType>, IItemWithId {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual DescriptorType ToDescriptorType { get { return ToNode; } }
@@ -800,7 +800,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorRefinesPrimaryWithArtifact : WeaverRel<Descriptor, RefinesPrimaryWith, Artifact>, IItemWithId {
+	public class DescriptorRefinesPrimaryWithArtifact : Rel<Descriptor, RefinesPrimaryWith, Artifact>, IItemWithId {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -809,7 +809,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorRefinesRelatedWithArtifact : WeaverRel<Descriptor, RefinesRelatedWith, Artifact>, IItemWithId {
+	public class DescriptorRefinesRelatedWithArtifact : Rel<Descriptor, RefinesRelatedWith, Artifact>, IItemWithId {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -818,7 +818,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorRefinesTypeWithArtifact : WeaverRel<Descriptor, RefinesTypeWith, Artifact>, IItemWithId {
+	public class DescriptorRefinesTypeWithArtifact : Rel<Descriptor, RefinesTypeWith, Artifact>, IItemWithId {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -827,7 +827,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorUsesDirectorType : WeaverRel<Director, Uses, DirectorType>, IItemWithId {
+	public class DirectorUsesDirectorType : Rel<Director, Uses, DirectorType>, IItemWithId {
 			
 		public virtual Director FromDirector { get { return FromNode; } }
 		public virtual DirectorType ToDirectorType { get { return ToNode; } }
@@ -836,7 +836,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorUsesPrimaryDirectorAction : WeaverRel<Director, UsesPrimary, DirectorAction>, IItemWithId {
+	public class DirectorUsesPrimaryDirectorAction : Rel<Director, UsesPrimary, DirectorAction>, IItemWithId {
 			
 		public virtual Director FromDirector { get { return FromNode; } }
 		public virtual DirectorAction ToDirectorAction { get { return ToNode; } }
@@ -845,7 +845,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorUsesRelatedDirectorAction : WeaverRel<Director, UsesRelated, DirectorAction>, IItemWithId {
+	public class DirectorUsesRelatedDirectorAction : Rel<Director, UsesRelated, DirectorAction>, IItemWithId {
 			
 		public virtual Director FromDirector { get { return FromNode; } }
 		public virtual DirectorAction ToDirectorAction { get { return ToNode; } }
@@ -854,7 +854,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class EventorUsesEventorType : WeaverRel<Eventor, Uses, EventorType>, IItemWithId {
+	public class EventorUsesEventorType : Rel<Eventor, Uses, EventorType>, IItemWithId {
 			
 		public virtual Eventor FromEventor { get { return FromNode; } }
 		public virtual EventorType ToEventorType { get { return ToNode; } }
@@ -863,7 +863,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class EventorUsesEventorPrecision : WeaverRel<Eventor, Uses, EventorPrecision>, IItemWithId {
+	public class EventorUsesEventorPrecision : Rel<Eventor, Uses, EventorPrecision>, IItemWithId {
 			
 		public virtual Eventor FromEventor { get { return FromNode; } }
 		public virtual EventorPrecision ToEventorPrecision { get { return ToNode; } }
@@ -872,7 +872,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class IdentorUsesIdentorType : WeaverRel<Identor, Uses, IdentorType>, IItemWithId {
+	public class IdentorUsesIdentorType : Rel<Identor, Uses, IdentorType>, IItemWithId {
 			
 		public virtual Identor FromIdentor { get { return FromNode; } }
 		public virtual IdentorType ToIdentorType { get { return ToNode; } }
@@ -881,7 +881,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class LocatorUsesLocatorType : WeaverRel<Locator, Uses, LocatorType>, IItemWithId {
+	public class LocatorUsesLocatorType : Rel<Locator, Uses, LocatorType>, IItemWithId {
 			
 		public virtual Locator FromLocator { get { return FromNode; } }
 		public virtual LocatorType ToLocatorType { get { return ToNode; } }
@@ -890,7 +890,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUsesAxisArtifact : WeaverRel<Vector, UsesAxis, Artifact>, IItemWithId {
+	public class VectorUsesAxisArtifact : Rel<Vector, UsesAxis, Artifact>, IItemWithId {
 			
 		public virtual Vector FromVector { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
@@ -899,7 +899,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUsesVectorType : WeaverRel<Vector, Uses, VectorType>, IItemWithId {
+	public class VectorUsesVectorType : Rel<Vector, Uses, VectorType>, IItemWithId {
 			
 		public virtual Vector FromVector { get { return FromNode; } }
 		public virtual VectorType ToVectorType { get { return ToNode; } }
@@ -908,7 +908,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUsesVectorUnit : WeaverRel<Vector, Uses, VectorUnit>, IItemWithId {
+	public class VectorUsesVectorUnit : Rel<Vector, Uses, VectorUnit>, IItemWithId {
 			
 		public virtual Vector FromVector { get { return FromNode; } }
 		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
@@ -917,7 +917,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUsesVectorUnitPrefix : WeaverRel<Vector, Uses, VectorUnitPrefix>, IItemWithId {
+	public class VectorUsesVectorUnitPrefix : Rel<Vector, Uses, VectorUnitPrefix>, IItemWithId {
 			
 		public virtual Vector FromVector { get { return FromNode; } }
 		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
@@ -926,7 +926,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorTypeUsesVectorRange : WeaverRel<VectorType, Uses, VectorRange>, IItemWithId {
+	public class VectorTypeUsesVectorRange : Rel<VectorType, Uses, VectorRange>, IItemWithId {
 			
 		public virtual VectorType FromVectorType { get { return FromNode; } }
 		public virtual VectorRange ToVectorRange { get { return ToNode; } }
@@ -935,7 +935,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeUsesVectorRangeLevel : WeaverRel<VectorRange, Uses, VectorRangeLevel>, IItemWithId {
+	public class VectorRangeUsesVectorRangeLevel : Rel<VectorRange, Uses, VectorRangeLevel>, IItemWithId {
 			
 		public virtual VectorRange FromVectorRange { get { return FromNode; } }
 		public virtual VectorRangeLevel ToVectorRangeLevel { get { return ToNode; } }
@@ -944,7 +944,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitDerivedDefinesVectorUnit : WeaverRel<VectorUnitDerived, Defines, VectorUnit>, IItemWithId {
+	public class VectorUnitDerivedDefinesVectorUnit : Rel<VectorUnitDerived, Defines, VectorUnit>, IItemWithId {
 			
 		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
 		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
@@ -953,7 +953,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitDerivedRaisesToExpVectorUnit : WeaverRel<VectorUnitDerived, RaisesToExp, VectorUnit>, IItemWithId {
+	public class VectorUnitDerivedRaisesToExpVectorUnit : Rel<VectorUnitDerived, RaisesToExp, VectorUnit>, IItemWithId {
 			
 		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
 		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
@@ -962,7 +962,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitDerivedUsesVectorUnitPrefix : WeaverRel<VectorUnitDerived, Uses, VectorUnitPrefix>, IItemWithId {
+	public class VectorUnitDerivedUsesVectorUnitPrefix : Rel<VectorUnitDerived, Uses, VectorUnitPrefix>, IItemWithId {
 			
 		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
 		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
@@ -971,7 +971,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthAccessUsesApp : WeaverRel<OauthAccess, Uses, App>, IItemWithId {
+	public class OauthAccessUsesApp : Rel<OauthAccess, Uses, App>, IItemWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return FromNode; } }
 		public virtual App ToApp { get { return ToNode; } }
@@ -980,7 +980,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthAccessUsesUser : WeaverRel<OauthAccess, Uses, User>, IItemWithId {
+	public class OauthAccessUsesUser : Rel<OauthAccess, Uses, User>, IItemWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return FromNode; } }
 		public virtual User ToUser { get { return ToNode; } }
@@ -989,7 +989,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthDomainUsesApp : WeaverRel<OauthDomain, Uses, App>, IItemWithId {
+	public class OauthDomainUsesApp : Rel<OauthDomain, Uses, App>, IItemWithId {
 			
 		public virtual OauthDomain FromOauthDomain { get { return FromNode; } }
 		public virtual App ToApp { get { return ToNode; } }
@@ -998,7 +998,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthGrantUsesApp : WeaverRel<OauthGrant, Uses, App>, IItemWithId {
+	public class OauthGrantUsesApp : Rel<OauthGrant, Uses, App>, IItemWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return FromNode; } }
 		public virtual App ToApp { get { return ToNode; } }
@@ -1007,7 +1007,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthGrantUsesUser : WeaverRel<OauthGrant, Uses, User>, IItemWithId {
+	public class OauthGrantUsesUser : Rel<OauthGrant, Uses, User>, IItemWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return FromNode; } }
 		public virtual User ToUser { get { return ToNode; } }
@@ -1016,7 +1016,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthScopeUsesApp : WeaverRel<OauthScope, Uses, App>, IItemWithId {
+	public class OauthScopeUsesApp : Rel<OauthScope, Uses, App>, IItemWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return FromNode; } }
 		public virtual App ToApp { get { return ToNode; } }
@@ -1025,7 +1025,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthScopeUsesUser : WeaverRel<OauthScope, Uses, User>, IItemWithId {
+	public class OauthScopeUsesUser : Rel<OauthScope, Uses, User>, IItemWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return FromNode; } }
 		public virtual User ToUser { get { return ToNode; } }

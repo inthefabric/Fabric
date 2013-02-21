@@ -40,6 +40,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainClasses.cs</LastGenOutput>
     </None>
+    <Compile Include="Rel.cs" />
+    <Compile Include="IRel.cs" />
     <Compile Include="IItemWithId.cs" />
     <Compile Include="DomainClasses.cs">
       <AutoGen>True</AutoGen>
