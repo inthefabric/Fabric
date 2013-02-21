@@ -71,7 +71,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(user)
-				.UpdateEach(updates)
+					.UpdateEach(updates)
 				.End();
 
 			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);

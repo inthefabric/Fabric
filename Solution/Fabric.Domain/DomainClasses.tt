@@ -48,7 +48,7 @@ foreach ( string name in rels ) {
 	SchemaHelperRel rel = SchemaHelper.GetRel(name);
 #>
 	/*================================================================================================*/
-	public class <#= rel.RelName #> : <#= rel.WeaverBaseClass #> {
+	public class <#= rel.RelName #> : <#= rel.WeaverBaseClass #>, IItemWithId {
 			
 		public virtual <#= rel.FromNodeName #> From<#= rel.FromNodeName #> { get { return FromNode; } }
 		public virtual <#= rel.ToNodeName #> To<#= rel.ToNodeName #> { get { return ToNode; } }

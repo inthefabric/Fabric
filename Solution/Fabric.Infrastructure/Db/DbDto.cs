@@ -71,7 +71,7 @@ namespace Fabric.Infrastructure.Db {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T ToNode<T>() where T : INodeWithId, new() {
+		public T ToItem<T>() where T : IItemWithId, new() {
 			if ( Id == null ) {
 				throw new FabArgumentNullFault("DbDto.Id was null.");
 			}
@@ -83,6 +83,10 @@ namespace Fabric.Infrastructure.Db {
 					Class+"' to type '"+resultType.Name+"'.");
 			}
 			
+			//OPTIMIZE: Going to JSON then back again is inefficient. Consider moving the serialization
+			//from JSON to Dictionary into DbDto. Then DbDto will have the raw string, and can 
+			//serialize directly to (T) in this function.
+
 			string json = JsonSerializer.SerializeToString(Data);
 
 			T result = JsonSerializer.DeserializeFromString<T>(json);

@@ -104,8 +104,8 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T GetResultAt<T>(int pIndex) where T : INodeWithId, new() {
-			return ResultDtoList[pIndex].ToNode<T>();
+		public T GetResultAt<T>(int pIndex) where T : IItemWithId, new() {
+			return ResultDtoList[pIndex].ToItem<T>();
 		}
 
 	}

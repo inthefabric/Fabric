@@ -6,7 +6,7 @@ using Weaver.Interfaces;
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : INodeWithId, new() {
+	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : IItemWithId, new() {
 
 		public IList<T> TypedResultList { get; private set; }
 
@@ -32,7 +32,7 @@ namespace Fabric.Infrastructure.Api {
 			TypedResultList = new List<T>();
 			
 			foreach ( DbDto dbDto in Result.DbDtos ) {
-				TypedResultList.Add(dbDto.ToNode<T>());
+				TypedResultList.Add(dbDto.ToItem<T>());
 			}
 		}
 

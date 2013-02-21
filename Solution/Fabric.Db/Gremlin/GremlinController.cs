@@ -105,7 +105,7 @@ namespace Fabric.Db.Gremlin {
 					wc.Headers.Add("Content-Type", "application/json");
 					respData = wc.UploadData(vGremlinUri, "POST", queryData);
 				}
-				
+
 				resp = Encoding.UTF8.GetString(respData);
 				vResult = resp;
 			}
@@ -119,7 +119,11 @@ namespace Fabric.Db.Gremlin {
 
 				var sr = new StreamReader(s);
 				resp = sr.ReadToEnd();
-				Log.Error(resp);
+				Log.Error(vContextId, "Query", resp, we);
+			}
+			catch ( Exception e ) {
+				Log.Error(vContextId, "Query", "Unhandled exception", e);
+				resp = "Unhandled exception: "+e;
 			}
 
 			return resp;

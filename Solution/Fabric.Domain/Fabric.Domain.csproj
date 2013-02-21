@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Weaver">
+    <Reference Include="Weaver, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -40,6 +40,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainClasses.cs</LastGenOutput>
     </None>
+    <Compile Include="IItemWithId.cs" />
     <Compile Include="DomainClasses.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
