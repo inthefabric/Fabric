@@ -35,7 +35,7 @@ namespace Fabric.Api.Dto.Traversal {
 			NodeId = (long)pDbDto.Id;
 			FillResultData(pDbDto.Data);
 
-			Uri = "("+TypeId+")";
+			Uri = "/WhereId("+TypeId+")";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

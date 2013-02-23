@@ -71,10 +71,10 @@ namespace Fabric.Test.FabDbData {
 			//Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public static string WeaverQueryToJson(IWeaverQuery pQuery) {
+		/*--------------------------------------------------------------------------------------------*/
+		private static string WeaverQueryToJson(IWeaverQuery pQuery) {
 			return FabricUtil.ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
-		}*/
+		}
 
 	}
 

@@ -237,6 +237,7 @@ namespace Fabric.Db.Data.Setups {
 					MemberTypeAssignId pMemTypeAssnId, MemberTypeId pMemTypeId, MemberId pAssignerId) {
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = (long)pMemTypeAssnId;
+			mta.Performed = vSet.SetupTimestamp;
 
 			vSet.AddNodeAndIndex(mta, x => x.MemberTypeAssignId, vTestMode);
 			vSet.AddRootRel<RootContainsMemberTypeAssign>(mta, vTestMode);
