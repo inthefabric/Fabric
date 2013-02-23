@@ -117,6 +117,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = pApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
 			memBuild.AddNode(pRootVar);
@@ -165,6 +166,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = pApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
 			memBuild.AddNode(pRootVar);

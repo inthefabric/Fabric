@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -21,7 +22,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"g.addEdge(_V3,_V2,_TP2);"+
 			"_V4=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
-				"Performed:0L"+
+				"Performed:{{UtcNowTicks}}L"+
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP3);"+
 			"g.V('"+typeof(Member).Name+"Id',1L)[0].each{_V5=g.v(it)};"+
@@ -32,16 +33,19 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private long vNewMemberId;
 		private long vNewMtaId;
-		
+		private DateTime vUtcNow;
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vNewMemberId = 43562742344;
 			vNewMtaId = 346137173314;
+			vUtcNow = DateTime.UtcNow;
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<Member>()).Returns(vNewMemberId);
 			MockApiCtx.Setup(x => x.GetSharpflakeId<MemberTypeAssign>()).Returns(vNewMtaId);
+			MockApiCtx.Setup(x => x.UtcNow).Returns(vUtcNow);
 		}
 
 
@@ -61,7 +65,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			string expect = Query
 				.Replace("{{NewMemberId}}", vNewMemberId+"")
-				.Replace("{{NewMtaId}}", vNewMtaId+"");
+				.Replace("{{NewMtaId}}", vNewMtaId+"")
+				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsMember).Name);
