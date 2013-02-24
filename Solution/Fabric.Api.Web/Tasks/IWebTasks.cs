@@ -6,6 +6,8 @@ using Weaver.Interfaces;
 
 namespace Fabric.Api.Web.Tasks {
 
+	//FAB	2/24 9:15am		2/24 x		
+
 	/*================================================================================================*/
 	public interface IWebTasks {
 
@@ -21,10 +23,39 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		App GetAppByName(IApiContext pApiCtx, string pName);
-
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.GetApp()
+		App GetApp(IApiContext pApiCtx, long pAppId);
+		
 		/*--------------------------------------------------------------------------------------------*/
 		User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword);
 
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.UpdateAppName()
+		App UpdateAppName(IApiContext pApiCtx, long pAppId, string pName);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.UpdateAppSecret()
+		App UpdateAppSecret(IApiContext pApiCtx, long pAppId, string pSecret);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.GetMemberOfApp()
+		Member GetMemberOfApp(IApiContext pApiCtx, long pAppId, long pMemberId);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.AddMemberTypeAssign()
+		MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx,
+			long pAppId, long pAssigningMemberId, long pMemberId, long pMemberTypeId);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.AddOauthDomain()
+		OauthDomain AddOauthDomain(IApiContext pApiCtx, long pAppId, string pDomain);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.DeleteOauthDomain()
+		bool DeleteOauthDomain(IApiContext pApiCtx, long pAppId, long pOauthDomainId);
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -47,7 +78,7 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,IWeaverVarAlias<Root> pRootVar, 
 					IWeaverVarAlias<App> pAppVar, long pUserId, out IWeaverVarAlias<Member> pMemVar);
-
+		
 	}
 
 }

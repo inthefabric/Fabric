@@ -6,6 +6,7 @@ using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Interfaces;
+using Weaver.Functions;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -59,14 +60,20 @@ namespace Fabric.Api.Web.Tasks {
 			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
 		}
-
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public App GetApp(IApiContext pApiCtx, long pAppId) {
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { AppId = pAppId }).End();
+			return pApiCtx.DbSingle<App>("GetApp", q);
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword) {
 			var user = new User();
 			user.UserId = pUserId;
 			user.Password = FabricUtil.HashPassword(pPassword);
 
-			WeaverUpdates<User> updates = new WeaverUpdates<User>();
+			var updates = new WeaverUpdates<User>();
 			updates.AddUpdate(user, u => u.Password);
 
 			IWeaverQuery q = 
@@ -75,6 +82,117 @@ namespace Fabric.Api.Web.Tasks {
 				.End();
 
 			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public App UpdateAppName(IApiContext pApiCtx, long pAppId, string pName) {
+			var app = new App();
+			app.AppId = pAppId;
+			app.Name = pName;
+			
+			var updates = new WeaverUpdates<App>();
+			updates.AddUpdate(app, x => x.Name);
+			
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(app)
+					.UpdateEach(updates)
+					.End();
+					
+			return pApiCtx.DbSingle<App>("UpdateAppName", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public App UpdateAppSecret(IApiContext pApiCtx, long pAppId, string pSecret) {
+			var app = new App();
+			app.AppId = pAppId;
+			app.Secret = pSecret;
+			
+			var updates = new WeaverUpdates<App>();
+			updates.AddUpdate(app, x => x.Secret);
+			
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(app)
+					.UpdateEach(updates)
+					.End();
+			
+			return pApiCtx.DbSingle<App>("UpdateAppSecret", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public Member GetMemberOfApp(IApiContext pApiCtx, long pAppId, long pMemberId) {
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
+				.DefinesMemberList.ToMember
+					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
+				.End();
+			
+			return pApiCtx.DbSingle<Member>("GetMemberOfApp", q);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx, long pAppId,
+										long pAssigningMemberId, long pMemberId, long pMemberTypeId) {
+			var txb = new TxBuilder();
+			var mem = new Member { MemberId = pMemberId};
+			var memAlias = new WeaverVarAlias<Member>(txb.Transaction);
+			var mtaAlias = new WeaverVarAlias<MemberTypeAssign>(txb.Transaction);
+			
+			txb.Transaction.AddQuery(
+				ApiFunc.NewPathFromIndex(mem)
+					.ToNodeVar(memAlias)
+				.HasMemberTypeAssign.ToMemberTypeAssign
+					.ToNodeVar(mtaAlias)
+				.InMemberHas
+					.RemoveEach() //remove relationship between Member and MTA
+				.End()
+			);
+			
+			var memBuild = new MemberBuilder(txb, pMemberId);
+			memBuild.AddToHasHistoricMemberTypeAssignList(mtaAlias);
+			
+			////
+			
+			var mta = new MemberTypeAssign();
+			mta.MemberTypeAssignId = pApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			mta.Performed = pApiCtx.UtcNow.Ticks;
+			
+			var mtaBuild = new MemberTypeAssignBuilder(txb, mta);
+			mtaBuild.AddNode();
+			mtaBuild.SetInMemberCreates(pAssigningMemberId);
+			mtaBuild.SetInMemberHas(memAlias);
+			mtaBuild.SetUsesMemberType(pMemberTypeId);
+			
+			txb.Finish(mtaBuild.NodeVar);
+			return pApiCtx.DbSingle<MemberTypeAssign>("AddMemberTypeAssign", txb.Transaction);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public OauthDomain AddOauthDomain(IApiContext pApiCtx, long pAppId, string pDomain) {
+			var txb = new TxBuilder();
+			
+			var od = new OauthDomain();
+			od.OauthDomainId = pApiCtx.GetSharpflakeId<OauthDomain>();
+			od.Domain = pDomain;
+			
+			var odBuild = new OauthDomainBuilder(txb, od);
+			odBuild.AddNode();
+			odBuild.SetUsesApp(pAppId);
+			
+			txb.Finish(odBuild.NodeVar);
+			return pApiCtx.DbSingle<OauthDomain>("AddOauthDomain", txb.Transaction);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public bool DeleteOauthDomain(IApiContext pApiCtx, long pAppId, long pOauthDomainId) {
+			IWeaverQuery q =
+				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
+				.InOauthDomainListUses.FromOauthDomain
+					.Has(x => x.OauthDomainId, WeaverFuncHasOp.EqualTo, pOauthDomainId)
+					.RemoveEach()
+				.End();
+				
+			pApiCtx.DbData("DeleteOauthDomain", q);
+			return true;
 		}
 
 
