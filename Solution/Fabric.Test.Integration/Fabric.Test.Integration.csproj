@@ -62,6 +62,8 @@
     <Compile Include="FabApiModify\Tasks\XGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\XGetUrlByAbsoluteUrl.cs" />
     <Compile Include="FabApiModify\XCreateUrl.cs" />
+    <Compile Include="FabApiWeb\Tasks\XUpdateAppSecret.cs" />
+    <Compile Include="FabApiWeb\Tasks\XUpdateAppName.cs" />
     <Compile Include="FabApiWeb\Tasks\XGetApp.cs" />
     <Compile Include="FabApiWeb\XChangeUserPassword.cs" />
     <Compile Include="FabApiWeb\Tasks\XWebTasks.cs" />

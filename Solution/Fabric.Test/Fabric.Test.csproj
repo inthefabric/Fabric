@@ -63,6 +63,8 @@
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
+    <Compile Include="FabApiWeb\Tasks\TUpdateAppSecret.cs" />
+    <Compile Include="FabApiWeb\Tasks\TUpdateAppName.cs" />
     <Compile Include="FabApiWeb\Tasks\TGetApp.cs" />
     <Compile Include="FabApiWeb\Tasks\TWebTasks.cs" />
     <Compile Include="FabApiWeb\Tasks\TUpdateUserPassword.cs" />
