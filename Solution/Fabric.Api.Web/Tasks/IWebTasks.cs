@@ -6,7 +6,8 @@ using Weaver.Interfaces;
 
 namespace Fabric.Api.Web.Tasks {
 
-	//FAB	2/24 9:15am		2/24 x		
+	//FAB	2/24 9:15am		2/24 10:30am		
+	//Implemented several new Web funcs/tasks. Fixed issues with MemberTypeAssigns elsewhere.
 
 	/*================================================================================================*/
 	public interface IWebTasks {

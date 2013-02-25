@@ -486,6 +486,7 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddMember()
 		public void TxAddMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
 							IWeaverVarAlias<User> pUserVar, out IWeaverVarAlias<Member> pMemVar) {
 			var mem = new Member();
@@ -554,6 +555,7 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddDataProvMember()
 		public void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,
 							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<App> pAppVar, long pUserId,
 							out IWeaverVarAlias<Member> pMemVar) {
