@@ -29,11 +29,9 @@ namespace Fabric.Api.Web.Tasks {
 		User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword);
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.UpdateAppName()
 		App UpdateAppName(IApiContext pApiCtx, long pAppId, string pName);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.UpdateAppSecret()
 		App UpdateAppSecret(IApiContext pApiCtx, long pAppId, string pSecret);
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -46,7 +44,7 @@ namespace Fabric.Api.Web.Tasks {
 			long pAppId, long pAssigningMemberId, long pMemberId, long pMemberTypeId);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.AddOauthDomain()
+		//TEST: WebTasks.AddOauthDomain() integration
 		OauthDomain AddOauthDomain(IApiContext pApiCtx, long pAppId, string pDomain);
 		
 		/*--------------------------------------------------------------------------------------------*/
