@@ -4,7 +4,7 @@ using Fabric.Api.Web.Tasks;
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class RemoveOauthDomain : BaseWebFunc<SuccessResult> { //TEST: RemoveOauthDomain
+	public class RemoveOauthDomain : BaseWebFunc<SuccessResult> {
 
 		public const string AppIdParam = "AppId";
 		public const string OauthDomainIdParam = "OauthDomainId";
