@@ -76,16 +76,31 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrNameNull() {
+		public void ErrDomainNull() {
 			vDomain = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrNameLength() {
+		public void ErrDomainLength() {
 			vDomain = new string('a', 257);
 			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("bad one.com")]
+		[TestCase("bad_2.com")]
+		[TestCase("http://fail.com")]
+		[TestCase("somewhere.com/fail")]
+		[TestCase("fail0")]
+		[TestCase("fail0.")]
+		[TestCase("fail1.x")]
+		[TestCase("fail7.xxxOOOx")]
+		[TestCase("numericalTldFail.abc1")]
+		public void ErrDomainInvalid(string pDomain) {
+			vDomain = pDomain;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
 	}

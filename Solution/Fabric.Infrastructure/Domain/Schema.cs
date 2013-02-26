@@ -23,6 +23,9 @@ namespace Fabric.Infrastructure.Domain {
 		private const string ValidTitleRegex = 
 			@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\"+"/!@#$%&=_,:;'\"<>~]*$";
 
+		public const string ValidOauthDomainRegexp =
+			@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$";
+
 		public List<WeaverNodeSchema> Nodes { get; private set; }
 		public List<WeaverRelSchema> Rels { get; private set; }
 
@@ -393,6 +396,7 @@ namespace Fabric.Infrastructure.Domain {
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthDomain, "Domain", typeof(string));
 				p.LenMax = 256;
+				p.ValidRegex = ValidOauthDomainRegexp;
 			
 			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
 			oauthGrant.IsInternal = true;

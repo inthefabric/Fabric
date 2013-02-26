@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/21/2013 5:17:08 PM
+// Generated on 2/26/2013 3:55:59 PM
 
 using System;
 using System.Linq.Expressions;
@@ -3151,6 +3151,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(256)]
+		//[PropValidRegex(@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$")]
 		public virtual string Domain { get; set; }
 
 

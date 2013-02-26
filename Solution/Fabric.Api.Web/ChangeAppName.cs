@@ -5,7 +5,7 @@ using Fabric.Domain;
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class ChangeAppName : BaseWebFunc<SuccessResult> {
+	public class ChangeAppName : BaseWebFunc<SuccessResult> { //TODO: check duplicate name
 
 		public const string AppIdParam = "AppId";
 		public const string NameParam = "Name";

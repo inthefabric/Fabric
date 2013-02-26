@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/19/2013 2:14:13 PM
+// Generated on 2/26/2013 3:55:59 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -1241,6 +1241,7 @@ namespace Fabric.Infrastructure.Domain {
 		public void OauthDomainDomain(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
 			LengthLessThanOrEqual(pParamName, pValue, 256);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
