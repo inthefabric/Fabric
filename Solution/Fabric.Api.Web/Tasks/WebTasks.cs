@@ -176,7 +176,22 @@ namespace Fabric.Api.Web.Tasks {
 			txb.Finish(mtaBuild.NodeVar);
 			return pApiCtx.DbSingle<MemberTypeAssign>("AddMemberTypeAssign", txb.Transaction);
 		}
-		
+
+		/*--------------------------------------------------------------------------------------------*/
+		public OauthDomain GetOauthDomainByDomain(IApiContext pApiCtx, long pAppId, string pDomain) {
+			string propName = WeaverUtil.GetPropertyName<OauthDomain>(x => x.Domain);
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==DOM}";
+
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
+				.InOauthDomainListUses.FromOauthDomain
+					.CustomStep(filterStep)
+				.End();
+
+			q.AddParam("DOM", new WeaverQueryVal(pDomain.ToLower(), false));
+			return pApiCtx.DbSingle<OauthDomain>("GetOauthDomainByDomain", q);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomain AddOauthDomain(IApiContext pApiCtx, long pAppId, string pDomain) {
 			var txb = new TxBuilder();

@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class AddOauthDomain : BaseWebFunc<OauthDomain> { //TOOD: check duplicate domain
+	public class AddOauthDomain : BaseWebFunc<OauthDomain> {
 
 		public const string AppIdParam = "AppId";
 		public const string DomainParam = "Domain";
@@ -33,6 +33,10 @@ namespace Fabric.Api.Web {
 			
 			if ( app == null ) {
 				throw new FabNotFoundFault(typeof(App), AppIdParam+"="+vAppId);
+			}
+
+			if ( Tasks.GetOauthDomainByDomain(ApiCtx, vAppId, vDomain) != null ) {
+				throw new FabDuplicateFault(typeof(OauthDomain), DomainParam, vDomain);
 			}
 			
 			return Tasks.AddOauthDomain(ApiCtx, vAppId, vDomain);

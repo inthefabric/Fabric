@@ -37,8 +37,8 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(AppBook, SetupOauth.DomBook1)]
-		[TestCase(AppGal, SetupOauth.DomGal2)]
+		[TestCase(AppBook, "book.com")]
+		[TestCase(AppGal, "gallery.com")]
 		public void Success(SetupUsers.AppId pAppId, string pDomain) {
 			vAppId = (long)pAppId;
 			vDomain = pDomain;

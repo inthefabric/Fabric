@@ -1,6 +1,8 @@
 using Fabric.Api.Web;
 using Fabric.Api.Web.Results;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
@@ -23,6 +25,10 @@ namespace Fabric.Test.FabApiWeb {
 			vAppId = 126264;
 			vName = "New App Name";
 			vResultApp = new App();
+
+			MockTasks
+				.Setup(x => x.GetAppByName(MockApiCtx.Object, vName))
+				.Returns((App)null);
 
 			MockTasks
 				.Setup(x => x.UpdateAppName(MockApiCtx.Object, vAppId, vName))
@@ -60,6 +66,18 @@ namespace Fabric.Test.FabApiWeb {
 
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.False(vResult.Success, "Incorrect Result.Success.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrDuplicateName() {
+			MockTasks
+				.Setup(x => x.GetAppByName(MockApiCtx.Object, vName))
+				.Returns(new App());
+
+			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
 		}
 
 	}

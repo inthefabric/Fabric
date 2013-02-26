@@ -33,6 +33,10 @@ namespace Fabric.Test.FabApiWeb {
 				.Returns(vResultApp);
 
 			MockTasks
+				.Setup(x => x.GetOauthDomainByDomain(MockApiCtx.Object, vAppId, vDomain))
+				.Returns((OauthDomain)null);
+
+			MockTasks
 				.Setup(x => x.AddOauthDomain(MockApiCtx.Object, vAppId, vDomain))
 				.Returns(vResultDomain);
 		}
@@ -65,6 +69,16 @@ namespace Fabric.Test.FabApiWeb {
 		public void ErrAppNotFound() {
 			MockTasks.Setup(x => x.GetApp(MockApiCtx.Object, vAppId)).Returns((App)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrDuplicateDomain() {
+			MockTasks
+				.Setup(x => x.GetOauthDomainByDomain(MockApiCtx.Object, vAppId, vDomain))
+				.Returns(new OauthDomain());
+
+			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
 		}
 
 	}

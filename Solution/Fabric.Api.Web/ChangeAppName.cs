@@ -1,11 +1,12 @@
 ﻿using Fabric.Api.Web.Results;
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class ChangeAppName : BaseWebFunc<SuccessResult> { //TODO: check duplicate name
+	public class ChangeAppName : BaseWebFunc<SuccessResult> {
 
 		public const string AppIdParam = "AppId";
 		public const string NameParam = "Name";
@@ -29,6 +30,10 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
+			if ( Tasks.GetAppByName(ApiCtx, vName) != null ) {
+				throw new FabDuplicateFault(typeof(App), NameParam, vName);
+			}
+
 			App app = Tasks.UpdateAppName(ApiCtx, vAppId, vName);
 			return new SuccessResult(app != null);
 		}
