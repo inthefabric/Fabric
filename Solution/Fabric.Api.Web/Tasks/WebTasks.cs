@@ -130,7 +130,7 @@ namespace Fabric.Api.Web.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx, long pAppId,
+		public MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx,
 										long pAssigningMemberId, long pMemberId, long pMemberTypeId) {
 			var txb = new TxBuilder();
 			var mem = new Member { MemberId = pMemberId};
@@ -146,8 +146,12 @@ namespace Fabric.Api.Web.Tasks {
 					.RemoveEach() //remove relationship between Member and MTA
 				.End()
 			);
+
+			txb.RegisterVarWithTxBuilder(memAlias);
+			txb.RegisterVarWithTxBuilder(mtaAlias);
 			
 			var memBuild = new MemberBuilder(txb, pMemberId);
+			memBuild.SetNodeVar(memAlias);
 			memBuild.AddToHasHistoricMemberTypeAssignList(mtaAlias);
 			
 			////

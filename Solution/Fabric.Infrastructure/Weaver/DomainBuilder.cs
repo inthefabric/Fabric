@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Weaver.Interfaces;
 using Weaver.Items;
 
@@ -42,6 +43,15 @@ namespace Fabric.Infrastructure.Weaver {
 			TxBuild.AddNode<T, TRootRel>(Node, pRootVar, out nodeVar);
 			InRootContains = pRootVar;
 			NodeVar = nodeVar;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetNodeVar(IWeaverVarAlias<T> pNodeVar) {
+			if ( NodeVar != null ) {
+				throw new Exception("NodeVar is already set.");
+			}
+
+			NodeVar = pNodeVar;
 		}
 		
 	}

@@ -1,7 +1,6 @@
 ﻿using Fabric.Api.Web.Results;
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Web {
@@ -57,7 +56,7 @@ namespace Fabric.Api.Web {
 			////
 			
 			MemberTypeAssign mta = Tasks.AddMemberTypeAssign(
-				ApiCtx, vAppId, vAssigningMemberId, vMemberId, vMemberTypeId);
+				ApiCtx, vAssigningMemberId, vMemberId, vMemberTypeId);
 			return new SuccessResult(mta != null);
 		}
 
