@@ -39,14 +39,14 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
-			Member mem = Tasks.GetMemberOfApp(ApiCtx, vMemberId, vAppId);
+			Member mem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vMemberId);
 			
 			if ( mem == null ) {
 				throw new FabNotFoundFault(typeof(Member),
 					AppIdParam+"="+vAppId+"&"+MemberIdParam+"="+vMemberId);
 			}
-			
-			Member assigningMem = Tasks.GetMemberOfApp(ApiCtx, vAssigningMemberId, vAppId);
+
+			Member assigningMem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vAssigningMemberId);
 			
 			if ( assigningMem == null ) {
 				throw new FabNotFoundFault(typeof(Member),

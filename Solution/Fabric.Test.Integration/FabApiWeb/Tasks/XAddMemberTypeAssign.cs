@@ -44,10 +44,6 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			NodeConnections conn = GetNodeConnections(movedMta);
 			conn.AssertRel<MemberHasHistoricMemberTypeAssign, Member>(false, vMemberId);
 
-			Member updateMem = GetNode<Member>(vMemberId);
-			Assert.NotNull(updateMem, "New Member was not created.");
-			conn = GetNodeConnections(updateMem);
-
 			////
 
 			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
