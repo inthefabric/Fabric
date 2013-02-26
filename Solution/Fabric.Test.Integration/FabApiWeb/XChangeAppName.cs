@@ -8,11 +8,10 @@ namespace Fabric.Test.Integration.FabApiWeb {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XChangeUserPassword : XBaseWebFunc {
+	public class XChangeAppName : XBaseWebFunc {
 
-		private long vUserId;
-		private string vOldPass;
-		private string vNewPass;
+		private long vAppId;
+		private string vName;
 		
 		private SuccessResult vResult;
 		
@@ -23,14 +22,13 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vUserId = (long)UserZach;
-			vOldPass = "asdfasdf";
-			vNewPass = "N3wB3tt3rPa55w0rd";
+			vAppId = (long)AppGal;
+			vName = "My New App";
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new ChangeUserPassword(Tasks, vUserId, vOldPass, vNewPass);
+			var func = new ChangeAppName(Tasks, vAppId, vName);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -51,8 +49,8 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrUserIdValue() {
-			vUserId = 0;
+		public void ErrAppIdValue() {
+			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
@@ -60,17 +58,24 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrPasswordNull() {
-			vNewPass = null;
+		public void ErrNameNull() {
+			vName = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(7)]
-		[TestCase(33)]
-		public void ErrPasswordLength(int pLength) {
-			vNewPass = new string('a', pLength);
+		[TestCase(2)]
+		[TestCase(65)]
+		public void ErrNameLength(int pLength) {
+			vName = new string('a', pLength);
 			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrNameInvalid() {
+			vName = "test`";
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
 	}

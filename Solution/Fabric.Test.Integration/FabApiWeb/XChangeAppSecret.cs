@@ -8,11 +8,9 @@ namespace Fabric.Test.Integration.FabApiWeb {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XChangeUserPassword : XBaseWebFunc {
+	public class XChangeAppSecret : XBaseWebFunc {
 
-		private long vUserId;
-		private string vOldPass;
-		private string vNewPass;
+		private long vAppId;
 		
 		private SuccessResult vResult;
 		
@@ -23,14 +21,12 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vUserId = (long)UserZach;
-			vOldPass = "asdfasdf";
-			vNewPass = "N3wB3tt3rPa55w0rd";
+			vAppId = (long)AppGal;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new ChangeUserPassword(Tasks, vUserId, vOldPass, vNewPass);
+			var func = new ChangeAppSecret(Tasks, vAppId);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -51,26 +47,9 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrUserIdValue() {
-			vUserId = 0;
+		public void ErrAppIdValue() {
+			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrPasswordNull() {
-			vNewPass = null;
-			TestUtil.CheckThrows<FabArgumentNullFault>(true, TestGo);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(7)]
-		[TestCase(33)]
-		public void ErrPasswordLength(int pLength) {
-			vNewPass = new string('a', pLength);
-			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
 		}
 
 	}

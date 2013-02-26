@@ -5,7 +5,7 @@ using Fabric.Domain;
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class ChangeAppName : BaseWebFunc<SuccessResult> { //TEST: ChangeAppName
+	public class ChangeAppName : BaseWebFunc<SuccessResult> {
 
 		public const string AppIdParam = "AppId";
 		public const string NameParam = "Name";
@@ -29,7 +29,6 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
-			//Assume AppId is valid
 			App app = Tasks.UpdateAppName(ApiCtx, vAppId, vName);
 			return new SuccessResult(app != null);
 		}

@@ -5,7 +5,7 @@ using Fabric.Domain;
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class ChangeAppSecret : BaseWebFunc<SuccessResult> { //TEST: ChangeAppSecret
+	public class ChangeAppSecret : BaseWebFunc<SuccessResult> {
 
 		public const string AppIdParam = "AppId";
 
@@ -25,7 +25,6 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
-			//Assume AppId is valid
 			App app = Tasks.UpdateAppSecret(ApiCtx, vAppId, ApiCtx.Code32);
 			return new SuccessResult(app != null);
 		}

@@ -29,8 +29,6 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			vEmail = "new@user.com";
 			vName = "NewUser";
 			vPassword = "NewPassword";
-
-			ApiCtx.SetAppUserId((long)AppFab, (long)UserFab);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
