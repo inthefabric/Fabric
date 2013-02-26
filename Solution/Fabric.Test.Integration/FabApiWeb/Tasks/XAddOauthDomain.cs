@@ -41,7 +41,6 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreNotEqual(0, newDom.OauthDomainId, "Incorrect OauthDomainId.");
 			Assert.AreEqual(vDomain, newDom.Domain, "Incorrect Result.Domain.");
 
-
 			NodeConnections conn = GetNodeConnections(newDom);
 			conn.AssertRelCount(1, 1);
 			conn.AssertRel<RootContainsOauthDomain, Root>(false, 0);

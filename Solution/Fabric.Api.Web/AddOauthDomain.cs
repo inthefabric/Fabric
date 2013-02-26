@@ -5,7 +5,7 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class AddOauthDomain : BaseWebFunc<OauthDomain> { //TEST: AddOauthDomain
+	public class AddOauthDomain : BaseWebFunc<OauthDomain> {
 
 		public const string AppIdParam = "AppId";
 		public const string DomainParam = "Domain";
@@ -25,6 +25,8 @@ namespace Fabric.Api.Web {
 		protected override void ValidateParams() {
 			Tasks.Validator.AppId(vAppId, AppIdParam);
 			Tasks.Validator.OauthDomainDomain(vDomain, DomainParam);
+
+			//TODO: Add domain checks
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

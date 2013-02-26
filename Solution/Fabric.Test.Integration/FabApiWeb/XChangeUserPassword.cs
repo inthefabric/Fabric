@@ -1,5 +1,7 @@
 ﻿using Fabric.Api.Web;
 using Fabric.Api.Web.Results;
+using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -45,6 +47,10 @@ namespace Fabric.Test.Integration.FabApiWeb {
 
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Result.Success should not be null.");
+
+			User upUser = GetNode<User>(vUserId);
+			Assert.AreEqual(FabricUtil.HashPassword(vNewPass), upUser.Password,
+				"Target User.Password not updated.");
 		}
 
 				

@@ -39,6 +39,9 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vAppId, result.AppId, "Incorrect AppId.");
 			Assert.AreEqual(vName, result.Name, "Incorrect Name.");
+
+			App upApp = GetNode<App>(vAppId);
+			Assert.AreEqual(vName, upApp.Name, "Target App.Name not updated.");
 		}
 
 	}

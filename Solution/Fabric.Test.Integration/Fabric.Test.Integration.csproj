@@ -62,6 +62,7 @@
     <Compile Include="FabApiModify\Tasks\XGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\XGetUrlByAbsoluteUrl.cs" />
     <Compile Include="FabApiModify\XCreateUrl.cs" />
+    <Compile Include="FabApiWeb\XAddOauthDomain.cs" />
     <Compile Include="FabApiWeb\XChangeAppSecret.cs" />
     <Compile Include="FabApiWeb\XChangeAppName.cs" />
     <Compile Include="FabApiWeb\Tasks\XAddMemberTypeAssign.cs" />

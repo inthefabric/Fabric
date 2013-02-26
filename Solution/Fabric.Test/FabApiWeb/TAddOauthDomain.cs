@@ -1,61 +1,70 @@
-﻿using Fabric.Api.Web;
-using Fabric.Api.Web.Results;
+using Fabric.Api.Web;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
+using Moq;
 using NUnit.Framework;
 
-namespace Fabric.Test.Integration.FabApiWeb {
+namespace Fabric.Test.FabApiWeb {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XChangeAppSecret : XBaseWebFunc {
+	public class TAddOauthDomain : TBaseWebFunc {
 
 		private long vAppId;
+		private string vDomain;
+
+		private App vResultApp;
+		private OauthDomain vResultDomain;
+		private OauthDomain vResult;
 		
-		private SuccessResult vResult;
 		
-	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			base.TestSetUp();
-			IsReadOnlyTest = true;
+			vAppId = 126264;
+			vDomain = "testing.com";
 
-			vAppId = (long)AppGal;
+			vResultApp = new App();
+			vResultDomain = new OauthDomain();
+
+			MockTasks
+				.Setup(x => x.GetApp(MockApiCtx.Object, vAppId))
+				.Returns(vResultApp);
+
+			MockTasks
+				.Setup(x => x.AddOauthDomain(MockApiCtx.Object, vAppId, vDomain))
+				.Returns(vResultDomain);
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new ChangeAppSecret(Tasks, vAppId);
-			vResult = func.Go(ApiCtx);
+			var func = new AddOauthDomain(MockTasks.Object, vAppId, vDomain);
+			vResult = func.Go(MockApiCtx.Object);
 		}
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
-			IsReadOnlyTest = false;
-
-			App oldApp = GetNode<App>(vAppId);
-
 			TestGo();
 
 			Assert.NotNull(vResult, "Result should not be null.");
-			Assert.True(vResult.Success, "Result.Success should not be null.");
+			Assert.AreEqual(vResultDomain, vResult, "Incorrect result.");
 
-			App upApp = GetNode<App>(vAppId);
-			Assert.AreNotEqual(oldApp.Secret, upApp.Secret, "Target App.Secret not updated.");
+			MockValidator.Verify(x => x.AppId(vAppId, AddOauthDomain.AppIdParam), Times.Once());
+			MockValidator.Verify(x => x.OauthDomainDomain(vDomain, AddOauthDomain.DomainParam),
+				Times.Once());
 		}
 
-				
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrAppIdValue() {
-			vAppId = 0;
-			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
+		public void ErrAppNotFound() {
+			MockTasks.Setup(x => x.GetApp(MockApiCtx.Object, vAppId)).Returns((App)null);
+			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 
 	}

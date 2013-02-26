@@ -42,6 +42,9 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vUserId, result.UserId, "Incorrect UserId.");
 			Assert.AreEqual(expectPass, result.Password, "Incorrect Password.");
+
+			User upUser = GetNode<User>(vUserId);
+			Assert.AreEqual(expectPass, upUser.Password, "Target User.Password not updated.");
 		}
 
 	}
