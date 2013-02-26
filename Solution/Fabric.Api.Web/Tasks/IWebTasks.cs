@@ -44,11 +44,9 @@ namespace Fabric.Api.Web.Tasks {
 			long pAppId, long pAssigningMemberId, long pMemberId, long pMemberTypeId);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.AddOauthDomain() integration
 		OauthDomain AddOauthDomain(IApiContext pApiCtx, long pAppId, string pDomain);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.DeleteOauthDomain()
 		bool DeleteOauthDomain(IApiContext pApiCtx, long pAppId, long pOauthDomainId);
 		
 

@@ -5,8 +5,8 @@ using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
-using Weaver.Interfaces;
 using Weaver.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -191,8 +191,8 @@ namespace Fabric.Api.Web.Tasks {
 					.RemoveEach()
 				.End();
 				
-			pApiCtx.DbData("DeleteOauthDomain", q);
-			return true;
+			IApiDataAccess data = pApiCtx.DbData("DeleteOauthDomain", q);
+			return (data.GetResultCount() == 1);
 		}
 
 
