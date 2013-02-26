@@ -35,11 +35,9 @@ namespace Fabric.Api.Web.Tasks {
 		App UpdateAppSecret(IApiContext pApiCtx, long pAppId, string pSecret);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.GetMemberOfApp()
 		Member GetMemberOfApp(IApiContext pApiCtx, long pAppId, long pMemberId);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.AddMemberTypeAssign()
 		MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx, long pAssigningMemberId,
 																	long pMemberId, long pMemberTypeId);
 		

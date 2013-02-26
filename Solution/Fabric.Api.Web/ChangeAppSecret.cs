@@ -1,8 +1,6 @@
 ﻿using Fabric.Api.Web.Results;
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Web {
 	

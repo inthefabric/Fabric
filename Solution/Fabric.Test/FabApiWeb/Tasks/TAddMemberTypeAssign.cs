@@ -14,11 +14,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private static readonly string Query =
 
 			"g.V('"+typeof(Member).Name+"Id',{{MemberId}}L)[0]"+
-				".each{_V0=g.v(it)}"+
-			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
-				".each{_V1=g.v(it)}"+
-			".inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
-				".sideEffect{g.removeEdge(it)};"+
+				".each{_V0=g.v(it)};"+
+
+			"_V0.outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
+				".each{_V1=g.v(it)};"+
+
+			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
+				".sideEffect{g.removeEdge(it)}"+
+				".iterate();"+
 
 			"g.addEdge(_V0,_V1,_TP0);"+
 

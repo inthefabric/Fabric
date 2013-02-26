@@ -47,8 +47,8 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		public void AssertRelCount(int pIncoming, int pOutgoing) {
 			string end = " count for "+Node.GetType().Name+".";
-			Assert.AreEqual(pOutgoing, OutRels.Count, "Incorrect OutRels"+end);
 			Assert.AreEqual(pIncoming, InRels.Count, "Incorrect InRels"+end);
+			Assert.AreEqual(pOutgoing, OutRels.Count, "Incorrect OutRels"+end);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

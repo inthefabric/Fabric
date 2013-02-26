@@ -1,8 +1,5 @@
 ﻿using Fabric.Api.Web.Results;
 using Fabric.Api.Web.Tasks;
-using Fabric.Domain;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Web {
 	
@@ -31,7 +28,6 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
-			//Assume AppId is valid
 			bool result = Tasks.DeleteOauthDomain(ApiCtx, vAppId, vOauthDomainId);
 			return new SuccessResult(result);
 		}

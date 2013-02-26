@@ -133,21 +133,28 @@ namespace Fabric.Api.Web.Tasks {
 		public MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx,
 										long pAssigningMemberId, long pMemberId, long pMemberTypeId) {
 			var txb = new TxBuilder();
+
 			var mem = new Member { MemberId = pMemberId};
-			var memAlias = new WeaverVarAlias<Member>(txb.Transaction);
-			var mtaAlias = new WeaverVarAlias<MemberTypeAssign>(txb.Transaction);
+			IWeaverVarAlias<Member> memAlias;
+			txb.GetNode(mem, out memAlias);
 			
+			var mtaAlias = new WeaverVarAlias<MemberTypeAssign>(txb.Transaction);
+
 			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromIndex(mem)
-					.ToNodeVar(memAlias)
+				ApiFunc.NewPathFromVar(memAlias, false)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.ToNodeVar(mtaAlias)
+				.End()
+			);
+		
+			txb.Transaction.AddQuery(
+				ApiFunc.NewPathFromVar(mtaAlias, false)
 				.InMemberHas
 					.RemoveEach() //remove relationship between Member and MTA
+					.Iterate()
 				.End()
 			);
 
-			txb.RegisterVarWithTxBuilder(memAlias);
 			txb.RegisterVarWithTxBuilder(mtaAlias);
 			
 			var memBuild = new MemberBuilder(txb, pMemberId);
@@ -165,7 +172,7 @@ namespace Fabric.Api.Web.Tasks {
 			mtaBuild.SetInMemberCreates(pAssigningMemberId);
 			mtaBuild.SetInMemberHas(memAlias);
 			mtaBuild.SetUsesMemberType(pMemberTypeId);
-			
+
 			txb.Finish(mtaBuild.NodeVar);
 			return pApiCtx.DbSingle<MemberTypeAssign>("AddMemberTypeAssign", txb.Transaction);
 		}
