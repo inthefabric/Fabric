@@ -40,6 +40,8 @@ namespace Fabric.Api.Web {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
 			Member mem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vMemberId);
+
+			//TODO: Prevent ChangeMemberType for DataProvider members
 			
 			if ( mem == null ) {
 				throw new FabNotFoundFault(typeof(Member),
@@ -47,7 +49,9 @@ namespace Fabric.Api.Web {
 			}
 
 			Member assigningMem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vAssigningMemberId);
-			
+
+			//TODO: Prevent ChangeMemberType from being performed by non-Admin/Staff/owner/dp memebrs
+
 			if ( assigningMem == null ) {
 				throw new FabNotFoundFault(typeof(Member),
 					AppIdParam+"="+vAppId+"&"+AssigningMemberIdParam+"="+vAssigningMemberId);

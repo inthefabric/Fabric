@@ -6,7 +6,6 @@ _Local/*
 */obj/*
 *.Publish.xml
 _Publish/*
-Global/GlobalConnectionStrings.config
 VisualizeHg.bat
 Fabric.*.log
 _Publish_*/*
@@ -20,3 +19,4 @@ Weaver.dll.mdb
 *.resources
 Fabric.Test.Integration.csproj-Debug-*.xml
 Fabric.Test.Integration.csproj.test-cache
+Global/GlobalAppSettings.config

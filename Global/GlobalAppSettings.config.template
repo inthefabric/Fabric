@@ -1,0 +1,11 @@
+<appSettings>
+	<add key="Dev_Api" value="localhost:0000" />
+	<add key="Dev_Db" value="localhost:0000" />
+	<add key="Dev_Rex" value="localhost:0000" />
+	<add key="DevLive_Api" value="000.000.000.000" />
+	<add key="DevLive_Db" value="000.000.000.000" />
+	<add key="DevLive_Rex" value="000.000.000.000" />
+	<add key="Prod_Api" value="api.inthefabric.com" />
+	<add key="Prod_Db" value="000.000.000.000" />
+	<add key="Prod_Rex" value="000.000.000.000" />
+</appSettings>

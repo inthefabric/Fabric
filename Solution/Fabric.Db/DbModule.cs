@@ -1,4 +1,5 @@
-﻿using Fabric.Db.Gremlin;
+﻿using System.Configuration;
+using Fabric.Db.Gremlin;
 using Fabric.Infrastructure;
 using Nancy;
 
@@ -7,7 +8,14 @@ namespace Fabric.Db {
 	/*================================================================================================*/
 	public class DbModule : NancyModule {
 
-		public const string GremlinUri = "http://rexster:8182/graphs/Fabric/tp/gremlin";
+#if DEBUG
+		private const string RexKey = "Dev_Rex";
+#else
+		private const string RexKey = "Prod_Rex";
+#endif
+
+		public static readonly string RexUrl = ConfigurationManager.AppSettings[RexKey];
+		public static readonly string GremlinUri = "http://"+RexUrl+"/graphs/Fabric/tp/gremlin";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
