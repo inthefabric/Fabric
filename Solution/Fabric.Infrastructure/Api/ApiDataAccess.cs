@@ -74,7 +74,7 @@ namespace Fabric.Infrastructure.Api {
 			byte[] queryData = Encoding.UTF8.GetBytes(ApiCtx.ContextId+Query);
 
 			using ( var wc = new WebClient() ) {
-				ResultBytes = wc.UploadData(ApiCtx.DbServerUrl, "POST", queryData);
+				ResultBytes = wc.UploadData(ApiCtx.DbServerUrl+"/gremlin", "POST", queryData);
 			}
 
 			return Encoding.UTF8.GetString(ResultBytes);

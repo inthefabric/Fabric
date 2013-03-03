@@ -5,6 +5,7 @@ using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
@@ -106,6 +107,9 @@ namespace Fabric.Api.Traversal {
 			else {
 				vModel.Error = FabError.ForInternalServerError();
 				vModel.HttpStatus = HttpStatusCode.InternalServerError;
+				Log.Error("Unhandled Traversal Exception:\n"+pEx);
+				//vModel.Error.Message += "// DETAILS:<br/>"+
+				//	pEx.ToString().Replace("\n", "<br/>")+"<br/>....."+vApiCtx.DbServerUrl;
 			}
 
 			vModel.Resp.HttpStatus = (int)vModel.HttpStatus;

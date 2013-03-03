@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Web.Configuration;
+﻿using System.Web.Configuration;
 using Fabric.Api.Dto.Meta;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -20,8 +19,8 @@ namespace Fabric.Api {
 		private const string DbKey = "Prod_Db";
 #endif
 
-		public static readonly string ApiUrl = WebConfigurationManager.AppSettings[ApiKey];
-		public static readonly string DbUrl = WebConfigurationManager.AppSettings[DbKey];
+		public static readonly string ApiUrl = "http://"+WebConfigurationManager.AppSettings[ApiKey];
+		public static readonly string DbUrl = "http://"+WebConfigurationManager.AppSettings[DbKey];
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,8 +30,8 @@ namespace Fabric.Api {
 
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 9, "322adcbc3087");
-				Version.SetDate(2013, 2, 26);
+				Version.SetBuild(0, 1, 10, "322adcbc3087");
+				Version.SetDate(2013, 3, 3);
 			}
 		}
 

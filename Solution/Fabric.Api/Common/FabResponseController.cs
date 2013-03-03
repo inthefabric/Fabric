@@ -33,7 +33,7 @@ namespace Fabric.Api.Common {
 		protected override sealed Response BuildResponse() {
 			FabResp.StartEvent();
 			FabResp.HttpStatus = (int)HttpStatusCode.OK;
-			FabResp.BaseUri = "http://"+BaseModule.ApiUrl;
+			FabResp.BaseUri = BaseModule.ApiUrl;
 			FabResp.RequestUri = NancyReq.Path;
 			ExecuteOauthLookup();
 			return BuildFabResponse();
