@@ -13,7 +13,6 @@ namespace Fabric.Infrastructure.Api {
 		IDictionary<string, string> Params { get; }
 		string Query { get; }
 
-		byte[] ResultBytes { get; }
 		string ResultString { get; }
 		IDbResult Result { get; }
 		IList<IDbDto> ResultDtoList { get; }

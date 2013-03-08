@@ -10,17 +10,12 @@ namespace Fabric.Api {
 	public abstract class BaseModule : NancyModule {
 
 		protected static FabMetaVersion Version;
+		private static string ConfPrefix;
 
-#if DEBUG
-		private const string ApiKey = "Dev_Api";
-		private const string DbKey = "Dev_Db";
-#else
-		private const string ApiKey = "Prod_Api";
-		private const string DbKey = "Prod_Db";
-#endif
-
-		public static readonly string ApiUrl = "http://"+WebConfigurationManager.AppSettings[ApiKey];
-		public static readonly string DbUrl = "http://"+WebConfigurationManager.AppSettings[DbKey];
+		public static string ApiUrl;
+		public static int RexNodes;
+		public static string[] RexUrls;
+		public static string[] GremlinUrls;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,16 +23,35 @@ namespace Fabric.Api {
 		protected BaseModule() {
 			Log.ConfigureOnce();
 
+			if ( ConfPrefix == null ) {
+#if !DEBUG
+				ConfPrefix = "Prod_";
+#elif LIVE
+				ConfPrefix = "DevLive_";
+#else
+				ConfPrefix = "Dev_";
+#endif
+				ApiUrl = "http://"+WebConfigurationManager.AppSettings[ConfPrefix+"Api"];
+				RexNodes = int.Parse(WebConfigurationManager.AppSettings[ConfPrefix+"RexNodes"]);
+				RexUrls = new string[RexNodes];
+				GremlinUrls = new string[RexNodes];
+
+				for ( int i = 0 ; i < RexNodes ; ++i ) {
+					RexUrls[i] = WebConfigurationManager.AppSettings[ConfPrefix+"Rex"+(i+1)];
+					GremlinUrls[i] = "http://"+RexUrls[i]+"/graphs/Fabric/tp/gremlin";
+				}
+			}
+
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 10, "322adcbc3087");
-				Version.SetDate(2013, 3, 3);
+				Version.SetBuild(0, 1, 11, "71e6dbb39e75");
+				Version.SetDate(2013, 3, 8);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
-			return new ApiContext(DbUrl);
+			return new ApiContext(GremlinUrls[0]);
 		}
 
 	}

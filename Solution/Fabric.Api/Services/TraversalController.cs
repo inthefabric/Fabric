@@ -4,6 +4,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Traversal;
 using Fabric.Api.Util;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;

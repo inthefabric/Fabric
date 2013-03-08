@@ -11,7 +11,7 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public class ApiContext : IApiContext {
 
-		public string DbServerUrl { get; private set; }
+		public string GremlinUrl { get; private set; }
 
 		public Guid ContextId { get; private set; }
 		public long UserId { get; private set; }
@@ -23,9 +23,9 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiContext(string pDbServerUrl) {
+		public ApiContext(string pGremlinUrl) {
 			ContextId = Guid.NewGuid();
-			DbServerUrl = pDbServerUrl;
+			GremlinUrl = pGremlinUrl;
 			UserId = -1;
 			AppId = -1;
 			//MemberId = -1;

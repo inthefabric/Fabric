@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Fabric.Db.Gremlin;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Weaver.Interfaces;
@@ -10,8 +9,6 @@ namespace Fabric.Test.Integration.Common {
 
 	/*================================================================================================*/
 	public class TestApiDataAccess : ApiDataAccess {
-
-		public const string GremlinUri = "http://rexster:8182/graphs/FabricTest/tp/gremlin";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,14 +23,9 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string GetResultString() {
+		protected override string GetResultString(string pQuery) {
 			long t = DateTime.UtcNow.Ticks;
-
-			string q = CleanQueryIndexIds(Query);
-			var qh = new GremlinController(ApiCtx.ContextId, q, GremlinUri);
-			string json = qh.GetJson();
-
-			//TestUtil.LogWeaverScript(Script, "");
+			string json = base.GetResultString(CleanQueryIndexIds(pQuery));
 			Log.Info("Query: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			Log.Info("");
 			return json;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Db.Gremlin;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -10,7 +9,6 @@ namespace Fabric.Test.Integration.Common {
 
 	/*================================================================================================*/
 	public class TestApiDataAccess<T> : ApiDataAccess<T> where T : IItemWithId, new() {
-
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,14 +23,9 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string GetResultString() {
+		protected override string GetResultString(string pQuery) {
 			long t = DateTime.UtcNow.Ticks;
-
-			string q = TestApiDataAccess.CleanQueryIndexIds(Query);
-			var qh = new GremlinController(ApiCtx.ContextId, q, TestApiDataAccess.GremlinUri);
-			string json = qh.GetJson();
-
-			//TestUtil.LogWeaverScript(Script, "");
+			string json = base.GetResultString(TestApiDataAccess.CleanQueryIndexIds(pQuery));
 			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			Log.Info("");
 			return json;

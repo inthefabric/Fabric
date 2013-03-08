@@ -29,6 +29,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugLive\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
@@ -181,10 +189,6 @@
     <ProjectReference Include="..\Fabric.Api\Fabric.Api.csproj">
       <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
       <Name>Fabric.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Db\Fabric.Db.csproj">
-      <Project>{4109140D-8960-4FD7-A037-8B21AFC6659B}</Project>
-      <Name>Fabric.Db</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>

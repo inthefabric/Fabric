@@ -108,8 +108,6 @@ namespace Fabric.Api.Traversal {
 				vModel.Error = FabError.ForInternalServerError();
 				vModel.HttpStatus = HttpStatusCode.InternalServerError;
 				Log.Error("Unhandled Traversal Exception:\n"+pEx);
-				//vModel.Error.Message += "// DETAILS:<br/>"+
-				//	pEx.ToString().Replace("\n", "<br/>")+"<br/>....."+vApiCtx.DbServerUrl;
 			}
 
 			vModel.Resp.HttpStatus = (int)vModel.HttpStatus;

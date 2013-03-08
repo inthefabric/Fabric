@@ -10,7 +10,7 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public interface IApiContext {
 
-		string DbServerUrl { get; }
+		string GremlinUrl { get; }
 
 		Guid ContextId { get; }
 		long UserId { get; }
