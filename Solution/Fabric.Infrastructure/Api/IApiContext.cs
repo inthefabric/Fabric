@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Fabric.Domain;
+using Fabric.Infrastructure.Analytics;
 using Weaver.Interfaces;
 using Weaver.Items;
 
@@ -16,6 +17,7 @@ namespace Fabric.Infrastructure.Api {
 		long UserId { get; }
 		long AppId { get; }
 		//long MemberId { get; }
+		AnalyticsManager Analytics { get; }
 
 		long DbQueryExecutionCount { get; }
 

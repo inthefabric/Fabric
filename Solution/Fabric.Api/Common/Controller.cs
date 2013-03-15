@@ -74,6 +74,12 @@ namespace Fabric.Api.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
+			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "TotalMs", (int)(vTicks/10000));
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "QueryCount",
+				(int)ApiCtx.DbQueryExecutionCount);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "HttpStatus", (int)vResp.StatusCode);
+
 			//LOGv1: 
 			//	Class, ip, QueryCount, TotalMs, Timestamp, HttpStatus, Method, Path, Exception
 
@@ -94,6 +100,7 @@ namespace Fabric.Api.Common {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
+				ApiCtx.Analytics.TrackEvent("Metrics", "Response", "UnhandledException", 1);
 				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}

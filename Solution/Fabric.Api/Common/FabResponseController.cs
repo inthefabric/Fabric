@@ -8,7 +8,6 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
-using ServiceStack.Text;
 
 namespace Fabric.Api.Common {
 
@@ -93,6 +92,17 @@ namespace Fabric.Api.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
+			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "DbMs", FabResp.DbMs);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "TotalMs", FabResp.TotalMs);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "DataLen", FabResp.DataLen);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "StartIndex", (int)FabResp.StartIndex);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "Count", FabResp.Count);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "HasMore", (FabResp.HasMore ? 1 : 0));
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "QueryCount",
+				(int)ApiCtx.DbQueryExecutionCount);
+			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "HttpStatus", FabResp.HttpStatus);
+
 			//FRv1: (FabResponse log, version 1)
 			//	Class, ip, QueryCount, DbMs, TotalMs, DataLen, StartIndex, Count, HasMore,
 			//		AppId, UserId, Timestamp, HttpStatus, IsError, method, path, Exception
@@ -122,6 +132,7 @@ namespace Fabric.Api.Common {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
+				ApiCtx.Analytics.TrackEvent("Metrics", "Response", "UnhandledException", 1);
 				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}

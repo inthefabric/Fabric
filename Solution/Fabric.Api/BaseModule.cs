@@ -1,11 +1,15 @@
 ﻿//#define MONO_DEV
 
+using System;
+using System.Configuration;
 using System.Web.Configuration;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
+using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
-using System.Configuration;
+using ServiceStack.Text;
 
 namespace Fabric.Api {
 
@@ -25,6 +29,7 @@ namespace Fabric.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected BaseModule() {
 			Log.ConfigureOnce();
+			OnError.AddItemToStartOfPipeline(HandleError);
 
 			if ( ConfPrefix == null ) {
 #if !DEBUG
@@ -55,14 +60,24 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 12, "71e6dbb39e75");
-				Version.SetDate(2013, 3, 8);
+				Version.SetBuild(0, 1, 13, "aedcc02f4eb7");
+				Version.SetDate(2013, 3, 15);
 			}
+
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
 			return new ApiContext(GremlinUrls[0]);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private Response HandleError(NancyContext pContext, Exception pException) {
+			Log.Fatal("Error at "+pContext.Request.Path, pException);
+			var err = FabError.ForInternalServerError();
+			return NancyUtil.BuildJsonResponse(HttpStatusCode.InternalServerError, err.ToJson());
 		}
 
 	}

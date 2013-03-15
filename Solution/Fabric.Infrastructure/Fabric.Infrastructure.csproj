@@ -140,6 +140,10 @@
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Infrastructure.Analytics\Fabric.Infrastructure.Analytics.csproj">
+      <Project>{8E09D9D5-148A-4699-A31B-372BD01E6C0A}</Project>
+      <Name>Fabric.Infrastructure.Analytics</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

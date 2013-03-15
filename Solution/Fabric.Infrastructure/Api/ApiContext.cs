@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Fabric.Domain;
+using Fabric.Infrastructure.Analytics;
 using Weaver;
 using Weaver.Interfaces;
 using Weaver.Items;
@@ -16,6 +17,7 @@ namespace Fabric.Infrastructure.Api {
 		public Guid ContextId { get; private set; }
 		public long UserId { get; private set; }
 		public long AppId { get; private set; }
+		public AnalyticsManager Analytics { get; private set; }
 		//public long MemberId { get; private set; }
 
 		public long DbQueryExecutionCount { get; private set; }
@@ -29,6 +31,7 @@ namespace Fabric.Infrastructure.Api {
 			UserId = -1;
 			AppId = -1;
 			//MemberId = -1;
+			Analytics = new AnalyticsManager(ContextId, x => Log.Debug(ContextId, "ANALYT", x));
 			DbQueryExecutionCount = 0;
 		}
 
@@ -37,6 +40,7 @@ namespace Fabric.Infrastructure.Api {
 			if ( AppId != -1 ) { throw new Exception("UserId and AppId are already set."); }
 			AppId = (pAppId ?? 0);
 			UserId = (pUserId ?? 0);
+			//Analytics.SetAppUserId(AppId, UserId);
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

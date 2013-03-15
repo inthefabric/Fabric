@@ -208,6 +208,10 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.Infrastructure.Analytics\Fabric.Infrastructure.Analytics.csproj">
+      <Project>{8E09D9D5-148A-4699-A31B-372BD01E6C0A}</Project>
+      <Name>Fabric.Infrastructure.Analytics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
