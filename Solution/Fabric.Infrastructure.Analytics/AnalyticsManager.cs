@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GoogleAnalyticsTracker;
 
 namespace Fabric.Infrastructure.Analytics {
@@ -6,7 +7,6 @@ namespace Fabric.Infrastructure.Analytics {
 	/*================================================================================================*/
 	public class AnalyticsManager {
 
-		private readonly AnalyticsSession vSession;
 		private readonly Tracker vTracker;
 		private readonly Action<string> vLogAction;
 
@@ -14,16 +14,10 @@ namespace Fabric.Infrastructure.Analytics {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AnalyticsManager(Guid pContextId, Action<string> pLogAction) {
-			vSession = new AnalyticsSession(pContextId+"", "");
 			vLogAction = pLogAction;
-			vTracker = new Tracker("UA-39329646-2", "api.inthefabric.com", vSession);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public void SetAppUserId(long pAppId, long pUserId) {
-			vSession.UpdateCookie("AppId="+pAppId+";UserId="+pUserId);
-			vTracker.SetCustomVariable(0, "AppId", pAppId+"");
-			vTracker.SetCustomVariable(1, "UserId", pUserId+"");
+			vTracker = new Tracker("UA-39329646-1", "inthefabric.com");
+			vTracker.Hostname = "api.inthefabric.com";
+			vTracker.SetCustomVariable(1, "ContextId", pContextId+"");
 		}
 
 
@@ -48,14 +42,24 @@ namespace Fabric.Infrastructure.Analytics {
 				}
 			}
 
-			var task = vTracker.TrackPageViewAsync(pMethod+pUri.Substring(0, i-1), pUri);
-			//task.ContinueWith(x => vLogAction(" *** TrackRequest: "+x.Result.Success));
+			//var task = 
+			vTracker.TrackPageViewAsync(pMethod+" "+pUri.Substring(0, i), pUri);
+			//task.ContinueWith(x => LogResult("Request", x.Result));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TrackEvent(string pCategory, string pAction, string pLabel, int pValue) {
-			var task = vTracker.TrackEventAsync(pCategory, pAction, pLabel, pValue);
-			//task.ContinueWith(x => vLogAction(" *** TrackEvent: "+x.Result.Success));
+			//var task = 
+			vTracker.TrackEventAsync(pCategory, pAction, pLabel, pValue);
+			//task.ContinueWith(x => LogResult("Event", x.Result));
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void LogResult(string pType, TrackingResult pResult) {
+			vLogAction(pType+": "+pResult.Success+" | "+pResult.Url+" | "+
+				pResult.Parameters.Aggregate("", (str,p) => str+", "+p.Key+"="+p.Value));
 		}
 
 	}
