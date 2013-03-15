@@ -1,9 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/19/2013 2:14:13 PM
+// Generated on 3/14/2013 11:09:38 PM
 
 using System.Collections.Generic;
 using System.Linq;
+using Fabric.Domain;
 
 namespace Fabric.Api.Dto.Traversal {
 	
@@ -23,6 +24,9 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabNodeForType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -32,6 +36,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Description", out val);
 			if ( found ) { Description = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(NodeForType pNode) {
+			base.FillWithNode(pNode);
+			Name = pNode.Name;
+			Description = pNode.Description;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -57,6 +68,9 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabNodeForAction() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
 			bool found;
@@ -66,6 +80,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(NodeForAction pNode) {
+			base.FillWithNode(pNode);
+			Performed = pNode.Performed;
+			Note = pNode.Note;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -85,7 +106,15 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifactOwnerNode() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(ArtifactOwnerNode pNode) {
+			base.FillWithNode(pNode);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -108,6 +137,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabRoot() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabRoot(Root pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return RootId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -116,6 +153,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["RootId"];
 			RootId = int.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Root pNode) {
+			base.FillWithNode(pNode);
+			RootId = pNode.RootId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -141,6 +184,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabApp() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabApp(App pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return AppId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -155,6 +206,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Name", out val);
 			if ( found ) { Name = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(App pNode) {
+			base.FillWithNode(pNode);
+			AppId = pNode.AppId;
+			Name = pNode.Name;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -183,6 +241,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifact() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifact(Artifact pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ArtifactId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -197,6 +263,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["Created"];
 			Created = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Artifact pNode) {
+			base.FillWithNode(pNode);
+			ArtifactId = pNode.ArtifactId;
+			IsPrivate = pNode.IsPrivate;
+			Created = pNode.Created;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -219,6 +293,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifactType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifactType(ArtifactType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ArtifactTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -229,6 +311,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["ArtifactTypeId"];
 			ArtifactTypeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(ArtifactType pNode) {
+			base.FillWithNode(pNode);
+			ArtifactTypeId = pNode.ArtifactTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -260,6 +348,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabClass() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabClass(Class pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ClassId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -280,6 +376,15 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Class pNode) {
+			base.FillWithNode(pNode);
+			ClassId = pNode.ClassId;
+			Name = pNode.Name;
+			Disamb = pNode.Disamb;
+			Note = pNode.Note;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -311,6 +416,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabInstance() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabInstance(Instance pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return InstanceId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -334,6 +447,15 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Instance pNode) {
+			base.FillWithNode(pNode);
+			InstanceId = pNode.InstanceId;
+			Name = pNode.Name;
+			Disamb = pNode.Disamb;
+			Note = pNode.Note;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
@@ -353,6 +475,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabMember() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabMember(Member pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -361,6 +491,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["MemberId"];
 			MemberId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Member pNode) {
+			base.FillWithNode(pNode);
+			MemberId = pNode.MemberId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -383,6 +519,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabMemberType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabMemberType(MemberType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -393,6 +537,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["MemberTypeId"];
 			MemberTypeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(MemberType pNode) {
+			base.FillWithNode(pNode);
+			MemberTypeId = pNode.MemberTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -415,6 +565,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabMemberTypeAssign() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabMemberTypeAssign(MemberTypeAssign pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberTypeAssignId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -425,6 +583,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["MemberTypeAssignId"];
 			MemberTypeAssignId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(MemberTypeAssign pNode) {
+			base.FillWithNode(pNode);
+			MemberTypeAssignId = pNode.MemberTypeAssignId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -453,6 +617,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabUrl() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabUrl(Url pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return UrlId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -470,6 +642,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("AbsoluteUrl", out val);
 			if ( found ) { AbsoluteUrl = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Url pNode) {
+			base.FillWithNode(pNode);
+			UrlId = pNode.UrlId;
+			Name = pNode.Name;
+			AbsoluteUrl = pNode.AbsoluteUrl;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -495,6 +675,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabUser() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabUser(User pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return UserId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -509,6 +697,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Name", out val);
 			if ( found ) { Name = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(User pNode) {
+			base.FillWithNode(pNode);
+			UserId = pNode.UserId;
+			Name = pNode.Name;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -543,6 +738,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabFactor() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabFactor(Factor pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return FactorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -567,6 +770,16 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Factor pNode) {
+			base.FillWithNode(pNode);
+			FactorId = pNode.FactorId;
+			IsDefining = pNode.IsDefining;
+			Created = pNode.Created;
+			Completed = pNode.Completed;
+			Note = pNode.Note;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
@@ -586,6 +799,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabFactorAssertion() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabFactorAssertion(FactorAssertion pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return FactorAssertionId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -596,6 +817,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["FactorAssertionId"];
 			FactorAssertionId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(FactorAssertion pNode) {
+			base.FillWithNode(pNode);
+			FactorAssertionId = pNode.FactorAssertionId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -615,7 +842,15 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabFactorElementNode() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(FactorElementNode pNode) {
+			base.FillWithNode(pNode);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -638,6 +873,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabDescriptor() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabDescriptor(Descriptor pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DescriptorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -648,6 +891,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DescriptorId"];
 			DescriptorId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Descriptor pNode) {
+			base.FillWithNode(pNode);
+			DescriptorId = pNode.DescriptorId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -670,6 +919,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabDescriptorType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabDescriptorType(DescriptorType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DescriptorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -680,6 +937,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DescriptorTypeId"];
 			DescriptorTypeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(DescriptorType pNode) {
+			base.FillWithNode(pNode);
+			DescriptorTypeId = pNode.DescriptorTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -702,6 +965,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabDirector() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabDirector(Director pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DirectorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -712,6 +983,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DirectorId"];
 			DirectorId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Director pNode) {
+			base.FillWithNode(pNode);
+			DirectorId = pNode.DirectorId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -734,6 +1011,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabDirectorType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabDirectorType(DirectorType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DirectorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -744,6 +1029,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DirectorTypeId"];
 			DirectorTypeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(DirectorType pNode) {
+			base.FillWithNode(pNode);
+			DirectorTypeId = pNode.DirectorTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -766,6 +1057,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabDirectorAction() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabDirectorAction(DirectorAction pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return DirectorActionId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -776,6 +1075,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DirectorActionId"];
 			DirectorActionId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(DirectorAction pNode) {
+			base.FillWithNode(pNode);
+			DirectorActionId = pNode.DirectorActionId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -801,6 +1106,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabEventor() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabEventor(Eventor pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return EventorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -814,6 +1127,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DateTime"];
 			DateTime = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Eventor pNode) {
+			base.FillWithNode(pNode);
+			EventorId = pNode.EventorId;
+			DateTime = pNode.DateTime;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -836,6 +1156,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabEventorType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabEventorType(EventorType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return EventorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -846,6 +1174,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["EventorTypeId"];
 			EventorTypeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(EventorType pNode) {
+			base.FillWithNode(pNode);
+			EventorTypeId = pNode.EventorTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -868,6 +1202,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabEventorPrecision() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabEventorPrecision(EventorPrecision pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return EventorPrecisionId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -878,6 +1220,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["EventorPrecisionId"];
 			EventorPrecisionId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(EventorPrecision pNode) {
+			base.FillWithNode(pNode);
+			EventorPrecisionId = pNode.EventorPrecisionId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -903,6 +1251,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabIdentor() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabIdentor(Identor pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return IdentorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -917,6 +1273,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Value", out val);
 			if ( found ) { Value = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Identor pNode) {
+			base.FillWithNode(pNode);
+			IdentorId = pNode.IdentorId;
+			Value = pNode.Value;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -939,6 +1302,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabIdentorType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabIdentorType(IdentorType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return IdentorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -949,6 +1320,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["IdentorTypeId"];
 			IdentorTypeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(IdentorType pNode) {
+			base.FillWithNode(pNode);
+			IdentorTypeId = pNode.IdentorTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -980,6 +1357,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabLocator() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabLocator(Locator pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return LocatorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -999,6 +1384,15 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["ValueZ"];
 			ValueZ = double.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Locator pNode) {
+			base.FillWithNode(pNode);
+			LocatorId = pNode.LocatorId;
+			ValueX = pNode.ValueX;
+			ValueY = pNode.ValueY;
+			ValueZ = pNode.ValueZ;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1039,6 +1433,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabLocatorType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabLocatorType(LocatorType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return LocatorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1070,6 +1472,18 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(LocatorType pNode) {
+			base.FillWithNode(pNode);
+			LocatorTypeId = pNode.LocatorTypeId;
+			MinX = pNode.MinX;
+			MaxX = pNode.MaxX;
+			MinY = pNode.MinY;
+			MaxY = pNode.MaxY;
+			MinZ = pNode.MinZ;
+			MaxZ = pNode.MaxZ;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
 		}
@@ -1092,6 +1506,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVector() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVector(Vector pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1105,6 +1527,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["Value"];
 			Value = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Vector pNode) {
+			base.FillWithNode(pNode);
+			VectorId = pNode.VectorId;
+			Value = pNode.Value;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1133,6 +1562,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorType() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorType(VectorType pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorTypeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1149,6 +1586,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["Max"];
 			Max = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(VectorType pNode) {
+			base.FillWithNode(pNode);
+			VectorTypeId = pNode.VectorTypeId;
+			Min = pNode.Min;
+			Max = pNode.Max;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1171,6 +1616,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorRange() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorRange(VectorRange pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorRangeId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1181,6 +1634,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["VectorRangeId"];
 			VectorRangeId = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(VectorRange pNode) {
+			base.FillWithNode(pNode);
+			VectorRangeId = pNode.VectorRangeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1206,6 +1665,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorRangeLevel() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorRangeLevel(VectorRangeLevel pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorRangeLevelId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1219,6 +1686,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["Position"];
 			Position = float.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(VectorRangeLevel pNode) {
+			base.FillWithNode(pNode);
+			VectorRangeLevelId = pNode.VectorRangeLevelId;
+			Position = pNode.Position;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1244,6 +1718,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorUnit() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorUnit(VectorUnit pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorUnitId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1258,6 +1740,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Symbol", out val);
 			if ( found ) { Symbol = val; }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(VectorUnit pNode) {
+			base.FillWithNode(pNode);
+			VectorUnitId = pNode.VectorUnitId;
+			Symbol = pNode.Symbol;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1286,6 +1775,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorUnitPrefix() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorUnitPrefix(VectorUnitPrefix pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorUnitPrefixId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1303,6 +1800,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["Amount"];
 			Amount = double.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(VectorUnitPrefix pNode) {
+			base.FillWithNode(pNode);
+			VectorUnitPrefixId = pNode.VectorUnitPrefixId;
+			Symbol = pNode.Symbol;
+			Amount = pNode.Amount;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1328,6 +1833,14 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorUnitDerived() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabVectorUnitDerived(VectorUnitDerived pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return VectorUnitDerivedId; } }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1341,6 +1854,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["Exponent"];
 			Exponent = int.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(VectorUnitDerived pNode) {
+			base.FillWithNode(pNode);
+			VectorUnitDerivedId = pNode.VectorUnitDerivedId;
+			Exponent = pNode.Exponent;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
+<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Packages/Weaver.1.0.0/Weaver.dll" #>
+<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Solution/Fabric.Domain/bin/Debug/Fabric.Domain.dll" #>
+<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Solution/Fabric.Infrastructure/bin/Debug/Fabric.Infrastructure.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Infrastructure.Domain" #>
@@ -15,6 +15,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Fabric.Domain;
 
 namespace Fabric.Api.Dto.Traversal {
 	
@@ -61,9 +62,17 @@ foreach ( string name in nodes ) {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Fab<#= node.Name #>() {}
+		
 <#
 	if ( !node.IsAbstract ) {
 #>
+		/*--------------------------------------------------------------------------------------------*/
+		public Fab<#= node.Name #>(<#= node.Name #> pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return <#= (hasTypeId ? node.Name+"Id" : "0") #>; } }
 
@@ -135,6 +144,21 @@ foreach ( string name in nodes ) {
 <#
 		}
 
+	} //end prop loop
+#>
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(<#= node.Name #> pNode) {
+			base.FillWithNode(pNode);
+<#
+	foreach ( SchemaHelperProp hp in props ) { 
+		string propType = hp.TypeName;
+		string propName = hp.PropSchema.Name;
+		string parseType = propType.Replace("?", "");
+#>
+			<#= propName #> = pNode.<#= propName #>;
+<#
 	} //end prop loop
 #>
 		}

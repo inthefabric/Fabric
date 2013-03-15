@@ -9,6 +9,8 @@ using Nancy;
 using ServiceStack.Text;
 using System.Collections.Generic;
 using Fabric.Infrastructure;
+using Fabric.Domain;
+using Fabric.Api.Dto.Traversal;
 
 namespace Fabric.Api.Services {
 
@@ -83,11 +85,8 @@ namespace Fabric.Api.Services {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string FuncGo<T>(IApiFunc<T> pFunc) {
-			var list = new List<T>();
-			T item = pFunc.Go(ApiCtx);
-			list.Add(item);
-			return list.ToJson(); //return list for FabResponse<T>
+		private string ToJsonList<T>(T pItem) where T : IFabNode {
+			return new [] { pItem }.ToJson(); //return list for FabResponse<T>
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -101,12 +100,14 @@ namespace Fabric.Api.Services {
 		private string Classes() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateClass(
+					Class c = new CreateClass(
 						NewModTasks(),
 						GetPostString(CreateClass.NameParam),
 						GetPostString(CreateClass.DisambParam, false),
 						GetPostString(CreateClass.NoteParam, false)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabClass(c));
 			}
 
 			throw BadRequest();
@@ -114,30 +115,38 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string Factors() {
+			Factor f;
+			
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateFactor(
+					f = new CreateFactor(
 						NewModTasks(),
 						GetPostLong(CreateFactor.PrimArtParam),
 						GetPostLong(CreateFactor.RelArtParam),
 						GetPostLong(CreateFactor.AssertParam),
 						GetPostBool(CreateFactor.IsDefParam),
 						GetPostString(CreateFactor.NoteParam, false)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabFactor(f));
 
 				case "PUT":
-					return FuncGo(new CompleteFactor(
+					f = new CompleteFactor(
 						NewModTasks(),
 						GetPostLong(UpdateFactor.FactorParam),
 						GetPostBool(UpdateFactor.CompletedParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabFactor(f));
 
 				case "DELETE":
-					return FuncGo(new DeleteFactor(
+					f = new DeleteFactor(
 						NewModTasks(),
 						GetPostLong(UpdateFactor.FactorParam),
 						GetPostBool(UpdateFactor.DeletedParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabFactor(f));
 			}
 
 			throw BadRequest();
@@ -147,14 +156,16 @@ namespace Fabric.Api.Services {
 		private string Descriptors() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateDescriptor(
+					Descriptor d = new CreateDescriptor(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
 						GetPostLong(CreateDescriptor.DescTypeParam),
 						GetPostLong(CreateDescriptor.PrimArtRefParam, false),
 						GetPostLong(CreateDescriptor.RelArtRefParam, false),
 						GetPostLong(CreateDescriptor.DescTypeRefParam, false)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabDescriptor(d));
 			}
 
 			throw BadRequest();
@@ -164,13 +175,15 @@ namespace Fabric.Api.Services {
 		private string Directors() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateDirector(
+					Director d = new CreateDirector(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
 						GetPostLong(CreateDirector.DirTypeParam),
 						GetPostLong(CreateDirector.PrimActionParam),
 						GetPostLong(CreateDirector.RelActionParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabDirector(d));
 			}
 
 			throw BadRequest();
@@ -180,13 +193,15 @@ namespace Fabric.Api.Services {
 		private string Eventors() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateEventor(
+					Eventor e = new CreateEventor(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
 						GetPostLong(CreateEventor.EveTypeParam),
 						GetPostLong(CreateEventor.EvePrecParam),
 						GetPostLong(CreateEventor.DateTimeParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabEventor(e));
 			}
 
 			throw BadRequest();
@@ -196,12 +211,14 @@ namespace Fabric.Api.Services {
 		private string Identors() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateIdentor(
+					Identor i = new CreateIdentor(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
 						GetPostLong(CreateIdentor.IdenTypeParam),
 						GetPostString(CreateIdentor.ValueParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabIdentor(i));
 			}
 
 			throw BadRequest();
@@ -211,12 +228,14 @@ namespace Fabric.Api.Services {
 		private string Instances() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateInstance(
+					Instance i = new CreateInstance(
 						NewModTasks(),
 						GetPostString(CreateInstance.NameParam, false),
 						GetPostString(CreateInstance.DisambParam, false),
 						GetPostString(CreateInstance.NoteParam, false)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabInstance(i));
 			}
 
 			throw BadRequest();
@@ -226,14 +245,16 @@ namespace Fabric.Api.Services {
 		private string Locators() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateLocator(
+					Locator l = new CreateLocator(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
 						GetPostLong(CreateLocator.LocTypeParam),
 						GetPostDouble(CreateLocator.XParam),
 						GetPostDouble(CreateLocator.YParam),
 						GetPostDouble(CreateLocator.ZParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabLocator(l));
 			}
 
 			throw BadRequest();
@@ -243,11 +264,13 @@ namespace Fabric.Api.Services {
 		private string Urls() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateUrl(
+					Fabric.Domain.Url u = new CreateUrl(
 						NewModTasks(),
 						GetPostString(CreateUrl.AbsoluteUrlParam),
 						GetPostString(CreateUrl.NameParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabUrl(u));
 			}
 
 			throw BadRequest();
@@ -257,7 +280,7 @@ namespace Fabric.Api.Services {
 		private string Vectors() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					return FuncGo(new CreateVector(
+					Vector v = new CreateVector(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
 						GetPostLong(CreateVector.VecTypeParam),
@@ -265,7 +288,9 @@ namespace Fabric.Api.Services {
 						GetPostLong(CreateVector.AxisArtParam),
 						GetPostLong(CreateVector.UnitParam),
 						GetPostLong(CreateVector.UnitPrefParam)
-					));
+					)
+					.Go(ApiCtx);
+					return ToJsonList(new FabVector(v));
 			}
 
 			throw BadRequest();

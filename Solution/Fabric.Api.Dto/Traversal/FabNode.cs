@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Infrastructure.Db;
+using Fabric.Domain;
 
 namespace Fabric.Api.Dto.Traversal {
 
@@ -40,6 +41,11 @@ namespace Fabric.Api.Dto.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void FillResultData(IDictionary<string,string> pData);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(INode pNode) {
+			NodeId = pNode.Id;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
