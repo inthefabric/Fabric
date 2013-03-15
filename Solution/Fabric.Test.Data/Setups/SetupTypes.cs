@@ -13,7 +13,7 @@ namespace Fabric.Db.Data.Setups {
 		public const int NumMemberTypes = 8;
 
 		public const int NumDescriptorRefineTypes = 3;
-		public const int NumDescriptorTypes = 20;
+		public const int NumDescriptorTypes = 21;
 		public const int NumDirectorActions = 17;
 		public const int NumDirectorTypes = 5;
 		public const int NumEventorPrecisions = 6;
@@ -149,7 +149,10 @@ namespace Fabric.Db.Data.Setups {
 				"some way. This is the default (and least meaningful) DescriptorType.");
 			AddDescriptorType(pSet, DescriptorTypeId.IsA, "Is A",
 				"The primary Artifact is a type of, a subclass of, a subset of, "+
-				"or in the category defined by the related Artifact.");
+				"a subordinate of, or in the category defined by the related Artifact.");
+			AddDescriptorType(pSet, DescriptorTypeId.IsAnInstanceOf, "Is An Instance Of",
+				"The primary Artifact is an instance, case, example, "+
+				"or representation of the related Artifact.");
 			AddDescriptorType(pSet, DescriptorTypeId.HasA, "Has A",
 				"The primary Artifact has, as a part, piece, feature, attribute, or component, "+
 				"the related Artifact.");

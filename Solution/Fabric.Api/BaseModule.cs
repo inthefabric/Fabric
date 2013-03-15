@@ -1,4 +1,4 @@
-﻿#define MONO_DEV
+﻿//#define MONO_DEV
 
 using System.Web.Configuration;
 using Fabric.Api.Dto.Meta;
@@ -55,7 +55,7 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 11, "71e6dbb39e75");
+				Version.SetBuild(0, 1, 12, "71e6dbb39e75");
 				Version.SetDate(2013, 3, 8);
 			}
 		}
