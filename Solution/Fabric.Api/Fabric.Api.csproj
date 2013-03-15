@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE;DEBUG;LIVE</DefineConstants>
     <DebugType>full</DebugType>
@@ -43,41 +43,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>False</Optimize>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
-      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
-      <Name>Fabric.Api.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
-      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
-      <Name>Fabric.Api.Modify</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
-      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
-      <Name>Fabric.Api.Oauth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Traversal\Fabric.Api.Traversal.csproj">
-      <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
-      <Name>Fabric.Api.Traversal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Meta\Fabric.Api.Meta.csproj">
-      <Project>{4E9769D7-BC92-4717-88CA-F82CDE950F44}</Project>
-      <Name>Fabric.Api.Meta</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
-      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
-      <Name>Fabric.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
-      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
-      <Name>Fabric.Db.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -165,6 +133,10 @@
     </Content>
     <Content Include="Internal\Graph\styles\main.css" />
     <Content Include="packages.config" />
+    <Content Include="..\..\Global\GlobalAppSettings.config">
+      <Link>GlobalAppSettings.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Internal\Tables\index.html" />
@@ -179,10 +151,6 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Global\GlobalAppSettings.config">
-      <Link>GlobalAppSettings.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Internal\Graph\styles\Colors.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Colors.css</LastGenOutput>
@@ -239,4 +207,42 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
+      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
+      <Name>Fabric.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
+      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
+      <Name>Fabric.Db.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
+      <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
+      <Name>Fabric.Api.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Traversal\Fabric.Api.Traversal.csproj">
+      <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
+      <Name>Fabric.Api.Traversal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
+      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
+      <Name>Fabric.Api.Oauth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
+      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
+      <Name>Fabric.Api.Modify</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Meta\Fabric.Api.Meta.csproj">
+      <Project>{4E9769D7-BC92-4717-88CA-F82CDE950F44}</Project>
+      <Name>Fabric.Api.Meta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
+      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
+      <Name>Fabric.Api.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

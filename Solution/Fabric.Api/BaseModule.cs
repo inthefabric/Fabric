@@ -1,8 +1,11 @@
-﻿using System.Web.Configuration;
+﻿#define MONO_DEV
+
+using System.Web.Configuration;
 using Fabric.Api.Dto.Meta;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
+using System.Configuration;
 
 namespace Fabric.Api {
 
@@ -31,8 +34,15 @@ namespace Fabric.Api {
 #else
 				ConfPrefix = "Dev_";
 #endif
-				ApiUrl = "http://"+WebConfigurationManager.AppSettings[ConfPrefix+"Api"];
-				RexNodes = int.Parse(WebConfigurationManager.AppSettings[ConfPrefix+"RexNodes"]);
+
+#if MONO_DEV
+				ApiUrl = "http://localhost:9000";
+				RexNodes = 1;
+				RexUrls = new string[1] { "rexster:8182" };
+				GremlinUrls = new string[1] { "http://"+RexUrls[0]+"/graphs/Fabric/tp/gremlin" };
+#else
+				ApiUrl = "http://"+ConfigurationManager.AppSettings[ConfPrefix+"Api"];
+				RexNodes = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexNodes"]);
 				RexUrls = new string[RexNodes];
 				GremlinUrls = new string[RexNodes];
 
@@ -40,8 +50,9 @@ namespace Fabric.Api {
 					RexUrls[i] = WebConfigurationManager.AppSettings[ConfPrefix+"Rex"+(i+1)];
 					GremlinUrls[i] = "http://"+RexUrls[i]+"/graphs/Fabric/tp/gremlin";
 				}
+#endif
 			}
-
+			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
 				Version.SetBuild(0, 1, 11, "71e6dbb39e75");

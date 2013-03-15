@@ -32,8 +32,8 @@ namespace Fabric.Api.Services.Views {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildTypedHtml() {
-			if ( vInfo.Error != null ) {
-				return BuildNodeHtml(vInfo.Error);
+			if ( vInfo.Resp.Error != null ) {
+				return BuildNodeHtml(vInfo.Resp.Error);
 			}
 
 			if ( vInfo.DtoList == null ) {

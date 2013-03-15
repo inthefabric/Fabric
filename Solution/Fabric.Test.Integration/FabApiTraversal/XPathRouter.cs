@@ -42,7 +42,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		public void Root() {
 			vUri = "/";
 			TestPath();
-			Assert.Null(vModel.Error, "Model.Error should be null.");
+			Assert.Null(vModel.Resp.Error, "Model.Resp.Error should be null.");
 			Assert.Null(vModel.DtoList, "Model.DtoList should be null.");
 			Assert.NotNull(vModel.Resp.Functions, "Model.Resp.Functions should be filled.");
 			Assert.NotNull(vModel.Resp.Links, "Model.Resp.Links should be filled.");
@@ -130,7 +130,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void CheckSuccess<T>(int pDtoCount) where T : INode {
-			Assert.Null(vModel.Error, "Model.Error should be null.");
+			Assert.Null(vModel.Resp.Error, "Model.Resp.Error should be null.");
 			Assert.NotNull(vModel.DtoList, "Model.DtoList should be filled.");
 			Assert.NotNull(vModel.Resp.Functions, "Model.Resp.Functions should be filled.");
 			Assert.NotNull(vModel.Resp.Links, "Model.Resp.Links should be filled.");

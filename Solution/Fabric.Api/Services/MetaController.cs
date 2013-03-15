@@ -5,6 +5,7 @@ using Fabric.Api.Meta;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
+using System.Collections.Generic;
 
 namespace Fabric.Api.Services {
 
@@ -50,11 +51,15 @@ namespace Fabric.Api.Services {
 
 				case Route.Version:
 					var getVer = new GetVersion(vVersion);
-					return NewResponse(new FabRespJsonView(FabResp, getVer.Go(ApiCtx).ToJson()));
+					var verList = new List<FabMetaVersion>();
+					verList.Add(getVer.Go(ApiCtx));
+					return NewResponse(new FabRespJsonView(FabResp, verList.ToJson()));
 
 				case Route.Time:
 					var getTime = new GetTime();
-					return NewResponse(new FabRespJsonView(FabResp, getTime.Go(ApiCtx).ToJson()));
+					var timeList = new List<FabMetaTime>();
+					timeList.Add(getTime.Go(ApiCtx));
+					return NewResponse(new FabRespJsonView(FabResp, timeList.ToJson()));
 			}
 
 			return null;

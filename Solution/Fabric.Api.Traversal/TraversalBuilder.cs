@@ -93,7 +93,6 @@ namespace Fabric.Api.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void HandleException(Exception pEx) {
-			vModel.Resp.IsError = true;
 			vModel.Resp.Links = new FabStepLink[0];
 			vModel.Resp.Functions = new string[0];
 			vModel.Resp.StartIndex = 0;
@@ -101,11 +100,11 @@ namespace Fabric.Api.Traversal {
 
 			if ( pEx is FabFault ) {
 				vModel.IsErrorHandled = true;
-				vModel.Error = FabError.ForFault(pEx as FabFault);
+				vModel.Resp.Error = FabError.ForFault(pEx as FabFault);
 				vModel.HttpStatus = HttpStatusCode.BadRequest;
 			}
 			else {
-				vModel.Error = FabError.ForInternalServerError();
+				vModel.Resp.Error = FabError.ForInternalServerError();
 				vModel.HttpStatus = HttpStatusCode.InternalServerError;
 				Log.Error("Unhandled Traversal Exception:\n"+pEx);
 			}

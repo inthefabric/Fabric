@@ -7,6 +7,8 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
 using ServiceStack.Text;
+using System.Collections.Generic;
+using Fabric.Infrastructure;
 
 namespace Fabric.Api.Services {
 
@@ -34,7 +36,6 @@ namespace Fabric.Api.Services {
 
 		private static FabService ServiceDto;
 		private static string ServiceDtoJson;
-		//private static Dictionary<string, Func<string>> RouteMap;
 
 		private readonly Route vRoute;
 
@@ -83,7 +84,10 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string FuncGo<T>(IApiFunc<T> pFunc) {
-			return pFunc.Go(ApiCtx).ToJson();
+			var list = new List<T>();
+			T item = pFunc.Go(ApiCtx);
+			list.Add(item);
+			return list.ToJson(); //return list for FabResponse<T>
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

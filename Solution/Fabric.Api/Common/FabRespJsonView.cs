@@ -10,23 +10,30 @@ namespace Fabric.Api.Common {
 		public const string TotalMsJson = "\"TotalMs\":";
 
 		private readonly FabResponse vFabResp;
-		private readonly string vSpecJson;
+		private readonly string vDataJson;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabRespJsonView(FabResponse pResp, string pSpecJson) {
 			vFabResp = pResp;
-			vSpecJson = pSpecJson;
+			vDataJson = pSpecJson;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetContent() {
-			vFabResp.Data = "{DATA}";
-			vFabResp.DataLen = vSpecJson.Length;
-
-			string wrap = vFabResp.ToJson().Replace("\"{DATA}\"", vSpecJson);
-			vFabResp.Data = vSpecJson;
+			string wrap;
+			
+			if ( vDataJson != null ) {
+				vFabResp.Data = "{DATA}";
+				vFabResp.DataLen = vDataJson.Length;
+				wrap = vFabResp.ToJson().Replace("\"{DATA}\"", vDataJson);
+			}
+			else {
+				wrap = vFabResp.ToJson();
+			}
+			
+			vFabResp.Data = vDataJson;
 			vFabResp.Complete(); //last possible moment
 
 			return wrap.Replace(TotalMsJson+"0", TotalMsJson+vFabResp.TotalMs);

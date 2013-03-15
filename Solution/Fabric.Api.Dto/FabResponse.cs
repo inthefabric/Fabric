@@ -23,7 +23,7 @@ namespace Fabric.Api.Dto {
 		public long UserId { get; set; }
 		public long Timestamp { get; set; }
 		public int HttpStatus { get; set; }
-		public bool IsError { get; set; }
+		public FabError Error { get; set; }
 
 		private long vDbStart;
 

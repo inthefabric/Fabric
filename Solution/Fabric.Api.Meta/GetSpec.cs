@@ -20,7 +20,7 @@ namespace Fabric.Api.Meta {
 				var doc = new SpecDoc();
 				DocDto = doc.GetFabSpec();
 				DocDto.ApiVersion = pApiVers;
-				DocDtoJson = DocDto.ToJson();
+				DocDtoJson = new [] { DocDto }.ToJson();
 			}
 		}
 

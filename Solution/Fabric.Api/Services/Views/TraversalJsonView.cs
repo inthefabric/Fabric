@@ -22,8 +22,8 @@ namespace Fabric.Api.Services.Views {
 		public string GetContent() {
 			string data;
 
-			if ( vInfo.Error != null ) {
-				data = vInfo.Error.ToJson();
+			if ( vInfo.Resp.Error != null ) {
+				data = vInfo.Resp.Error.ToJson();
 			}
 			else {
 				data = BuildJson();

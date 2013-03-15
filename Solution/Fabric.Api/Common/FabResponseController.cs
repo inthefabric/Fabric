@@ -72,24 +72,21 @@ namespace Fabric.Api.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildExceptionResponse(Exception pEx) {
-			FabResp.IsError = true;
 			FabResp.Links = null;
 			FabResp.Functions = null;
 			FabResp.StartIndex = 0;
 			FabResp.Count = 0;
 
-			FabError err;
-
 			if ( pEx is FabFault ) {
 				ExceptionIsHandled();
-				err = FabError.ForFault(pEx as FabFault);
+				FabResp.Error = FabError.ForFault(pEx as FabFault);
 			}
 			else {
 				FabResp.HttpStatus = (int)HttpStatusCode.InternalServerError;
-				err = FabError.ForInternalServerError();
+				FabResp.Error = FabError.ForInternalServerError();
 			}
 
-			return NewResponse(new FabRespJsonView(FabResp, err.ToJson()));
+			return NewResponse(new FabRespJsonView(FabResp, null));
 		}
 
 
@@ -117,7 +114,7 @@ namespace Fabric.Api.Common {
 				FabResp.UserId +x+
 				FabResp.Timestamp +x+
 				FabResp.HttpStatus +x+
-				FabResp.IsError +x+
+				(FabResp.Error != null ? FabResp.Error.Name : "") +x+
 				NancyReq.Method +x+
 				NancyReq.Path;
 
