@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Dto;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services;
 using Nancy;
 
@@ -24,7 +25,7 @@ namespace Fabric.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response Meta(NancyContext pCtx, MetaController.Route pRoute) {
-			var mc = new MetaController(pCtx.Request, NewApiCtx(), Version, pRoute);
+			var mc = new MetaController(pCtx.Request, NewApiCtx(), Version, new OauthTasks(), pRoute);
 			return mc.Execute();
 		}
 

@@ -792,6 +792,15 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
+        internal static string Response_Error {
+            get {
+                return ResourceManager.GetString("Response_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
         internal static string Response_Functions {
             get {
                 return ResourceManager.GetString("Response_Functions", resourceCulture);
@@ -813,15 +822,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Response_HttpStatus {
             get {
                 return ResourceManager.GetString("Response_HttpStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Response_IsError {
-            get {
-                return ResourceManager.GetString("Response_IsError", resourceCulture);
             }
         }
         

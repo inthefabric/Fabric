@@ -318,7 +318,7 @@
   <data name="Response_HttpStatus" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Response_IsError" xml:space="preserve">
+  <data name="Response_Error" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="Response_Functions" xml:space="preserve">

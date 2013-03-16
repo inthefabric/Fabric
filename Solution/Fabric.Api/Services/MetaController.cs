@@ -2,6 +2,7 @@
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Meta;
+using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
@@ -29,7 +30,7 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MetaController(Request pRequest, IApiContext pApiCtx, FabMetaVersion pVersion, 
-														Route pRoute) : base(pRequest, pApiCtx, null) {
+						IOauthTasks pOauthTasks, Route pRoute) : base(pRequest, pApiCtx, pOauthTasks) {
 			vVersion = pVersion;
 			vRoute = pRoute;
 		}
