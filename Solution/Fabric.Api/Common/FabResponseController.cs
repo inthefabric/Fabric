@@ -56,10 +56,17 @@ namespace Fabric.Api.Common {
 				return;
 			}
 
-			FabOauthAccess acc = OauthTasks.GetAccessToken(token, ApiCtx);
+			string cacheKey = "OaToken_"+token;
+			FabOauthAccess acc = ApiCtx.GetFromCache<FabOauthAccess>(cacheKey);
 
 			if ( acc == null ) {
-				return;
+				acc = OauthTasks.GetAccessToken(token, ApiCtx);
+
+				if ( acc == null ) {
+					return;
+				}
+
+				ApiCtx.AddToCache(cacheKey, acc, acc.ExpiresIn);
 			}
 
 			ApiCtx.SetAppUserId(acc.AppId, acc.UserId);

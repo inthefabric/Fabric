@@ -62,6 +62,7 @@
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>

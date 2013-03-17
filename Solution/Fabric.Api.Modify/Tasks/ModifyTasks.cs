@@ -40,6 +40,13 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Member GetValidMemberByContext(IApiContext pApiCtx) {
+			string cacheKey = "Member_"+pApiCtx.AppId+"_"+pApiCtx.UserId;
+			Member mem = pApiCtx.GetFromCache<Member>(cacheKey);
+
+			if ( mem != null ) {
+				return mem;
+			}
+
 			IWeaverFuncAs<Member> memAlias;
 
 			IWeaverQuery q = 
@@ -57,7 +64,9 @@ namespace Fabric.Api.Modify.Tasks {
 				.Back(memAlias)
 				.End();
 
-			return pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
+			mem = pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
+			pApiCtx.AddToCache(cacheKey, mem, 3600);
+			return mem;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -18,10 +18,12 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base(GremlinUri) {
+		public TestApiContext() : base(GremlinUri, null) {
 			SharpflakeIds = new List<long>();
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override DateTime UtcNow {
 			get {
@@ -39,6 +41,23 @@ namespace Fabric.Test.Integration.Common {
 			long id = Sharpflake.GetId<T>();
 			SharpflakeIds.Add(id);
 			return id;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool AddToCache<T>(string pKey, T pItem, int pExpiresInSec) {
+			return false;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override T GetFromCache<T>(string pKey) {
+			return default(T);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override T RemoveFromCache<T>(string pKey) {
+			return default(T);
 		}
 
 

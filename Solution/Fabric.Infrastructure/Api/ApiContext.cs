@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Runtime.Caching;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Weaver;
@@ -22,12 +23,16 @@ namespace Fabric.Infrastructure.Api {
 
 		public long DbQueryExecutionCount { get; private set; }
 
+		private MemoryCache vMemCache;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiContext(string pGremlinUrl) {
-			ContextId = Guid.NewGuid();
+		public ApiContext(string pGremlinUrl, MemoryCache pMemCache) {
 			GremlinUrl = pGremlinUrl;
+			vMemCache = pMemCache;
+
+			ContextId = Guid.NewGuid();
 			UserId = -1;
 			AppId = -1;
 			//MemberId = -1;
@@ -64,6 +69,34 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual long GetSharpflakeId<T>() where T : INode {
 			return Sharpflake.GetId<T>();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		// TEST: ApiContext caching functionality and usages
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual bool AddToCache<T>(string pKey, T pItem, int pExpiresInSec) {
+			var ci = new CacheItem(pKey, pItem);
+			
+			var pol = new CacheItemPolicy();
+			pol.AbsoluteExpiration = DateTime.UtcNow.AddSeconds(pExpiresInSec);
+
+			Log.Debug(ContextId, "CACHE", "Add "+typeof(T).Name+" to cache: "+pKey+" = "+
+				(pItem == null ? "[null]" : pItem.GetType().Name)+" ("+pExpiresInSec+" sec)");
+			return vMemCache.Add(ci, pol);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual T GetFromCache<T>(string pKey) {
+			object obj = vMemCache.Get(pKey);
+			Log.Debug(ContextId, "CACHE", "Get "+typeof(T).Name+" from cache: "+pKey+" = "+
+				(obj == null ? "[null]" : obj.GetType().Name));
+			return (T)obj;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual T RemoveFromCache<T>(string pKey) {
+			return (T)vMemCache.Remove(pKey);
 		}
 
 

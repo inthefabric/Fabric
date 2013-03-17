@@ -86,7 +86,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			foa.AccessToken = oa.Token;
 			foa.RefreshToken = oa.Refresh;
 			foa.TokenType = "bearer";
-			foa.ExpiresIn = 3600;
+			foa.ExpiresIn = (int)(new TimeSpan(oa.Expires-ApiCtx.UtcNow.Ticks).TotalSeconds);
 			foa.AppId = data.GetResultAt<App>(1).AppId;
 
 			if ( count == 3 ) {

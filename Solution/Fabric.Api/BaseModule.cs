@@ -1,7 +1,9 @@
 ﻿//#define MONO_DEV
 
 using System;
+using System.Collections.Specialized;
 using System.Configuration;
+using System.Runtime.Caching;
 using System.Web.Configuration;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
@@ -18,6 +20,7 @@ namespace Fabric.Api {
 
 		protected static FabMetaVersion Version;
 		private static string ConfPrefix;
+		private static MemoryCache MemCache;
 
 		public static string ApiUrl;
 		public static int RexNodes;
@@ -60,15 +63,21 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 14, "6f4924a18f20");
-				Version.SetDate(2013, 3, 16);
+				Version.SetBuild(0, 1, 15, "fb59a8850b81");
+				Version.SetDate(2013, 3, 17);
 			}
 
+			if ( MemCache == null ) {
+				var cacheConfig = new NameValueCollection();
+				cacheConfig.Add("PhysicalMemoryLimitPercentage", "10");
+
+				MemCache = new MemoryCache("FabricApi", cacheConfig);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
-			return new ApiContext(GremlinUrls[0]);
+			return new ApiContext(GremlinUrls[0], MemCache);
 		}
 
 
