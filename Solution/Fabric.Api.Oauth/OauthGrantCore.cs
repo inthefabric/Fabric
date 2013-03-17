@@ -68,9 +68,9 @@ namespace Fabric.Api.Oauth {
 			LoggedUserId = pLoggedUserId;
 
 			if ( !String.IsNullOrEmpty(ClientId) ) {
-				uint appId;
+				long appId;
 				
-				if ( uint.TryParse(ClientId, out appId) ) {
+				if ( long.TryParse(ClientId, out appId) ) {
 					AppId = appId;
 				}
 			}

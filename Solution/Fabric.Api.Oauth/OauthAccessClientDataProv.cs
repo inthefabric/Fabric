@@ -8,7 +8,7 @@ namespace Fabric.Api.Oauth {
 	public class OauthAccessClientDataProv : OauthAccessClientCred {
 
 		private readonly string vDataProvIdStr;
-		private int vDataProvId;
+		private long vDataProvId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@ namespace Fabric.Api.Oauth {
 		protected override void RedirectOnParamErrors() {
 			base.RedirectOnParamErrors();
 
-			bool parsed = int.TryParse(vDataProvIdStr, out vDataProvId);
+			bool parsed = long.TryParse(vDataProvIdStr, out vDataProvId);
 
 			if ( !parsed || vDataProvId <= 0 ) {
 				throw GetFault(AccessErrors.invalid_client, AccessErrorDescs.NoDataProvId);
