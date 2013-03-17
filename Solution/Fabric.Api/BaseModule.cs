@@ -21,6 +21,7 @@ namespace Fabric.Api {
 		protected static FabMetaVersion Version;
 		private static string ConfPrefix;
 		private static MemoryCache MemCache;
+		private static int GremlinUrlIndex;
 
 		public static string ApiUrl;
 		public static int RexNodes;
@@ -53,6 +54,7 @@ namespace Fabric.Api {
 				RexNodes = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexNodes"]);
 				RexUrls = new string[RexNodes];
 				GremlinUrls = new string[RexNodes];
+				GremlinUrlIndex = 0;
 
 				for ( int i = 0 ; i < RexNodes ; ++i ) {
 					RexUrls[i] = WebConfigurationManager.AppSettings[ConfPrefix+"Rex"+(i+1)];
@@ -63,7 +65,7 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 15, "fb59a8850b81");
+				Version.SetBuild(0, 1, 15, "c05b0d89c415");
 				Version.SetDate(2013, 3, 17);
 			}
 
@@ -77,7 +79,8 @@ namespace Fabric.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
-			return new ApiContext(GremlinUrls[0], MemCache);
+			int i = (GremlinUrlIndex++)%RexNodes;
+			return new ApiContext(GremlinUrls[i], MemCache);
 		}
 
 
