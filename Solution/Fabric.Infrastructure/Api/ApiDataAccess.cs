@@ -77,8 +77,7 @@ namespace Fabric.Infrastructure.Api {
 				Result.Message = "Unhandled exception.";
 			}
 
-			Result.ServerTime = DateTime.UtcNow.Ticks-t;
-			//Log.Debug("RESULT: "+ResultString);
+			Result.ServerTime = (DateTime.UtcNow.Ticks-t)/10000.0; //to milliseconds
 			LogAction();
 
 			if ( vUnhandledException != null ) {

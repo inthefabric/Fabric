@@ -6,6 +6,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
@@ -56,15 +57,22 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Class> classVar;
-			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Artifact> artVar;
 
 			var txb = new TxBuilder();
+			
+			//TEST: CreateClass new direct-to-ID approach
+			IWeaverVarAlias<Root> rootVar = new WeaverVarAlias<Root>(txb.Transaction);
+			var q = new WeaverQuery();
+			q.FinalizeQuery(rootVar.Name+"=g.v(4)");
+			txb.Transaction.AddQuery(q);
 
-			txb.GetRoot(out rootVar);
-			txb.GetNode(m, out memVar);
+			IWeaverVarAlias<Member> memVar = new WeaverVarAlias<Member>(txb.Transaction);
+			q = new WeaverQuery();
+			q.FinalizeQuery(memVar.Name+"=g.v("+m.Id+")");
+			txb.Transaction.AddQuery(q);
+
 			Tasks.TxAddClass(ApiCtx, txb, vName, vDisamb, vNote, rootVar, out classVar);
 			Tasks.TxAddArtifact<Class, ClassHasArtifact>(
 				ApiCtx, txb, ArtifactTypeId.Class, rootVar, classVar, memVar, out artVar);
