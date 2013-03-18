@@ -57,18 +57,17 @@ namespace Fabric.Infrastructure.Api {
 			}
 			catch ( WebException we ) {
 				vUnhandledException = we;
-				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
 
-				if ( s == null ) {
-					throw;
-				}
-
-				var sr = new StreamReader(s);
-				
 				Result = new DbResult();
 				Result.Exception = we+"";
-				Result.Message = sr.ReadToEnd();
-				Log.Error(ApiCtx.ContextId, "Grem", Result.Message);
+
+				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
+
+				if ( s != null ) {
+					var sr = new StreamReader(s);
+					Result.Message = sr.ReadToEnd();
+					Log.Error(ApiCtx.ContextId, "Grem", Result.Message);
+				}
 			}
 			catch ( Exception e ) {
 				vUnhandledException = e;
@@ -78,15 +77,13 @@ namespace Fabric.Infrastructure.Api {
 				Result.Message = "Unhandled exception.";
 			}
 
-			if ( Result.Exception != null ) {
-				vUnhandledException = new Exception(ResultString);
-			}
-
 			Result.ServerTime = DateTime.UtcNow.Ticks-t;
 			//Log.Debug("RESULT: "+ResultString);
 			LogAction();
 
 			if ( vUnhandledException != null ) {
+				vUnhandledException = new Exception("ApiDataAccess exception:\nResultString = "+
+					ResultString+"\nUnhandedException = "+vUnhandledException, vUnhandledException);
 				throw vUnhandledException;
 			}
 
