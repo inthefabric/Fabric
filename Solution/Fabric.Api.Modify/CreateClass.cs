@@ -70,7 +70,9 @@ namespace Fabric.Api.Modify {
 				ApiCtx, txb, ArtifactTypeId.Class, rootVar, classVar, memVar, out artVar);
 
 			txb.RegisterVarWithTxBuilder(classVar);
-			return ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
+			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
+			ApiCtx.AddToClassNameCache(c);
+			return c;
 		}
 
 	}

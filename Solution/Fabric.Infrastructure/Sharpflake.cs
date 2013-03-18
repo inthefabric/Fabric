@@ -9,7 +9,12 @@ namespace Fabric.Infrastructure {
 	/*================================================================================================*/
 	public static class Sharpflake {
 
-		private const int ServerId = 0; //0 to 1023
+		//Skip: 1 bit (IDs type signed long/Int64)
+		//Millis: 43 bits
+		//Server: 12 bits
+		//Sequence: 8 bits
+
+		private const int ServerId = 0; //0 to 4095
 
 		private static long LastMilli;
 		private static readonly Dictionary<Type, SharpflakeSequence> Sequence = 
@@ -20,7 +25,7 @@ namespace Fabric.Infrastructure {
 		/*--------------------------------------------------------------------------------------------*/
 		public static long GetMilli() {
 			//milliseconds since Jan 1, 2012
-			//this will overflow 41 bits in year 2071 (69 years)
+			//this will overflow 43 bits in year 2290 (278.9 years)
 			
 			long m = (DateTime.UtcNow.AddYears(-2011).Ticks/10000L);
 
@@ -49,13 +54,13 @@ namespace Fabric.Infrastructure {
 		/*--------------------------------------------------------------------------------------------*/
 		public static long GetId<T>() where T : INode {
 			long m = GetMilli();
-			return (m << 22) + (ServerId << 12) + GetSequence<T>().NextIndex;
+			return (m << 20) + (ServerId << 8) + GetSequence<T>().NextIndex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetIdStr<T>() where T : INode {
 			long m = GetMilli();
-			return Convert.ToString(m, 2) + "." + Convert.ToString(ServerId, 2) + "." +
+			return Convert.ToString(m<<20, 2) + "." + Convert.ToString(ServerId<<8, 2) + "." +
 				Convert.ToString(GetSequence<T>().NextIndex, 2);
 		}
 
@@ -65,7 +70,7 @@ namespace Fabric.Infrastructure {
 	internal class SharpflakeSequence {
 
 		private long vLastMilli;
-		private int vIndex; // 0 to 4095
+		private int vIndex; // 0 to 255
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,7 +83,7 @@ namespace Fabric.Infrastructure {
 					vLastMilli = m;
 					vIndex = 0;
 				}
-				else if ( ++vIndex >= 4096 ) {
+				else if ( ++vIndex >= 256 ) {
 					SpinUntilNextMilli();
 					vIndex = 0;
 				}
