@@ -23,14 +23,16 @@ namespace Fabric.Infrastructure.Api {
 
 		public long DbQueryExecutionCount { get; private set; }
 
-		private MemoryCache vMemCache;
+		private readonly MemoryCache vMemCache;
+		private readonly ClassNameCache vClassNameCache;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiContext(string pGremlinUrl, MemoryCache pMemCache) {
+		public ApiContext(string pGremlinUrl, MemoryCache pMemCache, ClassNameCache pClassNameCache) {
 			GremlinUrl = pGremlinUrl;
 			vMemCache = pMemCache;
+			vClassNameCache = pClassNameCache;
 
 			ContextId = Guid.NewGuid();
 			UserId = -1;
@@ -97,6 +99,19 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual T RemoveFromCache<T>(string pKey) {
 			return (T)vMemCache.Remove(pKey);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		// TEST: ApiContext ClassName caching functionality and usages
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToClassNameCache(Class pClass) {
+			vClassNameCache.AddClass(this, pClass);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb) {
+			return vClassNameCache.GetClassIds(pName, pDisamb);
 		}
 
 

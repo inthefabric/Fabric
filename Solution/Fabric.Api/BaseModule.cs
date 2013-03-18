@@ -21,6 +21,7 @@ namespace Fabric.Api {
 		protected static FabMetaVersion Version;
 		private static string ConfPrefix;
 		private static MemoryCache MemCache;
+		private static ClassNameCache ClassNameCache;
 		private static int GremlinUrlIndex;
 
 		public static string ApiUrl;
@@ -65,22 +66,23 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 15, "cea11068d75f");
+				Version.SetBuild(0, 1, 16, "ccfc9c4136bd");
 				Version.SetDate(2013, 3, 17);
 			}
 
 			if ( MemCache == null ) {
 				var cacheConfig = new NameValueCollection();
-				cacheConfig.Add("PhysicalMemoryLimitPercentage", "10");
+				//cacheConfig.Add("PhysicalMemoryLimitPercentage", "10");
 
 				MemCache = new MemoryCache("FabricApi", cacheConfig);
+				ClassNameCache = new ClassNameCache(NewApiCtx(), 3, 2);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
 			int i = (GremlinUrlIndex++)%RexNodes;
-			return new ApiContext(GremlinUrls[i], MemCache);
+			return new ApiContext(GremlinUrls[i], MemCache, ClassNameCache);
 		}
 
 

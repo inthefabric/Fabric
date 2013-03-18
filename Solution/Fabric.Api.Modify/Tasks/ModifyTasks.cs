@@ -1,4 +1,6 @@
-﻿using Fabric.Domain;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
@@ -70,29 +72,60 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.GetClassByNameDisamp cache usage
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
+			IList<long> classIdList = pApiCtx.GetClassIdsFromClassNameCache(pName, pDisamb);
+
+			if ( classIdList == null || classIdList.Count == 0 ) {
+				return null;
+			}
+
+			IWeaverTransaction tx = new WeaverTransaction();
+			var classVars = new List<IWeaverVarAlias>();
+			IWeaverVarAlias retainVar;
+
+			foreach ( long classId in classIdList ) {
+				var classVar = new WeaverVarAlias<Class>(tx);
+				classVars.Add(classVar);
+
+				tx.AddQuery(
+					ApiFunc.NewPathFromIndex(new Class { ClassId = classId })
+						.ToNodeVar(classVar)
+					.End()
+				);
+			}
+			
+			tx.AddQuery(
+				WeaverTasks.InitListVar(tx, classVars, out retainVar)
+			);
+
+			////
+
 			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_TP0}";
 
 			Class path = 
 				ApiFunc.NewPathFromRoot()
 				.ContainsClassList.ToClass
+					.Retain(retainVar)
 					.CustomStep(filterStep);
 
 			if ( pDisamb != null ) {
 				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
-				filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==DISAMB}";
+				filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_TP1}";
 				path.CustomStep(filterStep);
 			}
 
 			IWeaverQuery q = path.End();
-			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
+			q.AddParam(new WeaverQueryVal(pName.ToLower(), false));
 
 			if ( pDisamb != null ) {
-				q.AddParam("DISAMB", new WeaverQueryVal(pDisamb.ToLower(), false));
+				q.AddParam(new WeaverQueryVal(pDisamb.ToLower(), false));
 			}
 
-			return pApiCtx.DbSingle<Class>("GetClassByNameDisamb", q);
+			tx.AddQuery(q);
+			tx.FinishWithoutStartStop();
+			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

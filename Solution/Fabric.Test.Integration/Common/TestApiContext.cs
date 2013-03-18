@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Weaver.Interfaces;
@@ -18,7 +19,7 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base(GremlinUri, null) {
+		public TestApiContext() : base(GremlinUri, null, null) {
 			SharpflakeIds = new List<long>();
 		}
 
@@ -58,6 +59,18 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		public override T RemoveFromCache<T>(string pKey) {
 			return default(T);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		// TEST: ApiContext ClassName caching functionality and usages
+		/*--------------------------------------------------------------------------------------------*/
+		public override void AddToClassNameCache(Class pClass) {
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb) {
+			return null;
 		}
 
 
