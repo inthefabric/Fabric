@@ -111,7 +111,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb) {
-			return vClassNameCache.GetClassIds(pName, pDisamb);
+			return vClassNameCache.GetClassIds(this, pName, pDisamb);
 		}
 
 

@@ -114,9 +114,14 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<long> GetClassIds(string pName, string pDisamb) {
+		public IList<long> GetClassIds(IApiContext pApiCtx, string pName, string pDisamb) {
 			string key = GetMapKey(pName, pDisamb);
-			return (vDupMap.ContainsKey(key) ? vDupMap[key].ToList() : null);
+			IList<long> list = (vDupMap.ContainsKey(key) ? vDupMap[key].ToList() : null);
+
+			Log.Info(pApiCtx.ContextId, "CLASS", "Found "+(list == null ? 0 : list.Count)+
+				" ClassId values for key '"+key+"'");
+
+			return list;
 		}
 
 	}

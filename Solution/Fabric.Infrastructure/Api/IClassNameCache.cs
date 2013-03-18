@@ -10,7 +10,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void AddClass(IApiContext pApiCtx, Class pClass);
-		IList<long> GetClassIds(string pName, string pDisamb);
+		IList<long> GetClassIds(IApiContext pApiCtx, string pName, string pDisamb);
 
 	}
 
