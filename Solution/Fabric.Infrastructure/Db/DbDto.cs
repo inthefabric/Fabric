@@ -34,40 +34,34 @@ namespace Fabric.Infrastructure.Db {
 		public DbDto() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DbDto(IDictionary<string, string> pData) {
-			Data = pData;
+		public DbDto(DbDtoRaw pRaw) {
+			Data = pRaw._properties;
 
-			if ( !Data.ContainsKey("_id") ) {
+			if ( pRaw._id == null ) {
 				return;
 			}
 
-			string type = Data["_type"];
+			string type = pRaw._type;
 
 			switch ( type ) {
 				case "vertex":
-					Id = long.Parse(Data["_id"]);
+					Id = long.Parse(pRaw._id);
 					Item = ItemType.Node;
 					Class = GetClass(Data);
 					break;
 
 				case "edge":
-					string relId = Data["_id"];
+					string relId = pRaw._id;
 					Id = long.Parse(relId.Split(':')[0]);
 					Item = ItemType.Rel;
-					Class = Data["_label"];
-					FromNodeId = long.Parse(Data["_outV"]);
-					ToNodeId = long.Parse(Data["_inV"]);
-					Data.Remove("_label");
-					Data.Remove("_outV");
-					Data.Remove("_inV");
+					Class = pRaw._label;
+					FromNodeId = pRaw._outV;
+					ToNodeId = pRaw._inV;
 					break;
 
 				default:
 					throw new Exception("Unknown ItemType: "+type);
 			}
-
-			Data.Remove("_id");
-			Data.Remove("_type");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

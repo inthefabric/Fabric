@@ -78,6 +78,7 @@
     <Compile Include="Api\Faults\FabNotFoundFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
+    <Compile Include="Db\DbDtoRaw.cs" />
     <Compile Include="Db\FabricIdEnums.cs" />
     <Compile Include="Db\IDbResult.cs" />
     <Compile Include="Db\DbDto.cs" />

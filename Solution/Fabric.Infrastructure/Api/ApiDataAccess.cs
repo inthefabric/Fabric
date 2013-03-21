@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
@@ -36,8 +38,7 @@ namespace Fabric.Infrastructure.Api {
 			string script = FabricUtil.JsonUnquote(Script);
 			string param = BuildParams();
 			
-			Query = "{\"script\":\""+script+"\""+
-				(param.Length > 0 ? ",\"params\":{"+param+"}" : "")+"}";
+			Query = script+(param.Length > 0 ? "#{"+param+"}" : "");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,10 +94,25 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetResultString(string pQuery) {
-			using ( var wc = new WebClient() ) {
-				wc.Headers.Add("Content-Type", "application/json");
-				return wc.UploadString(ApiCtx.GremlinUrl, pQuery);
+			TcpClient tcp = new TcpClient("192.168.1.105", 8185);
+
+			byte[] data = Encoding.ASCII.GetBytes(ApiCtx.ContextId+"#"+pQuery+"\r\n");
+			NetworkStream stream = tcp.GetStream();
+			stream.Write(data, 0, data.Length);
+
+			int size = 128; //tcp.ReceiveBufferSize;
+			int bytes = size;
+			string respData = "";
+
+			while ( bytes == size ) {
+				data = new byte[tcp.ReceiveBufferSize];
+				bytes = stream.Read(data, 0, data.Length);
+				respData += Encoding.ASCII.GetString(data, 0, bytes);
 			}
+
+			tcp.Close();
+			Log.Debug("RESULT: "+respData);
+			return respData;
 		}
 
 

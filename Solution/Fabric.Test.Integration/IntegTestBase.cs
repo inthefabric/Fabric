@@ -156,7 +156,7 @@ namespace Fabric.Test.Integration {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private Tuple<int,int> CountNodesAndRels() {
+		private Tuple<int, int> CountNodesAndRels() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountVE", q);

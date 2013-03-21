@@ -5,15 +5,15 @@ namespace Fabric.Infrastructure.Db {
 	/*================================================================================================*/
 	public interface IDbResult {
 
+		string Request { get; set; }
 		bool Success { get; set; }
-		string Version { get; set; }
-		double QueryTime { get; set; }
+		int QueryTime { get; set; }
 		double ServerTime { get; set; }
 		string Exception { get; set; }
 		string Message { get; set; }
 		string Text { get; set; }
 
-		IList<IDictionary<string, string>> Results { get; set; }
+		IList<DbDtoRaw> Results { get; set; }
 		IList<DbDto> DbDtos { get; set; }
 
 

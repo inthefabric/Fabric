@@ -64,11 +64,13 @@ namespace Fabric.Api.Modify {
 			
 			//TEST: CreateClass new direct-to-ID approach
 			IWeaverVarAlias<Root> rootVar = new WeaverVarAlias<Root>(txb.Transaction);
+			txb.RegisterVarWithTxBuilder(rootVar);
 			var q = new WeaverQuery();
 			q.FinalizeQuery(rootVar.Name+"=g.v(4)");
 			txb.Transaction.AddQuery(q);
 
 			IWeaverVarAlias<Member> memVar = new WeaverVarAlias<Member>(txb.Transaction);
+			txb.RegisterVarWithTxBuilder(memVar);
 			q = new WeaverQuery();
 			q.FinalizeQuery(memVar.Name+"=g.v("+m.Id+")");
 			txb.Transaction.AddQuery(q);
