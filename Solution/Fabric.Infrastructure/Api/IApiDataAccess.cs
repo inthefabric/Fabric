@@ -13,7 +13,7 @@ namespace Fabric.Infrastructure.Api {
 		IDictionary<string, string> Params { get; }
 		string Query { get; }
 
-		string ResultString { get; }
+		string RawResult { get; }
 		IDbResult Result { get; }
 		IList<IDbDto> ResultDtoList { get; }
 
@@ -23,6 +23,9 @@ namespace Fabric.Infrastructure.Api {
 		void Execute();
 		int GetResultCount();
 		T GetResultAt<T>(int pIndex) where T : IItemWithId, new();
+		string GetStringResultAt(int pIndex);
+		int GetIntResultAt(int pIndex);
+		long GetLongResultAt(int pIndex);
 
 	}
 

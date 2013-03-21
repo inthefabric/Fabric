@@ -88,7 +88,7 @@ namespace Fabric.Api.Traversal {
 				return;
 			}
 
-			vModel.NonDtoText = data.ResultString;
+			vModel.NonDtoText = data.RawResult;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

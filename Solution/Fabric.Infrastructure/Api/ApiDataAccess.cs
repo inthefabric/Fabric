@@ -20,7 +20,7 @@ namespace Fabric.Infrastructure.Api {
 		public IDictionary<string, string> Params { get; private set; }
 		public string Query { get; private set; }
 
-		public string ResultString { get; private set; }
+		public string RawResult { get; private set; }
 		public IDbResult Result { get; private set; }
 		public IList<IDbDto> ResultDtoList { get; private set; }
 
@@ -52,9 +52,9 @@ namespace Fabric.Infrastructure.Api {
 			long t = DateTime.UtcNow.Ticks;
 
 			try {
-				ResultString = GetResultString(Query);
-				Result = JsonSerializer.DeserializeFromString<DbResult>(ResultString);
-				Result.BuildDbDtos(ResultString);
+				RawResult = GetRawResult(Query);
+				Result = JsonSerializer.DeserializeFromString<DbResult>(RawResult);
+				Result.BuildDbDtos(RawResult);
 			}
 			catch ( WebException we ) {
 				vUnhandledException = we;
@@ -83,7 +83,7 @@ namespace Fabric.Infrastructure.Api {
 
 			if ( vUnhandledException != null ) {
 				vUnhandledException = new Exception("ApiDataAccess exception:\nResultString = "+
-					ResultString+"\nUnhandedException = "+vUnhandledException, vUnhandledException);
+					RawResult+"\nUnhandedException = "+vUnhandledException, vUnhandledException);
 				throw vUnhandledException;
 			}
 
@@ -93,7 +93,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual string GetResultString(string pQuery) {
+		protected virtual string GetRawResult(string pQuery) {
 			TcpClient tcp = new TcpClient("192.168.1.105", 8185);
 
 			byte[] data = Encoding.ASCII.GetBytes(ApiCtx.ContextId+"#"+pQuery+"\r\n");
@@ -141,6 +141,21 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public T GetResultAt<T>(int pIndex) where T : IItemWithId, new() {
 			return ResultDtoList[pIndex].ToItem<T>();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetStringResultAt(int pIndex) {
+			return Result.TextList[pIndex];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetIntResultAt(int pIndex) {
+			return int.Parse(GetStringResultAt(pIndex));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public long GetLongResultAt(int pIndex) {
+			return long.Parse(GetStringResultAt(pIndex));
 		}
 
 

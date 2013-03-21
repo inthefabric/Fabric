@@ -23,9 +23,9 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string GetResultString(string pQuery) {
+		protected override string GetRawResult(string pQuery) {
 			long t = DateTime.UtcNow.Ticks;
-			string json = base.GetResultString(CleanQueryIndexIds(pQuery));
+			string json = base.GetRawResult(CleanQueryIndexIds(pQuery));
 			Log.Info("Query: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			Log.Info("");
 			return json;

@@ -114,7 +114,7 @@
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.33\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
     </Reference>
   </ItemGroup>

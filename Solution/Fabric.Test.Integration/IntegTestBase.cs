@@ -160,8 +160,7 @@ namespace Fabric.Test.Integration {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountVE", q);
-			string[] items = data.Result.Text.Split(',');
-			return new Tuple<int, int>(int.Parse(items[0]), int.Parse(items[1]));
+			return new Tuple<int, int>(data.GetIntResultAt(0), data.GetIntResultAt(1));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

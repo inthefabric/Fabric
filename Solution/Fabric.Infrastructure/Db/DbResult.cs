@@ -1,9 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
-	public class DbResult : IDbResult {
+	public class DbResult : IDbResult { //TEST: DbResult functions
+
+		//Regex from http://stackoverflow.com/questions/3776458/
+		//	split-a-comma-separated-string-with-both-quoted-and-unquoted-strings
+		private static readonly Regex SmartCommaSplit = 
+			new Regex("(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)", RegexOptions.Compiled);
 
 		public string Request { get; set; }
 		public bool Success { get; set; }
@@ -12,6 +18,7 @@ namespace Fabric.Infrastructure.Db {
 		public string Exception { get; set; }
 		public string Message { get; set; }
 		public string Text { get; set; }
+		public IList<string> TextList { get; set; }
 
 		public IList<DbDtoRaw> Results { get; set; }
 		public IList<DbDto> DbDtos { get; set; }
@@ -46,7 +53,41 @@ namespace Fabric.Infrastructure.Db {
 			int endI = pResultJson.IndexOf("],", startI);
 
 			Text = pResultJson.Substring(startI, endI-startI);
+			BuildTextList();
 			DbDtos = null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void BuildTextList() {
+			TextList = new List<string>();
+			int i = 0;
+			int j = -1;
+			int lastIndex = Text.Length-1;
+			bool inQuote = false;
+
+			foreach ( char c in Text ) {
+				++j;
+
+				if ( c == '"' ) {
+					inQuote = !inQuote;
+				}
+
+				if ( inQuote ) {
+					continue;
+				}
+
+				if ( c == ',' ) {
+					TextList.Add(Text.Substring(i,j).Trim());
+					i = j+1;
+					continue;
+				}
+
+				if ( j == lastIndex ) {
+					TextList.Add(Text.Substring(i).Trim());
+					break;
+				}
+			}
+
 		}
 
 	}

@@ -12,6 +12,7 @@ namespace Fabric.Infrastructure.Db {
 		string Exception { get; set; }
 		string Message { get; set; }
 		string Text { get; set; }
+		IList<string> TextList { get; set; }
 
 		IList<DbDtoRaw> Results { get; set; }
 		IList<DbDto> DbDtos { get; set; }
