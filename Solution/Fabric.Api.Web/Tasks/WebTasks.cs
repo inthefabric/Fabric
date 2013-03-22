@@ -151,7 +151,6 @@ namespace Fabric.Api.Web.Tasks {
 				ApiFunc.NewPathFromVar(mtaAlias, false)
 				.InMemberHas
 					.RemoveEach() //remove relationship between Member and MTA
-					.Iterate()
 				.End()
 			);
 
@@ -217,8 +216,8 @@ namespace Fabric.Api.Web.Tasks {
 					.RemoveEach()
 				.End();
 				
-			IApiDataAccess data = pApiCtx.DbData("DeleteOauthDomain", q);
-			return (data.GetResultCount() == 1);
+			pApiCtx.DbData("DeleteOauthDomain", q);
+			return true;
 		}
 
 

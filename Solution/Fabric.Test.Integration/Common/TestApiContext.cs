@@ -10,8 +10,6 @@ namespace Fabric.Test.Integration.Common {
 	/*================================================================================================*/
 	public class TestApiContext : ApiContext {
 
-		public const string GremlinUri = "http://rexster:8182/graphs/FabricTest/tp/gremlin";
-
 		public DateTime? TestUtcNow { get; set; }
 		//public string TestCode32 { get; set; }
 		public IList<long> SharpflakeIds { get; private set; }
@@ -19,7 +17,7 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base(GremlinUri, null, null) {
+		public TestApiContext() : base("localhost", 8185, null, null) {
 			SharpflakeIds = new List<long>();
 		}
 

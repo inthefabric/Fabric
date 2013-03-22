@@ -41,7 +41,7 @@ namespace Fabric.Infrastructure.Db {
 				return;
 			}
 
-			string type = pRaw._type;
+			string type = pRaw._type; //always returns "vertex"
 
 			switch ( type ) {
 				case "vertex":
@@ -81,9 +81,16 @@ namespace Fabric.Infrastructure.Db {
 			//from JSON to Dictionary into DbDto. Then DbDto will have the raw string, and can 
 			//serialize directly to (T) in this function.
 
-			string json = JsonSerializer.SerializeToString(Data);
+			T result;
 
-			T result = JsonSerializer.DeserializeFromString<T>(json);
+			if ( Data == null ) {
+				result = new T();
+			}
+			else {
+				string json = JsonSerializer.SerializeToString(Data);
+				result = JsonSerializer.DeserializeFromString<T>(json);
+			}
+
 			result.Id = (long)Id;
 
 			IRel rel = (result as IRel);

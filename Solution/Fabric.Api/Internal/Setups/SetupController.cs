@@ -29,7 +29,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(false);
+				vDataSet = Setup.SetupAll(true);
 
 				//SendSetupTx();
 				SendIndexTx();
@@ -78,7 +78,7 @@ namespace Fabric.Api.Internal.Setups {
 				var tx = new WeaverTransaction();
 				string listScript = "";
 				int start = count;
-				int limit = 5;
+				int limit = 100;
 				Log.Debug("Node "+start+" / "+vDataSet.Nodes.Count);
 
 				for ( int i = start ; i < vDataSet.Nodes.Count ; ++i ) {
@@ -123,7 +123,7 @@ namespace Fabric.Api.Internal.Setups {
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
-				int limit = 10;
+				int limit = 200;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 
 				for ( int i = count ; i < vDataSet.Rels.Count ; ++i ) {

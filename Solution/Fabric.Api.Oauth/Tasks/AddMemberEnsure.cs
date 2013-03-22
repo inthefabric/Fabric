@@ -159,7 +159,6 @@ namespace Fabric.Api.Oauth.Tasks {
 				NewPathFromIndex(pAssign)
 				.InMemberHas
 					.RemoveEach()
-					.Iterate()
 				.End()
 			);
 

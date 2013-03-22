@@ -35,7 +35,7 @@ namespace Fabric.Api.Internal.Graph {
 						"g.V.inE.outV.except([root]).back(2).aggregate(x).iterate();x";
 				}
 
-				var ctx = new ApiContext("http://localhost:9001/", null, null);
+				var ctx = new ApiContext("localhost", 8185, null, null);
 
 				IWeaverQuery query = new WeaverQuery();
 				query.FinalizeQuery(q);

@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.Api.Oauth.Tasks;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -62,8 +61,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".each{_V0=g.v(it)};"+
 			"g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+
 			".inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
-				".sideEffect{g.removeEdge(it)}"+
-				".iterate();"+
+				".remove();"+
 			"g.V('"+typeof(Member).Name+"Id',{{MemId}}L)[0]"+
 				".each{_V1=g.v(it)};"+
 			"g.V('"+typeof(MemberTypeAssign).Name+"Id',{{MtaId}}L)[0]"+

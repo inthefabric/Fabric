@@ -1,11 +1,18 @@
 <appSettings>
-	<add key="Dev_Api" value="localhost:0000" />
-	<add key="Dev_Db" value="localhost:0000" />
-	<add key="Dev_Rex" value="localhost:0000" />
-	<add key="DevLive_Api" value="000.000.000.000" />
-	<add key="DevLive_Db" value="000.000.000.000" />
-	<add key="DevLive_Rex" value="000.000.000.000" />
+	<add key="Dev_Api" value="localhost:9000" />
+	<add key="Dev_RexConn" value="x.x.x.x:8185" />
+	<add key="Dev_RexNodes" value="1" />
+	<add key="Dev_Rex1" value="x.x.x.x:8182" />
+
+	<add key="DevLive_Api" value="localhost:9000" />
+	<add key="Prod_RexConn" value="x.x.x.x:8185" />
+	<add key="DevLive_RexNodes" value="2" />
+	<add key="DevLive_Rex1" value="x.x.x.x:8182" />
+	<add key="DevLive_Rex2" value="x.x.x.x:8182" />
+
 	<add key="Prod_Api" value="api.inthefabric.com" />
-	<add key="Prod_Db" value="000.000.000.000" />
-	<add key="Prod_Rex" value="000.000.000.000" />
+	<add key="Prod_RexConn" value="x.x.x.x:8185" />
+	<add key="Prod_RexNodes" value="2" />
+	<add key="Prod_Rex1" value="x.x.x.x:8182" />
+	<add key="Prod_Rex2" value="x.x.x.x:8182" />
 </appSettings>

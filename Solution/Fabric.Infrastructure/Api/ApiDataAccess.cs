@@ -94,24 +94,26 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pQuery) {
-			TcpClient tcp = new TcpClient("192.168.1.105", 8185);
+			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
+			tcp.ReceiveBufferSize = 1048576;
+			tcp.SendBufferSize = 1048576;
 
-			byte[] data = Encoding.ASCII.GetBytes(ApiCtx.ContextId+"#"+pQuery+"\r\n");
+			byte[] data = Encoding.ASCII.GetBytes(ApiCtx.ContextId+"#"+pQuery+"\n");
 			NetworkStream stream = tcp.GetStream();
 			stream.Write(data, 0, data.Length);
 
-			int size = 128; //tcp.ReceiveBufferSize;
+			const int size = 128;
 			int bytes = size;
 			string respData = "";
 
 			while ( bytes == size ) {
-				data = new byte[tcp.ReceiveBufferSize];
+				data = new byte[size];
 				bytes = stream.Read(data, 0, data.Length);
 				respData += Encoding.ASCII.GetString(data, 0, bytes);
 			}
 
 			tcp.Close();
-			Log.Debug("RESULT: "+respData);
+			//Log.Debug("RESULT: "+respData);
 			return respData;
 		}
 

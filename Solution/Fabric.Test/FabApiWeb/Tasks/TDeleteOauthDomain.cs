@@ -15,11 +15,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
 				".has('"+typeof(OauthDomain).Name+"Id',Tokens.T.eq,{{OauthDomainId}}L)"+
-				".sideEffect{g.removeVertex(it)};";
+				".remove();";
 
 		private long vAppId;
 		private long vOauthDomainId;
-		private Mock<IApiDataAccess> vDataResult;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,9 +26,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		protected override void TestSetUp() {
 			vAppId = 3456;
 			vOauthDomainId = 842645;
-
-			vDataResult = new Mock<IApiDataAccess>();
-			vDataResult.Setup(x => x.GetResultCount()).Returns(1);
 
 			MockApiCtx
 				.Setup(x => x.DbData("DeleteOauthDomain", It.IsAny<IWeaverQuery>()))
@@ -46,8 +42,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				.Replace("{{OauthDomainId}}", vOauthDomainId+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-
-			return vDataResult.Object;
+			return null;
 		}
 
 
@@ -59,17 +54,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			UsageMap.AssertUses("DeleteOauthDomain", 1);
 			Assert.True(result, "Incorrect Result.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void Failure() {
-			vDataResult.Setup(x => x.GetResultCount()).Returns(0);
-
-			bool result = Tasks.DeleteOauthDomain(MockApiCtx.Object, vAppId, vOauthDomainId);
-
-			UsageMap.AssertUses("DeleteOauthDomain", 1);
-			Assert.False(result, "Incorrect Result.");
 		}
 
 	}

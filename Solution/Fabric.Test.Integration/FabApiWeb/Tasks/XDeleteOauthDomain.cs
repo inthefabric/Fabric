@@ -57,7 +57,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			bool result = TestGo();
 
-			Assert.False(result, "Incorrect result.");
+			Assert.True(result, "Incorrect result.");
 
 			IsReadOnlyTest = true;
 			NewNodeCount = 0;

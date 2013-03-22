@@ -11,7 +11,8 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public interface IApiContext {
 
-		string GremlinUrl { get; }
+		string RexConnUrl { get; }
+		int RexConnPort { get; }
 
 		Guid ContextId { get; }
 		long UserId { get; }

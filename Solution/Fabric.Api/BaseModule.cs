@@ -22,9 +22,10 @@ namespace Fabric.Api {
 		private static string ConfPrefix;
 		private static MemoryCache MemCache;
 		private static ClassNameCache ClassNameCache;
-		private static int GremlinUrlIndex;
 
 		public static string ApiUrl;
+		public static string RexConnUrl;
+		public static int RexConnPort;
 		public static int RexNodes;
 		public static string[] RexUrls;
 		public static string[] GremlinUrls;
@@ -47,15 +48,22 @@ namespace Fabric.Api {
 
 #if MONO_DEV
 				ApiUrl = "http://localhost:9000";
+				RexConnUrl = "localhost";
+				RexConnPort = 8185;
 				RexNodes = 1;
 				RexUrls = new string[1] { "rexster:8182" };
 				GremlinUrls = new string[1] { "http://"+RexUrls[0]+"/graphs/Fabric/tp/gremlin" };
 #else
 				ApiUrl = "http://"+ConfigurationManager.AppSettings[ConfPrefix+"Api"];
+				
+				string rc = ConfigurationManager.AppSettings[ConfPrefix+"RexConn"];
+				string[] rcParts = rc.Split(':');
+				RexConnUrl = rcParts[0];
+				RexConnPort = int.Parse(rcParts[1]);
+
 				RexNodes = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexNodes"]);
 				RexUrls = new string[RexNodes];
 				GremlinUrls = new string[RexNodes];
-				GremlinUrlIndex = 0;
 
 				for ( int i = 0 ; i < RexNodes ; ++i ) {
 					RexUrls[i] = WebConfigurationManager.AppSettings[ConfPrefix+"Rex"+(i+1)];
@@ -66,8 +74,8 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 16, "a81c324ac1d0");
-				Version.SetDate(2013, 3, 18);
+				Version.SetBuild(0, 1, 17, "a81c324ac1d0");
+				Version.SetDate(2013, 3, 22);
 			}
 
 			if ( MemCache == null ) {
@@ -81,8 +89,7 @@ namespace Fabric.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
-			int i = (GremlinUrlIndex++)%RexNodes;
-			return new ApiContext(GremlinUrls[i], MemCache, ClassNameCache);
+			return new ApiContext(RexConnUrl, RexConnPort, MemCache, ClassNameCache);
 		}
 
 

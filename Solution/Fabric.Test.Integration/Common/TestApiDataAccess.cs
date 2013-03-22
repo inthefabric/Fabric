@@ -38,7 +38,18 @@ namespace Fabric.Test.Integration.Common {
 			//the following will trim the "L" from all indexes.
 
 			string q = Regex.Replace(pQuery, @",([0-9]+)L\)", ",$1)");
-			//Log.Debug("TEST: "+q);
+
+			q = q.Replace(".sideEffect{g.removeVertex(it)}.iterate()", ".remove()");
+			q = q.Replace(".each{g.removeVertex(it)}.iterate()", ".remove()");
+			q = q.Replace(".sideEffect{g.removeVertex(it)}", ".remove()");
+			q = q.Replace(".each{g.removeVertex(it)}", ".remove()");
+
+			q = q.Replace(".sideEffect{g.removeEdge(it)}.iterate()", ".remove()");
+			q = q.Replace(".each{g.removeEdge(it)}.iterate()", ".remove()");
+			q = q.Replace(".sideEffect{g.removeEdge(it)}", ".remove()");
+			q = q.Replace(".each{g.removeEdge(it)}", ".remove()");
+			
+			Log.Debug("TEST: "+q);
 			return q;
 		}
 

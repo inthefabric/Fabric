@@ -53,6 +53,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vResultAccess = new OauthAccess();
 			vResultAccess.Token = vToken;
 			vResultAccess.Refresh = FabricUtil.Code32;
+			vResultAccess.Expires = vUtcNow.AddSeconds(-1000).Ticks;
 
 			vResultApp = new App();
 			vResultApp.AppId = 456;
@@ -174,7 +175,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(vResultAccess.Refresh, pResult.RefreshToken,
 				"Incorrect Result.RefreshToken.");
 			Assert.AreEqual("bearer", pResult.TokenType, "Incorrect Result.TokenType.");
-			Assert.AreEqual(3600, pResult.ExpiresIn, "Incorrect Result.ExpiresIn.");
+			Assert.AreEqual(-1000, pResult.ExpiresIn, "Incorrect Result.ExpiresIn.");
 			Assert.AreEqual(vResultApp.AppId, pResult.AppId, "Incorrect Result.AppId.");
 		}
 

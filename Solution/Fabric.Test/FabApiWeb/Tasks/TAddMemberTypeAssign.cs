@@ -20,8 +20,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				".each{_V1=g.v(it)};"+
 
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
-				".sideEffect{g.removeEdge(it)}"+
-				".iterate();"+
+				".remove();"+
 
 			"g.addEdge(_V0,_V1,_TP0);"+
 

@@ -13,7 +13,8 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public class ApiContext : IApiContext {
 
-		public string GremlinUrl { get; private set; }
+		public string RexConnUrl { get; private set; }
+		public int RexConnPort { get; private set; }
 
 		public Guid ContextId { get; private set; }
 		public long UserId { get; private set; }
@@ -29,8 +30,10 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiContext(string pGremlinUrl, MemoryCache pMemCache, ClassNameCache pClassNameCache) {
-			GremlinUrl = pGremlinUrl;
+		public ApiContext(string pRexConnUrl, int pRexConnPort,
+												MemoryCache pMemCache, ClassNameCache pClassNameCache) {
+			RexConnUrl = pRexConnUrl;
+			RexConnPort = pRexConnPort;
 			vMemCache = pMemCache;
 			vClassNameCache = pClassNameCache;
 
