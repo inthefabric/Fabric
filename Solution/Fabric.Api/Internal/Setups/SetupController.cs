@@ -4,7 +4,6 @@ using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Db;
 using Nancy;
 using Weaver;
 using Weaver.Interfaces;
@@ -31,12 +30,12 @@ namespace Fabric.Api.Internal.Setups {
 				long time = DateTime.UtcNow.Ticks;
 				vDataSet = Setup.SetupAll(true);
 
-				//SendSetupTx();
+				SendSetupTx();
 				SendIndexTx();
 				SendNodeTx();
 				SendRelTx();
 
-				return "success: "+(DateTime.UtcNow.Ticks-time)/10000.0;
+				return "success: "+(DateTime.UtcNow.Ticks-time)/10000000.0;
 			}
 			catch ( Exception ex ) {
 				Log.Error("error", ex);
@@ -48,6 +47,7 @@ namespace Fabric.Api.Internal.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendSetupTx() {
+			Log.Debug("Remove all nodes");
 			var tx = new WeaverTransaction();
 
 			foreach ( IWeaverQuery q in vDataSet.Initialization ) {
@@ -60,6 +60,7 @@ namespace Fabric.Api.Internal.Setups {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
+			Log.Debug("Create Indexes");
 			var tx = new WeaverTransaction();
 
 			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
@@ -78,7 +79,7 @@ namespace Fabric.Api.Internal.Setups {
 				var tx = new WeaverTransaction();
 				string listScript = "";
 				int start = count;
-				int limit = 100;
+				int limit = 50;
 				Log.Debug("Node "+start+" / "+vDataSet.Nodes.Count);
 
 				for ( int i = start ; i < vDataSet.Nodes.Count ; ++i ) {
@@ -91,7 +92,7 @@ namespace Fabric.Api.Internal.Setups {
 					count++;
 
 					tx.AddQuery(WeaverTasks.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
-					listScript += nodeVar.Name+",";
+					listScript += nodeVar.Name+".id,";
 				}
 
 				var listQ = new WeaverQuery();
@@ -101,14 +102,14 @@ namespace Fabric.Api.Internal.Setups {
 				tx.FinishWithoutStartStop();
 				IApiDataAccess nodeData = ApiCtx.DbData("addNodeTx", tx);
 
-				for ( int i = 0 ; i < nodeData.ResultDtoList.Count ; ++i ) {
-					IDbDto n = nodeData.ResultDtoList[i];
+				for ( int i = 0 ; i < nodeData.Result.TextList.Count ; ++i ) {
+					string idStr = nodeData.Result.TextList[i];
 
-					if ( n.Id == null ) {
+					if ( idStr == null ) {
 						throw new Exception("Node is null at index "+i+".");
 					}
 
-					vDataSet.Nodes[start+i].Node.Id = (long)n.Id;
+					vDataSet.Nodes[start+i].Node.Id = long.Parse(idStr);
 				}
 
 				if ( count >= vDataSet.Nodes.Count ) {
@@ -123,7 +124,7 @@ namespace Fabric.Api.Internal.Setups {
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
-				int limit = 200;
+				int limit = 100;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 
 				for ( int i = count ; i < vDataSet.Rels.Count ; ++i ) {

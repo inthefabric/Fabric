@@ -77,7 +77,7 @@ namespace Fabric.Infrastructure.Db {
 				}
 
 				if ( c == ',' ) {
-					TextList.Add(Text.Substring(i,j).Trim());
+					TextList.Add(Text.Substring(i,j-i).Trim());
 					i = j+1;
 					continue;
 				}

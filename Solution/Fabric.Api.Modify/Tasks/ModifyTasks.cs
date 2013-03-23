@@ -28,7 +28,8 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
 			string propName = WeaverUtil.GetPropertyName<Url>(x => x.AbsoluteUrl);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==AU}";
+			string url = new WeaverQueryVal(pAbsoluteUrl.ToLower()).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+url+"}";
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromRoot()
@@ -36,7 +37,7 @@ namespace Fabric.Api.Modify.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddParam("AU", new WeaverQueryVal(pAbsoluteUrl.ToLower(), false));
+			//q.AddParam("AU", new WeaverQueryVal(pAbsoluteUrl.ToLower(), false));
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 

@@ -71,8 +71,9 @@ namespace Fabric.Test.Integration {
 			Log.Info("TearDown started at T = "+GetTime());
 
 			////
-			
+
 			Tuple<int, int> c = CountNodesAndRels();
+			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
 
 			if ( !IsReadOnlyTest ) {
 				var q = new WeaverQuery();
@@ -90,7 +91,6 @@ namespace Fabric.Test.Integration {
 				Log.Info("READ ONLY MODE: skipped database reset");
 			}
 
-			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
 			Assert.AreEqual(NewNodeCount, c.Item1-vCounts.Item1, "Incorrect new node count.");
 			Assert.AreEqual(NewRelCount, c.Item2-vCounts.Item2, "Incorrect new rel count.");
 

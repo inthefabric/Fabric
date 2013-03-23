@@ -27,7 +27,8 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
 			string propName = WeaverUtil.GetPropertyName<User>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
+			string name = new WeaverQueryVal(pName.ToLower()).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+name+"}";
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromRoot()
@@ -35,7 +36,7 @@ namespace Fabric.Api.Web.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
+			//q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
 			return pApiCtx.DbSingle<User>("GetUserByName", q);
 
 		}
@@ -49,7 +50,8 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
 			string propName = WeaverUtil.GetPropertyName<App>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==NAME}";
+			string name = new WeaverQueryVal(pName.ToLower()).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+name+"}";
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromRoot()
@@ -57,7 +59,7 @@ namespace Fabric.Api.Web.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
+			//q.AddParam("NAME", new WeaverQueryVal(pName.ToLower(), false));
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
 		}
 		
@@ -179,7 +181,8 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomain GetOauthDomainByDomain(IApiContext pApiCtx, long pAppId, string pDomain) {
 			string propName = WeaverUtil.GetPropertyName<OauthDomain>(x => x.Domain);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==DOM}";
+			string dom = new WeaverQueryVal(pDomain.ToLower()).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+dom+"}";
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
@@ -187,7 +190,7 @@ namespace Fabric.Api.Web.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddParam("DOM", new WeaverQueryVal(pDomain.ToLower(), false));
+			//q.AddParam("DOM", new WeaverQueryVal(pDomain.ToLower(), false));
 			return pApiCtx.DbSingle<OauthDomain>("GetOauthDomainByDomain", q);
 		}
 

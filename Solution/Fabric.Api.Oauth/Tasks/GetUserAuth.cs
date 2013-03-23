@@ -42,7 +42,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override User Execute() {
 			string nameProp = WeaverUtil.GetPropertyName<User>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+nameProp+"').toLowerCase()==NAME}";
+			string name = new WeaverQueryVal(vUsername.ToLower()).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+nameProp+"').toLowerCase()=="+name+"}";
 
 			IWeaverQuery q = 
 				NewPathFromRoot()
@@ -51,7 +52,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddParam("NAME", new WeaverQueryVal(vUsername.ToLower(), false));
+			//q.AddParam("NAME", new WeaverQueryVal(vUsername.ToLower(), false));
 				
 			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
 		}
