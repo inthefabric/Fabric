@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -15,13 +14,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				typeof(Eventor).Name+"Id:{{NewEventorId}}L,"+
 				"DateTime:{{DateTime}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsEventor).Name+"');"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
+			"g.addEdge(_V2,_V1,'"+typeof(FactorUsesEventor).Name+"');"+
 			"g.V('"+typeof(EventorType).Name+"Id',{{EveTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
+			"g.addEdge(_V1,_V3,'"+typeof(EventorUsesEventorType).Name+"');"+
 			"g.V('"+typeof(EventorPrecision).Name+"Id',{{EvePrecId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP3);";
+			"g.addEdge(_V1,_V4,'"+typeof(EventorUsesEventorPrecision).Name+"');";
 
 		private long vEveTypeId;
 		private long vEvePrecId;
@@ -63,14 +62,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{EvePrecId}}", vEvePrecId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsEventor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesEventor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(EventorUsesEventorType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(EventorUsesEventorPrecision).Name);
 		}
 
 	}

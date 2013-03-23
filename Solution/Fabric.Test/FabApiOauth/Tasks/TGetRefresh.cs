@@ -18,7 +18,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V0=[];"+
 			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
-					".has('Refresh',Tokens.T.eq,_TP0)"+
+					".has('Refresh',Tokens.T.eq,'{{Refresh}}')"+
 					".has('IsClientOnly',Tokens.T.eq,false)"+
 					".as('step5')"+
 				".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
@@ -77,11 +77,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetRefresh.Query.GetAppUserTx+"");
 			string expect = QueryGetAccessTx
-				.Replace("{{RefToken}}", vRefToken);
+				.Replace("{{RefToken}}", vRefToken)
+				.Replace("{{Refresh}}", vRefToken);
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vRefToken);
-
 			return vMockGetAccessTxResult.Object;
 		}
 

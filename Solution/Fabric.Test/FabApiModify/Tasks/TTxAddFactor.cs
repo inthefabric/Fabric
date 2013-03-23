@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -16,17 +15,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				typeof(Factor).Name+"Id:{{NewFactorId}}L,"+
 				"IsDefining:true,"+
 				"Created:{{UtcNowTicks}}L,"+
-				"Note:_TP0"+
+				"Note:'{{Note}}'"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP1);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsFactor).Name+"');"+
 			"g.V('"+typeof(Artifact).Name+"Id',{{PrimArtId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,_TP2);"+
+			"g.addEdge(_V1,_V2,'"+typeof(FactorUsesPrimaryArtifact).Name+"');"+
 			"g.V('"+typeof(Artifact).Name+"Id',{{RelArtId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP3);"+
+			"g.addEdge(_V1,_V3,'"+typeof(FactorUsesRelatedArtifact).Name+"');"+
 			"g.V('"+typeof(FactorAssertion).Name+"Id',{{AssertId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP4);"+
+			"g.addEdge(_V1,_V4,'"+typeof(FactorUsesFactorAssertion).Name+"');"+
 			"g.V('"+typeof(Member).Name+"Id',{{MemberId}}L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V5,_V1,_TP5);";
+			"g.addEdge(_V5,_V1,'"+typeof(MemberCreatesFactor).Name+"');";
 
 		private long vPrimArtId;
 		private long vRelArtId;
@@ -73,18 +72,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{PrimArtId}}", vPrimArtId+"")
 				.Replace("{{RelArtId}}", vRelArtId+"")
 				.Replace("{{AssertId}}", vAssertId+"")
-				.Replace("{{MemberId}}", mem.MemberId+"");
+				.Replace("{{MemberId}}", mem.MemberId+"")
+				.Replace("{{Note}}", vNote);
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNote);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsFactor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(FactorUsesPrimaryArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(FactorUsesRelatedArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(FactorUsesFactorAssertion).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(MemberCreatesFactor).Name);
 		}
 
 	}

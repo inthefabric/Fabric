@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -14,15 +13,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V1=g.addVertex(["+
 				typeof(Director).Name+"Id:{{NewDirectorId}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsDirector).Name+"');"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
+			"g.addEdge(_V2,_V1,'"+typeof(FactorUsesDirector).Name+"');"+
 			"g.V('"+typeof(DirectorType).Name+"Id',{{DirTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
+			"g.addEdge(_V1,_V3,'"+typeof(DirectorUsesDirectorType).Name+"');"+
 			"g.V('"+typeof(DirectorAction).Name+"Id',{{PrimActId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP3);"+
+			"g.addEdge(_V1,_V4,'"+typeof(DirectorUsesPrimaryDirectorAction).Name+"');"+
 			"g.V('"+typeof(DirectorAction).Name+"Id',{{RelActId}}L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V1,_V5,_TP4);";
+			"g.addEdge(_V1,_V5,'"+typeof(DirectorUsesRelatedDirectorAction).Name+"');";
 
 		private long vDirTypeId;
 		private long vPrimActId;
@@ -64,16 +63,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{RelActId}}", vRelActId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsDirector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesDirector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(DirectorUsesDirectorType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(DirectorUsesPrimaryDirectorAction).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(DirectorUsesRelatedDirectorAction).Name);
 		}
 
 	}

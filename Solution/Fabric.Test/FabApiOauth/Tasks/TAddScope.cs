@@ -34,13 +34,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Allow:{{Allow}},"+
 				"Created:{{UtcNowTicks}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsOauthScope).Name+"');"+
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 				".each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,_TP1);"+
+			"g.addEdge(_V1,_V2,'"+typeof(OauthScopeUsesApp).Name+"');"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
+			"g.addEdge(_V1,_V3,'"+typeof(OauthScopeUsesUser).Name+"');"+
 			"_V1;";
 
 		private long vAppId;
@@ -122,10 +122,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pScripted.Params, "_TP0", typeof(RootContainsOauthScope).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP1", typeof(OauthScopeUsesApp).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP2", typeof(OauthScopeUsesUser).Name);
-			
 			return vAddScopeResult;
 		}
 		

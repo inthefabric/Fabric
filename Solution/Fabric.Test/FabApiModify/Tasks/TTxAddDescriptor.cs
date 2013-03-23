@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -14,23 +13,23 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V1=g.addVertex(["+
 				typeof(Descriptor).Name+"Id:{{NewDescriptorId}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsDescriptor).Name+"');"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
+			"g.addEdge(_V2,_V1,'"+typeof(FactorUsesDescriptor).Name+"');"+
 			"g.V('"+typeof(DescriptorType).Name+"Id',{{DescTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);";
+			"g.addEdge(_V1,_V3,'"+typeof(DescriptorUsesDescriptorType).Name+"');";
 
 		private static readonly string QueryPrimRef = 
 			"g.V('"+typeof(Artifact).Name+"Id',{{PrimArtRefId}}L)[0].each{_V{{PrimV}}=g.v(it)};"+
-			"g.addEdge(_V1,_V{{PrimV}},_TP{{PrimTp}});";
+			"g.addEdge(_V1,_V{{PrimV}},'"+typeof(DescriptorRefinesPrimaryWithArtifact).Name+"');";
 
 		private static readonly string QueryRelRef = 
 			"g.V('"+typeof(Artifact).Name+"Id',{{RelArtRefId}}L)[0].each{_V{{RelV}}=g.v(it)};"+
-			"g.addEdge(_V1,_V{{RelV}},_TP{{RelTp}});";
+			"g.addEdge(_V1,_V{{RelV}},'"+typeof(DescriptorRefinesRelatedWithArtifact).Name+"');";
 
 		private static readonly string QueryTypeRef = 
 			"g.V('"+typeof(Artifact).Name+"Id',{{TypeArtRefId}}L)[0].each{_V{{TypeV}}=g.v(it)};"+
-			"g.addEdge(_V1,_V{{TypeV}},_TP{{TypeTp}});";
+			"g.addEdge(_V1,_V{{TypeV}},'"+typeof(DescriptorRefinesTypeWithArtifact).Name+"');";
 
 		private long vDescTypeId;
 		private long? vPrimArtRefId;
@@ -78,29 +77,20 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
 
 			string expect = QueryStart;
-			int tp = 3;
 			int v = 4;
 
 			if ( vPrimArtRefId != null ) {
-				expect += QueryPrimRef
-					.Replace("{{PrimV}}", v+"")
-					.Replace("{{PrimTp}}", tp+"");
-				tp++;
+				expect += QueryPrimRef.Replace("{{PrimV}}", v+"");
 				v++;
 			}
 
 			if ( vRelArtRefId != null ) {
-				expect += QueryRelRef
-					.Replace("{{RelV}}", v+"")
-					.Replace("{{RelTp}}", tp+"");
-				tp++;
+				expect += QueryRelRef.Replace("{{RelV}}", v+"");
 				v++;
 			}
 
 			if ( vDescTypeRefId != null ) {
-				expect += QueryTypeRef
-					.Replace("{{TypeV}}", v+"")
-					.Replace("{{TypeTp}}", tp+"");
+				expect += QueryTypeRef.Replace("{{TypeV}}", v+"");
 			}
 
 			expect = expect
@@ -112,31 +102,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{TypeArtRefId}}", vDescTypeRefId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsDescriptor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesDescriptor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(DescriptorUsesDescriptorType).Name);
-
-			tp = 3;
-
-			if ( vPrimArtRefId != null ) {
-				TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP"+tp,
-					typeof(DescriptorRefinesPrimaryWithArtifact).Name);
-				tp++;
-			}
-
-			if ( vRelArtRefId != null ) {
-				TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP"+tp,
-					typeof(DescriptorRefinesRelatedWithArtifact).Name);
-				tp++;
-			}
-
-			if ( vDescTypeRefId != null ) {
-				TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP"+tp,
-					typeof(DescriptorRefinesTypeWithArtifact).Name);
-			}
 		}
 
 	}

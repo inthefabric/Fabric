@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -15,17 +14,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				typeof(Vector).Name+"Id:{{NewVectorId}}L,"+
 				"Value:{{Value}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsVector).Name+"');"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
+			"g.addEdge(_V2,_V1,'"+typeof(FactorUsesVector).Name+"');"+
 			"g.V('"+typeof(VectorType).Name+"Id',{{VecTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
+			"g.addEdge(_V1,_V3,'"+typeof(VectorUsesVectorType).Name+"');"+
 			"g.V('"+typeof(Artifact).Name+"Id',{{AxisArtId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP3);"+
+			"g.addEdge(_V1,_V4,'"+typeof(VectorUsesAxisArtifact).Name+"');"+
 			"g.V('"+typeof(VectorUnit).Name+"Id',{{VecUnitId}}L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V1,_V5,_TP4);"+
+			"g.addEdge(_V1,_V5,'"+typeof(VectorUsesVectorUnit).Name+"');"+
 			"g.V('"+typeof(VectorUnitPrefix).Name+"Id',{{VecUnitPrefId}}L)[0].each{_V6=g.v(it)};"+
-			"g.addEdge(_V1,_V6,_TP5);";
+			"g.addEdge(_V1,_V6,'"+typeof(VectorUsesVectorUnitPrefix).Name+"');";
 
 		private long vVecTypeId;
 		private long vValue;
@@ -73,18 +72,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{VecUnitPrefId}}", vVecUnitPrefId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsVector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesVector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(VectorUsesVectorType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(VectorUsesAxisArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(VectorUsesVectorUnit).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
-				typeof(VectorUsesVectorUnitPrefix).Name);
 		}
 
 	}

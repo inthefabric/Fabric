@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -17,11 +16,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"ValueY:{{Y}}D,"+
 				"ValueZ:{{Z}}D"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsLocator).Name+"');"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
+			"g.addEdge(_V2,_V1,'"+typeof(FactorUsesLocator).Name+"');"+
 			"g.V('"+typeof(LocatorType).Name+"Id',{{LocTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);";
+			"g.addEdge(_V1,_V3,'"+typeof(LocatorUsesLocatorType).Name+"');";
 
 		private long vLocTypeId;
 		private double vValueX;
@@ -66,12 +65,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{Z}}", vValueZ+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsLocator).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesLocator).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(LocatorUsesLocatorType).Name);
 		}
 
 	}

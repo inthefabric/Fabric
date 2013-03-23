@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -13,15 +12,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
 				typeof(Class).Name+"Id:{{NewClassId}}L,"+
-				"Name:_TP0,"+
-				"Disamb:_TP1,"+
-				"Note:_TP2"+
+				"Name:'{{Name}}',"+
+				"Disamb:'{{Disamb}}',"+
+				"Note:'{{Note}}'"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);";
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsClass).Name+"');";
 
 		private string vName;
 		private string vDisamb;
 		private string vNote;
+		private string vNoteExpect;
 		private long vNewClassId;
 		
 		
@@ -31,6 +31,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vName = "My Class";
 			vDisamb = "by Zach";
 			vNote = "It's just okay.";
+			vNoteExpect= "It\\'s just okay.";
 			vNewClassId = 798756473;
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<Class>()).Returns(vNewClassId);
@@ -51,13 +52,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.AreEqual("_V1", urlVar.Name, "Incorrect ClassVar name.");
 
 			string expect = Query
-				.Replace("{{NewClassId}}", vNewClassId+"");
+				.Replace("{{NewClassId}}", vNewClassId+"")
+				.Replace("{{Name}}", vName+"")
+				.Replace("{{Disamb}}", vDisamb+"")
+				.Replace("{{Note}}", vNoteExpect+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vDisamb);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vNote);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsClass).Name);
 		}
 
 	}

@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string Query = 
 			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".outE('"+typeof(RootContainsIdentor).Name+"').inV"+
-					".has('Value',Tokens.T.eq,_P0)"+
+					".has('Value',Tokens.T.eq,'{{IdenValue}}')"+
 					".as('step4')"+
 				".outE('"+typeof(IdentorUsesIdentorType).Name+"').inV"+
 					".has('"+typeof(IdentorType).Name+"Id',Tokens.T.eq,{{IdenTypeId}}L)"+
@@ -41,9 +41,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetIdentorMatch");
 
-			string expect = Query.Replace("{{IdenTypeId}}", vIdenTypeId+"");
+			string expect = Query
+				.Replace("{{IdenTypeId}}", vIdenTypeId+"")
+				.Replace("{{IdenValue}}", vValue);
+
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vValue);
 
 			return vIdentorResult;
 		}
