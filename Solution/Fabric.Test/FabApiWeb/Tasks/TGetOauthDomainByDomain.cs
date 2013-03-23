@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private readonly static string Query =
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".filter{it.getProperty('Domain').toLowerCase()==DOM};";
+				".filter{it.getProperty('Domain').toLowerCase()=='{{Domain}}'};";
 
 		private long vAppId;
 		private string vDomain;
@@ -37,10 +37,11 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetOauthDomainByDomain");
 
-			string expect = Query.Replace("{{AppId}}", vAppId+"");
+			string expect = Query
+				.Replace("{{AppId}}", vAppId+"")
+				.Replace("{{Domain}}", vDomain.ToLower());
+			
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "DOM", vDomain.ToLower());
-
 			return vOauthDomainResult;
 		}
 

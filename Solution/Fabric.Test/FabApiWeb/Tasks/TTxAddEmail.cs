@@ -13,10 +13,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
 				typeof(Email).Name+"Id:{{NewEmailId}}L,"+
-				"Address:_TP0,"+
+				"Address:'{{Address}}',"+
 				"Created:0L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP1);";
+			"g.addEdge(_V0,_V1,'"+typeof(RootContainsEmail).Name+"');";
 
 		private string vAddress;
 		private long vNewEmailId;
@@ -45,10 +45,11 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.NotNull(emailVar, "EmailVar should not be null.");
 			Assert.AreEqual("_V1", emailVar.Name, "Incorrect EmailVar name.");
 
-			string expect = Query.Replace("{{NewEmailId}}", vNewEmailId+"");
+			string expect = Query
+				.Replace("{{NewEmailId}}", vNewEmailId+"")
+				.Replace("{{Address}}", vAddress);
+				
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vAddress);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsEmail).Name);
 		}
 
 	}

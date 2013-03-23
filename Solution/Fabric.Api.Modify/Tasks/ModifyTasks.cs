@@ -103,7 +103,8 @@ namespace Fabric.Api.Modify.Tasks {
 			////
 
 			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_TP0}";
+			string name = new WeaverQueryVal(pName.ToLower()).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+name+"}";
 
 			Class path = 
 				ApiFunc.NewPathFromRoot()
@@ -113,17 +114,12 @@ namespace Fabric.Api.Modify.Tasks {
 
 			if ( pDisamb != null ) {
 				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
-				filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_TP1}";
+				string disamb = new WeaverQueryVal(pDisamb.ToLower()).GetQuoted();
+				filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+disamb+"}";
 				path.CustomStep(filterStep);
 			}
 
 			IWeaverQuery q = path.End();
-			q.AddParam(new WeaverQueryVal(pName.ToLower(), false));
-
-			if ( pDisamb != null ) {
-				q.AddParam(new WeaverQueryVal(pDisamb.ToLower(), false));
-			}
-
 			tx.AddQuery(q);
 			tx.FinishWithoutStartStop();
 			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx);

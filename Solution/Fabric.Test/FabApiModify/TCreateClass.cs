@@ -18,7 +18,8 @@ namespace Fabric.Test.FabApiModify {
 		private string vName;
 		private string vDisamb;
 		private string vNote;
-
+		
+		private Member vResultMember;
 		private IWeaverVarAlias<Class> vOutClassVar;
 		private Class vResultClass;
 		private Class vResult;
@@ -30,7 +31,8 @@ namespace Fabric.Test.FabApiModify {
 			vName = "Class Name";
 			vDisamb = "Disamb Text";
 			vNote = "This is a note.";
-
+			
+			vResultMember = new Member { Id = 87123523 };
 			vOutClassVar = GetTxVar<Class>("CLASS");
 			vResultClass = new Class();
 
@@ -45,6 +47,10 @@ namespace Fabric.Test.FabApiModify {
 						out vOutClassVar
 					)
 				);
+				
+			MockTasks
+				.Setup(x => x.GetValidMemberByContext(MockApiCtx.Object))
+				.Returns(vResultMember);
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
@@ -52,7 +58,7 @@ namespace Fabric.Test.FabApiModify {
 				.Setup(x => x.DbSingle<Class>("CreateClassTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction q) => CreateClassTx(q));
 
-			SetUpMember(1, 2, new Member { MemberId = 234623 });
+			SetUpMember(1, 2, vResultMember);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -61,7 +67,7 @@ namespace Fabric.Test.FabApiModify {
 
 			string expectPartial = 
 				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
-				"g.V('MemberId',"+ApiCtxMember.MemberId+"L)[0].each{_V1=g.v(it)};"+
+				"_V1=g.v("+vResultMember.Id+");"+
 				"CLASS;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

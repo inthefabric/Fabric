@@ -64,8 +64,8 @@ namespace Fabric.Api.Modify {
 			var txb = new TxBuilder();
 			txb.GetRoot(out rootVar);
 
-			//TEST: CreateClass new direct-to-ID approach
-			/*IWeaverVarAlias<Root> rootVar = new WeaverVarAlias<Root>(txb.Transaction);
+			/*//TEST: CreateClass new direct-to-ID approach
+			IWeaverVarAlias<Root> rootVar = new WeaverVarAlias<Root>(txb.Transaction);
 			txb.RegisterVarWithTxBuilder(rootVar);
 			var q = new WeaverQuery();
 			q.FinalizeQuery(rootVar.Name+"=g.v(4)");
