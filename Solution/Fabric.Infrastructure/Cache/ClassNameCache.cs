@@ -89,7 +89,7 @@ namespace Fabric.Infrastructure.Cache {
 				IApiDataAccess data = vApiCtx.DbData("GetClassList", tx);
 				int n = data.GetTextListCount();
 
-				if ( n == 0 ) {
+				if ( n <= 0 ) {
 					break;
 				}
 

@@ -192,7 +192,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AddClasses";
 				op.Uri = ModClassesBatchUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabBatchResult[]).Name;
+				op.ReturnType = typeof(FabBatchResult).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();

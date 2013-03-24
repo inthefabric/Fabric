@@ -72,6 +72,7 @@ namespace Fabric.Infrastructure.Api {
 			}
 			catch ( Exception e ) {
 				vUnhandledException = e;
+				Log.Error(ApiCtx.ContextId, "Unhandled raw: ", RawResult);
 
 				Result = new DbResult();
 				Result.Exception = e+"";

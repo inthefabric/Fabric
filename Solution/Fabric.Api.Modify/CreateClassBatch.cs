@@ -14,7 +14,7 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModClassesBatchUri, typeof(FabBatchResult[]),
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModClassesBatchUri, typeof(FabBatchResult),
 		Auth=ServiceAuthType.Member)]
 	public class CreateClassBatch : BaseModifyFunc<FabBatchResult[]> { //TEST: BatchCreateClass
 		
