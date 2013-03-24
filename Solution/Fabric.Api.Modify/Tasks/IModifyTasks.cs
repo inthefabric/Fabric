@@ -92,11 +92,18 @@ namespace Fabric.Api.Modify.Tasks {
 							where TNode : INode where TNodeHasArt : IWeaverRel<TNode, Artifact>, new();
 
 		/*--------------------------------------------------------------------------------------------*/
+		void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild,
+							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<ArtifactType> pArtTypeVar,
+							IWeaverVarAlias<TNode> pNodeVar, IWeaverVarAlias<Member> pMemVar, 
+							out IWeaverVarAlias<Artifact> pArtVar)
+							where TNode : INode where TNodeHasArt : IWeaverRel<TNode, Artifact>, new();
+
+		/*--------------------------------------------------------------------------------------------*/
 		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
 									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
+		long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 					string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar);
 
 		/*--------------------------------------------------------------------------------------------*/

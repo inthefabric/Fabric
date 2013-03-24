@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -23,6 +24,15 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract TReturn Execute();
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void SetApiCtx(IApiContext pApiCtx) {
+			if ( ApiCtx != null ) {
+				throw new Exception("ApiCtx is already set: "+ApiCtx.ContextId);
+			}
+
+			ApiCtx = pApiCtx;
+		}
 
 	}
 

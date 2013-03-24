@@ -35,8 +35,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GoogleAnalyticsTracker">
-      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.4.4790.11992\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
+    <Reference Include="GoogleAnalyticsTracker, Version=1.4.4828.15283, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.4.6001\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>

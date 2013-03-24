@@ -456,6 +456,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		//TODO: Remove ModifyTasks.TxAddArtifact (ArtType Id version)
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild, 
 							ArtifactTypeId pArtTypeId, IWeaverVarAlias<Root> pRootVar,
@@ -477,6 +478,28 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		//TEST: ModifyTasks.TxAddArtifact (ArtType alias version)
+		public void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild,
+							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<ArtifactType> pArtTypeVar,
+							IWeaverVarAlias<TNode> pNodeVar, IWeaverVarAlias<Member> pMemVar,
+							out IWeaverVarAlias<Artifact> pArtVar)
+			where TNode : INode
+			where TNodeHasArt : IWeaverRel<TNode, Artifact>, new() {
+			var art = new Artifact();
+			art.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
+			art.Created = pApiCtx.UtcNow.Ticks;
+			art.IsPrivate = false;
+
+			var artBuild = new ArtifactBuilder(pTxBuild, art);
+			artBuild.AddNode(pRootVar);
+			artBuild.SetUsesArtifactType(pArtTypeVar);
+			artBuild.SetInMemberCreates(pMemVar);
+			pArtVar = artBuild.NodeVar;
+
+			pTxBuild.AddRel<TNodeHasArt>(pNodeVar, pArtVar);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
 									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();
@@ -490,7 +513,7 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
+		public long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
 				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar) {
 			var c = new Class();
 			c.ClassId = pApiCtx.GetSharpflakeId<Class>();
@@ -501,6 +524,8 @@ namespace Fabric.Api.Modify.Tasks {
 			var classBuild = new ClassBuilder(pTxBuild, c);
 			classBuild.AddNode(pRootVar);
 			pClassVar = classBuild.NodeVar;
+
+			return c.ClassId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

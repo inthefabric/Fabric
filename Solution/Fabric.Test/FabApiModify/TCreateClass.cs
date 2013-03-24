@@ -66,8 +66,10 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			string expectPartial = 
-				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
-				"_V1=g.v("+vResultMember.Id+");"+
+				"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
+				"g.V('"+typeof(ArtifactType).Name+"Id',"+(long)ArtifactTypeId.Class+
+					"L)[0].each{_V1=g.v(it)};"+
+				"_V2=g.v("+vResultMember.Id+");"+
 				"CLASS;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
@@ -99,8 +101,8 @@ namespace Fabric.Test.FabApiModify {
 				.Verify(x => x.TxAddArtifact<Class, ClassHasArtifact>(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
-						ArtifactTypeId.Class,
 						It.IsAny<IWeaverVarAlias<Root>>(),
+						It.IsAny<IWeaverVarAlias<ArtifactType>>(),
 						vOutClassVar,
 						It.IsAny<IWeaverVarAlias<Member>>(),
 						out artVar
