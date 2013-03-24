@@ -63,8 +63,7 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		// TEST: ApiContext ClassName caching functionality and usages
 		/*--------------------------------------------------------------------------------------------*/
-		public override void AddToClassNameCache(Class pClass) {
-		}
+		public override void AddToClassNameCache(long pClassId, string pName, string pDisamb) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb) {

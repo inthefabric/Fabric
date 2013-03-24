@@ -10,6 +10,7 @@ using Fabric.Api.Dto.Meta;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Cache;
 using Nancy;
 using ServiceStack.Text;
 

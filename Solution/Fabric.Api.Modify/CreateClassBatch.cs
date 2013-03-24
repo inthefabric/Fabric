@@ -145,7 +145,7 @@ namespace Fabric.Api.Modify {
 			if ( txb != null ) {
 				var q = new WeaverQuery();
 				q.FinalizeQuery("["+string.Join(",", nodeIds)+"]");
-				txb.Transaction.AddQuery(q);
+				//txb.Transaction.AddQuery(q);
 			}
 
 			return txb;
@@ -154,7 +154,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void CacheClasses(IApiDataAccess pData) {
 			int n = vObjects.Length;
-			int count = 0;
+			//int count = 0;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchResult res = vResults[i];
@@ -164,15 +164,10 @@ namespace Fabric.Api.Modify {
 				}
 
 				FabBatchNewClass nc = vObjects[i];
+				ApiCtx.AddToClassNameCache(res.ResultId, nc.Name, nc.Disamb);
 
-				var c = new Class();
-				c.Id = pData.GetLongResultAt(count);
-				c.ClassId = res.ResultId;
-				c.Name = nc.Name;
-				c.Disamb = nc.Disamb;
-				ApiCtx.AddToClassNameCache(c);
-
-				++count;
+				//c.Id = pData.GetLongResultAt(count);
+				//++count;
 			}
 		}
 

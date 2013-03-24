@@ -46,7 +46,8 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AddToClassNameCache(Class pClass);
+		void AddToClassNameCache(long pClassId, string pName, string pDisamb);
+		bool IsClassNameCacheLoaded();
 		IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb);
 
 		

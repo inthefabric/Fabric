@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Runtime.Caching;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Fabric.Infrastructure.Cache;
 using Weaver;
 using Weaver.Interfaces;
 using Weaver.Items;
@@ -110,8 +111,13 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		// TEST: ApiContext ClassName caching functionality and usages
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToClassNameCache(Class pClass) {
-			vClassNameCache.AddClass(this, pClass);
+		public virtual void AddToClassNameCache(long pClassId, string pName, string pDisamb) {
+			vClassNameCache.AddClass(this, pClassId, pName, pDisamb);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual bool IsClassNameCacheLoaded() {
+			return vClassNameCache.IsLoadComplete();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

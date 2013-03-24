@@ -45,6 +45,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Returns(vClassIds);
 
 			MockApiCtx
+				.Setup(x => x.IsClassNameCacheLoaded())
+				.Returns(true);
+
+			MockApiCtx
 				.Setup(x => x.DbSingle<Class>("GetClassByNameDisambTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction tx) => GetClass(tx));
 		}

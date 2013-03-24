@@ -145,6 +145,13 @@ namespace Fabric.Infrastructure.Api {
 			return ResultDtoList[pIndex].ToItem<T>();
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetTextListCount() {
+			return (Result == null || Result.TextList == null ? -1 : Result.TextList.Count);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetStringResultAt(int pIndex) {
 			return Result.TextList[pIndex];

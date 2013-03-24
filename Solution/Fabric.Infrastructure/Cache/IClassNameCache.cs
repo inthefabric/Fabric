@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 
-namespace Fabric.Infrastructure.Api {
+namespace Fabric.Infrastructure.Cache {
 
 	/*================================================================================================*/
 	public interface IClassNameCache {
@@ -9,7 +9,8 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AddClass(IApiContext pApiCtx, Class pClass);
+		bool IsLoadComplete();
+		void AddClass(IApiContext pApiCtx, long pClassId, string pName, string pDisamb);
 		IList<long> GetClassIds(IApiContext pApiCtx, string pName, string pDisamb);
 
 	}

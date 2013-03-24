@@ -59,7 +59,7 @@ namespace Fabric.Api.Modify {
 			TxBuilder txb = GetFullTx(out rootVar, out memVar, out artTypeVar, out classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
-			ApiCtx.AddToClassNameCache(c);
+			ApiCtx.AddToClassNameCache(c.ClassId, c.Name, c.Disamb);
 			return c;
 		}
 

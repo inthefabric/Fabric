@@ -37,6 +37,10 @@ namespace Fabric.Infrastructure.Db {
 				Results = null;
 			}
 
+			if ( DbDtos.Count > 0 && DbDtos[0].Id != null ) {
+				return;
+			}
+
 			const string textResultStart = "\"results\":[";
 			int startI = pResultJson.IndexOf(textResultStart);
 
@@ -45,11 +49,6 @@ namespace Fabric.Infrastructure.Db {
 			}
 
 			startI += textResultStart.Length;
-			
-			if ( pResultJson[startI] == '{' ) {
-				return;
-			}
-
 			int endI = pResultJson.IndexOf("],", startI);
 
 			Text = pResultJson.Substring(startI, endI-startI);
@@ -64,15 +63,21 @@ namespace Fabric.Infrastructure.Db {
 			int j = -1;
 			int lastIndex = Text.Length-1;
 			bool inQuote = false;
+			int inCurly = 0;
+			int inSquare = 0;
 
 			foreach ( char c in Text ) {
 				++j;
 
-				if ( c == '"' ) {
-					inQuote = !inQuote;
+				switch ( c ) {
+					case '"': inQuote = !inQuote; break;
+					case '{': inCurly++; break;
+					case '}': inCurly--; break;
+					case '[': inSquare++; break;
+					case ']': inSquare--; break;
 				}
 
-				if ( inQuote ) {
+				if ( inQuote || inCurly > 0 || inSquare > 0 ) {
 					continue;
 				}
 

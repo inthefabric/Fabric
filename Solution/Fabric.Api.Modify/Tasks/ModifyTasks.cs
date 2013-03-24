@@ -75,30 +75,33 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		//TEST: ModifyTasks.GetClassByNameDisamp cache usage
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			IList<long> classIdList = pApiCtx.GetClassIdsFromClassNameCache(pName, pDisamb);
-
-			if ( classIdList == null || classIdList.Count == 0 ) {
-				return null;
-			}
-
 			IWeaverTransaction tx = new WeaverTransaction();
-			var classVars = new List<IWeaverVarAlias>();
-			IWeaverVarAlias retainVar;
+			IWeaverVarAlias retainVar = null;
 
-			foreach ( long classId in classIdList ) {
-				var classVar = new WeaverVarAlias<Class>(tx);
-				classVars.Add(classVar);
+			if ( pApiCtx.IsClassNameCacheLoaded() ) {
+				IList<long> classIdList = pApiCtx.GetClassIdsFromClassNameCache(pName, pDisamb);
+
+				if ( classIdList == null || classIdList.Count == 0 ) {
+					return null;
+				}
+
+				var classVars = new List<IWeaverVarAlias>();
+
+				foreach ( long classId in classIdList ) {
+					var classVar = new WeaverVarAlias<Class>(tx);
+					classVars.Add(classVar);
+
+					tx.AddQuery(
+						ApiFunc.NewPathFromIndex(new Class { ClassId = classId })
+							.ToNodeVar(classVar)
+						.End()
+					);
+				}
 
 				tx.AddQuery(
-					ApiFunc.NewPathFromIndex(new Class { ClassId = classId })
-						.ToNodeVar(classVar)
-					.End()
+					WeaverTasks.InitListVar(tx, classVars, out retainVar)
 				);
 			}
-			
-			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, classVars, out retainVar)
-			);
 
 			////
 
@@ -108,9 +111,13 @@ namespace Fabric.Api.Modify.Tasks {
 
 			Class path = 
 				ApiFunc.NewPathFromRoot()
-				.ContainsClassList.ToClass
-					.Retain(retainVar)
-					.CustomStep(filterStep);
+				.ContainsClassList.ToClass;
+
+			if ( retainVar != null ) {
+					path.Retain(retainVar);
+			}
+
+			path.CustomStep(filterStep);
 
 			if ( pDisamb != null ) {
 				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
