@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fabric.Api.Dto.Batch;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Traversal;
@@ -31,6 +32,7 @@ namespace Fabric.Api.Dto {
 
 		public const string ModUri = "/Mod";
 		public const string ModClassesUri = "/Classes";
+		public const string ModClassesBatchUri = "/Classes/Batch";
 		public const string ModDescriptorsUri = "/Descriptors";
 		public const string ModDirectorsUri = "/Directors";
 		public const string ModEventorsUri = "/Eventors";
@@ -184,6 +186,13 @@ namespace Fabric.Api.Dto {
 				op.Uri = ModClassesUri;
 				op.Method = Post;
 				op.ReturnType = typeof(FabClass).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddClasses";
+				op.Uri = ModClassesBatchUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabBatchResult[]).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();

@@ -1,16 +1,16 @@
-﻿using Fabric.Api.Common;
+﻿using System.Collections.Generic;
+using Fabric.Api.Common;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Batch;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Api.Oauth.Tasks;
+using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
 using ServiceStack.Text;
-using System.Collections.Generic;
-using Fabric.Infrastructure;
-using Fabric.Domain;
-using Fabric.Api.Dto.Traversal;
 
 namespace Fabric.Api.Services {
 
@@ -25,6 +25,7 @@ namespace Fabric.Api.Services {
 		public enum Route {
 			Home,
 			Classes,
+			ClassesBatch,
 			Descriptors,
 			Directors,
 			Eventors,
@@ -64,6 +65,7 @@ namespace Fabric.Api.Services {
 			switch ( vRoute ) {
 				case Route.Home: return ServiceDtoJson;
 				case Route.Classes: return Classes();
+				case Route.ClassesBatch: return ClassesBatch();
 				case Route.Descriptors: return Descriptors();
 				case Route.Directors: return Directors();
 				case Route.Eventors: return Eventors();
@@ -108,6 +110,21 @@ namespace Fabric.Api.Services {
 					)
 					.Go(ApiCtx);
 					return ToJsonList(new FabClass(c));
+			}
+
+			throw BadRequest();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private string ClassesBatch() {
+			switch ( NancyReq.Method ) {
+				case "POST":
+					IList<FabBatchResult> results = new CreateClassBatch(
+						NewModTasks(),
+						GetPostString(CreateClassBatch.ClassesParam)
+					)
+					.Go(ApiCtx);
+					return results.ToJson();
 			}
 
 			throw BadRequest();

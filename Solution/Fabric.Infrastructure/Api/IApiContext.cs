@@ -20,7 +20,8 @@ namespace Fabric.Infrastructure.Api {
 		//long MemberId { get; }
 		AnalyticsManager Analytics { get; }
 
-		long DbQueryExecutionCount { get; }
+		int DbQueryExecutionCount { get; }
+		int DbQueryMillis { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

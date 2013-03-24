@@ -9,6 +9,7 @@ using Fabric.Api.Meta.Lang;
 using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Traversal;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Traversal;

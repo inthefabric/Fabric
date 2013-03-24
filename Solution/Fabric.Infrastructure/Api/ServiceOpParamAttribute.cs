@@ -26,7 +26,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ServiceOpParamAttribute(ServiceOpParamType pParamType, string pName, int pIndex,
-																						Type pDomClass) {
+																					Type pDomClass) {
 			ParamType = pParamType;
 			Name = pName;
 			Index = pIndex;

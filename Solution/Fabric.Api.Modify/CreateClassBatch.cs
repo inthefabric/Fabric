@@ -14,13 +14,13 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModClassesUri, typeof(IList<FabBatchResult>),
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModClassesBatchUri, typeof(FabBatchResult[]),
 		Auth=ServiceAuthType.Member)]
-	public class BatchCreateClass : BaseModifyFunc<IList<FabBatchResult>> { //TEST: BatchCreateClass
+	public class CreateClassBatch : BaseModifyFunc<FabBatchResult[]> { //TEST: BatchCreateClass
 		
 		public const string ClassesParam = "Classes";
 
-		[ServiceOpParam(ServiceOpParamType.Form, ClassesParam, 0, null)]
+		[ServiceOpParam(ServiceOpParamType.Form, ClassesParam, 0, typeof(Class))]
 		private FabBatchNewClass[] vObjects;
 		
 		private readonly string vObjectsJson;
@@ -30,7 +30,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public BatchCreateClass(IModifyTasks pTasks, string pObjectsJson) : base(pTasks) {
+		public CreateClassBatch(IModifyTasks pTasks, string pObjectsJson) : base(pTasks) {
 			vObjectsJson = pObjectsJson;
 		}
 
@@ -67,7 +67,7 @@ namespace Fabric.Api.Modify {
 				var res = new FabBatchResult();
 				res.BatchId = nc.BatchId;
 				vResults[i] = res;
-
+				
 				try {
 					if ( dupMap.Contains(nc.Name+"|"+nc.Disamb) ) {
 						string name = nc.Name+(nc.Disamb == null ? "" : " ("+nc.Disamb+")");
@@ -83,14 +83,14 @@ namespace Fabric.Api.Modify {
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);
 				}
-				catch ( Exception ) {
+				/*catch ( Exception ) {
 					res.Error = FabError.ForInternalServerError();
-				}
+				}*/
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IList<FabBatchResult> Execute() {
+		protected override FabBatchResult[] Execute() {
 			TxBuilder txb = BuildTx();
 
 			if ( txb != null ) {
@@ -137,9 +137,9 @@ namespace Fabric.Api.Modify {
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);
 				}
-				catch ( Exception e ) {
+				/*catch ( Exception ) {
 					res.Error = FabError.ForInternalServerError();
-				}
+				}*/
 			}
 
 			if ( txb != null ) {

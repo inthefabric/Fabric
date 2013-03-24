@@ -98,6 +98,11 @@ namespace Fabric.Api.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected override void PreLogAction() {
+			FabResp.DbMs = ApiCtx.DbQueryMillis;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
 			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "DbMs", FabResp.DbMs);

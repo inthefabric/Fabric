@@ -53,6 +53,7 @@ namespace Fabric.Api.Common {
 			}
 
 			vTicks = DateTime.UtcNow.Ticks-t;
+			PreLogAction();
 			LogAction();
 			return vResp;
 		}
@@ -73,15 +74,19 @@ namespace Fabric.Api.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void PreLogAction() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "TotalMs", (int)(vTicks/10000));
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "QueryCount",
+			ApiCtx.Analytics.TrackEvent("Response", "DbMs", "", ApiCtx.DbQueryMillis);
+			ApiCtx.Analytics.TrackEvent("Response", "TotalMs", "", (int)(vTicks/10000));
+			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "",
 				(int)ApiCtx.DbQueryExecutionCount);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "HttpStatus", (int)vResp.StatusCode);
+			ApiCtx.Analytics.TrackEvent("Response", "HttpStatus", "", (int)vResp.StatusCode);
 
 			//LOGv1: 
-			//	Class, ip, QueryCount, TotalMs, Timestamp, HttpStatus, Method, Path, Exception
+			//	Class, ip, QueryCount, DbMs, TotalMs, Timestamp, HttpStatus, Method, Path, Exception
 
 			const string name = "LOGv1";
 			const string x = " | ";
@@ -90,6 +95,7 @@ namespace Fabric.Api.Common {
 				GetType().Name +x+
 				NancyReq.UserHostAddress +x+
 				ApiCtx.DbQueryExecutionCount +x+
+				ApiCtx.DbQueryMillis +x+
 				vTicks/10000 +x+
 				DateTime.UtcNow.Ticks +x+
 				(int)vResp.StatusCode +x+

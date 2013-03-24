@@ -25,8 +25,6 @@ namespace Fabric.Api.Dto {
 		public int HttpStatus { get; set; }
 		public FabError Error { get; set; }
 
-		private long vDbStart;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -41,18 +39,12 @@ namespace Fabric.Api.Dto {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DbStartEvent() {
-			vDbStart = DateTime.UtcNow.Ticks;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void DbEndEvent() {
-			DbMs += (int)((DateTime.UtcNow.Ticks-vDbStart)/10000);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public void Complete() {
 			TotalMs = (int)((DateTime.UtcNow.Ticks-Timestamp)/10000);
+
+			if ( TotalMs < DbMs ) { //sometimes Total is 1 millisecond less than Db
+				TotalMs = DbMs;
+			}
 		}
 
 

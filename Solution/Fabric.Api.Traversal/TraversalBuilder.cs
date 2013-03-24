@@ -62,13 +62,11 @@ namespace Fabric.Api.Traversal {
 				return;
 			}
 
-			vModel.Resp.DbStartEvent();
-
 			var wq = new WeaverQuery();
 			wq.FinalizeQuery(vModel.Query);
 			IApiDataAccess data = vApiCtx.DbData("Traversal", wq);
 
-			vModel.Resp.DbEndEvent();
+			vModel.Resp.DbMs = vApiCtx.DbQueryMillis;
 
 			////
 

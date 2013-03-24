@@ -11,8 +11,8 @@ namespace Fabric.Infrastructure.Api {
 	public class ClassNameCache : IClassNameCache { //TEST: ClassNameCache
 
 		private IDictionary<string, IList<long>> vDupMap { get; set; }
-		private int vNameLen;
-		private int vDisambLen;
+		private readonly int vNameLen;
+		private readonly int vDisambLen;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

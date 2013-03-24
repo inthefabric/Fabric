@@ -14,6 +14,7 @@ namespace Fabric.Api {
 		public ModifyModule() {
 			const string mod = FabHome.ModUri;
 			const string classes = mod+FabHome.ModClassesUri;
+			const string classesB = mod+FabHome.ModClassesBatchUri;
 			const string descriptors = mod+FabHome.ModDescriptorsUri;
 			const string directors = mod+FabHome.ModDirectorsUri;
 			const string eventors = mod+FabHome.ModEventorsUri;
@@ -26,6 +27,7 @@ namespace Fabric.Api {
 
 			Get[mod] = (p => Spec(Context, ModifyController.Route.Home));
 			Post[classes] = (p => Spec(Context, ModifyController.Route.Classes));
+			Post[classesB] = (p => Spec(Context, ModifyController.Route.ClassesBatch));
 			Post[descriptors] = (p => Spec(Context, ModifyController.Route.Descriptors));
 			Post[directors] = (p => Spec(Context, ModifyController.Route.Directors));
 			Post[eventors] = (p => Spec(Context, ModifyController.Route.Eventors));

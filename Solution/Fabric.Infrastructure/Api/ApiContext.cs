@@ -22,7 +22,8 @@ namespace Fabric.Infrastructure.Api {
 		public AnalyticsManager Analytics { get; private set; }
 		//public long MemberId { get; private set; }
 
-		public long DbQueryExecutionCount { get; private set; }
+		public int DbQueryExecutionCount { get; private set; }
+		public int DbQueryMillis { get; private set; }
 
 		private readonly MemoryCache vMemCache;
 		private readonly ClassNameCache vClassNameCache;
@@ -43,6 +44,7 @@ namespace Fabric.Infrastructure.Api {
 			//MemberId = -1;
 			Analytics = new AnalyticsManager(ContextId, x => Log.Debug(ContextId, "ANALYT", x));
 			DbQueryExecutionCount = 0;
+			DbQueryMillis = 0;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -194,6 +196,7 @@ namespace Fabric.Infrastructure.Api {
 		protected virtual IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
+			DbQueryMillis += pDbQuery.Result.QueryTime;
 			return pDbQuery;
 		}
 
@@ -202,6 +205,7 @@ namespace Fabric.Infrastructure.Api {
 											IApiDataAccess<T> pDbQuery) where T : IItemWithId, new() {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
+			DbQueryMillis += pDbQuery.Result.QueryTime;
 			return pDbQuery;
 		}
 

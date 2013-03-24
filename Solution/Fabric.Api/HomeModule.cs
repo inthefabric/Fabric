@@ -18,7 +18,7 @@ namespace Fabric.Api {
 			Log.ConfigureOnce();
 
 			Get["/"] = (p => GetHome(Context));
-			//Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
+			Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
 		}
 
 
