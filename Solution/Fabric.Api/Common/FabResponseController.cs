@@ -105,15 +105,15 @@ namespace Fabric.Api.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "DbMs", FabResp.DbMs);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "TotalMs", FabResp.TotalMs);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "DataLen", FabResp.DataLen);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "StartIndex", (int)FabResp.StartIndex);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "Count", FabResp.Count);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "HasMore", (FabResp.HasMore ? 1 : 0));
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "QueryCount",
+			ApiCtx.Analytics.TrackEvent("Response", "DbMs", "", FabResp.DbMs);
+			ApiCtx.Analytics.TrackEvent("Response", "TotalMs", "", FabResp.TotalMs);
+			ApiCtx.Analytics.TrackEvent("Response", "DataLen", "", FabResp.DataLen);
+			ApiCtx.Analytics.TrackEvent("Response", "StartIndex", "", (int)FabResp.StartIndex);
+			ApiCtx.Analytics.TrackEvent("Response", "Count", "", FabResp.Count);
+			ApiCtx.Analytics.TrackEvent("Response", "HasMore", "", (FabResp.HasMore ? 1 : 0));
+			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "",
 				(int)ApiCtx.DbQueryExecutionCount);
-			ApiCtx.Analytics.TrackEvent("Metrics", "Response", "HttpStatus", FabResp.HttpStatus);
+			ApiCtx.Analytics.TrackEvent("Response", "HttpStatus", "", FabResp.HttpStatus);
 
 			//FRv1: (FabResponse log, version 1)
 			//	Class, ip, QueryCount, DbMs, TotalMs, DataLen, StartIndex, Count, HasMore,
