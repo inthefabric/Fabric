@@ -22,22 +22,27 @@ namespace Fabric.Infrastructure.Api {
 		public long AppId { get; private set; }
 		public AnalyticsManager Analytics { get; private set; }
 		//public long MemberId { get; private set; }
+		public IClassNameCache ClassNameCache { get; private set; }
 
 		public int DbQueryExecutionCount { get; private set; }
 		public int DbQueryMillis { get; private set; }
 
 		private readonly MemoryCache vMemCache;
-		private readonly ClassNameCache vClassNameCache;
+		// TEST: ApiContext ClassName caching functionality and usages
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public ApiContext(string pRexConnUrl, int pRexConnPort) :
+														this(pRexConnUrl, pRexConnPort, null, null) {}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiContext(string pRexConnUrl, int pRexConnPort,
 												MemoryCache pMemCache, ClassNameCache pClassNameCache) {
 			RexConnUrl = pRexConnUrl;
 			RexConnPort = pRexConnPort;
 			vMemCache = pMemCache;
-			vClassNameCache = pClassNameCache;
+			ClassNameCache = pClassNameCache;
 
 			ContextId = Guid.NewGuid();
 			UserId = -1;
@@ -105,24 +110,6 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual T RemoveFromCache<T>(string pKey) {
 			return (T)vMemCache.Remove(pKey);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		// TEST: ApiContext ClassName caching functionality and usages
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToClassNameCache(long pClassId, string pName, string pDisamb) {
-			vClassNameCache.AddClass(this, pClassId, pName, pDisamb);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual bool IsClassNameCacheLoaded() {
-			return vClassNameCache.IsLoadComplete();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb) {
-			return vClassNameCache.GetClassIds(this, pName, pDisamb);
 		}
 
 

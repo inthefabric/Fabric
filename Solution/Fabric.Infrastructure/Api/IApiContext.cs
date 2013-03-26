@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Fabric.Infrastructure.Cache;
 using Weaver.Interfaces;
 using Weaver.Items;
 
@@ -19,6 +20,7 @@ namespace Fabric.Infrastructure.Api {
 		long AppId { get; }
 		//long MemberId { get; }
 		AnalyticsManager Analytics { get; }
+		IClassNameCache ClassNameCache { get; }
 
 		int DbQueryExecutionCount { get; }
 		int DbQueryMillis { get; }
@@ -44,13 +46,6 @@ namespace Fabric.Infrastructure.Api {
 		T RemoveFromCache<T>(string pKey);
 
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		void AddToClassNameCache(long pClassId, string pName, string pDisamb);
-		bool IsClassNameCacheLoaded();
-		IList<long> GetClassIdsFromClassNameCache(string pName, string pDisamb);
-
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted);

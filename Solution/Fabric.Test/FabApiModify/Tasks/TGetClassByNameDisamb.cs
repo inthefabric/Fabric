@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
+using Fabric.Infrastructure.Cache;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -28,6 +29,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private string vName;
 		private string vDisamb;
+		private Mock<IClassNameCache> vMockClassCache;
 		private Class vClassResult;
 		private IList<long> vClassIds;
 		
@@ -40,14 +42,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vClassResult = new Class();
 			vClassIds = new List<long>(new [] { 2451235238523525, 122352355126236, 2352351312612335 });
 
-			MockApiCtx
-				.Setup(x => x.GetClassIdsFromClassNameCache(vName, vDisamb))
+			vMockClassCache = new Mock<IClassNameCache>();
+			vMockClassCache.Setup(x => x.IsLoadComplete()).Returns(true);
+			vMockClassCache
+				.Setup(x => x.GetClassIds(MockApiCtx.Object, vName, vDisamb))
 				.Returns(vClassIds);
 
-			MockApiCtx
-				.Setup(x => x.IsClassNameCacheLoaded())
-				.Returns(true);
-
+			MockApiCtx.SetupGet(x => x.ClassNameCache).Returns(vMockClassCache.Object);
 			MockApiCtx
 				.Setup(x => x.DbSingle<Class>("GetClassByNameDisambTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction tx) => GetClass(tx));
@@ -85,8 +86,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		public void SuccessNoDisamb() {
 			vDisamb = null;
 
-			MockApiCtx
-				.Setup(x => x.GetClassIdsFromClassNameCache(vName, vDisamb))
+			vMockClassCache
+				.Setup(x => x.GetClassIds(MockApiCtx.Object, vName, vDisamb))
 				.Returns(vClassIds);
 
 			Class result = Tasks.GetClassByNameDisamb(MockApiCtx.Object, vName, vDisamb);
@@ -99,8 +100,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void SuccessNoMatches(bool pIsNull) {
-			MockApiCtx
-				.Setup(x => x.GetClassIdsFromClassNameCache(vName, vDisamb))
+			vMockClassCache
+				.Setup(x => x.GetClassIds(MockApiCtx.Object, vName, vDisamb))
 				.Returns(pIsNull ? null : new List<long>());
 
 			Class result = Tasks.GetClassByNameDisamb(MockApiCtx.Object, vName, vDisamb);

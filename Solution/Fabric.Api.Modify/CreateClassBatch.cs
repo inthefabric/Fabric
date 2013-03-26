@@ -164,7 +164,7 @@ namespace Fabric.Api.Modify {
 				}
 
 				FabBatchNewClass nc = vObjects[i];
-				ApiCtx.AddToClassNameCache(res.ResultId, nc.Name, nc.Disamb);
+				ApiCtx.ClassNameCache.AddClass(ApiCtx, res.ResultId, nc.Name, nc.Disamb);
 
 				//c.Id = pData.GetLongResultAt(count);
 				//++count;

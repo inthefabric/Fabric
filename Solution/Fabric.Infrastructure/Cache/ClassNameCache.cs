@@ -15,42 +15,45 @@ namespace Fabric.Infrastructure.Cache {
 
 		//TODO: run this in a background thread
 
-		private readonly IApiContext vApiCtx;
+		private readonly IList<IApiContext> vApiCtxList;
 		private IDictionary<string, IList<long>> vDupMap { get; set; }
 		private readonly int vNameLen;
 		private readonly int vDisambLen;
-		private readonly object vLock;
+		private bool vLoadStarted;
+		private int vLoadIndex;
 		private bool vLoadComplete;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassNameCache(IApiContext pApiCtx, int pNameLen, int pDisambLen) {
-			if ( vDupMap != null ) {
+		public ClassNameCache(IList<IApiContext> pApiCtxList, int pNameLen, int pDisambLen) {
+			if ( vDupMap != null || vLoadStarted ) {
 				return;
 			}
 
 			vDupMap = new Dictionary<string, IList<long>>();
-			vApiCtx = pApiCtx;
+			vApiCtxList = pApiCtxList;
 			vNameLen = pNameLen;
 			vDisambLen = pDisambLen;
-			vLock = new object();
+			vLoadIndex = 0;
 
-			Log.Info(pApiCtx.ContextId, "CLASS", "Starting class name cache ("+
-				pNameLen+", "+pDisambLen+")...");
+			foreach ( IApiContext apiCtx in vApiCtxList ) {
+				IApiContext ac = apiCtx; //get into scope
 
-			var thr = new Thread(LoadClasses);
-			thr.IsBackground = true;
-			thr.Start();
+				var thr = new Thread(() => LoadClasses(ac));
+				thr.IsBackground = true;
+				thr.Start();	
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void LoadClasses() {
-			Log.Info(vApiCtx.ContextId, "CLASS", "Started background thread.");
+		private void LoadClasses(IApiContext pApiCtx) {
+			vLoadStarted = true;
+			Log.Info(pApiCtx.ContextId, "CLASS", "Started ClassName thread ("+
+				vNameLen+", "+vDisambLen+")...");
 
 			long t = DateTime.UtcNow.Ticks;
-			int i = 0;
-			const int step = 100;
+			const int step = 40;
 
 			while ( true ) {
 				IWeaverTransaction tx = new WeaverTransaction();
@@ -70,13 +73,21 @@ namespace Fabric.Infrastructure.Cache {
 				cols.AddPropertyColumn<Class>(x => x.Name); //, ".substring(0,"+vNameLen+")");
 				cols.AddPropertyColumn<Class>(x => x.Disamb); //, ".substring(0,"+vDisambLen+")");
 
+				int i;
+
+				lock ( this ) {
+					i = vLoadIndex;
+					vLoadIndex += step;
+				}
+
 				Class classPath = 
 					ApiFunc.NewPathFromRoot()
-					.ContainsClassList.ToClass
+					.ContainsClassList
+						.Limit(i, i+step-1)
+						.ToClass
 						.As(out col2Var)
 						.As(out col1Var)
 						.As(out col0Var)
-					.Limit(i, i+step)
 					.Table(tableVar, cols)
 						.Iterate();
 
@@ -86,7 +97,7 @@ namespace Fabric.Infrastructure.Cache {
 
 				tx.AddQuery(classPath.End());
 				tx.FinishWithoutStartStop(tableVar);
-				IApiDataAccess data = vApiCtx.DbData("GetClassList", tx);
+				IApiDataAccess data = pApiCtx.DbData("GetClassList", tx);
 				int n = data.GetTextListCount();
 
 				if ( n <= 0 ) {
@@ -95,14 +106,14 @@ namespace Fabric.Infrastructure.Cache {
 
 				int count = AddToMap(data);
 
-				Log.Info(vApiCtx.ContextId, "CLASS", " * Cached "+n+" Classes ("+
+				Log.Info(pApiCtx.ContextId, "CLASS", " * Cached "+n+" Classes ("+
 					(i+n)+" total), with "+count+" new keys ["+
 					((DateTime.UtcNow.Ticks-t)/10000/1000.0)+" sec]");
 
 				i += step;
 			}
 
-			Log.Info(vApiCtx.ContextId, "CLASS", "Class cache completed, with "+
+			Log.Info(pApiCtx.ContextId, "CLASS", "Class cache completed, with "+
 				vDupMap.Keys.Count+" total keys");
 
 			foreach ( KeyValuePair<string, IList<long>> pair in vDupMap ) {
@@ -110,7 +121,7 @@ namespace Fabric.Infrastructure.Cache {
 					continue;
 				}
 
-				Log.Info(vApiCtx.ContextId, "CLASS", " * Warning: cache key '"+pair.Key+"' contains "+
+				Log.Info(pApiCtx.ContextId, "CLASS", " * Warning: cache key '"+pair.Key+"' contains "+
 					pair.Value.Count+" ClassId values.");
 			}
 
@@ -128,7 +139,7 @@ namespace Fabric.Infrastructure.Cache {
 				string rowData = pClassData.GetStringResultAt(i);
 				IDictionary<string, string> row = 
 					JsonSerializer.DeserializeFromString<IDictionary<string, string>>(rowData);
-				count += AddToMap(int.Parse(row["c"]), row["n"], row["d"]);
+				count += AddToMap(long.Parse(row["c"]), row["n"], row["d"]);
 			}
 
 			return count;
@@ -138,9 +149,9 @@ namespace Fabric.Infrastructure.Cache {
 		private int AddToMap(long pClassId, string pName, string pDisamb) {
 			int count = 0;
 			string key = GetMapKey(pName, pDisamb);
-			Log.Debug("Class "+pClassId+": \t"+key);
+			//Log.Debug("Class "+pClassId+": \t"+key);
 
-			lock ( vLock ) {
+			lock ( this ) {
 				if ( !vDupMap.ContainsKey(key) ) {
 					vDupMap.Add(key, new List<long>());
 					count++;
@@ -166,6 +177,11 @@ namespace Fabric.Infrastructure.Cache {
 		/*--------------------------------------------------------------------------------------------*/
 		public bool IsLoadComplete() {
 			return vLoadComplete;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetLoadIndex() {
+			return vLoadIndex;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

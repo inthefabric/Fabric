@@ -78,8 +78,8 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverTransaction tx = new WeaverTransaction();
 			IWeaverVarAlias retainVar = null;
 
-			if ( pApiCtx.IsClassNameCacheLoaded() ) {
-				IList<long> classIdList = pApiCtx.GetClassIdsFromClassNameCache(pName, pDisamb);
+			if ( pApiCtx.ClassNameCache.IsLoadComplete() ) {
+				IList<long> classIdList = pApiCtx.ClassNameCache.GetClassIds(pApiCtx, pName, pDisamb);
 
 				if ( classIdList == null || classIdList.Count == 0 ) {
 					return null;
@@ -105,26 +105,29 @@ namespace Fabric.Api.Modify.Tasks {
 
 			////
 
+			//TEST: ModifyTasks.GetClassByNameDisamb filter logic
 			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
-			string name = new WeaverQueryVal(pName.ToLower()).GetQuoted();
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+name+"}";
+			string key = new WeaverQueryVal(pName).GetQuoted();
+			string keyProp = "it.getProperty('"+propName+"')";
+
+			if ( pDisamb != null ) {
+				string disamb = new WeaverQueryVal(pDisamb).GetQuoted();
+				key = key.Substring(0, key.Length-1)+"|"+disamb.Substring(1); //remove inner quotes
+				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
+				keyProp = "("+keyProp+"+'|'+it.getProperty('"+propName+"'))";
+			}
+
+			string filterStep = "filter{"+keyProp+".toLowerCase()=="+key.ToLower()+"}";
 
 			Class path = 
 				ApiFunc.NewPathFromRoot()
 				.ContainsClassList.ToClass;
 
 			if ( retainVar != null ) {
-					path.Retain(retainVar);
+				path.Retain(retainVar);
 			}
-
+			
 			path.CustomStep(filterStep);
-
-			if ( pDisamb != null ) {
-				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
-				string disamb = new WeaverQueryVal(pDisamb.ToLower()).GetQuoted();
-				filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+disamb+"}";
-				path.CustomStep(filterStep);
-			}
 
 			IWeaverQuery q = path.End();
 			tx.AddQuery(q);

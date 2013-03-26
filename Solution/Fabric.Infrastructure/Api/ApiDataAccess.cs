@@ -103,7 +103,7 @@ namespace Fabric.Infrastructure.Api {
 			NetworkStream stream = tcp.GetStream();
 			stream.Write(data, 0, data.Length);
 
-			const int size = 128;
+			int size = tcp.ReceiveBufferSize;
 			int bytes = size;
 			string respData = "";
 

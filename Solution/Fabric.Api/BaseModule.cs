@@ -1,10 +1,10 @@
 ﻿//#define MONO_DEV
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Runtime.Caching;
-using System.Web.Configuration;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Util;
@@ -13,6 +13,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Cache;
 using Nancy;
 using ServiceStack.Text;
+using Weaver;
 
 namespace Fabric.Api {
 
@@ -25,11 +26,10 @@ namespace Fabric.Api {
 		private static ClassNameCache ClassNameCache;
 
 		public static string ApiUrl;
-		public static string RexConnUrl;
 		public static int RexConnPort;
-		public static int RexNodes;
-		public static string[] RexUrls;
-		public static string[] GremlinUrls;
+		public static int NodeCount;
+		public static string[] NodeIpList;
+		public static int NodeIndex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,33 +49,26 @@ namespace Fabric.Api {
 
 #if MONO_DEV
 				ApiUrl = "http://localhost:9000";
-				RexConnUrl = "localhost";
 				RexConnPort = 8185;
-				RexNodes = 1;
-				RexUrls = new string[1] { "rexster:8182" };
-				GremlinUrls = new string[1] { "http://"+RexUrls[0]+"/graphs/Fabric/tp/gremlin" };
+				NodeCount = 1;
+				NodeIpList = new string[1] { "rexster" };
 #else
 				ApiUrl = "http://"+ConfigurationManager.AppSettings[ConfPrefix+"Api"];
-				
-				string rc = ConfigurationManager.AppSettings[ConfPrefix+"RexConn"];
-				string[] rcParts = rc.Split(':');
-				RexConnUrl = rcParts[0];
-				RexConnPort = int.Parse(rcParts[1]);
+				RexConnPort = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexConnPort"]);
+				NodeCount = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"NodeCount"]);
+				NodeIpList = new string[NodeCount];
 
-				RexNodes = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexNodes"]);
-				RexUrls = new string[RexNodes];
-				GremlinUrls = new string[RexNodes];
-
-				for ( int i = 0 ; i < RexNodes ; ++i ) {
-					RexUrls[i] = WebConfigurationManager.AppSettings[ConfPrefix+"Rex"+(i+1)];
-					GremlinUrls[i] = "http://"+RexUrls[i]+"/graphs/Fabric/tp/gremlin";
+				for ( int i = 0 ; i < NodeCount ; ++i ) {
+					NodeIpList[i] = ConfigurationManager.AppSettings[ConfPrefix+"NodeIp"+(i+1)];
 				}
 #endif
+
+				NodeIndex = 0;
 			}
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 19, "fb755e936927");
+				Version.SetBuild(0, 1, 19, "f72a6d04e5cf");
 				Version.SetDate(2013, 3, 24);
 			}
 
@@ -84,13 +77,22 @@ namespace Fabric.Api {
 				//cacheConfig.Add("PhysicalMemoryLimitPercentage", "10");
 
 				MemCache = new MemoryCache("FabricApi", cacheConfig);
-				ClassNameCache = new ClassNameCache(NewApiCtx(), 3, 2);
+
+				var acList = new List<IApiContext>();
+
+				for ( int i = 0 ; i < NodeCount ; ++i ) {
+					acList.Add(NewApiCtx());
+				}
+
+				ClassNameCache = new ClassNameCache(acList, 5, 3);
+				WeaverGlobalSettings.AddStringsToQueryScript = false;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
-			return new ApiContext(RexConnUrl, RexConnPort, MemCache, ClassNameCache);
+			int i = (NodeIndex++)%NodeCount;
+			return new ApiContext(NodeIpList[i], RexConnPort, MemCache, ClassNameCache);
 		}
 
 

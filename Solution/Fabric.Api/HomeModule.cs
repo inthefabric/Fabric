@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Internal.Setups;
+using Fabric.Api.Internal.Status;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services;
 using Fabric.Infrastructure;
@@ -18,7 +19,11 @@ namespace Fabric.Api {
 			Log.ConfigureOnce();
 
 			Get["/"] = (p => GetHome(Context));
-			Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
+			
+			//Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
+
+			Get["/Internal/Status/ClassNameCache"] = 
+				(p => GetInternalStatus(Context, StatusController.Route.ClassNameCache));
 		}
 
 
@@ -32,6 +37,12 @@ namespace Fabric.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static Response GetInternalSetup(NancyContext pCtx) {
 			var ac = new SetupController(pCtx.Request, NewApiCtx());
+			return ac.Execute();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static Response GetInternalStatus(NancyContext pCtx, StatusController.Route pRoute) {
+			var ac = new StatusController(pCtx.Request, NewApiCtx(), pRoute);
 			return ac.Execute();
 		}
 
