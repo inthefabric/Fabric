@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query =
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".sideEffect{it.setProperty('Password','{{Password}}')};";
+				".sideEffect{it.setProperty('Password',_P0)};";
 
 		private long vUserId;
 		private string vPassword;
@@ -37,11 +37,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("UpdateUserPassword");
 
-			string expect = Query
-				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{Password}}", FabricUtil.HashPassword(vPassword));
-				
+			string expect = Query.Replace("{{UserId}}", vUserId+"");
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", FabricUtil.HashPassword(vPassword));
+
 			return vUserResult;
 		}
 

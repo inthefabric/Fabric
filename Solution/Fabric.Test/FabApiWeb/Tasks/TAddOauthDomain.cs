@@ -12,13 +12,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query =
 			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
-			"_V1=g.addVertex(["+
-				typeof(OauthDomain).Name+"Id:{{OauthDomainId}}L,"+
-				"Domain:'{{Domain}}'"+
-			"]);"+
-			"g.addEdge(_V0,_V1,'"+typeof(RootContainsOauthDomain).Name+"');"+
+			"_V1=g.addVertex(["+typeof(OauthDomain).Name+"Id:{{OauthDomainId}}L,Domain:_TP0]);"+
+			"g.addEdge(_V0,_V1,_TP1);"+
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,'"+typeof(OauthDomainUsesApp).Name+"');"+
+			"g.addEdge(_V1,_V2,_TP2);"+
 			"_V1;";
 
 		private long vAppId;
@@ -49,10 +46,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			string expect = Query
 				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{OauthDomainId}}", vNewDomainId+"")
-				.Replace("{{Domain}}", vDomain);
+				.Replace("{{OauthDomainId}}", vNewDomainId+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", vDomain);
+			TestUtil.CheckParam(pTx.Params, "_TP1", typeof(RootContainsOauthDomain).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP2", typeof(OauthDomainUsesApp).Name);
+
 			return vDomainResult;
 		}
 

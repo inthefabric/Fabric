@@ -16,20 +16,20 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V2=g.addVertex(["+
 				typeof(Member).Name+"Id:{{NewMemberId}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V2,'"+typeof(RootContainsMember).Name+"');"+
+			"g.addEdge(_V0,_V2,_TP0);"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V3,_V2,'"+typeof(UserDefinesMember).Name+"');"+
-			"g.addEdge(_V1,_V2,'"+typeof(AppDefinesMember).Name+"');"+
+			"g.addEdge(_V3,_V2,_TP1);"+
+			"g.addEdge(_V1,_V2,_TP2);"+
 			"_V4=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
 				"Performed:{{UtcNowTicks}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V4,'"+typeof(RootContainsMemberTypeAssign).Name+"');"+
+			"g.addEdge(_V0,_V4,_TP3);"+
 			"g.V('"+typeof(Member).Name+"Id',1L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V5,_V4,'"+typeof(MemberCreatesMemberTypeAssign).Name+"');"+
-			"g.addEdge(_V2,_V4,'"+typeof(MemberHasMemberTypeAssign).Name+"');"+
+			"g.addEdge(_V5,_V4,_TP4);"+
+			"g.addEdge(_V2,_V4,_TP5);"+
 			"g.V('"+typeof(MemberType).Name+"Id',8L)[0].each{_V6=g.v(it)};"+
-			"g.addEdge(_V4,_V6,'"+typeof(MemberTypeAssignUsesMemberType).Name+"');";
+			"g.addEdge(_V4,_V6,_TP6);";
 
 		private long vUserId;
 		private long vNewMemberId;
@@ -73,6 +73,17 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				.Replace("{{UserId}}", vUserId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsMember).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(UserDefinesMember).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(AppDefinesMember).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", 
+				typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", 
+				typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", 
+				typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", 
+				typeof(MemberTypeAssignUsesMemberType).Name);
 		}
 
 	}

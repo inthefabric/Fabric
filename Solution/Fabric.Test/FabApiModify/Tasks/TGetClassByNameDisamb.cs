@@ -20,12 +20,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 			".outE('"+typeof(RootContainsClass).Name+"').inV"+
 				".retain(_V3)"+
-				".filter{it.getProperty('Name').toLowerCase()=='{{Name}}'}";
+				".filter{it.getProperty('Name').toLowerCase()==_TP0}";
 
 		private readonly static string QueryNoDisamb = QueryStart+";";
 
 		private readonly static string Query = QueryStart+
-				".filter{it.getProperty('Disamb').toLowerCase()=='{{Disamb}}'};";
+				".filter{it.getProperty('Disamb').toLowerCase()==_TP1};";
 
 		private string vName;
 		private string vDisamb;
@@ -62,11 +62,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			string expect = (vDisamb != null ? Query : QueryNoDisamb)
 				.Replace("{{ClassId0}}", vClassIds[0]+"")
 				.Replace("{{ClassId1}}", vClassIds[1]+"")
-				.Replace("{{ClassId2}}", vClassIds[2]+"")
-				.Replace("{{Name}}", vName.ToLower())
-				.Replace("{{Disamb}}", (vDisamb == null ? "" : vDisamb.ToLower()));
+				.Replace("{{ClassId2}}", vClassIds[2]+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", vName.ToLower());
+
+			if ( vDisamb != null ) {
+				TestUtil.CheckParam(pTx.Params, "_TP1", vDisamb.ToLower());
+			}
+
 			return vClassResult;
 		}
 

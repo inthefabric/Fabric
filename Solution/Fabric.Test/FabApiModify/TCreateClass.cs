@@ -18,8 +18,7 @@ namespace Fabric.Test.FabApiModify {
 		private string vName;
 		private string vDisamb;
 		private string vNote;
-		
-		private Member vResultMember;
+
 		private IWeaverVarAlias<Class> vOutClassVar;
 		private Class vResultClass;
 		private Class vResult;
@@ -31,8 +30,7 @@ namespace Fabric.Test.FabApiModify {
 			vName = "Class Name";
 			vDisamb = "Disamb Text";
 			vNote = "This is a note.";
-			
-			vResultMember = new Member { Id = 87123523 };
+
 			vOutClassVar = GetTxVar<Class>("CLASS");
 			vResultClass = new Class();
 
@@ -47,10 +45,6 @@ namespace Fabric.Test.FabApiModify {
 						out vOutClassVar
 					)
 				);
-				
-			MockTasks
-				.Setup(x => x.GetValidMemberByContext(MockApiCtx.Object))
-				.Returns(vResultMember);
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 			MockApiCtx.SetupGet(x => x.ClassNameCache).Returns(new Mock<IClassNameCache>().Object);
@@ -59,7 +53,7 @@ namespace Fabric.Test.FabApiModify {
 				.Setup(x => x.DbSingle<Class>("CreateClassTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction q) => CreateClassTx(q));
 
-			SetUpMember(1, 2, vResultMember);
+			SetUpMember(1, 2, new Member { MemberId = 234623 });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -22,7 +22,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
 
-			"g.addEdge(_V0,_V1,'"+typeof(MemberHasHistoricMemberTypeAssign).Name+"');"+
+			"g.addEdge(_V0,_V1,_TP0);"+
 
 			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
 				".each{_V2=g.v(it)};"+
@@ -32,18 +32,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				"Performed:{{UtcNowTicks}}L"+
 			"]);"+
 
-			"g.addEdge(_V2,_V3,'"+typeof(RootContainsMemberTypeAssign).Name+"');"+
+			"g.addEdge(_V2,_V3,_TP1);"+
 			"g.V('"+typeof(Member).Name+"Id',{{AssigningMemberId}}L)[0]"+
 				".each{_V4=g.v(it)};"+
 
-			"g.addEdge(_V4,_V3,'"+typeof(MemberCreatesMemberTypeAssign).Name+"');"+
+			"g.addEdge(_V4,_V3,_TP2);"+
 
-			"g.addEdge(_V0,_V3,'"+typeof(MemberHasMemberTypeAssign).Name+"');"+
+			"g.addEdge(_V0,_V3,_TP3);"+
 
 			"g.V('"+typeof(MemberType).Name+"Id',{{MemberTypeId}}L)[0]"+
 				".each{_V5=g.v(it)};"+
 
-			"g.addEdge(_V3,_V5,'"+typeof(MemberTypeAssignUsesMemberType).Name+"');"+
+			"g.addEdge(_V3,_V5,_TP4);"+
 
 			"_V3;";
 
@@ -88,6 +88,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				.Replace("{{MemberTypeId}}", vMemberTypeId+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", typeof(MemberHasHistoricMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP1", typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP2", typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP3", typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP4", typeof(MemberTypeAssignUsesMemberType).Name);
+
 			return vMtaResult;
 		}
 

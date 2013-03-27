@@ -12,14 +12,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-			".outE('"+typeof(UserUsesEmail).Name+"').inV"+
+				".outE('"+typeof(UserUsesEmail).Name+"').inV"+
 				".each{_V1=g.v(it)};"+
 			"_V2=g.addVertex(["+
 				typeof(App).Name+"Id:{{NewAppId}}L,"+
-				"Name:'{{Name}}'"+
+				"Name:_TP0"+
 			"]);"+
-			"g.addEdge(_V0,_V2,'"+typeof(RootContainsApp).Name+"');"+
-			"g.addEdge(_V2,_V1,'"+typeof(AppUsesEmail).Name+"');";
+			"g.addEdge(_V0,_V2,_TP1);"+
+			"g.addEdge(_V2,_V1,_TP2);";
 
 		private string vName;
 		private long vUserId;
@@ -52,10 +52,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			string expect = Query
 				.Replace("{{NewAppId}}", vNewAppId+"")
-				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{Name}}", vName);
+				.Replace("{{UserId}}", vUserId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsApp).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(AppUsesEmail).Name);
 		}
 
 	}

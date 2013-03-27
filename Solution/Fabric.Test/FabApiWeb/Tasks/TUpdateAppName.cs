@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query =
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
-				".sideEffect{it.setProperty('Name','{{Name}}')};";
+				".sideEffect{it.setProperty('Name',_P0)};";
 
 		private long vAppId;
 		private string vName;
@@ -36,11 +36,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("UpdateAppName");
 
-			string expect = Query
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{Name}}", vName);
-			
+			string expect = Query.Replace("{{AppId}}", vAppId+"");
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vName);
+
 			return vAppResult;
 		}
 

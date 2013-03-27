@@ -15,11 +15,11 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V1=[];"+ //Email
 			"_V2=g.addVertex(["+
 				typeof(User).Name+"Id:{{NewUserId}}L,"+
-				"Name:'{{Name}}',"+
-				"Password:'{{Password}}'"+
+				"Name:_TP0,"+
+				"Password:_TP1"+
 			"]);"+
-			"g.addEdge(_V0,_V2,'"+typeof(RootContainsUser).Name+"');"+
-			"g.addEdge(_V2,_V1,'"+typeof(UserUsesEmail).Name+"');";
+			"g.addEdge(_V0,_V2,_TP2);"+
+			"g.addEdge(_V2,_V1,_TP3);";
 
 		private string vName;
 		private string vPassword;
@@ -53,11 +53,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.AreEqual("_V2", userVar.Name, "Incorrect UserVar name.");
 
 			string expect = Query
-				.Replace("{{NewUserId}}", vNewUserId+"")
-				.Replace("{{Name}}", vName)
-				.Replace("{{Password}}", FabricUtil.HashPassword(vPassword));
+				.Replace("{{NewUserId}}", vNewUserId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", FabricUtil.HashPassword(vPassword));
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(RootContainsUser).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(UserUsesEmail).Name);
 		}
 
 	}

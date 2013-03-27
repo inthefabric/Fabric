@@ -12,8 +12,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private readonly static string Query =
 			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
-			".outE('"+typeof(RootContainsApp).Name+"').inV"+
-				".filter{it.getProperty('Name').toLowerCase()=='{{Name}}'};";
+				".outE('"+typeof(RootContainsApp).Name+"').inV"+
+				".filter{it.getProperty('Name').toLowerCase()==NAME};";
 
 		private string vName;
 		private App vAppResult;
@@ -34,9 +34,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private App GetApp(IWeaverQuery pQuery) {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetAppByName");
-			
-			string expect = Query.Replace("{{Name}}", vName.ToLower());
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "NAME", vName.ToLower());
+
 			return vAppResult;
 		}
 

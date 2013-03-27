@@ -107,7 +107,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			//TEST: ModifyTasks.GetClassByNameDisamb filter logic
 			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
-			string key = new WeaverQueryVal(pName).GetQuoted();
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_TP0}";
 			string keyProp = "it.getProperty('"+propName+"')";
 
 			if ( pDisamb != null ) {
@@ -130,6 +130,12 @@ namespace Fabric.Api.Modify.Tasks {
 			path.CustomStep(filterStep);
 
 			IWeaverQuery q = path.End();
+			q.AddParam(new WeaverQueryVal(pName.ToLower(), false));
+
+			if ( pDisamb != null ) {
+				q.AddParam(new WeaverQueryVal(pDisamb.ToLower(), false));
+			}
+
 			tx.AddQuery(q);
 			tx.Finish();
 			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx);
