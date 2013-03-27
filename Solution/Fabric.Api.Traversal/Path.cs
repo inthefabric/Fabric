@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
+using Weaver;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Traversal {
 
@@ -15,6 +17,7 @@ namespace Fabric.Api.Traversal {
 
 		private readonly List<PathSegment> vSegments;
 		private readonly Dictionary<string, IFuncAsStep> vAliasMap;
+		private readonly IWeaverQuery vQuery;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,6 +25,7 @@ namespace Fabric.Api.Traversal {
 		public Path() {
 			vSegments = new List<PathSegment>();
 			vAliasMap = new Dictionary<string, IFuncAsStep>();
+			vQuery = new WeaverQuery();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -120,6 +124,11 @@ namespace Fabric.Api.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public string AddParam(IWeaverQueryVal pValue) {
+			return vQuery.AddParam(pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public string Script {
 			get {
 				string s = "";
@@ -140,6 +149,13 @@ namespace Fabric.Api.Traversal {
 				}
 
 				return s;
+			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public Dictionary<string, IWeaverQueryVal> Params {
+			get {
+				return vQuery.Params;
 			}
 		}
 

@@ -54,7 +54,7 @@ namespace Fabric.Api.Internal.Setups {
 				tx.AddQuery(q);
 			}
 
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			ApiCtx.DbData("initTx", tx);
 		}
 		
@@ -67,7 +67,7 @@ namespace Fabric.Api.Internal.Setups {
 				tx.AddQuery(q);
 			}
 
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			ApiCtx.DbData("addIndexesTx", tx);
 		}
 
@@ -79,7 +79,7 @@ namespace Fabric.Api.Internal.Setups {
 				var tx = new WeaverTransaction();
 				string listScript = "";
 				int start = count;
-				int limit = 50;
+				int limit = 1;
 				Log.Debug("Node "+start+" / "+vDataSet.Nodes.Count);
 
 				for ( int i = start ; i < vDataSet.Nodes.Count ; ++i ) {
@@ -99,7 +99,7 @@ namespace Fabric.Api.Internal.Setups {
 				listQ.FinalizeQuery("["+listScript.Substring(0, listScript.Length-1)+"]");
 				tx.AddQuery(listQ);
 
-				tx.FinishWithoutStartStop();
+				tx.Finish();
 				IApiDataAccess nodeData = ApiCtx.DbData("addNodeTx", tx);
 
 				for ( int i = 0 ; i < nodeData.Result.TextList.Count ; ++i ) {
@@ -124,7 +124,7 @@ namespace Fabric.Api.Internal.Setups {
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
-				int limit = 100;
+				int limit = 10;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 
 				for ( int i = count ; i < vDataSet.Rels.Count ; ++i ) {
@@ -136,7 +136,7 @@ namespace Fabric.Api.Internal.Setups {
 					count++;
 				}
 
-				tx.FinishWithoutStartStop();
+				tx.Finish();
 				ApiCtx.DbData("addRelsTx", tx);
 
 				if ( count >= vDataSet.Rels.Count ) {

@@ -7,29 +7,21 @@ namespace Fabric.Api.Internal.Status {
 	/*================================================================================================*/
 	public class StatusController : Controller {
 
-		public enum Route {
-			ClassNameCache
-		}
-
-		private readonly Route vRoute;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public StatusController(Request pRequest, IApiContext pApiCtx, Route pRoute) :
-																			base(pRequest, pApiCtx) {
-			vRoute = pRoute;
+		public StatusController(Request pRequest, IApiContext pApiCtx) : base(pRequest, pApiCtx) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildResponse() {
-			switch ( vRoute ) {
-				case Route.ClassNameCache:
-					return "Load index: "+ApiCtx.ClassNameCache.GetLoadIndex()+
-						" (complete = "+ApiCtx.ClassNameCache.IsLoadComplete()+")";
-			}
-
-			return "Unknown route: "+vRoute;
+			return 
+				"<h3>ClassNameCache</h3>"+
+				"<ul>"+
+					"<li>Load Complete: "+ApiCtx.ClassNameCache.IsLoadComplete()+"</li>"+
+					"<li>Load Index: "+ApiCtx.ClassNameCache.GetLoadIndex()+"</li>"+
+					"<li>Key Count: "+ApiCtx.ClassNameCache.GetKeyCount()+"</li>"+
+				"</ul>";
 		}
 
 	}

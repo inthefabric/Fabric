@@ -91,7 +91,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.End()
 			);
 
-			tx.FinishWithoutStartStop(aggVar);
+			tx.Finish(aggVar);
 
 			////
 			

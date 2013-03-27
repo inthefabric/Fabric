@@ -13,7 +13,6 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Cache;
 using Nancy;
 using ServiceStack.Text;
-using Weaver;
 
 namespace Fabric.Api {
 
@@ -66,9 +65,11 @@ namespace Fabric.Api {
 				NodeIndex = 0;
 			}
 			
+			//TODO: fix DbMs for CreateClass and all Modify operations
+
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 19, "f72a6d04e5cf");
+				Version.SetBuild(0, 1, 20, "f72a6d04e5cf");
 				Version.SetDate(2013, 3, 24);
 			}
 
@@ -85,7 +86,6 @@ namespace Fabric.Api {
 				}
 
 				ClassNameCache = new ClassNameCache(acList, 5, 3);
-				WeaverGlobalSettings.AddStringsToQueryScript = false;
 			}
 		}
 

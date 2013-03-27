@@ -1,4 +1,5 @@
-﻿using Fabric.Db.Data;
+﻿using System.Collections.Generic;
+using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using NUnit.Framework;
@@ -59,22 +60,33 @@ namespace Fabric.Test.FabDbData {
 				n.Node.Id = nodeI++;
 			}
 			
-			foreach ( IDataNodeIndex ni in ds.NodeToIndexes ) {
-				tx.AddQuery(ni.AddToIndexQuery);
-			}
-			
 			foreach ( IDataRel r in ds.Rels ) {
 				tx.AddQuery(r.AddQuery);
 			}
 
-			tx.Finish(WeaverTransaction.ConclusionType.Success);
+			tx.Finish();
 			//Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private static string WeaverQueryToJson(IWeaverQuery pQuery) {
-			return FabricUtil.ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
+			return ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
 		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public static string ScriptAndParamsToJson(string pScript, 
+														Dictionary<string, IWeaverQueryVal> pParams) {
+			string json = "{\"script\":\""+FabricUtil.JsonUnquote(pScript)+"\",\"params\":{";
+			bool first = true;
+
+			foreach ( string key in pParams.Keys ) {
+				json += (first ? "" : ",")+"\""+FabricUtil.JsonUnquote(key)+"\":\""+
+					FabricUtil.JsonUnquote(pParams[key])+"\"";
+				first = false;
+			}
+
+			return json+"}}";
+		}*/
 
 	}
 

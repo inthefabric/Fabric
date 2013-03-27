@@ -54,7 +54,6 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="DataRel.cs" />
-    <Compile Include="DataNodeIndex.cs" />
     <Compile Include="DataSet.cs" />
     <Compile Include="Setups\SetupIndexes.cs">
       <DependentUpon>SetupIndexes.tt</DependentUpon>

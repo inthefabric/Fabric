@@ -20,10 +20,9 @@ namespace Fabric.Api {
 
 			Get["/"] = (p => GetHome(Context));
 			
-			//Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
+			Get["/Internal/Setup"] = (p => GetInternalSetup(Context));
 
-			Get["/Internal/Status/ClassNameCache"] = 
-				(p => GetInternalStatus(Context, StatusController.Route.ClassNameCache));
+			Get["/Internal/Status"] = (p => GetInternalStatus(Context));
 		}
 
 
@@ -41,8 +40,8 @@ namespace Fabric.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response GetInternalStatus(NancyContext pCtx, StatusController.Route pRoute) {
-			var ac = new StatusController(pCtx.Request, NewApiCtx(), pRoute);
+		private static Response GetInternalStatus(NancyContext pCtx) {
+			var ac = new StatusController(pCtx.Request, NewApiCtx());
 			return ac.Execute();
 		}
 

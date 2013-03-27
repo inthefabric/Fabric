@@ -148,31 +148,6 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbAddNode<T, TRootRel>(string pQueryName, T pNode,
-															Expression<Func<T, object>> pIndexProp)
-												where T : class, INode, IItemWithId, new()
-												where TRootRel : WeaverRel<Root, Contains, T>, new() {
-			T newNode = DbSingle<T>(
-				pQueryName,
-				WeaverTasks.AddNode(pNode)
-			);
-
-			DbData(
-				pQueryName,
-				WeaverTasks.AddNodeToIndex(typeof(T).Name, newNode, pIndexProp)
-			);
-
-			DbData(
-				pQueryName,
-				WeaverTasks.AddRel(new Root { Id = 0 }, new TRootRel(), newNode)
-			);
-
-			return newNode;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess NewAccess(IWeaverScript pScripted) {
 			return new ApiDataAccess(this, pScripted);
 		}

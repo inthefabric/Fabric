@@ -131,7 +131,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			IWeaverQuery q = path.End();
 			tx.AddQuery(q);
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx);
 		}
 
@@ -321,7 +321,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.End()
 			);
 
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			return pApiCtx.DbSingle<Descriptor>("GetDescriptorMatch", tx);
 		}
 

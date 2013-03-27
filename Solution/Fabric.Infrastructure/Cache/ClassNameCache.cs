@@ -13,8 +13,6 @@ namespace Fabric.Infrastructure.Cache {
 	/*================================================================================================*/
 	public class ClassNameCache : IClassNameCache { //TEST: ClassNameCache
 
-		//TODO: run this in a background thread
-
 		private readonly IList<IApiContext> vApiCtxList;
 		private IDictionary<string, IList<long>> vDupMap { get; set; }
 		private readonly int vNameLen;
@@ -96,7 +94,7 @@ namespace Fabric.Infrastructure.Cache {
 				col2Var.Label = "d";
 
 				tx.AddQuery(classPath.End());
-				tx.FinishWithoutStartStop(tableVar);
+				tx.Finish(tableVar);
 				IApiDataAccess data = pApiCtx.DbData("GetClassList", tx);
 				int n = data.GetTextListCount();
 
@@ -182,6 +180,11 @@ namespace Fabric.Infrastructure.Cache {
 		/*--------------------------------------------------------------------------------------------*/
 		public int GetLoadIndex() {
 			return vLoadIndex;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetKeyCount() {
+			return vDupMap.Keys.Count;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

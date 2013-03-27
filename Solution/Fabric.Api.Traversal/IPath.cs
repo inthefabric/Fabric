@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
+using Weaver.Interfaces;
 
 namespace Fabric.Api.Traversal {
 
 	/*================================================================================================*/
-	public interface IPath {
+	public interface IPath : IWeaverScript {
 
 		bool StartAtRoot { get; }
 		long UserId { get; }
 		long AppId { get; }
-		string Script { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +27,9 @@ namespace Fabric.Api.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		void RegisterAlias(IFuncAsStep pAsStep);
 		IFuncAsStep GetAlias(string pAlias);
+
+		/*--------------------------------------------------------------------------------------------*/
+		string AddParam(IWeaverQueryVal pValue);
 		
 	}
 

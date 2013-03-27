@@ -17,7 +17,7 @@ namespace Fabric.Infrastructure.Api {
 		public IApiContext ApiCtx { get; private set; }
 
 		public string Script { get; private set; }
-		public IDictionary<string, string> Params { get; private set; }
+		public IDictionary<string, IWeaverQueryVal> Params { get; private set; }
 		public string Query { get; private set; }
 
 		public string RawResult { get; private set; }
@@ -30,7 +30,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiDataAccess(IApiContext pContext, string pScript, 
-															IDictionary<string, string> pParams=null) {
+													IDictionary<string, IWeaverQueryVal> pParams=null) {
 			ApiCtx = pContext;
 			Script = pScript;
 			Params = pParams;
@@ -126,9 +126,16 @@ namespace Fabric.Infrastructure.Api {
 			string p = "";
 
 			foreach ( string key in Params.Keys ) {
-				p += (p.Length > 0 ? "," : "")+
-					"\""+FabricUtil.JsonUnquote(key)+"\":"+
-					"\""+FabricUtil.JsonUnquote(Params[key])+"\"";
+				p += (p.Length > 0 ? "," : "")+"\""+FabricUtil.JsonUnquote(key)+"\":";
+
+				IWeaverQueryVal qv = Params[key];
+
+				if ( qv.IsString ) {
+					p += "\""+FabricUtil.JsonUnquote(qv.GetQuoted())+"\"";
+				}
+				else {
+					p += qv.FixedText;
+				}
 			}
 
 			return p;

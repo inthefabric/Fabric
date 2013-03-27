@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Cache;
 using Weaver.Interfaces;
-using Weaver.Items;
 
 namespace Fabric.Infrastructure.Api {
 	
@@ -55,11 +53,6 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted) where T : IItemWithId, new();
-
-		/*--------------------------------------------------------------------------------------------*/
-		T DbAddNode<T, TRootRel>(string pQueryName, T pNode, Expression<Func<T,object>> pIndexProp)
-												where T : class, INode, IItemWithId, new()
-												where TRootRel : WeaverRel<Root, Contains, T>, new();
 
 	}
 

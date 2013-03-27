@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.End()
 			);
 
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			OauthScope os = ApiCtx.DbSingle<OauthScope>(Query.UpdateScopeTx+"", tx);
 			
 			if ( os != null ) {
@@ -83,7 +83,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			osBuild.SetUsesApp(vAppId);
 			osBuild.SetUsesUser(vUserId);
 			
-			txb.Transaction.FinishWithoutStartStop(osBuild.NodeVar);
+			txb.Transaction.Finish(osBuild.NodeVar);
 			newOs = ApiCtx.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
 			return newOs;
 		}

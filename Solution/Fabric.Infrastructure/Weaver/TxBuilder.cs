@@ -23,14 +23,14 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverTransaction Finish() {
-			Transaction.FinishWithoutStartStop();
+			Transaction.Finish();
 			return Transaction;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverTransaction Finish(IWeaverVarAlias pFinalOutput) {
 			VerifyVar(pFinalOutput);
-			Transaction.FinishWithoutStartStop(pFinalOutput);
+			Transaction.Finish(pFinalOutput);
 			return Transaction;
 		}
 

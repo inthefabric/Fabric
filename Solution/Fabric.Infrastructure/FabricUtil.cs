@@ -15,20 +15,6 @@ namespace Fabric.Infrastructure {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static string ScriptAndParamsToJson(string pScript, Dictionary<string,string> pParams) {
-			string json = "{\"script\":\""+JsonUnquote(pScript)+"\",\"params\":{";
-			bool first = true;
-
-			foreach ( string key in pParams.Keys ) {
-				json += (first ? "" : ",")+"\""+JsonUnquote(key)+"\":\""+
-					JsonUnquote(pParams[key])+"\"";
-				first = false;
-			}
-
-			return json+"}}";
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public static string JsonUnquote(string pText) {
 			return pText.Replace("\"", "\\\"");
 		}
@@ -52,7 +38,6 @@ namespace Fabric.Infrastructure {
 
 			return sb.ToString();
 		}
-		
 	}
 
 }

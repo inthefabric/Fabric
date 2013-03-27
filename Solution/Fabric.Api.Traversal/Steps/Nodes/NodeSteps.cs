@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
+using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -586,7 +587,14 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep(IPath pPath) : base(pPath) {
 			if ( Path.GetSegmentCount() == 0 ) {
-				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
+				string script = "g";
+
+				if ( Path.StartAtRoot ) {
+					string idVal = Path.AddParam(new WeaverQueryVal(0));
+					script += ".V('RootId',"+idVal+")[0]";
+				}
+
+				Path.AddSegment(this, script);
 			}
 
 			ConstructorHook();

@@ -9,7 +9,6 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
-using Weaver;
 
 namespace Fabric.Api.Traversal {
 
@@ -62,10 +61,7 @@ namespace Fabric.Api.Traversal {
 				return;
 			}
 
-			var wq = new WeaverQuery();
-			wq.FinalizeQuery(vModel.Query);
-			IApiDataAccess data = vApiCtx.DbData("Traversal", wq);
-
+			IApiDataAccess data = vApiCtx.DbData("Traversal", vLastStep.Path);
 			vModel.Resp.DbMs = vApiCtx.DbQueryMillis;
 
 			////

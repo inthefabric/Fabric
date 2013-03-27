@@ -14,7 +14,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiDataAccess(IApiContext pContext, string pScript,
-						IDictionary<string, string> pParams=null) : base(pContext, pScript, pParams) {}
+				IDictionary<string, IWeaverQueryVal> pParams=null) : base(pContext, pScript, pParams) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiDataAccess(IApiContext pContext, IWeaverScript pScripted) :base(pContext, pScripted){}

@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.End()
 			);
 
-			tx.FinishWithoutStartStop(agg);
+			tx.Finish(agg);
 
 			IApiDataAccess data = ApiCtx.DbData(Query.GetAccessTx+"", tx);
 			int count = data.GetResultCount();

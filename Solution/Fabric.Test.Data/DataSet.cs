@@ -13,7 +13,6 @@ namespace Fabric.Db.Data {
 		public IList<IWeaverQuery> Initialization { get; private set; }
 		public IList<IWeaverQuery> Indexes { get; private set; }
 		public IList<IDataNode> Nodes { get; private set; }
-		//public IList<IDataNodeIndex> NodeToIndexes { get; private set; }
 		public IList<IDataRel> Rels { get; private set; }
 		public bool IsForTesting { get; private set; }
 
@@ -28,7 +27,6 @@ namespace Fabric.Db.Data {
 			Initialization = new List<IWeaverQuery>();
 			Indexes = new List<IWeaverQuery>();
 			Nodes = new List<IDataNode>();
-			//NodeToIndexes = new List<IDataNodeIndex>();
 			Rels = new List<IDataRel>();
 			IsForTesting = pIsForTesting;
 
@@ -37,19 +35,14 @@ namespace Fabric.Db.Data {
 			vNodeMap = new Dictionary<string, INode>();
 
 			var r = new Root { Id = 0 };
-			//AddNode(DataNode.Create(r)); //do not add node, use g.v(0) instead
 			vNodeMap.Add(typeof(Root).Name+1, r);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClearPreviousData() {
 			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V.each{g.removeVertex(it)}"); //also removes all edges
+			q.FinalizeQuery("g.V.remove()"); //also removes all edges
 			Initialization.Add(q);
-
-			//q = new WeaverQuery();
-			//q.FinalizeQuery("g.E.each{g.removeEdge(it)}");
-			//Initialization.Add(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -97,9 +90,7 @@ namespace Fabric.Db.Data {
 															bool pIsForTesting) where T : INode {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
 			DataNode<T> n = DataNode.Create(pDomainNode, pIsForTesting);
-			//DataNodeIndex<T> ni = DataNodeIndex.Create(n, pIndexValueFunc);
 			Nodes.Add(n);
-			//NodeToIndexes.Add(ni);
 			vNodeMap.Add(typeof(T).Name+pDomainNode.GetTypeId(), pDomainNode);
 			return true;
 		}

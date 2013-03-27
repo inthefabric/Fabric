@@ -41,6 +41,10 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
+#if LIVE
+			Assert.Fail("Cannot run integration tests in LIVE mode!");
+#endif
+
 			Log.Info("SetUp started");
 
 			vStartTime = DateTime.UtcNow.Ticks;
@@ -64,6 +68,10 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		[TearDown]
 		public void TearDown() {
+#if LIVE
+			Assert.Fail("Skipping TearDown in LIVE mode.");
+#endif
+
 			Log.Info("");
 			Log.Info("=====================================");
 			Log.Info("");

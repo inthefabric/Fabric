@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
+using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -10,7 +11,7 @@ namespace Fabric.Infrastructure.Api {
 		IApiContext ApiCtx { get; }
 
 		string Script { get; }
-		IDictionary<string, string> Params { get; }
+		IDictionary<string, IWeaverQueryVal> Params { get; }
 		string Query { get; }
 
 		string RawResult { get; }

@@ -72,7 +72,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.End()
 			);
 
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			OauthGrant og = ApiCtx.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
 			
 			if ( og != null ) {

@@ -88,7 +88,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				WeaverTasks.AddRel<FactorUsesDescriptor>(facVar, new FactorUsesDescriptor(), descVar)
 			);
 
-			tx.FinishWithoutStartStop();
+			tx.Finish();
 			ApiCtx.DbData("TEST.AttachDescriptor", tx);
 		}
 
