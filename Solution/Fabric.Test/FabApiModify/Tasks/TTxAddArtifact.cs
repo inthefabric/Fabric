@@ -20,11 +20,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"IsPrivate:false,"+
 				"Created:0L"+
 			"]);"+
-			"g.addEdge(_V0,_V3,'"+typeof(RootContainsArtifact).Name+"');"+
+			"g.addEdge(_V0,_V3,_TP0);"+
 			"g.V('"+typeof(ArtifactType).Name+"Id',{{ArtifactTypeId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V3,_V4,'"+typeof(ArtifactUsesArtifactType).Name+"');"+
-			"g.addEdge(_V2,_V3,'"+typeof(MemberCreatesArtifact).Name+"');"+
-			"g.addEdge(_V1,_V3,'{{HasArtifact}}');";
+			"g.addEdge(_V3,_V4,_TP1);"+
+			"g.addEdge(_V2,_V3,_TP2);"+
+			"g.addEdge(_V1,_V3,_TP3);";
 
 		private ArtifactTypeId vArtTypeId;
 		private long vNewArtId;
@@ -59,10 +59,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			string expect = Query
 				.Replace("{{NewArtId}}", vNewArtId+"")
-				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"")
-				.Replace("{{HasArtifact}}", typeof(UserHasArtifact).Name);
+				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(ArtifactUsesArtifactType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(UserHasArtifact).Name);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -84,10 +87,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			string expect = Query
 				.Replace("{{NewArtId}}", vNewArtId+"")
-				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"")
-				.Replace("{{HasArtifact}}", typeof(AppHasArtifact).Name);
+				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(ArtifactUsesArtifactType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(AppHasArtifact).Name);
 		}
 
 	}

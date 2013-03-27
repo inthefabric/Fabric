@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -12,10 +13,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
 				typeof(Url).Name+"Id:{{NewUrlId}}L,"+
-				"Name:'{{Name}}',"+
-				"AbsoluteUrl:'{{AbsUrl}}'"+
+				"Name:_TP0,"+
+				"AbsoluteUrl:_TP1"+
 			"]);"+
-			"g.addEdge(_V0,_V1,'"+typeof(RootContainsUrl).Name+"');";
+			"g.addEdge(_V0,_V1,_TP2);";
 
 		private string vAbsoluteUrl;
 		private string vName;
@@ -47,11 +48,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.AreEqual("_V1", urlVar.Name, "Incorrect UrlVar name.");
 
 			string expect = Query
-				.Replace("{{NewUrlId}}", vNewUrlId+"")
-				.Replace("{{Name}}", vName)
-				.Replace("{{AbsUrl}}", vAbsoluteUrl);
+				.Replace("{{NewUrlId}}", vNewUrlId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vAbsoluteUrl);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(RootContainsUrl).Name);
 		}
 
 	}

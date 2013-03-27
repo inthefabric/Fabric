@@ -22,9 +22,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
 				".back('step3')"+
 					".sideEffect{"+
-						"it.setProperty('RedirectUri','{{RedirUri}}');"+
+						"it.setProperty('RedirectUri',_TP0);"+
 						"it.setProperty('Expires',{{ExpireTicks}}L);"+
-						"it.setProperty('Code','{{Code}}')"+
+						"it.setProperty('Code',_TP1)"+
 					"};";
 
 		private readonly static string QueryAddGrantTx =
@@ -32,18 +32,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
 				typeof(OauthGrant).Name+"Id:{{OauthGrantId}}L,"+
-				"RedirectUri:'{{RedirUri}}',"+
-				"Code:'{{Code}}',"+
+				"RedirectUri:_TP0,"+
+				"Code:_TP1,"+
 				"Expires:{{ExpireTicks}}L"+
 			"]);"+
-			"g.addEdge(_V0,_V1,'"+typeof(RootContainsOauthGrant).Name+"');"+
+			"g.addEdge(_V0,_V1,_TP2);"+
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
 				".each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,'"+typeof(OauthGrantUsesApp).Name+"');"+
+			"g.addEdge(_V1,_V2,_TP3);"+
 			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
 				".each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,'"+typeof(OauthGrantUsesUser).Name+"');";
-		
+			"g.addEdge(_V1,_V3,_TP4);";
+
 		protected long vAppId;
 		protected long vUserId;
 		protected string vRedirUri;
@@ -99,15 +99,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private OauthGrant UpdateGrant(IWeaverScript pScripted) {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddGrant.Query.UpdateGrantTx+"");
-
+			
 			string expect = QueryUpdateGrantTx
 				.Replace("{{AppId}}", vAppId+"")
 				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"")
-				.Replace("{{RedirUri}}", vRedirUri)
-				.Replace("{{Code}}", vGrantCode);
+				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"");
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			
+			TestUtil.CheckParam(pScripted.Params, "_TP0", vRedirUri);
+			TestUtil.CheckParam(pScripted.Params, "_TP1", vGrantCode);
 			
 			return vGrantResult;
 		}
@@ -121,11 +122,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				.Replace("{{OauthGrantId}}", vAddOauthGrantId+"")
 				.Replace("{{AppId}}", vAppId+"")
 				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"")
-				.Replace("{{RedirUri}}", vRedirUri)
-				.Replace("{{Code}}", vGrantCode);
+				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"");
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pScripted.Params, "_TP0", vRedirUri);
+			TestUtil.CheckParam(pScripted.Params, "_TP1", vGrantCode);
+			TestUtil.CheckParam(pScripted.Params, "_TP2", typeof(RootContainsOauthGrant).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP3", typeof(OauthGrantUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP4", typeof(OauthGrantUsesUser).Name);
 			
 			return null;
 		}

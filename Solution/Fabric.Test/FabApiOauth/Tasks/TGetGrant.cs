@@ -19,7 +19,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V0=[];"+
 			"g.V('RootId',0)[0]"+
 				".outE('"+typeof(RootContainsOauthGrant).Name+"').inV"+
-					".has('Code',Tokens.T.eq,'{{Code}}')"+
+					".has('Code',Tokens.T.eq,_TP0)"+
 					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
 					".aggregate(_V0)"+
 					".as('step6')"+
@@ -29,7 +29,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
 					".aggregate(_V0)"+
 				".back('step6')"+
-					".sideEffect{it.setProperty('Code','')}"+
+					".sideEffect{it.setProperty('Code',_TP1)}"+
 					".iterate();"+
 			"_V0;";
 
@@ -91,10 +91,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetGrant.Query.GetAndUpdateTx+"");
 			string expect = QueryGetAndUpdateTx
-				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
-				.Replace("{{Code}}", vResultGrant.Code);
+				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", vResultGrant.Code);
+			TestUtil.CheckParam(pTx.Params, "_TP1", "");
+
 			return vMockGetAndUpdateTxResult.Object;
 		}
 

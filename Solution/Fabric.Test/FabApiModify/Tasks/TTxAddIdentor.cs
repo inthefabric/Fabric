@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -12,13 +13,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
 				typeof(Identor).Name+"Id:{{NewIdentorId}}L,"+
-				"Value:'{{Value}}'"+
+				"Value:_TP0"+
 			"]);"+
-			"g.addEdge(_V0,_V1,'"+typeof(RootContainsIdentor).Name+"');"+
+			"g.addEdge(_V0,_V1,_TP1);"+
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,'"+typeof(FactorUsesIdentor).Name+"');"+
+			"g.addEdge(_V2,_V1,_TP2);"+
 			"g.V('"+typeof(IdentorType).Name+"Id',{{EveTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,'"+typeof(IdentorUsesIdentorType).Name+"');";
+			"g.addEdge(_V1,_V3,_TP3);";
 
 		private long vIdenTypeId;
 		private string vValue;
@@ -52,10 +53,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			string expect = Query
 				.Replace("{{NewIdentorId}}", vNewIdentorId+"")
 				.Replace("{{FactorId}}", f.FactorId+"")
-				.Replace("{{EveTypeId}}", vIdenTypeId+"")
-				.Replace("{{Value}}", vValue);
+				.Replace("{{EveTypeId}}", vIdenTypeId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vValue);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
+				typeof(RootContainsIdentor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
+				typeof(FactorUsesIdentor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
+				typeof(IdentorUsesIdentorType).Name);
 		}
 
 	}

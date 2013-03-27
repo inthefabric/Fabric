@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetApp =
 			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
-				".has('Secret',Tokens.T.eq,'{{AppSecret}}');";
+				".has('Secret',Tokens.T.eq,_P0);";
 
 		private long vAppId;
 		private string vAppSecret;
@@ -57,10 +57,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetAppAuth.Query.GetApp+"");
 			string expect = QueryGetApp
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{AppSecret}}", vAppSecret);
+				.Replace("{{AppId}}", vAppId+"");
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppSecret);
+
 			return vGetAppResult;
 		}
 

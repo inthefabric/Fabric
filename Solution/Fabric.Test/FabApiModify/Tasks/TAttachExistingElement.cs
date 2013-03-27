@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private readonly string Query =
 			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V0=g.v(it)};"+
 			"g.V('{{ElementType}}Id',{{ElementId}}L)[0].each{_V1=g.v(it)};"+
-			"g.addEdge(_V0,_V1,'{{EdgeLabel}}');";
+			"g.addEdge(_V0,_V1,_TP0);";
 
 		private long vFactorId;
 		private long vElemId;
@@ -38,10 +38,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			string expect = Query
 				.Replace("{{FactorId}}", vFactorId+"")
 				.Replace("{{ElementType}}", vElemType+"")
-				.Replace("{{ElementId}}", vElemId+"")
-				.Replace("{{EdgeLabel}}", "FactorUses"+vElemType);
+				.Replace("{{ElementId}}", vElemId+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", "FactorUses"+vElemType);
+
 			return new Mock<IApiDataAccess>().Object;
 		}
 
