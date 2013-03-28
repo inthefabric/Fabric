@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Oauth.Tasks;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -16,16 +15,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDataProv {
 
 		private readonly static string QueryGetUser =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
 				".as('step1')"+
 			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".as('step4')"+
 			".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-				".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
+				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
 			".back('step4')"+
 			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
-				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,{{MemberTypeId}}L)"+
+				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,_P2)"+
 			".back('step1');";
 
 		private long vAppId;
@@ -67,12 +66,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private User GetUser(IWeaverQuery pQuery) {
 			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetDataProv.Query.GetUser+"");
-			string expect = QueryGetUser
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{UserId}}", vDataProvUserId+"")
-				.Replace("{{MemberTypeId}}", ((long)MemberTypeId.DataProvider)+"");
 
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(QueryGetUser, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vDataProvUserId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P2", (long)MemberTypeId.DataProvider);
 
 			return vGetUserResult;
 		}

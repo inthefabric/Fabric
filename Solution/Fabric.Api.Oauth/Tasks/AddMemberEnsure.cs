@@ -1,5 +1,4 @@
 ﻿using System;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -150,13 +149,14 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<MemberTypeAssign> mtaVar;
-			
+
 			txb.GetRoot(out rootVar);
+			txb.GetNode(pAssign, out mtaVar);
 			
 			//Remove original Member-Has-MemberTypeAssign relationship
 
 			txb.Transaction.AddQuery(
-				NewPathFromIndex(pAssign)
+				NewPathFromVar(mtaVar, false)
 				.InMemberHas
 					.RemoveEach()
 				.End()
@@ -165,7 +165,6 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Move original to use Member-HasHistoric-MemberTypeAssign relationship
 
 			txb.GetNode(pMember, out memVar);
-			txb.GetNode(pAssign, out mtaVar);
 			txb.AddRel<MemberHasHistoricMemberTypeAssign>(memVar, mtaVar);
 
 			//Finish transaction

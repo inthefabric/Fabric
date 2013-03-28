@@ -18,10 +18,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAccessTx = 
 			"_V0=[];"+
-			"g.V('RootId',0)[0]"+
+			"g.V('RootId',_TP0)[0]"+
 				".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
-					".has('Token',Tokens.T.eq,_TP0)"+
-					".has('Expires',Tokens.T.gt,{{UtcNowTicks}}L)"+
+					".has('Token',Tokens.T.eq,_TP1)"+
+					".has('Expires',Tokens.T.gt,_TP2)"+
 					".aggregate(_V0)"+
 					".as('step6')"+
 				".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
@@ -90,11 +90,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private IApiDataAccess GetAccess(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetAccessToken.Query.GetAccessTx+"");
-			string expect = QueryGetAccessTx
-				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
 
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vToken);
+			Assert.AreEqual(QueryGetAccessTx, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP1", vToken);
+			TestUtil.CheckParam(pTx.Params, "_TP2", vUtcNow.Ticks);
 
 			return vMockGetAccessTxResult.Object;
 		}

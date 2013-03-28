@@ -15,11 +15,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetScope {
 
 		private readonly static string QueryGetMatchingScope =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
 				".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
 					".as('step3')"+
 				".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
+					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
 				".back('step3');";
 
 		private long vAppId;
@@ -64,11 +64,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetScope.Query.GetMatchingScope+"");
 
-			string expect = QueryGetMatchingScope
-				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{AppId}}", vAppId+"");
-
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(QueryGetMatchingScope, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vUserId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
 
 			return vOauthScopeResult;
 		}

@@ -15,9 +15,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDomain {
 
 		private static readonly string QueryGetDomain =
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".filter{it.getProperty('Domain').toLowerCase()==REDIR};";
+				".filter{it.getProperty('Domain').toLowerCase()==_P1};";
 
 		private long vAppId;
 		private string vRedirUri;
@@ -62,9 +62,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			vUsageMap.Increment(GetDomain.Query.GetOauthDomain+"");
 
-			string expect = QueryGetDomain.Replace("{{AppId}}", vAppId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "REDIR", vRedirDomain.ToLower());
+			Assert.AreEqual(QueryGetDomain, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vRedirDomain.ToLower());
 
 			return vGetDomainResult;
 		}

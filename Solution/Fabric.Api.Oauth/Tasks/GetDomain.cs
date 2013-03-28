@@ -63,7 +63,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override DomainResult Execute() {
 			string domainProp = WeaverUtil.GetPropertyName<OauthDomain>(x => x.Domain);
 			string dom = new WeaverQueryVal(vRedirectDomain.ToLower()).GetQuoted();
-			string filterStep = "filter{it.getProperty('"+domainProp+"').toLowerCase()=="+dom+"}";
+			string filterStep = "filter{it.getProperty('"+domainProp+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
 				NewPathFromIndex(new App { AppId = vAppId })
@@ -71,8 +71,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			//q.AddParam("REDIR", new WeaverQueryVal(vRedirectDomain.ToLower(), false));
-
+			q.AddStringParam(vRedirectDomain.ToLower(), false);
 			OauthDomain od = ApiCtx.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);
 			
 			if ( od == null ) {

@@ -15,34 +15,31 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddGrant {
 
 		private readonly static string QueryUpdateGrantTx =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
-					".as('step3')"+
-				".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
-				".back('step3')"+
-					".sideEffect{"+
-						"it.setProperty('RedirectUri',_TP0);"+
-						"it.setProperty('Expires',{{ExpireTicks}}L);"+
-						"it.setProperty('Code',_TP1)"+
-					"};";
+			"g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
+			".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
+				".as('step3')"+
+			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
+				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_TP1)"+
+			".back('step3')"+
+				".sideEffect{"+
+					"it.setProperty('RedirectUri',_TP2);"+
+					"it.setProperty('Expires',_TP3);"+
+					"it.setProperty('Code',_TP4)"+
+				"};";
 
 		private readonly static string QueryAddGrantTx =
-			"g.V('RootId',0)[0]"+
-				".each{_V0=g.v(it)};"+
+			"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
-				typeof(OauthGrant).Name+"Id:{{OauthGrantId}}L,"+
-				"RedirectUri:_TP0,"+
-				"Code:_TP1,"+
-				"Expires:{{ExpireTicks}}L"+
+				typeof(OauthGrant).Name+"Id:_TP1,"+
+				"RedirectUri:_TP2,"+
+				"Code:_TP3,"+
+				"Expires:_TP4"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP2);"+
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
-				".each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,_TP3);"+
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP4);";
+			"g.addEdge(_V0,_V1,_TP5);"+
+			"g.V('"+typeof(App).Name+"Id',_TP6)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V1,_V2,_TP7);"+
+			"g.V('"+typeof(User).Name+"Id',_TP8)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP9);";
 
 		protected long vAppId;
 		protected long vUserId;
@@ -100,15 +97,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddGrant.Query.UpdateGrantTx+"");
 			
-			string expect = QueryUpdateGrantTx
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"");
 
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
-			
-			TestUtil.CheckParam(pScripted.Params, "_TP0", vRedirUri);
-			TestUtil.CheckParam(pScripted.Params, "_TP1", vGrantCode);
+			Assert.AreEqual(QueryUpdateGrantTx, pScripted.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pScripted.Params, "_TP0", vUserId);
+			TestUtil.CheckParam(pScripted.Params, "_TP1", vAppId);
+			TestUtil.CheckParam(pScripted.Params, "_TP2", vRedirUri);
+			TestUtil.CheckParam(pScripted.Params, "_TP3", vUtcNow.AddMinutes(2).Ticks);
+			TestUtil.CheckParam(pScripted.Params, "_TP4", vGrantCode);
 			
 			return vGrantResult;
 		}
@@ -118,18 +113,17 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddGrant.Query.AddGrantTx+"");
 
-			string expect = QueryAddGrantTx
-				.Replace("{{OauthGrantId}}", vAddOauthGrantId+"")
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{ExpireTicks}}", vUtcNow.AddMinutes(2).Ticks+"");
-
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pScripted.Params, "_TP0", vRedirUri);
-			TestUtil.CheckParam(pScripted.Params, "_TP1", vGrantCode);
-			TestUtil.CheckParam(pScripted.Params, "_TP2", typeof(RootContainsOauthGrant).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP3", typeof(OauthGrantUsesApp).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP4", typeof(OauthGrantUsesUser).Name);
+			Assert.AreEqual(QueryAddGrantTx, pScripted.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pScripted.Params, "_TP0", 0);
+			TestUtil.CheckParam(pScripted.Params, "_TP1", vAddOauthGrantId);
+			TestUtil.CheckParam(pScripted.Params, "_TP2", vRedirUri);
+			TestUtil.CheckParam(pScripted.Params, "_TP3", vGrantCode);
+			TestUtil.CheckParam(pScripted.Params, "_TP4", vUtcNow.AddMinutes(2).Ticks);
+			TestUtil.CheckParam(pScripted.Params, "_TP5", typeof(RootContainsOauthGrant).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP6", vAppId);
+			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(OauthGrantUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP8", vUserId);
+			TestUtil.CheckParam(pScripted.Params, "_TP9", typeof(OauthGrantUsesUser).Name);
 			
 			return null;
 		}

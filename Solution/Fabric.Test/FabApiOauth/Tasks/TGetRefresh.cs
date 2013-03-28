@@ -16,10 +16,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAccessTx =
 			"_V0=[];"+
-			"g.V('RootId',0)[0]"+
+			"g.V('RootId',_TP0)[0]"+
 				".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
-					".has('Refresh',Tokens.T.eq,_TP0)"+
-					".has('IsClientOnly',Tokens.T.eq,false)"+
+					".has('Refresh',Tokens.T.eq,_TP1)"+
+					".has('IsClientOnly',Tokens.T.eq,_TP2)"+
 					".as('step5')"+
 				".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
 					".aggregate(_V0)"+
@@ -76,11 +76,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private IApiDataAccess GetAccessTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetRefresh.Query.GetAppUserTx+"");
-			string expect = QueryGetAccessTx
-				.Replace("{{RefToken}}", vRefToken);
 
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vRefToken);
+			Assert.AreEqual(QueryGetAccessTx, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP1", vRefToken);
+			TestUtil.CheckParam(pTx.Params, "_TP2", false);
 
 			return vMockGetAccessTxResult.Object;
 		}
