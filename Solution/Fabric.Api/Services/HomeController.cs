@@ -26,7 +26,7 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
-			return NewResponse(new FabRespJsonView(FabResp, DtoJson));
+			return NewFabJsonResponse(DtoJson);
 		}
 
 	}

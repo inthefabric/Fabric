@@ -64,7 +64,7 @@ namespace Fabric.Api.Services {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildHomeResponse() {
-			return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));
+			return NewFabJsonResponse(ServiceDtoJson);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

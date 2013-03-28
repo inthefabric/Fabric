@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Oauth", "Fabric.Api.Oauth\Fabric.Api.Oauth.csproj", "{F950795F-E668-4C70-A3FA-8194BC866D39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test.Integration", "Fabric.Test.Integration\Fabric.Test.Integration.csproj", "{592F06B2-3845-47DC-896E-20B752BCE8DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8E09D9D5-148A-4699-A31B-372BD01E6C0A} = {8E09D9D5-148A-4699-A31B-372BD01E6C0A}
+		{4E9769D7-BC92-4717-88CA-F82CDE950F44} = {4E9769D7-BC92-4717-88CA-F82CDE950F44}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Modify", "Fabric.Api.Modify\Fabric.Api.Modify.csproj", "{0871F5F4-CF33-4072-9619-F94E24D611E8}"
 EndProject

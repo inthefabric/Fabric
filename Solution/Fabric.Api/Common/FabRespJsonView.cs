@@ -1,5 +1,6 @@
 ﻿using Fabric.Api.Dto;
 using Fabric.Api.Services.Views;
+using Fabric.Infrastructure.Api;
 using ServiceStack.Text;
 
 namespace Fabric.Api.Common {
@@ -15,8 +16,9 @@ namespace Fabric.Api.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabRespJsonView(FabResponse pResp, string pSpecJson) {
+		public FabRespJsonView(IApiContext pApiCtx, FabResponse pResp, string pSpecJson) {
 			vFabResp = pResp;
+			vFabResp.DbMs = pApiCtx.DbQueryMillis;
 			vDataJson = pSpecJson;
 		}
 

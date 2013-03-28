@@ -46,6 +46,11 @@ namespace Fabric.Api.Common {
 			return NancyUtil.BuildJsonResponse((HttpStatusCode)FabResp.HttpStatus, pView.GetContent());
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected Response NewFabJsonResponse(string pJson) {
+			return NewResponse(new FabRespJsonView(ApiCtx, FabResp, pJson));
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -92,7 +97,7 @@ namespace Fabric.Api.Common {
 				FabResp.Error = FabError.ForInternalServerError();
 			}
 
-			return NewResponse(new FabRespJsonView(FabResp, null));
+			return NewFabJsonResponse(null);
 		}
 
 

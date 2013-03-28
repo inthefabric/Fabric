@@ -37,7 +37,7 @@ namespace Fabric.Api.Services {
 		protected override Response BuildFabResponse() {
 			switch ( vRoute ) {
 				case Route.Home:
-					return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));
+					return NewFabJsonResponse(ServiceDtoJson);
 			}
 
 			return null;

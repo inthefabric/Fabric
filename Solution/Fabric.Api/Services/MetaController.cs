@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Common;
+﻿using System.Collections.Generic;
+using Fabric.Api.Common;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Meta;
@@ -6,7 +7,6 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
-using System.Collections.Generic;
 
 namespace Fabric.Api.Services {
 
@@ -44,23 +44,23 @@ namespace Fabric.Api.Services {
 
 			switch ( vRoute ) {
 				case Route.Home:
-					return NewResponse(new FabRespJsonView(FabResp, ServiceDtoJson));
+					return NewFabJsonResponse(ServiceDtoJson);
 
 				case Route.Spec:
 					var getDoc = new GetSpec(vVersion.Version);
-					return NewResponse(new FabRespJsonView(FabResp, getDoc.Go(ApiCtx)));
+					return NewFabJsonResponse(getDoc.Go(ApiCtx));
 
 				case Route.Version:
 					var getVer = new GetVersion(vVersion);
 					var verList = new List<FabMetaVersion>();
 					verList.Add(getVer.Go(ApiCtx));
-					return NewResponse(new FabRespJsonView(FabResp, verList.ToJson()));
+					return NewFabJsonResponse(verList.ToJson());
 
 				case Route.Time:
 					var getTime = new GetTime();
 					var timeList = new List<FabMetaTime>();
 					timeList.Add(getTime.Go(ApiCtx));
-					return NewResponse(new FabRespJsonView(FabResp, timeList.ToJson()));
+					return NewFabJsonResponse(timeList.ToJson());
 			}
 
 			return null;

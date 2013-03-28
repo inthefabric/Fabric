@@ -57,7 +57,7 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
-			return NewResponse(new FabRespJsonView(FabResp, GetRouteJson()));
+			return NewFabJsonResponse(GetRouteJson());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
