@@ -1,5 +1,7 @@
 ﻿using System;
+using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -14,22 +16,22 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V0=[];"+ //Root
 			"_V1=[];"+ //User
 			"_V2=g.addVertex(["+
-				typeof(Member).Name+"Id:{{NewMemberId}}L"+
+				typeof(Member).Name+"Id:_TP0"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP0);"+
-			"g.addEdge(_V1,_V2,_TP1);"+
-			"g.V('"+typeof(App).Name+"Id',1L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V3,_V2,_TP2);"+
+			"g.addEdge(_V0,_V2,_TP1);"+
+			"g.addEdge(_V1,_V2,_TP2);"+
+			"g.V('"+typeof(App).Name+"Id',_TP3)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V3,_V2,_TP4);"+
 			"_V4=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:{{NewMtaId}}L,"+
-				"Performed:{{UtcNowTicks}}L"+
+				typeof(MemberTypeAssign).Name+"Id:_TP5,"+
+				"Performed:_TP6"+
 			"]);"+
-			"g.addEdge(_V0,_V4,_TP3);"+
-			"g.V('"+typeof(Member).Name+"Id',1L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V5,_V4,_TP4);"+
-			"g.addEdge(_V2,_V4,_TP5);"+
-			"g.V('"+typeof(MemberType).Name+"Id',4L)[0].each{_V6=g.v(it)};"+
-			"g.addEdge(_V4,_V6,_TP6);";
+			"g.addEdge(_V0,_V4,_TP7);"+
+			"g.V('"+typeof(Member).Name+"Id',_TP8)[0].each{_V5=g.v(it)};"+
+			"g.addEdge(_V5,_V4,_TP9);"+
+			"g.addEdge(_V2,_V4,_TP10);"+
+			"g.V('"+typeof(MemberType).Name+"Id',_TP11)[0].each{_V6=g.v(it)};"+
+			"g.addEdge(_V4,_V6,_TP12);";
 
 		private long vNewMemberId;
 		private long vNewMtaId;
@@ -63,22 +65,24 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.NotNull(memberVar, "MemberVar should not be null.");
 			Assert.AreEqual("_V2", memberVar.Name, "Incorrect MemberVar name.");
 
-			string expect = Query
-				.Replace("{{NewMemberId}}", vNewMemberId+"")
-				.Replace("{{NewMtaId}}", vNewMtaId+"")
-				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsMember).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(UserDefinesMember).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(AppDefinesMember).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", 
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewMemberId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsMember).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(UserDefinesMember).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (long)SetupUsers.AppId.FabSys);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(AppDefinesMember).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vNewMtaId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vUtcNow.Ticks);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", 
 				typeof(RootContainsMemberTypeAssign).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", 
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
+				(long)SetupUsers.MemberId.FabFabData);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", 
 				typeof(MemberCreatesMemberTypeAssign).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", 
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10", 
 				typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", 
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11", (long)MemberTypeId.Member);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP12", 
 				typeof(MemberTypeAssignUsesMemberType).Name);
 		}
 

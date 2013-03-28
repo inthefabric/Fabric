@@ -12,9 +12,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TDeleteOauthDomain : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".has('"+typeof(OauthDomain).Name+"Id',Tokens.T.eq,{{OauthDomainId}}L)"+
+				".has('"+typeof(OauthDomain).Name+"Id',Tokens.T.eq,_P1)"+
 				".remove();";
 
 		private long vAppId;
@@ -37,11 +37,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("DeleteOauthDomain");
 
-			string expect = Query
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{OauthDomainId}}", vOauthDomainId+"");
-
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vOauthDomainId);
 			return null;
 		}
 

@@ -11,9 +11,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetAppByName : TWebTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
-				".outE('"+typeof(RootContainsApp).Name+"').inV"+
-				".filter{it.getProperty('Name').toLowerCase()==NAME};";
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
+			".outE('"+typeof(RootContainsApp).Name+"').inV"+
+				".filter{it.getProperty('Name').toLowerCase()==_P1};";
 
 		private string vName;
 		private App vAppResult;
@@ -36,7 +36,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			UsageMap.Increment("GetAppByName");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "NAME", vName.ToLower());
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vName.ToLower());
 
 			return vAppResult;
 		}

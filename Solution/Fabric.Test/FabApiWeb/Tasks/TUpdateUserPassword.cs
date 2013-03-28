@@ -12,8 +12,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TUpdateUserPassword : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
-				".sideEffect{it.setProperty('Password',_P0)};";
+			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
+				".sideEffect{it.setProperty('Password',_P1)};";
 
 		private long vUserId;
 		private string vPassword;
@@ -37,9 +37,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("UpdateUserPassword");
 
-			string expect = Query.Replace("{{UserId}}", vUserId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", FabricUtil.HashPassword(vPassword));
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vUserId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", FabricUtil.HashPassword(vPassword));
 
 			return vUserResult;
 		}

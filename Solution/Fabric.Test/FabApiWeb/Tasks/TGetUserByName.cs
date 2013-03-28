@@ -11,9 +11,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetUserByName : TWebTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(RootContainsUser).Name+"').inV"+
-				".filter{it.getProperty('Name').toLowerCase()==NAME};";
+				".filter{it.getProperty('Name').toLowerCase()==_P1};";
 
 		private string vName;
 		private User vUserResult;
@@ -36,7 +36,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			UsageMap.Increment("GetUserByName");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "NAME", vName.ToLower());
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vName.ToLower());
 
 			return vUserResult;
 		}

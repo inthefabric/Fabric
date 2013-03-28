@@ -11,8 +11,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TUpdateAppSecret : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
-				".sideEffect{it.setProperty('Secret',_P0)};";
+			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
+				".sideEffect{it.setProperty('Secret',_P1)};";
 
 		private long vAppId;
 		private string vSecret;
@@ -36,9 +36,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("UpdateAppSecret");
 
-			string expect = Query.Replace("{{AppId}}", vAppId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vSecret);
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vSecret);
 
 			return vAppResult;
 		}

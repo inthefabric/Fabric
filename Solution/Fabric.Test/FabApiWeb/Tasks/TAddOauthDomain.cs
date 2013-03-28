@@ -11,11 +11,11 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddOauthDomain : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
-			"_V1=g.addVertex(["+typeof(OauthDomain).Name+"Id:{{OauthDomainId}}L,Domain:_TP0]);"+
-			"g.addEdge(_V0,_V1,_TP1);"+
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,_TP2);"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V1=g.addVertex(["+typeof(OauthDomain).Name+"Id:_TP1,Domain:_TP2]);"+
+			"g.addEdge(_V0,_V1,_TP3);"+
+			"g.V('"+typeof(App).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V1,_V2,_TP5);"+
 			"_V1;";
 
 		private long vAppId;
@@ -44,14 +44,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			UsageMap.Increment("AddOauthDomain");
 
-			string expect = Query
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{OauthDomainId}}", vNewDomainId+"");
-
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vDomain);
-			TestUtil.CheckParam(pTx.Params, "_TP1", typeof(RootContainsOauthDomain).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP2", typeof(OauthDomainUsesApp).Name);
+			Assert.AreEqual(Query, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP1", vNewDomainId);
+			TestUtil.CheckParam(pTx.Params, "_TP2", vDomain);
+			TestUtil.CheckParam(pTx.Params, "_TP3", typeof(RootContainsOauthDomain).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP4", vAppId);
+			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(OauthDomainUsesApp).Name);
 
 			return vDomainResult;
 		}

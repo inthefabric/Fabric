@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetApp : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0];";
+			"g.V('"+typeof(App).Name+"Id',_P0)[0];";
 
 		private long vAppId;
 		private App vAppResult;
@@ -33,8 +33,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetApp");
 
-			string expect = Query.Replace("{{AppId}}", vAppId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
 
 			return vAppResult;
 		}

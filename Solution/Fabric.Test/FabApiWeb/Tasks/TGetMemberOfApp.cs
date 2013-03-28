@@ -11,9 +11,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetMemberOfApp : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
 			".outE('"+typeof(AppDefinesMember).Name+"').inV"+
-				".has('"+typeof(Member).Name+"Id',Tokens.T.eq,{{MemberId}}L);";
+				".has('"+typeof(Member).Name+"Id',Tokens.T.eq,_P1);";
 
 		private long vAppId;
 		private long vMemberId;
@@ -37,11 +37,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetMemberOfApp");
 
-			string expect = Query
-				.Replace("{{AppId}}", vAppId+"")
-				.Replace("{{MemberId}}", vMemberId+"");
-
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vMemberId);
 
 			return vMemberResult;
 		}

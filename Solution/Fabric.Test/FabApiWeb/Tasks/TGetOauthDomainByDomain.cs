@@ -11,9 +11,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetOauthDomainByDomain : TWebTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(App).Name+"Id',{{AppId}}L)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".filter{it.getProperty('Domain').toLowerCase()==DOM};";
+				".filter{it.getProperty('Domain').toLowerCase()==_P1};";
 
 		private long vAppId;
 		private string vDomain;
@@ -37,9 +37,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetOauthDomainByDomain");
 
-			string expect = Query.Replace("{{AppId}}", vAppId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "DOM", vDomain.ToLower());
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vDomain.ToLower());
 
 			return vOauthDomainResult;
 		}

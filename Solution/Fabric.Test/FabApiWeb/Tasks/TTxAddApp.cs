@@ -11,15 +11,15 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
 				".outE('"+typeof(UserUsesEmail).Name+"').inV"+
 				".each{_V1=g.v(it)};"+
 			"_V2=g.addVertex(["+
-				typeof(App).Name+"Id:{{NewAppId}}L,"+
-				"Name:_TP0"+
+				typeof(App).Name+"Id:_TP1,"+
+				"Name:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP1);"+
-			"g.addEdge(_V2,_V1,_TP2);";
+			"g.addEdge(_V0,_V2,_TP3);"+
+			"g.addEdge(_V2,_V1,_TP4);";
 
 		private string vName;
 		private long vUserId;
@@ -50,14 +50,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.NotNull(appVar, "AppVar should not be null.");
 			Assert.AreEqual("_V2", appVar.Name, "Incorrect AppVar name.");
 
-			string expect = Query
-				.Replace("{{NewAppId}}", vNewAppId+"")
-				.Replace("{{UserId}}", vUserId+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsApp).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(AppUsesEmail).Name);
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vUserId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewAppId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vName);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsApp).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(AppUsesEmail).Name);
 		}
 
 	}

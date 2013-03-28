@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetUser : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0];";
+			"g.V('"+typeof(User).Name+"Id',_P0)[0];";
 
 		private long vUserId;
 		private User vUserResult;
@@ -33,8 +33,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetUser");
 
-			string expect = Query.Replace("{{UserId}}", vUserId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vUserId);
 
 			return vUserResult;
 		}
