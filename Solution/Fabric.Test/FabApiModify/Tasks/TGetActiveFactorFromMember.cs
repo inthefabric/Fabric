@@ -11,11 +11,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetActiveFactorFromMember : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0]"+
-				".has('Deleted',Tokens.T.eq,null)"+
+			"g.V('"+typeof(Factor).Name+"Id',_P0)[0]"+
+				".has('Deleted',Tokens.T.eq,_P1)"+
 				".as('step2')"+
 			".inE('"+typeof(MemberCreatesFactor).Name+"').outV"+
-				".has('"+typeof(Member).Name+"Id',Tokens.T.eq,{{MemberId}}L)"+
+				".has('"+typeof(Member).Name+"Id',Tokens.T.eq,_P2)"+
 			".back('step2');";
 
 		private long vFactorId;
@@ -40,10 +40,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetActiveFactorFromMember");
 
-			string expect = Query
-				.Replace("{{FactorId}}", vFactorId+"")
-				.Replace("{{MemberId}}", vMemberId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vFactorId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", null);
+			TestUtil.CheckParam(pQuery.Params, "_P2", vMemberId);
 
 			return vFactorResult;
 		}

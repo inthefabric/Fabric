@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using Moq;
@@ -13,17 +12,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetValidMemberByContext : TModifyTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(User).Name+"Id',{{UserId}}L)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 					".as('step3')"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,{{AppId}}L)"+
+					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
 				".back('step3')"+
 				".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 				".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
-					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,"+(long)MemberTypeId.None+"L)"+
-					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,"+(long)MemberTypeId.Invite+"L)"+
-					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,"+(long)MemberTypeId.Request+"L)"+
+					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P2)"+
+					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P3)"+
+					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P4)"+
 				".back('step3');";
 
 		private long vUserId;
@@ -51,11 +50,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetValidMemberByContext");
 
-			string expect = Query
-				.Replace("{{UserId}}", vUserId+"")
-				.Replace("{{AppId}}", vAppId+"");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vUserId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P2", (long)MemberTypeId.None);
+			TestUtil.CheckParam(pQuery.Params, "_P3", (long)MemberTypeId.Invite);
+			TestUtil.CheckParam(pQuery.Params, "_P4", (long)MemberTypeId.Request);
 
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
 			return vMemberResult;
 		}
 

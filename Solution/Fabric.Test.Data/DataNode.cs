@@ -12,6 +12,7 @@ namespace Fabric.Db.Data {
 		Type NodeType { get; }
 		bool IsForTesting { get; }
 		IWeaverQuery AddQuery { get; }
+		int TestVal { get; set; }
 
 	}
 
@@ -36,6 +37,7 @@ namespace Fabric.Db.Data {
 
 		public bool IsForTesting { get; private set; }
 		public IWeaverQuery AddQuery { get; private set; }
+		public int TestVal { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

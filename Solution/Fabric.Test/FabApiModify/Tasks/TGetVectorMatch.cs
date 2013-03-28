@@ -11,21 +11,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetVectorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(RootContainsVector).Name+"').inV"+
-					".has('Value',Tokens.T.eq,{{Value}}L)"+
+					".has('Value',Tokens.T.eq,_P1)"+
 					".as('step4')"+
 				".outE('"+typeof(VectorUsesVectorType).Name+"').inV"+
-					".has('"+typeof(VectorType).Name+"Id',Tokens.T.eq,{{VecTypeId}}L)"+
+					".has('"+typeof(VectorType).Name+"Id',Tokens.T.eq,_P2)"+
 				".back('step4')"+
 				".outE('"+typeof(VectorUsesAxisArtifact).Name+"').inV"+
-					".has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,{{AxisArtId}}L)"+
+					".has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,_P3)"+
 				".back('step4')"+
 				".outE('"+typeof(VectorUsesVectorUnit).Name+"').inV"+
-					".has('"+typeof(VectorUnit).Name+"Id',Tokens.T.eq,{{VecUnitId}}L)"+
+					".has('"+typeof(VectorUnit).Name+"Id',Tokens.T.eq,_P4)"+
 				".back('step4')"+
 				".outE('"+typeof(VectorUsesVectorUnitPrefix).Name+"').inV"+
-					".has('"+typeof(VectorUnitPrefix).Name+"Id',Tokens.T.eq,{{VecUnitPrefId}}L)"+
+					".has('"+typeof(VectorUnitPrefix).Name+"Id',Tokens.T.eq,_P5)"+
 				".back('step4');";
 
 		private long vVecTypeId;
@@ -56,14 +56,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetVectorMatch");
 
-			string expect = Query
-				.Replace("{{VecTypeId}}", vVecTypeId+"")
-				.Replace("{{Value}}", vValue+"")
-				.Replace("{{AxisArtId}}", vAxisArtId+"")
-				.Replace("{{VecUnitId}}", vVecUnitId+"")
-				.Replace("{{VecUnitPrefId}}", vVecUnitPrefId+"");
-			
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vValue);
+			TestUtil.CheckParam(pQuery.Params, "_P2", vVecTypeId);
+			TestUtil.CheckParam(pQuery.Params, "_P3", vAxisArtId);
+			TestUtil.CheckParam(pQuery.Params, "_P4", vVecUnitId);
+			TestUtil.CheckParam(pQuery.Params, "_P5", vVecUnitPrefId);
 
 			return vVectorResult;
 		}

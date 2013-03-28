@@ -13,6 +13,7 @@ namespace Fabric.Db.Data {
 		IWeaverNode ToNode { get; }
 		bool IsForTesting { get; }
 		IWeaverQuery AddQuery { get; }
+		string TestVal { get; set; }
 
 	}
 
@@ -41,6 +42,7 @@ namespace Fabric.Db.Data {
 		public TTo ToNodeT { get; private set; }
 		public IWeaverNode ToNode { get; private set; }
 		public bool IsForTesting { get; private set; }
+		public string TestVal { get; set; }
 
 		private IWeaverQuery vAddQuery;
 

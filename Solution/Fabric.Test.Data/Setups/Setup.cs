@@ -24,6 +24,19 @@ namespace Fabric.Db.Data.Setups {
 			SetupObjects.SetupAll(ds);
 			SetupFactors.SetupAll(ds);
 
+			if ( pIsForTesting ) {
+				int testId = 0;
+
+				foreach ( IDataNode n in ds.Nodes ) {
+					n.TestVal = ++testId;
+				}
+
+				foreach ( IDataRel rel in ds.Rels ) {
+					rel.TestVal = ds.GetDataNode(rel.FromNode).TestVal+"|"+
+						rel.Rel.Label+"|"+ds.GetDataNode(rel.ToNode).TestVal;
+				}
+			}
+
 			return ds;
 		}
 

@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -16,15 +15,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V1=[];"+ //User
 			"_V2=[];"+ //Member
 			"_V3=g.addVertex(["+
-				typeof(Artifact).Name+"Id:{{NewArtId}}L,"+
-				"IsPrivate:false,"+
-				"Created:0L"+
+				typeof(Artifact).Name+"Id:_TP0,"+
+				"IsPrivate:_TP1,"+
+				"Created:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V3,_TP0);"+
-			"g.V('"+typeof(ArtifactType).Name+"Id',{{ArtifactTypeId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V3,_V4,_TP1);"+
-			"g.addEdge(_V2,_V3,_TP2);"+
-			"g.addEdge(_V1,_V3,_TP3);";
+			"g.addEdge(_V0,_V3,_TP3);"+
+			"g.V('"+typeof(ArtifactType).Name+"Id',_TP4)[0].each{_V4=g.v(it)};"+
+			"g.addEdge(_V3,_V4,_TP5);"+
+			"g.addEdge(_V2,_V3,_TP6);"+
+			"g.addEdge(_V1,_V3,_TP7);";
 
 		private ArtifactTypeId vArtTypeId;
 		private long vNewArtId;
@@ -62,10 +61,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(ArtifactUsesArtifactType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(MemberCreatesArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(UserHasArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", false);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", (long)vArtTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(ArtifactUsesArtifactType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(UserHasArtifact).Name);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -90,10 +93,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{ArtifactTypeId}}", (long)vArtTypeId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", typeof(RootContainsArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(ArtifactUsesArtifactType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(MemberCreatesArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(AppHasArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", false);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", (long)vArtTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(ArtifactUsesArtifactType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(AppHasArtifact).Name);
 		}
 
 	}

@@ -7,6 +7,7 @@ using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiModify {
@@ -18,7 +19,8 @@ namespace Fabric.Test.FabApiModify {
 		private string vName;
 		private string vDisamb;
 		private string vNote;
-
+		
+		private Member vResultMember;
 		private IWeaverVarAlias<Class> vOutClassVar;
 		private Class vResultClass;
 		private Class vResult;
@@ -30,7 +32,8 @@ namespace Fabric.Test.FabApiModify {
 			vName = "Class Name";
 			vDisamb = "Disamb Text";
 			vNote = "This is a note.";
-
+			
+			vResultMember = new Member { Id = 87123523 };
 			vOutClassVar = GetTxVar<Class>("CLASS");
 			vResultClass = new Class();
 
@@ -45,6 +48,10 @@ namespace Fabric.Test.FabApiModify {
 						out vOutClassVar
 					)
 				);
+				
+			MockTasks
+				.Setup(x => x.GetValidMemberByContext(MockApiCtx.Object))
+				.Returns(vResultMember);
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 			MockApiCtx.SetupGet(x => x.ClassNameCache).Returns(new Mock<IClassNameCache>().Object);
@@ -53,7 +60,7 @@ namespace Fabric.Test.FabApiModify {
 				.Setup(x => x.DbSingle<Class>("CreateClassTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction q) => CreateClassTx(q));
 
-			SetUpMember(1, 2, new Member { MemberId = 234623 });
+			SetUpMember(1, 2, vResultMember);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -61,13 +68,15 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			string expectPartial = 
-				"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
-				"g.V('"+typeof(ArtifactType).Name+"Id',"+(long)ArtifactTypeId.Class+
-					"L)[0].each{_V1=g.v(it)};"+
-				"_V2=g.v("+vResultMember.Id+");"+
+				"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+				"g.V('"+typeof(ArtifactType).Name+"Id',_TP1)[0].each{_V1=g.v(it)};"+
+				"_V2=g.v(_TP2);"+
 				"CLASS;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP1", (long)ArtifactTypeId.Class);
+			TestUtil.CheckParam(pTx.Params, "_TP2", vResultMember.Id);
 			return vResultClass;
 		}
 

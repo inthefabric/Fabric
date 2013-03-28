@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetVectorType : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(VectorType).Name+"Id',{{VectorTypeId}}L)[0];";
+			"g.V('"+typeof(VectorType).Name+"Id',_P0)[0];";
 
 		private long vVectorTypeId;
 		private VectorType vVectorTypeResult;
@@ -33,8 +33,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetVectorType");
 
-			string expect = Query.Replace("{{VectorTypeId}}", vVectorTypeId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vVectorTypeId);
 
 			return vVectorTypeResult;
 		}

@@ -11,8 +11,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public abstract class TFactorHasElement<T, TRel> : TModifyTasks where T : FactorElementNode {
 
 		private readonly string Query =
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0]."+
-				"outE('"+typeof(TRel).Name+"');";
+			"g.V('"+typeof(Factor).Name+"Id',_P0)[0]"+
+			".outE('"+typeof(TRel).Name+"');";
 
 		private long vFactorId;
 		private string vFuncName;
@@ -38,8 +38,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment(vFuncName);
 
-			string expect = Query.Replace("{{FactorId}}", vFactorId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vFactorId);
 
 			return vMockDataResult.Object;
 		}

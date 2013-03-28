@@ -11,14 +11,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetLocatorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(RootContainsLocator).Name+"').inV"+
-					".has('ValueX',Tokens.T.eq,{{X}}D)"+
-					".has('ValueY',Tokens.T.eq,{{Y}}D)"+
-					".has('ValueZ',Tokens.T.eq,{{Z}}D)"+
+					".has('ValueX',Tokens.T.eq,_P1)"+
+					".has('ValueY',Tokens.T.eq,_P2)"+
+					".has('ValueZ',Tokens.T.eq,_P3)"+
 					".as('step6')"+
 				".outE('"+typeof(LocatorUsesLocatorType).Name+"').inV"+
-					".has('"+typeof(LocatorType).Name+"Id',Tokens.T.eq,{{LocTypeId}}L)"+
+					".has('"+typeof(LocatorType).Name+"Id',Tokens.T.eq,_P4)"+
 				".back('step6');";
 
 		private long vLocTypeId;
@@ -47,12 +47,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetLocatorMatch");
 
-			string expect = Query
-				.Replace("{{LocTypeId}}", vLocTypeId+"")
-				.Replace("{{X}}", vValueX+"")
-				.Replace("{{Y}}", vValueY+"")
-				.Replace("{{Z}}", vValueZ+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vValueX);
+			TestUtil.CheckParam(pQuery.Params, "_P2", vValueY);
+			TestUtil.CheckParam(pQuery.Params, "_P3", vValueZ);
+			TestUtil.CheckParam(pQuery.Params, "_P4", vLocTypeId);
 
 			return vLocatorResult;
 		}

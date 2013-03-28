@@ -19,6 +19,7 @@ namespace Fabric.Db.Data {
 		private readonly Random vRand;
 		private DateTime vCurrDate;
 		private readonly Dictionary<string, INode> vNodeMap;
+		private readonly Dictionary<IWeaverNode, IDataNode> vDataNodeMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +34,7 @@ namespace Fabric.Db.Data {
 			vRand = new Random(999);
 			vCurrDate = DateTime.UtcNow.AddDays(-10);
 			vNodeMap = new Dictionary<string, INode>();
+			vDataNodeMap = new Dictionary<IWeaverNode, IDataNode>();
 
 			var r = new Root { Id = 0 };
 			vNodeMap.Add(typeof(Root).Name+1, r);
@@ -75,6 +77,11 @@ namespace Fabric.Db.Data {
 			vNodeMap.TryGetValue(typeof(T).Name+pNodeTypeId, out n);
 			return (T)n;
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public IDataNode GetDataNode(IWeaverNode pDomainNode) {
+			return vDataNodeMap[pDomainNode];
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,6 +99,7 @@ namespace Fabric.Db.Data {
 			DataNode<T> n = DataNode.Create(pDomainNode, pIsForTesting);
 			Nodes.Add(n);
 			vNodeMap.Add(typeof(T).Name+pDomainNode.GetTypeId(), pDomainNode);
+			vDataNodeMap.Add(pDomainNode, n);
 			return true;
 		}
 

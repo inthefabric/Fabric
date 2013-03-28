@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetArtifact : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Artifact).Name+"Id',{{ArtifactId}}L)[0];";
+			"g.V('"+typeof(Artifact).Name+"Id',_P0)[0];";
 
 		private long vArtifactId;
 		private Artifact vArtifactResult;
@@ -33,8 +33,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetArtifact");
 
-			string expect = Query.Replace("{{ArtifactId}}", vArtifactId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vArtifactId);
 
 			return vArtifactResult;
 		}

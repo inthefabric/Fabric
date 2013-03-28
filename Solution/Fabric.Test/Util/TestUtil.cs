@@ -25,10 +25,12 @@ namespace Fabric.Test.Util {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CheckParam(IDictionary<string,string> pParams, string pKey, string pValue) {
+		public static void CheckParam(IDictionary<string, IWeaverQueryVal> pParams,
+																	string pKey, object pOrigValue) {
 			Assert.NotNull(pParams, "Query.Params should not be null.");
 			Assert.True(pParams.ContainsKey(pKey), "Query.Params['"+pKey+"'] should be filled.");
-			Assert.AreEqual(pValue, pParams[pKey], "Incorrect Query.Params['"+pKey+"'].");
+			Assert.AreEqual(pOrigValue, pParams[pKey].Original,
+				"Incorrect Query.Params['"+pKey+"'].Original.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -36,7 +38,7 @@ namespace Fabric.Test.Util {
 			string p = "";
 
 			foreach ( string key in pScripted.Params.Keys ) {
-				p += "\n\t"+key+" = "+pScripted.Params[key];
+				p += "\n\t"+key+" = "+pScripted.Params[key].FixedText;
 			}
 
 			LogWeaverScript(pScripted.Script, p);

@@ -28,7 +28,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(false);
+				vDataSet = Setup.SetupAll(true);
 
 				//SendSetupTx();
 				SendIndexTx();
@@ -61,14 +61,10 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes");
-			var tx = new WeaverTransaction();
 
 			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
-				tx.AddQuery(q);
+				ApiCtx.DbData("addIndex", q);
 			}
-
-			tx.Finish();
-			ApiCtx.DbData("addIndexesTx", tx);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -92,6 +88,14 @@ namespace Fabric.Api.Internal.Setups {
 					count++;
 
 					tx.AddQuery(WeaverTasks.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
+
+					/*if ( vDataSet.IsForTesting ) {
+						IWeaverQuery q = new WeaverQuery();
+						string idParam = q.AddParam(new WeaverQueryVal(n.TestVal));
+						q.FinalizeQuery(nodeVar.Name+".TestVal="+idParam);
+						tx.AddQuery(q);
+					}*/
+
 					listScript += nodeVar.Name+".id,";
 				}
 
@@ -121,10 +125,11 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendRelTx() {
 			int count = 0;
+			IWeaverQuery q;
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
-				int limit = 10;
+				int limit = 30;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 
 				for ( int i = count ; i < vDataSet.Rels.Count ; ++i ) {
@@ -143,6 +148,13 @@ namespace Fabric.Api.Internal.Setups {
 					break;
 				}
 			}
+
+			/*if ( vDataSet.IsForTesting ) {
+				q = new WeaverQuery();
+				q.FinalizeQuery("g.E.each{it.TestVal="+
+					"(it.outV.TestVal.next()+'|'+it.label+'|'+it.inV.TestVal.next())}");
+				ApiCtx.DbData("setRelTestVals", q);
+			}*/
 		}
 
 	}

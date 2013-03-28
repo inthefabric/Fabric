@@ -13,19 +13,19 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetClassByNameDisamb : TModifyTasks {
 
 		private readonly static string QueryStart =
-			"g.V('"+typeof(Class).Name+"Id',{{ClassId0}}L)[0].each{_V0=g.v(it)};"+
-			"g.V('"+typeof(Class).Name+"Id',{{ClassId1}}L)[0].each{_V1=g.v(it)};"+
-			"g.V('"+typeof(Class).Name+"Id',{{ClassId2}}L)[0].each{_V2=g.v(it)};"+
+			"g.V('"+typeof(Class).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Class).Name+"Id',_TP1)[0].each{_V1=g.v(it)};"+
+			"g.V('"+typeof(Class).Name+"Id',_TP2)[0].each{_V2=g.v(it)};"+
 			"_V3=[_V0,_V1,_V2];"+
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_TP3)[0]"+
 			".outE('"+typeof(RootContainsClass).Name+"').inV"+
-				".retain(_V3)"+
-				".filter{it.getProperty('Name').toLowerCase()==_TP0}";
+				".retain(_V3)";
 
-		private readonly static string QueryNoDisamb = QueryStart+";";
+		private readonly static string QueryNoDisamb = QueryStart+
+				".filter{it.getProperty('Name').toLowerCase()==_TP4};";
 
 		private readonly static string Query = QueryStart+
-				".filter{it.getProperty('Disamb').toLowerCase()==_TP1};";
+				".filter{(it.getProperty('Name')+'|'+it.getProperty('Disamb')).toLowerCase()==_TP4};";
 
 		private string vName;
 		private string vDisamb;
@@ -59,16 +59,19 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			UsageMap.Increment("GetClassByNameDisamb");
 
-			string expect = (vDisamb != null ? Query : QueryNoDisamb)
-				.Replace("{{ClassId0}}", vClassIds[0]+"")
-				.Replace("{{ClassId1}}", vClassIds[1]+"")
-				.Replace("{{ClassId2}}", vClassIds[2]+"");
+			string expect = (vDisamb != null ? Query : QueryNoDisamb);
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vName.ToLower());
+			TestUtil.CheckParam(pTx.Params, "_TP0", vClassIds[0]);
+			TestUtil.CheckParam(pTx.Params, "_TP1", vClassIds[1]);
+			TestUtil.CheckParam(pTx.Params, "_TP2", vClassIds[2]);
+			TestUtil.CheckParam(pTx.Params, "_TP3", 0);
 
-			if ( vDisamb != null ) {
-				TestUtil.CheckParam(pTx.Params, "_TP1", vDisamb.ToLower());
+			if ( vDisamb == null ) {
+				TestUtil.CheckParam(pTx.Params, "_TP4", vName.ToLower());
+			}
+			else {
+				TestUtil.CheckParam(pTx.Params, "_TP4", (vName+"|"+vDisamb).ToLower());
 			}
 
 			return vClassResult;

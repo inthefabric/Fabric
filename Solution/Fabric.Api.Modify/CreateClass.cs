@@ -98,11 +98,13 @@ namespace Fabric.Api.Modify {
 			var at = new ArtifactType { ArtifactTypeId = (long)ArtifactTypeId.Class };
 			txb.GetNode(at, out pArtTypeVar);
 			
-			pMemVar = new WeaverVarAlias<Member>(txb.Transaction);
-			txb.RegisterVarWithTxBuilder(pMemVar);
-			var q = new WeaverQuery();
-			q.FinalizeQuery(pMemVar.Name+"=g.v("+m.Id+")");
-			txb.Transaction.AddQuery(q);
+			txb.GetNodeByNodeId(m, out pMemVar);
+			
+			//pMemVar = new WeaverVarAlias<Member>(txb.Transaction);
+			//txb.RegisterVarWithTxBuilder(pMemVar);
+			//var q = new WeaverQuery();
+			//q.FinalizeQuery(pMemVar.Name+"=g.v("+m.Id+")");
+			//txb.Transaction.AddQuery(q);
 
 			FillBatchTx(txb, pRootVar, pMemVar, pArtTypeVar, out pClassVar);
 			return txb;

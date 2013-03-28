@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System.Collections.Generic;
+using Fabric.Domain;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -10,26 +11,26 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDescriptor : TModifyTasks {
 
 		private static readonly string QueryStart = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
-				typeof(Descriptor).Name+"Id:{{NewDescriptorId}}L"+
+				typeof(Descriptor).Name+"Id:_TP1"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
-			"g.V('"+typeof(DescriptorType).Name+"Id',{{DescTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);";
+			"g.addEdge(_V0,_V1,_TP2);"+
+			"g.V('"+typeof(Factor).Name+"Id',_TP3)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V2,_V1,_TP4);"+
+			"g.V('"+typeof(DescriptorType).Name+"Id',_TP5)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP6);";
 
 		private static readonly string QueryPrimRef = 
-			"g.V('"+typeof(Artifact).Name+"Id',{{PrimArtRefId}}L)[0].each{_V{{PrimV}}=g.v(it)};"+
+			"g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}})[0].each{_V{{PrimV}}=g.v(it)};"+
 			"g.addEdge(_V1,_V{{PrimV}},_TP{{PrimTp}});";
 
 		private static readonly string QueryRelRef = 
-			"g.V('"+typeof(Artifact).Name+"Id',{{RelArtRefId}}L)[0].each{_V{{RelV}}=g.v(it)};"+
+			"g.V('"+typeof(Artifact).Name+"Id',_TP{{RelId}})[0].each{_V{{RelV}}=g.v(it)};"+
 			"g.addEdge(_V1,_V{{RelV}},_TP{{RelTp}});";
 
 		private static readonly string QueryTypeRef = 
-			"g.V('"+typeof(Artifact).Name+"Id',{{TypeArtRefId}}L)[0].each{_V{{TypeV}}=g.v(it)};"+
+			"g.V('"+typeof(Artifact).Name+"Id',_TP{{TypeId}})[0].each{_V{{TypeV}}=g.v(it)};"+
 			"g.addEdge(_V1,_V{{TypeV}},_TP{{TypeTp}});";
 
 		private long vDescTypeId;
@@ -78,29 +79,45 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
 
 			string expect = QueryStart;
-			int tp = 3;
+			Dictionary<string, IWeaverQueryVal> txParams = TxBuild.Transaction.Params;
+			int tp = 7;
 			int v = 4;
 
 			if ( vPrimArtRefId != null ) {
 				expect += QueryPrimRef
+					.Replace("{{PrimId}}", tp+"")
 					.Replace("{{PrimV}}", v+"")
-					.Replace("{{PrimTp}}", tp+"");
-				tp++;
+					.Replace("{{PrimTp}}", (tp+1)+"");
+
+				TestUtil.CheckParam(txParams, "_TP"+tp, vPrimArtRefId);
+				TestUtil.CheckParam(txParams, "_TP"+(tp+1), 
+					typeof(DescriptorRefinesPrimaryWithArtifact).Name);
+				tp += 2;
 				v++;
 			}
 
 			if ( vRelArtRefId != null ) {
 				expect += QueryRelRef
+					.Replace("{{RelId}}", tp+"")
 					.Replace("{{RelV}}", v+"")
-					.Replace("{{RelTp}}", tp+"");
-				tp++;
+					.Replace("{{RelTp}}", (tp+1)+"");
+
+				TestUtil.CheckParam(txParams, "_TP"+tp, vRelArtRefId);
+				TestUtil.CheckParam(txParams, "_TP"+(tp+1),
+					typeof(DescriptorRefinesRelatedWithArtifact).Name);
+				tp += 2;
 				v++;
 			}
 
 			if ( vDescTypeRefId != null ) {
 				expect += QueryTypeRef
+					.Replace("{{TypeId}}", tp+"")
 					.Replace("{{TypeV}}", v+"")
-					.Replace("{{TypeTp}}", tp+"");
+					.Replace("{{TypeTp}}", (tp+1)+"");
+
+				TestUtil.CheckParam(txParams, "_TP"+tp, vDescTypeRefId);
+				TestUtil.CheckParam(txParams, "_TP"+(tp+1),
+					typeof(DescriptorRefinesTypeWithArtifact).Name);
 			}
 
 			expect = expect
@@ -112,31 +129,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{TypeArtRefId}}", vDescTypeRefId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsDescriptor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesDescriptor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewDescriptorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
+				typeof(RootContainsDescriptor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
+				typeof(FactorUsesDescriptor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vDescTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(DescriptorUsesDescriptorType).Name);
-
-			tp = 3;
-
-			if ( vPrimArtRefId != null ) {
-				TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP"+tp,
-					typeof(DescriptorRefinesPrimaryWithArtifact).Name);
-				tp++;
-			}
-
-			if ( vRelArtRefId != null ) {
-				TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP"+tp,
-					typeof(DescriptorRefinesRelatedWithArtifact).Name);
-				tp++;
-			}
-
-			if ( vDescTypeRefId != null ) {
-				TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP"+tp,
-					typeof(DescriptorRefinesTypeWithArtifact).Name);
-			}
 		}
 
 	}

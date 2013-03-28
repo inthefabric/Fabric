@@ -11,17 +11,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetDirectorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(RootContainsDirector).Name+"').inV"+
 					".as('step3')"+
 				".outE('"+typeof(DirectorUsesDirectorType).Name+"').inV"+
-					".has('"+typeof(DirectorType).Name+"Id',Tokens.T.eq,{{DirTypeId}}L)"+
+					".has('"+typeof(DirectorType).Name+"Id',Tokens.T.eq,_P1)"+
 				".back('step3')"+
 				".outE('"+typeof(DirectorUsesPrimaryDirectorAction).Name+"').inV"+
-					".has('"+typeof(DirectorAction).Name+"Id',Tokens.T.eq,{{PrimActId}}L)"+
+					".has('"+typeof(DirectorAction).Name+"Id',Tokens.T.eq,_P2)"+
 				".back('step3')"+
 				".outE('"+typeof(DirectorUsesRelatedDirectorAction).Name+"').inV"+
-					".has('"+typeof(DirectorAction).Name+"Id',Tokens.T.eq,{{RelActId}}L)"+
+					".has('"+typeof(DirectorAction).Name+"Id',Tokens.T.eq,_P3)"+
 				".back('step3');";
 
 		private long vDirTypeId;
@@ -48,12 +48,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetDirectorMatch");
 
-			string expect = Query
-				.Replace("{{DirTypeId}}", vDirTypeId+"")
-				.Replace("{{PrimActId}}", vPrimActId+"")
-				.Replace("{{RelActId}}", vRelActId+"");
-
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vDirTypeId);
+			TestUtil.CheckParam(pQuery.Params, "_P2", vPrimActId);
+			TestUtil.CheckParam(pQuery.Params, "_P3", vRelActId);
 
 			return vDirectorResult;
 		}

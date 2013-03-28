@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetLocatorType : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(LocatorType).Name+"Id',{{LocatorTypeId}}L)[0];";
+			"g.V('"+typeof(LocatorType).Name+"Id',_P0)[0];";
 
 		private long vLocatorTypeId;
 		private LocatorType vLocatorTypeResult;
@@ -33,8 +33,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetLocatorType");
 
-			string expect = Query.Replace("{{LocatorTypeId}}", vLocatorTypeId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vLocatorTypeId);
 
 			return vLocatorTypeResult;
 		}

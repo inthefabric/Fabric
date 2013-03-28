@@ -38,8 +38,8 @@ namespace Fabric.Test.Integration.Common {
 			//the actual data type of the ID values (long) is lost in this proces. For testing purposes,
 			//the following will trim the "L" from all indexes.
 
-			string q = Regex.Replace(pQuery, @",([0-9]+)L\)", ",$1)");
-			//Log.Debug("TEST: "+q);
+			string q = Regex.Replace(pQuery, @"g\.V\('(.+?)',", "g.V('$1',(int)");
+			Log.Debug("TEST: "+q);
 			return q;
 		}
 

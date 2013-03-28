@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
@@ -28,8 +27,7 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
 			string propName = WeaverUtil.GetPropertyName<Url>(x => x.AbsoluteUrl);
-			string url = new WeaverQueryVal(pAbsoluteUrl.ToLower()).GetQuoted();
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()=="+url+"}";
+			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromRoot()
@@ -37,7 +35,7 @@ namespace Fabric.Api.Modify.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			//q.AddParam("AU", new WeaverQueryVal(pAbsoluteUrl.ToLower(), false));
+			q.AddStringParam(pAbsoluteUrl.ToLower(), false);
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 
@@ -105,20 +103,6 @@ namespace Fabric.Api.Modify.Tasks {
 
 			////
 
-			//TEST: ModifyTasks.GetClassByNameDisamb filter logic
-			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_TP0}";
-			string keyProp = "it.getProperty('"+propName+"')";
-
-			if ( pDisamb != null ) {
-				string disamb = new WeaverQueryVal(pDisamb).GetQuoted();
-				key = key.Substring(0, key.Length-1)+"|"+disamb.Substring(1); //remove inner quotes
-				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
-				keyProp = "("+keyProp+"+'|'+it.getProperty('"+propName+"'))";
-			}
-
-			string filterStep = "filter{"+keyProp+".toLowerCase()=="+key.ToLower()+"}";
-
 			Class path = 
 				ApiFunc.NewPathFromRoot()
 				.ContainsClassList.ToClass;
@@ -126,19 +110,25 @@ namespace Fabric.Api.Modify.Tasks {
 			if ( retainVar != null ) {
 				path.Retain(retainVar);
 			}
-			
-			path.CustomStep(filterStep);
 
-			IWeaverQuery q = path.End();
-			q.AddParam(new WeaverQueryVal(pName.ToLower(), false));
+			//TEST: ModifyTasks.GetClassByNameDisamb filter logic
+			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
+			string getProp = "it.getProperty('"+propName+"')";
+			string value = pName;
 
 			if ( pDisamb != null ) {
-				q.AddParam(new WeaverQueryVal(pDisamb.ToLower(), false));
+				value += "|"+pDisamb;
+				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
+				getProp = "("+getProp+"+'|'+it.getProperty('"+propName+"'))";
 			}
 
+			IWeaverQuery q = path
+				.CustomStep("filter{"+getProp+".toLowerCase()==_TP4}")
+				.End();
+
+			q.AddParam(new WeaverQueryVal(value.ToLower(), false));
 			tx.AddQuery(q);
-			tx.Finish();
-			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx);
+			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

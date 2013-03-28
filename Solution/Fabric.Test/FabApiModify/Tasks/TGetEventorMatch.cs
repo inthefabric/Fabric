@@ -11,15 +11,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetEventorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(RootContainsEventor).Name+"').inV"+
-					".has('DateTime',Tokens.T.eq,{{DateTime}}L)"+
+					".has('DateTime',Tokens.T.eq,_P1)"+
 					".as('step4')"+
 				".outE('"+typeof(EventorUsesEventorType).Name+"').inV"+
-					".has('"+typeof(EventorType).Name+"Id',Tokens.T.eq,{{EveTypeId}}L)"+
+					".has('"+typeof(EventorType).Name+"Id',Tokens.T.eq,_P2)"+
 				".back('step4')"+
 				".outE('"+typeof(EventorUsesEventorPrecision).Name+"').inV"+
-					".has('"+typeof(EventorPrecision).Name+"Id',Tokens.T.eq,{{EvePrecId}}L)"+
+					".has('"+typeof(EventorPrecision).Name+"Id',Tokens.T.eq,_P3)"+
 				".back('step4');";
 
 		private long vEveTypeId;
@@ -46,12 +46,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetEventorMatch");
 
-			string expect = Query
-				.Replace("{{DateTime}}", vDateTime+"")
-				.Replace("{{EveTypeId}}", vEveTypeId+"")
-				.Replace("{{EvePrecId}}", vEvePrecId+"");
-
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vDateTime);
+			TestUtil.CheckParam(pQuery.Params, "_P2", vEveTypeId);
+			TestUtil.CheckParam(pQuery.Params, "_P3", vEvePrecId);
 
 			return vEventorResult;
 		}

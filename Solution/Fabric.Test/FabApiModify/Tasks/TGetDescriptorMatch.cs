@@ -13,11 +13,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string QueryStart = 
 			"_V0=[];"+
 			"_V1=[];"+
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".as('step3')"+
 				".outE('"+typeof(DescriptorUsesDescriptorType).Name+"').inV"+
-					".has('"+typeof(DescriptorType).Name+"Id',Tokens.T.eq,{{DescTypeId}}L)"+
+					".has('"+typeof(DescriptorType).Name+"Id',Tokens.T.eq,_TP1)"+
 				".back('step3')";
 
 		private const string QueryMid = 
@@ -26,28 +26,28 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryEnd = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_TP5)[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".except(_V1);";
 
 		private static readonly string QueryPrimRef = 
 				".outE('"+typeof(DescriptorRefinesPrimaryWithArtifact).Name+"')"+
-					".inV.has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,{{PrimArtRefId}}L)"+
+					".inV.has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,_TP{{PR}})"+
 				".back('step3')";
 
 		private static readonly string QueryRelRef = 
 				".outE('"+typeof(DescriptorRefinesRelatedWithArtifact).Name+"')"+
-					".inV.has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,{{RelArtRefId}}L)"+
+					".inV.has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,_TP{{RR}})"+
 				".back('step3')";
 
 		private static readonly string QueryTypeRef = 
 				".outE('"+typeof(DescriptorRefinesTypeWithArtifact).Name+"')"+
-					".inV.has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,{{TypeArtRefId}}L)"+
+					".inV.has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,_TP{{TR}})"+
 				".back('step3')";
 
 		private static readonly string QueryPrimRefNull = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_TP{{NullPR}})[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".as('step4')"+
@@ -57,7 +57,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryRelRefNull = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_TP{{NullRR}})[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".as('step4')"+
@@ -67,7 +67,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryTypeRefNull = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_TP{{NullTR}})[0]"+
 				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
 					".retain(_V0)"+
 					".as('step4')"+
@@ -104,20 +104,53 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetDescriptorMatch");
 
 			string expect = QueryStart;
-			if ( vPrimArtRefId != null ) { expect += QueryPrimRef; }
-			if ( vRelArtRefId != null ) { expect += QueryRelRef; }
-			if ( vDescTypeRefId != null ) { expect += QueryTypeRef; }
-			expect += QueryMid;
-			if ( vPrimArtRefId == null ) { expect += QueryPrimRefNull; }
-			if ( vRelArtRefId == null ) { expect += QueryRelRefNull; }
-			if ( vDescTypeRefId == null ) { expect += QueryTypeRefNull; }
-			expect += QueryEnd;
+			int tp = 2;
 
-			expect = expect
-				.Replace("{{DescTypeId}}", vDescTypeId+"")
-				.Replace("{{PrimArtRefId}}", vPrimArtRefId+"")
-				.Replace("{{RelArtRefId}}", vRelArtRefId+"")
-				.Replace("{{TypeArtRefId}}", vDescTypeRefId+"");
+			if ( vPrimArtRefId != null ) {
+				expect += QueryPrimRef;
+				expect = expect.Replace("{{PR}}", ""+tp);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, vPrimArtRefId);
+				++tp;
+			}
+
+			if ( vRelArtRefId != null ) {
+				expect += QueryRelRef;
+				expect = expect.Replace("{{RR}}", ""+tp);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, vRelArtRefId);
+				++tp;
+			}
+
+			if ( vDescTypeRefId != null ) {
+				expect += QueryTypeRef;
+				expect = expect.Replace("{{TR}}", ""+tp);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, vDescTypeRefId);
+				++tp;
+			}
+
+			expect += QueryMid;
+
+			if ( vPrimArtRefId == null ) {
+				expect += QueryPrimRefNull;
+				expect = expect.Replace("{{NullPR}}", ""+tp);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, 0);
+				++tp;
+			}
+
+			if ( vRelArtRefId == null ) {
+				expect += QueryRelRefNull;
+				expect = expect.Replace("{{NullRR}}", ""+tp);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, 0);
+				++tp;
+			}
+
+			if ( vDescTypeRefId == null ) {
+				expect += QueryTypeRefNull;
+				expect = expect.Replace("{{NullTR}}", ""+tp);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, 0);
+				++tp;
+			}
+
+			expect += QueryEnd;
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
 
 			return vDescriptorResult;

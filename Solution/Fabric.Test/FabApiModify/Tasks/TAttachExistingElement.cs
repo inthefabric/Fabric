@@ -12,9 +12,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TAttachExistingElement : TModifyTasks {
 
 		private readonly string Query =
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V0=g.v(it)};"+
-			"g.V('{{ElementType}}Id',{{ElementId}}L)[0].each{_V1=g.v(it)};"+
-			"g.addEdge(_V0,_V1,_TP0);";
+			"g.V('"+typeof(Factor).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"g.V('{{ElementType}}Id',_TP1)[0].each{_V1=g.v(it)};"+
+			"g.addEdge(_V0,_V1,_TP2);";
 
 		private long vFactorId;
 		private long vElemId;
@@ -35,13 +35,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			UsageMap.Increment(vFuncName);
 
-			string expect = Query
-				.Replace("{{FactorId}}", vFactorId+"")
-				.Replace("{{ElementType}}", vElemType+"")
-				.Replace("{{ElementId}}", vElemId+"");
+			string expect = Query.Replace("{{ElementType}}", vElemType+"");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", "FactorUses"+vElemType);
+			TestUtil.CheckParam(pTx.Params, "_TP0", vFactorId);
+			TestUtil.CheckParam(pTx.Params, "_TP1", vElemId);
+			TestUtil.CheckParam(pTx.Params, "_TP2", "FactorUses"+vElemType);
 
 			return new Mock<IApiDataAccess>().Object;
 		}

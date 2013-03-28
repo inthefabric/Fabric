@@ -56,12 +56,14 @@ namespace Fabric.Test.FabApiModify {
 		private Url CreateUrlTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			string expectPartial = 
-				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
-				"g.V('MemberId',"+ApiCtxMember.MemberId+"L)[0].each{_V1=g.v(it)};"+
+			const string expectPartial = 
+				"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
+				"g.V('MemberId',_TP1)[0].each{_V1=g.v(it)};"+
 				"AU;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP1", ApiCtxMember.MemberId);
 			return vResultUrl;
 		}
 

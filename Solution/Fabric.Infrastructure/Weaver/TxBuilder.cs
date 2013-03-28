@@ -72,6 +72,18 @@ namespace Fabric.Infrastructure.Weaver {
 			vVarHash.Add(pNodeVar);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public void GetNodeByNodeId<T>(T pNodeWithNodeId, out IWeaverVarAlias<T> pNodeVar)
+																		where T : class, INode, new() {
+			pNodeVar = new WeaverVarAlias<T>(Transaction);
+			
+			IWeaverQuery q = new WeaverQuery();
+			string idParam = q.AddParam(new WeaverQueryVal(pNodeWithNodeId.Id));
+			q.FinalizeQuery(pNodeVar.Name+"=g.v("+idParam+")");
+			Transaction.AddQuery(q);
+			vVarHash.Add(pNodeVar);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

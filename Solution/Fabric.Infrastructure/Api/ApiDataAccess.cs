@@ -114,7 +114,7 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			tcp.Close();
-			//Log.Debug("RESULT: "+respData);
+			Log.Debug("RESULT: "+respData);
 			return respData;
 		}
 

@@ -11,12 +11,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetIdentorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0]"+
+			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(RootContainsIdentor).Name+"').inV"+
-					".has('Value',Tokens.T.eq,_P0)"+
+					".has('Value',Tokens.T.eq,_P1)"+
 					".as('step4')"+
 				".outE('"+typeof(IdentorUsesIdentorType).Name+"').inV"+
-					".has('"+typeof(IdentorType).Name+"Id',Tokens.T.eq,{{IdenTypeId}}L)"+
+					".has('"+typeof(IdentorType).Name+"Id',Tokens.T.eq,_P2)"+
 				".back('step4');";
 
 		private long vIdenTypeId;
@@ -41,9 +41,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetIdentorMatch");
 
-			string expect = Query.Replace("{{IdenTypeId}}", vIdenTypeId+"");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vValue);
+			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vValue);
+			TestUtil.CheckParam(pQuery.Params, "_P2", vIdenTypeId);
 
 			return vIdentorResult;
 		}
