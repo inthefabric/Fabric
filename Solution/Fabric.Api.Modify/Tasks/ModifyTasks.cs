@@ -75,6 +75,7 @@ namespace Fabric.Api.Modify.Tasks {
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
 			IWeaverTransaction tx = new WeaverTransaction();
 			IWeaverVarAlias retainVar = null;
+			int filterI = 1;
 
 			if ( pApiCtx.ClassNameCache.IsLoadComplete() ) {
 				IList<long> classIdList = pApiCtx.ClassNameCache.GetClassIds(pApiCtx, pName, pDisamb);
@@ -84,6 +85,7 @@ namespace Fabric.Api.Modify.Tasks {
 				}
 
 				var classVars = new List<IWeaverVarAlias>();
+				filterI = 4;
 
 				foreach ( long classId in classIdList ) {
 					var classVar = new WeaverVarAlias<Class>(tx);
@@ -123,7 +125,7 @@ namespace Fabric.Api.Modify.Tasks {
 			}
 
 			IWeaverQuery q = path
-				.CustomStep("filter{"+getProp+".toLowerCase()==_TP4}")
+				.CustomStep("filter{"+getProp+".toLowerCase()==_TP"+filterI+"}")
 				.End();
 
 			q.AddParam(new WeaverQueryVal(value.ToLower(), false));

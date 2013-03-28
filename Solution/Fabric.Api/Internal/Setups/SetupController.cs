@@ -88,14 +88,6 @@ namespace Fabric.Api.Internal.Setups {
 					count++;
 
 					tx.AddQuery(WeaverTasks.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
-
-					/*if ( vDataSet.IsForTesting ) {
-						IWeaverQuery q = new WeaverQuery();
-						string idParam = q.AddParam(new WeaverQueryVal(n.TestVal));
-						q.FinalizeQuery(nodeVar.Name+".TestVal="+idParam);
-						tx.AddQuery(q);
-					}*/
-
 					listScript += nodeVar.Name+".id,";
 				}
 
@@ -125,7 +117,6 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendRelTx() {
 			int count = 0;
-			IWeaverQuery q;
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
@@ -148,13 +139,6 @@ namespace Fabric.Api.Internal.Setups {
 					break;
 				}
 			}
-
-			/*if ( vDataSet.IsForTesting ) {
-				q = new WeaverQuery();
-				q.FinalizeQuery("g.E.each{it.TestVal="+
-					"(it.outV.TestVal.next()+'|'+it.label+'|'+it.inV.TestVal.next())}");
-				ApiCtx.DbData("setRelTestVals", q);
-			}*/
 		}
 
 	}

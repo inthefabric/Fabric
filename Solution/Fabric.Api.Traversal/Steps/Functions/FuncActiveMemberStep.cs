@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
@@ -14,9 +15,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	[Func("ActiveMember", IsInternal=true)]
 	public class FuncActiveMemberStep : FuncStep, IFinalStep {
 
-		private static string QueryStart;
-		private static string QueryMid;
-		private static string QueryEnd;
+		private static string Script;
+		private static string UserParam;
+		private static string AppParam;
 		
 		public long Index { get { return 0; } }
 		public int Count { get { return 1; } }
@@ -26,25 +27,25 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FuncActiveMemberStep(IPath pPath) : base(pPath) {
-			if ( QueryStart == null ) {
+			if ( Script == null ) {
 				IWeaverQuery q = 
-					ApiFunc.NewPathFromIndex(new User { UserId = 888 })
-						.DefinesMemberList.ToMember
-						.InAppDefines.FromApp
-						.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, (long)999)
-						.End();
-				
-				string script = q.Script;
-				int userIdIndex = script.IndexOf("888");
-				int appIdIndex = script.IndexOf("999");
-				
-				QueryStart = script.Substring(2, userIdIndex-2); //remove "g."
-				QueryMid = script.Substring(userIdIndex+3, appIdIndex-userIdIndex-3);
-				QueryEnd = script.Substring(appIdIndex+3);
-				QueryEnd = QueryEnd.Substring(0, QueryEnd.Length-1)+".back(3)";
+					ApiFunc.NewPathFromIndex(new User { UserId = 0 })
+					.DefinesMemberList.ToMember
+					.InAppDefines.FromApp
+						.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, (long)0)
+					.End();
+
+				Script = q.Script
+					.Substring(2, q.Script.Length-3)+ //remove "g." and final ";"
+					".back(3)"; //return to Member step
+
+				UserParam = q.Params.Keys.ToList()[0];
+				AppParam = q.Params.Keys.ToList()[1];
 			}
-			
-			Path.AddSegment(this, QueryStart+Path.UserId+QueryMid+Path.AppId+QueryEnd);
+
+			string up = Path.AddParam(new WeaverQueryVal(Path.UserId));
+			string ap = Path.AddParam(new WeaverQueryVal(Path.AppId));
+			Path.AddSegment(this, Script.Replace(UserParam, up).Replace(AppParam, ap));
 			ProxyStep = new MemberStep(Path);
 		}
 		

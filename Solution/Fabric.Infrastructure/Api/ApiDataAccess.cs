@@ -36,7 +36,7 @@ namespace Fabric.Infrastructure.Api {
 			Params = pParams;
 
 			string script = FabricUtil.JsonUnquote(Script);
-			string param = BuildParams();
+			string param = BuildParams(pParams);
 			
 			Query = script+(param.Length > 0 ? "#{"+param+"}" : "");
 		}
@@ -114,21 +114,21 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			tcp.Close();
-			Log.Debug("RESULT: "+respData);
+			//Log.Debug("RESULT: "+respData);
 			return respData;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildParams() {
-			if ( Params == null ) { return ""; }
+		protected static string BuildParams(IDictionary<string, IWeaverQueryVal> pParams) {
+			if ( pParams == null ) { return ""; }
 			string p = "";
 
-			foreach ( string key in Params.Keys ) {
+			foreach ( string key in pParams.Keys ) {
 				p += (p.Length > 0 ? "," : "")+"\""+FabricUtil.JsonUnquote(key)+"\":";
 
-				IWeaverQueryVal qv = Params[key];
+				IWeaverQueryVal qv = pParams[key];
 
 				if ( qv.IsString ) {
 					p += "\""+FabricUtil.JsonUnquote(qv.GetQuoted())+"\"";

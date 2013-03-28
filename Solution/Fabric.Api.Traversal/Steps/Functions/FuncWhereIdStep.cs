@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
+using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
@@ -57,7 +58,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
 			INodeStep ns = (INodeStep)ProxyStep;
-			Path.AppendToCurrentSegment("('"+ns.TypeIdName+"',Tokens.T.eq,"+Id+"L)", false);
+			string idParam = Path.AddParam(new WeaverQueryVal(Id));
+			Path.AppendToCurrentSegment("('"+ns.TypeIdName+"',Tokens.T.eq,"+idParam+")", false);
 		}
 
 

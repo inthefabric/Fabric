@@ -14,10 +14,6 @@ namespace Fabric.Test.Integration {
 	/*================================================================================================*/
 	public class IntegTestBase {
 
-		//protected static readonly DataSet SetupData = Setup.SetupAll(true);
-		//protected static readonly Dictionary<int, IDataNode> SetupNodeMap = BuildSetupNodeMap();
-		//protected static readonly Dictionary<string, IDataRel> SetupRel = BuildSetupRelMap();
-
 		protected TestApiContext ApiCtx { get; private set; }
 		protected bool IsReadOnlyTest { get; set; }
 		protected int NewNodeCount { get; set; }
@@ -38,30 +34,6 @@ namespace Fabric.Test.Integration {
 		protected const SetupUsers.UserId UserMel = SetupUsers.UserId.Mel;
 		protected const SetupUsers.UserId UserEllie = SetupUsers.UserId.Ellie;
 		protected const SetupUsers.UserId UserPenny = SetupUsers.UserId.Penny;
-		
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		private static Dictionary<int, IDataNode> BuildSetupNodeMap() {
-			var map = new Dictionary<int, IDataNode>();
-
-			foreach ( IDataNode n in SetupData.Nodes ) {
-				map.Add(n.TestVal, n);
-			}
-
-			return map;
-		}
-		
-		/*--------------------------------------------------------------------------------------------* /
-		private static Dictionary<string, IDataRel> BuildSetupRelMap() {
-			var map = new Dictionary<string, IDataRel>();
-
-			foreach ( IDataRel r in SetupData.Nodes ) {
-				map.Add(r.TestVal, r);
-			}
-
-			return map;
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,71 +93,6 @@ namespace Fabric.Test.Integration {
 				data = ApiCtx.DbData("TEST.Reload", q);
 				Assert.AreEqual("1", data.Result.Text, "There was an issue with the Reload query!");
 
-				/*IWeaverQuery q = new WeaverQuery();
-				//q.FinalizeQuery("g.E[2015..99999].remove();g.V[637..99999].remove();1");
-				q.FinalizeQuery("g.E.has('TestVal',Tokens.T.eq,null).remove();"+
-					"g.V.has('TestVal',Tokens.T.eq,null).remove();1");
-				IApiDataAccess data = ApiCtx.DbData("TEST.RemoveNew", q);
-				Assert.AreEqual("1", data.Result.Text, "There was an issue with the RemoveNew query!");
-
-				if ( c.Item1 != vCounts.Item1 ) {
-					q = new WeaverQuery();
-					q.FinalizeQuery("g.V");
-					data = ApiCtx.DbData("TEST.GetVertices", q);
-
-					var nodeMap = new Dictionary<int, IDbDto>();
-
-					foreach ( IDbDto dto in data.ResultDtoList ) {
-						nodeMap.Add(int.Parse(dto.Data["TestId"]), dto);
-					}
-
-					foreach ( IDataNode n in SetupData.Nodes ) {
-						if ( nodeMap.ContainsKey(n.TestVal) ) {
-							n.Node.Id = (long)nodeMap[n.TestVal].Id;
-							continue;
-						}
-
-						var tx = new WeaverTransaction();
-						IWeaverVarAlias nodeVar;
-						tx.AddQuery(WeaverTasks.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
-
-						q = new WeaverQuery();
-						string idParam = q.AddParam(new WeaverQueryVal(n.TestVal));
-						q.FinalizeQuery(nodeVar.Name+".TestVal="+idParam);
-						tx.AddQuery(q);
-
-						data = ApiCtx.DbData("TEST.AddVertexTx", tx.Finish(nodeVar));
-						n.Node.Id = (long)data.ResultDtoList[0].Id;
-					}
-				}
-
-				if ( c.Item2 != vCounts.Item2 ) {
-					q = new WeaverQuery();
-					q.FinalizeQuery("g.E.TestVal");
-					data = ApiCtx.DbData("TEST.GetEdgeTestVals", q);
-
-					var relMap = new HashSet<string>();
-
-					foreach ( string s in data.Result.TextList ) {
-						relMap.Add(s);
-					}
-
-					foreach ( IDataRel r in SetupData.Rels ) {
-						if ( relMap.Contains(r.TestVal) ) {
-							continue;
-						}
-
-						r.FromNode.Id = SetupData.GetDataNode(r.FromNode).Node.Id;
-						r.ToNode.Id = SetupData.GetDataNode(r.ToNode).Node.Id;
-						ApiCtx.DbData("TEST.AddRel", r.AddQuery);
-					}
-
-					q = new WeaverQuery();
-					q.FinalizeQuery("g.E.each{it.TestVal="+
-						"(it.outV.TestVal.next()+'|'+it.label+'|'+it.inV.TestVal.next())}");
-					ApiCtx.DbData("setRelTestVals", q);
-				}*/
-
 				Log.Info("");
 			}
 			else {
@@ -211,22 +118,6 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void TestSetUp() {}
 		protected virtual void TestTearDown() {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		protected IList<T> GetSetupNodes<T>() where T : INode {
-			var list = new List<T>();
-			var t = typeof(T);
-
-			foreach ( IDataNode dn in SetupData.Nodes ) {
-				if ( dn.NodeType == t ) {
-					list.Add((T)dn.Node);
-				}
-			}
-
-			return list;
-		}*/
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNode<T>(long pId) where T : class, INodeWithId, new() {
