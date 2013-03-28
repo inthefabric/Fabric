@@ -8,6 +8,7 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
@@ -43,7 +44,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(998764)]
 		public void SetDataAndUpdatePath(long pId) {
 			const string typeIdName = "ArtifactId";
-			string script = "('"+typeIdName+"',Tokens.T.eq,"+pId+"L)";
 
 			var proxy = new Mock<INodeStep>();
 			proxy.SetupGet(x => x.TypeIdName).Returns(typeIdName);
@@ -53,6 +53,9 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 			var p = new Mock<IPath>();
 			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
+			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
+
+			string script = "('"+typeIdName+"',Tokens.T.eq,_P0)";
 
 			var wi = new FuncWhereIdStep(p.Object);
 			var sd = new StepData("WhereId("+pId+")");

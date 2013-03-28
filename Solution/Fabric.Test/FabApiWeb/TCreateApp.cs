@@ -60,10 +60,11 @@ namespace Fabric.Test.FabApiWeb {
 			TestUtil.LogWeaverScript(pTx);
 
 			const string expectPartial = 
-				"g.V('RootId',0)[0].each{_V0=g.v(it)};"+
+				"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
 				"APP;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
 			return vResultApp;
 		}
 

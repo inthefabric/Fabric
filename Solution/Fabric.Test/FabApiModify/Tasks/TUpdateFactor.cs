@@ -12,9 +12,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TUpdateFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0]"+
+			"g.V('"+typeof(Factor).Name+"Id',_P0)[0]"+
 				".sideEffect{"+
-					"it.setProperty('{{PropName}}',{{UtcNowTicks}}L)"+
+					"it.setProperty('{{PropName}}',_P1)"+
 				"};";
 
 		private Factor vFactor;
@@ -47,11 +47,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("UpdateFactor");
 
 			string expect = Query
-				.Replace("{{FactorId}}", vFactor.FactorId+"")
-				.Replace("{{PropName}}", (vCompleted ? "Completed" : "Deleted"))
-				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"");
+				.Replace("{{PropName}}", (vCompleted ? "Completed" : "Deleted"));
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vFactor.FactorId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vUtcNow.Ticks);
 
 			return vFactorResult;
 		}

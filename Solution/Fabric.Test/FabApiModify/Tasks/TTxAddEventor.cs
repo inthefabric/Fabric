@@ -10,18 +10,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddEventor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
-				typeof(Eventor).Name+"Id:{{NewEventorId}}L,"+
-				"DateTime:{{DateTime}}L"+
+				typeof(Eventor).Name+"Id:_TP1,"+
+				"DateTime:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
-			"g.V('"+typeof(EventorType).Name+"Id',{{EveTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
-			"g.V('"+typeof(EventorPrecision).Name+"Id',{{EvePrecId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP3);";
+			"g.addEdge(_V0,_V1,_TP3);"+
+			"g.V('"+typeof(Factor).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V2,_V1,_TP5);"+
+			"g.V('"+typeof(EventorType).Name+"Id',_TP6)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP7);"+
+			"g.V('"+typeof(EventorPrecision).Name+"Id',_TP8)[0].each{_V4=g.v(it)};"+
+			"g.addEdge(_V1,_V4,_TP9);";
 
 		private long vEveTypeId;
 		private long vEvePrecId;
@@ -55,21 +55,20 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(elemVar, "ElemVar should not be null.");
 			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
 
-			string expect = Query
-				.Replace("{{NewEventorId}}", vNewEventorId+"")
-				.Replace("{{DateTime}}", vDateTime+"")
-				.Replace("{{FactorId}}", f.FactorId+"")
-				.Replace("{{EveTypeId}}", vEveTypeId+"")
-				.Replace("{{EvePrecId}}", vEvePrecId+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsEventor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesEventor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(EventorUsesEventorType).Name);
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewEventorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vDateTime);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
+				typeof(RootContainsEventor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
+				typeof(FactorUsesEventor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vEveTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+				typeof(EventorUsesEventorType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vEvePrecId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
 				typeof(EventorUsesEventorPrecision).Name);
 		}
 

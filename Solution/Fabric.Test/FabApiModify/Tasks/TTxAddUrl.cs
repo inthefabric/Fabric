@@ -12,11 +12,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
-				typeof(Url).Name+"Id:{{NewUrlId}}L,"+
-				"Name:_TP0,"+
-				"AbsoluteUrl:_TP1"+
+				typeof(Url).Name+"Id:_TP0,"+
+				"Name:_TP1,"+
+				"AbsoluteUrl:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP2);";
+			"g.addEdge(_V0,_V1,_TP3);";
 
 		private string vAbsoluteUrl;
 		private string vName;
@@ -47,13 +47,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(urlVar, "UrlVar should not be null.");
 			Assert.AreEqual("_V1", urlVar.Name, "Incorrect UrlVar name.");
 
-			string expect = Query
-				.Replace("{{NewUrlId}}", vNewUrlId+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vAbsoluteUrl);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(RootContainsUrl).Name);
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewUrlId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vAbsoluteUrl);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsUrl).Name);
 		}
 
 	}

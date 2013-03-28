@@ -12,12 +12,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
-				typeof(Class).Name+"Id:{{NewClassId}}L,"+
-				"Name:_TP0,"+
-				"Disamb:_TP1,"+
-				"Note:_TP2"+
+				typeof(Class).Name+"Id:_TP0,"+
+				"Name:_TP1,"+
+				"Disamb:_TP2,"+
+				"Note:_TP3"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);";
+			"g.addEdge(_V0,_V1,_TP4);";
 
 		private string vName;
 		private string vDisamb;
@@ -50,14 +50,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(urlVar, "ClassVar should not be null.");
 			Assert.AreEqual("_V1", urlVar.Name, "Incorrect ClassVar name.");
 
-			string expect = Query
-				.Replace("{{NewClassId}}", vNewClassId+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vDisamb);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vNote);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsClass).Name);
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewClassId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vDisamb);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNote);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(RootContainsClass).Name);
 		}
 
 	}

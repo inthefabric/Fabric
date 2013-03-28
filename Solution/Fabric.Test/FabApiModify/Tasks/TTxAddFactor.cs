@@ -11,22 +11,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
-				typeof(Factor).Name+"Id:{{NewFactorId}}L,"+
-				"IsDefining:true,"+
-				"Created:{{UtcNowTicks}}L,"+
-				"Note:_TP0"+
+				typeof(Factor).Name+"Id:_TP1,"+
+				"IsDefining:_TP2,"+
+				"Created:_TP3,"+
+				"Note:_TP4"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP1);"+
-			"g.V('"+typeof(Artifact).Name+"Id',{{PrimArtId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V1,_V2,_TP2);"+
-			"g.V('"+typeof(Artifact).Name+"Id',{{RelArtId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP3);"+
-			"g.V('"+typeof(FactorAssertion).Name+"Id',{{AssertId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP4);"+
-			"g.V('"+typeof(Member).Name+"Id',{{MemberId}}L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V5,_V1,_TP5);";
+			"g.addEdge(_V0,_V1,_TP5);"+
+			"g.V('"+typeof(Artifact).Name+"Id',_TP6)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V1,_V2,_TP7);"+
+			"g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP9);"+
+			"g.V('"+typeof(FactorAssertion).Name+"Id',_TP10)[0].each{_V4=g.v(it)};"+
+			"g.addEdge(_V1,_V4,_TP11);"+
+			"g.V('"+typeof(Member).Name+"Id',_TP12)[0].each{_V5=g.v(it)};"+
+			"g.addEdge(_V5,_V1,_TP13);";
 
 		private long vPrimArtId;
 		private long vRelArtId;
@@ -67,24 +67,24 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(factorVar, "FactorVar should not be null.");
 			Assert.AreEqual("_V1", factorVar.Name, "Incorrect FactorVar name.");
 
-			string expect = Query
-				.Replace("{{NewFactorId}}", vNewFactorId+"")
-				.Replace("{{UtcNowTicks}}", vUtcNow.Ticks+"")
-				.Replace("{{PrimArtId}}", vPrimArtId+"")
-				.Replace("{{RelArtId}}", vRelArtId+"")
-				.Replace("{{AssertId}}", vAssertId+"")
-				.Replace("{{MemberId}}", mem.MemberId+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNote);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", typeof(RootContainsFactor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewFactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", true);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vUtcNow.Ticks);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vNote);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsFactor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vPrimArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
 				typeof(FactorUsesPrimaryArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vRelArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
 				typeof(FactorUsesRelatedArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10", vAssertId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11",
 				typeof(FactorUsesFactorAssertion).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(MemberCreatesFactor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP12", mem.MemberId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP13", typeof(MemberCreatesFactor).Name);
 		}
 
 	}

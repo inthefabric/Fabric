@@ -10,19 +10,19 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDirector : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
-				typeof(Director).Name+"Id:{{NewDirectorId}}L"+
+				typeof(Director).Name+"Id:_TP1"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
-			"g.V('"+typeof(DirectorType).Name+"Id',{{DirTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
-			"g.V('"+typeof(DirectorAction).Name+"Id',{{PrimActId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP3);"+
-			"g.V('"+typeof(DirectorAction).Name+"Id',{{RelActId}}L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V1,_V5,_TP4);";
+			"g.addEdge(_V0,_V1,_TP2);"+
+			"g.V('"+typeof(Factor).Name+"Id',_TP3)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V2,_V1,_TP4);"+
+			"g.V('"+typeof(DirectorType).Name+"Id',_TP5)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP6);"+
+			"g.V('"+typeof(DirectorAction).Name+"Id',_TP7)[0].each{_V4=g.v(it)};"+
+			"g.addEdge(_V1,_V4,_TP8);"+
+			"g.V('"+typeof(DirectorAction).Name+"Id',_TP9)[0].each{_V5=g.v(it)};"+
+			"g.addEdge(_V1,_V5,_TP10);";
 
 		private long vDirTypeId;
 		private long vPrimActId;
@@ -64,15 +64,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{RelActId}}", vRelActId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsDirector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesDirector).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewDirectorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(DirectorUsesDirectorType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(DirectorUsesPrimaryDirectorAction).Name);
+				typeof(RootContainsDirector).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
+				typeof(FactorUsesDirector).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vDirTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
+				typeof(DirectorUsesDirectorType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vPrimActId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
+				typeof(DirectorUsesPrimaryDirectorAction).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", vRelActId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
 				typeof(DirectorUsesRelatedDirectorAction).Name);
 		}
 

@@ -1,8 +1,10 @@
 ﻿using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Test.Common;
+using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
@@ -43,12 +45,14 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void GetKeyIndexScript() {
 			const long typeId = 14265126;
+			
 			var p = new Mock<IPath>();
-			var s = new TestNodeStep(p.Object);
+			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
 
+			var s = new TestNodeStep(p.Object);
 			s.SetDataAndUpdatePath(new StepData("HasArtifact"));
 
-			Assert.AreEqual("g.V('TestNodeStepId',"+typeId+"L)[0]",
+			Assert.AreEqual("g.V('TestNodeStepId',_P0)[0]",
 				s.GetKeyIndexScript(typeId), "Incorrect result.");
 		}
 

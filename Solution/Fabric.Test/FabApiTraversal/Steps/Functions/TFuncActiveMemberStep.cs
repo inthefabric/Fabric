@@ -8,6 +8,7 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
@@ -22,9 +23,15 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		public void New() {
 			const long appId = 1234;
 			const long userId = 9876;
+			
 			var p = new Mock<IPath>();
 			p.SetupGet(x => x.AppId).Returns(appId);
 			p.SetupGet(x => x.UserId).Returns(userId);
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => (long)v.Original == userId)))
+				.Returns("_P0");
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => (long)v.Original == appId)))
+				.Returns("_P1");
+
 			var s = new FuncActiveMemberStep(p.Object);
 			
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
@@ -33,11 +40,11 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
 			string script = 
-				"V('"+typeof(User).Name+"Id',"+userId+"L)[0]"+
+				"V('"+typeof(User).Name+"Id',_P0)[0]"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,"+appId+"L)"+
-				".back(3)";
+					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
+				".back(3)[0]";
 
 			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}

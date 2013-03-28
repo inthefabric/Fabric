@@ -37,7 +37,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 				Script = q.Script
 					.Substring(2, q.Script.Length-3)+ //remove "g." and final ";"
-					".back(3)"; //return to Member step
+					".back(3)[0]"; //return to Member step
 
 				UserParam = q.Params.Keys.ToList()[0];
 				AppParam = q.Params.Keys.ToList()[1];

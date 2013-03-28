@@ -10,22 +10,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddVector : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',0)[0].each{_V0=g.v(it)};"+
+			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
 			"_V1=g.addVertex(["+
-				typeof(Vector).Name+"Id:{{NewVectorId}}L,"+
-				"Value:{{Value}}L"+
+				typeof(Vector).Name+"Id:_TP1,"+
+				"Value:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP0);"+
-			"g.V('"+typeof(Factor).Name+"Id',{{FactorId}}L)[0].each{_V2=g.v(it)};"+
-			"g.addEdge(_V2,_V1,_TP1);"+
-			"g.V('"+typeof(VectorType).Name+"Id',{{VecTypeId}}L)[0].each{_V3=g.v(it)};"+
-			"g.addEdge(_V1,_V3,_TP2);"+
-			"g.V('"+typeof(Artifact).Name+"Id',{{AxisArtId}}L)[0].each{_V4=g.v(it)};"+
-			"g.addEdge(_V1,_V4,_TP3);"+
-			"g.V('"+typeof(VectorUnit).Name+"Id',{{VecUnitId}}L)[0].each{_V5=g.v(it)};"+
-			"g.addEdge(_V1,_V5,_TP4);"+
-			"g.V('"+typeof(VectorUnitPrefix).Name+"Id',{{VecUnitPrefId}}L)[0].each{_V6=g.v(it)};"+
-			"g.addEdge(_V1,_V6,_TP5);";
+			"g.addEdge(_V0,_V1,_TP3);"+
+			"g.V('"+typeof(Factor).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"g.addEdge(_V2,_V1,_TP5);"+
+			"g.V('"+typeof(VectorType).Name+"Id',_TP6)[0].each{_V3=g.v(it)};"+
+			"g.addEdge(_V1,_V3,_TP7);"+
+			"g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].each{_V4=g.v(it)};"+
+			"g.addEdge(_V1,_V4,_TP9);"+
+			"g.V('"+typeof(VectorUnit).Name+"Id',_TP10)[0].each{_V5=g.v(it)};"+
+			"g.addEdge(_V1,_V5,_TP11);"+
+			"g.V('"+typeof(VectorUnitPrefix).Name+"Id',_TP12)[0].each{_V6=g.v(it)};"+
+			"g.addEdge(_V1,_V6,_TP13);";
 
 		private long vVecTypeId;
 		private long vValue;
@@ -63,27 +63,26 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(elemVar, "ElemVar should not be null.");
 			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
 
-			string expect = Query
-				.Replace("{{NewVectorId}}", vNewVectorId+"")
-				.Replace("{{FactorId}}", f.FactorId+"")
-				.Replace("{{VecTypeId}}", vVecTypeId+"")
-				.Replace("{{Value}}", vValue+"")
-				.Replace("{{AxisArtId}}", vAxisArtId+"")
-				.Replace("{{VecUnitId}}", vVecUnitId+"")
-				.Replace("{{VecUnitPrefId}}", vVecUnitPrefId+"");
-
-			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0",
-				typeof(RootContainsVector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1",
-				typeof(FactorUsesVector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
-				typeof(VectorUsesVectorType).Name);
+			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewVectorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValue);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(VectorUsesAxisArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(VectorUsesVectorUnit).Name);
+				typeof(RootContainsVector).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
+				typeof(FactorUsesVector).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vVecTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+				typeof(VectorUsesVectorType).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vAxisArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
+				typeof(VectorUsesAxisArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10", vVecUnitId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11",
+				typeof(VectorUsesVectorUnit).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP12", vVecUnitPrefId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP13",
 				typeof(VectorUsesVectorUnitPrefix).Name);
 		}
 

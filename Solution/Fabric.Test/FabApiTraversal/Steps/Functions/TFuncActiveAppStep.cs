@@ -8,6 +8,7 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
@@ -21,8 +22,11 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[Test]
 		public void New() {
 			const long appId = 1234;
+			
 			var p = new Mock<IPath>();
 			p.SetupGet(x => x.AppId).Returns(appId);
+			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
+
 			var s = new FuncActiveAppStep(p.Object);
 			
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
@@ -30,7 +34,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
-			string script = "V('"+typeof(App).Name+"Id',"+appId+"L)[0]";
+			string script = "V('"+typeof(App).Name+"Id',_P0)[0]";
 			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}
 

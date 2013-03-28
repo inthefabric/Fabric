@@ -3,6 +3,7 @@ using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Test.Common;
+using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
@@ -107,7 +108,8 @@ namespace Fabric.Test.FabApiTraversal {
 			Assert.AreEqual("Root", rs.Data.RawString, "Incorrect Result.Data.RawString.");
 
 			if ( pStartAtRoot ) {
-				Assert.AreEqual("g.V('RootId',0)[0]", rs.Path.Script, "Incorrect Path.Script.");
+				Assert.AreEqual("g.V('RootId',_P0)[0]", rs.Path.Script, "Incorrect Path.Script.");
+				TestUtil.CheckParam(rs.Path.Params, "_P0", 0);
 			}
 			else {
 				Assert.AreEqual("g", rs.Path.Script, "Incorrect Path.Script.");
