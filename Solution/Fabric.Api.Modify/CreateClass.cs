@@ -59,7 +59,7 @@ namespace Fabric.Api.Modify {
 			TxBuilder txb = GetFullTx(out rootVar, out memVar, out artTypeVar, out classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
-			ApiCtx.ClassNameCache.AddClass(ApiCtx, c.ClassId, c.Name, c.Disamb);
+			//ApiCtx.ClassNameCache.AddClass(ApiCtx, c.ClassId, c.Name, c.Disamb);
 			return c;
 		}
 
@@ -85,10 +85,10 @@ namespace Fabric.Api.Modify {
 					out IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<ArtifactType> pArtTypeVar,
 																out IWeaverVarAlias<Class> pClassVar) {
 			
-			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
+			/*if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
 				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
 				throw new FabDuplicateFault(typeof(Class), NameParam, name);
-			}
+			}*/
 			
 			Member m = GetContextMember();
 			

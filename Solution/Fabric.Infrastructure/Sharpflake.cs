@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Fabric.Domain;
 
 namespace Fabric.Infrastructure {
@@ -30,8 +31,11 @@ namespace Fabric.Infrastructure {
 			long m = (DateTime.UtcNow.AddYears(-2011).Ticks/10000L);
 
 			if ( m < LastMilli ) {
-				throw new Exception("Clock moved backwards; rejecting requests for the next "+
-					(LastMilli-m)+"ms. "+m+" / "+LastMilli);
+				Log.Debug("Clock moved backwards; sleeping for the next "+(LastMilli-m)+"ms...");
+				Thread.Sleep((int)(LastMilli-m+1));
+				return GetMilli();
+				//throw new Exception("Clock moved backwards; rejecting requests for the next "+
+				//	(LastMilli-m)+"ms. "+m+" / "+LastMilli);
 			}
 
 			LastMilli = m;

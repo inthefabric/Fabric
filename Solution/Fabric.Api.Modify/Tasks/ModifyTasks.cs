@@ -78,6 +78,7 @@ namespace Fabric.Api.Modify.Tasks {
 			int filterI = 1;
 
 			if ( pApiCtx.ClassNameCache.IsLoadComplete() ) {
+				return (pApiCtx.ClassNameCache.HasDuplicateClass(pName, pDisamb) ? new Class() : null);
 				IList<long> classIdList = pApiCtx.ClassNameCache.GetClassIds(pApiCtx, pName, pDisamb);
 
 				if ( classIdList == null || classIdList.Count == 0 ) {
@@ -85,7 +86,6 @@ namespace Fabric.Api.Modify.Tasks {
 				}
 
 				var classVars = new List<IWeaverVarAlias>();
-				filterI = 4;
 
 				foreach ( long classId in classIdList ) {
 					var classVar = new WeaverVarAlias<Class>(tx);
@@ -96,6 +96,8 @@ namespace Fabric.Api.Modify.Tasks {
 							.ToNodeVar(classVar)
 						.End()
 					);
+
+					filterI++;
 				}
 
 				tx.AddQuery(

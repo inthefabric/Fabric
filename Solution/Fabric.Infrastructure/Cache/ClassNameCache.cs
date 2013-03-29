@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using Fabric.Domain;
@@ -20,6 +21,8 @@ namespace Fabric.Infrastructure.Cache {
 		private bool vLoadStarted;
 		private int vLoadIndex;
 		private bool vLoadComplete;
+		private readonly string vCacheDir;
+		private readonly string vCacheIndexFilename;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,12 +38,28 @@ namespace Fabric.Infrastructure.Cache {
 			vDisambLen = pDisambLen;
 			vLoadIndex = 0;
 
+			vCacheDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			vCacheDir = Path.Combine(vCacheDir, "Fabric", "ClassNameCache");
+			Directory.CreateDirectory(vCacheDir);
+			vCacheIndexFilename = Path.Combine(vCacheDir, ".cacheIndex");
+			Log.Debug("ClassNameCache: "+vCacheIndexFilename);
+			
+			if ( File.Exists(vCacheIndexFilename) ) {
+				string index = File.OpenText(vCacheIndexFilename).ReadToEnd();
+				vLoadIndex = int.Parse(index);
+			}
+			else {
+				File.Create(vCacheIndexFilename).Dispose();
+			}
+
+			return;
+
 			foreach ( IApiContext apiCtx in vApiCtxList ) {
 				IApiContext ac = apiCtx; //get into scope
 
 				var thr = new Thread(() => LoadClasses(ac));
 				thr.IsBackground = true;
-				thr.Start();	
+				//thr.Start();	
 			}
 		}
 
@@ -48,7 +67,7 @@ namespace Fabric.Infrastructure.Cache {
 		private void LoadClasses(IApiContext pApiCtx) {
 			vLoadStarted = true;
 			Log.Info(pApiCtx.ContextId, "CLASS", "Started ClassName thread ("+
-				vNameLen+", "+vDisambLen+")...");
+				vNameLen+", "+vDisambLen+" at index "+vLoadIndex+")...");
 
 			long t = DateTime.UtcNow.Ticks;
 			const int step = 40;
@@ -109,6 +128,14 @@ namespace Fabric.Infrastructure.Cache {
 					((DateTime.UtcNow.Ticks-t)/10000/1000.0)+" sec]");
 
 				i += step;
+
+				lock ( this ) {
+					File.Delete(vCacheIndexFilename);
+					FileStream fs = File.Create(vCacheIndexFilename);
+					var sw = new StreamWriter(fs);
+					sw.Write(i);
+					sw.Close();
+				}
 			}
 
 			Log.Info(pApiCtx.ContextId, "CLASS", "Class cache completed, with "+
@@ -146,17 +173,21 @@ namespace Fabric.Infrastructure.Cache {
 		/*--------------------------------------------------------------------------------------------*/
 		private int AddToMap(long pClassId, string pName, string pDisamb) {
 			int count = 0;
-			string key = GetMapKey(pName, pDisamb);
+			string key = GetMapFileKey(pName, pDisamb);
+			//string key = GetMapKey(pName, pDisamb);
 			//Log.Debug("Class "+pClassId+": \t"+key);
 
-			lock ( this ) {
-				if ( !vDupMap.ContainsKey(key) ) {
+			//lock ( this ) {
+				/*if ( !vDupMap.ContainsKey(key) ) {
 					vDupMap.Add(key, new List<long>());
 					count++;
 				}
 
-				vDupMap[key].Add(pClassId);
-			}
+				vDupMap[key].Add(pClassId);*/
+				
+				File.Create(key).Dispose();
+				++count;
+			//}
 
 			return count;
 		}
@@ -168,6 +199,15 @@ namespace Fabric.Infrastructure.Cache {
 
 			return name.Substring(0, Math.Min(vNameLen, name.Length))+
 				dis.Substring(0, Math.Min(vDisambLen+1, dis.Length));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetMapFileKey(string pName, string pDisamb) {
+			string file = pName+"`#`"+pDisamb;
+			file = file.Trim().Replace("\\", "`!`").Replace("/", "`%`");
+			file = Path.GetInvalidFileNameChars()
+				.Aggregate(file, (current, c) => current.Replace(c.ToString(), "???"));
+			return Path.Combine(vCacheDir, file);
 		}
 		
 
@@ -203,6 +243,11 @@ namespace Fabric.Infrastructure.Cache {
 				" ClassId values for key '"+key+"'");
 
 			return list;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool HasDuplicateClass(string pName, string pDisamb) {
+			return File.Exists(GetMapFileKey(pName, pDisamb));
 		}
 
 	}

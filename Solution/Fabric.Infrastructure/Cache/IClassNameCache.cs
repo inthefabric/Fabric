@@ -14,6 +14,7 @@ namespace Fabric.Infrastructure.Cache {
 		int GetKeyCount();
 		void AddClass(IApiContext pApiCtx, long pClassId, string pName, string pDisamb);
 		IList<long> GetClassIds(IApiContext pApiCtx, string pName, string pDisamb);
+		bool HasDuplicateClass(string pName, string pDisamb);
 
 	}
 

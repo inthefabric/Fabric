@@ -95,7 +95,7 @@ namespace Fabric.Api.Modify {
 
 			if ( txb != null ) {
 				IApiDataAccess data = ApiCtx.DbData("BatchCreateClassTx", txb.Finish());
-				CacheClasses(data);
+				//CacheClasses(data);
 			}
 
 			return vResults;
@@ -151,7 +151,7 @@ namespace Fabric.Api.Modify {
 			return txb;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private void CacheClasses(IApiDataAccess pData) {
 			int n = vObjects.Length;
 			//int count = 0;
@@ -169,7 +169,7 @@ namespace Fabric.Api.Modify {
 				//c.Id = pData.GetLongResultAt(count);
 				//++count;
 			}
-		}
+		}*/
 
 	}
 
