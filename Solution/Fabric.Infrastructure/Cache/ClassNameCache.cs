@@ -43,7 +43,11 @@ namespace Fabric.Infrastructure.Cache {
 			Directory.CreateDirectory(vCacheDir);
 			vCacheIndexFilename = Path.Combine(vCacheDir, ".cacheIndex");
 			Log.Debug("ClassNameCache: "+vCacheIndexFilename);
-			
+
+			vLoadComplete = true;
+			vLoadIndex = 999999;
+			return;
+
 			if ( File.Exists(vCacheIndexFilename) ) {
 				string index = File.OpenText(vCacheIndexFilename).ReadToEnd();
 				vLoadIndex = int.Parse(index);
@@ -51,8 +55,6 @@ namespace Fabric.Infrastructure.Cache {
 			else {
 				File.Create(vCacheIndexFilename).Dispose();
 			}
-
-			return;
 
 			foreach ( IApiContext apiCtx in vApiCtxList ) {
 				IApiContext ac = apiCtx; //get into scope

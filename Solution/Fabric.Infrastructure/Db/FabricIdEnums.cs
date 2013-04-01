@@ -50,6 +50,7 @@ namespace Fabric.Infrastructure.Db {
 		ParticipatesIn,
 		IsFoundIn,
 		BelongsTo,
+		Requires,
 
 		LooksLike,
 		SmellsLike,

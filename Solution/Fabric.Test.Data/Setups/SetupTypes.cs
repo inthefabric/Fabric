@@ -188,6 +188,9 @@ namespace Fabric.Db.Data.Setups {
 			AddDescriptorType(pSet, DescriptorTypeId.BelongsTo, "Belongs To", 
 				"The primary Artifact belongs to, is controlled by, or is owned by "+
 				"the related Artifact.");
+			AddDescriptorType(pSet, DescriptorTypeId.Requires, "Requires",
+				"The primary Artifact requires, implies, needs, or demands "+
+				"the related Artifact.");
 
 			AddDescriptorType(pSet, DescriptorTypeId.LooksLike, "Looks Like",
 				"The primary Artifact looks like (has the appearance of) the related Artifact.");

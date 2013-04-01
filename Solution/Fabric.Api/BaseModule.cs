@@ -65,12 +65,10 @@ namespace Fabric.Api {
 				NodeIndex = 0;
 			}
 			
-			//TODO: fix DbMs for CreateClass and all Modify operations
-
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 21, "f72a6d04e5cf");
-				Version.SetDate(2013, 3, 28);
+				Version.SetBuild(0, 1, 21, "0680465c8c5f");
+				Version.SetDate(2013, 3, 29);
 			}
 
 			if ( MemCache == null ) {
@@ -85,6 +83,7 @@ namespace Fabric.Api {
 					acList.Add(NewApiCtx());
 				}
 
+				Log.Debug("VERSION "+Version.Version);
 				ClassNameCache = new ClassNameCache(acList, 5, 3);
 			}
 		}
