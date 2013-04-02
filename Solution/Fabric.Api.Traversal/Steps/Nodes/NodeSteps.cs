@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:07 PM
+// Generated on 4/2/2013 1:50:42 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -570,13 +570,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-			}
-
-			return base.GetLink(pData);
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -616,13 +609,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-			}
-
-			return base.GetLink(pData);
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -932,13 +918,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-			}
-
-			return base.GetLink(pData);
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

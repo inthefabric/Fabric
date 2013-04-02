@@ -29,12 +29,18 @@ foreach ( string name in nodeNames ) {
 	if ( node.IsAbstract || node.IsInternal ) { continue; }
 
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	var linkRels = new List<SchemaHelperNodeRel>();
 	string typeIdIsLong = "false";
 	
 	foreach ( WeaverPropSchema prop in node.Props ) {
 		if ( prop.Name != node.Name+"Id" ) { continue; }
 		typeIdIsLong = (prop.Type == typeof(long) ? "true" : "false");
 		break;
+	}
+	
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		linkRels.Add(hr);
 	}
 
 	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
@@ -93,22 +99,27 @@ foreach ( string name in nodeNames ) {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
 		
+<#
+	if ( linkRels.Count > 0 ) {
+#>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 <#
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
-		var propName = hr.RelPropName;
+		foreach ( SchemaHelperNodeRel hr in linkRels ) {
+			var propName = hr.RelPropName;
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;
 <#
-	} //end nodeRels loop
+		} //end nodeRels loop
 #>
 			}
 
 			return base.GetLink(pData);
 		}
+<#
+	} //end linkRels condition
+#>
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

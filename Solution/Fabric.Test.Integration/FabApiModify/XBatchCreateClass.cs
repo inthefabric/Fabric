@@ -102,8 +102,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 				Log.Debug(res.BatchId+": "+res.ResultId);
 			}
 
-			NewNodeCount = 2*(vClasses.Count-2);
-			NewRelCount = 5*(vClasses.Count-2);
+			NewNodeCount = 1*(vClasses.Count-2); //skip 2 items with intentional errors
+			NewRelCount = 2*(vClasses.Count-2);
 		}
 		
 

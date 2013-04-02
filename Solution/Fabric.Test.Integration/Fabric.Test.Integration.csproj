@@ -95,7 +95,6 @@
     <Compile Include="FabApiWeb\Tasks\XUpdateUserPassword.cs" />
     <Compile Include="FabApiWeb\Tasks\XTxAddDataProvMember.cs" />
     <Compile Include="FabApiWeb\Tasks\XTxAddApp.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddArtifact.cs" />
     <Compile Include="FabApiWeb\Tasks\XTxAddMember.cs" />
     <Compile Include="FabApiWeb\Tasks\XTxAddUser.cs" />
     <Compile Include="FabApiWeb\Tasks\XTxAddEmail.cs" />

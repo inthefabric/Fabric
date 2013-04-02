@@ -70,20 +70,23 @@ namespace Fabric.Test.Integration.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRel<TRel, TNode>(bool pIsOutgoing, long pTargetId)
+		public void AssertRel<TRel, TNode>(bool pIsOutgoing, long pTargetId, string pIdProperty=null)
 													where TRel : IWeaverRel where TNode : INodeWithId {
 			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 
 			foreach ( NodeConnectionRel rel in rels ) {
-				if ( rel.Rel.Class != typeof(TRel).Name ) {
-					continue;
+				if ( pIdProperty == null ) {
+					if ( rel.Rel.Class != typeof(TRel).Name ) {
+						continue;
+					}
+
+					if ( rel.TargetNode.Class != typeof(TNode).Name ) {
+						continue;
+					}
 				}
 
-				if ( rel.TargetNode.Class != typeof(TNode).Name ) {
-					continue;
-				}
-
-				string targId = rel.TargetNode.Data[rel.TargetNode.Class+"Id"];
+				string prop = (pIdProperty ?? rel.TargetNode.Class+"Id");
+				string targId = rel.TargetNode.Data[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {
 					continue;

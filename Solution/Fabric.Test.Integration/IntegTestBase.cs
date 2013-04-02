@@ -82,6 +82,18 @@ namespace Fabric.Test.Integration {
 			Tuple<int, int> c = CountNodesAndRels();
 			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
 
+			int nodeDiff = c.Item1-vCounts.Item1;
+			int relDiff = c.Item2-vCounts.Item2;
+
+			if ( IsReadOnlyTest && 
+					(nodeDiff != 0 || relDiff != 0 || NewNodeCount != 0 || NewRelCount != 0) ) {
+				Log.Info("");
+				Log.Info("WARNING: Overriding read-only mode due to counts: "+
+					nodeDiff+", "+relDiff+", "+NewNodeCount+", "+NewRelCount);
+				Log.Info("");
+				IsReadOnlyTest = false;
+			}
+
 			if ( !IsReadOnlyTest ) {
 				var q = new WeaverQuery();
 				q.FinalizeQuery("g.V.remove()");
@@ -99,8 +111,8 @@ namespace Fabric.Test.Integration {
 				Log.Info("READ ONLY MODE: skipped database reset");
 			}
 
-			Assert.AreEqual(NewNodeCount, c.Item1-vCounts.Item1, "Incorrect new node count.");
-			Assert.AreEqual(NewRelCount, c.Item2-vCounts.Item2, "Incorrect new rel count.");
+			Assert.AreEqual(NewNodeCount, nodeDiff, "Incorrect new node count.");
+			Assert.AreEqual(NewRelCount, relDiff, "Incorrect new rel count.");
 
 			if ( IsReadOnlyTest ) {
 				Assert.AreEqual(0, NewNodeCount, "NewNodeCount should be zero!");

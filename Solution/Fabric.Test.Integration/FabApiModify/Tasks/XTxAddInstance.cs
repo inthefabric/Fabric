@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using Fabric.Db.Data.Setups;
+using Fabric.Domain;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -15,10 +16,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		[TestCase("Instance Name", "Instance Disambiguation", "Instance Note")]
 		public void Success(string pName, string pDisamb, string pNote) {
 			IWeaverVarAlias<Root> rootVar;
+			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Instance> urlVar;
+			var mem = new Member { MemberId = (long)SetupUsers.MemberId.GalZach };
 
 			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddInstance(ApiCtx, TxBuild, pName, pDisamb, pNote, rootVar, out urlVar);
+			TxBuild.GetNode(mem, out memVar);
+			Tasks.TxAddInstance(ApiCtx, TxBuild, pName, pDisamb, pNote, rootVar, memVar, out urlVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddInstance", TxBuild.Transaction);
@@ -33,11 +37,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pNote, newInstance.Note, "Incorrect Note.");
 
 			NodeConnections conn = GetNodeConnections(newInstance);
-			conn.AssertRelCount(1, 0);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<RootContainsInstance, Root>(false, 0);
+			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 1;
+			NewRelCount = 2;
 		}
 
 	}

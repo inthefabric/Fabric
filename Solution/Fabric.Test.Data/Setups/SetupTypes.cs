@@ -12,7 +12,7 @@ namespace Fabric.Db.Data.Setups {
 		public const int NumMemberTypes = 8;
 
 		public const int NumDescriptorRefineTypes = 3;
-		public const int NumDescriptorTypes = 21;
+		public const int NumDescriptorTypes = 22;
 		public const int NumDirectorActions = 17;
 		public const int NumDirectorTypes = 5;
 		public const int NumEventorPrecisions = 6;

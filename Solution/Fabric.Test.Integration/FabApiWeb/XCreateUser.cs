@@ -33,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateUser(Tasks, ModTasks, vName, vPassword, vEmail);
+			var func = new CreateUser(Tasks, vName, vPassword, vEmail);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -61,17 +61,16 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(newUser, "New User was not created.");
 			Assert.AreEqual(newUser.UserId, vResult.NewUser.UserId,
 				"Incorrect Result.NewUser.UserId.");
+
+			Assert.AreEqual(ApiCtx.SharpflakeIds[2], newUser.ArtifactId, "Incorrect User.ArtifactId.");
 			                
-			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[2]);
+			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[3]);
 			Assert.NotNull(newMember, "New Member was not created.");
 			
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[3]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[4]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			
-			Artifact newArtifact = GetNode<Artifact>(ApiCtx.SharpflakeIds[4]);
-			Assert.NotNull(newArtifact, "New Artifact was not created.");
-			
-			NewNodeCount = 5;
+			NewNodeCount = 4;
 			NewRelCount = 0;
 			
 			NodeConnections conn = GetNodeConnections(newEmail);
@@ -81,11 +80,11 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			NewRelCount += 2;
 			
 			conn = GetNodeConnections(newUser);
-			conn.AssertRelCount(1, 3);
+			conn.AssertRelCount(2, 2);
 			conn.AssertRel<RootContainsUser, Root>(false, 0);
 			conn.AssertRel<UserUsesEmail, Email>(true, newEmail.EmailId);
 			conn.AssertRel<UserDefinesMember, Member>(true, newMember.MemberId);
-			conn.AssertRel<UserHasArtifact, Artifact>(true, newArtifact.ArtifactId);
+			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
 			NewRelCount += 4-1;
 			
 			conn = GetNodeConnections(newMember);
@@ -95,8 +94,9 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			conn.AssertRel<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
-			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, newArtifact.ArtifactId);
-			NewRelCount += 5-1;
+			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, 
+				newUser.ArtifactId, typeof(Artifact).Name+"Id");
+			NewRelCount += 5-2;
 			
 			conn = GetNodeConnections(newMta);
 			conn.AssertRelCount(3, 1);
@@ -106,14 +106,6 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true,
 				(long)MemberTypeId.Member);
 			NewRelCount += 4-1;
-			
-			conn = GetNodeConnections(newArtifact);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsArtifact, Root>(false, 0);
-			conn.AssertRel<UserHasArtifact, User>(false, newUser.UserId);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
-			conn.AssertRel<ArtifactUsesArtifactType, ArtifactType>(true, (long)ArtifactTypeId.User);
-			NewRelCount += 4-2;
 		}
 
 				

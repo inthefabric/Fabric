@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:06 PM
+// Generated on 4/2/2013 1:49:59 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -30,14 +30,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-			}
-
-			return base.GetLink(pData);
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,14 +55,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-			}
-
-			return base.GetLink(pData);
 		}
 
 
@@ -105,7 +89,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
@@ -120,7 +104,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 			return base.GetLink(pData);
 		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -208,14 +191,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-			}
-
-			return base.GetLink(pData);
 		}
 
 

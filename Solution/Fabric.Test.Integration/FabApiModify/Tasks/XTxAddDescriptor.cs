@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -70,19 +69,21 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			pConn.AssertRel<FactorUsesDescriptor, Factor>(false, pFactorId);
 			pConn.AssertRel<DescriptorUsesDescriptorType, DescriptorType>(true, pDescTypeId);
 
+			string idProp = typeof(Artifact).Name+"Id";
+
 			if ( pPrimArtRefId != null ) {
 				pConn.AssertRel<DescriptorRefinesPrimaryWithArtifact, Artifact>(
-					true, (long)pPrimArtRefId);
+					true, (long)pPrimArtRefId, idProp);
 			}
 
 			if ( pRelArtRefId != null ) {
 				pConn.AssertRel<DescriptorRefinesRelatedWithArtifact, Artifact>(
-					true, (long)pRelArtRefId);
+					true, (long)pRelArtRefId, idProp);
 			}
 
 			if ( pDescTypeRefId != null ) {
 				pConn.AssertRel<DescriptorRefinesTypeWithArtifact, Artifact>(
-					true, (long)pDescTypeRefId);
+					true, (long)pDescTypeRefId, idProp);
 			}
 
 			pRelCount = 3+refRels;

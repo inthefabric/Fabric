@@ -96,7 +96,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorsWithMelAsPrimary() {
-			vUri = "/ContainsFactorList/As(F)/UsesPrimaryArtifact/InUserHas/WhereId("+
+			vUri = "/ContainsFactorList/As(F)/UsesPrimaryArtifact/WhereId("+
 				(long)SetupUsers.UserId.Mel+")/Back(F)";
 			TestPath();
 			CheckSuccess<Factor>(10);
@@ -105,7 +105,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorsWithMelAsPrimaryCreatedByMel() {
-			vUri = "/ContainsFactorList/As(F)/UsesPrimaryArtifact/InUserHas/WhereId("+
+			vUri = "/ContainsFactorList/As(F)/UsesPrimaryArtifact/WhereId("+
 				(long)SetupUsers.UserId.Mel+")/Back(F)/InMemberCreates/InUserDefines/WhereId("+
 				(long)SetupUsers.UserId.Mel+")/Back(F)";
 			TestPath();

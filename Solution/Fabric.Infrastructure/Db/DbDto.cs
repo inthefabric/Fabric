@@ -10,11 +10,13 @@ namespace Fabric.Infrastructure.Db {
 	public class DbDto : IDbDto {
 
 		public enum ItemType {
-			Unknown = 0,
-			Node,
+			Node = 1,
 			Rel,
 			Error
 		}
+
+		private static readonly Type ArtifactType = typeof(Artifact);
+		private static readonly string ArtifactId = ArtifactType.Name+"Id";
 
 		public ItemType Item { get; set; }
 		public long? Id { get; set; }
@@ -41,7 +43,7 @@ namespace Fabric.Infrastructure.Db {
 				return;
 			}
 
-			string type = pRaw._type; //always returns "vertex"
+			string type = pRaw._type;
 
 			switch ( type ) {
 				case "vertex":
@@ -60,6 +62,7 @@ namespace Fabric.Infrastructure.Db {
 					break;
 
 				default:
+					Item = ItemType.Error;
 					throw new Exception("Unknown ItemType: "+type);
 			}
 		}
@@ -73,8 +76,10 @@ namespace Fabric.Infrastructure.Db {
 			Type resultType = typeof(T);
 
 			if ( resultType.Name != Class ) {
-				throw new Exception("Incorrect conversion from DbDto class '"+
-					Class+"' to type '"+resultType.Name+"'.");
+				if ( resultType != ArtifactType || !ArtifactType.IsAssignableFrom(resultType) ) {
+					throw new Exception("Incorrect conversion from DbDto class '"+
+						Class+"' to type '"+resultType.Name+"'.");
+				}
 			}
 			
 			//OPTIMIZE: Going to JSON then back again is inefficient. Consider moving the serialization
@@ -111,7 +116,7 @@ namespace Fabric.Infrastructure.Db {
 
 			foreach ( string key in pData.Keys ) {
 				int ki = key.Length-2;
-				if ( key.Substring(ki) != "Id" ) { continue; }
+				if ( key.Substring(ki) != "Id" || key == ArtifactId ) { continue; }
 				return key.Substring(0, ki);
 			}
 

@@ -1,4 +1,5 @@
-﻿using Fabric.Db.Data.Setups;
+﻿using System;
+using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Test.Integration.Common;
@@ -22,10 +23,18 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			IWeaverVarAlias<Email> emailVar;
 			IWeaverVarAlias<User> userVar;
 			var useEmail = new Email { EmailId = (long)SetupUsers.EmailId.Zach_AEI };
+			Action<IWeaverVarAlias<Member>> setMemVar;
 
 			TxBuild.GetRoot(out rootVar);
 			TxBuild.GetNode(useEmail, out emailVar);
-			Tasks.TxAddUser(ApiCtx, TxBuild, pName, pPassword, rootVar, emailVar, out userVar);
+			Tasks.TxAddUser(ApiCtx, TxBuild, pName, pPassword, rootVar, emailVar,
+				out userVar, out setMemVar);
+
+			var mem = new Member { MemberId = (long)SetupUsers.MemberId.FabFabData };
+			IWeaverVarAlias<Member> memVar;
+			TxBuild.GetNode(mem, out memVar);
+			setMemVar(memVar);
+
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddUser", TxBuild.Transaction);
@@ -40,12 +49,13 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 				"Incorrect Password.");
 
 			NodeConnections conn = GetNodeConnections(newUser);
-			conn.AssertRelCount(1, 1);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<RootContainsUser, Root>(false, 0);
 			conn.AssertRel<UserUsesEmail, Email>(true, useEmail.EmailId);
+			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 2;
+			NewRelCount = 3;
 		}
 
 	}

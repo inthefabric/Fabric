@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using Fabric.Db.Data.Setups;
+using Fabric.Domain;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -17,10 +18,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		[TestCase("http://www.web.com", "Web Page")]
 		public void Success(string pAbsoluteUrl, string pName) {
 			IWeaverVarAlias<Root> rootVar;
+			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Url> urlVar;
+			var mem = new Member { MemberId = (long)SetupUsers.MemberId.GalZach };
 
 			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddUrl(ApiCtx, TxBuild, pAbsoluteUrl, pName, rootVar, out urlVar);
+			TxBuild.GetNode(mem, out memVar);
+			Tasks.TxAddUrl(ApiCtx, TxBuild, pAbsoluteUrl, pName, rootVar, memVar, out urlVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddUrl", TxBuild.Transaction);
@@ -34,11 +38,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pName, newUrl.Name, "Incorrect Name.");
 
 			NodeConnections conn = GetNodeConnections(newUrl);
-			conn.AssertRelCount(1, 0);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<RootContainsUrl, Root>(false, 0);
+			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 1;
+			NewRelCount = 2;
 		}
 
 	}

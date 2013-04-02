@@ -1,9 +1,7 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -59,23 +57,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.NotNull(newInstance, "New Instance was not created.");
 			Assert.AreEqual(newInstance.InstanceId, vResult.InstanceId, "Incorrect Result.InstanceId.");
 
-			Artifact newArtifact = GetNode<Artifact>(ApiCtx.SharpflakeIds[1]);
-			Assert.NotNull(newArtifact, "New Artifact was not created.");
-			
 			NodeConnections conn = GetNodeConnections(newInstance);
-			conn.AssertRelCount(1, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<RootContainsInstance, Root>(false, 0);
-			conn.AssertRel<InstanceHasArtifact, Artifact>(true, newArtifact.ArtifactId);
-			
-			conn = GetNodeConnections(newArtifact);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsArtifact, Root>(false, 0);
-			conn.AssertRel<InstanceHasArtifact, Instance>(false, newInstance.InstanceId);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, vExpectMemberId);
-			conn.AssertRel<ArtifactUsesArtifactType, ArtifactType>(true, (long)ArtifactTypeId.Instance);
 
-			NewNodeCount = 2;
-			NewRelCount = 5;
+			NewNodeCount = 1;
+			NewRelCount = 2;
 		}
 		
 

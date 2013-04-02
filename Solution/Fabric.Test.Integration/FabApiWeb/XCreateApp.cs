@@ -33,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateApp(Tasks, ModTasks, vName, vUserId);
+			var func = new CreateApp(Tasks, vName, vUserId);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -53,25 +53,24 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			App newApp = GetNode<App>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newApp, "New App was not created.");
 			Assert.AreEqual(newApp.AppId, vResult.AppId, "Incorrect Result.AppId.");
-			                
-			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[1]);
+
+			Assert.AreEqual(ApiCtx.SharpflakeIds[1], newApp.ArtifactId, "Incorrect App.ArtifactId.");
+
+			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[2]);
 			Assert.NotNull(newMember, "New Member was not created.");
 			
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[2]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[3]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			
-			Artifact newArtifact = GetNode<Artifact>(ApiCtx.SharpflakeIds[3]);
-			Assert.NotNull(newArtifact, "New Artifact was not created.");
-			
-			NewNodeCount = 4;
+			NewNodeCount = 3;
 			NewRelCount = 0;
 			
 			NodeConnections conn = GetNodeConnections(newApp);
-			conn.AssertRelCount(1, 3);
+			conn.AssertRelCount(2, 2);
 			conn.AssertRel<RootContainsApp, Root>(false, 0);
 			conn.AssertRel<AppUsesEmail, Email>(true, (long)vExpectEmailId);
 			conn.AssertRel<AppDefinesMember, Member>(true, newMember.MemberId);
-			conn.AssertRel<AppHasArtifact, Artifact>(true, newArtifact.ArtifactId);
+			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
 			NewRelCount += 4;
 			
 			conn = GetNodeConnections(newMember);
@@ -81,8 +80,9 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			conn.AssertRel<AppDefinesMember, App>(false, newApp.AppId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
-			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, newArtifact.ArtifactId);
-			NewRelCount += 5-1;
+			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, 
+				newApp.ArtifactId, typeof(Artifact).Name+"Id");
+			NewRelCount += 5-2;
 			
 			conn = GetNodeConnections(newMta);
 			conn.AssertRelCount(3, 1);
@@ -92,14 +92,6 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true,
 				(long)MemberTypeId.DataProvider);
 			NewRelCount += 4-1;
-			
-			conn = GetNodeConnections(newArtifact);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsArtifact, Root>(false, 0);
-			conn.AssertRel<AppHasArtifact, App>(false, newApp.AppId);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
-			conn.AssertRel<ArtifactUsesArtifactType, ArtifactType>(true, (long)ArtifactTypeId.App);
-			NewRelCount += 4-2;
 		}
 
 		

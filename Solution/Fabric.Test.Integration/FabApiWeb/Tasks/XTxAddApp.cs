@@ -1,4 +1,5 @@
-﻿using Fabric.Db.Data.Setups;
+﻿using System;
+using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
@@ -21,9 +22,17 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 																	SetupUsers.EmailId pExpectEmailId) {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<App> appVar;
+			Action<IWeaverVarAlias<Member>> setMemVar;
 
 			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddApp(ApiCtx, TxBuild, pName, rootVar, (long)pCreatorUserId, out appVar);
+			Tasks.TxAddApp(ApiCtx, TxBuild, pName, rootVar, (long)pCreatorUserId,
+				out appVar, out setMemVar);
+
+			var mem = new Member { MemberId = (long)SetupUsers.MemberId.FabFabData };
+			IWeaverVarAlias<Member> memVar;
+			TxBuild.GetNode(mem, out memVar);
+			setMemVar(memVar);
+
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddApp", TxBuild.Transaction);
@@ -37,12 +46,13 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreEqual(32, newApp.Secret.Length, "Incorrect Secret length.");
 
 			NodeConnections conn = GetNodeConnections(newApp);
-			conn.AssertRelCount(1, 1);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<RootContainsApp, Root>(false, 0);
 			conn.AssertRel<AppUsesEmail, Email>(true, (long)pExpectEmailId);
+			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 2;
+			NewRelCount = 3;
 		}
 
 	}

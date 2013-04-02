@@ -61,12 +61,12 @@ namespace Fabric.Infrastructure {
 			return (m << 20) + (ServerId << 8) + GetSequence<T>().NextIndex;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static string GetIdStr<T>() where T : INode {
 			long m = GetMilli();
 			return Convert.ToString(m<<20, 2) + "." + Convert.ToString(ServerId<<8, 2) + "." +
 				Convert.ToString(GetSequence<T>().NextIndex, 2);
-		}
+		}*/
 
 	}
 	
