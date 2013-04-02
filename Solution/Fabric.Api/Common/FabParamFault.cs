@@ -1,6 +1,6 @@
 ﻿using System;
+using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Domain;
 
 namespace Fabric.Api.Common {
 

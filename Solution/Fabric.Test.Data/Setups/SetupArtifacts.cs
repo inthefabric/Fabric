@@ -106,25 +106,17 @@ namespace Fabric.Db.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Artifact AddArtifact(DataSet pSet, ArtifactId pId, ArtifactTypeId pArtTypeId,
-													SetupUsers.MemberId pCreatorId, bool pTestMode) {
+		public static void FillArtifact(DataSet pSet, Artifact pArtifact, ArtifactId pId,
+							ArtifactTypeId pArtTypeId, SetupUsers.MemberId pCreatorId, bool pTestMode) {
 			var a = new Artifact();
 			a.ArtifactId = (long)pId;
-			a.IsPrivate = false;
 			a.Created = pSet.SetupTimestamp;
 
 			pSet.AddNodeAndIndex(a, x => x.ArtifactId, pTestMode);
-			pSet.AddRootRel<RootContainsArtifact>(a, pTestMode);
-
-			var relT = DataRel.Create(a, new ArtifactUsesArtifactType(),
-				pSet.GetNode<ArtifactType>((long)pArtTypeId), pTestMode);
-			pSet.AddRel(relT);
 
 			var relM = DataRel.Create(
 				pSet.GetNode<Member>((long)pCreatorId), new MemberCreatesArtifact(), a, pTestMode);
 			pSet.AddRel(relM);
-
-			return a;
 		}
 
 	}

@@ -22,6 +22,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		private void TestStep<T>(string pStepName, Func<IPath, T> pNewStep) where T : INodeStep {
 			string[] availSteps;
 			bool isRoot = (pStepName == "Root");
+			bool isArtifact = (pStepName == "Artifact");
 
 			bool found = StepUtil.NodeStepMap.TryGetValue(pStepName, out availSteps);
 			Assert.True(found, pStepName+" is not an accepted NodeStep name.");
@@ -86,13 +87,13 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 					"Incorrect AvailableLinks["+i+"].");
 			}
 
-			if ( !isRoot ) {
+			if ( !isRoot && !isArtifact ) {
 				p = new Mock<IPath>().Object;
 				step = pNewStep(p);
 				IInRootContains rc = (step as IInRootContains);
-				Assert.NotNull(rc, "All non-Root NodeSteps must implement IInRootContains.");
+				Assert.NotNull(rc, "This NodeStep must implement IInRootContains.");
 
-				RootStep rs = rc.InRootContains;
+				IRootStep rs = rc.InRootContains;
 				Assert.NotNull(rs, "InRootContains result should not be null.");
 			}
 		}
@@ -118,7 +119,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void TotalNodeStepKeys() {
-			Assert.AreEqual(32, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+			Assert.AreEqual(31, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
 		}
 
 
@@ -139,12 +140,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void ArtifactStep() {
 			TestStep("Artifact", p => new ArtifactStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ArtifactTypeStep() {
-			TestStep("ArtifactType", p => new ArtifactTypeStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

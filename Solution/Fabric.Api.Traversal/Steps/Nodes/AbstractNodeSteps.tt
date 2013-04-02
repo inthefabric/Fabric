@@ -26,7 +26,7 @@ IList<string> nodeNames = SchemaHelper.GetNodes();
 foreach ( string name in nodeNames ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
-	if ( node.IsAbstract || node.IsInternal ) { continue; }
+	if ( (!node.IsAbstract || node.IsInternal) && node.Name != "Artifact" ) { continue; }
 
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
 	string typeIdIsLong = "false";
@@ -36,11 +36,10 @@ foreach ( string name in nodeNames ) {
 		typeIdIsLong = (prop.Type == typeof(long) ? "true" : "false");
 		break;
 	}
-
-	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
 #>
 	/*================================================================================================*/
-	public partial class <#= node.Name #>Step : <#= baseNode #>Step<<#= "Fab"+node.Name #>>, I<#= node.Name #>Step {
+	public abstract partial class <#= node.Name #>Step<T> : NodeStep<T>, I<#= node.Name #>Step
+																			where T : FabNode, new() {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 <#
@@ -57,37 +56,12 @@ foreach ( string name in nodeNames ) {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= node.Name #>Step(IPath pPath) : base(pPath) {
-<#
-	if ( node.Name == "Root" ) {
-#>
-			if ( Path.GetSegmentCount() == 0 ) {
-				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
-			}
-
-<#
-	}
-#>
 			ConstructorHook();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
 
-<#
-	if ( node.Name == "Root" ) {
-#>
-		/*--------------------------------------------------------------------------------------------*/
-		public bool UseLocalData { get { return true; } }
-		public long Index { get { return 0; } }
-		public int Count { get { return 1; } }
-
-<#
-	}
-#>
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "<#= node.Name #>Id"; } }
-		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
-		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }

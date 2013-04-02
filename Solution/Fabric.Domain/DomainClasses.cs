@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/26/2013 3:55:59 PM
+// Generated on 4/2/2013 1:27:05 PM
 
 using System;
 using System.Linq.Expressions;
@@ -21,13 +21,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Has : IWeaverRelType {
-	
-		public string Label { get { return "Has"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class Uses : IWeaverRelType {
 	
 		public string Label { get { return "Uses"; } }
@@ -38,6 +31,13 @@ namespace Fabric.Domain {
 	public class Defines : IWeaverRelType {
 	
 		public string Label { get { return "Defines"; } }
+
+	}
+
+	/*================================================================================================*/
+	public class Has : IWeaverRelType {
+	
+		public string Label { get { return "Has"; } }
 
 	}
 
@@ -125,24 +125,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsArtifact : Rel<Root, Contains, Artifact>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "RootContainsArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsArtifactType : Rel<Root, Contains, ArtifactType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual ArtifactType ToArtifactType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsArtifactType"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class RootContainsClass : Rel<Root, Contains, Class>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
@@ -152,56 +134,11 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class RootContainsCrowd : Rel<Root, Contains, Crowd>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Crowd ToCrowd { get { return ToNode; } }
-		public override string Label { get { return "RootContainsCrowd"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsCrowdian : Rel<Root, Contains, Crowdian>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Crowdian ToCrowdian { get { return ToNode; } }
-		public override string Label { get { return "RootContainsCrowdian"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsCrowdianType : Rel<Root, Contains, CrowdianType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual CrowdianType ToCrowdianType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsCrowdianType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsCrowdianTypeAssign : Rel<Root, Contains, CrowdianTypeAssign>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "RootContainsCrowdianTypeAssign"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class RootContainsEmail : Rel<Root, Contains, Email>, IItemWithId {
 			
 		public virtual Root FromRoot { get { return FromNode; } }
 		public virtual Email ToEmail { get { return ToNode; } }
 		public override string Label { get { return "RootContainsEmail"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsLabel : Rel<Root, Contains, Label>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Label ToLabel { get { return ToNode; } }
-		public override string Label { get { return "RootContainsLabel"; } }
 
 	}
 
@@ -485,15 +422,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class AppHasArtifact : Rel<App, Has, Artifact>, IItemWithId {
-			
-		public virtual App FromApp { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "AppHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class AppUsesEmail : Rel<App, Uses, Email>, IItemWithId {
 			
 		public virtual App FromApp { get { return FromNode; } }
@@ -508,87 +436,6 @@ namespace Fabric.Domain {
 		public virtual App FromApp { get { return FromNode; } }
 		public virtual Member ToMember { get { return ToNode; } }
 		public override string Label { get { return "AppDefinesMember"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class ArtifactUsesArtifactType : Rel<Artifact, Uses, ArtifactType>, IItemWithId {
-			
-		public virtual Artifact FromArtifact { get { return FromNode; } }
-		public virtual ArtifactType ToArtifactType { get { return ToNode; } }
-		public override string Label { get { return "ArtifactUsesArtifactType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class ClassHasArtifact : Rel<Class, Has, Artifact>, IItemWithId {
-			
-		public virtual Class FromClass { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "ClassHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdHasArtifact : Rel<Crowd, Has, Artifact>, IItemWithId {
-			
-		public virtual Crowd FromCrowd { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "CrowdHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdDefinesCrowdian : Rel<Crowd, Defines, Crowdian>, IItemWithId {
-			
-		public virtual Crowd FromCrowd { get { return FromNode; } }
-		public virtual Crowdian ToCrowdian { get { return ToNode; } }
-		public override string Label { get { return "CrowdDefinesCrowdian"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianHasCrowdianTypeAssign : Rel<Crowdian, Has, CrowdianTypeAssign>, IItemWithId {
-			
-		public virtual Crowdian FromCrowdian { get { return FromNode; } }
-		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "CrowdianHasCrowdianTypeAssign"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianHasHistoricCrowdianTypeAssign : Rel<Crowdian, HasHistoric, CrowdianTypeAssign>, IItemWithId {
-			
-		public virtual Crowdian FromCrowdian { get { return FromNode; } }
-		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "CrowdianHasHistoricCrowdianTypeAssign"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianTypeAssignUsesCrowdianType : Rel<CrowdianTypeAssign, Uses, CrowdianType>, IItemWithId {
-			
-		public virtual CrowdianTypeAssign FromCrowdianTypeAssign { get { return FromNode; } }
-		public virtual CrowdianType ToCrowdianType { get { return ToNode; } }
-		public override string Label { get { return "CrowdianTypeAssignUsesCrowdianType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class InstanceHasArtifact : Rel<Instance, Has, Artifact>, IItemWithId {
-			
-		public virtual Instance FromInstance { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "InstanceHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class LabelHasArtifact : Rel<Label, Has, Artifact>, IItemWithId {
-			
-		public virtual Label FromLabel { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "LabelHasArtifact"; } }
 
 	}
 
@@ -643,42 +490,6 @@ namespace Fabric.Domain {
 		public virtual MemberTypeAssign FromMemberTypeAssign { get { return FromNode; } }
 		public virtual MemberType ToMemberType { get { return ToNode; } }
 		public override string Label { get { return "MemberTypeAssignUsesMemberType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class UrlHasArtifact : Rel<Url, Has, Artifact>, IItemWithId {
-			
-		public virtual Url FromUrl { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "UrlHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class UserHasArtifact : Rel<User, Has, Artifact>, IItemWithId {
-			
-		public virtual User FromUser { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "UserHasArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class UserCreatesCrowdianTypeAssign : Rel<User, Creates, CrowdianTypeAssign>, IItemWithId {
-			
-		public virtual User FromUser { get { return FromNode; } }
-		public virtual CrowdianTypeAssign ToCrowdianTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "UserCreatesCrowdianTypeAssign"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class UserDefinesCrowdian : Rel<User, Defines, Crowdian>, IItemWithId {
-			
-		public virtual User FromUser { get { return FromNode; } }
-		public virtual Crowdian ToCrowdian { get { return ToNode; } }
-		public override string Label { get { return "UserDefinesCrowdian"; } }
 
 	}
 
@@ -1069,11 +880,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public abstract class ArtifactOwnerNode : Node {
-	
-	}
-
-	/*================================================================================================*/
 	public class Root : Node {
 	
 		[WeaverItemProperty]
@@ -1104,48 +910,13 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsArtifact ContainsArtifactList {
-			get { return NewRel<RootContainsArtifact>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsArtifactType ContainsArtifactTypeList {
-			get { return NewRel<RootContainsArtifactType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsClass ContainsClassList {
 			get { return NewRel<RootContainsClass>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowd ContainsCrowdList {
-			get { return NewRel<RootContainsCrowd>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdian ContainsCrowdianList {
-			get { return NewRel<RootContainsCrowdian>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdianType ContainsCrowdianTypeList {
-			get { return NewRel<RootContainsCrowdianType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdianTypeAssign ContainsCrowdianTypeAssignList {
-			get { return NewRel<RootContainsCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsEmail ContainsEmailList {
 			get { return NewRel<RootContainsEmail>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLabel ContainsLabelList {
-			get { return NewRel<RootContainsLabel>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1306,7 +1077,68 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class App : ArtifactOwnerNode {
+	public class Artifact : Node {
+	
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual long ArtifactId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsTimestamp(True)]
+		public virtual long Created { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override long GetTypeId() { return ArtifactId; }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+			return (x => (x as Artifact).ArtifactId);
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual MemberCreatesArtifact InMemberCreates {
+			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual FactorUsesPrimaryArtifact InFactorListUsesPrimary {
+			get { return NewRel<FactorUsesPrimaryArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual FactorUsesRelatedArtifact InFactorListUsesRelated {
+			get { return NewRel<FactorUsesRelatedArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual DescriptorRefinesPrimaryWithArtifact InDescriptorListRefinesPrimaryWith {
+			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual DescriptorRefinesRelatedWithArtifact InDescriptorListRefinesRelatedWith {
+			get { return NewRel<DescriptorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual DescriptorRefinesTypeWithArtifact InDescriptorListRefinesTypeWith {
+			get { return NewRel<DescriptorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual VectorUsesAxisArtifact InVectorListUsesAxis {
+			get { return NewRel<VectorUsesAxisArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class App : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1345,11 +1177,6 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual AppHasArtifact HasArtifact {
-			get { return NewRel<AppHasArtifact>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail UsesEmail {
 			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToOne); }
 		}
@@ -1382,148 +1209,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Artifact : Node {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long ArtifactId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual bool IsPrivate { get; set; }
-
-		[WeaverItemProperty]
-		//[PropIsTimestamp(True)]
-		public virtual long Created { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return ArtifactId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Artifact).ArtifactId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsArtifact InRootContains {
-			get { return NewRel<RootContainsArtifact>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual AppHasArtifact InAppHas {
-			get { return NewRel<AppHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual ArtifactUsesArtifactType UsesArtifactType {
-			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual ClassHasArtifact InClassHas {
-			get { return NewRel<ClassHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdHasArtifact InCrowdHas {
-			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual InstanceHasArtifact InInstanceHas {
-			get { return NewRel<InstanceHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual LabelHasArtifact InLabelHas {
-			get { return NewRel<LabelHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberCreatesArtifact InMemberCreates {
-			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UrlHasArtifact InUrlHas {
-			get { return NewRel<UrlHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserHasArtifact InUserHas {
-			get { return NewRel<UserHasArtifact>(WeaverRelConn.InFromZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesPrimaryArtifact InFactorListUsesPrimary {
-			get { return NewRel<FactorUsesPrimaryArtifact>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesRelatedArtifact InFactorListUsesRelated {
-			get { return NewRel<FactorUsesRelatedArtifact>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesPrimaryWithArtifact InDescriptorListRefinesPrimaryWith {
-			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesRelatedWithArtifact InDescriptorListRefinesRelatedWith {
-			get { return NewRel<DescriptorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorRefinesTypeWithArtifact InDescriptorListRefinesTypeWith {
-			get { return NewRel<DescriptorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesAxisArtifact InVectorListUsesAxis {
-			get { return NewRel<VectorUsesAxisArtifact>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class ArtifactType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long ArtifactTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return ArtifactTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as ArtifactType).ArtifactTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsArtifactType InRootContains {
-			get { return NewRel<RootContainsArtifactType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual ArtifactUsesArtifactType InArtifactListUses {
-			get { return NewRel<ArtifactUsesArtifactType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class Class : ArtifactOwnerNode {
+	public class Class : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1561,192 +1247,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsClass InRootContains {
 			get { return NewRel<RootContainsClass>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual ClassHasArtifact HasArtifact {
-			get { return NewRel<ClassHasArtifact>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class Crowd : ArtifactOwnerNode {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long CrowdId { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(64)]
-		//[PropLenMin(3)]
-		public virtual string Name { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(256)]
-		public virtual string Description { get; set; }
-
-		[WeaverItemProperty]
-		public virtual bool IsPrivate { get; set; }
-
-		[WeaverItemProperty]
-		public virtual bool IsInviteOnly { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return CrowdId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Crowd).CrowdId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowd InRootContains {
-			get { return NewRel<RootContainsCrowd>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdHasArtifact HasArtifact {
-			get { return NewRel<CrowdHasArtifact>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdDefinesCrowdian DefinesCrowdianList {
-			get { return NewRel<CrowdDefinesCrowdian>(WeaverRelConn.OutToOneOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class Crowdian : Node {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long CrowdianId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return CrowdianId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Crowdian).CrowdianId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdian InRootContains {
-			get { return NewRel<RootContainsCrowdian>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdDefinesCrowdian InCrowdDefines {
-			get { return NewRel<CrowdDefinesCrowdian>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianHasCrowdianTypeAssign HasCrowdianTypeAssign {
-			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianHasHistoricCrowdianTypeAssign HasHistoricCrowdianTypeAssignList {
-			get { return NewRel<CrowdianHasHistoricCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserDefinesCrowdian InUserDefines {
-			get { return NewRel<UserDefinesCrowdian>(WeaverRelConn.InFromOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long CrowdianTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return CrowdianTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as CrowdianType).CrowdianTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdianType InRootContains {
-			get { return NewRel<RootContainsCrowdianType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianTypeAssignUsesCrowdianType InCrowdianTypeAssignListUses {
-			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianTypeAssign : NodeForAction {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long CrowdianTypeAssignId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual float Weight { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return CrowdianTypeAssignId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as CrowdianTypeAssign).CrowdianTypeAssignId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsCrowdianTypeAssign InRootContains {
-			get { return NewRel<RootContainsCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianHasCrowdianTypeAssign InCrowdianHas {
-			get { return NewRel<CrowdianHasCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianHasHistoricCrowdianTypeAssign InCrowdianHasHistoric {
-			get { return NewRel<CrowdianHasHistoricCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual CrowdianTypeAssignUsesCrowdianType UsesCrowdianType {
-			get { return NewRel<CrowdianTypeAssignUsesCrowdianType>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserCreatesCrowdianTypeAssign InUserCreates {
-			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.InFromOne); }
 		}
 
 	}
@@ -1809,7 +1309,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Instance : ArtifactOwnerNode {
+	public class Instance : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1848,51 +1348,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsInstance InRootContains {
 			get { return NewRel<RootContainsInstance>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual InstanceHasArtifact HasArtifact {
-			get { return NewRel<InstanceHasArtifact>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class Label : ArtifactOwnerNode {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long LabelId { get; set; }
-
-		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public virtual string Name { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return LabelId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Label).LabelId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLabel InRootContains {
-			get { return NewRel<RootContainsLabel>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual LabelHasArtifact HasArtifact {
-			get { return NewRel<LabelHasArtifact>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -2039,7 +1494,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Url : ArtifactOwnerNode {
+	public class Url : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2073,15 +1528,10 @@ namespace Fabric.Domain {
 			get { return NewRel<RootContainsUrl>(WeaverRelConn.InFromOne); }
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UrlHasArtifact HasArtifact {
-			get { return NewRel<UrlHasArtifact>(WeaverRelConn.OutToOne); }
-		}
-
 	}
 
 	/*================================================================================================*/
-	public class User : ArtifactOwnerNode {
+	public class User : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -2118,21 +1568,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual RootContainsUser InRootContains {
 			get { return NewRel<RootContainsUser>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserHasArtifact HasArtifact {
-			get { return NewRel<UserHasArtifact>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserCreatesCrowdianTypeAssign CreatesCrowdianTypeAssignList {
-			get { return NewRel<UserCreatesCrowdianTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual UserDefinesCrowdian DefinesCrowdianList {
-			get { return NewRel<UserDefinesCrowdian>(WeaverRelConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -7,7 +7,6 @@ using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiModify {
@@ -45,6 +44,7 @@ namespace Fabric.Test.FabApiModify {
 						vDisamb,
 						vNote,
 						It.IsAny<IWeaverVarAlias<Root>>(),
+						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutClassVar
 					)
 				);
@@ -69,14 +69,12 @@ namespace Fabric.Test.FabApiModify {
 
 			string expectPartial = 
 				"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
-				"g.V('"+typeof(ArtifactType).Name+"Id',_TP1)[0].each{_V1=g.v(it)};"+
-				"_V2=g.v(_TP2);"+
+				"_V1=g.v(_TP1);"+
 				"CLASS;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
 			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
-			TestUtil.CheckParam(pTx.Params, "_TP1", (long)ArtifactTypeId.Class);
-			TestUtil.CheckParam(pTx.Params, "_TP2", vResultMember.Id);
+			TestUtil.CheckParam(pTx.Params, "_TP1", vResultMember.Id);
 			return vResultClass;
 		}
 
@@ -98,21 +96,6 @@ namespace Fabric.Test.FabApiModify {
 			MockValidator.Verify(x => x.ClassName(vName, CreateClass.NameParam), Times.Once());
 			MockValidator.Verify(x => x.ClassDisamb(vDisamb, CreateClass.DisambParam), Times.Once());
 			MockValidator.Verify(x => x.ClassNote(vNote, CreateClass.NoteParam), Times.Once());
-
-			IWeaverVarAlias<Artifact> artVar;
-
-			MockTasks
-				.Verify(x => x.TxAddArtifact<Class, ClassHasArtifact>(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						It.IsAny<IWeaverVarAlias<ArtifactType>>(),
-						vOutClassVar,
-						It.IsAny<IWeaverVarAlias<Member>>(),
-						out artVar
-					),
-					Times.Once()
-				);
 		}
 
 

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/19/2013 2:14:14 PM
+// Generated on 4/2/2013 1:27:06 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -17,9 +17,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public static IFabNode ToDto(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
 				case "Root": return ToDto<FabRoot>(pDbDto);
-				case "App": return ToDto<FabApp>(pDbDto);
 				case "Artifact": return ToDto<FabArtifact>(pDbDto);
-				case "ArtifactType": return ToDto<FabArtifactType>(pDbDto);
+				case "App": return ToDto<FabApp>(pDbDto);
 				case "Class": return ToDto<FabClass>(pDbDto);
 				case "Instance": return ToDto<FabInstance>(pDbDto);
 				case "Member": return ToDto<FabMember>(pDbDto);
@@ -56,9 +55,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public static string ToDtoJson(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
 				case "Root": return ToDtoJson<FabRoot>(pDbDto);
-				case "App": return ToDtoJson<FabApp>(pDbDto);
 				case "Artifact": return ToDtoJson<FabArtifact>(pDbDto);
-				case "ArtifactType": return ToDtoJson<FabArtifactType>(pDbDto);
+				case "App": return ToDtoJson<FabApp>(pDbDto);
 				case "Class": return ToDtoJson<FabClass>(pDbDto);
 				case "Instance": return ToDtoJson<FabInstance>(pDbDto);
 				case "Member": return ToDtoJson<FabMember>(pDbDto);

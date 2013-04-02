@@ -98,7 +98,6 @@
     <Compile Include="FabApiModify\TBaseModifyFunc.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddDataProvMember.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddApp.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddArtifact.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddMember.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddUser.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddEmail.cs" />
@@ -193,6 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Util\StepUtil.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

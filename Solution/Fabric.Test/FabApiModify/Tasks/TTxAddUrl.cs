@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -11,16 +12,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
-			"_V1=g.addVertex(["+
+			"_V1=[];"+ //Member
+			"_V2=g.addVertex(["+
 				typeof(Url).Name+"Id:_TP0,"+
 				"Name:_TP1,"+
-				"AbsoluteUrl:_TP2"+
+				"AbsoluteUrl:_TP2,"+
+				"ArtifactId:_TP3,"+
+				"Created:_TP4"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);";
+			"g.addEdge(_V0,_V2,_TP5);"+
+			"g.addEdge(_V1,_V2,_TP6);";
 
 		private string vAbsoluteUrl;
 		private string vName;
 		private long vNewUrlId;
+		private long vNewArtifactId;
+		private DateTime vUtcNow;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,8 +36,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vAbsoluteUrl = "http://www.mywebsite.com";
 			vName = "My Web Site";
 			vNewUrlId = 79875647;
+			vNewArtifactId = 27357427;
+			vUtcNow = DateTime.UtcNow;
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<Url>()).Returns(vNewUrlId);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtifactId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 		}
 
 
@@ -39,19 +50,23 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[Test]
 		public void BuildTx() {
 			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
+			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
 			IWeaverVarAlias<Url> urlVar;
 
-			Tasks.TxAddUrl(MockApiCtx.Object, TxBuild, vAbsoluteUrl, vName, rootVar, out urlVar);
+			Tasks.TxAddUrl(MockApiCtx.Object, TxBuild, vAbsoluteUrl, vName, rootVar, memVar,out urlVar);
 			FinishTx();
 
 			Assert.NotNull(urlVar, "UrlVar should not be null.");
-			Assert.AreEqual("_V1", urlVar.Name, "Incorrect UrlVar name.");
+			Assert.AreEqual("_V2", urlVar.Name, "Incorrect UrlVar name.");
 
 			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewUrlId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vAbsoluteUrl);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsUrl).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsUrl).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(MemberCreatesArtifact).Name);
 		}
 
 	}

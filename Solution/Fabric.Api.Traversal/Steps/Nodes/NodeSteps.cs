@@ -1,557 +1,19 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/19/2013 2:14:14 PM
+// Generated on 4/2/2013 1:27:07 PM
 
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
-using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 	/*================================================================================================*/
-	public interface IContainsAppList {
-		AppStep ContainsAppList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsArtifactList {
-		ArtifactStep ContainsArtifactList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsArtifactTypeList {
-		ArtifactTypeStep ContainsArtifactTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsClassList {
-		ClassStep ContainsClassList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsInstanceList {
-		InstanceStep ContainsInstanceList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsMemberList {
-		MemberStep ContainsMemberList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsMemberTypeList {
-		MemberTypeStep ContainsMemberTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsMemberTypeAssignList {
-		MemberTypeAssignStep ContainsMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsUrlList {
-		UrlStep ContainsUrlList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsUserList {
-		UserStep ContainsUserList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsFactorList {
-		FactorStep ContainsFactorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsFactorAssertionList {
-		FactorAssertionStep ContainsFactorAssertionList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDescriptorList {
-		DescriptorStep ContainsDescriptorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDescriptorTypeList {
-		DescriptorTypeStep ContainsDescriptorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDirectorList {
-		DirectorStep ContainsDirectorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDirectorTypeList {
-		DirectorTypeStep ContainsDirectorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDirectorActionList {
-		DirectorActionStep ContainsDirectorActionList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEventorList {
-		EventorStep ContainsEventorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEventorTypeList {
-		EventorTypeStep ContainsEventorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEventorPrecisionList {
-		EventorPrecisionStep ContainsEventorPrecisionList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsIdentorList {
-		IdentorStep ContainsIdentorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsIdentorTypeList {
-		IdentorTypeStep ContainsIdentorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsLocatorList {
-		LocatorStep ContainsLocatorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsLocatorTypeList {
-		LocatorTypeStep ContainsLocatorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorList {
-		VectorStep ContainsVectorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorTypeList {
-		VectorTypeStep ContainsVectorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorRangeList {
-		VectorRangeStep ContainsVectorRangeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorRangeLevelList {
-		VectorRangeLevelStep ContainsVectorRangeLevelList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorUnitList {
-		VectorUnitStep ContainsVectorUnitList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorUnitPrefixList {
-		VectorUnitPrefixStep ContainsVectorUnitPrefixList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorUnitDerivedList {
-		VectorUnitDerivedStep ContainsVectorUnitDerivedList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInRootContains {
-		RootStep InRootContains { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasArtifact {
-		ArtifactStep HasArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IDefinesMemberList {
-		MemberStep DefinesMemberList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInAppHas {
-		AppStep InAppHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesArtifactType {
-		ArtifactTypeStep UsesArtifactType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInClassHas {
-		ClassStep InClassHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInInstanceHas {
-		InstanceStep InInstanceHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberCreates {
-		MemberStep InMemberCreates { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInUrlHas {
-		UrlStep InUrlHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInUserHas {
-		UserStep InUserHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInFactorListUsesPrimary {
-		FactorStep InFactorListUsesPrimary { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInFactorListUsesRelated {
-		FactorStep InFactorListUsesRelated { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDescriptorListRefinesPrimaryWith {
-		DescriptorStep InDescriptorListRefinesPrimaryWith { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDescriptorListRefinesRelatedWith {
-		DescriptorStep InDescriptorListRefinesRelatedWith { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDescriptorListRefinesTypeWith {
-		DescriptorStep InDescriptorListRefinesTypeWith { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorListUsesAxis {
-		VectorStep InVectorListUsesAxis { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInArtifactListUses {
-		ArtifactStep InArtifactListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInUserDefines {
-		UserStep InUserDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInUserCreates {
-		UserStep InUserCreates { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInAppUses {
-		AppStep InAppUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInUserUses {
-		UserStep InUserUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInAppDefines {
-		AppStep InAppDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasMemberTypeAssign {
-		MemberTypeAssignStep HasMemberTypeAssign { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IHasHistoricMemberTypeAssignList {
-		MemberTypeAssignStep HasHistoricMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesArtifactList {
-		ArtifactStep CreatesArtifactList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesMemberTypeAssignList {
-		MemberTypeAssignStep CreatesMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface ICreatesFactorList {
-		FactorStep CreatesFactorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberTypeAssignListUses {
-		MemberTypeAssignStep InMemberTypeAssignListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberHas {
-		MemberStep InMemberHas { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInMemberHasHistoric {
-		MemberStep InMemberHasHistoric { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesMemberType {
-		MemberTypeStep UsesMemberType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesPrimaryArtifact {
-		ArtifactStep UsesPrimaryArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesRelatedArtifact {
-		ArtifactStep UsesRelatedArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesFactorAssertion {
-		FactorAssertionStep UsesFactorAssertion { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IReplacesFactor {
-		FactorStep ReplacesFactor { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesDescriptor {
-		DescriptorStep UsesDescriptor { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesDirector {
-		DirectorStep UsesDirector { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesEventor {
-		EventorStep UsesEventor { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesIdentor {
-		IdentorStep UsesIdentor { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesLocator {
-		LocatorStep UsesLocator { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVector {
-		VectorStep UsesVector { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInFactorListUses {
-		FactorStep InFactorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesDescriptorType {
-		DescriptorTypeStep UsesDescriptorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IRefinesPrimaryWithArtifact {
-		ArtifactStep RefinesPrimaryWithArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IRefinesRelatedWithArtifact {
-		ArtifactStep RefinesRelatedWithArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IRefinesTypeWithArtifact {
-		ArtifactStep RefinesTypeWithArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDescriptorListUses {
-		DescriptorStep InDescriptorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesDirectorType {
-		DirectorTypeStep UsesDirectorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesPrimaryDirectorAction {
-		DirectorActionStep UsesPrimaryDirectorAction { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesRelatedDirectorAction {
-		DirectorActionStep UsesRelatedDirectorAction { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorListUses {
-		DirectorStep InDirectorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorListUsesPrimary {
-		DirectorStep InDirectorListUsesPrimary { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorListUsesRelated {
-		DirectorStep InDirectorListUsesRelated { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesEventorType {
-		EventorTypeStep UsesEventorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesEventorPrecision {
-		EventorPrecisionStep UsesEventorPrecision { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInEventorListUses {
-		EventorStep InEventorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesIdentorType {
-		IdentorTypeStep UsesIdentorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInIdentorListUses {
-		IdentorStep InIdentorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesLocatorType {
-		LocatorTypeStep UsesLocatorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInLocatorListUses {
-		LocatorStep InLocatorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesAxisArtifact {
-		ArtifactStep UsesAxisArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorType {
-		VectorTypeStep UsesVectorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorUnit {
-		VectorUnitStep UsesVectorUnit { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorUnitPrefix {
-		VectorUnitPrefixStep UsesVectorUnitPrefix { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorListUses {
-		VectorStep InVectorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorRange {
-		VectorRangeStep UsesVectorRange { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorTypeListUses {
-		VectorTypeStep InVectorTypeListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorRangeLevelList {
-		VectorRangeLevelStep UsesVectorRangeLevelList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorRangeListUses {
-		VectorRangeStep InVectorRangeListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedListDefines {
-		VectorUnitDerivedStep InVectorUnitDerivedListDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedListRaisesToExp {
-		VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedListUses {
-		VectorUnitDerivedStep InVectorUnitDerivedListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IDefinesVectorUnit {
-		VectorUnitStep DefinesVectorUnit { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IRaisesToExpVectorUnit {
-		VectorUnitStep RaisesToExpVectorUnit { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesApp {
-		AppStep UsesApp { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesUser {
-		UserStep UsesUser { get; }
-	}
-
-	/*================================================================================================*/
-	public partial class RootStep : NodeStep<FabRoot>, IFinalStep, IContainsAppList, IContainsArtifactList, IContainsArtifactTypeList, IContainsClassList, IContainsInstanceList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
+	public partial class RootStep : NodeStep<FabRoot>, IRootStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Contains", "App", true, "/ContainsAppList"),
-			new StepLink("Contains", "Artifact", true, "/ContainsArtifactList"),
-			new StepLink("Contains", "ArtifactType", true, "/ContainsArtifactTypeList"),
 			new StepLink("Contains", "Class", true, "/ContainsClassList"),
 			new StepLink("Contains", "Instance", true, "/ContainsInstanceList"),
 			new StepLink("Contains", "Member", true, "/ContainsMemberList"),
@@ -587,14 +49,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public RootStep(IPath pPath) : base(pPath) {
 			if ( Path.GetSegmentCount() == 0 ) {
-				string script = "g";
-
-				if ( Path.StartAtRoot ) {
-					string idVal = Path.AddParam(new WeaverQueryVal(0));
-					script += ".V('RootId',"+idVal+")[0]";
-				}
-
-				Path.AddSegment(this, script);
+				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
 			}
 
 			ConstructorHook();
@@ -621,8 +76,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 				case "containsapplist": return ContainsAppList;
-				case "containsartifactlist": return ContainsArtifactList;
-				case "containsartifacttypelist": return ContainsArtifactTypeList;
 				case "containsclasslist": return ContainsClassList;
 				case "containsinstancelist": return ContainsInstanceList;
 				case "containsmemberlist": return ContainsMemberList;
@@ -659,7 +112,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppStep ContainsAppList {
+		public IAppStep ContainsAppList {
 			get {
 				var step = new AppStep(Path);
 				Path.AddSegment(step, "outE('RootContainsApp').inV");
@@ -668,25 +121,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep ContainsArtifactList {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('RootContainsArtifact').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeStep ContainsArtifactTypeList {
-			get {
-				var step = new ArtifactTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsArtifactType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ClassStep ContainsClassList {
+		public IClassStep ContainsClassList {
 			get {
 				var step = new ClassStep(Path);
 				Path.AddSegment(step, "outE('RootContainsClass').inV");
@@ -695,7 +130,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public InstanceStep ContainsInstanceList {
+		public IInstanceStep ContainsInstanceList {
 			get {
 				var step = new InstanceStep(Path);
 				Path.AddSegment(step, "outE('RootContainsInstance').inV");
@@ -704,7 +139,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep ContainsMemberList {
+		public IMemberStep ContainsMemberList {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "outE('RootContainsMember').inV");
@@ -713,7 +148,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeStep ContainsMemberTypeList {
+		public IMemberTypeStep ContainsMemberTypeList {
 			get {
 				var step = new MemberTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsMemberType').inV");
@@ -722,7 +157,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep ContainsMemberTypeAssignList {
+		public IMemberTypeAssignStep ContainsMemberTypeAssignList {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				Path.AddSegment(step, "outE('RootContainsMemberTypeAssign').inV");
@@ -731,7 +166,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlStep ContainsUrlList {
+		public IUrlStep ContainsUrlList {
 			get {
 				var step = new UrlStep(Path);
 				Path.AddSegment(step, "outE('RootContainsUrl').inV");
@@ -740,7 +175,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserStep ContainsUserList {
+		public IUserStep ContainsUserList {
 			get {
 				var step = new UserStep(Path);
 				Path.AddSegment(step, "outE('RootContainsUser').inV");
@@ -749,7 +184,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep ContainsFactorList {
+		public IFactorStep ContainsFactorList {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsFactor').inV");
@@ -758,7 +193,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionStep ContainsFactorAssertionList {
+		public IFactorAssertionStep ContainsFactorAssertionList {
 			get {
 				var step = new FactorAssertionStep(Path);
 				Path.AddSegment(step, "outE('RootContainsFactorAssertion').inV");
@@ -767,7 +202,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep ContainsDescriptorList {
+		public IDescriptorStep ContainsDescriptorList {
 			get {
 				var step = new DescriptorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsDescriptor').inV");
@@ -776,7 +211,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypeStep ContainsDescriptorTypeList {
+		public IDescriptorTypeStep ContainsDescriptorTypeList {
 			get {
 				var step = new DescriptorTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsDescriptorType').inV");
@@ -785,7 +220,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep ContainsDirectorList {
+		public IDirectorStep ContainsDirectorList {
 			get {
 				var step = new DirectorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsDirector').inV");
@@ -794,7 +229,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypeStep ContainsDirectorTypeList {
+		public IDirectorTypeStep ContainsDirectorTypeList {
 			get {
 				var step = new DirectorTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsDirectorType').inV");
@@ -803,7 +238,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionStep ContainsDirectorActionList {
+		public IDirectorActionStep ContainsDirectorActionList {
 			get {
 				var step = new DirectorActionStep(Path);
 				Path.AddSegment(step, "outE('RootContainsDirectorAction').inV");
@@ -812,7 +247,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep ContainsEventorList {
+		public IEventorStep ContainsEventorList {
 			get {
 				var step = new EventorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsEventor').inV");
@@ -821,7 +256,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypeStep ContainsEventorTypeList {
+		public IEventorTypeStep ContainsEventorTypeList {
 			get {
 				var step = new EventorTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsEventorType').inV");
@@ -830,7 +265,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionStep ContainsEventorPrecisionList {
+		public IEventorPrecisionStep ContainsEventorPrecisionList {
 			get {
 				var step = new EventorPrecisionStep(Path);
 				Path.AddSegment(step, "outE('RootContainsEventorPrecision').inV");
@@ -839,7 +274,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep ContainsIdentorList {
+		public IIdentorStep ContainsIdentorList {
 			get {
 				var step = new IdentorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsIdentor').inV");
@@ -848,7 +283,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypeStep ContainsIdentorTypeList {
+		public IIdentorTypeStep ContainsIdentorTypeList {
 			get {
 				var step = new IdentorTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsIdentorType').inV");
@@ -857,7 +292,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep ContainsLocatorList {
+		public ILocatorStep ContainsLocatorList {
 			get {
 				var step = new LocatorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsLocator').inV");
@@ -866,7 +301,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypeStep ContainsLocatorTypeList {
+		public ILocatorTypeStep ContainsLocatorTypeList {
 			get {
 				var step = new LocatorTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsLocatorType').inV");
@@ -875,7 +310,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep ContainsVectorList {
+		public IVectorStep ContainsVectorList {
 			get {
 				var step = new VectorStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVector').inV");
@@ -884,7 +319,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeStep ContainsVectorTypeList {
+		public IVectorTypeStep ContainsVectorTypeList {
 			get {
 				var step = new VectorTypeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVectorType').inV");
@@ -893,7 +328,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeStep ContainsVectorRangeList {
+		public IVectorRangeStep ContainsVectorRangeList {
 			get {
 				var step = new VectorRangeStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVectorRange').inV");
@@ -902,7 +337,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelStep ContainsVectorRangeLevelList {
+		public IVectorRangeLevelStep ContainsVectorRangeLevelList {
 			get {
 				var step = new VectorRangeLevelStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVectorRangeLevel').inV");
@@ -911,7 +346,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep ContainsVectorUnitList {
+		public IVectorUnitStep ContainsVectorUnitList {
 			get {
 				var step = new VectorUnitStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVectorUnit').inV");
@@ -920,7 +355,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixStep ContainsVectorUnitPrefixList {
+		public IVectorUnitPrefixStep ContainsVectorUnitPrefixList {
 			get {
 				var step = new VectorUnitPrefixStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVectorUnitPrefix').inV");
@@ -929,7 +364,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep ContainsVectorUnitDerivedList {
+		public IVectorUnitDerivedStep ContainsVectorUnitDerivedList {
 			get {
 				var step = new VectorUnitDerivedStep(Path);
 				Path.AddSegment(step, "outE('RootContainsVectorUnitDerived').inV");
@@ -940,84 +375,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class AppStep : NodeStep<FabApp>, IInRootContains, IHasArtifact, IDefinesMemberList {
+	public partial class ArtifactStep : NodeStep<FabArtifact>, IArtifactStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
-			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "AppId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
-				case "definesmemberlist": return DefinesMemberList;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsApp').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('AppHasArtifact').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep DefinesMemberList {
-			get {
-				var step = new MemberStep(Path);
-				Path.AddSegment(step, "outE('AppDefinesMember').inV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class ArtifactStep : NodeStep<FabArtifact>, IInRootContains, IInAppHas, IUsesArtifactType, IInClassHas, IInInstanceHas, IInMemberCreates, IInUrlHas, IInUserHas, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "App", false, "/InAppHas"),
-			new StepLink("Uses", "ArtifactType", true, "/UsesArtifactType"),
-			new StepLink("Has", "Class", false, "/InClassHas"),
-			new StepLink("Has", "Instance", false, "/InInstanceHas"),
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
-			new StepLink("Has", "Url", false, "/InUrlHas"),
-			new StepLink("Has", "User", false, "/InUserHas"),
 			new StepLink("UsesPrimary", "Factor", false, "/InFactorListUsesPrimary"),
 			new StepLink("UsesRelated", "Factor", false, "/InFactorListUsesRelated"),
 			new StepLink("RefinesPrimaryWith", "Descriptor", false, "/InDescriptorListRefinesPrimaryWith"),
@@ -1048,13 +409,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "inapphas": return InAppHas;
-				case "usesartifacttype": return UsesArtifactType;
-				case "inclasshas": return InClassHas;
-				case "ininstancehas": return InInstanceHas;
 				case "inmembercreates": return InMemberCreates;
-				case "inurlhas": return InUrlHas;
-				case "inuserhas": return InUserHas;
 				case "infactorlistusesprimary": return InFactorListUsesPrimary;
 				case "infactorlistusesrelated": return InFactorListUsesRelated;
 				case "indescriptorlistrefinesprimarywith": return InDescriptorListRefinesPrimaryWith;
@@ -1069,52 +424,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public AppStep InAppHas {
-			get {
-				var step = new AppStep(Path);
-				Path.AddSegment(step, "inE('AppHasArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeStep UsesArtifactType {
-			get {
-				var step = new ArtifactTypeStep(Path);
-				Path.AddSegment(step, "outE('ArtifactUsesArtifactType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ClassStep InClassHas {
-			get {
-				var step = new ClassStep(Path);
-				Path.AddSegment(step, "inE('ClassHasArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public InstanceStep InInstanceHas {
-			get {
-				var step = new InstanceStep(Path);
-				Path.AddSegment(step, "inE('InstanceHasArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberCreates {
+		public IMemberStep InMemberCreates {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "inE('MemberCreatesArtifact').outV");
@@ -1123,25 +433,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlStep InUrlHas {
-			get {
-				var step = new UrlStep(Path);
-				Path.AddSegment(step, "inE('UrlHasArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public UserStep InUserHas {
-			get {
-				var step = new UserStep(Path);
-				Path.AddSegment(step, "inE('UserHasArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUsesPrimary {
+		public IFactorStep InFactorListUsesPrimary {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesPrimaryArtifact').outV");
@@ -1150,7 +442,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUsesRelated {
+		public IFactorStep InFactorListUsesRelated {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesRelatedArtifact').outV");
@@ -1159,7 +451,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep InDescriptorListRefinesPrimaryWith {
+		public IDescriptorStep InDescriptorListRefinesPrimaryWith {
 			get {
 				var step = new DescriptorStep(Path);
 				Path.AddSegment(step, "inE('DescriptorRefinesPrimaryWithArtifact').outV");
@@ -1168,7 +460,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep InDescriptorListRefinesRelatedWith {
+		public IDescriptorStep InDescriptorListRefinesRelatedWith {
 			get {
 				var step = new DescriptorStep(Path);
 				Path.AddSegment(step, "inE('DescriptorRefinesRelatedWithArtifact').outV");
@@ -1177,7 +469,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep InDescriptorListRefinesTypeWith {
+		public IDescriptorStep InDescriptorListRefinesTypeWith {
 			get {
 				var step = new DescriptorStep(Path);
 				Path.AddSegment(step, "inE('DescriptorRefinesTypeWithArtifact').outV");
@@ -1186,7 +478,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep InVectorListUsesAxis {
+		public IVectorStep InVectorListUsesAxis {
 			get {
 				var step = new VectorStep(Path);
 				Path.AddSegment(step, "inE('VectorUsesAxisArtifact').outV");
@@ -1197,16 +489,16 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactTypeStep : NodeStep<FabArtifactType>, IInRootContains, IInArtifactListUses {
+	public partial class AppStep : ArtifactStep<FabApp>, IAppStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Artifact", false, "/InArtifactListUses"),
+			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeStep(IPath pPath) : base(pPath) {
+		public AppStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -1214,7 +506,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "ArtifactTypeId"; } }
+		public override string TypeIdName { get { return "AppId"; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1225,7 +517,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "inartifactlistuses": return InArtifactListUses;
+				case "definesmemberlist": return DefinesMemberList;
 			}
 
 			return base.GetLink(pData);
@@ -1234,19 +526,19 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsArtifactType').outV");
+				Path.AddSegment(step, "inE('RootContainsApp').outV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep InArtifactListUses {
+		public IMemberStep DefinesMemberList {
 			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "inE('ArtifactUsesArtifactType').outV");
+				var step = new MemberStep(Path);
+				Path.AddSegment(step, "outE('AppDefinesMember').inV");
 				return step;
 			}
 		}
@@ -1254,10 +546,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ClassStep : NodeStep<FabClass>, IInRootContains, IHasArtifact {
+	public partial class ClassStep : ArtifactStep<FabClass>, IClassStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
 		};
 
 
@@ -1282,7 +573,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
 			}
 
 			return base.GetLink(pData);
@@ -1291,7 +581,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsClass').outV");
@@ -1299,22 +589,12 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('ClassHasArtifact').inV");
-				return step;
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
-	public partial class InstanceStep : NodeStep<FabInstance>, IInRootContains, IHasArtifact {
+	public partial class InstanceStep : ArtifactStep<FabInstance>, IInstanceStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
 		};
 
 
@@ -1339,7 +619,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
 			}
 
 			return base.GetLink(pData);
@@ -1348,7 +627,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsInstance').outV");
@@ -1356,19 +635,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('InstanceHasArtifact').inV");
-				return step;
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
-	public partial class MemberStep : NodeStep<FabMember>, IInRootContains, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
+	public partial class MemberStep : NodeStep<FabMember>, IMemberStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Defines", "App", false, "/InAppDefines"),
@@ -1417,7 +687,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsMember').outV");
@@ -1426,7 +696,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppStep InAppDefines {
+		public IAppStep InAppDefines {
 			get {
 				var step = new AppStep(Path);
 				Path.AddSegment(step, "inE('AppDefinesMember').outV");
@@ -1435,7 +705,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep HasMemberTypeAssign {
+		public IMemberTypeAssignStep HasMemberTypeAssign {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				Path.AddSegment(step, "outE('MemberHasMemberTypeAssign').inV");
@@ -1444,7 +714,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep HasHistoricMemberTypeAssignList {
+		public IMemberTypeAssignStep HasHistoricMemberTypeAssignList {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				Path.AddSegment(step, "outE('MemberHasHistoricMemberTypeAssign').inV");
@@ -1453,7 +723,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep CreatesArtifactList {
+		public IArtifactStep CreatesArtifactList {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('MemberCreatesArtifact').inV");
@@ -1462,7 +732,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep CreatesMemberTypeAssignList {
+		public IMemberTypeAssignStep CreatesMemberTypeAssignList {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				Path.AddSegment(step, "outE('MemberCreatesMemberTypeAssign').inV");
@@ -1471,7 +741,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep CreatesFactorList {
+		public IFactorStep CreatesFactorList {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "outE('MemberCreatesFactor').inV");
@@ -1480,7 +750,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserStep InUserDefines {
+		public IUserStep InUserDefines {
 			get {
 				var step = new UserStep(Path);
 				Path.AddSegment(step, "inE('UserDefinesMember').outV");
@@ -1491,7 +761,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeStep : NodeStep<FabMemberType>, IInRootContains, IInMemberTypeAssignListUses {
+	public partial class MemberTypeStep : NodeForTypeStep<FabMemberType>, IMemberTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "MemberTypeAssign", false, "/InMemberTypeAssignListUses"),
@@ -1528,7 +798,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsMemberType').outV");
@@ -1537,7 +807,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignStep InMemberTypeAssignListUses {
+		public IMemberTypeAssignStep InMemberTypeAssignListUses {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				Path.AddSegment(step, "inE('MemberTypeAssignUsesMemberType').outV");
@@ -1548,7 +818,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssignStep : NodeStep<FabMemberTypeAssign>, IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
+	public partial class MemberTypeAssignStep : NodeForActionStep<FabMemberTypeAssign>, IMemberTypeAssignStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Has", "Member", false, "/InMemberHas"),
@@ -1591,7 +861,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsMemberTypeAssign').outV");
@@ -1600,7 +870,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberHas {
+		public IMemberStep InMemberHas {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "inE('MemberHasMemberTypeAssign').outV");
@@ -1609,7 +879,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberHasHistoric {
+		public IMemberStep InMemberHasHistoric {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "inE('MemberHasHistoricMemberTypeAssign').outV");
@@ -1618,7 +888,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberCreates {
+		public IMemberStep InMemberCreates {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "inE('MemberCreatesMemberTypeAssign').outV");
@@ -1627,7 +897,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeStep UsesMemberType {
+		public IMemberTypeStep UsesMemberType {
 			get {
 				var step = new MemberTypeStep(Path);
 				Path.AddSegment(step, "outE('MemberTypeAssignUsesMemberType').inV");
@@ -1638,10 +908,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class UrlStep : NodeStep<FabUrl>, IInRootContains, IHasArtifact {
+	public partial class UrlStep : ArtifactStep<FabUrl>, IUrlStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
 		};
 
 
@@ -1666,7 +935,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
 			}
 
 			return base.GetLink(pData);
@@ -1675,7 +943,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsUrl').outV");
@@ -1683,22 +951,12 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('UrlHasArtifact').inV");
-				return step;
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
-	public partial class UserStep : NodeStep<FabUser>, IInRootContains, IHasArtifact, IDefinesMemberList {
+	public partial class UserStep : ArtifactStep<FabUser>, IUserStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Has", "Artifact", true, "/HasArtifact"),
 			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
 
@@ -1724,7 +982,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
-				case "hasartifact": return HasArtifact;
 				case "definesmemberlist": return DefinesMemberList;
 			}
 
@@ -1734,7 +991,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsUser').outV");
@@ -1743,16 +1000,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep HasArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('UserHasArtifact').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep DefinesMemberList {
+		public IMemberStep DefinesMemberList {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "outE('UserDefinesMember').inV");
@@ -1763,7 +1011,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class FactorStep : NodeStep<FabFactor>, IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
+	public partial class FactorStep : NodeStep<FabFactor>, IFactorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
@@ -1820,7 +1068,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsFactor').outV");
@@ -1829,7 +1077,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberStep InMemberCreates {
+		public IMemberStep InMemberCreates {
 			get {
 				var step = new MemberStep(Path);
 				Path.AddSegment(step, "inE('MemberCreatesFactor').outV");
@@ -1838,7 +1086,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep UsesPrimaryArtifact {
+		public IArtifactStep UsesPrimaryArtifact {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesPrimaryArtifact').inV");
@@ -1847,7 +1095,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep UsesRelatedArtifact {
+		public IArtifactStep UsesRelatedArtifact {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesRelatedArtifact').inV");
@@ -1856,7 +1104,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertionStep UsesFactorAssertion {
+		public IFactorAssertionStep UsesFactorAssertion {
 			get {
 				var step = new FactorAssertionStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesFactorAssertion').inV");
@@ -1865,7 +1113,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep ReplacesFactor {
+		public IFactorStep ReplacesFactor {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "outE('FactorReplacesFactor').inV");
@@ -1874,7 +1122,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep UsesDescriptor {
+		public IDescriptorStep UsesDescriptor {
 			get {
 				var step = new DescriptorStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesDescriptor').inV");
@@ -1883,7 +1131,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep UsesDirector {
+		public IDirectorStep UsesDirector {
 			get {
 				var step = new DirectorStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesDirector').inV");
@@ -1892,7 +1140,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep UsesEventor {
+		public IEventorStep UsesEventor {
 			get {
 				var step = new EventorStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesEventor').inV");
@@ -1901,7 +1149,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep UsesIdentor {
+		public IIdentorStep UsesIdentor {
 			get {
 				var step = new IdentorStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesIdentor').inV");
@@ -1910,7 +1158,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep UsesLocator {
+		public ILocatorStep UsesLocator {
 			get {
 				var step = new LocatorStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesLocator').inV");
@@ -1919,7 +1167,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep UsesVector {
+		public IVectorStep UsesVector {
 			get {
 				var step = new VectorStep(Path);
 				Path.AddSegment(step, "outE('FactorUsesVector').inV");
@@ -1930,7 +1178,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class FactorAssertionStep : NodeStep<FabFactorAssertion>, IInRootContains, IInFactorListUses {
+	public partial class FactorAssertionStep : NodeForTypeStep<FabFactorAssertion>, IFactorAssertionStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -1967,7 +1215,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsFactorAssertion').outV");
@@ -1976,7 +1224,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesFactorAssertion').outV");
@@ -1987,7 +1235,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorStep : NodeStep<FabDescriptor>, IInRootContains, IInFactorListUses, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
+	public partial class DescriptorStep : FactorElementNodeStep<FabDescriptor>, IDescriptorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -2032,7 +1280,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsDescriptor').outV");
@@ -2041,7 +1289,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesDescriptor').outV");
@@ -2050,7 +1298,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorTypeStep UsesDescriptorType {
+		public IDescriptorTypeStep UsesDescriptorType {
 			get {
 				var step = new DescriptorTypeStep(Path);
 				Path.AddSegment(step, "outE('DescriptorUsesDescriptorType').inV");
@@ -2059,7 +1307,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep RefinesPrimaryWithArtifact {
+		public IArtifactStep RefinesPrimaryWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('DescriptorRefinesPrimaryWithArtifact').inV");
@@ -2068,7 +1316,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep RefinesRelatedWithArtifact {
+		public IArtifactStep RefinesRelatedWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('DescriptorRefinesRelatedWithArtifact').inV");
@@ -2077,7 +1325,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep RefinesTypeWithArtifact {
+		public IArtifactStep RefinesTypeWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('DescriptorRefinesTypeWithArtifact').inV");
@@ -2088,7 +1336,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DescriptorTypeStep : NodeStep<FabDescriptorType>, IInRootContains, IInDescriptorListUses {
+	public partial class DescriptorTypeStep : NodeForTypeStep<FabDescriptorType>, IDescriptorTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Descriptor", false, "/InDescriptorListUses"),
@@ -2125,7 +1373,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsDescriptorType').outV");
@@ -2134,7 +1382,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep InDescriptorListUses {
+		public IDescriptorStep InDescriptorListUses {
 			get {
 				var step = new DescriptorStep(Path);
 				Path.AddSegment(step, "inE('DescriptorUsesDescriptorType').outV");
@@ -2145,7 +1393,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorStep : NodeStep<FabDirector>, IInRootContains, IInFactorListUses, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
+	public partial class DirectorStep : FactorElementNodeStep<FabDirector>, IDirectorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -2188,7 +1436,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsDirector').outV");
@@ -2197,7 +1445,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesDirector').outV");
@@ -2206,7 +1454,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorTypeStep UsesDirectorType {
+		public IDirectorTypeStep UsesDirectorType {
 			get {
 				var step = new DirectorTypeStep(Path);
 				Path.AddSegment(step, "outE('DirectorUsesDirectorType').inV");
@@ -2215,7 +1463,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionStep UsesPrimaryDirectorAction {
+		public IDirectorActionStep UsesPrimaryDirectorAction {
 			get {
 				var step = new DirectorActionStep(Path);
 				Path.AddSegment(step, "outE('DirectorUsesPrimaryDirectorAction').inV");
@@ -2224,7 +1472,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorActionStep UsesRelatedDirectorAction {
+		public IDirectorActionStep UsesRelatedDirectorAction {
 			get {
 				var step = new DirectorActionStep(Path);
 				Path.AddSegment(step, "outE('DirectorUsesRelatedDirectorAction').inV");
@@ -2235,7 +1483,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorTypeStep : NodeStep<FabDirectorType>, IInRootContains, IInDirectorListUses {
+	public partial class DirectorTypeStep : NodeForTypeStep<FabDirectorType>, IDirectorTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Director", false, "/InDirectorListUses"),
@@ -2272,7 +1520,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsDirectorType').outV");
@@ -2281,7 +1529,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep InDirectorListUses {
+		public IDirectorStep InDirectorListUses {
 			get {
 				var step = new DirectorStep(Path);
 				Path.AddSegment(step, "inE('DirectorUsesDirectorType').outV");
@@ -2292,7 +1540,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class DirectorActionStep : NodeStep<FabDirectorAction>, IInRootContains, IInDirectorListUsesPrimary, IInDirectorListUsesRelated {
+	public partial class DirectorActionStep : NodeForTypeStep<FabDirectorAction>, IDirectorActionStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("UsesPrimary", "Director", false, "/InDirectorListUsesPrimary"),
@@ -2331,7 +1579,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsDirectorAction').outV");
@@ -2340,7 +1588,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep InDirectorListUsesPrimary {
+		public IDirectorStep InDirectorListUsesPrimary {
 			get {
 				var step = new DirectorStep(Path);
 				Path.AddSegment(step, "inE('DirectorUsesPrimaryDirectorAction').outV");
@@ -2349,7 +1597,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep InDirectorListUsesRelated {
+		public IDirectorStep InDirectorListUsesRelated {
 			get {
 				var step = new DirectorStep(Path);
 				Path.AddSegment(step, "inE('DirectorUsesRelatedDirectorAction').outV");
@@ -2360,7 +1608,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorStep : NodeStep<FabEventor>, IInRootContains, IInFactorListUses, IUsesEventorType, IUsesEventorPrecision {
+	public partial class EventorStep : FactorElementNodeStep<FabEventor>, IEventorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -2401,7 +1649,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsEventor').outV");
@@ -2410,7 +1658,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesEventor').outV");
@@ -2419,7 +1667,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorTypeStep UsesEventorType {
+		public IEventorTypeStep UsesEventorType {
 			get {
 				var step = new EventorTypeStep(Path);
 				Path.AddSegment(step, "outE('EventorUsesEventorType').inV");
@@ -2428,7 +1676,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecisionStep UsesEventorPrecision {
+		public IEventorPrecisionStep UsesEventorPrecision {
 			get {
 				var step = new EventorPrecisionStep(Path);
 				Path.AddSegment(step, "outE('EventorUsesEventorPrecision').inV");
@@ -2439,7 +1687,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorTypeStep : NodeStep<FabEventorType>, IInRootContains, IInEventorListUses {
+	public partial class EventorTypeStep : NodeForTypeStep<FabEventorType>, IEventorTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Eventor", false, "/InEventorListUses"),
@@ -2476,7 +1724,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsEventorType').outV");
@@ -2485,7 +1733,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep InEventorListUses {
+		public IEventorStep InEventorListUses {
 			get {
 				var step = new EventorStep(Path);
 				Path.AddSegment(step, "inE('EventorUsesEventorType').outV");
@@ -2496,7 +1744,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class EventorPrecisionStep : NodeStep<FabEventorPrecision>, IInRootContains, IInEventorListUses {
+	public partial class EventorPrecisionStep : NodeForTypeStep<FabEventorPrecision>, IEventorPrecisionStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Eventor", false, "/InEventorListUses"),
@@ -2533,7 +1781,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsEventorPrecision').outV");
@@ -2542,7 +1790,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep InEventorListUses {
+		public IEventorStep InEventorListUses {
 			get {
 				var step = new EventorStep(Path);
 				Path.AddSegment(step, "inE('EventorUsesEventorPrecision').outV");
@@ -2553,7 +1801,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorStep : NodeStep<FabIdentor>, IInRootContains, IInFactorListUses, IUsesIdentorType {
+	public partial class IdentorStep : FactorElementNodeStep<FabIdentor>, IIdentorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -2592,7 +1840,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsIdentor').outV");
@@ -2601,7 +1849,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesIdentor').outV");
@@ -2610,7 +1858,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorTypeStep UsesIdentorType {
+		public IIdentorTypeStep UsesIdentorType {
 			get {
 				var step = new IdentorTypeStep(Path);
 				Path.AddSegment(step, "outE('IdentorUsesIdentorType').inV");
@@ -2621,7 +1869,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class IdentorTypeStep : NodeStep<FabIdentorType>, IInRootContains, IInIdentorListUses {
+	public partial class IdentorTypeStep : NodeForTypeStep<FabIdentorType>, IIdentorTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Identor", false, "/InIdentorListUses"),
@@ -2658,7 +1906,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsIdentorType').outV");
@@ -2667,7 +1915,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep InIdentorListUses {
+		public IIdentorStep InIdentorListUses {
 			get {
 				var step = new IdentorStep(Path);
 				Path.AddSegment(step, "inE('IdentorUsesIdentorType').outV");
@@ -2678,7 +1926,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorStep : NodeStep<FabLocator>, IInRootContains, IInFactorListUses, IUsesLocatorType {
+	public partial class LocatorStep : FactorElementNodeStep<FabLocator>, ILocatorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -2717,7 +1965,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsLocator').outV");
@@ -2726,7 +1974,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesLocator').outV");
@@ -2735,7 +1983,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorTypeStep UsesLocatorType {
+		public ILocatorTypeStep UsesLocatorType {
 			get {
 				var step = new LocatorTypeStep(Path);
 				Path.AddSegment(step, "outE('LocatorUsesLocatorType').inV");
@@ -2746,7 +1994,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class LocatorTypeStep : NodeStep<FabLocatorType>, IInRootContains, IInLocatorListUses {
+	public partial class LocatorTypeStep : NodeForTypeStep<FabLocatorType>, ILocatorTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Locator", false, "/InLocatorListUses"),
@@ -2783,7 +2031,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsLocatorType').outV");
@@ -2792,7 +2040,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep InLocatorListUses {
+		public ILocatorStep InLocatorListUses {
 			get {
 				var step = new LocatorStep(Path);
 				Path.AddSegment(step, "inE('LocatorUsesLocatorType').outV");
@@ -2803,7 +2051,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorStep : NodeStep<FabVector>, IInRootContains, IInFactorListUses, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorStep : FactorElementNodeStep<FabVector>, IVectorStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
@@ -2848,7 +2096,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVector').outV");
@@ -2857,7 +2105,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorStep InFactorListUses {
+		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
 				Path.AddSegment(step, "inE('FactorUsesVector').outV");
@@ -2866,7 +2114,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep UsesAxisArtifact {
+		public IArtifactStep UsesAxisArtifact {
 			get {
 				var step = new ArtifactStep(Path);
 				Path.AddSegment(step, "outE('VectorUsesAxisArtifact').inV");
@@ -2875,7 +2123,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeStep UsesVectorType {
+		public IVectorTypeStep UsesVectorType {
 			get {
 				var step = new VectorTypeStep(Path);
 				Path.AddSegment(step, "outE('VectorUsesVectorType').inV");
@@ -2884,7 +2132,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep UsesVectorUnit {
+		public IVectorUnitStep UsesVectorUnit {
 			get {
 				var step = new VectorUnitStep(Path);
 				Path.AddSegment(step, "outE('VectorUsesVectorUnit').inV");
@@ -2893,7 +2141,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixStep UsesVectorUnitPrefix {
+		public IVectorUnitPrefixStep UsesVectorUnitPrefix {
 			get {
 				var step = new VectorUnitPrefixStep(Path);
 				Path.AddSegment(step, "outE('VectorUsesVectorUnitPrefix').inV");
@@ -2904,7 +2152,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorTypeStep : NodeStep<FabVectorType>, IInRootContains, IInVectorListUses, IUsesVectorRange {
+	public partial class VectorTypeStep : NodeForTypeStep<FabVectorType>, IVectorTypeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Vector", false, "/InVectorListUses"),
@@ -2943,7 +2191,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVectorType').outV");
@@ -2952,7 +2200,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep InVectorListUses {
+		public IVectorStep InVectorListUses {
 			get {
 				var step = new VectorStep(Path);
 				Path.AddSegment(step, "inE('VectorUsesVectorType').outV");
@@ -2961,7 +2209,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeStep UsesVectorRange {
+		public IVectorRangeStep UsesVectorRange {
 			get {
 				var step = new VectorRangeStep(Path);
 				Path.AddSegment(step, "outE('VectorTypeUsesVectorRange').inV");
@@ -2972,7 +2220,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeStep : NodeStep<FabVectorRange>, IInRootContains, IInVectorTypeListUses, IUsesVectorRangeLevelList {
+	public partial class VectorRangeStep : NodeForTypeStep<FabVectorRange>, IVectorRangeStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "VectorType", false, "/InVectorTypeListUses"),
@@ -3011,7 +2259,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVectorRange').outV");
@@ -3020,7 +2268,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorTypeStep InVectorTypeListUses {
+		public IVectorTypeStep InVectorTypeListUses {
 			get {
 				var step = new VectorTypeStep(Path);
 				Path.AddSegment(step, "inE('VectorTypeUsesVectorRange').outV");
@@ -3029,7 +2277,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevelStep UsesVectorRangeLevelList {
+		public IVectorRangeLevelStep UsesVectorRangeLevelList {
 			get {
 				var step = new VectorRangeLevelStep(Path);
 				Path.AddSegment(step, "outE('VectorRangeUsesVectorRangeLevel').inV");
@@ -3040,7 +2288,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorRangeLevelStep : NodeStep<FabVectorRangeLevel>, IInRootContains, IInVectorRangeListUses {
+	public partial class VectorRangeLevelStep : NodeForTypeStep<FabVectorRangeLevel>, IVectorRangeLevelStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "VectorRange", false, "/InVectorRangeListUses"),
@@ -3077,7 +2325,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVectorRangeLevel').outV");
@@ -3086,7 +2334,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeStep InVectorRangeListUses {
+		public IVectorRangeStep InVectorRangeListUses {
 			get {
 				var step = new VectorRangeStep(Path);
 				Path.AddSegment(step, "inE('VectorRangeUsesVectorRangeLevel').outV");
@@ -3097,7 +2345,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitStep : NodeStep<FabVectorUnit>, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListDefines, IInVectorUnitDerivedListRaisesToExp {
+	public partial class VectorUnitStep : NodeForTypeStep<FabVectorUnit>, IVectorUnitStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Vector", false, "/InVectorListUses"),
@@ -3138,7 +2386,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVectorUnit').outV");
@@ -3147,7 +2395,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep InVectorListUses {
+		public IVectorStep InVectorListUses {
 			get {
 				var step = new VectorStep(Path);
 				Path.AddSegment(step, "inE('VectorUsesVectorUnit').outV");
@@ -3156,7 +2404,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep InVectorUnitDerivedListDefines {
+		public IVectorUnitDerivedStep InVectorUnitDerivedListDefines {
 			get {
 				var step = new VectorUnitDerivedStep(Path);
 				Path.AddSegment(step, "inE('VectorUnitDerivedDefinesVectorUnit').outV");
@@ -3165,7 +2413,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp {
+		public IVectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp {
 			get {
 				var step = new VectorUnitDerivedStep(Path);
 				Path.AddSegment(step, "inE('VectorUnitDerivedRaisesToExpVectorUnit').outV");
@@ -3176,7 +2424,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitPrefixStep : NodeStep<FabVectorUnitPrefix>, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListUses {
+	public partial class VectorUnitPrefixStep : NodeForTypeStep<FabVectorUnitPrefix>, IVectorUnitPrefixStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Vector", false, "/InVectorListUses"),
@@ -3215,7 +2463,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVectorUnitPrefix').outV");
@@ -3224,7 +2472,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep InVectorListUses {
+		public IVectorStep InVectorListUses {
 			get {
 				var step = new VectorStep(Path);
 				Path.AddSegment(step, "inE('VectorUsesVectorUnitPrefix').outV");
@@ -3233,7 +2481,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerivedStep InVectorUnitDerivedListUses {
+		public IVectorUnitDerivedStep InVectorUnitDerivedListUses {
 			get {
 				var step = new VectorUnitDerivedStep(Path);
 				Path.AddSegment(step, "inE('VectorUnitDerivedUsesVectorUnitPrefix').outV");
@@ -3244,7 +2492,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class VectorUnitDerivedStep : NodeStep<FabVectorUnitDerived>, IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
+	public partial class VectorUnitDerivedStep : NodeForTypeStep<FabVectorUnitDerived>, IVectorUnitDerivedStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Defines", "VectorUnit", true, "/DefinesVectorUnit"),
@@ -3285,7 +2533,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep InRootContains {
+		public IRootStep InRootContains {
 			get {
 				var step = new RootStep(Path);
 				Path.AddSegment(step, "inE('RootContainsVectorUnitDerived').outV");
@@ -3294,7 +2542,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep DefinesVectorUnit {
+		public IVectorUnitStep DefinesVectorUnit {
 			get {
 				var step = new VectorUnitStep(Path);
 				Path.AddSegment(step, "outE('VectorUnitDerivedDefinesVectorUnit').inV");
@@ -3303,7 +2551,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitStep RaisesToExpVectorUnit {
+		public IVectorUnitStep RaisesToExpVectorUnit {
 			get {
 				var step = new VectorUnitStep(Path);
 				Path.AddSegment(step, "outE('VectorUnitDerivedRaisesToExpVectorUnit').inV");
@@ -3312,7 +2560,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefixStep UsesVectorUnitPrefix {
+		public IVectorUnitPrefixStep UsesVectorUnitPrefix {
 			get {
 				var step = new VectorUnitPrefixStep(Path);
 				Path.AddSegment(step, "outE('VectorUnitDerivedUsesVectorUnitPrefix').inV");

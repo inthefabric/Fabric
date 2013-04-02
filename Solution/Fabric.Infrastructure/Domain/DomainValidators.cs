@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/26/2013 3:55:59 PM
+// Generated on 4/2/2013 1:27:05 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -14,20 +14,16 @@ namespace Fabric.Infrastructure.Domain {
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		void ArtifactId(long pValue, string pParamName);
+		void ArtifactId(long pValue);
+		void ArtifactCreated(long pValue, string pParamName);
+		void ArtifactCreated(long pValue);
 		void AppId(long pValue, string pParamName);
 		void AppId(long pValue);
 		void AppName(string pValue, string pParamName);
 		void AppName(string pValue);
 		void AppSecret(string pValue, string pParamName);
 		void AppSecret(string pValue);
-		void ArtifactId(long pValue, string pParamName);
-		void ArtifactId(long pValue);
-		void ArtifactIsPrivate(bool pValue, string pParamName);
-		void ArtifactIsPrivate(bool pValue);
-		void ArtifactCreated(long pValue, string pParamName);
-		void ArtifactCreated(long pValue);
-		void ArtifactTypeId(long pValue, string pParamName);
-		void ArtifactTypeId(long pValue);
 		void ClassId(long pValue, string pParamName);
 		void ClassId(long pValue);
 		void ClassName(string pValue, string pParamName);
@@ -36,24 +32,6 @@ namespace Fabric.Infrastructure.Domain {
 		void ClassDisamb(string pValue);
 		void ClassNote(string pValue, string pParamName);
 		void ClassNote(string pValue);
-		void CrowdId(long pValue, string pParamName);
-		void CrowdId(long pValue);
-		void CrowdName(string pValue, string pParamName);
-		void CrowdName(string pValue);
-		void CrowdDescription(string pValue, string pParamName);
-		void CrowdDescription(string pValue);
-		void CrowdIsPrivate(bool pValue, string pParamName);
-		void CrowdIsPrivate(bool pValue);
-		void CrowdIsInviteOnly(bool pValue, string pParamName);
-		void CrowdIsInviteOnly(bool pValue);
-		void CrowdianId(long pValue, string pParamName);
-		void CrowdianId(long pValue);
-		void CrowdianTypeId(long pValue, string pParamName);
-		void CrowdianTypeId(long pValue);
-		void CrowdianTypeAssignId(long pValue, string pParamName);
-		void CrowdianTypeAssignId(long pValue);
-		void CrowdianTypeAssignWeight(float pValue, string pParamName);
-		void CrowdianTypeAssignWeight(float pValue);
 		void EmailId(long pValue, string pParamName);
 		void EmailId(long pValue);
 		void EmailAddress(string pValue, string pParamName);
@@ -72,10 +50,6 @@ namespace Fabric.Infrastructure.Domain {
 		void InstanceDisamb(string pValue);
 		void InstanceNote(string pValue, string pParamName);
 		void InstanceNote(string pValue);
-		void LabelId(long pValue, string pParamName);
-		void LabelId(long pValue);
-		void LabelName(string pValue, string pParamName);
-		void LabelName(string pValue);
 		void MemberId(long pValue, string pParamName);
 		void MemberId(long pValue);
 		void MemberTypeId(long pValue, string pParamName);
@@ -221,6 +195,28 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public void ArtifactId(long pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ArtifactId(long pValue) {
+			ArtifactId(pValue, "ArtifactId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ArtifactCreated(long pValue, string pParamName) {
+			throw new Exception("Created has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ArtifactCreated(long pValue) {
+			ArtifactCreated(pValue, "Created");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public void AppId(long pValue, string pParamName) {
 			LongNotEqualTo(pParamName, pValue, 0);
 		}
@@ -251,50 +247,6 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void AppSecret(string pValue) {
 			AppSecret(pValue, "Secret");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactId(long pValue) {
-			ArtifactId(pValue, "ArtifactId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactIsPrivate(bool pValue, string pParamName) {
-			throw new Exception("IsPrivate has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactIsPrivate(bool pValue) {
-			ArtifactIsPrivate(pValue, "IsPrivate");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactCreated(long pValue, string pParamName) {
-			throw new Exception("Created has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactCreated(long pValue) {
-			ArtifactCreated(pValue, "Created");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(ArtifactTypeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ArtifactTypeId(long pValue) {
-			ArtifactTypeId(pValue, "ArtifactTypeId");
 		}
 
 		
@@ -342,106 +294,6 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassNote(string pValue) {
 			ClassNote(pValue, "Note");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdId(long pValue) {
-			CrowdId(pValue, "CrowdId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdName(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthBetween(pParamName, pValue, 3, 64);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdName(string pValue) {
-			CrowdName(pValue, "Name");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdDescription(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 256);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdDescription(string pValue) {
-			CrowdDescription(pValue, "Description");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdIsPrivate(bool pValue, string pParamName) {
-			throw new Exception("IsPrivate has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdIsPrivate(bool pValue) {
-			CrowdIsPrivate(pValue, "IsPrivate");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdIsInviteOnly(bool pValue, string pParamName) {
-			throw new Exception("IsInviteOnly has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdIsInviteOnly(bool pValue) {
-			CrowdIsInviteOnly(pValue, "IsInviteOnly");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianId(long pValue) {
-			CrowdianId(pValue, "CrowdianId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeId(long pValue) {
-			CrowdianTypeId(pValue, "CrowdianTypeId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeAssignId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeAssignId(long pValue) {
-			CrowdianTypeAssignId(pValue, "CrowdianTypeAssignId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeAssignWeight(float pValue, string pParamName) {
-			throw new Exception("Weight has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void CrowdianTypeAssignWeight(float pValue) {
-			CrowdianTypeAssignWeight(pValue, "Weight");
 		}
 
 		
@@ -544,30 +396,6 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceNote(string pValue) {
 			InstanceNote(pValue, "Note");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void LabelId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LabelId(long pValue) {
-			LabelId(pValue, "LabelId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LabelName(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthBetween(pParamName, pValue, 1, 128);
-			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LabelName(string pValue) {
-			LabelName(pValue, "Name");
 		}
 
 		

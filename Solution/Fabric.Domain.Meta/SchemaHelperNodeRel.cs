@@ -1,7 +1,7 @@
 ﻿using Weaver.Items;
 using Weaver.Schema;
 
-namespace Fabric.Infrastructure.Domain {
+namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public class SchemaHelperNodeRel : SchemaHelperRel {

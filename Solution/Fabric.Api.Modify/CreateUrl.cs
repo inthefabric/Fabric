@@ -4,7 +4,6 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
@@ -61,17 +60,13 @@ namespace Fabric.Api.Modify {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Url> urlVar;
 			IWeaverVarAlias<Member> memVar;
-			IWeaverVarAlias<Artifact> artVar;
 
 			var txb = new TxBuilder();
-
 			txb.GetRoot(out rootVar);
 			txb.GetNode(m, out memVar);
-			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, rootVar, out urlVar);
-			Tasks.TxAddArtifact<Url, UrlHasArtifact>(
-				ApiCtx, txb, ArtifactTypeId.Url, rootVar, urlVar, memVar, out artVar);
-
+			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, rootVar, memVar, out urlVar);
 			txb.RegisterVarWithTxBuilder(urlVar);
+
 			return ApiCtx.DbSingle<Url>("CreateUrlTx", txb.Finish(urlVar));
 		}
 

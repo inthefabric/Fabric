@@ -1,274 +1,51 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/19/2013 2:14:13 PM
+// Generated on 4/2/2013 1:27:05 PM
 
-using Weaver.Interfaces;
-using Fabric.Domain;
 using System.Collections.Generic;
+using Fabric.Domain;
+using Weaver.Interfaces;
+using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
 
 	/*================================================================================================*/
-	public class AppBuilder : DomainBuilder<App, RootContainsApp> {
+	public abstract class NodeForTypeBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
+						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
 
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
-		public virtual IWeaverVarAlias<Email> UsesEmail { get; private set; }
-		public virtual IList<IWeaverVarAlias<Member>> DefinesMemberList { get; private set; }
-		public virtual IList<IWeaverVarAlias<OauthAccess>> InOauthAccessListUses { get; private set; }
-		public virtual IList<IWeaverVarAlias<OauthDomain>> InOauthDomainListUses { get; private set; }
-		public virtual IList<IWeaverVarAlias<OauthGrant>> InOauthGrantListUses { get; private set; }
-		public virtual IList<IWeaverVarAlias<OauthScope>> InOauthScopeListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppBuilder(TxBuilder pTx, App pNode) : base(pTx, pNode) {}
+		public NodeForTypeBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public AppBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public AppBuilder(TxBuilder pTx, long pAppId) : 
-			base(pTx, new App { AppId = pAppId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<AppHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetNodeVar) {
-			TxBuild.AddRel<AppUsesEmail>(NodeVar, pTargetNodeVar);
-			UsesEmail = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(Email pEmail, out IWeaverVarAlias<Email> pNodeVar) {
-			TxBuild.GetNode(pEmail, out pNodeVar);
-			SetUsesEmail(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(Email pEmail) {
-			IWeaverVarAlias<Email> nodeVar;
-			SetUsesEmail(pEmail, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
-			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(long pEmailId) {
-			IWeaverVarAlias<Email> nodeVar;
-			SetUsesEmail(pEmailId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<AppDefinesMember>(NodeVar, pTargetNodeVar);
-			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
-			DefinesMemberList.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			AddToDefinesMemberList(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			AddToDefinesMemberList(pMember, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			AddToDefinesMemberList(pMemberId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(pTargetNodeVar, NodeVar);
-			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
-			InOauthAccessListUses.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess, out IWeaverVarAlias<OauthAccess> pNodeVar) {
-			TxBuild.GetNode(pOauthAccess, out pNodeVar);
-			AddToInOauthAccessListUses(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess) {
-			IWeaverVarAlias<OauthAccess> nodeVar;
-			AddToInOauthAccessListUses(pOauthAccess, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
-			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(long pOauthAccessId) {
-			IWeaverVarAlias<OauthAccess> nodeVar;
-			AddToInOauthAccessListUses(pOauthAccessId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(IWeaverVarAlias<OauthDomain> pTargetNodeVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(pTargetNodeVar, NodeVar);
-			InOauthDomainListUses = (InOauthDomainListUses ?? new List<IWeaverVarAlias<OauthDomain>>());
-			InOauthDomainListUses.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain, out IWeaverVarAlias<OauthDomain> pNodeVar) {
-			TxBuild.GetNode(pOauthDomain, out pNodeVar);
-			AddToInOauthDomainListUses(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain) {
-			IWeaverVarAlias<OauthDomain> nodeVar;
-			AddToInOauthDomainListUses(pOauthDomain, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(long pOauthDomainId, out IWeaverVarAlias<OauthDomain> pNodeVar) {
-			AddToInOauthDomainListUses(new OauthDomain { OauthDomainId = pOauthDomainId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(long pOauthDomainId) {
-			IWeaverVarAlias<OauthDomain> nodeVar;
-			AddToInOauthDomainListUses(pOauthDomainId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(pTargetNodeVar, NodeVar);
-			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
-			InOauthGrantListUses.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant, out IWeaverVarAlias<OauthGrant> pNodeVar) {
-			TxBuild.GetNode(pOauthGrant, out pNodeVar);
-			AddToInOauthGrantListUses(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant) {
-			IWeaverVarAlias<OauthGrant> nodeVar;
-			AddToInOauthGrantListUses(pOauthGrant, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
-			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(long pOauthGrantId) {
-			IWeaverVarAlias<OauthGrant> nodeVar;
-			AddToInOauthGrantListUses(pOauthGrantId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(pTargetNodeVar, NodeVar);
-			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
-			InOauthScopeListUses.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope, out IWeaverVarAlias<OauthScope> pNodeVar) {
-			TxBuild.GetNode(pOauthScope, out pNodeVar);
-			AddToInOauthScopeListUses(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope) {
-			IWeaverVarAlias<OauthScope> nodeVar;
-			AddToInOauthScopeListUses(pOauthScope, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
-			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(long pOauthScopeId) {
-			IWeaverVarAlias<OauthScope> nodeVar;
-			AddToInOauthScopeListUses(pOauthScopeId, out nodeVar);
-		}
-		
+		public NodeForTypeBuilder(TxBuilder pTx) : base(pTx) {}
+
 
 	}
 
 	/*================================================================================================*/
-	public class ArtifactBuilder : DomainBuilder<Artifact, RootContainsArtifact> {
+	public abstract class NodeForActionBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
+						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
 
-		public virtual IWeaverVarAlias<App> InAppHas { get; private set; }
-		public virtual IWeaverVarAlias<ArtifactType> UsesArtifactType { get; private set; }
-		public virtual IWeaverVarAlias<Class> InClassHas { get; private set; }
-		public virtual IWeaverVarAlias<Crowd> InCrowdHas { get; private set; }
-		public virtual IWeaverVarAlias<Instance> InInstanceHas { get; private set; }
-		public virtual IWeaverVarAlias<Label> InLabelHas { get; private set; }
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public NodeForActionBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public NodeForActionBuilder(TxBuilder pTx) : base(pTx) {}
+
+
+	}
+
+	/*================================================================================================*/
+	public abstract class ArtifactBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
+						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
-		public virtual IWeaverVarAlias<Url> InUrlHas { get; private set; }
-		public virtual IWeaverVarAlias<User> InUserHas { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesPrimary { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesRelated { get; private set; }
 		public virtual IList<IWeaverVarAlias<Descriptor>> InDescriptorListRefinesPrimaryWith { get; private set; }
@@ -276,205 +53,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IList<IWeaverVarAlias<Descriptor>> InDescriptorListRefinesTypeWith { get; private set; }
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUsesAxis { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactBuilder(TxBuilder pTx, Artifact pNode) : base(pTx, pNode) {}
+		public ArtifactBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactBuilder(TxBuilder pTx, long pArtifactId) : 
-			base(pTx, new Artifact { ArtifactId = pArtifactId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppHas(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<AppHasArtifact>(pTargetNodeVar, NodeVar);
-			InAppHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppHas(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			SetInAppHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppHas(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			SetInAppHas(pApp, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppHas(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetInAppHas(new App { AppId = pAppId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppHas(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			SetInAppHas(pAppId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(IWeaverVarAlias<ArtifactType> pTargetNodeVar) {
-			TxBuild.AddRel<ArtifactUsesArtifactType>(NodeVar, pTargetNodeVar);
-			UsesArtifactType = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(ArtifactType pArtifactType, out IWeaverVarAlias<ArtifactType> pNodeVar) {
-			TxBuild.GetNode(pArtifactType, out pNodeVar);
-			SetUsesArtifactType(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(ArtifactType pArtifactType) {
-			IWeaverVarAlias<ArtifactType> nodeVar;
-			SetUsesArtifactType(pArtifactType, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(long pArtifactTypeId, out IWeaverVarAlias<ArtifactType> pNodeVar) {
-			SetUsesArtifactType(new ArtifactType { ArtifactTypeId = pArtifactTypeId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesArtifactType(long pArtifactTypeId) {
-			IWeaverVarAlias<ArtifactType> nodeVar;
-			SetUsesArtifactType(pArtifactTypeId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInClassHas(IWeaverVarAlias<Class> pTargetNodeVar) {
-			TxBuild.AddRel<ClassHasArtifact>(pTargetNodeVar, NodeVar);
-			InClassHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInClassHas(Class pClass, out IWeaverVarAlias<Class> pNodeVar) {
-			TxBuild.GetNode(pClass, out pNodeVar);
-			SetInClassHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInClassHas(Class pClass) {
-			IWeaverVarAlias<Class> nodeVar;
-			SetInClassHas(pClass, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInClassHas(long pClassId, out IWeaverVarAlias<Class> pNodeVar) {
-			SetInClassHas(new Class { ClassId = pClassId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInClassHas(long pClassId) {
-			IWeaverVarAlias<Class> nodeVar;
-			SetInClassHas(pClassId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdHas(IWeaverVarAlias<Crowd> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdHasArtifact>(pTargetNodeVar, NodeVar);
-			InCrowdHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdHas(Crowd pCrowd, out IWeaverVarAlias<Crowd> pNodeVar) {
-			TxBuild.GetNode(pCrowd, out pNodeVar);
-			SetInCrowdHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdHas(Crowd pCrowd) {
-			IWeaverVarAlias<Crowd> nodeVar;
-			SetInCrowdHas(pCrowd, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdHas(long pCrowdId, out IWeaverVarAlias<Crowd> pNodeVar) {
-			SetInCrowdHas(new Crowd { CrowdId = pCrowdId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdHas(long pCrowdId) {
-			IWeaverVarAlias<Crowd> nodeVar;
-			SetInCrowdHas(pCrowdId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInInstanceHas(IWeaverVarAlias<Instance> pTargetNodeVar) {
-			TxBuild.AddRel<InstanceHasArtifact>(pTargetNodeVar, NodeVar);
-			InInstanceHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInInstanceHas(Instance pInstance, out IWeaverVarAlias<Instance> pNodeVar) {
-			TxBuild.GetNode(pInstance, out pNodeVar);
-			SetInInstanceHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInInstanceHas(Instance pInstance) {
-			IWeaverVarAlias<Instance> nodeVar;
-			SetInInstanceHas(pInstance, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInInstanceHas(long pInstanceId, out IWeaverVarAlias<Instance> pNodeVar) {
-			SetInInstanceHas(new Instance { InstanceId = pInstanceId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInInstanceHas(long pInstanceId) {
-			IWeaverVarAlias<Instance> nodeVar;
-			SetInInstanceHas(pInstanceId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInLabelHas(IWeaverVarAlias<Label> pTargetNodeVar) {
-			TxBuild.AddRel<LabelHasArtifact>(pTargetNodeVar, NodeVar);
-			InLabelHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInLabelHas(Label pLabel, out IWeaverVarAlias<Label> pNodeVar) {
-			TxBuild.GetNode(pLabel, out pNodeVar);
-			SetInLabelHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInLabelHas(Label pLabel) {
-			IWeaverVarAlias<Label> nodeVar;
-			SetInLabelHas(pLabel, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInLabelHas(long pLabelId, out IWeaverVarAlias<Label> pNodeVar) {
-			SetInLabelHas(new Label { LabelId = pLabelId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInLabelHas(long pLabelId) {
-			IWeaverVarAlias<Label> nodeVar;
-			SetInLabelHas(pLabelId, out nodeVar);
-		}
-		
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -504,68 +90,6 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual void SetInMemberCreates(long pMemberId) {
 			IWeaverVarAlias<Member> nodeVar;
 			SetInMemberCreates(pMemberId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUrlHas(IWeaverVarAlias<Url> pTargetNodeVar) {
-			TxBuild.AddRel<UrlHasArtifact>(pTargetNodeVar, NodeVar);
-			InUrlHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUrlHas(Url pUrl, out IWeaverVarAlias<Url> pNodeVar) {
-			TxBuild.GetNode(pUrl, out pNodeVar);
-			SetInUrlHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUrlHas(Url pUrl) {
-			IWeaverVarAlias<Url> nodeVar;
-			SetInUrlHas(pUrl, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUrlHas(long pUrlId, out IWeaverVarAlias<Url> pNodeVar) {
-			SetInUrlHas(new Url { UrlId = pUrlId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUrlHas(long pUrlId) {
-			IWeaverVarAlias<Url> nodeVar;
-			SetInUrlHas(pUrlId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserHas(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserHasArtifact>(pTargetNodeVar, NodeVar);
-			InUserHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserHas(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetInUserHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserHas(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserHas(pUser, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserHas(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetInUserHas(new User { UserId = pUserId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserHas(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserHas(pUserId, out nodeVar);
 		}
 		
 		
@@ -764,541 +288,238 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class ArtifactTypeBuilder : DomainBuilder<ArtifactType, RootContainsArtifactType> {
+	public class AppBuilder : ArtifactBuilder<App, RootContainsApp> {
 
-		public virtual IList<IWeaverVarAlias<Artifact>> InArtifactListUses { get; private set; }
+		public virtual IWeaverVarAlias<Email> UsesEmail { get; private set; }
+		public virtual IList<IWeaverVarAlias<Member>> DefinesMemberList { get; private set; }
+		public virtual IList<IWeaverVarAlias<OauthAccess>> InOauthAccessListUses { get; private set; }
+		public virtual IList<IWeaverVarAlias<OauthDomain>> InOauthDomainListUses { get; private set; }
+		public virtual IList<IWeaverVarAlias<OauthGrant>> InOauthGrantListUses { get; private set; }
+		public virtual IList<IWeaverVarAlias<OauthScope>> InOauthScopeListUses { get; private set; }
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public AppBuilder(TxBuilder pTx, App pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public AppBuilder(TxBuilder pTx) : base(pTx) {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public AppBuilder(TxBuilder pTx, long pAppId) : 
+			base(pTx, new App { AppId = pAppId }) {}
+		
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeBuilder(TxBuilder pTx, ArtifactType pNode) : base(pTx, pNode) {}
+		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetNodeVar) {
+			TxBuild.AddRel<AppUsesEmail>(NodeVar, pTargetNodeVar);
+			UsesEmail = pTargetNodeVar;
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeBuilder(TxBuilder pTx) : base(pTx) {}
+		public virtual void SetUsesEmail(Email pEmail, out IWeaverVarAlias<Email> pNodeVar) {
+			TxBuild.GetNode(pEmail, out pNodeVar);
+			SetUsesEmail(pNodeVar);
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactTypeBuilder(TxBuilder pTx, long pArtifactTypeId) : 
-			base(pTx, new ArtifactType { ArtifactTypeId = pArtifactTypeId }) {}
+		public virtual void SetUsesEmail(Email pEmail) {
+			IWeaverVarAlias<Email> nodeVar;
+			SetUsesEmail(pEmail, out nodeVar);
+		}
 		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
+			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void SetUsesEmail(long pEmailId) {
+			IWeaverVarAlias<Email> nodeVar;
+			SetUsesEmail(pEmailId, out nodeVar);
+		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInArtifactListUses(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<ArtifactUsesArtifactType>(pTargetNodeVar, NodeVar);
-			InArtifactListUses = (InArtifactListUses ?? new List<IWeaverVarAlias<Artifact>>());
-			InArtifactListUses.Add(pTargetNodeVar);
+		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetNodeVar) {
+			TxBuild.AddRel<AppDefinesMember>(NodeVar, pTargetNodeVar);
+			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
+			DefinesMemberList.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInArtifactListUses(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			AddToInArtifactListUses(pNodeVar);
+		public virtual void AddToDefinesMemberList(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
+			TxBuild.GetNode(pMember, out pNodeVar);
+			AddToDefinesMemberList(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInArtifactListUses(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			AddToInArtifactListUses(pArtifact, out nodeVar);
+		public virtual void AddToDefinesMemberList(Member pMember) {
+			IWeaverVarAlias<Member> nodeVar;
+			AddToDefinesMemberList(pMember, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInArtifactListUses(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			AddToInArtifactListUses(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
+			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInArtifactListUses(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			AddToInArtifactListUses(pArtifactId, out nodeVar);
+		public virtual void AddToDefinesMemberList(long pMemberId) {
+			IWeaverVarAlias<Member> nodeVar;
+			AddToDefinesMemberList(pMemberId, out nodeVar);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetNodeVar) {
+			TxBuild.AddRel<OauthAccessUsesApp>(pTargetNodeVar, NodeVar);
+			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
+			InOauthAccessListUses.Add(pTargetNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess, out IWeaverVarAlias<OauthAccess> pNodeVar) {
+			TxBuild.GetNode(pOauthAccess, out pNodeVar);
+			AddToInOauthAccessListUses(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess) {
+			IWeaverVarAlias<OauthAccess> nodeVar;
+			AddToInOauthAccessListUses(pOauthAccess, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
+			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthAccessListUses(long pOauthAccessId) {
+			IWeaverVarAlias<OauthAccess> nodeVar;
+			AddToInOauthAccessListUses(pOauthAccessId, out nodeVar);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthDomainListUses(IWeaverVarAlias<OauthDomain> pTargetNodeVar) {
+			TxBuild.AddRel<OauthDomainUsesApp>(pTargetNodeVar, NodeVar);
+			InOauthDomainListUses = (InOauthDomainListUses ?? new List<IWeaverVarAlias<OauthDomain>>());
+			InOauthDomainListUses.Add(pTargetNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain, out IWeaverVarAlias<OauthDomain> pNodeVar) {
+			TxBuild.GetNode(pOauthDomain, out pNodeVar);
+			AddToInOauthDomainListUses(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain) {
+			IWeaverVarAlias<OauthDomain> nodeVar;
+			AddToInOauthDomainListUses(pOauthDomain, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthDomainListUses(long pOauthDomainId, out IWeaverVarAlias<OauthDomain> pNodeVar) {
+			AddToInOauthDomainListUses(new OauthDomain { OauthDomainId = pOauthDomainId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthDomainListUses(long pOauthDomainId) {
+			IWeaverVarAlias<OauthDomain> nodeVar;
+			AddToInOauthDomainListUses(pOauthDomainId, out nodeVar);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetNodeVar) {
+			TxBuild.AddRel<OauthGrantUsesApp>(pTargetNodeVar, NodeVar);
+			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
+			InOauthGrantListUses.Add(pTargetNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant, out IWeaverVarAlias<OauthGrant> pNodeVar) {
+			TxBuild.GetNode(pOauthGrant, out pNodeVar);
+			AddToInOauthGrantListUses(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant) {
+			IWeaverVarAlias<OauthGrant> nodeVar;
+			AddToInOauthGrantListUses(pOauthGrant, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
+			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthGrantListUses(long pOauthGrantId) {
+			IWeaverVarAlias<OauthGrant> nodeVar;
+			AddToInOauthGrantListUses(pOauthGrantId, out nodeVar);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetNodeVar) {
+			TxBuild.AddRel<OauthScopeUsesApp>(pTargetNodeVar, NodeVar);
+			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
+			InOauthScopeListUses.Add(pTargetNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope, out IWeaverVarAlias<OauthScope> pNodeVar) {
+			TxBuild.GetNode(pOauthScope, out pNodeVar);
+			AddToInOauthScopeListUses(pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope) {
+			IWeaverVarAlias<OauthScope> nodeVar;
+			AddToInOauthScopeListUses(pOauthScope, out nodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
+			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddToInOauthScopeListUses(long pOauthScopeId) {
+			IWeaverVarAlias<OauthScope> nodeVar;
+			AddToInOauthScopeListUses(pOauthScopeId, out nodeVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class ClassBuilder : DomainBuilder<Class, RootContainsClass> {
+	public class ClassBuilder : ArtifactBuilder<Class, RootContainsClass> {
 
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassBuilder(TxBuilder pTx, Class pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassBuilder(TxBuilder pTx, long pClassId) : 
 			base(pTx, new Class { ClassId = pClassId }) {}
 		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<ClassHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
-		
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdBuilder : DomainBuilder<Crowd, RootContainsCrowd> {
-
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
-		public virtual IList<IWeaverVarAlias<Crowdian>> DefinesCrowdianList { get; private set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdBuilder(TxBuilder pTx, Crowd pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdBuilder(TxBuilder pTx, long pCrowdId) : 
-			base(pTx, new Crowd { CrowdId = pCrowdId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdDefinesCrowdian>(NodeVar, pTargetNodeVar);
-			DefinesCrowdianList = (DefinesCrowdianList ?? new List<IWeaverVarAlias<Crowdian>>());
-			DefinesCrowdianList.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(Crowdian pCrowdian, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			TxBuild.GetNode(pCrowdian, out pNodeVar);
-			AddToDefinesCrowdianList(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(Crowdian pCrowdian) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			AddToDefinesCrowdianList(pCrowdian, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			AddToDefinesCrowdianList(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(long pCrowdianId) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			AddToDefinesCrowdianList(pCrowdianId, out nodeVar);
-		}
-		
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianBuilder : DomainBuilder<Crowdian, RootContainsCrowdian> {
-
-		public virtual IWeaverVarAlias<Crowd> InCrowdDefines { get; private set; }
-		public virtual IWeaverVarAlias<CrowdianTypeAssign> HasCrowdianTypeAssign { get; private set; }
-		public virtual IList<IWeaverVarAlias<CrowdianTypeAssign>> HasHistoricCrowdianTypeAssignList { get; private set; }
-		public virtual IWeaverVarAlias<User> InUserDefines { get; private set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianBuilder(TxBuilder pTx, Crowdian pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianBuilder(TxBuilder pTx, long pCrowdianId) : 
-			base(pTx, new Crowdian { CrowdianId = pCrowdianId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdDefines(IWeaverVarAlias<Crowd> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdDefinesCrowdian>(pTargetNodeVar, NodeVar);
-			InCrowdDefines = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdDefines(Crowd pCrowd, out IWeaverVarAlias<Crowd> pNodeVar) {
-			TxBuild.GetNode(pCrowd, out pNodeVar);
-			SetInCrowdDefines(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdDefines(Crowd pCrowd) {
-			IWeaverVarAlias<Crowd> nodeVar;
-			SetInCrowdDefines(pCrowd, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdDefines(long pCrowdId, out IWeaverVarAlias<Crowd> pNodeVar) {
-			SetInCrowdDefines(new Crowd { CrowdId = pCrowdId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdDefines(long pCrowdId) {
-			IWeaverVarAlias<Crowd> nodeVar;
-			SetInCrowdDefines(pCrowdId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasCrowdianTypeAssign(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
-			HasCrowdianTypeAssign = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasCrowdianTypeAssign(CrowdianTypeAssign pCrowdianTypeAssign, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pCrowdianTypeAssign, out pNodeVar);
-			SetHasCrowdianTypeAssign(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasCrowdianTypeAssign(CrowdianTypeAssign pCrowdianTypeAssign) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			SetHasCrowdianTypeAssign(pCrowdianTypeAssign, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasCrowdianTypeAssign(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			SetHasCrowdianTypeAssign(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasCrowdianTypeAssign(long pCrowdianTypeAssignId) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			SetHasCrowdianTypeAssign(pCrowdianTypeAssignId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricCrowdianTypeAssignList(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasHistoricCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
-			HasHistoricCrowdianTypeAssignList = (HasHistoricCrowdianTypeAssignList ?? new List<IWeaverVarAlias<CrowdianTypeAssign>>());
-			HasHistoricCrowdianTypeAssignList.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricCrowdianTypeAssignList(CrowdianTypeAssign pCrowdianTypeAssign, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pCrowdianTypeAssign, out pNodeVar);
-			AddToHasHistoricCrowdianTypeAssignList(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricCrowdianTypeAssignList(CrowdianTypeAssign pCrowdianTypeAssign) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			AddToHasHistoricCrowdianTypeAssignList(pCrowdianTypeAssign, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricCrowdianTypeAssignList(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			AddToHasHistoricCrowdianTypeAssignList(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricCrowdianTypeAssignList(long pCrowdianTypeAssignId) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			AddToHasHistoricCrowdianTypeAssignList(pCrowdianTypeAssignId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesCrowdian>(pTargetNodeVar, NodeVar);
-			InUserDefines = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetInUserDefines(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserDefines(pUser, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetInUserDefines(new User { UserId = pUserId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserDefines(pUserId, out nodeVar);
-		}
-		
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianTypeBuilder : DomainBuilder<CrowdianType, RootContainsCrowdianType> {
-
-		public virtual IList<IWeaverVarAlias<CrowdianTypeAssign>> InCrowdianTypeAssignListUses { get; private set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeBuilder(TxBuilder pTx, CrowdianType pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeBuilder(TxBuilder pTx, long pCrowdianTypeId) : 
-			base(pTx, new CrowdianType { CrowdianTypeId = pCrowdianTypeId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInCrowdianTypeAssignListUses(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianTypeAssignUsesCrowdianType>(pTargetNodeVar, NodeVar);
-			InCrowdianTypeAssignListUses = (InCrowdianTypeAssignListUses ?? new List<IWeaverVarAlias<CrowdianTypeAssign>>());
-			InCrowdianTypeAssignListUses.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInCrowdianTypeAssignListUses(CrowdianTypeAssign pCrowdianTypeAssign, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pCrowdianTypeAssign, out pNodeVar);
-			AddToInCrowdianTypeAssignListUses(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInCrowdianTypeAssignListUses(CrowdianTypeAssign pCrowdianTypeAssign) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			AddToInCrowdianTypeAssignListUses(pCrowdianTypeAssign, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInCrowdianTypeAssignListUses(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			AddToInCrowdianTypeAssignListUses(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInCrowdianTypeAssignListUses(long pCrowdianTypeAssignId) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			AddToInCrowdianTypeAssignListUses(pCrowdianTypeAssignId, out nodeVar);
-		}
-		
-
-	}
-
-	/*================================================================================================*/
-	public class CrowdianTypeAssignBuilder : DomainBuilder<CrowdianTypeAssign, RootContainsCrowdianTypeAssign> {
-
-		public virtual IWeaverVarAlias<Crowdian> InCrowdianHas { get; private set; }
-		public virtual IWeaverVarAlias<Crowdian> InCrowdianHasHistoric { get; private set; }
-		public virtual IWeaverVarAlias<CrowdianType> UsesCrowdianType { get; private set; }
-		public virtual IWeaverVarAlias<User> InUserCreates { get; private set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignBuilder(TxBuilder pTx, CrowdianTypeAssign pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public CrowdianTypeAssignBuilder(TxBuilder pTx, long pCrowdianTypeAssignId) : 
-			base(pTx, new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHas(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
-			InCrowdianHas = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHas(Crowdian pCrowdian, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			TxBuild.GetNode(pCrowdian, out pNodeVar);
-			SetInCrowdianHas(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHas(Crowdian pCrowdian) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			SetInCrowdianHas(pCrowdian, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHas(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			SetInCrowdianHas(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHas(long pCrowdianId) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			SetInCrowdianHas(pCrowdianId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHasHistoric(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianHasHistoricCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
-			InCrowdianHasHistoric = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHasHistoric(Crowdian pCrowdian, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			TxBuild.GetNode(pCrowdian, out pNodeVar);
-			SetInCrowdianHasHistoric(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHasHistoric(Crowdian pCrowdian) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			SetInCrowdianHasHistoric(pCrowdian, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHasHistoric(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			SetInCrowdianHasHistoric(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInCrowdianHasHistoric(long pCrowdianId) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			SetInCrowdianHasHistoric(pCrowdianId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(IWeaverVarAlias<CrowdianType> pTargetNodeVar) {
-			TxBuild.AddRel<CrowdianTypeAssignUsesCrowdianType>(NodeVar, pTargetNodeVar);
-			UsesCrowdianType = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(CrowdianType pCrowdianType, out IWeaverVarAlias<CrowdianType> pNodeVar) {
-			TxBuild.GetNode(pCrowdianType, out pNodeVar);
-			SetUsesCrowdianType(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(CrowdianType pCrowdianType) {
-			IWeaverVarAlias<CrowdianType> nodeVar;
-			SetUsesCrowdianType(pCrowdianType, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(long pCrowdianTypeId, out IWeaverVarAlias<CrowdianType> pNodeVar) {
-			SetUsesCrowdianType(new CrowdianType { CrowdianTypeId = pCrowdianTypeId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesCrowdianType(long pCrowdianTypeId) {
-			IWeaverVarAlias<CrowdianType> nodeVar;
-			SetUsesCrowdianType(pCrowdianTypeId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserCreates(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserCreatesCrowdianTypeAssign>(pTargetNodeVar, NodeVar);
-			InUserCreates = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserCreates(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetInUserCreates(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserCreates(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserCreates(pUser, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserCreates(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetInUserCreates(new User { UserId = pUserId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserCreates(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserCreates(pUserId, out nodeVar);
-		}
 		
 
 	}
@@ -1309,14 +530,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<App> InAppUses { get; private set; }
 		public virtual IWeaverVarAlias<User> InUserUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailBuilder(TxBuilder pTx, Email pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailBuilder(TxBuilder pTx, long pEmailId) : 
 			base(pTx, new Email { EmailId = pEmailId }) {}
@@ -1388,105 +609,21 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class InstanceBuilder : DomainBuilder<Instance, RootContainsInstance> {
+	public class InstanceBuilder : ArtifactBuilder<Instance, RootContainsInstance> {
 
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceBuilder(TxBuilder pTx, Instance pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceBuilder(TxBuilder pTx, long pInstanceId) : 
 			base(pTx, new Instance { InstanceId = pInstanceId }) {}
 		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<InstanceHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
-		
-
-	}
-
-	/*================================================================================================*/
-	public class LabelBuilder : DomainBuilder<Label, RootContainsLabel> {
-
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public LabelBuilder(TxBuilder pTx, Label pNode) : base(pTx, pNode) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public LabelBuilder(TxBuilder pTx) : base(pTx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public LabelBuilder(TxBuilder pTx, long pLabelId) : 
-			base(pTx, new Label { LabelId = pLabelId }) {}
-		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<LabelHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
 		
 
 	}
@@ -1502,14 +639,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IList<IWeaverVarAlias<Factor>> CreatesFactorList { get; private set; }
 		public virtual IWeaverVarAlias<User> InUserDefines { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberBuilder(TxBuilder pTx, Member pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberBuilder(TxBuilder pTx, long pMemberId) : 
 			base(pTx, new Member { MemberId = pMemberId }) {}
@@ -1740,18 +877,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeBuilder : DomainBuilder<MemberType, RootContainsMemberType> {
+	public class MemberTypeBuilder : NodeForTypeBuilder<MemberType, RootContainsMemberType> {
 
 		public virtual IList<IWeaverVarAlias<MemberTypeAssign>> InMemberTypeAssignListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeBuilder(TxBuilder pTx, MemberType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeBuilder(TxBuilder pTx, long pMemberTypeId) : 
 			base(pTx, new MemberType { MemberTypeId = pMemberTypeId }) {}
@@ -1793,21 +930,21 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssignBuilder : DomainBuilder<MemberTypeAssign, RootContainsMemberTypeAssign> {
+	public class MemberTypeAssignBuilder : NodeForActionBuilder<MemberTypeAssign, RootContainsMemberTypeAssign> {
 
 		public virtual IWeaverVarAlias<Member> InMemberHas { get; private set; }
 		public virtual IWeaverVarAlias<Member> InMemberHasHistoric { get; private set; }
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IWeaverVarAlias<MemberType> UsesMemberType { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignBuilder(TxBuilder pTx, MemberTypeAssign pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignBuilder(TxBuilder pTx, long pMemberTypeAssignId) : 
 			base(pTx, new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }) {}
@@ -1941,176 +1078,46 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class UrlBuilder : DomainBuilder<Url, RootContainsUrl> {
+	public class UrlBuilder : ArtifactBuilder<Url, RootContainsUrl> {
 
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlBuilder(TxBuilder pTx, Url pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlBuilder(TxBuilder pTx, long pUrlId) : 
 			base(pTx, new Url { UrlId = pUrlId }) {}
 		
 		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<UrlHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
-		
 
 	}
 
 	/*================================================================================================*/
-	public class UserBuilder : DomainBuilder<User, RootContainsUser> {
+	public class UserBuilder : ArtifactBuilder<User, RootContainsUser> {
 
-		public virtual IWeaverVarAlias<Artifact> HasArtifact { get; private set; }
-		public virtual IList<IWeaverVarAlias<CrowdianTypeAssign>> CreatesCrowdianTypeAssignList { get; private set; }
-		public virtual IList<IWeaverVarAlias<Crowdian>> DefinesCrowdianList { get; private set; }
 		public virtual IWeaverVarAlias<Email> UsesEmail { get; private set; }
 		public virtual IList<IWeaverVarAlias<Member>> DefinesMemberList { get; private set; }
 		public virtual IList<IWeaverVarAlias<OauthAccess>> InOauthAccessListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<OauthGrant>> InOauthGrantListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<OauthScope>> InOauthScopeListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public UserBuilder(TxBuilder pTx, User pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public UserBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public UserBuilder(TxBuilder pTx, long pUserId) : 
 			base(pTx, new User { UserId = pUserId }) {}
 		
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<UserHasArtifact>(NodeVar, pTargetNodeVar);
-			HasArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetHasArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetHasArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetHasArtifact(pArtifactId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesCrowdianTypeAssignList(IWeaverVarAlias<CrowdianTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<UserCreatesCrowdianTypeAssign>(NodeVar, pTargetNodeVar);
-			CreatesCrowdianTypeAssignList = (CreatesCrowdianTypeAssignList ?? new List<IWeaverVarAlias<CrowdianTypeAssign>>());
-			CreatesCrowdianTypeAssignList.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesCrowdianTypeAssignList(CrowdianTypeAssign pCrowdianTypeAssign, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pCrowdianTypeAssign, out pNodeVar);
-			AddToCreatesCrowdianTypeAssignList(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesCrowdianTypeAssignList(CrowdianTypeAssign pCrowdianTypeAssign) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			AddToCreatesCrowdianTypeAssignList(pCrowdianTypeAssign, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesCrowdianTypeAssignList(long pCrowdianTypeAssignId, out IWeaverVarAlias<CrowdianTypeAssign> pNodeVar) {
-			AddToCreatesCrowdianTypeAssignList(new CrowdianTypeAssign { CrowdianTypeAssignId = pCrowdianTypeAssignId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesCrowdianTypeAssignList(long pCrowdianTypeAssignId) {
-			IWeaverVarAlias<CrowdianTypeAssign> nodeVar;
-			AddToCreatesCrowdianTypeAssignList(pCrowdianTypeAssignId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(IWeaverVarAlias<Crowdian> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesCrowdian>(NodeVar, pTargetNodeVar);
-			DefinesCrowdianList = (DefinesCrowdianList ?? new List<IWeaverVarAlias<Crowdian>>());
-			DefinesCrowdianList.Add(pTargetNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(Crowdian pCrowdian, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			TxBuild.GetNode(pCrowdian, out pNodeVar);
-			AddToDefinesCrowdianList(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(Crowdian pCrowdian) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			AddToDefinesCrowdianList(pCrowdian, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(long pCrowdianId, out IWeaverVarAlias<Crowdian> pNodeVar) {
-			AddToDefinesCrowdianList(new Crowdian { CrowdianId = pCrowdianId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesCrowdianList(long pCrowdianId) {
-			IWeaverVarAlias<Crowdian> nodeVar;
-			AddToDefinesCrowdianList(pCrowdianId, out nodeVar);
-		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2289,14 +1296,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<Locator> UsesLocator { get; private set; }
 		public virtual IWeaverVarAlias<Vector> UsesVector { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorBuilder(TxBuilder pTx, Factor pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorBuilder(TxBuilder pTx, long pFactorId) : 
 			base(pTx, new Factor { FactorId = pFactorId }) {}
@@ -2647,18 +1654,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class FactorAssertionBuilder : DomainBuilder<FactorAssertion, RootContainsFactorAssertion> {
+	public class FactorAssertionBuilder : NodeForTypeBuilder<FactorAssertion, RootContainsFactorAssertion> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionBuilder(TxBuilder pTx, FactorAssertion pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorAssertionBuilder(TxBuilder pTx, long pFactorAssertionId) : 
 			base(pTx, new FactorAssertion { FactorAssertionId = pFactorAssertionId }) {}
@@ -2700,7 +1707,23 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorBuilder : DomainBuilder<Descriptor, RootContainsDescriptor> {
+	public abstract class FactorElementNodeBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
+						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public FactorElementNodeBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FactorElementNodeBuilder(TxBuilder pTx) : base(pTx) {}
+
+
+	}
+
+	/*================================================================================================*/
+	public class DescriptorBuilder : FactorElementNodeBuilder<Descriptor, RootContainsDescriptor> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<DescriptorType> UsesDescriptorType { get; private set; }
@@ -2708,14 +1731,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<Artifact> RefinesRelatedWithArtifact { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> RefinesTypeWithArtifact { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorBuilder(TxBuilder pTx, Descriptor pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorBuilder(TxBuilder pTx, long pDescriptorId) : 
 			base(pTx, new Descriptor { DescriptorId = pDescriptorId }) {}
@@ -2881,18 +1904,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorTypeBuilder : DomainBuilder<DescriptorType, RootContainsDescriptorType> {
+	public class DescriptorTypeBuilder : NodeForTypeBuilder<DescriptorType, RootContainsDescriptorType> {
 
 		public virtual IList<IWeaverVarAlias<Descriptor>> InDescriptorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeBuilder(TxBuilder pTx, DescriptorType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public DescriptorTypeBuilder(TxBuilder pTx, long pDescriptorTypeId) : 
 			base(pTx, new DescriptorType { DescriptorTypeId = pDescriptorTypeId }) {}
@@ -2934,21 +1957,21 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DirectorBuilder : DomainBuilder<Director, RootContainsDirector> {
+	public class DirectorBuilder : FactorElementNodeBuilder<Director, RootContainsDirector> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<DirectorType> UsesDirectorType { get; private set; }
 		public virtual IWeaverVarAlias<DirectorAction> UsesPrimaryDirectorAction { get; private set; }
 		public virtual IWeaverVarAlias<DirectorAction> UsesRelatedDirectorAction { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorBuilder(TxBuilder pTx, Director pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorBuilder(TxBuilder pTx, long pDirectorId) : 
 			base(pTx, new Director { DirectorId = pDirectorId }) {}
@@ -3083,18 +2106,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DirectorTypeBuilder : DomainBuilder<DirectorType, RootContainsDirectorType> {
+	public class DirectorTypeBuilder : NodeForTypeBuilder<DirectorType, RootContainsDirectorType> {
 
 		public virtual IList<IWeaverVarAlias<Director>> InDirectorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeBuilder(TxBuilder pTx, DirectorType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorTypeBuilder(TxBuilder pTx, long pDirectorTypeId) : 
 			base(pTx, new DirectorType { DirectorTypeId = pDirectorTypeId }) {}
@@ -3136,19 +2159,19 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DirectorActionBuilder : DomainBuilder<DirectorAction, RootContainsDirectorAction> {
+	public class DirectorActionBuilder : NodeForTypeBuilder<DirectorAction, RootContainsDirectorAction> {
 
 		public virtual IList<IWeaverVarAlias<Director>> InDirectorListUsesPrimary { get; private set; }
 		public virtual IList<IWeaverVarAlias<Director>> InDirectorListUsesRelated { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionBuilder(TxBuilder pTx, DirectorAction pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public DirectorActionBuilder(TxBuilder pTx, long pDirectorActionId) : 
 			base(pTx, new DirectorAction { DirectorActionId = pDirectorActionId }) {}
@@ -3222,20 +2245,20 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EventorBuilder : DomainBuilder<Eventor, RootContainsEventor> {
+	public class EventorBuilder : FactorElementNodeBuilder<Eventor, RootContainsEventor> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<EventorType> UsesEventorType { get; private set; }
 		public virtual IWeaverVarAlias<EventorPrecision> UsesEventorPrecision { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorBuilder(TxBuilder pTx, Eventor pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorBuilder(TxBuilder pTx, long pEventorId) : 
 			base(pTx, new Eventor { EventorId = pEventorId }) {}
@@ -3339,18 +2362,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EventorTypeBuilder : DomainBuilder<EventorType, RootContainsEventorType> {
+	public class EventorTypeBuilder : NodeForTypeBuilder<EventorType, RootContainsEventorType> {
 
 		public virtual IList<IWeaverVarAlias<Eventor>> InEventorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeBuilder(TxBuilder pTx, EventorType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorTypeBuilder(TxBuilder pTx, long pEventorTypeId) : 
 			base(pTx, new EventorType { EventorTypeId = pEventorTypeId }) {}
@@ -3392,18 +2415,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EventorPrecisionBuilder : DomainBuilder<EventorPrecision, RootContainsEventorPrecision> {
+	public class EventorPrecisionBuilder : NodeForTypeBuilder<EventorPrecision, RootContainsEventorPrecision> {
 
 		public virtual IList<IWeaverVarAlias<Eventor>> InEventorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionBuilder(TxBuilder pTx, EventorPrecision pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public EventorPrecisionBuilder(TxBuilder pTx, long pEventorPrecisionId) : 
 			base(pTx, new EventorPrecision { EventorPrecisionId = pEventorPrecisionId }) {}
@@ -3445,19 +2468,19 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class IdentorBuilder : DomainBuilder<Identor, RootContainsIdentor> {
+	public class IdentorBuilder : FactorElementNodeBuilder<Identor, RootContainsIdentor> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<IdentorType> UsesIdentorType { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorBuilder(TxBuilder pTx, Identor pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorBuilder(TxBuilder pTx, long pIdentorId) : 
 			base(pTx, new Identor { IdentorId = pIdentorId }) {}
@@ -3530,18 +2553,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class IdentorTypeBuilder : DomainBuilder<IdentorType, RootContainsIdentorType> {
+	public class IdentorTypeBuilder : NodeForTypeBuilder<IdentorType, RootContainsIdentorType> {
 
 		public virtual IList<IWeaverVarAlias<Identor>> InIdentorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeBuilder(TxBuilder pTx, IdentorType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public IdentorTypeBuilder(TxBuilder pTx, long pIdentorTypeId) : 
 			base(pTx, new IdentorType { IdentorTypeId = pIdentorTypeId }) {}
@@ -3583,19 +2606,19 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class LocatorBuilder : DomainBuilder<Locator, RootContainsLocator> {
+	public class LocatorBuilder : FactorElementNodeBuilder<Locator, RootContainsLocator> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<LocatorType> UsesLocatorType { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorBuilder(TxBuilder pTx, Locator pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorBuilder(TxBuilder pTx, long pLocatorId) : 
 			base(pTx, new Locator { LocatorId = pLocatorId }) {}
@@ -3668,18 +2691,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class LocatorTypeBuilder : DomainBuilder<LocatorType, RootContainsLocatorType> {
+	public class LocatorTypeBuilder : NodeForTypeBuilder<LocatorType, RootContainsLocatorType> {
 
 		public virtual IList<IWeaverVarAlias<Locator>> InLocatorListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeBuilder(TxBuilder pTx, LocatorType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeBuilder(TxBuilder pTx, long pLocatorTypeId) : 
 			base(pTx, new LocatorType { LocatorTypeId = pLocatorTypeId }) {}
@@ -3721,7 +2744,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorBuilder : DomainBuilder<Vector, RootContainsVector> {
+	public class VectorBuilder : FactorElementNodeBuilder<Vector, RootContainsVector> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesAxisArtifact { get; private set; }
@@ -3729,14 +2752,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<VectorUnit> UsesVectorUnit { get; private set; }
 		public virtual IWeaverVarAlias<VectorUnitPrefix> UsesVectorUnitPrefix { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorBuilder(TxBuilder pTx, Vector pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorBuilder(TxBuilder pTx, long pVectorId) : 
 			base(pTx, new Vector { VectorId = pVectorId }) {}
@@ -3902,19 +2925,19 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorTypeBuilder : DomainBuilder<VectorType, RootContainsVectorType> {
+	public class VectorTypeBuilder : NodeForTypeBuilder<VectorType, RootContainsVectorType> {
 
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUses { get; private set; }
 		public virtual IWeaverVarAlias<VectorRange> UsesVectorRange { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeBuilder(TxBuilder pTx, VectorType pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorTypeBuilder(TxBuilder pTx, long pVectorTypeId) : 
 			base(pTx, new VectorType { VectorTypeId = pVectorTypeId }) {}
@@ -3987,19 +3010,19 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeBuilder : DomainBuilder<VectorRange, RootContainsVectorRange> {
+	public class VectorRangeBuilder : NodeForTypeBuilder<VectorRange, RootContainsVectorRange> {
 
 		public virtual IList<IWeaverVarAlias<VectorType>> InVectorTypeListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorRangeLevel>> UsesVectorRangeLevelList { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeBuilder(TxBuilder pTx, VectorRange pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeBuilder(TxBuilder pTx, long pVectorRangeId) : 
 			base(pTx, new VectorRange { VectorRangeId = pVectorRangeId }) {}
@@ -4073,18 +3096,18 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeLevelBuilder : DomainBuilder<VectorRangeLevel, RootContainsVectorRangeLevel> {
+	public class VectorRangeLevelBuilder : NodeForTypeBuilder<VectorRangeLevel, RootContainsVectorRangeLevel> {
 
 		public virtual IList<IWeaverVarAlias<VectorRange>> InVectorRangeListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelBuilder(TxBuilder pTx, VectorRangeLevel pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorRangeLevelBuilder(TxBuilder pTx, long pVectorRangeLevelId) : 
 			base(pTx, new VectorRangeLevel { VectorRangeLevelId = pVectorRangeLevelId }) {}
@@ -4126,20 +3149,20 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitBuilder : DomainBuilder<VectorUnit, RootContainsVectorUnit> {
+	public class VectorUnitBuilder : NodeForTypeBuilder<VectorUnit, RootContainsVectorUnit> {
 
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorUnitDerived>> InVectorUnitDerivedListDefines { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorUnitDerived>> InVectorUnitDerivedListRaisesToExp { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitBuilder(TxBuilder pTx, VectorUnit pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitBuilder(TxBuilder pTx, long pVectorUnitId) : 
 			base(pTx, new VectorUnit { VectorUnitId = pVectorUnitId }) {}
@@ -4245,19 +3268,19 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitPrefixBuilder : DomainBuilder<VectorUnitPrefix, RootContainsVectorUnitPrefix> {
+	public class VectorUnitPrefixBuilder : NodeForTypeBuilder<VectorUnitPrefix, RootContainsVectorUnitPrefix> {
 
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorUnitDerived>> InVectorUnitDerivedListUses { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixBuilder(TxBuilder pTx, VectorUnitPrefix pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitPrefixBuilder(TxBuilder pTx, long pVectorUnitPrefixId) : 
 			base(pTx, new VectorUnitPrefix { VectorUnitPrefixId = pVectorUnitPrefixId }) {}
@@ -4331,20 +3354,20 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitDerivedBuilder : DomainBuilder<VectorUnitDerived, RootContainsVectorUnitDerived> {
+	public class VectorUnitDerivedBuilder : NodeForTypeBuilder<VectorUnitDerived, RootContainsVectorUnitDerived> {
 
 		public virtual IWeaverVarAlias<VectorUnit> DefinesVectorUnit { get; private set; }
 		public virtual IWeaverVarAlias<VectorUnit> RaisesToExpVectorUnit { get; private set; }
 		public virtual IWeaverVarAlias<VectorUnitPrefix> UsesVectorUnitPrefix { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedBuilder(TxBuilder pTx, VectorUnitDerived pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public VectorUnitDerivedBuilder(TxBuilder pTx, long pVectorUnitDerivedId) : 
 			base(pTx, new VectorUnitDerived { VectorUnitDerivedId = pVectorUnitDerivedId }) {}
@@ -4452,14 +3475,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessBuilder(TxBuilder pTx, OauthAccess pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessBuilder(TxBuilder pTx, long pOauthAccessId) : 
 			base(pTx, new OauthAccess { OauthAccessId = pOauthAccessId }) {}
@@ -4535,14 +3558,14 @@ namespace Fabric.Infrastructure.Weaver {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainBuilder(TxBuilder pTx, OauthDomain pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainBuilder(TxBuilder pTx, long pOauthDomainId) : 
 			base(pTx, new OauthDomain { OauthDomainId = pOauthDomainId }) {}
@@ -4588,14 +3611,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantBuilder(TxBuilder pTx, OauthGrant pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantBuilder(TxBuilder pTx, long pOauthGrantId) : 
 			base(pTx, new OauthGrant { OauthGrantId = pOauthGrantId }) {}
@@ -4672,14 +3695,14 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeBuilder(TxBuilder pTx, OauthScope pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeBuilder(TxBuilder pTx) : base(pTx) {}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeBuilder(TxBuilder pTx, long pOauthScopeId) : 
 			base(pTx, new OauthScope { OauthScopeId = pOauthScopeId }) {}

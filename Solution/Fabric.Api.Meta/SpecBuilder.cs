@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/26/2013 3:56:00 PM
+// Generated on 4/2/2013 1:27:07 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -37,6 +37,12 @@ namespace Fabric.Api.Meta {
 				case "Root.RootId":
 					break;
 
+				case "Artifact.ArtifactId":
+					break;
+
+				case "Artifact.Created":
+					break;
+
 				case "App.AppId":
 					break;
 
@@ -49,18 +55,6 @@ namespace Fabric.Api.Meta {
 				case "App.Secret":
 					pValue.Len = 32;
 					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
-					break;
-
-				case "Artifact.ArtifactId":
-					break;
-
-				case "Artifact.IsPrivate":
-					break;
-
-				case "Artifact.Created":
-					break;
-
-				case "ArtifactType.ArtifactTypeId":
 					break;
 
 				case "Class.ClassId":
@@ -78,36 +72,6 @@ namespace Fabric.Api.Meta {
 
 				case "Class.Note":
 					pValue.LenMax = 256;
-					break;
-
-				case "Crowd.CrowdId":
-					break;
-
-				case "Crowd.Name":
-					pValue.LenMax = 64;
-					pValue.LenMin = 3;
-					break;
-
-				case "Crowd.Description":
-					pValue.LenMax = 256;
-					break;
-
-				case "Crowd.IsPrivate":
-					break;
-
-				case "Crowd.IsInviteOnly":
-					break;
-
-				case "Crowdian.CrowdianId":
-					break;
-
-				case "CrowdianType.CrowdianTypeId":
-					break;
-
-				case "CrowdianTypeAssign.CrowdianTypeAssignId":
-					break;
-
-				case "CrowdianTypeAssign.Weight":
 					break;
 
 				case "Email.EmailId":
@@ -144,15 +108,6 @@ namespace Fabric.Api.Meta {
 
 				case "Instance.Note":
 					pValue.LenMax = 256;
-					break;
-
-				case "Label.LabelId":
-					break;
-
-				case "Label.Name":
-					pValue.LenMax = 128;
-					pValue.LenMin = 1;
-					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
 				case "Member.MemberId":
@@ -424,6 +379,21 @@ namespace Fabric.Api.Meta {
 					pProp.IsUnique = true;
 					break;
 
+				case "Artifact.ArtifactId":
+					pProp.Name = "ArtifactId";
+					pProp.Type = "long";
+					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.IsPrimaryKey = true;
+					pProp.IsUnique = true;
+					break;
+
+				case "Artifact.Created":
+					pProp.Name = "Created";
+					pProp.Type = "long";
+					pProp.Description = SpecDoc.GetDtoPropText("Artifact_Created");
+					pProp.IsTimestamp = true;
+					break;
+
 				case "App.AppId":
 					pProp.Name = "AppId";
 					pProp.Type = "long";
@@ -437,35 +407,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("App_Name");
 					pProp.IsCaseInsensitive = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Artifact.ArtifactId":
-					pProp.Name = "ArtifactId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Artifact.IsPrivate":
-					pProp.Name = "IsPrivate";
-					pProp.Type = "bool";
-					pProp.Description = SpecDoc.GetDtoPropText("Artifact_IsPrivate");
-					break;
-
-				case "Artifact.Created":
-					pProp.Name = "Created";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Artifact_Created");
-					pProp.IsTimestamp = true;
-					break;
-
-				case "ArtifactType.ArtifactTypeId":
-					pProp.Name = "ArtifactTypeId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
 					pProp.IsUnique = true;
 					break;
 
@@ -910,14 +851,6 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					break;
 
-				case "App":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
 				case "Artifact":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
@@ -926,7 +859,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("WhereId");
 					break;
 
-				case "ArtifactType":
+				case "App":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
@@ -1174,9 +1107,6 @@ namespace Fabric.Api.Meta {
 				case "NodeForAction":
 					break;
 
-				case "ArtifactOwnerNode":
-					break;
-
 				case "Root":
 					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
@@ -1189,30 +1119,6 @@ namespace Fabric.Api.Meta {
 					link.FromConn = "OutToZeroOrMore";
 					link.Relation = "Contains";
 					link.To = "FabApp";
-					link.ToConn = "InFromOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "ContainsArtifactList";
-					link.Type = "RootContainsArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("RootContainsArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabRoot";
-					link.FromConn = "OutToZeroOrMore";
-					link.Relation = "Contains";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "ContainsArtifactTypeList";
-					link.Type = "RootContainsArtifactType";
-					link.Description = SpecDoc.GetDtoLinkText("RootContainsArtifactType");
-					link.IsOutgoing = true;
-					link.From = "FabRoot";
-					link.FromConn = "OutToZeroOrMore";
-					link.Relation = "Contains";
-					link.To = "FabArtifactType";
 					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
@@ -1554,85 +1460,8 @@ namespace Fabric.Api.Meta {
 
 					break;
 
-				case "App":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "HasArtifact";
-					link.Type = "AppHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("AppHasArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabApp";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "DefinesMemberList";
-					link.Type = "AppDefinesMember";
-					link.Description = SpecDoc.GetDtoLinkText("AppDefinesMember");
-					link.IsOutgoing = true;
-					link.From = "FabApp";
-					link.FromConn = "OutToOneOrMore";
-					link.Relation = "Defines";
-					link.To = "FabMember";
-					link.ToConn = "InFromOne";
-					pObject.TraversalLinks.Add(link);
-
-					break;
-
 				case "Artifact":
 					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InAppHas";
-					link.Type = "AppHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("AppHasArtifact");
-					link.IsOutgoing = false;
-					link.From = "FabApp";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "UsesArtifactType";
-					link.Type = "ArtifactUsesArtifactType";
-					link.Description = SpecDoc.GetDtoLinkText("ArtifactUsesArtifactType");
-					link.IsOutgoing = true;
-					link.From = "FabArtifact";
-					link.FromConn = "OutToOne";
-					link.Relation = "Uses";
-					link.To = "FabArtifactType";
-					link.ToConn = "InFromZeroOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "InClassHas";
-					link.Type = "ClassHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("ClassHasArtifact");
-					link.IsOutgoing = false;
-					link.From = "FabClass";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "InInstanceHas";
-					link.Type = "InstanceHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("InstanceHasArtifact");
-					link.IsOutgoing = false;
-					link.From = "FabInstance";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
 					link.Name = "InMemberCreates";
@@ -1644,30 +1473,6 @@ namespace Fabric.Api.Meta {
 					link.Relation = "Creates";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "InUrlHas";
-					link.Type = "UrlHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("UrlHasArtifact");
-					link.IsOutgoing = false;
-					link.From = "FabUrl";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "InUserHas";
-					link.Type = "UserHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("UserHasArtifact");
-					link.IsOutgoing = false;
-					link.From = "FabUser";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
@@ -1744,55 +1549,27 @@ namespace Fabric.Api.Meta {
 
 					break;
 
-				case "ArtifactType":
+				case "App":
 					pObject.TraversalLinks = new List<FabSpecTravLink>();
 
 					link = new FabSpecTravLink();
-					link.Name = "InArtifactListUses";
-					link.Type = "ArtifactUsesArtifactType";
-					link.Description = SpecDoc.GetDtoLinkText("ArtifactUsesArtifactType");
-					link.IsOutgoing = false;
-					link.From = "FabArtifact";
-					link.FromConn = "OutToOne";
-					link.Relation = "Uses";
-					link.To = "FabArtifactType";
-					link.ToConn = "InFromZeroOrMore";
+					link.Name = "DefinesMemberList";
+					link.Type = "AppDefinesMember";
+					link.Description = SpecDoc.GetDtoLinkText("AppDefinesMember");
+					link.IsOutgoing = true;
+					link.From = "FabApp";
+					link.FromConn = "OutToOneOrMore";
+					link.Relation = "Defines";
+					link.To = "FabMember";
+					link.ToConn = "InFromOne";
 					pObject.TraversalLinks.Add(link);
 
 					break;
 
 				case "Class":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "HasArtifact";
-					link.Type = "ClassHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("ClassHasArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabClass";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
 					break;
 
 				case "Instance":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "HasArtifact";
-					link.Type = "InstanceHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("InstanceHasArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabInstance";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
 					break;
 
 				case "Member":
@@ -1955,36 +1732,10 @@ namespace Fabric.Api.Meta {
 					break;
 
 				case "Url":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "HasArtifact";
-					link.Type = "UrlHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("UrlHasArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabUrl";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
 					break;
 
 				case "User":
 					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "HasArtifact";
-					link.Type = "UserHasArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("UserHasArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabUser";
-					link.FromConn = "OutToOne";
-					link.Relation = "Has";
-					link.To = "FabArtifact";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
 					link.Name = "DefinesMemberList";

@@ -8,7 +8,6 @@ namespace Fabric.Db.Data.Setups {
 	/*================================================================================================*/
 	public static class SetupTypes {
 
-		public const int NumArtifactTypes = 5;
 		//public const int NumCrowdUserTypes = 4;
 		public const int NumMemberTypes = 8;
 
@@ -33,7 +32,6 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupAll(DataSet pSet) {
-			SetupArtifactType(pSet);
 			//SetupCrowdianType(pSet);
 			SetupMemberType(pSet);
 
@@ -55,24 +53,6 @@ namespace Fabric.Db.Data.Setups {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupArtifactType(DataSet pSet) {
-			AddArtifactType(pSet, ArtifactTypeId.App, "App",
-				"This Artifact is related to a specific App.");
-			AddArtifactType(pSet, ArtifactTypeId.User, "User",
-				"This Artifact is related to a specific User.");
-			AddArtifactType(pSet, ArtifactTypeId.Class, "Class",
-				"This Artifact is related to a specific Class.");
-			AddArtifactType(pSet, ArtifactTypeId.Instance, "Instance",
-				"This Artifact is related to a specific Instance.");
-			AddArtifactType(pSet, ArtifactTypeId.Url, "Url",
-				"This Artifact is related to a specific URL.");
-			/*AddArtifactType(pSet, ArtifactTypeId.Label, "Label",
-				"This Artifact is related to a specific Label.");
-			AddArtifactType(pSet, ArtifactTypeId.Crowd, "Crowd",
-				"This Artifact is related to a specific Crowd.");*/
-		}
-
 		/*--------------------------------------------------------------------------------------------* /
 		public static void SetupCrowdianType(DataSet pSet) {
 			AddCrowdianType(pSet, CrowdianTypeId.Request, "Request",
@@ -108,17 +88,6 @@ namespace Fabric.Db.Data.Setups {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static void AddArtifactType(DataSet pSet, ArtifactTypeId pId, string pName,
-																						string pDesc) {
-			var t = new ArtifactType();
-			t.ArtifactTypeId = (long)pId;
-			t.Name = pName;
-			t.Description = pDesc;
-			pSet.AddNodeAndIndex(t, x => x.ArtifactTypeId, false);
-			pSet.AddRootRel<RootContainsArtifactType>(t, false);
-		}
-		
 		/*--------------------------------------------------------------------------------------------* /
 		private static void AddCrowdianType(DataSet pSet, CrowdianTypeId pId, string pName,
 																						string pDesc) {

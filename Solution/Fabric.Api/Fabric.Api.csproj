@@ -213,6 +213,10 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.Domain.Meta\Fabric.Domain.Meta.csproj">
+      <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
+      <Name>Fabric.Domain.Meta</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure.Analytics\Fabric.Infrastructure.Analytics.csproj">
       <Project>{8E09D9D5-148A-4699-A31B-372BD01E6C0A}</Project>
       <Name>Fabric.Infrastructure.Analytics</Name>

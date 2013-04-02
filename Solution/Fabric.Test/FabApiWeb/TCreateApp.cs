@@ -1,5 +1,7 @@
+using System;
 using Fabric.Api.Web;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
@@ -18,6 +20,8 @@ namespace Fabric.Test.FabApiWeb {
 		private long vUserId;
 
 		private IWeaverVarAlias<App> vOutAppVar;
+		private Action<IWeaverVarAlias<Member>> vOutSetMemAction;
+		private IWeaverVarAlias<Member> vResultMemAlias;
 		private App vResultApp;
 		private App vResult;
 		
@@ -29,6 +33,8 @@ namespace Fabric.Test.FabApiWeb {
 			vUserId = 987654;
 
 			vOutAppVar = GetTxVar<App>("APP");
+			vOutSetMemAction = (x => vResultMemAlias = x);
+			IWeaverVarAlias<Member> memVar = new Mock<IWeaverVarAlias<Member>>().Object;
 
 			MockTasks
 				.Setup(x => x.TxAddApp(
@@ -37,7 +43,19 @@ namespace Fabric.Test.FabApiWeb {
 						vName,
 						It.IsAny<IWeaverVarAlias<Root>>(),
 						vUserId,
-						out vOutAppVar
+						out vOutAppVar,
+						out vOutSetMemAction
+					)
+				);
+
+			MockTasks
+				.Setup(x => x.TxAddDataProvMember(
+						MockApiCtx.Object,
+						It.IsAny<TxBuilder>(),
+						It.IsAny<IWeaverVarAlias<Root>>(),
+						vOutAppVar,
+						vUserId,
+						out memVar
 					)
 				);
 
@@ -70,7 +88,7 @@ namespace Fabric.Test.FabApiWeb {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateApp(MockTasks.Object, MockModTasks.Object, vName, vUserId);
+			var func = new CreateApp(MockTasks.Object, vName, vUserId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -79,40 +97,14 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
+			vResultMemAlias = null;
 			TestGo();
 
 			Assert.AreEqual(vResultApp, vResult, "Incorrect Result.");
+			Assert.NotNull(vResultMemAlias, "ResultMemAlias should not be null.");
 
 			MockValidator.Verify(x => x.AppName(vName, CreateApp.NameParam), Times.Once());
 			MockValidator.Verify(x => x.UserId(vUserId, CreateApp.UserIdParam), Times.Once());
-
-			IWeaverVarAlias<Member> memVar;
-			IWeaverVarAlias<Artifact> artVar;
-
-			MockTasks
-				.Verify(x => x.TxAddDataProvMember(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutAppVar,
-						vUserId,
-						out memVar
-					),
-					Times.Once()
-				);
-
-			MockModTasks
-				.Verify(x => x.TxAddArtifact<App, AppHasArtifact>(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						ArtifactTypeId.App,
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutAppVar,
-						It.IsAny<IWeaverVarAlias<Member>>(),
-						out artVar
-					),
-					Times.Once()
-				);
 		}
 
 

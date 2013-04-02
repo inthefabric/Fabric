@@ -1,10 +1,10 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)../Packages/Weaver.1.0.0/Weaver.dll" #>
-<#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Infrastructure.dll" #>
 <#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>

@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
@@ -240,17 +241,22 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddUser(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pPassword,
-									IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Email> pEmailVar, 
-									out IWeaverVarAlias<User> pUserVar) {
+								IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Email> pEmailVar,
+								out IWeaverVarAlias<User> pUserVar, 
+								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			var user = new User();
 			user.UserId = pApiCtx.GetSharpflakeId<User>();
 			user.Name = pName;
 			user.Password = FabricUtil.HashPassword(pPassword);
+			user.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
+			user.Created = pApiCtx.UtcNow.Ticks;
 
 			var userBuild = new UserBuilder(pTxBuild, user);
 			userBuild.AddNode(pRootVar);
 			userBuild.SetUsesEmail(pEmailVar);
+
 			pUserVar = userBuild.NodeVar;
+			pSetMemberCreatesAction = userBuild.SetInMemberCreates;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -278,7 +284,8 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, 
-					IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar) {
+						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar,
+						out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			var emailVar = new WeaverVarAlias<Email>(pTxBuild.Transaction);
 
 			IWeaverQuery q = 
@@ -294,11 +301,15 @@ namespace Fabric.Api.Web.Tasks {
 			app.AppId = pApiCtx.GetSharpflakeId<App>();
 			app.Name = pName;
 			app.Secret = pApiCtx.Code32;
+			app.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
+			app.Created = pApiCtx.UtcNow.Ticks;
 
 			var appBuild = new AppBuilder(pTxBuild, app);
 			appBuild.AddNode(pRootVar);
 			appBuild.SetUsesEmail(emailVar);
+
 			pAppVar = appBuild.NodeVar;
+			pSetMemberCreatesAction = appBuild.SetInMemberCreates;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

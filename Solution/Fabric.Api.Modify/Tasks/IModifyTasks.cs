@@ -85,30 +85,19 @@ namespace Fabric.Api.Modify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild, 
-							ArtifactTypeId pArtTypeId, IWeaverVarAlias<Root> pRootVar,
-							IWeaverVarAlias<TNode> pNodeVar, IWeaverVarAlias<Member> pMemVar, 
-							out IWeaverVarAlias<Artifact> pArtVar)
-							where TNode : INode where TNodeHasArt : IWeaverRel<TNode, Artifact>, new();
-
-		/*--------------------------------------------------------------------------------------------*/
-		void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild,
-							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<ArtifactType> pArtTypeVar,
-							IWeaverVarAlias<TNode> pNodeVar, IWeaverVarAlias<Member> pMemVar, 
-							out IWeaverVarAlias<Artifact> pArtVar)
-							where TNode : INode where TNodeHasArt : IWeaverRel<TNode, Artifact>, new();
-
-		/*--------------------------------------------------------------------------------------------*/
 		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
-									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar);
+										IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar,
+										out IWeaverVarAlias<Url> pUrlVar);
 
 		/*--------------------------------------------------------------------------------------------*/
 		long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
-					string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar);
+						string	 pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar,
+						out IWeaverVarAlias<Class> pClassVar);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
-				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar);
+						string pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar,
+						out IWeaverVarAlias<Instance> pInstVar);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

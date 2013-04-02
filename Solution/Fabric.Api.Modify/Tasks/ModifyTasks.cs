@@ -466,90 +466,58 @@ namespace Fabric.Api.Modify.Tasks {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		//TODO: Remove ModifyTasks.TxAddArtifact (ArtType Id version)
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild, 
-							ArtifactTypeId pArtTypeId, IWeaverVarAlias<Root> pRootVar,
-							IWeaverVarAlias<TNode> pNodeVar, IWeaverVarAlias<Member> pMemVar, 
-							out IWeaverVarAlias<Artifact> pArtVar)
-							where TNode : INode where TNodeHasArt : IWeaverRel<TNode, Artifact>, new() {
-			var art = new Artifact();
-			art.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
-			art.Created = pApiCtx.UtcNow.Ticks;
-			art.IsPrivate = false;
-
-			var artBuild = new ArtifactBuilder(pTxBuild, art);
-			artBuild.AddNode(pRootVar);
-			artBuild.SetUsesArtifactType((long)pArtTypeId);
-			artBuild.SetInMemberCreates(pMemVar);
-			pArtVar = artBuild.NodeVar;
-
-			pTxBuild.AddRel<TNodeHasArt>(pNodeVar, pArtVar);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.TxAddArtifact (ArtType alias version)
-		public void TxAddArtifact<TNode, TNodeHasArt>(IApiContext pApiCtx, TxBuilder pTxBuild,
-							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<ArtifactType> pArtTypeVar,
-							IWeaverVarAlias<TNode> pNodeVar, IWeaverVarAlias<Member> pMemVar,
-							out IWeaverVarAlias<Artifact> pArtVar)
-			where TNode : INode
-			where TNodeHasArt : IWeaverRel<TNode, Artifact>, new() {
-			var art = new Artifact();
-			art.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
-			art.Created = pApiCtx.UtcNow.Ticks;
-			art.IsPrivate = false;
-
-			var artBuild = new ArtifactBuilder(pTxBuild, art);
-			artBuild.AddNode(pRootVar);
-			artBuild.SetUsesArtifactType(pArtTypeVar);
-			artBuild.SetInMemberCreates(pMemVar);
-			pArtVar = artBuild.NodeVar;
-
-			pTxBuild.AddRel<TNodeHasArt>(pNodeVar, pArtVar);
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
-									IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Url> pUrlVar) {
+									IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar, 
+									out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();
 			url.UrlId = pApiCtx.GetSharpflakeId<Url>();
 			url.AbsoluteUrl = pAbsoluteUrl;
 			url.Name = pName;
+			url.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
+			url.Created = pApiCtx.UtcNow.Ticks;
 
 			var urlBuild = new UrlBuilder(pTxBuild, url);
 			urlBuild.AddNode(pRootVar);
+			urlBuild.SetInMemberCreates(pMemVar);
 			pUrlVar = urlBuild.NodeVar;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
-				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Class> pClassVar) {
+		public long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
+						string pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar, 
+						out IWeaverVarAlias<Class> pClassVar) {
 			var c = new Class();
 			c.ClassId = pApiCtx.GetSharpflakeId<Class>();
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = pNote;
+			c.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
+			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var classBuild = new ClassBuilder(pTxBuild, c);
 			classBuild.AddNode(pRootVar);
+			classBuild.SetInMemberCreates(pMemVar);
 			pClassVar = classBuild.NodeVar;
-
 			return c.ClassId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb, 
-				string pNote, IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Instance> pInstVar) {
+		public void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
+						string pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar, 
+						out IWeaverVarAlias<Instance> pInstVar) {
 			var c = new Instance();
 			c.InstanceId = pApiCtx.GetSharpflakeId<Instance>();
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = pNote;
+			c.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
+			c.Created = pApiCtx.UtcNow.Ticks;
 
-			var classBuild = new InstanceBuilder(pTxBuild, c);
-			classBuild.AddNode(pRootVar);
-			pInstVar = classBuild.NodeVar;
+			var instBuild = new InstanceBuilder(pTxBuild, c);
+			instBuild.AddNode(pRootVar);
+			instBuild.SetInMemberCreates(pMemVar);
+			pInstVar = instBuild.NodeVar;
 		}
 
 

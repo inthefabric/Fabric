@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -11,19 +12,25 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
+			"_V1=[];"+ //Member
 			"g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
 				".outE('"+typeof(UserUsesEmail).Name+"').inV"+
-				".each{_V1=g.v(it)};"+
-			"_V2=g.addVertex(["+
+				".each{_V2=g.v(it)};"+
+			"_V3=g.addVertex(["+
 				typeof(App).Name+"Id:_TP1,"+
-				"Name:_TP2"+
+				"Name:_TP2,"+
+				"ArtifactId:_TP3,"+
+				"Created:_TP4"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP3);"+
-			"g.addEdge(_V2,_V1,_TP4);";
+			"g.addEdge(_V0,_V3,_TP5);"+
+			"g.addEdge(_V3,_V2,_TP6);"+
+			"g.addEdge(_V1,_V3,_TP7);";
 
 		private string vName;
 		private long vUserId;
 		private long vNewAppId;
+		private long vNewArtifactId;
+		private DateTime vUtcNow;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +39,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			vName = "NewApp";
 			vUserId = 9876;
 			vNewAppId = 43562742344;
+			vNewArtifactId = 27357427;
+			vUtcNow = DateTime.UtcNow;
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<App>()).Returns(vNewAppId);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtifactId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 		}
 
 
@@ -42,20 +53,26 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		[Test]
 		public void BuildTx() {
 			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
+			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
 			IWeaverVarAlias<App> appVar;
+			Action<IWeaverVarAlias<Member>> setMem;
 
-			Tasks.TxAddApp(MockApiCtx.Object, TxBuild, vName, rootVar, vUserId, out appVar);
+			Tasks.TxAddApp(MockApiCtx.Object, TxBuild, vName, rootVar, vUserId, out appVar, out setMem);
+			setMem(memVar);
 			FinishTx();
 
 			Assert.NotNull(appVar, "AppVar should not be null.");
-			Assert.AreEqual("_V2", appVar.Name, "Incorrect AppVar name.");
+			Assert.AreEqual("_V3", appVar.Name, "Incorrect AppVar name.");
 
 			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vUserId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewAppId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsApp).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(AppUsesEmail).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsApp).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(AppUsesEmail).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(MemberCreatesArtifact).Name);
 		}
 
 	}

@@ -1,10 +1,10 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
-<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -27,7 +27,7 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------*/
 		private static Dictionary<string, string[]> BuildNodeStepMap() {
 			var map = new Dictionary<string, string[]>();
-
+			
 <#
 IList<string> nodes = SchemaHelper.GetNodes();
 
@@ -36,9 +36,9 @@ foreach ( string name in nodes ) {
 	WeaverNodeSchema node = hn.NodeSchema;
 	if ( node.IsAbstract || node.IsInternal ) { continue; }
 
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetNestedRels(true);
 #>
-			map.Add("<#= node.Name #>", new [] {
+			map.Add("<#= node.Name #>", new string [] {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }

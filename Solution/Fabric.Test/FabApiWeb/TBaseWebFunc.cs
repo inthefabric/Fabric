@@ -15,7 +15,6 @@ namespace Fabric.Test.FabApiWeb {
 		protected Mock<IApiContext> MockApiCtx { get; private set; }
 		protected Mock<IDomainValidator> MockValidator { get; private set; }
 		protected Mock<IWebTasks> MockTasks { get; private set; }
-		protected Mock<IModifyTasks> MockModTasks { get; private set; }
 
 		protected long ApiCtxAppId { get; private set; }
 		protected long ApiCtxUserId { get; private set; }
@@ -31,8 +30,6 @@ namespace Fabric.Test.FabApiWeb {
 
 			MockTasks = new Mock<IWebTasks>();
 			MockTasks.SetupGet(x => x.Validator).Returns(MockValidator.Object);
-
-			MockModTasks = new Mock<IModifyTasks>();
 
 			TestSetUp();
 		}

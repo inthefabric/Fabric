@@ -1,3 +1,4 @@
+using System;
 using Fabric.Api.Web;
 using Fabric.Api.Web.Results;
 using Fabric.Domain;
@@ -22,6 +23,8 @@ namespace Fabric.Test.FabApiWeb {
 
 		private IWeaverVarAlias<User> vOutUserVar;
 		private IWeaverVarAlias<Email> vOutEmailVar;
+		private Action<IWeaverVarAlias<Member>> vOutSetMemAction;
+		private IWeaverVarAlias<Member> vResultMemAlias;
 		private IApiDataAccess vResultData;
 		private User vResultUser;
 		private Email vResultEmail;
@@ -37,6 +40,8 @@ namespace Fabric.Test.FabApiWeb {
 
 			vOutUserVar = GetTxVar<User>("USER");
 			vOutEmailVar = GetTxVar<Email>("EMAIL");
+			vOutSetMemAction = (x => vResultMemAlias = x);
+			IWeaverVarAlias<Member> memVar = new Mock<IWeaverVarAlias<Member>>().Object;
 
 			MockTasks
 				.Setup(x => x.TxAddEmail(
@@ -56,7 +61,18 @@ namespace Fabric.Test.FabApiWeb {
 						vPassword,
 						It.IsAny<IWeaverVarAlias<Root>>(),
 						It.IsAny<IWeaverVarAlias<Email>>(),
-						out vOutUserVar
+						out vOutUserVar,
+						out vOutSetMemAction
+					)
+				);
+
+			MockTasks
+				.Setup(x => x.TxAddMember(
+						MockApiCtx.Object,
+						It.IsAny<TxBuilder>(),
+						It.IsAny<IWeaverVarAlias<Root>>(),
+						vOutUserVar,
+						out memVar
 					)
 				);
 
@@ -90,7 +106,7 @@ namespace Fabric.Test.FabApiWeb {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateUser(MockTasks.Object, MockModTasks.Object, vName, vPassword, vEmail);
+			var func = new CreateUser(MockTasks.Object, vName, vPassword, vEmail);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -99,42 +115,17 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
+			vResultMemAlias = null;
 			TestGo();
 
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.AreEqual(vResultUser, vResult.NewUser, "Incorrect Result.NewUser.");
 			Assert.AreEqual(vResultEmail, vResult.NewEmail, "Incorrect Result.NewEmail.");
+			Assert.NotNull(vResultMemAlias, "ResultMemAlias should not be null.");
 
 			MockValidator.Verify(x => x.UserName(vName, CreateUser.NameParam), Times.Once());
 			MockValidator.Verify(x => x.UserPassword(vPassword, CreateUser.PasswordParam),Times.Once());
 			MockValidator.Verify(x => x.EmailAddress(vEmail, CreateUser.EmailParam), Times.Once());
-
-			IWeaverVarAlias<Member> memVar;
-			IWeaverVarAlias<Artifact> artVar;
-
-			MockTasks
-				.Verify(x => x.TxAddMember(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutUserVar,
-						out memVar
-					),
-					Times.Once()
-				);
-
-			MockModTasks
-				.Verify(x => x.TxAddArtifact<User, UserHasArtifact>(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						ArtifactTypeId.User,
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutUserVar,
-						It.IsAny<IWeaverVarAlias<Member>>(),
-						out artVar
-					),
-					Times.Once()
-				);
 		}
 
 

@@ -429,12 +429,8 @@ namespace Fabric.Db.Data.Setups {
 
 			////
 			
-			Artifact a = SetupArtifacts.AddArtifact(
-				vSet, pArtId, ArtifactTypeId.Url, pMemberId, vTestMode);
-
-			var rel = DataRel.Create(
-				vSet.GetNode<Url>((long)pId), new UrlHasArtifact(), a, vTestMode);
-			vSet.AddRel(rel);
+			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Url>((long)pId),
+				pArtId, ArtifactTypeId.Url, pMemberId, vTestMode);
 
 			////
 
@@ -551,12 +547,8 @@ namespace Fabric.Db.Data.Setups {
 
 			////
 
-			Artifact a = SetupArtifacts.AddArtifact(
-				vSet, pArtId, ArtifactTypeId.Class, pMemberId, vTestMode);
-
-			var rel = DataRel.Create(
-				vSet.GetNode<Class>((long)pId), new ClassHasArtifact(), a, vTestMode);
-			vSet.AddRel(rel);
+			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Class>((long)pId),
+				pArtId, ArtifactTypeId.Class, pMemberId, vTestMode);
 
 			////
 			
@@ -577,12 +569,8 @@ namespace Fabric.Db.Data.Setups {
 
 			////
 
-			Artifact a = SetupArtifacts.AddArtifact(
-				vSet, pArtId, ArtifactTypeId.Instance, pMemberId, vTestMode);
-
-			var rel = DataRel.Create(
-				vSet.GetNode<Instance>((long)pId), new InstanceHasArtifact(), a, vTestMode);
-			vSet.AddRel(rel);
+			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Instance>((long)pId), 
+				pArtId, ArtifactTypeId.Instance, pMemberId, vTestMode);
 
 			////
 

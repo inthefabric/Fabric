@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 2/19/2013 2:14:13 PM
+// Generated on 4/2/2013 1:27:05 PM
 
 using System.Collections.Generic;
 
@@ -16,11 +16,9 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------*/
 		private static Dictionary<string, string[]> BuildNodeStepMap() {
 			var map = new Dictionary<string, string[]>();
-
-			map.Add("Root", new [] {
+			
+			map.Add("Root", new string [] {
 				"/ContainsAppList",
-				"/ContainsArtifactList",
-				"/ContainsArtifactTypeList",
 				"/ContainsClassList",
 				"/ContainsInstanceList",
 				"/ContainsMemberList",
@@ -51,19 +49,8 @@ namespace Fabric.Test.Util {
 				"/ContainsVectorUnitDerivedList",
 			});
 
-			map.Add("App", new [] {
-				"/HasArtifact",
-				"/DefinesMemberList",
-			});
-
-			map.Add("Artifact", new [] {
-				"/InAppHas",
-				"/UsesArtifactType",
-				"/InClassHas",
-				"/InInstanceHas",
+			map.Add("Artifact", new string [] {
 				"/InMemberCreates",
-				"/InUrlHas",
-				"/InUserHas",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
 				"/InDescriptorListRefinesPrimaryWith",
@@ -72,19 +59,38 @@ namespace Fabric.Test.Util {
 				"/InVectorListUsesAxis",
 			});
 
-			map.Add("ArtifactType", new [] {
-				"/InArtifactListUses",
+			map.Add("App", new string [] {
+				"/InMemberCreates",
+				"/InFactorListUsesPrimary",
+				"/InFactorListUsesRelated",
+				"/InDescriptorListRefinesPrimaryWith",
+				"/InDescriptorListRefinesRelatedWith",
+				"/InDescriptorListRefinesTypeWith",
+				"/InVectorListUsesAxis",
+				"/DefinesMemberList",
 			});
 
-			map.Add("Class", new [] {
-				"/HasArtifact",
+			map.Add("Class", new string [] {
+				"/InMemberCreates",
+				"/InFactorListUsesPrimary",
+				"/InFactorListUsesRelated",
+				"/InDescriptorListRefinesPrimaryWith",
+				"/InDescriptorListRefinesRelatedWith",
+				"/InDescriptorListRefinesTypeWith",
+				"/InVectorListUsesAxis",
 			});
 
-			map.Add("Instance", new [] {
-				"/HasArtifact",
+			map.Add("Instance", new string [] {
+				"/InMemberCreates",
+				"/InFactorListUsesPrimary",
+				"/InFactorListUsesRelated",
+				"/InDescriptorListRefinesPrimaryWith",
+				"/InDescriptorListRefinesRelatedWith",
+				"/InDescriptorListRefinesTypeWith",
+				"/InVectorListUsesAxis",
 			});
 
-			map.Add("Member", new [] {
+			map.Add("Member", new string [] {
 				"/InAppDefines",
 				"/HasMemberTypeAssign",
 				"/HasHistoricMemberTypeAssignList",
@@ -94,27 +100,39 @@ namespace Fabric.Test.Util {
 				"/InUserDefines",
 			});
 
-			map.Add("MemberType", new [] {
+			map.Add("MemberType", new string [] {
 				"/InMemberTypeAssignListUses",
 			});
 
-			map.Add("MemberTypeAssign", new [] {
+			map.Add("MemberTypeAssign", new string [] {
 				"/InMemberHas",
 				"/InMemberHasHistoric",
 				"/InMemberCreates",
 				"/UsesMemberType",
 			});
 
-			map.Add("Url", new [] {
-				"/HasArtifact",
+			map.Add("Url", new string [] {
+				"/InMemberCreates",
+				"/InFactorListUsesPrimary",
+				"/InFactorListUsesRelated",
+				"/InDescriptorListRefinesPrimaryWith",
+				"/InDescriptorListRefinesRelatedWith",
+				"/InDescriptorListRefinesTypeWith",
+				"/InVectorListUsesAxis",
 			});
 
-			map.Add("User", new [] {
-				"/HasArtifact",
+			map.Add("User", new string [] {
+				"/InMemberCreates",
+				"/InFactorListUsesPrimary",
+				"/InFactorListUsesRelated",
+				"/InDescriptorListRefinesPrimaryWith",
+				"/InDescriptorListRefinesRelatedWith",
+				"/InDescriptorListRefinesTypeWith",
+				"/InVectorListUsesAxis",
 				"/DefinesMemberList",
 			});
 
-			map.Add("Factor", new [] {
+			map.Add("Factor", new string [] {
 				"/InMemberCreates",
 				"/UsesPrimaryArtifact",
 				"/UsesRelatedArtifact",
@@ -128,11 +146,11 @@ namespace Fabric.Test.Util {
 				"/UsesVector",
 			});
 
-			map.Add("FactorAssertion", new [] {
+			map.Add("FactorAssertion", new string [] {
 				"/InFactorListUses",
 			});
 
-			map.Add("Descriptor", new [] {
+			map.Add("Descriptor", new string [] {
 				"/InFactorListUses",
 				"/UsesDescriptorType",
 				"/RefinesPrimaryWithArtifact",
@@ -140,59 +158,59 @@ namespace Fabric.Test.Util {
 				"/RefinesTypeWithArtifact",
 			});
 
-			map.Add("DescriptorType", new [] {
+			map.Add("DescriptorType", new string [] {
 				"/InDescriptorListUses",
 			});
 
-			map.Add("Director", new [] {
+			map.Add("Director", new string [] {
 				"/InFactorListUses",
 				"/UsesDirectorType",
 				"/UsesPrimaryDirectorAction",
 				"/UsesRelatedDirectorAction",
 			});
 
-			map.Add("DirectorType", new [] {
+			map.Add("DirectorType", new string [] {
 				"/InDirectorListUses",
 			});
 
-			map.Add("DirectorAction", new [] {
+			map.Add("DirectorAction", new string [] {
 				"/InDirectorListUsesPrimary",
 				"/InDirectorListUsesRelated",
 			});
 
-			map.Add("Eventor", new [] {
+			map.Add("Eventor", new string [] {
 				"/InFactorListUses",
 				"/UsesEventorType",
 				"/UsesEventorPrecision",
 			});
 
-			map.Add("EventorType", new [] {
+			map.Add("EventorType", new string [] {
 				"/InEventorListUses",
 			});
 
-			map.Add("EventorPrecision", new [] {
+			map.Add("EventorPrecision", new string [] {
 				"/InEventorListUses",
 			});
 
-			map.Add("Identor", new [] {
+			map.Add("Identor", new string [] {
 				"/InFactorListUses",
 				"/UsesIdentorType",
 			});
 
-			map.Add("IdentorType", new [] {
+			map.Add("IdentorType", new string [] {
 				"/InIdentorListUses",
 			});
 
-			map.Add("Locator", new [] {
+			map.Add("Locator", new string [] {
 				"/InFactorListUses",
 				"/UsesLocatorType",
 			});
 
-			map.Add("LocatorType", new [] {
+			map.Add("LocatorType", new string [] {
 				"/InLocatorListUses",
 			});
 
-			map.Add("Vector", new [] {
+			map.Add("Vector", new string [] {
 				"/InFactorListUses",
 				"/UsesAxisArtifact",
 				"/UsesVectorType",
@@ -200,32 +218,32 @@ namespace Fabric.Test.Util {
 				"/UsesVectorUnitPrefix",
 			});
 
-			map.Add("VectorType", new [] {
+			map.Add("VectorType", new string [] {
 				"/InVectorListUses",
 				"/UsesVectorRange",
 			});
 
-			map.Add("VectorRange", new [] {
+			map.Add("VectorRange", new string [] {
 				"/InVectorTypeListUses",
 				"/UsesVectorRangeLevelList",
 			});
 
-			map.Add("VectorRangeLevel", new [] {
+			map.Add("VectorRangeLevel", new string [] {
 				"/InVectorRangeListUses",
 			});
 
-			map.Add("VectorUnit", new [] {
+			map.Add("VectorUnit", new string [] {
 				"/InVectorListUses",
 				"/InVectorUnitDerivedListDefines",
 				"/InVectorUnitDerivedListRaisesToExp",
 			});
 
-			map.Add("VectorUnitPrefix", new [] {
+			map.Add("VectorUnitPrefix", new string [] {
 				"/InVectorListUses",
 				"/InVectorUnitDerivedListUses",
 			});
 
-			map.Add("VectorUnitDerived", new [] {
+			map.Add("VectorUnitDerived", new string [] {
 				"/DefinesVectorUnit",
 				"/RaisesToExpVectorUnit",
 				"/UsesVectorUnitPrefix",
@@ -242,20 +260,14 @@ namespace Fabric.Test.Util {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void AppStep() {
-			TestStep("App", (tn, p) => new AppStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void ArtifactStep() {
 			TestStep("Artifact", (tn, p) => new ArtifactStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void ArtifactTypeStep() {
-			TestStep("ArtifactType", (tn, p) => new ArtifactTypeStep(tn, p));
+		public void AppStep() {
+			TestStep("App", (tn, p) => new AppStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

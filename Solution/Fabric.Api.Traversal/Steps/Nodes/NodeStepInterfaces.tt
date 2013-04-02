@@ -1,0 +1,72 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+namespace Fabric.Api.Traversal.Steps.Nodes {
+	
+<#
+IList<string> nodeNames = SchemaHelper.GetNodes();
+var intMap = new Dictionary<string,bool>();
+
+foreach ( string name in nodeNames ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( intMap.ContainsKey(hr.RelPropName) ) { continue; }
+		intMap.Add(hr.RelPropName, true);
+#>
+	/*================================================================================================*/
+	public interface I<#= hr.RelPropName #> {
+		I<#= hr.TargetNodeType #>Step <#= hr.RelPropName #> { get; }
+	}
+
+<#
+	} //end nodeRels loop
+} //end nodes loop
+
+foreach ( string name in nodeNames ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+	if ( node.IsInternal ) { continue; }
+
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
+	string interfaces = "I"+baseNode+"Step";
+
+	if ( node.Name == "Root" ) {
+		interfaces += ", IFinalStep";
+	}
+
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		interfaces += ", I"+hr.RelPropName;
+	}
+	
+	string typeIdIsLong = "false";
+	
+	foreach ( WeaverPropSchema prop in node.Props ) {
+		if ( prop.Name != node.Name+"Id" ) { continue; }
+		typeIdIsLong = (prop.Type == typeof(long) ? "true" : "false");
+		break;
+	}
+#>
+	/*================================================================================================*/
+	public interface I<#= node.Name #>Step :
+		<#= interfaces #> {
+	}
+
+<#
+} //end nodes loop
+#>
+}

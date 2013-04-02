@@ -1,8 +1,8 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
-<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Infrastructure.dll" #>
-<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -13,7 +13,7 @@
 
 using System.Collections.Generic;
 
-namespace Fabric.Infrastructure.Domain {
+namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public static partial class SchemaHelper {

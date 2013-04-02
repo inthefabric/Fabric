@@ -173,6 +173,10 @@
       <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
       <Name>Fabric.Api.Traversal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain.Meta\Fabric.Domain.Meta.csproj">
+      <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
+      <Name>Fabric.Domain.Meta</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>

@@ -1,8 +1,7 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using System;
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
@@ -17,14 +16,10 @@ namespace Fabric.Api.Web {
 		private readonly string vName;
 		private readonly long vUserId;
 
-		private readonly IModifyTasks vModTasks;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateApp(IWebTasks pTasks, IModifyTasks pModTasks, string pName, long pUserId) : 
-																						base(pTasks) {
-			vModTasks = pModTasks;
+		public CreateApp(IWebTasks pTasks, string pName, long pUserId) : base(pTasks) {
 			vName = pName;
 			vUserId = pUserId;
 		}
@@ -53,16 +48,15 @@ namespace Fabric.Api.Web {
 
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<App> appVar;
-			IWeaverVarAlias<Artifact> artVar;
 			IWeaverVarAlias<Member> memVar;
+			Action<IWeaverVarAlias<Member>> setMemberCreates;
 
 			var txb = new TxBuilder();
 
 			txb.GetRoot(out rootVar);
-			Tasks.TxAddApp(ApiCtx, txb, vName, rootVar, user.UserId, out appVar);
+			Tasks.TxAddApp(ApiCtx, txb, vName, rootVar, user.UserId, out appVar, out setMemberCreates);
 			Tasks.TxAddDataProvMember(ApiCtx, txb, rootVar, appVar, user.UserId, out memVar);
-			vModTasks.TxAddArtifact<App, AppHasArtifact>(
-				ApiCtx, txb, ArtifactTypeId.App, rootVar, appVar, memVar, out artVar);
+			setMemberCreates(memVar);
 
 			////
 			

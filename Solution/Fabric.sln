@@ -4,12 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api", "Fabric.Api\Fabric.Api.csproj", "{B8B58824-60DC-40A8-88CF-7048493D5517}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain", "Fabric.Domain\Fabric.Domain.csproj", "{E28CDF51-883C-4A8F-8C27-C681AF79F591}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE} = {0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db.Data", "Fabric.Test.Data\Fabric.Db.Data.csproj", "{878B57C3-E251-4F77-8427-463693F033AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE} = {0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test", "Fabric.Test\Fabric.Test.csproj", "{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Infrastructure", "Fabric.Infrastructure\Fabric.Infrastructure.csproj", "{506266BF-35D7-4DC5-BEE7-735A9690B5DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE} = {0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Dto", "Fabric.Api.Dto\Fabric.Api.Dto.csproj", "{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}"
 EndProject
@@ -30,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Web", "Fabric.Api.Web\Fabric.Api.Web.csproj", "{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Infrastructure.Analytics", "Fabric.Infrastructure.Analytics\Fabric.Infrastructure.Analytics.csproj", "{8E09D9D5-148A-4699-A31B-372BD01E6C0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain.Meta", "Fabric.Domain.Meta\Fabric.Domain.Meta.csproj", "{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -239,6 +250,21 @@ Global
 		{8E09D9D5-148A-4699-A31B-372BD01E6C0A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8E09D9D5-148A-4699-A31B-372BD01E6C0A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8E09D9D5-148A-4699-A31B-372BD01E6C0A}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.DebugLive|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.DebugLive|Any CPU.Build.0 = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.DebugLive|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.DebugLive|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.DebugLive|x86.ActiveCfg = Debug|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

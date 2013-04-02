@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Fabric.Api.Modify.Tasks;
+﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Web.Results;
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Interfaces;
@@ -23,14 +22,10 @@ namespace Fabric.Api.Web {
 		private readonly string vPass;
 		private readonly string vEmail;
 
-		private readonly IModifyTasks vModTasks;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateUser(IWebTasks pTasks, IModifyTasks pModTasks, string pName, string pPass,
-																		string pEmail) : base(pTasks) {
-			vModTasks = pModTasks;
+		public CreateUser(IWebTasks pTasks, string pName, string pPass, string pEmail) : base(pTasks) {
 			vName = pName;
 			vPass = pPass;
 			vEmail = pEmail;
@@ -58,17 +53,17 @@ namespace Fabric.Api.Web {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Email> emailVar;
 			IWeaverVarAlias<User> userVar;
-			IWeaverVarAlias<Artifact> artVar;
 			IWeaverVarAlias<Member> memVar;
+			Action<IWeaverVarAlias<Member>> setMemberCreates;
 
 			var txb = new TxBuilder();
 
 			txb.GetRoot(out rootVar);
 			Tasks.TxAddEmail(ApiCtx, txb, vEmail, rootVar, out emailVar);
-			Tasks.TxAddUser(ApiCtx, txb, vName, vPass, rootVar, emailVar, out userVar);
+			Tasks.TxAddUser(ApiCtx, txb, vName, vPass, rootVar, emailVar,
+				out userVar, out setMemberCreates);
 			Tasks.TxAddMember(ApiCtx, txb, rootVar, userVar, out memVar);
-			vModTasks.TxAddArtifact<User, UserHasArtifact>(
-				ApiCtx, txb, ArtifactTypeId.User, rootVar, userVar, memVar, out artVar);
+			setMemberCreates(memVar);
 
 			var list = new List<IWeaverVarAlias> { userVar, emailVar };
 			IWeaverVarAlias listVar;

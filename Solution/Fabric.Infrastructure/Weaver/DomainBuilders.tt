@@ -1,19 +1,20 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)../Packages/Weaver.1.0.0/Weaver.dll" #>
-<#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Infrastructure.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
-<#@ import namespace="Fabric.Infrastructure.Domain" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-using Weaver.Interfaces;
-using Fabric.Domain;
 using System.Collections.Generic;
+using Fabric.Domain;
+using Weaver.Interfaces;
+using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -24,15 +25,29 @@ foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
 	
-	if ( node.IsAbstract || node.IsRoot ) { continue; }
-	
+	if ( node.IsRoot ) { continue; }
+
+	bool isAbs = (node.IsAbstract || node.Name == "Artifact");
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
-	string idType = hn.GetPrimaryKeyProp().TypeName;
+	string nodeType = (isAbs ? "T" : node.Name);
+	string baseType = (node.BaseNode == null ? "Domain" : node.BaseNode.Name);
+
+	if ( isAbs ) {
 #>
 	/*================================================================================================*/
-	public class <#= node.Name #>Builder : DomainBuilder<<#= node.Name #>, RootContains<#= node.Name #>> {
+	public abstract class <#= node.Name #>Builder<<#= nodeType #>, TRootRel> : DomainBuilder<T, TRootRel>
+						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
 
 <#
+	}
+	else {
+#>
+	/*================================================================================================*/
+	public class <#= node.Name #>Builder : <#= baseType #>Builder<<#= nodeType #>, RootContains<#= node.Name #>> {
+
+<#
+	} //end abstract condition
+
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( hr.TargetNodeType == "Root" ) {
 			continue;
@@ -49,20 +64,26 @@ foreach ( string name in nodes ) {
 	} //end rel loop
 #>
 		
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Builder(TxBuilder pTx, <#= node.Name #> pNode) : base(pTx, pNode) {}
+		public <#= node.Name #>Builder(TxBuilder pTx, <#= nodeType #> pNode) : base(pTx, pNode) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= node.Name #>Builder(TxBuilder pTx) : base(pTx) {}
-		
+
+<#
+	if ( !isAbs ) {
+		string idType = hn.GetPrimaryKeyProp().TypeName;
+#>
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= node.Name #>Builder(TxBuilder pTx, <#= idType #> p<#= node.Name #>Id) : 
 			base(pTx, new <#= node.Name #> { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
 		
 		
 <#
+	} //end abstract condition
+
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		string method = (hr.IsMany ? "AddTo" : "Set")+hr.RelPropName;
 		string t = hr.TargetNodeType;

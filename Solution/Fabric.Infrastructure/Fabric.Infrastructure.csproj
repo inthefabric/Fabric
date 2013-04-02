@@ -90,12 +90,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Domain\SchemaHelper.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SchemaHelper.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\SchemaHelperBase.cs" />
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Traversal\FuncAttribute.cs" />
@@ -103,11 +97,6 @@
     <Compile Include="Traversal\IStepLink.cs" />
     <Compile Include="Traversal\StepLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Schema.cs" />
-    <Compile Include="Domain\SchemaHelperNode.cs" />
-    <Compile Include="Domain\SchemaHelperNodeRel.cs" />
-    <Compile Include="Domain\SchemaHelperProp.cs" />
-    <Compile Include="Domain\SchemaHelperRel.cs" />
     <Compile Include="Sharpflake.cs" />
     <Compile Include="Api\IApiDataAccess.cs" />
     <Compile Include="Api\IApiDataAccessT.cs" />
@@ -128,10 +117,6 @@
       <LastGenOutput>DomainValidators.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Domain\SchemaHelper.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchemaHelper.cs</LastGenOutput>
-    </None>
     <None Include="Weaver\DomainBuilders.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainBuilders.cs</LastGenOutput>

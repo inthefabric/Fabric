@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 3/15/2013 12:48:13 PM
+// Generated on 4/2/2013 1:27:06 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -97,34 +97,6 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public abstract class FabArtifactOwnerNode : FabNode {
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifactOwnerNode() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(ArtifactOwnerNode pNode) {
-			base.FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
 	public class FabRoot : FabNode {
 		
 		[DtoProp(IsOptional=false)]
@@ -169,7 +141,58 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public class FabApp : FabArtifactOwnerNode {
+	public class FabArtifact : FabNode {
+		
+		[DtoProp(IsOptional=false)]
+		public long ArtifactId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
+		public long Created { get; set; }
+		
+		private static readonly List<string> AvailNodeProps = new List<string> {
+			"ArtifactId", "Created"
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifact() {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifact(Artifact pNode) : this() {
+			FillWithNode(pNode);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override long TypeId { get { return ArtifactId; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void FillResultData(IDictionary<string,string> pData) {
+			string val;
+
+			val = pData["ArtifactId"];
+			ArtifactId = long.Parse(val);
+
+			val = pData["Created"];
+			Created = long.Parse(val);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithNode(Artifact pNode) {
+			base.FillWithNode(pNode);
+			ArtifactId = pNode.ArtifactId;
+			Created = pNode.Created;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override List<string> AvailableProps {
+			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class FabApp : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public long AppId { get; set; }
@@ -223,111 +246,7 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public class FabArtifact : FabNode {
-		
-		[DtoProp(IsOptional=false)]
-		public long ArtifactId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public bool IsPrivate { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public long Created { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"ArtifactId", "IsPrivate", "Created"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifact() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifact(Artifact pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return ArtifactId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			string val;
-
-			val = pData["ArtifactId"];
-			ArtifactId = long.Parse(val);
-
-			val = pData["IsPrivate"];
-			IsPrivate = bool.Parse(val);
-
-			val = pData["Created"];
-			Created = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Artifact pNode) {
-			base.FillWithNode(pNode);
-			ArtifactId = pNode.ArtifactId;
-			IsPrivate = pNode.IsPrivate;
-			Created = pNode.Created;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabArtifactType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long ArtifactTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"ArtifactTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifactType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifactType(ArtifactType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return ArtifactTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["ArtifactTypeId"];
-			ArtifactTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(ArtifactType pNode) {
-			base.FillWithNode(pNode);
-			ArtifactTypeId = pNode.ArtifactTypeId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabClass : FabArtifactOwnerNode {
+	public class FabClass : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public long ClassId { get; set; }
@@ -395,7 +314,7 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public class FabInstance : FabArtifactOwnerNode {
+	public class FabInstance : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public long InstanceId { get; set; }
@@ -599,7 +518,7 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public class FabUrl : FabArtifactOwnerNode {
+	public class FabUrl : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public long UrlId { get; set; }
@@ -660,7 +579,7 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public class FabUser : FabArtifactOwnerNode {
+	public class FabUser : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public long UserId { get; set; }

@@ -66,6 +66,16 @@
     <Compile Include="Steps\Functions\FuncLimitStep.cs" />
     <Compile Include="Steps\FabStepFault.cs" />
     <Compile Include="Steps\Functions\FuncBackStep.cs" />
+    <Compile Include="Steps\Nodes\AbstractNodeSteps.cs">
+      <DependentUpon>AbstractNodeSteps.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Steps\Nodes\NodeStepInterfaces.cs">
+      <DependentUpon>NodeStepInterfaces.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Steps\Nodes\INodeStep.cs" />
     <Compile Include="Steps\StepData.cs" />
     <Compile Include="Steps\Nodes\NodeSteps.cs">
@@ -87,6 +97,14 @@
     <Compile Include="TraversalModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Steps\Nodes\AbstractNodeSteps.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AbstractNodeSteps.cs</LastGenOutput>
+    </None>
+    <None Include="Steps\Nodes\NodeStepInterfaces.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NodeStepInterfaces.cs</LastGenOutput>
+    </None>
     <None Include="Steps\Nodes\NodeSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NodeSteps.cs</LastGenOutput>

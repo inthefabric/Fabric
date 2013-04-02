@@ -1,4 +1,4 @@
-﻿namespace Fabric.Infrastructure.Domain {
+﻿namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public static partial class SchemaHelper {

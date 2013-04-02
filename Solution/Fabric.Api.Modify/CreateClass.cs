@@ -3,10 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
@@ -52,11 +49,10 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Class Execute() {
 			IWeaverVarAlias<Root> rootVar;
-			IWeaverVarAlias<ArtifactType> artTypeVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 
-			TxBuilder txb = GetFullTx(out rootVar, out memVar, out artTypeVar, out classVar);
+			TxBuilder txb = GetFullTx(out rootVar, out memVar, out classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
 			//ApiCtx.ClassNameCache.AddClass(ApiCtx, c.ClassId, c.Name, c.Disamb);
@@ -82,8 +78,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public TxBuilder GetFullTx(out IWeaverVarAlias<Root> pRootVar, 
-					out IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<ArtifactType> pArtTypeVar,
-																out IWeaverVarAlias<Class> pClassVar) {
+							out IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			
 			/*if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
 				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
@@ -94,33 +89,17 @@ namespace Fabric.Api.Modify {
 			
 			var txb = new TxBuilder();
 			txb.GetRoot(out pRootVar);
-
-			var at = new ArtifactType { ArtifactTypeId = (long)ArtifactTypeId.Class };
-			txb.GetNode(at, out pArtTypeVar);
-			
 			txb.GetNodeByNodeId(m, out pMemVar);
 			
-			//pMemVar = new WeaverVarAlias<Member>(txb.Transaction);
-			//txb.RegisterVarWithTxBuilder(pMemVar);
-			//var q = new WeaverQuery();
-			//q.FinalizeQuery(pMemVar.Name+"=g.v("+m.Id+")");
-			//txb.Transaction.AddQuery(q);
-
-			FillBatchTx(txb, pRootVar, pMemVar, pArtTypeVar, out pClassVar);
+			FillBatchTx(txb, pRootVar, pMemVar, out pClassVar);
 			return txb;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillBatchTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
-							IWeaverVarAlias<Member> pMemVar, IWeaverVarAlias<ArtifactType> pArtTypeVar,
-							out IWeaverVarAlias<Class> pClassVar) {
-			IWeaverVarAlias<Artifact> artVar;
-
+							IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			vNewClassId = Tasks.TxAddClass(ApiCtx, pTxBuild, 
-				vName, vDisamb, vNote, pRootVar, out pClassVar);
-
-			Tasks.TxAddArtifact<Class, ClassHasArtifact>(
-				ApiCtx, pTxBuild, pRootVar, pArtTypeVar, pClassVar, pMemVar, out artVar);
+				vName, vDisamb, vNote, pRootVar, pMemVar, out pClassVar);
 
 			pTxBuild.RegisterVarWithTxBuilder(pClassVar);
 		}

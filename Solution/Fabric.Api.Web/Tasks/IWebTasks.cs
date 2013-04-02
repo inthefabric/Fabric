@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
@@ -59,8 +60,9 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddUser(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pPassword,
-									IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Email> pEmailVar,
-									out IWeaverVarAlias<User> pUserVar);
+								IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Email> pEmailVar,
+								out IWeaverVarAlias<User> pUserVar,
+								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
@@ -68,7 +70,8 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName,
-						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar);
+						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar,
+						out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,IWeaverVarAlias<Root> pRootVar, 

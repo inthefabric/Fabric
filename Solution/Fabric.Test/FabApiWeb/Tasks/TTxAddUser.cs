@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using System;
+using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -13,17 +14,23 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
 			"_V1=[];"+ //Email
-			"_V2=g.addVertex(["+
+			"_V2=[];"+ //Member
+			"_V3=g.addVertex(["+
 				typeof(User).Name+"Id:_TP0,"+
 				"Name:_TP1,"+
-				"Password:_TP2"+
+				"Password:_TP2,"+
+				"ArtifactId:_TP3,"+
+				"Created:_TP4"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP3);"+
-			"g.addEdge(_V2,_V1,_TP4);";
+			"g.addEdge(_V0,_V3,_TP5);"+
+			"g.addEdge(_V3,_V1,_TP6);"+
+			"g.addEdge(_V2,_V3,_TP7);";
 
 		private string vName;
 		private string vPassword;
 		private long vNewUserId;
+		private long vNewArtifactId;
+		private DateTime vUtcNow;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +39,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			vName = "NewUser";
 			vPassword = "TestPassword";
 			vNewUserId = 346137173314;
+			vNewArtifactId = 27357427;
+			vUtcNow = DateTime.UtcNow;
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<User>()).Returns(vNewUserId);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtifactId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 		}
 
 
@@ -43,21 +54,27 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		public void BuildTx() {
 			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
 			IWeaverVarAlias<Email> emailVar = GetTxVar<Email>();
+			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
 			IWeaverVarAlias<User> userVar;
+			Action<IWeaverVarAlias<Member>> setMem;
 
 			Tasks.TxAddUser(MockApiCtx.Object, TxBuild,
-				vName, vPassword, rootVar, emailVar, out userVar);
+				vName, vPassword, rootVar, emailVar, out userVar, out setMem);
+			setMem(memVar);
 			FinishTx();
 
 			Assert.NotNull(userVar, "UserVar should not be null.");
-			Assert.AreEqual("_V2", userVar.Name, "Incorrect UserVar name.");
+			Assert.AreEqual("_V3", userVar.Name, "Incorrect UserVar name.");
 
 			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewUserId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", FabricUtil.HashPassword(vPassword));
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsUser).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(UserUsesEmail).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsUser).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(UserUsesEmail).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(MemberCreatesArtifact).Name);
 		}
 
 	}

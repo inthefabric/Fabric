@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 using NUnit.Framework;
 
@@ -24,25 +22,26 @@ namespace Fabric.Test.FabApiDto {
 			dd.Data = new Dictionary<string, string>();
 			dd.Data.Add("Name", name);
 			dd.Data.Add("Description", desc);
-			dd.Data.Add("ArtifactTypeId", "1");
+			dd.Data.Add("DescriptorTypeId", "1");
 
-			var at = new FabArtifactType();
-			at.Fill(dd);
+			var dt = new FabDescriptorType();
+			dt.Fill(dd);
 
-			Assert.AreEqual(name, at.Name, "Incorrect Name.");
-			Assert.AreEqual(desc, at.Description, "Incorrect Description.");
+			Assert.AreEqual(name, dt.Name, "Incorrect Name.");
+			Assert.AreEqual(desc, dt.Description, "Incorrect Description.");
+			Assert.AreEqual(1, dt.DescriptorTypeId, "Incorrect DescriptorTypeId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void AvailableProps() {
-			var at = new FabArtifactType();
-			Assert.True(at.HasProperty("NodeId"), "Missing 'NodeId' property.");
-			Assert.True(at.HasProperty("Name"), "Missing 'Name' property.");
-			Assert.True(at.HasProperty("Description"), "Missing 'Description' property.");
-			Assert.True(at.HasProperty("ArtifactTypeId"), "Missing 'ArtifactTypeId' property.");
-			Assert.False(at.HasProperty("Nam"), "Should not have 'Nam' property.");
-			Assert.False(at.HasProperty("Namee"), "Should not have 'Namee' property.");
+			var dt = new FabDescriptorType();
+			Assert.True(dt.HasProperty("NodeId"), "Missing 'NodeId' property.");
+			Assert.True(dt.HasProperty("Name"), "Missing 'Name' property.");
+			Assert.True(dt.HasProperty("Description"), "Missing 'Description' property.");
+			Assert.True(dt.HasProperty("DescriptorTypeId"), "Missing 'DescriptorTypeId' property.");
+			Assert.False(dt.HasProperty("Nam"), "Should not have 'Nam' property.");
+			Assert.False(dt.HasProperty("Namee"), "Should not have 'Namee' property.");
 		}
 
 	}

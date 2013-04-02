@@ -107,7 +107,6 @@ namespace Fabric.Api.Modify {
 			TxBuilder txb = null;
 			IWeaverVarAlias<Root> rootVar = null;
 			IWeaverVarAlias<Member> memVar = null;
-			IWeaverVarAlias<ArtifactType> artTypeVar = null;
 			var nodeIds = new string[n];
 
 			for ( int i = 0 ; i < n ; ++i ) {
@@ -125,10 +124,10 @@ namespace Fabric.Api.Modify {
 					IWeaverVarAlias<Class> classVar;
 
 					if ( txb == null ) {
-						txb = cc.GetFullTx(out rootVar, out memVar, out artTypeVar, out classVar);
+						txb = cc.GetFullTx(out rootVar, out memVar, out classVar);
 					}
 					else {
-						cc.FillBatchTx(txb, rootVar, memVar, artTypeVar, out classVar);
+						cc.FillBatchTx(txb, rootVar, memVar, out classVar);
 					}
 
 					res.ResultId = cc.GetNewClassIdForBatch();

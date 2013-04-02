@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
@@ -42,6 +41,7 @@ namespace Fabric.Test.FabApiModify {
 						vDisamb,
 						vNote,
 						It.IsAny<IWeaverVarAlias<Root>>(),
+						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutInstanceVar
 					)
 				);
@@ -88,21 +88,6 @@ namespace Fabric.Test.FabApiModify {
 			MockValidator.Verify(x => x.InstanceName(vName, CreateInstance.NameParam), Times.Once());
 			MockValidator.Verify(x => x.InstanceDisamb(vDisamb, CreateInstance.DisambParam), Times.Once());
 			MockValidator.Verify(x => x.InstanceNote(vNote, CreateInstance.NoteParam), Times.Once());
-
-			IWeaverVarAlias<Artifact> artVar;
-
-			MockTasks
-				.Verify(x => x.TxAddArtifact<Instance, InstanceHasArtifact>(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						ArtifactTypeId.Instance,
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutInstanceVar,
-						It.IsAny<IWeaverVarAlias<Member>>(),
-						out artVar
-					),
-					Times.Once()
-				);
 		}
 
 

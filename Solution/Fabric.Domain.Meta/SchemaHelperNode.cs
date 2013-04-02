@@ -2,7 +2,7 @@
 using System.Linq;
 using Weaver.Schema;
 
-namespace Fabric.Infrastructure.Domain {
+namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public class SchemaHelperNode {
@@ -47,6 +47,18 @@ namespace Fabric.Infrastructure.Domain {
 			return vRels
 				.Where(r => (!pSkipInternal || !r.IsTargetNodeInternal))
 				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<SchemaHelperNodeRel> GetNestedRels(bool pSkipInternal=false) {
+			if ( NodeSchema.BaseNode == null ) {
+				return GetRels(pSkipInternal);
+			}
+
+			var parent = new SchemaHelperNode(NodeSchema.BaseNode);
+			List<SchemaHelperNodeRel> rels = parent.GetNestedRels(pSkipInternal).ToList();
+			rels.AddRange(GetRels(pSkipInternal));
+			return rels;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

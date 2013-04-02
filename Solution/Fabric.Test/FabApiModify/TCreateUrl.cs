@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
@@ -39,6 +38,7 @@ namespace Fabric.Test.FabApiModify {
 						vAbsoluteUrl,
 						vName,
 						It.IsAny<IWeaverVarAlias<Root>>(),
+						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutUrlVar
 					)
 				);
@@ -85,21 +85,6 @@ namespace Fabric.Test.FabApiModify {
 			MockValidator.Verify(x => x.UrlAbsoluteUrl(vAbsoluteUrl,
 				CreateUrl.AbsoluteUrlParam), Times.Once());
 			MockValidator.Verify(x => x.UrlName(vName, CreateUrl.NameParam), Times.Once());
-
-			IWeaverVarAlias<Artifact> artVar;
-
-			MockTasks
-				.Verify(x => x.TxAddArtifact<Url, UrlHasArtifact>(
-						MockApiCtx.Object,
-						It.IsAny<TxBuilder>(),
-						ArtifactTypeId.Url,
-						It.IsAny<IWeaverVarAlias<Root>>(),
-						vOutUrlVar,
-						It.IsAny<IWeaverVarAlias<Member>>(),
-						out artVar
-					),
-					Times.Once()
-				);
 		}
 
 

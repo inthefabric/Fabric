@@ -1,7 +1,7 @@
 ﻿using System;
 using Weaver.Schema;
 
-namespace Fabric.Infrastructure.Domain {
+namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public class SchemaHelperProp {
