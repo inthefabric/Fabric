@@ -11,6 +11,7 @@ using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Caching;
 using Nancy;
 using ServiceStack.Text;
 
@@ -76,6 +77,7 @@ namespace Fabric.Api {
 				//cacheConfig.Add("PhysicalMemoryLimitPercentage", "10");
 
 				MemCache = new MemoryCache("FabricApi", cacheConfig);
+				var testCache = new TestCache();
 
 				var acList = new List<IApiContext>();
 
