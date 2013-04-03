@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
@@ -41,8 +40,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Member GetValidMemberByContext(IApiContext pApiCtx) {
-			string cacheKey = "Member_"+pApiCtx.AppId+"_"+pApiCtx.UserId;
-			Member mem = pApiCtx.GetFromCache<Member>(cacheKey);
+			Member mem = pApiCtx.Cache.Memory.FindMember(pApiCtx.AppId, pApiCtx.UserId);
 
 			if ( mem != null ) {
 				return mem;
@@ -66,73 +64,22 @@ namespace Fabric.Api.Modify.Tasks {
 				.End();
 
 			mem = pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
-			pApiCtx.AddToCache(cacheKey, mem, 3600);
+			pApiCtx.Cache.Memory.AddMember(pApiCtx.AppId, pApiCtx.UserId, mem);
 			return mem;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: ModifyTasks.GetClassByNameDisamp cache usage
+		//TEST: ModifyTasks.GetClassByNameDisamb cache usage
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			IWeaverTransaction tx = new WeaverTransaction();
-			IWeaverVarAlias retainVar = null;
-			int filterI = 1;
-
-			if ( pApiCtx.ClassNameCache.IsLoadComplete() ) {
-				return (pApiCtx.ClassNameCache.HasDuplicateClass(pName, pDisamb) ? new Class() : null);
-				IList<long> classIdList = pApiCtx.ClassNameCache.GetClassIds(pApiCtx, pName, pDisamb);
-
-				if ( classIdList == null || classIdList.Count == 0 ) {
-					return null;
-				}
-
-				var classVars = new List<IWeaverVarAlias>();
-
-				foreach ( long classId in classIdList ) {
-					var classVar = new WeaverVarAlias<Class>(tx);
-					classVars.Add(classVar);
-
-					tx.AddQuery(
-						ApiFunc.NewPathFromIndex(new Class { ClassId = classId })
-							.ToNodeVar(classVar)
-						.End()
-					);
-
-					filterI++;
-				}
-
-				tx.AddQuery(
-					WeaverTasks.InitListVar(tx, classVars, out retainVar)
-				);
+			if ( pApiCtx.Cache.UniqueClasses.ContainsClass(pName, pDisamb) ) {
+				return null;
 			}
 
-			////
-
-			Class path = 
-				ApiFunc.NewPathFromRoot()
-				.ContainsClassList.ToClass;
-
-			if ( retainVar != null ) {
-				path.Retain(retainVar);
-			}
-
-			//TEST: ModifyTasks.GetClassByNameDisamb filter logic
-			string propName = WeaverUtil.GetPropertyName<Class>(x => x.Name);
-			string getProp = "it.getProperty('"+propName+"')";
-			string value = pName;
-
-			if ( pDisamb != null ) {
-				value += "|"+pDisamb;
-				propName = WeaverUtil.GetPropertyName<Class>(x => x.Disamb);
-				getProp = "("+getProp+"+'|'+it.getProperty('"+propName+"'))";
-			}
-
-			IWeaverQuery q = path
-				.CustomStep("filter{"+getProp+".toLowerCase()==_TP"+filterI+"}")
-				.End();
-
-			q.AddParam(new WeaverQueryVal(value.ToLower(), false));
-			tx.AddQuery(q);
-			return pApiCtx.DbSingle<Class>("GetClassByNameDisambTx", tx.Finish());
+			var c = new Class();
+			c.ClassId = pApiCtx.Cache.UniqueClasses.GetClassId(pName, pDisamb);
+			c.Name = pName;
+			c.Disamb = pDisamb;
+			return c;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

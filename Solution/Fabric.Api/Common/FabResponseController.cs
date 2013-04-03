@@ -61,8 +61,7 @@ namespace Fabric.Api.Common {
 				return;
 			}
 
-			string cacheKey = "OaToken_"+token;
-			FabOauthAccess acc = ApiCtx.GetFromCache<FabOauthAccess>(cacheKey);
+			FabOauthAccess acc = (FabOauthAccess)ApiCtx.Cache.Memory.FindOauthAccess(token);
 
 			if ( acc == null ) {
 				acc = OauthTasks.GetAccessToken(token, ApiCtx);
@@ -71,7 +70,7 @@ namespace Fabric.Api.Common {
 					return;
 				}
 
-				ApiCtx.AddToCache(cacheKey, acc, acc.ExpiresIn);
+				ApiCtx.Cache.Memory.AddOauthAccess(token, acc, acc.ExpiresIn);
 			}
 
 			ApiCtx.SetAppUserId(acc.AppId, acc.UserId);

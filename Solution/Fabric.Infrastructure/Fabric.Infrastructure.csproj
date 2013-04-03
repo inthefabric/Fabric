@@ -63,10 +63,11 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\ApiEnums.cs" />
-    <Compile Include="Cache\ClassNameCache.cs" />
     <Compile Include="Api\EncryptUtil.cs" />
     <Compile Include="Api\AuthUtil.cs" />
-    <Compile Include="Cache\IClassNameCache.cs" />
+    <Compile Include="Api\ICacheManager.cs" />
+    <Compile Include="Api\IClassDiskCache.cs" />
+    <Compile Include="Api\IMemCache.cs" />
     <Compile Include="Api\ServiceOpAttribute.cs" />
     <Compile Include="Api\ServiceOpParamAttribute.cs" />
     <Compile Include="Api\IApiContext.cs" />

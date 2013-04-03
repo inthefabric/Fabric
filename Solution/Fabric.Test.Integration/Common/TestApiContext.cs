@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Caching;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.Common {
@@ -18,8 +17,7 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base("rexster", 8185, null,
-													new ClassNameCache(new List<IApiContext>(), 0, 0)) {
+		public TestApiContext() : base("rexster", 8185, new CacheManager()) {
 			SharpflakeIds = new List<long>();
 		}
 
@@ -42,23 +40,6 @@ namespace Fabric.Test.Integration.Common {
 			long id = Sharpflake.GetId<T>();
 			SharpflakeIds.Add(id);
 			return id;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override bool AddToCache<T>(string pKey, T pItem, int pExpiresInSec) {
-			return false;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override T GetFromCache<T>(string pKey) {
-			return default(T);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override T RemoveFromCache<T>(string pKey) {
-			return default(T);
 		}
 
 

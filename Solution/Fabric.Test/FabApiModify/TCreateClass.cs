@@ -1,7 +1,7 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
+using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Cache;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
@@ -54,7 +54,7 @@ namespace Fabric.Test.FabApiModify {
 				.Returns(vResultMember);
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
-			MockApiCtx.SetupGet(x => x.ClassNameCache).Returns(new Mock<IClassNameCache>().Object);
+			MockApiCtx.SetupGet(x => x.Cache).Returns(new Mock<ICacheManager>().Object);
 
 			MockApiCtx
 				.Setup(x => x.DbSingle<Class>("CreateClassTx", It.IsAny<IWeaverTransaction>()))

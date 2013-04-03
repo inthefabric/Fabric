@@ -1,25 +1,20 @@
-﻿using Fabric.Api.Common;
-using Fabric.Infrastructure.Api;
-using Nancy;
+﻿using Fabric.Infrastructure.Api;
 
-namespace Fabric.Api.Internal.Status {
+namespace Fabric.Infrastructure.Caching {
 
 	/*================================================================================================*/
-	public class StatusController : Controller {
+	public class CacheManager : ICacheManager { //TEST: CacheManager and related classes
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public StatusController(Request pRequest, IApiContext pApiCtx) : base(pRequest, pApiCtx) {
+		public IMemCache Memory {
+			get { return MemCache.Instance; }
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Response BuildResponse() {
-			return 
-				"<h3>Status</h3>"+
-				"<ul>"+
-					"<li>Nothing to show right now.</li>"+
-				"</ul>";
+		public IClassDiskCache UniqueClasses {
+			get { return ClassDiskCache.Instance; }
 		}
 
 	}

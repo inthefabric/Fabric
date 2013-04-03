@@ -1,16 +1,12 @@
 ﻿//#define MONO_DEV
 
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Configuration;
-using System.Runtime.Caching;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Cache;
 using Fabric.Infrastructure.Caching;
 using Nancy;
 using ServiceStack.Text;
@@ -20,10 +16,9 @@ namespace Fabric.Api {
 	/*================================================================================================*/
 	public abstract class BaseModule : NancyModule {
 
-		protected static FabMetaVersion Version;
 		private static string ConfPrefix;
-		private static MemoryCache MemCache;
-		private static ClassNameCache ClassNameCache;
+		protected static FabMetaVersion Version;
+		private static CacheManager Cache;
 
 		public static string ApiUrl;
 		public static int RexConnPort;
@@ -70,30 +65,16 @@ namespace Fabric.Api {
 				Version = new FabMetaVersion();
 				Version.SetBuild(0, 1, 21, "0680465c8c5f");
 				Version.SetDate(2013, 3, 29);
-			}
+				Log.Debug("Fabric Version: "+Version.Version);
 
-			if ( MemCache == null ) {
-				var cacheConfig = new NameValueCollection();
-				//cacheConfig.Add("PhysicalMemoryLimitPercentage", "10");
-
-				MemCache = new MemoryCache("FabricApi", cacheConfig);
-				var testCache = new TestCache();
-
-				var acList = new List<IApiContext>();
-
-				for ( int i = 0 ; i < NodeCount ; ++i ) {
-					acList.Add(NewApiCtx());
-				}
-
-				Log.Debug("VERSION "+Version.Version);
-				ClassNameCache = new ClassNameCache(acList, 5, 3);
+				Cache = new CacheManager();
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
 			int i = (NodeIndex++)%NodeCount;
-			return new ApiContext(NodeIpList[i], RexConnPort, MemCache, ClassNameCache);
+			return new ApiContext(NodeIpList[i], RexConnPort, Cache);
 		}
 
 
