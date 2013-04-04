@@ -12,39 +12,22 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddMemberTypeAssign : TWebTasks {
 
 		private static readonly string Query =
-
-			"g.V('"+typeof(Member).Name+"Id',_TP0)[0]"+
-				".each{_V0=g.v(it)};"+
-
-			"_V0.outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
-				".each{_V1=g.v(it)};"+
-
+			"_V0=g.V('"+typeof(Member).Name+"Id',_TP0)[0].next();"+
+			"_V1=_V0.outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV.next();"+
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
-
 			"g.addEdge(_V0,_V1,_TP1);"+
-
-			"g.V('"+typeof(Root).Name+"Id',_TP2)[0]"+
-				".each{_V2=g.v(it)};"+
-
+			"_V2=g.V('"+typeof(Root).Name+"Id',_TP2)[0].next();"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP3,"+
 				"Performed:_TP4"+
 			"]);"+
-
 			"g.addEdge(_V2,_V3,_TP5);"+
-			"g.V('"+typeof(Member).Name+"Id',_TP6)[0]"+
-				".each{_V4=g.v(it)};"+
-
+			"_V4=g.V('"+typeof(Member).Name+"Id',_TP6)[0].next();"+
 			"g.addEdge(_V4,_V3,_TP7);"+
-
 			"g.addEdge(_V0,_V3,_TP8);"+
-
-			"g.V('"+typeof(MemberType).Name+"Id',_TP9)[0]"+
-				".each{_V5=g.v(it)};"+
-
+			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP9)[0].next();"+
 			"g.addEdge(_V3,_V5,_TP10);"+
-
 			"_V3;";
 
 		private long vAssigningMemberId;

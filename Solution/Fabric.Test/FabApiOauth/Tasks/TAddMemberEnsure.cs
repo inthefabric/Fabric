@@ -32,12 +32,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V0;";
 			
 		private readonly static string QueryAddMemberTx =
-			"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('RootId',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+typeof(Member).Name+"Id:_TP1]);"+
 			"g.addEdge(_V0,_V1,_TP2);"+
-			"g.V('"+typeof(App).Name+"Id',_TP3)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP3)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP4);"+
-			"g.V('"+typeof(User).Name+"Id',_TP5)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP5)[0].next();"+
 			"g.addEdge(_V3,_V1,_TP6);"+
 			"_V4=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP7,"+
@@ -46,17 +46,17 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP10);"+
 			"g.addEdge(_V1,_V4,_TP11);"+
-			"g.V('"+typeof(MemberType).Name+"Id',_TP12)[0].each{_V5=g.v(it)};"+
+			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP12)[0].next();"+
 			"g.addEdge(_V4,_V5,_TP13);"+
-			"g.V('"+typeof(Member).Name+"Id',_TP14)[0].each{_V6=g.v(it)};"+
+			"_V6=g.V('"+typeof(Member).Name+"Id',_TP14)[0].next();"+
 			"g.addEdge(_V6,_V4,_TP15);";
 
 		private readonly static string QueryUpdateMemberTx =
-			"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
-			"g.V('"+typeof(MemberTypeAssign).Name+"Id',_TP1)[0].each{_V1=g.v(it)};"+
+			"_V0=g.V('RootId',_TP0)[0].next();"+
+			"_V1=g.V('"+typeof(MemberTypeAssign).Name+"Id',_TP1)[0].next();"+
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
-			"g.V('"+typeof(Member).Name+"Id',_TP2)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Member).Name+"Id',_TP2)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP3);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP4,"+
@@ -65,9 +65,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"]);"+
 			"g.addEdge(_V0,_V3,_TP7);"+
 			"g.addEdge(_V2,_V3,_TP8);"+
-			"g.V('"+typeof(MemberType).Name+"Id',_TP9)[0].each{_V4=g.v(it)};"+
+			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP9)[0].next();"+
 			"g.addEdge(_V3,_V4,_TP10);"+
-			"g.V('"+typeof(Member).Name+"Id',_TP11)[0].each{_V5=g.v(it)};"+
+			"_V5=g.V('"+typeof(Member).Name+"Id',_TP11)[0].next();"+
 			"g.addEdge(_V5,_V3,_TP12);";
 		
 		private long vAppId;

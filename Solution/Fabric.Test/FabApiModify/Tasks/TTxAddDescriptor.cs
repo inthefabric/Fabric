@@ -11,26 +11,26 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDescriptor : TModifyTasks {
 
 		private static readonly string QueryStart = 
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Descriptor).Name+"Id:_TP1"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP2);"+
-			"g.V('"+typeof(Factor).Name+"Id',_TP3)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP3)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP4);"+
-			"g.V('"+typeof(DescriptorType).Name+"Id',_TP5)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(DescriptorType).Name+"Id',_TP5)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP6);";
 
 		private static readonly string QueryPrimRef = 
-			"g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}})[0].each{_V{{PrimV}}=g.v(it)};"+
+			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}})[0].next();"+
 			"g.addEdge(_V1,_V{{PrimV}},_TP{{PrimTp}});";
 
 		private static readonly string QueryRelRef = 
-			"g.V('"+typeof(Artifact).Name+"Id',_TP{{RelId}})[0].each{_V{{RelV}}=g.v(it)};"+
+			"_V{{RelV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{RelId}})[0].next();"+
 			"g.addEdge(_V1,_V{{RelV}},_TP{{RelTp}});";
 
 		private static readonly string QueryTypeRef = 
-			"g.V('"+typeof(Artifact).Name+"Id',_TP{{TypeId}})[0].each{_V{{TypeV}}=g.v(it)};"+
+			"_V{{TypeV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{TypeId}})[0].next();"+
 			"g.addEdge(_V1,_V{{TypeV}},_TP{{TypeTp}});";
 
 		private long vDescTypeId;

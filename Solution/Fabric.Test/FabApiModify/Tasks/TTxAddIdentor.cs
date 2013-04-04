@@ -10,15 +10,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddIdentor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Identor).Name+"Id:_TP1,"+
 				"Value:_TP2"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP3);"+
-			"g.V('"+typeof(Factor).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP5);"+
-			"g.V('"+typeof(IdentorType).Name+"Id',_TP6)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(IdentorType).Name+"Id',_TP6)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP7);";
 
 		private long vIdenTypeId;

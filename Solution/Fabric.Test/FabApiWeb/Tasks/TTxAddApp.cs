@@ -13,9 +13,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private static readonly string Query = 
 			"_V0=[];"+ //Root
 			"_V1=[];"+ //Member
-			"g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
-				".outE('"+typeof(UserUsesEmail).Name+"').inV"+
-				".each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
+				".outE('"+typeof(UserUsesEmail).Name+"').inV.next();"+
 			"_V3=g.addVertex(["+
 				typeof(App).Name+"Id:_TP1,"+
 				"Name:_TP2,"+

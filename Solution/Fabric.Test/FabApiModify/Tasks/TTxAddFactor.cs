@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Factor).Name+"Id:_TP1,"+
 				"IsDefining:_TP2,"+
@@ -19,13 +19,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Note:_TP4"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP5);"+
-			"g.V('"+typeof(Artifact).Name+"Id',_TP6)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Artifact).Name+"Id',_TP6)[0].next();"+
 			"g.addEdge(_V1,_V2,_TP7);"+
-			"g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP9);"+
-			"g.V('"+typeof(FactorAssertion).Name+"Id',_TP10)[0].each{_V4=g.v(it)};"+
+			"_V4=g.V('"+typeof(FactorAssertion).Name+"Id',_TP10)[0].next();"+
 			"g.addEdge(_V1,_V4,_TP11);"+
-			"g.V('"+typeof(Member).Name+"Id',_TP12)[0].each{_V5=g.v(it)};"+
+			"_V5=g.V('"+typeof(Member).Name+"Id',_TP12)[0].next();"+
 			"g.addEdge(_V5,_V1,_TP13);";
 
 		private long vPrimArtId;

@@ -11,10 +11,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddOauthDomain : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+typeof(OauthDomain).Name+"Id:_TP1,Domain:_TP2]);"+
 			"g.addEdge(_V0,_V1,_TP3);"+
-			"g.V('"+typeof(App).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP4)[0].next();"+
 			"g.addEdge(_V1,_V2,_TP5);"+
 			"_V1;";
 

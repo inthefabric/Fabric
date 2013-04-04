@@ -28,7 +28,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"};";
 
 		private readonly static string QueryAddGrantTx =
-			"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('RootId',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(OauthGrant).Name+"Id:_TP1,"+
 				"RedirectUri:_TP2,"+
@@ -36,9 +36,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Expires:_TP4"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP5);"+
-			"g.V('"+typeof(App).Name+"Id',_TP6)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP6)[0].next();"+
 			"g.addEdge(_V1,_V2,_TP7);"+
-			"g.V('"+typeof(User).Name+"Id',_TP8)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP8)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP9);";
 
 		protected long vAppId;

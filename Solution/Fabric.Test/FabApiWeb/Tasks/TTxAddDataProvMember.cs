@@ -19,7 +19,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				typeof(Member).Name+"Id:_TP0"+
 			"]);"+
 			"g.addEdge(_V0,_V2,_TP1);"+
-			"g.V('"+typeof(User).Name+"Id',_TP2)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP2)[0].next();"+
 			"g.addEdge(_V3,_V2,_TP3);"+
 			"g.addEdge(_V1,_V2,_TP4);"+
 			"_V4=g.addVertex(["+
@@ -27,10 +27,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				"Performed:_TP6"+
 			"]);"+
 			"g.addEdge(_V0,_V4,_TP7);"+
-			"g.V('"+typeof(Member).Name+"Id',_TP8)[0].each{_V5=g.v(it)};"+
+			"_V5=g.V('"+typeof(Member).Name+"Id',_TP8)[0].next();"+
 			"g.addEdge(_V5,_V4,_TP9);"+
 			"g.addEdge(_V2,_V4,_TP10);"+
-			"g.V('"+typeof(MemberType).Name+"Id',_TP11)[0].each{_V6=g.v(it)};"+
+			"_V6=g.V('"+typeof(MemberType).Name+"Id',_TP11)[0].next();"+
 			"g.addEdge(_V4,_V6,_TP12);";
 
 		private long vUserId;

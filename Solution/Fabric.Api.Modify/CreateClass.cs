@@ -14,7 +14,7 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member)]
 	public class CreateClass : BaseModifyFunc<Class> {
 
-		private static object MemberLock = new object();
+		private static readonly object MemberLock = new object();
 
 		public const string NameParam = "Name";
 		public const string DisambParam = "Disamb";

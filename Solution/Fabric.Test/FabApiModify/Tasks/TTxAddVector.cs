@@ -10,21 +10,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddVector : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Vector).Name+"Id:_TP1,"+
 				"Value:_TP2"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP3);"+
-			"g.V('"+typeof(Factor).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP5);"+
-			"g.V('"+typeof(VectorType).Name+"Id',_TP6)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(VectorType).Name+"Id',_TP6)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP7);"+
-			"g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].each{_V4=g.v(it)};"+
+			"_V4=g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].next();"+
 			"g.addEdge(_V1,_V4,_TP9);"+
-			"g.V('"+typeof(VectorUnit).Name+"Id',_TP10)[0].each{_V5=g.v(it)};"+
+			"_V5=g.V('"+typeof(VectorUnit).Name+"Id',_TP10)[0].next();"+
 			"g.addEdge(_V1,_V5,_TP11);"+
-			"g.V('"+typeof(VectorUnitPrefix).Name+"Id',_TP12)[0].each{_V6=g.v(it)};"+
+			"_V6=g.V('"+typeof(VectorUnitPrefix).Name+"Id',_TP12)[0].next();"+
 			"g.addEdge(_V1,_V6,_TP13);";
 
 		private long vVecTypeId;

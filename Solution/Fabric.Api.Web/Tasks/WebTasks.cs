@@ -135,18 +135,20 @@ namespace Fabric.Api.Web.Tasks {
 										long pAssigningMemberId, long pMemberId, long pMemberTypeId) {
 			var txb = new TxBuilder();
 
-			var mem = new Member { MemberId = pMemberId};
+			var mem = new Member { MemberId = pMemberId };
 			IWeaverVarAlias<Member> memAlias;
 			txb.GetNode(mem, out memAlias);
-			
-			var mtaAlias = new WeaverVarAlias<MemberTypeAssign>(txb.Transaction);
 
-			txb.Transaction.AddQuery(
+			IWeaverQuery q = 
 				ApiFunc.NewPathFromVar(memAlias, false)
 				.HasMemberTypeAssign.ToMemberTypeAssign
-					.ToNodeVar(mtaAlias)
-				.End()
-			);
+					.Next()
+				.End();
+
+			IWeaverVarAlias<MemberTypeAssign> mtaAlias;
+			q = WeaverTasks.StoreQueryResultAsVar(txb.Transaction, q, out mtaAlias);
+			txb.Transaction.AddQuery(q);
+			txb.RegisterVarWithTxBuilder(mtaAlias);
 		
 			txb.Transaction.AddQuery(
 				ApiFunc.NewPathFromVar(mtaAlias, false)
@@ -155,8 +157,6 @@ namespace Fabric.Api.Web.Tasks {
 				.End()
 			);
 
-			txb.RegisterVarWithTxBuilder(mtaAlias);
-			
 			var memBuild = new MemberBuilder(txb, pMemberId);
 			memBuild.SetNodeVar(memAlias);
 			memBuild.AddToHasHistoricMemberTypeAssignList(mtaAlias);
@@ -285,14 +285,14 @@ namespace Fabric.Api.Web.Tasks {
 		public void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, 
 						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar,
 						out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
-			var emailVar = new WeaverVarAlias<Email>(pTxBuild.Transaction);
-
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new User { UserId = pUserId })
 				.UsesEmail.ToEmail
-					.ToNodeVar(emailVar)
+					.Next()
 				.End();
 
+			IWeaverVarAlias<Email> emailVar;
+			q = WeaverTasks.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar);
 			pTxBuild.Transaction.AddQuery(q);
 			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 

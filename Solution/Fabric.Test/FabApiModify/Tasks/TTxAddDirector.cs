@@ -10,18 +10,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDirector : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Director).Name+"Id:_TP1"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP2);"+
-			"g.V('"+typeof(Factor).Name+"Id',_TP3)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP3)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP4);"+
-			"g.V('"+typeof(DirectorType).Name+"Id',_TP5)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(DirectorType).Name+"Id',_TP5)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP6);"+
-			"g.V('"+typeof(DirectorAction).Name+"Id',_TP7)[0].each{_V4=g.v(it)};"+
+			"_V4=g.V('"+typeof(DirectorAction).Name+"Id',_TP7)[0].next();"+
 			"g.addEdge(_V1,_V4,_TP8);"+
-			"g.V('"+typeof(DirectorAction).Name+"Id',_TP9)[0].each{_V5=g.v(it)};"+
+			"_V5=g.V('"+typeof(DirectorAction).Name+"Id',_TP9)[0].next();"+
 			"g.addEdge(_V1,_V5,_TP10);";
 
 		private long vDirTypeId;

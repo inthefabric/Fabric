@@ -70,7 +70,7 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			string expectPartial = 
-				"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+				"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 				"_V1=g.v(_TP1);"+
 				"CLASS;";
 

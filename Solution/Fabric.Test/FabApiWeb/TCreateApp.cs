@@ -78,7 +78,7 @@ namespace Fabric.Test.FabApiWeb {
 			TestUtil.LogWeaverScript(pTx);
 
 			const string expectPartial = 
-				"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
+				"_V0=g.V('RootId',_TP0)[0].next();"+
 				"APP;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

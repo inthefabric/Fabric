@@ -68,25 +68,21 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AttachTestDescriptor() {
 			var tx = new WeaverTransaction();
-			var facVar =  new WeaverVarAlias<Factor>(tx);
-			var descVar = new WeaverVarAlias<Descriptor>(tx);
+			IWeaverVarAlias<Factor> facVar;
+			IWeaverVarAlias<Descriptor> descVar;
 			const long isA = (long)SetupFactors.DescriptorId.IsA;
 
-			tx.AddQuery(
-				WeaverTasks.BeginPath<Factor>(x => x.FactorId, vFactorId).BaseNode
-					.ToNodeVar(facVar)
-				.End()
-			);
+			IWeaverQuery q = WeaverTasks.BeginPath<Factor>(x => x.FactorId, vFactorId).BaseNode
+				.Next().End();
+			q = WeaverTasks.StoreQueryResultAsVar(tx, q, out facVar);
+			tx.AddQuery(q);
 
-			tx.AddQuery(
-				WeaverTasks.BeginPath<Descriptor>(x => x.DescriptorId, isA).BaseNode
-					.ToNodeVar(descVar)
-				.End()
-			);
+			q = WeaverTasks.BeginPath<Descriptor>(x => x.DescriptorId, isA).BaseNode.Next().End();
+			q = WeaverTasks.StoreQueryResultAsVar(tx, q, out descVar);
+			tx.AddQuery(q);
 
-			tx.AddQuery(
-				WeaverTasks.AddRel<FactorUsesDescriptor>(facVar, new FactorUsesDescriptor(), descVar)
-			);
+			q = WeaverTasks.AddRel<FactorUsesDescriptor>(facVar, new FactorUsesDescriptor(), descVar);
+			tx.AddQuery(q);
 
 			tx.Finish();
 			ApiCtx.DbData("TEST.AttachDescriptor", tx);

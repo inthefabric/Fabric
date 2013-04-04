@@ -60,8 +60,8 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			const string expectPartial = 
-				"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
-				"g.V('MemberId',_TP1)[0].each{_V1=g.v(it)};"+
+				"_V0=g.V('RootId',_TP0)[0].next();"+
+				"_V1=g.V('MemberId',_TP1)[0].next();"+
 				"INST;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

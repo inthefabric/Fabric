@@ -24,17 +24,23 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV" +
 				".has('"+typeof(User).Name+"Id',Tokens.T.eq,_P3)" +
 			".back('step5')" +
-				".sideEffect{it.setProperty('Token',_P4);it.setProperty('Refresh',_P5)};";
+				".sideEffect{"+
+					"it.setProperty('Token',_P4);"+
+					"it.setProperty('Refresh',_P5)"+
+				"};";
 
 		private readonly static string QueryClearTokensClientOnly =
 			"g.V('AppId',_P0)[0]"+
 			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
 				".has('Token',Tokens.T.neq,_P1)"+
 				".has('IsClientOnly',Tokens.T.eq,_P2)"+
-				".sideEffect{it.setProperty('Token',_P3);it.setProperty('Refresh',_P4)};";
+				".sideEffect{"+
+					"it.setProperty('Token',_P3);"+
+					"it.setProperty('Refresh',_P4)"+
+				"};";
 
 		private readonly static string QueryAddAccessTx =
-			"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('RootId',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(OauthAccess).Name+"Id:_TP1,"+
 				"Token:_TP2,"+
@@ -43,13 +49,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"IsClientOnly:_TP5"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP6);"+
-			"g.V('"+typeof(App).Name+"Id',_TP7)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP7)[0].next();"+
 			"g.addEdge(_V1,_V2,_TP8);"+
-			"g.V('"+typeof(User).Name+"Id',_TP9)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP9)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP10);";
 
 		private readonly static string QueryAddAccessTxClientOnly =
-			"g.V('RootId',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('RootId',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(OauthAccess).Name+"Id:_TP1,"+
 				"Token:_TP2,"+
@@ -58,7 +64,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"IsClientOnly:_TP5"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP6);"+
-			"g.V('"+typeof(App).Name+"Id',_TP7)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP7)[0].next();"+
 			"g.addEdge(_V1,_V2,_TP8);";
 
 		protected long vAddOauthAccessId;

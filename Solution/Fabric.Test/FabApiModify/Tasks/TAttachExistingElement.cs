@@ -12,8 +12,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TAttachExistingElement : TModifyTasks {
 
 		private readonly string Query =
-			"g.V('"+typeof(Factor).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
-			"g.V('{{ElementType}}Id',_TP1)[0].each{_V1=g.v(it)};"+
+			"_V0=g.V('"+typeof(Factor).Name+"Id',_TP0)[0].next();"+
+			"_V1=g.V('{{ElementType}}Id',_TP1)[0].next();"+
 			"g.addEdge(_V0,_V1,_TP2);";
 
 		private long vFactorId;

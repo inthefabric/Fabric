@@ -53,10 +53,8 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetRoot(out IWeaverVarAlias<Root> pRootVar) {
-			pRootVar = new WeaverVarAlias<Root>(Transaction);
-
-			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0)
-				.BaseNode.ToNodeVar(pRootVar).End();
+			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode.Next().End();
+			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pRootVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pRootVar);
 		}
@@ -64,10 +62,9 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
-			pNodeVar = new WeaverVarAlias<T>(Transaction);
-
-			IWeaverQuery q = WeaverTasks.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
-				pNodeWithId.GetTypeId()).BaseNode.ToNodeVar(pNodeVar).End();
+			IWeaverQuery q = WeaverTasks.BeginPath(
+				pNodeWithId.GetTypeIdProp<T>(), pNodeWithId.GetTypeId()).BaseNode.Next().End();
+			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
@@ -75,11 +72,8 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNodeByNodeId<T>(T pNodeWithNodeId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
-			pNodeVar = new WeaverVarAlias<T>(Transaction);
-			
-			IWeaverQuery q = new WeaverQuery();
-			string idParam = q.AddStringParam(pNodeWithNodeId.Id);
-			q.FinalizeQuery(pNodeVar.Name+"=g.v("+idParam+")");
+			IWeaverQuery q = WeaverTasks.BeginPath<T>(pNodeWithNodeId.Id).BaseNode.End();
+			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
@@ -92,7 +86,7 @@ namespace Fabric.Infrastructure.Weaver {
 			VerifyVar(pRootVar);
 
 			IWeaverQuery q = WeaverTasks.AddNode(pNode);
-			q = WeaverTasks.StoreQueryResultAsVar<T>(Transaction, q, out pNewNodeVar);
+			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNewNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNewNodeVar);
 

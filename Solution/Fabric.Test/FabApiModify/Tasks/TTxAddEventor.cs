@@ -10,17 +10,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddEventor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0].each{_V0=g.v(it)};"+
+			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Eventor).Name+"Id:_TP1,"+
 				"DateTime:_TP2"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP3);"+
-			"g.V('"+typeof(Factor).Name+"Id',_TP4)[0].each{_V2=g.v(it)};"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
 			"g.addEdge(_V2,_V1,_TP5);"+
-			"g.V('"+typeof(EventorType).Name+"Id',_TP6)[0].each{_V3=g.v(it)};"+
+			"_V3=g.V('"+typeof(EventorType).Name+"Id',_TP6)[0].next();"+
 			"g.addEdge(_V1,_V3,_TP7);"+
-			"g.V('"+typeof(EventorPrecision).Name+"Id',_TP8)[0].each{_V4=g.v(it)};"+
+			"_V4=g.V('"+typeof(EventorPrecision).Name+"Id',_TP8)[0].next();"+
 			"g.addEdge(_V1,_V4,_TP9);";
 
 		private long vEveTypeId;
