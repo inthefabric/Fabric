@@ -46,8 +46,10 @@ namespace Fabric.Infrastructure {
 		private static SharpflakeSequence GetSequence<T>() where T : INode {
 			Type t = typeof(T);
 
-			if ( !Sequence.ContainsKey(t) ) {
-				Sequence.Add(t, new SharpflakeSequence());
+			lock ( Sequence ) {
+				if ( !Sequence.ContainsKey(t) ) {
+					Sequence.Add(t, new SharpflakeSequence());
+				}
 			}
 
 			return Sequence[t];

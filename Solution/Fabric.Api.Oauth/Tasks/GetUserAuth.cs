@@ -51,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddStringParam(vUsername.ToLower(), false);
+			q.AddStringParam(vUsername.ToLower());
 			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
 		}
 		

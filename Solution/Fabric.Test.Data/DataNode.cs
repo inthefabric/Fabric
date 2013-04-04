@@ -36,7 +36,6 @@ namespace Fabric.Db.Data {
 		public INode Node { get; private set; }
 
 		public bool IsForTesting { get; private set; }
-		public IWeaverQuery AddQuery { get; private set; }
 		public int TestVal { get; set; }
 
 
@@ -47,7 +46,11 @@ namespace Fabric.Db.Data {
 			NodeT = pNode;
 			NodeType = typeof(T);
 			IsForTesting = pIsForTesting;
-			AddQuery = WeaverTasks.AddNode(pNode);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IWeaverQuery AddQuery {
+			get { return WeaverTasks.AddNode(Node); }
 		}
 
 	}

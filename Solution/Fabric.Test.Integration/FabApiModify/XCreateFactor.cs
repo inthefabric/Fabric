@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -63,12 +62,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.NotNull(newFactor, "New Factor was not created.");
 			Assert.AreEqual(newFactor.FactorId, vResult.FactorId, "Incorrect Result.FactorId.");
 
+			string artId = typeof(Artifact).Name+"Id";
+
 			NodeConnections conn = GetNodeConnections(newFactor);
 			conn.AssertRelCount(2, 3);
 			conn.AssertRel<RootContainsFactor, Root>(false, 0);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, vExpectMemberId);
-			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId);
-			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, vRelArtId);
+			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId, artId);
+			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, vRelArtId, artId);
 			conn.AssertRel<FactorUsesFactorAssertion, FactorAssertion>(true, vAssertId);
 			
 			NewNodeCount = 1;

@@ -66,9 +66,10 @@ namespace Fabric.Test.Integration.FabApiModify {
 			conn.AssertRel<RootContainsVector, Root>(false, 0);
 			conn.AssertRel<FactorUsesVector, Factor>(false, FactorId);
 			conn.AssertRel<VectorUsesVectorType, VectorType>(true, vVecTypeId);
-			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true, (long)vAxisArtId);
-			conn.AssertRel<VectorUsesVectorUnit, VectorUnit>(true, (long)vVecUnitId);
-			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, (long)vVecUnitPrefId);
+			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true,
+				vAxisArtId, typeof(Artifact).Name+"Id");
+			conn.AssertRel<VectorUsesVectorUnit, VectorUnit>(true, vVecUnitId);
+			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, vVecUnitPrefId);
 			
 			NewNodeCount = 1;
 			NewRelCount = 6;

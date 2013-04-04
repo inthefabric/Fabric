@@ -14,6 +14,8 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member)]
 	public class CreateClass : BaseModifyFunc<Class> {
 
+		private static object MemberLock = new object();
+
 		public const string NameParam = "Name";
 		public const string DisambParam = "Disamb";
 		public const string NoteParam = "Note";
@@ -26,8 +28,6 @@ namespace Fabric.Api.Modify {
 
 		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, 2, typeof(Class), IsRequired=false)]
 		private readonly string vNote;
-
-		private long vNewClassId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,14 +46,36 @@ namespace Fabric.Api.Modify {
 			Tasks.Validator.ClassDisamb(vDisamb, DisambParam);
 			Tasks.Validator.ClassNote(vNote, NoteParam);
 		}
-		
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Class Execute() {
+			return ExecuteInner();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Class ExecuteInner() {
 			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
+			Member m;
 
-			TxBuilder txb = GetFullTx(out rootVar, out memVar, out classVar);
+			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
+				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
+				throw new FabDuplicateFault(typeof(Class), NameParam, name);
+			}
+
+			lock ( MemberLock ) {
+				m = GetContextMember();
+			}
+
+			var txb = new TxBuilder();
+			txb.GetRoot(out rootVar);
+			txb.GetNodeByNodeId(m, out memVar);
+
+			Tasks.TxAddClass(ApiCtx, txb, vName, vDisamb, vNote, rootVar, memVar, out classVar);
+			txb.RegisterVarWithTxBuilder(classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
 			ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);
@@ -68,41 +90,9 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal long GetNewClassIdForBatch() {
-			return vNewClassId;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		internal void SetApiCtxForBatch(IApiContext pApiCtx) {
+		internal Class ExecuteForBatch(IApiContext pApiCtx) {
 			SetApiCtx(pApiCtx);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public TxBuilder GetFullTx(out IWeaverVarAlias<Root> pRootVar, 
-							out IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
-			
-			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
-				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
-				throw new FabDuplicateFault(typeof(Class), NameParam, name);
-			}
-			
-			Member m = GetContextMember();
-			
-			var txb = new TxBuilder();
-			txb.GetRoot(out pRootVar);
-			txb.GetNodeByNodeId(m, out pMemVar);
-			
-			FillBatchTx(txb, pRootVar, pMemVar, out pClassVar);
-			return txb;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillBatchTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
-							IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
-			vNewClassId = Tasks.TxAddClass(ApiCtx, pTxBuild, 
-				vName, vDisamb, vNote, pRootVar, pMemVar, out pClassVar);
-
-			pTxBuild.RegisterVarWithTxBuilder(pClassVar);
+			return ExecuteInner();
 		}
 
 	}

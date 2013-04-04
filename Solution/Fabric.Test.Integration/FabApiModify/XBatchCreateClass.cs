@@ -36,7 +36,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				new FabBatchNewClass { 
 					BatchId = 104, Name = "Test5", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
-					BatchId = 110, Name = null, Disamb = "1234", Note = "This is my note." }, //null
+					BatchId = 110, Name = null, Disamb = "1234", Note = "NAME IS NULL" }, //err
 				new FabBatchNewClass { 
 					BatchId = 111, Name = "Test2a", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
@@ -48,7 +48,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				new FabBatchNewClass { 
 					BatchId = 120, Name = "Test1b", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
-					BatchId = 121, Name = "Test2", Disamb = "1234", Note = "This is my note." }, //dup
+					BatchId = 121, Name = "Test2", Disamb = "1234", Note = "LOCAL DUPLICATE." }, //err
 				new FabBatchNewClass { 
 					BatchId = 122, Name = "Test3b", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
@@ -58,7 +58,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				new FabBatchNewClass { 
 					BatchId = 130, Name = "Test1c", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
-					BatchId = 131, Name = "Test2c", Disamb = "1234", Note = "This is my note." },
+					BatchId = 131, Name = "human", Disamb = null, Note = "CACHE DUPLICATE" }, //err
 				new FabBatchNewClass { 
 					BatchId = 132, Name = "Test3c", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
@@ -70,7 +70,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vClassesJson = vClasses.ToJson();
 
 			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);
-			//vExpectMemberId = (long)SetupUsers.MemberId.GalZach;
+			XCreateClass.FillClassNameCache(ApiCtx);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -102,8 +102,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 				Log.Debug(res.BatchId+": "+res.ResultId);
 			}
 
-			NewNodeCount = 1*(vClasses.Count-2); //skip 2 items with intentional errors
-			NewRelCount = 2*(vClasses.Count-2);
+			NewNodeCount = 1*(vClasses.Count-3); //skip 3 items with intentional errors
+			NewRelCount = 2*(vClasses.Count-3);
 		}
 		
 

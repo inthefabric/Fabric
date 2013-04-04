@@ -14,15 +14,12 @@ namespace Fabric.Infrastructure.Caching {
 		public ClassDiskCache(bool pForTesting) {
 			var opt = new BPlusTree<string, long>.OptionsV2(
 				PrimitiveSerializer.String, PrimitiveSerializer.Int64, StringComparer.Ordinal);
+			opt.CreateFile = CreatePolicy.IfNeeded;
+			opt.StoragePerformance = StoragePerformance.CommitToDisk;
 
 			if ( pForTesting ) {
 				opt.CreateFile = CreatePolicy.Always;
 				//opt.StoragePerformance = StoragePerformance.Fastest;
-				opt.StoragePerformance = StoragePerformance.CommitToDisk;
-			}
-			else {
-				opt.CreateFile = CreatePolicy.IfNeeded;
-				opt.StoragePerformance = StoragePerformance.CommitToDisk;
 			}
 
 			BuildMap(opt, pForTesting);
@@ -40,7 +37,7 @@ namespace Fabric.Infrastructure.Caching {
 			DateTime t = DateTime.UtcNow;
 			string key = GetMapKey(pName, pDisamb);
 			Add(key, pClassId);
-			Log.Debug("AddClass: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+key);
+			Log.Debug("ClassDiskCache.AddClass: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+key);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -48,7 +45,8 @@ namespace Fabric.Infrastructure.Caching {
 			DateTime t = DateTime.UtcNow;
 			string key = GetMapKey(pName, pDisamb);
 			long? result = (ContainsKey(key) ? Get(key) : (long?)null);
-			Log.Debug("FindClassId: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+key);
+			Log.Debug("ClassDiskCache.FindClassId: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+
+				key+" / "+result);
 			return result;
 		}
 

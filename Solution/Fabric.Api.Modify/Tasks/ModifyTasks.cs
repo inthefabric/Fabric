@@ -34,7 +34,7 @@ namespace Fabric.Api.Modify.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddStringParam(pAbsoluteUrl.ToLower(), false);
+			q.AddStringParam(pAbsoluteUrl.ToLower());
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 

@@ -78,7 +78,7 @@ namespace Fabric.Infrastructure.Weaver {
 			pNodeVar = new WeaverVarAlias<T>(Transaction);
 			
 			IWeaverQuery q = new WeaverQuery();
-			string idParam = q.AddParam(new WeaverQueryVal(pNodeWithNodeId.Id));
+			string idParam = q.AddStringParam(pNodeWithNodeId.Id);
 			q.FinalizeQuery(pNodeVar.Name+"=g.v("+idParam+")");
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);

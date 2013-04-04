@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
-using Weaver;
-using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
 	
@@ -24,6 +22,7 @@ namespace Fabric.Api.Modify {
 		private FabBatchNewClass[] vObjects;
 		
 		private readonly string vObjectsJson;
+		private int[] vIndexes;
 		private CreateClass[] vCreateFuncs;
 		private FabBatchResult[] vResults;
 
@@ -57,6 +56,7 @@ namespace Fabric.Api.Modify {
 
 			////
 
+			vIndexes = new int[n];
 			vCreateFuncs = new CreateClass[n];
 			vResults = new FabBatchResult[n];
 			var dupMap = new HashSet<string>();
@@ -67,14 +67,17 @@ namespace Fabric.Api.Modify {
 				var res = new FabBatchResult();
 				res.BatchId = nc.BatchId;
 				vResults[i] = res;
+				vIndexes[i] = i;
 				
 				try {
-					if ( dupMap.Contains(nc.Name+"|"+nc.Disamb) ) {
+					string key = GetMapKey(nc.Name, nc.Disamb);
+
+					if ( dupMap.Contains(key) ) {
 						string name = nc.Name+(nc.Disamb == null ? "" : " ("+nc.Disamb+")");
 						throw new FabDuplicateFault(typeof(Class), CreateClass.NameParam, name);
 					}
 
-					dupMap.Add(nc.Name+"|"+nc.Disamb);
+					dupMap.Add(key);
 
 					CreateClass cc = new CreateClass(Tasks, nc.Name, nc.Disamb, nc.Note);
 					cc.ValidateParamsForBatch();
@@ -83,92 +86,38 @@ namespace Fabric.Api.Modify {
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);
 				}
-				/*catch ( Exception ) {
-					res.Error = FabError.ForInternalServerError();
-				}*/
 			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetMapKey(string pName, string pDisamb) {
+			return pName+(pDisamb == null ? "" : "`|`"+pDisamb);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabBatchResult[] Execute() {
-			TxBuilder txb = BuildTx();
-
-			if ( txb != null ) {
-				IApiDataAccess data = ApiCtx.DbData("BatchCreateClassTx", txb.Finish());
-				//CacheClasses(data);
-			}
-
+			var opt = new ParallelOptions();
+			opt.MaxDegreeOfParallelism = 20;
+			Parallel.ForEach(vIndexes, opt, InsertClass);
 			return vResults;
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
-		private TxBuilder BuildTx() {
-			int n = vObjects.Length;
-			TxBuilder txb = null;
-			IWeaverVarAlias<Root> rootVar = null;
-			IWeaverVarAlias<Member> memVar = null;
-			var nodeIds = new string[n];
+		private void InsertClass(int pIndex, ParallelLoopState pState, long pThreadId) {
+			FabBatchResult res = vResults[pIndex];
 
-			for ( int i = 0 ; i < n ; ++i ) {
-				FabBatchResult res = vResults[i];
-				nodeIds[i] = "0";
-
-				if ( res.Error != null ) {
-					continue;
-				}
-
-				try {
-					CreateClass cc = vCreateFuncs[i];
-					cc.SetApiCtxForBatch(ApiCtx);
-
-					IWeaverVarAlias<Class> classVar;
-
-					if ( txb == null ) {
-						txb = cc.GetFullTx(out rootVar, out memVar, out classVar);
-					}
-					else {
-						cc.FillBatchTx(txb, rootVar, memVar, out classVar);
-					}
-
-					res.ResultId = cc.GetNewClassIdForBatch();
-					nodeIds[i] = classVar.Name+".id";
-				}
-				catch ( FabFault fault ) {
-					res.Error = FabError.ForFault(fault);
-				}
-				/*catch ( Exception ) {
-					res.Error = FabError.ForInternalServerError();
-				}*/
+			if ( res.Error != null ) {
+				return;
 			}
 
-			if ( txb != null ) {
-				var q = new WeaverQuery();
-				q.FinalizeQuery("["+string.Join(",", nodeIds)+"]");
-				//txb.Transaction.AddQuery(q);
+			try {
+				Class c = vCreateFuncs[pIndex].ExecuteForBatch(ApiCtx);
+				res.ResultId = c.ClassId;
 			}
-
-			return txb;
+			catch ( FabFault fault ) {
+				res.Error = FabError.ForFault(fault);
+			}
 		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		private void CacheClasses(IApiDataAccess pData) {
-			int n = vObjects.Length;
-			//int count = 0;
-
-			for ( int i = 0 ; i < n ; ++i ) {
-				FabBatchResult res = vResults[i];
-
-				if ( res.Error != null ) {
-					continue;
-				}
-
-				FabBatchNewClass nc = vObjects[i];
-				ApiCtx.ClassNameCache.AddClass(ApiCtx, res.ResultId, nc.Name, nc.Disamb);
-
-				//c.Id = pData.GetLongResultAt(count);
-				//++count;
-			}
-		}*/
 
 	}
 

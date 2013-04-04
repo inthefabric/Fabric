@@ -28,7 +28,6 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
 			string propName = WeaverUtil.GetPropertyName<User>(x => x.Name);
-			string name = new WeaverQueryVal(pName.ToLower()).GetQuoted();
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
@@ -37,7 +36,7 @@ namespace Fabric.Api.Web.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddStringParam(pName.ToLower(), false);
+			q.AddStringParam(pName.ToLower());
 			return pApiCtx.DbSingle<User>("GetUserByName", q);
 
 		}
@@ -59,7 +58,7 @@ namespace Fabric.Api.Web.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddStringParam(pName.ToLower(), false);
+			q.AddStringParam(pName.ToLower());
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
 		}
 		
@@ -189,7 +188,7 @@ namespace Fabric.Api.Web.Tasks {
 					.CustomStep(filterStep)
 				.End();
 
-			q.AddStringParam(pDomain.ToLower(), false);
+			q.AddStringParam(pDomain.ToLower());
 			return pApiCtx.DbSingle<OauthDomain>("GetOauthDomainByDomain", q);
 		}
 

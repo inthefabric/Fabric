@@ -131,7 +131,7 @@ namespace Fabric.Infrastructure.Api {
 				IWeaverQueryVal qv = pParams[key];
 
 				if ( qv.IsString ) {
-					p += "\""+FabricUtil.JsonUnquote(qv.GetQuoted())+"\"";
+					p += "\""+FabricUtil.JsonUnquote(qv.FixedText)+"\"";
 				}
 				else {
 					p += qv.FixedText;

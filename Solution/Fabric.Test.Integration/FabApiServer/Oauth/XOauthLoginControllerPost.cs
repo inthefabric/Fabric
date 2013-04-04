@@ -81,7 +81,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			FillRequestCookies(vReq);
 
-			vLoginCtrl = new OauthLoginController(vReq, vApiCtx);
+			vLoginCtrl = new OauthLoginController(vReq, ApiCtx);
 			return vLoginCtrl.Execute();
 		}
 

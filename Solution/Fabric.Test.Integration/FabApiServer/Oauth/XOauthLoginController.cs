@@ -1,6 +1,5 @@
 ﻿using System.Collections.Specialized;
 using Fabric.Api.Util;
-using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using Nancy;
 using Nancy.Cookies;
@@ -13,7 +12,6 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 	public abstract class XOauthLoginController : IntegTestBase {
 
 		protected long vLoggedUserId;
-		protected TestApiContext vApiCtx;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +20,6 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			base.TestSetUp();
 
 			vLoggedUserId = 0;
-			vApiCtx = new TestApiContext();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
