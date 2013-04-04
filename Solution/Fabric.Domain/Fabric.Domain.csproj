@@ -56,6 +56,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="NodeEnums.cs" />
     <Compile Include="Rel.cs" />
     <Compile Include="IRel.cs" />
     <Compile Include="IItemWithId.cs" />

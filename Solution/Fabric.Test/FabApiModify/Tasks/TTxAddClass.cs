@@ -20,10 +20,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Disamb:_TP2,"+
 				"Note:_TP3,"+
 				"ArtifactId:_TP4,"+
-				"Created:_TP5"+
+				"Created:_TP5,"+
+				"FabType:_TP6"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP6);"+
-			"g.addEdge(_V1,_V2,_TP7);";
+			"g.addEdge(_V0,_V2,_TP7);"+
+			"g.addEdge(_V1,_V2,_TP8);";
 
 		private string vName;
 		private string vDisamb;
@@ -74,8 +75,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNote);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vNewArtifactId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(RootContainsClass).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", (int)NodeFabType.Class);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(RootContainsClass).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
 		}
 
 	}

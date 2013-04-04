@@ -16,17 +16,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				typeof(Factor).Name+"Id:_TP1,"+
 				"IsDefining:_TP2,"+
 				"Created:_TP3,"+
-				"Note:_TP4"+
+				"Note:_TP4,"+
+				"FabType:_TP5"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP5);"+
-			"_V2=g.V('"+typeof(Artifact).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP7);"+
-			"_V3=g.V('"+typeof(Artifact).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP9);"+
-			"_V4=g.V('"+typeof(FactorAssertion).Name+"Id',_TP10)[0].next();"+
-			"g.addEdge(_V1,_V4,_TP11);"+
-			"_V5=g.V('"+typeof(Member).Name+"Id',_TP12)[0].next();"+
-			"g.addEdge(_V5,_V1,_TP13);";
+			"g.addEdge(_V0,_V1,_TP6);"+
+			"_V2=g.V('"+typeof(Artifact).Name+"Id',_TP7)[0].next();"+
+			"g.addEdge(_V1,_V2,_TP8);"+
+			"_V3=g.V('"+typeof(Artifact).Name+"Id',_TP9)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP10);"+
+			"_V4=g.V('"+typeof(FactorAssertion).Name+"Id',_TP11)[0].next();"+
+			"g.addEdge(_V1,_V4,_TP12);"+
+			"_V5=g.V('"+typeof(Member).Name+"Id',_TP13)[0].next();"+
+			"g.addEdge(_V5,_V1,_TP14);";
 
 		private long vPrimArtId;
 		private long vRelArtId;
@@ -73,18 +74,19 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", true);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vUtcNow.Ticks);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vNote);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsFactor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vPrimArtId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Factor);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(RootContainsFactor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vPrimArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
 				typeof(FactorUsesPrimaryArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vRelArtId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", vRelArtId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
 				typeof(FactorUsesRelatedArtifact).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10", vAssertId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11", vAssertId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP12",
 				typeof(FactorUsesFactorAssertion).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP12", mem.MemberId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP13", typeof(MemberCreatesFactor).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP13", mem.MemberId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP14", typeof(MemberCreatesFactor).Name);
 		}
 
 	}

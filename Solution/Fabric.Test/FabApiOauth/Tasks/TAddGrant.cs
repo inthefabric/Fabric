@@ -33,13 +33,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				typeof(OauthGrant).Name+"Id:_TP1,"+
 				"RedirectUri:_TP2,"+
 				"Code:_TP3,"+
-				"Expires:_TP4"+
+				"Expires:_TP4,"+
+				"FabType:_TP5"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP5);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP7);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP9);";
+			"g.addEdge(_V0,_V1,_TP6);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP7)[0].next();"+
+			"g.addEdge(_V1,_V2,_TP8);"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP9)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP10);";
 
 		protected long vAppId;
 		protected long vUserId;
@@ -119,11 +120,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pScripted.Params, "_TP2", vRedirUri);
 			TestUtil.CheckParam(pScripted.Params, "_TP3", vGrantCode);
 			TestUtil.CheckParam(pScripted.Params, "_TP4", vUtcNow.AddMinutes(2).Ticks);
-			TestUtil.CheckParam(pScripted.Params, "_TP5", typeof(RootContainsOauthGrant).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", vAppId);
-			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(OauthGrantUsesApp).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP8", vUserId);
-			TestUtil.CheckParam(pScripted.Params, "_TP9", typeof(OauthGrantUsesUser).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP5", (int)NodeFabType.OauthGrant);
+			TestUtil.CheckParam(pScripted.Params, "_TP6", typeof(RootContainsOauthGrant).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP7", vAppId);
+			TestUtil.CheckParam(pScripted.Params, "_TP8", typeof(OauthGrantUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP9", vUserId);
+			TestUtil.CheckParam(pScripted.Params, "_TP10", typeof(OauthGrantUsesUser).Name);
 			
 			return null;
 		}

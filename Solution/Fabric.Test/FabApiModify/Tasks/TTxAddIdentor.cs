@@ -13,13 +13,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Identor).Name+"Id:_TP1,"+
-				"Value:_TP2"+
+				"Value:_TP2,"+
+				"FabType:_TP3"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP5);"+
-			"_V3=g.V('"+typeof(IdentorType).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP7);";
+			"g.addEdge(_V0,_V1,_TP4);"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP5)[0].next();"+
+			"g.addEdge(_V2,_V1,_TP6);"+
+			"_V3=g.V('"+typeof(IdentorType).Name+"Id',_TP7)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP8);";
 
 		private long vIdenTypeId;
 		private string vValue;
@@ -54,13 +55,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewIdentorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValue);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Identor);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
 				typeof(RootContainsIdentor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(FactorUsesIdentor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vIdenTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vIdenTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
 				typeof(IdentorUsesIdentorType).Name);
 		}
 

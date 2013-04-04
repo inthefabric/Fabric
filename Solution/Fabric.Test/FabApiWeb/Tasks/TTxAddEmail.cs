@@ -14,9 +14,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V1=g.addVertex(["+
 				typeof(Email).Name+"Id:_TP0,"+
 				"Address:_TP1,"+
-				"Created:_TP2"+
+				"Created:_TP2,"+
+				"FabType:_TP3"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);";
+			"g.addEdge(_V0,_V1,_TP4);";
 
 		private string vAddress;
 		private long vNewEmailId;
@@ -49,7 +50,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewEmailId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vAddress);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", 0);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(RootContainsEmail).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Email);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(RootContainsEmail).Name);
 		}
 
 	}

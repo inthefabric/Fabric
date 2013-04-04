@@ -33,23 +33,27 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 		private readonly static string QueryAddMemberTx =
 			"_V0=g.V('RootId',_TP0)[0].next();"+
-			"_V1=g.addVertex(["+typeof(Member).Name+"Id:_TP1]);"+
-			"g.addEdge(_V0,_V1,_TP2);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP3)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP4);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',_TP5)[0].next();"+
-			"g.addEdge(_V3,_V1,_TP6);"+
-			"_V4=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:_TP7,"+
-				"Performed:_TP8,"+
-				"Note:_TP9"+
+			"_V1=g.addVertex(["+
+				typeof(Member).Name+"Id:_TP1,"+
+				"FabType:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V4,_TP10);"+
-			"g.addEdge(_V1,_V4,_TP11);"+
-			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP12)[0].next();"+
-			"g.addEdge(_V4,_V5,_TP13);"+
-			"_V6=g.V('"+typeof(Member).Name+"Id',_TP14)[0].next();"+
-			"g.addEdge(_V6,_V4,_TP15);";
+			"g.addEdge(_V0,_V1,_TP3);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP4)[0].next();"+
+			"g.addEdge(_V2,_V1,_TP5);"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP6)[0].next();"+
+			"g.addEdge(_V3,_V1,_TP7);"+
+			"_V4=g.addVertex(["+
+				typeof(MemberTypeAssign).Name+"Id:_TP8,"+
+				"Performed:_TP9,"+
+				"Note:_TP10,"+
+				"FabType:_TP11"+
+			"]);"+
+			"g.addEdge(_V0,_V4,_TP12);"+
+			"g.addEdge(_V1,_V4,_TP13);"+
+			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP14)[0].next();"+
+			"g.addEdge(_V4,_V5,_TP15);"+
+			"_V6=g.V('"+typeof(Member).Name+"Id',_TP16)[0].next();"+
+			"g.addEdge(_V6,_V4,_TP17);";
 
 		private readonly static string QueryUpdateMemberTx =
 			"_V0=g.V('RootId',_TP0)[0].next();"+
@@ -61,14 +65,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP4,"+
 				"Performed:_TP5,"+
-				"Note:_TP6"+
+				"Note:_TP6,"+
+				"FabType:_TP7"+
 			"]);"+
-			"g.addEdge(_V0,_V3,_TP7);"+
-			"g.addEdge(_V2,_V3,_TP8);"+
-			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP9)[0].next();"+
-			"g.addEdge(_V3,_V4,_TP10);"+
-			"_V5=g.V('"+typeof(Member).Name+"Id',_TP11)[0].next();"+
-			"g.addEdge(_V5,_V3,_TP12);";
+			"g.addEdge(_V0,_V3,_TP8);"+
+			"g.addEdge(_V2,_V3,_TP9);"+
+			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP10)[0].next();"+
+			"g.addEdge(_V3,_V4,_TP11);"+
+			"_V5=g.V('"+typeof(Member).Name+"Id',_TP12)[0].next();"+
+			"g.addEdge(_V5,_V3,_TP13);";
 		
 		private long vAppId;
 		private long vUserId;
@@ -155,20 +160,22 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(QueryAddMemberTx, pTx.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
 			TestUtil.CheckParam(pTx.Params, "_TP1", vNewMemId);
-			TestUtil.CheckParam(pTx.Params, "_TP2", typeof(RootContainsMember).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP3", vAppId);
-			TestUtil.CheckParam(pTx.Params, "_TP4", typeof(AppDefinesMember).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP5", vUserId);
-			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(UserDefinesMember).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP7", vNewMtaId);
-			TestUtil.CheckParam(pTx.Params, "_TP8", vUtcNow.Ticks);
-			TestUtil.CheckParam(pTx.Params, "_TP9", "First login.");
-			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(RootContainsMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP12", (long)MemberTypeId.Member);
-			TestUtil.CheckParam(pTx.Params, "_TP13", typeof(MemberTypeAssignUsesMemberType).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP14", (long)MemberId.FabFabData);
-			TestUtil.CheckParam(pTx.Params, "_TP15", typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP2", (int)NodeFabType.Member);
+			TestUtil.CheckParam(pTx.Params, "_TP3", typeof(RootContainsMember).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP4", vAppId);
+			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(AppDefinesMember).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP6", vUserId);
+			TestUtil.CheckParam(pTx.Params, "_TP7", typeof(UserDefinesMember).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP8", vNewMtaId);
+			TestUtil.CheckParam(pTx.Params, "_TP9", vUtcNow.Ticks);
+			TestUtil.CheckParam(pTx.Params, "_TP10", "First login.");
+			TestUtil.CheckParam(pTx.Params, "_TP11", (int)NodeFabType.MemberTypeAssign);
+			TestUtil.CheckParam(pTx.Params, "_TP12", typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP13", typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP14", (long)MemberTypeId.Member);
+			TestUtil.CheckParam(pTx.Params, "_TP15", typeof(MemberTypeAssignUsesMemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP16", (long)MemberId.FabFabData);
+			TestUtil.CheckParam(pTx.Params, "_TP17", typeof(MemberCreatesMemberTypeAssign).Name);
 			
 			return vMockGetMemberTxResult.Object;
 		}
@@ -186,12 +193,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP4", vNewMtaId);
 			TestUtil.CheckParam(pTx.Params, "_TP5", vUtcNow.Ticks);
 			TestUtil.CheckParam(pTx.Params, "_TP6", "First login.");
-			TestUtil.CheckParam(pTx.Params, "_TP7", typeof(RootContainsMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP9", (long)MemberTypeId.Member);
-			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(MemberTypeAssignUsesMemberType).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP11", (long)MemberId.FabFabData);
-			TestUtil.CheckParam(pTx.Params, "_TP12", typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP7", (int)NodeFabType.MemberTypeAssign);
+			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP10", (long)MemberTypeId.Member);
+			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberTypeAssignUsesMemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP12", (long)MemberId.FabFabData);
+			TestUtil.CheckParam(pTx.Params, "_TP13", typeof(MemberCreatesMemberTypeAssign).Name);
 			
 			return vMockGetMemberTxResult.Object;
 		}

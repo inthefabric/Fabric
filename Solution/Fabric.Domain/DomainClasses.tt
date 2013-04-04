@@ -130,7 +130,6 @@ foreach ( string name in nodes ) {
 		if ( prop.ValidRegex != null ) {
 			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
 		}
-
 #>
 		<#= attribs #>public virtual <#= propType+" "+propName #> { get; set; }
 
@@ -147,6 +146,26 @@ foreach ( string name in nodes ) {
 <#
 	} //end if "isRoot"
 	
+	if ( !node.IsAbstract ) {
+		string fabType = (node.IsAbstract ? "Abstract" : (node.IsBaseClass ? "BaseClass" : node.Name));
+		if ( fabType == "Root" ) { fabType = "Abstract"; }
+#>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>() : base(NodeFabType.<#= fabType #>) {}
+
+<#	
+	} //end abstract condition
+
+	if ( node.IsBaseClass ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>(NodeFabType pFabType) : base(pFabType) {}
+
+<#
+	} //end base class condition
+
 	if ( !node.IsAbstract ) {
 #>
 

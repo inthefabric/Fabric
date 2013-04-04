@@ -15,13 +15,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				typeof(Locator).Name+"Id:_TP1,"+
 				"ValueX:_TP2,"+
 				"ValueY:_TP3,"+
-				"ValueZ:_TP4"+
+				"ValueZ:_TP4,"+
+				"FabType:_TP5"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP5);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP7);"+
-			"_V3=g.V('"+typeof(LocatorType).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP9);";
+			"g.addEdge(_V0,_V1,_TP6);"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP7)[0].next();"+
+			"g.addEdge(_V2,_V1,_TP8);"+
+			"_V3=g.V('"+typeof(LocatorType).Name+"Id',_TP9)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP10);";
 
 		private long vLocTypeId;
 		private double vValueX;
@@ -63,13 +64,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValueX);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vValueY);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vValueZ);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Locator);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(RootContainsLocator).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
 				typeof(FactorUsesLocator).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vLocTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", vLocTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
 				typeof(LocatorUsesLocatorType).Name);
 		}
 

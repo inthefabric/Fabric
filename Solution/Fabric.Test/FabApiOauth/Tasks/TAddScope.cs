@@ -31,13 +31,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V1=g.addVertex(["+
 				typeof(OauthScope).Name+"Id:_TP1,"+
 				"Allow:_TP2,"+
-				"Created:_TP3"+
+				"Created:_TP3,"+
+				"FabType:_TP4"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP5)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP6);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',_TP7)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP8);"+
+			"g.addEdge(_V0,_V1,_TP5);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP6)[0].next();"+
+			"g.addEdge(_V1,_V2,_TP7);"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP8)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP9);"+
 			"_V1;";
 
 		private long vAppId;
@@ -114,11 +115,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pScripted.Params, "_TP1", vAddOauthScopeId);
 			TestUtil.CheckParam(pScripted.Params, "_TP2", vAllow);
 			TestUtil.CheckParam(pScripted.Params, "_TP3", vUtcNow.Ticks);
-			TestUtil.CheckParam(pScripted.Params, "_TP4", typeof(RootContainsOauthScope).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP5", vAppId);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", typeof(OauthScopeUsesApp).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP7", vUserId);
-			TestUtil.CheckParam(pScripted.Params, "_TP8", typeof(OauthScopeUsesUser).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP4", (int)NodeFabType.OauthScope);
+			TestUtil.CheckParam(pScripted.Params, "_TP5", typeof(RootContainsOauthScope).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP6", vAppId);
+			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(OauthScopeUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP8", vUserId);
+			TestUtil.CheckParam(pScripted.Params, "_TP9", typeof(OauthScopeUsesUser).Name);
 			
 			return vAddScopeResult;
 		}

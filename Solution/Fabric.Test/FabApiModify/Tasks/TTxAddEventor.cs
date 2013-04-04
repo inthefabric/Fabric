@@ -13,15 +13,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Eventor).Name+"Id:_TP1,"+
-				"DateTime:_TP2"+
+				"DateTime:_TP2,"+
+				"FabType:_TP3"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP5);"+
-			"_V3=g.V('"+typeof(EventorType).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP7);"+
-			"_V4=g.V('"+typeof(EventorPrecision).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V4,_TP9);";
+			"g.addEdge(_V0,_V1,_TP4);"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP5)[0].next();"+
+			"g.addEdge(_V2,_V1,_TP6);"+
+			"_V3=g.V('"+typeof(EventorType).Name+"Id',_TP7)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP8);"+
+			"_V4=g.V('"+typeof(EventorPrecision).Name+"Id',_TP9)[0].next();"+
+			"g.addEdge(_V1,_V4,_TP10);";
 
 		private long vEveTypeId;
 		private long vEvePrecId;
@@ -59,16 +60,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewEventorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vDateTime);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Eventor);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
 				typeof(RootContainsEventor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(FactorUsesEventor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vEveTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vEveTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
 				typeof(EventorUsesEventorType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vEvePrecId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", vEvePrecId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
 				typeof(EventorUsesEventorPrecision).Name);
 		}
 

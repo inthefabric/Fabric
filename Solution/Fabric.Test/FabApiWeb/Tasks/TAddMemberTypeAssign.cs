@@ -20,14 +20,15 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V2=g.V('"+typeof(Root).Name+"Id',_TP2)[0].next();"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP3,"+
-				"Performed:_TP4"+
+				"Performed:_TP4,"+
+				"FabType:_TP5"+
 			"]);"+
-			"g.addEdge(_V2,_V3,_TP5);"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V4,_V3,_TP7);"+
-			"g.addEdge(_V0,_V3,_TP8);"+
-			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP9)[0].next();"+
-			"g.addEdge(_V3,_V5,_TP10);"+
+			"g.addEdge(_V2,_V3,_TP6);"+
+			"_V4=g.V('"+typeof(Member).Name+"Id',_TP7)[0].next();"+
+			"g.addEdge(_V4,_V3,_TP8);"+
+			"g.addEdge(_V0,_V3,_TP9);"+
+			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP10)[0].next();"+
+			"g.addEdge(_V3,_V5,_TP11);"+
 			"_V3;";
 
 		private long vAssigningMemberId;
@@ -69,12 +70,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP2", 0);
 			TestUtil.CheckParam(pTx.Params, "_TP3", vNewMtaId);
 			TestUtil.CheckParam(pTx.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(RootContainsMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP6", vAssigningMemberId);
-			TestUtil.CheckParam(pTx.Params, "_TP7", typeof(MemberCreatesMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP9", vMemberTypeId);
-			TestUtil.CheckParam(pTx.Params, "_TP10", typeof(MemberTypeAssignUsesMemberType).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP5", (int)NodeFabType.MemberTypeAssign);
+			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(RootContainsMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP7", vAssigningMemberId);
+			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberCreatesMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberHasMemberTypeAssign).Name);
+			TestUtil.CheckParam(pTx.Params, "_TP10", vMemberTypeId);
+			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberTypeAssignUsesMemberType).Name);
 
 			return vMtaResult;
 		}

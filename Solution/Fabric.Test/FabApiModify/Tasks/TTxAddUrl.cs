@@ -18,10 +18,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Name:_TP1,"+
 				"AbsoluteUrl:_TP2,"+
 				"ArtifactId:_TP3,"+
-				"Created:_TP4"+
+				"Created:_TP4,"+
+				"FabType:_TP5"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP5);"+
-			"g.addEdge(_V1,_V2,_TP6);";
+			"g.addEdge(_V0,_V2,_TP6);"+
+			"g.addEdge(_V1,_V2,_TP7);";
 
 		private string vAbsoluteUrl;
 		private string vName;
@@ -65,8 +66,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vAbsoluteUrl);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsUrl).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Url);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(RootContainsUrl).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(MemberCreatesArtifact).Name);
 		}
 
 	}

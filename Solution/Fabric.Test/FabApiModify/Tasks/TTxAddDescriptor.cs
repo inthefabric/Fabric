@@ -13,13 +13,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string QueryStart = 
 			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
-				typeof(Descriptor).Name+"Id:_TP1"+
+				typeof(Descriptor).Name+"Id:_TP1,"+
+				"FabType:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP2);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP3)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP4);"+
-			"_V3=g.V('"+typeof(DescriptorType).Name+"Id',_TP5)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP6);";
+			"g.addEdge(_V0,_V1,_TP3);"+
+			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
+			"g.addEdge(_V2,_V1,_TP5);"+
+			"_V3=g.V('"+typeof(DescriptorType).Name+"Id',_TP6)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP7);";
 
 		private static readonly string QueryPrimRef = 
 			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}})[0].next();"+
@@ -80,7 +81,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			string expect = QueryStart;
 			Dictionary<string, IWeaverQueryVal> txParams = TxBuild.Transaction.Params;
-			int tp = 7;
+			int tp = 8;
 			int v = 4;
 
 			if ( vPrimArtRefId != null ) {
@@ -131,13 +132,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewDescriptorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", (int)NodeFabType.Descriptor);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
 				typeof(RootContainsDescriptor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
 				typeof(FactorUsesDescriptor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vDescTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vDescTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
 				typeof(DescriptorUsesDescriptorType).Name);
 		}
 

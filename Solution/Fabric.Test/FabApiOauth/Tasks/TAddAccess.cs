@@ -46,13 +46,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Token:_TP2,"+
 				"Refresh:_TP3,"+
 				"Expires:_TP4,"+
-				"IsClientOnly:_TP5"+
+				"IsClientOnly:_TP5,"+
+				"FabType:_TP6"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP6);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP7)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP8);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',_TP9)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP10);";
+			"g.addEdge(_V0,_V1,_TP7);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP8)[0].next();"+
+			"g.addEdge(_V1,_V2,_TP9);"+
+			"_V3=g.V('"+typeof(User).Name+"Id',_TP10)[0].next();"+
+			"g.addEdge(_V1,_V3,_TP11);";
 
 		private readonly static string QueryAddAccessTxClientOnly =
 			"_V0=g.V('RootId',_TP0)[0].next();"+
@@ -61,11 +62,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Token:_TP2,"+
 				"Refresh:_TP3,"+
 				"Expires:_TP4,"+
-				"IsClientOnly:_TP5"+
+				"IsClientOnly:_TP5,"+
+				"FabType:_TP6"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP6);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP7)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP8);";
+			"g.addEdge(_V0,_V1,_TP7);"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP8)[0].next();"+
+			"g.addEdge(_V1,_V2,_TP9);";
 
 		protected long vAddOauthAccessId;
 		protected DateTime vUtcNow;
@@ -161,13 +163,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pScripted.Params, "_TP3", vRefreshCode);
 			TestUtil.CheckParam(pScripted.Params, "_TP4", vUtcNow.AddSeconds(vExpireSec).Ticks);
 			TestUtil.CheckParam(pScripted.Params, "_TP5", vClientOnly);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", typeof(RootContainsOauthAccess).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP7", vAppId);
-			TestUtil.CheckParam(pScripted.Params, "_TP8", typeof(OauthAccessUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP6", (int)NodeFabType.OauthAccess);
+			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(RootContainsOauthAccess).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP8", vAppId);
+			TestUtil.CheckParam(pScripted.Params, "_TP9", typeof(OauthAccessUsesApp).Name);
 
 			if ( !vClientOnly ) {
-				TestUtil.CheckParam(pScripted.Params, "_TP9", vUserId);
-				TestUtil.CheckParam(pScripted.Params, "_TP10", typeof(OauthAccessUsesUser).Name);
+				TestUtil.CheckParam(pScripted.Params, "_TP10", vUserId);
+				TestUtil.CheckParam(pScripted.Params, "_TP11", typeof(OauthAccessUsesUser).Name);
 			}
 
 			return null;

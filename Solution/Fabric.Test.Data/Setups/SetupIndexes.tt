@@ -25,6 +25,8 @@ namespace Fabric.Db.Data.Setups {
 		public static void SetupAll(DataSet pSet) {
 			const WeaverTasks.ItemType n = WeaverTasks.ItemType.Node;
 
+			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Node>(x => x.FabType, n));
+
 <#
 IList<string> nodes = SchemaHelper.GetNodes();
 

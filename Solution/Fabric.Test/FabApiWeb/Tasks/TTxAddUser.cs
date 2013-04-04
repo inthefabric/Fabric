@@ -20,11 +20,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				"Name:_TP1,"+
 				"Password:_TP2,"+
 				"ArtifactId:_TP3,"+
-				"Created:_TP4"+
+				"Created:_TP4,"+
+				"FabType:_TP5"+
 			"]);"+
-			"g.addEdge(_V0,_V3,_TP5);"+
-			"g.addEdge(_V3,_V1,_TP6);"+
-			"g.addEdge(_V2,_V3,_TP7);";
+			"g.addEdge(_V0,_V3,_TP6);"+
+			"g.addEdge(_V3,_V1,_TP7);"+
+			"g.addEdge(_V2,_V3,_TP8);";
 
 		private string vName;
 		private string vPassword;
@@ -72,9 +73,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", FabricUtil.HashPassword(vPassword));
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(RootContainsUser).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(UserUsesEmail).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(MemberCreatesArtifact).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.User);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(RootContainsUser).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(UserUsesEmail).Name);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
 		}
 
 	}
