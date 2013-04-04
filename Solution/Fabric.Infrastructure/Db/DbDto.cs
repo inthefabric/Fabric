@@ -19,11 +19,11 @@ namespace Fabric.Infrastructure.Db {
 		private static readonly string ArtifactId = ArtifactType.Name+"Id";
 
 		public ItemType Item { get; set; }
-		public long? Id { get; set; }
+		public string Id { get; set; }
 		public string Class { get; set; }
 
-		public long? ToNodeId { get; set; }
-		public long? FromNodeId { get; set; }
+		public string ToNodeId { get; set; }
+		public string FromNodeId { get; set; }
 
 		public IDictionary<string, string> Data { get; set; }
 
@@ -37,9 +37,10 @@ namespace Fabric.Infrastructure.Db {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public DbDto(DbDtoRaw pRaw) {
+			Id = pRaw._id;
 			Data = pRaw._properties;
 
-			if ( pRaw._id == null ) {
+			if ( Id == null ) {
 				return;
 			}
 
@@ -47,14 +48,11 @@ namespace Fabric.Infrastructure.Db {
 
 			switch ( type ) {
 				case "vertex":
-					Id = long.Parse(pRaw._id);
 					Item = ItemType.Node;
 					Class = GetClass(Data);
 					break;
 
 				case "edge":
-					string relId = pRaw._id;
-					Id = long.Parse(relId.Split(':')[0]);
 					Item = ItemType.Rel;
 					Class = pRaw._label;
 					FromNodeId = pRaw._outV;
@@ -96,13 +94,13 @@ namespace Fabric.Infrastructure.Db {
 				result = JsonSerializer.DeserializeFromString<T>(json);
 			}
 
-			result.Id = (long)Id;
+			result.Id = Id;
 
 			IRel rel = (result as IRel);
 
 			if ( rel != null ) {
-				rel.FromNodeId = (long)FromNodeId;
-				rel.ToNodeId = (long)ToNodeId;
+				rel.FromNodeId = FromNodeId;
+				rel.ToNodeId = ToNodeId;
 			}
 
 			return result;
@@ -113,14 +111,24 @@ namespace Fabric.Infrastructure.Db {
 		/*--------------------------------------------------------------------------------------------*/
 		private static string GetClass(IDictionary<string, string> pData) {
 			if ( pData == null ) { return null; }
+			bool isArt = false;
 
 			foreach ( string key in pData.Keys ) {
 				int ki = key.Length-2;
-				if ( key.Substring(ki) != "Id" || key == ArtifactId ) { continue; }
+
+				if ( key.Substring(ki) != "Id" ) {
+					continue;
+				}
+
+				if ( key == ArtifactId ) {
+					isArt = true;
+					continue;
+				}
+
 				return key.Substring(0, ki);
 			}
 
-			return null;
+			return (isArt ? ArtifactType.Name : null);
 		}
 		
 	}

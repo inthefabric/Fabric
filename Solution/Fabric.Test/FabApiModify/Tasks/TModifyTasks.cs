@@ -15,6 +15,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		protected ModifyTasks Tasks { get; private set; }
 		protected Mock<IApiContext> MockApiCtx { get; private set; }
+		protected Mock<ICacheManager> MockCacheManager { get; private set; }
+		protected Mock<IClassDiskCache> MockClassCache { get; private set; }
+		protected Mock<IMemCache> MockMemCache { get; private set; }
 		protected UsageMap UsageMap { get; private set; }
 		protected TxBuilder TxBuild { get; private set; }
 		
@@ -25,8 +28,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		public void SetUp() {
 			Tasks = new ModifyTasks();
 			UsageMap = new UsageMap();
-			MockApiCtx = new Mock<IApiContext>();
 			TxBuild = new TxBuilder();
+
+			MockApiCtx = new Mock<IApiContext>();
+
+			MockCacheManager = new Mock<ICacheManager>();
+			MockApiCtx.SetupGet(x => x.Cache).Returns(MockCacheManager.Object);
+
+			MockClassCache = new Mock<IClassDiskCache>();
+			MockMemCache = new Mock<IMemCache>();
+			MockCacheManager.SetupGet(x => x.UniqueClasses).Returns(MockClassCache.Object);
+			MockCacheManager.SetupGet(x => x.Memory).Returns(MockMemCache.Object);
 
 			TestSetUp();
 		}

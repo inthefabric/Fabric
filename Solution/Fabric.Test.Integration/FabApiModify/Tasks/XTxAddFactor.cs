@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -41,12 +40,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.Null(newFactor.Completed, "Incorrect Completed.");
 			Assert.Null(newFactor.Deleted, "Incorrect Deleted.");
 			
+			string artId = typeof(Artifact).Name+"Id";
+
 			NodeConnections conn = GetNodeConnections(newFactor);
 			conn.AssertRelCount(2, 3);
 			conn.AssertRel<RootContainsFactor, Root>(false, 0);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, (long)pMemberId);
-			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId);
-			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, (long)pRelArtId);
+			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId, artId);
+			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, (long)pRelArtId, artId);
 			conn.AssertRel<FactorUsesFactorAssertion, FactorAssertion>(true, (long)pAssertId);
 
 			NewNodeCount = 1;

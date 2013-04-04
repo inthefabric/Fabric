@@ -10,8 +10,8 @@ namespace Fabric.Infrastructure.Db {
 		public string _id { get; set; }
 		public string _type { get; set; }
 		public string _label { get; set; }
-		public int _outV { get; set; }
-		public int _inV { get; set; }
+		public string _outV { get; set; }
+		public string _inV { get; set; }
 		public IDictionary<string, string> _properties { get; set; }
 
 		// ReSharper restore InconsistentNaming

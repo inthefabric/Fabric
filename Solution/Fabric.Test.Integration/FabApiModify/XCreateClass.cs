@@ -1,4 +1,5 @@
 ﻿using Fabric.Api.Modify;
+using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -32,8 +33,19 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);
 			vExpectMemberId = (long)SetupUsers.MemberId.GalZach;
+
+			DataSet ds = Setup.SetupAll(true);
+
+			foreach ( IDataNode dn in ds.Nodes ) {
+				if ( dn.NodeType != typeof(Class) ) {
+					continue;
+				}
+
+				Class c = (Class)dn.Node;
+				ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);
+			}
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
 			var func = new CreateClass(Tasks, vName, vDisamb, vNote);

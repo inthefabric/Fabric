@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:07 PM
+// Generated on 4/3/2013 3:54:56 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -24,6 +24,7 @@ namespace Fabric.Api.Meta {
 
 				case "NodeForType.Description":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
@@ -32,6 +33,7 @@ namespace Fabric.Api.Meta {
 
 				case "NodeForAction.Note":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					break;
 
 				case "Root.RootId":
@@ -62,16 +64,19 @@ namespace Fabric.Api.Meta {
 
 				case "Class.Name":
 					pValue.LenMax = 128;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
 				case "Class.Disamb":
 					pValue.LenMax = 128;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
 				case "Class.Note":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					break;
 
 				case "Email.EmailId":
@@ -79,6 +84,7 @@ namespace Fabric.Api.Meta {
 
 				case "Email.Address":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
 					break;
 
@@ -98,16 +104,19 @@ namespace Fabric.Api.Meta {
 
 				case "Instance.Name":
 					pValue.LenMax = 128;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
 				case "Instance.Disamb":
 					pValue.LenMax = 128;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
 				case "Instance.Note":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					break;
 
 				case "Member.MemberId":
@@ -124,10 +133,12 @@ namespace Fabric.Api.Meta {
 
 				case "Url.Name":
 					pValue.LenMax = 128;
+					pValue.LenMin = 1;
 					break;
 
 				case "Url.AbsoluteUrl":
 					pValue.LenMax = 2048;
+					pValue.LenMin = 1;
 					break;
 
 				case "User.UserId":
@@ -161,6 +172,7 @@ namespace Fabric.Api.Meta {
 
 				case "Factor.Note":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					break;
 
 				case "FactorAssertion.FactorAssertionId":
@@ -198,6 +210,7 @@ namespace Fabric.Api.Meta {
 
 				case "Identor.Value":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					break;
 
 				case "IdentorType.IdentorTypeId":
@@ -265,6 +278,7 @@ namespace Fabric.Api.Meta {
 
 				case "VectorUnit.Symbol":
 					pValue.LenMax = 8;
+					pValue.LenMin = 1;
 					break;
 
 				case "VectorUnitPrefix.VectorUnitPrefixId":
@@ -272,6 +286,7 @@ namespace Fabric.Api.Meta {
 
 				case "VectorUnitPrefix.Symbol":
 					pValue.LenMax = 8;
+					pValue.LenMin = 1;
 					break;
 
 				case "VectorUnitPrefix.Amount":
@@ -307,6 +322,7 @@ namespace Fabric.Api.Meta {
 
 				case "OauthDomain.Domain":
 					pValue.LenMax = 256;
+					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$";
 					break;
 
@@ -315,6 +331,7 @@ namespace Fabric.Api.Meta {
 
 				case "OauthGrant.RedirectUri":
 					pValue.LenMax = 450;
+					pValue.LenMin = 1;
 					break;
 
 				case "OauthGrant.Code":

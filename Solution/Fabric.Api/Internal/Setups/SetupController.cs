@@ -28,7 +28,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(false);
+				vDataSet = Setup.SetupAll(true);
 
 				//SendSetupTx();
 				SendIndexTx();
@@ -105,7 +105,7 @@ namespace Fabric.Api.Internal.Setups {
 						throw new Exception("Node is null at index "+i+".");
 					}
 
-					vDataSet.Nodes[start+i].Node.Id = long.Parse(idStr);
+					vDataSet.Nodes[start+i].Node.Id = idStr;
 				}
 
 				if ( count >= vDataSet.Nodes.Count ) {
@@ -120,7 +120,7 @@ namespace Fabric.Api.Internal.Setups {
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
-				int limit = 30;
+				int limit = 10;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 
 				for ( int i = count ; i < vDataSet.Rels.Count ; ++i ) {

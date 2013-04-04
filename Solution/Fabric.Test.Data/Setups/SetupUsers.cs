@@ -299,14 +299,14 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillUserArtifact(SetupArtifacts.ArtifactId pId, UserId pUserId,
 																				MemberId pCreatorId) {
-			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<User>((long)pUserId),
-				pId, ArtifactTypeId.User, pCreatorId, vTestMode);
+			Artifact user = vSet.GetNode<User>((long)pUserId);
+			SetupArtifacts.FillArtifact(vSet, user, pId, pCreatorId, vTestMode);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillAppArtifact(SetupArtifacts.ArtifactId pId, AppId pAppId, MemberId pCreatorId) {
-			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<App>((long)pAppId),
-				pId, ArtifactTypeId.App, pCreatorId, vTestMode);
+			Artifact app = vSet.GetNode<App>((long)pAppId);
+			SetupArtifacts.FillArtifact(vSet, app, pId, pCreatorId, vTestMode);
 		}
 
 	}

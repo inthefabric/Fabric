@@ -13,6 +13,9 @@ namespace Fabric.Test.FabApiModify {
 
 		protected Mock<IApiContext> MockApiCtx { get; private set; }
 		protected Mock<IDomainValidator> MockValidator { get; private set; }
+		protected Mock<ICacheManager> MockCacheManager { get; private set; }
+		protected Mock<IClassDiskCache> MockClassCache { get; private set; }
+		protected Mock<IMemCache> MockMemCache { get; private set; }
 		protected Mock<IModifyTasks> MockTasks { get; private set; }
 
 		protected long ApiCtxAppId { get; private set; }
@@ -29,6 +32,14 @@ namespace Fabric.Test.FabApiModify {
 
 			MockTasks = new Mock<IModifyTasks>();
 			MockTasks.SetupGet(x => x.Validator).Returns(MockValidator.Object);
+
+			MockCacheManager = new Mock<ICacheManager>();
+			MockApiCtx.SetupGet(x => x.Cache).Returns(MockCacheManager.Object);
+
+			MockClassCache = new Mock<IClassDiskCache>();
+			MockMemCache = new Mock<IMemCache>();
+			MockCacheManager.SetupGet(x => x.UniqueClasses).Returns(MockClassCache.Object);
+			MockCacheManager.SetupGet(x => x.Memory).Returns(MockMemCache.Object);
 
 			TestSetUp();
 		}

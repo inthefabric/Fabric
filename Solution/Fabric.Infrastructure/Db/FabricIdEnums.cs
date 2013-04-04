@@ -12,17 +12,6 @@ namespace Fabric.Infrastructure.Db {
 		Fabric = 1
 	}
 
-	/*================================================================================================*/
-	public enum ArtifactTypeId {
-		App = 1,
-		User,
-		Class,
-		Instance,
-		Url
-		//Label,
-		//Crowd
-	}
-
 	/*================================================================================================* /
 	public enum CrowdianTypeId {
 		None = 1,

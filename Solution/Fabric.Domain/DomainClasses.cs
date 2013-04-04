@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:05 PM
+// Generated on 4/3/2013 7:58:27 PM
 
 using System;
 using System.Linq.Expressions;
@@ -860,6 +860,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Description { get; set; }
 
@@ -875,6 +876,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 	}
@@ -1218,18 +1220,21 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(128)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 
@@ -1263,6 +1268,7 @@ namespace Fabric.Domain {
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
 		public virtual string Address { get; set; }
 
@@ -1319,18 +1325,21 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 
@@ -1503,12 +1512,14 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(128)]
+		//[PropLenMin(1)]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(2048)]
+		//[PropLenMin(1)]
 		public virtual string AbsoluteUrl { get; set; }
 
 
@@ -1624,6 +1635,7 @@ namespace Fabric.Domain {
 		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 
@@ -2056,6 +2068,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		public virtual string Value { get; set; }
 
 
@@ -2395,6 +2408,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(8)]
+		//[PropLenMin(1)]
 		public virtual string Symbol { get; set; }
 
 
@@ -2441,6 +2455,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(8)]
+		//[PropLenMin(1)]
 		public virtual string Symbol { get; set; }
 
 		[WeaverItemProperty]
@@ -2586,6 +2601,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(256)]
+		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$")]
 		public virtual string Domain { get; set; }
 
@@ -2623,6 +2639,7 @@ namespace Fabric.Domain {
 
 		[WeaverItemProperty]
 		//[PropLenMax(450)]
+		//[PropLenMin(1)]
 		public virtual string RedirectUri { get; set; }
 
 		[WeaverItemProperty]

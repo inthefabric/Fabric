@@ -47,6 +47,7 @@ namespace Fabric.Domain.Meta {
 				p.IsUnique = true;
 				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(nodeForType, "Description", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.ValidRegex = ValidTitleRegex;
 
@@ -55,6 +56,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(nodeForAction, "Performed", typeof(DateTime));
 				p.IsTimestamp = true;
 			p = AddProp(nodeForAction, "Note", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
 
@@ -94,13 +96,16 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(clas, "ClassId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(clas, "Name", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 128;
 				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(clas, "Disamb", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(clas, "Note", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
 
@@ -140,6 +145,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(email, "EmailId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(email, "Address", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
@@ -157,14 +163,17 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(instance, "InstanceId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(instance, "Name", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(instance, "Disamb", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
 			p = AddProp(instance, "Note", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
 
@@ -199,8 +208,10 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(url, "UrlId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(url, "Name", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 128;
 			p = AddProp(url, "AbsoluteUrl", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 2048;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
@@ -235,6 +246,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(factor, "Completed", typeof(DateTime));
 				p.IsNullable = true;
 			p = AddProp(factor, "Note", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
 
@@ -293,6 +305,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(identor, "IdentorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(identor, "Value", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 
 			WeaverNodeSchema identorType = AddNode("IdentorType", "IdT");
@@ -348,6 +361,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(vectorUnit, "VectorUnitId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vectorUnit, "Symbol", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 8;
 			
 			WeaverNodeSchema vectorUnitPrefix = AddNode("VectorUnitPrefix", "VeUP");
@@ -355,6 +369,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(vectorUnitPrefix, "VectorUnitPrefixId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(vectorUnitPrefix, "Symbol", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 8;
 			p = AddProp(vectorUnitPrefix, "Amount", typeof(double));
 			
@@ -387,6 +402,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthDomain, "OauthDomainId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthDomain, "Domain", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 256;
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
@@ -395,6 +411,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthGrant, "OauthGrantId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(oauthGrant, "RedirectUri", typeof(string));
+				p.LenMin = 1;
 				p.LenMax = 450;
 			p = AddProp(oauthGrant, "Code", typeof(string));
 				p.Len = 32;

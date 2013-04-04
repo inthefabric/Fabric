@@ -52,7 +52,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap = new UsageMap();
 			
 			vResultGrant = new OauthGrant();
-			vResultGrant.Id = 99;
+			vResultGrant.Id = "x99";
 			vResultGrant.OauthGrantId = 123;
 			vResultGrant.Code = "abcdefghijklmnopqrstuvwxyz789012";
 			vResultGrant.RedirectUri = "test.com/redir";

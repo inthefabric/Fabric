@@ -36,7 +36,7 @@ namespace Fabric.Db.Data {
 			vNodeMap = new Dictionary<string, INode>();
 			vDataNodeMap = new Dictionary<IWeaverNode, IDataNode>();
 
-			var r = new Root { Id = 0 };
+			var r = new Root();
 			vNodeMap.Add(typeof(Root).Name+1, r);
 		}
 

@@ -28,6 +28,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private long vUserId;
 		private long vAppId;
 		private Member vMemberResult;
+		private Member vCacheMember;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +70,20 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			UsageMap.AssertUses("GetValidMemberByContext", 1);
 			Assert.AreEqual(vMemberResult, result, "Incorrect Result.");
+
+			MockMemCache.Verify(x => x.AddMember(vAppId, vUserId, vMemberResult, null), Times.Once());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SuccessCache() {
+			vCacheMember = new Member();
+			MockMemCache.Setup(x => x.FindMember(vAppId, vUserId)).Returns(vCacheMember);
+			
+			Member result = Tasks.GetValidMemberByContext(MockApiCtx.Object);
+
+			UsageMap.AssertUses("GetValidMemberByContext", 0);
+			Assert.AreEqual(vCacheMember, result, "Incorrect Result.");
 		}
 
 	}

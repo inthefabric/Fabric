@@ -9,16 +9,14 @@ namespace Fabric.Infrastructure.Caching {
 	/*================================================================================================*/
 	public class MemCache : MemoryCache, IMemCache {
 
-		private const string NodeRegion = "Node";
-		private const string MemberRegion = "Member";
-		private const string AccessRegion = "Access";
-
-		public static readonly MemCache Instance = new MemCache();
+		private const string NodeRegion = null; //"Node";
+		private const string MemberRegion = null; //"Member";
+		private const string AccessRegion = null; //"Access";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private MemCache() : base("MemCache", GetConfig()) {}
+		public MemCache() : base("MemCache", GetConfig()) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static NameValueCollection GetConfig() {

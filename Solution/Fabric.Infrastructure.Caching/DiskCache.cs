@@ -7,46 +7,53 @@ namespace Fabric.Infrastructure.Caching {
 	/*================================================================================================*/
 	public abstract class DiskCache<TKey, TVal> : IDiskCache<TKey, TVal> {
 
-		private BPlusTree<TKey, TVal> Map { get; set; }
+		private BPlusTree<TKey, TVal> vMap { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void BuildMap(BPlusTree<TKey, TVal>.OptionsV2 pOptions) {
+		protected void BuildMap(BPlusTree<TKey, TVal>.OptionsV2 pOptions, bool pForTesting) {
 			string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 			dir = Path.Combine(dir, "Fabric");
 
-			pOptions.FileName = Path.Combine(dir, GetType().Name);
+			pOptions.FileName = Path.Combine(dir, GetType().Name+(pForTesting ? "Test" : ""));
 			Log.Debug(GetType().Name+" File: "+pOptions.FileName);
 
-			Map = new BPlusTree<TKey, TVal>(pOptions);
+			vMap = new BPlusTree<TKey, TVal>(pOptions);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public bool ContainsKey(TKey pKey) {
-			return Map.ContainsKey(pKey);
+			return vMap.ContainsKey(pKey);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Add(TKey pKey, TVal pVal) {
-			Map.Add(pKey, pVal);
+			vMap.Add(pKey, pVal);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddOrUpdate(TKey pKey, TVal pVal) {
-			Map[pKey] = pVal;
+			vMap[pKey] = pVal;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public TVal Get(TKey pKey) {
-			return Map[pKey];
+			return vMap[pKey];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public bool Remove(TKey pKey) {
-			return Map.Remove(pKey);
+			return vMap.Remove(pKey);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void Dispose() {
+			vMap.Dispose();
 		}
 
 	}

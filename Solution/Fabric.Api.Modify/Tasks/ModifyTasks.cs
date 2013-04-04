@@ -64,19 +64,28 @@ namespace Fabric.Api.Modify.Tasks {
 				.End();
 
 			mem = pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
-			pApiCtx.Cache.Memory.AddMember(pApiCtx.AppId, pApiCtx.UserId, mem);
+
+			if ( mem == null ) {
+				pApiCtx.Cache.Memory.RemoveMember(pApiCtx.AppId, pApiCtx.UserId); //TEST: RemoveMember
+			}
+			else {
+				pApiCtx.Cache.Memory.AddMember(pApiCtx.AppId, pApiCtx.UserId, mem);
+			}
+
 			return mem;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		//TEST: ModifyTasks.GetClassByNameDisamb cache usage
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			if ( pApiCtx.Cache.UniqueClasses.ContainsClass(pName, pDisamb) ) {
+			long? classId = pApiCtx.Cache.UniqueClasses.FindClassId(pName, pDisamb);
+			
+			if ( classId == null ) {
 				return null;
 			}
 
 			var c = new Class();
-			c.ClassId = pApiCtx.Cache.UniqueClasses.GetClassId(pName, pDisamb);
+			c.ClassId = (long)classId;
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			return c;

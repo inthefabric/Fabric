@@ -7,8 +7,8 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void AddClass(long pClassId, string pName, string pDisamb);
-		long GetClassId(string pName, string pDisamb);
-		bool ContainsClass(string pName, string pDisamb);
+		long? FindClassId(string pName, string pDisamb);
+		void Dispose();
 
 	}
 

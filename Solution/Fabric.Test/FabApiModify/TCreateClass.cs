@@ -1,6 +1,5 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
@@ -32,9 +31,13 @@ namespace Fabric.Test.FabApiModify {
 			vDisamb = "Disamb Text";
 			vNote = "This is a note.";
 			
-			vResultMember = new Member { Id = 87123523 };
+			vResultMember = new Member { Id = "x87123523" };
 			vOutClassVar = GetTxVar<Class>("CLASS");
+
 			vResultClass = new Class();
+			vResultClass.ClassId = 84761294623;
+			vResultClass.Name = vName;
+			vResultClass.Disamb = vDisamb;
 
 			MockTasks
 				.Setup(x => x.TxAddClass(
@@ -54,7 +57,6 @@ namespace Fabric.Test.FabApiModify {
 				.Returns(vResultMember);
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
-			MockApiCtx.SetupGet(x => x.Cache).Returns(new Mock<ICacheManager>().Object);
 
 			MockApiCtx
 				.Setup(x => x.DbSingle<Class>("CreateClassTx", It.IsAny<IWeaverTransaction>()))
@@ -96,6 +98,7 @@ namespace Fabric.Test.FabApiModify {
 			MockValidator.Verify(x => x.ClassName(vName, CreateClass.NameParam), Times.Once());
 			MockValidator.Verify(x => x.ClassDisamb(vDisamb, CreateClass.DisambParam), Times.Once());
 			MockValidator.Verify(x => x.ClassNote(vNote, CreateClass.NoteParam), Times.Once());
+			MockClassCache.Verify(x => x.AddClass(vResultClass.ClassId, vName, vDisamb), Times.Once());
 		}
 
 

@@ -14,7 +14,7 @@ namespace Fabric.Test.FabDbData {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true)]
 		[TestCase(false)]
 		public void SetupAll(bool pIsForTesting) {
@@ -34,7 +34,7 @@ namespace Fabric.Test.FabDbData {
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = WeaverQueryToJson(n.AddQuery);
 				Log.Debug("["+nodeI+"] -- "+json);
-				n.Node.Id = nodeI++;
+				n.Node.Id = (nodeI++)+"";
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {
@@ -68,12 +68,12 @@ namespace Fabric.Test.FabDbData {
 			//Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		private static string WeaverQueryToJson(IWeaverQuery pQuery) {
 			return ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public static string ScriptAndParamsToJson(string pScript, 
 														Dictionary<string, IWeaverQueryVal> pParams) {
 			string json = "{\"script\":\""+FabricUtil.JsonUnquote(pScript)+"\",\"params\":{";
@@ -81,12 +81,12 @@ namespace Fabric.Test.FabDbData {
 
 			foreach ( string key in pParams.Keys ) {
 				json += (first ? "" : ",")+"\""+FabricUtil.JsonUnquote(key)+"\":\""+
-					FabricUtil.JsonUnquote(pParams[key])+"\"";
+					FabricUtil.JsonUnquote(pParams[key].RawText)+"\"";
 				first = false;
 			}
 
 			return json+"}}";
-		}*/
+		}
 
 	}
 

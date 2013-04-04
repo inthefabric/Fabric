@@ -16,7 +16,7 @@ namespace Fabric.Api.Internal.Tables {
 		private readonly NancyModule vModule;
 
 		private IList<DbDto> vDtos;
-		private IDictionary<long, TableNode> vNodes;
+		private IDictionary<string, TableNode> vNodes;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,11 +75,11 @@ namespace Fabric.Api.Internal.Tables {
 
 			////
 
-			vNodes = new Dictionary<long, TableNode>();
+			vNodes = new Dictionary<string, TableNode>();
 
 			foreach ( IDbDto dto in vDtos ) {
 				if ( dto.Id == null || dto.Item != DbDto.ItemType.Node ) { continue; }
-				vNodes.Add((long)dto.Id, new TableNode(dto, vNodes.Count));
+				vNodes.Add(dto.Id, new TableNode(dto, vNodes.Count));
 			}
 
 			foreach ( IDbDto dto in vDtos ) {
@@ -87,8 +87,8 @@ namespace Fabric.Api.Internal.Tables {
 				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
 
 				TableNode toNode, fromNode;
-				vNodes.TryGetValue((long)dto.ToNodeId, out toNode);
-				vNodes.TryGetValue((long)dto.FromNodeId, out fromNode);
+				vNodes.TryGetValue(dto.ToNodeId, out toNode);
+				vNodes.TryGetValue(dto.FromNodeId, out fromNode);
 
 				if ( toNode != null ) {
 					toNode.AddRelIn(dto);

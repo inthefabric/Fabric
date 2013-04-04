@@ -70,12 +70,15 @@ namespace Fabric.Test.Integration {
 #if LIVE
 			Assert.Fail("Skipping TearDown in LIVE mode.");
 #endif
+			TestPreTearDown();
 
 			Log.Info("");
 			Log.Info("=====================================");
 			Log.Info("");
 			Log.Info("Core test time: "+(DateTime.UtcNow.Ticks-vStartTime2)/10000+"ms");
 			Log.Info("TearDown started at T = "+GetTime());
+
+			ApiCtx.Cache.UniqueClasses.Dispose();
 
 			////
 
@@ -121,7 +124,7 @@ namespace Fabric.Test.Integration {
 
 			////
 
-			TestTearDown();
+			TestPostTearDown();
 			ApiCtx = null;
 
 			Log.Info("TearDown complete at T = "+GetTime());
@@ -129,7 +132,8 @@ namespace Fabric.Test.Integration {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void TestSetUp() {}
-		protected virtual void TestTearDown() {}
+		protected virtual void TestPreTearDown() {}
+		protected virtual void TestPostTearDown() {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNode<T>(long pId) where T : class, INodeWithId, new() {

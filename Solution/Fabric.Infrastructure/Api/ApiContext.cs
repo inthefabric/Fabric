@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Caching;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Weaver.Interfaces;
@@ -17,14 +16,10 @@ namespace Fabric.Infrastructure.Api {
 		public long UserId { get; private set; }
 		public long AppId { get; private set; }
 		public AnalyticsManager Analytics { get; private set; }
-		//public long MemberId { get; private set; }
 		public ICacheManager Cache { get; private set; }
 
 		public int DbQueryExecutionCount { get; private set; }
 		public int DbQueryMillis { get; private set; }
-
-		private readonly MemoryCache vMemCache;
-		// TEST: ApiContext ClassName caching functionality and usages
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +36,6 @@ namespace Fabric.Infrastructure.Api {
 			ContextId = Guid.NewGuid();
 			UserId = -1;
 			AppId = -1;
-			//MemberId = -1;
 			Analytics = new AnalyticsManager(ContextId, x => Log.Debug(ContextId, "ANALYT", x));
 			DbQueryExecutionCount = 0;
 			DbQueryMillis = 0;
@@ -53,12 +47,6 @@ namespace Fabric.Infrastructure.Api {
 			AppId = (pAppId ?? 0);
 			UserId = (pUserId ?? 0);
 			//Analytics.SetAppUserId(AppId, UserId);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public void SetMemberId(long pMemberId) {
-			if ( MemberId != -1 ) { throw new Exception("MemberId is already set."); }
-			MemberId = MemberId;
 		}
 
 

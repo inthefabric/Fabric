@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:05 PM
+// Generated on 4/3/2013 3:54:55 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -264,7 +264,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 128);
+			LengthBetween(pParamName, pValue, 1, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
@@ -276,7 +276,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassDisamb(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
-			LengthLessThanOrEqual(pParamName, pValue, 128);
+			LengthBetween(pParamName, pValue, 1, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
@@ -288,7 +288,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassNote(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
-			LengthLessThanOrEqual(pParamName, pValue, 256);
+			LengthBetween(pParamName, pValue, 1, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -311,7 +311,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void EmailAddress(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 256);
+			LengthBetween(pParamName, pValue, 1, 256);
 			MatchesRegex(pParamName, pValue, @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
 		}
 
@@ -366,7 +366,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceName(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
-			LengthLessThanOrEqual(pParamName, pValue, 128);
+			LengthBetween(pParamName, pValue, 1, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
@@ -378,7 +378,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceDisamb(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
-			LengthLessThanOrEqual(pParamName, pValue, 128);
+			LengthBetween(pParamName, pValue, 1, 128);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
 		}
 
@@ -390,7 +390,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceNote(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
-			LengthLessThanOrEqual(pParamName, pValue, 256);
+			LengthBetween(pParamName, pValue, 1, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -449,7 +449,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UrlName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 128);
+			LengthBetween(pParamName, pValue, 1, 128);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -460,7 +460,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UrlAbsoluteUrl(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 2048);
+			LengthBetween(pParamName, pValue, 1, 2048);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -558,7 +558,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorNote(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
-			LengthLessThanOrEqual(pParamName, pValue, 256);
+			LengthBetween(pParamName, pValue, 1, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -699,7 +699,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void IdentorValue(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 256);
+			LengthBetween(pParamName, pValue, 1, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -936,7 +936,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorUnitSymbol(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 8);
+			LengthBetween(pParamName, pValue, 1, 8);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -959,7 +959,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorUnitPrefixSymbol(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 8);
+			LengthBetween(pParamName, pValue, 1, 8);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -1068,7 +1068,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthDomainDomain(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 256);
+			LengthBetween(pParamName, pValue, 1, 256);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$");
 		}
 
@@ -1092,7 +1092,7 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void OauthGrantRedirectUri(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
-			LengthLessThanOrEqual(pParamName, pValue, 450);
+			LengthBetween(pParamName, pValue, 1, 450);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

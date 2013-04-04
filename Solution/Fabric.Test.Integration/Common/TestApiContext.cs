@@ -17,7 +17,7 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base("rexster", 8185, new CacheManager()) {
+		public TestApiContext() : base("rexster", 8185, new CacheManager(true)) {
 			SharpflakeIds = new List<long>();
 		}
 

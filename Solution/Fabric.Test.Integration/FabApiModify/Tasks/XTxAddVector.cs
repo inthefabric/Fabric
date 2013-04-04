@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -39,7 +38,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			conn.AssertRel<RootContainsVector, Root>(false, 0);
 			conn.AssertRel<FactorUsesVector, Factor>(false, f.FactorId);
 			conn.AssertRel<VectorUsesVectorType, VectorType>(true, (long)pVecTypeId);
-			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true, (long)pAxisArtId);
+			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true, 
+				(long)pAxisArtId, typeof(Artifact).Name+"Id");
 			conn.AssertRel<VectorUsesVectorUnit, VectorUnit>(true, (long)pVecUnitId);
 			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, (long)pVecUnitPrefId);
 

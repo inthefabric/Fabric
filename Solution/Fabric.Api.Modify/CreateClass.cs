@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
@@ -40,7 +41,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			//TODO: add one-char lower bound to Class.Name length
+			//TEST: add one-char lower tests everywhere
 			Tasks.Validator.ClassName(vName, NameParam);
 			Tasks.Validator.ClassDisamb(vDisamb, DisambParam);
 			Tasks.Validator.ClassNote(vNote, NoteParam);
@@ -55,7 +56,7 @@ namespace Fabric.Api.Modify {
 			TxBuilder txb = GetFullTx(out rootVar, out memVar, out classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
-			//ApiCtx.ClassNameCache.AddClass(ApiCtx, c.ClassId, c.Name, c.Disamb);
+			ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);
 			return c;
 		}
 
@@ -80,10 +81,10 @@ namespace Fabric.Api.Modify {
 		public TxBuilder GetFullTx(out IWeaverVarAlias<Root> pRootVar, 
 							out IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			
-			/*if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
+			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
 				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
 				throw new FabDuplicateFault(typeof(Class), NameParam, name);
-			}*/
+			}
 			
 			Member m = GetContextMember();
 			

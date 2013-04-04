@@ -10,7 +10,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		public string Uri { get; set; }
 
-		protected long NodeId { get; set; }
+		protected string NodeId { get; set; }
 		protected abstract long TypeId { get; }
 		protected virtual List<string> AvailableProps { get { return AvailProps; } }
 
@@ -21,19 +21,12 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected FabNode() {
-			NodeId = -1;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDbDto pDbDto) {
 			if ( pDbDto.Id == null ) {
 				throw new Exception("DbDto.Id is null.");
 			}
 
-			NodeId = (long)pDbDto.Id;
+			NodeId = pDbDto.Id;
 			FillResultData(pDbDto.Data);
 
 			Uri = "/WhereId("+TypeId+")";

@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 
 namespace Fabric.Db.Data.Setups {
 
@@ -107,15 +106,16 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FillArtifact(DataSet pSet, Artifact pArtifact, ArtifactId pId,
-							ArtifactTypeId pArtTypeId, SetupUsers.MemberId pCreatorId, bool pTestMode) {
-			var a = new Artifact();
-			a.ArtifactId = (long)pId;
-			a.Created = pSet.SetupTimestamp;
+													SetupUsers.MemberId pCreatorId, bool pTestMode) {
+			if ( pArtifact == null && !pTestMode ) {
+				return;
+			}
 
-			pSet.AddNodeAndIndex(a, x => x.ArtifactId, pTestMode);
+			pArtifact.ArtifactId = (long)pId;
+			pArtifact.Created = pSet.SetupTimestamp;
 
-			var relM = DataRel.Create(
-				pSet.GetNode<Member>((long)pCreatorId), new MemberCreatesArtifact(), a, pTestMode);
+			Member m = pSet.GetNode<Member>((long)pCreatorId);
+			var relM = DataRel.Create(m, new MemberCreatesArtifact(), pArtifact, pTestMode);
 			pSet.AddRel(relM);
 		}
 

@@ -9,8 +9,8 @@ namespace Fabric.Domain {
 																	where TType : IWeaverRelType, new()
 																	where TTo : IWeaverNode, new() {
 
-		public long ToNodeId { get; set; }
-		public long FromNodeId { get; set; }
+		public string ToNodeId { get; set; }
+		public string FromNodeId { get; set; }
 
 	}
 

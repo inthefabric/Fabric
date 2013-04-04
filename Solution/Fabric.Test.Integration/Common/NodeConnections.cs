@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using NUnit.Framework;
@@ -75,17 +76,16 @@ namespace Fabric.Test.Integration.Common {
 			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 
 			foreach ( NodeConnectionRel rel in rels ) {
-				if ( pIdProperty == null ) {
-					if ( rel.Rel.Class != typeof(TRel).Name ) {
-						continue;
-					}
+				if ( rel.Rel.Class != typeof(TRel).Name ) {
+					continue;
+				}
 
-					if ( rel.TargetNode.Class != typeof(TNode).Name ) {
-						continue;
-					}
+				if ( pIdProperty == null && rel.TargetNode.Class != typeof(TNode).Name ) {
+					continue;
 				}
 
 				string prop = (pIdProperty ?? rel.TargetNode.Class+"Id");
+				Log.Debug("PROP: "+prop+" / "+rel.TargetNode.Class+" / "+rel.TargetNode.Id);
 				string targId = rel.TargetNode.Data[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {
@@ -114,7 +114,7 @@ namespace Fabric.Test.Integration.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IDbDto GetTargetNode(long? pNodeId) {
+		private IDbDto GetTargetNode(string pNodeId) {
 			if ( pNodeId == null ) {
 				throw new Exception("NodeId cannot be null.");
 			}

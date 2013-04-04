@@ -43,11 +43,11 @@ namespace Fabric.Api.Internal.Graph {
 
 				var nodes = new List<IDbDto>();
 				var links = new List<IDbDto>();
-				var nodeIdMap = new Dictionary<long, dynamic>();
-				var linkIdMap = new Dictionary<long, dynamic>();
+				var nodeIdMap = new Dictionary<string, dynamic>();
+				var linkIdMap = new Dictionary<string, dynamic>();
 
 				foreach ( IDbDto dto in data.ResultDtoList ) {
-					long id = (dto.Id ?? -1);
+					string id = (dto.Id ?? "");
 
 					switch ( dto.Item ) {
 						case DbDto.ItemType.Node:
@@ -68,7 +68,7 @@ namespace Fabric.Api.Internal.Graph {
 				obj.nodes = new List<ExpandoObject>();
 				obj.links = new List<ExpandoObject>();
 
-				nodeIdMap = new Dictionary<long, dynamic>();
+				nodeIdMap = new Dictionary<string, dynamic>();
 
 				int nodeI = 1;
 				var rand = new Random(999);
@@ -109,11 +109,11 @@ namespace Fabric.Api.Internal.Graph {
 					linkObj.type = ExtractRelType(l);
 
 					if ( l.FromNodeId != null ) {
-						linkObj.start = linkObj.source = nodeIdMap[(long)l.FromNodeId].index;
+						linkObj.start = linkObj.source = nodeIdMap[l.FromNodeId].index;
 					}
 
 					if ( l.ToNodeId != null ) {
-						linkObj.end = linkObj.target = nodeIdMap[(long)l.ToNodeId].index;
+						linkObj.end = linkObj.target = nodeIdMap[l.ToNodeId].index;
 					}
 
 					if ( linkObj.start == 1 || linkObj.end == 1 ) { continue; }
