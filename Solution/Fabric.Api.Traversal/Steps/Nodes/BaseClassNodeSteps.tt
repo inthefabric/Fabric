@@ -26,7 +26,10 @@ IList<string> nodeNames = SchemaHelper.GetNodes();
 foreach ( string name in nodeNames ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
-	if ( (!node.IsAbstract || node.IsInternal) && node.Name != "Artifact" ) { continue; }
+
+	if ( !node.IsBaseClass || node.IsInternal ) {
+		continue;
+	}
 
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
 	var linkRels = new List<SchemaHelperNodeRel>();
@@ -43,37 +46,32 @@ foreach ( string name in nodeNames ) {
 		linkRels.Add(hr);
 	}
 #>
+
 	/*================================================================================================*/
 	public abstract partial class <#= node.Name #>Step<T> : NodeStep<T>, I<#= node.Name #>Step
 																			where T : FabNode, new() {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-<#
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
-#>
-			new StepLink("<#= hr.RelTypeName #>", "<#= hr.TargetNodeType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
-<#
-	}
-#>
-		};
-
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Step(IPath pPath) : base(pPath) {
+		protected <#= node.Name #>Step(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
+<#
+	if ( !node.IsAbstract ) {
+#>
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(<#= node.Name #>Step.AvailNodeLinks).ToList(); }
 		}
 
 <#
+	} //end abstract condition
+
 	if ( linkRels.Count > 0 ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,7 +93,6 @@ foreach ( string name in nodeNames ) {
 	} //end linkRels condition
 #>
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		var propType = hr.TargetNodeType+"Step";
@@ -114,6 +111,44 @@ foreach ( string name in nodeNames ) {
 <#
 	} //end nodeRels loop
 #>
+	}
+
+<#
+	if ( node.IsAbstract ) {
+		continue;
+	}
+#>
+
+	/*================================================================================================*/
+	public partial class <#= node.Name #>Step : <#= node.Name #>Step<Fab<#= node.Name #>> {
+	
+		internal static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+<#
+	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+#>
+			new StepLink("<#= hr.RelTypeName #>", "<#= hr.TargetNodeType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
+<#
+	}
+#>
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= node.Name #>Step(IPath pPath) : base(pPath) {
+			ConstructorHook();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		partial void ConstructorHook();
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return "<#= node.Name #>Id"; } }
+		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
+
 	}
 
 <#

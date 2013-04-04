@@ -66,10 +66,10 @@
     <Compile Include="Steps\Functions\FuncLimitStep.cs" />
     <Compile Include="Steps\FabStepFault.cs" />
     <Compile Include="Steps\Functions\FuncBackStep.cs" />
-    <Compile Include="Steps\Nodes\AbstractNodeSteps.cs">
-      <DependentUpon>AbstractNodeSteps.tt</DependentUpon>
+    <Compile Include="Steps\Nodes\BaseClassNodeSteps.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>BaseClassNodeSteps.tt</DependentUpon>
     </Compile>
     <Compile Include="Steps\Nodes\NodeStepInterfaces.cs">
       <DependentUpon>NodeStepInterfaces.tt</DependentUpon>
@@ -97,9 +97,9 @@
     <Compile Include="TraversalModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Steps\Nodes\AbstractNodeSteps.tt">
+    <None Include="Steps\Nodes\BaseClassNodeSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AbstractNodeSteps.cs</LastGenOutput>
+      <LastGenOutput>BaseClassNodeSteps.cs</LastGenOutput>
     </None>
     <None Include="Steps\Nodes\NodeStepInterfaces.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

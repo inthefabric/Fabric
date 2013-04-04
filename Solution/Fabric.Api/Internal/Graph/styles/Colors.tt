@@ -21,7 +21,7 @@ foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
 
-	if ( node.IsAbstract ) { continue; }
+	if ( node.IsBaseClass ) { continue; }
 #>
 .node<#= node.Name #> { fill: <#= NewColor(rand, 0.9) #>; }
 <#

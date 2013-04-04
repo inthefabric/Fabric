@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/3/2013 3:54:56 PM
+// Generated on 4/4/2013 9:44:56 AM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -863,6 +863,22 @@ namespace Fabric.Api.Meta {
 		public static void FillSpecObjectTravFuncs(string pTypeName, FabSpecObject pObject) {
 			switch ( pTypeName ) {
 
+				case "NodeForType":
+					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
+					pObject.TraversalFunctions.Add("Back");
+					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
+					break;
+
+				case "NodeForAction":
+					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
+					pObject.TraversalFunctions.Add("Back");
+					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
+					break;
+
 				case "Root":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
@@ -949,6 +965,14 @@ namespace Fabric.Api.Meta {
 					break;
 
 				case "FactorAssertion":
+					pObject.TraversalFunctions = new List<string>();
+					pObject.TraversalFunctions.Add("As");
+					pObject.TraversalFunctions.Add("Back");
+					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("WhereId");
+					break;
+
+				case "FactorElementNode":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");

@@ -142,7 +142,7 @@ foreach ( string name in nodes ) {
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
-	if ( node.IsInternal || node.IsAbstract ) { continue; }
+	if ( node.IsInternal ) { continue; }
 #>
 
 				case "<#= node.Name #>":

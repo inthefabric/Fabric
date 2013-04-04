@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/3/2013 3:54:55 PM
+// Generated on 4/4/2013 9:44:55 AM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -14,6 +14,14 @@ namespace Fabric.Infrastructure.Domain {
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		void NodeForTypeName(string pValue, string pParamName);
+		void NodeForTypeName(string pValue);
+		void NodeForTypeDescription(string pValue, string pParamName);
+		void NodeForTypeDescription(string pValue);
+		void NodeForActionPerformed(long pValue, string pParamName);
+		void NodeForActionPerformed(long pValue);
+		void NodeForActionNote(string pValue, string pParamName);
+		void NodeForActionNote(string pValue);
 		void ArtifactId(long pValue, string pParamName);
 		void ArtifactId(long pValue);
 		void ArtifactCreated(long pValue, string pParamName);
@@ -191,6 +199,55 @@ namespace Fabric.Infrastructure.Domain {
 
 	/*================================================================================================*/
 	public partial class DomainValidator : IDomainValidator {
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForTypeName(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 1, 32);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForTypeName(string pValue) {
+			NodeForTypeName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForTypeDescription(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+			LengthBetween(pParamName, pValue, 1, 256);
+			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForTypeDescription(string pValue) {
+			NodeForTypeDescription(pValue, "Description");
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForActionPerformed(long pValue, string pParamName) {
+			throw new Exception("Performed has no validation. Property value was "+pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForActionPerformed(long pValue) {
+			NodeForActionPerformed(pValue, "Performed");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForActionNote(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
+			LengthBetween(pParamName, pValue, 1, 256);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void NodeForActionNote(string pValue) {
+			NodeForActionNote(pValue, "Note");
+		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -578,6 +635,8 @@ namespace Fabric.Infrastructure.Domain {
 			FactorAssertionId(pValue, "FactorAssertionId");
 		}
 
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

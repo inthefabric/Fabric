@@ -27,12 +27,11 @@ foreach ( string name in nodes ) {
 	
 	if ( node.IsRoot ) { continue; }
 
-	bool isAbs = (node.IsAbstract || node.Name == "Artifact");
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
-	string nodeType = (isAbs ? "T" : node.Name);
+	string nodeType = (node.IsBaseClass ? "T" : node.Name);
 	string baseType = (node.BaseNode == null ? "Domain" : node.BaseNode.Name);
 
-	if ( isAbs ) {
+	if ( node.IsBaseClass ) {
 #>
 	/*================================================================================================*/
 	public abstract class <#= node.Name #>Builder<<#= nodeType #>, TRootRel> : DomainBuilder<T, TRootRel>
@@ -73,7 +72,7 @@ foreach ( string name in nodes ) {
 		public <#= node.Name #>Builder(TxBuilder pTx) : base(pTx) {}
 
 <#
-	if ( !isAbs ) {
+	if ( !node.IsBaseClass ) {
 		string idType = hn.GetPrimaryKeyProp().TypeName;
 #>
 		/*--------------------------------------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:50:42 PM
+// Generated on 4/4/2013 9:44:56 AM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 	/*================================================================================================*/
 	public partial class RootStep : NodeStep<FabRoot>, IRootStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Contains", "App", true, "/ContainsAppList"),
 			new StepLink("Contains", "Class", true, "/ContainsClassList"),
@@ -375,122 +375,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class ArtifactStep : NodeStep<FabArtifact>, IArtifactStep {
-	
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Creates", "Member", false, "/InMemberCreates"),
-			new StepLink("UsesPrimary", "Factor", false, "/InFactorListUsesPrimary"),
-			new StepLink("UsesRelated", "Factor", false, "/InFactorListUsesRelated"),
-			new StepLink("RefinesPrimaryWith", "Descriptor", false, "/InDescriptorListRefinesPrimaryWith"),
-			new StepLink("RefinesRelatedWith", "Descriptor", false, "/InDescriptorListRefinesRelatedWith"),
-			new StepLink("RefinesTypeWith", "Descriptor", false, "/InDescriptorListRefinesTypeWith"),
-			new StepLink("UsesAxis", "Vector", false, "/InVectorListUsesAxis"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "ArtifactId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "inmembercreates": return InMemberCreates;
-				case "infactorlistusesprimary": return InFactorListUsesPrimary;
-				case "infactorlistusesrelated": return InFactorListUsesRelated;
-				case "indescriptorlistrefinesprimarywith": return InDescriptorListRefinesPrimaryWith;
-				case "indescriptorlistrefinesrelatedwith": return InDescriptorListRefinesRelatedWith;
-				case "indescriptorlistrefinestypewith": return InDescriptorListRefinesTypeWith;
-				case "invectorlistusesaxis": return InVectorListUsesAxis;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IMemberStep InMemberCreates {
-			get {
-				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberCreatesArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUsesPrimary {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesPrimaryArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUsesRelated {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesRelatedArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep InDescriptorListRefinesPrimaryWith {
-			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "inE('DescriptorRefinesPrimaryWithArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep InDescriptorListRefinesRelatedWith {
-			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "inE('DescriptorRefinesRelatedWithArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep InDescriptorListRefinesTypeWith {
-			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "inE('DescriptorRefinesTypeWithArtifact').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorStep InVectorListUsesAxis {
-			get {
-				var step = new VectorStep(Path);
-				Path.AddSegment(step, "inE('VectorUsesAxisArtifact').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
 	public partial class AppStep : ArtifactStep<FabApp>, IAppStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
@@ -547,7 +433,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class ClassStep : ArtifactStep<FabClass>, IClassStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 		};
 
@@ -586,7 +472,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class InstanceStep : ArtifactStep<FabInstance>, IInstanceStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 		};
 
@@ -625,7 +511,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class MemberStep : NodeStep<FabMember>, IMemberStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Defines", "App", false, "/InAppDefines"),
 			new StepLink("Has", "MemberTypeAssign", true, "/HasMemberTypeAssign"),
@@ -748,7 +634,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class MemberTypeStep : NodeForTypeStep<FabMemberType>, IMemberTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "MemberTypeAssign", false, "/InMemberTypeAssignListUses"),
 		};
@@ -805,7 +691,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class MemberTypeAssignStep : NodeForActionStep<FabMemberTypeAssign>, IMemberTypeAssignStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Has", "Member", false, "/InMemberHas"),
 			new StepLink("HasHistoric", "Member", false, "/InMemberHasHistoric"),
@@ -895,7 +781,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class UrlStep : ArtifactStep<FabUrl>, IUrlStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 		};
 
@@ -934,7 +820,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class UserStep : ArtifactStep<FabUser>, IUserStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
@@ -991,7 +877,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class FactorStep : NodeStep<FabFactor>, IFactorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
 			new StepLink("UsesPrimary", "Artifact", true, "/UsesPrimaryArtifact"),
@@ -1158,7 +1044,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class FactorAssertionStep : NodeForTypeStep<FabFactorAssertion>, IFactorAssertionStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 		};
@@ -1215,7 +1101,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class DescriptorStep : FactorElementNodeStep<FabDescriptor>, IDescriptorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 			new StepLink("Uses", "DescriptorType", true, "/UsesDescriptorType"),
@@ -1316,7 +1202,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class DescriptorTypeStep : NodeForTypeStep<FabDescriptorType>, IDescriptorTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Descriptor", false, "/InDescriptorListUses"),
 		};
@@ -1373,7 +1259,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class DirectorStep : FactorElementNodeStep<FabDirector>, IDirectorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 			new StepLink("Uses", "DirectorType", true, "/UsesDirectorType"),
@@ -1463,7 +1349,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class DirectorTypeStep : NodeForTypeStep<FabDirectorType>, IDirectorTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Director", false, "/InDirectorListUses"),
 		};
@@ -1520,7 +1406,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class DirectorActionStep : NodeForTypeStep<FabDirectorAction>, IDirectorActionStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("UsesPrimary", "Director", false, "/InDirectorListUsesPrimary"),
 			new StepLink("UsesRelated", "Director", false, "/InDirectorListUsesRelated"),
@@ -1588,7 +1474,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class EventorStep : FactorElementNodeStep<FabEventor>, IEventorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 			new StepLink("Uses", "EventorType", true, "/UsesEventorType"),
@@ -1667,7 +1553,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class EventorTypeStep : NodeForTypeStep<FabEventorType>, IEventorTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Eventor", false, "/InEventorListUses"),
 		};
@@ -1724,7 +1610,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class EventorPrecisionStep : NodeForTypeStep<FabEventorPrecision>, IEventorPrecisionStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Eventor", false, "/InEventorListUses"),
 		};
@@ -1781,7 +1667,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class IdentorStep : FactorElementNodeStep<FabIdentor>, IIdentorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 			new StepLink("Uses", "IdentorType", true, "/UsesIdentorType"),
@@ -1849,7 +1735,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class IdentorTypeStep : NodeForTypeStep<FabIdentorType>, IIdentorTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Identor", false, "/InIdentorListUses"),
 		};
@@ -1906,7 +1792,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class LocatorStep : FactorElementNodeStep<FabLocator>, ILocatorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 			new StepLink("Uses", "LocatorType", true, "/UsesLocatorType"),
@@ -1974,7 +1860,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class LocatorTypeStep : NodeForTypeStep<FabLocatorType>, ILocatorTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Locator", false, "/InLocatorListUses"),
 		};
@@ -2031,7 +1917,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorStep : FactorElementNodeStep<FabVector>, IVectorStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
 			new StepLink("UsesAxis", "Artifact", true, "/UsesAxisArtifact"),
@@ -2132,7 +2018,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorTypeStep : NodeForTypeStep<FabVectorType>, IVectorTypeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Vector", false, "/InVectorListUses"),
 			new StepLink("Uses", "VectorRange", true, "/UsesVectorRange"),
@@ -2200,7 +2086,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorRangeStep : NodeForTypeStep<FabVectorRange>, IVectorRangeStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "VectorType", false, "/InVectorTypeListUses"),
 			new StepLink("Uses", "VectorRangeLevel", true, "/UsesVectorRangeLevelList"),
@@ -2268,7 +2154,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorRangeLevelStep : NodeForTypeStep<FabVectorRangeLevel>, IVectorRangeLevelStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "VectorRange", false, "/InVectorRangeListUses"),
 		};
@@ -2325,7 +2211,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorUnitStep : NodeForTypeStep<FabVectorUnit>, IVectorUnitStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Vector", false, "/InVectorListUses"),
 			new StepLink("Defines", "VectorUnitDerived", false, "/InVectorUnitDerivedListDefines"),
@@ -2404,7 +2290,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorUnitPrefixStep : NodeForTypeStep<FabVectorUnitPrefix>, IVectorUnitPrefixStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Uses", "Vector", false, "/InVectorListUses"),
 			new StepLink("Uses", "VectorUnitDerived", false, "/InVectorUnitDerivedListUses"),
@@ -2472,7 +2358,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public partial class VectorUnitDerivedStep : NodeForTypeStep<FabVectorUnitDerived>, IVectorUnitDerivedStep {
-	
+		
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Defines", "VectorUnit", true, "/DefinesVectorUnit"),
 			new StepLink("RaisesToExp", "VectorUnit", true, "/RaisesToExpVectorUnit"),

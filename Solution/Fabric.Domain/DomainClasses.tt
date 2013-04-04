@@ -162,7 +162,7 @@ foreach ( string name in nodes ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
-	} //end else !"isAbstract"
+	} //end abstract condition
 
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
 

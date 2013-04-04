@@ -61,8 +61,6 @@ foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
 	if ( node.IsAbstract || node.IsInternal ) { continue; }
-
-	if ( node.IsAbstract ) { continue; }
 #>
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]

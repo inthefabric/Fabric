@@ -41,6 +41,7 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema nodeForType = AddNode("NodeForType", null);
 			nodeForType.IsAbstract = true;
+			nodeForType.IsBaseClass = true;
 			p = AddProp(nodeForType, "Name", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 32;
@@ -53,6 +54,7 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", null);
 			nodeForAction.IsAbstract = true;
+			nodeForAction.IsBaseClass = true;
 			p = AddProp(nodeForAction, "Performed", typeof(DateTime));
 				p.IsTimestamp = true;
 			p = AddProp(nodeForAction, "Note", typeof(string));
@@ -70,7 +72,7 @@ namespace Fabric.Domain.Meta {
 			////
 			
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
-			//artifact.IsAbstract = true;
+			artifact.IsBaseClass = true;
 			p = AddProp(artifact, "ArtifactId", typeof(long));
 			p.IsPrimaryKey = true;
 			p = AddProp(artifact, "Created", typeof(DateTime));
@@ -257,6 +259,7 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema factorElementNode = AddNode("FactorElementNode", null);
 			factorElementNode.IsAbstract = true;
+			factorElementNode.IsBaseClass = true;
 
 			WeaverNodeSchema descriptor = AddNode("Descriptor", "De");
 			descriptor.BaseNode = factorElementNode;

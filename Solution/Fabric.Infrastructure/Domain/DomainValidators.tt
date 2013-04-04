@@ -32,7 +32,7 @@ foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
 	
-	if ( node.IsAbstract || node.IsRoot ) { continue; }
+	if ( node.IsRoot ) { continue; }
 	
 	IList<SchemaHelperProp> nodeProps = hn.GetProps();
 
@@ -57,7 +57,7 @@ foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
 	
-	if ( node.IsAbstract || node.IsRoot ) { continue; }
+	if ( node.IsRoot ) { continue; }
 	
 	IList<SchemaHelperProp> nodeProps = hn.GetProps();
 #>
