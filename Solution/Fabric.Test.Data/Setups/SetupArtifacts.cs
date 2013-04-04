@@ -100,19 +100,20 @@ namespace Fabric.Db.Data.Setups {
 			Thi_Cuteness
 		}
 
-		public const int NumArtifacts = 77;
+		public const int NumArtifacts = 76;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FillArtifact(DataSet pSet, Artifact pArtifact, ArtifactId pId,
 													SetupUsers.MemberId pCreatorId, bool pTestMode) {
-			if ( pArtifact == null && !pTestMode ) {
+			if ( !pSet.IsForTesting && pTestMode ) {
 				return;
 			}
 
 			pArtifact.ArtifactId = (long)pId;
 			pArtifact.Created = pSet.SetupTimestamp;
+			pSet.RegisterBaseClassNode(pArtifact, typeof(Artifact), pArtifact.ArtifactId, pTestMode);
 
 			Member m = pSet.GetNode<Member>((long)pCreatorId);
 			var relM = DataRel.Create(m, new MemberCreatesArtifact(), pArtifact, pTestMode);

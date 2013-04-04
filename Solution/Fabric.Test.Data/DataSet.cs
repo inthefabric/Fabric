@@ -102,6 +102,14 @@ namespace Fabric.Db.Data {
 			vDataNodeMap.Add(pDomainNode, n);
 			return true;
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public bool RegisterBaseClassNode<T>(T pDomainNode, Type pBaseClassType, long pTypeId, 
+																bool pIsForTesting) where T : INode {
+			if ( !IsForTesting && pIsForTesting ) { return false; }
+			vNodeMap.Add(pBaseClassType.Name+pTypeId, pDomainNode);
+			return true;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@ using Weaver.Interfaces;
 namespace Fabric.Test.FabDbData {
 
 	/*================================================================================================*/
-	//[TestFixture]
+	[TestFixture]
 	public class TSetup {
 
 
@@ -23,49 +23,24 @@ namespace Fabric.Test.FabDbData {
 
 			foreach ( WeaverQuery q in ds.Initialization ) {
 				string json = WeaverQueryToJson(q);
-				Log.Debug(json);
+				//Log.Debug(json);
 			}
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
 				string json = WeaverQueryToJson(q);
-				Log.Debug(json);
+				//Log.Debug(json);
 			}
 
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = WeaverQueryToJson(n.AddQuery);
-				Log.Debug("["+nodeI+"] -- "+json);
+				//Log.Debug("["+nodeI+"] -- "+json);
 				n.Node.Id = (nodeI++)+"";
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {
 				string json = WeaverQueryToJson(r.AddQuery);
-				Log.Debug(json);
+				//Log.Debug(json);
 			}
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[TestCase(true)]
-		[TestCase(false)]
-		public void SetupAllTransaction(bool pIsForTesting) {
-			var tx = new WeaverTransaction();
-			DataSet ds = Setup.SetupAll(pIsForTesting);
-			long nodeI = 0;
-			
-			foreach ( WeaverQuery q in ds.Indexes ) {
-				tx.AddQuery(q);
-			}
-			
-			foreach ( IDataNode n in ds.Nodes ) {
-				tx.AddQuery(n.AddQuery);
-				n.Node.Id = nodeI++;
-			}
-			
-			foreach ( IDataRel r in ds.Rels ) {
-				tx.AddQuery(r.AddQuery);
-			}
-
-			tx.Finish();
-			//Log.Debug(FabricUtil.WeaverTransactionToJson(tx).Replace(";", ";\n\t\t"));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
