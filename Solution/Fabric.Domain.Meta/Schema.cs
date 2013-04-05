@@ -64,13 +64,6 @@ namespace Fabric.Domain.Meta {
 
 			////
 
-			WeaverNodeSchema root = AddNode("Root", "R");
-			root.IsRoot = true;
-			p = AddProp(root, "RootId", typeof(int));
-				p.IsPrimaryKey = true;
-
-			////
-			
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
 			artifact.IsBaseClass = true;
 			p = AddProp(artifact, "ArtifactId", typeof(long));
@@ -432,7 +425,6 @@ namespace Fabric.Domain.Meta {
 
 			////
 
-			const string contains = "Contains";
 			const string has = "Has";
 			const string hasHistoric = "HasHistoric";
 			const string uses = "Uses";
@@ -455,48 +447,6 @@ namespace Fabric.Domain.Meta {
 			const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
 			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
 			const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
-
-			AddRel(root, contains, app, otzom, ifo);
-			AddRel(root, contains, clas, otzom, ifo);
-			//AddRel(root, contains, crowd, otzom, ifo);
-			//AddRel(root, contains, crowdian, otzom, ifo);
-			//AddRel(root, contains, crowdianType, otzom, ifo);
-			//AddRel(root, contains, crowdianTypeAssign, otzom, ifo);
-			AddRel(root, contains, email, otzom, ifo);
-			//AddRel(root, contains, label, otzom, ifo);
-			AddRel(root, contains, instance, otzom, ifo);
-			AddRel(root, contains, member, otzom, ifo);
-			AddRel(root, contains, memberType, otzom, ifo);
-			AddRel(root, contains, memberTypeAssign, otzom, ifo);
-			AddRel(root, contains, url, otzom, ifo);
-			AddRel(root, contains, user, otzom, ifo);
-			
-			AddRel(root, contains, factor, otzom, ifo);
-			AddRel(root, contains, factorAssertion, otzom, ifo);
-			AddRel(root, contains, descriptor, otzom, ifo);
-			AddRel(root, contains, descriptorType, otzom, ifo);
-			AddRel(root, contains, director, otzom, ifo);
-			AddRel(root, contains, directorType, otzom, ifo);
-			AddRel(root, contains, directorAction, otzom, ifo);
-			AddRel(root, contains, eventor, otzom, ifo);
-			AddRel(root, contains, eventorType, otzom, ifo);
-			AddRel(root, contains, eventorPrecision, otzom, ifo);
-			AddRel(root, contains, identor, otzom, ifo);
-			AddRel(root, contains, identorType, otzom, ifo);
-			AddRel(root, contains, locator, otzom, ifo);
-			AddRel(root, contains, locatorType, otzom, ifo);
-			AddRel(root, contains, vector, otzom, ifo);
-			AddRel(root, contains, vectorType, otzom, ifo);
-			AddRel(root, contains, vectorRange, otzom, ifo);
-			AddRel(root, contains, vectorRangeLevel, otzom, ifo);
-			AddRel(root, contains, vectorUnit, otzom, ifo);
-			AddRel(root, contains, vectorUnitPrefix, otzom, ifo);
-			AddRel(root, contains, vectorUnitDerived, otzom, ifo);
-
-			AddRel(root, contains, oauthAccess, otzom, ifo);
-			AddRel(root, contains, oauthDomain, otzom, ifo);
-			AddRel(root, contains, oauthGrant, otzom, ifo);
-			AddRel(root, contains, oauthScope, otzom, ifo);
 
 			AddRel(app, uses, email, oto, ifo);
 			AddRel(app, defines, member, otoom, ifo);

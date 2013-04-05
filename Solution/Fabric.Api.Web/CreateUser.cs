@@ -50,7 +50,6 @@ namespace Fabric.Api.Web {
 
 			////
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Email> emailVar;
 			IWeaverVarAlias<User> userVar;
 			IWeaverVarAlias<Member> memVar;
@@ -58,11 +57,10 @@ namespace Fabric.Api.Web {
 
 			var txb = new TxBuilder();
 
-			txb.GetRoot(out rootVar);
-			Tasks.TxAddEmail(ApiCtx, txb, vEmail, rootVar, out emailVar);
-			Tasks.TxAddUser(ApiCtx, txb, vName, vPass, rootVar, emailVar,
+			Tasks.TxAddEmail(ApiCtx, txb, vEmail, out emailVar);
+			Tasks.TxAddUser(ApiCtx, txb, vName, vPass, emailVar,
 				out userVar, out setMemberCreates);
-			Tasks.TxAddMember(ApiCtx, txb, rootVar, userVar, out memVar);
+			Tasks.TxAddMember(ApiCtx, txb, userVar, out memVar);
 			setMemberCreates(memVar);
 
 			var list = new List<IWeaverVarAlias> { userVar, emailVar };

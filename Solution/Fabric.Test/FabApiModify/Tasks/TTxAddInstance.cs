@@ -11,7 +11,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddInstance : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=[];"+ //Root
 			"_V1=[];"+ //Member
 			"_V2=g.addVertex(["+
 				typeof(Instance).Name+"Id:_TP0,"+
@@ -53,12 +52,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
 			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
 			IWeaverVarAlias<Instance> urlVar;
 
-			Tasks.TxAddInstance(MockApiCtx.Object, TxBuild, vName, vDisamb, vNote,
-				rootVar, memVar, out urlVar);
+			Tasks.TxAddInstance(MockApiCtx.Object, TxBuild, vName, vDisamb, vNote, memVar, out urlVar);
 			FinishTx();
 
 			Assert.NotNull(urlVar, "InstanceVar should not be null.");
@@ -72,7 +69,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vNewArtifactId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vUtcNow.Ticks);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", (int)NodeFabType.Instance);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(RootContainsInstance).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
 		}
 

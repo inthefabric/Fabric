@@ -17,22 +17,21 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAndUpdateTx =
 			"_V0=[];"+
-			"g.V('RootId',_TP0)[0]"+
-				".outE('"+typeof(RootContainsOauthGrant).Name+"').inV"+
-					".has('Code',Tokens.T.eq,_TP1)"+
-					".has('Expires',Tokens.T.gt,_TP2)"+
-					".aggregate(_V0)"+
-					".as('step6')"+
-				".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
-					".aggregate(_V0)"+
-				".back('step6')"+
-				".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
-					".aggregate(_V0)"+
-				".back('step6')"+
-					".sideEffect{"+
-						"it.setProperty('Code',_TP3)"+
-					"}"+
-					".iterate();"+
+			"g.V('FabType',_TP0)[0]"+
+				".has('Code',Tokens.T.eq,_TP1)"+
+				".has('Expires',Tokens.T.gt,_TP2)"+
+				".aggregate(_V0)"+
+				".as('step6')"+
+			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
+				".aggregate(_V0)"+
+			".back('step6')"+
+			".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
+				".aggregate(_V0)"+
+			".back('step6')"+
+				".sideEffect{"+
+					"it.setProperty('Code',_TP3)"+
+				"}"+
+				".iterate();"+
 			"_V0;";
 
 		private OauthGrant vResultGrant;
@@ -94,7 +93,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap.Increment(GetGrant.Query.GetAndUpdateTx+"");
 
 			Assert.AreEqual(QueryGetAndUpdateTx, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP0", (int)NodeFabType.OauthGrant);
 			TestUtil.CheckParam(pTx.Params, "_TP1", vResultGrant.Code);
 			TestUtil.CheckParam(pTx.Params, "_TP2", vUtcNow.Ticks);
 			TestUtil.CheckParam(pTx.Params, "_TP3", "");

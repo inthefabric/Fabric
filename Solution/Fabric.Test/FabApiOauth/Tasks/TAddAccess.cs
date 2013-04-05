@@ -39,35 +39,32 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					"it.setProperty('Refresh',_P4)"+
 				"};";
 
+		private static int A = 0;
 		private readonly static string QueryAddAccessTx =
-			"_V0=g.V('RootId',_TP0)[0].next();"+
-			"_V1=g.addVertex(["+
-				typeof(OauthAccess).Name+"Id:_TP1,"+
-				"Token:_TP2,"+
-				"Refresh:_TP3,"+
-				"Expires:_TP4,"+
-				"IsClientOnly:_TP5,"+
-				"FabType:_TP6"+
+			"_V0=g.addVertex(["+
+				typeof(OauthAccess).Name+"Id:_TP"+(A++)+","+
+				"Token:_TP"+(A++)+","+
+				"Refresh:_TP"+(A++)+","+
+				"Expires:_TP"+(A++)+","+
+				"IsClientOnly:_TP"+(A++)+","+
+				"FabType:_TP"+(A++)+""+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP7);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP9);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',_TP10)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP11);";
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"g.addEdge(_V0,_V1,_TP"+(A++)+");"+
+			"_V2=g.V('"+typeof(User).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"g.addEdge(_V0,_V2,_TP"+(A++)+");";
 
 		private readonly static string QueryAddAccessTxClientOnly =
-			"_V0=g.V('RootId',_TP0)[0].next();"+
-			"_V1=g.addVertex(["+
-				typeof(OauthAccess).Name+"Id:_TP1,"+
-				"Token:_TP2,"+
-				"Refresh:_TP3,"+
-				"Expires:_TP4,"+
-				"IsClientOnly:_TP5,"+
-				"FabType:_TP6"+
+			"_V0=g.addVertex(["+
+				typeof(OauthAccess).Name+"Id:_TP"+(A++)+","+
+				"Token:_TP"+(A++)+","+
+				"Refresh:_TP"+(A++)+","+
+				"Expires:_TP"+(A++)+","+
+				"IsClientOnly:_TP"+(A++)+","+
+				"FabType:_TP"+(A++)+""+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP7);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP9);";
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"g.addEdge(_V0,_V1,_TP"+(A++)+");";
 
 		protected long vAddOauthAccessId;
 		protected DateTime vUtcNow;
@@ -155,22 +152,22 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap.Increment(AddAccess.Query.AddAccessTx+"");
 
 			string expect = (vClientOnly ? QueryAddAccessTxClientOnly : QueryAddAccessTx);
+			int i = 0;
 
 			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pScripted.Params, "_TP0", 0);
-			TestUtil.CheckParam(pScripted.Params, "_TP1", vAddOauthAccessId);
-			TestUtil.CheckParam(pScripted.Params, "_TP2", vTokenCode);
-			TestUtil.CheckParam(pScripted.Params, "_TP3", vRefreshCode);
-			TestUtil.CheckParam(pScripted.Params, "_TP4", vUtcNow.AddSeconds(vExpireSec).Ticks);
-			TestUtil.CheckParam(pScripted.Params, "_TP5", vClientOnly);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", (int)NodeFabType.OauthAccess);
-			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(RootContainsOauthAccess).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP8", vAppId);
-			TestUtil.CheckParam(pScripted.Params, "_TP9", typeof(OauthAccessUsesApp).Name);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), 0);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vAddOauthAccessId);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vTokenCode);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vRefreshCode);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vUtcNow.AddSeconds(vExpireSec).Ticks);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vClientOnly);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), (int)NodeFabType.OauthAccess);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vAppId);
+			TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), typeof(OauthAccessUsesApp).Name);
 
 			if ( !vClientOnly ) {
-				TestUtil.CheckParam(pScripted.Params, "_TP10", vUserId);
-				TestUtil.CheckParam(pScripted.Params, "_TP11", typeof(OauthAccessUsesUser).Name);
+				TestUtil.CheckParam(pScripted.Params, "_TP"+(i++), vUserId);
+				TestUtil.CheckParam(pScripted.Params, "_TP"+i, typeof(OauthAccessUsesUser).Name);
 			}
 
 			return null;

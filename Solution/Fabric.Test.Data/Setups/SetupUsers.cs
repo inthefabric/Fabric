@@ -209,7 +209,6 @@ namespace Fabric.Db.Data.Setups {
 			e.Verified = vSet.SetupTimestamp+10000000;
 
 			vSet.AddNodeAndIndex(e, x => x.EmailId, vTestMode);
-			vSet.AddRootRel<RootContainsEmail>(e, vTestMode);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -219,7 +218,6 @@ namespace Fabric.Db.Data.Setups {
 			m.MemberId = (long)pId;
 
 			vSet.AddNodeAndIndex(m, x => x.MemberId, vTestMode);
-			vSet.AddRootRel<RootContainsMember>(m, vTestMode);
 
 			var relA = DataRel.Create(vSet.GetNode<App>((long)pAppId),
 				new AppDefinesMember(), m, vTestMode);
@@ -240,7 +238,6 @@ namespace Fabric.Db.Data.Setups {
 			mta.Performed = vSet.SetupTimestamp;
 
 			vSet.AddNodeAndIndex(mta, x => x.MemberTypeAssignId, vTestMode);
-			vSet.AddRootRel<RootContainsMemberTypeAssign>(mta, vTestMode);
 
 			var relAsn = DataRel.Create(vSet.GetNode<Member>((long)pAssignerId),
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
@@ -272,7 +269,6 @@ namespace Fabric.Db.Data.Setups {
 			a.Secret = pSecret;
 
 			vSet.AddNodeAndIndex(a, x => x.AppId, vTestMode);
-			vSet.AddRootRel<RootContainsApp>(a, vTestMode);
 
 			var relE = DataRel.Create(
 				a, new AppUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);
@@ -287,7 +283,6 @@ namespace Fabric.Db.Data.Setups {
 			u.Password = FabricUtil.HashPassword(pPass);
 
 			vSet.AddNodeAndIndex(u, x => x.UserId, vTestMode);
-			vSet.AddRootRel<RootContainsUser>(u, vTestMode);
 
 			var relE = DataRel.Create(
 				u, new UserUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);

@@ -45,8 +45,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.AddQuery(
-				NewPathFromRoot()
-				.ContainsOauthAccessList.ToOauthAccess
+				NewPathFromType<OauthAccess>()
 					.Has(x => x.Refresh, WeaverFuncHasOp.EqualTo, vRefreshToken)
 					.Has(x => x.IsClientOnly, WeaverFuncHasOp.EqualTo, false)
 					.As(out accessAlias)

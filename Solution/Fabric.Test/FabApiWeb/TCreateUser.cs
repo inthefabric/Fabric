@@ -48,7 +48,6 @@ namespace Fabric.Test.FabApiWeb {
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
 						vEmail,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						out vOutEmailVar
 					)
 				);
@@ -59,7 +58,6 @@ namespace Fabric.Test.FabApiWeb {
 						It.IsAny<TxBuilder>(),
 						vName,
 						vPassword,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						It.IsAny<IWeaverVarAlias<Email>>(),
 						out vOutUserVar,
 						out vOutSetMemAction
@@ -70,7 +68,6 @@ namespace Fabric.Test.FabApiWeb {
 				.Setup(x => x.TxAddMember(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						vOutUserVar,
 						out memVar
 					)

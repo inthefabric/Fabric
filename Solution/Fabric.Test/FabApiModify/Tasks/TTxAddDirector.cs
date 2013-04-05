@@ -10,7 +10,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDirector : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Director).Name+"Id:_TP1,"+
 				"FabType:_TP2"+
@@ -68,8 +67,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewDirectorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", (int)NodeFabType.Director);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
-				typeof(RootContainsDirector).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
 				typeof(FactorUsesDirector).Name);

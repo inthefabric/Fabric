@@ -10,7 +10,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddIdentor : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Identor).Name+"Id:_TP1,"+
 				"Value:_TP2,"+
@@ -56,8 +55,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewIdentorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValue);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Identor);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(RootContainsIdentor).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(FactorUsesIdentor).Name);

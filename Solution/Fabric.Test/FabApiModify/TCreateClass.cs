@@ -46,7 +46,6 @@ namespace Fabric.Test.FabApiModify {
 						vName,
 						vDisamb,
 						vNote,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutClassVar
 					)
@@ -70,13 +69,11 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			string expectPartial = 
-				"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
-				"_V1=g.v(_TP1);"+
+				"_V0=g.v(_TP0);"+
 				"CLASS;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
-			TestUtil.CheckParam(pTx.Params, "_TP1", vResultMember.Id);
+			TestUtil.CheckParam(pTx.Params, "_TP0", vResultMember.Id);
 			return vResultClass;
 		}
 

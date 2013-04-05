@@ -183,7 +183,6 @@ namespace Fabric.Db.Data.Setups {
 			od.Domain = pDomain;
 
 			vSet.AddNodeAndIndex(od, x => x.OauthDomainId, vTestMode);
-			vSet.AddRootRel<RootContainsOauthDomain>(od, vTestMode);
 
 			var relA = DataRel.Create(od, new OauthDomainUsesApp(),
 				vSet.GetNode<App>((long)pAppId), vTestMode);
@@ -201,7 +200,6 @@ namespace Fabric.Db.Data.Setups {
 			oa.IsClientOnly = (pUserId == null);
 
 			vSet.AddNodeAndIndex(oa, x => x.OauthAccessId, vTestMode);
-			vSet.AddRootRel<RootContainsOauthAccess>(oa, vTestMode);
 
 			var relA = DataRel.Create(oa, new OauthAccessUsesApp(),
 				vSet.GetNode<App>((long)pAppId), vTestMode);
@@ -224,7 +222,6 @@ namespace Fabric.Db.Data.Setups {
 			og.Expires = pExpires.Ticks;
 
 			vSet.AddNodeAndIndex(og, x => x.OauthGrantId, vTestMode);
-			vSet.AddRootRel<RootContainsOauthGrant>(og, vTestMode);
 
 			var relA = DataRel.Create(og, new OauthGrantUsesApp(),
 				vSet.GetNode<App>((long)pAppId), vTestMode);
@@ -244,7 +241,6 @@ namespace Fabric.Db.Data.Setups {
 			os.Created = vSet.NowTimestamp;
 
 			vSet.AddNodeAndIndex(os, x => x.OauthScopeId, vTestMode);
-			vSet.AddRootRel<RootContainsOauthScope>(os, vTestMode);
 
 			var relA = DataRel.Create(os, new OauthScopeUsesApp(),
 				vSet.GetNode<App>((long)pAppId), vTestMode);

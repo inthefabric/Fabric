@@ -121,7 +121,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pScripted.Params, "_TP3", vGrantCode);
 			TestUtil.CheckParam(pScripted.Params, "_TP4", vUtcNow.AddMinutes(2).Ticks);
 			TestUtil.CheckParam(pScripted.Params, "_TP5", (int)NodeFabType.OauthGrant);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", typeof(RootContainsOauthGrant).Name);
 			TestUtil.CheckParam(pScripted.Params, "_TP7", vAppId);
 			TestUtil.CheckParam(pScripted.Params, "_TP8", typeof(OauthGrantUsesApp).Name);
 			TestUtil.CheckParam(pScripted.Params, "_TP9", vUserId);

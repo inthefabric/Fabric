@@ -10,7 +10,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TTxAddEmail : TWebTasks {
 
 		private static readonly string Query = 
-			"_V0=[];"+ //Root
 			"_V1=g.addVertex(["+
 				typeof(Email).Name+"Id:_TP0,"+
 				"Address:_TP1,"+
@@ -37,10 +36,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
 			IWeaverVarAlias<Email> emailVar;
 
-			Tasks.TxAddEmail(MockApiCtx.Object, TxBuild, vAddress, rootVar, out emailVar);
+			Tasks.TxAddEmail(MockApiCtx.Object, TxBuild, vAddress, out emailVar);
 			FinishTx();
 
 			Assert.NotNull(emailVar, "EmailVar should not be null.");
@@ -51,7 +49,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vAddress);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", 0);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Email);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(RootContainsEmail).Name);
 		}
 
 	}

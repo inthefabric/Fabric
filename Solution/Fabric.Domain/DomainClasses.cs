@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 4:33:28 PM
+// Generated on 4/4/2013 5:12:45 PM
 
 using System;
 using System.Linq.Expressions;
@@ -13,13 +13,6 @@ namespace Fabric.Domain {
 	/* Relationship Types */
 	
 	
-	/*================================================================================================*/
-	public class Contains : IWeaverRelType {
-	
-		public string Label { get { return "Contains"; } }
-
-	}
-
 	/*================================================================================================*/
 	public class Uses : IWeaverRelType {
 	
@@ -114,312 +107,6 @@ namespace Fabric.Domain {
 
 	/* Relationships */
 
-
-	/*================================================================================================*/
-	public class RootContainsApp : Rel<Root, Contains, App>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual App ToApp { get { return ToNode; } }
-		public override string Label { get { return "RootContainsApp"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsClass : Rel<Root, Contains, Class>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Class ToClass { get { return ToNode; } }
-		public override string Label { get { return "RootContainsClass"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsEmail : Rel<Root, Contains, Email>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Email ToEmail { get { return ToNode; } }
-		public override string Label { get { return "RootContainsEmail"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsInstance : Rel<Root, Contains, Instance>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Instance ToInstance { get { return ToNode; } }
-		public override string Label { get { return "RootContainsInstance"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsMember : Rel<Root, Contains, Member>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Member ToMember { get { return ToNode; } }
-		public override string Label { get { return "RootContainsMember"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsMemberType : Rel<Root, Contains, MemberType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual MemberType ToMemberType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsMemberType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsMemberTypeAssign : Rel<Root, Contains, MemberTypeAssign>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
-		public override string Label { get { return "RootContainsMemberTypeAssign"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsUrl : Rel<Root, Contains, Url>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Url ToUrl { get { return ToNode; } }
-		public override string Label { get { return "RootContainsUrl"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsUser : Rel<Root, Contains, User>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual User ToUser { get { return ToNode; } }
-		public override string Label { get { return "RootContainsUser"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsFactor : Rel<Root, Contains, Factor>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Factor ToFactor { get { return ToNode; } }
-		public override string Label { get { return "RootContainsFactor"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsFactorAssertion : Rel<Root, Contains, FactorAssertion>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual FactorAssertion ToFactorAssertion { get { return ToNode; } }
-		public override string Label { get { return "RootContainsFactorAssertion"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsDescriptor : Rel<Root, Contains, Descriptor>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Descriptor ToDescriptor { get { return ToNode; } }
-		public override string Label { get { return "RootContainsDescriptor"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsDescriptorType : Rel<Root, Contains, DescriptorType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual DescriptorType ToDescriptorType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsDescriptorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsDirector : Rel<Root, Contains, Director>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Director ToDirector { get { return ToNode; } }
-		public override string Label { get { return "RootContainsDirector"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsDirectorType : Rel<Root, Contains, DirectorType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual DirectorType ToDirectorType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsDirectorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsDirectorAction : Rel<Root, Contains, DirectorAction>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual DirectorAction ToDirectorAction { get { return ToNode; } }
-		public override string Label { get { return "RootContainsDirectorAction"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsEventor : Rel<Root, Contains, Eventor>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Eventor ToEventor { get { return ToNode; } }
-		public override string Label { get { return "RootContainsEventor"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsEventorType : Rel<Root, Contains, EventorType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual EventorType ToEventorType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsEventorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsEventorPrecision : Rel<Root, Contains, EventorPrecision>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual EventorPrecision ToEventorPrecision { get { return ToNode; } }
-		public override string Label { get { return "RootContainsEventorPrecision"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsIdentor : Rel<Root, Contains, Identor>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Identor ToIdentor { get { return ToNode; } }
-		public override string Label { get { return "RootContainsIdentor"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsIdentorType : Rel<Root, Contains, IdentorType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual IdentorType ToIdentorType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsIdentorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsLocator : Rel<Root, Contains, Locator>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Locator ToLocator { get { return ToNode; } }
-		public override string Label { get { return "RootContainsLocator"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsLocatorType : Rel<Root, Contains, LocatorType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual LocatorType ToLocatorType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsLocatorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVector : Rel<Root, Contains, Vector>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual Vector ToVector { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVector"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVectorType : Rel<Root, Contains, VectorType>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual VectorType ToVectorType { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVectorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVectorRange : Rel<Root, Contains, VectorRange>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual VectorRange ToVectorRange { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVectorRange"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVectorRangeLevel : Rel<Root, Contains, VectorRangeLevel>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual VectorRangeLevel ToVectorRangeLevel { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVectorRangeLevel"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVectorUnit : Rel<Root, Contains, VectorUnit>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVectorUnit"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVectorUnitPrefix : Rel<Root, Contains, VectorUnitPrefix>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVectorUnitPrefix"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsVectorUnitDerived : Rel<Root, Contains, VectorUnitDerived>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual VectorUnitDerived ToVectorUnitDerived { get { return ToNode; } }
-		public override string Label { get { return "RootContainsVectorUnitDerived"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsOauthAccess : Rel<Root, Contains, OauthAccess>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual OauthAccess ToOauthAccess { get { return ToNode; } }
-		public override string Label { get { return "RootContainsOauthAccess"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsOauthDomain : Rel<Root, Contains, OauthDomain>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual OauthDomain ToOauthDomain { get { return ToNode; } }
-		public override string Label { get { return "RootContainsOauthDomain"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsOauthGrant : Rel<Root, Contains, OauthGrant>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual OauthGrant ToOauthGrant { get { return ToNode; } }
-		public override string Label { get { return "RootContainsOauthGrant"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class RootContainsOauthScope : Rel<Root, Contains, OauthScope>, IItemWithId {
-			
-		public virtual Root FromRoot { get { return FromNode; } }
-		public virtual OauthScope ToOauthScope { get { return ToNode; } }
-		public override string Label { get { return "RootContainsOauthScope"; } }
-
-	}
 
 	/*================================================================================================*/
 	public class AppUsesEmail : Rel<App, Uses, Email>, IItemWithId {
@@ -888,208 +575,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Root : Node {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual int RootId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public Root() : base(NodeFabType.Abstract) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return RootId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Root).RootId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsApp ContainsAppList {
-			get { return NewRel<RootContainsApp>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsClass ContainsClassList {
-			get { return NewRel<RootContainsClass>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEmail ContainsEmailList {
-			get { return NewRel<RootContainsEmail>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsInstance ContainsInstanceList {
-			get { return NewRel<RootContainsInstance>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMember ContainsMemberList {
-			get { return NewRel<RootContainsMember>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMemberType ContainsMemberTypeList {
-			get { return NewRel<RootContainsMemberType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMemberTypeAssign ContainsMemberTypeAssignList {
-			get { return NewRel<RootContainsMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsUrl ContainsUrlList {
-			get { return NewRel<RootContainsUrl>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsUser ContainsUserList {
-			get { return NewRel<RootContainsUser>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsFactor ContainsFactorList {
-			get { return NewRel<RootContainsFactor>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsFactorAssertion ContainsFactorAssertionList {
-			get { return NewRel<RootContainsFactorAssertion>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDescriptor ContainsDescriptorList {
-			get { return NewRel<RootContainsDescriptor>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDescriptorType ContainsDescriptorTypeList {
-			get { return NewRel<RootContainsDescriptorType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirector ContainsDirectorList {
-			get { return NewRel<RootContainsDirector>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirectorType ContainsDirectorTypeList {
-			get { return NewRel<RootContainsDirectorType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirectorAction ContainsDirectorActionList {
-			get { return NewRel<RootContainsDirectorAction>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventor ContainsEventorList {
-			get { return NewRel<RootContainsEventor>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventorType ContainsEventorTypeList {
-			get { return NewRel<RootContainsEventorType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventorPrecision ContainsEventorPrecisionList {
-			get { return NewRel<RootContainsEventorPrecision>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsIdentor ContainsIdentorList {
-			get { return NewRel<RootContainsIdentor>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsIdentorType ContainsIdentorTypeList {
-			get { return NewRel<RootContainsIdentorType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLocator ContainsLocatorList {
-			get { return NewRel<RootContainsLocator>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLocatorType ContainsLocatorTypeList {
-			get { return NewRel<RootContainsLocatorType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVector ContainsVectorList {
-			get { return NewRel<RootContainsVector>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorType ContainsVectorTypeList {
-			get { return NewRel<RootContainsVectorType>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorRange ContainsVectorRangeList {
-			get { return NewRel<RootContainsVectorRange>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorRangeLevel ContainsVectorRangeLevelList {
-			get { return NewRel<RootContainsVectorRangeLevel>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnit ContainsVectorUnitList {
-			get { return NewRel<RootContainsVectorUnit>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnitPrefix ContainsVectorUnitPrefixList {
-			get { return NewRel<RootContainsVectorUnitPrefix>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnitDerived ContainsVectorUnitDerivedList {
-			get { return NewRel<RootContainsVectorUnitDerived>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthAccess ContainsOauthAccessList {
-			get { return NewRel<RootContainsOauthAccess>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthDomain ContainsOauthDomainList {
-			get { return NewRel<RootContainsOauthDomain>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthGrant ContainsOauthGrantList {
-			get { return NewRel<RootContainsOauthGrant>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthScope ContainsOauthScopeList {
-			get { return NewRel<RootContainsOauthScope>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
 	public class Artifact : Node {
 	
 		[WeaverItemProperty]
@@ -1198,11 +683,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsApp InRootContains {
-			get { return NewRel<RootContainsApp>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail UsesEmail {
 			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToOne); }
 		}
@@ -1278,11 +758,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsClass InRootContains {
-			get { return NewRel<RootContainsClass>(WeaverRelConn.InFromOne); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1331,11 +806,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEmail InRootContains {
-			get { return NewRel<RootContainsEmail>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail InAppUses {
 			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromOne); }
@@ -1393,11 +863,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsInstance InRootContains {
-			get { return NewRel<RootContainsInstance>(WeaverRelConn.InFromOne); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1425,11 +890,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMember InRootContains {
-			get { return NewRel<RootContainsMember>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppDefinesMember InAppDefines {
 			get { return NewRel<AppDefinesMember>(WeaverRelConn.InFromOne); }
@@ -1493,11 +953,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMemberType InRootContains {
-			get { return NewRel<RootContainsMemberType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberTypeAssignUsesMemberType InMemberTypeAssignListUses {
 			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -1529,11 +984,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsMemberTypeAssign InRootContains {
-			get { return NewRel<RootContainsMemberTypeAssign>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign InMemberHas {
 			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOne); }
@@ -1593,11 +1043,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsUrl InRootContains {
-			get { return NewRel<RootContainsUrl>(WeaverRelConn.InFromOne); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1640,11 +1085,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsUser InRootContains {
-			get { return NewRel<RootContainsUser>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserUsesEmail UsesEmail {
 			get { return NewRel<UserUsesEmail>(WeaverRelConn.OutToOne); }
@@ -1719,11 +1159,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsFactor InRootContains {
-			get { return NewRel<RootContainsFactor>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesFactor InMemberCreates {
 			get { return NewRel<MemberCreatesFactor>(WeaverRelConn.InFromOne); }
@@ -1807,11 +1242,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsFactorAssertion InRootContains {
-			get { return NewRel<RootContainsFactorAssertion>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesFactorAssertion InFactorListUses {
 			get { return NewRel<FactorUsesFactorAssertion>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -1851,11 +1281,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDescriptor InRootContains {
-			get { return NewRel<RootContainsDescriptor>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesDescriptor InFactorListUses {
 			get { return NewRel<FactorUsesDescriptor>(WeaverRelConn.InFromOneOrMore); }
@@ -1909,11 +1334,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDescriptorType InRootContains {
-			get { return NewRel<RootContainsDescriptorType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual DescriptorUsesDescriptorType InDescriptorListUses {
 			get { return NewRel<DescriptorUsesDescriptorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -1945,11 +1365,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirector InRootContains {
-			get { return NewRel<RootContainsDirector>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesDirector InFactorListUses {
 			get { return NewRel<FactorUsesDirector>(WeaverRelConn.InFromOneOrMore); }
@@ -1998,11 +1413,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirectorType InRootContains {
-			get { return NewRel<RootContainsDirectorType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual DirectorUsesDirectorType InDirectorListUses {
 			get { return NewRel<DirectorUsesDirectorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -2034,11 +1444,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsDirectorAction InRootContains {
-			get { return NewRel<RootContainsDirectorAction>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual DirectorUsesPrimaryDirectorAction InDirectorListUsesPrimary {
 			get { return NewRel<DirectorUsesPrimaryDirectorAction>(WeaverRelConn.InFromZeroOrMore); }
@@ -2079,11 +1484,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventor InRootContains {
-			get { return NewRel<RootContainsEventor>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesEventor InFactorListUses {
 			get { return NewRel<FactorUsesEventor>(WeaverRelConn.InFromOneOrMore); }
@@ -2127,11 +1527,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventorType InRootContains {
-			get { return NewRel<RootContainsEventorType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual EventorUsesEventorType InEventorListUses {
 			get { return NewRel<EventorUsesEventorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -2163,11 +1558,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsEventorPrecision InRootContains {
-			get { return NewRel<RootContainsEventorPrecision>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual EventorUsesEventorPrecision InEventorListUses {
 			get { return NewRel<EventorUsesEventorPrecision>(WeaverRelConn.InFromZeroOrMore); }
@@ -2206,11 +1596,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsIdentor InRootContains {
-			get { return NewRel<RootContainsIdentor>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesIdentor InFactorListUses {
 			get { return NewRel<FactorUsesIdentor>(WeaverRelConn.InFromOneOrMore); }
 		}
@@ -2247,11 +1632,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsIdentorType InRootContains {
-			get { return NewRel<RootContainsIdentorType>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual IdentorUsesIdentorType InIdentorListUses {
 			get { return NewRel<IdentorUsesIdentorType>(WeaverRelConn.InFromZeroOrMore); }
@@ -2293,11 +1673,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLocator InRootContains {
-			get { return NewRel<RootContainsLocator>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesLocator InFactorListUses {
 			get { return NewRel<FactorUsesLocator>(WeaverRelConn.InFromOneOrMore); }
@@ -2354,11 +1729,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsLocatorType InRootContains {
-			get { return NewRel<RootContainsLocatorType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual LocatorUsesLocatorType InLocatorListUses {
 			get { return NewRel<LocatorUsesLocatorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -2393,11 +1763,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVector InRootContains {
-			get { return NewRel<RootContainsVector>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesVector InFactorListUses {
 			get { return NewRel<FactorUsesVector>(WeaverRelConn.InFromOneOrMore); }
@@ -2457,11 +1822,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorType InRootContains {
-			get { return NewRel<RootContainsVectorType>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorUsesVectorType InVectorListUses {
 			get { return NewRel<VectorUsesVectorType>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -2498,11 +1858,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorRange InRootContains {
-			get { return NewRel<RootContainsVectorRange>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorTypeUsesVectorRange InVectorTypeListUses {
 			get { return NewRel<VectorTypeUsesVectorRange>(WeaverRelConn.InFromZeroOrMore); }
@@ -2544,11 +1899,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorRangeLevel InRootContains {
-			get { return NewRel<RootContainsVectorRangeLevel>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorRangeUsesVectorRangeLevel InVectorRangeListUses {
 			get { return NewRel<VectorRangeUsesVectorRangeLevel>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -2585,11 +1935,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnit InRootContains {
-			get { return NewRel<RootContainsVectorUnit>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorUsesVectorUnit InVectorListUses {
 			get { return NewRel<VectorUsesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
@@ -2641,11 +1986,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnitPrefix InRootContains {
-			get { return NewRel<RootContainsVectorUnitPrefix>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorUsesVectorUnitPrefix InVectorListUses {
 			get { return NewRel<VectorUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
 		}
@@ -2685,11 +2025,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsVectorUnitDerived InRootContains {
-			get { return NewRel<RootContainsVectorUnitDerived>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorUnitDerivedDefinesVectorUnit DefinesVectorUnit {
 			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.OutToOne); }
@@ -2752,11 +2087,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthAccess InRootContains {
-			get { return NewRel<RootContainsOauthAccess>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthAccessUsesApp UsesApp {
 			get { return NewRel<OauthAccessUsesApp>(WeaverRelConn.OutToOne); }
 		}
@@ -2799,11 +2129,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthDomain InRootContains {
-			get { return NewRel<RootContainsOauthDomain>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthDomainUsesApp UsesApp {
 			get { return NewRel<OauthDomainUsesApp>(WeaverRelConn.OutToOne); }
@@ -2851,11 +2176,6 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthGrant InRootContains {
-			get { return NewRel<RootContainsOauthGrant>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthGrantUsesApp UsesApp {
 			get { return NewRel<OauthGrantUsesApp>(WeaverRelConn.OutToOne); }
 		}
@@ -2899,11 +2219,6 @@ namespace Fabric.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual RootContainsOauthScope InRootContains {
-			get { return NewRel<RootContainsOauthScope>(WeaverRelConn.InFromOne); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthScopeUsesApp UsesApp {
 			get { return NewRel<OauthScopeUsesApp>(WeaverRelConn.OutToOne); }

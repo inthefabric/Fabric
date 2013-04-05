@@ -56,7 +56,6 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private Class ExecuteInner() {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 			Member m;
@@ -71,10 +70,9 @@ namespace Fabric.Api.Modify {
 			}
 
 			var txb = new TxBuilder();
-			txb.GetRoot(out rootVar);
 			txb.GetNodeByNodeId(m, out memVar);
 
-			Tasks.TxAddClass(ApiCtx, txb, vName, vDisamb, vNote, rootVar, memVar, out classVar);
+			Tasks.TxAddClass(ApiCtx, txb, vName, vDisamb, vNote, memVar, out classVar);
 			txb.RegisterVarWithTxBuilder(classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));

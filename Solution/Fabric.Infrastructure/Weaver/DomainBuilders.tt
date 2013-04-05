@@ -34,15 +34,14 @@ foreach ( string name in nodes ) {
 	if ( node.IsBaseClass ) {
 #>
 	/*================================================================================================*/
-	public abstract class <#= node.Name #>Builder<<#= nodeType #>, TRootRel> : DomainBuilder<T, TRootRel>
-						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+	public abstract class <#= node.Name #>Builder<<#= nodeType #>> : DomainBuilder<T> where T : INode, new() {
 
 <#
 	}
 	else {
 #>
 	/*================================================================================================*/
-	public class <#= node.Name #>Builder : <#= baseType #>Builder<<#= nodeType #>, RootContains<#= node.Name #>> {
+	public class <#= node.Name #>Builder : <#= baseType #>Builder<<#= nodeType #>> {
 
 <#
 	} //end abstract condition

@@ -10,7 +10,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddEventor : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Eventor).Name+"Id:_TP1,"+
 				"DateTime:_TP2,"+
@@ -61,8 +60,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewEventorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vDateTime);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Eventor);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(RootContainsEventor).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(FactorUsesEventor).Name);

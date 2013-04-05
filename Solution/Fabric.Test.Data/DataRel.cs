@@ -1,5 +1,4 @@
 ﻿using System;
-using Fabric.Domain;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -63,7 +62,7 @@ namespace Fabric.Db.Data {
 					"', expected '"+pRel.FromNodeType+"'.");
 			}
 
-			if ( typeof(TFrom) != typeof(Root) && pRel.ToNodeType != typeof(TTo) ) {
+			if ( pRel.ToNodeType != typeof(TTo) ) {
 				throw new Exception("Incorrect ToNodeType '"+typeof(TTo)+
 					"', expected '"+pRel.ToNodeType+"'.");
 			}

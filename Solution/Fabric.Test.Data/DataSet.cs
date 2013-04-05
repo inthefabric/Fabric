@@ -35,9 +35,6 @@ namespace Fabric.Db.Data {
 			vCurrDate = DateTime.UtcNow.AddDays(-10);
 			vNodeMap = new Dictionary<string, INode>();
 			vDataNodeMap = new Dictionary<IWeaverNode, IDataNode>();
-
-			var r = new Root();
-			vNodeMap.Add(typeof(Root).Name+1, r);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -119,15 +116,6 @@ namespace Fabric.Db.Data {
 			if ( !IsForTesting && pRel.IsForTesting ) { return pRel; }
 			Rels.Add(pRel);
 			return pRel;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool AddRootRel<TRel>(IWeaverNode pToNode, bool pIsForTesting)
-																		where TRel : IWeaverRel, new(){
-			if ( !IsForTesting && pIsForTesting ) { return false; }
-			IDataRel r = DataRel.Create(GetNode<Root>(0), new TRel(), pToNode, pIsForTesting);
-			Rels.Add(r);
-			return true;
 		}
 
 	}

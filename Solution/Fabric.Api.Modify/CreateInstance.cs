@@ -55,14 +55,12 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Instance> classVar;
 			IWeaverVarAlias<Member> memVar;
 
 			var txb = new TxBuilder();
-			txb.GetRoot(out rootVar);
 			txb.GetNode(m, out memVar);
-			Tasks.TxAddInstance(ApiCtx, txb, vName, vDisamb, vNote, rootVar, memVar, out classVar);
+			Tasks.TxAddInstance(ApiCtx, txb, vName, vDisamb, vNote, memVar, out classVar);
 			txb.RegisterVarWithTxBuilder(classVar);
 
 			return ApiCtx.DbSingle<Instance>("CreateInstanceTx", txb.Finish(classVar));

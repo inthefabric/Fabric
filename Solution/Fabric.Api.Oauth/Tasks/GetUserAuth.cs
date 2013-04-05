@@ -45,8 +45,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			string filterStep = "filter{it.getProperty('"+nameProp+"').toLowerCase()==_P2}";
 
 			IWeaverQuery q = 
-				NewPathFromRoot()
-				.ContainsUserList.ToUser
+				NewPathFromType<User>()
 					.Has(x => x.Password, WeaverFuncHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 					.CustomStep(filterStep)
 				.End();

@@ -10,7 +10,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddVector : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Vector).Name+"Id:_TP1,"+
 				"Value:_TP2,"+
@@ -69,8 +68,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewVectorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValue);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Vector);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
-				typeof(RootContainsVector).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(FactorUsesVector).Name);

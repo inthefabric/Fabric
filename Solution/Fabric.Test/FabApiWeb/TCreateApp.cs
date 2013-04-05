@@ -41,7 +41,6 @@ namespace Fabric.Test.FabApiWeb {
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
 						vName,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						vUserId,
 						out vOutAppVar,
 						out vOutSetMemAction
@@ -52,7 +51,6 @@ namespace Fabric.Test.FabApiWeb {
 				.Setup(x => x.TxAddDataProvMember(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						vOutAppVar,
 						vUserId,
 						out memVar
@@ -78,7 +76,6 @@ namespace Fabric.Test.FabApiWeb {
 			TestUtil.LogWeaverScript(pTx);
 
 			const string expectPartial = 
-				"_V0=g.V('RootId',_TP0)[0].next();"+
 				"APP;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

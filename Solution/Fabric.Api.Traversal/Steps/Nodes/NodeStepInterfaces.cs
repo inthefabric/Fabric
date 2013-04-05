@@ -1,154 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:06 PM
+// Generated on 4/4/2013 5:12:46 PM
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
-	/*================================================================================================*/
-	public interface IContainsAppList {
-		IAppStep ContainsAppList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsClassList {
-		IClassStep ContainsClassList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsInstanceList {
-		IInstanceStep ContainsInstanceList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsMemberList {
-		IMemberStep ContainsMemberList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsMemberTypeList {
-		IMemberTypeStep ContainsMemberTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsMemberTypeAssignList {
-		IMemberTypeAssignStep ContainsMemberTypeAssignList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsUrlList {
-		IUrlStep ContainsUrlList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsUserList {
-		IUserStep ContainsUserList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsFactorList {
-		IFactorStep ContainsFactorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsFactorAssertionList {
-		IFactorAssertionStep ContainsFactorAssertionList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDescriptorList {
-		IDescriptorStep ContainsDescriptorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDescriptorTypeList {
-		IDescriptorTypeStep ContainsDescriptorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDirectorList {
-		IDirectorStep ContainsDirectorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDirectorTypeList {
-		IDirectorTypeStep ContainsDirectorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsDirectorActionList {
-		IDirectorActionStep ContainsDirectorActionList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEventorList {
-		IEventorStep ContainsEventorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEventorTypeList {
-		IEventorTypeStep ContainsEventorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsEventorPrecisionList {
-		IEventorPrecisionStep ContainsEventorPrecisionList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsIdentorList {
-		IIdentorStep ContainsIdentorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsIdentorTypeList {
-		IIdentorTypeStep ContainsIdentorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsLocatorList {
-		ILocatorStep ContainsLocatorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsLocatorTypeList {
-		ILocatorTypeStep ContainsLocatorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorList {
-		IVectorStep ContainsVectorList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorTypeList {
-		IVectorTypeStep ContainsVectorTypeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorRangeList {
-		IVectorRangeStep ContainsVectorRangeList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorRangeLevelList {
-		IVectorRangeLevelStep ContainsVectorRangeLevelList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorUnitList {
-		IVectorUnitStep ContainsVectorUnitList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorUnitPrefixList {
-		IVectorUnitPrefixStep ContainsVectorUnitPrefixList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IContainsVectorUnitDerivedList {
-		IVectorUnitDerivedStep ContainsVectorUnitDerivedList { get; }
-	}
-
 	/*================================================================================================*/
 	public interface IInMemberCreates {
 		IMemberStep InMemberCreates { get; }
@@ -182,11 +37,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IInVectorListUsesAxis {
 		IVectorStep InVectorListUsesAxis { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInRootContains {
-		IRootStep InRootContains { get; }
 	}
 
 	/*================================================================================================*/
@@ -495,63 +345,58 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IRootStep :
-		INodeStep, IFinalStep, IContainsAppList, IContainsClassList, IContainsInstanceList, IContainsMemberList, IContainsMemberTypeList, IContainsMemberTypeAssignList, IContainsUrlList, IContainsUserList, IContainsFactorList, IContainsFactorAssertionList, IContainsDescriptorList, IContainsDescriptorTypeList, IContainsDirectorList, IContainsDirectorTypeList, IContainsDirectorActionList, IContainsEventorList, IContainsEventorTypeList, IContainsEventorPrecisionList, IContainsIdentorList, IContainsIdentorTypeList, IContainsLocatorList, IContainsLocatorTypeList, IContainsVectorList, IContainsVectorTypeList, IContainsVectorRangeList, IContainsVectorRangeLevelList, IContainsVectorUnitList, IContainsVectorUnitPrefixList, IContainsVectorUnitDerivedList {
-	}
-
-	/*================================================================================================*/
 	public interface IArtifactStep :
 		INodeStep, IInMemberCreates, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInDescriptorListRefinesPrimaryWith, IInDescriptorListRefinesRelatedWith, IInDescriptorListRefinesTypeWith, IInVectorListUsesAxis {
 	}
 
 	/*================================================================================================*/
 	public interface IAppStep :
-		IArtifactStep, IInRootContains, IDefinesMemberList {
+		IArtifactStep, IDefinesMemberList {
 	}
 
 	/*================================================================================================*/
 	public interface IClassStep :
-		IArtifactStep, IInRootContains {
+		IArtifactStep {
 	}
 
 	/*================================================================================================*/
 	public interface IInstanceStep :
-		IArtifactStep, IInRootContains {
+		IArtifactStep {
 	}
 
 	/*================================================================================================*/
 	public interface IMemberStep :
-		INodeStep, IInRootContains, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
+		INodeStep, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
 	}
 
 	/*================================================================================================*/
 	public interface IMemberTypeStep :
-		INodeForTypeStep, IInRootContains, IInMemberTypeAssignListUses {
+		INodeForTypeStep, IInMemberTypeAssignListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IMemberTypeAssignStep :
-		INodeForActionStep, IInRootContains, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
+		INodeForActionStep, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
 	}
 
 	/*================================================================================================*/
 	public interface IUrlStep :
-		IArtifactStep, IInRootContains {
+		IArtifactStep {
 	}
 
 	/*================================================================================================*/
 	public interface IUserStep :
-		IArtifactStep, IInRootContains, IDefinesMemberList {
+		IArtifactStep, IDefinesMemberList {
 	}
 
 	/*================================================================================================*/
 	public interface IFactorStep :
-		INodeStep, IInRootContains, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
+		INodeStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	}
 
 	/*================================================================================================*/
 	public interface IFactorAssertionStep :
-		INodeForTypeStep, IInRootContains, IInFactorListUses {
+		INodeForTypeStep, IInFactorListUses {
 	}
 
 	/*================================================================================================*/
@@ -561,97 +406,97 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IDescriptorStep :
-		IFactorElementNodeStep, IInRootContains, IInFactorListUses, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
+		IFactorElementNodeStep, IInFactorListUses, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	}
 
 	/*================================================================================================*/
 	public interface IDescriptorTypeStep :
-		INodeForTypeStep, IInRootContains, IInDescriptorListUses {
+		INodeForTypeStep, IInDescriptorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IDirectorStep :
-		IFactorElementNodeStep, IInRootContains, IInFactorListUses, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
+		IFactorElementNodeStep, IInFactorListUses, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
 	}
 
 	/*================================================================================================*/
 	public interface IDirectorTypeStep :
-		INodeForTypeStep, IInRootContains, IInDirectorListUses {
+		INodeForTypeStep, IInDirectorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IDirectorActionStep :
-		INodeForTypeStep, IInRootContains, IInDirectorListUsesPrimary, IInDirectorListUsesRelated {
+		INodeForTypeStep, IInDirectorListUsesPrimary, IInDirectorListUsesRelated {
 	}
 
 	/*================================================================================================*/
 	public interface IEventorStep :
-		IFactorElementNodeStep, IInRootContains, IInFactorListUses, IUsesEventorType, IUsesEventorPrecision {
+		IFactorElementNodeStep, IInFactorListUses, IUsesEventorType, IUsesEventorPrecision {
 	}
 
 	/*================================================================================================*/
 	public interface IEventorTypeStep :
-		INodeForTypeStep, IInRootContains, IInEventorListUses {
+		INodeForTypeStep, IInEventorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IEventorPrecisionStep :
-		INodeForTypeStep, IInRootContains, IInEventorListUses {
+		INodeForTypeStep, IInEventorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IIdentorStep :
-		IFactorElementNodeStep, IInRootContains, IInFactorListUses, IUsesIdentorType {
+		IFactorElementNodeStep, IInFactorListUses, IUsesIdentorType {
 	}
 
 	/*================================================================================================*/
 	public interface IIdentorTypeStep :
-		INodeForTypeStep, IInRootContains, IInIdentorListUses {
+		INodeForTypeStep, IInIdentorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface ILocatorStep :
-		IFactorElementNodeStep, IInRootContains, IInFactorListUses, IUsesLocatorType {
+		IFactorElementNodeStep, IInFactorListUses, IUsesLocatorType {
 	}
 
 	/*================================================================================================*/
 	public interface ILocatorTypeStep :
-		INodeForTypeStep, IInRootContains, IInLocatorListUses {
+		INodeForTypeStep, IInLocatorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorStep :
-		IFactorElementNodeStep, IInRootContains, IInFactorListUses, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
+		IFactorElementNodeStep, IInFactorListUses, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorTypeStep :
-		INodeForTypeStep, IInRootContains, IInVectorListUses, IUsesVectorRange {
+		INodeForTypeStep, IInVectorListUses, IUsesVectorRange {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorRangeStep :
-		INodeForTypeStep, IInRootContains, IInVectorTypeListUses, IUsesVectorRangeLevelList {
+		INodeForTypeStep, IInVectorTypeListUses, IUsesVectorRangeLevelList {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorRangeLevelStep :
-		INodeForTypeStep, IInRootContains, IInVectorRangeListUses {
+		INodeForTypeStep, IInVectorRangeListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorUnitStep :
-		INodeForTypeStep, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListDefines, IInVectorUnitDerivedListRaisesToExp {
+		INodeForTypeStep, IInVectorListUses, IInVectorUnitDerivedListDefines, IInVectorUnitDerivedListRaisesToExp {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorUnitPrefixStep :
-		INodeForTypeStep, IInRootContains, IInVectorListUses, IInVectorUnitDerivedListUses {
+		INodeForTypeStep, IInVectorListUses, IInVectorUnitDerivedListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorUnitDerivedStep :
-		INodeForTypeStep, IInRootContains, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
+		INodeForTypeStep, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
 	}
 
 }

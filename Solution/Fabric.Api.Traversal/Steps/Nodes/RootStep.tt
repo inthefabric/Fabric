@@ -1,0 +1,96 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+using System.Linq;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Domain;
+using Fabric.Infrastructure.Traversal;
+
+namespace Fabric.Api.Traversal.Steps.Nodes {
+	
+	/*================================================================================================*/
+	public class RootStep : NodeStep<FabRoot> {
+	
+		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+<#
+IList<string> nodeNames = SchemaHelper.GetNodes();
+var linkNames = new List<string>();
+
+foreach ( string name in nodeNames ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
+
+	if ( node.IsBaseClass || node.IsInternal ) {
+		continue;
+	}
+
+	linkNames.Add(node.Name);
+#>
+			new StepLink("Contains", "<#= node.Name #>", true, "/Contains<#= node.Name #>List"),
+<#
+} //end node loop
+#>
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public RootStep(IPath pPath) : base(pPath) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return null; } }
+		public override bool TypeIdIsLong { get { return false; } }
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<IStepLink> AvailableLinks {
+			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IStep GetLink(StepData pData) {
+			switch ( pData.Command ) {
+<#
+foreach ( string name in linkNames ) {
+#>
+				case "contains<#= name.ToLower() #>list": return Contains<#= name #>List;
+<#
+} //end node loop
+#>
+			}
+
+			return base.GetLink(pData);
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+foreach ( string name in linkNames ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public I<#= name #>Step Contains<#= name #>List {
+			get {
+				var step = new <#= name #>Step(Path);
+				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.<#= name #>+")");
+				return step;
+			}
+		}
+
+<#
+} //end node loop
+#>
+	}
+
+}

@@ -11,7 +11,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddOauthDomain : TWebTasks {
 
 		private static readonly string Query =
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(OauthDomain).Name+"Id:_TP1,"+
 				"Domain:_TP2,"+
@@ -53,7 +52,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP1", vNewDomainId);
 			TestUtil.CheckParam(pTx.Params, "_TP2", vDomain);
 			TestUtil.CheckParam(pTx.Params, "_TP3", (int)NodeFabType.OauthDomain);
-			TestUtil.CheckParam(pTx.Params, "_TP4", typeof(RootContainsOauthDomain).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP5", vAppId);
 			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(OauthDomainUsesApp).Name);
 

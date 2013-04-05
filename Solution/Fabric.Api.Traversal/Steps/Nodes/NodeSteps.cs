@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 9:44:56 AM
+// Generated on 4/4/2013 5:12:46 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -9,371 +9,6 @@ using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
-	/*================================================================================================*/
-	public partial class RootStep : NodeStep<FabRoot>, IRootStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Contains", "App", true, "/ContainsAppList"),
-			new StepLink("Contains", "Class", true, "/ContainsClassList"),
-			new StepLink("Contains", "Instance", true, "/ContainsInstanceList"),
-			new StepLink("Contains", "Member", true, "/ContainsMemberList"),
-			new StepLink("Contains", "MemberType", true, "/ContainsMemberTypeList"),
-			new StepLink("Contains", "MemberTypeAssign", true, "/ContainsMemberTypeAssignList"),
-			new StepLink("Contains", "Url", true, "/ContainsUrlList"),
-			new StepLink("Contains", "User", true, "/ContainsUserList"),
-			new StepLink("Contains", "Factor", true, "/ContainsFactorList"),
-			new StepLink("Contains", "FactorAssertion", true, "/ContainsFactorAssertionList"),
-			new StepLink("Contains", "Descriptor", true, "/ContainsDescriptorList"),
-			new StepLink("Contains", "DescriptorType", true, "/ContainsDescriptorTypeList"),
-			new StepLink("Contains", "Director", true, "/ContainsDirectorList"),
-			new StepLink("Contains", "DirectorType", true, "/ContainsDirectorTypeList"),
-			new StepLink("Contains", "DirectorAction", true, "/ContainsDirectorActionList"),
-			new StepLink("Contains", "Eventor", true, "/ContainsEventorList"),
-			new StepLink("Contains", "EventorType", true, "/ContainsEventorTypeList"),
-			new StepLink("Contains", "EventorPrecision", true, "/ContainsEventorPrecisionList"),
-			new StepLink("Contains", "Identor", true, "/ContainsIdentorList"),
-			new StepLink("Contains", "IdentorType", true, "/ContainsIdentorTypeList"),
-			new StepLink("Contains", "Locator", true, "/ContainsLocatorList"),
-			new StepLink("Contains", "LocatorType", true, "/ContainsLocatorTypeList"),
-			new StepLink("Contains", "Vector", true, "/ContainsVectorList"),
-			new StepLink("Contains", "VectorType", true, "/ContainsVectorTypeList"),
-			new StepLink("Contains", "VectorRange", true, "/ContainsVectorRangeList"),
-			new StepLink("Contains", "VectorRangeLevel", true, "/ContainsVectorRangeLevelList"),
-			new StepLink("Contains", "VectorUnit", true, "/ContainsVectorUnitList"),
-			new StepLink("Contains", "VectorUnitPrefix", true, "/ContainsVectorUnitPrefixList"),
-			new StepLink("Contains", "VectorUnitDerived", true, "/ContainsVectorUnitDerivedList"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public RootStep(IPath pPath) : base(pPath) {
-			if ( Path.GetSegmentCount() == 0 ) {
-				Path.AddSegment(this, "g"+(Path.StartAtRoot ? ".V('RootId',0)[0]" : ""));
-			}
-
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool UseLocalData { get { return true; } }
-		public long Index { get { return 0; } }
-		public int Count { get { return 1; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "RootId"; } }
-		public override bool TypeIdIsLong { get { return false; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "containsapplist": return ContainsAppList;
-				case "containsclasslist": return ContainsClassList;
-				case "containsinstancelist": return ContainsInstanceList;
-				case "containsmemberlist": return ContainsMemberList;
-				case "containsmembertypelist": return ContainsMemberTypeList;
-				case "containsmembertypeassignlist": return ContainsMemberTypeAssignList;
-				case "containsurllist": return ContainsUrlList;
-				case "containsuserlist": return ContainsUserList;
-				case "containsfactorlist": return ContainsFactorList;
-				case "containsfactorassertionlist": return ContainsFactorAssertionList;
-				case "containsdescriptorlist": return ContainsDescriptorList;
-				case "containsdescriptortypelist": return ContainsDescriptorTypeList;
-				case "containsdirectorlist": return ContainsDirectorList;
-				case "containsdirectortypelist": return ContainsDirectorTypeList;
-				case "containsdirectoractionlist": return ContainsDirectorActionList;
-				case "containseventorlist": return ContainsEventorList;
-				case "containseventortypelist": return ContainsEventorTypeList;
-				case "containseventorprecisionlist": return ContainsEventorPrecisionList;
-				case "containsidentorlist": return ContainsIdentorList;
-				case "containsidentortypelist": return ContainsIdentorTypeList;
-				case "containslocatorlist": return ContainsLocatorList;
-				case "containslocatortypelist": return ContainsLocatorTypeList;
-				case "containsvectorlist": return ContainsVectorList;
-				case "containsvectortypelist": return ContainsVectorTypeList;
-				case "containsvectorrangelist": return ContainsVectorRangeList;
-				case "containsvectorrangelevellist": return ContainsVectorRangeLevelList;
-				case "containsvectorunitlist": return ContainsVectorUnitList;
-				case "containsvectorunitprefixlist": return ContainsVectorUnitPrefixList;
-				case "containsvectorunitderivedlist": return ContainsVectorUnitDerivedList;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IAppStep ContainsAppList {
-			get {
-				var step = new AppStep(Path);
-				Path.AddSegment(step, "outE('RootContainsApp').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IClassStep ContainsClassList {
-			get {
-				var step = new ClassStep(Path);
-				Path.AddSegment(step, "outE('RootContainsClass').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IInstanceStep ContainsInstanceList {
-			get {
-				var step = new InstanceStep(Path);
-				Path.AddSegment(step, "outE('RootContainsInstance').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IMemberStep ContainsMemberList {
-			get {
-				var step = new MemberStep(Path);
-				Path.AddSegment(step, "outE('RootContainsMember').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IMemberTypeStep ContainsMemberTypeList {
-			get {
-				var step = new MemberTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsMemberType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IMemberTypeAssignStep ContainsMemberTypeAssignList {
-			get {
-				var step = new MemberTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('RootContainsMemberTypeAssign').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IUrlStep ContainsUrlList {
-			get {
-				var step = new UrlStep(Path);
-				Path.AddSegment(step, "outE('RootContainsUrl').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IUserStep ContainsUserList {
-			get {
-				var step = new UserStep(Path);
-				Path.AddSegment(step, "outE('RootContainsUser').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep ContainsFactorList {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsFactor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorAssertionStep ContainsFactorAssertionList {
-			get {
-				var step = new FactorAssertionStep(Path);
-				Path.AddSegment(step, "outE('RootContainsFactorAssertion').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep ContainsDescriptorList {
-			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsDescriptor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorTypeStep ContainsDescriptorTypeList {
-			get {
-				var step = new DescriptorTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsDescriptorType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDirectorStep ContainsDirectorList {
-			get {
-				var step = new DirectorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsDirector').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDirectorTypeStep ContainsDirectorTypeList {
-			get {
-				var step = new DirectorTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsDirectorType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDirectorActionStep ContainsDirectorActionList {
-			get {
-				var step = new DirectorActionStep(Path);
-				Path.AddSegment(step, "outE('RootContainsDirectorAction').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IEventorStep ContainsEventorList {
-			get {
-				var step = new EventorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsEventor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IEventorTypeStep ContainsEventorTypeList {
-			get {
-				var step = new EventorTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsEventorType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IEventorPrecisionStep ContainsEventorPrecisionList {
-			get {
-				var step = new EventorPrecisionStep(Path);
-				Path.AddSegment(step, "outE('RootContainsEventorPrecision').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IIdentorStep ContainsIdentorList {
-			get {
-				var step = new IdentorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsIdentor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IIdentorTypeStep ContainsIdentorTypeList {
-			get {
-				var step = new IdentorTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsIdentorType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ILocatorStep ContainsLocatorList {
-			get {
-				var step = new LocatorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsLocator').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ILocatorTypeStep ContainsLocatorTypeList {
-			get {
-				var step = new LocatorTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsLocatorType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorStep ContainsVectorList {
-			get {
-				var step = new VectorStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVector').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorTypeStep ContainsVectorTypeList {
-			get {
-				var step = new VectorTypeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVectorType').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorRangeStep ContainsVectorRangeList {
-			get {
-				var step = new VectorRangeStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVectorRange').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorRangeLevelStep ContainsVectorRangeLevelList {
-			get {
-				var step = new VectorRangeLevelStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVectorRangeLevel').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorUnitStep ContainsVectorUnitList {
-			get {
-				var step = new VectorUnitStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVectorUnit').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorUnitPrefixStep ContainsVectorUnitPrefixList {
-			get {
-				var step = new VectorUnitPrefixStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVectorUnitPrefix').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorUnitDerivedStep ContainsVectorUnitDerivedList {
-			get {
-				var step = new VectorUnitDerivedStep(Path);
-				Path.AddSegment(step, "outE('RootContainsVectorUnitDerived').inV");
-				return step;
-			}
-		}
-
-	}
-
 	/*================================================================================================*/
 	public partial class AppStep : ArtifactStep<FabApp>, IAppStep {
 		
@@ -411,15 +46,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsApp').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IMemberStep DefinesMemberList {
 			get {
@@ -459,15 +85,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsClass').outV");
-				return step;
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -498,15 +115,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsInstance').outV");
-				return step;
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -558,15 +166,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsMember').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IAppStep InAppDefines {
 			get {
@@ -670,15 +269,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsMemberType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IMemberTypeAssignStep InMemberTypeAssignListUses {
 			get {
 				var step = new MemberTypeAssignStep(Path);
@@ -732,15 +322,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsMemberTypeAssign').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IMemberStep InMemberHas {
 			get {
@@ -807,15 +388,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsUrl').outV");
-				return step;
-			}
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -855,15 +427,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsUser').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IMemberStep DefinesMemberList {
 			get {
@@ -932,15 +495,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsFactor').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IMemberStep InMemberCreates {
 			get {
@@ -1080,15 +634,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsFactorAssertion').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
 				var step = new FactorStep(Path);
@@ -1144,15 +689,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsDescriptor').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
@@ -1238,15 +774,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsDescriptorType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IDescriptorStep InDescriptorListUses {
 			get {
 				var step = new DescriptorStep(Path);
@@ -1300,15 +827,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsDirector').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
@@ -1385,15 +903,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsDirectorType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IDirectorStep InDirectorListUses {
 			get {
 				var step = new DirectorStep(Path);
@@ -1443,15 +952,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsDirectorAction').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IDirectorStep InDirectorListUsesPrimary {
 			get {
@@ -1513,15 +1013,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsEventor').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
@@ -1589,15 +1080,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsEventorType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IEventorStep InEventorListUses {
 			get {
 				var step = new EventorStep(Path);
@@ -1645,15 +1127,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsEventorPrecision').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IEventorStep InEventorListUses {
 			get {
@@ -1704,15 +1177,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsIdentor').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
@@ -1771,15 +1235,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsIdentorType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IIdentorStep InIdentorListUses {
 			get {
 				var step = new IdentorStep(Path);
@@ -1829,15 +1284,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsLocator').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
@@ -1896,15 +1342,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsLocatorType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public ILocatorStep InLocatorListUses {
 			get {
 				var step = new LocatorStep(Path);
@@ -1960,15 +1397,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVector').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IFactorStep InFactorListUses {
 			get {
@@ -2056,15 +1484,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVectorType').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IVectorStep InVectorListUses {
 			get {
 				var step = new VectorStep(Path);
@@ -2124,15 +1543,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVectorRange').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IVectorTypeStep InVectorTypeListUses {
 			get {
 				var step = new VectorTypeStep(Path);
@@ -2190,15 +1600,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVectorRangeLevel').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IVectorRangeStep InVectorRangeListUses {
 			get {
 				var step = new VectorRangeStep(Path);
@@ -2250,15 +1651,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVectorUnit').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IVectorStep InVectorListUses {
 			get {
@@ -2328,15 +1720,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVectorUnitPrefix').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IVectorStep InVectorListUses {
 			get {
 				var step = new VectorStep(Path);
@@ -2397,15 +1780,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IRootStep InRootContains {
-			get {
-				var step = new RootStep(Path);
-				Path.AddSegment(step, "inE('RootContainsVectorUnitDerived').outV");
-				return step;
-			}
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public IVectorUnitStep DefinesVectorUnit {
 			get {

@@ -29,8 +29,7 @@ namespace Fabric.Api.Modify.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromRoot()
-				.ContainsUrlList.ToUrl
+				ApiFunc.NewPathFromType<Url>()
 					.CustomStep(filterStep)
 				.End();
 
@@ -187,8 +186,7 @@ namespace Fabric.Api.Modify.Tasks {
 			////
 
 			Descriptor descPath =
-				ApiFunc.NewPathFromRoot()
-				.ContainsDescriptorList.ToDescriptor
+				ApiFunc.NewPathFromType<Descriptor>()
 					.As(out descMatchAlias)
 				.UsesDescriptorType.ToDescriptorType
 					.Has(x => x.DescriptorTypeId, WeaverFuncHasOp.EqualTo, pDescTypeId)
@@ -226,8 +224,7 @@ namespace Fabric.Api.Modify.Tasks {
 			////
 
 			if ( pPrimArtRefId == null ) {
-				q = ApiFunc.NewPathFromRoot()
-					.ContainsDescriptorList.ToDescriptor
+				q = ApiFunc.NewPathFromType<Descriptor>()
 						.Retain(matches)
 						.As(out descNullAlias)
 					.RefinesPrimaryWithArtifact
@@ -240,8 +237,7 @@ namespace Fabric.Api.Modify.Tasks {
 			}
 
 			if ( pRelArtRefId == null ) {
-				q = ApiFunc.NewPathFromRoot()
-					.ContainsDescriptorList.ToDescriptor
+				q = ApiFunc.NewPathFromType<Descriptor>()
 						.Retain(matches)
 						.As(out descNullAlias)
 					.RefinesRelatedWithArtifact
@@ -254,8 +250,7 @@ namespace Fabric.Api.Modify.Tasks {
 			}
 
 			if ( pDescTypeRefId == null ) {
-				q = ApiFunc.NewPathFromRoot()
-					.ContainsDescriptorList.ToDescriptor
+				q = ApiFunc.NewPathFromType<Descriptor>()
 						.Retain(matches)
 						.As(out descNullAlias)
 					.RefinesTypeWithArtifact
@@ -270,8 +265,7 @@ namespace Fabric.Api.Modify.Tasks {
 			////
 
 			tx.AddQuery(
-				ApiFunc.NewPathFromRoot()
-				.ContainsDescriptorList.ToDescriptor
+				ApiFunc.NewPathFromType<Descriptor>()
 					.Retain(matches)
 					.Except(nulls)
 				.End()
@@ -286,8 +280,8 @@ namespace Fabric.Api.Modify.Tasks {
 																					long pRelActId) {
 			IWeaverFuncAs<Director> dirAlias;
 
-			IWeaverQuery q = ApiFunc.NewPathFromRoot()
-				.ContainsDirectorList.ToDirector
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromType<Director>()
 					.As(out dirAlias)
 				.UsesDirectorType.ToDirectorType
 					.Has(x => x.DirectorTypeId, WeaverFuncHasOp.EqualTo, pDirTypeId)
@@ -307,18 +301,18 @@ namespace Fabric.Api.Modify.Tasks {
 		public Eventor GetEventorMatch(IApiContext pApiCtx, long pEveTypeId, long pEvePrecId,
 																					long pDateTime) {
 			IWeaverFuncAs<Eventor> eveAlias;
-			
-			IWeaverQuery q = ApiFunc.NewPathFromRoot()
-				.ContainsEventorList.ToEventor
-						.Has(x => x.DateTime, WeaverFuncHasOp.EqualTo, pDateTime)
-						.As(out eveAlias)
-					.UsesEventorType.ToEventorType
-						.Has(x => x.EventorTypeId, WeaverFuncHasOp.EqualTo, pEveTypeId)
-					.Back(eveAlias)
-					.UsesEventorPrecision.ToEventorPrecision
-						.Has(x => x.EventorPrecisionId, WeaverFuncHasOp.EqualTo, pEvePrecId)
-					.Back(eveAlias)
-					.End();
+
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromType<Eventor>()
+					.Has(x => x.DateTime, WeaverFuncHasOp.EqualTo, pDateTime)
+					.As(out eveAlias)
+				.UsesEventorType.ToEventorType
+					.Has(x => x.EventorTypeId, WeaverFuncHasOp.EqualTo, pEveTypeId)
+				.Back(eveAlias)
+				.UsesEventorPrecision.ToEventorPrecision
+					.Has(x => x.EventorPrecisionId, WeaverFuncHasOp.EqualTo, pEvePrecId)
+				.Back(eveAlias)
+				.End();
 			
 			return pApiCtx.DbSingle<Eventor>("GetEventorMatch", q);
 		}
@@ -326,15 +320,15 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Identor GetIdentorMatch(IApiContext pApiCtx, long pIdenTypeId, string pValue) {
 			IWeaverFuncAs<Identor> idenAlias;
-			
-			IWeaverQuery q = ApiFunc.NewPathFromRoot()
-				.ContainsIdentorList.ToIdentor
+
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromType<Identor>()
 					.Has(x => x.Value, WeaverFuncHasOp.EqualTo, pValue)
 					.As(out idenAlias)
-					.UsesIdentorType.ToIdentorType
+				.UsesIdentorType.ToIdentorType
 					.Has(x => x.IdentorTypeId, WeaverFuncHasOp.EqualTo, pIdenTypeId)
-					.Back(idenAlias)
-					.End();
+				.Back(idenAlias)
+				.End();
 			
 			return pApiCtx.DbSingle<Identor>("GetIdentorMatch", q);
 		}
@@ -344,8 +338,8 @@ namespace Fabric.Api.Modify.Tasks {
 																						double pZ) {
 			IWeaverFuncAs<Locator> locAlias;
 			
-			IWeaverQuery q = ApiFunc.NewPathFromRoot()
-				.ContainsLocatorList.ToLocator
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromType<Locator>()
 						.Has(x => x.ValueX, WeaverFuncHasOp.EqualTo, pX)
 						.Has(x => x.ValueY, WeaverFuncHasOp.EqualTo, pY)
 						.Has(x => x.ValueZ, WeaverFuncHasOp.EqualTo, pZ)
@@ -364,8 +358,8 @@ namespace Fabric.Api.Modify.Tasks {
 		                      									long pVecUnitId, long pVecUnitPrefId) {
 			IWeaverFuncAs<Vector> locAlias;
 			
-			IWeaverQuery q = ApiFunc.NewPathFromRoot()
-				.ContainsVectorList.ToVector
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromType<Vector>()
 						.Has(x => x.Value, WeaverFuncHasOp.EqualTo, pValue)
 						.As(out locAlias)
 					.UsesVectorType.ToVectorType
@@ -424,8 +418,7 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
-									IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar, 
-									out IWeaverVarAlias<Url> pUrlVar) {
+									IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();
 			url.UrlId = pApiCtx.GetSharpflakeId<Url>();
 			url.AbsoluteUrl = pAbsoluteUrl;
@@ -434,15 +427,13 @@ namespace Fabric.Api.Modify.Tasks {
 			url.Created = pApiCtx.UtcNow.Ticks;
 
 			var urlBuild = new UrlBuilder(pTxBuild, url);
-			urlBuild.AddNode(pRootVar);
 			urlBuild.SetInMemberCreates(pMemVar);
 			pUrlVar = urlBuild.NodeVar;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
-						string pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar, 
-						out IWeaverVarAlias<Class> pClassVar) {
+				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			var c = new Class();
 			c.ClassId = pApiCtx.GetSharpflakeId<Class>();
 			c.Name = pName;
@@ -452,7 +443,6 @@ namespace Fabric.Api.Modify.Tasks {
 			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var classBuild = new ClassBuilder(pTxBuild, c);
-			classBuild.AddNode(pRootVar);
 			classBuild.SetInMemberCreates(pMemVar);
 			pClassVar = classBuild.NodeVar;
 			return c.ClassId;
@@ -460,8 +450,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
-						string pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar, 
-						out IWeaverVarAlias<Instance> pInstVar) {
+				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Instance> pInstVar) {
 			var c = new Instance();
 			c.InstanceId = pApiCtx.GetSharpflakeId<Instance>();
 			c.Name = pName;
@@ -471,7 +460,6 @@ namespace Fabric.Api.Modify.Tasks {
 			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var instBuild = new InstanceBuilder(pTxBuild, c);
-			instBuild.AddNode(pRootVar);
 			instBuild.SetInMemberCreates(pMemVar);
 			pInstVar = instBuild.NodeVar;
 		}

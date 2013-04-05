@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:06 PM
+// Generated on 4/4/2013 5:12:46 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -16,7 +16,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public static IFabNode ToDto(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
-				case "Root": return ToDto<FabRoot>(pDbDto);
 				case "Artifact": return ToDto<FabArtifact>(pDbDto);
 				case "App": return ToDto<FabApp>(pDbDto);
 				case "Class": return ToDto<FabClass>(pDbDto);
@@ -54,7 +53,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public static string ToDtoJson(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
-				case "Root": return ToDtoJson<FabRoot>(pDbDto);
 				case "Artifact": return ToDtoJson<FabArtifact>(pDbDto);
 				case "App": return ToDtoJson<FabApp>(pDbDto);
 				case "Class": return ToDtoJson<FabClass>(pDbDto);

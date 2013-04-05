@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 4:31:59 PM
+// Generated on 4/4/2013 5:12:45 PM
 
 using Fabric.Domain;
 using Weaver;
@@ -18,7 +18,6 @@ namespace Fabric.Db.Data.Setups {
 
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Node>(x => x.FabType, n));
 
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Root>(x => x.RootId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Artifact>(x => x.ArtifactId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<App>(x => x.AppId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Class>(x => x.ClassId, n));

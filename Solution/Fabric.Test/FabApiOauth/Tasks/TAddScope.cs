@@ -116,7 +116,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pScripted.Params, "_TP2", vAllow);
 			TestUtil.CheckParam(pScripted.Params, "_TP3", vUtcNow.Ticks);
 			TestUtil.CheckParam(pScripted.Params, "_TP4", (int)NodeFabType.OauthScope);
-			TestUtil.CheckParam(pScripted.Params, "_TP5", typeof(RootContainsOauthScope).Name);
 			TestUtil.CheckParam(pScripted.Params, "_TP6", vAppId);
 			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(OauthScopeUsesApp).Name);
 			TestUtil.CheckParam(pScripted.Params, "_TP8", vUserId);

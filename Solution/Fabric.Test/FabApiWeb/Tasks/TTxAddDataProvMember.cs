@@ -13,7 +13,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TTxAddDataProvMember : TWebTasks {
 
 		private static readonly string Query = 
-			"_V0=[];"+ //Root
 			"_V1=[];"+ //App
 			"_V2=g.addVertex(["+
 				typeof(Member).Name+"Id:_TP0,"+
@@ -59,12 +58,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
 			IWeaverVarAlias<App> appVar = GetTxVar<App>();
 			IWeaverVarAlias<Member> memberVar;
 
-			Tasks.TxAddDataProvMember(MockApiCtx.Object, TxBuild,
-				rootVar, appVar, vUserId, out memberVar);
+			Tasks.TxAddDataProvMember(MockApiCtx.Object, TxBuild, appVar, vUserId, out memberVar);
 			FinishTx();
 
 			Assert.NotNull(memberVar, "MemberVar should not be null.");
@@ -73,15 +70,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewMemberId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", (int)NodeFabType.Member);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(RootContainsMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vUserId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", typeof(UserDefinesMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(AppDefinesMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vNewMtaId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vUtcNow.Ticks);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", (int)NodeFabType.MemberTypeAssign);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", 
-				typeof(RootContainsMemberTypeAssign).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
 				(long)SetupUsers.MemberTypeAssignId.FabFabDataBySystem);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11", 

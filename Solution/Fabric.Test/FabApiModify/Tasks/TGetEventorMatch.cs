@@ -11,16 +11,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetEventorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
-				".outE('"+typeof(RootContainsEventor).Name+"').inV"+
-					".has('DateTime',Tokens.T.eq,_P1)"+
-					".as('step4')"+
-				".outE('"+typeof(EventorUsesEventorType).Name+"').inV"+
-					".has('"+typeof(EventorType).Name+"Id',Tokens.T.eq,_P2)"+
-				".back('step4')"+
-				".outE('"+typeof(EventorUsesEventorPrecision).Name+"').inV"+
-					".has('"+typeof(EventorPrecision).Name+"Id',Tokens.T.eq,_P3)"+
-				".back('step4');";
+			"g.V('FabType',_P0)[0]"+
+				".has('DateTime',Tokens.T.eq,_P1)"+
+				".as('step4')"+
+			".outE('"+typeof(EventorUsesEventorType).Name+"').inV"+
+				".has('"+typeof(EventorType).Name+"Id',Tokens.T.eq,_P2)"+
+			".back('step4')"+
+			".outE('"+typeof(EventorUsesEventorPrecision).Name+"').inV"+
+				".has('"+typeof(EventorPrecision).Name+"Id',Tokens.T.eq,_P3)"+
+			".back('step4');";
 
 		private long vEveTypeId;
 		private long vEvePrecId;
@@ -47,7 +46,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetEventorMatch");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.Eventor);
 			TestUtil.CheckParam(pQuery.Params, "_P1", vDateTime);
 			TestUtil.CheckParam(pQuery.Params, "_P2", vEveTypeId);
 			TestUtil.CheckParam(pQuery.Params, "_P3", vEvePrecId);

@@ -1,6 +1,5 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
@@ -86,18 +85,15 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
-										IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar,
-										out IWeaverVarAlias<Url> pUrlVar);
+									IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Url> pUrlVar);
 
 		/*--------------------------------------------------------------------------------------------*/
 		long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
-						string	 pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar,
-						out IWeaverVarAlias<Class> pClassVar);
+					string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
-						string pNote, IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Member> pMemVar,
-						out IWeaverVarAlias<Instance> pInstVar);
+				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Instance> pInstVar);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

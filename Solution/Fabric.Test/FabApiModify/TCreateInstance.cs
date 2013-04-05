@@ -40,7 +40,6 @@ namespace Fabric.Test.FabApiModify {
 						vName,
 						vDisamb,
 						vNote,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutInstanceVar
 					)

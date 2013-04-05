@@ -42,8 +42,9 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Root NewPathFromRoot() {
-			return WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode;
+		public static T NewPathFromType<T>() where T : class, INode, new() {
+			return WeaverTasks.BeginPath<T>(x => x.FabType, 
+				(int)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -11,8 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetUrlByAbsoluteUrl : TModifyTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
-				".outE('"+typeof(RootContainsUrl).Name+"').inV"+
+			"g.V('FabType',_P0)[0]"+
 				".filter{it.getProperty('AbsoluteUrl').toLowerCase()==_P1};";
 
 		private string vAbsoluteUrl;
@@ -36,7 +35,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetUrlByAbsoluteUrl");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.Url);
 			TestUtil.CheckParam(pQuery.Params, "_P1", vAbsoluteUrl.ToLower());
 
 			return vUrlResult;

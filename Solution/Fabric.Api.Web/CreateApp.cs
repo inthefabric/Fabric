@@ -46,16 +46,14 @@ namespace Fabric.Api.Web {
 
 			////
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<App> appVar;
 			IWeaverVarAlias<Member> memVar;
 			Action<IWeaverVarAlias<Member>> setMemberCreates;
 
 			var txb = new TxBuilder();
 
-			txb.GetRoot(out rootVar);
-			Tasks.TxAddApp(ApiCtx, txb, vName, rootVar, user.UserId, out appVar, out setMemberCreates);
-			Tasks.TxAddDataProvMember(ApiCtx, txb, rootVar, appVar, user.UserId, out memVar);
+			Tasks.TxAddApp(ApiCtx, txb, vName, user.UserId, out appVar, out setMemberCreates);
+			Tasks.TxAddDataProvMember(ApiCtx, txb, appVar, user.UserId, out memVar);
 			setMemberCreates(memVar);
 
 			////

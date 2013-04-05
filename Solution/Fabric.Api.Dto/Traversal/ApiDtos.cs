@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:06 PM
+// Generated on 4/4/2013 5:12:46 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -87,50 +87,6 @@ namespace Fabric.Api.Dto.Traversal {
 			base.FillWithNode(pNode);
 			Performed = pNode.Performed;
 			Note = pNode.Note;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabRoot : FabNode {
-		
-		[DtoProp(IsOptional=false)]
-		public int RootId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"RootId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabRoot() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabRoot(Root pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return RootId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			string val;
-
-			val = pData["RootId"];
-			RootId = int.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Root pNode) {
-			base.FillWithNode(pNode);
-			RootId = pNode.RootId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

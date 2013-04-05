@@ -13,12 +13,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private static readonly string QueryStart = 
 			"_V0=[];"+
 			"_V1=[];"+
-			"g.V('"+typeof(Root).Name+"Id',_TP0)[0]"+
-				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
-					".as('step3')"+
-				".outE('"+typeof(DescriptorUsesDescriptorType).Name+"').inV"+
-					".has('"+typeof(DescriptorType).Name+"Id',Tokens.T.eq,_TP1)"+
-				".back('step3')";
+			"g.V('FabType',_TP0)[0]"+
+				".as('step3')"+
+			".outE('"+typeof(DescriptorUsesDescriptorType).Name+"').inV"+
+				".has('"+typeof(DescriptorType).Name+"Id',Tokens.T.eq,_TP1)"+
+			".back('step3')";
 
 		private const string QueryMid = 
 					".dedup"+
@@ -26,10 +25,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryEnd = 
-			"g.V('"+typeof(Root).Name+"Id',_TP5)[0]"+
-				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
-					".retain(_V0)"+
-					".except(_V1);";
+			"g.V('FabType',_TP5)[0]"+
+				".retain(_V0)"+
+				".except(_V1);";
 
 		private static readonly string QueryPrimRef = 
 				".outE('"+typeof(DescriptorRefinesPrimaryWithArtifact).Name+"')"+
@@ -47,8 +45,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				".back('step3')";
 
 		private static readonly string QueryPrimRefNull = 
-			"g.V('"+typeof(Root).Name+"Id',_TP{{NullPR}})[0]"+
-				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
+			"g.V('FabType',_TP{{NullPR}})[0]"+
 					".retain(_V0)"+
 					".as('step4')"+
 				".outE('"+typeof(DescriptorRefinesPrimaryWithArtifact).Name+"')"+
@@ -57,8 +54,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryRelRefNull = 
-			"g.V('"+typeof(Root).Name+"Id',_TP{{NullRR}})[0]"+
-				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
+			"g.V('FabType',_TP{{NullRR}})[0]"+
 					".retain(_V0)"+
 					".as('step4')"+
 				".outE('"+typeof(DescriptorRefinesRelatedWithArtifact).Name+"')"+
@@ -67,8 +63,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".iterate();";
 
 		private static readonly string QueryTypeRefNull = 
-			"g.V('"+typeof(Root).Name+"Id',_TP{{NullTR}})[0]"+
-				".outE('"+typeof(RootContainsDescriptor).Name+"').inV"+
+			"g.V('FabType',_TP{{NullTR}})[0]"+
 					".retain(_V0)"+
 					".as('step4')"+
 				".outE('"+typeof(DescriptorRefinesTypeWithArtifact).Name+"')"+
@@ -132,26 +127,28 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			if ( vPrimArtRefId == null ) {
 				expect += QueryPrimRefNull;
 				expect = expect.Replace("{{NullPR}}", ""+tp);
-				TestUtil.CheckParam(pTx.Params, "_TP"+tp, 0);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, (int)NodeFabType.Descriptor);
 				++tp;
 			}
 
 			if ( vRelArtRefId == null ) {
 				expect += QueryRelRefNull;
 				expect = expect.Replace("{{NullRR}}", ""+tp);
-				TestUtil.CheckParam(pTx.Params, "_TP"+tp, 0);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, (int)NodeFabType.Descriptor);
 				++tp;
 			}
 
 			if ( vDescTypeRefId == null ) {
 				expect += QueryTypeRefNull;
 				expect = expect.Replace("{{NullTR}}", ""+tp);
-				TestUtil.CheckParam(pTx.Params, "_TP"+tp, 0);
+				TestUtil.CheckParam(pTx.Params, "_TP"+tp, (int)NodeFabType.Descriptor);
 				++tp;
 			}
 
 			expect += QueryEnd;
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(pTx.Params, "_TP0", (int)NodeFabType.Descriptor);
+			TestUtil.CheckParam(pTx.Params, "_TP1", (int)NodeFabType.Descriptor);
 
 			return vDescriptorResult;
 		}

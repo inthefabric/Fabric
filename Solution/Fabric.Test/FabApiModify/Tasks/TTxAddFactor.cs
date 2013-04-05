@@ -11,7 +11,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Factor).Name+"Id:_TP1,"+
 				"IsDefining:_TP2,"+
@@ -75,7 +74,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vUtcNow.Ticks);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vNote);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Factor);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(RootContainsFactor).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vPrimArtId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
 				typeof(FactorUsesPrimaryArtifact).Name);

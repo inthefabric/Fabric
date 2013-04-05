@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseClassNodeSteps.tt</DependentUpon>
     </Compile>
+    <Compile Include="Steps\Nodes\RootStep.cs">
+      <DependentUpon>RootStep.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Steps\Nodes\NodeStepInterfaces.cs">
       <DependentUpon>NodeStepInterfaces.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -100,6 +105,10 @@
     <None Include="Steps\Nodes\BaseClassNodeSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BaseClassNodeSteps.cs</LastGenOutput>
+    </None>
+    <None Include="Steps\Nodes\RootStep.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RootStep.cs</LastGenOutput>
     </None>
     <None Include="Steps\Nodes\NodeStepInterfaces.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

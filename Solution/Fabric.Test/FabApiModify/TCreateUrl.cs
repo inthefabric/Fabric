@@ -37,7 +37,6 @@ namespace Fabric.Test.FabApiModify {
 						It.IsAny<TxBuilder>(),
 						vAbsoluteUrl,
 						vName,
-						It.IsAny<IWeaverVarAlias<Root>>(),
 						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutUrlVar
 					)

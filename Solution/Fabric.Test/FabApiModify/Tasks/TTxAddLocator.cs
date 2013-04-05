@@ -10,7 +10,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddLocator : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Root).Name+"Id',_TP0)[0].next();"+
 			"_V1=g.addVertex(["+
 				typeof(Locator).Name+"Id:_TP1,"+
 				"ValueX:_TP2,"+
@@ -65,8 +64,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vValueY);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vValueZ);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Locator);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
-				typeof(RootContainsLocator).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", f.FactorId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
 				typeof(FactorUsesLocator).Name);

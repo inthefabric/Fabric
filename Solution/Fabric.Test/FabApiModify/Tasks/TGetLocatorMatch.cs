@@ -11,15 +11,14 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetLocatorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Root).Name+"Id',_P0)[0]"+
-				".outE('"+typeof(RootContainsLocator).Name+"').inV"+
-					".has('ValueX',Tokens.T.eq,_P1)"+
-					".has('ValueY',Tokens.T.eq,_P2)"+
-					".has('ValueZ',Tokens.T.eq,_P3)"+
-					".as('step6')"+
-				".outE('"+typeof(LocatorUsesLocatorType).Name+"').inV"+
-					".has('"+typeof(LocatorType).Name+"Id',Tokens.T.eq,_P4)"+
-				".back('step6');";
+			"g.V('FabType',_P0)[0]"+
+				".has('ValueX',Tokens.T.eq,_P1)"+
+				".has('ValueY',Tokens.T.eq,_P2)"+
+				".has('ValueZ',Tokens.T.eq,_P3)"+
+				".as('step6')"+
+			".outE('"+typeof(LocatorUsesLocatorType).Name+"').inV"+
+				".has('"+typeof(LocatorType).Name+"Id',Tokens.T.eq,_P4)"+
+			".back('step6');";
 
 		private long vLocTypeId;
 		private double vValueX;
@@ -48,7 +47,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetLocatorMatch");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", 0);
+			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.Locator);
 			TestUtil.CheckParam(pQuery.Params, "_P1", vValueX);
 			TestUtil.CheckParam(pQuery.Params, "_P2", vValueY);
 			TestUtil.CheckParam(pQuery.Params, "_P3", vValueZ);

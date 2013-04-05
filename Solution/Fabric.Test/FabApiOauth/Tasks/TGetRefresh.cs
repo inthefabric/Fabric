@@ -16,18 +16,17 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAccessTx =
 			"_V0=[];"+
-			"g.V('RootId',_TP0)[0]"+
-				".outE('"+typeof(RootContainsOauthAccess).Name+"').inV"+
-					".has('Refresh',Tokens.T.eq,_TP1)"+
-					".has('IsClientOnly',Tokens.T.eq,_TP2)"+
-					".as('step5')"+
-				".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
-					".aggregate(_V0)"+
-				".back('step5')"+
-				".outE('"+typeof(OauthAccessUsesUser).Name+"').inV"+
-					".aggregate(_V0)"+
-					".iterate();"+
-			"_V0;";
+			"g.V('FabType',_TP0)[0]"+
+				".has('Refresh',Tokens.T.eq,_TP1)"+
+				".has('IsClientOnly',Tokens.T.eq,_TP2)"+
+				".as('step5')"+
+			".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
+				".aggregate(_V0)"+
+			".back('step5')"+
+			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV"+
+				".aggregate(_V0)"+
+				".iterate();"+
+		"_V0;";
 
 		private string vRefToken;
 		private App vResultApp;
@@ -78,7 +77,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap.Increment(GetRefresh.Query.GetAppUserTx+"");
 
 			Assert.AreEqual(QueryGetAccessTx, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
+			TestUtil.CheckParam(pTx.Params, "_TP0", (int)NodeFabType.OauthAccess);
 			TestUtil.CheckParam(pTx.Params, "_TP1", vRefToken);
 			TestUtil.CheckParam(pTx.Params, "_TP2", false);
 

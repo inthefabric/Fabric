@@ -139,18 +139,16 @@ namespace Fabric.Api.Oauth.Tasks {
 			memBuild.SetInAppDefines(vAppId);
 			memBuild.SetInUserDefines(vUserId);
 
-			AddMemberTypeAssignWithTx(txb, memBuild.InRootContains, memBuild.NodeVar);
+			AddMemberTypeAssignWithTx(txb, memBuild.NodeVar);
 			ApiCtx.DbData(Query.AddMemberTx+"", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void UpdateMemberType(Member pMember, MemberTypeAssign pAssign) {
 			var txb = new TxBuilder();
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<MemberTypeAssign> mtaVar;
 
-			txb.GetRoot(out rootVar);
 			txb.GetNode(pAssign, out mtaVar);
 			
 			//Remove original Member-Has-MemberTypeAssign relationship
@@ -169,22 +167,20 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			//Finish transaction
 			
-			AddMemberTypeAssignWithTx(txb, rootVar, memVar);
+			AddMemberTypeAssignWithTx(txb, memVar);
 			ApiCtx.DbData(Query.UpdateMemberTx+"", txb.Finish());
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
-																	IWeaverVarAlias<Member> pMemVar) {
+		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Member> pMemVar) {
 			var newAssign = new MemberTypeAssign();
 			newAssign.MemberTypeAssignId = ApiCtx.GetSharpflakeId<MemberTypeAssign>();
 			newAssign.Performed = ApiCtx.UtcNow.Ticks;
 			newAssign.Note = "First login.";
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
-			mtaBuild.AddNode(pRootVar);
 			mtaBuild.SetInMemberHas(pMemVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:05 PM
+// Generated on 4/4/2013 5:12:46 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -10,8 +10,7 @@ using Weaver.Items;
 namespace Fabric.Infrastructure.Weaver {
 
 	/*================================================================================================*/
-	public abstract class NodeForTypeBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
-						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+	public abstract class NodeForTypeBuilder<T> : DomainBuilder<T> where T : INode, new() {
 
 		
 
@@ -26,8 +25,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public abstract class NodeForActionBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
-						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+	public abstract class NodeForActionBuilder<T> : DomainBuilder<T> where T : INode, new() {
 
 		
 
@@ -42,8 +40,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public abstract class ArtifactBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
-						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+	public abstract class ArtifactBuilder<T> : DomainBuilder<T> where T : INode, new() {
 
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesPrimary { get; private set; }
@@ -288,7 +285,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class AppBuilder : ArtifactBuilder<App, RootContainsApp> {
+	public class AppBuilder : ArtifactBuilder<App> {
 
 		public virtual IWeaverVarAlias<Email> UsesEmail { get; private set; }
 		public virtual IList<IWeaverVarAlias<Member>> DefinesMemberList { get; private set; }
@@ -505,7 +502,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class ClassBuilder : ArtifactBuilder<Class, RootContainsClass> {
+	public class ClassBuilder : ArtifactBuilder<Class> {
 
 		
 
@@ -525,7 +522,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EmailBuilder : DomainBuilder<Email, RootContainsEmail> {
+	public class EmailBuilder : DomainBuilder<Email> {
 
 		public virtual IWeaverVarAlias<App> InAppUses { get; private set; }
 		public virtual IWeaverVarAlias<User> InUserUses { get; private set; }
@@ -609,7 +606,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class InstanceBuilder : ArtifactBuilder<Instance, RootContainsInstance> {
+	public class InstanceBuilder : ArtifactBuilder<Instance> {
 
 		
 
@@ -629,7 +626,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberBuilder : DomainBuilder<Member, RootContainsMember> {
+	public class MemberBuilder : DomainBuilder<Member> {
 
 		public virtual IWeaverVarAlias<App> InAppDefines { get; private set; }
 		public virtual IWeaverVarAlias<MemberTypeAssign> HasMemberTypeAssign { get; private set; }
@@ -877,7 +874,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeBuilder : NodeForTypeBuilder<MemberType, RootContainsMemberType> {
+	public class MemberTypeBuilder : NodeForTypeBuilder<MemberType> {
 
 		public virtual IList<IWeaverVarAlias<MemberTypeAssign>> InMemberTypeAssignListUses { get; private set; }
 		
@@ -930,7 +927,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssignBuilder : NodeForActionBuilder<MemberTypeAssign, RootContainsMemberTypeAssign> {
+	public class MemberTypeAssignBuilder : NodeForActionBuilder<MemberTypeAssign> {
 
 		public virtual IWeaverVarAlias<Member> InMemberHas { get; private set; }
 		public virtual IWeaverVarAlias<Member> InMemberHasHistoric { get; private set; }
@@ -1078,7 +1075,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class UrlBuilder : ArtifactBuilder<Url, RootContainsUrl> {
+	public class UrlBuilder : ArtifactBuilder<Url> {
 
 		
 
@@ -1098,7 +1095,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class UserBuilder : ArtifactBuilder<User, RootContainsUser> {
+	public class UserBuilder : ArtifactBuilder<User> {
 
 		public virtual IWeaverVarAlias<Email> UsesEmail { get; private set; }
 		public virtual IList<IWeaverVarAlias<Member>> DefinesMemberList { get; private set; }
@@ -1282,7 +1279,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class FactorBuilder : DomainBuilder<Factor, RootContainsFactor> {
+	public class FactorBuilder : DomainBuilder<Factor> {
 
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesPrimaryArtifact { get; private set; }
@@ -1654,7 +1651,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class FactorAssertionBuilder : NodeForTypeBuilder<FactorAssertion, RootContainsFactorAssertion> {
+	public class FactorAssertionBuilder : NodeForTypeBuilder<FactorAssertion> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		
@@ -1707,8 +1704,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public abstract class FactorElementNodeBuilder<T, TRootRel> : DomainBuilder<T, TRootRel>
-						where T : INode, new() where TRootRel : WeaverRel<Root, Contains, T>, new() {
+	public abstract class FactorElementNodeBuilder<T> : DomainBuilder<T> where T : INode, new() {
 
 		
 
@@ -1723,7 +1719,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorBuilder : FactorElementNodeBuilder<Descriptor, RootContainsDescriptor> {
+	public class DescriptorBuilder : FactorElementNodeBuilder<Descriptor> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<DescriptorType> UsesDescriptorType { get; private set; }
@@ -1904,7 +1900,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorTypeBuilder : NodeForTypeBuilder<DescriptorType, RootContainsDescriptorType> {
+	public class DescriptorTypeBuilder : NodeForTypeBuilder<DescriptorType> {
 
 		public virtual IList<IWeaverVarAlias<Descriptor>> InDescriptorListUses { get; private set; }
 		
@@ -1957,7 +1953,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DirectorBuilder : FactorElementNodeBuilder<Director, RootContainsDirector> {
+	public class DirectorBuilder : FactorElementNodeBuilder<Director> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<DirectorType> UsesDirectorType { get; private set; }
@@ -2106,7 +2102,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DirectorTypeBuilder : NodeForTypeBuilder<DirectorType, RootContainsDirectorType> {
+	public class DirectorTypeBuilder : NodeForTypeBuilder<DirectorType> {
 
 		public virtual IList<IWeaverVarAlias<Director>> InDirectorListUses { get; private set; }
 		
@@ -2159,7 +2155,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class DirectorActionBuilder : NodeForTypeBuilder<DirectorAction, RootContainsDirectorAction> {
+	public class DirectorActionBuilder : NodeForTypeBuilder<DirectorAction> {
 
 		public virtual IList<IWeaverVarAlias<Director>> InDirectorListUsesPrimary { get; private set; }
 		public virtual IList<IWeaverVarAlias<Director>> InDirectorListUsesRelated { get; private set; }
@@ -2245,7 +2241,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EventorBuilder : FactorElementNodeBuilder<Eventor, RootContainsEventor> {
+	public class EventorBuilder : FactorElementNodeBuilder<Eventor> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<EventorType> UsesEventorType { get; private set; }
@@ -2362,7 +2358,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EventorTypeBuilder : NodeForTypeBuilder<EventorType, RootContainsEventorType> {
+	public class EventorTypeBuilder : NodeForTypeBuilder<EventorType> {
 
 		public virtual IList<IWeaverVarAlias<Eventor>> InEventorListUses { get; private set; }
 		
@@ -2415,7 +2411,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EventorPrecisionBuilder : NodeForTypeBuilder<EventorPrecision, RootContainsEventorPrecision> {
+	public class EventorPrecisionBuilder : NodeForTypeBuilder<EventorPrecision> {
 
 		public virtual IList<IWeaverVarAlias<Eventor>> InEventorListUses { get; private set; }
 		
@@ -2468,7 +2464,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class IdentorBuilder : FactorElementNodeBuilder<Identor, RootContainsIdentor> {
+	public class IdentorBuilder : FactorElementNodeBuilder<Identor> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<IdentorType> UsesIdentorType { get; private set; }
@@ -2553,7 +2549,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class IdentorTypeBuilder : NodeForTypeBuilder<IdentorType, RootContainsIdentorType> {
+	public class IdentorTypeBuilder : NodeForTypeBuilder<IdentorType> {
 
 		public virtual IList<IWeaverVarAlias<Identor>> InIdentorListUses { get; private set; }
 		
@@ -2606,7 +2602,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class LocatorBuilder : FactorElementNodeBuilder<Locator, RootContainsLocator> {
+	public class LocatorBuilder : FactorElementNodeBuilder<Locator> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<LocatorType> UsesLocatorType { get; private set; }
@@ -2691,7 +2687,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class LocatorTypeBuilder : NodeForTypeBuilder<LocatorType, RootContainsLocatorType> {
+	public class LocatorTypeBuilder : NodeForTypeBuilder<LocatorType> {
 
 		public virtual IList<IWeaverVarAlias<Locator>> InLocatorListUses { get; private set; }
 		
@@ -2744,7 +2740,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorBuilder : FactorElementNodeBuilder<Vector, RootContainsVector> {
+	public class VectorBuilder : FactorElementNodeBuilder<Vector> {
 
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUses { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesAxisArtifact { get; private set; }
@@ -2925,7 +2921,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorTypeBuilder : NodeForTypeBuilder<VectorType, RootContainsVectorType> {
+	public class VectorTypeBuilder : NodeForTypeBuilder<VectorType> {
 
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUses { get; private set; }
 		public virtual IWeaverVarAlias<VectorRange> UsesVectorRange { get; private set; }
@@ -3010,7 +3006,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeBuilder : NodeForTypeBuilder<VectorRange, RootContainsVectorRange> {
+	public class VectorRangeBuilder : NodeForTypeBuilder<VectorRange> {
 
 		public virtual IList<IWeaverVarAlias<VectorType>> InVectorTypeListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorRangeLevel>> UsesVectorRangeLevelList { get; private set; }
@@ -3096,7 +3092,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorRangeLevelBuilder : NodeForTypeBuilder<VectorRangeLevel, RootContainsVectorRangeLevel> {
+	public class VectorRangeLevelBuilder : NodeForTypeBuilder<VectorRangeLevel> {
 
 		public virtual IList<IWeaverVarAlias<VectorRange>> InVectorRangeListUses { get; private set; }
 		
@@ -3149,7 +3145,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitBuilder : NodeForTypeBuilder<VectorUnit, RootContainsVectorUnit> {
+	public class VectorUnitBuilder : NodeForTypeBuilder<VectorUnit> {
 
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorUnitDerived>> InVectorUnitDerivedListDefines { get; private set; }
@@ -3268,7 +3264,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitPrefixBuilder : NodeForTypeBuilder<VectorUnitPrefix, RootContainsVectorUnitPrefix> {
+	public class VectorUnitPrefixBuilder : NodeForTypeBuilder<VectorUnitPrefix> {
 
 		public virtual IList<IWeaverVarAlias<Vector>> InVectorListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<VectorUnitDerived>> InVectorUnitDerivedListUses { get; private set; }
@@ -3354,7 +3350,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class VectorUnitDerivedBuilder : NodeForTypeBuilder<VectorUnitDerived, RootContainsVectorUnitDerived> {
+	public class VectorUnitDerivedBuilder : NodeForTypeBuilder<VectorUnitDerived> {
 
 		public virtual IWeaverVarAlias<VectorUnit> DefinesVectorUnit { get; private set; }
 		public virtual IWeaverVarAlias<VectorUnit> RaisesToExpVectorUnit { get; private set; }
@@ -3470,7 +3466,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthAccessBuilder : DomainBuilder<OauthAccess, RootContainsOauthAccess> {
+	public class OauthAccessBuilder : DomainBuilder<OauthAccess> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -3554,7 +3550,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthDomainBuilder : DomainBuilder<OauthDomain, RootContainsOauthDomain> {
+	public class OauthDomainBuilder : DomainBuilder<OauthDomain> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		
@@ -3606,7 +3602,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthGrantBuilder : DomainBuilder<OauthGrant, RootContainsOauthGrant> {
+	public class OauthGrantBuilder : DomainBuilder<OauthGrant> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -3690,7 +3686,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthScopeBuilder : DomainBuilder<OauthScope, RootContainsOauthScope> {
+	public class OauthScopeBuilder : DomainBuilder<OauthScope> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }

@@ -861,7 +861,6 @@ namespace Fabric.Db.Data.Setups {
 			d.DescriptorId = ++vIdCount;
 
 			vSet.AddNodeAndIndex(d, x => x.DescriptorId, vTestMode);
-			vSet.AddRootRel<RootContainsDescriptor>(d, vTestMode);
 
 			var relDt = DataRel.Create(d, new DescriptorUsesDescriptorType(),
 				vSet.GetNode<DescriptorType>((long)pTypeId), vTestMode);
@@ -893,7 +892,6 @@ namespace Fabric.Db.Data.Setups {
 			d.DirectorId = ++vIdCount;
 
 			vSet.AddNodeAndIndex(d, x => x.DirectorId, vTestMode);
-			vSet.AddRootRel<RootContainsDirector>(d, vTestMode);
 
 			var relDt = DataRel.Create(d, new DirectorUsesDirectorType(),
 				vSet.GetNode<DirectorType>((long)pTypeId), vTestMode);
@@ -915,7 +913,6 @@ namespace Fabric.Db.Data.Setups {
 			e.DateTime = pDate.Ticks;
 
 			vSet.AddNodeAndIndex(e, x => x.EventorId, vTestMode);
-			vSet.AddRootRel<RootContainsEventor>(e, vTestMode);
 
 			var relEt = DataRel.Create(e, new EventorUsesEventorType(),
 				vSet.GetNode<EventorType>((long)pTypeId), vTestMode);
@@ -933,7 +930,6 @@ namespace Fabric.Db.Data.Setups {
 			i.Value = pValue;
 
 			vSet.AddNodeAndIndex(i, x => x.IdentorId, vTestMode);
-			vSet.AddRootRel<RootContainsIdentor>(i, vTestMode);
 
 			var relIt = DataRel.Create(i, new IdentorUsesIdentorType(),
 				vSet.GetNode<IdentorType>((long)pTypeId), vTestMode);
@@ -949,7 +945,6 @@ namespace Fabric.Db.Data.Setups {
 			l.ValueZ = pZ;
 
 			vSet.AddNodeAndIndex(l, x => x.LocatorId, vTestMode);
-			vSet.AddRootRel<RootContainsLocator>(l, vTestMode);
 
 			var relLt = DataRel.Create(l, new LocatorUsesLocatorType(),
 				vSet.GetNode<LocatorType>((long)pTypeId), vTestMode);
@@ -964,7 +959,6 @@ namespace Fabric.Db.Data.Setups {
 			v.Value = pValue;
 
 			vSet.AddNodeAndIndex(v, x => x.VectorId, vTestMode);
-			vSet.AddRootRel<RootContainsVector>(v, vTestMode);
 
 			var relVt = DataRel.Create(v, new VectorUsesVectorType(),
 				vSet.GetNode<VectorType>((long)pTypeId), vTestMode);
@@ -1010,7 +1004,6 @@ namespace Fabric.Db.Data.Setups {
 			}
 
 			vSet.AddNodeAndIndex(f, x => x.FactorId, vTestMode);
-			vSet.AddRootRel<RootContainsFactor>(f, vTestMode);
 
 			var relM = DataRel.Create(vSet.GetNode<Member>((long)pMemId),
 				new MemberCreatesFactor(), f, vTestMode);

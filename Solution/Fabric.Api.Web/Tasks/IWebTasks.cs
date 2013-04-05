@@ -56,26 +56,25 @@ namespace Fabric.Api.Web.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddEmail(IApiContext pApiCtx, TxBuilder pTxBuild, string pAddress,
-								IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Email> pEmailVar);
+																out IWeaverVarAlias<Email> pEmailVar);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddUser(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pPassword,
-								IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Email> pEmailVar,
-								out IWeaverVarAlias<User> pUserVar,
+								IWeaverVarAlias<Email> pEmailVar, out IWeaverVarAlias<User> pUserVar,
 								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
-								IWeaverVarAlias<User> pUserVar, out IWeaverVarAlias<Member> pMemVar);
+		void TxAddMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<User> pUserVar,
+																out IWeaverVarAlias<Member> pMemVar);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName,
-						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar,
-						out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction);
+		void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, long pUserId,
+										out IWeaverVarAlias<App> pAppVar,
+										out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,IWeaverVarAlias<Root> pRootVar, 
-					IWeaverVarAlias<App> pAppVar, long pUserId, out IWeaverVarAlias<Member> pMemVar);
+		void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<App> pAppVar,
+													long pUserId, out IWeaverVarAlias<Member> pMemVar);
 		
 	}
 

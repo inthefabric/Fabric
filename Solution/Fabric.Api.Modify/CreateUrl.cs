@@ -57,14 +57,12 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Url> urlVar;
 			IWeaverVarAlias<Member> memVar;
 
 			var txb = new TxBuilder();
-			txb.GetRoot(out rootVar);
 			txb.GetNode(m, out memVar);
-			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, rootVar, memVar, out urlVar);
+			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, memVar, out urlVar);
 			txb.RegisterVarWithTxBuilder(urlVar);
 
 			return ApiCtx.DbSingle<Url>("CreateUrlTx", txb.Finish(urlVar));

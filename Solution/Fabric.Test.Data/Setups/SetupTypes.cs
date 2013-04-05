@@ -106,7 +106,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.MemberTypeId, false);
-			pSet.AddRootRel<RootContainsMemberType>(t, false);
 		}
 
 
@@ -590,7 +589,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.DescriptorTypeId, false);
-			pSet.AddRootRel<RootContainsDescriptorType>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -601,7 +599,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.DirectorActionId, false);
-			pSet.AddRootRel<RootContainsDirectorAction>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -612,7 +609,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.DirectorTypeId, false);
-			pSet.AddRootRel<RootContainsDirectorType>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -623,7 +619,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.EventorPrecisionId, false);
-			pSet.AddRootRel<RootContainsEventorPrecision>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -634,7 +629,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.EventorTypeId, false);
-			pSet.AddRootRel<RootContainsEventorType>(t, false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -645,7 +639,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.FactorAssertionId, false);
-			pSet.AddRootRel<RootContainsFactorAssertion>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -656,7 +649,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.IdentorTypeId, false);
-			pSet.AddRootRel<RootContainsIdentorType>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -674,7 +666,6 @@ namespace Fabric.Db.Data.Setups {
 			t.MinZ = pMinZ;
 			t.MaxZ = pMaxZ;
 			pSet.AddNodeAndIndex(t, x => x.LocatorTypeId, false);
-			pSet.AddRootRel<RootContainsLocatorType>(t, false);
 		}
 
 
@@ -695,7 +686,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Description = "";
 			t.Position = pPosition;
 			pSet.AddNodeAndIndex(t, x => x.VectorRangeLevelId, false);
-			pSet.AddRootRel<RootContainsVectorRangeLevel>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -706,7 +696,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = "";
 			pSet.AddNodeAndIndex(t, x => x.VectorRangeId, false);
-			pSet.AddRootRel<RootContainsVectorRange>(t, false);
 
 			foreach ( VectorRangeLevelId level in pLevels ) {
 				var rel = DataRel.Create(t, new VectorRangeUsesVectorRangeLevel(),
@@ -725,7 +714,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Min = pMin;
 			t.Max = pMax;
 			pSet.AddNodeAndIndex(t, x => x.VectorTypeId, false);
-			pSet.AddRootRel<RootContainsVectorType>(t, false);
 
 			var rel = DataRel.Create(t, new VectorTypeUsesVectorRange(),
 				pSet.GetNode<VectorRange>((long)pRangeId), false);
@@ -739,7 +727,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Name = pName;
 			t.Description = pDesc;
 			pSet.AddNodeAndIndex(t, x => x.VectorUnitId, false);
-			pSet.AddRootRel<RootContainsVectorUnit>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -751,7 +738,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Description = pDesc;
 			t.Amount = pAmount;
 			pSet.AddNodeAndIndex(t, x => x.VectorUnitPrefixId, false);
-			pSet.AddRootRel<RootContainsVectorUnitPrefix>(t, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -764,7 +750,6 @@ namespace Fabric.Db.Data.Setups {
 			t.Description = "";
 			t.Exponent = pExp;
 			pSet.AddNodeAndIndex(t, x => x.VectorUnitDerivedId, false);
-			pSet.AddRootRel<RootContainsVectorUnitDerived>(t, false);
 
 			var relD = DataRel.Create(t, new VectorUnitDerivedDefinesVectorUnit(),
 				pSet.GetNode<VectorUnit>((long)pDefinesId), false);

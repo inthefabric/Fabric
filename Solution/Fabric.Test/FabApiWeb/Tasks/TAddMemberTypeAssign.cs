@@ -17,7 +17,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
 			"g.addEdge(_V0,_V1,_TP1);"+
-			"_V2=g.V('"+typeof(Root).Name+"Id',_TP2)[0].next();"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP3,"+
 				"Performed:_TP4,"+
@@ -71,7 +70,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP3", vNewMtaId);
 			TestUtil.CheckParam(pTx.Params, "_TP4", vUtcNow.Ticks);
 			TestUtil.CheckParam(pTx.Params, "_TP5", (int)NodeFabType.MemberTypeAssign);
-			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(RootContainsMemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP7", vAssigningMemberId);
 			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberCreatesMemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberHasMemberTypeAssign).Name);

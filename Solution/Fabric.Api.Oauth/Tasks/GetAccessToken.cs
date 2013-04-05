@@ -51,8 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.AddQuery(
-				NewPathFromRoot()
-				.ContainsOauthAccessList.ToOauthAccess
+				NewPathFromType<OauthAccess>()
 					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, vToken)
 					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
 					.Aggregate(agg)

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/2/2013 1:27:05 PM
+// Generated on 4/4/2013 5:12:45 PM
 
 using System.Collections.Generic;
 
@@ -17,38 +17,6 @@ namespace Fabric.Test.Util {
 		private static Dictionary<string, string[]> BuildNodeStepMap() {
 			var map = new Dictionary<string, string[]>();
 			
-			map.Add("Root", new string [] {
-				"/ContainsAppList",
-				"/ContainsClassList",
-				"/ContainsInstanceList",
-				"/ContainsMemberList",
-				"/ContainsMemberTypeList",
-				"/ContainsMemberTypeAssignList",
-				"/ContainsUrlList",
-				"/ContainsUserList",
-				"/ContainsFactorList",
-				"/ContainsFactorAssertionList",
-				"/ContainsDescriptorList",
-				"/ContainsDescriptorTypeList",
-				"/ContainsDirectorList",
-				"/ContainsDirectorTypeList",
-				"/ContainsDirectorActionList",
-				"/ContainsEventorList",
-				"/ContainsEventorTypeList",
-				"/ContainsEventorPrecisionList",
-				"/ContainsIdentorList",
-				"/ContainsIdentorTypeList",
-				"/ContainsLocatorList",
-				"/ContainsLocatorTypeList",
-				"/ContainsVectorList",
-				"/ContainsVectorTypeList",
-				"/ContainsVectorRangeList",
-				"/ContainsVectorRangeLevelList",
-				"/ContainsVectorUnitList",
-				"/ContainsVectorUnitPrefixList",
-				"/ContainsVectorUnitDerivedList",
-			});
-
 			map.Add("Artifact", new string [] {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
@@ -252,12 +220,6 @@ namespace Fabric.Test.Util {
 			return map;
 		}
 		
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void RootStep() {
-			TestStep("Root", (tn, p) => new RootStep(tn, p));
-		}
-
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void ArtifactStep() {

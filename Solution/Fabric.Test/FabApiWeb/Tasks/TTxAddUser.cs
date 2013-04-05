@@ -12,7 +12,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TTxAddUser : TWebTasks {
 
 		private static readonly string Query = 
-			"_V0=[];"+ //Root
 			"_V1=[];"+ //Email
 			"_V2=[];"+ //Member
 			"_V3=g.addVertex(["+
@@ -53,14 +52,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
 			IWeaverVarAlias<Email> emailVar = GetTxVar<Email>();
 			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
 			IWeaverVarAlias<User> userVar;
 			Action<IWeaverVarAlias<Member>> setMem;
 
 			Tasks.TxAddUser(MockApiCtx.Object, TxBuild,
-				vName, vPassword, rootVar, emailVar, out userVar, out setMem);
+				vName, vPassword, emailVar, out userVar, out setMem);
 			setMem(memVar);
 			FinishTx();
 
@@ -74,7 +72,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.User);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", typeof(RootContainsUser).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(UserUsesEmail).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
 		}

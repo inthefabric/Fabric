@@ -1,19 +1,16 @@
 ﻿using System;
 using Fabric.Domain;
 using Weaver.Interfaces;
-using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
 	
 	/*================================================================================================*/
-	public class DomainBuilder<T, TRootRel> where T : INode, new()
-							where TRootRel : WeaverRel<Root, Contains, T>, new() { //TEST: DomainBuilder
+	public class DomainBuilder<T> where T : INode, new() { //TEST: DomainBuilder
 
 		public TxBuilder TxBuild { get; private set; }
 		public T Node { get; private set; }
 
 		public IWeaverVarAlias<T> NodeVar { get; private set; }
-		public IWeaverVarAlias<Root> InRootContains { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,21 +27,11 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddNode() {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<T> nodeVar;
-			TxBuild.AddNode<T, TRootRel>(Node, out rootVar, out nodeVar);
-			InRootContains = rootVar;
+			TxBuild.AddNode(Node, out nodeVar);
 			NodeVar = nodeVar;
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode(IWeaverVarAlias<Root> pRootVar) {
-			IWeaverVarAlias<T> nodeVar;
-			TxBuild.AddNode<T, TRootRel>(Node, pRootVar, out nodeVar);
-			InRootContains = pRootVar;
-			NodeVar = nodeVar;
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetNodeVar(IWeaverVarAlias<T> pNodeVar) {
 			if ( NodeVar != null ) {

@@ -13,7 +13,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TTxAddMember : TWebTasks {
 
 		private static readonly string Query = 
-			"_V0=[];"+ //Root
 			"_V1=[];"+ //User
 			"_V2=g.addVertex(["+
 				typeof(Member).Name+"Id:_TP0,"+
@@ -57,11 +56,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Root> rootVar = GetTxVar<Root>();
 			IWeaverVarAlias<User> userVar = GetTxVar<User>();
 			IWeaverVarAlias<Member> memberVar;
 
-			Tasks.TxAddMember(MockApiCtx.Object, TxBuild, rootVar, userVar, out memberVar);
+			Tasks.TxAddMember(MockApiCtx.Object, TxBuild, userVar, out memberVar);
 			FinishTx();
 
 			Assert.NotNull(memberVar, "MemberVar should not be null.");
@@ -70,15 +68,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewMemberId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", (int)NodeFabType.Member);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", typeof(RootContainsMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", typeof(UserDefinesMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", (long)SetupUsers.AppId.FabSys);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", typeof(AppDefinesMember).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vNewMtaId);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vUtcNow.Ticks);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", (int)NodeFabType.MemberTypeAssign);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", 
-				typeof(RootContainsMemberTypeAssign).Name);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
 				(long)SetupUsers.MemberId.FabFabData);
 			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11", 

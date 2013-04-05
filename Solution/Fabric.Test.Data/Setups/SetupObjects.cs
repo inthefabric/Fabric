@@ -424,7 +424,6 @@ namespace Fabric.Db.Data.Setups {
 			u.AbsoluteUrl = pAbsoluteUrl;
 
 			vSet.AddNodeAndIndex(u, x => x.UrlId, vTestMode);
-			vSet.AddRootRel<RootContainsUrl>(u, vTestMode);
 
 			////
 			
@@ -542,7 +541,6 @@ namespace Fabric.Db.Data.Setups {
 			c.Note = null;
 
 			vSet.AddNodeAndIndex(c, x => x.ClassId, vTestMode);
-			vSet.AddRootRel<RootContainsClass>(c, vTestMode);
 
 			////
 
@@ -564,7 +562,6 @@ namespace Fabric.Db.Data.Setups {
 			c.Note = null;
 
 			vSet.AddNodeAndIndex(c, x => x.InstanceId, vTestMode);
-			vSet.AddRootRel<RootContainsInstance>(c, vTestMode);
 
 			////
 

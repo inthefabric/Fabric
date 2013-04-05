@@ -31,8 +31,7 @@ namespace Fabric.Api.Web.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromRoot()
-				.ContainsUserList.ToUser
+				ApiFunc.NewPathFromType<User>()
 					.CustomStep(filterStep)
 				.End();
 
@@ -53,8 +52,7 @@ namespace Fabric.Api.Web.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromRoot()
-				.ContainsAppList.ToApp
+				ApiFunc.NewPathFromType<App>()
 					.CustomStep(filterStep)
 				.End();
 
@@ -225,7 +223,7 @@ namespace Fabric.Api.Web.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddEmail(IApiContext pApiCtx, TxBuilder pTxBuild, string pAddress, 
-								IWeaverVarAlias<Root> pRootVar, out IWeaverVarAlias<Email> pEmailVar) {
+																out IWeaverVarAlias<Email> pEmailVar) {
 			var email = new Email();
 			email.EmailId = pApiCtx.GetSharpflakeId<Email>();
 			email.Address = pAddress;
@@ -234,14 +232,12 @@ namespace Fabric.Api.Web.Tasks {
 			email.Verified = null;
 
 			var emailBuild = new EmailBuilder(pTxBuild, email);
-			emailBuild.AddNode(pRootVar);
 			pEmailVar = emailBuild.NodeVar;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddUser(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pPassword,
-								IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<Email> pEmailVar,
-								out IWeaverVarAlias<User> pUserVar, 
+								IWeaverVarAlias<Email> pEmailVar, out IWeaverVarAlias<User> pUserVar, 
 								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			var user = new User();
 			user.UserId = pApiCtx.GetSharpflakeId<User>();
@@ -251,7 +247,6 @@ namespace Fabric.Api.Web.Tasks {
 			user.Created = pApiCtx.UtcNow.Ticks;
 
 			var userBuild = new UserBuilder(pTxBuild, user);
-			userBuild.AddNode(pRootVar);
 			userBuild.SetUsesEmail(pEmailVar);
 
 			pUserVar = userBuild.NodeVar;
@@ -259,8 +254,8 @@ namespace Fabric.Api.Web.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<Root> pRootVar,
-							IWeaverVarAlias<User> pUserVar, out IWeaverVarAlias<Member> pMemVar) {
+		public void TxAddMember(IApiContext pApiCtx, TxBuilder pTxBuild, IWeaverVarAlias<User> pUserVar,
+																	out IWeaverVarAlias<Member> pMemVar) {
 			var mem = new Member();
 			mem.MemberId = pApiCtx.GetSharpflakeId<Member>();
 
@@ -269,22 +264,20 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
-			memBuild.AddNode(pRootVar);
 			memBuild.SetInUserDefines(pUserVar);
 			memBuild.SetInAppDefines((long)AppId.FabricSystem);
 			pMemVar = memBuild.NodeVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
-			mtaBuild.AddNode(pRootVar);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, 
-						IWeaverVarAlias<Root> pRootVar, long pUserId, out IWeaverVarAlias<App> pAppVar,
-						out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
+		public void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, long pUserId,
+										out IWeaverVarAlias<App> pAppVar,
+										out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new User { UserId = pUserId })
 				.UsesEmail.ToEmail
@@ -304,7 +297,6 @@ namespace Fabric.Api.Web.Tasks {
 			app.Created = pApiCtx.UtcNow.Ticks;
 
 			var appBuild = new AppBuilder(pTxBuild, app);
-			appBuild.AddNode(pRootVar);
 			appBuild.SetUsesEmail(emailVar);
 
 			pAppVar = appBuild.NodeVar;
@@ -313,8 +305,7 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddDataProvMember(IApiContext pApiCtx, TxBuilder pTxBuild,
-							IWeaverVarAlias<Root> pRootVar, IWeaverVarAlias<App> pAppVar, long pUserId,
-							out IWeaverVarAlias<Member> pMemVar) {
+					IWeaverVarAlias<App> pAppVar, long pUserId, out IWeaverVarAlias<Member> pMemVar) {
 			var mem = new Member();
 			mem.MemberId = pApiCtx.GetSharpflakeId<Member>();
 
@@ -323,13 +314,11 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
-			memBuild.AddNode(pRootVar);
 			memBuild.SetInUserDefines(pUserId);
 			memBuild.SetInAppDefines(pAppVar);
 			pMemVar = memBuild.NodeVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
-			mtaBuild.AddNode(pRootVar);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.DataProvider);

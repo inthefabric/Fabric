@@ -1,6 +1,4 @@
-﻿using Fabric.Domain;
-
-namespace Fabric.Db.Data.Setups {
+﻿namespace Fabric.Db.Data.Setups {
 
 	/*================================================================================================*/
 	public static class Setup {
@@ -13,11 +11,6 @@ namespace Fabric.Db.Data.Setups {
 			ds.ClearPreviousData();
 
 			SetupIndexes.SetupAll(ds);
-
-			var r = new Root();
-			r.RootId = 0;
-			ds.AddNodeAndIndex(r, x => x.RootId, false);
-
 			SetupTypes.SetupAll(ds);
 			SetupUsers.SetupAll(ds);
 			SetupOauth.SetupAll(ds);

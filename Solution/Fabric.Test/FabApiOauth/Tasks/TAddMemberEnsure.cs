@@ -161,7 +161,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
 			TestUtil.CheckParam(pTx.Params, "_TP1", vNewMemId);
 			TestUtil.CheckParam(pTx.Params, "_TP2", (int)NodeFabType.Member);
-			TestUtil.CheckParam(pTx.Params, "_TP3", typeof(RootContainsMember).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP4", vAppId);
 			TestUtil.CheckParam(pTx.Params, "_TP5", typeof(AppDefinesMember).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP6", vUserId);
@@ -170,7 +169,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP9", vUtcNow.Ticks);
 			TestUtil.CheckParam(pTx.Params, "_TP10", "First login.");
 			TestUtil.CheckParam(pTx.Params, "_TP11", (int)NodeFabType.MemberTypeAssign);
-			TestUtil.CheckParam(pTx.Params, "_TP12", typeof(RootContainsMemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP13", typeof(MemberHasMemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP14", (long)MemberTypeId.Member);
 			TestUtil.CheckParam(pTx.Params, "_TP15", typeof(MemberTypeAssignUsesMemberType).Name);
@@ -194,7 +192,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParam(pTx.Params, "_TP5", vUtcNow.Ticks);
 			TestUtil.CheckParam(pTx.Params, "_TP6", "First login.");
 			TestUtil.CheckParam(pTx.Params, "_TP7", (int)NodeFabType.MemberTypeAssign);
-			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(RootContainsMemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberHasMemberTypeAssign).Name);
 			TestUtil.CheckParam(pTx.Params, "_TP10", (long)MemberTypeId.Member);
 			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberTypeAssignUsesMemberType).Name);

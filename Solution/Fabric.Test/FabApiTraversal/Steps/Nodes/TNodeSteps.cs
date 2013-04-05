@@ -86,16 +86,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 				Assert.AreEqual(expectSteps[i], step.AvailableLinks[i].Uri,
 					"Incorrect AvailableLinks["+i+"].");
 			}
-
-			if ( !isRoot && !isArtifact ) {
-				p = new Mock<IPath>().Object;
-				step = pNewStep(p);
-				IInRootContains rc = (step as IInRootContains);
-				Assert.NotNull(rc, "This NodeStep must implement IInRootContains.");
-
-				IRootStep rs = rc.InRootContains;
-				Assert.NotNull(rs, "InRootContains result should not be null.");
-			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
