@@ -48,7 +48,9 @@ foreach ( string name in nodeNames ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep(IPath pPath) : base(pPath) {}
+		public RootStep(IPath pPath) : base(pPath) {
+			pPath.AddSegment(this, "g");
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return null; } }

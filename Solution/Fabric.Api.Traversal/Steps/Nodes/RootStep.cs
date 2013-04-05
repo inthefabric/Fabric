@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 9:13:39 PM
+// Generated on 4/4/2013 11:30:00 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +48,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public RootStep(IPath pPath) : base(pPath) {}
+		public RootStep(IPath pPath) : base(pPath) {
+			pPath.AddSegment(this, "g");
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return null; } }
