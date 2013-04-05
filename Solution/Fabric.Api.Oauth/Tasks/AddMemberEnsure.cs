@@ -125,6 +125,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			return true;
 		}
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -181,6 +182,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			newAssign.Note = "First login.";
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
+			mtaBuild.AddNode();
 			mtaBuild.SetInMemberHas(pMemVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);

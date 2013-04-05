@@ -15,31 +15,29 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddScope {
 
 		private readonly static string QueryUpdateScopeTx =
-			"g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_TP)[0]"+
 			".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
 				".as('step3')"+
 			".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
-				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_TP1)"+
+				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_TP)"+
 			".back('step3')"+
 				".sideEffect{"+
-					"it.setProperty('Allow',_TP2);"+
-					"it.setProperty('Created',_TP3)"+
+					"it.setProperty('Allow',_TP);"+
+					"it.setProperty('Created',_TP)"+
 				"};";
 
 		private readonly static string QueryAddScopeTx =
-			"_V0=g.V('RootId',_TP0)[0].next();"+
-			"_V1=g.addVertex(["+
-				typeof(OauthScope).Name+"Id:_TP1,"+
-				"Allow:_TP2,"+
-				"Created:_TP3,"+
-				"FabType:_TP4"+
+			"_V0=g.addVertex(["+
+				typeof(OauthScope).Name+"Id:_TP,"+
+				"Allow:_TP,"+
+				"Created:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP5);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP7);"+
-			"_V3=g.V('"+typeof(User).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP9);"+
-			"_V1;";
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V1,_TP);"+
+			"_V2=g.V('"+typeof(User).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V2,_TP);"+
+			"_V0;";
 
 		private long vAppId;
 		private long vUserId;
@@ -96,11 +94,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddScope.Query.UpdateScopeTx+"");
 
-			Assert.AreEqual(QueryUpdateScopeTx, pScripted.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pScripted.Params, "_TP0", vUserId);
-			TestUtil.CheckParam(pScripted.Params, "_TP1", vAppId);
-			TestUtil.CheckParam(pScripted.Params, "_TP2", vAllow);
-			TestUtil.CheckParam(pScripted.Params, "_TP3", vUtcNow.Ticks);
+			string expect = TestUtil.InsertParamIndexes(QueryUpdateScopeTx, "_TP");
+			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
+				vUserId,
+				vAppId,
+				vAllow,
+				vUtcNow.Ticks
+			});
 			
 			return vScopeResult;
 		}
@@ -110,16 +112,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pScripted);
 			vUsageMap.Increment(AddScope.Query.AddScopeTx+"");
 
-			Assert.AreEqual(QueryAddScopeTx, pScripted.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pScripted.Params, "_TP0", 0);
-			TestUtil.CheckParam(pScripted.Params, "_TP1", vAddOauthScopeId);
-			TestUtil.CheckParam(pScripted.Params, "_TP2", vAllow);
-			TestUtil.CheckParam(pScripted.Params, "_TP3", vUtcNow.Ticks);
-			TestUtil.CheckParam(pScripted.Params, "_TP4", (int)NodeFabType.OauthScope);
-			TestUtil.CheckParam(pScripted.Params, "_TP6", vAppId);
-			TestUtil.CheckParam(pScripted.Params, "_TP7", typeof(OauthScopeUsesApp).Name);
-			TestUtil.CheckParam(pScripted.Params, "_TP8", vUserId);
-			TestUtil.CheckParam(pScripted.Params, "_TP9", typeof(OauthScopeUsesUser).Name);
+			string expect = TestUtil.InsertParamIndexes(QueryAddScopeTx, "_TP");
+			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
+				vAddOauthScopeId,
+				vAllow,
+				vUtcNow.Ticks,
+				(int)NodeFabType.OauthScope,
+				vAppId,
+				typeof(OauthScopeUsesApp).Name,
+				vUserId,
+				typeof(OauthScopeUsesUser).Name
+			});
 			
 			return vAddScopeResult;
 		}

@@ -17,19 +17,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAndUpdateTx =
 			"_V0=[];"+
-			"g.V('FabType',_TP0)[0]"+
-				".has('Code',Tokens.T.eq,_TP1)"+
-				".has('Expires',Tokens.T.gt,_TP2)"+
+			"g.V('FabType',_TP)[0]"+
+				".has('Code',Tokens.T.eq,_TP)"+
+				".has('Expires',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+
-				".as('step6')"+
+				".as('step4')"+
 			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
 				".aggregate(_V0)"+
-			".back('step6')"+
+			".back('step4')"+
 			".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
 				".aggregate(_V0)"+
-			".back('step6')"+
+			".back('step4')"+
 				".sideEffect{"+
-					"it.setProperty('Code',_TP3)"+
+					"it.setProperty('Code',_TP)"+
 				"}"+
 				".iterate();"+
 			"_V0;";
@@ -92,11 +92,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			vUsageMap.Increment(GetGrant.Query.GetAndUpdateTx+"");
 
-			Assert.AreEqual(QueryGetAndUpdateTx, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", (int)NodeFabType.OauthGrant);
-			TestUtil.CheckParam(pTx.Params, "_TP1", vResultGrant.Code);
-			TestUtil.CheckParam(pTx.Params, "_TP2", vUtcNow.Ticks);
-			TestUtil.CheckParam(pTx.Params, "_TP3", "");
+			string expect = TestUtil.InsertParamIndexes(QueryGetAndUpdateTx, "_TP");
+			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+				(int)NodeFabType.OauthGrant,
+				vResultGrant.Code,
+				vUtcNow.Ticks,
+				""
+			});
 
 			return vMockGetAndUpdateTxResult.Object;
 		}
