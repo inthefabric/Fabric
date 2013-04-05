@@ -10,19 +10,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDirector : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V1=g.addVertex(["+
-				typeof(Director).Name+"Id:_TP1,"+
-				"FabType:_TP2"+
+			"_V0=g.addVertex(["+
+				typeof(Director).Name+"Id:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP5);"+
-			"_V3=g.V('"+typeof(DirectorType).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP7);"+
-			"_V4=g.V('"+typeof(DirectorAction).Name+"Id',_TP8)[0].next();"+
-			"g.addEdge(_V1,_V4,_TP9);"+
-			"_V5=g.V('"+typeof(DirectorAction).Name+"Id',_TP10)[0].next();"+
-			"g.addEdge(_V1,_V5,_TP11);";
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V1,_V0,_TP);"+
+			"_V2=g.V('"+typeof(DirectorType).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V2,_TP);"+
+			"_V3=g.V('"+typeof(DirectorAction).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V3,_TP);"+
+			"_V4=g.V('"+typeof(DirectorAction).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V4,_TP);";
 
 		private long vDirTypeId;
 		private long vPrimActId;
@@ -54,7 +53,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			FinishTx();
 
 			Assert.NotNull(elemVar, "ElemVar should not be null.");
-			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
+			Assert.AreEqual("_V0", elemVar.Name, "Incorrect ElemVar name.");
 
 			string expect = Query
 				.Replace("{{NewDirectorId}}", vNewDirectorId+"")
@@ -63,22 +62,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{PrimActId}}", vPrimActId+"")
 				.Replace("{{RelActId}}", vRelActId+"");
 
+			expect = TestUtil.InsertParamIndexes(expect, "_TP");
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewDirectorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", (int)NodeFabType.Director);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
-				typeof(FactorUsesDirector).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vDirTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
-				typeof(DirectorUsesDirectorType).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", vPrimActId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9",
-				typeof(DirectorUsesPrimaryDirectorAction).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10", vRelActId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP11",
-				typeof(DirectorUsesRelatedDirectorAction).Name);
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+				vNewDirectorId,
+				(int)NodeFabType.Director,
+				f.FactorId,
+				typeof(FactorUsesDirector).Name,
+				vDirTypeId,
+				typeof(DirectorUsesDirectorType).Name,
+				vPrimActId,
+				typeof(DirectorUsesPrimaryDirectorAction).Name,
+				vRelActId,
+				typeof(DirectorUsesRelatedDirectorAction).Name
+			});
 		}
 
 	}

@@ -58,14 +58,12 @@ namespace Fabric.Test.FabApiModify {
 		private Instance CreateInstanceTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			const string expectPartial = 
-				"_V0=g.V('RootId',_TP0)[0].next();"+
-				"_V1=g.V('MemberId',_TP1)[0].next();"+
+			string expectPartial = 
+				"_V0=g.V('"+typeof(Member).Name+"Id',_TP0)[0].next();"+
 				"INST;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
-			TestUtil.CheckParam(pTx.Params, "_TP1", ApiCtxMember.MemberId);
+			TestUtil.CheckParam(pTx.Params, "_TP0", ApiCtxMember.MemberId);
 			return vResultInstance;
 		}
 

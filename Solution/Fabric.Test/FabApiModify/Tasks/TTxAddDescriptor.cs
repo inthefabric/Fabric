@@ -11,27 +11,26 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddDescriptor : TModifyTasks {
 
 		private static readonly string QueryStart = 
-			"_V1=g.addVertex(["+
-				typeof(Descriptor).Name+"Id:_TP1,"+
-				"FabType:_TP2"+
+			"_V0=g.addVertex(["+
+				typeof(Descriptor).Name+"Id:_TP0,"+
+				"FabType:_TP1"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP3);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP4)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP5);"+
-			"_V3=g.V('"+typeof(DescriptorType).Name+"Id',_TP6)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP7);";
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP2)[0].next();"+
+			"g.addEdge(_V1,_V0,_TP3);"+
+			"_V2=g.V('"+typeof(DescriptorType).Name+"Id',_TP4)[0].next();"+
+			"g.addEdge(_V0,_V2,_TP5);";
 
 		private static readonly string QueryPrimRef = 
 			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}})[0].next();"+
-			"g.addEdge(_V1,_V{{PrimV}},_TP{{PrimTp}});";
+			"g.addEdge(_V0,_V{{PrimV}},_TP{{PrimTp}});";
 
 		private static readonly string QueryRelRef = 
 			"_V{{RelV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{RelId}})[0].next();"+
-			"g.addEdge(_V1,_V{{RelV}},_TP{{RelTp}});";
+			"g.addEdge(_V0,_V{{RelV}},_TP{{RelTp}});";
 
 		private static readonly string QueryTypeRef = 
 			"_V{{TypeV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{TypeId}})[0].next();"+
-			"g.addEdge(_V1,_V{{TypeV}},_TP{{TypeTp}});";
+			"g.addEdge(_V0,_V{{TypeV}},_TP{{TypeTp}});";
 
 		private long vDescTypeId;
 		private long? vPrimArtRefId;
@@ -76,12 +75,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			FinishTx();
 
 			Assert.NotNull(elemVar, "ElemVar should not be null.");
-			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
+			Assert.AreEqual("_V0", elemVar.Name, "Incorrect ElemVar name.");
 
 			string expect = QueryStart;
 			Dictionary<string, IWeaverQueryVal> txParams = TxBuild.Transaction.Params;
-			int tp = 8;
-			int v = 4;
+			int tp = 6;
+			int v = 3;
 
 			if ( vPrimArtRefId != null ) {
 				expect += QueryPrimRef
@@ -129,14 +128,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				.Replace("{{TypeArtRefId}}", vDescTypeRefId+"");
 
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewDescriptorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", (int)NodeFabType.Descriptor);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewDescriptorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", (int)NodeFabType.Descriptor);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3",
 				typeof(FactorUsesDescriptor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", vDescTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vDescTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5",
 				typeof(DescriptorUsesDescriptorType).Name);
 		}
 

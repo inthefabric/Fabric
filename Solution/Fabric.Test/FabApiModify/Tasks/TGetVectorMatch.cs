@@ -11,21 +11,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetVectorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('FabType',_P0)[0]"+
-				".has('Value',Tokens.T.eq,_P1)"+
-				".as('step4')"+
+			"g.V('FabType',_P)[0]"+
+				".has('Value',Tokens.T.eq,_P)"+
+				".as('step2')"+
 			".outE('"+typeof(VectorUsesVectorType).Name+"').inV"+
-				".has('"+typeof(VectorType).Name+"Id',Tokens.T.eq,_P2)"+
-			".back('step4')"+
+				".has('"+typeof(VectorType).Name+"Id',Tokens.T.eq,_P)"+
+			".back('step2')"+
 			".outE('"+typeof(VectorUsesAxisArtifact).Name+"').inV"+
-				".has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,_P3)"+
-			".back('step4')"+
+				".has('"+typeof(Artifact).Name+"Id',Tokens.T.eq,_P)"+
+			".back('step2')"+
 			".outE('"+typeof(VectorUsesVectorUnit).Name+"').inV"+
-				".has('"+typeof(VectorUnit).Name+"Id',Tokens.T.eq,_P4)"+
-			".back('step4')"+
+				".has('"+typeof(VectorUnit).Name+"Id',Tokens.T.eq,_P)"+
+			".back('step2')"+
 			".outE('"+typeof(VectorUsesVectorUnitPrefix).Name+"').inV"+
-				".has('"+typeof(VectorUnitPrefix).Name+"Id',Tokens.T.eq,_P5)"+
-			".back('step4');";
+				".has('"+typeof(VectorUnitPrefix).Name+"Id',Tokens.T.eq,_P)"+
+			".back('step2');";
 
 		private long vVecTypeId;
 		private long vValue;
@@ -55,13 +55,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("GetVectorMatch");
 
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.Vector);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vValue);
-			TestUtil.CheckParam(pQuery.Params, "_P2", vVecTypeId);
-			TestUtil.CheckParam(pQuery.Params, "_P3", vAxisArtId);
-			TestUtil.CheckParam(pQuery.Params, "_P4", vVecUnitId);
-			TestUtil.CheckParam(pQuery.Params, "_P5", vVecUnitPrefId);
+			string expect = TestUtil.InsertParamIndexes(Query, "_P");
+			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(pQuery.Params, "_P", new object[] {
+				(int)NodeFabType.Vector,
+				vValue,
+				vVecTypeId,
+				vAxisArtId,
+				vVecUnitId,
+				vVecUnitPrefId
+			});
 
 			return vVectorResult;
 		}

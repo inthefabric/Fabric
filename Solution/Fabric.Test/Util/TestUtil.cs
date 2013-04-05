@@ -32,7 +32,21 @@ namespace Fabric.Test.Util {
 			Assert.AreEqual(pOrigValue, pParams[pKey].Original,
 				"Incorrect Query.Params['"+pKey+"'].Original.");
 		}
-		
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void CheckParams(IDictionary<string, IWeaverQueryVal> pParams,
+															string pParamBase, IList<object> pValues) {
+			Assert.NotNull(pParams, "Query.Params should not be null.");
+			Assert.AreEqual(pValues.Count, pParams.Keys.Count, "Incorrect Query.Params.Keys.Count.");
+
+			for ( int i = 0 ; i < pValues.Count ; ++i ) {
+				Assert.AreEqual(pValues[i], pParams[pParamBase+i].Original,
+					"Incorrect value for Query.Params['"+pParamBase+i+"'].");
+			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void LogWeaverScript(IWeaverScript pScripted) {
 			string p = "";
@@ -67,6 +81,20 @@ namespace Fabric.Test.Util {
 			foreach ( string pair in pairs ) {
 				string[] nameVal = pair.Split('=');
 				q.Add(nameVal[0], nameVal[1]);
+			}
+
+			return q;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static string InsertParamIndexes(string pQuery, string pParamBase) {
+			string[] parts = pQuery.Split(new[] { pParamBase }, 9999, StringSplitOptions.None);
+			string q = "";
+
+			for ( int i = 0 ; i < parts.Length ; ++i ) {
+				q += (i == 0 ? "" : pParamBase+(i-1))+parts[i];
 			}
 
 			return q;

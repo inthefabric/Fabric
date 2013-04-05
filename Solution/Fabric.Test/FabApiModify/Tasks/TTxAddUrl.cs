@@ -11,17 +11,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddUrl : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V1=[];"+ //Member
-			"_V2=g.addVertex(["+
-				typeof(Url).Name+"Id:_TP0,"+
-				"Name:_TP1,"+
-				"AbsoluteUrl:_TP2,"+
-				"ArtifactId:_TP3,"+
-				"Created:_TP4,"+
-				"FabType:_TP5"+
+			"_V0=[];"+ //Member
+			"_V1=g.addVertex(["+
+				typeof(Url).Name+"Id:_TP,"+
+				"Name:_TP,"+
+				"AbsoluteUrl:_TP,"+
+				"ArtifactId:_TP,"+
+				"Created:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP6);"+
-			"g.addEdge(_V1,_V2,_TP7);";
+			"g.addEdge(_V0,_V1,_TP);";
 
 		private string vAbsoluteUrl;
 		private string vName;
@@ -56,16 +55,20 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			FinishTx();
 
 			Assert.NotNull(urlVar, "UrlVar should not be null.");
-			Assert.AreEqual("_V2", urlVar.Name, "Incorrect UrlVar name.");
+			Assert.AreEqual("_V1", urlVar.Name, "Incorrect UrlVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewUrlId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vAbsoluteUrl);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Url);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(MemberCreatesArtifact).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+				vNewUrlId,
+				vName,
+				vAbsoluteUrl,
+				vNewArtifactId,
+				vUtcNow.Ticks,
+				(int)NodeFabType.Url,
+				typeof(MemberCreatesArtifact).Name
+			});
 		}
 
 	}

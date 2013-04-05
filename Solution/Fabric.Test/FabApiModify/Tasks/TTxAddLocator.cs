@@ -10,18 +10,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddLocator : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V1=g.addVertex(["+
-				typeof(Locator).Name+"Id:_TP1,"+
-				"ValueX:_TP2,"+
-				"ValueY:_TP3,"+
-				"ValueZ:_TP4,"+
-				"FabType:_TP5"+
+			"_V0=g.addVertex(["+
+				typeof(Locator).Name+"Id:_TP,"+
+				"ValueX:_TP,"+
+				"ValueY:_TP,"+
+				"ValueZ:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP6);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP7)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP8);"+
-			"_V3=g.V('"+typeof(LocatorType).Name+"Id',_TP9)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP10);";
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V1,_V0,_TP);"+
+			"_V2=g.V('"+typeof(LocatorType).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V2,_TP);";
 
 		private long vLocTypeId;
 		private double vValueX;
@@ -55,21 +54,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			FinishTx();
 
 			Assert.NotNull(elemVar, "ElemVar should not be null.");
-			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
+			Assert.AreEqual("_V0", elemVar.Name, "Incorrect ElemVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewLocatorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValueX);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vValueY);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vValueZ);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.Locator);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
-				typeof(FactorUsesLocator).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP9", vLocTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP10",
-				typeof(LocatorUsesLocatorType).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+				vNewLocatorId,
+				vValueX,
+				vValueY,
+				vValueZ,
+				(int)NodeFabType.Locator,
+				f.FactorId,
+				typeof(FactorUsesLocator).Name,
+				vLocTypeId,
+				typeof(LocatorUsesLocatorType).Name
+			});
 		}
 
 	}

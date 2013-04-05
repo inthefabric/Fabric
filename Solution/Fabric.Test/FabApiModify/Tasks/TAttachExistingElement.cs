@@ -12,9 +12,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TAttachExistingElement : TModifyTasks {
 
 		private readonly string Query =
-			"_V0=g.V('"+typeof(Factor).Name+"Id',_TP0)[0].next();"+
-			"_V1=g.V('{{ElementType}}Id',_TP1)[0].next();"+
-			"g.addEdge(_V0,_V1,_TP2);";
+			"_V0=g.V('"+typeof(Factor).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('{{ElementType}}Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V1,_TP);";
 
 		private long vFactorId;
 		private long vElemId;
@@ -36,11 +36,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment(vFuncName);
 
 			string expect = Query.Replace("{{ElementType}}", vElemType+"");
+			expect = TestUtil.InsertParamIndexes(expect, "_TP");
 
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vFactorId);
-			TestUtil.CheckParam(pTx.Params, "_TP1", vElemId);
-			TestUtil.CheckParam(pTx.Params, "_TP2", "FactorUses"+vElemType);
+
+			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+				vFactorId,
+				vElemId,
+				"FactorUses"+vElemType
+			});
 
 			return new Mock<IApiDataAccess>().Object;
 		}

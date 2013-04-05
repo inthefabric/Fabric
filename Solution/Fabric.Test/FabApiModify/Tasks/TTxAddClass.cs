@@ -12,18 +12,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddClass : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V1=[];"+ //Member
-			"_V2=g.addVertex(["+
-				typeof(Class).Name+"Id:_TP0,"+
-				"Name:_TP1,"+
-				"Disamb:_TP2,"+
-				"Note:_TP3,"+
-				"ArtifactId:_TP4,"+
-				"Created:_TP5,"+
-				"FabType:_TP6"+
+			"_V0=[];"+ //Member
+			"_V1=g.addVertex(["+
+				typeof(Class).Name+"Id:_TP,"+
+				"Name:_TP,"+
+				"Disamb:_TP,"+
+				"Note:_TP,"+
+				"ArtifactId:_TP,"+
+				"Created:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V2,_TP7);"+
-			"g.addEdge(_V1,_V2,_TP8);";
+			"g.addEdge(_V0,_V1,_TP);";
 
 		private string vName;
 		private string vDisamb;
@@ -54,26 +53,27 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[Test]
 		public void BuildTx() {
 			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
-			IWeaverVarAlias<Class> urlVar;
+			IWeaverVarAlias<Class> classVar;
 
-			Log.Debug(typeof(Artifact).IsAssignableFrom(typeof(Class))+"");
-			Log.Debug(typeof(Class).IsAssignableFrom(typeof(Artifact))+"");
-
-			Tasks.TxAddClass(MockApiCtx.Object, TxBuild, vName, vDisamb, vNote, memVar, out urlVar);
+			Tasks.TxAddClass(MockApiCtx.Object, TxBuild, vName, vDisamb, vNote, memVar, out classVar);
 			FinishTx();
 
-			Assert.NotNull(urlVar, "ClassVar should not be null.");
-			Assert.AreEqual("_V2", urlVar.Name, "Incorrect ClassVar name.");
+			Assert.NotNull(classVar, "ClassVar should not be null.");
+			Assert.AreEqual("_V1", classVar.Name, "Incorrect ClassVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewClassId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vDisamb);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNote);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vNewArtifactId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6", (int)NodeFabType.Class);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+				vNewClassId,
+				vName,
+				vDisamb,
+				vNote,
+				vNewArtifactId,
+				vUtcNow.Ticks,
+				(int)NodeFabType.Class,
+				typeof(MemberCreatesArtifact).Name
+			});
 		}
 
 	}

@@ -10,16 +10,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TTxAddIdentor : TModifyTasks {
 
 		private static readonly string Query = 
-			"_V1=g.addVertex(["+
-				typeof(Identor).Name+"Id:_TP1,"+
-				"Value:_TP2,"+
-				"FabType:_TP3"+
+			"_V0=g.addVertex(["+
+				typeof(Identor).Name+"Id:_TP0,"+
+				"Value:_TP1,"+
+				"FabType:_TP2"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.V('"+typeof(Factor).Name+"Id',_TP5)[0].next();"+
-			"g.addEdge(_V2,_V1,_TP6);"+
-			"_V3=g.V('"+typeof(IdentorType).Name+"Id',_TP7)[0].next();"+
-			"g.addEdge(_V1,_V3,_TP8);";
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP3)[0].next();"+
+			"g.addEdge(_V1,_V0,_TP4);"+
+			"_V2=g.V('"+typeof(IdentorType).Name+"Id',_TP5)[0].next();"+
+			"g.addEdge(_V0,_V2,_TP6);";
 
 		private long vIdenTypeId;
 		private string vValue;
@@ -48,18 +47,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			FinishTx();
 
 			Assert.NotNull(elemVar, "ElemVar should not be null.");
-			Assert.AreEqual("_V1", elemVar.Name, "Incorrect ElemVar name.");
+			Assert.AreEqual("_V0", elemVar.Name, "Incorrect ElemVar name.");
 
 			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", 0);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewIdentorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vValue);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", (int)NodeFabType.Identor);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", f.FactorId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewIdentorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vValue);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", (int)NodeFabType.Identor);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", f.FactorId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4",
 				typeof(FactorUsesIdentor).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", vIdenTypeId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8",
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", vIdenTypeId);
+			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP6",
 				typeof(IdentorUsesIdentorType).Name);
 		}
 

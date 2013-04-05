@@ -427,6 +427,7 @@ namespace Fabric.Api.Modify.Tasks {
 			url.Created = pApiCtx.UtcNow.Ticks;
 
 			var urlBuild = new UrlBuilder(pTxBuild, url);
+			urlBuild.AddNode();
 			urlBuild.SetInMemberCreates(pMemVar);
 			pUrlVar = urlBuild.NodeVar;
 		}
@@ -443,6 +444,7 @@ namespace Fabric.Api.Modify.Tasks {
 			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var classBuild = new ClassBuilder(pTxBuild, c);
+			classBuild.AddNode();
 			classBuild.SetInMemberCreates(pMemVar);
 			pClassVar = classBuild.NodeVar;
 			return c.ClassId;
@@ -460,6 +462,7 @@ namespace Fabric.Api.Modify.Tasks {
 			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var instBuild = new InstanceBuilder(pTxBuild, c);
+			instBuild.AddNode();
 			instBuild.SetInMemberCreates(pMemVar);
 			pInstVar = instBuild.NodeVar;
 		}
