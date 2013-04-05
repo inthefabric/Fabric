@@ -4,7 +4,6 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Traversal;
 using Fabric.Api.Util;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
@@ -70,7 +69,6 @@ namespace Fabric.Api.Services {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response BuildRootResponse() {
 			string apiUri = NancyReq.Path;
-			bool startAtRoot = true;
 
 			switch ( vRoute ) {
 				case Route.Root:
@@ -81,11 +79,10 @@ namespace Fabric.Api.Services {
 				case Route.ActiveUser:
 				case Route.ActiveMember:
 					apiUri = apiUri.Substring(TravUriLength);
-					startAtRoot = false;
 					break;
 			}
 
-			var tb = new TraversalBuilder(ApiCtx, FabResp, apiUri, startAtRoot);
+			var tb = new TraversalBuilder(ApiCtx, FabResp, apiUri);
 			TraversalModel mod = tb.BuildModel();
 			HttpStatusCode stat = NancyUtil.ToNancyStatus(mod.HttpStatus);
 

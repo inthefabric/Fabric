@@ -92,12 +92,8 @@ namespace Fabric.Test.FabApiWeb {
 		private IApiDataAccess CreateUserTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			const string expectPartial = 
-				"_V0=g.V('RootId',_TP0)[0].next();"+
-				"_V1=[USER,EMAIL];";
-
+			const string expectPartial = "_V0=[USER,EMAIL];";
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
 			return vResultData;
 		}
 

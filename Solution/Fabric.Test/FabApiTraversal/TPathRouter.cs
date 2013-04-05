@@ -3,7 +3,6 @@ using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Test.Common;
-using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
@@ -95,24 +94,17 @@ namespace Fabric.Test.FabApiTraversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true)]
-		[TestCase(false)]
-		public void NewRootStep(bool pStartAtRoot) {
+		[Test]
+		public void NewRootStep() {
 			const long appId = 1234;
 			const long userId = 65432;
-			RootStep rs = PathRouter.NewRootStep(pStartAtRoot, appId, userId);
+			RootStep rs = PathRouter.NewRootStep(appId, userId);
 
 			Assert.NotNull(rs, "Result should be filled.");
 			Assert.NotNull(rs.Path, "Result.Path should be filled.");
 			Assert.NotNull(rs.Data, "Result.Data should be filled.");
 			Assert.AreEqual("Root", rs.Data.RawString, "Incorrect Result.Data.RawString.");
-
-			if ( pStartAtRoot ) {
-				Assert.AreEqual("g.V('RootId',0)[0]", rs.Path.Script, "Incorrect Path.Script.");
-			}
-			else {
-				Assert.AreEqual("g", rs.Path.Script, "Incorrect Path.Script.");
-			}
+			Assert.AreEqual("g", rs.Path.Script, "Incorrect Path.Script.");
 
 			Assert.AreEqual(1, rs.Path.GetSegmentCount(), "Incorrect Path.GetSegmentCount().");
 			Assert.AreEqual(appId, rs.Path.AppId, "Incorrect Path.AppId.");

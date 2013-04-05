@@ -12,19 +12,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TTxAddUser : TWebTasks {
 
 		private static readonly string Query = 
-			"_V1=[];"+ //Email
-			"_V2=[];"+ //Member
-			"_V3=g.addVertex(["+
-				typeof(User).Name+"Id:_TP0,"+
-				"Name:_TP1,"+
-				"Password:_TP2,"+
-				"ArtifactId:_TP3,"+
-				"Created:_TP4,"+
-				"FabType:_TP5"+
+			"_V0=[];"+ //Email
+			"_V1=[];"+ //Member
+			"_V2=g.addVertex(["+
+				typeof(User).Name+"Id:_TP,"+
+				"Name:_TP,"+
+				"Password:_TP,"+
+				"ArtifactId:_TP,"+
+				"Created:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V3,_TP6);"+
-			"g.addEdge(_V3,_V1,_TP7);"+
-			"g.addEdge(_V2,_V3,_TP8);";
+			"g.addEdge(_V2,_V0,_TP);"+
+			"g.addEdge(_V1,_V2,_TP);";
 
 		private string vName;
 		private string vPassword;
@@ -63,17 +62,21 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			FinishTx();
 
 			Assert.NotNull(userVar, "UserVar should not be null.");
-			Assert.AreEqual("_V3", userVar.Name, "Incorrect UserVar name.");
+			Assert.AreEqual("_V2", userVar.Name, "Incorrect UserVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vNewUserId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", FabricUtil.HashPassword(vPassword));
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.User);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(UserUsesEmail).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+				vNewUserId,
+				vName,
+				FabricUtil.HashPassword(vPassword),
+				vNewArtifactId,
+				vUtcNow.Ticks,
+				(int)NodeFabType.User,
+				typeof(UserUsesEmail).Name,
+				typeof(MemberCreatesArtifact).Name
+			});
 		}
 
 	}

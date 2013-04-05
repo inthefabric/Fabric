@@ -109,17 +109,11 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void TotalNodeStepKeys() {
-			Assert.AreEqual(31, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+			Assert.AreEqual(30, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void RootStep() {
-			TestStep("Root", p => new RootStep(p));
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void AppStep() {

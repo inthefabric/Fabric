@@ -22,8 +22,7 @@ namespace Fabric.Api.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TraversalBuilder(IApiContext pApiCtx, FabResponse pResp, string pApiUri,
-																					bool pStartAtRoot) {
+		public TraversalBuilder(IApiContext pApiCtx, FabResponse pResp, string pApiUri) {
 			vApiCtx = pApiCtx;
 
 			if ( pApiUri.Length > 0 ) {
@@ -34,7 +33,7 @@ namespace Fabric.Api.Traversal {
 			vModel.Resp = pResp;
 			vModel.HttpStatus = HttpStatusCode.OK;
 
-			RootStep r = PathRouter.NewRootStep(pStartAtRoot, vApiCtx.AppId, vApiCtx.UserId);
+			RootStep r = PathRouter.NewRootStep(vApiCtx.AppId, vApiCtx.UserId);
 			vLastStep = PathRouter.GetPath(r, pApiUri);
 			vModel.Resp.SetLinks(vLastStep.AvailableLinks);
 			vModel.Resp.Functions = vLastStep.AvailableFuncs.ToArray();

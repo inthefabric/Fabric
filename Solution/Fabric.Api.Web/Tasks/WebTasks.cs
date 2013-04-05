@@ -232,6 +232,7 @@ namespace Fabric.Api.Web.Tasks {
 			email.Verified = null;
 
 			var emailBuild = new EmailBuilder(pTxBuild, email);
+			emailBuild.AddNode();
 			pEmailVar = emailBuild.NodeVar;
 		}
 
@@ -247,6 +248,7 @@ namespace Fabric.Api.Web.Tasks {
 			user.Created = pApiCtx.UtcNow.Ticks;
 
 			var userBuild = new UserBuilder(pTxBuild, user);
+			userBuild.AddNode();
 			userBuild.SetUsesEmail(pEmailVar);
 
 			pUserVar = userBuild.NodeVar;
@@ -264,11 +266,13 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
+			memBuild.AddNode();
 			memBuild.SetInUserDefines(pUserVar);
 			memBuild.SetInAppDefines((long)AppId.FabricSystem);
 			pMemVar = memBuild.NodeVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
+			mtaBuild.AddNode();
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
@@ -297,6 +301,7 @@ namespace Fabric.Api.Web.Tasks {
 			app.Created = pApiCtx.UtcNow.Ticks;
 
 			var appBuild = new AppBuilder(pTxBuild, app);
+			appBuild.AddNode();
 			appBuild.SetUsesEmail(emailVar);
 
 			pAppVar = appBuild.NodeVar;
@@ -314,11 +319,13 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
+			memBuild.AddNode();
 			memBuild.SetInUserDefines(pUserId);
 			memBuild.SetInAppDefines(pAppVar);
 			pMemVar = memBuild.NodeVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
+			mtaBuild.AddNode();
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
 			mtaBuild.SetUsesMemberType((long)MemberTypeId.DataProvider);

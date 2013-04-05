@@ -74,12 +74,8 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		private App CreateAppTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
-
-			const string expectPartial = 
-				"APP;";
-
+			const string expectPartial = "APP;";
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
 			return vResultApp;
 		}
 

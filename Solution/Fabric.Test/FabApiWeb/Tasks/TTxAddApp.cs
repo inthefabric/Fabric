@@ -11,19 +11,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TTxAddApp : TWebTasks {
 
 		private static readonly string Query = 
-			"_V1=[];"+ //Member
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP0)[0]"+
+			"_V0=[];"+ //Member
+			"_V1=g.V('"+typeof(User).Name+"Id',_TP)[0]"+
 				".outE('"+typeof(UserUsesEmail).Name+"').inV.next();"+
-			"_V3=g.addVertex(["+
-				typeof(App).Name+"Id:_TP1,"+
-				"Name:_TP2,"+
-				"ArtifactId:_TP3,"+
-				"Created:_TP4,"+
-				"FabType:_TP5"+
+			"_V2=g.addVertex(["+
+				typeof(App).Name+"Id:_TP,"+
+				"Name:_TP,"+
+				"ArtifactId:_TP,"+
+				"Created:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V3,_TP6);"+
-			"g.addEdge(_V3,_V2,_TP7);"+
-			"g.addEdge(_V1,_V3,_TP8);";
+			"g.addEdge(_V2,_V1,_TP);"+
+			"g.addEdge(_V0,_V2,_TP);";
 
 		private string vName;
 		private long vUserId;
@@ -60,17 +59,21 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			FinishTx();
 
 			Assert.NotNull(appVar, "AppVar should not be null.");
-			Assert.AreEqual("_V3", appVar.Name, "Incorrect AppVar name.");
+			Assert.AreEqual("_V2", appVar.Name, "Incorrect AppVar name.");
 
-			Assert.AreEqual(Query, TxBuild.Transaction.Script, "Incorrect Script.");
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP0", vUserId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP1", vNewAppId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP2", vName);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP3", vNewArtifactId);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP5", (int)NodeFabType.App);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP7", typeof(AppUsesEmail).Name);
-			TestUtil.CheckParam(TxBuild.Transaction.Params, "_TP8", typeof(MemberCreatesArtifact).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+				vUserId,
+				vNewAppId,
+				vName,
+				vNewArtifactId,
+				vUtcNow.Ticks,
+				(int)NodeFabType.App,
+				typeof(AppUsesEmail).Name,
+				typeof(MemberCreatesArtifact).Name
+			});
 		}
 
 	}

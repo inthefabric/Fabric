@@ -12,23 +12,22 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddMemberTypeAssign : TWebTasks {
 
 		private static readonly string Query =
-			"_V0=g.V('"+typeof(Member).Name+"Id',_TP0)[0].next();"+
+			"_V0=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
 			"_V1=_V0.outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV.next();"+
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
-			"g.addEdge(_V0,_V1,_TP1);"+
-			"_V3=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:_TP3,"+
-				"Performed:_TP4,"+
-				"FabType:_TP5"+
+			"g.addEdge(_V0,_V1,_TP);"+
+			"_V2=g.addVertex(["+
+				typeof(MemberTypeAssign).Name+"Id:_TP,"+
+				"Performed:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V2,_V3,_TP6);"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP7)[0].next();"+
-			"g.addEdge(_V4,_V3,_TP8);"+
-			"g.addEdge(_V0,_V3,_TP9);"+
-			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP10)[0].next();"+
-			"g.addEdge(_V3,_V5,_TP11);"+
-			"_V3;";
+			"_V3=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V3,_V2,_TP);"+
+			"g.addEdge(_V0,_V2,_TP);"+
+			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V2,_V4,_TP);"+
+			"_V2;";
 
 		private long vAssigningMemberId;
 		private long vMemberId;
@@ -63,18 +62,21 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			UsageMap.Increment("AddMemberTypeAssign");
 
-			Assert.AreEqual(Query, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vMemberId);
-			TestUtil.CheckParam(pTx.Params, "_TP1", typeof(MemberHasHistoricMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP2", 0);
-			TestUtil.CheckParam(pTx.Params, "_TP3", vNewMtaId);
-			TestUtil.CheckParam(pTx.Params, "_TP4", vUtcNow.Ticks);
-			TestUtil.CheckParam(pTx.Params, "_TP5", (int)NodeFabType.MemberTypeAssign);
-			TestUtil.CheckParam(pTx.Params, "_TP7", vAssigningMemberId);
-			TestUtil.CheckParam(pTx.Params, "_TP8", typeof(MemberCreatesMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP9", typeof(MemberHasMemberTypeAssign).Name);
-			TestUtil.CheckParam(pTx.Params, "_TP10", vMemberTypeId);
-			TestUtil.CheckParam(pTx.Params, "_TP11", typeof(MemberTypeAssignUsesMemberType).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+				vMemberId,
+				typeof(MemberHasHistoricMemberTypeAssign).Name,
+				vNewMtaId,
+				vUtcNow.Ticks,
+				(int)NodeFabType.MemberTypeAssign,
+				vAssigningMemberId,
+				typeof(MemberCreatesMemberTypeAssign).Name,
+				typeof(MemberHasMemberTypeAssign).Name,
+				vMemberTypeId,
+				typeof(MemberTypeAssignUsesMemberType).Name
+			});
 
 			return vMtaResult;
 		}

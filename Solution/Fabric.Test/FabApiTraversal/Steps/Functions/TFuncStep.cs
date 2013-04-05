@@ -58,7 +58,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void GetNextStep(bool pSetData) {
-			string stepText = StepUtil.NodeStepMap["Root"][0].Substring(1);
+			string stepText = StepUtil.NodeStepMap["Factor"][0].Substring(1);
 
 			var next = new Mock<IStep>();
 			var proxy = new Mock<IStep>();

@@ -11,15 +11,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddOauthDomain : TWebTasks {
 
 		private static readonly string Query =
-			"_V1=g.addVertex(["+
-				typeof(OauthDomain).Name+"Id:_TP1,"+
-				"Domain:_TP2,"+
-				"FabType:_TP3"+
+			"_V0=g.addVertex(["+
+				typeof(OauthDomain).Name+"Id:_TP,"+
+				"Domain:_TP,"+
+				"FabType:_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP4);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP5)[0].next();"+
-			"g.addEdge(_V1,_V2,_TP6);"+
-			"_V1;";
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"g.addEdge(_V0,_V1,_TP);"+
+			"_V0;";
 
 		private long vAppId;
 		private string vDomain;
@@ -47,13 +46,16 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.LogWeaverScript(pTx);
 			UsageMap.Increment("AddOauthDomain");
 
-			Assert.AreEqual(Query, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", 0);
-			TestUtil.CheckParam(pTx.Params, "_TP1", vNewDomainId);
-			TestUtil.CheckParam(pTx.Params, "_TP2", vDomain);
-			TestUtil.CheckParam(pTx.Params, "_TP3", (int)NodeFabType.OauthDomain);
-			TestUtil.CheckParam(pTx.Params, "_TP5", vAppId);
-			TestUtil.CheckParam(pTx.Params, "_TP6", typeof(OauthDomainUsesApp).Name);
+			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+				vNewDomainId,
+				vDomain,
+				(int)NodeFabType.OauthDomain,
+				vAppId,
+				typeof(OauthDomainUsesApp).Name
+			});
 
 			return vDomainResult;
 		}

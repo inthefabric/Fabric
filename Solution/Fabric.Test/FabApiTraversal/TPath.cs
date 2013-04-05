@@ -21,7 +21,6 @@ namespace Fabric.Test.FabApiTraversal {
 			var p = new Path();
 			Assert.AreEqual("", p.Script, "Incorrect Script.");
 			Assert.AreEqual(0, p.GetSegmentCount(), "Incorrect GetSegmentCount().");
-			Assert.False(p.StartAtRoot, "Incorrect Path.StartAtRoot.");
 			Assert.AreEqual(0, p.AppId, "Incorrect Path.AppId.");
 			Assert.AreEqual(0, p.UserId, "Incorrect Path.UserId.");
 		}
@@ -29,10 +28,9 @@ namespace Fabric.Test.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NewWithParams() {
-			var p = new Path(true, 99, 333);
+			var p = new Path(99, 333);
 			Assert.AreEqual("", p.Script, "Incorrect Script.");
 			Assert.AreEqual(0, p.GetSegmentCount(), "Incorrect GetSegmentCount().");
-			Assert.True(p.StartAtRoot, "Incorrect Path.StartAtRoot.");
 			Assert.AreEqual(99, p.AppId, "Incorrect Path.AppId.");
 			Assert.AreEqual(333, p.UserId, "Incorrect Path.UserId.");
 		}

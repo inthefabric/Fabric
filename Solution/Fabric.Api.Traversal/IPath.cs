@@ -8,7 +8,6 @@ namespace Fabric.Api.Traversal {
 	/*================================================================================================*/
 	public interface IPath : IWeaverScript {
 
-		bool StartAtRoot { get; }
 		long UserId { get; }
 		long AppId { get; }
 

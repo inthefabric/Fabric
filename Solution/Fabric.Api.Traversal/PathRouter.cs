@@ -29,8 +29,8 @@ namespace Fabric.Api.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static RootStep NewRootStep(bool pStartAtRoot, long pAppId, long pUserId) {
-			var p = new Path(pStartAtRoot, pAppId, pUserId);
+		public static RootStep NewRootStep(long pAppId, long pUserId) {
+			var p = new Path(pAppId, pUserId);
 			var rs = new RootStep(p);
 			rs.SetDataAndUpdatePath(new StepData("Root"));
 			return rs;
