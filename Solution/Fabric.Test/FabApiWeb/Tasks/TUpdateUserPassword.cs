@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TUpdateUserPassword : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)"+
 				".sideEffect{it.setProperty('Password',_P1)};";
 
 		private long vUserId;

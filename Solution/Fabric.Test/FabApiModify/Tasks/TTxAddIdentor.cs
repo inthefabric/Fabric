@@ -15,9 +15,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Value:_TP1,"+
 				"FabType:_TP2"+
 			"]);"+
-			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP3)[0].next();"+
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP3).next();"+
 			"g.addEdge(_V1,_V0,_TP4);"+
-			"_V2=g.V('"+typeof(IdentorType).Name+"Id',_TP5)[0].next();"+
+			"_V2=g.V('"+typeof(IdentorType).Name+"Id',_TP5).next();"+
 			"g.addEdge(_V0,_V2,_TP6);";
 
 		private long vIdenTypeId;

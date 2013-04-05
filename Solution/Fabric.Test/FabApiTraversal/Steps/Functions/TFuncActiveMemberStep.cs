@@ -40,7 +40,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
 			string script = 
-				"V('"+typeof(User).Name+"Id',_P0)[0]"+
+				"V('"+typeof(User).Name+"Id',_P0)"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
 					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+

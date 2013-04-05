@@ -15,15 +15,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Value:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
-			"_V2=g.V('"+typeof(VectorType).Name+"Id',_TP)[0].next();"+
+			"_V2=g.V('"+typeof(VectorType).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);"+
-			"_V3=g.V('"+typeof(Artifact).Name+"Id',_TP)[0].next();"+
+			"_V3=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V3,_TP);"+
-			"_V4=g.V('"+typeof(VectorUnit).Name+"Id',_TP)[0].next();"+
+			"_V4=g.V('"+typeof(VectorUnit).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V4,_TP);"+
-			"_V5=g.V('"+typeof(VectorUnitPrefix).Name+"Id',_TP)[0].next();"+
+			"_V5=g.V('"+typeof(VectorUnitPrefix).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V5,_TP);";
 
 		private long vVecTypeId;

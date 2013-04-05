@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddGrant {
 
 		private readonly static string QueryUpdateGrantTx =
-			"g.V('"+typeof(User).Name+"Id',_TP)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_TP)"+
 			".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
 				".as('step3')"+
 			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
@@ -35,9 +35,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Expires:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP)[0].next();"+
+			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
 		protected long vAppId;

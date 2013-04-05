@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetLocatorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('FabType',_P)[0]"+
+			"g.V('FabType',_P)"+
 				".has('ValueX',Tokens.T.eq,_P)"+
 				".has('ValueY',Tokens.T.eq,_P)"+
 				".has('ValueZ',Tokens.T.eq,_P)"+

@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDataProv {
 
 		private readonly static string QueryGetUser =
-			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)"+
 				".as('step1')"+
 			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".as('step4')"+

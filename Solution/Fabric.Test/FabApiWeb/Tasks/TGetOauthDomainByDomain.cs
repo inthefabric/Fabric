@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetOauthDomainByDomain : TWebTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
 				".filter{it.getProperty('Domain').toLowerCase()==_P1};";
 

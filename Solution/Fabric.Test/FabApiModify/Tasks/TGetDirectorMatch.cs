@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetDirectorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('FabType',_P)[0]"+
+			"g.V('FabType',_P)"+
 				".as('step1')"+
 			".outE('"+typeof(DirectorUsesDirectorType).Name+"').inV"+
 				".has('"+typeof(DirectorType).Name+"Id',Tokens.T.eq,_P)"+

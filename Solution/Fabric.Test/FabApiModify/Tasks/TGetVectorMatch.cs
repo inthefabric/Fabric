@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetVectorMatch : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('FabType',_P)[0]"+
+			"g.V('FabType',_P)"+
 				".has('Value',Tokens.T.eq,_P)"+
 				".as('step2')"+
 			".outE('"+typeof(VectorUsesVectorType).Name+"').inV"+

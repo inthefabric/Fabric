@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetUrlByAbsoluteUrl : TModifyTasks {
 
 		private readonly static string Query =
-			"g.V('FabType',_P0)[0]"+
+			"g.V('FabType',_P0)"+
 				".filter{it.getProperty('AbsoluteUrl').toLowerCase()==_P1};";
 
 		private string vAbsoluteUrl;

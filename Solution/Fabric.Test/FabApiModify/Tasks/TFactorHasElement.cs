@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public abstract class TFactorHasElement<T, TRel> : TModifyTasks where T : FactorElementNode {
 
 		private readonly string Query =
-			"g.V('"+typeof(Factor).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(Factor).Name+"Id',_P0)"+
 			".outE('"+typeof(TRel).Name+"');";
 
 		private long vFactorId;

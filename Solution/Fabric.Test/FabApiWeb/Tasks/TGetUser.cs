@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetUser : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',_P0)[0];";
+			"g.V('"+typeof(User).Name+"Id',_P0);";
 
 		private long vUserId;
 		private User vUserResult;

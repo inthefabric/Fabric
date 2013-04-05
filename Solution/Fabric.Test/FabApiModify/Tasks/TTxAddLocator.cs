@@ -17,9 +17,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"ValueZ:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
-			"_V2=g.V('"+typeof(LocatorType).Name+"Id',_TP)[0].next();"+
+			"_V2=g.V('"+typeof(LocatorType).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
 		private long vLocTypeId;

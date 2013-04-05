@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetScope {
 
 		private readonly static string QueryGetMatchingScope =
-			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)"+
 				".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
 					".as('step3')"+
 				".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+

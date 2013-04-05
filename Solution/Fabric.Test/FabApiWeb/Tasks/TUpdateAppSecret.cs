@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TUpdateAppSecret : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)"+
 				".sideEffect{it.setProperty('Secret',_P1)};";
 
 		private long vAppId;

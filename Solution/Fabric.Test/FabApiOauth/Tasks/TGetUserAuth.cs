@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetUserAuth {
 
 		private const string QueryGetUserAuth =
-			"g.V('FabType',_P0)[0]"+
+			"g.V('FabType',_P0)"+
 				".has('Password',Tokens.T.eq,_P1)"+
 				".filter{it.getProperty('Name').toLowerCase()==_P2};";
 

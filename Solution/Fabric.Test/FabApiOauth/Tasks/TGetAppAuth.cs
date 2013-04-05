@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetAppAuth{
 
 		private readonly static string QueryGetApp =
-			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)"+
 				".has('Secret',Tokens.T.eq,_P1);";
 
 		private long vAppId;

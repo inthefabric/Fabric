@@ -26,7 +26,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetKeyIndexScript(long pTypeId) {
 			string idVal = Path.AddParam(new WeaverQueryVal(pTypeId));
-			return "g.V('"+TypeIdName+"',"+idVal+")[0]";
+			return "g.V('"+TypeIdName+"',"+idVal+")";
 		}
 
 	}

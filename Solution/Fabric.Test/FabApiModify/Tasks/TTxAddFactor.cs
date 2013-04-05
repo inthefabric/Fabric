@@ -19,13 +19,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"Note:_TP"+(A++)+","+
 				"FabType:_TP"+(A++)+""+
 			"]);"+
-			"_V1=g.V('"+typeof(Artifact).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"_V1=g.V('"+typeof(Artifact).Name+"Id',_TP"+(A++)+").next();"+
 			"g.addEdge(_V0,_V1,_TP"+(A++)+");"+
-			"_V2=g.V('"+typeof(Artifact).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"_V2=g.V('"+typeof(Artifact).Name+"Id',_TP"+(A++)+").next();"+
 			"g.addEdge(_V0,_V2,_TP"+(A++)+");"+
-			"_V3=g.V('"+typeof(FactorAssertion).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"_V3=g.V('"+typeof(FactorAssertion).Name+"Id',_TP"+(A++)+").next();"+
 			"g.addEdge(_V0,_V3,_TP"+(A++)+");"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP"+(A++)+")[0].next();"+
+			"_V4=g.V('"+typeof(Member).Name+"Id',_TP"+(A++)+").next();"+
 			"g.addEdge(_V4,_V0,_TP"+(A++)+");";
 
 		private long vPrimArtId;

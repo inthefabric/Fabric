@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetArtifact : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Artifact).Name+"Id',_P0)[0];";
+			"g.V('"+typeof(Artifact).Name+"Id',_P0);";
 
 		private long vArtifactId;
 		private Artifact vArtifactResult;

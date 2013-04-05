@@ -19,17 +19,17 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				"FabType:_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"_V2=g.V('"+typeof(App).Name+"Id',_TP).next();"+
 			"g.addEdge(_V2,_V1,_TP);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
 				"Performed:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"_V4=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V4,_V3,_TP);"+
 			"g.addEdge(_V1,_V3,_TP);"+
-			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP)[0].next();"+
+			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
 			"g.addEdge(_V3,_V5,_TP);";
 
 		private long vNewMemberId;

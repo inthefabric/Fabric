@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetMemberTx =
 			"_V0=[];"+
-			"g.V('"+typeof(User).Name+"Id',_TP)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_TP)"+
 			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 				".as('step3')"+
 			".inE('"+typeof(AppDefinesMember).Name+"').outV"+
@@ -36,9 +36,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				typeof(Member).Name+"Id:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP)[0].next();"+
+			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
 			"g.addEdge(_V2,_V0,_TP);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
@@ -47,16 +47,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"FabType:_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V3,_TP);"+
-			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP)[0].next();"+
+			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
 			"g.addEdge(_V3,_V4,_TP);"+
-			"_V5=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"_V5=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V5,_V3,_TP);";
 
 		private readonly static string QueryUpdateMemberTx =
-			"_V0=g.V('"+typeof(MemberTypeAssign).Name+"Id',_TP)[0].next();"+
+			"_V0=g.V('"+typeof(MemberTypeAssign).Name+"Id',_TP).next();"+
 			"_V0.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
-			"_V1=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
 			"_V2=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
@@ -65,9 +65,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"FabType:_TP"+
 			"]);"+
 			"g.addEdge(_V1,_V2,_TP);"+
-			"_V3=g.V('"+typeof(MemberType).Name+"Id',_TP)[0].next();"+
+			"_V3=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
 			"g.addEdge(_V2,_V3,_TP);"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"_V4=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V4,_V2,_TP);";
 		
 		private long vAppId;

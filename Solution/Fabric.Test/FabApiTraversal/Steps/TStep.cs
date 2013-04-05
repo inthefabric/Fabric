@@ -28,7 +28,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
 			Assert.NotNull(s.AvailableLinks, "AvailableLinks should not be null.");
 			Assert.AreEqual(2, s.AvailableLinks.Count, "Incorrect AvailableLinks length.");
-			Assert.AreEqual(expectAvail[0], s.AvailableLinks[0].RelType,"Incorrect AvailableLinks[0].");
+			Assert.AreEqual(expectAvail[0], s.AvailableLinks[0].RelType, "Incorrect AvailableLinks.");
 			Assert.AreEqual(expectAvail[1], s.AvailableLinks[1].RelType,"Incorrect AvailableLinks[1].");
 			Assert.Null(s.Data, "Data should be null.");
 		}

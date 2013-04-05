@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetValidMemberByContext : TModifyTasks {
 
 		private readonly static string Query =
-			"g.V('"+typeof(User).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(User).Name+"Id',_P0)"+
 				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
 					".as('step3')"+
 				".inE('"+typeof(AppDefinesMember).Name+"').outV"+

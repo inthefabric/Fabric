@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetVectorType : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(VectorType).Name+"Id',_P0)[0];";
+			"g.V('"+typeof(VectorType).Name+"Id',_P0);";
 
 		private long vVectorTypeId;
 		private VectorType vVectorTypeResult;

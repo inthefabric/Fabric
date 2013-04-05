@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetAppByName : TWebTasks {
 
 		private const string Query =
-			"g.V('FabType',_P0)[0]"+
+			"g.V('FabType',_P0)"+
 				".filter{it.getProperty('Name').toLowerCase()==_P1};";
 
 		private string vName;

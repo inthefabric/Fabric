@@ -15,10 +15,10 @@ namespace Fabric.Test.FabApiOauth {
 	public class TOauthGrantCore {
 	
 		private readonly static string QueryGetApp =
-			"g.V('"+typeof(App).Name+"Id',_P0)[0];";
+			"g.V('"+typeof(App).Name+"Id',_P0);";
 			
 		private readonly static string QueryGetUser =
-			"g.V('"+typeof(User).Name+"Id',_P0)[0];";
+			"g.V('"+typeof(User).Name+"Id',_P0);";
 
 		private string vClientId;
 		private long vClientIdLong;

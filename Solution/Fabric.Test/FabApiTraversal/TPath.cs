@@ -66,7 +66,7 @@ namespace Fabric.Test.FabApiTraversal {
 		public void AddSegmentShortcut() {
 			var p = new Path();
 			const long typeId = 125235;
-			string expectShortcut = "g.V('ArtifactId',"+typeId+"L)[0]";
+			string expectShortcut = "g.V('ArtifactId',"+typeId+"L)";
 			const string script0 = "g.v(0)";
 			const string script3 = "outE('ArtifactUsesArtifactType').inV";
 			string expectScript = expectShortcut+"."+script3;

@@ -21,7 +21,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		public FuncActiveAppStep(IPath pPath) : base(pPath) {
 			string prop = WeaverUtil.GetPropertyName<App>(x => x.AppId);
 			string idParam = Path.AddParam(new WeaverQueryVal(Path.AppId));
-			Path.AddSegment(this, "V('"+prop+"',"+idParam+")[0]");
+			Path.AddSegment(this, "V('"+prop+"',"+idParam+")");
 			ProxyStep = new AppStep(Path);
 		}
 		

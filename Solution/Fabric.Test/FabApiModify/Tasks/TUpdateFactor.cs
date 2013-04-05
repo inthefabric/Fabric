@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TUpdateFactor : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(Factor).Name+"Id',_P0)"+
 				".sideEffect{"+
 					"it.setProperty('{{PropName}}',_P1)"+
 				"};";

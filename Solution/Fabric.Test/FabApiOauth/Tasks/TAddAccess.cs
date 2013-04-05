@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddAccess {
 
 		private readonly static string QueryClearTokens =
-			"g.V('AppId',_P)[0]"+
+			"g.V('AppId',_P)"+
 			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
 				".has('Token',Tokens.T.neq,_P)"+
 				".has('IsClientOnly',Tokens.T.eq,_P)"+
@@ -31,7 +31,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"};";
 
 		private readonly static string QueryClearTokensClientOnly =
-			"g.V('AppId',_P)[0]"+
+			"g.V('AppId',_P)"+
 			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
 				".has('Token',Tokens.T.neq,_P)"+
 				".has('IsClientOnly',Tokens.T.eq,_P)"+
@@ -49,9 +49,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"IsClientOnly:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP)[0].next();"+
+			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
 		private readonly static string QueryAddAccessTxClientOnly =
@@ -63,7 +63,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"IsClientOnly:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);";
 
 		protected long vAddOauthAccessId;

@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAndUpdateTx =
 			"_V0=[];"+
-			"g.V('FabType',_TP)[0]"+
+			"g.V('FabType',_TP)"+
 				".has('Code',Tokens.T.eq,_TP)"+
 				".has('Expires',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+

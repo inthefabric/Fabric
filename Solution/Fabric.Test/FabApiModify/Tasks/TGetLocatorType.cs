@@ -11,7 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetLocatorType : TModifyTasks {
 
 		private static readonly string Query = 
-			"g.V('"+typeof(LocatorType).Name+"Id',_P0)[0];";
+			"g.V('"+typeof(LocatorType).Name+"Id',_P0);";
 
 		private long vLocatorTypeId;
 		private LocatorType vLocatorTypeResult;

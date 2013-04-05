@@ -16,7 +16,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				"Domain:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP)[0].next();"+
+			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
 			"_V0;";
 

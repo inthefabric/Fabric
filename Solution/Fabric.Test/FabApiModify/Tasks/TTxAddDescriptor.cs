@@ -15,21 +15,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				typeof(Descriptor).Name+"Id:_TP0,"+
 				"FabType:_TP1"+
 			"]);"+
-			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP2)[0].next();"+
+			"_V1=g.V('"+typeof(Factor).Name+"Id',_TP2).next();"+
 			"g.addEdge(_V1,_V0,_TP3);"+
-			"_V2=g.V('"+typeof(DescriptorType).Name+"Id',_TP4)[0].next();"+
+			"_V2=g.V('"+typeof(DescriptorType).Name+"Id',_TP4).next();"+
 			"g.addEdge(_V0,_V2,_TP5);";
 
 		private static readonly string QueryPrimRef = 
-			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}})[0].next();"+
+			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{PrimId}}).next();"+
 			"g.addEdge(_V0,_V{{PrimV}},_TP{{PrimTp}});";
 
 		private static readonly string QueryRelRef = 
-			"_V{{RelV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{RelId}})[0].next();"+
+			"_V{{RelV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{RelId}}).next();"+
 			"g.addEdge(_V0,_V{{RelV}},_TP{{RelTp}});";
 
 		private static readonly string QueryTypeRef = 
-			"_V{{TypeV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{TypeId}})[0].next();"+
+			"_V{{TypeV}}=g.V('"+typeof(Artifact).Name+"Id',_TP{{TypeId}}).next();"+
 			"g.addEdge(_V0,_V{{TypeV}},_TP{{TypeTp}});";
 
 		private long vDescTypeId;

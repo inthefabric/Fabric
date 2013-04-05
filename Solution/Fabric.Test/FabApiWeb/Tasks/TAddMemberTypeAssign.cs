@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddMemberTypeAssign : TWebTasks {
 
 		private static readonly string Query =
-			"_V0=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"_V0=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"_V1=_V0.outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV.next();"+
 			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
 				".remove();"+
@@ -22,10 +22,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				"Performed:_TP,"+
 				"FabType:_TP"+
 			"]);"+
-			"_V3=g.V('"+typeof(Member).Name+"Id',_TP)[0].next();"+
+			"_V3=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V3,_V2,_TP);"+
 			"g.addEdge(_V0,_V2,_TP);"+
-			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP)[0].next();"+
+			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
 			"g.addEdge(_V2,_V4,_TP);"+
 			"_V2;";
 

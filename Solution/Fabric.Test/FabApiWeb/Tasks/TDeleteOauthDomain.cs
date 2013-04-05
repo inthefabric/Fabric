@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TDeleteOauthDomain : TWebTasks {
 
 		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',_P0)[0]"+
+			"g.V('"+typeof(App).Name+"Id',_P0)"+
 			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
 				".has('"+typeof(OauthDomain).Name+"Id',Tokens.T.eq,_P1)"+
 				".remove();";

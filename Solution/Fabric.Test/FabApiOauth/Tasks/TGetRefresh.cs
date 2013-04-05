@@ -16,7 +16,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private readonly static string QueryGetAccessTx =
 			"_V0=[];"+
-			"g.V('FabType',_TP)[0]"+
+			"g.V('FabType',_TP)"+
 				".has('Refresh',Tokens.T.eq,_TP)"+
 				".has('IsClientOnly',Tokens.T.eq,_TP)"+
 				".as('step3')"+

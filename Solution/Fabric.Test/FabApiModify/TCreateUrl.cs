@@ -56,7 +56,7 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			string expectPartial = 
-				"_V0=g.V('"+typeof(Member).Name+"Id',_TP0)[0].next();"+
+				"_V0=g.V('"+typeof(Member).Name+"Id',_TP0).next();"+
 				"AU;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
