@@ -2,8 +2,6 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using NUnit.Framework;
-using Weaver;
-using Weaver.Functions;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiModify {
@@ -59,12 +57,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountDeleted() {
-			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
-				.ContainsFactorList.ToFactor
-					.Has(x => x.Deleted, WeaverFuncHasOp.NotEqualTo, null)
-					.Count()
-				.End();
-
+			IWeaverQuery q = GetNodeByPropQuery<Factor>(".has('Deleted',Tokens.T.neq,null).count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountDeleted", q);
 			return int.Parse(data.Result.Text);
 		}

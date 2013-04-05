@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -32,14 +31,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pDateTime, newEventor.DateTime, "Incorrect DateTime.");
 
 			NodeConnections conn = GetNodeConnections(newEventor);
-			conn.AssertRelCount(2, 2);
-			conn.AssertRel<RootContainsEventor, Root>(false, 0);
+			conn.AssertRelCount(1, 2);
 			conn.AssertRel<FactorUsesEventor, Factor>(false, f.FactorId);
 			conn.AssertRel<EventorUsesEventorType, EventorType>(true, (long)pEveTypeId);
 			conn.AssertRel<EventorUsesEventorPrecision, EventorPrecision>(true, (long)pEvePrecId);
 
 			NewNodeCount = 1;
-			NewRelCount = 4;
+			NewRelCount = 3;
 		}
 
 	}

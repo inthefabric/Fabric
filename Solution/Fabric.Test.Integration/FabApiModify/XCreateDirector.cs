@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -57,15 +56,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 				"Incorrect Result.DirectorId.");
 
 			NodeConnections conn = GetNodeConnections(newDirector);
-			conn.AssertRelCount(2, 3);
-			conn.AssertRel<RootContainsDirector, Root>(false, 0);
+			conn.AssertRelCount(1, 3);
 			conn.AssertRel<FactorUsesDirector, Factor>(false, FactorId);
 			conn.AssertRel<DirectorUsesDirectorType, DirectorType>(true, vDirTypeId);
 			conn.AssertRel<DirectorUsesPrimaryDirectorAction, DirectorAction>(true, vPrimActId);
 			conn.AssertRel<DirectorUsesRelatedDirectorAction, DirectorAction>(true, vRelActId);
 
 			NewNodeCount = 1;
-			NewRelCount = 5;
+			NewRelCount = 4;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -65,15 +65,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 			string artId = typeof(Artifact).Name+"Id";
 
 			NodeConnections conn = GetNodeConnections(newFactor);
-			conn.AssertRelCount(2, 3);
-			conn.AssertRel<RootContainsFactor, Root>(false, 0);
+			conn.AssertRelCount(1, 3);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, vExpectMemberId);
 			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId, artId);
 			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, vRelArtId, artId);
 			conn.AssertRel<FactorUsesFactorAssertion, FactorAssertion>(true, vAssertId);
 			
 			NewNodeCount = 1;
-			NewRelCount = 5;
+			NewRelCount = 4;
 		}
 		
 

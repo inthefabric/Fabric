@@ -70,7 +70,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Factor fac = GetNode<Factor>(f.FactorId);
 
 			NodeConnections conn = GetNodeConnections(fac);
-			conn.AssertRelCount(2, 4); //has some existing relations
+			conn.AssertRelCount(1, 4); //has some existing relations
 			conn.AssertRel<TRel, T>(true, ((INode)pElement).GetTypeId());
 
 			NewNodeCount = 0;

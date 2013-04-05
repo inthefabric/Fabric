@@ -64,8 +64,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			if ( pRelArtRefId != null ) { refRels++; }
 			if ( pDescTypeRefId != null ) { refRels++; }
 
-			pConn.AssertRelCount(2, 1+refRels);
-			pConn.AssertRel<RootContainsDescriptor, Root>(false, 0);
+			pConn.AssertRelCount(1, 1+refRels);
 			pConn.AssertRel<FactorUsesDescriptor, Factor>(false, pFactorId);
 			pConn.AssertRel<DescriptorUsesDescriptorType, DescriptorType>(true, pDescTypeId);
 
@@ -86,7 +85,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 					true, (long)pDescTypeRefId, idProp);
 			}
 
-			pRelCount = 3+refRels;
+			pRelCount = 2+refRels;
 		}
 
 	}

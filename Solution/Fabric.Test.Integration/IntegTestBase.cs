@@ -54,7 +54,7 @@ namespace Fabric.Test.Integration {
 			TestSetUp();
 
 			//vCounts = CountNodesAndRels();
-			vCounts = new Tuple<int, int>(557, 1783); //shortcut to help tests run faster
+			vCounts = new Tuple<int, int>(556, 1227); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
 			Log.Info("Counts { V = "+vCounts.Item1+", E = "+vCounts.Item2+" }");
@@ -141,9 +141,10 @@ namespace Fabric.Test.Integration {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T GetNodeByProp<T>(Expression<Func<T,object>> pProp, string pValWithQuotes)
+		protected T GetNodeByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
 																where T : class, INodeWithId, new() {
-			var q = GetNodeQuery<Root>(0, ".outE('RootContains"+typeof(T).Name+"').inV"+
+			var q = new WeaverQuery();
+			q.FinalizeQuery("g.V('FabType',"+(int)NodeFabTypeUtil.TypeMap[typeof(T)]+")"+
 				".has('"+WeaverUtil.GetPropertyName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
 			return ApiCtx.DbSingle<T>("TEST.GetNodeByProp", q);
 		}
@@ -179,6 +180,14 @@ namespace Fabric.Test.Integration {
 			q.FinalizeQuery("g.V('"+typeof(T).Name+"Id',"+idParam+")[0]"+pAppendScript);
 			return q;
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected IWeaverQuery GetNodeByPropQuery<T>(string pAppendScript="") where T : INodeWithId {
+			var q = new WeaverQuery();
+			q.FinalizeQuery("g.V('FabType',"+(int)NodeFabTypeUtil.TypeMap[typeof(T)]+")"+pAppendScript);
+			return q;
+		}
+
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetTime() {

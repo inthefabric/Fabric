@@ -18,11 +18,9 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			FactorAssertionId.Fact, true, "this is a note.", SetupUsers.MemberId.GalZach)]
 		public void Success(SetupArtifacts.ArtifactId pPrimArtId, SetupArtifacts.ArtifactId pRelArtId,
 				FactorAssertionId pAssertId, bool pIsDef, string pNote, SetupUsers.MemberId pMemberId) {
-			IWeaverVarAlias<Root> rootVar;
 			var mem = new Member { MemberId = (long)pMemberId };
 			IWeaverVarAlias<Factor> factorVar;
 
-			TxBuild.GetRoot(out rootVar);
 			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (long)pAssertId, 
 				pIsDef, pNote, mem, out factorVar);
 			FinishTx();
@@ -43,15 +41,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			string artId = typeof(Artifact).Name+"Id";
 
 			NodeConnections conn = GetNodeConnections(newFactor);
-			conn.AssertRelCount(2, 3);
-			conn.AssertRel<RootContainsFactor, Root>(false, 0);
+			conn.AssertRelCount(1, 3);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, (long)pMemberId);
 			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId, artId);
 			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, (long)pRelArtId, artId);
 			conn.AssertRel<FactorUsesFactorAssertion, FactorAssertion>(true, (long)pAssertId);
 
 			NewNodeCount = 1;
-			NewRelCount = 5;
+			NewRelCount = 4;
 		}
 
 	}

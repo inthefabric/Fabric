@@ -60,23 +60,21 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			NodeConnections conn = GetNodeConnections(newMem);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMember, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<AppDefinesMember, App>(false, vAppId);
 			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMemberTypeAssign, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMem.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
 
 			NewNodeCount = 2;
-			NewRelCount = 7;
+			NewRelCount = 5;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -108,8 +106,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			conn = GetNodeConnections(updateMem);
-			conn.AssertRelCount(3, 2);
-			conn.AssertRel<RootContainsMember, Root>(false, 0);
+			conn.AssertRelCount(2, 2);
 			conn.AssertRel<AppDefinesMember, App>(false, vAppId);
 			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
@@ -118,15 +115,14 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 				true, (long)pUpdateMtaId);
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMemberTypeAssign, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, updateMem.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
 
 			NewNodeCount = 1;
-			NewRelCount = 5-1; //original Member-Has-MemberTypeAssign relationship is removed
+			NewRelCount = 3;
 		}
 
 	}

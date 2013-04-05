@@ -22,7 +22,7 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 	/*================================================================================================*/
-	public class RootStep : NodeStep<FabRoot> {
+	public class RootStep : NodeStep<FabRoot>, IFinalStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 <#
@@ -44,6 +44,10 @@ foreach ( string name in nodeNames ) {
 } //end node loop
 #>
 		};
+		
+		public bool UseLocalData { get { return true; } }
+		public long Index { get { return 0; } }
+		public int Count { get { return 1; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

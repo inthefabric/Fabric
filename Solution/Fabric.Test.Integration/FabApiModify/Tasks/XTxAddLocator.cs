@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -34,13 +33,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pValueZ, newLocator.ValueZ, "Incorrect ValueZ.");
 
 			NodeConnections conn = GetNodeConnections(newLocator);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<RootContainsLocator, Root>(false, 0);
+			conn.AssertRelCount(1, 1);
 			conn.AssertRel<FactorUsesLocator, Factor>(false, f.FactorId);
 			conn.AssertRel<LocatorUsesLocatorType, LocatorType>(true, (long)pEveTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

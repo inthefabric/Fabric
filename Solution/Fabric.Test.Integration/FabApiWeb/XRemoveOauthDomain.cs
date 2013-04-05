@@ -53,7 +53,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.Null(tryDom, "Target OauthDomain was not deleted.");
 
 			NewNodeCount = -1;
-			NewRelCount = -2;
+			NewRelCount = -1;
 		}
 
 				

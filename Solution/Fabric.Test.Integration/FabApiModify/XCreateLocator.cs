@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -7,7 +6,6 @@ using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
-using System;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -60,13 +58,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 				"Incorrect Result.LocatorId.");
 
 			NodeConnections conn = GetNodeConnections(newLocator);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<RootContainsLocator, Root>(false, 0);
+			conn.AssertRelCount(1, 1);
 			conn.AssertRel<FactorUsesLocator, Factor>(false, FactorId);
 			conn.AssertRel<LocatorUsesLocatorType, LocatorType>(true, vLocTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

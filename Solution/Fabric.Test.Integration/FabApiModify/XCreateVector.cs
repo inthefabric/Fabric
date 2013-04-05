@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -62,8 +61,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				"Incorrect Result.VectorId.");
 
 			NodeConnections conn = GetNodeConnections(newVector);
-			conn.AssertRelCount(2, 4);
-			conn.AssertRel<RootContainsVector, Root>(false, 0);
+			conn.AssertRelCount(1, 4);
 			conn.AssertRel<FactorUsesVector, Factor>(false, FactorId);
 			conn.AssertRel<VectorUsesVectorType, VectorType>(true, vVecTypeId);
 			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true,
@@ -72,7 +70,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, vVecUnitPrefId);
 			
 			NewNodeCount = 1;
-			NewRelCount = 6;
+			NewRelCount = 5;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

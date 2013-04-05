@@ -248,9 +248,9 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			Response result = TestPost();
 			CheckRedirectSuccess(result);
 
-			//calls AddScope (1,3) and AddGrant (1,3)
+			//calls AddScope (1,2) and AddGrant (1,2)
 			NewNodeCount = 2;
-			NewRelCount = 6;
+			NewRelCount = 4;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -262,9 +262,9 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			Response result = TestPost();
 			CheckError(result, GrantErrors.access_denied, GrantErrorDescs.AccessDeny);
 
-			//calls AddScope (1,3)
+			//calls AddScope (1,2)
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

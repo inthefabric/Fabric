@@ -34,8 +34,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pValue, newVector.Value, "Incorrect Value.");
 
 			NodeConnections conn = GetNodeConnections(newVector);
-			conn.AssertRelCount(2, 4);
-			conn.AssertRel<RootContainsVector, Root>(false, 0);
+			conn.AssertRelCount(1, 4);
 			conn.AssertRel<FactorUsesVector, Factor>(false, f.FactorId);
 			conn.AssertRel<VectorUsesVectorType, VectorType>(true, (long)pVecTypeId);
 			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true, 
@@ -44,7 +43,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, (long)pVecUnitPrefId);
 
 			NewNodeCount = 1;
-			NewRelCount = 6;
+			NewRelCount = 5;
 		}
 
 	}

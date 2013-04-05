@@ -51,14 +51,13 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMemberTypeAssign, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, vAssigningMemberId);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, vMemberId);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, vMemberTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 4;
+			NewRelCount = 3;
 		}
 
 	}

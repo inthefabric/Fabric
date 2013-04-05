@@ -67,8 +67,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
 
 			NodeConnections conn = GetNodeConnections(newOa);
-			conn.AssertRelCount(1, (vClientOnly ? 1 : 2));
-			conn.AssertRel<RootContainsOauthAccess, Root>(false, 0);
+			conn.AssertRelCount(0, (vClientOnly ? 1 : 2));
 
 			if ( vClientOnly ) {
 				conn.AssertRel<OauthAccessUsesApp, App>(true, vAppId);
@@ -90,19 +89,14 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.AreEqual(tokenCount+1, updatedTokenCount, "Incorrect updated Token count.");
 
 			NewNodeCount = 1;
-			NewRelCount = (vClientOnly ? 2 : 3);
+			NewRelCount = (vClientOnly ? 1 : 2);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountTokens() {
-			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
-				.ContainsOauthAccessList.ToOauthAccess
-					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, "")
-					.Count()
-				.End();
-
+			IWeaverQuery q = GetNodeByPropQuery<OauthAccess>(".has('Token',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
 			return int.Parse(data.Result.Text);
 		}

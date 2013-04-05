@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -55,13 +54,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 				"Incorrect Result.IdentorId.");
 
 			NodeConnections conn = GetNodeConnections(newIdentor);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<RootContainsIdentor, Root>(false, 0);
+			conn.AssertRelCount(1, 1);
 			conn.AssertRel<FactorUsesIdentor, Factor>(false, FactorId);
 			conn.AssertRel<IdentorUsesIdentorType, IdentorType>(true, vIdenTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

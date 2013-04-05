@@ -59,8 +59,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(AppGal, UserEllie, true)]
-		[TestCase(AppBook, UserBook, false)]
+		[TestCase(AppGal, UserBook, false)]
+		[TestCase(AppBook, UserGal, true)]
 		public void GoAdd(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId, bool pAllow) {
 			vAppId = (long)pAppId;
 			vUserId = (long)pUserId;
@@ -74,10 +74,12 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOs, "New OauthScope was not created.");
 
 			NodeConnections conn = GetNodeConnections(newOs);
-			conn.AssertRelCount(1, 2);
-			conn.AssertRel<RootContainsOauthScope, Root>(false, 0);
+			conn.AssertRelCount(0, 2);
 			conn.AssertRel<OauthScopeUsesApp, App>(true, vAppId);
 			conn.AssertRel<OauthScopeUsesUser, User>(true, vUserId);
+
+			NewNodeCount = 1;
+			NewRelCount = 2;
 		}
 
 	}

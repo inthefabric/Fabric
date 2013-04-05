@@ -13,7 +13,6 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 		private FabResponse vResp;
 		private string vUri;
-		private bool vStartAtRoot;
 
 		private TraversalModel vModel;
 		
@@ -26,12 +25,11 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 			vResp = new FabResponse();
 			vUri = "";
-			vStartAtRoot = true;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestPath() {
-			TraversalBuilder tb = new TraversalBuilder(ApiCtx, vResp, vUri, vStartAtRoot);
+			TraversalBuilder tb = new TraversalBuilder(ApiCtx, vResp, vUri);
 			vModel = tb.BuildModel();
 		}
 		
@@ -62,7 +60,6 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		[Test]
 		public void ActiveApp() {
 			ApiCtx.SetAppUserId((long)SetupUsers.AppId.KinPhoGal, null);
-			vStartAtRoot = false;
 			vUri = "/ActiveApp";
 			TestPath();
 			CheckSuccess<App>(1);
@@ -73,7 +70,6 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		[Test]
 		public void ActiveUser() {
 			ApiCtx.SetAppUserId(null, (long)SetupUsers.UserId.Zach);
-			vStartAtRoot = false;
 			vUri = "/ActiveUser";
 			TestPath();
 			CheckSuccess<User>(1);
@@ -84,7 +80,6 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		[Test]
 		public void ActiveMember() {
 			ApiCtx.SetAppUserId((long)SetupUsers.AppId.KinPhoGal, (long)SetupUsers.UserId.Zach);
-			vStartAtRoot = false;
 			vUri = "/ActiveMember";
 			TestPath();
 			CheckSuccess<Member>(1);

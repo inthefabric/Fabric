@@ -56,12 +56,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.AreEqual(newUrl.UrlId, vResult.UrlId, "Incorrect Result.UrlId.");
 
 			NodeConnections conn = GetNodeConnections(newUrl);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<RootContainsUrl, Root>(false, 0);
+			conn.AssertRelCount(1, 0);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, vExpectMemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 2;
+			NewRelCount = 1;
 		}
 		
 

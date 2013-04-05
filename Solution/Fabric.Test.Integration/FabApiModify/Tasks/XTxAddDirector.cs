@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -32,15 +31,14 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreNotEqual(0, newDirector.DirectorId, "Incorrect DirectorId.");
 
 			NodeConnections conn = GetNodeConnections(newDirector);
-			conn.AssertRelCount(2, 3);
-			conn.AssertRel<RootContainsDirector, Root>(false, 0);
+			conn.AssertRelCount(1, 3);
 			conn.AssertRel<FactorUsesDirector, Factor>(false, f.FactorId);
 			conn.AssertRel<DirectorUsesDirectorType, DirectorType>(true, (long)pDirTypeId);
 			conn.AssertRel<DirectorUsesPrimaryDirectorAction, DirectorAction>(true, (long)pPrimActId);
 			conn.AssertRel<DirectorUsesRelatedDirectorAction, DirectorAction>(true, (long)pRelActId);
 
 			NewNodeCount = 1;
-			NewRelCount = 5;
+			NewRelCount = 4;
 		}
 
 	}

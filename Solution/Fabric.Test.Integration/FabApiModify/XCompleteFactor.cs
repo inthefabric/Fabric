@@ -4,7 +4,6 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using NUnit.Framework;
 using Weaver;
-using Weaver.Functions;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiModify {
@@ -90,12 +89,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCompleted() {
-			IWeaverQuery q = WeaverTasks.BeginPath<Root>(x => x.RootId, 0).BaseNode
-				.ContainsFactorList.ToFactor
-					.Has(x => x.Completed, WeaverFuncHasOp.NotEqualTo, null)
-					.Count()
-				.End();
-
+			IWeaverQuery q = GetNodeByPropQuery<Factor>(".has('Completed',Tokens.T.neq,null).count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCompleted", q);
 			return int.Parse(data.Result.Text);
 		}

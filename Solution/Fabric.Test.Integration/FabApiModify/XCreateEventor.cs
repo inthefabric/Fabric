@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
@@ -57,17 +56,17 @@ namespace Fabric.Test.Integration.FabApiModify {
 				"Incorrect Result.EventorId.");
 
 			NodeConnections conn = GetNodeConnections(newEventor);
-			conn.AssertRelCount(2, 2);
-			conn.AssertRel<RootContainsEventor, Root>(false, 0);
+			conn.AssertRelCount(1, 2);
 			conn.AssertRel<FactorUsesEventor, Factor>(false, FactorId);
 			conn.AssertRel<EventorUsesEventorType, EventorType>(true, vEveTypeId);
 			conn.AssertRel<EventorUsesEventorPrecision, EventorPrecision>(true, vEvePrecId);
 
 			NewNodeCount = 1;
-			NewRelCount = 4;
+			NewRelCount = 3;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void ExistingEventor() {
 			IsReadOnlyTest = false;
 

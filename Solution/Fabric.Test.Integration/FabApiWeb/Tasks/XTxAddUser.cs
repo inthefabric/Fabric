@@ -19,16 +19,13 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("NewUser", "MyPassword")]
 		public void Success(string pName, string pPassword) {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Email> emailVar;
 			IWeaverVarAlias<User> userVar;
 			var useEmail = new Email { EmailId = (long)SetupUsers.EmailId.Zach_AEI };
 			Action<IWeaverVarAlias<Member>> setMemVar;
 
-			TxBuild.GetRoot(out rootVar);
 			TxBuild.GetNode(useEmail, out emailVar);
-			Tasks.TxAddUser(ApiCtx, TxBuild, pName, pPassword, rootVar, emailVar,
-				out userVar, out setMemVar);
+			Tasks.TxAddUser(ApiCtx, TxBuild, pName, pPassword, emailVar, out userVar, out setMemVar);
 
 			var mem = new Member { MemberId = (long)SetupUsers.MemberId.FabFabData };
 			IWeaverVarAlias<Member> memVar;
@@ -49,13 +46,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 				"Incorrect Password.");
 
 			NodeConnections conn = GetNodeConnections(newUser);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<RootContainsUser, Root>(false, 0);
+			conn.AssertRelCount(1, 1);
 			conn.AssertRel<UserUsesEmail, Email>(true, useEmail.EmailId);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

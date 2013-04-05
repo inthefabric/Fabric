@@ -16,14 +16,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(AppGal, UserPenny)] //already has a membership, but still a valid test
 		public void Success(SetupUsers.AppId pAppId, SetupUsers.UserId pUserId) {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<App> appVar;
 			IWeaverVarAlias<Member> memVar;
 			var useApp = new App { AppId = (long)pAppId };
 
-			TxBuild.GetRoot(out rootVar);
 			TxBuild.GetNode(useApp, out appVar);
-			Tasks.TxAddDataProvMember(ApiCtx, TxBuild, rootVar, appVar, (long)pUserId, out memVar);
+			Tasks.TxAddDataProvMember(ApiCtx, TxBuild, appVar, (long)pUserId, out memVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddDataProvMember", TxBuild.Transaction);
@@ -39,23 +37,21 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
 			NodeConnections conn = GetNodeConnections(newMember);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMember, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<UserDefinesMember, User>(false, (long)pUserId);
 			conn.AssertRel<AppDefinesMember, App>(false, useApp.AppId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMemberTypeAssign, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(
 				true, (long)MemberTypeId.DataProvider);
 
 			NewNodeCount = 2;
-			NewRelCount = 7;
+			NewRelCount = 5;
 		}
 
 	}

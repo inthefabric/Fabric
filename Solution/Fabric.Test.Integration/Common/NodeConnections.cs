@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using NUnit.Framework;
@@ -29,6 +28,10 @@ namespace Fabric.Test.Integration.Common {
 			TargetNodes = new List<IDbDto>();
 			OutRels = new List<NodeConnectionRel>();
 			InRels = new List<NodeConnectionRel>();
+
+			if ( DataAccess.ResultDtoList == null ) {
+				return;
+			}
 
 			foreach ( IDbDto dbDto in DataAccess.ResultDtoList ) {
 				if ( dbDto.Item == DbDto.ItemType.Node ) {
@@ -85,7 +88,6 @@ namespace Fabric.Test.Integration.Common {
 				}
 
 				string prop = (pIdProperty ?? rel.TargetNode.Class+"Id");
-				Log.Debug("PROP: "+prop+" / "+rel.TargetNode.Class+" / "+rel.TargetNode.Id);
 				string targId = rel.TargetNode.Data[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {

@@ -62,12 +62,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.AreEqual(newClass.ClassId, vResult.ClassId, "Incorrect Result.ClassId.");
 
 			NodeConnections conn = GetNodeConnections(newClass);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<RootContainsClass, Root>(false, 0);
+			conn.AssertRelCount(1, 0);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, vExpectMemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 2;
+			NewRelCount = 1;
 		}
 		
 

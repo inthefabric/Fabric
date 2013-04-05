@@ -17,14 +17,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("Class Name", "Class Disambiguation", "Class Note")]
 		public void Success(string pName, string pDisamb, string pNote) {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> urlVar;
 			var mem = new Member { MemberId = (long)SetupUsers.MemberId.GalZach };
 
-			TxBuild.GetRoot(out rootVar);
 			TxBuild.GetNode(mem, out memVar);
-			Tasks.TxAddClass(ApiCtx, TxBuild, pName, pDisamb, pNote, rootVar, memVar, out urlVar);
+			Tasks.TxAddClass(ApiCtx, TxBuild, pName, pDisamb, pNote, memVar, out urlVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddClass", TxBuild.Transaction);
@@ -39,12 +37,11 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pNote, newClass.Note, "Incorrect Note.");
 
 			NodeConnections conn = GetNodeConnections(newClass);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<RootContainsClass, Root>(false, 0);
+			conn.AssertRelCount(1, 0);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 2;
+			NewRelCount = 1;
 		}
 
 	}

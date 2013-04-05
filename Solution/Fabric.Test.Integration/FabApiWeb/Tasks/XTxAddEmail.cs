@@ -14,11 +14,9 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("test@test.com")]
 		public void Success(string pAddress) {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<Email> emailVar;
 
-			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddEmail(ApiCtx, TxBuild, pAddress, rootVar, out emailVar);
+			Tasks.TxAddEmail(ApiCtx, TxBuild, pAddress, out emailVar);
 			FinishTx();
 
 			ApiCtx.DbData("TEST.TxAddEmail", TxBuild.Transaction);
@@ -33,11 +31,10 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.Null(newEmail.Verified, "Incorrect Verified.");
 			
 			NodeConnections conn = GetNodeConnections(newEmail);
-			conn.AssertRelCount(1, 0);
-			conn.AssertRel<RootContainsEmail, Root>(false, 0);
+			conn.AssertRelCount(0, 0);
 
 			NewNodeCount = 1;
-			NewRelCount = 1;
+			NewRelCount = 0;
 		}
 
 	}

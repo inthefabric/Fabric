@@ -103,7 +103,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			}
 
 			NewNodeCount = 1*(vClasses.Count-3); //skip 3 items with intentional errors
-			NewRelCount = 2*(vClasses.Count-3);
+			NewRelCount = 1*(vClasses.Count-3);
 		}
 		
 

@@ -20,13 +20,10 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		[TestCase("Mel's New App", UserMel, SetupUsers.EmailId.MKin_Gmail)]
 		public void Success(string pName, SetupUsers.UserId pCreatorUserId,
 																	SetupUsers.EmailId pExpectEmailId) {
-			IWeaverVarAlias<Root> rootVar;
 			IWeaverVarAlias<App> appVar;
 			Action<IWeaverVarAlias<Member>> setMemVar;
 
-			TxBuild.GetRoot(out rootVar);
-			Tasks.TxAddApp(ApiCtx, TxBuild, pName, rootVar, (long)pCreatorUserId,
-				out appVar, out setMemVar);
+			Tasks.TxAddApp(ApiCtx, TxBuild, pName, (long)pCreatorUserId, out appVar, out setMemVar);
 
 			var mem = new Member { MemberId = (long)SetupUsers.MemberId.FabFabData };
 			IWeaverVarAlias<Member> memVar;
@@ -46,13 +43,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreEqual(32, newApp.Secret.Length, "Incorrect Secret length.");
 
 			NodeConnections conn = GetNodeConnections(newApp);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<RootContainsApp, Root>(false, 0);
+			conn.AssertRelCount(1, 1);
 			conn.AssertRel<AppUsesEmail, Email>(true, (long)pExpectEmailId);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

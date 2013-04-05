@@ -66,32 +66,29 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			NewRelCount = 0;
 			
 			NodeConnections conn = GetNodeConnections(newApp);
-			conn.AssertRelCount(2, 2);
-			conn.AssertRel<RootContainsApp, Root>(false, 0);
+			conn.AssertRelCount(1, 2);
 			conn.AssertRel<AppUsesEmail, Email>(true, (long)vExpectEmailId);
 			conn.AssertRel<AppDefinesMember, Member>(true, newMember.MemberId);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
-			NewRelCount += 4;
+			NewRelCount += 3;
 			
 			conn = GetNodeConnections(newMember);
-			conn.AssertRelCount(3, 2);
-			conn.AssertRel<RootContainsMember, Root>(false, 0);
+			conn.AssertRelCount(2, 2);
 			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
 			conn.AssertRel<AppDefinesMember, App>(false, newApp.AppId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
 			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, 
 				newApp.ArtifactId, typeof(Artifact).Name+"Id");
-			NewRelCount += 5-2;
+			NewRelCount += 4-2;
 			
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(3, 1);
-			conn.AssertRel<RootContainsMemberTypeAssign, Root>(false, 0);
+			conn.AssertRelCount(2, 1);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
 			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true,
 				(long)MemberTypeId.DataProvider);
-			NewRelCount += 4-1;
+			NewRelCount += 3-1;
 		}
 
 		

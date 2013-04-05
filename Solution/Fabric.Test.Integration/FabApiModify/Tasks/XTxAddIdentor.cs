@@ -1,5 +1,4 @@
-﻿using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
+﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using Fabric.Test.Integration.Common;
@@ -31,13 +30,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pValue, newIdentor.Value, "Incorrect Value.");
 
 			NodeConnections conn = GetNodeConnections(newIdentor);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<RootContainsIdentor, Root>(false, 0);
+			conn.AssertRelCount(1, 1);
 			conn.AssertRel<FactorUsesIdentor, Factor>(false, f.FactorId);
 			conn.AssertRel<IdentorUsesIdentorType, IdentorType>(true, (long)pEveTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 11:30:00 PM
+// Generated on 4/5/2013 1:05:05 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 	/*================================================================================================*/
-	public class RootStep : NodeStep<FabRoot> {
+	public class RootStep : NodeStep<FabRoot>, IFinalStep {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 			new StepLink("Contains", "App", true, "/ContainsAppList"),
@@ -44,6 +44,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			new StepLink("Contains", "VectorUnitPrefix", true, "/ContainsVectorUnitPrefixList"),
 			new StepLink("Contains", "VectorUnitDerived", true, "/ContainsVectorUnitDerivedList"),
 		};
+		
+		public bool UseLocalData { get { return true; } }
+		public long Index { get { return 0; } }
+		public int Count { get { return 1; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

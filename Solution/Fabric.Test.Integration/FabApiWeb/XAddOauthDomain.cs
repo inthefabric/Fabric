@@ -55,12 +55,11 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.AreEqual(vDomain, newDom.Domain, "Incorrect Result.Domain.");
 
 			NodeConnections conn = GetNodeConnections(newDom);
-			conn.AssertRelCount(1, 1);
-			conn.AssertRel<RootContainsOauthDomain, Root>(false, 0);
+			conn.AssertRelCount(0, 1);
 			conn.AssertRel<OauthDomainUsesApp, App>(true, vAppId);
 
 			NewNodeCount = 1;
-			NewRelCount = 2;
+			NewRelCount = 1;
 		}
 
 				
