@@ -37,7 +37,7 @@ namespace Fabric.Infrastructure.Caching {
 			DateTime t = DateTime.UtcNow;
 			string key = GetMapKey(pName, pDisamb);
 			Add(key, pClassId);
-			Log.Debug("ClassDiskCache.AddClass: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+key);
+			//Log.Debug("ClassDiskCache.AddClass: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+key);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -45,8 +45,8 @@ namespace Fabric.Infrastructure.Caching {
 			DateTime t = DateTime.UtcNow;
 			string key = GetMapKey(pName, pDisamb);
 			long? result = (ContainsKey(key) ? Get(key) : (long?)null);
-			Log.Debug("ClassDiskCache.FindClassId: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+
-				key+" / "+result);
+			//Log.Debug("ClassDiskCache.FindClassId: "+(DateTime.UtcNow-t).TotalMilliseconds+"ms / "+
+			//	key+" / "+result);
 			return result;
 		}
 

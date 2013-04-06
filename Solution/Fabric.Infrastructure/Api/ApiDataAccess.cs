@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
@@ -13,6 +14,9 @@ namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
 	public class ApiDataAccess : IApiDataAccess {
+
+		private static readonly Semaphore Sema = new Semaphore(20, 20, "ApiDataAccess");
+		private static int TcpCount;
 
 		public IApiContext ApiCtx { get; private set; }
 
@@ -49,10 +53,14 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
-			long t = DateTime.UtcNow.Ticks;
+			DateTime t = DateTime.UtcNow;
 
 			try {
+				Sema.WaitOne();
+				++TcpCount;
 				RawResult = GetRawResult(Query);
+				Sema.Release();
+
 				Result = JsonSerializer.DeserializeFromString<DbResult>(RawResult);
 				Result.BuildDbDtos(RawResult);
 			}
@@ -79,7 +87,8 @@ namespace Fabric.Infrastructure.Api {
 				Result.Message = "Unhandled exception.";
 			}
 
-			Result.ServerTime = (DateTime.UtcNow.Ticks-t)/10000.0; //to milliseconds
+			--TcpCount;
+			Result.ServerTime = (DateTime.UtcNow-t).TotalMilliseconds;
 			LogAction();
 
 			if ( vUnhandledException != null ) {
@@ -180,16 +189,17 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private void LogAction() {
 			//DBv1: 
-			//	TotalMs, QueryMs, Timestamp, Query
+			//	TotalMs, QueryMs, Timestamp, TcpCount, QueryChars
 
 			const string name = "DBv1";
 			const string x = " | ";
-			
+
 			string v1 =
 				Result.ServerTime +x+
 				Result.QueryTime +x+
 				DateTime.UtcNow.Ticks +x+
-				Query;
+				TcpCount +x+
+				Query.Length;
 
 			if ( vUnhandledException == null ) {
 				Log.Info(ApiCtx.ContextId, name, v1);

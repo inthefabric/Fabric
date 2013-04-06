@@ -119,9 +119,9 @@ namespace Fabric.Api.Services {
 		private string ClassesBatch() {
 			switch ( NancyReq.Method ) {
 				case "POST":
-					IList<FabBatchResult> results = new CreateClassBatch(
+					IList<FabBatchResult> results = new BatchCreateClass(
 						NewModTasks(),
-						GetPostString(CreateClassBatch.ClassesParam)
+						GetPostString(BatchCreateClass.ClassesParam)
 					)
 					.Go(ApiCtx);
 					return results.ToJson();

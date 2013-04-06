@@ -18,6 +18,7 @@ using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
+using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -89,7 +90,8 @@ foreach ( string name in linkNames ) {
 		public I<#= name #>Step Contains<#= name #>List {
 			get {
 				var step = new <#= name #>Step(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.<#= name #>+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.<#= name #>));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}

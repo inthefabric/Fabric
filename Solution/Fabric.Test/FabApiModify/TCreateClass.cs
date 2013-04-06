@@ -68,7 +68,7 @@ namespace Fabric.Test.FabApiModify {
 		private Class CreateClassTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			string expectPartial = 
+			const string expectPartial = 
 				"_V0=g.v(_TP0);"+
 				"CLASS;";
 

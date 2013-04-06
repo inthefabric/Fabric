@@ -14,8 +14,6 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member)]
 	public class CreateClass : BaseModifyFunc<Class> {
 
-		private static readonly object MemberLock = new object();
-
 		public const string NameParam = "Name";
 		public const string DisambParam = "Disamb";
 		public const string NoteParam = "Note";
@@ -28,6 +26,8 @@ namespace Fabric.Api.Modify {
 
 		[ServiceOpParam(ServiceOpParamType.Form, NoteParam, 2, typeof(Class), IsRequired=false)]
 		private readonly string vNote;
+
+		private long vNewClassId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,33 +51,40 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Class Execute() {
-			return ExecuteInner();
-		}
+			VerifyUniqueClass();
 
-		/*--------------------------------------------------------------------------------------------*/
-		private Class ExecuteInner() {
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
-			Member m;
+			TxBuilder txb = GetFullTx(out memVar, out classVar);
 
+			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
+			ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, vName, vDisamb);
+			return c;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private void VerifyUniqueClass() {
 			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
 				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
 				throw new FabDuplicateFault(typeof(Class), NameParam, name);
 			}
+		}
 
-			lock ( MemberLock ) {
-				m = GetContextMember();
-			}
-
+		/*--------------------------------------------------------------------------------------------*/
+		private TxBuilder GetFullTx(out IWeaverVarAlias<Member> pMemVar,
+																out IWeaverVarAlias<Class> pClassVar) {
 			var txb = new TxBuilder();
-			txb.GetNodeByNodeId(m, out memVar);
+			txb.GetNodeByNodeId(GetContextMember(), out pMemVar);
+			AppendTx(txb, pMemVar, out pClassVar);
+			return txb;
+		}
 
-			Tasks.TxAddClass(ApiCtx, txb, vName, vDisamb, vNote, memVar, out classVar);
-			txb.RegisterVarWithTxBuilder(classVar);
-
-			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
-			ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);
-			return c;
+		/*--------------------------------------------------------------------------------------------*/
+		private void AppendTx(TxBuilder pTxBuild, IWeaverVarAlias<Member> pMemVar,
+																out IWeaverVarAlias<Class> pClassVar) {
+			vNewClassId = Tasks.TxAddClass(ApiCtx, pTxBuild,
+				vName, vDisamb, vNote, pMemVar, out pClassVar);
+			pTxBuild.RegisterVarWithTxBuilder(pClassVar);
 		}
 
 
@@ -88,9 +95,29 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal Class ExecuteForBatch(IApiContext pApiCtx) {
+		internal TxBuilder GetFullTxForBatch(IApiContext pApiCtx, out IWeaverVarAlias<Member> pMemVar, 
+																out IWeaverVarAlias<Class> pClassVar) {
 			SetApiCtx(pApiCtx);
-			return ExecuteInner();
+			VerifyUniqueClass();
+			return GetFullTx(out pMemVar, out pClassVar);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		internal void AppendTxForBatch(IApiContext pApiCtx, TxBuilder pTxBuild,
+								IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
+			SetApiCtx(pApiCtx);
+			VerifyUniqueClass();
+			AppendTx(pTxBuild, pMemVar, out pClassVar);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		internal Class GetNewClassForBatch() {
+			var c = new Class();
+			c.ClassId = vNewClassId;
+			c.Name = vName;
+			c.Disamb = vDisamb;
+			c.Note = vNote;
+			return c;
 		}
 
 	}

@@ -1,12 +1,13 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/5/2013 1:05:05 PM
+// Generated on 4/5/2013 1:42:45 PM
 
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
+using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -108,7 +109,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IAppStep ContainsAppList {
 			get {
 				var step = new AppStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.App+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.App));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -117,7 +119,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IClassStep ContainsClassList {
 			get {
 				var step = new ClassStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Class+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Class));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -126,7 +129,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IInstanceStep ContainsInstanceList {
 			get {
 				var step = new InstanceStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Instance+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Instance));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -135,7 +139,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep ContainsMemberList {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Member+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Member));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -144,7 +149,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberTypeStep ContainsMemberTypeList {
 			get {
 				var step = new MemberTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.MemberType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.MemberType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -153,7 +159,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberTypeAssignStep ContainsMemberTypeAssignList {
 			get {
 				var step = new MemberTypeAssignStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.MemberTypeAssign+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.MemberTypeAssign));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -162,7 +169,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IUrlStep ContainsUrlList {
 			get {
 				var step = new UrlStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Url+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Url));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -171,7 +179,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IUserStep ContainsUserList {
 			get {
 				var step = new UserStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.User+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.User));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -180,7 +189,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep ContainsFactorList {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Factor+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Factor));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -189,7 +199,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorAssertionStep ContainsFactorAssertionList {
 			get {
 				var step = new FactorAssertionStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.FactorAssertion+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.FactorAssertion));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -198,7 +209,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IDescriptorStep ContainsDescriptorList {
 			get {
 				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Descriptor+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Descriptor));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -207,7 +219,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IDescriptorTypeStep ContainsDescriptorTypeList {
 			get {
 				var step = new DescriptorTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.DescriptorType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.DescriptorType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -216,7 +229,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IDirectorStep ContainsDirectorList {
 			get {
 				var step = new DirectorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Director+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Director));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -225,7 +239,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IDirectorTypeStep ContainsDirectorTypeList {
 			get {
 				var step = new DirectorTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.DirectorType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.DirectorType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -234,7 +249,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IDirectorActionStep ContainsDirectorActionList {
 			get {
 				var step = new DirectorActionStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.DirectorAction+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.DirectorAction));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -243,7 +259,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IEventorStep ContainsEventorList {
 			get {
 				var step = new EventorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Eventor+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Eventor));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -252,7 +269,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IEventorTypeStep ContainsEventorTypeList {
 			get {
 				var step = new EventorTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.EventorType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.EventorType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -261,7 +279,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IEventorPrecisionStep ContainsEventorPrecisionList {
 			get {
 				var step = new EventorPrecisionStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.EventorPrecision+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.EventorPrecision));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -270,7 +289,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IIdentorStep ContainsIdentorList {
 			get {
 				var step = new IdentorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Identor+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Identor));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -279,7 +299,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IIdentorTypeStep ContainsIdentorTypeList {
 			get {
 				var step = new IdentorTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.IdentorType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.IdentorType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -288,7 +309,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public ILocatorStep ContainsLocatorList {
 			get {
 				var step = new LocatorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Locator+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Locator));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -297,7 +319,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public ILocatorTypeStep ContainsLocatorTypeList {
 			get {
 				var step = new LocatorTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.LocatorType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.LocatorType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -306,7 +329,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorStep ContainsVectorList {
 			get {
 				var step = new VectorStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.Vector+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Vector));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -315,7 +339,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorTypeStep ContainsVectorTypeList {
 			get {
 				var step = new VectorTypeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.VectorType+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.VectorType));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -324,7 +349,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorRangeStep ContainsVectorRangeList {
 			get {
 				var step = new VectorRangeStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.VectorRange+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.VectorRange));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -333,7 +359,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorRangeLevelStep ContainsVectorRangeLevelList {
 			get {
 				var step = new VectorRangeLevelStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.VectorRangeLevel+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.VectorRangeLevel));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -342,7 +369,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorUnitStep ContainsVectorUnitList {
 			get {
 				var step = new VectorUnitStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.VectorUnit+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.VectorUnit));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -351,7 +379,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorUnitPrefixStep ContainsVectorUnitPrefixList {
 			get {
 				var step = new VectorUnitPrefixStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.VectorUnitPrefix+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.VectorUnitPrefix));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}
@@ -360,7 +389,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IVectorUnitDerivedStep ContainsVectorUnitDerivedList {
 			get {
 				var step = new VectorUnitDerivedStep(Path);
-				Path.AddSegment(step, "V('FabType',"+(int)NodeFabType.VectorUnitDerived+")");
+				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.VectorUnitDerived));
+				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}
 		}

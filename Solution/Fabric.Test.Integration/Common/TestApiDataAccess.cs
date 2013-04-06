@@ -55,7 +55,7 @@ namespace Fabric.Test.Integration.Common {
 			}
 
 			string query = newScript+(param.Length > 0 ? "#{"+param+"}" : "");
-			Log.Debug("TEST: "+query);
+			//Log.Debug("TEST: "+query);
 			return query;
 		}
 

@@ -75,7 +75,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateClassBatch(Tasks, vClassesJson);
+			var func = new BatchCreateClass(Tasks, vClassesJson);
 			vResults = func.Go(ApiCtx);
 		}
 		
