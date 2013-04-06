@@ -201,6 +201,10 @@
       <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
       <Name>Fabric.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.Domain.Meta\Fabric.Domain.Meta.csproj">
+      <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
+      <Name>Fabric.Domain.Meta</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>

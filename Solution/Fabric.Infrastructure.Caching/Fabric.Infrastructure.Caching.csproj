@@ -53,7 +53,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="Weaver, Version=0.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
     </Reference>
   </ItemGroup>
