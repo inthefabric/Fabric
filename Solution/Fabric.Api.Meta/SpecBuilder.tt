@@ -192,7 +192,7 @@ foreach ( string name in nodes ) {
 	bool first = true;
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }if ( first ) {
+		if ( first ) {
 			first = false;
 #>
 					pObject.TraversalLinks = new List<FabSpecTravLink>();

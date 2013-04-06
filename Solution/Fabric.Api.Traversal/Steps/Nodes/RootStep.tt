@@ -27,20 +27,11 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 <#
-IList<string> nodeNames = SchemaHelper.GetNodes();
-var linkNames = new List<string>();
+IList<string> nodeNames = SchemaHelper.GetRootLinks();
 
 foreach ( string name in nodeNames ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
-
-	if ( node.IsBaseClass || node.IsInternal ) {
-		continue;
-	}
-
-	linkNames.Add(node.Name);
 #>
-			new StepLink("Contains", "<#= node.Name #>", true, "/Contains<#= node.Name #>List"),
+			new StepLink("Contains", "<#= name #>", true, "/Contains<#= name #>List"),
 <#
 } //end node loop
 #>
@@ -70,7 +61,7 @@ foreach ( string name in nodeNames ) {
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 <#
-foreach ( string name in linkNames ) {
+foreach ( string name in nodeNames ) {
 #>
 				case "contains<#= name.ToLower() #>list": return Contains<#= name #>List;
 <#
@@ -84,7 +75,7 @@ foreach ( string name in linkNames ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
-foreach ( string name in linkNames ) {
+foreach ( string name in nodeNames ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public I<#= name #>Step Contains<#= name #>List {

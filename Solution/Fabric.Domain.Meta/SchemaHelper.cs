@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:47 PM
+// Generated on 4/6/2013 10:13:41 AM
 
 using System.Collections.Generic;
 
@@ -233,6 +233,43 @@ namespace Fabric.Domain.Meta {
 				"OauthDomain",
 				"OauthGrant",
 				"OauthScope",
+			};
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetRootLinks() {
+			return new List<string> {
+				"App",
+				"Class",
+				"Instance",
+				"Member",
+				"MemberType",
+				"MemberTypeAssign",
+				"Url",
+				"User",
+				"Factor",
+				"FactorAssertion",
+				"Descriptor",
+				"DescriptorType",
+				"Director",
+				"DirectorType",
+				"DirectorAction",
+				"Eventor",
+				"EventorType",
+				"EventorPrecision",
+				"Identor",
+				"IdentorType",
+				"Locator",
+				"LocatorType",
+				"Vector",
+				"VectorType",
+				"VectorRange",
+				"VectorRangeLevel",
+				"VectorUnit",
+				"VectorUnitPrefix",
+				"VectorUnitDerived",
 			};
 		}
 

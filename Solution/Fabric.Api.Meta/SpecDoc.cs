@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Meta.Lang;
 using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
@@ -12,6 +13,7 @@ using Fabric.Api.Traversal;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
+using Weaver.Items;
 
 namespace Fabric.Api.Meta {
 
@@ -293,6 +295,26 @@ namespace Fabric.Api.Meta {
 			sd.Properties = ReflectProps(pType);
 			SpecBuilder.FillSpecObjectTravFuncs(n, sd);
 			SpecBuilder.FillSpecDtoLinks(n, sd);
+
+			if ( pType == typeof(FabRoot) ) {
+				IList<string> rootLinks = SchemaHelper.GetRootLinks();
+				sd.TraversalLinks = new List<FabSpecTravLink>();
+
+				foreach ( string name in rootLinks ) {
+					var link = new FabSpecTravLink();
+					link.Name = "Contains"+name+"List";
+					link.Type = "RootContains"+name;
+					link.Description = GetDtoLinkText(link.Type);
+					link.IsOutgoing = true;
+					link.From = pType.Name;
+					link.FromConn = WeaverRelConn.InFromOne+"";
+					link.Relation = "Contains";
+					link.To = "Fab"+name;
+					link.ToConn = WeaverRelConn.OutToZeroOrMore+"";
+					sd.TraversalLinks.Add(link);
+				}
+			}
+
 			return sd;
 		}
 

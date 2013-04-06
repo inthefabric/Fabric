@@ -115,6 +115,24 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			};
 		}
 
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetRootLinks() {
+			return new List<string> {
+<#
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	if ( node.IsBaseClass || node.IsInternal ) {
+		continue;
+	}
+#>
+				"<#= node.Name #>",
+<#
+} //end node loop
+#>
+			};
+		}
+
 	}
 
 }
