@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Fabric.Api.Dto;
+using Fabric.Api.Dto.Batch;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Meta.Lang;
@@ -11,7 +12,6 @@ using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Traversal;
 using Fabric.Domain.Meta;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
 using Weaver.Items;
@@ -295,6 +295,12 @@ namespace Fabric.Api.Meta {
 
 			SchemaHelperNode shn = SchemaHelper.GetNode(n);
 			sd.IsBaseClass = (shn != null && shn.NodeSchema.IsBaseClass);
+
+			//OPTIMIZE: determine these automatically by checking through all the "extends" values
+			if ( pType == typeof(FabNode) || pType == typeof(FabObject) || 
+					pType == typeof(FabBatchNewObject) || pType == typeof(FabSpecValue) ) {
+				sd.IsBaseClass = true;
+			}
 
 			sd.Properties = ReflectProps(pType);
 			SpecBuilder.FillSpecObjectTravFuncs(n, sd);
