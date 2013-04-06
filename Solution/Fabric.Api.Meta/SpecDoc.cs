@@ -11,6 +11,7 @@ using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Traversal;
 using Fabric.Domain.Meta;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
 using Weaver.Items;
@@ -291,6 +292,9 @@ namespace Fabric.Api.Meta {
 			if ( pType.BaseType != null && pType.BaseType != typeof(Object) ) {
 				sd.Extends = pType.BaseType.Name;
 			}
+
+			SchemaHelperNode shn = SchemaHelper.GetNode(n);
+			sd.IsBaseClass = (shn != null && shn.NodeSchema.IsBaseClass);
 
 			sd.Properties = ReflectProps(pType);
 			SpecBuilder.FillSpecObjectTravFuncs(n, sd);
