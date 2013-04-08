@@ -81,6 +81,7 @@
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
     <Compile Include="Db\DbDtoRaw.cs" />
+    <Compile Include="Domain\Types\IBaseType.cs" />
     <Compile Include="Domain\Types\VectorUnitPrefix.cs" />
     <Compile Include="Domain\Types\VectorUnitDerived.cs" />
     <Compile Include="Domain\Types\VectorUnit.cs" />

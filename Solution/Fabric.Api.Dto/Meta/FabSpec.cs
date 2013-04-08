@@ -9,6 +9,7 @@ namespace Fabric.Api.Dto.Meta {
 		public string ApiVersion { get; set; }
 		public List<FabSpecObject> Objects { get; set; }
 		public List<FabSpecService> Services { get; set; }
+		public List<FabSpecEnum> Enums { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

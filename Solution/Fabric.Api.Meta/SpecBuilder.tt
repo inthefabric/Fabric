@@ -1,6 +1,7 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Api.Dto\bin\Debug\Fabric.Api.Dto.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Api.Traversal\bin\Debug\Fabric.Api.Traversal.dll" #>
 <#@ import namespace="System" #>
@@ -9,6 +10,7 @@
 <#@ import namespace="Fabric.Api.Dto.Traversal" #>
 <#@ import namespace="Fabric.Api.Traversal.Steps.Functions" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Fabric.Infrastructure.Domain.Types" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -19,6 +21,7 @@
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
+using Fabric.Infrastructure.Domain.Types;
 
 namespace Fabric.Api.Meta {
 
@@ -221,6 +224,56 @@ foreach ( string name in nodes ) {
 #>
 			}
 
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static List<FabSpecEnum> BuildSpecEnums() {
+			var list = new List<FabSpecEnum>();
+			FabSpecEnum e;
+			FabSpecObjectProp p;
+
+<#
+			foreach ( Type type in StaticTypes.TypeList ) {
+				PropertyInfo[] props = type.GetProperties();
+#>
+			e = new FabSpecEnum();
+			e.Name = "<#= type.Name #>";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+<#
+				foreach ( PropertyInfo prop in props ) {
+#>
+				p = new FabSpecObjectProp();
+				p.Name = "<#= prop.Name #>";
+				p.Description = "MISSING";
+				p.Type = "<#= SchemaHelperProp.GetTypeName(prop.PropertyType) #>";
+				e.Properties.Add(p);
+
+<#
+				} //end prop loop
+#>
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( <#= type.Name #> val in StaticTypes.<#= type.Name #>s.Values ) {
+				var map = new Dictionary<string, object>();
+<#
+				foreach ( PropertyInfo prop in props ) {
+#>
+				map.Add("<#= prop.Name #>", val.<#= prop.Name #>);
+<#
+				} //end prop loop
+#>
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+<#
+			} //end type loop
+#>
+			return list;
 		}
 
 	}

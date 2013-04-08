@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Fabric.Infrastructure.Domain.Types {
 
@@ -18,21 +19,18 @@ namespace Fabric.Infrastructure.Domain.Types {
 		public static Dictionary<byte, VectorRangeLevel> VectorRangeLevels;
 		public static Dictionary<byte, VectorRange> VectorRanges;
 		public static Dictionary<byte, VectorUnit> VectorUnits;
-		public static Dictionary<byte, VectorUnitPrefix> VectorUnitPrefixes;
+		public static Dictionary<byte, VectorUnitPrefix> VectorUnitPrefixs;
 		public static Dictionary<byte, VectorUnitDerived> VectorUnitDeriveds;
-		public static bool IsInit = Init();
+
+		public static List<Type> TypeList;
+
+		private static bool IsInit = Init();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool Init() {
 			MemberTypes = new Dictionary<byte, MemberType>();
-
-			//SetupCrowdianType();
-			SetupMemberType();
-
-			////
-
 			DescriptorTypes = new Dictionary<byte, DescriptorType>();
 			DirectorTypes = new Dictionary<byte, DirectorType>();
 			DirectorActions = new Dictionary<byte, DirectorAction>();
@@ -45,9 +43,28 @@ namespace Fabric.Infrastructure.Domain.Types {
 			VectorRangeLevels = new Dictionary<byte, VectorRangeLevel>();
 			VectorRanges = new Dictionary<byte, VectorRange>();
 			VectorUnits = new Dictionary<byte, VectorUnit>();
-			VectorUnitPrefixes = new Dictionary<byte, VectorUnitPrefix>();
+			VectorUnitPrefixs = new Dictionary<byte, VectorUnitPrefix>();
 			VectorUnitDeriveds = new Dictionary<byte, VectorUnitDerived>();
 
+			TypeList = new List<Type>();
+			TypeList.Add(typeof(MemberType));
+			TypeList.Add(typeof(DescriptorType));
+			TypeList.Add(typeof(DirectorType));
+			TypeList.Add(typeof(DirectorAction));
+			TypeList.Add(typeof(EventorPrecision));
+			TypeList.Add(typeof(EventorType));
+			TypeList.Add(typeof(FactorAssertion));
+			TypeList.Add(typeof(IdentorType));
+			TypeList.Add(typeof(LocatorType));
+			TypeList.Add(typeof(VectorType));
+			TypeList.Add(typeof(VectorRangeLevel));
+			TypeList.Add(typeof(VectorRange));
+			TypeList.Add(typeof(VectorUnit));
+			TypeList.Add(typeof(VectorUnitPrefix));
+			TypeList.Add(typeof(VectorUnitDerived));
+
+			//SetupCrowdianType();
+			SetupMemberType();
 			SetupDescriptorType();
 			SetupDirectorAction();
 			SetupDirectorType();
@@ -656,7 +673,7 @@ namespace Fabric.Infrastructure.Domain.Types {
 		private static void AddVectorUnitPrefix(VectorUnitPrefixId pId, string pName,
 																		string pDesc, double pAmount) {
 			var t = new VectorUnitPrefix(pId, pName, pDesc, pAmount);
-			VectorUnitPrefixes.Add((byte)pId, t);
+			VectorUnitPrefixs.Add((byte)pId, t);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -664,7 +681,7 @@ namespace Fabric.Infrastructure.Domain.Types {
 											VectorUnitId pDefinesId, VectorUnitId pRaisesId, int pExp,
 											VectorUnitPrefixId pPrefix=VectorUnitPrefixId.Base) {
 			var t = new VectorUnitDerived(pId, VectorUnits[(byte)pDefinesId], 
-				VectorUnits[(byte)pRaisesId], pExp, VectorUnitPrefixes[(byte)pPrefix]);
+				VectorUnits[(byte)pRaisesId], pExp, VectorUnitPrefixs[(byte)pPrefix]);
 			VectorUnitDeriveds.Add((byte)pId, t);
 		}
 

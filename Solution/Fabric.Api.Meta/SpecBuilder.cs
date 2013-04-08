@@ -1,9 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 3:34:05 PM
+// Generated on 4/8/2013 5:00:55 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
+using Fabric.Infrastructure.Domain.Types;
 
 namespace Fabric.Api.Meta {
 
@@ -1040,6 +1041,744 @@ namespace Fabric.Api.Meta {
 					break;
 			}
 
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static List<FabSpecEnum> BuildSpecEnums() {
+			var list = new List<FabSpecEnum>();
+			FabSpecEnum e;
+			FabSpecObjectProp p;
+
+			e = new FabSpecEnum();
+			e.Name = "MemberType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "MemberTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( MemberType val in StaticTypes.MemberTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "DescriptorType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "DescriptorTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( DescriptorType val in StaticTypes.DescriptorTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "DirectorType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "DirectorTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( DirectorType val in StaticTypes.DirectorTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "DirectorAction";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "DirectorActionId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( DirectorAction val in StaticTypes.DirectorActions.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "EventorPrecision";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "EventorPrecisionId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( EventorPrecision val in StaticTypes.EventorPrecisions.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "EventorType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "EventorTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( EventorType val in StaticTypes.EventorTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "FactorAssertion";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "FactorAssertionId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( FactorAssertion val in StaticTypes.FactorAssertions.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "IdentorType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "IdentorTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( IdentorType val in StaticTypes.IdentorTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "LocatorType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "MinX";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "MaxX";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "MinY";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "MaxY";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "MinZ";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "MaxZ";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "LocatorTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( LocatorType val in StaticTypes.LocatorTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("MinX", val.MinX);
+				map.Add("MaxX", val.MaxX);
+				map.Add("MinY", val.MinY);
+				map.Add("MaxY", val.MaxY);
+				map.Add("MinZ", val.MinZ);
+				map.Add("MaxZ", val.MaxZ);
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "VectorType";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Range";
+				p.Description = "MISSING";
+				p.Type = "VectorRange";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Min";
+				p.Description = "MISSING";
+				p.Type = "long";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Max";
+				p.Description = "MISSING";
+				p.Type = "long";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "VectorTypeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( VectorType val in StaticTypes.VectorTypes.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Range", val.Range);
+				map.Add("Min", val.Min);
+				map.Add("Max", val.Max);
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "VectorRangeLevel";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Position";
+				p.Description = "MISSING";
+				p.Type = "float";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "VectorRangeLevelId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( VectorRangeLevel val in StaticTypes.VectorRangeLevels.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Position", val.Position);
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "VectorRange";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Levels";
+				p.Description = "MISSING";
+				p.Type = "IEnumerable`1";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "VectorRangeId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( VectorRange val in StaticTypes.VectorRanges.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Levels", val.Levels);
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "VectorUnit";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "VectorUnitId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( VectorUnit val in StaticTypes.VectorUnits.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "VectorUnitPrefix";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Amount";
+				p.Description = "MISSING";
+				p.Type = "double";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "VectorUnitPrefixId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( VectorUnitPrefix val in StaticTypes.VectorUnitPrefixs.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Amount", val.Amount);
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			e = new FabSpecEnum();
+			e.Name = "VectorUnitDerived";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+				p = new FabSpecObjectProp();
+				p.Name = "Defines";
+				p.Description = "MISSING";
+				p.Type = "VectorUnit";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Raises";
+				p.Description = "MISSING";
+				p.Type = "VectorUnit";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Exponent";
+				p.Description = "MISSING";
+				p.Type = "int";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Prefix";
+				p.Description = "MISSING";
+				p.Type = "VectorUnitPrefix";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Id";
+				p.Description = "MISSING";
+				p.Type = "byte";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "EnumId";
+				p.Description = "MISSING";
+				p.Type = "VectorUnitDerivedId";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Name";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+				p = new FabSpecObjectProp();
+				p.Name = "Description";
+				p.Description = "MISSING";
+				p.Type = "string";
+				e.Properties.Add(p);
+
+			e.Data = new List<Dictionary<string, object>>();
+
+			foreach ( VectorUnitDerived val in StaticTypes.VectorUnitDeriveds.Values ) {
+				var map = new Dictionary<string, object>();
+				map.Add("Defines", val.Defines);
+				map.Add("Raises", val.Raises);
+				map.Add("Exponent", val.Exponent);
+				map.Add("Prefix", val.Prefix);
+				map.Add("Id", val.Id);
+				map.Add("EnumId", val.EnumId);
+				map.Add("Name", val.Name);
+				map.Add("Description", val.Description);
+				e.Data.Add(map);
+			}
+
+			list.Add(e);
+
+			return list;
 		}
 
 	}

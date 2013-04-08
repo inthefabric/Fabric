@@ -13,6 +13,7 @@ using Fabric.Api.Oauth;
 using Fabric.Api.Traversal;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Traversal;
 using Weaver.Items;
 
@@ -24,6 +25,7 @@ namespace Fabric.Api.Meta {
 		private static List<string> ObjectNames;
 		private static List<FabSpecObject> Objects;
 		private static List<FabSpecService> Services;
+		private static List<FabSpecEnum> Enums;
 		private static Dictionary<string, Assembly> AssemblyMap;
 
 
@@ -90,6 +92,10 @@ namespace Fabric.Api.Meta {
 			foreach ( FabService svc in home.Services ) {
 				Services.Add(GetSpecService(svc));
 			}
+
+			////
+			
+			Enums = SpecBuilder.BuildSpecEnums();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -97,6 +103,7 @@ namespace Fabric.Api.Meta {
 			var fs = new FabSpec();
 			fs.Objects = Objects;
 			fs.Services = Services;
+			fs.Enums = Enums;
 			return fs;
 		}
 
