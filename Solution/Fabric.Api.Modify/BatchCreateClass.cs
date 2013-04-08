@@ -153,7 +153,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			if ( txb == null ) {
-				throw new Exception("TxBuilder is null.");
+				return;
 			}
 
 			var q = new WeaverQuery();

@@ -64,10 +64,16 @@ namespace Fabric.Api.Modify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyUniqueClass() {
-			if ( Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb) != null ) {
-				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
-				throw new FabDuplicateFault(typeof(Class), NameParam, name);
+			Class c = Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb);
+
+			if ( c == null ) {
+				return;
 			}
+
+			string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
+
+			throw new FabDuplicateFault(typeof(Class), NameParam, name,
+				"Conflicts with ClassId="+c.ClassId+".");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
