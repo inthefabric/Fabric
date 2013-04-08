@@ -39,7 +39,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new CreateVector(Tasks, FactorId, vVecTypeId, vValue,
+			var func = new AttachVector(Tasks, FactorId, vVecTypeId, vValue,
 				vAxisArtId, vVecUnitId, vVecUnitPrefId);
 			vResult = func.Go(ApiCtx);
 		}

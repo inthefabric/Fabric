@@ -35,7 +35,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new CreateEventor(Tasks, FactorId, vEveTypeId, vEvePrecId, vDateTime);
+			var func = new AttachEventor(Tasks, FactorId, vEveTypeId, vEvePrecId, vDateTime);
 			vResult = func.Go(ApiCtx);
 		}
 		

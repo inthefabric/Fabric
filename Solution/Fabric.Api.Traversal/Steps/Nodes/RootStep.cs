@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:16 PM
+// Generated on 4/8/2013 2:54:25 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +23,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			new StepLink("Contains", "Url", true, "/ContainsUrlList"),
 			new StepLink("Contains", "User", true, "/ContainsUserList"),
 			new StepLink("Contains", "Factor", true, "/ContainsFactorList"),
-			new StepLink("Contains", "Descriptor", true, "/ContainsDescriptorList"),
-			new StepLink("Contains", "Director", true, "/ContainsDirectorList"),
-			new StepLink("Contains", "Eventor", true, "/ContainsEventorList"),
-			new StepLink("Contains", "Identor", true, "/ContainsIdentorList"),
-			new StepLink("Contains", "Locator", true, "/ContainsLocatorList"),
-			new StepLink("Contains", "Vector", true, "/ContainsVectorList"),
 		};
 		
 		public bool UseLocalData { get { return true; } }
@@ -62,12 +56,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				case "containsurllist": return ContainsUrlList;
 				case "containsuserlist": return ContainsUserList;
 				case "containsfactorlist": return ContainsFactorList;
-				case "containsdescriptorlist": return ContainsDescriptorList;
-				case "containsdirectorlist": return ContainsDirectorList;
-				case "containseventorlist": return ContainsEventorList;
-				case "containsidentorlist": return ContainsIdentorList;
-				case "containslocatorlist": return ContainsLocatorList;
-				case "containsvectorlist": return ContainsVectorList;
 			}
 
 			return base.GetLink(pData);
@@ -150,66 +138,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new FactorStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Factor));
-				Path.AddSegment(step, "V('FabType',"+p+")");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep ContainsDescriptorList {
-			get {
-				var step = new DescriptorStep(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Descriptor));
-				Path.AddSegment(step, "V('FabType',"+p+")");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDirectorStep ContainsDirectorList {
-			get {
-				var step = new DirectorStep(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Director));
-				Path.AddSegment(step, "V('FabType',"+p+")");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IEventorStep ContainsEventorList {
-			get {
-				var step = new EventorStep(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Eventor));
-				Path.AddSegment(step, "V('FabType',"+p+")");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IIdentorStep ContainsIdentorList {
-			get {
-				var step = new IdentorStep(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Identor));
-				Path.AddSegment(step, "V('FabType',"+p+")");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ILocatorStep ContainsLocatorList {
-			get {
-				var step = new LocatorStep(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Locator));
-				Path.AddSegment(step, "V('FabType',"+p+")");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorStep ContainsVectorList {
-			get {
-				var step = new VectorStep(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Vector));
 				Path.AddSegment(step, "V('FabType',"+p+")");
 				return step;
 			}

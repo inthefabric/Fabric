@@ -33,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new CreateIdentor(Tasks, FactorId, vIdenTypeId, vValue);
+			var func = new AttachIdentor(Tasks, FactorId, vIdenTypeId, vValue);
 			vResult = func.Go(ApiCtx);
 		}
 		

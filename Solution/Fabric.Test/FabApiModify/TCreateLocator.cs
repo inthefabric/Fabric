@@ -85,7 +85,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateLocator(MockTasks.Object, FactorId,
+			var func = new AttachLocator(MockTasks.Object, FactorId,
 				vLocTypeId, vValueX, vValueY, vValueZ);
 			vResult = func.Go(MockApiCtx.Object);
 		}
@@ -137,7 +137,7 @@ namespace Fabric.Test.FabApiModify {
 			base.CheckValidation();
 
 			MockValidator.Verify(x => x.LocatorTypeId(vLocTypeId,
-				CreateLocator.LocTypeParam), Times.Once());
+				AttachLocator.LocTypeParam), Times.Once());
 		}
 		
 		

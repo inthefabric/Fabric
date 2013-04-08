@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:15 PM
+// Generated on 4/8/2013 2:54:24 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -58,8 +58,8 @@ namespace Fabric.Infrastructure.Domain {
 		void MemberId(long pValue);
 		void MemberTypeAssignId(long pValue, string pParamName);
 		void MemberTypeAssignId(long pValue);
-		void MemberTypeId(byte pValue, string pParamName);
-		void MemberTypeId(byte pValue);
+		void MemberTypeAssignMemberTypeId(byte pValue, string pParamName);
+		void MemberTypeAssignMemberTypeId(byte pValue);
 		void UrlId(long pValue, string pParamName);
 		void UrlId(long pValue);
 		void UrlName(string pValue, string pParamName);
@@ -74,8 +74,8 @@ namespace Fabric.Infrastructure.Domain {
 		void UserPassword(string pValue);
 		void FactorId(long pValue, string pParamName);
 		void FactorId(long pValue);
-		void FactorAssertionId(byte pValue, string pParamName);
-		void FactorAssertionId(byte pValue);
+		void FactorFactorAssertionId(byte pValue, string pParamName);
+		void FactorFactorAssertionId(byte pValue);
 		void FactorIsDefining(bool pValue, string pParamName);
 		void FactorIsDefining(bool pValue);
 		void FactorCreated(long pValue, string pParamName);
@@ -86,52 +86,40 @@ namespace Fabric.Infrastructure.Domain {
 		void FactorCompleted(long pValue);
 		void FactorNote(string pValue, string pParamName);
 		void FactorNote(string pValue);
-		void DescriptorId(long pValue, string pParamName);
-		void DescriptorId(long pValue);
-		void DescriptorTypeId(byte pValue, string pParamName);
-		void DescriptorTypeId(byte pValue);
-		void DirectorId(long pValue, string pParamName);
-		void DirectorId(long pValue);
-		void DirectorTypeId(byte pValue, string pParamName);
-		void DirectorTypeId(byte pValue);
-		void PrimaryDirectorActionId(byte pValue, string pParamName);
-		void PrimaryDirectorActionId(byte pValue);
-		void RelatedDirectorActionId(byte pValue, string pParamName);
-		void RelatedDirectorActionId(byte pValue);
-		void EventorId(long pValue, string pParamName);
-		void EventorId(long pValue);
-		void EventorTypeId(byte pValue, string pParamName);
-		void EventorTypeId(byte pValue);
-		void EventorPrecisionId(byte pValue, string pParamName);
-		void EventorPrecisionId(byte pValue);
-		void EventorDateTime(long pValue, string pParamName);
-		void EventorDateTime(long pValue);
-		void IdentorId(long pValue, string pParamName);
-		void IdentorId(long pValue);
-		void IdentorTypeId(byte pValue, string pParamName);
-		void IdentorTypeId(byte pValue);
-		void IdentorValue(string pValue, string pParamName);
-		void IdentorValue(string pValue);
-		void LocatorId(long pValue, string pParamName);
-		void LocatorId(long pValue);
-		void LocatorTypeId(byte pValue, string pParamName);
-		void LocatorTypeId(byte pValue);
-		void LocatorValueX(double pValue, string pParamName);
-		void LocatorValueX(double pValue);
-		void LocatorValueY(double pValue, string pParamName);
-		void LocatorValueY(double pValue);
-		void LocatorValueZ(double pValue, string pParamName);
-		void LocatorValueZ(double pValue);
-		void VectorId(long pValue, string pParamName);
-		void VectorId(long pValue);
-		void VectorTypeId(byte pValue, string pParamName);
-		void VectorTypeId(byte pValue);
-		void VectorUnitId(byte pValue, string pParamName);
-		void VectorUnitId(byte pValue);
-		void VectorUnitPrefixId(byte pValue, string pParamName);
-		void VectorUnitPrefixId(byte pValue);
-		void VectorValue(long pValue, string pParamName);
-		void VectorValue(long pValue);
+		void FactorDescriptor_TypeId(byte pValue, string pParamName);
+		void FactorDescriptor_TypeId(byte pValue);
+		void FactorDirector_TypeId(byte pValue, string pParamName);
+		void FactorDirector_TypeId(byte pValue);
+		void FactorDirector_PrimaryActionId(byte pValue, string pParamName);
+		void FactorDirector_PrimaryActionId(byte pValue);
+		void FactorDirector_RelatedActionId(byte pValue, string pParamName);
+		void FactorDirector_RelatedActionId(byte pValue);
+		void FactorEventor_TypeId(byte pValue, string pParamName);
+		void FactorEventor_TypeId(byte pValue);
+		void FactorEventor_PrecisionId(byte pValue, string pParamName);
+		void FactorEventor_PrecisionId(byte pValue);
+		void FactorEventor_DateTime(long pValue, string pParamName);
+		void FactorEventor_DateTime(long pValue);
+		void FactorIdentor_TypeId(byte pValue, string pParamName);
+		void FactorIdentor_TypeId(byte pValue);
+		void FactorIdentor_Value(string pValue, string pParamName);
+		void FactorIdentor_Value(string pValue);
+		void FactorLocator_TypeId(byte pValue, string pParamName);
+		void FactorLocator_TypeId(byte pValue);
+		void FactorLocator_ValueX(double pValue, string pParamName);
+		void FactorLocator_ValueX(double pValue);
+		void FactorLocator_ValueY(double pValue, string pParamName);
+		void FactorLocator_ValueY(double pValue);
+		void FactorLocator_ValueZ(double pValue, string pParamName);
+		void FactorLocator_ValueZ(double pValue);
+		void FactorVector_TypeId(byte pValue, string pParamName);
+		void FactorVector_TypeId(byte pValue);
+		void FactorVector_UnitId(byte pValue, string pParamName);
+		void FactorVector_UnitId(byte pValue);
+		void FactorVector_UnitPrefixId(byte pValue, string pParamName);
+		void FactorVector_UnitPrefixId(byte pValue);
+		void FactorVector_Value(long pValue, string pParamName);
+		void FactorVector_Value(long pValue);
 		void OauthAccessId(long pValue, string pParamName);
 		void OauthAccessId(long pValue);
 		void OauthAccessToken(string pValue, string pParamName);
@@ -420,13 +408,13 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void MemberTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void MemberTypeAssignMemberTypeId(byte pValue, string pParamName) {
+			throw new Exception("MemberTypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void MemberTypeId(byte pValue) {
-			MemberTypeId(pValue, "MemberTypeId");
+		public void MemberTypeAssignMemberTypeId(byte pValue) {
+			MemberTypeAssignMemberTypeId(pValue, "MemberTypeId");
 		}
 
 		
@@ -511,13 +499,13 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorAssertionId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorFactorAssertionId(byte pValue, string pParamName) {
+			throw new Exception("FactorAssertionId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void FactorAssertionId(byte pValue) {
-			FactorAssertionId(pValue, "FactorAssertionId");
+		public void FactorFactorAssertionId(byte pValue) {
+			FactorFactorAssertionId(pValue, "FactorAssertionId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -571,249 +559,175 @@ namespace Fabric.Infrastructure.Domain {
 			FactorNote(pValue, "Note");
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorDescriptor_TypeId(byte pValue, string pParamName) {
+			throw new Exception("Descriptor_TypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorId(long pValue) {
-			DescriptorId(pValue, "DescriptorId");
+		public void FactorDescriptor_TypeId(byte pValue) {
+			FactorDescriptor_TypeId(pValue, "Descriptor_TypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorDirector_TypeId(byte pValue, string pParamName) {
+			throw new Exception("Director_TypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorTypeId(byte pValue) {
-			DescriptorTypeId(pValue, "DescriptorTypeId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorDirector_TypeId(byte pValue) {
+			FactorDirector_TypeId(pValue, "Director_TypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorId(long pValue) {
-			DirectorId(pValue, "DirectorId");
+		public void FactorDirector_PrimaryActionId(byte pValue, string pParamName) {
+			throw new Exception("Director_PrimaryActionId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorDirector_PrimaryActionId(byte pValue) {
+			FactorDirector_PrimaryActionId(pValue, "Director_PrimaryActionId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorTypeId(byte pValue) {
-			DirectorTypeId(pValue, "DirectorTypeId");
+		public void FactorDirector_RelatedActionId(byte pValue, string pParamName) {
+			throw new Exception("Director_RelatedActionId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void PrimaryDirectorActionId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorDirector_RelatedActionId(byte pValue) {
+			FactorDirector_RelatedActionId(pValue, "Director_RelatedActionId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void PrimaryDirectorActionId(byte pValue) {
-			PrimaryDirectorActionId(pValue, "PrimaryDirectorActionId");
+		public void FactorEventor_TypeId(byte pValue, string pParamName) {
+			throw new Exception("Eventor_TypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void RelatedDirectorActionId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorEventor_TypeId(byte pValue) {
+			FactorEventor_TypeId(pValue, "Eventor_TypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void RelatedDirectorActionId(byte pValue) {
-			RelatedDirectorActionId(pValue, "RelatedDirectorActionId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorEventor_PrecisionId(byte pValue, string pParamName) {
+			throw new Exception("Eventor_PrecisionId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EventorId(long pValue) {
-			EventorId(pValue, "EventorId");
+		public void FactorEventor_PrecisionId(byte pValue) {
+			FactorEventor_PrecisionId(pValue, "Eventor_PrecisionId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EventorTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorTypeId(byte pValue) {
-			EventorTypeId(pValue, "EventorTypeId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorPrecisionId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorPrecisionId(byte pValue) {
-			EventorPrecisionId(pValue, "EventorPrecisionId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorDateTime(long pValue, string pParamName) {
+		public void FactorEventor_DateTime(long pValue, string pParamName) {
 			LongGreaterThanOrEqual(pParamName, pValue, 1);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void EventorDateTime(long pValue) {
-			EventorDateTime(pValue, "DateTime");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorEventor_DateTime(long pValue) {
+			FactorEventor_DateTime(pValue, "Eventor_DateTime");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorId(long pValue) {
-			IdentorId(pValue, "IdentorId");
+		public void FactorIdentor_TypeId(byte pValue, string pParamName) {
+			throw new Exception("Identor_TypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorIdentor_TypeId(byte pValue) {
+			FactorIdentor_TypeId(pValue, "Identor_TypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorTypeId(byte pValue) {
-			IdentorTypeId(pValue, "IdentorTypeId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorValue(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
+		public void FactorIdentor_Value(string pValue, string pParamName) {
+			if ( pValue == null ) { return; }
 			LengthBetween(pParamName, pValue, 1, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorValue(string pValue) {
-			IdentorValue(pValue, "Value");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorIdentor_Value(string pValue) {
+			FactorIdentor_Value(pValue, "Identor_Value");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorId(long pValue) {
-			LocatorId(pValue, "LocatorId");
+		public void FactorLocator_TypeId(byte pValue, string pParamName) {
+			throw new Exception("Locator_TypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorLocator_TypeId(byte pValue) {
+			FactorLocator_TypeId(pValue, "Locator_TypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeId(byte pValue) {
-			LocatorTypeId(pValue, "LocatorTypeId");
+		public void FactorLocator_ValueX(double pValue, string pParamName) {
+			throw new Exception("Locator_ValueX has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueX(double pValue, string pParamName) {
-			throw new Exception("ValueX has no validation. Property value was "+pValue);
+		public void FactorLocator_ValueX(double pValue) {
+			FactorLocator_ValueX(pValue, "Locator_ValueX");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueX(double pValue) {
-			LocatorValueX(pValue, "ValueX");
+		public void FactorLocator_ValueY(double pValue, string pParamName) {
+			throw new Exception("Locator_ValueY has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueY(double pValue, string pParamName) {
-			throw new Exception("ValueY has no validation. Property value was "+pValue);
+		public void FactorLocator_ValueY(double pValue) {
+			FactorLocator_ValueY(pValue, "Locator_ValueY");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueY(double pValue) {
-			LocatorValueY(pValue, "ValueY");
+		public void FactorLocator_ValueZ(double pValue, string pParamName) {
+			throw new Exception("Locator_ValueZ has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueZ(double pValue, string pParamName) {
-			throw new Exception("ValueZ has no validation. Property value was "+pValue);
+		public void FactorLocator_ValueZ(double pValue) {
+			FactorLocator_ValueZ(pValue, "Locator_ValueZ");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorValueZ(double pValue) {
-			LocatorValueZ(pValue, "ValueZ");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorVector_TypeId(byte pValue, string pParamName) {
+			throw new Exception("Vector_TypeId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorId(long pValue) {
-			VectorId(pValue, "VectorId");
+		public void FactorVector_TypeId(byte pValue) {
+			FactorVector_TypeId(pValue, "Vector_TypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorVector_UnitId(byte pValue, string pParamName) {
+			throw new Exception("Vector_UnitId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeId(byte pValue) {
-			VectorTypeId(pValue, "VectorTypeId");
+		public void FactorVector_UnitId(byte pValue) {
+			FactorVector_UnitId(pValue, "Vector_UnitId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorVector_UnitPrefixId(byte pValue, string pParamName) {
+			throw new Exception("Vector_UnitPrefixId has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitId(byte pValue) {
-			VectorUnitId(pValue, "VectorUnitId");
+		public void FactorVector_UnitPrefixId(byte pValue) {
+			FactorVector_UnitPrefixId(pValue, "Vector_UnitPrefixId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixId(byte pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
+		public void FactorVector_Value(long pValue, string pParamName) {
+			throw new Exception("Vector_Value has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixId(byte pValue) {
-			VectorUnitPrefixId(pValue, "VectorUnitPrefixId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorValue(long pValue, string pParamName) {
-			throw new Exception("Value has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorValue(long pValue) {
-			VectorValue(pValue, "Value");
+		public void FactorVector_Value(long pValue) {
+			FactorVector_Value(pValue, "Vector_Value");
 		}
 
 		

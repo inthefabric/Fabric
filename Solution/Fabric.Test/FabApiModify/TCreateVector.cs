@@ -93,7 +93,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateVector(MockTasks.Object, FactorId,
+			var func = new AttachVector(MockTasks.Object, FactorId,
 				vVecTypeId, vValue, vAxisArtId, vVecUnitId, vVecUnitPrefId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
@@ -146,7 +146,7 @@ namespace Fabric.Test.FabApiModify {
 			base.CheckValidation();
 
 			MockValidator.Verify(x => x.VectorTypeId(vVecTypeId,
-				CreateVector.VecTypeParam), Times.Once());
+				AttachVector.VecTypeParam), Times.Once());
 		}
 		
 		

@@ -6,49 +6,38 @@ using Fabric.Infrastructure.Api.Faults;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	public static class CreateFactorElement {
+	public abstract class AttachFactorElement : BaseModifyFunc<bool> {
 
 		public const string FactorParam = "FactorId";
 
-	}
-
-	/*================================================================================================*/
-	public abstract class CreateFactorElement<T> : BaseModifyFunc<T> where T : FactorElementNode {
-
-		[ServiceOpParam(ServiceOpParamType.Form, CreateFactorElement.FactorParam, 0, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, FactorParam, 0, typeof(Factor))]
 		protected readonly long vFactorId; //use 'protected' so SpecDoc can find it
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected CreateFactorElement(IModifyTasks pTasks, long pFactorId) : base(pTasks) {
+		protected AttachFactorElement(IModifyTasks pTasks, long pFactorId) : base(pTasks) {
 			vFactorId = pFactorId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.FactorId(vFactorId, CreateFactorElement.FactorParam);
+			Tasks.Validator.FactorId(vFactorId, FactorParam);
 			ValidateElementParams();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override T Execute() {
+		protected override bool Execute() {
 			Member m = GetContextMember();
 			Factor f = Tasks.GetActiveFactorFromMember(ApiCtx, vFactorId, m.MemberId);
 
 			if ( f == null ) {
-				throw new FabNotFoundFault(typeof(Factor),
-					CreateFactorElement.FactorParam+"="+vFactorId);
+				throw new FabNotFoundFault(typeof(Factor), FactorParam+"="+vFactorId);
 			}
 
 			if ( f.Completed != null ) {
 				throw new FabPreventedFault(FabFault.Code.FactorAlreadyCompleted,
 					"This "+typeof(Factor).Name+" is already completed.");
-			}
-
-			if ( FactorHasElement(f) ) {
-				throw new FabPreventedFault(FabFault.Code.FactorElementConflict,
-					"This "+typeof(Factor).Name+" already has an attached "+typeof(T).Name+".");
 			}
 
 			return AddElementToFactor(f, m);
@@ -58,8 +47,7 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void ValidateElementParams();
-		protected abstract bool FactorHasElement(Factor pFactor);
-		protected abstract T AddElementToFactor(Factor pFactor, Member pMember);
+		protected abstract bool AddElementToFactor(Factor pFactor, Member pMember);
 
 	}
 

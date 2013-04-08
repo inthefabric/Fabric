@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Domain;
 
@@ -258,26 +259,16 @@ namespace Fabric.Db.Data.Setups {
 			Cuteness_82_None
 		}
 
-		public const int NumFactors = 105;
-
-		public const int NumFactorDescriptors = 104;
-		public const int NumFactorDirectors = 4;
-		public const int NumFactorEventors = 40;
-		public const int NumFactorIdentors = 11;
-		public const int NumFactorLocators = 8;
-		public const int NumFactorVectors = 36;
-
-		public const int NumDescriptors = 22;
-		public const int NumDescriptorRefines = 12;
-		public const int NumDirectors = 2;
-		public const int NumEventors = 30;
-		public const int NumIdentors = 10;
-		public const int NumLocators = 7;
-		public const int NumVectors = 33;
-
 		private readonly DataSet vSet;
 		private readonly bool vTestMode;
 		private int vIdCount;
+
+		private Dictionary<long, Descriptor> DescMap;
+		private Dictionary<long, Director> DirMap;
+		private Dictionary<long, Eventor> EveMap;
+		private Dictionary<long, Identor> IdenMap;
+		private Dictionary<long, Locator> LocMap;
+		private Dictionary<long, Vector> VecMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -292,6 +283,13 @@ namespace Fabric.Db.Data.Setups {
 		public SetupFactors(DataSet pSet) {
 			vSet = pSet;
 			vTestMode = true;
+
+			DescMap = new Dictionary<long, Descriptor>();
+			DirMap = new Dictionary<long, Director>();
+			EveMap = new Dictionary<long, Eventor>();
+			IdenMap = new Dictionary<long, Identor>();
+			LocMap = new Dictionary<long, Locator>();
+			VecMap = new Dictionary<long, Vector>();
 			
 			vIdCount = 0;
 			AddDescriptor(DescriptorTypeId.IsA, null, null, SetupArtifacts.ArtifactId.Thi_Male);
@@ -858,26 +856,10 @@ namespace Fabric.Db.Data.Setups {
 			var d = new Descriptor();
 			d.DescriptorId = ++vIdCount;
 			d.DescriptorTypeId = (byte)pTypeId;
-
-			vSet.AddNodeAndIndex(d, x => x.DescriptorId, vTestMode);
-
-			if ( pPrimModId != null ) {
-				var rel = DataRel.Create(d, new DescriptorRefinesPrimaryWithArtifact(),
-					vSet.GetNode<Artifact>((long)pPrimModId), vTestMode);
-				vSet.AddRel(rel);
-			}
-
-			if ( pDtModId != null ) {
-				var rel = DataRel.Create(d, new DescriptorRefinesTypeWithArtifact(),
-					vSet.GetNode<Artifact>((long)pDtModId), vTestMode);
-				vSet.AddRel(rel);
-			}
-
-			if ( pRelModId != null ) {
-				var rel = DataRel.Create(d, new DescriptorRefinesRelatedWithArtifact(),
-					vSet.GetNode<Artifact>((long)pRelModId), vTestMode);
-				vSet.AddRel(rel);
-			}
+			d.PrimArtRefId = (long?)pPrimModId;
+			d.RelArtRefId = (long?)pRelModId;
+			d.TypeArtRefId = (long?)pRelModId;
+			DescMap.Add(d.DescriptorId, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -888,8 +870,7 @@ namespace Fabric.Db.Data.Setups {
 			d.DirectorTypeId = (byte)pTypeId;
 			d.PrimaryDirectorActionId = (byte)pPrimActId;
 			d.RelatedDirectorActionId = (byte)pRelActId;
-
-			vSet.AddNodeAndIndex(d, x => x.DirectorId, vTestMode);
+			DirMap.Add(d.DirectorId, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -899,8 +880,7 @@ namespace Fabric.Db.Data.Setups {
 			e.EventorTypeId = (byte)pTypeId;
 			e.EventorPrecisionId = (byte)pPrecId;
 			e.DateTime = pDate.Ticks;
-
-			vSet.AddNodeAndIndex(e, x => x.EventorId, vTestMode);
+			EveMap.Add(e.EventorId, e);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -909,8 +889,7 @@ namespace Fabric.Db.Data.Setups {
 			i.IdentorId = ++vIdCount;
 			i.IdentorTypeId = (byte)pTypeId;
 			i.Value = pValue;
-
-			vSet.AddNodeAndIndex(i, x => x.IdentorId, vTestMode);
+			IdenMap.Add(i.IdentorId, i);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -921,8 +900,7 @@ namespace Fabric.Db.Data.Setups {
 			l.ValueX = pX;
 			l.ValueY = pY;
 			l.ValueZ = pZ;
-
-			vSet.AddNodeAndIndex(l, x => x.LocatorId, vTestMode);
+			LocMap.Add(l.LocatorId, l);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -934,12 +912,8 @@ namespace Fabric.Db.Data.Setups {
 			v.VectorUnitId = (byte)pUnitId;
 			v.VectorUnitPrefixId = (byte)pPrefId;
 			v.Value = pValue;
-
-			vSet.AddNodeAndIndex(v, x => x.VectorId, vTestMode);
-
-			var relA = DataRel.Create(v, new VectorUsesAxisArtifact(),
-				vSet.GetNode<Artifact>((long)pAxisArtId), vTestMode);
-			vSet.AddRel(relA);
+			v.AxisArtId = (long)pAxisArtId;
+			VecMap.Add(v.VectorId, v);
 		}
 
 
@@ -956,7 +930,6 @@ namespace Fabric.Db.Data.Setups {
 			var f = new Factor();
 			f.FactorId = ++vIdCount;
 			f.FactorAssertionId = (byte)pAstId;
-			//f.IsPublic = (pAccId == FactorAccessId.Public);
 			f.IsDefining = pIsDefining;
 			f.Created = dt.AddMinutes(-1).Ticks;
 			f.Note = pNote;
@@ -990,128 +963,135 @@ namespace Fabric.Db.Data.Setups {
 			}
 
 			if ( pDescId != null ) {
-				var rel = DataRel.Create(f, new FactorUsesDescriptor(),
-					vSet.GetNode<Descriptor>((long)pDescId), vTestMode);
-				vSet.AddRel(rel);
+				Descriptor d = DescMap[(long)pDescId];
+				f.Descriptor_TypeId = d.DescriptorTypeId;
+
+				if ( d.PrimArtRefId != null ) {
+					vSet.AddRel(DataRel.Create(f, new FactorRefinesPrimaryWithArtifact(),
+						vSet.GetNode<Artifact>((long)d.PrimArtRefId), vTestMode));
+				}
+
+				if ( d.TypeArtRefId != null ) {
+					vSet.AddRel(DataRel.Create(f, new FactorRefinesTypeWithArtifact(),
+						vSet.GetNode<Artifact>((long)d.TypeArtRefId), vTestMode));
+				}
+
+				if ( d.RelArtRefId != null ) {
+					vSet.AddRel(DataRel.Create(f, new FactorRefinesRelatedWithArtifact(),
+						vSet.GetNode<Artifact>((long)d.RelArtRefId), vTestMode));
+				}
 			}
 
 			if ( pDirId != null ) {
-				var rel = DataRel.Create(f, new FactorUsesDirector(),
-					vSet.GetNode<Director>((long)pDirId), vTestMode);
-				vSet.AddRel(rel);
+				Director d = DirMap[(long)pDirId];
+				f.Director_TypeId = d.DirectorTypeId;
+				f.Director_PrimaryActionId = d.PrimaryDirectorActionId;
+				f.Director_RelatedActionId = d.RelatedDirectorActionId;
 			}
 
 			if ( pEventId != null ) {
-				var rel = DataRel.Create(f, new FactorUsesEventor(),
-					vSet.GetNode<Eventor>((long)pEventId), vTestMode);
-				vSet.AddRel(rel);
+				Eventor e = EveMap[(long)pEventId];
+				f.Eventor_TypeId = e.EventorTypeId;
+				f.Eventor_PrecisionId = e.EventorPrecisionId;
+				f.Eventor_DateTime = e.DateTime;
 			}
 
 			if ( pIdentId != null ) {
-				var rel = DataRel.Create(f, new FactorUsesIdentor(),
-					vSet.GetNode<Identor>((long)pIdentId), vTestMode);
-				vSet.AddRel(rel);
+				Identor i = IdenMap[(long)pIdentId];
+				f.Identor_TypeId = i.IdentorTypeId;
+				f.Identor_Value = i.Value;
 			}
 
 			if ( pLocId != null ) {
-				var rel = DataRel.Create(f, new FactorUsesLocator(),
-					vSet.GetNode<Locator>((long)pLocId), vTestMode);
-				vSet.AddRel(rel);
+				Locator l = LocMap[(long)pLocId];
+				f.Locator_TypeId = l.LocatorTypeId;
+				f.Locator_ValueX = l.ValueX;
+				f.Locator_ValueY = l.ValueY;
+				f.Locator_ValueZ = l.ValueZ;
 			}
 
 			if ( pVectId != null ) {
-				var rel = DataRel.Create(f, new FactorUsesVector(),
-					vSet.GetNode<Vector>((long)pVectId), vTestMode);
-				vSet.AddRel(rel);
+				Vector v = VecMap[(long)pVectId];
+				f.Vector_TypeId = v.VectorTypeId;
+				f.Vector_UnitId = v.VectorUnitId;
+				f.Vector_UnitPrefixId = v.VectorUnitPrefixId;
+				f.Vector_Value = v.Value;
+
+				vSet.AddRel(DataRel.Create(f, new FactorUsesAxisArtifact(),
+					vSet.GetNode<Artifact>(v.AxisArtId), vTestMode));
 			}
 
 			vSet.ElapseTime();
 		}
 
+	}
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public void GetFactorPieces(uint pFactorId, out Descriptor pDesc, out Director pDir,
-							out Eventor pEvent, out Identor pIdent, out Locator pLoc, out Vector pVec) {
-			Factor fac = FactorTable.FindRowById(pFactorId);
-			pDesc = null;
-			pDir = null;
-			pEvent = null;
-			pIdent = null;
-			pLoc = null;
-			pVec = null;
 
-			if ( fac.FactorDescriptors.Count > 0 ) {
-				pDesc = DescriptorTable.FindRowById(fac.FactorDescriptors[0].Descriptor.Id);
-			}
+	/*================================================================================================*/
+	public class Descriptor {
 
-			if ( fac.FactorDirectors.Count > 0 ) {
-				pDir = DirectorTable.FindRowById(fac.FactorDirectors[0].Director.Id);
-			}
+		public virtual long DescriptorId { get; set; }
+		public virtual byte DescriptorTypeId { get; set; }
+		public virtual long? PrimArtRefId { get; set; }
+		public virtual long? RelArtRefId { get; set; }
+		public virtual long? TypeArtRefId { get; set; }
 
-			if ( fac.FactorEventors.Count > 0 ) {
-				pEvent = EventorTable.FindRowById(fac.FactorEventors[0].Eventor.Id);
-			}
+	}
 
-			if ( fac.FactorIdentors.Count > 0 ) {
-				pIdent = IdentorTable.FindRowById(fac.FactorIdentors[0].Identor.Id);
-			}
 
-			if ( fac.FactorLocators.Count > 0 ) {
-				pLoc = LocatorTable.FindRowById(fac.FactorLocators[0].Locator.Id);
-			}
+	/*================================================================================================*/
+	public class Director {
 
-			if ( fac.FactorVectors.Count > 0 ) {
-				pVec = VectorTable.FindRowById(fac.FactorVectors[0].Vector.Id);
-			}
-		}
+		public virtual long DirectorId { get; set; }
+		public virtual byte DirectorTypeId { get; set; }
+		public virtual byte PrimaryDirectorActionId { get; set; }
+		public virtual byte RelatedDirectorActionId { get; set; }
 
-		/*--------------------------------------------------------------------------------------------* /
-		public void GetDescriptorRefines(uint pDescId, out DescriptorRefine pPrimRefine,
-												out DescriptorRefine pTypeRefine, out DescriptorRefine pRelRefine) {
-			DescriptorRefId? prim = null;
-			DescriptorRefId? type = null;
-			DescriptorRefId? rel = null;
+	}
 
-			switch ( pDescId ) {
-				case (uint)DescriptorId.IsA:
-				case (uint)DescriptorId.HasA:
-				case (uint)DescriptorId.IsRelatedTo:
-				case (uint)DescriptorId.ParticIn:
-				case (uint)DescriptorId.Produces:
-				case (uint)DescriptorId.IsInterestIn:
-				case (uint)DescriptorId.IsFoundIn:
-				case (uint)DescriptorId.BelongsTo:
-				case (uint)DescriptorId.RefersTo:
-				case (uint)DescriptorId.Receives:
-				case (uint)DescriptorId.EmotesLike:
-					break;
 
-				case (uint)DescriptorId.IsA_Digital:
-					rel = DescriptorRefId.Rel_Digital;
-					break;
+	/*================================================================================================*/
+	public class Eventor {
 
-				case (uint)DescriptorId.RefersTo_Subject:
-					prim = DescriptorRefId.Prim_RT_Subject;
-					break;
+		public virtual long EventorId { get; set; }
+		public virtual byte EventorTypeId { get; set; }
+		public virtual byte EventorPrecisionId { get; set; }
+		public virtual long DateTime { get; set; }
 
-				case (uint)DescriptorId.HasA_Object_Blue:
-					prim = DescriptorRefId.Prim_HA1_Object;
-					rel = DescriptorRefId.Rel_Blue;
-					break;
+	}
 
-				case (uint)DescriptorId.ParticIn_Attend:
-					type = DescriptorRefId.Type_Attend;
-					break;
 
-				default:
-					throw new Exception("DescriptorId "+pDescId+" is not handled yet.");
-			}
+	/*================================================================================================*/
+	public class Identor {
 
-			pPrimRefine = (prim == null ? null : DescriptorRefineTable.FindRowById((uint)prim));
-			pTypeRefine = (type == null ? null : DescriptorRefineTable.FindRowById((uint)type));
-			pRelRefine  = (rel  == null ? null : DescriptorRefineTable.FindRowById((uint)rel));
-		}*/
+		public virtual long IdentorId { get; set; }
+		public virtual byte IdentorTypeId { get; set; }
+		public virtual string Value { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class Locator {
+
+		public virtual long LocatorId { get; set; }
+		public virtual byte LocatorTypeId { get; set; }
+		public virtual double ValueX { get; set; }
+		public virtual double ValueY { get; set; }
+		public virtual double ValueZ { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class Vector {
+
+		public virtual long VectorId { get; set; }
+		public virtual byte VectorTypeId { get; set; }
+		public virtual byte VectorUnitId { get; set; }
+		public virtual byte VectorUnitPrefixId { get; set; }
+		public virtual long Value { get; set; }
+		public virtual long AxisArtId { get; set; }
 
 	}
 

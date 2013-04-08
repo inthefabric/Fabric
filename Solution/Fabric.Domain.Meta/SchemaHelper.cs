@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:17 PM
+// Generated on 4/8/2013 2:54:25 PM
 
 using System.Collections.Generic;
 
@@ -48,23 +48,17 @@ namespace Fabric.Domain.Meta {
 				case "FactorUsesPrimaryArtifact": return new SchemaHelperRel(s.Rels[9]);
 				case "FactorUsesRelatedArtifact": return new SchemaHelperRel(s.Rels[10]);
 				case "FactorReplacesFactor": return new SchemaHelperRel(s.Rels[11]);
-				case "FactorUsesDescriptor": return new SchemaHelperRel(s.Rels[12]);
-				case "FactorUsesDirector": return new SchemaHelperRel(s.Rels[13]);
-				case "FactorUsesEventor": return new SchemaHelperRel(s.Rels[14]);
-				case "FactorUsesIdentor": return new SchemaHelperRel(s.Rels[15]);
-				case "FactorUsesLocator": return new SchemaHelperRel(s.Rels[16]);
-				case "FactorUsesVector": return new SchemaHelperRel(s.Rels[17]);
-				case "DescriptorRefinesPrimaryWithArtifact": return new SchemaHelperRel(s.Rels[18]);
-				case "DescriptorRefinesRelatedWithArtifact": return new SchemaHelperRel(s.Rels[19]);
-				case "DescriptorRefinesTypeWithArtifact": return new SchemaHelperRel(s.Rels[20]);
-				case "VectorUsesAxisArtifact": return new SchemaHelperRel(s.Rels[21]);
-				case "OauthAccessUsesApp": return new SchemaHelperRel(s.Rels[22]);
-				case "OauthAccessUsesUser": return new SchemaHelperRel(s.Rels[23]);
-				case "OauthDomainUsesApp": return new SchemaHelperRel(s.Rels[24]);
-				case "OauthGrantUsesApp": return new SchemaHelperRel(s.Rels[25]);
-				case "OauthGrantUsesUser": return new SchemaHelperRel(s.Rels[26]);
-				case "OauthScopeUsesApp": return new SchemaHelperRel(s.Rels[27]);
-				case "OauthScopeUsesUser": return new SchemaHelperRel(s.Rels[28]);
+				case "FactorRefinesPrimaryWithArtifact": return new SchemaHelperRel(s.Rels[12]);
+				case "FactorRefinesRelatedWithArtifact": return new SchemaHelperRel(s.Rels[13]);
+				case "FactorRefinesTypeWithArtifact": return new SchemaHelperRel(s.Rels[14]);
+				case "FactorUsesAxisArtifact": return new SchemaHelperRel(s.Rels[15]);
+				case "OauthAccessUsesApp": return new SchemaHelperRel(s.Rels[16]);
+				case "OauthAccessUsesUser": return new SchemaHelperRel(s.Rels[17]);
+				case "OauthDomainUsesApp": return new SchemaHelperRel(s.Rels[18]);
+				case "OauthGrantUsesApp": return new SchemaHelperRel(s.Rels[19]);
+				case "OauthGrantUsesUser": return new SchemaHelperRel(s.Rels[20]);
+				case "OauthScopeUsesApp": return new SchemaHelperRel(s.Rels[21]);
+				case "OauthScopeUsesUser": return new SchemaHelperRel(s.Rels[22]);
 			}
 
 			return null;
@@ -85,16 +79,10 @@ namespace Fabric.Domain.Meta {
 				"FactorUsesPrimaryArtifact",
 				"FactorUsesRelatedArtifact",
 				"FactorReplacesFactor",
-				"FactorUsesDescriptor",
-				"FactorUsesDirector",
-				"FactorUsesEventor",
-				"FactorUsesIdentor",
-				"FactorUsesLocator",
-				"FactorUsesVector",
-				"DescriptorRefinesPrimaryWithArtifact",
-				"DescriptorRefinesRelatedWithArtifact",
-				"DescriptorRefinesTypeWithArtifact",
-				"VectorUsesAxisArtifact",
+				"FactorRefinesPrimaryWithArtifact",
+				"FactorRefinesRelatedWithArtifact",
+				"FactorRefinesTypeWithArtifact",
+				"FactorUsesAxisArtifact",
 				"OauthAccessUsesApp",
 				"OauthAccessUsesUser",
 				"OauthDomainUsesApp",
@@ -123,17 +111,10 @@ namespace Fabric.Domain.Meta {
 				case "Url": return new SchemaHelperNode(s.Nodes[8]);
 				case "User": return new SchemaHelperNode(s.Nodes[9]);
 				case "Factor": return new SchemaHelperNode(s.Nodes[10]);
-				case "FactorElementNode": return new SchemaHelperNode(s.Nodes[11]);
-				case "Descriptor": return new SchemaHelperNode(s.Nodes[12]);
-				case "Director": return new SchemaHelperNode(s.Nodes[13]);
-				case "Eventor": return new SchemaHelperNode(s.Nodes[14]);
-				case "Identor": return new SchemaHelperNode(s.Nodes[15]);
-				case "Locator": return new SchemaHelperNode(s.Nodes[16]);
-				case "Vector": return new SchemaHelperNode(s.Nodes[17]);
-				case "OauthAccess": return new SchemaHelperNode(s.Nodes[18]);
-				case "OauthDomain": return new SchemaHelperNode(s.Nodes[19]);
-				case "OauthGrant": return new SchemaHelperNode(s.Nodes[20]);
-				case "OauthScope": return new SchemaHelperNode(s.Nodes[21]);
+				case "OauthAccess": return new SchemaHelperNode(s.Nodes[11]);
+				case "OauthDomain": return new SchemaHelperNode(s.Nodes[12]);
+				case "OauthGrant": return new SchemaHelperNode(s.Nodes[13]);
+				case "OauthScope": return new SchemaHelperNode(s.Nodes[14]);
 			}
 
 			return null;
@@ -153,13 +134,6 @@ namespace Fabric.Domain.Meta {
 				"Url",
 				"User",
 				"Factor",
-				"FactorElementNode",
-				"Descriptor",
-				"Director",
-				"Eventor",
-				"Identor",
-				"Locator",
-				"Vector",
 				"OauthAccess",
 				"OauthDomain",
 				"OauthGrant",
@@ -180,12 +154,6 @@ namespace Fabric.Domain.Meta {
 				"Url",
 				"User",
 				"Factor",
-				"Descriptor",
-				"Director",
-				"Eventor",
-				"Identor",
-				"Locator",
-				"Vector",
 			};
 		}
 

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:16 PM
+// Generated on 4/8/2013 2:54:25 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -387,12 +387,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			new StepLink("UsesPrimary", "Artifact", true, "/UsesPrimaryArtifact"),
 			new StepLink("UsesRelated", "Artifact", true, "/UsesRelatedArtifact"),
 			new StepLink("Replaces", "Factor", true, "/ReplacesFactor"),
-			new StepLink("Uses", "Descriptor", true, "/UsesDescriptor"),
-			new StepLink("Uses", "Director", true, "/UsesDirector"),
-			new StepLink("Uses", "Eventor", true, "/UsesEventor"),
-			new StepLink("Uses", "Identor", true, "/UsesIdentor"),
-			new StepLink("Uses", "Locator", true, "/UsesLocator"),
-			new StepLink("Uses", "Vector", true, "/UsesVector"),
+			new StepLink("RefinesPrimaryWith", "Artifact", true, "/RefinesPrimaryWithArtifact"),
+			new StepLink("RefinesRelatedWith", "Artifact", true, "/RefinesRelatedWithArtifact"),
+			new StepLink("RefinesTypeWith", "Artifact", true, "/RefinesTypeWithArtifact"),
+			new StepLink("UsesAxis", "Artifact", true, "/UsesAxisArtifact"),
 		};
 
 
@@ -421,12 +419,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				case "usesprimaryartifact": return UsesPrimaryArtifact;
 				case "usesrelatedartifact": return UsesRelatedArtifact;
 				case "replacesfactor": return ReplacesFactor;
-				case "usesdescriptor": return UsesDescriptor;
-				case "usesdirector": return UsesDirector;
-				case "useseventor": return UsesEventor;
-				case "usesidentor": return UsesIdentor;
-				case "useslocator": return UsesLocator;
-				case "usesvector": return UsesVector;
+				case "refinesprimarywithartifact": return RefinesPrimaryWithArtifact;
+				case "refinesrelatedwithartifact": return RefinesRelatedWithArtifact;
+				case "refinestypewithartifact": return RefinesTypeWithArtifact;
+				case "usesaxisartifact": return UsesAxisArtifact;
 			}
 
 			return base.GetLink(pData);
@@ -471,118 +467,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep UsesDescriptor {
-			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesDescriptor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IDirectorStep UsesDirector {
-			get {
-				var step = new DirectorStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesDirector').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IEventorStep UsesEventor {
-			get {
-				var step = new EventorStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesEventor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IIdentorStep UsesIdentor {
-			get {
-				var step = new IdentorStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesIdentor').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public ILocatorStep UsesLocator {
-			get {
-				var step = new LocatorStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesLocator').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IVectorStep UsesVector {
-			get {
-				var step = new VectorStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesVector').inV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class DescriptorStep : FactorElementNodeStep<FabDescriptor>, IDescriptorStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
-			new StepLink("RefinesPrimaryWith", "Artifact", true, "/RefinesPrimaryWithArtifact"),
-			new StepLink("RefinesRelatedWith", "Artifact", true, "/RefinesRelatedWithArtifact"),
-			new StepLink("RefinesTypeWith", "Artifact", true, "/RefinesTypeWithArtifact"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "DescriptorId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "infactorlistuses": return InFactorListUses;
-				case "refinesprimarywithartifact": return RefinesPrimaryWithArtifact;
-				case "refinesrelatedwithartifact": return RefinesRelatedWithArtifact;
-				case "refinestypewithartifact": return RefinesTypeWithArtifact;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUses {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesDescriptor').outV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public IArtifactStep RefinesPrimaryWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('DescriptorRefinesPrimaryWithArtifact').inV");
+				Path.AddSegment(step, "outE('FactorRefinesPrimaryWithArtifact').inV");
 				return step;
 			}
 		}
@@ -591,7 +479,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep RefinesRelatedWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('DescriptorRefinesRelatedWithArtifact').inV");
+				Path.AddSegment(step, "outE('FactorRefinesRelatedWithArtifact').inV");
 				return step;
 			}
 		}
@@ -600,249 +488,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep RefinesTypeWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('DescriptorRefinesTypeWithArtifact').inV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class DirectorStep : FactorElementNodeStep<FabDirector>, IDirectorStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public DirectorStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "DirectorId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "infactorlistuses": return InFactorListUses;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUses {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesDirector').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class EventorStep : FactorElementNodeStep<FabEventor>, IEventorStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public EventorStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "EventorId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "infactorlistuses": return InFactorListUses;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUses {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesEventor').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class IdentorStep : FactorElementNodeStep<FabIdentor>, IIdentorStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IdentorStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "IdentorId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "infactorlistuses": return InFactorListUses;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUses {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesIdentor').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class LocatorStep : FactorElementNodeStep<FabLocator>, ILocatorStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public LocatorStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "LocatorId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "infactorlistuses": return InFactorListUses;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUses {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesLocator').outV");
-				return step;
-			}
-		}
-
-	}
-
-	/*================================================================================================*/
-	public partial class VectorStep : FactorElementNodeStep<FabVector>, IVectorStep {
-		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
-			new StepLink("Uses", "Factor", false, "/InFactorListUses"),
-			new StepLink("UsesAxis", "Artifact", true, "/UsesAxisArtifact"),
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "VectorId"; } }
-		public override bool TypeIdIsLong { get { return true; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IStep GetLink(StepData pData) {
-			switch ( pData.Command ) {
-				case "infactorlistuses": return InFactorListUses;
-				case "usesaxisartifact": return UsesAxisArtifact;
-			}
-
-			return base.GetLink(pData);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep InFactorListUses {
-			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesVector').outV");
+				Path.AddSegment(step, "outE('FactorRefinesTypeWithArtifact').inV");
 				return step;
 			}
 		}
@@ -851,7 +497,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep UsesAxisArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('VectorUsesAxisArtifact').inV");
+				Path.AddSegment(step, "outE('FactorUsesAxisArtifact').inV");
 				return step;
 			}
 		}

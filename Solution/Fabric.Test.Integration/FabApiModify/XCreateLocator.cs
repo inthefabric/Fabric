@@ -37,7 +37,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new CreateLocator(Tasks, FactorId, vLocTypeId, vValueX, vValueY, vValueZ);
+			var func = new AttachLocator(Tasks, FactorId, vLocTypeId, vValueX, vValueY, vValueZ);
 			vResult = func.Go(ApiCtx);
 		}
 		

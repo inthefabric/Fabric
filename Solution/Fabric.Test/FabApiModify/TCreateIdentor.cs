@@ -65,7 +65,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateIdentor(MockTasks.Object, FactorId, vIdenTypeId,vValue);
+			var func = new AttachIdentor(MockTasks.Object, FactorId, vIdenTypeId,vValue);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -114,8 +114,8 @@ namespace Fabric.Test.FabApiModify {
 			base.CheckValidation();
 
 			MockValidator.Verify(x => x.IdentorTypeId(vIdenTypeId,
-				CreateIdentor.IdenTypeParam), Times.Once());
-			MockValidator.Verify(x => x.IdentorValue(vValue, CreateIdentor.ValueParam), Times.Once());
+				AttachIdentor.IdenTypeParam), Times.Once());
+			MockValidator.Verify(x => x.IdentorValue(vValue, AttachIdentor.ValueParam), Times.Once());
 		}
 
 	}

@@ -199,21 +199,21 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachDescriptorToFactor";
 				op.Uri = ModDescriptorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabDescriptor).Name;
+				op.ReturnType = typeof(bool).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
 				op.Name = "AttachDirectorToFactor";
 				op.Uri = ModDirectorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabDirector).Name;
+				op.ReturnType = typeof(bool).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
 				op.Name = "AttachEventorToFactor";
 				op.Uri = ModEventorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabEventor).Name;
+				op.ReturnType = typeof(bool).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
@@ -241,7 +241,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachIdentorToFactor";
 				op.Uri = ModIdentorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabIdentor).Name;
+				op.ReturnType = typeof(bool).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
@@ -255,7 +255,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachLocatorToFactor";
 				op.Uri = ModLocatorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabLocator).Name;
+				op.ReturnType = typeof(bool).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
@@ -269,7 +269,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachVectorToFactor";
 				op.Uri = ModVectorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(FabVector).Name;
+				op.ReturnType = typeof(bool).Name;
 				s.Operations.Add(op);
 			}
 			else {

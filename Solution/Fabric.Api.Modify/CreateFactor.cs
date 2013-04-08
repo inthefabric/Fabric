@@ -53,7 +53,7 @@ namespace Fabric.Api.Modify {
 		protected override void ValidateParams() {
 			Tasks.Validator.ArtifactId(vPrimArtId, PrimArtParam);
 			Tasks.Validator.ArtifactId(vRelArtId, RelArtParam);
-			Tasks.Validator.FactorAssertionId(vAssertId, AssertParam);
+			Tasks.Validator.FactorFactorAssertionId(vAssertId, AssertParam);
 			Tasks.Validator.FactorNote(vNote, NoteParam);
 
 			if ( vPrimArtId == vRelArtId ) {

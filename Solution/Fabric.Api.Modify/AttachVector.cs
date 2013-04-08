@@ -5,15 +5,13 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain.Types;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModVectorsUri, typeof(FabVector),
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModVectorsUri, typeof(bool),
 		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
-	public class CreateVector : CreateFactorElement<Vector> {
+	public class AttachVector : AttachFactorElement {
 
 		public const string VecTypeParam = "VectorTypeId";
 		public const string ValueParam = "Value";
@@ -21,26 +19,26 @@ namespace Fabric.Api.Modify {
 		public const string UnitParam = "VectorUnitId";
 		public const string UnitPrefParam = "VectorUnitPrefixId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, VecTypeParam, 1, typeof(Vector))]
+		[ServiceOpParam(ServiceOpParamType.Form, VecTypeParam, 1, typeof(Factor))]
 		private readonly byte vVecTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, 2, typeof(Vector))]
+		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, 2, typeof(Factor))]
 		private readonly long vValue;
 
 		[ServiceOpParam(ServiceOpParamType.Form, AxisArtParam, 3, typeof(Artifact),
 			DomainPropertyName="ArtifactId")]
 		private readonly long vAxisArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UnitParam, 4, typeof(Vector))]
+		[ServiceOpParam(ServiceOpParamType.Form, UnitParam, 4, typeof(Factor))]
 		private readonly byte vVecUnitId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UnitPrefParam, 5, typeof(Vector))]
+		[ServiceOpParam(ServiceOpParamType.Form, UnitPrefParam, 5, typeof(Factor))]
 		private readonly byte vVecUnitPrefId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateVector(IModifyTasks pTasks, long pFactorId, byte pVecTypeId, long pValue,
+		public AttachVector(IModifyTasks pTasks, long pFactorId, byte pVecTypeId, long pValue,
 					long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) : base(pTasks, pFactorId) {
 			vVecTypeId = pVecTypeId; 
 			vValue = pValue;
@@ -51,27 +49,14 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
-			Tasks.Validator.VectorTypeId(vVecTypeId, VecTypeParam);
+			Tasks.Validator.FactorVector_TypeId(vVecTypeId, VecTypeParam);
 			Tasks.Validator.ArtifactId(vAxisArtId, AxisArtParam);
-			Tasks.Validator.VectorUnitId(vVecUnitId, UnitParam);
-			Tasks.Validator.VectorUnitPrefixId(vVecUnitPrefId, UnitPrefParam);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override bool FactorHasElement(Factor pFactor) {
-			return Tasks.FactorHasVector(ApiCtx, pFactor);
+			Tasks.Validator.FactorVector_UnitId(vVecUnitId, UnitParam);
+			Tasks.Validator.FactorVector_UnitPrefixId(vVecUnitPrefId, UnitPrefParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Vector AddElementToFactor(Factor pFactor, Member pMember) {
-			if ( Tasks.GetArtifact(ApiCtx, vAxisArtId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
-			}
-			
-			////
-			
+		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
 			VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
 			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
 			
@@ -85,24 +70,9 @@ namespace Fabric.Api.Modify {
 			
 			////
 			
-			Vector vec = Tasks.GetVectorMatch(ApiCtx, vVecTypeId,
-				vValue, vAxisArtId, vVecUnitId, vVecUnitPrefId);
-
-			if ( vec != null ) {
-				Tasks.AttachExistingElement<Vector, FactorUsesVector>(ApiCtx, pFactor, vec);
-				return vec;
-			}
-
-			////
-
-			IWeaverVarAlias<Vector> vecVar;
-			var txb = new TxBuilder();
-
-			Tasks.TxAddVector(ApiCtx, txb, vVecTypeId, vValue,
-				vAxisArtId, vVecUnitId, vVecUnitPrefId, pFactor, out vecVar);
-
-			txb.RegisterVarWithTxBuilder(vecVar);
-			return ApiCtx.DbSingle<Vector>("CreateVectorTx", txb.Finish(vecVar));
+			Tasks.AttachVector(ApiCtx, pFactor, vVecTypeId, vValue,
+				vAxisArtId, vVecUnitId, vVecUnitPrefId);
+			return true;
 		}
 
 	}

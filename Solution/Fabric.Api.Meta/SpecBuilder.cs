@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:17 PM
+// Generated on 4/8/2013 2:54:25 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -163,75 +163,57 @@ namespace Fabric.Api.Meta {
 					pValue.LenMin = 1;
 					break;
 
-				case "Descriptor.DescriptorId":
+				case "Factor.Descriptor_TypeId":
 					break;
 
-				case "Descriptor.DescriptorTypeId":
+				case "Factor.Director_TypeId":
 					break;
 
-				case "Director.DirectorId":
+				case "Factor.Director_PrimaryActionId":
 					break;
 
-				case "Director.DirectorTypeId":
+				case "Factor.Director_RelatedActionId":
 					break;
 
-				case "Director.PrimaryDirectorActionId":
+				case "Factor.Eventor_TypeId":
 					break;
 
-				case "Director.RelatedDirectorActionId":
+				case "Factor.Eventor_PrecisionId":
 					break;
 
-				case "Eventor.EventorId":
+				case "Factor.Eventor_DateTime":
 					break;
 
-				case "Eventor.EventorTypeId":
+				case "Factor.Identor_TypeId":
 					break;
 
-				case "Eventor.EventorPrecisionId":
-					break;
-
-				case "Eventor.DateTime":
-					break;
-
-				case "Identor.IdentorId":
-					break;
-
-				case "Identor.IdentorTypeId":
-					break;
-
-				case "Identor.Value":
+				case "Factor.Identor_Value":
 					pValue.LenMax = 256;
 					pValue.LenMin = 1;
 					break;
 
-				case "Locator.LocatorId":
+				case "Factor.Locator_TypeId":
 					break;
 
-				case "Locator.LocatorTypeId":
+				case "Factor.Locator_ValueX":
 					break;
 
-				case "Locator.ValueX":
+				case "Factor.Locator_ValueY":
 					break;
 
-				case "Locator.ValueY":
+				case "Factor.Locator_ValueZ":
 					break;
 
-				case "Locator.ValueZ":
+				case "Factor.Vector_TypeId":
 					break;
 
-				case "Vector.VectorId":
+				case "Factor.Vector_UnitId":
 					break;
 
-				case "Vector.VectorTypeId":
+				case "Factor.Vector_UnitPrefixId":
 					break;
 
-				case "Vector.VectorUnitId":
-					break;
-
-				case "Vector.VectorUnitPrefixId":
-					break;
-
-				case "Vector.Value":
+				case "Factor.Vector_Value":
 					break;
 
 				case "OauthAccess.OauthAccessId":
@@ -316,7 +298,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "Artifact.Created":
@@ -331,7 +312,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "App.Name":
@@ -347,7 +327,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "Class.Name":
@@ -375,7 +354,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "Instance.Name":
@@ -404,7 +382,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "MemberTypeAssign.MemberTypeAssignId":
@@ -412,15 +389,12 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "MemberTypeAssign.MemberTypeId":
 					pProp.Name = "MemberTypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+					pProp.Description = SpecDoc.GetDtoPropText("MemberTypeAssign_MemberTypeId");
 					break;
 
 				case "Url.UrlId":
@@ -428,7 +402,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "Url.Name":
@@ -450,7 +423,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "User.Name":
@@ -466,15 +438,12 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
 					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
 					break;
 
 				case "Factor.FactorAssertionId":
 					pProp.Name = "FactorAssertionId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_FactorAssertionId");
 					break;
 
 				case "Factor.IsDefining":
@@ -504,176 +473,123 @@ namespace Fabric.Api.Meta {
 					pProp.IsNullable = true;
 					break;
 
-				case "Descriptor.DescriptorId":
-					pProp.Name = "DescriptorId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Descriptor_TypeId":
+					pProp.Name = "Descriptor_TypeId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Descriptor_TypeId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Descriptor.DescriptorTypeId":
-					pProp.Name = "DescriptorTypeId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Director_TypeId":
+					pProp.Name = "Director_TypeId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_TypeId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Director.DirectorId":
-					pProp.Name = "DirectorId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Director_PrimaryActionId":
+					pProp.Name = "Director_PrimaryActionId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_PrimaryActionId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Director.DirectorTypeId":
-					pProp.Name = "DirectorTypeId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Director_RelatedActionId":
+					pProp.Name = "Director_RelatedActionId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_RelatedActionId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Director.PrimaryDirectorActionId":
-					pProp.Name = "PrimaryDirectorActionId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Eventor_TypeId":
+					pProp.Name = "Eventor_TypeId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_TypeId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Director.RelatedDirectorActionId":
-					pProp.Name = "RelatedDirectorActionId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Eventor_PrecisionId":
+					pProp.Name = "Eventor_PrecisionId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_PrecisionId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Eventor.EventorId":
-					pProp.Name = "EventorId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Eventor_DateTime":
+					pProp.Name = "Eventor_DateTime";
+					pProp.Type = "long?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_DateTime");
+					pProp.IsNullable = true;
 					break;
 
-				case "Eventor.EventorTypeId":
-					pProp.Name = "EventorTypeId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Identor_TypeId":
+					pProp.Name = "Identor_TypeId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Identor_TypeId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Eventor.EventorPrecisionId":
-					pProp.Name = "EventorPrecisionId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Eventor.DateTime":
-					pProp.Name = "DateTime";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Eventor_DateTime");
-					break;
-
-				case "Identor.IdentorId":
-					pProp.Name = "IdentorId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Identor.IdentorTypeId":
-					pProp.Name = "IdentorTypeId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Identor.Value":
-					pProp.Name = "Value";
+				case "Factor.Identor_Value":
+					pProp.Name = "Identor_Value";
 					pProp.Type = "string";
-					pProp.Description = SpecDoc.GetDtoPropText("Identor_Value");
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Identor_Value");
+					pProp.IsNullable = true;
 					break;
 
-				case "Locator.LocatorId":
-					pProp.Name = "LocatorId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Locator_TypeId":
+					pProp.Name = "Locator_TypeId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_TypeId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Locator.LocatorTypeId":
-					pProp.Name = "LocatorTypeId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Locator_ValueX":
+					pProp.Name = "Locator_ValueX";
+					pProp.Type = "double?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueX");
+					pProp.IsNullable = true;
 					break;
 
-				case "Locator.ValueX":
-					pProp.Name = "ValueX";
-					pProp.Type = "double";
-					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueX");
+				case "Factor.Locator_ValueY":
+					pProp.Name = "Locator_ValueY";
+					pProp.Type = "double?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueY");
+					pProp.IsNullable = true;
 					break;
 
-				case "Locator.ValueY":
-					pProp.Name = "ValueY";
-					pProp.Type = "double";
-					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueY");
+				case "Factor.Locator_ValueZ":
+					pProp.Name = "Locator_ValueZ";
+					pProp.Type = "double?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueZ");
+					pProp.IsNullable = true;
 					break;
 
-				case "Locator.ValueZ":
-					pProp.Name = "ValueZ";
-					pProp.Type = "double";
-					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueZ");
+				case "Factor.Vector_TypeId":
+					pProp.Name = "Vector_TypeId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_TypeId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Vector.VectorId":
-					pProp.Name = "VectorId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Vector_UnitId":
+					pProp.Name = "Vector_UnitId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_UnitId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Vector.VectorTypeId":
-					pProp.Name = "VectorTypeId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
+				case "Factor.Vector_UnitPrefixId":
+					pProp.Name = "Vector_UnitPrefixId";
+					pProp.Type = "byte?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_UnitPrefixId");
+					pProp.IsNullable = true;
 					break;
 
-				case "Vector.VectorUnitId":
-					pProp.Name = "VectorUnitId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Vector.VectorUnitPrefixId":
-					pProp.Name = "VectorUnitPrefixId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.IsPrimaryKey = true;
-					pProp.IsUnique = true;
-					break;
-
-				case "Vector.Value":
-					pProp.Name = "Value";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Vector_Value");
+				case "Factor.Vector_Value":
+					pProp.Name = "Vector_Value";
+					pProp.Type = "long?";
+					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_Value");
+					pProp.IsNullable = true;
 					break;
 			}
 		}
@@ -763,62 +679,6 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("WhereId");
 					break;
-
-				case "FactorElementNode":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
-				case "Descriptor":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
-				case "Director":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
-				case "Eventor":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
-				case "Identor":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
-				case "Locator":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
-
-				case "Vector":
-					pObject.TraversalFunctions = new List<string>();
-					pObject.TraversalFunctions.Add("As");
-					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
-					break;
 			}
 		}
 
@@ -873,11 +733,11 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InDescriptorListRefinesPrimaryWith";
-					link.Type = "DescriptorRefinesPrimaryWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesPrimaryWithArtifact");
+					link.Name = "InFactorListRefinesPrimaryWith";
+					link.Type = "FactorRefinesPrimaryWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesPrimaryWithArtifact");
 					link.IsOutgoing = false;
-					link.From = "FabDescriptor";
+					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesPrimaryWith";
 					link.To = "FabArtifact";
@@ -885,11 +745,11 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InDescriptorListRefinesRelatedWith";
-					link.Type = "DescriptorRefinesRelatedWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesRelatedWithArtifact");
+					link.Name = "InFactorListRefinesRelatedWith";
+					link.Type = "FactorRefinesRelatedWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesRelatedWithArtifact");
 					link.IsOutgoing = false;
-					link.From = "FabDescriptor";
+					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesRelatedWith";
 					link.To = "FabArtifact";
@@ -897,11 +757,11 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InDescriptorListRefinesTypeWith";
-					link.Type = "DescriptorRefinesTypeWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesTypeWithArtifact");
+					link.Name = "InFactorListRefinesTypeWith";
+					link.Type = "FactorRefinesTypeWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesTypeWithArtifact");
 					link.IsOutgoing = false;
-					link.From = "FabDescriptor";
+					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesTypeWith";
 					link.To = "FabArtifact";
@@ -909,12 +769,12 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InVectorListUsesAxis";
-					link.Type = "VectorUsesAxisArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("VectorUsesAxisArtifact");
+					link.Name = "InFactorListUsesAxis";
+					link.Type = "FactorUsesAxisArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorUsesAxisArtifact");
 					link.IsOutgoing = false;
-					link.From = "FabVector";
-					link.FromConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "UsesAxis";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
@@ -1147,103 +1007,11 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "UsesDescriptor";
-					link.Type = "FactorUsesDescriptor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDescriptor");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToOne";
-					link.Relation = "Uses";
-					link.To = "FabDescriptor";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "UsesDirector";
-					link.Type = "FactorUsesDirector";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDirector");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabDirector";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "UsesEventor";
-					link.Type = "FactorUsesEventor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesEventor");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabEventor";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "UsesIdentor";
-					link.Type = "FactorUsesIdentor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesIdentor");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabIdentor";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "UsesLocator";
-					link.Type = "FactorUsesLocator";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesLocator");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabLocator";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "UsesVector";
-					link.Type = "FactorUsesVector";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesVector");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabVector";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					break;
-
-				case "FactorElementNode":
-					break;
-
-				case "Descriptor":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InFactorListUses";
-					link.Type = "FactorUsesDescriptor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDescriptor");
-					link.IsOutgoing = false;
-					link.From = "FabFactor";
-					link.FromConn = "OutToOne";
-					link.Relation = "Uses";
-					link.To = "FabDescriptor";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
 					link.Name = "RefinesPrimaryWithArtifact";
-					link.Type = "DescriptorRefinesPrimaryWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesPrimaryWithArtifact");
+					link.Type = "FactorRefinesPrimaryWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesPrimaryWithArtifact");
 					link.IsOutgoing = true;
-					link.From = "FabDescriptor";
+					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesPrimaryWith";
 					link.To = "FabArtifact";
@@ -1252,10 +1020,10 @@ namespace Fabric.Api.Meta {
 
 					link = new FabSpecTravLink();
 					link.Name = "RefinesRelatedWithArtifact";
-					link.Type = "DescriptorRefinesRelatedWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesRelatedWithArtifact");
+					link.Type = "FactorRefinesRelatedWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesRelatedWithArtifact");
 					link.IsOutgoing = true;
-					link.From = "FabDescriptor";
+					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesRelatedWith";
 					link.To = "FabArtifact";
@@ -1264,108 +1032,23 @@ namespace Fabric.Api.Meta {
 
 					link = new FabSpecTravLink();
 					link.Name = "RefinesTypeWithArtifact";
-					link.Type = "DescriptorRefinesTypeWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("DescriptorRefinesTypeWithArtifact");
+					link.Type = "FactorRefinesTypeWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesTypeWithArtifact");
 					link.IsOutgoing = true;
-					link.From = "FabDescriptor";
+					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "RefinesTypeWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
-					break;
-
-				case "Director":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InFactorListUses";
-					link.Type = "FactorUsesDirector";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesDirector");
-					link.IsOutgoing = false;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabDirector";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					break;
-
-				case "Eventor":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InFactorListUses";
-					link.Type = "FactorUsesEventor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesEventor");
-					link.IsOutgoing = false;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabEventor";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					break;
-
-				case "Identor":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InFactorListUses";
-					link.Type = "FactorUsesIdentor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesIdentor");
-					link.IsOutgoing = false;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabIdentor";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					break;
-
-				case "Locator":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InFactorListUses";
-					link.Type = "FactorUsesLocator";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesLocator");
-					link.IsOutgoing = false;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabLocator";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
-					break;
-
-				case "Vector":
-					pObject.TraversalLinks = new List<FabSpecTravLink>();
-
-					link = new FabSpecTravLink();
-					link.Name = "InFactorListUses";
-					link.Type = "FactorUsesVector";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesVector");
-					link.IsOutgoing = false;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Uses";
-					link.To = "FabVector";
-					link.ToConn = "InFromOneOrMore";
-					pObject.TraversalLinks.Add(link);
-
 					link = new FabSpecTravLink();
 					link.Name = "UsesAxisArtifact";
-					link.Type = "VectorUsesAxisArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("VectorUsesAxisArtifact");
+					link.Type = "FactorUsesAxisArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorUsesAxisArtifact");
 					link.IsOutgoing = true;
-					link.From = "FabVector";
-					link.FromConn = "OutToOne";
+					link.From = "FabFactor";
+					link.FromConn = "OutToZeroOrOne";
 					link.Relation = "UsesAxis";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";

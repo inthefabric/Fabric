@@ -46,7 +46,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void CheckValidation() {
 			MockValidator.Verify(x => x.FactorId(FactorId,
-				CreateFactorElement.FactorParam), Times.Once());
+				AttachFactorElement.FactorParam), Times.Once());
 		}
 		
 

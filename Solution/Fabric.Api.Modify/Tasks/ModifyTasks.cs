@@ -1,8 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
@@ -115,235 +113,125 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDescriptor.End();
-			return (pApiCtx.DbData("FactorHasDescriptor", q).GetResultCount() > 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool FactorHasDirector(IApiContext pApiCtx, Factor pFactor) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesDirector.End();
-			return (pApiCtx.DbData("FactorHasDirector", q).GetResultCount() > 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool FactorHasEventor(IApiContext pApiCtx, Factor pFactor) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesEventor.End();
-			return (pApiCtx.DbData("FactorHasEventor", q).GetResultCount() > 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool FactorHasIdentor(IApiContext pApiCtx, Factor pFactor) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesIdentor.End();
-			return (pApiCtx.DbData("FactorHasIdentor", q).GetResultCount() > 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool FactorHasLocator(IApiContext pApiCtx, Factor pFactor) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesLocator.End();
-			return (pApiCtx.DbData("FactorHasLocator", q).GetResultCount() > 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public bool FactorHasVector(IApiContext pApiCtx, Factor pFactor) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UsesVector.End();
-			return (pApiCtx.DbData("FactorHasVector", q).GetResultCount() > 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public Descriptor GetDescriptorMatch(IApiContext pApiCtx, byte pDescTypeId,
+		public void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) {
-			IWeaverVarAlias matches;
-			IWeaverVarAlias nulls;
-			IWeaverFuncAs<Descriptor> descMatchAlias;
-			IWeaverFuncAs<Descriptor> descNullAlias;
+			var txb = new TxBuilder();
+			pFactor.Descriptor_TypeId = pDescTypeId;
 
-			IWeaverTransaction tx = new WeaverTransaction();
-			IWeaverQuery q;
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
 
-			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out matches)
-			);
-
-			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out nulls)
+			txb.Transaction.AddQuery(
+				ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End()
 			);
 
 			////
 
-			Descriptor descPath =
-				ApiFunc.NewPathFromType<Descriptor>()
-					.As(out descMatchAlias)
-					.Has(x => x.DescriptorTypeId, WeaverFuncHasOp.EqualTo, pDescTypeId)
-				.Back(descMatchAlias);
+			var facBuild = new FactorBuilder(txb, pFactor);
 
 			if ( pPrimArtRefId != null ) {
-				descPath = descPath
-					.RefinesPrimaryWithArtifact.ToArtifact
-						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)pPrimArtRefId)
-					.Back(descMatchAlias);
+				facBuild.SetRefinesPrimaryWithArtifact((long)pPrimArtRefId);
 			}
 
 			if ( pRelArtRefId != null ) {
-				descPath = descPath
-					.RefinesRelatedWithArtifact.ToArtifact
-						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)pRelArtRefId)
-					.Back(descMatchAlias);
+				facBuild.SetRefinesRelatedWithArtifact((long)pRelArtRefId);
 			}
 
 			if ( pDescTypeRefId != null ) {
-				descPath = descPath
-					.RefinesTypeWithArtifact.ToArtifact
-						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)pDescTypeRefId)
-					.Back(descMatchAlias);
+				facBuild.SetRefinesTypeWithArtifact((long)pDescTypeRefId);
 			}
 
-			tx.AddQuery(
-				descPath
-					.Dedup()
-					.Aggregate(matches)
-					.Iterate()
-				.End()
-			);
-
-			////
-
-			if ( pPrimArtRefId == null ) {
-				q = ApiFunc.NewPathFromType<Descriptor>()
-						.Retain(matches)
-						.As(out descNullAlias)
-					.RefinesPrimaryWithArtifact
-					.Back(descNullAlias)
-						.Aggregate(nulls)
-						.Iterate()
-					.End();
-
-				tx.AddQuery(q);
-			}
-
-			if ( pRelArtRefId == null ) {
-				q = ApiFunc.NewPathFromType<Descriptor>()
-						.Retain(matches)
-						.As(out descNullAlias)
-					.RefinesRelatedWithArtifact
-					.Back(descNullAlias)
-						.Aggregate(nulls)
-						.Iterate()
-					.End();
-
-				tx.AddQuery(q);
-			}
-
-			if ( pDescTypeRefId == null ) {
-				q = ApiFunc.NewPathFromType<Descriptor>()
-						.Retain(matches)
-						.As(out descNullAlias)
-					.RefinesTypeWithArtifact
-					.Back(descNullAlias)
-						.Aggregate(nulls)
-						.Iterate()
-					.End();
-
-				tx.AddQuery(q);
-			}
-
-			////
-
-			tx.AddQuery(
-				ApiFunc.NewPathFromType<Descriptor>()
-					.Retain(matches)
-					.Except(nulls)
-				.End()
-			);
-
-			tx.Finish();
-			return pApiCtx.DbSingle<Descriptor>("GetDescriptorMatch", tx);
+			pApiCtx.DbData("AttachDescriptorTx", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Director GetDirectorMatch(IApiContext pApiCtx, byte pDirTypeId, byte pPrimActId,
-																					byte pRelActId) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<Director>()
-					.Has(x => x.DirectorTypeId, WeaverFuncHasOp.EqualTo, pDirTypeId)
-					.Has(x => x.PrimaryDirectorActionId, WeaverFuncHasOp.EqualTo, pPrimActId)
-					.Has(x => x.RelatedDirectorActionId, WeaverFuncHasOp.EqualTo, pRelActId)
-				.End();
+		public void AttachDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId,
+																	byte pPrimActId, byte pRelActId) {
+			pFactor.Director_TypeId = pDirTypeId;
+			pFactor.Director_PrimaryActionId = pPrimActId;
+			pFactor.Director_RelatedActionId = pRelActId;
 
-			return pApiCtx.DbSingle<Director>("GetDirectorMatch", q);
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
+			up.AddUpdate(pFactor, x => x.Director_PrimaryActionId);
+			up.AddUpdate(pFactor, x => x.Director_RelatedActionId);
+
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			pApiCtx.DbData("AttachDirector", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Eventor GetEventorMatch(IApiContext pApiCtx, byte pEveTypeId, byte pEvePrecId,
-																					long pDateTime) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<Eventor>()
-					.Has(x => x.DateTime, WeaverFuncHasOp.EqualTo, pDateTime)
-					.Has(x => x.EventorTypeId, WeaverFuncHasOp.EqualTo, pEveTypeId)
-					.Has(x => x.EventorPrecisionId, WeaverFuncHasOp.EqualTo, pEvePrecId)
-				.End();
-			
-			return pApiCtx.DbSingle<Eventor>("GetEventorMatch", q);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public Identor GetIdentorMatch(IApiContext pApiCtx, byte pIdenTypeId, string pValue) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<Identor>()
-					.Has(x => x.Value, WeaverFuncHasOp.EqualTo, pValue)
-					.Has(x => x.IdentorTypeId, WeaverFuncHasOp.EqualTo, pIdenTypeId)
-				.End();
-			
-			return pApiCtx.DbSingle<Identor>("GetIdentorMatch", q);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public Locator GetLocatorMatch(IApiContext pApiCtx, byte pLocTypeId, double pX, double pY,
-																						double pZ) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<Locator>()
-						.Has(x => x.ValueX, WeaverFuncHasOp.EqualTo, pX)
-						.Has(x => x.ValueY, WeaverFuncHasOp.EqualTo, pY)
-						.Has(x => x.ValueZ, WeaverFuncHasOp.EqualTo, pZ)
-						.Has(x => x.LocatorTypeId, WeaverFuncHasOp.EqualTo, pLocTypeId)
-					.End();
-			
-			return pApiCtx.DbSingle<Locator>("GetLocatorMatch", q);
-		}
-		
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public Vector GetVectorMatch(IApiContext pApiCtx, byte pVecTypeId, long pValue, long pAxisArtId,
-																byte pVecUnitId, byte pVecUnitPrefId) {
-			IWeaverFuncAs<Vector> locAlias;
-			
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<Vector>()
-						.Has(x => x.VectorTypeId, WeaverFuncHasOp.EqualTo, pVecTypeId)
-						.Has(x => x.VectorUnitId, WeaverFuncHasOp.EqualTo, pVecUnitId)
-						.Has(x => x.VectorUnitPrefixId, WeaverFuncHasOp.EqualTo, pVecUnitPrefId)
-						.Has(x => x.Value, WeaverFuncHasOp.EqualTo, pValue)
-						.As(out locAlias)
-					.UsesAxisArtifact.ToArtifact
-						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, pAxisArtId)
-					.Back(locAlias)
-					.End();
-			
-			return pApiCtx.DbSingle<Vector>("GetVectorMatch", q);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
-							where T : class, INode, new() where TRel : IWeaverRel<Factor, T>, new() {
-			IWeaverVarAlias<Factor> factorVar;
-			IWeaverVarAlias<T> elemVar;
+		public void AttachEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
+																	byte pEvePrecId, long pDateTime) {
+			pFactor.Eventor_TypeId = pEveTypeId;
+			pFactor.Eventor_PrecisionId = pEvePrecId;
+			pFactor.Eventor_DateTime = pDateTime;
 
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(pFactor, x => x.Eventor_TypeId);
+			up.AddUpdate(pFactor, x => x.Eventor_PrecisionId);
+			up.AddUpdate(pFactor, x => x.Eventor_DateTime);
+
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			pApiCtx.DbData("AttachEventor", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AttachIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId, string pValue) {
+			pFactor.Identor_TypeId = pIdenTypeId;
+			pFactor.Identor_Value = pValue;
+
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(pFactor, x => x.Identor_TypeId);
+			up.AddUpdate(pFactor, x => x.Identor_Value);
+
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			pApiCtx.DbData("AttachIdentor", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AttachLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
+																				double pY, double pZ) {
+			pFactor.Locator_TypeId = pLocTypeId;
+			pFactor.Locator_ValueX = pX;
+			pFactor.Locator_ValueY = pY;
+			pFactor.Locator_ValueZ = pZ;
+
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(pFactor, x => x.Locator_TypeId);
+			up.AddUpdate(pFactor, x => x.Locator_ValueX);
+			up.AddUpdate(pFactor, x => x.Locator_ValueY);
+			up.AddUpdate(pFactor, x => x.Locator_ValueZ);
+
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			pApiCtx.DbData("AttachLocator", q);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AttachVector(IApiContext pApiCtx, Factor pFactor, byte pVecTypeId,
+								long pValue, long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) {
 			var txb = new TxBuilder();
-			txb.GetNode(pFactor, out factorVar);
-			txb.GetNode(pElement, out elemVar);
-			txb.AddRel<TRel>(factorVar, elemVar);
-			
-			pApiCtx.DbData("AttachExisting"+typeof(T).Name, txb.Finish());
+			pFactor.Vector_TypeId = pVecTypeId;
+			pFactor.Vector_UnitId = pVecUnitId;
+			pFactor.Vector_UnitPrefixId = pVecUnitPrefId;
+			pFactor.Vector_Value = pValue;
+
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(pFactor, x => x.Vector_TypeId);
+			up.AddUpdate(pFactor, x => x.Vector_UnitId);
+			up.AddUpdate(pFactor, x => x.Vector_UnitPrefixId);
+			up.AddUpdate(pFactor, x => x.Vector_Value);
+
+			txb.Transaction.AddQuery(
+				ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End()
+			);
+
+			////
+
+			var facBuild = new FactorBuilder(txb, pFactor);
+			facBuild.SetUsesAxisArtifact(pAxisArtId);
+
+			pApiCtx.DbData("AttachVectorTx", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -439,113 +327,6 @@ namespace Fabric.Api.Modify.Tasks {
 			facBuild.SetUsesRelatedArtifact(pRelArtId);
 			facBuild.SetInMemberCreates(pCreator);
 			pFactorVar = facBuild.NodeVar;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, byte pDescTypeId,
-						long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId, Factor pFactor, 
-						out IWeaverVarAlias<Descriptor> pDescVar) {
-			var desc = new Descriptor();
-			desc.DescriptorId = pApiCtx.GetSharpflakeId<Descriptor>();
-			desc.DescriptorTypeId = pDescTypeId;
-
-			var descBuild = new DescriptorBuilder(pTxBuild, desc);
-			descBuild.AddNode();
-			descBuild.AddToInFactorListUses(pFactor);
-
-			if ( pPrimArtRefId != null ) {
-				descBuild.SetRefinesPrimaryWithArtifact((long)pPrimArtRefId);
-			}
-
-			if ( pRelArtRefId != null ) {
-				descBuild.SetRefinesRelatedWithArtifact((long)pRelArtRefId);
-			}
-
-			if ( pDescTypeRefId != null ) {
-				descBuild.SetRefinesTypeWithArtifact((long)pDescTypeRefId);
-			}
-
-			pDescVar = descBuild.NodeVar;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddDirector(IApiContext pApiCtx, TxBuilder pTxBuild, byte pDirTypeId,
-														byte pPrimActId, byte pRelActId, Factor pFactor,
-														out IWeaverVarAlias<Director> pDirVar) {
-			var dir = new Director();
-			dir.DirectorId = pApiCtx.GetSharpflakeId<Director>();
-			dir.DirectorTypeId = pDirTypeId;
-			dir.PrimaryDirectorActionId = pPrimActId;
-			dir.RelatedDirectorActionId = pRelActId;
-
-			var dirBuild = new DirectorBuilder(pTxBuild, dir);
-			dirBuild.AddNode();
-			dirBuild.AddToInFactorListUses(pFactor);
-			pDirVar = dirBuild.NodeVar;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddEventor(IApiContext pApiCtx, TxBuilder pTxBuild, byte pEveTypeId,
-														byte pEvePrecId, long pDateTime, Factor pFactor,
-														out IWeaverVarAlias<Eventor> pEveVar) {
-			var eve = new Eventor();
-			eve.EventorId = pApiCtx.GetSharpflakeId<Eventor>();
-			eve.EventorTypeId = pEveTypeId;
-			eve.EventorPrecisionId = pEvePrecId;
-			eve.DateTime = pDateTime;
-			
-			var eveBuild = new EventorBuilder(pTxBuild, eve);
-			eveBuild.AddNode();
-			eveBuild.AddToInFactorListUses(pFactor);
-			pEveVar = eveBuild.NodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, byte pIdenTypeId,
-								string pValue, Factor pFactor, out IWeaverVarAlias<Identor> pIdenVar) {
-			var iden = new Identor();
-			iden.IdentorId = pApiCtx.GetSharpflakeId<Identor>();
-			iden.IdentorTypeId = pIdenTypeId;
-			iden.Value = pValue;
-			
-			var idenBuild = new IdentorBuilder(pTxBuild, iden);
-			idenBuild.AddNode();
-			idenBuild.AddToInFactorListUses(pFactor);
-			pIdenVar = idenBuild.NodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, byte pLocTypeId, double pX,
-		                  double pY, double pZ, Factor pFactor, out IWeaverVarAlias<Locator> pLocVar) {
-			var loc = new Locator();
-			loc.LocatorId = pApiCtx.GetSharpflakeId<Locator>();
-			loc.LocatorTypeId = pLocTypeId;
-			loc.ValueX = pX;
-			loc.ValueY = pY;
-			loc.ValueZ = pZ;
-			
-			var locBuild = new LocatorBuilder(pTxBuild, loc);
-			locBuild.AddNode();
-			locBuild.AddToInFactorListUses(pFactor);
-			pLocVar = locBuild.NodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddVector(IApiContext pApiCtx, TxBuilder pTxBuild, byte pVecTypeId, long pValue,
-												 long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId, 
-								                 Factor pFactor, out IWeaverVarAlias<Vector> pVecVar) {
-			var vec = new Vector();
-			vec.VectorId = pApiCtx.GetSharpflakeId<Vector>();
-			vec.VectorTypeId = pVecTypeId;
-			vec.VectorUnitId = pVecUnitId;
-			vec.VectorUnitPrefixId = pVecUnitPrefId;
-			vec.Value = pValue;
-			
-			var vecBuild = new VectorBuilder(pTxBuild, vec);
-			vecBuild.AddNode();
-			vecBuild.AddToInFactorListUses(pFactor);
-			vecBuild.SetUsesAxisArtifact(pAxisArtId);
-			pVecVar = vecBuild.NodeVar;
 		}
 		
 	}

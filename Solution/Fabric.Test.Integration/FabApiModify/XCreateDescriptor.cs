@@ -42,7 +42,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateDescriptor(Tasks, FactorId, vDescTypeId,
+			var func = new AttachDescriptor(Tasks, FactorId, vDescTypeId,
 				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 			vResult = func.Go(ApiCtx);
 		}

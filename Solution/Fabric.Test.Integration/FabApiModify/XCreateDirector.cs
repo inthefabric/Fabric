@@ -35,7 +35,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new CreateDirector(Tasks, FactorId, vDirTypeId, vPrimActId, vRelActId);
+			var func = new AttachDirector(Tasks, FactorId, vDirTypeId, vPrimActId, vRelActId);
 			vResult = func.Go(ApiCtx);
 		}
 		

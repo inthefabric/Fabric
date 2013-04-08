@@ -68,7 +68,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateEventor(MockTasks.Object, FactorId, vEveTypeId, vEvePrecId,vDateTime);
+			var func = new AttachEventor(MockTasks.Object, FactorId, vEveTypeId, vEvePrecId,vDateTime);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -117,11 +117,11 @@ namespace Fabric.Test.FabApiModify {
 			base.CheckValidation();
 
 			MockValidator.Verify(x => x.EventorTypeId(vEveTypeId,
-				CreateEventor.EveTypeParam), Times.Once());
+				AttachEventor.EveTypeParam), Times.Once());
 			MockValidator.Verify(x => x.EventorPrecisionId(vEvePrecId,
-				CreateEventor.EvePrecParam), Times.Once());
+				AttachEventor.EvePrecParam), Times.Once());
 			MockValidator.Verify(x => x.EventorDateTime(vDateTime,
-				CreateEventor.DateTimeParam), Times.Once());
+				AttachEventor.DateTimeParam), Times.Once());
 		}
 
 	}

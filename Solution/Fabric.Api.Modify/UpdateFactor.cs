@@ -42,7 +42,7 @@ namespace Fabric.Api.Modify {
 
 			if ( f == null ) {
 				throw new FabNotFoundFault(typeof(Factor),
-					CreateFactorElement.FactorParam+"="+vFactorId);
+					AttachFactorElement.FactorParam+"="+vFactorId);
 			}
 
 			if ( vCompleted ) {
@@ -59,10 +59,10 @@ namespace Fabric.Api.Modify {
 					"This "+typeof(Factor).Name+" is already completed.");
 			}
 
-			if ( !Tasks.FactorHasDescriptor(ApiCtx, pFactor) ) {
+			if ( pFactor.Descriptor_TypeId == null ) {
 				throw new FabPreventedFault(FabFault.Code.FactorElementConflict,
-					"This "+typeof(Factor).Name+" does not have a "+
-					typeof(Descriptor).Name+" attached to it, so it cannot be completed.");
+					"This "+typeof(Factor).Name+" cannot be completed because it does not have a "+
+					"Descriptor attached to it.");
 			}
 		}
 

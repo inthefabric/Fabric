@@ -84,7 +84,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateDescriptor(MockTasks.Object, FactorId, vDescTypeId,
+			var func = new AttachDescriptor(MockTasks.Object, FactorId, vDescTypeId,
 				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
@@ -136,21 +136,21 @@ namespace Fabric.Test.FabApiModify {
 			base.CheckValidation();
 
 			MockValidator.Verify(x => x.DescriptorTypeId(vDescTypeId,
-				CreateDescriptor.DescTypeParam), Times.Once());
+				AttachDescriptor.DescTypeParam), Times.Once());
 
 			if ( vPrimArtRefId != null ) {
 				MockValidator.Verify(x => x.ArtifactId((long)vPrimArtRefId,
-					CreateDescriptor.PrimArtRefParam), Times.Once());
+					AttachDescriptor.PrimArtRefParam), Times.Once());
 			}
 
 			if ( vRelArtRefId != null ) {
 				MockValidator.Verify(x => x.ArtifactId((long)vRelArtRefId,
-					CreateDescriptor.RelArtRefParam), Times.Once());
+					AttachDescriptor.RelArtRefParam), Times.Once());
 			}
 
 			if ( vDescTypeRefId != null ) {
 				MockValidator.Verify(x => x.ArtifactId((long)vDescTypeRefId,
-					CreateDescriptor.DescTypeRefParam), Times.Once());
+					AttachDescriptor.DescTypeRefParam), Times.Once());
 			}
 		}
 

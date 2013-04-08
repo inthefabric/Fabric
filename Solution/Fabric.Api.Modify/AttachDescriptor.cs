@@ -4,22 +4,20 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
 
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModDescriptorsUri, typeof(FabDescriptor),
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModDescriptorsUri, typeof(bool),
 		Auth=ServiceAuthType.Member, AuthMemberOwns=typeof(FabFactor))]
-	public class CreateDescriptor : CreateFactorElement<Descriptor> {
+	public class AttachDescriptor : AttachFactorElement {
 
 		public const string DescTypeParam = "DescriptorTypeId";
 		public const string PrimArtRefParam = "PrimaryArtifactRefineId";
 		public const string RelArtRefParam = "RelatedArtifactRefineId";
 		public const string DescTypeRefParam = "DescriptorTypeRefineId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, DescTypeParam, 1, typeof(Descriptor))]
+		[ServiceOpParam(ServiceOpParamType.Form, DescTypeParam, 1, typeof(Factor))]
 		private readonly byte vDescTypeId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, PrimArtRefParam, 2, typeof(Artifact),
@@ -37,7 +35,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateDescriptor(IModifyTasks pTasks, long pFactorId, byte pDescTypeId, 
+		public AttachDescriptor(IModifyTasks pTasks, long pFactorId, byte pDescTypeId, 
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) : 
 										base(pTasks, pFactorId) {
 			vDescTypeId = pDescTypeId; 
@@ -48,7 +46,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
-			Tasks.Validator.DescriptorTypeId(vDescTypeId, DescTypeParam);
+			Tasks.Validator.FactorDescriptor_TypeId(vDescTypeId, DescTypeParam);
 
 			if ( vPrimArtRefId != null ) {
 				Tasks.Validator.ArtifactId((long)vPrimArtRefId, PrimArtRefParam);
@@ -63,15 +61,8 @@ namespace Fabric.Api.Modify {
 			}
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool FactorHasElement(Factor pFactor) {
-			return Tasks.FactorHasDescriptor(ApiCtx, pFactor);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override Descriptor AddElementToFactor(Factor pFactor, Member pMember) {
+		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
 			if ( vPrimArtRefId != null && Tasks.GetArtifact(ApiCtx, (long)vPrimArtRefId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vPrimArtRefId);
 			}
@@ -84,26 +75,9 @@ namespace Fabric.Api.Modify {
 				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeRefId);
 			}
 
-			////
-
-			Descriptor desc = Tasks.GetDescriptorMatch(
-				ApiCtx, vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
-
-			if ( desc != null ) {
-				Tasks.AttachExistingElement<Descriptor, FactorUsesDescriptor>(ApiCtx, pFactor, desc);
-				return desc;
-			}
-
-			////
-
-			IWeaverVarAlias<Descriptor> descVar;
-			var txb = new TxBuilder();
-
-			Tasks.TxAddDescriptor(ApiCtx, txb, vDescTypeId, 
-				vPrimArtRefId, vRelArtRefId, vDescTypeRefId, pFactor, out descVar);
-
-			txb.RegisterVarWithTxBuilder(descVar);
-			return ApiCtx.DbSingle<Descriptor>("CreateDescriptorTx", txb.Finish(descVar));
+			Tasks.AttachDescriptor(ApiCtx, pFactor, 
+				vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
+			return true;
 		}
 
 	}

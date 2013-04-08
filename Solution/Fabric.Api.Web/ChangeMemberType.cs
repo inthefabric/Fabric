@@ -34,7 +34,7 @@ namespace Fabric.Api.Web {
 			Tasks.Validator.AppId(vAppId, AppIdParam);
 			Tasks.Validator.MemberId(vAssigningMemberId, AssigningMemberIdParam);
 			Tasks.Validator.MemberId(vMemberId, MemberIdParam);
-			Tasks.Validator.MemberTypeId(vMemberTypeId, MemberTypeIdParam);
+			Tasks.Validator.MemberTypeAssignMemberTypeId(vMemberTypeId, MemberTypeIdParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

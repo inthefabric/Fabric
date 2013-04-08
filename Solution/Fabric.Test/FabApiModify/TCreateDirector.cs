@@ -68,7 +68,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new CreateDirector(MockTasks.Object, FactorId, vDirTypeId, vPrimActId,vRelActId);
+			var func = new AttachDirector(MockTasks.Object, FactorId, vDirTypeId, vPrimActId,vRelActId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -118,11 +118,11 @@ namespace Fabric.Test.FabApiModify {
 			base.CheckValidation();
 
 			MockValidator.Verify(x => x.DirectorTypeId(vDirTypeId,
-				CreateDirector.DirTypeParam), Times.Once());
+				AttachDirector.DirTypeParam), Times.Once());
 			MockValidator.Verify(x => x.DirectorActionId(vPrimActId,
-				CreateDirector.PrimActionParam), Times.Once());
+				AttachDirector.PrimActionParam), Times.Once());
 			MockValidator.Verify(x => x.DirectorActionId(vRelActId,
-				CreateDirector.RelActionParam), Times.Once());
+				AttachDirector.RelActionParam), Times.Once());
 		}
 
 	}

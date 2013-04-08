@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:16 PM
+// Generated on 4/8/2013 2:54:24 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -52,10 +52,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				case "inmembercreates": return InMemberCreates;
 				case "infactorlistusesprimary": return InFactorListUsesPrimary;
 				case "infactorlistusesrelated": return InFactorListUsesRelated;
-				case "indescriptorlistrefinesprimarywith": return InDescriptorListRefinesPrimaryWith;
-				case "indescriptorlistrefinesrelatedwith": return InDescriptorListRefinesRelatedWith;
-				case "indescriptorlistrefinestypewith": return InDescriptorListRefinesTypeWith;
-				case "invectorlistusesaxis": return InVectorListUsesAxis;
+				case "infactorlistrefinesprimarywith": return InFactorListRefinesPrimaryWith;
+				case "infactorlistrefinesrelatedwith": return InFactorListRefinesRelatedWith;
+				case "infactorlistrefinestypewith": return InFactorListRefinesTypeWith;
+				case "infactorlistusesaxis": return InFactorListUsesAxis;
 			}
 
 			return base.GetLink(pData);
@@ -89,37 +89,37 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep InDescriptorListRefinesPrimaryWith {
+		public IFactorStep InFactorListRefinesPrimaryWith {
 			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "inE('DescriptorRefinesPrimaryWithArtifact').outV");
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorRefinesPrimaryWithArtifact').outV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep InDescriptorListRefinesRelatedWith {
+		public IFactorStep InFactorListRefinesRelatedWith {
 			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "inE('DescriptorRefinesRelatedWithArtifact').outV");
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorRefinesRelatedWithArtifact').outV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDescriptorStep InDescriptorListRefinesTypeWith {
+		public IFactorStep InFactorListRefinesTypeWith {
 			get {
-				var step = new DescriptorStep(Path);
-				Path.AddSegment(step, "inE('DescriptorRefinesTypeWithArtifact').outV");
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorRefinesTypeWithArtifact').outV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IVectorStep InVectorListUsesAxis {
+		public IFactorStep InFactorListUsesAxis {
 			get {
-				var step = new VectorStep(Path);
-				Path.AddSegment(step, "inE('VectorUsesAxisArtifact').outV");
+				var step = new FactorStep(Path);
+				Path.AddSegment(step, "inE('FactorUsesAxisArtifact').outV");
 				return step;
 			}
 		}
@@ -134,10 +134,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
 			new StepLink("UsesPrimary", "Factor", false, "/InFactorListUsesPrimary"),
 			new StepLink("UsesRelated", "Factor", false, "/InFactorListUsesRelated"),
-			new StepLink("RefinesPrimaryWith", "Descriptor", false, "/InDescriptorListRefinesPrimaryWith"),
-			new StepLink("RefinesRelatedWith", "Descriptor", false, "/InDescriptorListRefinesRelatedWith"),
-			new StepLink("RefinesTypeWith", "Descriptor", false, "/InDescriptorListRefinesTypeWith"),
-			new StepLink("UsesAxis", "Vector", false, "/InVectorListUsesAxis"),
+			new StepLink("RefinesPrimaryWith", "Factor", false, "/InFactorListRefinesPrimaryWith"),
+			new StepLink("RefinesRelatedWith", "Factor", false, "/InFactorListRefinesRelatedWith"),
+			new StepLink("RefinesTypeWith", "Factor", false, "/InFactorListRefinesTypeWith"),
+			new StepLink("UsesAxis", "Factor", false, "/InFactorListUsesAxis"),
 		};
 
 
@@ -155,23 +155,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return "ArtifactId"; } }
 		public override bool TypeIdIsLong { get { return true; } }
-
-	}
-
-
-	/*================================================================================================*/
-	public abstract partial class FactorElementNodeStep<T> : NodeStep<T>, IFactorElementNodeStep
-																			where T : FabNode, new() {
-		
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected FactorElementNodeStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
 
 	}
 

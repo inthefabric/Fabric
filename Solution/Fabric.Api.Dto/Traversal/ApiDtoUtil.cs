@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 1:22:16 PM
+// Generated on 4/8/2013 2:54:24 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -25,12 +25,6 @@ namespace Fabric.Api.Dto.Traversal {
 				case "Url": return ToDto<FabUrl>(pDbDto);
 				case "User": return ToDto<FabUser>(pDbDto);
 				case "Factor": return ToDto<FabFactor>(pDbDto);
-				case "Descriptor": return ToDto<FabDescriptor>(pDbDto);
-				case "Director": return ToDto<FabDirector>(pDbDto);
-				case "Eventor": return ToDto<FabEventor>(pDbDto);
-				case "Identor": return ToDto<FabIdentor>(pDbDto);
-				case "Locator": return ToDto<FabLocator>(pDbDto);
-				case "Vector": return ToDto<FabVector>(pDbDto);
 				default: throw new Exception("Unknown DbDto class: "+pDbDto.Class);
 			}
 		}
@@ -47,12 +41,6 @@ namespace Fabric.Api.Dto.Traversal {
 				case "Url": return ToDtoJson<FabUrl>(pDbDto);
 				case "User": return ToDtoJson<FabUser>(pDbDto);
 				case "Factor": return ToDtoJson<FabFactor>(pDbDto);
-				case "Descriptor": return ToDtoJson<FabDescriptor>(pDbDto);
-				case "Director": return ToDtoJson<FabDirector>(pDbDto);
-				case "Eventor": return ToDtoJson<FabEventor>(pDbDto);
-				case "Identor": return ToDtoJson<FabIdentor>(pDbDto);
-				case "Locator": return ToDtoJson<FabLocator>(pDbDto);
-				case "Vector": return ToDtoJson<FabVector>(pDbDto);
 				default: throw new Exception("Unknown DbDto class: "+pDbDto.Class);
 			}
 		}

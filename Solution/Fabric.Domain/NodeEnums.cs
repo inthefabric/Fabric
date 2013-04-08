@@ -17,12 +17,6 @@ namespace Fabric.Domain {
 		MemberTypeAssign,
 			
 		Factor = 3000,
-		Descriptor,
-		Director,
-		Eventor,
-		Identor,
-		Locator,
-		Vector,
 			
 		Email = 4000,
 		OauthAccess,
@@ -51,12 +45,6 @@ namespace Fabric.Domain {
 			m.Add(typeof(MemberTypeAssign), NodeFabType.MemberTypeAssign);
 
 			m.Add(typeof(Factor), NodeFabType.Factor);
-			m.Add(typeof(Descriptor), NodeFabType.Descriptor);
-			m.Add(typeof(Director), NodeFabType.Director);
-			m.Add(typeof(Eventor), NodeFabType.Eventor);
-			m.Add(typeof(Identor), NodeFabType.Identor);
-			m.Add(typeof(Locator), NodeFabType.Locator);
-			m.Add(typeof(Vector), NodeFabType.Vector);
 
 			m.Add(typeof(Email), NodeFabType.Email);
 			m.Add(typeof(OauthAccess), NodeFabType.OauthAccess);

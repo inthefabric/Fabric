@@ -197,6 +197,7 @@ namespace Fabric.Domain.Meta {
 			WeaverNodeSchema user = AddNode("User", "U");
 			user.BaseNode = artifact;
 			p = AddProp(user, "UserId", typeof(long));
+				p.IsPrimaryKey = true;
 			p = AddProp(user, "Name", typeof(string));
 				p.LenMin = 4;
 				p.LenMax = 16;
@@ -229,59 +230,48 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 256;
 				p.IsNullable = true;
 
-			WeaverNodeSchema factorElementNode = AddNode("FactorElementNode", null);
-			factorElementNode.IsAbstract = true;
-			factorElementNode.IsBaseClass = true;
+			p = AddProp(factor, "Descriptor_TypeId", typeof(byte));
+				p.IsNullable = true;
 
-			WeaverNodeSchema descriptor = AddNode("Descriptor", "De");
-			descriptor.BaseNode = factorElementNode;
-			p = AddProp(descriptor, "DescriptorId", typeof(long));
-				p.IsPrimaryKey = true;
-			p = AddProp(descriptor, "DescriptorTypeId", typeof(byte));
+			p = AddProp(factor, "Director_TypeId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Director_PrimaryActionId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Director_RelatedActionId", typeof(byte));
+				p.IsNullable = true;
 
-			WeaverNodeSchema director = AddNode("Director", "Di");
-			director.BaseNode = factorElementNode;
-			p = AddProp(director, "DirectorId", typeof(long));
-				p.IsPrimaryKey = true;
-			p = AddProp(director, "DirectorTypeId", typeof(byte));
-			p = AddProp(director, "PrimaryDirectorActionId", typeof(byte));
-			p = AddProp(director, "RelatedDirectorActionId", typeof(byte));
-
-			WeaverNodeSchema eventor = AddNode("Eventor", "Ev");
-			eventor.BaseNode = factorElementNode;
-			p = AddProp(eventor, "EventorId", typeof(long));
-				p.IsPrimaryKey = true;
-			p = AddProp(eventor, "EventorTypeId", typeof(byte));
-			p = AddProp(eventor, "EventorPrecisionId", typeof(byte));
-			p = AddProp(eventor, "DateTime", typeof(DateTime));
+			p = AddProp(factor, "Eventor_TypeId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Eventor_PrecisionId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Eventor_DateTime", typeof(DateTime));
 				p.Min = 1;
+				p.IsNullable = true;
 
-			WeaverNodeSchema identor = AddNode("Identor", "Id");
-			identor.BaseNode = factorElementNode;
-			p = AddProp(identor, "IdentorId", typeof(long));
-			p = AddProp(identor, "IdentorTypeId", typeof(byte));
-				p.IsPrimaryKey = true;
-			p = AddProp(identor, "Value", typeof(string));
+			p = AddProp(factor, "Identor_TypeId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Identor_Value", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
+				p.IsNullable = true;
 
-			WeaverNodeSchema locator = AddNode("Locator", "Lo");
-			locator.BaseNode = factorElementNode;
-			p = AddProp(locator, "LocatorId", typeof(long));
-				p.IsPrimaryKey = true;
-			p = AddProp(locator, "LocatorTypeId", typeof(byte));
-			p = AddProp(locator, "ValueX", typeof(double));
-			p = AddProp(locator, "ValueY", typeof(double));
-			p = AddProp(locator, "ValueZ", typeof(double));
+			p = AddProp(factor, "Locator_TypeId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Locator_ValueX", typeof(double));
+				p.IsNullable = true;
+			p = AddProp(factor, "Locator_ValueY", typeof(double));
+				p.IsNullable = true;
+			p = AddProp(factor, "Locator_ValueZ", typeof(double));
+				p.IsNullable = true;
 
-			WeaverNodeSchema vector = AddNode("Vector", "Ve");
-			vector.BaseNode = factorElementNode;
-			p = AddProp(vector, "VectorId", typeof(long));
-				p.IsPrimaryKey = true;
-			p = AddProp(vector, "VectorTypeId", typeof(byte));
-			p = AddProp(vector, "VectorUnitId", typeof(byte));
-			p = AddProp(vector, "VectorUnitPrefixId", typeof(byte));
-			p = AddProp(vector, "Value", typeof(long));
+			p = AddProp(factor, "Vector_TypeId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Vector_UnitId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Vector_UnitPrefixId", typeof(byte));
+				p.IsNullable = true;
+			p = AddProp(factor, "Vector_Value", typeof(long));
+				p.IsNullable = true;
 			
 			////
 
@@ -347,7 +337,7 @@ namespace Fabric.Domain.Meta {
 			const string defines = "Defines";
 
 			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
-			const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
+			//const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
 			const WeaverRelConn ifzom = WeaverRelConn.InFromZeroOrMore;
 			const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
 			const WeaverRelConn oto = WeaverRelConn.OutToOne;
@@ -381,19 +371,10 @@ namespace Fabric.Domain.Meta {
 			AddRel(factor, usesPrimary, artifact, oto, ifzom);
 			AddRel(factor, usesRelated, artifact, oto, ifzom);
 			AddRel(factor, replaces, factor, otzoo, ifzoo);
-
-			AddRel(factor, uses, descriptor, oto, ifoom);
-			AddRel(factor, uses, director, otzoo, ifoom);
-			AddRel(factor, uses, eventor, otzoo, ifoom);
-			AddRel(factor, uses, identor, otzoo, ifoom);
-			AddRel(factor, uses, locator, otzoo, ifoom);
-			AddRel(factor, uses, vector, otzoo, ifoom);
-
-			AddRel(descriptor, refinesPrimaryWith, artifact, otzoo, ifzom);
-			AddRel(descriptor, refinesRelatedWith, artifact, otzoo, ifzom);
-			AddRel(descriptor, refinesTypeWith, artifact, otzoo, ifzom);
-
-			AddRel(vector, usesAxis, artifact, oto, ifzom);
+			AddRel(factor, refinesPrimaryWith, artifact, otzoo, ifzom); //Descriptor
+			AddRel(factor, refinesRelatedWith, artifact, otzoo, ifzom); //Descriptor
+			AddRel(factor, refinesTypeWith, artifact, otzoo, ifzom); //Descriptor
+			AddRel(factor, usesAxis, artifact, otzoo, ifzom); //Vector
 
 			////
 
