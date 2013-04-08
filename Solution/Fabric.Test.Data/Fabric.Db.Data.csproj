@@ -67,7 +67,6 @@
     <Compile Include="Setups\SetupUsers.cs" />
     <Compile Include="Setups\Setup.cs" />
     <Compile Include="DataNode.cs" />
-    <Compile Include="Setups\SetupTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

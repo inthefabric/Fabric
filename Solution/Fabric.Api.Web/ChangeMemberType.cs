@@ -16,13 +16,13 @@ namespace Fabric.Api.Web {
 		private readonly long vAppId;
 		private readonly long vAssigningMemberId;
 		private readonly long vMemberId;
-		private readonly long vMemberTypeId;
+		private readonly byte vMemberTypeId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ChangeMemberType(IWebTasks pTasks, long pAppId, long pAssigningMemberId, long pMemberId,
-																	long pMemberTypeId) : base(pTasks) {
+																	byte pMemberTypeId) : base(pTasks) {
 			vAppId = pAppId;
 			vAssigningMemberId = pAssigningMemberId;
 			vMemberId = pMemberId;

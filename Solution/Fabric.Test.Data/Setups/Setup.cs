@@ -11,7 +11,6 @@
 			ds.ClearPreviousData();
 
 			SetupIndexes.SetupAll(ds);
-			SetupTypes.SetupAll(ds);
 			SetupUsers.SetupAll(ds);
 			SetupOauth.SetupAll(ds);
 			SetupObjects.SetupAll(ds);

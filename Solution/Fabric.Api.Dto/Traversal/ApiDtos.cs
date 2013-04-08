@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:46 PM
+// Generated on 4/8/2013 1:22:16 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -8,50 +8,6 @@ using Fabric.Domain;
 
 namespace Fabric.Api.Dto.Traversal {
 	
-	/*================================================================================================*/
-	public abstract class FabNodeForType : FabNode {
-		
-		[DtoProp(IsOptional=false)]
-		public string Name { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public string Description { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"Name", "Description"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabNodeForType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			string val;
-			bool found;
-
-			found = pData.TryGetValue("Name", out val);
-			if ( found ) { Name = val; }
-
-			found = pData.TryGetValue("Description", out val);
-			if ( found ) { Description = val; }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(NodeForType pNode) {
-			base.FillWithNode(pNode);
-			Name = pNode.Name;
-			Description = pNode.Description;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
 	/*================================================================================================*/
 	public abstract class FabNodeForAction : FabNode {
 		
@@ -382,59 +338,16 @@ namespace Fabric.Api.Dto.Traversal {
 	}
 
 	/*================================================================================================*/
-	public class FabMemberType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long MemberTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"MemberTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabMemberType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabMemberType(MemberType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return MemberTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["MemberTypeId"];
-			MemberTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(MemberType pNode) {
-			base.FillWithNode(pNode);
-			MemberTypeId = pNode.MemberTypeId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
 	public class FabMemberTypeAssign : FabNodeForAction {
 		
 		[DtoProp(IsOptional=false)]
 		public long MemberTypeAssignId { get; set; }
 		
+		[DtoProp(IsOptional=false)]
+		public byte MemberTypeId { get; set; }
+		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"MemberTypeAssignId"
+			"MemberTypeAssignId", "MemberTypeId"
 		};
 
 
@@ -458,12 +371,16 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["MemberTypeAssignId"];
 			MemberTypeAssignId = long.Parse(val);
+
+			val = pData["MemberTypeId"];
+			MemberTypeId = byte.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(MemberTypeAssign pNode) {
 			base.FillWithNode(pNode);
 			MemberTypeAssignId = pNode.MemberTypeAssignId;
+			MemberTypeId = pNode.MemberTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -595,6 +512,9 @@ namespace Fabric.Api.Dto.Traversal {
 		public long FactorId { get; set; }
 		
 		[DtoProp(IsOptional=false)]
+		public byte FactorAssertionId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public bool IsDefining { get; set; }
 		
 		[DtoProp(IsOptional=false)]
@@ -607,7 +527,7 @@ namespace Fabric.Api.Dto.Traversal {
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"FactorId", "IsDefining", "Created", "Completed", "Note"
+			"FactorId", "FactorAssertionId", "IsDefining", "Created", "Completed", "Note"
 		};
 
 
@@ -631,6 +551,9 @@ namespace Fabric.Api.Dto.Traversal {
 			val = pData["FactorId"];
 			FactorId = long.Parse(val);
 
+			val = pData["FactorAssertionId"];
+			FactorAssertionId = byte.Parse(val);
+
 			val = pData["IsDefining"];
 			IsDefining = bool.Parse(val);
 
@@ -648,56 +571,11 @@ namespace Fabric.Api.Dto.Traversal {
 		public void FillWithNode(Factor pNode) {
 			base.FillWithNode(pNode);
 			FactorId = pNode.FactorId;
+			FactorAssertionId = pNode.FactorAssertionId;
 			IsDefining = pNode.IsDefining;
 			Created = pNode.Created;
 			Completed = pNode.Completed;
 			Note = pNode.Note;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabFactorAssertion : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long FactorAssertionId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"FactorAssertionId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabFactorAssertion() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabFactorAssertion(FactorAssertion pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return FactorAssertionId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["FactorAssertionId"];
-			FactorAssertionId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(FactorAssertion pNode) {
-			base.FillWithNode(pNode);
-			FactorAssertionId = pNode.FactorAssertionId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -741,8 +619,11 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public long DescriptorId { get; set; }
 		
+		[DtoProp(IsOptional=false)]
+		public byte DescriptorTypeId { get; set; }
+		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"DescriptorId"
+			"DescriptorId", "DescriptorTypeId"
 		};
 
 
@@ -766,57 +647,15 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DescriptorId"];
 			DescriptorId = long.Parse(val);
+
+			val = pData["DescriptorTypeId"];
+			DescriptorTypeId = byte.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(Descriptor pNode) {
 			base.FillWithNode(pNode);
 			DescriptorId = pNode.DescriptorId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabDescriptorType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long DescriptorTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"DescriptorTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDescriptorType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDescriptorType(DescriptorType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return DescriptorTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["DescriptorTypeId"];
-			DescriptorTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(DescriptorType pNode) {
-			base.FillWithNode(pNode);
 			DescriptorTypeId = pNode.DescriptorTypeId;
 		}
 		
@@ -833,8 +672,17 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public long DirectorId { get; set; }
 		
+		[DtoProp(IsOptional=false)]
+		public byte DirectorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
+		public byte PrimaryDirectorActionId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
+		public byte RelatedDirectorActionId { get; set; }
+		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"DirectorId"
+			"DirectorId", "DirectorTypeId", "PrimaryDirectorActionId", "RelatedDirectorActionId"
 		};
 
 
@@ -858,104 +706,24 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["DirectorId"];
 			DirectorId = long.Parse(val);
+
+			val = pData["DirectorTypeId"];
+			DirectorTypeId = byte.Parse(val);
+
+			val = pData["PrimaryDirectorActionId"];
+			PrimaryDirectorActionId = byte.Parse(val);
+
+			val = pData["RelatedDirectorActionId"];
+			RelatedDirectorActionId = byte.Parse(val);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(Director pNode) {
 			base.FillWithNode(pNode);
 			DirectorId = pNode.DirectorId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabDirectorType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long DirectorTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"DirectorTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDirectorType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDirectorType(DirectorType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return DirectorTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["DirectorTypeId"];
-			DirectorTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(DirectorType pNode) {
-			base.FillWithNode(pNode);
 			DirectorTypeId = pNode.DirectorTypeId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabDirectorAction : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long DirectorActionId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"DirectorActionId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDirectorAction() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabDirectorAction(DirectorAction pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return DirectorActionId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["DirectorActionId"];
-			DirectorActionId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(DirectorAction pNode) {
-			base.FillWithNode(pNode);
-			DirectorActionId = pNode.DirectorActionId;
+			PrimaryDirectorActionId = pNode.PrimaryDirectorActionId;
+			RelatedDirectorActionId = pNode.RelatedDirectorActionId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -972,10 +740,16 @@ namespace Fabric.Api.Dto.Traversal {
 		public long EventorId { get; set; }
 		
 		[DtoProp(IsOptional=false)]
+		public byte EventorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
+		public byte EventorPrecisionId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long DateTime { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"EventorId", "DateTime"
+			"EventorId", "EventorTypeId", "EventorPrecisionId", "DateTime"
 		};
 
 
@@ -1000,6 +774,12 @@ namespace Fabric.Api.Dto.Traversal {
 			val = pData["EventorId"];
 			EventorId = long.Parse(val);
 
+			val = pData["EventorTypeId"];
+			EventorTypeId = byte.Parse(val);
+
+			val = pData["EventorPrecisionId"];
+			EventorPrecisionId = byte.Parse(val);
+
 			val = pData["DateTime"];
 			DateTime = long.Parse(val);
 		}
@@ -1008,99 +788,9 @@ namespace Fabric.Api.Dto.Traversal {
 		public void FillWithNode(Eventor pNode) {
 			base.FillWithNode(pNode);
 			EventorId = pNode.EventorId;
-			DateTime = pNode.DateTime;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabEventorType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long EventorTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"EventorTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabEventorType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabEventorType(EventorType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return EventorTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["EventorTypeId"];
-			EventorTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(EventorType pNode) {
-			base.FillWithNode(pNode);
 			EventorTypeId = pNode.EventorTypeId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabEventorPrecision : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long EventorPrecisionId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"EventorPrecisionId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabEventorPrecision() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabEventorPrecision(EventorPrecision pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return EventorPrecisionId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["EventorPrecisionId"];
-			EventorPrecisionId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(EventorPrecision pNode) {
-			base.FillWithNode(pNode);
 			EventorPrecisionId = pNode.EventorPrecisionId;
+			DateTime = pNode.DateTime;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1117,10 +807,13 @@ namespace Fabric.Api.Dto.Traversal {
 		public long IdentorId { get; set; }
 		
 		[DtoProp(IsOptional=false)]
+		public byte IdentorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public string Value { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"IdentorId", "Value"
+			"IdentorId", "IdentorTypeId", "Value"
 		};
 
 
@@ -1146,6 +839,9 @@ namespace Fabric.Api.Dto.Traversal {
 			val = pData["IdentorId"];
 			IdentorId = long.Parse(val);
 
+			val = pData["IdentorTypeId"];
+			IdentorTypeId = byte.Parse(val);
+
 			found = pData.TryGetValue("Value", out val);
 			if ( found ) { Value = val; }
 		}
@@ -1154,53 +850,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public void FillWithNode(Identor pNode) {
 			base.FillWithNode(pNode);
 			IdentorId = pNode.IdentorId;
-			Value = pNode.Value;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabIdentorType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long IdentorTypeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"IdentorTypeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabIdentorType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabIdentorType(IdentorType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return IdentorTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["IdentorTypeId"];
-			IdentorTypeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(IdentorType pNode) {
-			base.FillWithNode(pNode);
 			IdentorTypeId = pNode.IdentorTypeId;
+			Value = pNode.Value;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1217,6 +868,9 @@ namespace Fabric.Api.Dto.Traversal {
 		public long LocatorId { get; set; }
 		
 		[DtoProp(IsOptional=false)]
+		public byte LocatorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public double ValueX { get; set; }
 		
 		[DtoProp(IsOptional=false)]
@@ -1226,7 +880,7 @@ namespace Fabric.Api.Dto.Traversal {
 		public double ValueZ { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"LocatorId", "ValueX", "ValueY", "ValueZ"
+			"LocatorId", "LocatorTypeId", "ValueX", "ValueY", "ValueZ"
 		};
 
 
@@ -1251,6 +905,9 @@ namespace Fabric.Api.Dto.Traversal {
 			val = pData["LocatorId"];
 			LocatorId = long.Parse(val);
 
+			val = pData["LocatorTypeId"];
+			LocatorTypeId = byte.Parse(val);
+
 			val = pData["ValueX"];
 			ValueX = double.Parse(val);
 
@@ -1265,97 +922,10 @@ namespace Fabric.Api.Dto.Traversal {
 		public void FillWithNode(Locator pNode) {
 			base.FillWithNode(pNode);
 			LocatorId = pNode.LocatorId;
+			LocatorTypeId = pNode.LocatorTypeId;
 			ValueX = pNode.ValueX;
 			ValueY = pNode.ValueY;
 			ValueZ = pNode.ValueZ;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabLocatorType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long LocatorTypeId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double MinX { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double MaxX { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double MinY { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double MaxY { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double MinZ { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double MaxZ { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"LocatorTypeId", "MinX", "MaxX", "MinY", "MaxY", "MinZ", "MaxZ"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabLocatorType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabLocatorType(LocatorType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return LocatorTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["LocatorTypeId"];
-			LocatorTypeId = long.Parse(val);
-
-			val = pData["MinX"];
-			MinX = double.Parse(val);
-
-			val = pData["MaxX"];
-			MaxX = double.Parse(val);
-
-			val = pData["MinY"];
-			MinY = double.Parse(val);
-
-			val = pData["MaxY"];
-			MaxY = double.Parse(val);
-
-			val = pData["MinZ"];
-			MinZ = double.Parse(val);
-
-			val = pData["MaxZ"];
-			MaxZ = double.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(LocatorType pNode) {
-			base.FillWithNode(pNode);
-			LocatorTypeId = pNode.LocatorTypeId;
-			MinX = pNode.MinX;
-			MaxX = pNode.MaxX;
-			MinY = pNode.MinY;
-			MaxY = pNode.MaxY;
-			MinZ = pNode.MinZ;
-			MaxZ = pNode.MaxZ;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1372,10 +942,19 @@ namespace Fabric.Api.Dto.Traversal {
 		public long VectorId { get; set; }
 		
 		[DtoProp(IsOptional=false)]
+		public byte VectorTypeId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
+		public byte VectorUnitId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
+		public byte VectorUnitPrefixId { get; set; }
+		
+		[DtoProp(IsOptional=false)]
 		public long Value { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorId", "Value"
+			"VectorId", "VectorTypeId", "VectorUnitId", "VectorUnitPrefixId", "Value"
 		};
 
 
@@ -1400,6 +979,15 @@ namespace Fabric.Api.Dto.Traversal {
 			val = pData["VectorId"];
 			VectorId = long.Parse(val);
 
+			val = pData["VectorTypeId"];
+			VectorTypeId = byte.Parse(val);
+
+			val = pData["VectorUnitId"];
+			VectorUnitId = byte.Parse(val);
+
+			val = pData["VectorUnitPrefixId"];
+			VectorUnitPrefixId = byte.Parse(val);
+
 			val = pData["Value"];
 			Value = long.Parse(val);
 		}
@@ -1408,334 +996,10 @@ namespace Fabric.Api.Dto.Traversal {
 		public void FillWithNode(Vector pNode) {
 			base.FillWithNode(pNode);
 			VectorId = pNode.VectorId;
-			Value = pNode.Value;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabVectorType : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long VectorTypeId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public long Min { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public long Max { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorTypeId", "Min", "Max"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorType() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorType(VectorType pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return VectorTypeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["VectorTypeId"];
-			VectorTypeId = long.Parse(val);
-
-			val = pData["Min"];
-			Min = long.Parse(val);
-
-			val = pData["Max"];
-			Max = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(VectorType pNode) {
-			base.FillWithNode(pNode);
 			VectorTypeId = pNode.VectorTypeId;
-			Min = pNode.Min;
-			Max = pNode.Max;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabVectorRange : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long VectorRangeId { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorRangeId"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorRange() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorRange(VectorRange pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return VectorRangeId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["VectorRangeId"];
-			VectorRangeId = long.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(VectorRange pNode) {
-			base.FillWithNode(pNode);
-			VectorRangeId = pNode.VectorRangeId;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabVectorRangeLevel : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long VectorRangeLevelId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public float Position { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorRangeLevelId", "Position"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorRangeLevel() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorRangeLevel(VectorRangeLevel pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return VectorRangeLevelId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["VectorRangeLevelId"];
-			VectorRangeLevelId = long.Parse(val);
-
-			val = pData["Position"];
-			Position = float.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(VectorRangeLevel pNode) {
-			base.FillWithNode(pNode);
-			VectorRangeLevelId = pNode.VectorRangeLevelId;
-			Position = pNode.Position;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabVectorUnit : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long VectorUnitId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public string Symbol { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorUnitId", "Symbol"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorUnit() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorUnit(VectorUnit pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return VectorUnitId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-			bool found;
-
-			val = pData["VectorUnitId"];
-			VectorUnitId = long.Parse(val);
-
-			found = pData.TryGetValue("Symbol", out val);
-			if ( found ) { Symbol = val; }
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(VectorUnit pNode) {
-			base.FillWithNode(pNode);
 			VectorUnitId = pNode.VectorUnitId;
-			Symbol = pNode.Symbol;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabVectorUnitPrefix : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long VectorUnitPrefixId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public string Symbol { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public double Amount { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorUnitPrefixId", "Symbol", "Amount"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorUnitPrefix() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorUnitPrefix(VectorUnitPrefix pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return VectorUnitPrefixId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-			bool found;
-
-			val = pData["VectorUnitPrefixId"];
-			VectorUnitPrefixId = long.Parse(val);
-
-			found = pData.TryGetValue("Symbol", out val);
-			if ( found ) { Symbol = val; }
-
-			val = pData["Amount"];
-			Amount = double.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(VectorUnitPrefix pNode) {
-			base.FillWithNode(pNode);
 			VectorUnitPrefixId = pNode.VectorUnitPrefixId;
-			Symbol = pNode.Symbol;
-			Amount = pNode.Amount;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class FabVectorUnitDerived : FabNodeForType {
-		
-		[DtoProp(IsOptional=false)]
-		public long VectorUnitDerivedId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
-		public int Exponent { get; set; }
-		
-		private static readonly List<string> AvailNodeProps = new List<string> {
-			"VectorUnitDerivedId", "Exponent"
-		};
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorUnitDerived() {}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public FabVectorUnitDerived(VectorUnitDerived pNode) : this() {
-			FillWithNode(pNode);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return VectorUnitDerivedId; } }
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void FillResultData(IDictionary<string,string> pData) {
-			base.FillResultData(pData);
-
-			string val;
-
-			val = pData["VectorUnitDerivedId"];
-			VectorUnitDerivedId = long.Parse(val);
-
-			val = pData["Exponent"];
-			Exponent = int.Parse(val);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(VectorUnitDerived pNode) {
-			base.FillWithNode(pNode);
-			VectorUnitDerivedId = pNode.VectorUnitDerivedId;
-			Exponent = pNode.Exponent;
+			Value = pNode.Value;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

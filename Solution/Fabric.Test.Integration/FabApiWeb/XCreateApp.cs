@@ -3,6 +3,8 @@ using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;

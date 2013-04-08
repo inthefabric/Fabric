@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:45 PM
+// Generated on 4/8/2013 1:22:15 PM
 
 using System.Collections.Generic;
 
@@ -68,15 +68,10 @@ namespace Fabric.Test.Util {
 				"/InUserDefines",
 			});
 
-			map.Add("MemberType", new string [] {
-				"/InMemberTypeAssignListUses",
-			});
-
 			map.Add("MemberTypeAssign", new string [] {
 				"/InMemberHas",
 				"/InMemberHasHistoric",
 				"/InMemberCreates",
-				"/UsesMemberType",
 			});
 
 			map.Add("Url", new string [] {
@@ -104,7 +99,6 @@ namespace Fabric.Test.Util {
 				"/InMemberCreates",
 				"/UsesPrimaryArtifact",
 				"/UsesRelatedArtifact",
-				"/UsesFactorAssertion",
 				"/ReplacesFactor",
 				"/UsesDescriptor",
 				"/UsesDirector",
@@ -114,107 +108,32 @@ namespace Fabric.Test.Util {
 				"/UsesVector",
 			});
 
-			map.Add("FactorAssertion", new string [] {
-				"/InFactorListUses",
-			});
-
 			map.Add("Descriptor", new string [] {
 				"/InFactorListUses",
-				"/UsesDescriptorType",
 				"/RefinesPrimaryWithArtifact",
 				"/RefinesRelatedWithArtifact",
 				"/RefinesTypeWithArtifact",
 			});
 
-			map.Add("DescriptorType", new string [] {
-				"/InDescriptorListUses",
-			});
-
 			map.Add("Director", new string [] {
 				"/InFactorListUses",
-				"/UsesDirectorType",
-				"/UsesPrimaryDirectorAction",
-				"/UsesRelatedDirectorAction",
-			});
-
-			map.Add("DirectorType", new string [] {
-				"/InDirectorListUses",
-			});
-
-			map.Add("DirectorAction", new string [] {
-				"/InDirectorListUsesPrimary",
-				"/InDirectorListUsesRelated",
 			});
 
 			map.Add("Eventor", new string [] {
 				"/InFactorListUses",
-				"/UsesEventorType",
-				"/UsesEventorPrecision",
-			});
-
-			map.Add("EventorType", new string [] {
-				"/InEventorListUses",
-			});
-
-			map.Add("EventorPrecision", new string [] {
-				"/InEventorListUses",
 			});
 
 			map.Add("Identor", new string [] {
 				"/InFactorListUses",
-				"/UsesIdentorType",
-			});
-
-			map.Add("IdentorType", new string [] {
-				"/InIdentorListUses",
 			});
 
 			map.Add("Locator", new string [] {
 				"/InFactorListUses",
-				"/UsesLocatorType",
-			});
-
-			map.Add("LocatorType", new string [] {
-				"/InLocatorListUses",
 			});
 
 			map.Add("Vector", new string [] {
 				"/InFactorListUses",
 				"/UsesAxisArtifact",
-				"/UsesVectorType",
-				"/UsesVectorUnit",
-				"/UsesVectorUnitPrefix",
-			});
-
-			map.Add("VectorType", new string [] {
-				"/InVectorListUses",
-				"/UsesVectorRange",
-			});
-
-			map.Add("VectorRange", new string [] {
-				"/InVectorTypeListUses",
-				"/UsesVectorRangeLevelList",
-			});
-
-			map.Add("VectorRangeLevel", new string [] {
-				"/InVectorRangeListUses",
-			});
-
-			map.Add("VectorUnit", new string [] {
-				"/InVectorListUses",
-				"/InVectorUnitDerivedListDefines",
-				"/InVectorUnitDerivedListRaisesToExp",
-			});
-
-			map.Add("VectorUnitPrefix", new string [] {
-				"/InVectorListUses",
-				"/InVectorUnitDerivedListUses",
-			});
-
-			map.Add("VectorUnitDerived", new string [] {
-				"/DefinesVectorUnit",
-				"/RaisesToExpVectorUnit",
-				"/UsesVectorUnitPrefix",
 			});
 
 			return map;
@@ -252,12 +171,6 @@ namespace Fabric.Test.Util {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void MemberTypeStep() {
-			TestStep("MemberType", (tn, p) => new MemberTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void MemberTypeAssignStep() {
 			TestStep("MemberTypeAssign", (tn, p) => new MemberTypeAssignStep(tn, p));
 		}
@@ -282,20 +195,8 @@ namespace Fabric.Test.Util {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void FactorAssertionStep() {
-			TestStep("FactorAssertion", (tn, p) => new FactorAssertionStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void DescriptorStep() {
 			TestStep("Descriptor", (tn, p) => new DescriptorStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void DescriptorTypeStep() {
-			TestStep("DescriptorType", (tn, p) => new DescriptorTypeStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
@@ -306,32 +207,8 @@ namespace Fabric.Test.Util {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void DirectorTypeStep() {
-			TestStep("DirectorType", (tn, p) => new DirectorTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void DirectorActionStep() {
-			TestStep("DirectorAction", (tn, p) => new DirectorActionStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void EventorStep() {
 			TestStep("Eventor", (tn, p) => new EventorStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void EventorTypeStep() {
-			TestStep("EventorType", (tn, p) => new EventorTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void EventorPrecisionStep() {
-			TestStep("EventorPrecision", (tn, p) => new EventorPrecisionStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
@@ -342,62 +219,14 @@ namespace Fabric.Test.Util {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void IdentorTypeStep() {
-			TestStep("IdentorType", (tn, p) => new IdentorTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void LocatorStep() {
 			TestStep("Locator", (tn, p) => new LocatorStep(tn, p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void LocatorTypeStep() {
-			TestStep("LocatorType", (tn, p) => new LocatorTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void VectorStep() {
 			TestStep("Vector", (tn, p) => new VectorStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void VectorTypeStep() {
-			TestStep("VectorType", (tn, p) => new VectorTypeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void VectorRangeStep() {
-			TestStep("VectorRange", (tn, p) => new VectorRangeStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void VectorRangeLevelStep() {
-			TestStep("VectorRangeLevel", (tn, p) => new VectorRangeLevelStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void VectorUnitStep() {
-			TestStep("VectorUnit", (tn, p) => new VectorUnitStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void VectorUnitPrefixStep() {
-			TestStep("VectorUnitPrefix", (tn, p) => new VectorUnitPrefixStep(tn, p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void VectorUnitDerivedStep() {
-			TestStep("VectorUnitDerived", (tn, p) => new VectorUnitDerivedStep(tn, p));
 		}
 
 		*/

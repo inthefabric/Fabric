@@ -31,12 +31,6 @@ namespace Fabric.Api.Modify.Tasks {
 		Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		LocatorType GetLocatorType(IApiContext pApiCtx, long pLocTypeId);
-
-		/*--------------------------------------------------------------------------------------------*/
-		VectorType GetVectorType(IApiContext pApiCtx, long pVecTypeId);
-
-		/*--------------------------------------------------------------------------------------------*/
 		bool FactorHasDescriptor(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -55,24 +49,24 @@ namespace Fabric.Api.Modify.Tasks {
 		bool FactorHasVector(IApiContext pApiCtx, Factor pFactor);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Descriptor GetDescriptorMatch(IApiContext pApiCtx, long pDescTypeId,
+		Descriptor GetDescriptorMatch(IApiContext pApiCtx, byte pDescTypeId,
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Director GetDirectorMatch(IApiContext pApiCtx, long pDirTypeId,long pPrimActId,long pRelActId);
+		Director GetDirectorMatch(IApiContext pApiCtx, byte pDirTypeId, byte pPrimActId,byte pRelActId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Eventor GetEventorMatch(IApiContext pApiCtx, long pEveTypeId, long pEvePrecId, long pDateTime);
+		Eventor GetEventorMatch(IApiContext pApiCtx, byte pEveTypeId, byte pEvePrecId, long pDateTime);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Identor GetIdentorMatch(IApiContext pApiCtx, long pIdenTypeId, string pValue);
+		Identor GetIdentorMatch(IApiContext pApiCtx, byte pIdenTypeId, string pValue);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Locator GetLocatorMatch(IApiContext pApiCtx, long pLocTypeId, double pX, double pY, double pZ);
+		Locator GetLocatorMatch(IApiContext pApiCtx, byte pLocTypeId, double pX, double pY, double pZ);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Vector GetVectorMatch(IApiContext pApiCtx, long pVecTypeId, long pValue, long pAxisArtId, 
-																long pVecUnitId, long pVecUnitPrefId);
+		Vector GetVectorMatch(IApiContext pApiCtx, byte pVecTypeId, long pValue, long pAxisArtId,
+																byte pVecUnitId, byte pVecUnitPrefId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void AttachExistingElement<T, TRel>(IApiContext pApiCtx, Factor pFactor, T pElement)
@@ -99,33 +93,33 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId, long pRelArtId,
-											long pAssertId, bool pIsDefining, string pNote,
+											byte pAssertId, bool pIsDefining, string pNote,
 											Member pCreator, out IWeaverVarAlias<Factor> pFactorVar);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, long pDescTypeId,
+		void TxAddDescriptor(IApiContext pApiCtx, TxBuilder pTxBuild, byte pDescTypeId,
 						long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId, Factor pFactor,
 						out IWeaverVarAlias<Descriptor> pDescVar);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddDirector(IApiContext pApiCtx, TxBuilder pTxBuild, long pDirTypeId, long pPrimActId,
-			long pRelActId, Factor pFactor, out IWeaverVarAlias<Director> pDirVar);
+		void TxAddDirector(IApiContext pApiCtx, TxBuilder pTxBuild, byte pDirTypeId, byte pPrimActId,
+								byte pRelActId, Factor pFactor, out IWeaverVarAlias<Director> pDirVar);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddEventor(IApiContext pApiCtx, TxBuilder pTxBuild, long pEveTypeId, long pEvePrecId,
+		void TxAddEventor(IApiContext pApiCtx, TxBuilder pTxBuild, byte pEveTypeId, byte pEvePrecId,
 								long pDateTime, Factor pFactor, out IWeaverVarAlias<Eventor> pEveVar);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, long pIdenTypeId, string pValue,
+		void TxAddIdentor(IApiContext pApiCtx, TxBuilder pTxBuild, byte pIdenTypeId, string pValue,
 												Factor pFactor, out IWeaverVarAlias<Identor> pIdenVar);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, long pLocTypeId, double pX,
+		void TxAddLocator(IApiContext pApiCtx, TxBuilder pTxBuild, byte pLocTypeId, double pX,
 							double pY, double pZ, Factor pFactor, out IWeaverVarAlias<Locator> pLocVar);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddVector(IApiContext pApiCtx, TxBuilder pTxBuild, long pVecTypeId, long pValue, 
-												long pAxisArtId, long pVecUnitId, long pVecUnitPrefId, 
+		void TxAddVector(IApiContext pApiCtx, TxBuilder pTxBuild, byte pVecTypeId, long pValue,
+												long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId, 
 												Factor pFactor, out IWeaverVarAlias<Vector> pVecVar);
 
 	}

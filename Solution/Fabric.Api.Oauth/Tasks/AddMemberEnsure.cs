@@ -3,6 +3,8 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
@@ -47,16 +49,15 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override bool Execute() {
 			Member mem;
 			MemberTypeAssign mta;
-			MemberType mt;
 
-			bool hasMember = GetMemberData(out mem, out mta, out mt);
+			bool hasMember = GetMemberData(out mem, out mta);
 
 			if ( !hasMember ) {
 				AddMember();
 				return true;
 			}
 			
-			if ( AcceptableMembershipExists(mt) ) {
+			if ( AcceptableMembershipExists(mta) ) {
 				return false;
 			}
 
@@ -65,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private bool GetMemberData(out Member pMem, out MemberTypeAssign pMta, out MemberType pType) {
+		private bool GetMemberData(out Member pMem, out MemberTypeAssign pMta) {
 			var tx = new WeaverTransaction();
 			IWeaverFuncAs<Member> memberAlias;
 			IWeaverVarAlias aggVar;
@@ -84,8 +85,6 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Aggregate(aggVar)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Aggregate(aggVar)
-				.UsesMemberType.ToMemberType
-					.Aggregate(aggVar)
 					.Iterate()
 				.End()
 			);
@@ -100,7 +99,6 @@ namespace Fabric.Api.Oauth.Tasks {
 			if ( count <= 0 ) {
 				pMem = null;
 				pMta = null;
-				pType = null;
 				return false;
 			}
 
@@ -110,16 +108,15 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			pMem = data.GetResultAt<Member>(0);
 			pMta = data.GetResultAt<MemberTypeAssign>(1);
-			pType = data.GetResultAt<MemberType>(2);
 			return true;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private bool AcceptableMembershipExists(MemberType pType) {
-			switch ( pType.MemberTypeId ) {
-				case (long)MemberTypeId.None:
-				case (long)MemberTypeId.Invite:
-				case (long)MemberTypeId.Request:
+		private bool AcceptableMembershipExists(MemberTypeAssign pMemTypeAssn) {
+			switch ( pMemTypeAssn.MemberTypeId ) {
+				case (byte)MemberTypeId.None:
+				case (byte)MemberTypeId.Invite:
+				case (byte)MemberTypeId.Request:
 					return false;
 			}
 			
@@ -178,13 +175,13 @@ namespace Fabric.Api.Oauth.Tasks {
 		private void AddMemberTypeAssignWithTx(TxBuilder pTxBuild, IWeaverVarAlias<Member> pMemVar) {
 			var newAssign = new MemberTypeAssign();
 			newAssign.MemberTypeAssignId = ApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			newAssign.MemberTypeId = (byte)MemberTypeId.Member;
 			newAssign.Performed = ApiCtx.UtcNow.Ticks;
 			newAssign.Note = "First login.";
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
 			mtaBuild.AddNode();
 			mtaBuild.SetInMemberHas(pMemVar);
-			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 		}
 

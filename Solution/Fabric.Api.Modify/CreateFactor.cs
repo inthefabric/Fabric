@@ -28,8 +28,8 @@ namespace Fabric.Api.Modify {
 			DomainPropertyName="ArtifactId")]
 		private readonly long vRelArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, AssertParam, 2, typeof(FactorAssertion))]
-		private readonly long vAssertId;
+		[ServiceOpParam(ServiceOpParamType.Form, AssertParam, 2, typeof(Factor))]
+		private readonly byte vAssertId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, IsDefParam, 3, typeof(Factor))]
 		private readonly bool vIsDefining;
@@ -40,7 +40,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateFactor(IModifyTasks pTasks, long pPrimArtId, long pRelArtId, long pAssertId, 
+		public CreateFactor(IModifyTasks pTasks, long pPrimArtId, long pRelArtId, byte pAssertId, 
 														bool pIsDefining, string pNote) : base(pTasks) {
 			vPrimArtId = pPrimArtId;
 			vRelArtId = pRelArtId;

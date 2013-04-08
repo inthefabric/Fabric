@@ -1,6 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain;
 
 namespace Fabric.Db.Data.Setups {
 
@@ -235,6 +235,7 @@ namespace Fabric.Db.Data.Setups {
 					MemberTypeAssignId pMemTypeAssnId, MemberTypeId pMemTypeId, MemberId pAssignerId) {
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = (long)pMemTypeAssnId;
+			mta.MemberTypeId = (byte)pMemTypeId;
 			mta.Performed = vSet.SetupTimestamp;
 
 			vSet.AddNodeAndIndex(mta, x => x.MemberTypeAssignId, vTestMode);
@@ -242,10 +243,6 @@ namespace Fabric.Db.Data.Setups {
 			var relAsn = DataRel.Create(vSet.GetNode<Member>((long)pAssignerId),
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
 			vSet.AddRel(relAsn);
-
-			var relMt = DataRel.Create(mta, new MemberTypeAssignUsesMemberType(),
-				vSet.GetNode<MemberType>((long)pMemTypeId), vTestMode);
-			vSet.AddRel(relMt);
 
 			////
 

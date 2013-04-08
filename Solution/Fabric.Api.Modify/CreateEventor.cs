@@ -17,11 +17,11 @@ namespace Fabric.Api.Modify {
 		public const string EvePrecParam = "EventorPrecisionId";
 		public const string DateTimeParam = "DateTime";
 
-		[ServiceOpParam(ServiceOpParamType.Form, EveTypeParam, 1, typeof(EventorType))]
-		private readonly long vEveTypeId;
+		[ServiceOpParam(ServiceOpParamType.Form, EveTypeParam, 1, typeof(Eventor))]
+		private readonly byte vEveTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, EvePrecParam, 2, typeof(EventorPrecision))]
-		private readonly long vEvePrecId;
+		[ServiceOpParam(ServiceOpParamType.Form, EvePrecParam, 2, typeof(Eventor))]
+		private readonly byte vEvePrecId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, DateTimeParam, 3, typeof(Eventor))]
 		private readonly long vDateTime;
@@ -29,8 +29,8 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateEventor(IModifyTasks pTasks, long pFactorId, long pEveTypeId, 
-										long pEvePrecId, long pDateTime) : base(pTasks, pFactorId) {
+		public CreateEventor(IModifyTasks pTasks, long pFactorId, byte pEveTypeId, 
+										byte pEvePrecId, long pDateTime) : base(pTasks, pFactorId) {
 			vEveTypeId = pEveTypeId; 
 			vEvePrecId = pEvePrecId;
 			vDateTime = pDateTime;

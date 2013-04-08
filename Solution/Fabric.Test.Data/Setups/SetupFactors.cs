@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain;
 
 namespace Fabric.Db.Data.Setups {
 
@@ -853,18 +853,13 @@ namespace Fabric.Db.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddDescriptor(DescriptorTypeId pTypeId,
-														SetupArtifacts.ArtifactId? pPrimModId=null,
-														SetupArtifacts.ArtifactId? pDtModId=null,
-														SetupArtifacts.ArtifactId? pRelModId=null) {
+		public void AddDescriptor(DescriptorTypeId pTypeId, SetupArtifacts.ArtifactId? pPrimModId=null,
+				SetupArtifacts.ArtifactId? pDtModId=null, SetupArtifacts.ArtifactId? pRelModId=null) {
 			var d = new Descriptor();
 			d.DescriptorId = ++vIdCount;
+			d.DescriptorTypeId = (byte)pTypeId;
 
 			vSet.AddNodeAndIndex(d, x => x.DescriptorId, vTestMode);
-
-			var relDt = DataRel.Create(d, new DescriptorUsesDescriptorType(),
-				vSet.GetNode<DescriptorType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relDt);
 
 			if ( pPrimModId != null ) {
 				var rel = DataRel.Create(d, new DescriptorRefinesPrimaryWithArtifact(),
@@ -890,65 +885,44 @@ namespace Fabric.Db.Data.Setups {
 																		DirectorActionId pRelActId) {
 			var d = new Director();
 			d.DirectorId = ++vIdCount;
+			d.DirectorTypeId = (byte)pTypeId;
+			d.PrimaryDirectorActionId = (byte)pPrimActId;
+			d.RelatedDirectorActionId = (byte)pRelActId;
 
 			vSet.AddNodeAndIndex(d, x => x.DirectorId, vTestMode);
-
-			var relDt = DataRel.Create(d, new DirectorUsesDirectorType(),
-				vSet.GetNode<DirectorType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relDt);
-
-			var relP = DataRel.Create(d, new DirectorUsesPrimaryDirectorAction(),
-				vSet.GetNode<DirectorAction>((long)pPrimActId), vTestMode);
-			vSet.AddRel(relP);
-
-			var relA = DataRel.Create(d, new DirectorUsesRelatedDirectorAction(),
-				vSet.GetNode<DirectorAction>((long)pRelActId), vTestMode);
-			vSet.AddRel(relA);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddEventor(EventorTypeId pTypeId, EventorPrecisionId pPrecId, DateTime pDate) {
 			var e = new Eventor();
 			e.EventorId = ++vIdCount;
+			e.EventorTypeId = (byte)pTypeId;
+			e.EventorPrecisionId = (byte)pPrecId;
 			e.DateTime = pDate.Ticks;
 
 			vSet.AddNodeAndIndex(e, x => x.EventorId, vTestMode);
-
-			var relEt = DataRel.Create(e, new EventorUsesEventorType(),
-				vSet.GetNode<EventorType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relEt);
-
-			var relEp = DataRel.Create(e, new EventorUsesEventorPrecision(),
-				vSet.GetNode<EventorPrecision>((long)pPrecId), vTestMode);
-			vSet.AddRel(relEp);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddIdentor(IdentorTypeId pTypeId, string pValue) {
 			var i = new Identor();
 			i.IdentorId = ++vIdCount;
+			i.IdentorTypeId = (byte)pTypeId;
 			i.Value = pValue;
 
 			vSet.AddNodeAndIndex(i, x => x.IdentorId, vTestMode);
-
-			var relIt = DataRel.Create(i, new IdentorUsesIdentorType(),
-				vSet.GetNode<IdentorType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relIt);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddLocator(LocatorTypeId pTypeId, double pX, double pY, double pZ) {
 			var l = new Locator();
 			l.LocatorId = ++vIdCount;
+			l.LocatorTypeId = (byte)pTypeId;
 			l.ValueX = pX;
 			l.ValueY = pY;
 			l.ValueZ = pZ;
 
 			vSet.AddNodeAndIndex(l, x => x.LocatorId, vTestMode);
-
-			var relLt = DataRel.Create(l, new LocatorUsesLocatorType(),
-				vSet.GetNode<LocatorType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relLt);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -956,25 +930,16 @@ namespace Fabric.Db.Data.Setups {
 								long pValue, VectorUnitPrefixId pPrefId, VectorUnitId pUnitId) {
 			var v = new Vector();
 			v.VectorId = ++vIdCount;
+			v.VectorTypeId = (byte)pTypeId;
+			v.VectorUnitId = (byte)pUnitId;
+			v.VectorUnitPrefixId = (byte)pPrefId;
 			v.Value = pValue;
 
 			vSet.AddNodeAndIndex(v, x => x.VectorId, vTestMode);
 
-			var relVt = DataRel.Create(v, new VectorUsesVectorType(),
-				vSet.GetNode<VectorType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relVt);
-
 			var relA = DataRel.Create(v, new VectorUsesAxisArtifact(),
 				vSet.GetNode<Artifact>((long)pAxisArtId), vTestMode);
 			vSet.AddRel(relA);
-
-			var relVu = DataRel.Create(v, new VectorUsesVectorUnit(),
-				vSet.GetNode<VectorUnit>((long)pUnitId), vTestMode);
-			vSet.AddRel(relVu);
-
-			var relVup = DataRel.Create(v, new VectorUsesVectorUnitPrefix(),
-				vSet.GetNode<VectorUnitPrefix>((long)pPrefId), vTestMode);
-			vSet.AddRel(relVup);
 		}
 
 
@@ -990,6 +955,7 @@ namespace Fabric.Db.Data.Setups {
 
 			var f = new Factor();
 			f.FactorId = ++vIdCount;
+			f.FactorAssertionId = (byte)pAstId;
 			//f.IsPublic = (pAccId == FactorAccessId.Public);
 			f.IsDefining = pIsDefining;
 			f.Created = dt.AddMinutes(-1).Ticks;
@@ -1016,10 +982,6 @@ namespace Fabric.Db.Data.Setups {
 			var relRa = DataRel.Create(f, new FactorUsesRelatedArtifact(),
 				vSet.GetNode<Artifact>((long)pRelArtId), vTestMode);
 			vSet.AddRel(relRa);
-
-			var relFa = DataRel.Create(f, new FactorUsesFactorAssertion(),
-				vSet.GetNode<FactorAssertion>((long)pAstId), vTestMode);
-			vSet.AddRel(relFa);
 
 			if ( pReplaceFactorId != null ) {
 				var relRf = DataRel.Create(f, new FactorReplacesFactor(),

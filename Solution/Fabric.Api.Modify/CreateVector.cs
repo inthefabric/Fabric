@@ -4,7 +4,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
@@ -21,8 +21,8 @@ namespace Fabric.Api.Modify {
 		public const string UnitParam = "VectorUnitId";
 		public const string UnitPrefParam = "VectorUnitPrefixId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, VecTypeParam, 1, typeof(VectorType))]
-		private readonly long vVecTypeId;
+		[ServiceOpParam(ServiceOpParamType.Form, VecTypeParam, 1, typeof(Vector))]
+		private readonly byte vVecTypeId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, 2, typeof(Vector))]
 		private readonly long vValue;
@@ -31,17 +31,17 @@ namespace Fabric.Api.Modify {
 			DomainPropertyName="ArtifactId")]
 		private readonly long vAxisArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UnitParam, 4, typeof(VectorUnit))]
-		private readonly long vVecUnitId;
+		[ServiceOpParam(ServiceOpParamType.Form, UnitParam, 4, typeof(Vector))]
+		private readonly byte vVecUnitId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, UnitPrefParam, 5, typeof(VectorUnitPrefix))]
-		private readonly long vVecUnitPrefId;
+		[ServiceOpParam(ServiceOpParamType.Form, UnitPrefParam, 5, typeof(Vector))]
+		private readonly byte vVecUnitPrefId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateVector(IModifyTasks pTasks, long pFactorId, long pVecTypeId, long pValue,
-					long pAxisArtId, long pVecUnitId, long pVecUnitPrefId) : base(pTasks, pFactorId) {
+		public CreateVector(IModifyTasks pTasks, long pFactorId, byte pVecTypeId, long pValue,
+					long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) : base(pTasks, pFactorId) {
 			vVecTypeId = pVecTypeId; 
 			vValue = pValue;
 			vAxisArtId = pAxisArtId;
@@ -72,8 +72,8 @@ namespace Fabric.Api.Modify {
 			
 			////
 			
-			VectorType vecType = Tasks.GetVectorType(ApiCtx, vVecTypeId);
-			double baseVal = vValue*VectorUnitPrefixConst.GetMult(vVecUnitPrefId);
+			VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
+			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
 			
 			if ( baseVal < vecType.Min ) {
 				throw new FabArgumentOutOfRangeFault(ValueParam+" is less than VectorType.Min.");

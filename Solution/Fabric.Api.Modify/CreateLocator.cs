@@ -4,6 +4,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
@@ -19,8 +20,8 @@ namespace Fabric.Api.Modify {
 		public const string YParam = "ValueY";
 		public const string ZParam = "ValueZ";
 
-		[ServiceOpParam(ServiceOpParamType.Form, LocTypeParam, 1, typeof(LocatorType))]
-		private readonly long vLocTypeId;
+		[ServiceOpParam(ServiceOpParamType.Form, LocTypeParam, 1, typeof(Locator))]
+		private readonly byte vLocTypeId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, XParam, 2, typeof(Locator))]
 		private readonly double vX;
@@ -34,7 +35,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateLocator(IModifyTasks pTasks, long pFactorId, long pLocTypeId, 
+		public CreateLocator(IModifyTasks pTasks, long pFactorId, byte pLocTypeId, 
 										double pX, double pY, double pZ) : base(pTasks, pFactorId) {
 			vLocTypeId = pLocTypeId; 
 			vX = pX;
@@ -80,7 +81,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void CheckLocatorTypeRange() {
-			LocatorType locType = Tasks.GetLocatorType(ApiCtx, vLocTypeId);
+			LocatorType locType = StaticTypes.LocatorTypes[vLocTypeId];
 			const string lessThan = " is less than LocatorType.Min";
 			const string greaterThan = " is greater than LocatorType.Max";
 			

@@ -140,7 +140,7 @@ namespace Fabric.Api.Services {
 						NewModTasks(),
 						GetPostLong(CreateFactor.PrimArtParam),
 						GetPostLong(CreateFactor.RelArtParam),
-						GetPostLong(CreateFactor.AssertParam),
+						GetPostByte(CreateFactor.AssertParam),
 						GetPostBool(CreateFactor.IsDefParam),
 						GetPostString(CreateFactor.NoteParam, false)
 					)
@@ -176,7 +176,7 @@ namespace Fabric.Api.Services {
 					Descriptor d = new CreateDescriptor(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
-						GetPostLong(CreateDescriptor.DescTypeParam),
+						GetPostByte(CreateDescriptor.DescTypeParam),
 						GetPostLong(CreateDescriptor.PrimArtRefParam, false),
 						GetPostLong(CreateDescriptor.RelArtRefParam, false),
 						GetPostLong(CreateDescriptor.DescTypeRefParam, false)
@@ -195,9 +195,9 @@ namespace Fabric.Api.Services {
 					Director d = new CreateDirector(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
-						GetPostLong(CreateDirector.DirTypeParam),
-						GetPostLong(CreateDirector.PrimActionParam),
-						GetPostLong(CreateDirector.RelActionParam)
+						GetPostByte(CreateDirector.DirTypeParam),
+						GetPostByte(CreateDirector.PrimActionParam),
+						GetPostByte(CreateDirector.RelActionParam)
 					)
 					.Go(ApiCtx);
 					return ToJsonList(new FabDirector(d));
@@ -213,8 +213,8 @@ namespace Fabric.Api.Services {
 					Eventor e = new CreateEventor(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
-						GetPostLong(CreateEventor.EveTypeParam),
-						GetPostLong(CreateEventor.EvePrecParam),
+						GetPostByte(CreateEventor.EveTypeParam),
+						GetPostByte(CreateEventor.EvePrecParam),
 						GetPostLong(CreateEventor.DateTimeParam)
 					)
 					.Go(ApiCtx);
@@ -231,7 +231,7 @@ namespace Fabric.Api.Services {
 					Identor i = new CreateIdentor(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
-						GetPostLong(CreateIdentor.IdenTypeParam),
+						GetPostByte(CreateIdentor.IdenTypeParam),
 						GetPostString(CreateIdentor.ValueParam)
 					)
 					.Go(ApiCtx);
@@ -265,7 +265,7 @@ namespace Fabric.Api.Services {
 					Locator l = new CreateLocator(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
-						GetPostLong(CreateLocator.LocTypeParam),
+						GetPostByte(CreateLocator.LocTypeParam),
 						GetPostDouble(CreateLocator.XParam),
 						GetPostDouble(CreateLocator.YParam),
 						GetPostDouble(CreateLocator.ZParam)
@@ -300,11 +300,11 @@ namespace Fabric.Api.Services {
 					Vector v = new CreateVector(
 						NewModTasks(),
 						GetPostLong(CreateFactorElement.FactorParam),
-						GetPostLong(CreateVector.VecTypeParam),
+						GetPostByte(CreateVector.VecTypeParam),
 						GetPostLong(CreateVector.ValueParam),
 						GetPostLong(CreateVector.AxisArtParam),
-						GetPostLong(CreateVector.UnitParam),
-						GetPostLong(CreateVector.UnitPrefParam)
+						GetPostByte(CreateVector.UnitParam),
+						GetPostByte(CreateVector.UnitPrefParam)
 					)
 					.Go(ApiCtx);
 					return ToJsonList(new FabVector(v));

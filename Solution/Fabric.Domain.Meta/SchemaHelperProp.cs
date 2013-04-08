@@ -33,6 +33,10 @@ namespace Fabric.Domain.Meta {
 					n = "long";
 					break;
 
+				case "Byte":
+					n = "byte";
+					break;
+
 				case "String":
 					n = "string";
 					break;

@@ -1,8 +1,9 @@
-﻿using Fabric.Db.Data;
-using Fabric.Domain;
+﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Domain.Types;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -60,7 +61,6 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(memberAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
-				.UsesMemberType.ToMemberType
 					.Has(x => x.MemberTypeId, WeaverFuncHasOp.EqualTo, (long)MemberTypeId.DataProvider)
 				.Back(userAlias)
 				.End();

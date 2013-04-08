@@ -171,6 +171,11 @@ namespace Fabric.Api.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected byte GetPostByte(string pName, bool pRequired=true) {
+			return GetPost(pName, (v => v.ToByte(EnUs)), pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected double GetPostDouble(string pName, bool pRequired=true) {
 			return GetPost(pName, (v => v.ToDouble(EnUs)), pRequired);
 		}

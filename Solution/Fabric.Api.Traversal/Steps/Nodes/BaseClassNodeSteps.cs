@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:46 PM
+// Generated on 4/8/2013 1:22:16 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +9,6 @@ using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
-
-	/*================================================================================================*/
-	public abstract partial class NodeForTypeStep<T> : NodeStep<T>, INodeForTypeStep
-																			where T : FabNode, new() {
-		
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected NodeForTypeStep(IPath pPath) : base(pPath) {
-			ConstructorHook();
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		partial void ConstructorHook();
-
-	}
-
 
 	/*================================================================================================*/
 	public abstract partial class NodeForActionStep<T> : NodeStep<T>, INodeForActionStep

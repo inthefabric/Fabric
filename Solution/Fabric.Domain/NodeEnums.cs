@@ -14,30 +14,15 @@ namespace Fabric.Domain {
 		User,
 
 		Member = 2000,
-		MemberType,
 		MemberTypeAssign,
 			
 		Factor = 3000,
-		FactorAssertion,
 		Descriptor,
-		DescriptorType,
 		Director,
-		DirectorType,
-		DirectorAction,
 		Eventor,
-		EventorType,
-		EventorPrecision,
 		Identor,
-		IdentorType,
 		Locator,
-		LocatorType,
 		Vector,
-		VectorType,
-		VectorRange,
-		VectorRangeLevel,
-		VectorUnit,
-		VectorUnitPrefix,
-		VectorUnitDerived,
 			
 		Email = 4000,
 		OauthAccess,
@@ -47,7 +32,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class NodeFabTypeUtil {
+	public static class NodeFabTypeUtil {
 
 		public static readonly IDictionary<Type, NodeFabType> TypeMap = Init();
 
@@ -63,30 +48,15 @@ namespace Fabric.Domain {
 			m.Add(typeof(User), NodeFabType.User);
 
 			m.Add(typeof(Member), NodeFabType.Member);
-			m.Add(typeof(MemberType), NodeFabType.MemberType);
 			m.Add(typeof(MemberTypeAssign), NodeFabType.MemberTypeAssign);
 
 			m.Add(typeof(Factor), NodeFabType.Factor);
-			m.Add(typeof(FactorAssertion), NodeFabType.FactorAssertion);
 			m.Add(typeof(Descriptor), NodeFabType.Descriptor);
-			m.Add(typeof(DescriptorType), NodeFabType.DescriptorType);
 			m.Add(typeof(Director), NodeFabType.Director);
-			m.Add(typeof(DirectorType), NodeFabType.DirectorType);
-			m.Add(typeof(DirectorAction), NodeFabType.DirectorAction);
 			m.Add(typeof(Eventor), NodeFabType.Eventor);
-			m.Add(typeof(EventorType), NodeFabType.EventorType);
-			m.Add(typeof(EventorPrecision), NodeFabType.EventorPrecision);
 			m.Add(typeof(Identor), NodeFabType.Identor);
-			m.Add(typeof(IdentorType), NodeFabType.IdentorType);
 			m.Add(typeof(Locator), NodeFabType.Locator);
-			m.Add(typeof(LocatorType), NodeFabType.LocatorType);
 			m.Add(typeof(Vector), NodeFabType.Vector);
-			m.Add(typeof(VectorType), NodeFabType.VectorType);
-			m.Add(typeof(VectorRange), NodeFabType.VectorRange);
-			m.Add(typeof(VectorRangeLevel), NodeFabType.VectorRangeLevel);
-			m.Add(typeof(VectorUnit), NodeFabType.VectorUnit);
-			m.Add(typeof(VectorUnitPrefix), NodeFabType.VectorUnitPrefix);
-			m.Add(typeof(VectorUnitDerived), NodeFabType.VectorUnitDerived);
 
 			m.Add(typeof(Email), NodeFabType.Email);
 			m.Add(typeof(OauthAccess), NodeFabType.OauthAccess);

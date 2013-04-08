@@ -40,7 +40,7 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx, long pAssigningMemberId,
-																	long pMemberId, long pMemberTypeId);
+																	long pMemberId, byte pMemberTypeId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		//TEST: WebTasks.GetOauthDomainByDomain()

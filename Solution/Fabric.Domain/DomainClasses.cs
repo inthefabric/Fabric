@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:45 PM
+// Generated on 4/8/2013 1:22:15 PM
 
 using System;
 using System.Linq.Expressions;
@@ -97,13 +97,6 @@ namespace Fabric.Domain {
 
 	}
 
-	/*================================================================================================*/
-	public class RaisesToExp : IWeaverRelType {
-	
-		public string Label { get { return "RaisesToExp"; } }
-
-	}
-
 
 	/* Relationships */
 
@@ -172,15 +165,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssignUsesMemberType : Rel<MemberTypeAssign, Uses, MemberType>, IItemWithId {
-			
-		public virtual MemberTypeAssign FromMemberTypeAssign { get { return FromNode; } }
-		public virtual MemberType ToMemberType { get { return ToNode; } }
-		public override string Label { get { return "MemberTypeAssignUsesMemberType"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class UserUsesEmail : Rel<User, Uses, Email>, IItemWithId {
 			
 		public virtual User FromUser { get { return FromNode; } }
@@ -213,15 +197,6 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
 		public override string Label { get { return "FactorUsesRelatedArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class FactorUsesFactorAssertion : Rel<Factor, Uses, FactorAssertion>, IItemWithId {
-			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual FactorAssertion ToFactorAssertion { get { return ToNode; } }
-		public override string Label { get { return "FactorUsesFactorAssertion"; } }
 
 	}
 
@@ -289,15 +264,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorUsesDescriptorType : Rel<Descriptor, Uses, DescriptorType>, IItemWithId {
-			
-		public virtual Descriptor FromDescriptor { get { return FromNode; } }
-		public virtual DescriptorType ToDescriptorType { get { return ToNode; } }
-		public override string Label { get { return "DescriptorUsesDescriptorType"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class DescriptorRefinesPrimaryWithArtifact : Rel<Descriptor, RefinesPrimaryWith, Artifact>, IItemWithId {
 			
 		public virtual Descriptor FromDescriptor { get { return FromNode; } }
@@ -325,146 +291,11 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DirectorUsesDirectorType : Rel<Director, Uses, DirectorType>, IItemWithId {
-			
-		public virtual Director FromDirector { get { return FromNode; } }
-		public virtual DirectorType ToDirectorType { get { return ToNode; } }
-		public override string Label { get { return "DirectorUsesDirectorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class DirectorUsesPrimaryDirectorAction : Rel<Director, UsesPrimary, DirectorAction>, IItemWithId {
-			
-		public virtual Director FromDirector { get { return FromNode; } }
-		public virtual DirectorAction ToDirectorAction { get { return ToNode; } }
-		public override string Label { get { return "DirectorUsesPrimaryDirectorAction"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class DirectorUsesRelatedDirectorAction : Rel<Director, UsesRelated, DirectorAction>, IItemWithId {
-			
-		public virtual Director FromDirector { get { return FromNode; } }
-		public virtual DirectorAction ToDirectorAction { get { return ToNode; } }
-		public override string Label { get { return "DirectorUsesRelatedDirectorAction"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class EventorUsesEventorType : Rel<Eventor, Uses, EventorType>, IItemWithId {
-			
-		public virtual Eventor FromEventor { get { return FromNode; } }
-		public virtual EventorType ToEventorType { get { return ToNode; } }
-		public override string Label { get { return "EventorUsesEventorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class EventorUsesEventorPrecision : Rel<Eventor, Uses, EventorPrecision>, IItemWithId {
-			
-		public virtual Eventor FromEventor { get { return FromNode; } }
-		public virtual EventorPrecision ToEventorPrecision { get { return ToNode; } }
-		public override string Label { get { return "EventorUsesEventorPrecision"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class IdentorUsesIdentorType : Rel<Identor, Uses, IdentorType>, IItemWithId {
-			
-		public virtual Identor FromIdentor { get { return FromNode; } }
-		public virtual IdentorType ToIdentorType { get { return ToNode; } }
-		public override string Label { get { return "IdentorUsesIdentorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class LocatorUsesLocatorType : Rel<Locator, Uses, LocatorType>, IItemWithId {
-			
-		public virtual Locator FromLocator { get { return FromNode; } }
-		public virtual LocatorType ToLocatorType { get { return ToNode; } }
-		public override string Label { get { return "LocatorUsesLocatorType"; } }
-
-	}
-
-	/*================================================================================================*/
 	public class VectorUsesAxisArtifact : Rel<Vector, UsesAxis, Artifact>, IItemWithId {
 			
 		public virtual Vector FromVector { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
 		public override string Label { get { return "VectorUsesAxisArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUsesVectorType : Rel<Vector, Uses, VectorType>, IItemWithId {
-			
-		public virtual Vector FromVector { get { return FromNode; } }
-		public virtual VectorType ToVectorType { get { return ToNode; } }
-		public override string Label { get { return "VectorUsesVectorType"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUsesVectorUnit : Rel<Vector, Uses, VectorUnit>, IItemWithId {
-			
-		public virtual Vector FromVector { get { return FromNode; } }
-		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
-		public override string Label { get { return "VectorUsesVectorUnit"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUsesVectorUnitPrefix : Rel<Vector, Uses, VectorUnitPrefix>, IItemWithId {
-			
-		public virtual Vector FromVector { get { return FromNode; } }
-		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
-		public override string Label { get { return "VectorUsesVectorUnitPrefix"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorTypeUsesVectorRange : Rel<VectorType, Uses, VectorRange>, IItemWithId {
-			
-		public virtual VectorType FromVectorType { get { return FromNode; } }
-		public virtual VectorRange ToVectorRange { get { return ToNode; } }
-		public override string Label { get { return "VectorTypeUsesVectorRange"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorRangeUsesVectorRangeLevel : Rel<VectorRange, Uses, VectorRangeLevel>, IItemWithId {
-			
-		public virtual VectorRange FromVectorRange { get { return FromNode; } }
-		public virtual VectorRangeLevel ToVectorRangeLevel { get { return ToNode; } }
-		public override string Label { get { return "VectorRangeUsesVectorRangeLevel"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUnitDerivedDefinesVectorUnit : Rel<VectorUnitDerived, Defines, VectorUnit>, IItemWithId {
-			
-		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
-		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
-		public override string Label { get { return "VectorUnitDerivedDefinesVectorUnit"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUnitDerivedRaisesToExpVectorUnit : Rel<VectorUnitDerived, RaisesToExp, VectorUnit>, IItemWithId {
-			
-		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
-		public virtual VectorUnit ToVectorUnit { get { return ToNode; } }
-		public override string Label { get { return "VectorUnitDerivedRaisesToExpVectorUnit"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUnitDerivedUsesVectorUnitPrefix : Rel<VectorUnitDerived, Uses, VectorUnitPrefix>, IItemWithId {
-			
-		public virtual VectorUnitDerived FromVectorUnitDerived { get { return FromNode; } }
-		public virtual VectorUnitPrefix ToVectorUnitPrefix { get { return ToNode; } }
-		public override string Label { get { return "VectorUnitDerivedUsesVectorUnitPrefix"; } }
 
 	}
 
@@ -534,27 +365,6 @@ namespace Fabric.Domain {
 
 	/* Nodes */
 
-
-	/*================================================================================================*/
-	public abstract class NodeForType : Node {
-	
-		[WeaverItemProperty]
-		//[PropIsUnique(True)]
-		//[PropLenMax(32)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public virtual string Name { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
-		public virtual string Description { get; set; }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public NodeForType(NodeFabType pFabType) : base(pFabType) {}
-
-	}
 
 	/*================================================================================================*/
 	public abstract class NodeForAction : Node {
@@ -928,44 +738,17 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long MemberTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberType() : base(NodeFabType.MemberType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return MemberTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as MemberType).MemberTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberTypeAssignUsesMemberType InMemberTypeAssignListUses {
-			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
 	public class MemberTypeAssign : NodeForAction {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long MemberTypeAssignId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte MemberTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -997,11 +780,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesMemberTypeAssign InMemberCreates {
 			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.InFromOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberTypeAssignUsesMemberType UsesMemberType {
-			get { return NewRel<MemberTypeAssignUsesMemberType>(WeaverRelConn.OutToOne); }
 		}
 
 	}
@@ -1121,6 +899,11 @@ namespace Fabric.Domain {
 		public virtual long FactorId { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte FactorAssertionId { get; set; }
+
+		[WeaverItemProperty]
 		public virtual bool IsDefining { get; set; }
 
 		[WeaverItemProperty]
@@ -1175,11 +958,6 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesFactorAssertion UsesFactorAssertion {
-			get { return NewRel<FactorUsesFactorAssertion>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorReplacesFactor ReplacesFactor {
 			get { return NewRel<FactorReplacesFactor>(WeaverRelConn.OutToZeroOrOne); }
 		}
@@ -1217,38 +995,6 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorAssertion : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long FactorAssertionId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorAssertion() : base(NodeFabType.FactorAssertion) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return FactorAssertionId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as FactorAssertion).FactorAssertionId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesFactorAssertion InFactorListUses {
-			get { return NewRel<FactorUsesFactorAssertion>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
 	public abstract class FactorElementNode : Node {
 	
 		/*--------------------------------------------------------------------------------------------*/
@@ -1263,6 +1009,11 @@ namespace Fabric.Domain {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long DescriptorId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte DescriptorTypeId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1287,11 +1038,6 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorUsesDescriptorType UsesDescriptorType {
-			get { return NewRel<DescriptorUsesDescriptorType>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual DescriptorRefinesPrimaryWithArtifact RefinesPrimaryWithArtifact {
 			get { return NewRel<DescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
@@ -1309,44 +1055,27 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class DescriptorType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long DescriptorTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public DescriptorType() : base(NodeFabType.DescriptorType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return DescriptorTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as DescriptorType).DescriptorTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DescriptorUsesDescriptorType InDescriptorListUses {
-			get { return NewRel<DescriptorUsesDescriptorType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
 	public class Director : FactorElementNode {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long DirectorId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte DirectorTypeId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte PrimaryDirectorActionId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte RelatedDirectorActionId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1370,90 +1099,6 @@ namespace Fabric.Domain {
 			get { return NewRel<FactorUsesDirector>(WeaverRelConn.InFromOneOrMore); }
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesDirectorType UsesDirectorType {
-			get { return NewRel<DirectorUsesDirectorType>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesPrimaryDirectorAction UsesPrimaryDirectorAction {
-			get { return NewRel<DirectorUsesPrimaryDirectorAction>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesRelatedDirectorAction UsesRelatedDirectorAction {
-			get { return NewRel<DirectorUsesRelatedDirectorAction>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class DirectorType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long DirectorTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public DirectorType() : base(NodeFabType.DirectorType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return DirectorTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as DirectorType).DirectorTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesDirectorType InDirectorListUses {
-			get { return NewRel<DirectorUsesDirectorType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class DirectorAction : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long DirectorActionId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public DirectorAction() : base(NodeFabType.DirectorAction) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return DirectorActionId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as DirectorAction).DirectorActionId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesPrimaryDirectorAction InDirectorListUsesPrimary {
-			get { return NewRel<DirectorUsesPrimaryDirectorAction>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual DirectorUsesRelatedDirectorAction InDirectorListUsesRelated {
-			get { return NewRel<DirectorUsesRelatedDirectorAction>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1463,6 +1108,16 @@ namespace Fabric.Domain {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long EventorId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte EventorTypeId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte EventorPrecisionId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual long DateTime { get; set; }
@@ -1489,80 +1144,6 @@ namespace Fabric.Domain {
 			get { return NewRel<FactorUsesEventor>(WeaverRelConn.InFromOneOrMore); }
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorType UsesEventorType {
-			get { return NewRel<EventorUsesEventorType>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorPrecision UsesEventorPrecision {
-			get { return NewRel<EventorUsesEventorPrecision>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class EventorType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long EventorTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public EventorType() : base(NodeFabType.EventorType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return EventorTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as EventorType).EventorTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorType InEventorListUses {
-			get { return NewRel<EventorUsesEventorType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class EventorPrecision : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long EventorPrecisionId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public EventorPrecision() : base(NodeFabType.EventorPrecision) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return EventorPrecisionId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as EventorPrecision).EventorPrecisionId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual EventorUsesEventorPrecision InEventorListUses {
-			get { return NewRel<EventorUsesEventorPrecision>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1572,6 +1153,11 @@ namespace Fabric.Domain {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long IdentorId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte IdentorTypeId { get; set; }
 
 		[WeaverItemProperty]
 		//[PropLenMax(256)]
@@ -1600,43 +1186,6 @@ namespace Fabric.Domain {
 			get { return NewRel<FactorUsesIdentor>(WeaverRelConn.InFromOneOrMore); }
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual IdentorUsesIdentorType UsesIdentorType {
-			get { return NewRel<IdentorUsesIdentorType>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class IdentorType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long IdentorTypeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public IdentorType() : base(NodeFabType.IdentorType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return IdentorTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as IdentorType).IdentorTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual IdentorUsesIdentorType InIdentorListUses {
-			get { return NewRel<IdentorUsesIdentorType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1646,6 +1195,11 @@ namespace Fabric.Domain {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long LocatorId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte LocatorTypeId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual double ValueX { get; set; }
@@ -1678,61 +1232,6 @@ namespace Fabric.Domain {
 			get { return NewRel<FactorUsesLocator>(WeaverRelConn.InFromOneOrMore); }
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual LocatorUsesLocatorType UsesLocatorType {
-			get { return NewRel<LocatorUsesLocatorType>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class LocatorType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long LocatorTypeId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double MinX { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double MaxX { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double MinY { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double MaxY { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double MinZ { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double MaxZ { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public LocatorType() : base(NodeFabType.LocatorType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return LocatorTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as LocatorType).LocatorTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual LocatorUsesLocatorType InLocatorListUses {
-			get { return NewRel<LocatorUsesLocatorType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
 	}
 
 	/*================================================================================================*/
@@ -1742,6 +1241,21 @@ namespace Fabric.Domain {
 		//[PropIsPrimaryKey(True)]
 		//[PropIsUnique(True)]
 		public virtual long VectorId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte VectorTypeId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte VectorUnitId { get; set; }
+
+		[WeaverItemProperty]
+		//[PropIsPrimaryKey(True)]
+		//[PropIsUnique(True)]
+		public virtual byte VectorUnitPrefixId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual long Value { get; set; }
@@ -1771,273 +1285,6 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual VectorUsesAxisArtifact UsesAxisArtifact {
 			get { return NewRel<VectorUsesAxisArtifact>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorType UsesVectorType {
-			get { return NewRel<VectorUsesVectorType>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnit UsesVectorUnit {
-			get { return NewRel<VectorUsesVectorUnit>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnitPrefix UsesVectorUnitPrefix {
-			get { return NewRel<VectorUsesVectorUnitPrefix>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class VectorType : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long VectorTypeId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual long Min { get; set; }
-
-		[WeaverItemProperty]
-		public virtual long Max { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorType() : base(NodeFabType.VectorType) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return VectorTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as VectorType).VectorTypeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorType InVectorListUses {
-			get { return NewRel<VectorUsesVectorType>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorTypeUsesVectorRange UsesVectorRange {
-			get { return NewRel<VectorTypeUsesVectorRange>(WeaverRelConn.OutToOne); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class VectorRange : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long VectorRangeId { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorRange() : base(NodeFabType.VectorRange) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return VectorRangeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as VectorRange).VectorRangeId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorTypeUsesVectorRange InVectorTypeListUses {
-			get { return NewRel<VectorTypeUsesVectorRange>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorRangeUsesVectorRangeLevel UsesVectorRangeLevelList {
-			get { return NewRel<VectorRangeUsesVectorRangeLevel>(WeaverRelConn.OutToZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class VectorRangeLevel : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long VectorRangeLevelId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual float Position { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorRangeLevel() : base(NodeFabType.VectorRangeLevel) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return VectorRangeLevelId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as VectorRangeLevel).VectorRangeLevelId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorRangeUsesVectorRangeLevel InVectorRangeListUses {
-			get { return NewRel<VectorRangeUsesVectorRangeLevel>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUnit : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long VectorUnitId { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(8)]
-		//[PropLenMin(1)]
-		public virtual string Symbol { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnit() : base(NodeFabType.VectorUnit) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return VectorUnitId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as VectorUnit).VectorUnitId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnit InVectorListUses {
-			get { return NewRel<VectorUsesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedDefinesVectorUnit InVectorUnitDerivedListDefines {
-			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedRaisesToExpVectorUnit InVectorUnitDerivedListRaisesToExp {
-			get { return NewRel<VectorUnitDerivedRaisesToExpVectorUnit>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUnitPrefix : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long VectorUnitPrefixId { get; set; }
-
-		[WeaverItemProperty]
-		//[PropLenMax(8)]
-		//[PropLenMin(1)]
-		public virtual string Symbol { get; set; }
-
-		[WeaverItemProperty]
-		public virtual double Amount { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitPrefix() : base(NodeFabType.VectorUnitPrefix) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return VectorUnitPrefixId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as VectorUnitPrefix).VectorUnitPrefixId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUsesVectorUnitPrefix InVectorListUses {
-			get { return NewRel<VectorUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedUsesVectorUnitPrefix InVectorUnitDerivedListUses {
-			get { return NewRel<VectorUnitDerivedUsesVectorUnitPrefix>(WeaverRelConn.InFromZeroOrMore); }
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class VectorUnitDerived : NodeForType {
-	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		//[PropIsUnique(True)]
-		public virtual long VectorUnitDerivedId { get; set; }
-
-		[WeaverItemProperty]
-		public virtual int Exponent { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerived() : base(NodeFabType.VectorUnitDerived) {}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return VectorUnitDerivedId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as VectorUnitDerived).VectorUnitDerivedId);
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedDefinesVectorUnit DefinesVectorUnit {
-			get { return NewRel<VectorUnitDerivedDefinesVectorUnit>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedRaisesToExpVectorUnit RaisesToExpVectorUnit {
-			get { return NewRel<VectorUnitDerivedRaisesToExpVectorUnit>(WeaverRelConn.OutToOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual VectorUnitDerivedUsesVectorUnitPrefix UsesVectorUnitPrefix {
-			get { return NewRel<VectorUnitDerivedUsesVectorUnitPrefix>(WeaverRelConn.OutToOne); }
 		}
 
 	}

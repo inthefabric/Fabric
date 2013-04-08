@@ -81,7 +81,21 @@
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
     <Compile Include="Db\DbDtoRaw.cs" />
-    <Compile Include="Db\FabricIdEnums.cs" />
+    <Compile Include="Domain\Types\VectorUnitPrefix.cs" />
+    <Compile Include="Domain\Types\VectorUnitDerived.cs" />
+    <Compile Include="Domain\Types\VectorUnit.cs" />
+    <Compile Include="Domain\Types\VectorRangeLevel.cs" />
+    <Compile Include="Domain\Types\VectorRange.cs" />
+    <Compile Include="Domain\Types\EventorPrecision.cs" />
+    <Compile Include="Domain\Types\EventorType.cs" />
+    <Compile Include="Domain\Types\DirectorAction.cs" />
+    <Compile Include="Domain\Types\DirectorType.cs" />
+    <Compile Include="Domain\Types\DescriptorType.cs" />
+    <Compile Include="Domain\Types\FactorAssertion.cs" />
+    <Compile Include="Domain\Types\IdentorType.cs" />
+    <Compile Include="Domain\Types\LocatorType.cs" />
+    <Compile Include="Domain\Types\MemberType.cs" />
+    <Compile Include="Domain\FabricIdEnums.cs" />
     <Compile Include="Db\IDbResult.cs" />
     <Compile Include="Db\DbDto.cs" />
     <Compile Include="Db\DbResult.cs" />
@@ -91,6 +105,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Domain\Types\BaseType.cs" />
+    <Compile Include="Domain\Types\StaticTypes.cs" />
+    <Compile Include="Domain\Types\VectorType.cs" />
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Traversal\FuncAttribute.cs" />

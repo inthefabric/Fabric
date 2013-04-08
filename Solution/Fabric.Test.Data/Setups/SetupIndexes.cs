@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:45 PM
+// Generated on 4/8/2013 1:22:15 PM
 
 using Fabric.Domain;
 using Weaver;
@@ -24,31 +24,16 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Email>(x => x.EmailId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Instance>(x => x.InstanceId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Member>(x => x.MemberId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<MemberType>(x => x.MemberTypeId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<MemberTypeAssign>(x => x.MemberTypeAssignId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Url>(x => x.UrlId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<User>(x => x.UserId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Factor>(x => x.FactorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<FactorAssertion>(x => x.FactorAssertionId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Descriptor>(x => x.DescriptorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<DescriptorType>(x => x.DescriptorTypeId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Director>(x => x.DirectorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<DirectorType>(x => x.DirectorTypeId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<DirectorAction>(x => x.DirectorActionId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Eventor>(x => x.EventorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<EventorType>(x => x.EventorTypeId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<EventorPrecision>(x => x.EventorPrecisionId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Identor>(x => x.IdentorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<IdentorType>(x => x.IdentorTypeId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Locator>(x => x.LocatorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<LocatorType>(x => x.LocatorTypeId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Vector>(x => x.VectorId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<VectorType>(x => x.VectorTypeId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<VectorRange>(x => x.VectorRangeId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<VectorRangeLevel>(x => x.VectorRangeLevelId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<VectorUnit>(x => x.VectorUnitId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<VectorUnitPrefix>(x => x.VectorUnitPrefixId, n));
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<VectorUnitDerived>(x => x.VectorUnitDerivedId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<OauthAccess>(x => x.OauthAccessId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<OauthDomain>(x => x.OauthDomainId, n));
 			pSet.AddIndex(WeaverTasks.CreateKeyIndex<OauthGrant>(x => x.OauthGrantId, n));

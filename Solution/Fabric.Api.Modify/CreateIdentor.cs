@@ -16,8 +16,8 @@ namespace Fabric.Api.Modify {
 		public const string IdenTypeParam = "IdentorTypeId";
 		public const string ValueParam = "Value";
 
-		[ServiceOpParam(ServiceOpParamType.Form, IdenTypeParam, 1, typeof(IdentorType))]
-		private readonly long vIdenTypeId;
+		[ServiceOpParam(ServiceOpParamType.Form, IdenTypeParam, 1, typeof(Identor))]
+		private readonly byte vIdenTypeId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, ValueParam, 2, typeof(Identor))]
 		private readonly string vValue;
@@ -25,7 +25,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateIdentor(IModifyTasks pTasks, long pFactorId, long pEveTypeId, 
+		public CreateIdentor(IModifyTasks pTasks, long pFactorId, byte pEveTypeId, 
 															string pValue) : base(pTasks, pFactorId) {
 			vIdenTypeId = pEveTypeId; 
 			vValue = pValue;

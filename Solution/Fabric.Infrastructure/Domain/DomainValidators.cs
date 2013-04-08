@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:45 PM
+// Generated on 4/8/2013 1:22:15 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -14,10 +14,6 @@ namespace Fabric.Infrastructure.Domain {
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void NodeForTypeName(string pValue, string pParamName);
-		void NodeForTypeName(string pValue);
-		void NodeForTypeDescription(string pValue, string pParamName);
-		void NodeForTypeDescription(string pValue);
 		void NodeForActionPerformed(long pValue, string pParamName);
 		void NodeForActionPerformed(long pValue);
 		void NodeForActionNote(string pValue, string pParamName);
@@ -60,10 +56,10 @@ namespace Fabric.Infrastructure.Domain {
 		void InstanceNote(string pValue);
 		void MemberId(long pValue, string pParamName);
 		void MemberId(long pValue);
-		void MemberTypeId(long pValue, string pParamName);
-		void MemberTypeId(long pValue);
 		void MemberTypeAssignId(long pValue, string pParamName);
 		void MemberTypeAssignId(long pValue);
+		void MemberTypeId(byte pValue, string pParamName);
+		void MemberTypeId(byte pValue);
 		void UrlId(long pValue, string pParamName);
 		void UrlId(long pValue);
 		void UrlName(string pValue, string pParamName);
@@ -78,6 +74,8 @@ namespace Fabric.Infrastructure.Domain {
 		void UserPassword(string pValue);
 		void FactorId(long pValue, string pParamName);
 		void FactorId(long pValue);
+		void FactorAssertionId(byte pValue, string pParamName);
+		void FactorAssertionId(byte pValue);
 		void FactorIsDefining(bool pValue, string pParamName);
 		void FactorIsDefining(bool pValue);
 		void FactorCreated(long pValue, string pParamName);
@@ -88,84 +86,52 @@ namespace Fabric.Infrastructure.Domain {
 		void FactorCompleted(long pValue);
 		void FactorNote(string pValue, string pParamName);
 		void FactorNote(string pValue);
-		void FactorAssertionId(long pValue, string pParamName);
-		void FactorAssertionId(long pValue);
 		void DescriptorId(long pValue, string pParamName);
 		void DescriptorId(long pValue);
-		void DescriptorTypeId(long pValue, string pParamName);
-		void DescriptorTypeId(long pValue);
+		void DescriptorTypeId(byte pValue, string pParamName);
+		void DescriptorTypeId(byte pValue);
 		void DirectorId(long pValue, string pParamName);
 		void DirectorId(long pValue);
-		void DirectorTypeId(long pValue, string pParamName);
-		void DirectorTypeId(long pValue);
-		void DirectorActionId(long pValue, string pParamName);
-		void DirectorActionId(long pValue);
+		void DirectorTypeId(byte pValue, string pParamName);
+		void DirectorTypeId(byte pValue);
+		void PrimaryDirectorActionId(byte pValue, string pParamName);
+		void PrimaryDirectorActionId(byte pValue);
+		void RelatedDirectorActionId(byte pValue, string pParamName);
+		void RelatedDirectorActionId(byte pValue);
 		void EventorId(long pValue, string pParamName);
 		void EventorId(long pValue);
+		void EventorTypeId(byte pValue, string pParamName);
+		void EventorTypeId(byte pValue);
+		void EventorPrecisionId(byte pValue, string pParamName);
+		void EventorPrecisionId(byte pValue);
 		void EventorDateTime(long pValue, string pParamName);
 		void EventorDateTime(long pValue);
-		void EventorTypeId(long pValue, string pParamName);
-		void EventorTypeId(long pValue);
-		void EventorPrecisionId(long pValue, string pParamName);
-		void EventorPrecisionId(long pValue);
 		void IdentorId(long pValue, string pParamName);
 		void IdentorId(long pValue);
+		void IdentorTypeId(byte pValue, string pParamName);
+		void IdentorTypeId(byte pValue);
 		void IdentorValue(string pValue, string pParamName);
 		void IdentorValue(string pValue);
-		void IdentorTypeId(long pValue, string pParamName);
-		void IdentorTypeId(long pValue);
 		void LocatorId(long pValue, string pParamName);
 		void LocatorId(long pValue);
+		void LocatorTypeId(byte pValue, string pParamName);
+		void LocatorTypeId(byte pValue);
 		void LocatorValueX(double pValue, string pParamName);
 		void LocatorValueX(double pValue);
 		void LocatorValueY(double pValue, string pParamName);
 		void LocatorValueY(double pValue);
 		void LocatorValueZ(double pValue, string pParamName);
 		void LocatorValueZ(double pValue);
-		void LocatorTypeId(long pValue, string pParamName);
-		void LocatorTypeId(long pValue);
-		void LocatorTypeMinX(double pValue, string pParamName);
-		void LocatorTypeMinX(double pValue);
-		void LocatorTypeMaxX(double pValue, string pParamName);
-		void LocatorTypeMaxX(double pValue);
-		void LocatorTypeMinY(double pValue, string pParamName);
-		void LocatorTypeMinY(double pValue);
-		void LocatorTypeMaxY(double pValue, string pParamName);
-		void LocatorTypeMaxY(double pValue);
-		void LocatorTypeMinZ(double pValue, string pParamName);
-		void LocatorTypeMinZ(double pValue);
-		void LocatorTypeMaxZ(double pValue, string pParamName);
-		void LocatorTypeMaxZ(double pValue);
 		void VectorId(long pValue, string pParamName);
 		void VectorId(long pValue);
+		void VectorTypeId(byte pValue, string pParamName);
+		void VectorTypeId(byte pValue);
+		void VectorUnitId(byte pValue, string pParamName);
+		void VectorUnitId(byte pValue);
+		void VectorUnitPrefixId(byte pValue, string pParamName);
+		void VectorUnitPrefixId(byte pValue);
 		void VectorValue(long pValue, string pParamName);
 		void VectorValue(long pValue);
-		void VectorTypeId(long pValue, string pParamName);
-		void VectorTypeId(long pValue);
-		void VectorTypeMin(long pValue, string pParamName);
-		void VectorTypeMin(long pValue);
-		void VectorTypeMax(long pValue, string pParamName);
-		void VectorTypeMax(long pValue);
-		void VectorRangeId(long pValue, string pParamName);
-		void VectorRangeId(long pValue);
-		void VectorRangeLevelId(long pValue, string pParamName);
-		void VectorRangeLevelId(long pValue);
-		void VectorRangeLevelPosition(float pValue, string pParamName);
-		void VectorRangeLevelPosition(float pValue);
-		void VectorUnitId(long pValue, string pParamName);
-		void VectorUnitId(long pValue);
-		void VectorUnitSymbol(string pValue, string pParamName);
-		void VectorUnitSymbol(string pValue);
-		void VectorUnitPrefixId(long pValue, string pParamName);
-		void VectorUnitPrefixId(long pValue);
-		void VectorUnitPrefixSymbol(string pValue, string pParamName);
-		void VectorUnitPrefixSymbol(string pValue);
-		void VectorUnitPrefixAmount(double pValue, string pParamName);
-		void VectorUnitPrefixAmount(double pValue);
-		void VectorUnitDerivedId(long pValue, string pParamName);
-		void VectorUnitDerivedId(long pValue);
-		void VectorUnitDerivedExponent(int pValue, string pParamName);
-		void VectorUnitDerivedExponent(int pValue);
 		void OauthAccessId(long pValue, string pParamName);
 		void OauthAccessId(long pValue);
 		void OauthAccessToken(string pValue, string pParamName);
@@ -199,32 +165,6 @@ namespace Fabric.Infrastructure.Domain {
 
 	/*================================================================================================*/
 	public partial class DomainValidator : IDomainValidator {
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForTypeName(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthBetween(pParamName, pValue, 1, 32);
-			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForTypeName(string pValue) {
-			NodeForTypeName(pValue, "Name");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForTypeDescription(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthBetween(pParamName, pValue, 1, 256);
-			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForTypeDescription(string pValue) {
-			NodeForTypeDescription(pValue, "Description");
-		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -470,18 +410,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void MemberTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(MemberTypeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void MemberTypeId(long pValue) {
-			MemberTypeId(pValue, "MemberTypeId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public void MemberTypeAssignId(long pValue, string pParamName) {
 			LongNotEqualTo(pParamName, pValue, 0);
 		}
@@ -489,6 +417,16 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void MemberTypeAssignId(long pValue) {
 			MemberTypeAssignId(pValue, "MemberTypeAssignId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void MemberTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void MemberTypeId(byte pValue) {
+			MemberTypeId(pValue, "MemberTypeId");
 		}
 
 		
@@ -573,6 +511,16 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public void FactorAssertionId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void FactorAssertionId(byte pValue) {
+			FactorAssertionId(pValue, "FactorAssertionId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public void FactorIsDefining(bool pValue, string pParamName) {
 			throw new Exception("IsDefining has no validation. Property value was "+pValue);
 		}
@@ -625,18 +573,6 @@ namespace Fabric.Infrastructure.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void FactorAssertionId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(FactorAssertionId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void FactorAssertionId(long pValue) {
-			FactorAssertionId(pValue, "FactorAssertionId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -649,15 +585,13 @@ namespace Fabric.Infrastructure.Domain {
 			DescriptorId(pValue, "DescriptorId");
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DescriptorTypeId)).Length);
+		public void DescriptorTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DescriptorTypeId(long pValue) {
+		public void DescriptorTypeId(byte pValue) {
 			DescriptorTypeId(pValue, "DescriptorTypeId");
 		}
 
@@ -673,28 +607,34 @@ namespace Fabric.Infrastructure.Domain {
 			DirectorId(pValue, "DirectorId");
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorTypeId)).Length);
+		public void DirectorTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorTypeId(long pValue) {
+		public void DirectorTypeId(byte pValue) {
 			DirectorTypeId(pValue, "DirectorTypeId");
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorActionId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorActionId)).Length);
+		public void PrimaryDirectorActionId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DirectorActionId(long pValue) {
-			DirectorActionId(pValue, "DirectorActionId");
+		public void PrimaryDirectorActionId(byte pValue) {
+			PrimaryDirectorActionId(pValue, "PrimaryDirectorActionId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void RelatedDirectorActionId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void RelatedDirectorActionId(byte pValue) {
+			RelatedDirectorActionId(pValue, "RelatedDirectorActionId");
 		}
 
 		
@@ -710,6 +650,26 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public void EventorTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void EventorTypeId(byte pValue) {
+			EventorTypeId(pValue, "EventorTypeId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void EventorPrecisionId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void EventorPrecisionId(byte pValue) {
+			EventorPrecisionId(pValue, "EventorPrecisionId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public void EventorDateTime(long pValue, string pParamName) {
 			LongGreaterThanOrEqual(pParamName, pValue, 1);
 		}
@@ -722,30 +682,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void EventorTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorTypeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorTypeId(long pValue) {
-			EventorTypeId(pValue, "EventorTypeId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorPrecisionId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorPrecisionId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void EventorPrecisionId(long pValue) {
-			EventorPrecisionId(pValue, "EventorPrecisionId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public void IdentorId(long pValue, string pParamName) {
 			LongNotEqualTo(pParamName, pValue, 0);
 		}
@@ -753,6 +689,16 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void IdentorId(long pValue) {
 			IdentorId(pValue, "IdentorId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void IdentorTypeId(byte pValue) {
+			IdentorTypeId(pValue, "IdentorTypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -769,18 +715,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(IdentorTypeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void IdentorTypeId(long pValue) {
-			IdentorTypeId(pValue, "IdentorTypeId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public void LocatorId(long pValue, string pParamName) {
 			LongNotEqualTo(pParamName, pValue, 0);
 		}
@@ -788,6 +722,16 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void LocatorId(long pValue) {
 			LocatorId(pValue, "LocatorId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void LocatorTypeId(byte pValue) {
+			LocatorTypeId(pValue, "LocatorTypeId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -823,78 +767,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(LocatorTypeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeId(long pValue) {
-			LocatorTypeId(pValue, "LocatorTypeId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinX(double pValue, string pParamName) {
-			throw new Exception("MinX has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinX(double pValue) {
-			LocatorTypeMinX(pValue, "MinX");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxX(double pValue, string pParamName) {
-			throw new Exception("MaxX has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxX(double pValue) {
-			LocatorTypeMaxX(pValue, "MaxX");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinY(double pValue, string pParamName) {
-			throw new Exception("MinY has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinY(double pValue) {
-			LocatorTypeMinY(pValue, "MinY");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxY(double pValue, string pParamName) {
-			throw new Exception("MaxY has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxY(double pValue) {
-			LocatorTypeMaxY(pValue, "MaxY");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinZ(double pValue, string pParamName) {
-			throw new Exception("MinZ has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMinZ(double pValue) {
-			LocatorTypeMinZ(pValue, "MinZ");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxZ(double pValue, string pParamName) {
-			throw new Exception("MaxZ has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void LocatorTypeMaxZ(double pValue) {
-			LocatorTypeMaxZ(pValue, "MaxZ");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public void VectorId(long pValue, string pParamName) {
 			LongNotEqualTo(pParamName, pValue, 0);
 		}
@@ -905,6 +777,36 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorTypeId(byte pValue) {
+			VectorTypeId(pValue, "VectorTypeId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitId(byte pValue) {
+			VectorUnitId(pValue, "VectorUnitId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixId(byte pValue, string pParamName) {
+			LongNotEqualTo(pParamName, pValue, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void VectorUnitPrefixId(byte pValue) {
+			VectorUnitPrefixId(pValue, "VectorUnitPrefixId");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public void VectorValue(long pValue, string pParamName) {
 			throw new Exception("Value has no validation. Property value was "+pValue);
 		}
@@ -912,150 +814,6 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void VectorValue(long pValue) {
 			VectorValue(pValue, "Value");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorTypeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeId(long pValue) {
-			VectorTypeId(pValue, "VectorTypeId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeMin(long pValue, string pParamName) {
-			throw new Exception("Min has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeMin(long pValue) {
-			VectorTypeMin(pValue, "Min");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeMax(long pValue, string pParamName) {
-			throw new Exception("Max has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorTypeMax(long pValue) {
-			VectorTypeMax(pValue, "Max");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorRangeId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeId(long pValue) {
-			VectorRangeId(pValue, "VectorRangeId");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeLevelId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorRangeLevelId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeLevelId(long pValue) {
-			VectorRangeLevelId(pValue, "VectorRangeLevelId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeLevelPosition(float pValue, string pParamName) {
-			throw new Exception("Position has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorRangeLevelPosition(float pValue) {
-			VectorRangeLevelPosition(pValue, "Position");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitId(long pValue) {
-			VectorUnitId(pValue, "VectorUnitId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitSymbol(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthBetween(pParamName, pValue, 1, 8);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitSymbol(string pValue) {
-			VectorUnitSymbol(pValue, "Symbol");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitPrefixId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixId(long pValue) {
-			VectorUnitPrefixId(pValue, "VectorUnitPrefixId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixSymbol(string pValue, string pParamName) {
-			NotNull(pParamName, pValue);
-			LengthBetween(pParamName, pValue, 1, 8);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixSymbol(string pValue) {
-			VectorUnitPrefixSymbol(pValue, "Symbol");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixAmount(double pValue, string pParamName) {
-			throw new Exception("Amount has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitPrefixAmount(double pValue) {
-			VectorUnitPrefixAmount(pValue, "Amount");
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitDerivedId(long pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitDerivedId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitDerivedId(long pValue) {
-			VectorUnitDerivedId(pValue, "VectorUnitDerivedId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitDerivedExponent(int pValue, string pParamName) {
-			throw new Exception("Exponent has no validation. Property value was "+pValue);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void VectorUnitDerivedExponent(int pValue) {
-			VectorUnitDerivedExponent(pValue, "Exponent");
 		}
 
 		

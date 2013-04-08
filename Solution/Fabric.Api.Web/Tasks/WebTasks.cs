@@ -4,6 +4,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
@@ -130,7 +131,7 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx,
-										long pAssigningMemberId, long pMemberId, long pMemberTypeId) {
+										long pAssigningMemberId, long pMemberId, byte pMemberTypeId) {
 			var txb = new TxBuilder();
 
 			var mem = new Member { MemberId = pMemberId };
@@ -163,13 +164,13 @@ namespace Fabric.Api.Web.Tasks {
 			
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = pApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			mta.MemberTypeId = pMemberTypeId;
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 			
 			var mtaBuild = new MemberTypeAssignBuilder(txb, mta);
 			mtaBuild.AddNode();
 			mtaBuild.SetInMemberCreates(pAssigningMemberId);
 			mtaBuild.SetInMemberHas(memAlias);
-			mtaBuild.SetUsesMemberType(pMemberTypeId);
 
 			txb.Finish(mtaBuild.NodeVar);
 			return pApiCtx.DbSingle<MemberTypeAssign>("AddMemberTypeAssign", txb.Transaction);
@@ -263,6 +264,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = pApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			mta.MemberTypeId = (byte)MemberTypeId.Member;
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
@@ -275,7 +277,6 @@ namespace Fabric.Api.Web.Tasks {
 			mtaBuild.AddNode();
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
-			mtaBuild.SetUsesMemberType((long)MemberTypeId.Member);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -316,6 +317,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			var mta = new MemberTypeAssign();
 			mta.MemberTypeAssignId = pApiCtx.GetSharpflakeId<MemberTypeAssign>();
+			mta.MemberTypeId = (byte)MemberTypeId.DataProvider;
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
@@ -328,7 +330,6 @@ namespace Fabric.Api.Web.Tasks {
 			mtaBuild.AddNode();
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 			mtaBuild.SetInMemberHas(memBuild.NodeVar);
-			mtaBuild.SetUsesMemberType((long)MemberTypeId.DataProvider);
 		}
 
 	}

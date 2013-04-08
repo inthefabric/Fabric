@@ -19,8 +19,8 @@ namespace Fabric.Api.Modify {
 		public const string RelArtRefParam = "RelatedArtifactRefineId";
 		public const string DescTypeRefParam = "DescriptorTypeRefineId";
 
-		[ServiceOpParam(ServiceOpParamType.Form, DescTypeParam, 1, typeof(DescriptorType))]
-		private readonly long vDescTypeId;
+		[ServiceOpParam(ServiceOpParamType.Form, DescTypeParam, 1, typeof(Descriptor))]
+		private readonly byte vDescTypeId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, PrimArtRefParam, 2, typeof(Artifact),
 			DomainPropertyName="ArtifactId", IsRequired=false)]
@@ -37,7 +37,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateDescriptor(IModifyTasks pTasks, long pFactorId, long pDescTypeId, 
+		public CreateDescriptor(IModifyTasks pTasks, long pFactorId, byte pDescTypeId, 
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) : 
 										base(pTasks, pFactorId) {
 			vDescTypeId = pDescTypeId; 

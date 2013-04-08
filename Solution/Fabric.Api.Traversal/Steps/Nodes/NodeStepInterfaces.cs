@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/4/2013 5:12:46 PM
+// Generated on 4/8/2013 1:22:16 PM
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -90,11 +90,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInMemberTypeAssignListUses {
-		IMemberTypeAssignStep InMemberTypeAssignListUses { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IInMemberHas {
 		IMemberStep InMemberHas { get; }
 	}
@@ -105,11 +100,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IUsesMemberType {
-		IMemberTypeStep UsesMemberType { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IUsesPrimaryArtifact {
 		IArtifactStep UsesPrimaryArtifact { get; }
 	}
@@ -117,11 +107,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IUsesRelatedArtifact {
 		IArtifactStep UsesRelatedArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesFactorAssertion {
-		IFactorAssertionStep UsesFactorAssertion { get; }
 	}
 
 	/*================================================================================================*/
@@ -165,11 +150,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IUsesDescriptorType {
-		IDescriptorTypeStep UsesDescriptorType { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IRefinesPrimaryWithArtifact {
 		IArtifactStep RefinesPrimaryWithArtifact { get; }
 	}
@@ -185,143 +165,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInDescriptorListUses {
-		IDescriptorStep InDescriptorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesDirectorType {
-		IDirectorTypeStep UsesDirectorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesPrimaryDirectorAction {
-		IDirectorActionStep UsesPrimaryDirectorAction { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesRelatedDirectorAction {
-		IDirectorActionStep UsesRelatedDirectorAction { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorListUses {
-		IDirectorStep InDirectorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorListUsesPrimary {
-		IDirectorStep InDirectorListUsesPrimary { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInDirectorListUsesRelated {
-		IDirectorStep InDirectorListUsesRelated { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesEventorType {
-		IEventorTypeStep UsesEventorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesEventorPrecision {
-		IEventorPrecisionStep UsesEventorPrecision { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInEventorListUses {
-		IEventorStep InEventorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesIdentorType {
-		IIdentorTypeStep UsesIdentorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInIdentorListUses {
-		IIdentorStep InIdentorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesLocatorType {
-		ILocatorTypeStep UsesLocatorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInLocatorListUses {
-		ILocatorStep InLocatorListUses { get; }
-	}
-
-	/*================================================================================================*/
 	public interface IUsesAxisArtifact {
 		IArtifactStep UsesAxisArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorType {
-		IVectorTypeStep UsesVectorType { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorUnit {
-		IVectorUnitStep UsesVectorUnit { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorUnitPrefix {
-		IVectorUnitPrefixStep UsesVectorUnitPrefix { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorListUses {
-		IVectorStep InVectorListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorRange {
-		IVectorRangeStep UsesVectorRange { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorTypeListUses {
-		IVectorTypeStep InVectorTypeListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesVectorRangeLevelList {
-		IVectorRangeLevelStep UsesVectorRangeLevelList { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorRangeListUses {
-		IVectorRangeStep InVectorRangeListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedListDefines {
-		IVectorUnitDerivedStep InVectorUnitDerivedListDefines { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedListRaisesToExp {
-		IVectorUnitDerivedStep InVectorUnitDerivedListRaisesToExp { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IInVectorUnitDerivedListUses {
-		IVectorUnitDerivedStep InVectorUnitDerivedListUses { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IDefinesVectorUnit {
-		IVectorUnitStep DefinesVectorUnit { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IRaisesToExpVectorUnit {
-		IVectorUnitStep RaisesToExpVectorUnit { get; }
 	}
 
 	/*================================================================================================*/
@@ -332,11 +177,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public interface IUsesUser {
 		IUserStep UsesUser { get; }
-	}
-
-	/*================================================================================================*/
-	public interface INodeForTypeStep :
-		INodeStep {
 	}
 
 	/*================================================================================================*/
@@ -370,13 +210,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IMemberTypeStep :
-		INodeForTypeStep, IInMemberTypeAssignListUses {
-	}
-
-	/*================================================================================================*/
 	public interface IMemberTypeAssignStep :
-		INodeForActionStep, IInMemberHas, IInMemberHasHistoric, IInMemberCreates, IUsesMemberType {
+		INodeForActionStep, IInMemberHas, IInMemberHasHistoric, IInMemberCreates {
 	}
 
 	/*================================================================================================*/
@@ -391,12 +226,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IFactorStep :
-		INodeStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IUsesFactorAssertion, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
-	}
-
-	/*================================================================================================*/
-	public interface IFactorAssertionStep :
-		INodeForTypeStep, IInFactorListUses {
+		INodeStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IReplacesFactor, IUsesDescriptor, IUsesDirector, IUsesEventor, IUsesIdentor, IUsesLocator, IUsesVector {
 	}
 
 	/*================================================================================================*/
@@ -406,97 +236,32 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IDescriptorStep :
-		IFactorElementNodeStep, IInFactorListUses, IUsesDescriptorType, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
-	}
-
-	/*================================================================================================*/
-	public interface IDescriptorTypeStep :
-		INodeForTypeStep, IInDescriptorListUses {
+		IFactorElementNodeStep, IInFactorListUses, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact {
 	}
 
 	/*================================================================================================*/
 	public interface IDirectorStep :
-		IFactorElementNodeStep, IInFactorListUses, IUsesDirectorType, IUsesPrimaryDirectorAction, IUsesRelatedDirectorAction {
-	}
-
-	/*================================================================================================*/
-	public interface IDirectorTypeStep :
-		INodeForTypeStep, IInDirectorListUses {
-	}
-
-	/*================================================================================================*/
-	public interface IDirectorActionStep :
-		INodeForTypeStep, IInDirectorListUsesPrimary, IInDirectorListUsesRelated {
+		IFactorElementNodeStep, IInFactorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IEventorStep :
-		IFactorElementNodeStep, IInFactorListUses, IUsesEventorType, IUsesEventorPrecision {
-	}
-
-	/*================================================================================================*/
-	public interface IEventorTypeStep :
-		INodeForTypeStep, IInEventorListUses {
-	}
-
-	/*================================================================================================*/
-	public interface IEventorPrecisionStep :
-		INodeForTypeStep, IInEventorListUses {
+		IFactorElementNodeStep, IInFactorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IIdentorStep :
-		IFactorElementNodeStep, IInFactorListUses, IUsesIdentorType {
-	}
-
-	/*================================================================================================*/
-	public interface IIdentorTypeStep :
-		INodeForTypeStep, IInIdentorListUses {
+		IFactorElementNodeStep, IInFactorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface ILocatorStep :
-		IFactorElementNodeStep, IInFactorListUses, IUsesLocatorType {
-	}
-
-	/*================================================================================================*/
-	public interface ILocatorTypeStep :
-		INodeForTypeStep, IInLocatorListUses {
+		IFactorElementNodeStep, IInFactorListUses {
 	}
 
 	/*================================================================================================*/
 	public interface IVectorStep :
-		IFactorElementNodeStep, IInFactorListUses, IUsesAxisArtifact, IUsesVectorType, IUsesVectorUnit, IUsesVectorUnitPrefix {
-	}
-
-	/*================================================================================================*/
-	public interface IVectorTypeStep :
-		INodeForTypeStep, IInVectorListUses, IUsesVectorRange {
-	}
-
-	/*================================================================================================*/
-	public interface IVectorRangeStep :
-		INodeForTypeStep, IInVectorTypeListUses, IUsesVectorRangeLevelList {
-	}
-
-	/*================================================================================================*/
-	public interface IVectorRangeLevelStep :
-		INodeForTypeStep, IInVectorRangeListUses {
-	}
-
-	/*================================================================================================*/
-	public interface IVectorUnitStep :
-		INodeForTypeStep, IInVectorListUses, IInVectorUnitDerivedListDefines, IInVectorUnitDerivedListRaisesToExp {
-	}
-
-	/*================================================================================================*/
-	public interface IVectorUnitPrefixStep :
-		INodeForTypeStep, IInVectorListUses, IInVectorUnitDerivedListUses {
-	}
-
-	/*================================================================================================*/
-	public interface IVectorUnitDerivedStep :
-		INodeForTypeStep, IDefinesVectorUnit, IRaisesToExpVectorUnit, IUsesVectorUnitPrefix {
+		IFactorElementNodeStep, IInFactorListUses, IUsesAxisArtifact {
 	}
 
 }
