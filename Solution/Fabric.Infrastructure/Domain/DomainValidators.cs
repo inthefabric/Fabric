@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:24 PM
+// Generated on 4/8/2013 3:34:03 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -641,7 +641,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorIdentor_Value(string pValue, string pParamName) {
-			if ( pValue == null ) { return; }
+			NotNull(pParamName, pValue);
 			LengthBetween(pParamName, pValue, 1, 256);
 		}
 

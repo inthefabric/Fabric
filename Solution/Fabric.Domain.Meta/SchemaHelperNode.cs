@@ -13,6 +13,7 @@ namespace Fabric.Domain.Meta {
 
 		private readonly IList<SchemaHelperProp> vProps;
 		private readonly IList<SchemaHelperNodeRel> vRels;
+		private readonly IDictionary<string, IList<SchemaHelperProp>> vSubMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,9 +25,27 @@ namespace Fabric.Domain.Meta {
 
 			vProps = new List<SchemaHelperProp>();
 			vRels = new List<SchemaHelperNodeRel>();
+			vSubMap = new Dictionary<string, IList<SchemaHelperProp>>();
 
 			foreach ( WeaverPropSchema ps in NodeSchema.Props ) {
-				vProps.Add(new SchemaHelperProp(ps));
+				var hp = new SchemaHelperProp(ps);
+				vProps.Add(hp);
+
+				string name = ps.Name;
+				int underI = name.IndexOf('_');
+
+				if ( underI == -1 ) {
+					continue;
+				}
+
+				string sub = name.Substring(0, underI);
+				string prop = name.Substring(underI+1);
+
+				if ( !vSubMap.ContainsKey(sub) ) {
+					vSubMap.Add(sub, new List<SchemaHelperProp>());
+				}
+
+				vSubMap[sub].Add(hp);
 			}
 
 			foreach ( WeaverRelSchema pr in SchemaHelper.SchemaInstance.Rels ) {
@@ -36,9 +55,10 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<SchemaHelperProp> GetProps(bool pSkipInternal=false) {
+		public IList<SchemaHelperProp> GetProps(bool pSkipInternal=false, bool pSkipSubs=false) {
 			return vProps
 				.Where(p => (!pSkipInternal || p.PropSchema.IsInternal != true))
+				.Where(p => (!pSkipSubs || !p.IsSubProp() ))
 				.ToList();
 		}
 
@@ -59,6 +79,16 @@ namespace Fabric.Domain.Meta {
 			List<SchemaHelperNodeRel> rels = parent.GetNestedRels(pSkipInternal).ToList();
 			rels.AddRange(GetRels(pSkipInternal));
 			return rels;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<string> GetSubNames() {
+			return vSubMap.Keys.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<SchemaHelperProp> GetSubProps(string pSubName) {
+			return vSubMap[pSubName];
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

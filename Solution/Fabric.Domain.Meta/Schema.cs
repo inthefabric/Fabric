@@ -231,47 +231,30 @@ namespace Fabric.Domain.Meta {
 				p.IsNullable = true;
 
 			p = AddProp(factor, "Descriptor_TypeId", typeof(byte));
-				p.IsNullable = true;
 
 			p = AddProp(factor, "Director_TypeId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Director_PrimaryActionId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Director_RelatedActionId", typeof(byte));
-				p.IsNullable = true;
 
 			p = AddProp(factor, "Eventor_TypeId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Eventor_PrecisionId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Eventor_DateTime", typeof(DateTime));
 				p.Min = 1;
-				p.IsNullable = true;
 
 			p = AddProp(factor, "Identor_TypeId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Identor_Value", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
-				p.IsNullable = true;
 
 			p = AddProp(factor, "Locator_TypeId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Locator_ValueX", typeof(double));
-				p.IsNullable = true;
 			p = AddProp(factor, "Locator_ValueY", typeof(double));
-				p.IsNullable = true;
 			p = AddProp(factor, "Locator_ValueZ", typeof(double));
-				p.IsNullable = true;
 
 			p = AddProp(factor, "Vector_TypeId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Vector_UnitId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Vector_UnitPrefixId", typeof(byte));
-				p.IsNullable = true;
 			p = AddProp(factor, "Vector_Value", typeof(long));
-				p.IsNullable = true;
 			
 			////
 

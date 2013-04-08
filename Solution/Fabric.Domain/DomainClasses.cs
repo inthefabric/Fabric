@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:23 PM
+// Generated on 4/8/2013 3:34:03 PM
 
 using System;
 using System.Linq.Expressions;
@@ -858,74 +858,57 @@ namespace Fabric.Domain {
 		public virtual string Note { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Descriptor_TypeId { get; set; }
+		public virtual byte Descriptor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Director_TypeId { get; set; }
+		public virtual byte Director_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Director_PrimaryActionId { get; set; }
+		public virtual byte Director_PrimaryActionId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Director_RelatedActionId { get; set; }
+		public virtual byte Director_RelatedActionId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Eventor_TypeId { get; set; }
+		public virtual byte Eventor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Eventor_PrecisionId { get; set; }
+		public virtual byte Eventor_PrecisionId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual long? Eventor_DateTime { get; set; }
+		public virtual long Eventor_DateTime { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Identor_TypeId { get; set; }
+		public virtual byte Identor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
 		//[PropLenMax(256)]
 		//[PropLenMin(1)]
 		public virtual string Identor_Value { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Locator_TypeId { get; set; }
+		public virtual byte Locator_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual double? Locator_ValueX { get; set; }
+		public virtual double Locator_ValueX { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual double? Locator_ValueY { get; set; }
+		public virtual double Locator_ValueY { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual double? Locator_ValueZ { get; set; }
+		public virtual double Locator_ValueZ { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Vector_TypeId { get; set; }
+		public virtual byte Vector_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Vector_UnitId { get; set; }
+		public virtual byte Vector_UnitId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual byte? Vector_UnitPrefixId { get; set; }
+		public virtual byte Vector_UnitPrefixId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		public virtual long? Vector_Value { get; set; }
+		public virtual long Vector_Value { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

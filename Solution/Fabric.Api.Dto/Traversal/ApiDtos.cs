@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:24 PM
+// Generated on 4/8/2013 3:37:17 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +51,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabArtifact : FabNode {
 		
@@ -77,7 +76,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ArtifactId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
@@ -102,7 +101,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabApp : FabArtifact {
 		
@@ -128,7 +126,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return AppId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
@@ -156,7 +154,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabClass : FabArtifact {
 		
@@ -188,7 +185,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return ClassId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
@@ -224,7 +221,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabInstance : FabArtifact {
 		
@@ -256,7 +252,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return InstanceId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
@@ -292,7 +288,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabMember : FabNode {
 		
@@ -315,7 +310,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
@@ -336,7 +331,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabMemberTypeAssign : FabNodeForAction {
 		
@@ -362,7 +356,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return MemberTypeAssignId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
@@ -389,7 +383,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabUrl : FabArtifact {
 		
@@ -418,7 +411,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return UrlId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
@@ -450,7 +443,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabUser : FabArtifact {
 		
@@ -476,7 +468,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return UserId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
@@ -504,7 +496,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
-
 	/*================================================================================================*/
 	public class FabFactor : FabNode {
 		
@@ -527,58 +518,25 @@ namespace Fabric.Api.Dto.Traversal {
 		public string Note { get; set; }
 		
 		[DtoProp(IsOptional=true)]
-		public byte? Descriptor_TypeId { get; set; }
+		public FabDescriptor Descriptor { get; set; }
 		
 		[DtoProp(IsOptional=true)]
-		public byte? Director_TypeId { get; set; }
+		public FabDirector Director { get; set; }
 		
 		[DtoProp(IsOptional=true)]
-		public byte? Director_PrimaryActionId { get; set; }
+		public FabEventor Eventor { get; set; }
 		
 		[DtoProp(IsOptional=true)]
-		public byte? Director_RelatedActionId { get; set; }
+		public FabIdentor Identor { get; set; }
 		
 		[DtoProp(IsOptional=true)]
-		public byte? Eventor_TypeId { get; set; }
+		public FabLocator Locator { get; set; }
 		
 		[DtoProp(IsOptional=true)]
-		public byte? Eventor_PrecisionId { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public long? Eventor_DateTime { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public byte? Identor_TypeId { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public string Identor_Value { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public byte? Locator_TypeId { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public double? Locator_ValueX { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public double? Locator_ValueY { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public double? Locator_ValueZ { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public byte? Vector_TypeId { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public byte? Vector_UnitId { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public byte? Vector_UnitPrefixId { get; set; }
-		
-		[DtoProp(IsOptional=true)]
-		public long? Vector_Value { get; set; }
+		public FabVector Vector { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"FactorId", "FactorAssertionId", "IsDefining", "Created", "Completed", "Note", "Descriptor_TypeId", "Director_TypeId", "Director_PrimaryActionId", "Director_RelatedActionId", "Eventor_TypeId", "Eventor_PrecisionId", "Eventor_DateTime", "Identor_TypeId", "Identor_Value", "Locator_TypeId", "Locator_ValueX", "Locator_ValueY", "Locator_ValueZ", "Vector_TypeId", "Vector_UnitId", "Vector_UnitPrefixId", "Vector_Value"
+			"FactorId", "FactorAssertionId", "IsDefining", "Created", "Completed", "Note", "Descriptor.TypeId", "Director.TypeId", "Director.PrimaryActionId", "Director.RelatedActionId", "Eventor.TypeId", "Eventor.PrecisionId", "Eventor.DateTime", "Identor.TypeId", "Identor.Value", "Locator.TypeId", "Locator.ValueX", "Locator.ValueY", "Locator.ValueZ", "Vector.TypeId", "Vector.UnitId", "Vector.UnitPrefixId", "Vector.Value"
 		};
 
 
@@ -593,7 +551,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return FactorId; } }
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
@@ -617,56 +575,104 @@ namespace Fabric.Api.Dto.Traversal {
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
 
-			found = pData.TryGetValue("Descriptor_TypeId", out val);
-			if ( found ) { Descriptor_TypeId = byte.Parse(val); }
+			val = pData["Descriptor_TypeId"];
+			if ( found ) {
+				if ( Descriptor == null ) { Descriptor = new FabDescriptor(); }
+				Descriptor.TypeId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Director_TypeId", out val);
-			if ( found ) { Director_TypeId = byte.Parse(val); }
+			val = pData["Director_TypeId"];
+			if ( found ) {
+				if ( Director == null ) { Director = new FabDirector(); }
+				Director.TypeId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Director_PrimaryActionId", out val);
-			if ( found ) { Director_PrimaryActionId = byte.Parse(val); }
+			val = pData["Director_PrimaryActionId"];
+			if ( found ) {
+				if ( Director == null ) { Director = new FabDirector(); }
+				Director.PrimaryActionId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Director_RelatedActionId", out val);
-			if ( found ) { Director_RelatedActionId = byte.Parse(val); }
+			val = pData["Director_RelatedActionId"];
+			if ( found ) {
+				if ( Director == null ) { Director = new FabDirector(); }
+				Director.RelatedActionId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Eventor_TypeId", out val);
-			if ( found ) { Eventor_TypeId = byte.Parse(val); }
+			val = pData["Eventor_TypeId"];
+			if ( found ) {
+				if ( Eventor == null ) { Eventor = new FabEventor(); }
+				Eventor.TypeId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Eventor_PrecisionId", out val);
-			if ( found ) { Eventor_PrecisionId = byte.Parse(val); }
+			val = pData["Eventor_PrecisionId"];
+			if ( found ) {
+				if ( Eventor == null ) { Eventor = new FabEventor(); }
+				Eventor.PrecisionId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Eventor_DateTime", out val);
-			if ( found ) { Eventor_DateTime = long.Parse(val); }
+			val = pData["Eventor_DateTime"];
+			if ( found ) {
+				if ( Eventor == null ) { Eventor = new FabEventor(); }
+				Eventor.DateTime = long.Parse(val);
+			}
 
-			found = pData.TryGetValue("Identor_TypeId", out val);
-			if ( found ) { Identor_TypeId = byte.Parse(val); }
+			val = pData["Identor_TypeId"];
+			if ( found ) {
+				if ( Identor == null ) { Identor = new FabIdentor(); }
+				Identor.TypeId = byte.Parse(val);
+			}
 
 			found = pData.TryGetValue("Identor_Value", out val);
-			if ( found ) { Identor_Value = val; }
+			if ( found ) { Identor.Value = val; }
 
-			found = pData.TryGetValue("Locator_TypeId", out val);
-			if ( found ) { Locator_TypeId = byte.Parse(val); }
+			val = pData["Locator_TypeId"];
+			if ( found ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.TypeId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Locator_ValueX", out val);
-			if ( found ) { Locator_ValueX = double.Parse(val); }
+			val = pData["Locator_ValueX"];
+			if ( found ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.ValueX = double.Parse(val);
+			}
 
-			found = pData.TryGetValue("Locator_ValueY", out val);
-			if ( found ) { Locator_ValueY = double.Parse(val); }
+			val = pData["Locator_ValueY"];
+			if ( found ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.ValueY = double.Parse(val);
+			}
 
-			found = pData.TryGetValue("Locator_ValueZ", out val);
-			if ( found ) { Locator_ValueZ = double.Parse(val); }
+			val = pData["Locator_ValueZ"];
+			if ( found ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.ValueZ = double.Parse(val);
+			}
 
-			found = pData.TryGetValue("Vector_TypeId", out val);
-			if ( found ) { Vector_TypeId = byte.Parse(val); }
+			val = pData["Vector_TypeId"];
+			if ( found ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.TypeId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Vector_UnitId", out val);
-			if ( found ) { Vector_UnitId = byte.Parse(val); }
+			val = pData["Vector_UnitId"];
+			if ( found ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.UnitId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Vector_UnitPrefixId", out val);
-			if ( found ) { Vector_UnitPrefixId = byte.Parse(val); }
+			val = pData["Vector_UnitPrefixId"];
+			if ( found ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.UnitPrefixId = byte.Parse(val);
+			}
 
-			found = pData.TryGetValue("Vector_Value", out val);
-			if ( found ) { Vector_Value = long.Parse(val); }
+			val = pData["Vector_Value"];
+			if ( found ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.Value = long.Parse(val);
+			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -678,23 +684,23 @@ namespace Fabric.Api.Dto.Traversal {
 			Created = pNode.Created;
 			Completed = pNode.Completed;
 			Note = pNode.Note;
-			Descriptor_TypeId = pNode.Descriptor_TypeId;
-			Director_TypeId = pNode.Director_TypeId;
-			Director_PrimaryActionId = pNode.Director_PrimaryActionId;
-			Director_RelatedActionId = pNode.Director_RelatedActionId;
-			Eventor_TypeId = pNode.Eventor_TypeId;
-			Eventor_PrecisionId = pNode.Eventor_PrecisionId;
-			Eventor_DateTime = pNode.Eventor_DateTime;
-			Identor_TypeId = pNode.Identor_TypeId;
-			Identor_Value = pNode.Identor_Value;
-			Locator_TypeId = pNode.Locator_TypeId;
-			Locator_ValueX = pNode.Locator_ValueX;
-			Locator_ValueY = pNode.Locator_ValueY;
-			Locator_ValueZ = pNode.Locator_ValueZ;
-			Vector_TypeId = pNode.Vector_TypeId;
-			Vector_UnitId = pNode.Vector_UnitId;
-			Vector_UnitPrefixId = pNode.Vector_UnitPrefixId;
-			Vector_Value = pNode.Vector_Value;
+			Descriptor.TypeId = pNode.Descriptor_TypeId;
+			Director.TypeId = pNode.Director_TypeId;
+			Director.PrimaryActionId = pNode.Director_PrimaryActionId;
+			Director.RelatedActionId = pNode.Director_RelatedActionId;
+			Eventor.TypeId = pNode.Eventor_TypeId;
+			Eventor.PrecisionId = pNode.Eventor_PrecisionId;
+			Eventor.DateTime = pNode.Eventor_DateTime;
+			Identor.TypeId = pNode.Identor_TypeId;
+			Identor.Value = pNode.Identor_Value;
+			Locator.TypeId = pNode.Locator_TypeId;
+			Locator.ValueX = pNode.Locator_ValueX;
+			Locator.ValueY = pNode.Locator_ValueY;
+			Locator.ValueZ = pNode.Locator_ValueZ;
+			Vector.TypeId = pNode.Vector_TypeId;
+			Vector.UnitId = pNode.Vector_UnitId;
+			Vector.UnitPrefixId = pNode.Vector_UnitPrefixId;
+			Vector.Value = pNode.Vector_Value;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -704,4 +710,62 @@ namespace Fabric.Api.Dto.Traversal {
 
 	}
 
+
+	/*================================================================================================*/
+	public class FabDescriptor {
+
+		public byte TypeId { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class FabDirector {
+
+		public byte TypeId { get; set; }
+		public byte PrimaryActionId { get; set; }
+		public byte RelatedActionId { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class FabEventor {
+
+		public byte TypeId { get; set; }
+		public byte PrecisionId { get; set; }
+		public long DateTime { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class FabIdentor {
+
+		public byte TypeId { get; set; }
+		public string Value { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class FabLocator {
+
+		public byte TypeId { get; set; }
+		public double ValueX { get; set; }
+		public double ValueY { get; set; }
+		public double ValueZ { get; set; }
+
+	}
+
+
+	/*================================================================================================*/
+	public class FabVector {
+
+		public byte TypeId { get; set; }
+		public byte UnitId { get; set; }
+		public byte UnitPrefixId { get; set; }
+		public long Value { get; set; }
+
+	}
 }

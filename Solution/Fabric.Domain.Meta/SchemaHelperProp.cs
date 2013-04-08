@@ -9,6 +9,7 @@ namespace Fabric.Domain.Meta {
 		public WeaverPropSchema PropSchema { get; private set; }
 
 		public string TypeName { get; private set; }
+		public string SubPropName { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,6 +17,15 @@ namespace Fabric.Domain.Meta {
 		public SchemaHelperProp(WeaverPropSchema pProp) {
 			PropSchema = pProp;
 			TypeName = GetTypeName(PropSchema.Type, (PropSchema.IsNullable == true));
+
+			if ( IsSubProp() ) {
+				SubPropName = PropSchema.Name.Split('_')[1];
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool IsSubProp() {
+			return (PropSchema.Name.IndexOf('_') != -1);
 		}
 		
 

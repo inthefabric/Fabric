@@ -37,7 +37,7 @@ foreach ( string name in nodes ) {
 	/*================================================================================================*/
 	public <#= abs #>class Fab<#= node.Name #> : Fab<#= baseNode #> {
 <#
-	IList<SchemaHelperProp> props = hn.GetProps(true);
+	IList<SchemaHelperProp> props = hn.GetProps(true, true);
 	string propList = "";
 
 	foreach ( SchemaHelperProp hp in props ) { 
@@ -55,6 +55,21 @@ foreach ( string name in nodes ) {
 		
 		[DtoProp(IsOptional=<#= isOpt #>)]
 		public <#= propType+" "+propName #> { get; set; }
+<#
+	} //end prop loop
+
+	IList<string> subNames = hn.GetSubNames();
+
+	foreach ( string subName in subNames ) { 
+		IList<SchemaHelperProp> subProps = hn.GetSubProps(subName);
+
+		foreach ( SchemaHelperProp hp in subProps ) {
+			propList += (propList == "" ? "" : ", ")+"\""+subName+"."+hp.SubPropName+"\"";
+		}
+#>
+		
+		[DtoProp(IsOptional=true)]
+		public Fab<#= subName+" "+subName #> { get; set; }
 <#
 	} //end prop loop
 #>
@@ -78,7 +93,7 @@ foreach ( string name in nodes ) {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override long TypeId { get { return <#= (hasTypeId ? node.Name+"Id" : "0") #>; } }
-
+		
 <#
 	} //end non-abstract
 #>
@@ -91,7 +106,7 @@ foreach ( string name in nodes ) {
 
 <#
 	} //end non-FabNode baseNode
-
+	
 	bool showFound = false;
 	bool showVal = (node.Props.Count > 0);
 	
@@ -112,10 +127,13 @@ foreach ( string name in nodes ) {
 			bool found;
 <#
 	} //end showFound
+
+	props = hn.GetProps(true, false);
 	
 	foreach ( SchemaHelperProp hp in props ) { 
 		string propType = hp.TypeName;
 		string propName = hp.PropSchema.Name;
+		string dotPropName = hp.PropSchema.Name.Replace('_', '.');
 		string parseType = propType.Replace("?", "");
 #>
 
@@ -133,17 +151,26 @@ foreach ( string name in nodes ) {
 
 		if ( propType == "string" ) {
 #>
-			if ( found ) { <#= propName #> = val; }
+			if ( found ) { <#= dotPropName #> = val; }
 <#
 		}
-		else if ( hp.PropSchema.IsNullable != null ) {
+		else if ( hp.IsSubProp() ) {
+			string subName = propName.Substring(0, propName.IndexOf('_'));
 #>
-			if ( found ) { <#= propName #> = <#= parseType #>.Parse(val); }
+			if ( found ) {
+				if ( <#= subName #> == null ) { <#= subName #> = new Fab<#= subName #>(); }
+				<#= dotPropName #> = <#= parseType #>.Parse(val);
+			}
+<#
+		}
+		else if ( hp.PropSchema.IsNullable == true ) {
+#>
+			if ( found ) { <#= dotPropName #> = <#= parseType #>.Parse(val); }
 <#
 		}
 		else { //not string nor nullable
 #>
-			<#= propName #> = <#= parseType #>.Parse(val);
+			<#= dotPropName #> = <#= parseType #>.Parse(val);
 <#
 		}
 
@@ -158,9 +185,10 @@ foreach ( string name in nodes ) {
 	foreach ( SchemaHelperProp hp in props ) { 
 		string propType = hp.TypeName;
 		string propName = hp.PropSchema.Name;
+		string dotPropName = hp.PropSchema.Name.Replace('_', '.');
 		string parseType = propType.Replace("?", "");
 #>
-			<#= propName #> = pNode.<#= propName #>;
+			<#= dotPropName #> = pNode.<#= propName #>;
 <#
 	} //end prop loop
 #>
@@ -172,8 +200,29 @@ foreach ( string name in nodes ) {
 		}
 
 	}
+<#
+	if ( subNames.Count > 0 ) {
+		foreach ( string subName in subNames ) {
+#>
+
+
+	/*================================================================================================*/
+	public class Fab<#= subName #> {
 
 <#
+			IList<SchemaHelperProp> subProps = hn.GetSubProps(subName);
+
+			foreach ( SchemaHelperProp hp in subProps ) {
+#>
+		public <#= hp.TypeName #> <#= hp.SubPropName #> { get; set; }
+<#
+			} //end subProp loop
+#>
+
+	}
+<#
+		} //end subname loop
+	} //end subName count condition
 } // end Node loop
 #>
 }

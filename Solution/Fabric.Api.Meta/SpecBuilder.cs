@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:25 PM
+// Generated on 4/8/2013 3:34:05 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -475,121 +475,104 @@ namespace Fabric.Api.Meta {
 
 				case "Factor.Descriptor_TypeId":
 					pProp.Name = "Descriptor_TypeId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Descriptor_TypeId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Director_TypeId":
 					pProp.Name = "Director_TypeId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_TypeId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Director_PrimaryActionId":
 					pProp.Name = "Director_PrimaryActionId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_PrimaryActionId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Director_RelatedActionId":
 					pProp.Name = "Director_RelatedActionId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_RelatedActionId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Eventor_TypeId":
 					pProp.Name = "Eventor_TypeId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_TypeId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Eventor_PrecisionId":
 					pProp.Name = "Eventor_PrecisionId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_PrecisionId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Eventor_DateTime":
 					pProp.Name = "Eventor_DateTime";
-					pProp.Type = "long?";
+					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_DateTime");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Identor_TypeId":
 					pProp.Name = "Identor_TypeId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Identor_TypeId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Identor_Value":
 					pProp.Name = "Identor_Value";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Identor_Value");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Locator_TypeId":
 					pProp.Name = "Locator_TypeId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_TypeId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Locator_ValueX":
 					pProp.Name = "Locator_ValueX";
-					pProp.Type = "double?";
+					pProp.Type = "double";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueX");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Locator_ValueY":
 					pProp.Name = "Locator_ValueY";
-					pProp.Type = "double?";
+					pProp.Type = "double";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueY");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Locator_ValueZ":
 					pProp.Name = "Locator_ValueZ";
-					pProp.Type = "double?";
+					pProp.Type = "double";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueZ");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Vector_TypeId":
 					pProp.Name = "Vector_TypeId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_TypeId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Vector_UnitId":
 					pProp.Name = "Vector_UnitId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_UnitId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Vector_UnitPrefixId":
 					pProp.Name = "Vector_UnitPrefixId";
-					pProp.Type = "byte?";
+					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_UnitPrefixId");
-					pProp.IsNullable = true;
 					break;
 
 				case "Factor.Vector_Value":
 					pProp.Name = "Vector_Value";
-					pProp.Type = "long?";
+					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_Value");
-					pProp.IsNullable = true;
 					break;
 			}
 		}
