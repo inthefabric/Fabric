@@ -55,16 +55,11 @@
     <Compile Include="FabApiModify\XUpdateFactor.cs" />
     <Compile Include="FabApiModify\Tasks\XUpdateFactor.cs" />
     <Compile Include="FabApiModify\XCreateFactorElement.cs" />
-    <Compile Include="FabApiModify\XCreateDirector.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddDirector.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetDirectorMatch.cs" />
-    <Compile Include="FabApiModify\XCreateDescriptor.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddDescriptor.cs" />
-    <Compile Include="FabApiModify\Tasks\XAttachExistingElement.cs" />
-    <Compile Include="FabApiModify\Tasks\XFactorHasElement.cs" />
-    <Compile Include="FabApiModify\Tasks\XFactorHasElements.cs" />
+    <Compile Include="FabApiModify\XAttachDirector.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactorDirector.cs" />
+    <Compile Include="FabApiModify\XAttachDescriptor.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactorDescriptor.cs" />
     <Compile Include="FabApiModify\Tasks\XGetActiveFactorFromMember.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetDescriptorMatch.cs" />
     <Compile Include="FabApiModify\XCreateFactor.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddFactor.cs" />
     <Compile Include="FabApiModify\Tasks\XGetArtifact.cs" />
@@ -125,20 +120,14 @@
     <Compile Include="FabApiModify\XBaseModifyFunc.cs" />
     <Compile Include="FabApiWeb\XCreateUser.cs" />
     <Compile Include="FabApiWeb\XCreateApp.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetEventorMatch.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddEventor.cs" />
-    <Compile Include="FabApiModify\XCreateEventor.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddIdentor.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetIdentorMatch.cs" />
-    <Compile Include="FabApiModify\XCreateIdentor.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetLocatorType.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetLocatorMatch.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddLocator.cs" />
-    <Compile Include="FabApiModify\XCreateLocator.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetVectorType.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetVectorMatch.cs" />
-    <Compile Include="FabApiModify\Tasks\XTxAddVector.cs" />
-    <Compile Include="FabApiModify\XCreateVector.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactorEventor.cs" />
+    <Compile Include="FabApiModify\XAttachEventor.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactorIdentor.cs" />
+    <Compile Include="FabApiModify\XAttachIdentor.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactorLocator.cs" />
+    <Compile Include="FabApiModify\XAttachLocator.cs" />
+    <Compile Include="FabApiModify\Tasks\XUpdateFactorVector.cs" />
+    <Compile Include="FabApiModify\XAttachVector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsQuery, Version=1.3.3.249, Culture=neutral, processorArchitecture=MSIL">

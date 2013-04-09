@@ -2,7 +2,6 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Util;
@@ -25,7 +24,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
 			".back('step4')"+
 			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
-			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
 				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,_P2)"+
 			".back('step1');";
 

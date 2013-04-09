@@ -3,7 +3,6 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Util;
@@ -28,8 +27,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".aggregate(_V0)"+
 			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
 				".aggregate(_V0)"+
-			".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
-				".aggregate(_V0)"+
 				".iterate();"+
 			"_V0;";
 			
@@ -44,15 +41,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.addEdge(_V2,_V0,_TP);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
+				typeof(MemberType).Name+"Id:_TP,"+
 				"Performed:_TP,"+
 				"Note:_TP,"+
 				"FabType:_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V3,_TP);"+
-			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
-			"g.addEdge(_V3,_V4,_TP);"+
-			"_V5=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
-			"g.addEdge(_V5,_V3,_TP);";
+			"_V4=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
+			"g.addEdge(_V4,_V3,_TP);";
 
 		private readonly static string QueryUpdateMemberTx =
 			"_V0=g.V('"+typeof(MemberTypeAssign).Name+"Id',_TP).next();"+
@@ -62,20 +58,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.addEdge(_V1,_V0,_TP);"+
 			"_V2=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
+				typeof(MemberType).Name+"Id:_TP,"+
 				"Performed:_TP,"+
 				"Note:_TP,"+
 				"FabType:_TP"+
 			"]);"+
 			"g.addEdge(_V1,_V2,_TP);"+
-			"_V3=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
-			"g.addEdge(_V2,_V3,_TP);"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
-			"g.addEdge(_V4,_V2,_TP);";
+			"_V3=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
+			"g.addEdge(_V3,_V2,_TP);";
 		
 		private long vAppId;
 		private long vUserId;
 		private Member vMemberResult;
-		private MemberType vMemTypeResult;
 		private MemberTypeAssign vMtaResult;
 		private DateTime vUtcNow;
 		private long vNewMtaId;
@@ -98,13 +92,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			vMemberResult = new Member { MemberId = 1253 };
 			vMtaResult = new MemberTypeAssign { MemberTypeAssignId = 9253 };
-			vMemTypeResult = new MemberType { MemberTypeId = (long)MemberTypeId.Invite };
 			
 			vMockGetMemberTxResult = new Mock<IApiDataAccess>();
 			vMockGetMemberTxResult.Setup(x => x.GetResultAt<Member>(0)).Returns(vMemberResult);
 			vMockGetMemberTxResult.Setup(x => x.GetResultAt<MemberTypeAssign>(1)).Returns(vMtaResult);
-			vMockGetMemberTxResult.Setup(x => x.GetResultAt<MemberType>(2)).Returns(vMemTypeResult);
-			vMockGetMemberTxResult.Setup(x => x.GetResultCount()).Returns(3);
+			vMockGetMemberTxResult.Setup(x => x.GetResultCount()).Returns(2);
 
 			vMockCtx = new Mock<IApiContext>();
 			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
@@ -166,12 +158,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUserId,
 				typeof(UserDefinesMember).Name,
 				vNewMtaId,
+				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
 				(int)NodeFabType.MemberTypeAssign,
 				typeof(MemberHasMemberTypeAssign).Name,
-				(long)MemberTypeId.Member,
-				typeof(MemberTypeAssignUsesMemberType).Name,
 				(long)MemberId.FabFabData,
 				typeof(MemberCreatesMemberTypeAssign).Name
 			});
@@ -192,12 +183,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vMemberResult.MemberId,
 				typeof(MemberHasHistoricMemberTypeAssign).Name,
 				vNewMtaId,
+				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
 				(int)NodeFabType.MemberTypeAssign,
 				typeof(MemberHasMemberTypeAssign).Name,
-				(long)MemberTypeId.Member,
-				typeof(MemberTypeAssignUsesMemberType).Name,
 				(long)MemberId.FabFabData,
 				typeof(MemberCreatesMemberTypeAssign).Name
 			});
@@ -211,7 +201,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void MemberAlreadyExists(bool pViaTask) {
-			vMemTypeResult.MemberTypeId = (long)MemberTypeId.Member;
+			vMtaResult.MemberTypeId = (byte)MemberTypeId.Member;
 			
 			bool result = TestGo(pViaTask);
 			
@@ -222,9 +212,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true)]
-		[TestCase(false)]
-		public void UpdateMember(bool pViaTask) {
+		[TestCase(true, MemberTypeId.None)]
+		[TestCase(true, MemberTypeId.Invite)]
+		[TestCase(true, MemberTypeId.Request)]
+		[TestCase(false, MemberTypeId.None)]
+		public void UpdateMember(bool pViaTask, MemberTypeId pMemTypeId) {
+			vMtaResult.MemberTypeId = (byte)pMemTypeId;
 			bool result = TestGo(pViaTask);
 			
 			vUsageMap.AssertUses(AddMemberEnsure.Query.GetMemberTx+"", 1);

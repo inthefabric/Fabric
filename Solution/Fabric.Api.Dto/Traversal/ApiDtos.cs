@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 3:37:17 PM
+// Generated on 4/9/2013 1:38:25 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -684,23 +684,91 @@ namespace Fabric.Api.Dto.Traversal {
 			Created = pNode.Created;
 			Completed = pNode.Completed;
 			Note = pNode.Note;
-			Descriptor.TypeId = pNode.Descriptor_TypeId;
-			Director.TypeId = pNode.Director_TypeId;
-			Director.PrimaryActionId = pNode.Director_PrimaryActionId;
-			Director.RelatedActionId = pNode.Director_RelatedActionId;
-			Eventor.TypeId = pNode.Eventor_TypeId;
-			Eventor.PrecisionId = pNode.Eventor_PrecisionId;
-			Eventor.DateTime = pNode.Eventor_DateTime;
-			Identor.TypeId = pNode.Identor_TypeId;
-			Identor.Value = pNode.Identor_Value;
-			Locator.TypeId = pNode.Locator_TypeId;
-			Locator.ValueX = pNode.Locator_ValueX;
-			Locator.ValueY = pNode.Locator_ValueY;
-			Locator.ValueZ = pNode.Locator_ValueZ;
-			Vector.TypeId = pNode.Vector_TypeId;
-			Vector.UnitId = pNode.Vector_UnitId;
-			Vector.UnitPrefixId = pNode.Vector_UnitPrefixId;
-			Vector.Value = pNode.Vector_Value;
+
+			if ( pNode.Descriptor_TypeId != null ) {
+				if ( Descriptor == null ) { Descriptor = new FabDescriptor(); }
+				Descriptor.TypeId = (byte)pNode.Descriptor_TypeId;
+			}
+
+			if ( pNode.Director_TypeId != null ) {
+				if ( Director == null ) { Director = new FabDirector(); }
+				Director.TypeId = (byte)pNode.Director_TypeId;
+			}
+
+			if ( pNode.Director_PrimaryActionId != null ) {
+				if ( Director == null ) { Director = new FabDirector(); }
+				Director.PrimaryActionId = (byte)pNode.Director_PrimaryActionId;
+			}
+
+			if ( pNode.Director_RelatedActionId != null ) {
+				if ( Director == null ) { Director = new FabDirector(); }
+				Director.RelatedActionId = (byte)pNode.Director_RelatedActionId;
+			}
+
+			if ( pNode.Eventor_TypeId != null ) {
+				if ( Eventor == null ) { Eventor = new FabEventor(); }
+				Eventor.TypeId = (byte)pNode.Eventor_TypeId;
+			}
+
+			if ( pNode.Eventor_PrecisionId != null ) {
+				if ( Eventor == null ) { Eventor = new FabEventor(); }
+				Eventor.PrecisionId = (byte)pNode.Eventor_PrecisionId;
+			}
+
+			if ( pNode.Eventor_DateTime != null ) {
+				if ( Eventor == null ) { Eventor = new FabEventor(); }
+				Eventor.DateTime = (long)pNode.Eventor_DateTime;
+			}
+
+			if ( pNode.Identor_TypeId != null ) {
+				if ( Identor == null ) { Identor = new FabIdentor(); }
+				Identor.TypeId = (byte)pNode.Identor_TypeId;
+			}
+
+			if ( pNode.Identor_Value != null ) {
+				if ( Identor == null ) { Identor = new FabIdentor(); }
+				Identor.Value = (string)pNode.Identor_Value;
+			}
+
+			if ( pNode.Locator_TypeId != null ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.TypeId = (byte)pNode.Locator_TypeId;
+			}
+
+			if ( pNode.Locator_ValueX != null ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.ValueX = (double)pNode.Locator_ValueX;
+			}
+
+			if ( pNode.Locator_ValueY != null ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.ValueY = (double)pNode.Locator_ValueY;
+			}
+
+			if ( pNode.Locator_ValueZ != null ) {
+				if ( Locator == null ) { Locator = new FabLocator(); }
+				Locator.ValueZ = (double)pNode.Locator_ValueZ;
+			}
+
+			if ( pNode.Vector_TypeId != null ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.TypeId = (byte)pNode.Vector_TypeId;
+			}
+
+			if ( pNode.Vector_UnitId != null ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.UnitId = (byte)pNode.Vector_UnitId;
+			}
+
+			if ( pNode.Vector_UnitPrefixId != null ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.UnitPrefixId = (byte)pNode.Vector_UnitPrefixId;
+			}
+
+			if ( pNode.Vector_Value != null ) {
+				if ( Vector == null ) { Vector = new FabVector(); }
+				Vector.Value = (long)pNode.Vector_Value;
+			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

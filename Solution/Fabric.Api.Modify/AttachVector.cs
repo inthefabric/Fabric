@@ -57,6 +57,12 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
+			if ( Tasks.GetArtifact(ApiCtx, vAxisArtId) == null ) {
+				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
+			}
+
+			////
+			
 			VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
 			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
 			
@@ -70,7 +76,7 @@ namespace Fabric.Api.Modify {
 			
 			////
 			
-			Tasks.AttachVector(ApiCtx, pFactor, vVecTypeId, vValue,
+			Tasks.UpdateFactorVector(ApiCtx, pFactor, vVecTypeId, vValue,
 				vAxisArtId, vVecUnitId, vVecUnitPrefId);
 			return true;
 		}

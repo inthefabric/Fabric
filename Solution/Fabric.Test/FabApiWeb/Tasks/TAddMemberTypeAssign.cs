@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -19,19 +20,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"g.addEdge(_V0,_V1,_TP);"+
 			"_V2=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
+				typeof(MemberType).Name+"Id:_TP,"+
 				"Performed:_TP,"+
 				"FabType:_TP"+
 			"]);"+
 			"_V3=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V3,_V2,_TP);"+
 			"g.addEdge(_V0,_V2,_TP);"+
-			"_V4=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
-			"g.addEdge(_V2,_V4,_TP);"+
 			"_V2;";
 
 		private long vAssigningMemberId;
 		private long vMemberId;
-		private long vMemberTypeId;
+		private byte vMemberTypeId;
 
 		private long vNewMtaId;
 		private MemberTypeAssign vMtaResult;
@@ -69,13 +69,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vMemberId,
 				typeof(MemberHasHistoricMemberTypeAssign).Name,
 				vNewMtaId,
+				vMemberTypeId,
 				vUtcNow.Ticks,
 				(int)NodeFabType.MemberTypeAssign,
 				vAssigningMemberId,
 				typeof(MemberCreatesMemberTypeAssign).Name,
-				typeof(MemberHasMemberTypeAssign).Name,
-				vMemberTypeId,
-				typeof(MemberTypeAssignUsesMemberType).Name
+				typeof(MemberHasMemberTypeAssign).Name
 			});
 
 			return vMtaResult;

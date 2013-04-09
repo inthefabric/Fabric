@@ -2,9 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
@@ -102,7 +100,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				return false;
 			}
 
-			if ( count != 3 ) {
+			if ( count != 2 ) {
 				throw new Exception("Incorrect result count: "+count);
 			}
 

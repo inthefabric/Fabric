@@ -31,26 +31,26 @@ namespace Fabric.Api.Modify.Tasks {
 		Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
+		void UpdateFactorDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId, byte pPrimActId,
+		void UpdateFactorDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId, byte pPrimActId,
 																						byte pRelActId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId, byte pEvePrecId,
+		void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId, byte pEvePrecId,
 																						long pDateTime);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId, string pValue);
+		void UpdateFactorIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId, string pValue);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
+		void UpdateFactorLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
 																				double pY, double pZ);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void AttachVector(IApiContext pApiCtx, Factor pFactor, byte pVecTypeId, long pValue,
+		void UpdateFactorVector(IApiContext pApiCtx, Factor pFactor, byte pVecTypeId, long pValue,
 												long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId);
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -75,7 +75,7 @@ namespace Fabric.Api.Modify {
 				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeRefId);
 			}
 
-			Tasks.AttachDescriptor(ApiCtx, pFactor, 
+			Tasks.UpdateFactorDescriptor(ApiCtx, pFactor, 
 				vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 			return true;
 		}

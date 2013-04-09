@@ -109,7 +109,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void TotalNodeStepKeys() {
-			Assert.AreEqual(30, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+			Assert.AreEqual(9, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
 		}
 
 
@@ -146,12 +146,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
-		public void CrowdianTypeStep() {
-			TestStep("CrowdianType", p => new CrowdianTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
 		public void CrowdianTypeAssignStep() {
 			TestStep("CrowdianTypeAssign", p => new CrowdianTypeAssignStep(p));
 		}
@@ -182,12 +176,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void MemberTypeStep() {
-			TestStep("MemberType", p => new MemberTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
 		public void MemberTypeAssignStep() {
 			TestStep("MemberTypeAssign", p => new MemberTypeAssignStep(p));
 		}
@@ -208,126 +196,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void FactorStep() {
 			TestStep("Factor", p => new FactorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void FactorAssertionStep() {
-			TestStep("FactorAssertion", p => new FactorAssertionStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void DescriptorStep() {
-			TestStep("Descriptor", p => new DescriptorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void DescriptorTypeStep() {
-			TestStep("DescriptorType", p => new DescriptorTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void DirectorStep() {
-			TestStep("Director", p => new DirectorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void DirectorTypeStep() {
-			TestStep("DirectorType", p => new DirectorTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void DirectorActionStep() {
-			TestStep("DirectorAction", p => new DirectorActionStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void EventorStep() {
-			TestStep("Eventor", p => new EventorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void EventorTypeStep() {
-			TestStep("EventorType", p => new EventorTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void EventorPrecisionStep() {
-			TestStep("EventorPrecision", p => new EventorPrecisionStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void IdentorStep() {
-			TestStep("Identor", p => new IdentorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void IdentorTypeStep() {
-			TestStep("IdentorType", p => new IdentorTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void LocatorStep() {
-			TestStep("Locator", p => new LocatorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void LocatorTypeStep() {
-			TestStep("LocatorType", p => new LocatorTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorStep() {
-			TestStep("Vector", p => new VectorStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorTypeStep() {
-			TestStep("VectorType", p => new VectorTypeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorRangeStep() {
-			TestStep("VectorRange", p => new VectorRangeStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorRangeLevelStep() {
-			TestStep("VectorRangeLevel", p => new VectorRangeLevelStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorUnitStep() {
-			TestStep("VectorUnit", p => new VectorUnitStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorUnitPrefixStep() {
-			TestStep("VectorUnitPrefix", p => new VectorUnitPrefixStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void VectorUnitDerivedStep() {
-			TestStep("VectorUnitDerived", p => new VectorUnitDerivedStep(p));
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

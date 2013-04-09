@@ -113,7 +113,7 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void AttachDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
+		public void UpdateFactorDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) {
 			var txb = new TxBuilder();
 			pFactor.Descriptor_TypeId = pDescTypeId;
@@ -121,13 +121,17 @@ namespace Fabric.Api.Modify.Tasks {
 			var up = new WeaverUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
 
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverVarAlias<Factor> facVar;
+
 			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End()
+				WeaverTasks.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
 			);
 
 			////
 
 			var facBuild = new FactorBuilder(txb, pFactor);
+			facBuild.SetNodeVar(facVar);
 
 			if ( pPrimArtRefId != null ) {
 				facBuild.SetRefinesPrimaryWithArtifact((long)pPrimArtRefId);
@@ -141,27 +145,27 @@ namespace Fabric.Api.Modify.Tasks {
 				facBuild.SetRefinesTypeWithArtifact((long)pDescTypeRefId);
 			}
 
-			pApiCtx.DbData("AttachDescriptorTx", txb.Finish());
+			pApiCtx.DbData("UpdateFactorDescriptor", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AttachDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId,
+		public void UpdateFactorDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId,
 																	byte pPrimActId, byte pRelActId) {
 			pFactor.Director_TypeId = pDirTypeId;
 			pFactor.Director_PrimaryActionId = pPrimActId;
 			pFactor.Director_RelatedActionId = pRelActId;
 
 			var up = new WeaverUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
+			up.AddUpdate(pFactor, x => x.Director_TypeId);
 			up.AddUpdate(pFactor, x => x.Director_PrimaryActionId);
 			up.AddUpdate(pFactor, x => x.Director_RelatedActionId);
 
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
-			pApiCtx.DbData("AttachDirector", q);
+			pApiCtx.DbData("UpdateFactorDirector", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AttachEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
+		public void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
 																	byte pEvePrecId, long pDateTime) {
 			pFactor.Eventor_TypeId = pEveTypeId;
 			pFactor.Eventor_PrecisionId = pEvePrecId;
@@ -173,11 +177,12 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Eventor_DateTime);
 
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
-			pApiCtx.DbData("AttachEventor", q);
+			pApiCtx.DbData("UpdateFactorEventor", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AttachIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId, string pValue) {
+		public void UpdateFactorIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId,
+																						string pValue) {
 			pFactor.Identor_TypeId = pIdenTypeId;
 			pFactor.Identor_Value = pValue;
 
@@ -186,11 +191,11 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Identor_Value);
 
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
-			pApiCtx.DbData("AttachIdentor", q);
+			pApiCtx.DbData("UpdateFactorIdentor", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AttachLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
+		public void UpdateFactorLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
 																				double pY, double pZ) {
 			pFactor.Locator_TypeId = pLocTypeId;
 			pFactor.Locator_ValueX = pX;
@@ -204,11 +209,11 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Locator_ValueZ);
 
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
-			pApiCtx.DbData("AttachLocator", q);
+			pApiCtx.DbData("UpdateFactorLocator", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AttachVector(IApiContext pApiCtx, Factor pFactor, byte pVecTypeId,
+		public void UpdateFactorVector(IApiContext pApiCtx, Factor pFactor, byte pVecTypeId,
 								long pValue, long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) {
 			var txb = new TxBuilder();
 			pFactor.Vector_TypeId = pVecTypeId;
@@ -222,16 +227,20 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Vector_UnitPrefixId);
 			up.AddUpdate(pFactor, x => x.Vector_Value);
 
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverVarAlias<Factor> facVar;
+
 			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End()
+				WeaverTasks.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
 			);
 
 			////
 
 			var facBuild = new FactorBuilder(txb, pFactor);
+			facBuild.SetNodeVar(facVar);
 			facBuild.SetUsesAxisArtifact(pAxisArtId);
 
-			pApiCtx.DbData("AttachVectorTx", txb.Finish());
+			pApiCtx.DbData("UpdateFactorVector", txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -43,7 +43,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
-			Tasks.AttachEventor(ApiCtx, pFactor, vEveTypeId, vEvePrecId, vDateTime);
+			Tasks.UpdateFactorEventor(ApiCtx, pFactor, vEveTypeId, vEvePrecId, vDateTime);
 			return true;
 		}
 

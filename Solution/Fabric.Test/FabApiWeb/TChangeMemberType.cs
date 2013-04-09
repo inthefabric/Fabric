@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiWeb {
 		private long vAppId;
 		private long vAssigningMemberId;
 		private long vMemberId;
-		private long vMemberTypeId;
+		private byte vMemberTypeId;
 
 		private Member vResultAssigningMember;
 		private Member vResultMember;
@@ -72,7 +72,7 @@ namespace Fabric.Test.FabApiWeb {
 				ChangeMemberType.AssigningMemberIdParam), Times.Once());
 			MockValidator.Verify(x => x.MemberId(vMemberId,
 				ChangeMemberType.MemberIdParam), Times.Once());
-			MockValidator.Verify(x => x.MemberTypeId(vMemberTypeId,
+			MockValidator.Verify(x => x.MemberTypeAssignMemberTypeId(vMemberTypeId,
 				ChangeMemberType.MemberTypeIdParam), Times.Once());
 		}
 

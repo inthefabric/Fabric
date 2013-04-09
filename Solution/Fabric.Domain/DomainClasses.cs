@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 3:34:03 PM
+// Generated on 4/9/2013 1:33:45 PM
 
 using System;
 using System.Linq.Expressions;
@@ -858,57 +858,74 @@ namespace Fabric.Domain {
 		public virtual string Note { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Descriptor_TypeId { get; set; }
+		//[PropIsSubProp("TypeId")]
+		public virtual byte? Descriptor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Director_TypeId { get; set; }
+		//[PropIsSubProp("TypeId")]
+		public virtual byte? Director_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Director_PrimaryActionId { get; set; }
+		//[PropIsSubProp("PrimaryActionId")]
+		public virtual byte? Director_PrimaryActionId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Director_RelatedActionId { get; set; }
+		//[PropIsSubProp("RelatedActionId")]
+		public virtual byte? Director_RelatedActionId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Eventor_TypeId { get; set; }
+		//[PropIsSubProp("TypeId")]
+		public virtual byte? Eventor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Eventor_PrecisionId { get; set; }
+		//[PropIsSubProp("PrecisionId")]
+		public virtual byte? Eventor_PrecisionId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual long Eventor_DateTime { get; set; }
+		//[PropIsSubProp("DateTime")]
+		public virtual long? Eventor_DateTime { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Identor_TypeId { get; set; }
+		//[PropIsSubProp("TypeId")]
+		public virtual byte? Identor_TypeId { get; set; }
 
 		[WeaverItemProperty]
 		//[PropLenMax(256)]
 		//[PropLenMin(1)]
+		//[PropIsSubProp("Value")]
 		public virtual string Identor_Value { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Locator_TypeId { get; set; }
+		//[PropIsSubProp("TypeId")]
+		public virtual byte? Locator_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual double Locator_ValueX { get; set; }
+		//[PropIsSubProp("ValueX")]
+		public virtual double? Locator_ValueX { get; set; }
 
 		[WeaverItemProperty]
-		public virtual double Locator_ValueY { get; set; }
+		//[PropIsSubProp("ValueY")]
+		public virtual double? Locator_ValueY { get; set; }
 
 		[WeaverItemProperty]
-		public virtual double Locator_ValueZ { get; set; }
+		//[PropIsSubProp("ValueZ")]
+		public virtual double? Locator_ValueZ { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Vector_TypeId { get; set; }
+		//[PropIsSubProp("TypeId")]
+		public virtual byte? Vector_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Vector_UnitId { get; set; }
+		//[PropIsSubProp("UnitId")]
+		public virtual byte? Vector_UnitId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual byte Vector_UnitPrefixId { get; set; }
+		//[PropIsSubProp("UnitPrefixId")]
+		public virtual byte? Vector_UnitPrefixId { get; set; }
 
 		[WeaverItemProperty]
-		public virtual long Vector_Value { get; set; }
+		//[PropIsSubProp("Value")]
+		public virtual long? Vector_Value { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

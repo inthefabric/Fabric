@@ -1,10 +1,7 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
@@ -19,7 +16,7 @@ namespace Fabric.Test.FabApiModify {
 
 		private long vPrimArtId;
 		private long vRelArtId;
-		private long vAssertId;
+		private byte vAssertId;
 		private bool vIsDefining;
 		private string vNote;
 		private Member vCreator;
@@ -95,7 +92,7 @@ namespace Fabric.Test.FabApiModify {
 
 			MockValidator.Verify(x => x.ArtifactId(vPrimArtId, CreateFactor.PrimArtParam),Times.Once());
 			MockValidator.Verify(x => x.ArtifactId(vRelArtId, CreateFactor.RelArtParam), Times.Once());
-			MockValidator.Verify(x => x.FactorAssertionId(
+			MockValidator.Verify(x => x.FactorFactorAssertionId(
 				vAssertId, CreateFactor.AssertParam), Times.Once());
 			MockValidator.Verify(x => x.FactorNote(vNote, CreateFactor.NoteParam), Times.Once());
 		}

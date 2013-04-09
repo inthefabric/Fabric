@@ -37,7 +37,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
-			Tasks.AttachIdentor(ApiCtx, pFactor, vIdenTypeId, vValue);
+			Tasks.UpdateFactorIdentor(ApiCtx, pFactor, vIdenTypeId, vValue);
 			return true;
 		}
 

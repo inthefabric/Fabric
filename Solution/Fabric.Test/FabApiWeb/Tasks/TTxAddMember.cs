@@ -1,7 +1,6 @@
 ﻿using System;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Util;
@@ -25,14 +24,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"g.addEdge(_V2,_V1,_TP);"+
 			"_V3=g.addVertex(["+
 				typeof(MemberTypeAssign).Name+"Id:_TP,"+
+				typeof(MemberType).Name+"Id:_TP,"+
 				"Performed:_TP,"+
 				"FabType:_TP"+
 			"]);"+
 			"_V4=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
 			"g.addEdge(_V4,_V3,_TP);"+
-			"g.addEdge(_V1,_V3,_TP);"+
-			"_V5=g.V('"+typeof(MemberType).Name+"Id',_TP).next();"+
-			"g.addEdge(_V3,_V5,_TP);";
+			"g.addEdge(_V1,_V3,_TP);";
 
 		private long vNewMemberId;
 		private long vNewMtaId;
@@ -75,13 +73,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				(long)SetupUsers.AppId.FabSys,
 				typeof(AppDefinesMember).Name,
 				vNewMtaId,
+				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				(int)NodeFabType.MemberTypeAssign,
 				(long)SetupUsers.MemberId.FabFabData,
 				typeof(MemberCreatesMemberTypeAssign).Name,
-				typeof(MemberHasMemberTypeAssign).Name,
-				(long)MemberTypeId.Member,
-				typeof(MemberTypeAssignUsesMemberType).Name
+				typeof(MemberHasMemberTypeAssign).Name
 			});
 		}
 

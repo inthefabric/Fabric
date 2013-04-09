@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Fabric.Test.FabApiModify {
 
 	/*================================================================================================*/
-	public abstract class TCreateFactorElement<T> : TBaseModifyFunc where T : FactorElementNode, new() {
+	public abstract class TCreateFactorElement : TBaseModifyFunc {
 
 		protected long FactorId { get; private set; }
 		protected Factor ActiveFactor { get; private set; }
@@ -20,7 +20,6 @@ namespace Fabric.Test.FabApiModify {
 			FactorId = 89643743;
 			SetUpMember(1, 2, new Member { MemberId = 2523 });
 			SetupActiveFactor(new Factor { FactorId = FactorId });
-			SetupFactorHasElement(false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -38,7 +37,6 @@ namespace Fabric.Test.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract void SetupFactorHasElement(bool pResult);
 		protected abstract void TestGo();
 
 
@@ -51,13 +49,6 @@ namespace Fabric.Test.FabApiModify {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrFactorHasElement() {
-			SetupFactorHasElement(true);
-			TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrFactorNotFound() {

@@ -1,6 +1,7 @@
 using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Domain;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -24,6 +25,8 @@ namespace Fabric.Test.FabApiModify {
 			vFactorId = 1251253;
 
 			vResultFactor = new Factor();
+			vResultFactor.Descriptor_TypeId = (byte)DescriptorTypeId.IsA;
+			
 			SetUpMember(1, 2, new Member { MemberId = 234623 });
 
 			MockTasks
@@ -34,10 +37,6 @@ namespace Fabric.Test.FabApiModify {
 					)
 				)
 				.Returns(vResultFactor);
-
-			MockTasks
-				.Setup(x => x.FactorHasDescriptor(MockApiCtx.Object, vResultFactor))
-				.Returns(true);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

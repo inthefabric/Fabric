@@ -45,7 +45,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
-			Tasks.AttachDirector(ApiCtx, pFactor, vDescTypeId, vPrimActId, vRelActId);
+			Tasks.UpdateFactorDirector(ApiCtx, pFactor, vDescTypeId, vPrimActId, vRelActId);
 			return true;
 		}
 

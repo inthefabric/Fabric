@@ -85,6 +85,10 @@ foreach ( string name in nodes ) {
 		string attribs = "";
 		string attEnd = "\r\n\t\t";
 
+		if ( prop.Type.IsValueType && hp.IsSubProp() ) {
+			propType += "?";
+		}
+
 		attribs += "[WeaverItemProperty]"+attEnd;
 
 		if ( prop.IsCaseInsensitive != null ) {
@@ -129,6 +133,10 @@ foreach ( string name in nodes ) {
 
 		if ( prop.ValidRegex != null ) {
 			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
+		}
+
+		if ( hp.IsSubProp() ) {
+			attribs += "//[PropIsSubProp(\""+hp.SubPropName+"\")]"+attEnd;
 		}
 #>
 		<#= attribs #>public virtual <#= propType+" "+propName #> { get; set; }

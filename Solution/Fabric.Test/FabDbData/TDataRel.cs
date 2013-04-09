@@ -16,8 +16,8 @@ namespace Fabric.Test.FabDbData {
 		[Test]
 		public void NewBadFromNode() {
 			TestUtil.CheckThrows<Exception>(true, () => {
-				var dr = new DataRel<Member, VectorUsesAxisArtifact, Artifact>(
-					new Member(), new VectorUsesAxisArtifact(), new Artifact(), false);
+				var dr = new DataRel<Member, FactorUsesAxisArtifact, Artifact>(
+					new Member(), new FactorUsesAxisArtifact(), new Artifact(), false);
 			});
 		}
 

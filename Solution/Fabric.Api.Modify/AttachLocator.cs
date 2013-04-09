@@ -44,12 +44,12 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.FactorLocator_TypeId(vLocTypeId, LocTypeParam);
+			CheckLocatorTypeRange();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
-			CheckLocatorTypeRange();
-			Tasks.AttachLocator(ApiCtx, pFactor, vLocTypeId, vX, vY, vZ);
+			Tasks.UpdateFactorLocator(ApiCtx, pFactor, vLocTypeId, vX, vY, vZ);
 			return true;
 		}
 

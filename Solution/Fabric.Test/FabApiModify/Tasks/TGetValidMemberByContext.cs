@@ -1,5 +1,4 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Util;
@@ -21,7 +20,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
 				".back('step3')"+
 				".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
-				".outE('"+typeof(MemberTypeAssignUsesMemberType).Name+"').inV"+
 					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P2)"+
 					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P3)"+
 					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P4)"+

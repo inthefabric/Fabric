@@ -187,9 +187,22 @@ foreach ( string name in nodes ) {
 		string propName = hp.PropSchema.Name;
 		string dotPropName = hp.PropSchema.Name.Replace('_', '.');
 		string parseType = propType.Replace("?", "");
+
+		if ( hp.IsSubProp() ) {
+			string subName = propName.Substring(0, propName.IndexOf('_'));
+#>
+
+			if ( pNode.<#= propName #> != null ) {
+				if ( <#= subName #> == null ) { <#= subName #> = new Fab<#= subName #>(); }
+				<#= dotPropName #> = (<#= propType #>)pNode.<#= propName #>;
+			}
+<#		}
+		else {
 #>
 			<#= dotPropName #> = pNode.<#= propName #>;
 <#
+		}//end subprop condition
+
 	} //end prop loop
 #>
 		}

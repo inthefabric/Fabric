@@ -39,6 +39,7 @@ namespace Fabric.Infrastructure.Weaver {
 			}
 
 			NodeVar = pNodeVar;
+			TxBuild.RegisterVarWithTxBuilder(NodeVar);
 		}
 		
 	}
