@@ -244,7 +244,7 @@
 	public enum VectorUnitDerivedId {
 		HertzSec = 1,
 		NewtonGram,
-		NewTonMetre,
+		NewtonMetre,
 		NewtonSec,
 		PascalGram,
 		PascalMetre,

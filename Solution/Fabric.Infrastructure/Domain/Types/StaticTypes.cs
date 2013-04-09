@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabric.Infrastructure.Domain.Types {
 
@@ -114,7 +115,7 @@ namespace Fabric.Infrastructure.Domain.Types {
 				"The User is an administrator of this App.");
 			AddMemberType(MemberTypeId.Owner, "Owner",
 				"The User owns this App.");
-			AddMemberType(MemberTypeId.DataProvider, "DataProvider",
+			AddMemberType(MemberTypeId.DataProvider, "Data Provider",
 				"The User has a special membership that allows it to interact with Fabric on behalf "+
 				"of the App.");
 		}
@@ -524,7 +525,7 @@ namespace Fabric.Infrastructure.Domain.Types {
 
 			AddVectorUnitDerived(VectorUnitDerivedId.NewtonGram,
 				VectorUnitId.Newton, VectorUnitId.Gram, 1, VectorUnitPrefixId.Kilo);
-			AddVectorUnitDerived(VectorUnitDerivedId.NewTonMetre,
+			AddVectorUnitDerived(VectorUnitDerivedId.NewtonMetre,
 				VectorUnitId.Newton, VectorUnitId.Metre, 1);
 			AddVectorUnitDerived(VectorUnitDerivedId.NewtonSec,
 				VectorUnitId.Newton, VectorUnitId.Second, -2);
@@ -651,15 +652,16 @@ namespace Fabric.Infrastructure.Domain.Types {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void AddVectorRange(VectorRangeId pId, string pName,
-															IEnumerable<VectorRangeLevelId> pLevels) {
-			var t = new VectorRange(pId, pName, pLevels);
+																	IList<VectorRangeLevelId> pLevels) {
+			var levels = pLevels.Select(id => (byte)id).ToList();
+			var t = new VectorRange(pId, pName, levels);
 			VectorRanges.Add((byte)pId, t);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void AddVectorType(VectorTypeId pId, VectorRangeId pRangeId,
 																long pMin, long pMax, string pName) {
-			var t = new VectorType(pId, pName, VectorRanges[(byte)pRangeId], pMin, pMax);
+			var t = new VectorType(pId, pName, (byte)pRangeId, pMin, pMax);
 			VectorTypes.Add((byte)pId, t);
 		}
 
@@ -680,8 +682,7 @@ namespace Fabric.Infrastructure.Domain.Types {
 		private static void AddVectorUnitDerived(VectorUnitDerivedId pId, 
 											VectorUnitId pDefinesId, VectorUnitId pRaisesId, int pExp,
 											VectorUnitPrefixId pPrefix=VectorUnitPrefixId.Base) {
-			var t = new VectorUnitDerived(pId, VectorUnits[(byte)pDefinesId], 
-				VectorUnits[(byte)pRaisesId], pExp, VectorUnitPrefixs[(byte)pPrefix]);
+			var t = new VectorUnitDerived(pId, (byte)pDefinesId, (byte)pRaisesId, pExp, (byte)pPrefix);
 			VectorUnitDeriveds.Add((byte)pId, t);
 		}
 

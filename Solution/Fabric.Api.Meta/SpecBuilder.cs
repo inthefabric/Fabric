@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 5:00:55 PM
+// Generated on 4/8/2013 9:33:17 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -1052,33 +1052,39 @@ namespace Fabric.Api.Meta {
 			FabSpecObjectProp p;
 
 			e = new FabSpecEnum();
-			e.Name = "MemberType";
+			e.Name = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "Id";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("BaseEnum_Id");
 				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "MemberTypeId";
+				p.Description = SpecDoc.GetDtoPropText("BaseEnum_EnumId");
+				p.Type = "string";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Name";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("BaseEnum_Name");
 				p.Type = "string";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Description";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("BaseEnum_Description");
 				p.Type = "string";
 				e.Properties.Add(p);
 
+			e = new FabSpecEnum();
+			e.Name = "MemberType";
+			e.Description = SpecDoc.GetDtoText("MemberType");
+			e.Extends = "BaseEnum";
+			e.Properties = new List<FabSpecObjectProp>();
+			
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( MemberType val in StaticTypes.MemberTypes.Values ) {
@@ -1094,32 +1100,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "DescriptorType";
+			e.Description = SpecDoc.GetDtoText("DescriptorType");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "DescriptorTypeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( DescriptorType val in StaticTypes.DescriptorTypes.Values ) {
@@ -1135,32 +1119,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "DirectorType";
+			e.Description = SpecDoc.GetDtoText("DirectorType");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "DirectorTypeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( DirectorType val in StaticTypes.DirectorTypes.Values ) {
@@ -1176,32 +1138,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "DirectorAction";
+			e.Description = SpecDoc.GetDtoText("DirectorAction");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "DirectorActionId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( DirectorAction val in StaticTypes.DirectorActions.Values ) {
@@ -1217,32 +1157,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "EventorPrecision";
+			e.Description = SpecDoc.GetDtoText("EventorPrecision");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "EventorPrecisionId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( EventorPrecision val in StaticTypes.EventorPrecisions.Values ) {
@@ -1258,32 +1176,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "EventorType";
+			e.Description = SpecDoc.GetDtoText("EventorType");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "EventorTypeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( EventorType val in StaticTypes.EventorTypes.Values ) {
@@ -1299,32 +1195,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "FactorAssertion";
+			e.Description = SpecDoc.GetDtoText("FactorAssertion");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "FactorAssertionId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( FactorAssertion val in StaticTypes.FactorAssertions.Values ) {
@@ -1340,32 +1214,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "IdentorType";
+			e.Description = SpecDoc.GetDtoText("IdentorType");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "IdentorTypeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( IdentorType val in StaticTypes.IdentorTypes.Values ) {
@@ -1381,66 +1233,44 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "LocatorType";
+			e.Description = SpecDoc.GetDtoText("LocatorType");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "MinX";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("LocatorType_MinX");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MaxX";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("LocatorType_MaxX");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MinY";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("LocatorType_MinY");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MaxY";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("LocatorType_MaxY");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MinZ";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("LocatorType_MinZ");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MaxZ";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("LocatorType_MaxZ");
 				p.Type = "double";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "LocatorTypeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
 				e.Properties.Add(p);
 
 			e.Data = new List<Dictionary<string, object>>();
@@ -1464,55 +1294,33 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorType";
+			e.Description = SpecDoc.GetDtoText("VectorType");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
-				p.Name = "Range";
-				p.Description = "MISSING";
-				p.Type = "VectorRange";
+				p.Name = "VectorRangeId";
+				p.Description = SpecDoc.GetDtoPropText("VectorType_VectorRangeId");
+				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Min";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("VectorType_Min");
 				p.Type = "long";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Max";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("VectorType_Max");
 				p.Type = "long";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "VectorTypeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
 				e.Properties.Add(p);
 
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( VectorType val in StaticTypes.VectorTypes.Values ) {
 				var map = new Dictionary<string, object>();
-				map.Add("Range", val.Range);
+				map.Add("VectorRangeId", val.VectorRangeId);
 				map.Add("Min", val.Min);
 				map.Add("Max", val.Max);
 				map.Add("Id", val.Id);
@@ -1526,36 +1334,14 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorRangeLevel";
+			e.Description = SpecDoc.GetDtoText("VectorRangeLevel");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "Position";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("VectorRangeLevel_Position");
 				p.Type = "float";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "VectorRangeLevelId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
 				e.Properties.Add(p);
 
 			e.Data = new List<Dictionary<string, object>>();
@@ -1574,43 +1360,21 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorRange";
+			e.Description = SpecDoc.GetDtoText("VectorRange");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
-				p.Name = "Levels";
-				p.Description = "MISSING";
-				p.Type = "IEnumerable`1";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "VectorRangeId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
+				p.Name = "VectorRangeLevelIds";
+				p.Description = SpecDoc.GetDtoPropText("VectorRange_VectorRangeLevelIds");
+				p.Type = "byte[]";
 				e.Properties.Add(p);
 
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( VectorRange val in StaticTypes.VectorRanges.Values ) {
 				var map = new Dictionary<string, object>();
-				map.Add("Levels", val.Levels);
+				map.Add("VectorRangeLevelIds", val.VectorRangeLevelIds);
 				map.Add("Id", val.Id);
 				map.Add("EnumId", val.EnumId);
 				map.Add("Name", val.Name);
@@ -1622,32 +1386,10 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorUnit";
+			e.Description = SpecDoc.GetDtoText("VectorUnit");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "VectorUnitId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( VectorUnit val in StaticTypes.VectorUnits.Values ) {
@@ -1663,36 +1405,14 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorUnitPrefix";
+			e.Description = SpecDoc.GetDtoText("VectorUnitPrefix");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "Amount";
-				p.Description = "MISSING";
+				p.Description = SpecDoc.GetDtoPropText("VectorUnitPrefix_Amount");
 				p.Type = "double";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
-				p.Type = "byte";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "VectorUnitPrefixId";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
 				e.Properties.Add(p);
 
 			e.Data = new List<Dictionary<string, object>>();
@@ -1711,64 +1431,42 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorUnitDerived";
+			e.Description = SpecDoc.GetDtoText("VectorUnitDerived");
+			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
-				p.Name = "Defines";
-				p.Description = "MISSING";
-				p.Type = "VectorUnit";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Raises";
-				p.Description = "MISSING";
-				p.Type = "VectorUnit";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Exponent";
-				p.Description = "MISSING";
-				p.Type = "int";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Prefix";
-				p.Description = "MISSING";
-				p.Type = "VectorUnitPrefix";
-				e.Properties.Add(p);
-
-				p = new FabSpecObjectProp();
-				p.Name = "Id";
-				p.Description = "MISSING";
+				p.Name = "DefinesVectorUnitId";
+				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_DefinesVectorUnitId");
 				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
-				p.Name = "EnumId";
-				p.Description = "MISSING";
-				p.Type = "VectorUnitDerivedId";
+				p.Name = "RaisesVectorUnitId";
+				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_RaisesVectorUnitId");
+				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
-				p.Name = "Name";
-				p.Description = "MISSING";
-				p.Type = "string";
+				p.Name = "WithExponent";
+				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_WithExponent");
+				p.Type = "int";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
-				p.Name = "Description";
-				p.Description = "MISSING";
-				p.Type = "string";
+				p.Name = "RaisesVectorUnitPrefixId";
+				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_RaisesVectorUnitPrefixId");
+				p.Type = "byte";
 				e.Properties.Add(p);
 
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( VectorUnitDerived val in StaticTypes.VectorUnitDeriveds.Values ) {
 				var map = new Dictionary<string, object>();
-				map.Add("Defines", val.Defines);
-				map.Add("Raises", val.Raises);
-				map.Add("Exponent", val.Exponent);
-				map.Add("Prefix", val.Prefix);
+				map.Add("DefinesVectorUnitId", val.DefinesVectorUnitId);
+				map.Add("RaisesVectorUnitId", val.RaisesVectorUnitId);
+				map.Add("WithExponent", val.WithExponent);
+				map.Add("RaisesVectorUnitPrefixId", val.RaisesVectorUnitPrefixId);
 				map.Add("Id", val.Id);
 				map.Add("EnumId", val.EnumId);
 				map.Add("Name", val.Name);

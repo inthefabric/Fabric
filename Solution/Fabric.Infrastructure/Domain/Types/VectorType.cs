@@ -3,16 +3,16 @@
 	/*================================================================================================*/
 	public class VectorType : BaseType<VectorTypeId> {
 
-		public VectorRange Range { get; private set; }
+		public byte VectorRangeId { get; private set; }
 		public long Min { get; private set; }
 		public long Max { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorType(VectorTypeId pEnumId, string pName, VectorRange pRange, long pMin, 
+		public VectorType(VectorTypeId pEnumId, string pName, byte pRangeId, long pMin, 
 															long pMax) : base(pEnumId, pName, "") {
-			Range = pRange;
+			VectorRangeId = pRangeId;
 			Min = pMin;
 			Max = pMax;
 		}

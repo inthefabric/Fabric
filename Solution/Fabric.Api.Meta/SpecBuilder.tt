@@ -13,6 +13,7 @@
 <#@ import namespace="Fabric.Infrastructure.Domain.Types" #>
 <#@ import namespace="Weaver.Items" #>
 <#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
@@ -234,36 +235,60 @@ foreach ( string name in nodes ) {
 			FabSpecEnum e;
 			FabSpecObjectProp p;
 
-<#
-			foreach ( Type type in StaticTypes.TypeList ) {
-				PropertyInfo[] props = type.GetProperties();
-#>
 			e = new FabSpecEnum();
-			e.Name = "<#= type.Name #>";
+			e.Name = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 <#
-				foreach ( PropertyInfo prop in props ) {
+PropertyInfo[] baseProps = typeof(BaseType).GetProperties();
+
+foreach ( PropertyInfo prop in baseProps ) {
+	Type pt = prop.PropertyType;
 #>
 				p = new FabSpecObjectProp();
 				p.Name = "<#= prop.Name #>";
-				p.Description = "MISSING";
-				p.Type = "<#= SchemaHelperProp.GetTypeName(prop.PropertyType) #>";
+				p.Description = SpecDoc.GetDtoPropText("BaseEnum_<#= prop.Name #>");
+				p.Type = "<#= SchemaHelperProp.GetTypeName(pt) #>";
 				e.Properties.Add(p);
 
 <#
-				} //end prop loop
+}// end baseEnum loop
+
+foreach ( Type type in StaticTypes.TypeList ) {
+	PropertyInfo[] props = type.GetProperties(
+		BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+#>
+			e = new FabSpecEnum();
+			e.Name = "<#= type.Name #>";
+			e.Description = SpecDoc.GetDtoText("<#= type.Name #>");
+			e.Extends = "BaseEnum";
+			e.Properties = new List<FabSpecObjectProp>();
+			
+<#
+	foreach ( PropertyInfo prop in props ) {
+		Type pt = prop.PropertyType;
+#>
+				p = new FabSpecObjectProp();
+				p.Name = "<#= prop.Name #>";
+				p.Description = SpecDoc.GetDtoPropText("<#= type.Name+"_"+prop.Name #>");
+				p.Type = "<#= SchemaHelperProp.GetTypeName(pt) #>";
+				e.Properties.Add(p);
+
+<#
+	} //end prop loop
 #>
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( <#= type.Name #> val in StaticTypes.<#= type.Name #>s.Values ) {
 				var map = new Dictionary<string, object>();
 <#
-				foreach ( PropertyInfo prop in props ) {
+	PropertyInfo[] allProps = type.GetProperties();
+
+	foreach ( PropertyInfo prop in allProps ) {
 #>
 				map.Add("<#= prop.Name #>", val.<#= prop.Name #>);
 <#
-				} //end prop loop
+	} //end prop loop
 #>
 				e.Data.Add(map);
 			}
@@ -271,7 +296,7 @@ foreach ( string name in nodes ) {
 			list.Add(e);
 
 <#
-			} //end type loop
+} //end type loop
 #>
 			return list;
 		}

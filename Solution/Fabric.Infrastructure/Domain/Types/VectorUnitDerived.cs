@@ -3,20 +3,20 @@
 	/*================================================================================================*/
 	public class VectorUnitDerived : BaseType<VectorUnitDerivedId> {
 
-		public VectorUnit Defines { get; private set; }
-		public VectorUnit Raises { get; private set; }
-		public int Exponent { get; private set; }
-		public VectorUnitPrefix Prefix { get; private set; }
+		public byte DefinesVectorUnitId { get; private set; }
+		public byte RaisesVectorUnitId { get; private set; }
+		public int WithExponent { get; private set; }
+		public byte RaisesVectorUnitPrefixId { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VectorUnitDerived(VectorUnitDerivedId pEnumId, VectorUnit pUnit, VectorUnit pRaises,
-									int pExponent, VectorUnitPrefix pPrefix) : base(pEnumId, "", "") {
-			Defines = pUnit;
-			Raises = pRaises;
-			Exponent = pExponent;
-			Prefix = pPrefix;
+		public VectorUnitDerived(VectorUnitDerivedId pEnumId, byte pUnitId, byte pRaisesId,
+												int pExponent, byte pPrefixId) : base(pEnumId, "", "") {
+			DefinesVectorUnitId = pUnitId;
+			RaisesVectorUnitId = pRaisesId;
+			WithExponent = pExponent;
+			RaisesVectorUnitPrefixId = pPrefixId;
 		}
 
 	}

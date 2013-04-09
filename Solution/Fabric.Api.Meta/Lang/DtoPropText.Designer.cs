@@ -1026,9 +1026,9 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The set of points/labels that describe a numerical range..
         /// </summary>
-        internal static string VectorRange_Levels {
+        internal static string VectorRange_VectorRangeLevelIds {
             get {
-                return ResourceManager.GetString("VectorRange_Levels", resourceCulture);
+                return ResourceManager.GetString("VectorRange_VectorRangeLevelIds", resourceCulture);
             }
         }
         
@@ -1071,9 +1071,9 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string VectorUnitDerived_Exponent {
+        internal static string VectorUnitDerived_WithExponent {
             get {
-                return ResourceManager.GetString("VectorUnitDerived_Exponent", resourceCulture);
+                return ResourceManager.GetString("VectorUnitDerived_WithExponent", resourceCulture);
             }
         }
         

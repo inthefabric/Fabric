@@ -162,7 +162,7 @@
   <data name="VectorRangeLevel_Position" xml:space="preserve">
     <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
   </data>
-  <data name="VectorRange_Levels" xml:space="preserve">
+  <data name="VectorRange_VectorRangeLevelIds" xml:space="preserve">
     <value>The set of points/labels that describe a numerical range.</value>
   </data>
   <data name="VectorType_Max" xml:space="preserve">
@@ -312,7 +312,7 @@
   <data name="Url_Name" xml:space="preserve">
     <value>A descriptive name or title.</value>
   </data>
-  <data name="VectorUnitDerived_Exponent" xml:space="preserve">
+  <data name="VectorUnitDerived_WithExponent" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="Response_HttpStatus" xml:space="preserve">
