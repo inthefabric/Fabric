@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain", "Fabric.Dom
 		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE} = {0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db.Data", "Fabric.Test.Data\Fabric.Db.Data.csproj", "{878B57C3-E251-4F77-8427-463693F033AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Db.Data", "Fabric.Db.Data\Fabric.Db.Data.csproj", "{878B57C3-E251-4F77-8427-463693F033AF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE} = {0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}
 	EndProjectSection

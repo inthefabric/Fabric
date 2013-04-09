@@ -210,7 +210,7 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
+    <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
       <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
       <Name>Fabric.Db.Data</Name>
     </ProjectReference>

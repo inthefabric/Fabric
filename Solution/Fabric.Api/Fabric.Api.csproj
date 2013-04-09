@@ -233,7 +233,7 @@
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Test.Data\Fabric.Db.Data.csproj">
+    <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
       <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
       <Name>Fabric.Db.Data</Name>
     </ProjectReference>
