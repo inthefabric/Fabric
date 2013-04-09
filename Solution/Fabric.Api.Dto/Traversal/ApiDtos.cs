@@ -1,10 +1,12 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/9/2013 1:38:25 PM
+// Generated on 4/9/2013 4:09:27 PM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Traversal {
 	
@@ -575,49 +577,49 @@ namespace Fabric.Api.Dto.Traversal {
 			found = pData.TryGetValue("Note", out val);
 			if ( found ) { Note = val; }
 
-			val = pData["Descriptor_TypeId"];
+			found = pData.TryGetValue("Descriptor_TypeId", out val);
 			if ( found ) {
 				if ( Descriptor == null ) { Descriptor = new FabDescriptor(); }
 				Descriptor.TypeId = byte.Parse(val);
 			}
 
-			val = pData["Director_TypeId"];
+			found = pData.TryGetValue("Director_TypeId", out val);
 			if ( found ) {
 				if ( Director == null ) { Director = new FabDirector(); }
 				Director.TypeId = byte.Parse(val);
 			}
 
-			val = pData["Director_PrimaryActionId"];
+			found = pData.TryGetValue("Director_PrimaryActionId", out val);
 			if ( found ) {
 				if ( Director == null ) { Director = new FabDirector(); }
 				Director.PrimaryActionId = byte.Parse(val);
 			}
 
-			val = pData["Director_RelatedActionId"];
+			found = pData.TryGetValue("Director_RelatedActionId", out val);
 			if ( found ) {
 				if ( Director == null ) { Director = new FabDirector(); }
 				Director.RelatedActionId = byte.Parse(val);
 			}
 
-			val = pData["Eventor_TypeId"];
+			found = pData.TryGetValue("Eventor_TypeId", out val);
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.TypeId = byte.Parse(val);
 			}
 
-			val = pData["Eventor_PrecisionId"];
+			found = pData.TryGetValue("Eventor_PrecisionId", out val);
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.PrecisionId = byte.Parse(val);
 			}
 
-			val = pData["Eventor_DateTime"];
+			found = pData.TryGetValue("Eventor_DateTime", out val);
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.DateTime = long.Parse(val);
 			}
 
-			val = pData["Identor_TypeId"];
+			found = pData.TryGetValue("Identor_TypeId", out val);
 			if ( found ) {
 				if ( Identor == null ) { Identor = new FabIdentor(); }
 				Identor.TypeId = byte.Parse(val);
@@ -626,49 +628,49 @@ namespace Fabric.Api.Dto.Traversal {
 			found = pData.TryGetValue("Identor_Value", out val);
 			if ( found ) { Identor.Value = val; }
 
-			val = pData["Locator_TypeId"];
+			found = pData.TryGetValue("Locator_TypeId", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.TypeId = byte.Parse(val);
 			}
 
-			val = pData["Locator_ValueX"];
+			found = pData.TryGetValue("Locator_ValueX", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.ValueX = double.Parse(val);
 			}
 
-			val = pData["Locator_ValueY"];
+			found = pData.TryGetValue("Locator_ValueY", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.ValueY = double.Parse(val);
 			}
 
-			val = pData["Locator_ValueZ"];
+			found = pData.TryGetValue("Locator_ValueZ", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.ValueZ = double.Parse(val);
 			}
 
-			val = pData["Vector_TypeId"];
+			found = pData.TryGetValue("Vector_TypeId", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.TypeId = byte.Parse(val);
 			}
 
-			val = pData["Vector_UnitId"];
+			found = pData.TryGetValue("Vector_UnitId", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.UnitId = byte.Parse(val);
 			}
 
-			val = pData["Vector_UnitPrefixId"];
+			found = pData.TryGetValue("Vector_UnitPrefixId", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.UnitPrefixId = byte.Parse(val);
 			}
 
-			val = pData["Vector_Value"];
+			found = pData.TryGetValue("Vector_Value", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.Value = long.Parse(val);
@@ -780,60 +782,102 @@ namespace Fabric.Api.Dto.Traversal {
 
 
 	/*================================================================================================*/
-	public class FabDescriptor {
-
+	public class FabDescriptor : FabObject {
+	
 		public byte TypeId { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
 
 	}
 
 
 	/*================================================================================================*/
-	public class FabDirector {
-
+	public class FabDirector : FabObject {
+	
 		public byte TypeId { get; set; }
 		public byte PrimaryActionId { get; set; }
 		public byte RelatedActionId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabEventor {
-
+	public class FabEventor : FabObject {
+	
 		public byte TypeId { get; set; }
 		public byte PrecisionId { get; set; }
 		public long DateTime { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabIdentor {
-
+	public class FabIdentor : FabObject {
+	
 		public byte TypeId { get; set; }
 		public string Value { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabLocator {
-
+	public class FabLocator : FabObject {
+	
 		public byte TypeId { get; set; }
 		public double ValueX { get; set; }
 		public double ValueY { get; set; }
 		public double ValueZ { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabVector {
-
+	public class FabVector : FabObject {
+	
 		public byte TypeId { get; set; }
 		public byte UnitId { get; set; }
 		public byte UnitPrefixId { get; set; }
 		public long Value { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
 
 	}
 }

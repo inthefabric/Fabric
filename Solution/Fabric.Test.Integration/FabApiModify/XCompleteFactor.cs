@@ -2,6 +2,7 @@
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Domain;
 using NUnit.Framework;
 using Weaver;
 using Weaver.Interfaces;
@@ -66,25 +67,15 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void AttachTestDescriptor() {
-			var tx = new WeaverTransaction();
-			IWeaverVarAlias<Factor> facVar;
-			IWeaverVarAlias<Descriptor> descVar;
-			const long isA = (long)SetupFactors.DescriptorId.IsA;
+			var f = new Factor();
+			f.FactorId = vFactorId;
+			f.Descriptor_TypeId = (byte)DescriptorTypeId.IsA;
 
-			IWeaverQuery q = WeaverTasks.BeginPath<Factor>(x => x.FactorId, vFactorId).BaseNode
-				.Next().End();
-			q = WeaverTasks.StoreQueryResultAsVar(tx, q, out facVar);
-			tx.AddQuery(q);
+			var up = new WeaverUpdates<Factor>();
+			up.AddUpdate(f, x => x.Descriptor_TypeId);
 
-			q = WeaverTasks.BeginPath<Descriptor>(x => x.DescriptorId, isA).BaseNode.Next().End();
-			q = WeaverTasks.StoreQueryResultAsVar(tx, q, out descVar);
-			tx.AddQuery(q);
-
-			q = WeaverTasks.AddRel<FactorUsesDescriptor>(facVar, new FactorUsesDescriptor(), descVar);
-			tx.AddQuery(q);
-
-			tx.Finish();
-			ApiCtx.DbData("TEST.AttachDescriptor", tx);
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(f).UpdateEach(up).End();
+			ApiCtx.DbData("TEST.AttachDescriptor", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

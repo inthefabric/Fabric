@@ -1,10 +1,6 @@
 ﻿using Fabric.Api.Oauth.Tasks;
-using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
-using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
@@ -69,14 +65,13 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 				true, newMta.MemberTypeAssignId);
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(2, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMem.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
 
 			NewNodeCount = 2;
-			NewRelCount = 5;
+			NewRelCount = 4;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -117,14 +112,13 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 				true, (long)pUpdateMtaId);
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(2, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, updateMem.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

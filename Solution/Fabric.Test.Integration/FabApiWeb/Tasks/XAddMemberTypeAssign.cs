@@ -1,8 +1,6 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
@@ -14,7 +12,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 		private long vAssigningMemberId;
 		private long vMemberId;
-		private long vMemberTypeId;
+		private byte vMemberTypeId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +30,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 								MemberTypeId pMemTypeId, SetupUsers.MemberTypeAssignId pReplaceMtaId) {
 			vAssigningMemberId = (long)pAssigningMemberId;
 			vMemberId = (long)pMemberId;
-			vMemberTypeId = (long)pMemTypeId;
+			vMemberTypeId = (byte)pMemTypeId;
 
 			MemberTypeAssign result = TestGo();
 
@@ -53,13 +51,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(2, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, vAssigningMemberId);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, vMemberId);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, vMemberTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 	}

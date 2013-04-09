@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using NUnit.Framework;
 

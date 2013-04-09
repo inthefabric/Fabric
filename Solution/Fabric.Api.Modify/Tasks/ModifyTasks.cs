@@ -121,7 +121,12 @@ namespace Fabric.Api.Modify.Tasks {
 			var up = new WeaverUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(pFactor)
+					.UpdateEach(up)
+					.Next()
+				.End();
+
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
@@ -227,7 +232,12 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Vector_UnitPrefixId);
 			up.AddUpdate(pFactor, x => x.Vector_Value);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverQuery q =
+				ApiFunc.NewPathFromIndex(pFactor)
+					.UpdateEach(up)
+					.Next()
+				.End();
+			
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(

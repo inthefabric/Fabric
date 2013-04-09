@@ -1,11 +1,8 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
-using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
 
@@ -15,10 +12,10 @@ namespace Fabric.Test.Integration.FabApiModify {
 	[TestFixture]
 	public class XAttachIdentor : XCreateFactorElement {
 
-		private long vIdenTypeId;
+		private byte vIdenTypeId;
 		private string vValue;
 		
-		private Identor vResult;
+		private bool vResult;
 		
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +24,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vIdenTypeId = (long)IdentorTypeId.Text;
+			vIdenTypeId = (byte)IdentorTypeId.Text;
 			vValue = "my unique value";
 		}
 		
@@ -45,54 +42,26 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IsReadOnlyTest = false;
 
 			TestGo();
-			
-			Assert.NotNull(vResult, "Result should not be null.");
-			
-			////
-			
-			Identor newIdentor = GetNode<Identor>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newIdentor, "New Identor was not created.");
-			Assert.AreEqual(newIdentor.IdentorId, vResult.IdentorId,
-				"Incorrect Result.IdentorId.");
 
-			NodeConnections conn = GetNodeConnections(newIdentor);
-			conn.AssertRelCount(1, 1);
-			conn.AssertRel<FactorUsesIdentor, Factor>(false, FactorId);
-			conn.AssertRel<IdentorUsesIdentorType, IdentorType>(true, vIdenTypeId);
+			Assert.True(vResult, "Incorrect Result.");
 
-			NewNodeCount = 1;
-			NewRelCount = 2;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ExistingIdentor() {
-			IsReadOnlyTest = false;
-
-			vIdenTypeId = (long)IdentorTypeId.Key;
-			vValue = "4165";
-			const long expectIdentorId = (long)SetupFactors.IdentorId.Key_4165;
-
-			TestGo();
-
-			Assert.NotNull(vResult, "Result should not be null.");
-
-			////
-
-			Identor newIdentor = GetNode<Identor>(expectIdentorId);
-			NodeConnections conn = GetNodeConnections(newIdentor);
-			conn.AssertRel<FactorUsesIdentor, Factor>(false, FactorId);
-
-			NewNodeCount = 0;
-			NewRelCount = 1;
+			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
+			Assert.AreEqual(vIdenTypeId, updatedFactor.Identor_TypeId, "Incorrect Identor_TypeId.");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumIdentorTypes+1)]
-		public void ErrIdentorTypeRange(int pId) {
+		[TestCase(1)]
+		public void ErrIdentorTypeRange(byte pId) {
 			vIdenTypeId = pId;
+
+			if ( pId == 1 ) {
+				vIdenTypeId = (byte)(StaticTypes.IdentorTypes.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

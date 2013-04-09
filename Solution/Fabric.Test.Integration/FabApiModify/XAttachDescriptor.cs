@@ -2,7 +2,6 @@
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
@@ -20,12 +19,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 		private const SetupArtifacts.ArtifactId ArtB = SetupArtifacts.ArtifactId.User_Ellie;
 		private const SetupArtifacts.ArtifactId ArtC = SetupArtifacts.ArtifactId.App_Bookmarker;
 
-		private long vDescTypeId;
+		private byte vDescTypeId;
 		private long? vPrimArtRefId;
 		private long? vRelArtRefId;
 		private long? vDescTypeRefId;
 		
-		private Descriptor vResult;
+		private bool vResult;
 		
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vDescTypeId = (long)DescriptorTypeId.IsA;
+			vDescTypeId = (byte)DescriptorTypeId.IsA;
 			vPrimArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Aei;
 			vRelArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Evolution;
 			vDescTypeRefId = (long)SetupArtifacts.ArtifactId.Thi_Blue;
@@ -62,73 +61,41 @@ namespace Fabric.Test.Integration.FabApiModify {
 				SetupArtifacts.ArtifactId? pDescTypeRefId, SetupArtifacts.ArtifactId? pRelArtRefId) {
 			IsReadOnlyTest = false;
 
-			vDescTypeId = (long)pDescTypeId;
+			vDescTypeId = (byte)pDescTypeId;
 			vPrimArtRefId = (long?)pPrimArtRefId;
 			vRelArtRefId = (long?)pRelArtRefId;
 			vDescTypeRefId = (long?)pDescTypeRefId;
 			
 			TestGo();
-			
-			Assert.NotNull(vResult, "Result should not be null.");
-			
-			////
-			
-			Descriptor newDescriptor = GetNode<Descriptor>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newDescriptor, "New Descriptor was not created.");
-			Assert.AreEqual(newDescriptor.DescriptorId, vResult.DescriptorId,
-				"Incorrect Result.DescriptorId.");
 
-			NodeConnections conn = GetNodeConnections(newDescriptor);
+			Assert.True(vResult, "Incorrect Result.");
+			
+			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
+			Assert.AreEqual(vDescTypeId, updatedFactor.Descriptor_TypeId,
+				"Incorrect Descriptor_TypeId.");
+
+			NodeConnections conn = GetNodeConnections(updatedFactor);
 			int relCount;
 
-			XAttachDescriptor.CheckNewDescriptorConns(conn, FactorId, vDescTypeId, vPrimArtRefId,
+			XUpdateFactorDescriptor.CheckNewDescriptorConns(conn, FactorId, vDescTypeId, vPrimArtRefId,
 				vRelArtRefId, vDescTypeRefId, out relCount);
 
-			NewNodeCount = 1;
 			NewRelCount = relCount;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(DescriptorTypeId.IsA, null, null, null, SetupFactors.DescriptorId.IsA)]
-		[TestCase(DescriptorTypeId.IsA, null, null, SetupArtifacts.ArtifactId.Thi_Male,
-			SetupFactors.DescriptorId.IsA_Male)]
-		[TestCase(DescriptorTypeId.IsFoundIn, null, SetupArtifacts.ArtifactId.Thi_Home, null,
-			SetupFactors.DescriptorId.IsFoundIn_Home)]
-		[TestCase(DescriptorTypeId.HasA, SetupArtifacts.ArtifactId.Thi_Subject, null, null,
-			SetupFactors.DescriptorId.HasA_Subject)]
-		[TestCase(DescriptorTypeId.HasA, SetupArtifacts.ArtifactId.Thi_Object,
-			null, SetupArtifacts.ArtifactId.Thi_Blue, SetupFactors.DescriptorId.HasA_Object_Blue)]
-		public void ExistingDescriptor(DescriptorTypeId pDescTypeId,
-					SetupArtifacts.ArtifactId? pPrimArtRefId, SetupArtifacts.ArtifactId? pDescTypeRefId,
-					SetupArtifacts.ArtifactId? pRelArtRefId, SetupFactors.DescriptorId pExpectDescId) {
-			IsReadOnlyTest = false;
-
-			vDescTypeId = (long)pDescTypeId;
-			vPrimArtRefId = (long?)pPrimArtRefId;
-			vRelArtRefId = (long?)pRelArtRefId;
-			vDescTypeRefId = (long?)pDescTypeRefId;
-
-			TestGo();
-
-			Assert.NotNull(vResult, "Result should not be null.");
-
-			////
-
-			Descriptor newDescriptor = GetNode<Descriptor>((long)pExpectDescId);
-			NodeConnections conn = GetNodeConnections(newDescriptor);
-			conn.AssertRel<FactorUsesDescriptor, Factor>(false, FactorId);
-
-			NewNodeCount = 0;
-			NewRelCount = 1;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumDescriptorTypes+1)]
-		public void ErrDescriptorTypeRange(int pId) {
+		[TestCase(1)]
+		public void ErrDescriptorTypeRange(byte pId) {
 			vDescTypeId = pId;
+
+			if ( pId == 1 ) {
+				vDescTypeId = (byte)(StaticTypes.DescriptorTypes.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

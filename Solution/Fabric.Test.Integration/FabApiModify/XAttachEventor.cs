@@ -1,11 +1,8 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
-using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
 
@@ -15,11 +12,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 	[TestFixture]
 	public class XAttachEventor : XCreateFactorElement {
 
-		private long vEveTypeId;
-		private long vEvePrecId;
+		private byte vEveTypeId;
+		private byte vEvePrecId;
 		private long vDateTime;
 		
-		private Eventor vResult;
+		private bool vResult;
 		
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,8 +25,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vEveTypeId = (long)EventorTypeId.Continue;
-			vEvePrecId = (long)EventorPrecisionId.Second;
+			vEveTypeId = (byte)EventorTypeId.Continue;
+			vEvePrecId = (byte)EventorPrecisionId.Second;
 			vDateTime = 925923592753292;
 		}
 		
@@ -47,72 +44,46 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IsReadOnlyTest = false;
 
 			TestGo();
-			
-			Assert.NotNull(vResult, "Result should not be null.");
-			
-			////
-			
-			Eventor newEventor = GetNode<Eventor>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newEventor, "New Eventor was not created.");
-			Assert.AreEqual(newEventor.EventorId, vResult.EventorId,
-				"Incorrect Result.EventorId.");
 
-			NodeConnections conn = GetNodeConnections(newEventor);
-			conn.AssertRelCount(1, 2);
-			conn.AssertRel<FactorUsesEventor, Factor>(false, FactorId);
-			conn.AssertRel<EventorUsesEventorType, EventorType>(true, vEveTypeId);
-			conn.AssertRel<EventorUsesEventorPrecision, EventorPrecision>(true, vEvePrecId);
+			Assert.True(vResult, "Incorrect Result.");
 
-			NewNodeCount = 1;
-			NewRelCount = 3;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ExistingEventor() {
-			IsReadOnlyTest = false;
-
-			vEveTypeId = (long)EventorTypeId.Occur;
-			vEvePrecId = (long)EventorPrecisionId.Year;
-			vDateTime = 631769760000000000;
-			const long expectEventorId = (long)SetupFactors.EventorId.Occur_Year_2003;
-
-			TestGo();
-
-			Assert.NotNull(vResult, "Result should not be null.");
-
-			////
-
-			Eventor newEventor = GetNode<Eventor>(expectEventorId);
-			NodeConnections conn = GetNodeConnections(newEventor);
-			conn.AssertRel<FactorUsesEventor, Factor>(false, FactorId);
-
-			NewNodeCount = 0;
-			NewRelCount = 1;
+			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
+			Assert.AreEqual(vEveTypeId, updatedFactor.Eventor_TypeId, "Incorrect Eventor_TypeId.");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumEventorTypes+1)]
-		public void ErrEventorTypeRange(int pId) {
+		[TestCase(1)]
+		public void ErrEventorTypeRange(byte pId) {
 			vEveTypeId = pId;
+
+			if ( pId == 1 ) {
+				vEveTypeId = (byte)(StaticTypes.EventorTypes.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumEventorPrecisions+1)]
-		public void ErrEventorPrecisionRange(int pId) {
+		[TestCase(1)]
+		public void ErrEventorPrecisionRange(byte pId) {
 			vEvePrecId = pId;
+
+			if ( pId == 1 ) {
+				vEvePrecId = (byte)(StaticTypes.EventorPrecisions.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
 		[TestCase(-1)]
-		public void ErrEventorDateTimeRange(long pDateTime) {
+		public void ErrEventorDateTimeRange(byte pDateTime) {
 			vDateTime = pDateTime;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabric.Domain {
 
@@ -28,31 +29,43 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public static class NodeFabTypeUtil {
 
-		public static readonly IDictionary<Type, NodeFabType> TypeMap = Init();
+		public static IDictionary<Type, NodeFabType> TypeMap;
+		public static IDictionary<int, NodeFabType> ValueMap;
+
+		private static readonly bool IsInit = Init();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static IDictionary<Type, NodeFabType> Init() {
-			var m = new Dictionary<Type, NodeFabType>();
-			m.Add(typeof(App), NodeFabType.App);
-			m.Add(typeof(Class), NodeFabType.Class);
-			m.Add(typeof(Instance), NodeFabType.Instance);
-			m.Add(typeof(Url), NodeFabType.Url);
-			m.Add(typeof(User), NodeFabType.User);
+		private static bool Init() {
+			TypeMap = new Dictionary<Type, NodeFabType>();
+			TypeMap.Add(typeof(App), NodeFabType.App);
+			TypeMap.Add(typeof(Class), NodeFabType.Class);
+			TypeMap.Add(typeof(Instance), NodeFabType.Instance);
+			TypeMap.Add(typeof(Url), NodeFabType.Url);
+			TypeMap.Add(typeof(User), NodeFabType.User);
 
-			m.Add(typeof(Member), NodeFabType.Member);
-			m.Add(typeof(MemberTypeAssign), NodeFabType.MemberTypeAssign);
+			TypeMap.Add(typeof(Member), NodeFabType.Member);
+			TypeMap.Add(typeof(MemberTypeAssign), NodeFabType.MemberTypeAssign);
 
-			m.Add(typeof(Factor), NodeFabType.Factor);
+			TypeMap.Add(typeof(Factor), NodeFabType.Factor);
 
-			m.Add(typeof(Email), NodeFabType.Email);
-			m.Add(typeof(OauthAccess), NodeFabType.OauthAccess);
-			m.Add(typeof(OauthDomain), NodeFabType.OauthDomain);
-			m.Add(typeof(OauthGrant), NodeFabType.OauthGrant);
-			m.Add(typeof(OauthScope), NodeFabType.OauthScope);
+			TypeMap.Add(typeof(Email), NodeFabType.Email);
+			TypeMap.Add(typeof(OauthAccess), NodeFabType.OauthAccess);
+			TypeMap.Add(typeof(OauthDomain), NodeFabType.OauthDomain);
+			TypeMap.Add(typeof(OauthGrant), NodeFabType.OauthGrant);
+			TypeMap.Add(typeof(OauthScope), NodeFabType.OauthScope);
+			
+			////
 
-			return m;
+			ValueMap = new Dictionary<int, NodeFabType>();
+			IEnumerable<NodeFabType> types = Enum.GetValues(typeof(NodeFabType)).Cast<NodeFabType>();
+
+			foreach ( NodeFabType type in types ) {
+				ValueMap.Add((int)type, type);
+			}
+
+			return true;
 		}
 		
 	}

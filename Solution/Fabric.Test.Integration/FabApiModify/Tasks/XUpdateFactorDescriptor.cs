@@ -1,11 +1,8 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
-using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
@@ -30,27 +27,20 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		[TestCase(DescriptorTypeId.IsA, ArtA, ArtB, ArtC)]
 		public void Success(DescriptorTypeId pDescTypeId, SetupArtifacts.ArtifactId? pPrimArtRefId,
 				SetupArtifacts.ArtifactId? pDescTypeRefId, SetupArtifacts.ArtifactId? pRelArtRefId) {
-
-			IWeaverVarAlias<Descriptor> elemVar;
 			var f = new Factor { FactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete };
 
-			Tasks.TxAddDescriptor(ApiCtx, TxBuild, (long)pDescTypeId,
-				(long?)pPrimArtRefId, (long?)pRelArtRefId, (long?)pDescTypeRefId, f, out elemVar);
-			FinishTx();
+			Tasks.UpdateFactorDescriptor(ApiCtx, f, (byte)pDescTypeId,
+				(long?)pPrimArtRefId, (long?)pRelArtRefId, (long?)pDescTypeRefId);
 
-			ApiCtx.DbData("TEST.TxAddDescriptor", TxBuild.Transaction);
+			Factor updatedFactor = GetNode<Factor>(f.FactorId);
+			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
 
-			Descriptor newDescriptor = GetNode<Descriptor>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newDescriptor, "New Descriptor was not created.");
-			Assert.AreNotEqual(0, newDescriptor.DescriptorId, "Incorrect DescriptorId.");
-
-			NodeConnections conn = GetNodeConnections(newDescriptor);
+			NodeConnections conn = GetNodeConnections(updatedFactor);
 			int relCount;
 
-			CheckNewDescriptorConns(conn, f.FactorId, (long)pDescTypeId, (long?)pPrimArtRefId,
+			CheckNewDescriptorConns(conn, f.FactorId, (byte)pDescTypeId, (long?)pPrimArtRefId,
 				(long?)pRelArtRefId, (long?)pDescTypeRefId, out relCount);
 
-			NewNodeCount = 1;
 			NewRelCount = relCount;
 		}
 
@@ -58,7 +48,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void CheckNewDescriptorConns(NodeConnections pConn, long pFactorId,
-											long pDescTypeId, long? pPrimArtRefId, long? pRelArtRefId, 
+											byte pDescTypeId, long? pPrimArtRefId, long? pRelArtRefId, 
 											long? pDescTypeRefId, out int pRelCount) {
 
 			int refRels = 0;
@@ -66,28 +56,25 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			if ( pRelArtRefId != null ) { refRels++; }
 			if ( pDescTypeRefId != null ) { refRels++; }
 
-			pConn.AssertRelCount(1, 1+refRels);
-			pConn.AssertRel<FactorUsesDescriptor, Factor>(false, pFactorId);
-			pConn.AssertRel<DescriptorUsesDescriptorType, DescriptorType>(true, pDescTypeId);
-
 			string idProp = typeof(Artifact).Name+"Id";
 
 			if ( pPrimArtRefId != null ) {
-				pConn.AssertRel<DescriptorRefinesPrimaryWithArtifact, Artifact>(
+				pConn.AssertRel<FactorRefinesPrimaryWithArtifact, Artifact>(
 					true, (long)pPrimArtRefId, idProp);
 			}
 
 			if ( pRelArtRefId != null ) {
-				pConn.AssertRel<DescriptorRefinesRelatedWithArtifact, Artifact>(
+				pConn.AssertRel<FactorRefinesRelatedWithArtifact, Artifact>(
 					true, (long)pRelArtRefId, idProp);
 			}
 
 			if ( pDescTypeRefId != null ) {
-				pConn.AssertRel<DescriptorRefinesTypeWithArtifact, Artifact>(
+				pConn.AssertRel<FactorRefinesTypeWithArtifact, Artifact>(
 					true, (long)pDescTypeRefId, idProp);
 			}
 
-			pRelCount = 2+refRels;
+			pConn.AssertRelCount(1, 2+refRels); //factor has 3 initial rels
+			pRelCount = refRels;
 		}
 
 	}

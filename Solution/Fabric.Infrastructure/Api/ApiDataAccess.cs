@@ -62,6 +62,11 @@ namespace Fabric.Infrastructure.Api {
 				Sema.Release();
 
 				Result = JsonSerializer.DeserializeFromString<DbResult>(RawResult);
+
+				if ( !Result.Success ) {
+					throw new Exception("Result.Success is false.");
+				}
+
 				Result.BuildDbDtos(RawResult);
 			}
 			catch ( WebException we ) {

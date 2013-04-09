@@ -54,7 +54,7 @@ namespace Fabric.Test.Integration {
 			TestSetUp();
 
 			//vCounts = CountNodesAndRels();
-			vCounts = new Tuple<int, int>(556, 1227); //shortcut to help tests run faster
+			vCounts = new Tuple<int, int>(259, 592); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
 			Log.Info("Counts { V = "+vCounts.Item1+", E = "+vCounts.Item2+" }");

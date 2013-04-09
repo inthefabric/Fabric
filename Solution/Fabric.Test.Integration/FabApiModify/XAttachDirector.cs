@@ -1,8 +1,6 @@
 ﻿using Fabric.Api.Modify;
-using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
@@ -15,11 +13,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 	[TestFixture]
 	public class XAttachDirector : XCreateFactorElement {
 
-		private long vDirTypeId;
-		private long vPrimActId;
-		private long vRelActId;
+		private byte vDirTypeId;
+		private byte vPrimActId;
+		private byte vRelActId;
 		
-		private Director vResult;
+		private bool vResult;
 		
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,9 +26,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vDirTypeId = (long)DirectorTypeId.DefinedPath;
-			vPrimActId = (long)DirectorActionId.Locate;
-			vRelActId = (long)DirectorActionId.Obtain;
+			vDirTypeId = (byte)DirectorTypeId.DefinedPath;
+			vPrimActId = (byte)DirectorActionId.Locate;
+			vRelActId = (byte)DirectorActionId.Obtain;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -48,73 +46,51 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			TestGo();
 			
-			Assert.NotNull(vResult, "Result should not be null.");
+			Assert.True(vResult, "Incorrect Result.");
 			
-			////
-			
-			Director newDirector = GetNode<Director>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newDirector, "New Director was not created.");
-			Assert.AreEqual(newDirector.DirectorId, vResult.DirectorId,
-				"Incorrect Result.DirectorId.");
-
-			NodeConnections conn = GetNodeConnections(newDirector);
-			conn.AssertRelCount(1, 3);
-			conn.AssertRel<FactorUsesDirector, Factor>(false, FactorId);
-			conn.AssertRel<DirectorUsesDirectorType, DirectorType>(true, vDirTypeId);
-			conn.AssertRel<DirectorUsesPrimaryDirectorAction, DirectorAction>(true, vPrimActId);
-			conn.AssertRel<DirectorUsesRelatedDirectorAction, DirectorAction>(true, vRelActId);
-
-			NewNodeCount = 1;
-			NewRelCount = 4;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ExistingDirector() {
-			IsReadOnlyTest = false;
-
-			vDirTypeId = (long)DirectorTypeId.SuggestPath;
-			vPrimActId = (long)DirectorActionId.View;
-			vRelActId = (long)DirectorActionId.Learn;
-			const long expectDirectorId = (long)SetupFactors.DirectorId.View_Sugg_Learn;
-
-			TestGo();
-
-			Assert.NotNull(vResult, "Result should not be null.");
-
-			////
-
-			Director newDirector = GetNode<Director>(expectDirectorId);
-			NodeConnections conn = GetNodeConnections(newDirector);
-			conn.AssertRel<FactorUsesDirector, Factor>(false, FactorId);
-
-			NewNodeCount = 0;
-			NewRelCount = 1;
+			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
+			Assert.AreEqual(vDirTypeId, updatedFactor.Director_TypeId, "Incorrect Director_TypeId.");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumDirectorTypes+1)]
-		public void ErrDirectorTypeRange(int pId) {
+		[TestCase(1)]
+		public void ErrDirectorTypeRange(byte pId) {
 			vDirTypeId = pId;
+
+			if ( pId == 1 ) {
+				vDirTypeId = (byte)(StaticTypes.DirectorTypes.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumDirectorActions+1)]
-		public void ErrPrimaryDirectorActionRange(int pId) {
+		[TestCase(1)]
+		public void ErrPrimaryDirectorActionRange(byte pId) {
 			vDirTypeId = pId;
+
+			if ( pId == 1 ) {
+				vDirTypeId = (byte)(StaticTypes.DirectorActions.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumDirectorActions+1)]
-		public void ErrRelatedDirectorActionRange(int pId) {
+		[TestCase(1)]
+		public void ErrRelatedDirectorActionRange(byte pId) {
 			vDirTypeId = pId;
+
+			if ( pId == 1 ) {
+				vDirTypeId = (byte)(StaticTypes.DirectorActions.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

@@ -16,9 +16,11 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Domain;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Traversal {
 	
@@ -138,7 +140,7 @@ foreach ( string name in nodes ) {
 #>
 
 <#
-		if ( hp.PropSchema.IsNullable == true || propType == "string" ) {
+		if ( hp.PropSchema.IsNullable == true || propType == "string" || hp.IsSubProp() ) {
 #>
 			found = pData.TryGetValue("<#= propName #>", out val);
 <#
@@ -220,8 +222,8 @@ foreach ( string name in nodes ) {
 
 
 	/*================================================================================================*/
-	public class Fab<#= subName #> {
-
+	public class Fab<#= subName #> : FabObject {
+	
 <#
 			IList<SchemaHelperProp> subProps = hn.GetSubProps(subName);
 
@@ -231,6 +233,13 @@ foreach ( string name in nodes ) {
 <#
 			} //end subProp loop
 #>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) {
+			throw new NotImplementedException();
+		}
 
 	}
 <#

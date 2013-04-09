@@ -16,7 +16,6 @@ namespace Fabric.Infrastructure.Db {
 		}
 
 		private static readonly Type ArtifactType = typeof(Artifact);
-		private static readonly string ArtifactId = ArtifactType.Name+"Id";
 
 		public ItemType Item { get; set; }
 		public string Id { get; set; }
@@ -44,12 +43,11 @@ namespace Fabric.Infrastructure.Db {
 				return;
 			}
 
-			string type = pRaw._type;
-
-			switch ( type ) {
+			switch ( pRaw._type ) {
 				case "vertex":
+					int ft = int.Parse(Data["FabType"]);
 					Item = ItemType.Node;
-					Class = GetClass(Data);
+					Class = NodeFabTypeUtil.ValueMap[ft]+"";
 					break;
 
 				case "edge":
@@ -61,7 +59,7 @@ namespace Fabric.Infrastructure.Db {
 
 				default:
 					Item = ItemType.Error;
-					throw new Exception("Unknown ItemType: "+type);
+					throw new Exception("Unknown ItemType: "+pRaw._type);
 			}
 		}
 		
@@ -104,31 +102,6 @@ namespace Fabric.Infrastructure.Db {
 			}
 
 			return result;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static string GetClass(IDictionary<string, string> pData) {
-			if ( pData == null ) { return null; }
-			bool isArt = false;
-
-			foreach ( string key in pData.Keys ) {
-				int ki = key.Length-2;
-
-				if ( key.Substring(ki) != "Id" ) {
-					continue;
-				}
-
-				if ( key == ArtifactId ) {
-					isArt = true;
-					continue;
-				}
-
-				return key.Substring(0, ki);
-			}
-
-			return (isArt ? ArtifactType.Name : null);
 		}
 		
 	}

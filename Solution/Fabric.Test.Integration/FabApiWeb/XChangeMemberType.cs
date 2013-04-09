@@ -3,7 +3,6 @@ using Fabric.Api.Web.Results;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
@@ -19,7 +18,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		private long vAppId;
 		private long vAssigningMemberId;
 		private long vMemberId;
-		private long vMemberTypeId;
+		private byte vMemberTypeId;
 		
 		private SuccessResult vResult;
 		
@@ -33,7 +32,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			vAppId = (long)AppGal;
 			vAssigningMemberId = (long)SetupUsers.MemberId.GalZach;
 			vMemberId = (long)SetupUsers.MemberId.GalMel;
-			vMemberTypeId = (long)MemberTypeId.Admin;
+			vMemberTypeId = (byte)MemberTypeId.Admin;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -62,13 +61,12 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
 			NodeConnections conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(2, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, vAssigningMemberId);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, vMemberId);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, vMemberTypeId);
 
 			NewNodeCount = 1;
-			NewRelCount = 3;
+			NewRelCount = 2;
 		}
 
 				
@@ -96,9 +94,14 @@ namespace Fabric.Test.Integration.FabApiWeb {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumMemberTypes+1)]
-		public void ErrMemberTypeIdValue(long pMemTypeId) {
+		[TestCase(1)]
+		public void ErrMemberTypeIdValue(byte pMemTypeId) {
 			vMemberTypeId = pMemTypeId;
+
+			if ( pMemTypeId == 1 ) {
+				vMemberTypeId = (byte)(StaticTypes.MemberTypes.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

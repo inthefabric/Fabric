@@ -1,8 +1,6 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -46,13 +44,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 				true, newMta.MemberTypeAssignId);
 
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(2, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true, (long)MemberTypeId.Member);
 
 			NewNodeCount = 2;
-			NewRelCount = 5;
+			NewRelCount = 4;
 		}
 
 	}

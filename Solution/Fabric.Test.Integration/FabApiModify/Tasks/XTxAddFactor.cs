@@ -1,8 +1,6 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -23,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			var mem = new Member { MemberId = (long)pMemberId };
 			IWeaverVarAlias<Factor> factorVar;
 
-			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (long)pAssertId, 
+			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (byte)pAssertId, 
 				pIsDef, pNote, mem, out factorVar);
 			FinishTx();
 
@@ -43,14 +41,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			string artId = typeof(Artifact).Name+"Id";
 
 			NodeConnections conn = GetNodeConnections(newFactor);
-			conn.AssertRelCount(1, 3);
+			conn.AssertRelCount(1, 2);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, (long)pMemberId);
 			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId, artId);
 			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, (long)pRelArtId, artId);
-			conn.AssertRel<FactorUsesFactorAssertion, FactorAssertion>(true, (long)pAssertId);
 
 			NewNodeCount = 1;
-			NewRelCount = 4;
+			NewRelCount = 3;
 		}
 
 	}

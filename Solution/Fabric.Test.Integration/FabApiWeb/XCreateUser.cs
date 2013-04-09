@@ -2,9 +2,7 @@
 using Fabric.Api.Web.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -98,12 +96,10 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			NewRelCount += 4-2;
 			
 			conn = GetNodeConnections(newMta);
-			conn.AssertRelCount(2, 1);
+			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
-			conn.AssertRel<MemberTypeAssignUsesMemberType, MemberType>(true,
-				(long)MemberTypeId.Member);
-			NewRelCount += 3-1;
+			NewRelCount += 2-1;
 		}
 
 				

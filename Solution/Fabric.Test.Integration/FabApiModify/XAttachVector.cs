@@ -2,7 +2,6 @@
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
@@ -15,13 +14,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 	[TestFixture]
 	public class XAttachVector : XCreateFactorElement {
 
-		private long vVecTypeId;
+		private byte vVecTypeId;
 		private long vValue;
 		private long vAxisArtId;
-		private long vVecUnitId;
-		private long vVecUnitPrefId;
+		private byte vVecUnitId;
+		private byte vVecUnitPrefId;
 		
-		private Vector vResult;
+		private bool vResult;
 		
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,11 +29,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vVecTypeId = (long)VectorTypeId.FullLong;
+			vVecTypeId = (byte)VectorTypeId.FullLong;
 			vValue = 42;
 			vAxisArtId = (long)SetupArtifacts.ArtifactId.Thi_Aei;
-			vVecUnitId = (long)VectorUnitId.Hertz;
-			vVecUnitPrefId = (long)VectorUnitPrefixId.Milli;
+			vVecUnitId = (byte)VectorUnitId.Hertz;
+			vVecUnitPrefId = (byte)VectorUnitPrefixId.Milli;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -52,51 +51,20 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IsReadOnlyTest = false;
 
 			TestGo();
-			
-			Assert.NotNull(vResult, "Result should not be null.");
-			
+
+			Assert.True(vResult, "Incorrect Result.");
+
+			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
+			Assert.AreEqual(vVecTypeId, updatedFactor.Vector_TypeId, "Incorrect Vector_TypeId.");
+
 			////
 			
-			Vector newVector = GetNode<Vector>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newVector, "New Vector was not created.");
-			Assert.AreEqual(newVector.VectorId, vResult.VectorId,
-				"Incorrect Result.VectorId.");
-
-			NodeConnections conn = GetNodeConnections(newVector);
-			conn.AssertRelCount(1, 4);
-			conn.AssertRel<FactorUsesVector, Factor>(false, FactorId);
-			conn.AssertRel<VectorUsesVectorType, VectorType>(true, vVecTypeId);
-			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true,
+			NodeConnections conn = GetNodeConnections(updatedFactor);
+			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
+			conn.AssertRel<FactorUsesAxisArtifact, Artifact>(true,
 				vAxisArtId, typeof(Artifact).Name+"Id");
-			conn.AssertRel<VectorUsesVectorUnit, VectorUnit>(true, vVecUnitId);
-			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, vVecUnitPrefId);
 			
-			NewNodeCount = 1;
-			NewRelCount = 5;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ExistingVector() {
-			IsReadOnlyTest = false;
-			
-			vVecTypeId = (long)VectorTypeId.OppFavor;
-			vValue = 92;
-			vAxisArtId = (long)SetupArtifacts.ArtifactId.Thi_Quality;
-			vVecUnitId = (long)VectorUnitId.None;
-			vVecUnitPrefId = (long)VectorUnitPrefixId.Base;
-			const long expectVectorId = (long)SetupFactors.VectorId.Quality_92_None;
-
-			TestGo();
-
-			Assert.NotNull(vResult, "Result should not be null.");
-
-			////
-
-			Vector newVector = GetNode<Vector>(expectVectorId);
-			NodeConnections conn = GetNodeConnections(newVector);
-			conn.AssertRel<FactorUsesVector, Factor>(false, FactorId);
-
-			NewNodeCount = 0;
 			NewRelCount = 1;
 		}
 
@@ -104,9 +72,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumVectorTypes+1)]
-		public void ErrVectorTypeRange(int pId) {
+		[TestCase(1)]
+		public void ErrVectorTypeRange(byte pId) {
 			vVecTypeId = pId;
+
+			if ( pId == 1 ) {
+				vVecTypeId = (byte)(StaticTypes.VectorTypes.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
@@ -119,17 +92,27 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumVectorUnits+1)]
-		public void ErrVectorUnitRange(int pId) {
+		[TestCase(1)]
+		public void ErrVectorUnitRange(byte pId) {
 			vVecUnitId = pId;
+
+			if ( pId == 1 ) {
+				vVecUnitId = (byte)(StaticTypes.VectorUnits.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumVectorUnitPrefixes+1)]
-		public void ErrVectorUnitPrefixRange(int pId) {
+		[TestCase(1)]
+		public void ErrVectorUnitPrefixRange(byte pId) {
 			vVecUnitPrefId = pId;
+
+			if ( pId == 1 ) {
+				vVecUnitPrefId = (byte)(StaticTypes.VectorUnitPrefixs.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 

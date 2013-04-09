@@ -61,6 +61,17 @@ namespace Fabric.Api.Services.Views {
 				html += "<b>"+pi.Name+":</b> ";
 				var val = pi.GetValue(pNode, null);
 
+				if ( val == null ) {
+					html += "<span style='color:gray;'>null</span><br/>";
+					continue;
+				}
+
+				if ( typeof(FabObject).IsAssignableFrom(pi.PropertyType) ) {
+					html += "<div style='margin-left:25px; padding-left:5px; "+
+						"border-left:1px solid gray'>"+BuildNodeHtml((IFabObject)val)+"</div>";
+					continue;
+				}
+
 				if ( pi.Name == "Uri" ) {
 					var uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+val;
 					html += "<a href='"+uri+"'>"+val+"</a>";

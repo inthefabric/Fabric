@@ -2,7 +2,6 @@
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
@@ -17,7 +16,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		private long vPrimArtId;
 		private long vRelArtId;
-		private long vAssertId;
+		private byte vAssertId;
 		private bool vIsDefining;
 		private string vNote;
 
@@ -33,7 +32,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			vPrimArtId = (long)SetupArtifacts.ArtifactId.App_KinPhoGal;
 			vRelArtId = (long)SetupArtifacts.ArtifactId.User_Ellie;
-			vAssertId = (long)FactorAssertionId.Guess;
+			vAssertId = (byte)FactorAssertionId.Guess;
 			vIsDefining = true;
 			vNote = "note here";
 
@@ -67,23 +66,27 @@ namespace Fabric.Test.Integration.FabApiModify {
 			string artId = typeof(Artifact).Name+"Id";
 
 			NodeConnections conn = GetNodeConnections(newFactor);
-			conn.AssertRelCount(1, 3);
+			conn.AssertRelCount(1, 2);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, vExpectMemberId);
 			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId, artId);
 			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, vRelArtId, artId);
-			conn.AssertRel<FactorUsesFactorAssertion, FactorAssertion>(true, vAssertId);
 			
 			NewNodeCount = 1;
-			NewRelCount = 4;
+			NewRelCount = 3;
 		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
-		[TestCase(SetupTypes.NumFactorAsserts+1)]
-		public void ErrAssertIdRange(long pId) {
+		[TestCase(1)]
+		public void ErrAssertIdRange(byte pId) {
 			vAssertId = pId;
+
+			if ( pId == 1 ) {
+				vAssertId = (byte)(StaticTypes.FactorAssertions.Keys.Count+1);
+			}
+
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 		

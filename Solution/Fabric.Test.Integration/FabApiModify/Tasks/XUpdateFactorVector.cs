@@ -1,11 +1,8 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
-using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
@@ -20,32 +17,23 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			VectorUnitId.None, VectorUnitPrefixId.Base)]
 		public void Success(VectorTypeId pVecTypeId, long pValue, SetupArtifacts.ArtifactId pAxisArtId,
 										VectorUnitId pVecUnitId, VectorUnitPrefixId pVecUnitPrefId) {
-			IWeaverVarAlias<Vector> elemVar;
 			var f = new Factor { FactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete };
 
-			Tasks.TxAddVector(ApiCtx, TxBuild,
-				(long)pVecTypeId, pValue, (long)pAxisArtId, (long)pVecUnitId,
-				(long)pVecUnitPrefId, f, out elemVar);
-			FinishTx();
+			Tasks.UpdateFactorVector(ApiCtx, f, (byte)pVecTypeId, pValue, (long)pAxisArtId,
+				(byte)pVecUnitId, (byte)pVecUnitPrefId);
 
-			ApiCtx.DbData("TEST.TxAddVector", TxBuild.Transaction);
+			Factor fac = GetNode<Factor>(f.FactorId);
+			Assert.NotNull(fac, "Updated Factor was deleted.");
+			Assert.AreEqual((byte)pVecTypeId, fac.Vector_TypeId, "Incorrect Vector_TypeId.");
 
-			Vector newVector = GetNode<Vector>(ApiCtx.SharpflakeIds[0]);
-			Assert.NotNull(newVector, "New Vector was not created.");
-			Assert.AreNotEqual(0, newVector.VectorId, "Incorrect VectorId.");
-			Assert.AreEqual(pValue, newVector.Value, "Incorrect Value.");
+			////
 
-			NodeConnections conn = GetNodeConnections(newVector);
-			conn.AssertRelCount(1, 4);
-			conn.AssertRel<FactorUsesVector, Factor>(false, f.FactorId);
-			conn.AssertRel<VectorUsesVectorType, VectorType>(true, (long)pVecTypeId);
-			conn.AssertRel<VectorUsesAxisArtifact, Artifact>(true, 
+			NodeConnections conn = GetNodeConnections(fac);
+			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
+			conn.AssertRel<FactorUsesAxisArtifact, Artifact>(true,
 				(long)pAxisArtId, typeof(Artifact).Name+"Id");
-			conn.AssertRel<VectorUsesVectorUnit, VectorUnit>(true, (long)pVecUnitId);
-			conn.AssertRel<VectorUsesVectorUnitPrefix, VectorUnitPrefix>(true, (long)pVecUnitPrefId);
 
-			NewNodeCount = 1;
-			NewRelCount = 5;
+			NewRelCount = 1;
 		}
 
 	}
