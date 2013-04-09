@@ -16,7 +16,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=g.V('"+typeof(Factor).Name+"Id',_TP)"+
 				".sideEffect{"+
 					"it.setProperty('Descriptor_TypeId',_TP)"+
-				"};";
+				"}"+
+				".next();";
 
 		private static readonly string QueryPrimRef = 
 			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+

@@ -6,7 +6,7 @@ namespace Fabric.Domain.Meta {
 	/*================================================================================================*/
 	public class SchemaHelperProp {
 		
-		public WeaverPropSchema PropSchema { get; private set; }
+		public FabricPropSchema PropSchema { get; private set; }
 
 		public string TypeName { get; private set; }
 		public string SubPropName { get; private set; }
@@ -14,7 +14,7 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SchemaHelperProp(WeaverPropSchema pProp) {
+		public SchemaHelperProp(FabricPropSchema pProp) {
 			PropSchema = pProp;
 			TypeName = GetTypeName(PropSchema.Type, (PropSchema.IsNullable == true));
 

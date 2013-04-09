@@ -27,7 +27,7 @@ namespace Fabric.Domain.Meta {
 			vRels = new List<SchemaHelperNodeRel>();
 			vSubMap = new Dictionary<string, IList<SchemaHelperProp>>();
 
-			foreach ( WeaverPropSchema ps in NodeSchema.Props ) {
+			foreach ( FabricPropSchema ps in NodeSchema.Props ) {
 				var hp = new SchemaHelperProp(ps);
 				vProps.Add(hp);
 

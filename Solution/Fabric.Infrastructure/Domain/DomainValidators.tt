@@ -65,7 +65,7 @@ foreach ( string name in nodes ) {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
 	foreach ( SchemaHelperProp hp in nodeProps ) {
-		WeaverPropSchema prop = hp.PropSchema;
+		FabricPropSchema prop = hp.PropSchema;
 		string method = (prop.IsPrimaryKey == true ? "" : node.Name)+prop.Name;
 		int count = 0;
 #>
@@ -86,11 +86,10 @@ foreach ( string name in nodes ) {
 <#
 		}
 
-		if ( prop.IsPrimaryKey == true && !node.IsInternal && 
-				node.BaseNode != null && node.BaseNode.Name == "NodeForType" ) {
+		if ( prop.EnumName != null ) {
 			count++;
 #>
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(<#= node.Name #>Id)).Length);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(<#= prop.EnumName #>)).Length);
 <#
 		}
 		else if ( prop.IsPrimaryKey == true ) {

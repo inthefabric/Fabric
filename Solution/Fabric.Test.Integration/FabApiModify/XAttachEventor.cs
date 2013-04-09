@@ -83,7 +83,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
 		[TestCase(-1)]
-		public void ErrEventorDateTimeRange(byte pDateTime) {
+		public void ErrEventorDateTimeRange(long pDateTime) {
 			vDateTime = pDateTime;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}

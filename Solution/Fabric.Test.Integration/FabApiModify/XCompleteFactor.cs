@@ -42,11 +42,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.Null(newFac.Completed, "Completed should be null.");
 
 			int compCount = CountCompleted();
-
-			//A completed Factor must have a Descriptor
-			AttachTestDescriptor();
-			NewNodeCount = 0;
-			NewRelCount = 1;
+			AttachTestDescriptor(); //A completed Factor must have a Descriptor
 
 			////
 

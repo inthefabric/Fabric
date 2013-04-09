@@ -35,7 +35,7 @@ namespace Fabric.Domain.Meta {
 		public Schema() {
 			Nodes = new List<WeaverNodeSchema>();
 			Rels = new List<WeaverRelSchema>();
-			WeaverPropSchema p;
+			FabricPropSchema p;
 
 			////
 			
@@ -180,6 +180,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(memberTypeAssign, "MemberTypeAssignId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(memberTypeAssign, "MemberTypeId", typeof(byte));
+				p.EnumName = "MemberTypeId";
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
 			url.BaseNode = artifact;
@@ -216,6 +217,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(factor, "FactorId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(factor, "FactorAssertionId", typeof(byte));
+				p.EnumName = "FactorAssertionId";
 			//p = AddProp(factor, "IsPublic", typeof(bool));
 			p = AddProp(factor, "IsDefining", typeof(bool));
 			p = AddProp(factor, "Created", typeof(DateTime));
@@ -231,29 +233,40 @@ namespace Fabric.Domain.Meta {
 				p.IsNullable = true;
 
 			p = AddProp(factor, "Descriptor_TypeId", typeof(byte));
+				p.EnumName = "DescriptorTypeId";
 
 			p = AddProp(factor, "Director_TypeId", typeof(byte));
+				p.EnumName = "DirectorTypeId";
 			p = AddProp(factor, "Director_PrimaryActionId", typeof(byte));
+				p.EnumName = "DirectorActionId";
 			p = AddProp(factor, "Director_RelatedActionId", typeof(byte));
+			p.EnumName = "DirectorActionId";
 
 			p = AddProp(factor, "Eventor_TypeId", typeof(byte));
+				p.EnumName = "EventorTypeId";
 			p = AddProp(factor, "Eventor_PrecisionId", typeof(byte));
+				p.EnumName = "EventorPrecisionId";
 			p = AddProp(factor, "Eventor_DateTime", typeof(DateTime));
 				p.Min = 1;
 
 			p = AddProp(factor, "Identor_TypeId", typeof(byte));
+				p.EnumName = "IdentorTypeId";
 			p = AddProp(factor, "Identor_Value", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 
 			p = AddProp(factor, "Locator_TypeId", typeof(byte));
+				p.EnumName = "LocatorTypeId";
 			p = AddProp(factor, "Locator_ValueX", typeof(double));
 			p = AddProp(factor, "Locator_ValueY", typeof(double));
 			p = AddProp(factor, "Locator_ValueZ", typeof(double));
 
 			p = AddProp(factor, "Vector_TypeId", typeof(byte));
+				p.EnumName = "VectorTypeId";
 			p = AddProp(factor, "Vector_UnitId", typeof(byte));
+				p.EnumName = "VectorUnitId";
 			p = AddProp(factor, "Vector_UnitPrefixId", typeof(byte));
+				p.EnumName = "VectorUnitPrefixId";
 			p = AddProp(factor, "Vector_Value", typeof(long));
 			
 			////
@@ -393,8 +406,8 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public WeaverPropSchema AddProp(WeaverNodeSchema pNode, string pName, Type pType) {
-			var p = new WeaverPropSchema(pName, pType);
+		public FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, Type pType) {
+			var p = new FabricPropSchema(pName, pType);
 			pNode.Props.Add(p);
 			return p;
 		}

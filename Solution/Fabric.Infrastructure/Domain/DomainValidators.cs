@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 3:34:03 PM
+// Generated on 4/9/2013 4:49:30 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -409,7 +409,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void MemberTypeAssignMemberTypeId(byte pValue, string pParamName) {
-			throw new Exception("MemberTypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(MemberTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -500,7 +500,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorFactorAssertionId(byte pValue, string pParamName) {
-			throw new Exception("FactorAssertionId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(FactorAssertionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -561,7 +561,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorDescriptor_TypeId(byte pValue, string pParamName) {
-			throw new Exception("Descriptor_TypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DescriptorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -571,7 +571,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorDirector_TypeId(byte pValue, string pParamName) {
-			throw new Exception("Director_TypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -581,7 +581,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorDirector_PrimaryActionId(byte pValue, string pParamName) {
-			throw new Exception("Director_PrimaryActionId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorActionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -591,7 +591,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorDirector_RelatedActionId(byte pValue, string pParamName) {
-			throw new Exception("Director_RelatedActionId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(DirectorActionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -601,7 +601,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorEventor_TypeId(byte pValue, string pParamName) {
-			throw new Exception("Eventor_TypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -611,7 +611,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorEventor_PrecisionId(byte pValue, string pParamName) {
-			throw new Exception("Eventor_PrecisionId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorPrecisionId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -631,7 +631,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorIdentor_TypeId(byte pValue, string pParamName) {
-			throw new Exception("Identor_TypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(IdentorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -652,7 +652,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorLocator_TypeId(byte pValue, string pParamName) {
-			throw new Exception("Locator_TypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(LocatorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -692,7 +692,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorVector_TypeId(byte pValue, string pParamName) {
-			throw new Exception("Vector_TypeId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorTypeId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -702,7 +702,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorVector_UnitId(byte pValue, string pParamName) {
-			throw new Exception("Vector_UnitId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -712,7 +712,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorVector_UnitPrefixId(byte pValue, string pParamName) {
-			throw new Exception("Vector_UnitPrefixId has no validation. Property value was "+pValue);
+			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(VectorUnitPrefixId)).Length);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

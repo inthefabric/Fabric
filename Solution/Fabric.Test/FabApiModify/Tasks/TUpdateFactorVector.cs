@@ -18,7 +18,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					"it.setProperty('Vector_UnitId',_TP);"+
 					"it.setProperty('Vector_UnitPrefixId',_TP);"+
 					"it.setProperty('Vector_Value',_TP)"+
-				"};"+
+				"}"+
+				".next();"+
 			"_V1=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);";
 
