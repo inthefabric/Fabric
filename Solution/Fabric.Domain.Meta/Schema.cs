@@ -324,18 +324,18 @@ namespace Fabric.Domain.Meta {
 			const string uses = "Uses";
 			const string usesPrimary = "UsesPrimary";
 			const string usesRelated = "UsesRelated";
-			const string usesAxis = "UsesAxis";
 			const string creates = "Creates";
-			const string replaces = "Replaces";
-			const string refinesPrimaryWith = "RefinesPrimaryWith";
-			const string refinesRelatedWith = "RefinesRelatedWith";
-			const string refinesTypeWith = "RefinesTypeWith";
+			//const string replaces = "Replaces";
+			const string refinesPrimaryWith = "DescriptorRefinesPrimaryWith";
+			const string refinesRelatedWith = "DescriptorRefinesRelatedWith";
+			const string refinesTypeWith = "DescriptorRefinesTypeWith";
+			const string usesAxis = "VectorUsesAxis";
 			const string defines = "Defines";
 
 			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
 			//const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
 			const WeaverRelConn ifzom = WeaverRelConn.InFromZeroOrMore;
-			const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
+			//const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
 			const WeaverRelConn oto = WeaverRelConn.OutToOne;
 			const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
 			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
@@ -366,7 +366,7 @@ namespace Fabric.Domain.Meta {
 
 			AddRel(factor, usesPrimary, artifact, oto, ifzom);
 			AddRel(factor, usesRelated, artifact, oto, ifzom);
-			AddRel(factor, replaces, factor, otzoo, ifzoo);
+			//AddRel(factor, replaces, factor, otzoo, ifzoo);
 			AddRel(factor, refinesPrimaryWith, artifact, otzoo, ifzom); //Descriptor
 			AddRel(factor, refinesRelatedWith, artifact, otzoo, ifzom); //Descriptor
 			AddRel(factor, refinesTypeWith, artifact, otzoo, ifzom); //Descriptor

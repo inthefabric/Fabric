@@ -59,17 +59,17 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			string idProp = typeof(Artifact).Name+"Id";
 
 			if ( pPrimArtRefId != null ) {
-				pConn.AssertRel<FactorRefinesPrimaryWithArtifact, Artifact>(
+				pConn.AssertRel<FactorDescriptorRefinesPrimaryWithArtifact, Artifact>(
 					true, (long)pPrimArtRefId, idProp);
 			}
 
 			if ( pRelArtRefId != null ) {
-				pConn.AssertRel<FactorRefinesRelatedWithArtifact, Artifact>(
+				pConn.AssertRel<FactorDescriptorRefinesRelatedWithArtifact, Artifact>(
 					true, (long)pRelArtRefId, idProp);
 			}
 
 			if ( pDescTypeRefId != null ) {
-				pConn.AssertRel<FactorRefinesTypeWithArtifact, Artifact>(
+				pConn.AssertRel<FactorDescriptorRefinesTypeWithArtifact, Artifact>(
 					true, (long)pDescTypeRefId, idProp);
 			}
 

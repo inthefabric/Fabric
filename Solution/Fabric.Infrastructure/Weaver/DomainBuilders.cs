@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:24 PM
+// Generated on 4/10/2013 12:55:30 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -30,10 +30,10 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesPrimary { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesRelated { get; private set; }
-		public virtual IList<IWeaverVarAlias<Factor>> InFactorListRefinesPrimaryWith { get; private set; }
-		public virtual IList<IWeaverVarAlias<Factor>> InFactorListRefinesRelatedWith { get; private set; }
-		public virtual IList<IWeaverVarAlias<Factor>> InFactorListRefinesTypeWith { get; private set; }
-		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesAxis { get; private set; }
+		public virtual IList<IWeaverVarAlias<Factor>> InFactorListDescriptorRefinesPrimaryWith { get; private set; }
+		public virtual IList<IWeaverVarAlias<Factor>> InFactorListDescriptorRefinesRelatedWith { get; private set; }
+		public virtual IList<IWeaverVarAlias<Factor>> InFactorListDescriptorRefinesTypeWith { get; private set; }
+		public virtual IList<IWeaverVarAlias<Factor>> InFactorListVectorUsesAxis { get; private set; }
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -141,129 +141,129 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesPrimaryWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorRefinesPrimaryWithArtifact>(pTargetNodeVar, NodeVar);
-			InFactorListRefinesPrimaryWith = (InFactorListRefinesPrimaryWith ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListRefinesPrimaryWith.Add(pTargetNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(pTargetNodeVar, NodeVar);
+			InFactorListDescriptorRefinesPrimaryWith = (InFactorListDescriptorRefinesPrimaryWith ?? new List<IWeaverVarAlias<Factor>>());
+			InFactorListDescriptorRefinesPrimaryWith.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesPrimaryWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
 			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListRefinesPrimaryWith(pNodeVar);
+			AddToInFactorListDescriptorRefinesPrimaryWith(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesPrimaryWith(Factor pFactor) {
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(Factor pFactor) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListRefinesPrimaryWith(pFactor, out nodeVar);
+			AddToInFactorListDescriptorRefinesPrimaryWith(pFactor, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesPrimaryWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListRefinesPrimaryWith(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
+			AddToInFactorListDescriptorRefinesPrimaryWith(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesPrimaryWith(long pFactorId) {
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(long pFactorId) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListRefinesPrimaryWith(pFactorId, out nodeVar);
+			AddToInFactorListDescriptorRefinesPrimaryWith(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesRelatedWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorRefinesRelatedWithArtifact>(pTargetNodeVar, NodeVar);
-			InFactorListRefinesRelatedWith = (InFactorListRefinesRelatedWith ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListRefinesRelatedWith.Add(pTargetNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(pTargetNodeVar, NodeVar);
+			InFactorListDescriptorRefinesRelatedWith = (InFactorListDescriptorRefinesRelatedWith ?? new List<IWeaverVarAlias<Factor>>());
+			InFactorListDescriptorRefinesRelatedWith.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesRelatedWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
 			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListRefinesRelatedWith(pNodeVar);
+			AddToInFactorListDescriptorRefinesRelatedWith(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesRelatedWith(Factor pFactor) {
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(Factor pFactor) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListRefinesRelatedWith(pFactor, out nodeVar);
+			AddToInFactorListDescriptorRefinesRelatedWith(pFactor, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesRelatedWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListRefinesRelatedWith(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
+			AddToInFactorListDescriptorRefinesRelatedWith(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesRelatedWith(long pFactorId) {
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(long pFactorId) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListRefinesRelatedWith(pFactorId, out nodeVar);
+			AddToInFactorListDescriptorRefinesRelatedWith(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesTypeWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorRefinesTypeWithArtifact>(pTargetNodeVar, NodeVar);
-			InFactorListRefinesTypeWith = (InFactorListRefinesTypeWith ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListRefinesTypeWith.Add(pTargetNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(pTargetNodeVar, NodeVar);
+			InFactorListDescriptorRefinesTypeWith = (InFactorListDescriptorRefinesTypeWith ?? new List<IWeaverVarAlias<Factor>>());
+			InFactorListDescriptorRefinesTypeWith.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesTypeWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
 			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListRefinesTypeWith(pNodeVar);
+			AddToInFactorListDescriptorRefinesTypeWith(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesTypeWith(Factor pFactor) {
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(Factor pFactor) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListRefinesTypeWith(pFactor, out nodeVar);
+			AddToInFactorListDescriptorRefinesTypeWith(pFactor, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesTypeWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListRefinesTypeWith(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
+			AddToInFactorListDescriptorRefinesTypeWith(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListRefinesTypeWith(long pFactorId) {
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(long pFactorId) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListRefinesTypeWith(pFactorId, out nodeVar);
+			AddToInFactorListDescriptorRefinesTypeWith(pFactorId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesAxis(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesAxisArtifact>(pTargetNodeVar, NodeVar);
-			InFactorListUsesAxis = (InFactorListUsesAxis ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListUsesAxis.Add(pTargetNodeVar);
+		public virtual void AddToInFactorListVectorUsesAxis(IWeaverVarAlias<Factor> pTargetNodeVar) {
+			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(pTargetNodeVar, NodeVar);
+			InFactorListVectorUsesAxis = (InFactorListVectorUsesAxis ?? new List<IWeaverVarAlias<Factor>>());
+			InFactorListVectorUsesAxis.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesAxis(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
+		public virtual void AddToInFactorListVectorUsesAxis(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
 			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListUsesAxis(pNodeVar);
+			AddToInFactorListVectorUsesAxis(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesAxis(Factor pFactor) {
+		public virtual void AddToInFactorListVectorUsesAxis(Factor pFactor) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListUsesAxis(pFactor, out nodeVar);
+			AddToInFactorListVectorUsesAxis(pFactor, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesAxis(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListUsesAxis(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListVectorUsesAxis(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
+			AddToInFactorListVectorUsesAxis(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesAxis(long pFactorId) {
+		public virtual void AddToInFactorListVectorUsesAxis(long pFactorId) {
 			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListUsesAxis(pFactorId, out nodeVar);
+			AddToInFactorListVectorUsesAxis(pFactorId, out nodeVar);
 		}
 		
 
@@ -1184,11 +1184,10 @@ namespace Fabric.Infrastructure.Weaver {
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesPrimaryArtifact { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesRelatedArtifact { get; private set; }
-		public virtual IWeaverVarAlias<Factor> ReplacesFactor { get; private set; }
-		public virtual IWeaverVarAlias<Artifact> RefinesPrimaryWithArtifact { get; private set; }
-		public virtual IWeaverVarAlias<Artifact> RefinesRelatedWithArtifact { get; private set; }
-		public virtual IWeaverVarAlias<Artifact> RefinesTypeWithArtifact { get; private set; }
-		public virtual IWeaverVarAlias<Artifact> UsesAxisArtifact { get; private set; }
+		public virtual IWeaverVarAlias<Artifact> DescriptorRefinesPrimaryWithArtifact { get; private set; }
+		public virtual IWeaverVarAlias<Artifact> DescriptorRefinesRelatedWithArtifact { get; private set; }
+		public virtual IWeaverVarAlias<Artifact> DescriptorRefinesTypeWithArtifact { get; private set; }
+		public virtual IWeaverVarAlias<Artifact> VectorUsesAxisArtifact { get; private set; }
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1299,156 +1298,125 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetReplacesFactor(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorReplacesFactor>(NodeVar, pTargetNodeVar);
-			ReplacesFactor = pTargetNodeVar;
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(NodeVar, pTargetNodeVar);
+			DescriptorRefinesPrimaryWithArtifact = pTargetNodeVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetReplacesFactor(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			SetReplacesFactor(pNodeVar);
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
+			TxBuild.GetNode(pArtifact, out pNodeVar);
+			SetDescriptorRefinesPrimaryWithArtifact(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetReplacesFactor(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			SetReplacesFactor(pFactor, out nodeVar);
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(Artifact pArtifact) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetDescriptorRefinesPrimaryWithArtifact(pArtifact, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetReplacesFactor(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			SetReplacesFactor(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
+			SetDescriptorRefinesPrimaryWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetReplacesFactor(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			SetReplacesFactor(pFactorId, out nodeVar);
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(long pArtifactId) {
+			IWeaverVarAlias<Artifact> nodeVar;
+			SetDescriptorRefinesPrimaryWithArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesPrimaryWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorRefinesPrimaryWithArtifact>(NodeVar, pTargetNodeVar);
-			RefinesPrimaryWithArtifact = pTargetNodeVar;
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(NodeVar, pTargetNodeVar);
+			DescriptorRefinesRelatedWithArtifact = pTargetNodeVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesPrimaryWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
 			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetRefinesPrimaryWithArtifact(pNodeVar);
+			SetDescriptorRefinesRelatedWithArtifact(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesPrimaryWithArtifact(Artifact pArtifact) {
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(Artifact pArtifact) {
 			IWeaverVarAlias<Artifact> nodeVar;
-			SetRefinesPrimaryWithArtifact(pArtifact, out nodeVar);
+			SetDescriptorRefinesRelatedWithArtifact(pArtifact, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesPrimaryWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetRefinesPrimaryWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
+			SetDescriptorRefinesRelatedWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesPrimaryWithArtifact(long pArtifactId) {
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(long pArtifactId) {
 			IWeaverVarAlias<Artifact> nodeVar;
-			SetRefinesPrimaryWithArtifact(pArtifactId, out nodeVar);
+			SetDescriptorRefinesRelatedWithArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesRelatedWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorRefinesRelatedWithArtifact>(NodeVar, pTargetNodeVar);
-			RefinesRelatedWithArtifact = pTargetNodeVar;
+		public virtual void SetDescriptorRefinesTypeWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(NodeVar, pTargetNodeVar);
+			DescriptorRefinesTypeWithArtifact = pTargetNodeVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesRelatedWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
+		public virtual void SetDescriptorRefinesTypeWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
 			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetRefinesRelatedWithArtifact(pNodeVar);
+			SetDescriptorRefinesTypeWithArtifact(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesRelatedWithArtifact(Artifact pArtifact) {
+		public virtual void SetDescriptorRefinesTypeWithArtifact(Artifact pArtifact) {
 			IWeaverVarAlias<Artifact> nodeVar;
-			SetRefinesRelatedWithArtifact(pArtifact, out nodeVar);
+			SetDescriptorRefinesTypeWithArtifact(pArtifact, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesRelatedWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetRefinesRelatedWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetDescriptorRefinesTypeWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
+			SetDescriptorRefinesTypeWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesRelatedWithArtifact(long pArtifactId) {
+		public virtual void SetDescriptorRefinesTypeWithArtifact(long pArtifactId) {
 			IWeaverVarAlias<Artifact> nodeVar;
-			SetRefinesRelatedWithArtifact(pArtifactId, out nodeVar);
+			SetDescriptorRefinesTypeWithArtifact(pArtifactId, out nodeVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesTypeWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorRefinesTypeWithArtifact>(NodeVar, pTargetNodeVar);
-			RefinesTypeWithArtifact = pTargetNodeVar;
+		public virtual void SetVectorUsesAxisArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
+			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(NodeVar, pTargetNodeVar);
+			VectorUsesAxisArtifact = pTargetNodeVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesTypeWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
+		public virtual void SetVectorUsesAxisArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
 			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetRefinesTypeWithArtifact(pNodeVar);
+			SetVectorUsesAxisArtifact(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesTypeWithArtifact(Artifact pArtifact) {
+		public virtual void SetVectorUsesAxisArtifact(Artifact pArtifact) {
 			IWeaverVarAlias<Artifact> nodeVar;
-			SetRefinesTypeWithArtifact(pArtifact, out nodeVar);
+			SetVectorUsesAxisArtifact(pArtifact, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesTypeWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetRefinesTypeWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetVectorUsesAxisArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
+			SetVectorUsesAxisArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetRefinesTypeWithArtifact(long pArtifactId) {
+		public virtual void SetVectorUsesAxisArtifact(long pArtifactId) {
 			IWeaverVarAlias<Artifact> nodeVar;
-			SetRefinesTypeWithArtifact(pArtifactId, out nodeVar);
-		}
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesAxisArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesAxisArtifact>(NodeVar, pTargetNodeVar);
-			UsesAxisArtifact = pTargetNodeVar;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesAxisArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetUsesAxisArtifact(pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesAxisArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetUsesAxisArtifact(pArtifact, out nodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesAxisArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetUsesAxisArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesAxisArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetUsesAxisArtifact(pArtifactId, out nodeVar);
+			SetVectorUsesAxisArtifact(pArtifactId, out nodeVar);
 		}
 		
 

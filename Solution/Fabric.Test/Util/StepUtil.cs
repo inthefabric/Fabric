@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:23 PM
+// Generated on 4/10/2013 12:55:30 PM
 
 using System.Collections.Generic;
 
@@ -21,20 +21,20 @@ namespace Fabric.Test.Util {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
-				"/InFactorListRefinesPrimaryWith",
-				"/InFactorListRefinesRelatedWith",
-				"/InFactorListRefinesTypeWith",
-				"/InFactorListUsesAxis",
+				"/InFactorListDescriptorRefinesPrimaryWith",
+				"/InFactorListDescriptorRefinesRelatedWith",
+				"/InFactorListDescriptorRefinesTypeWith",
+				"/InFactorListVectorUsesAxis",
 			});
 
 			map.Add("App", new string [] {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
-				"/InFactorListRefinesPrimaryWith",
-				"/InFactorListRefinesRelatedWith",
-				"/InFactorListRefinesTypeWith",
-				"/InFactorListUsesAxis",
+				"/InFactorListDescriptorRefinesPrimaryWith",
+				"/InFactorListDescriptorRefinesRelatedWith",
+				"/InFactorListDescriptorRefinesTypeWith",
+				"/InFactorListVectorUsesAxis",
 				"/DefinesMemberList",
 			});
 
@@ -42,20 +42,20 @@ namespace Fabric.Test.Util {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
-				"/InFactorListRefinesPrimaryWith",
-				"/InFactorListRefinesRelatedWith",
-				"/InFactorListRefinesTypeWith",
-				"/InFactorListUsesAxis",
+				"/InFactorListDescriptorRefinesPrimaryWith",
+				"/InFactorListDescriptorRefinesRelatedWith",
+				"/InFactorListDescriptorRefinesTypeWith",
+				"/InFactorListVectorUsesAxis",
 			});
 
 			map.Add("Instance", new string [] {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
-				"/InFactorListRefinesPrimaryWith",
-				"/InFactorListRefinesRelatedWith",
-				"/InFactorListRefinesTypeWith",
-				"/InFactorListUsesAxis",
+				"/InFactorListDescriptorRefinesPrimaryWith",
+				"/InFactorListDescriptorRefinesRelatedWith",
+				"/InFactorListDescriptorRefinesTypeWith",
+				"/InFactorListVectorUsesAxis",
 			});
 
 			map.Add("Member", new string [] {
@@ -78,20 +78,20 @@ namespace Fabric.Test.Util {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
-				"/InFactorListRefinesPrimaryWith",
-				"/InFactorListRefinesRelatedWith",
-				"/InFactorListRefinesTypeWith",
-				"/InFactorListUsesAxis",
+				"/InFactorListDescriptorRefinesPrimaryWith",
+				"/InFactorListDescriptorRefinesRelatedWith",
+				"/InFactorListDescriptorRefinesTypeWith",
+				"/InFactorListVectorUsesAxis",
 			});
 
 			map.Add("User", new string [] {
 				"/InMemberCreates",
 				"/InFactorListUsesPrimary",
 				"/InFactorListUsesRelated",
-				"/InFactorListRefinesPrimaryWith",
-				"/InFactorListRefinesRelatedWith",
-				"/InFactorListRefinesTypeWith",
-				"/InFactorListUsesAxis",
+				"/InFactorListDescriptorRefinesPrimaryWith",
+				"/InFactorListDescriptorRefinesRelatedWith",
+				"/InFactorListDescriptorRefinesTypeWith",
+				"/InFactorListVectorUsesAxis",
 				"/DefinesMemberList",
 			});
 
@@ -99,11 +99,10 @@ namespace Fabric.Test.Util {
 				"/InMemberCreates",
 				"/UsesPrimaryArtifact",
 				"/UsesRelatedArtifact",
-				"/ReplacesFactor",
-				"/RefinesPrimaryWithArtifact",
-				"/RefinesRelatedWithArtifact",
-				"/RefinesTypeWithArtifact",
-				"/UsesAxisArtifact",
+				"/DescriptorRefinesPrimaryWithArtifact",
+				"/DescriptorRefinesRelatedWithArtifact",
+				"/DescriptorRefinesTypeWithArtifact",
+				"/VectorUsesAxisArtifact",
 			});
 
 			return map;

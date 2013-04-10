@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:24 PM
+// Generated on 4/10/2013 12:55:31 PM
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -20,23 +20,23 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInFactorListRefinesPrimaryWith {
-		IFactorStep InFactorListRefinesPrimaryWith { get; }
+	public interface IInFactorListDescriptorRefinesPrimaryWith {
+		IFactorStep InFactorListDescriptorRefinesPrimaryWith { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInFactorListRefinesRelatedWith {
-		IFactorStep InFactorListRefinesRelatedWith { get; }
+	public interface IInFactorListDescriptorRefinesRelatedWith {
+		IFactorStep InFactorListDescriptorRefinesRelatedWith { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInFactorListRefinesTypeWith {
-		IFactorStep InFactorListRefinesTypeWith { get; }
+	public interface IInFactorListDescriptorRefinesTypeWith {
+		IFactorStep InFactorListDescriptorRefinesTypeWith { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IInFactorListUsesAxis {
-		IFactorStep InFactorListUsesAxis { get; }
+	public interface IInFactorListVectorUsesAxis {
+		IFactorStep InFactorListVectorUsesAxis { get; }
 	}
 
 	/*================================================================================================*/
@@ -110,28 +110,23 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IReplacesFactor {
-		IFactorStep ReplacesFactor { get; }
+	public interface IDescriptorRefinesPrimaryWithArtifact {
+		IArtifactStep DescriptorRefinesPrimaryWithArtifact { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IRefinesPrimaryWithArtifact {
-		IArtifactStep RefinesPrimaryWithArtifact { get; }
+	public interface IDescriptorRefinesRelatedWithArtifact {
+		IArtifactStep DescriptorRefinesRelatedWithArtifact { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IRefinesRelatedWithArtifact {
-		IArtifactStep RefinesRelatedWithArtifact { get; }
+	public interface IDescriptorRefinesTypeWithArtifact {
+		IArtifactStep DescriptorRefinesTypeWithArtifact { get; }
 	}
 
 	/*================================================================================================*/
-	public interface IRefinesTypeWithArtifact {
-		IArtifactStep RefinesTypeWithArtifact { get; }
-	}
-
-	/*================================================================================================*/
-	public interface IUsesAxisArtifact {
-		IArtifactStep UsesAxisArtifact { get; }
+	public interface IVectorUsesAxisArtifact {
+		IArtifactStep VectorUsesAxisArtifact { get; }
 	}
 
 	/*================================================================================================*/
@@ -151,7 +146,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IArtifactStep :
-		INodeStep, IInMemberCreates, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInFactorListRefinesPrimaryWith, IInFactorListRefinesRelatedWith, IInFactorListRefinesTypeWith, IInFactorListUsesAxis {
+		INodeStep, IInMemberCreates, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInFactorListDescriptorRefinesPrimaryWith, IInFactorListDescriptorRefinesRelatedWith, IInFactorListDescriptorRefinesTypeWith, IInFactorListVectorUsesAxis {
 	}
 
 	/*================================================================================================*/
@@ -191,7 +186,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IFactorStep :
-		INodeStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IReplacesFactor, IRefinesPrimaryWithArtifact, IRefinesRelatedWithArtifact, IRefinesTypeWithArtifact, IUsesAxisArtifact {
+		INodeStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IDescriptorRefinesPrimaryWithArtifact, IDescriptorRefinesRelatedWithArtifact, IDescriptorRefinesTypeWithArtifact, IVectorUsesAxisArtifact {
 	}
 
 }

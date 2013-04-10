@@ -83,8 +83,19 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddIndex(IWeaverQuery pQuery) {
+		public void AddIndexQuery(IWeaverQuery pQuery) {
 			Indexes.Add(pQuery);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IWeaverTransaction GetIndexTx() {
+			var tx = new WeaverTransaction();
+
+			foreach ( IWeaverQuery q in Indexes ) {
+				tx.AddQuery(q);
+			}
+
+			return tx.Finish();
 		}
 
 

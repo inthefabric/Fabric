@@ -7,6 +7,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public enum NodeFabType {
 		BaseClass = -1,
+		Unspecified = 0,
 
 		App = 1000,
 		Class,

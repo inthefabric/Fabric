@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/9/2013 1:33:45 PM
+// Generated on 4/10/2013 12:55:29 PM
 
 using System;
 using System.Linq.Expressions;
@@ -63,37 +63,30 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Replaces : IWeaverRelType {
+	public class DescriptorRefinesPrimaryWith : IWeaverRelType {
 	
-		public string Label { get { return "Replaces"; } }
+		public string Label { get { return "DescriptorRefinesPrimaryWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class RefinesPrimaryWith : IWeaverRelType {
+	public class DescriptorRefinesRelatedWith : IWeaverRelType {
 	
-		public string Label { get { return "RefinesPrimaryWith"; } }
+		public string Label { get { return "DescriptorRefinesRelatedWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class RefinesRelatedWith : IWeaverRelType {
+	public class DescriptorRefinesTypeWith : IWeaverRelType {
 	
-		public string Label { get { return "RefinesRelatedWith"; } }
+		public string Label { get { return "DescriptorRefinesTypeWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class RefinesTypeWith : IWeaverRelType {
+	public class VectorUsesAxis : IWeaverRelType {
 	
-		public string Label { get { return "RefinesTypeWith"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class UsesAxis : IWeaverRelType {
-	
-		public string Label { get { return "UsesAxis"; } }
+		public string Label { get { return "VectorUsesAxis"; } }
 
 	}
 
@@ -201,47 +194,38 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class FactorReplacesFactor : Rel<Factor, Replaces, Factor>, IItemWithId {
+	public class FactorDescriptorRefinesPrimaryWithArtifact : Rel<Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Factor ToFactor { get { return ToNode; } }
-		public override string Label { get { return "FactorReplacesFactor"; } }
+		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public override string Label { get { return "FactorDescriptorRefinesPrimaryWithArtifact"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class FactorRefinesPrimaryWithArtifact : Rel<Factor, RefinesPrimaryWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesRelatedWithArtifact : Rel<Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "FactorRefinesPrimaryWithArtifact"; } }
+		public override string Label { get { return "FactorDescriptorRefinesRelatedWithArtifact"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class FactorRefinesRelatedWithArtifact : Rel<Factor, RefinesRelatedWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesTypeWithArtifact : Rel<Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "FactorRefinesRelatedWithArtifact"; } }
+		public override string Label { get { return "FactorDescriptorRefinesTypeWithArtifact"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class FactorRefinesTypeWithArtifact : Rel<Factor, RefinesTypeWith, Artifact>, IItemWithId {
+	public class FactorVectorUsesAxisArtifact : Rel<Factor, VectorUsesAxis, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return FromNode; } }
 		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "FactorRefinesTypeWithArtifact"; } }
-
-	}
-
-	/*================================================================================================*/
-	public class FactorUsesAxisArtifact : Rel<Factor, UsesAxis, Artifact>, IItemWithId {
-			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
-		public override string Label { get { return "FactorUsesAxisArtifact"; } }
+		public override string Label { get { return "FactorVectorUsesAxisArtifact"; } }
 
 	}
 
@@ -377,23 +361,23 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRefinesPrimaryWithArtifact InFactorListRefinesPrimaryWith {
-			get { return NewRel<FactorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual FactorDescriptorRefinesPrimaryWithArtifact InFactorListDescriptorRefinesPrimaryWith {
+			get { return NewRel<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRefinesRelatedWithArtifact InFactorListRefinesRelatedWith {
-			get { return NewRel<FactorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual FactorDescriptorRefinesRelatedWithArtifact InFactorListDescriptorRefinesRelatedWith {
+			get { return NewRel<FactorDescriptorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRefinesTypeWithArtifact InFactorListRefinesTypeWith {
-			get { return NewRel<FactorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual FactorDescriptorRefinesTypeWithArtifact InFactorListDescriptorRefinesTypeWith {
+			get { return NewRel<FactorDescriptorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesAxisArtifact InFactorListUsesAxis {
-			get { return NewRel<FactorUsesAxisArtifact>(WeaverRelConn.InFromZeroOrMore); }
+		public virtual FactorVectorUsesAxisArtifact InFactorListVectorUsesAxis {
+			get { return NewRel<FactorVectorUsesAxisArtifact>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 	}
@@ -960,28 +944,23 @@ namespace Fabric.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorReplacesFactor ReplacesFactor {
-			get { return NewRel<FactorReplacesFactor>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual FactorDescriptorRefinesPrimaryWithArtifact DescriptorRefinesPrimaryWithArtifact {
+			get { return NewRel<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRefinesPrimaryWithArtifact RefinesPrimaryWithArtifact {
-			get { return NewRel<FactorRefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual FactorDescriptorRefinesRelatedWithArtifact DescriptorRefinesRelatedWithArtifact {
+			get { return NewRel<FactorDescriptorRefinesRelatedWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRefinesRelatedWithArtifact RefinesRelatedWithArtifact {
-			get { return NewRel<FactorRefinesRelatedWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual FactorDescriptorRefinesTypeWithArtifact DescriptorRefinesTypeWithArtifact {
+			get { return NewRel<FactorDescriptorRefinesTypeWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRefinesTypeWithArtifact RefinesTypeWithArtifact {
-			get { return NewRel<FactorRefinesTypeWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorUsesAxisArtifact UsesAxisArtifact {
-			get { return NewRel<FactorUsesAxisArtifact>(WeaverRelConn.OutToZeroOrOne); }
+		public virtual FactorVectorUsesAxisArtifact VectorUsesAxisArtifact {
+			get { return NewRel<FactorVectorUsesAxisArtifact>(WeaverRelConn.OutToZeroOrOne); }
 		}
 
 	}

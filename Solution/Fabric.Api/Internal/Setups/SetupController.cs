@@ -61,10 +61,7 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes");
-
-			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
-				ApiCtx.DbData("addIndex", q);
-			}
+			ApiCtx.DbData("addIndex", vDataSet.GetIndexTx());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

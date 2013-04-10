@@ -956,28 +956,28 @@ namespace Fabric.Db.Data.Setups {
 				vSet.GetNode<Artifact>((long)pRelArtId), vTestMode);
 			vSet.AddRel(relRa);
 
-			if ( pReplaceFactorId != null ) {
+			/*if ( pReplaceFactorId != null ) {
 				var relRf = DataRel.Create(f, new FactorReplacesFactor(),
 					vSet.GetNode<Factor>((long)pReplaceFactorId), vTestMode);
 				vSet.AddRel(relRf);
-			}
+			}*/
 
 			if ( pDescId != null ) {
 				Descriptor d = DescMap[(long)pDescId];
 				f.Descriptor_TypeId = d.DescriptorTypeId;
 
 				if ( d.PrimArtRefId != null ) {
-					vSet.AddRel(DataRel.Create(f, new FactorRefinesPrimaryWithArtifact(),
+					vSet.AddRel(DataRel.Create(f, new FactorDescriptorRefinesPrimaryWithArtifact(),
 						vSet.GetNode<Artifact>((long)d.PrimArtRefId), vTestMode));
 				}
 
 				if ( d.TypeArtRefId != null ) {
-					vSet.AddRel(DataRel.Create(f, new FactorRefinesTypeWithArtifact(),
+					vSet.AddRel(DataRel.Create(f, new FactorDescriptorRefinesTypeWithArtifact(),
 						vSet.GetNode<Artifact>((long)d.TypeArtRefId), vTestMode));
 				}
 
 				if ( d.RelArtRefId != null ) {
-					vSet.AddRel(DataRel.Create(f, new FactorRefinesRelatedWithArtifact(),
+					vSet.AddRel(DataRel.Create(f, new FactorDescriptorRefinesRelatedWithArtifact(),
 						vSet.GetNode<Artifact>((long)d.RelArtRefId), vTestMode));
 				}
 			}
@@ -1017,7 +1017,7 @@ namespace Fabric.Db.Data.Setups {
 				f.Vector_UnitPrefixId = v.VectorUnitPrefixId;
 				f.Vector_Value = v.Value;
 
-				vSet.AddRel(DataRel.Create(f, new FactorUsesAxisArtifact(),
+				vSet.AddRel(DataRel.Create(f, new FactorVectorUsesAxisArtifact(),
 					vSet.GetNode<Artifact>(v.AxisArtId), vTestMode));
 			}
 

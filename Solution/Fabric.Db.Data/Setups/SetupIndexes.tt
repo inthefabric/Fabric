@@ -11,34 +11,126 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-using Fabric.Domain;
-using Weaver;
-
 namespace Fabric.Db.Data.Setups {
 
 	/*================================================================================================*/
-	public static class SetupIndexes {
+	public static partial class SetupIndexes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupAll(DataSet pSet) {
-			const WeaverTasks.ItemType n = WeaverTasks.ItemType.Node;
-
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<Node>(x => x.FabType, n));
-
+			pSet.AddIndexQuery(BuildKey("FabType", "FabType", "Integer", true));
 <#
 IList<string> nodes = SchemaHelper.GetNodes();
+int groupId = 2;
+var propNameMap = new Dictionary<string, SchemaHelperProp>();
+var propNameDupMap = new Dictionary<string, SchemaHelperProp>();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
-	
+	if ( node.IsAbstract ) { continue; }
+	IList<SchemaHelperProp> props = hn.GetProps(false);
+
+	foreach ( SchemaHelperProp hp in props ) {
+		FabricPropSchema prop = hp.PropSchema;
+		
+		if ( !propNameMap.ContainsKey(prop.Name) ) {
+			propNameMap.Add(prop.Name, hp);
+		}
+		else if ( !propNameDupMap.ContainsKey(prop.Name) ) {
+			propNameDupMap.Add(prop.Name, hp);
+		}
+	}
+}
+
+foreach ( string propName in propNameDupMap.Keys ) {
+	SchemaHelperProp hp = propNameDupMap[propName];
+#>
+			pSet.AddIndexQuery(BuildKey("Shared", "<#= propName #>", "<#= hp.TitanTypeName #>", false));
+<#
+} //end propNameMap loop
+
+foreach ( string name in nodes ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+	WeaverNodeSchema node = hn.NodeSchema;
 	if ( node.IsAbstract ) { continue; }
 #>
-			pSet.AddIndex(WeaverTasks.CreateKeyIndex<<#= node.Name #>>(x => x.<#= node.Name #>Id, n));
+	
+			//<#= node.Name #> Vertex
+
+			pSet.AddIndexQuery(BuildGroup("<#= node.Name #>", <#= groupId++ #>));
 <#
+
+	IList<SchemaHelperProp> props = hn.GetProps(false);
+
+	foreach ( SchemaHelperProp hp in props ) {
+		FabricPropSchema prop = hp.PropSchema;
+		bool skip = propNameDupMap.ContainsKey(prop.Name);
+		string propType = hp.TypeName;
+		bool index = (prop.IsPrimaryKey == true || prop.EnumName != null || prop.Name == "FabType");
+#>
+			<#= skip ? "//" : "" #>pSet.AddIndexQuery(BuildKey("<#= node.Name #>", "<#= prop.Name #>", "<#= hp.TitanTypeName #>", <#= index.ToString().ToLower() #>));
+<#
+	} //end prop loop
 } //end node loop
+#>
+	
+			//Edges
+<#
+IList<string> rels = SchemaHelper.GetRels();
+
+foreach ( string name in rels ) {
+	SchemaHelperRel rel = SchemaHelper.GetRel(name);
+	SchemaHelperNode from = SchemaHelper.GetNode(rel.FromNodeName);
+	SchemaHelperNode to = SchemaHelper.GetNode(rel.ToNodeName);
+	IList<SchemaHelperProp> fromProps = from.GetProps(false);
+	IList<SchemaHelperProp> toProps = to.GetProps(false);
+	SchemaHelperNodeRel fromRel = new SchemaHelperNodeRel(from, rel.RelSchema);
+	SchemaHelperNodeRel toRel = new SchemaHelperNodeRel(to, rel.RelSchema);
+	string outUnique = (!fromRel.IsMany).ToString().ToLower();
+	string inUnique = (!toRel.IsMany).ToString().ToLower();
+	var keys = new List<string>();
+	var sigs = new List<string>();
+
+	foreach ( SchemaHelperProp hp in fromProps ) {
+		string key = from.NodeSchema.Name+"_"+hp.PropSchema.Name;
+
+		if ( propNameDupMap.ContainsKey(hp.PropSchema.Name) ) {
+			//key = "Shared_"+hp.PropSchema.Name;
+			continue;
+		}
+
+		sigs.Add(key);
+
+		if ( hp.PropSchema.IsPrimaryKey == true || hp.PropSchema.EnumName != null ) {
+			keys.Add(key);
+		}
+	}
+
+	foreach ( SchemaHelperProp hp in toProps ) {
+		string key = to.NodeSchema.Name+"_"+hp.PropSchema.Name;
+		
+		if ( propNameDupMap.ContainsKey(hp.PropSchema.Name) ) {
+			continue;
+		}
+
+		sigs.Add(key);
+
+		if ( hp.PropSchema.IsPrimaryKey == true || hp.PropSchema.EnumName != null ) {
+			keys.Add(key);
+		}
+	}
+#>
+
+			pSet.AddIndexQuery(BuildLabel("<#= rel.RelName #>", <#= inUnique #>, <#= outUnique #>,
+				new [] {
+					"<#= string.Join("\",\r\n\t\t\t\t\t\"", sigs) #>"
+				}
+			));
+<#
+} //end rel names loop
 #>
 		}
 

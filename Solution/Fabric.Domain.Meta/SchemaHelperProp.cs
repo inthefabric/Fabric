@@ -1,5 +1,4 @@
 ﻿using System;
-using Weaver.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -9,6 +8,7 @@ namespace Fabric.Domain.Meta {
 		public FabricPropSchema PropSchema { get; private set; }
 
 		public string TypeName { get; private set; }
+		public string TitanTypeName { get; private set; }
 		public string SubPropName { get; private set; }
 
 
@@ -17,6 +17,7 @@ namespace Fabric.Domain.Meta {
 		public SchemaHelperProp(FabricPropSchema pProp) {
 			PropSchema = pProp;
 			TypeName = GetTypeName(PropSchema.Type, (PropSchema.IsNullable == true));
+			TitanTypeName = GetTitanTypeName(PropSchema.Type);
 
 			if ( IsSubProp() ) {
 				SubPropName = PropSchema.Name.Split('_')[1];
@@ -32,7 +33,7 @@ namespace Fabric.Domain.Meta {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetTypeName(Type pType, bool pIsNullable=false) {
-			var n = "";
+			string n;
 
 			switch ( pType.Name ) {
 				case "Int32":
@@ -91,6 +92,44 @@ namespace Fabric.Domain.Meta {
 
 			if ( pIsNullable && pType.IsValueType ) {
 				n += "?";
+			}
+
+			return n;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetTitanTypeName(Type pType) {
+			string n;
+
+			switch ( pType.Name ) {
+				case "Boolean":
+					n = "Boolean";
+					break;
+
+				case "Byte":
+					n = "Byte";
+					break;
+
+				case "Int32":
+					n = "Integer";
+					break;
+
+				case "Int64":
+				case "DateTime":
+					n = "Long";
+					break;
+
+				case "Single":
+					n = "Float";
+					break;
+
+				case "Double":
+					n = "Double";
+					break;
+
+				default:
+					n = pType.Name;
+					break;
 			}
 
 			return n;

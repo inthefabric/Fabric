@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 9:33:17 PM
+// Generated on 4/10/2013 12:55:31 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -717,49 +717,49 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InFactorListRefinesPrimaryWith";
-					link.Type = "FactorRefinesPrimaryWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesPrimaryWithArtifact");
+					link.Name = "InFactorListDescriptorRefinesPrimaryWith";
+					link.Type = "FactorDescriptorRefinesPrimaryWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorDescriptorRefinesPrimaryWithArtifact");
 					link.IsOutgoing = false;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "RefinesPrimaryWith";
+					link.Relation = "DescriptorRefinesPrimaryWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InFactorListRefinesRelatedWith";
-					link.Type = "FactorRefinesRelatedWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesRelatedWithArtifact");
+					link.Name = "InFactorListDescriptorRefinesRelatedWith";
+					link.Type = "FactorDescriptorRefinesRelatedWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorDescriptorRefinesRelatedWithArtifact");
 					link.IsOutgoing = false;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "RefinesRelatedWith";
+					link.Relation = "DescriptorRefinesRelatedWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InFactorListRefinesTypeWith";
-					link.Type = "FactorRefinesTypeWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesTypeWithArtifact");
+					link.Name = "InFactorListDescriptorRefinesTypeWith";
+					link.Type = "FactorDescriptorRefinesTypeWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorDescriptorRefinesTypeWithArtifact");
 					link.IsOutgoing = false;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "RefinesTypeWith";
+					link.Relation = "DescriptorRefinesTypeWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "InFactorListUsesAxis";
-					link.Type = "FactorUsesAxisArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesAxisArtifact");
+					link.Name = "InFactorListVectorUsesAxis";
+					link.Type = "FactorVectorUsesAxisArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorVectorUsesAxisArtifact");
 					link.IsOutgoing = false;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "UsesAxis";
+					link.Relation = "VectorUsesAxis";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
@@ -979,61 +979,49 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "ReplacesFactor";
-					link.Type = "FactorReplacesFactor";
-					link.Description = SpecDoc.GetDtoLinkText("FactorReplacesFactor");
+					link.Name = "DescriptorRefinesPrimaryWithArtifact";
+					link.Type = "FactorDescriptorRefinesPrimaryWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorDescriptorRefinesPrimaryWithArtifact");
 					link.IsOutgoing = true;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "Replaces";
-					link.To = "FabFactor";
-					link.ToConn = "InFromZeroOrOne";
-					pObject.TraversalLinks.Add(link);
-
-					link = new FabSpecTravLink();
-					link.Name = "RefinesPrimaryWithArtifact";
-					link.Type = "FactorRefinesPrimaryWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesPrimaryWithArtifact");
-					link.IsOutgoing = true;
-					link.From = "FabFactor";
-					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "RefinesPrimaryWith";
+					link.Relation = "DescriptorRefinesPrimaryWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "RefinesRelatedWithArtifact";
-					link.Type = "FactorRefinesRelatedWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesRelatedWithArtifact");
+					link.Name = "DescriptorRefinesRelatedWithArtifact";
+					link.Type = "FactorDescriptorRefinesRelatedWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorDescriptorRefinesRelatedWithArtifact");
 					link.IsOutgoing = true;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "RefinesRelatedWith";
+					link.Relation = "DescriptorRefinesRelatedWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "RefinesTypeWithArtifact";
-					link.Type = "FactorRefinesTypeWithArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorRefinesTypeWithArtifact");
+					link.Name = "DescriptorRefinesTypeWithArtifact";
+					link.Type = "FactorDescriptorRefinesTypeWithArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorDescriptorRefinesTypeWithArtifact");
 					link.IsOutgoing = true;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "RefinesTypeWith";
+					link.Relation = "DescriptorRefinesTypeWith";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);
 
 					link = new FabSpecTravLink();
-					link.Name = "UsesAxisArtifact";
-					link.Type = "FactorUsesAxisArtifact";
-					link.Description = SpecDoc.GetDtoLinkText("FactorUsesAxisArtifact");
+					link.Name = "VectorUsesAxisArtifact";
+					link.Type = "FactorVectorUsesAxisArtifact";
+					link.Description = SpecDoc.GetDtoLinkText("FactorVectorUsesAxisArtifact");
 					link.IsOutgoing = true;
 					link.From = "FabFactor";
 					link.FromConn = "OutToZeroOrOne";
-					link.Relation = "UsesAxis";
+					link.Relation = "VectorUsesAxis";
 					link.To = "FabArtifact";
 					link.ToConn = "InFromZeroOrMore";
 					pObject.TraversalLinks.Add(link);

@@ -45,7 +45,12 @@ namespace Fabric.Infrastructure.Db {
 
 			switch ( pRaw._type ) {
 				case "vertex":
-					int ft = int.Parse(Data["FabType"]);
+					int ft = 0;
+					
+					if ( Data != null && Data.ContainsKey("FabType") ) {
+						ft = int.Parse(Data["FabType"]);
+					}
+
 					Item = ItemType.Node;
 					Class = NodeFabTypeUtil.ValueMap[ft]+"";
 					break;

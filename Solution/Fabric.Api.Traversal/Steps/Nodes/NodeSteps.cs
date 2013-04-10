@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/8/2013 2:54:25 PM
+// Generated on 4/10/2013 12:55:31 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -386,11 +386,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
 			new StepLink("UsesPrimary", "Artifact", true, "/UsesPrimaryArtifact"),
 			new StepLink("UsesRelated", "Artifact", true, "/UsesRelatedArtifact"),
-			new StepLink("Replaces", "Factor", true, "/ReplacesFactor"),
-			new StepLink("RefinesPrimaryWith", "Artifact", true, "/RefinesPrimaryWithArtifact"),
-			new StepLink("RefinesRelatedWith", "Artifact", true, "/RefinesRelatedWithArtifact"),
-			new StepLink("RefinesTypeWith", "Artifact", true, "/RefinesTypeWithArtifact"),
-			new StepLink("UsesAxis", "Artifact", true, "/UsesAxisArtifact"),
+			new StepLink("DescriptorRefinesPrimaryWith", "Artifact", true, "/DescriptorRefinesPrimaryWithArtifact"),
+			new StepLink("DescriptorRefinesRelatedWith", "Artifact", true, "/DescriptorRefinesRelatedWithArtifact"),
+			new StepLink("DescriptorRefinesTypeWith", "Artifact", true, "/DescriptorRefinesTypeWithArtifact"),
+			new StepLink("VectorUsesAxis", "Artifact", true, "/VectorUsesAxisArtifact"),
 		};
 
 
@@ -418,11 +417,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 				case "inmembercreates": return InMemberCreates;
 				case "usesprimaryartifact": return UsesPrimaryArtifact;
 				case "usesrelatedartifact": return UsesRelatedArtifact;
-				case "replacesfactor": return ReplacesFactor;
-				case "refinesprimarywithartifact": return RefinesPrimaryWithArtifact;
-				case "refinesrelatedwithartifact": return RefinesRelatedWithArtifact;
-				case "refinestypewithartifact": return RefinesTypeWithArtifact;
-				case "usesaxisartifact": return UsesAxisArtifact;
+				case "descriptorrefinesprimarywithartifact": return DescriptorRefinesPrimaryWithArtifact;
+				case "descriptorrefinesrelatedwithartifact": return DescriptorRefinesRelatedWithArtifact;
+				case "descriptorrefinestypewithartifact": return DescriptorRefinesTypeWithArtifact;
+				case "vectorusesaxisartifact": return VectorUsesAxisArtifact;
 			}
 
 			return base.GetLink(pData);
@@ -458,46 +456,37 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IFactorStep ReplacesFactor {
+		public IArtifactStep DescriptorRefinesPrimaryWithArtifact {
 			get {
-				var step = new FactorStep(Path);
-				Path.AddSegment(step, "outE('FactorReplacesFactor').inV");
+				var step = new ArtifactStep(Path);
+				Path.AddSegment(step, "outE('FactorDescriptorRefinesPrimaryWithArtifact').inV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IArtifactStep RefinesPrimaryWithArtifact {
+		public IArtifactStep DescriptorRefinesRelatedWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorRefinesPrimaryWithArtifact').inV");
+				Path.AddSegment(step, "outE('FactorDescriptorRefinesRelatedWithArtifact').inV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IArtifactStep RefinesRelatedWithArtifact {
+		public IArtifactStep DescriptorRefinesTypeWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorRefinesRelatedWithArtifact').inV");
+				Path.AddSegment(step, "outE('FactorDescriptorRefinesTypeWithArtifact').inV");
 				return step;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IArtifactStep RefinesTypeWithArtifact {
+		public IArtifactStep VectorUsesAxisArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorRefinesTypeWithArtifact').inV");
-				return step;
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IArtifactStep UsesAxisArtifact {
-			get {
-				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesAxisArtifact').inV");
+				Path.AddSegment(step, "outE('FactorVectorUsesAxisArtifact').inV");
 				return step;
 			}
 		}

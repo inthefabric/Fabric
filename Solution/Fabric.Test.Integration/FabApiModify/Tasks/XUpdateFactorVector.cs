@@ -30,7 +30,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			NodeConnections conn = GetNodeConnections(fac);
 			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
-			conn.AssertRel<FactorUsesAxisArtifact, Artifact>(true,
+			conn.AssertRel<FactorVectorUsesAxisArtifact, Artifact>(true,
 				(long)pAxisArtId, typeof(Artifact).Name+"Id");
 
 			NewRelCount = 1;

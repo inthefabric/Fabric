@@ -139,15 +139,15 @@ namespace Fabric.Api.Modify.Tasks {
 			facBuild.SetNodeVar(facVar);
 
 			if ( pPrimArtRefId != null ) {
-				facBuild.SetRefinesPrimaryWithArtifact((long)pPrimArtRefId);
+				facBuild.SetDescriptorRefinesPrimaryWithArtifact((long)pPrimArtRefId);
 			}
 
 			if ( pRelArtRefId != null ) {
-				facBuild.SetRefinesRelatedWithArtifact((long)pRelArtRefId);
+				facBuild.SetDescriptorRefinesRelatedWithArtifact((long)pRelArtRefId);
 			}
 
 			if ( pDescTypeRefId != null ) {
-				facBuild.SetRefinesTypeWithArtifact((long)pDescTypeRefId);
+				facBuild.SetDescriptorRefinesTypeWithArtifact((long)pDescTypeRefId);
 			}
 
 			pApiCtx.DbData("UpdateFactorDescriptor", txb.Finish());
@@ -248,7 +248,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			var facBuild = new FactorBuilder(txb, pFactor);
 			facBuild.SetNodeVar(facVar);
-			facBuild.SetUsesAxisArtifact(pAxisArtId);
+			facBuild.SetVectorUsesAxisArtifact(pAxisArtId);
 
 			pApiCtx.DbData("UpdateFactorVector", txb.Finish());
 		}

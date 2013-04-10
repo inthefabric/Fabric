@@ -61,7 +61,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vVecUnitPrefId,
 				vValue,
 				vAxisArtId,
-				typeof(FactorUsesAxisArtifact).Name
+				typeof(FactorVectorUsesAxisArtifact).Name
 			});
 
 			return null;

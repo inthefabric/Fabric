@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="DataRel.cs" />
     <Compile Include="DataSet.cs" />
+    <Compile Include="Setups\SetupIndexesFuncs.cs" />
     <Compile Include="Setups\SetupIndexes.cs">
       <DependentUpon>SetupIndexes.tt</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -67,21 +67,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			if ( vPrimArtRefId != null ) {
 				expect += QueryPrimRef.Replace("{{PrimV}}", v+"");
 				paramList.Add(vPrimArtRefId);
-				paramList.Add(typeof(FactorRefinesPrimaryWithArtifact).Name);
+				paramList.Add(typeof(FactorDescriptorRefinesPrimaryWithArtifact).Name);
 				v++;
 			}
 
 			if ( vRelArtRefId != null ) {
 				expect += QueryRelRef.Replace("{{RelV}}", v+"");
 				paramList.Add(vRelArtRefId);
-				paramList.Add(typeof(FactorRefinesRelatedWithArtifact).Name);
+				paramList.Add(typeof(FactorDescriptorRefinesRelatedWithArtifact).Name);
 				v++;
 			}
 
 			if ( vDescTypeRefId != null ) {
 				expect += QueryTypeRef.Replace("{{TypeV}}", v+"");
 				paramList.Add(vDescTypeRefId);
-				paramList.Add(typeof(FactorRefinesTypeWithArtifact).Name);
+				paramList.Add(typeof(FactorDescriptorRefinesTypeWithArtifact).Name);
 			}
 			
 			expect = TestUtil.InsertParamIndexes(expect, "_TP");
