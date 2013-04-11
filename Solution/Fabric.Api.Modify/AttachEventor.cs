@@ -42,9 +42,21 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
+		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorEventor(ApiCtx, pFactor, vEveTypeId, vEvePrecId, vDateTime);
 			return true;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string GetElementName() {
+			return "Eventor";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool FactorHasElement(Factor pFactor) {
+			return (pFactor.Eventor_TypeId != null);
 		}
 
 	}

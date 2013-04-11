@@ -48,7 +48,7 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
+		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorLocator(ApiCtx, pFactor, vLocTypeId, vX, vY, vZ);
 			return true;
 		}
@@ -83,6 +83,19 @@ namespace Fabric.Api.Modify {
 				throw new FabArgumentOutOfRangeFault(ZParam+greaterThan+"Z.");
 			}
 		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string GetElementName() {
+			return "Locator";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool FactorHasElement(Factor pFactor) {
+			return (pFactor.Locator_TypeId != null);
+		}
+
 	}
 
 }

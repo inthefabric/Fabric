@@ -36,9 +36,21 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
+		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorIdentor(ApiCtx, pFactor, vIdenTypeId, vValue);
 			return true;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string GetElementName() {
+			return "Identor";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool FactorHasElement(Factor pFactor) {
+			return (pFactor.Identor_TypeId != null);
 		}
 
 	}

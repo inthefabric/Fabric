@@ -10,7 +10,7 @@ namespace Fabric.Test.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAttachVector : TCreateFactorElement {
+	public class TAttachVector : TAttachFactorElement {
 
 		private byte vVecTypeId;
 		private long vValue;

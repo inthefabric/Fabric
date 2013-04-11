@@ -40,14 +40,21 @@ namespace Fabric.Api.Modify {
 					"This "+typeof(Factor).Name+" is already completed.");
 			}
 
-			return AddElementToFactor(f, m);
+			if ( FactorHasElement(f) ) {
+				throw new FabPreventedFault(FabFault.Code.FactorElementConflict,
+					"This "+typeof(Factor).Name+" already has an attached "+GetElementName()+".");
+			}
+
+			return AddElementToFactor(f);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void ValidateElementParams();
-		protected abstract bool AddElementToFactor(Factor pFactor, Member pMember);
+		protected abstract string GetElementName();
+		protected abstract bool FactorHasElement(Factor pFactor);
+		protected abstract bool AddElementToFactor(Factor pFactor);
 
 	}
 

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
-	public abstract class XCreateFactorElement : XBaseModifyFunc {
+	public abstract class XAttachFactorElement : XBaseModifyFunc {
 
 		protected long FactorId { get; private set; }
 		

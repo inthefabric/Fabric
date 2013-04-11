@@ -44,9 +44,21 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
+		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorDirector(ApiCtx, pFactor, vDescTypeId, vPrimActId, vRelActId);
 			return true;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string GetElementName() {
+			return "Director";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool FactorHasElement(Factor pFactor) {
+			return (pFactor.Director_TypeId != null);
 		}
 
 	}

@@ -6,7 +6,7 @@ namespace Fabric.Test.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAttachIdentor : TCreateFactorElement {
+	public class TAttachIdentor : TAttachFactorElement {
 
 		private byte vIdenTypeId;
 		private string vValue;

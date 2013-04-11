@@ -10,7 +10,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XAttachLocator : XCreateFactorElement {
+	public class XAttachLocator : XAttachFactorElement {
 
 		private byte vLocTypeId;
 		private double vValueX;

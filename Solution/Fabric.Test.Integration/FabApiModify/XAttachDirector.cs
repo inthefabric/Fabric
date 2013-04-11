@@ -11,7 +11,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XAttachDirector : XCreateFactorElement {
+	public class XAttachDirector : XAttachFactorElement {
 
 		private byte vDirTypeId;
 		private byte vPrimActId;

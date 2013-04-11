@@ -56,7 +56,7 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool AddElementToFactor(Factor pFactor, Member pMember) {
+		protected override bool AddElementToFactor(Factor pFactor) {
 			if ( Tasks.GetArtifact(ApiCtx, vAxisArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
 			}
@@ -79,6 +79,18 @@ namespace Fabric.Api.Modify {
 			Tasks.UpdateFactorVector(ApiCtx, pFactor, vVecTypeId, vValue,
 				vAxisArtId, vVecUnitId, vVecUnitPrefId);
 			return true;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string GetElementName() {
+			return "Vector";
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool FactorHasElement(Factor pFactor) {
+			return (pFactor.Vector_TypeId != null);
 		}
 
 	}

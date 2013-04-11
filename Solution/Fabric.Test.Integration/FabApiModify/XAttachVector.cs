@@ -12,7 +12,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XAttachVector : XCreateFactorElement {
+	public class XAttachVector : XAttachFactorElement {
 
 		private byte vVecTypeId;
 		private long vValue;

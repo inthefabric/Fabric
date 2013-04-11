@@ -13,7 +13,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XAttachDescriptor : XCreateFactorElement {
+	public class XAttachDescriptor : XAttachFactorElement {
 
 		private const SetupArtifacts.ArtifactId ArtA = SetupArtifacts.ArtifactId.Thi_Male;
 		private const SetupArtifacts.ArtifactId ArtB = SetupArtifacts.ArtifactId.User_Ellie;

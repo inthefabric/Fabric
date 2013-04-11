@@ -57,7 +57,7 @@
     <Compile Include="FabApiModify\TAttachDirector.cs" />
     <Compile Include="FabApiModify\Tasks\TUpdateFactorDirector.cs" />
     <Compile Include="FabApiModify\TAttachDescriptor.cs" />
-    <Compile Include="FabApiModify\TCreateFactorElement.cs" />
+    <Compile Include="FabApiModify\TAttachFactorElement.cs" />
     <Compile Include="FabApiModify\Tasks\TUpdateFactorDescriptor.cs" />
     <Compile Include="FabApiModify\Tasks\TGetActiveFactorFromMember.cs" />
     <Compile Include="FabApiModify\TCreateFactor.cs" />

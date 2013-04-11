@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Fabric.Test.FabApiModify {
 
 	/*================================================================================================*/
-	public abstract class TCreateFactorElement : TBaseModifyFunc {
+	public abstract class TAttachFactorElement : TBaseModifyFunc {
 
 		protected long FactorId { get; private set; }
 		protected Factor ActiveFactor { get; private set; }
@@ -37,6 +37,7 @@ namespace Fabric.Test.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		//protected abstract void SetupFactorHasElement();
 		protected abstract void TestGo();
 
 
@@ -60,6 +61,18 @@ namespace Fabric.Test.FabApiModify {
 		[Test]
 		public void ErrFactorCompleted() {
 			ActiveFactor.Completed = 123456;
+			TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+ 		[Test]
+		public void ErrFactorHasElement() {
+			ActiveFactor.Descriptor_TypeId = 1;
+			ActiveFactor.Director_TypeId = 1;
+			ActiveFactor.Eventor_TypeId = 1;
+			ActiveFactor.Identor_TypeId = 1;
+			ActiveFactor.Locator_TypeId = 1;
+			ActiveFactor.Vector_TypeId = 1;
 			TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
 		}
 
