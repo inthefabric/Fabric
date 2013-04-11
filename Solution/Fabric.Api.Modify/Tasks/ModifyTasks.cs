@@ -54,9 +54,9 @@ namespace Fabric.Api.Modify.Tasks {
 					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, pApiCtx.AppId)
 				.Back(memAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (long)MemberTypeId.None)
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (long)MemberTypeId.Invite)
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (long)MemberTypeId.Request)
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.None)
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.Invite)
+					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.Request)
 				.Back(memAlias)
 				.End();
 

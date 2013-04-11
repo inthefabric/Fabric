@@ -107,7 +107,7 @@ namespace Fabric.Domain.Meta {
 					break;
 
 				case "Byte":
-					n = "Byte";
+					n = "Integer"; //OPTIMIZE: Titan 0.3 fails with Byte and Short types
 					break;
 
 				case "Int32":

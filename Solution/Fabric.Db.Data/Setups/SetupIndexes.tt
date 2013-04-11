@@ -48,7 +48,7 @@ foreach ( string name in nodes ) {
 foreach ( string propName in propNameDupMap.Keys ) {
 	SchemaHelperProp hp = propNameDupMap[propName];
 #>
-			pSet.AddIndexQuery(BuildKey("Shared", "<#= propName #>", "<#= hp.TitanTypeName #>", false));
+			//pSet.AddIndexQuery(BuildKey("Shared", "<#= propName #>", "<#= hp.TitanTypeName #>", false));
 <#
 } //end propNameMap loop
 
@@ -70,6 +70,7 @@ foreach ( string name in nodes ) {
 		bool skip = propNameDupMap.ContainsKey(prop.Name);
 		string propType = hp.TypeName;
 		bool index = (prop.IsPrimaryKey == true || prop.EnumName != null || prop.Name == "FabType");
+		if ( !index ) { skip = true; }
 #>
 			<#= skip ? "//" : "" #>pSet.AddIndexQuery(BuildKey("<#= node.Name #>", "<#= prop.Name #>", "<#= hp.TitanTypeName #>", <#= index.ToString().ToLower() #>));
 <#
@@ -126,7 +127,7 @@ foreach ( string name in rels ) {
 
 			pSet.AddIndexQuery(BuildLabel("<#= rel.RelName #>", <#= inUnique #>, <#= outUnique #>,
 				new [] {
-					"<#= string.Join("\",\r\n\t\t\t\t\t\"", sigs) #>"
+					"<#= string.Join("\",\r\n\t\t\t\t\t\"", keys) #>"
 				}
 			));
 <#

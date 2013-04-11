@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/10/2013 12:55:31 PM
+// Generated on 4/11/2013 5:50:19 PM
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -50,8 +50,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface IInUserUses {
-		IUserStep InUserUses { get; }
+	public interface IInUserListUses {
+		IUserStep InUserListUses { get; }
 	}
 
 	/*================================================================================================*/

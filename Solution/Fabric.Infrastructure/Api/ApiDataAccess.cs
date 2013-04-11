@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
@@ -38,11 +39,7 @@ namespace Fabric.Infrastructure.Api {
 			ApiCtx = pContext;
 			Script = pScript;
 			Params = pParams;
-
-			string script = FabricUtil.JsonUnquote(Script);
-			string param = BuildParams(pParams);
-			
-			Query = script+(param.Length > 0 ? "#{"+param+"}" : "");
+			Query = BuildQuery(Script, Params);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -97,8 +94,10 @@ namespace Fabric.Infrastructure.Api {
 			LogAction();
 
 			if ( vUnhandledException != null ) {
-				vUnhandledException = new Exception("ApiDataAccess exception:\nResultString = "+
-					RawResult+"\nUnhandedException = "+vUnhandledException, vUnhandledException);
+				vUnhandledException = new Exception("ApiDataAccess exception:"+
+					"\nQuery = "+Query+
+					"\nResultString = "+RawResult+
+					"\nUnhandedException = "+vUnhandledException, vUnhandledException);
 				throw vUnhandledException;
 			}
 
@@ -135,8 +134,13 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected static string BuildParams(IDictionary<string, IWeaverQueryVal> pParams) {
-			if ( pParams == null ) { return ""; }
+		protected static string BuildQuery(string pScript, IDictionary<string,IWeaverQueryVal> pParams){
+			string q = FabricUtil.JsonUnquote(pScript);
+
+			if ( pParams == null ) {
+				return q;
+			}
+
 			string p = "";
 
 			foreach ( string key in pParams.Keys ) {
@@ -146,13 +150,28 @@ namespace Fabric.Infrastructure.Api {
 
 				if ( qv.IsString ) {
 					p += "\""+FabricUtil.JsonUnquote(qv.FixedText)+"\"";
+					continue;
 				}
-				else {
-					p += qv.FixedText;
+
+				p += qv.FixedText;
+
+				//Explicitly cast certain parameter types
+				//See: https://github.com/tinkerpop/rexster/issues/295
+
+				const string end = @"(?=$|[^\d])";
+
+				if ( qv.Original is int ) {
+					q = Regex.Replace(q, key+end, key+".toInteger()");
+				}
+				else if ( qv.Original is byte ) {
+					q = Regex.Replace(q, key+end, key+".toInteger()"); //".byteValue()");
+				}
+				else if ( qv.Original is float ) {
+					q = Regex.Replace(q, key+end, key+".toFloat()");
 				}
 			}
 
-			return p;
+			return q+"#{"+p+"}";
 		}
 
 

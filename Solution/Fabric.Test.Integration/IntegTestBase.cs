@@ -54,7 +54,7 @@ namespace Fabric.Test.Integration {
 			TestSetUp();
 
 			//vCounts = CountNodesAndRels();
-			vCounts = new Tuple<int, int>(259, 592); //shortcut to help tests run faster
+			vCounts = new Tuple<int, int>(259, 590); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
 			Log.Info("Counts { V = "+vCounts.Item1+", E = "+vCounts.Item2+" }");
@@ -104,10 +104,9 @@ namespace Fabric.Test.Integration {
 				Assert.AreEqual("", data.Result.Text, "There was an issue with the RemoveAll query!");
 
 				q = new WeaverQuery();
-				q.FinalizeQuery("g.loadGraphSON('data/FabricTestFull.json');1");
+				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
 				data = ApiCtx.DbData("TEST.Reload", q);
 				Assert.AreEqual("1", data.Result.Text, "There was an issue with the Reload query!");
-
 				Log.Info("");
 			}
 			else {

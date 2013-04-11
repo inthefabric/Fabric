@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/10/2013 12:55:30 PM
+// Generated on 4/11/2013 5:50:18 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -510,7 +510,7 @@ namespace Fabric.Infrastructure.Weaver {
 	public class EmailBuilder : DomainBuilder<Email> {
 
 		public virtual IWeaverVarAlias<App> InAppUses { get; private set; }
-		public virtual IWeaverVarAlias<User> InUserUses { get; private set; }
+		public virtual IList<IWeaverVarAlias<User>> InUserListUses { get; private set; }
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -559,32 +559,33 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserUses(IWeaverVarAlias<User> pTargetNodeVar) {
+		public virtual void AddToInUserListUses(IWeaverVarAlias<User> pTargetNodeVar) {
 			TxBuild.AddRel<UserUsesEmail>(pTargetNodeVar, NodeVar);
-			InUserUses = pTargetNodeVar;
+			InUserListUses = (InUserListUses ?? new List<IWeaverVarAlias<User>>());
+			InUserListUses.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserUses(User pUser, out IWeaverVarAlias<User> pNodeVar) {
+		public virtual void AddToInUserListUses(User pUser, out IWeaverVarAlias<User> pNodeVar) {
 			TxBuild.GetNode(pUser, out pNodeVar);
-			SetInUserUses(pNodeVar);
+			AddToInUserListUses(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserUses(User pUser) {
+		public virtual void AddToInUserListUses(User pUser) {
 			IWeaverVarAlias<User> nodeVar;
-			SetInUserUses(pUser, out nodeVar);
+			AddToInUserListUses(pUser, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserUses(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetInUserUses(new User { UserId = pUserId }, out pNodeVar);
+		public virtual void AddToInUserListUses(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
+			AddToInUserListUses(new User { UserId = pUserId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserUses(long pUserId) {
+		public virtual void AddToInUserListUses(long pUserId) {
 			IWeaverVarAlias<User> nodeVar;
-			SetInUserUses(pUserId, out nodeVar);
+			AddToInUserListUses(pUserId, out nodeVar);
 		}
 		
 

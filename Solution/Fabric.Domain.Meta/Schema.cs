@@ -333,7 +333,7 @@ namespace Fabric.Domain.Meta {
 			const string defines = "Defines";
 
 			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
-			//const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
+			const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
 			const WeaverRelConn ifzom = WeaverRelConn.InFromZeroOrMore;
 			//const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
 			const WeaverRelConn oto = WeaverRelConn.OutToOne;
@@ -359,7 +359,7 @@ namespace Fabric.Domain.Meta {
 
 			//AddRel(user, creates, crowdianTypeAssign, otzom, ifo);
 			//AddRel(user, defines, crowdian, otzom, ifo);
-			AddRel(user, uses, email, oto, ifo);
+			AddRel(user, uses, email, oto, ifoom);
 			AddRel(user, defines, member, otoom, ifo);
 
 			////
