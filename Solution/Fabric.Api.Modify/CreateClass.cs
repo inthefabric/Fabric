@@ -41,7 +41,6 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			//TEST: add one-char lower tests everywhere
 			Tasks.Validator.ClassName(vName, NameParam);
 			Tasks.Validator.ClassDisamb(vDisamb, DisambParam);
 			Tasks.Validator.ClassNote(vNote, NoteParam);

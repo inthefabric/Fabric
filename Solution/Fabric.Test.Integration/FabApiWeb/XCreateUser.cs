@@ -160,6 +160,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
 		[TestCase(257)]
 		public void ErrEmailLength(int pLength) {
 			vEmail = new string('a', pLength);

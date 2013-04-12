@@ -73,6 +73,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
 		[TestCase(257)]
 		public void ErrValueLength(int pLength) {
 			vValue = new string('a', pLength);

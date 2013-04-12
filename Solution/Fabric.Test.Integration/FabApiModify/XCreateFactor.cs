@@ -112,8 +112,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
 		[TestCase(257)]
-		public void ErrNameLength(int pLength) {
+		public void ErrNoteLength(int pLength) {
 			vNote = new string('a', pLength);
 			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
 		}

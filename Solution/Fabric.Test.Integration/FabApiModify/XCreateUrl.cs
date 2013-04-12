@@ -73,6 +73,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
 		[TestCase(2049)]
 		public void ErrAbsoluteUrlLength(int pLength) {
 			vAbsoluteUrl = new string('a', pLength);
@@ -96,6 +97,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
 		[TestCase(129)]
 		public void ErrNameLength(int pLength) {
 			vName = new string('a', pLength);

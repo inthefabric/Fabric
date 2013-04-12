@@ -81,9 +81,10 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrDomainLength() {
-			vDomain = new string('a', 257);
+		[TestCase(0)]
+		[TestCase(257)]
+		public void ErrDomainLength(int pLen) {
+			vDomain = new string('a', pLen);
 			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
 		}
 
