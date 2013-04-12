@@ -2,11 +2,13 @@
 using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Domain.Types;
 
 namespace Fabric.Api.Web {
 	
 	/*================================================================================================*/
-	public class ChangeMemberType : BaseWebFunc<SuccessResult> { //TEST: ChangeMemberType
+	public class ChangeMemberType : BaseWebFunc<SuccessResult> {
 
 		public const string AppIdParam = "AppId";
 		public const string AssigningMemberIdParam = "AssigningMemberId";
@@ -41,27 +43,48 @@ namespace Fabric.Api.Web {
 		protected override SuccessResult Execute() {
 			Member mem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vMemberId);
 
-			//TODO: Prevent ChangeMemberType for DataProvider members
-			
 			if ( mem == null ) {
 				throw new FabNotFoundFault(typeof(Member),
 					AppIdParam+"="+vAppId+"&"+MemberIdParam+"="+vMemberId);
 			}
 
-			Member assigningMem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vAssigningMemberId);
+			MemberTypeAssign mta = Tasks.GetMemberTypeAssignByMember(ApiCtx, vMemberId);
 
-			//TODO: Prevent ChangeMemberType from being performed by non-Admin/Staff/owner/dp memebrs
+			//TEST: ChangeMemberType: DataProvider prevention
+			if ( mta.MemberTypeId == (byte)MemberTypeId.DataProvider ) {
+				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted, 
+					"The DataProvider's "+typeof(MemberType).Name+" cannot be changed.");
+			}
 
-			if ( assigningMem == null ) {
+			////
+			
+			Member assignMem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vAssigningMemberId);
+
+			if ( assignMem == null ) {
 				throw new FabNotFoundFault(typeof(Member),
 					AppIdParam+"="+vAppId+"&"+AssigningMemberIdParam+"="+vAssigningMemberId);
+			}
+
+			MemberTypeAssign assignMta = Tasks.GetMemberTypeAssignByMember(ApiCtx, vAssigningMemberId);
+
+			//TEST: ChangeMemberType: assigning member verification
+			switch ( assignMta.MemberTypeId ) {
+				case (byte)MemberTypeId.DataProvider:
+				case (byte)MemberTypeId.Admin:
+				case (byte)MemberTypeId.Owner:
+				case (byte)MemberTypeId.Staff:
+					break;
+
+				default:
+					throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
+						"The DataProvider's "+typeof(MemberType).Name+" cannot be changed.");
 			}
 			
 			////
 			
-			MemberTypeAssign mta = Tasks.AddMemberTypeAssign(
+			MemberTypeAssign newMta = Tasks.AddMemberTypeAssign(
 				ApiCtx, vAssigningMemberId, vMemberId, vMemberTypeId);
-			return new SuccessResult(mta != null);
+			return new SuccessResult(newMta != null);
 		}
 
 	}

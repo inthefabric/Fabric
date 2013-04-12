@@ -128,6 +128,17 @@ namespace Fabric.Api.Web.Tasks {
 			
 			return pApiCtx.DbSingle<Member>("GetMemberOfApp", q);
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: WebTasks.GetMemberTypeAssignByMember()
+		public MemberTypeAssign GetMemberTypeAssignByMember(IApiContext pApiCtx, long pMemberId) {
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(new Member { MemberId = pMemberId })
+				.HasMemberTypeAssign.ToMemberTypeAssign
+				.End();
+
+			return pApiCtx.DbSingle<MemberTypeAssign>("GetMemberTypeAssignByMember", q);
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx,

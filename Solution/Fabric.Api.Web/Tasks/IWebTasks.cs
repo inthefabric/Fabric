@@ -37,13 +37,15 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		Member GetMemberOfApp(IApiContext pApiCtx, long pAppId, long pMemberId);
+
+		/*--------------------------------------------------------------------------------------------*/
+		MemberTypeAssign GetMemberTypeAssignByMember(IApiContext pApiCtx, long pMemberId);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		MemberTypeAssign AddMemberTypeAssign(IApiContext pApiCtx, long pAssigningMemberId,
 																	long pMemberId, byte pMemberTypeId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.GetOauthDomainByDomain()
 		OauthDomain GetOauthDomainByDomain(IApiContext pApiCtx, long pAppId, string pDomain);
 
 		/*--------------------------------------------------------------------------------------------*/
