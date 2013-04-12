@@ -73,8 +73,9 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T>(T pNode, out IWeaverVarAlias<T> pNewNodeVar) where T : INode {
-			IWeaverQuery q = WeaverTasks.AddNode(pNode);
+		public void AddNode<T>(T pNode, bool pIncludeNulls, out IWeaverVarAlias<T> pNewNodeVar)
+																					where T : INode {
+			IWeaverQuery q = WeaverTasks.AddNode(pNode, pIncludeNulls);
 			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNewNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNewNodeVar);

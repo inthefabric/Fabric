@@ -26,9 +26,9 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode() {
+		public void AddNode(bool pIncludeNulls=false) {
 			IWeaverVarAlias<T> nodeVar;
-			TxBuild.AddNode(Node, out nodeVar);
+			TxBuild.AddNode(Node, pIncludeNulls, out nodeVar);
 			NodeVar = nodeVar;
 		}
 		

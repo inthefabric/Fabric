@@ -7,6 +7,7 @@ using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Domain;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using ServiceStack.Text;
@@ -41,14 +42,56 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 				Factor f = (Factor)dn.Node;
 
+				if ( f.Descriptor_TypeId == null ) {
+					continue;
+				}
+
 				var bnf = new FabBatchNewFactor();
 				bnf.BatchId = batchId++;
 				bnf.FactorAssertionId = f.FactorAssertionId;
 				bnf.IsDefining = true;
 				bnf.Note = f.Note;
-				bnf.Descriptor = new FabBatchNewFactorDescriptor();
 				vFactors.Add(bnf);
 
+				bnf.Descriptor = new FabBatchNewFactorDescriptor();
+				bnf.Descriptor.TypeId = (byte)f.Descriptor_TypeId;
+
+				if ( f.Director_TypeId != null ) {
+					bnf.Director = new FabBatchNewFactorDirector();
+					bnf.Director.TypeId = (byte)f.Director_TypeId;
+					bnf.Director.PrimaryActionId = (byte)f.Director_PrimaryActionId;
+					bnf.Director.RelatedActionId = (byte)f.Director_RelatedActionId;
+				}
+
+				if ( f.Eventor_TypeId != null ) {
+					bnf.Eventor = new FabBatchNewFactorEventor();
+					bnf.Eventor.TypeId = (byte)f.Eventor_TypeId;
+					bnf.Eventor.PrecisionId = (byte)f.Eventor_PrecisionId;
+					bnf.Eventor.DateTime = (long)f.Eventor_DateTime;
+				}
+
+				if ( f.Identor_TypeId != null ) {
+					bnf.Identor = new FabBatchNewFactorIdentor();
+					bnf.Identor.TypeId = (byte)f.Identor_TypeId;
+					bnf.Identor.Value = f.Identor_Value;
+				}
+
+				if ( f.Locator_TypeId != null ) {
+					bnf.Locator = new FabBatchNewFactorLocator();
+					bnf.Locator.TypeId = (byte)f.Locator_TypeId;
+					bnf.Locator.ValueX = (double)f.Locator_ValueX;
+					bnf.Locator.ValueY = (double)f.Locator_ValueY;
+					bnf.Locator.ValueZ = (double)f.Locator_ValueZ;
+				}
+
+				if ( f.Vector_TypeId != null ) {
+					bnf.Vector = new FabBatchNewFactorVector();
+					bnf.Vector.TypeId = (byte)f.Vector_TypeId;
+					bnf.Vector.Value = (long)f.Vector_Value;
+					bnf.Vector.UnitId = (byte)f.Vector_UnitId;
+					bnf.Vector.UnitPrefixId = (byte)f.Vector_UnitPrefixId;
+				}
+				
 				foreach ( IDataRel dr in ds.Rels ) {
 					if ( dr.FromNode != f ) {
 						continue;
@@ -58,11 +101,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 					if ( dr.Rel.RelType is UsesPrimary ) {
 						bnf.PrimaryArtifactId = a.ArtifactId;
-						vNewRels++;
 					}
 					else if ( dr.Rel.RelType is UsesRelated ) {
 						bnf.RelatedArtifactId = a.ArtifactId;
-						vNewRels++;
 					}
 					else if ( dr.Rel.RelType is DescriptorRefinesPrimaryWith ) {
 						bnf.Descriptor.PrimaryArtifactRefineId = a.ArtifactId;
@@ -77,7 +118,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 						vNewRels++;
 					}
 					else if ( dr.Rel.RelType is VectorUsesAxis ) {
-						bnf.Vector = new FabBatchNewFactorVector();
 						bnf.Vector.AxisArtifactId = a.ArtifactId;
 						vNewRels++;
 					}
@@ -87,18 +127,27 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 			}
 
-			/*vFactors.Add(new FabBatchNewFactor {
+			//Missing Descriptor
+			vFactors.Add(new FabBatchNewFactor {
 				BatchId = batchId++,
 				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Art,
 				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.App_FabSys,
+				FactorAssertionId = (byte)FactorAssertionId.Guess,
+				IsDefining = false
+			});
+
+			//Missing RelatedArtifactId
+			vFactors.Add(new FabBatchNewFactor {
+				BatchId = batchId++,
+				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Art,
 				FactorAssertionId = (byte)FactorAssertionId.Guess,
 				IsDefining = false,
 				Descriptor = new FabBatchNewFactorDescriptor {
 					TypeId = (byte)DescriptorTypeId.IsInterestedIn
 				}
 			});
-			vNewRels += 0;
 
+			//Missing Eventor.PrecisionId
 			vFactors.Add(new FabBatchNewFactor {
 				BatchId = batchId++,
 				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Aei,
@@ -110,83 +159,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 				},
 				Eventor = new FabBatchNewFactorEventor {
 					TypeId = (byte)EventorTypeId.Continue,
-					PrecisionId = (byte)EventorPrecisionId.Year,
 					DateTime = new DateTime(2013, 1, 1).Ticks
 				}
 			});
-			vNewRels += 0;
-
-			vFactors.Add(new FabBatchNewFactor {
-				BatchId = batchId++,
-				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Evolution,
-				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Excitement,
-				FactorAssertionId = (byte)FactorAssertionId.Opinion,
-				IsDefining = true,
-				Descriptor = new FabBatchNewFactorDescriptor {
-					TypeId = (byte)DescriptorTypeId.EmotesLike
-				},
-				Vector = new FabBatchNewFactorVector {
-					TypeId = (byte)VectorTypeId.StdPerc,
-					Value = 90,
-					UnitId = (byte)VectorUnitId.Percent,
-					UnitPrefixId = (byte)VectorUnitPrefixId.Base,
-					AxisArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Quality
-				}
-			});
-			vNewRels += 1;
-
-			vFactors.Add(new FabBatchNewFactor {
-				BatchId = batchId++,
-				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Evolution,
-				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Excitement,
-				FactorAssertionId = (byte)FactorAssertionId.Opinion,
-				IsDefining = true,
-				Descriptor = new FabBatchNewFactorDescriptor {
-					TypeId = (byte)DescriptorTypeId.EmotesLike,
-					PrimaryArtifactRefineId = (long)SetupArtifacts.ArtifactId.Thi_DetroitTigers,
-					TypeRefineId = (long)SetupArtifacts.ArtifactId.Thi_Art
-				},
-				Vector = new FabBatchNewFactorVector {
-					TypeId = (byte)VectorTypeId.StdPerc,
-					Value = 90,
-					UnitId = (byte)VectorUnitId.Percent,
-					UnitPrefixId = (byte)VectorUnitPrefixId.Base,
-					AxisArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Quality
-				}
-			});
-			vNewRels += 3;
-
-			vFactors.Add(new FabBatchNewFactor {
-				BatchId = batchId++,
-				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Aei,
-				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Caldonia,
-				FactorAssertionId = (byte)FactorAssertionId.Fact,
-				IsDefining = false,
-				Descriptor = new FabBatchNewFactorDescriptor {
-					TypeId = (byte)DescriptorTypeId.IsFoundIn
-				},
-				Identor = new FabBatchNewFactorIdentor {
-					TypeId = (byte)IdentorTypeId.Key,
-					Value = "abcd"
-				}
-			});
-			vNewRels += 0;
-
-			vFactors.Add(new FabBatchNewFactor {
-				BatchId = batchId++,
-				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Aei,
-				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Caldonia,
-				FactorAssertionId = (byte)FactorAssertionId.Fact,
-				IsDefining = false,
-				Descriptor = new FabBatchNewFactorDescriptor {
-					TypeId = (byte)DescriptorTypeId.IsFoundIn
-				},
-				Director = new FabBatchNewFactorDirector {
-					TypeId = (byte)DirectorTypeId.,
-					Value = "abcd"
-				}
-			});
-			vNewRels += 0;*/
 
 			vFactorsJson = vFactors.ToJson();
 			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);
@@ -221,7 +196,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				Log.Debug(res.BatchId+": "+res.ResultId);
 			}
 
-			NewNodeCount = vFactors.Count;
+			NewNodeCount = vFactors.Count-3; //3 failures expected
 			NewRelCount += NewNodeCount*3+vNewRels;
 		}
 		
