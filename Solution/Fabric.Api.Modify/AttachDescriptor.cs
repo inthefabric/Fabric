@@ -62,7 +62,7 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override bool AddElementToFactor(Factor pFactor) {
+		protected override void VerifyRequiredNodes() {
 			if ( vPrimArtRefId != null && Tasks.GetArtifact(ApiCtx, (long)vPrimArtRefId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vPrimArtRefId);
 			}
@@ -74,7 +74,10 @@ namespace Fabric.Api.Modify {
 			if ( vDescTypeRefId != null && Tasks.GetArtifact(ApiCtx, (long)vDescTypeRefId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeRefId);
 			}
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorDescriptor(ApiCtx, pFactor, 
 				vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
 			return true;

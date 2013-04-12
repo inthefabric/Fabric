@@ -62,7 +62,7 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Factor Execute() {
+		private void VerifyRequiredNodes() {
 			if ( Tasks.GetArtifact(ApiCtx, vPrimArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtParam+"="+vPrimArtId);
 			}
@@ -70,10 +70,12 @@ namespace Fabric.Api.Modify {
 			if ( Tasks.GetArtifact(ApiCtx, vRelArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), RelArtParam+"="+vRelArtId);
 			}
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected override Factor Execute() {
+			VerifyRequiredNodes();
 			Member m = GetContextMember();
-
-			////
 
 			IWeaverVarAlias<Factor> factorVar;
 
@@ -84,6 +86,19 @@ namespace Fabric.Api.Modify {
 			
 			txb.RegisterVarWithTxBuilder(factorVar);
 			return ApiCtx.DbSingle<Factor>("CreateFactorTx", txb.Finish(factorVar));
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		internal void ValidateParamsForBatch() {
+			ValidateParams();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		internal void VerifyRequiredNodesForBatch(IApiContext pApiCtx) {
+			SetApiCtx(pApiCtx);
+			VerifyRequiredNodes();
 		}
 
 	}

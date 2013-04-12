@@ -36,6 +36,9 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override void VerifyRequiredNodes() {}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorIdentor(ApiCtx, pFactor, vIdenTypeId, vValue);
 			return true;

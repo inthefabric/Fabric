@@ -27,6 +27,9 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected abstract void VerifyRequiredNodes();
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool Execute() {
 			Member m = GetContextMember();
 			Factor f = Tasks.GetActiveFactorFromMember(ApiCtx, vFactorId, m.MemberId);
@@ -45,6 +48,7 @@ namespace Fabric.Api.Modify {
 					"This "+typeof(Factor).Name+" already has an attached "+GetElementName()+".");
 			}
 
+			VerifyRequiredNodes();
 			return AddElementToFactor(f);
 		}
 
@@ -55,6 +59,19 @@ namespace Fabric.Api.Modify {
 		protected abstract string GetElementName();
 		protected abstract bool FactorHasElement(Factor pFactor);
 		protected abstract bool AddElementToFactor(Factor pFactor);
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		internal void ValidateParamsForBatch() {
+			ValidateElementParams();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		internal void VerifyRequiredNodesForBatch(IApiContext pApiCtx) {
+			SetApiCtx(pApiCtx);
+			VerifyRequiredNodes();
+		}
 
 	}
 

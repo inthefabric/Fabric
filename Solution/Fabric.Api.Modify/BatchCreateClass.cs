@@ -89,7 +89,7 @@ namespace Fabric.Api.Modify {
 						throw new FabDuplicateFault(typeof(Class), CreateClass.NameParam, name);
 					}
 
-					CreateClass cc = new CreateClass(Tasks, nc.Name, nc.Disamb, nc.Note);
+					var cc = new CreateClass(Tasks, nc.Name, nc.Disamb, nc.Note);
 					cc.ValidateParamsForBatch();
 
 					vCreateFuncs[i] = cc;

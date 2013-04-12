@@ -44,44 +44,45 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.FactorLocator_TypeId(vLocTypeId, LocTypeParam);
-			CheckLocatorTypeRange();
+			
+			////
+			
+			LocatorType locType = StaticTypes.LocatorTypes[vLocTypeId];
+			const string lessThan = " is less than LocatorType.Min";
+			const string greaterThan = " is greater than LocatorType.Max";
+
+			if ( vX < locType.MinX ) {
+				throw new FabArgumentOutOfRangeFault(XParam+lessThan+"X.");
+			}
+
+			if ( vX > locType.MaxX ) {
+				throw new FabArgumentOutOfRangeFault(XParam+greaterThan+".");
+			}
+
+			if ( vY < locType.MinY ) {
+				throw new FabArgumentOutOfRangeFault(YParam+lessThan+"Y.");
+			}
+
+			if ( vY > locType.MaxY ) {
+				throw new FabArgumentOutOfRangeFault(YParam+greaterThan+"Y.");
+			}
+
+			if ( vZ < locType.MinZ ) {
+				throw new FabArgumentOutOfRangeFault(ZParam+lessThan+"Z.");
+			}
+
+			if ( vZ > locType.MaxZ ) {
+				throw new FabArgumentOutOfRangeFault(ZParam+greaterThan+"Z.");
+			}
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void VerifyRequiredNodes() {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorLocator(ApiCtx, pFactor, vLocTypeId, vX, vY, vZ);
 			return true;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void CheckLocatorTypeRange() {
-			LocatorType locType = StaticTypes.LocatorTypes[vLocTypeId];
-			const string lessThan = " is less than LocatorType.Min";
-			const string greaterThan = " is greater than LocatorType.Max";
-			
-			if ( vX < locType.MinX ) {
-				throw new FabArgumentOutOfRangeFault(XParam+lessThan+"X.");
-			}
-			
-			if ( vX > locType.MaxX ) {
-				throw new FabArgumentOutOfRangeFault(XParam+greaterThan+".");
-			}
-			
-			if ( vY < locType.MinY ) {
-				throw new FabArgumentOutOfRangeFault(YParam+lessThan+"Y.");
-			}
-			
-			if ( vY > locType.MaxY ) {
-				throw new FabArgumentOutOfRangeFault(YParam+greaterThan+"Y.");
-			}
-			
-			if ( vZ < locType.MinZ ) {
-				throw new FabArgumentOutOfRangeFault(ZParam+lessThan+"Z.");
-			}
-			
-			if ( vZ > locType.MaxZ ) {
-				throw new FabArgumentOutOfRangeFault(ZParam+greaterThan+"Z.");
-			}
 		}
 
 

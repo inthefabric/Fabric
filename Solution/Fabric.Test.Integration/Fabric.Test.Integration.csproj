@@ -49,12 +49,13 @@
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
     <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="FabApiModify\XBatchCreateFactor.cs" />
     <Compile Include="FabApiModify\XBatchCreateClass.cs" />
     <Compile Include="FabApiModify\XDeleteFactor.cs" />
     <Compile Include="FabApiModify\XCompleteFactor.cs" />
     <Compile Include="FabApiModify\XUpdateFactor.cs" />
     <Compile Include="FabApiModify\Tasks\XUpdateFactor.cs" />
-    <Compile Include="FabApiModify\XCreateFactorElement.cs" />
+    <Compile Include="FabApiModify\XAttachFactorElement.cs" />
     <Compile Include="FabApiModify\XAttachDirector.cs" />
     <Compile Include="FabApiModify\Tasks\XUpdateFactorDirector.cs" />
     <Compile Include="FabApiModify\XAttachDescriptor.cs" />

@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="BaseModifyFunc.cs" />
     <Compile Include="CompleteFactor.cs" />
+    <Compile Include="BatchCreateFactor.cs" />
     <Compile Include="DeleteFactor.cs" />
     <Compile Include="UpdateFactor.cs" />
     <Compile Include="AttachDirector.cs" />

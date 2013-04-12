@@ -53,29 +53,30 @@ namespace Fabric.Api.Modify {
 			Tasks.Validator.ArtifactId(vAxisArtId, AxisArtParam);
 			Tasks.Validator.FactorVector_UnitId(vVecUnitId, UnitParam);
 			Tasks.Validator.FactorVector_UnitPrefixId(vVecUnitPrefId, UnitPrefParam);
+
+			////
+
+			VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
+			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
+
+			if ( baseVal < vecType.Min ) {
+				throw new FabArgumentOutOfRangeFault(ValueParam+" is less than VectorType.Min.");
+			}
+
+			if ( baseVal > vecType.Max ) {
+				throw new FabArgumentOutOfRangeFault(ValueParam+" is greater than VectorType.Max.");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void VerifyRequiredNodes() {
+			if ( Tasks.GetArtifact(ApiCtx, vAxisArtId) == null ) {
+				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
-			if ( Tasks.GetArtifact(ApiCtx, vAxisArtId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
-			}
-
-			////
-			
-			VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
-			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
-			
-			if ( baseVal < vecType.Min ) {
-				throw new FabArgumentOutOfRangeFault(ValueParam+" is less than VectorType.Min.");
-			}
-			
-			if ( baseVal > vecType.Max ) {
-				throw new FabArgumentOutOfRangeFault(ValueParam+" is greater than VectorType.Max.");
-			}
-			
-			////
-			
 			Tasks.UpdateFactorVector(ApiCtx, pFactor, vVecTypeId, vValue,
 				vAxisArtId, vVecUnitId, vVecUnitPrefId);
 			return true;

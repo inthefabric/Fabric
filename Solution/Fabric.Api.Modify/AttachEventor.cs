@@ -42,6 +42,9 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override void VerifyRequiredNodes() {}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorEventor(ApiCtx, pFactor, vEveTypeId, vEvePrecId, vDateTime);
 			return true;

@@ -16,7 +16,7 @@ namespace Fabric.Api.Modify {
 		public const string RelActionParam = "RelatedDirectorActionId";
 
 		[ServiceOpParam(ServiceOpParamType.Form, DirTypeParam, 1, typeof(Factor))]
-		private readonly byte vDescTypeId;
+		private readonly byte vDirTypeId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, PrimActionParam, 2, typeof(Factor),
 			DomainPropertyName="DirectorActionId")]
@@ -29,23 +29,26 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AttachDirector(IModifyTasks pTasks, long pFactorId, byte pDescTypeId, 
+		public AttachDirector(IModifyTasks pTasks, long pFactorId, byte pDirTypeId, 
 											byte pPrimActId, byte pRelActId) : base(pTasks, pFactorId) {
-			vDescTypeId = pDescTypeId; 
+			vDirTypeId = pDirTypeId; 
 			vPrimActId = pPrimActId;
 			vRelActId = pRelActId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
-			Tasks.Validator.FactorDirector_TypeId(vDescTypeId, DirTypeParam);
+			Tasks.Validator.FactorDirector_TypeId(vDirTypeId, DirTypeParam);
 			Tasks.Validator.FactorDirector_PrimaryActionId(vPrimActId, PrimActionParam);
 			Tasks.Validator.FactorDirector_RelatedActionId(vRelActId, RelActionParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected override void VerifyRequiredNodes() { }
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
-			Tasks.UpdateFactorDirector(ApiCtx, pFactor, vDescTypeId, vPrimActId, vRelActId);
+			Tasks.UpdateFactorDirector(ApiCtx, pFactor, vDirTypeId, vPrimActId, vRelActId);
 			return true;
 		}
 
