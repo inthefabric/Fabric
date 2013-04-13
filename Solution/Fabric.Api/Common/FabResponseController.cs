@@ -61,16 +61,10 @@ namespace Fabric.Api.Common {
 				return;
 			}
 
-			FabOauthAccess acc = (FabOauthAccess)ApiCtx.Cache.Memory.FindOauthAccess(token);
+			FabOauthAccess acc = OauthTasks.GetAccessToken(token, ApiCtx);
 
 			if ( acc == null ) {
-				acc = OauthTasks.GetAccessToken(token, ApiCtx);
-
-				if ( acc == null ) {
-					return;
-				}
-
-				ApiCtx.Cache.Memory.AddOauthAccess(token, acc, acc.ExpiresIn);
+				return;
 			}
 
 			ApiCtx.SetAppUserId(acc.AppId, acc.UserId);

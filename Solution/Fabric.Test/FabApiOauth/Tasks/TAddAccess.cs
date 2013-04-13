@@ -77,6 +77,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		protected string vRefreshCode;
 
 		protected Mock<IApiContext> vMockCtx;
+		private Mock<IMemCache> vMockMemCache;
 		protected UsageMap vUsageMap;
 		
 		
@@ -108,6 +109,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vMockCtx
 				.Setup(x => x.DbData(AddAccess.Query.AddAccessTx+"", It.IsAny<IWeaverScript>()))
 				.Returns((string s, IWeaverScript ws) => AddAccessTx(ws));
+
+			var mockCacheMan = new Mock<ICacheManager>();
+			vMockCtx.SetupGet(x => x.Cache).Returns(mockCacheMan.Object);
+
+			vMockMemCache = new Mock<IMemCache>();
+			mockCacheMan.SetupGet(x => x.Memory).Returns(vMockMemCache.Object);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -211,8 +218,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(vRefreshCode, result.RefreshToken, "Incorrect Result.RefreshToken.");
 			Assert.AreEqual("bearer", result.TokenType, "Incorrect Result.TokenType.");
 			Assert.AreEqual(3600, result.ExpiresIn, "Incorrect Result.ExpiresIn.");
+
+			vMockMemCache.Verify(x => x.RemoveOauthAccesses(vAppId, vUserId), Times.Once());
 		}
-		
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public virtual void ErrAppId() {

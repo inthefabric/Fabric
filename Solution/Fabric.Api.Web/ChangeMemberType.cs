@@ -43,7 +43,9 @@ namespace Fabric.Api.Web {
 		protected override SuccessResult Execute() {
 			ConfirmTargetMember();
 			ConfirmAssigningMember();
-			
+
+			ApiCtx.Cache.Memory.RemoveMember(vMemberId);
+
 			MemberTypeAssign newMta = Tasks.AddMemberTypeAssign(
 				ApiCtx, vAssigningMemberId, vMemberId, vMemberTypeId);
 			return new SuccessResult(newMta != null);

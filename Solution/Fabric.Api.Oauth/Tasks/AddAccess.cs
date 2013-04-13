@@ -93,6 +93,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			ApiCtx.DbData(Query.ClearTokens+"", updateOa);
+			ApiCtx.Cache.Memory.RemoveOauthAccesses(vAppId, vUserId);
 		}
 
 

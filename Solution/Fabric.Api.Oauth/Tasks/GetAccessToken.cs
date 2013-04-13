@@ -42,6 +42,35 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess Execute() {
+			Tuple<OauthAccess, long, long?> data = GetData();
+
+			if ( data == null ) {
+				return null;
+			}
+
+			OauthAccess oa = data.Item1;
+
+			var foa = new FabOauthAccess();
+			foa.OauthAccessId = oa.OauthAccessId;
+			foa.AccessToken = oa.Token;
+			foa.RefreshToken = oa.Refresh;
+			foa.TokenType = "bearer";
+			foa.ExpiresIn = ExpiresInSec(oa);
+			foa.AppId = data.Item2;
+			foa.UserId = data.Item3;
+			return foa;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private Tuple<OauthAccess, long, long?> GetData() {
+			Tuple<OauthAccess, long, long?> tuple = ApiCtx.Cache.Memory.FindOauthAccess(vToken);
+
+			if ( tuple != null ) {
+				return tuple;
+			}
+
+			////
+
 			IWeaverTransaction tx = new WeaverTransaction();
 			IWeaverVarAlias agg;
 			IWeaverFuncAs<OauthAccess> oaAlias;
@@ -67,6 +96,8 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.Finish(agg);
 
+			////
+
 			IApiDataAccess data = ApiCtx.DbData(Query.GetAccessTx+"", tx);
 			int count = data.GetResultCount();
 
@@ -78,21 +109,24 @@ namespace Fabric.Api.Oauth.Tasks {
 				throw new Exception("Incorrect result count: "+count);
 			}
 
-			OauthAccess oa = data.GetResultAt<OauthAccess>(0);
+			////
 
-			var foa = new FabOauthAccess();
-			foa.OauthAccessId = oa.OauthAccessId;
-			foa.AccessToken = oa.Token;
-			foa.RefreshToken = oa.Refresh;
-			foa.TokenType = "bearer";
-			foa.ExpiresIn = (int)(new TimeSpan(oa.Expires-ApiCtx.UtcNow.Ticks).TotalSeconds);
-			foa.AppId = data.GetResultAt<App>(1).AppId;
+			OauthAccess oa = data.GetResultAt<OauthAccess>(0);
+			long appId = data.GetResultAt<App>(1).AppId;
+			long? userId = null;
 
 			if ( count == 3 ) {
-				foa.UserId = data.GetResultAt<User>(2).UserId;
+				userId = data.GetResultAt<User>(2).UserId;
 			}
 
-			return foa;
+			tuple = new Tuple<OauthAccess, long, long?>(oa, appId, userId);
+			ApiCtx.Cache.Memory.AddOauthAccess(vToken, tuple, ExpiresInSec(oa));
+			return tuple;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private int ExpiresInSec(OauthAccess pAcc) {
+			return (int)(new TimeSpan(pAcc.Expires-ApiCtx.UtcNow.Ticks).TotalSeconds);
 		}
 
 	}

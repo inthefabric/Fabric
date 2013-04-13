@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Runtime.Caching;
 using Fabric.Domain;
@@ -8,10 +9,6 @@ namespace Fabric.Infrastructure.Caching {
 
 	/*================================================================================================*/
 	public class MemCache : MemoryCache, IMemCache {
-
-		private const string NodeRegion = null; //"Node";
-		private const string MemberRegion = null; //"Member";
-		private const string AccessRegion = null; //"Access";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,28 +40,28 @@ namespace Fabric.Infrastructure.Caching {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddNode<T>(T pNode, CacheItemPolicy pPolicy=null) where T : INodeWithId {
 			if ( pPolicy == null ) {
 				pPolicy = NewPolicy(3600);
 			}
 
-			Add(GetDomainNodeKey<T>(pNode.GetTypeId()), pNode, pPolicy, NodeRegion);
+			Add(GetDomainNodeKey<T>(pNode.GetTypeId()), pNode, pPolicy);
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public T FindNode<T>(long pNodeTypeId) where T : INodeWithId {
 			string key = GetDomainNodeKey<T>(pNodeTypeId);
-			return (Contains(key, NodeRegion) ? (T)Get(key, NodeRegion) : default(T));
+			return (Contains(key) ? (T)Get(key) : default(T));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public T RemoveNode<T>(long pNodeTypeId) where T : INodeWithId {
 			string key = GetDomainNodeKey<T>(pNodeTypeId);
-			return (Contains(key, NodeRegion) ? (T)Remove(key, NodeRegion) : default(T));
+			return (Contains(key) ? (T)Remove(key) : default(T));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private static string GetDomainNodeKey<T>(long pNodeTypeId) where T : INodeWithId {
 			return typeof(T).Name+pNodeTypeId;
 		}
@@ -78,48 +75,82 @@ namespace Fabric.Infrastructure.Caching {
 				pPolicy.SlidingExpiration = new TimeSpan(0, 1, 0, 0);
 			}
 
-			Add(GetMemberKey(pAppId, pUserId), pMember, pPolicy, MemberRegion);
+			Add(GetMemberKey(pAppId, pUserId), pMember, pPolicy);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Member FindMember(long pAppId, long pUserId) {
 			string key = GetMemberKey(pAppId, pUserId);
-			return (Contains(key, MemberRegion) ? (Member)Get(key, MemberRegion) : null);
+			return (Contains(key) ? (Member)Get(key) : null);
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public Member RemoveMember(long pAppId, long pUserId) {
+			string key = GetMemberKey(pAppId, pUserId);
+			return (Contains(key) ? (Member)Remove(key) : null);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member RemoveMember(long pAppId, long pUserId) {
-			string key = GetMemberKey(pAppId, pUserId);
-			return (Contains(key, MemberRegion) ? (Member)Remove(key, MemberRegion) : null);
+		public Member RemoveMember(long pMemberId) {
+			IEnumerator<KeyValuePair<string, object>> e = GetEnumerator();
+
+			while ( e.MoveNext() ) {
+				var m = (e.Current.Value as Member);
+
+				if ( m != null && m.MemberId == pMemberId ) {
+					Remove(e.Current.Key);
+					return m;
+				}
+			}
+
+			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static string GetMemberKey(long pAppId, long pUserId) {
-			return "Member|"+pAppId+"|"+pUserId;
+			return "M|"+pAppId+"|"+pUserId;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddOauthAccess(string pToken, object pAccess, int pExpiresInSec) {
-			Add(GetOauthAccessKey(pToken), pAccess, NewPolicy(pExpiresInSec, false), AccessRegion);
+		public void AddOauthAccess(string pToken, Tuple<OauthAccess, long, long?> pData,
+																					int pExpiresInSec) {
+			Add(GetOauthAccessKey(pToken), pData, NewPolicy(pExpiresInSec, false));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public object FindOauthAccess(string pToken) {
+		public Tuple<OauthAccess, long, long?> FindOauthAccess(string pToken) {
 			string key = GetOauthAccessKey(pToken);
-			return (Contains(key, AccessRegion) ? Get(key, AccessRegion) : null);
+			return (Contains(key) ? (Tuple<OauthAccess, long, long?>)Get(key) : null);
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		public Tuple<OauthAccess, long, long?> RemoveOauthAccess(string pToken) {
+			string key = GetOauthAccessKey(pToken);
+			return (Contains(key) ? (Tuple<OauthAccess, long, long?>)Remove(key) : null);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public object RemoveOauthAccess(string pToken) {
-			string key = GetOauthAccessKey(pToken);
-			return (Contains(key, AccessRegion) ? Remove(key, AccessRegion) : null);
+		public int RemoveOauthAccesses(long pAppId, long? pUserId) {
+			IEnumerator<KeyValuePair<string, object>> e = GetEnumerator();
+			int count = 0;
+
+			while ( e.MoveNext() ) {
+				var t = (e.Current.Value as Tuple<OauthAccess, long,long?>);
+
+				if ( t != null && t.Item2 == pAppId && t.Item3 == pUserId ) {
+					Remove(e.Current.Key);
+					count++;
+				}
+			}
+
+			return count;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static string GetOauthAccessKey(string pToken) {
-			return "Access|"+pToken;
+			return "OA|"+pToken;
 		}
 
 	}

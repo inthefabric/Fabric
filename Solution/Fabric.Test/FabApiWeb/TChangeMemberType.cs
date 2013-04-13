@@ -87,6 +87,8 @@ namespace Fabric.Test.FabApiWeb {
 				ChangeMemberType.MemberIdParam), Times.Once());
 			MockValidator.Verify(x => x.MemberTypeAssignMemberTypeId(vMemberTypeId,
 				ChangeMemberType.MemberTypeIdParam), Times.Once());
+
+			MockMemCache.Verify(x => x.RemoveMember(vMemberId), Times.Once());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -101,6 +103,8 @@ namespace Fabric.Test.FabApiWeb {
 
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.False(vResult.Success, "Incorrect Result.Success.");
+
+			MockMemCache.Verify(x => x.RemoveMember(vMemberId), Times.Once());
 		}
 
 

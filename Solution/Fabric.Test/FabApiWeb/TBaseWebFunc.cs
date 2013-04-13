@@ -1,5 +1,4 @@
-﻿using Fabric.Api.Modify.Tasks;
-using Fabric.Api.Web.Tasks;
+﻿using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
@@ -15,6 +14,9 @@ namespace Fabric.Test.FabApiWeb {
 		protected Mock<IApiContext> MockApiCtx { get; private set; }
 		protected Mock<IDomainValidator> MockValidator { get; private set; }
 		protected Mock<IWebTasks> MockTasks { get; private set; }
+		protected Mock<ICacheManager> MockCacheManager { get; private set; }
+		protected Mock<IClassDiskCache> MockClassCache { get; private set; }
+		protected Mock<IMemCache> MockMemCache { get; private set; }
 
 		protected long ApiCtxAppId { get; private set; }
 		protected long ApiCtxUserId { get; private set; }
@@ -30,6 +32,14 @@ namespace Fabric.Test.FabApiWeb {
 
 			MockTasks = new Mock<IWebTasks>();
 			MockTasks.SetupGet(x => x.Validator).Returns(MockValidator.Object);
+
+			MockCacheManager = new Mock<ICacheManager>();
+			MockApiCtx.SetupGet(x => x.Cache).Returns(MockCacheManager.Object);
+
+			MockClassCache = new Mock<IClassDiskCache>();
+			MockMemCache = new Mock<IMemCache>();
+			MockCacheManager.SetupGet(x => x.UniqueClasses).Returns(MockClassCache.Object);
+			MockCacheManager.SetupGet(x => x.Memory).Returns(MockMemCache.Object);
 
 			TestSetUp();
 		}
