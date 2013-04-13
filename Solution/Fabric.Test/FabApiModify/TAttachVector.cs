@@ -44,9 +44,7 @@ namespace Fabric.Test.FabApiModify {
 					)
 				);
 				
-			MockTasks
-				.Setup(x => x.GetArtifact(MockApiCtx.Object, vAxisArtId))
-				.Returns(new Artifact());
+			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(vAxisArtId)).Returns(new Artifact());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,9 +93,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrAxisArtifactNotFound() {
-			MockTasks
-				.Setup(x => x.GetArtifact(MockApiCtx.Object, vAxisArtId))
-				.Returns((Artifact)null);
+			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(vAxisArtId)).Returns((Artifact)null);
 
 			FabNotFoundFault f = TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 			Assert.AreEqual(typeof(Artifact), f.ItemType, "Incorrect Fault.ItemType.");

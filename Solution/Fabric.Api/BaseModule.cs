@@ -1,4 +1,4 @@
-﻿//#define MONO_DEV
+﻿#define MONO_DEV
 
 using System;
 using System.Configuration;

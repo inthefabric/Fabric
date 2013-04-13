@@ -40,7 +40,7 @@ namespace Fabric.Infrastructure.Caching {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public void AddNode<T>(T pNode, CacheItemPolicy pPolicy=null) where T : INodeWithId {
 			if ( pPolicy == null ) {
 				pPolicy = NewPolicy(3600);
@@ -49,21 +49,21 @@ namespace Fabric.Infrastructure.Caching {
 			Add(GetDomainNodeKey<T>(pNode.GetTypeId()), pNode, pPolicy);
 		}
 		
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public T FindNode<T>(long pNodeTypeId) where T : INodeWithId {
 			string key = GetDomainNodeKey<T>(pNodeTypeId);
 			return (Contains(key) ? (T)Get(key) : default(T));
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public T RemoveNode<T>(long pNodeTypeId) where T : INodeWithId {
 			string key = GetDomainNodeKey<T>(pNodeTypeId);
 			return (Contains(key) ? (T)Remove(key) : default(T));
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		private static string GetDomainNodeKey<T>(long pNodeTypeId) where T : INodeWithId {
-			return typeof(T).Name+pNodeTypeId;
+			return typeof(T).Name+"|"+pNodeTypeId;
 		}
 
 
@@ -152,7 +152,7 @@ namespace Fabric.Infrastructure.Caching {
 		private static string GetOauthAccessKey(string pToken) {
 			return "OA|"+pToken;
 		}
-
+		
 	}
 
 }

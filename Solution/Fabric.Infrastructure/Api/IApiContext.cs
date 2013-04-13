@@ -41,6 +41,9 @@ namespace Fabric.Infrastructure.Api {
 		IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted);
 		
 		/*--------------------------------------------------------------------------------------------*/
+		T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new();
+		
+		/*--------------------------------------------------------------------------------------------*/
 		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : class, IItemWithId, new();
 
 		/*--------------------------------------------------------------------------------------------*/

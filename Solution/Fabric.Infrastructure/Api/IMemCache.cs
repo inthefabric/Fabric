@@ -9,7 +9,7 @@ namespace Fabric.Infrastructure.Api {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		void AddNode<T>(T pNode, CacheItemPolicy pPolicy=null) where T : INodeWithId;
 		T FindNode<T>(long pNodeTypeId) where T : INodeWithId;
 		T RemoveNode<T>(long pNodeTypeId) where T : INodeWithId;

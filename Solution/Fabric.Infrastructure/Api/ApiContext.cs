@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Infrastructure.Api {
@@ -73,7 +74,27 @@ namespace Fabric.Infrastructure.Api {
 			var a = NewAccess(pScripted);
 			return DbDataAccess(pQueryName, a);
 		}
-
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new() {
+			T item = Cache.Memory.FindNode<T>(pTypeId);
+			
+			if ( item != null ) {
+				return item;
+			}
+			
+			item = new T();
+			((INode)item).SetTypeId(pTypeId);
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(item).End();
+			item = DbSingle<T>("Get"+typeof(T).Name+"ById", q);
+			
+			if ( item != null ) {
+				Cache.Memory.AddNode(item);
+			}
+			
+			return item;
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbSingle<T>(string pQueryName, IWeaverScript pScripted)
 																where T : class, IItemWithId, new() {

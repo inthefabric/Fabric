@@ -30,12 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <OutputPath>bin\DebugLive\</OutputPath>
     <DefineConstants>TRACE;DEBUG;LIVE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
@@ -63,7 +65,6 @@
     <Compile Include="FabApiModify\Tasks\XGetActiveFactorFromMember.cs" />
     <Compile Include="FabApiModify\XCreateFactor.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddFactor.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetArtifact.cs" />
     <Compile Include="FabApiModify\XCreateInstance.cs" />
     <Compile Include="FabApiModify\XCreateClass.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddInstance.cs" />
@@ -132,32 +133,29 @@
     <Compile Include="FabApiModify\XAttachVector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="CsQuery, Version=1.3.3.249, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq">
       <HintPath>..\..\Packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Nancy.0.16.1\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Testing, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Nancy.Testing.0.16.1\lib\net40\Nancy.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.42.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.42\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
+    <Reference Include="CsQuery">
+      <HintPath>..\..\Packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\..\Packages\Nancy.0.16.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Testing">
+      <HintPath>..\..\Packages\Nancy.Testing.0.16.1\lib\net40\Nancy.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.42.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.42\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

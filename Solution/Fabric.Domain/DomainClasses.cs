@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/11/2013 5:50:17 PM
+// Generated on 4/13/2013 2:43:12 PM
 
 using System;
 using System.Linq.Expressions;
@@ -337,6 +337,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return ArtifactId; }
+		public override void SetTypeId(long pTypeId) { ArtifactId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -412,6 +413,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return AppId; }
+		public override void SetTypeId(long pTypeId) { AppId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -487,6 +489,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return ClassId; }
+		public override void SetTypeId(long pTypeId) { ClassId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -534,6 +537,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return EmailId; }
+		public override void SetTypeId(long pTypeId) { EmailId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -590,6 +594,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return InstanceId; }
+		public override void SetTypeId(long pTypeId) { InstanceId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -616,6 +621,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return MemberId; }
+		public override void SetTypeId(long pTypeId) { MemberId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -680,6 +686,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return MemberTypeAssignId; }
+		public override void SetTypeId(long pTypeId) { MemberTypeAssignId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -733,6 +740,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return UrlId; }
+		public override void SetTypeId(long pTypeId) { UrlId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -774,6 +782,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return UserId; }
+		public override void SetTypeId(long pTypeId) { UserId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -920,6 +929,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return FactorId; }
+		public override void SetTypeId(long pTypeId) { FactorId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -1000,6 +1010,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return OauthAccessId; }
+		public override void SetTypeId(long pTypeId) { OauthAccessId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -1042,6 +1053,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return OauthDomainId; }
+		public override void SetTypeId(long pTypeId) { OauthDomainId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -1087,6 +1099,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return OauthGrantId; }
+		public override void SetTypeId(long pTypeId) { OauthGrantId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
@@ -1130,6 +1143,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetTypeId() { return OauthScopeId; }
+		public override void SetTypeId(long pTypeId) { OauthScopeId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {

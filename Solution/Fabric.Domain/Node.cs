@@ -21,6 +21,7 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract long GetTypeId();
+		public abstract void SetTypeId(long pTypeId);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual Expression<Func<T, object>> GetTypeIdProp<T>() where T : INode {

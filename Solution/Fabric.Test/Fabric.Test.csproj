@@ -30,12 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <OutputPath>bin\DebugLive\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
@@ -62,7 +64,6 @@
     <Compile Include="FabApiModify\Tasks\TGetActiveFactorFromMember.cs" />
     <Compile Include="FabApiModify\TCreateFactor.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddFactor.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetArtifact.cs" />
     <Compile Include="FabApiModify\TCreateInstance.cs" />
     <Compile Include="FabApiModify\TCreateClass.cs" />
     <Compile Include="FabApiModify\Tasks\TTxAddInstance.cs" />
@@ -171,15 +172,14 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.42.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.42\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="Weaver">
       <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.42\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

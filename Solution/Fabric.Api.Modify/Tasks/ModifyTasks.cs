@@ -84,12 +84,6 @@ namespace Fabric.Api.Modify.Tasks {
 			return c;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public Artifact GetArtifact(IApiContext pApiCtx, long pArtifactId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new Artifact { ArtifactId = pArtifactId }).End();
-			return pApiCtx.DbSingle<Artifact>("GetArtifact", q);
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

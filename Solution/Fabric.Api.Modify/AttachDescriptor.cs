@@ -63,15 +63,15 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void VerifyRequiredNodes() {
-			if ( vPrimArtRefId != null && Tasks.GetArtifact(ApiCtx, (long)vPrimArtRefId) == null ) {
+			if ( vPrimArtRefId != null && ApiCtx.DbNodeById<Artifact>((long)vPrimArtRefId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vPrimArtRefId);
 			}
 
-			if ( vRelArtRefId != null && Tasks.GetArtifact(ApiCtx, (long)vRelArtRefId) == null ) {
+			if ( vRelArtRefId != null && ApiCtx.DbNodeById<Artifact>((long)vRelArtRefId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vRelArtRefId);
 			}
 
-			if ( vDescTypeRefId != null && Tasks.GetArtifact(ApiCtx, (long)vDescTypeRefId) == null ) {
+			if ( vDescTypeRefId != null && ApiCtx.DbNodeById<Artifact>((long)vDescTypeRefId) == null ){
 				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeRefId);
 			}
 		}

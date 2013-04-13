@@ -63,11 +63,11 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyRequiredNodes() {
-			if ( Tasks.GetArtifact(ApiCtx, vPrimArtId) == null ) {
+			if ( ApiCtx.DbNodeById<Artifact>(vPrimArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtParam+"="+vPrimArtId);
 			}
 
-			if ( Tasks.GetArtifact(ApiCtx, vRelArtId) == null ) {
+			if ( ApiCtx.DbNodeById<Artifact>(vRelArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), RelArtParam+"="+vRelArtId);
 			}
 		}

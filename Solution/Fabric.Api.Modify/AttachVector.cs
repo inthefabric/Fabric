@@ -70,7 +70,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void VerifyRequiredNodes() {
-			if ( Tasks.GetArtifact(ApiCtx, vAxisArtId) == null ) {
+			if ( ApiCtx.DbNodeById<Artifact>(vAxisArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
 			}
 		}

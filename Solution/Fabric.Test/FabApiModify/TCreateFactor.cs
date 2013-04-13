@@ -61,8 +61,8 @@ namespace Fabric.Test.FabApiModify {
 				.Setup(x => x.DbSingle<Factor>("CreateFactorTx", It.IsAny<IWeaverTransaction>()))
 				.Returns((string s, IWeaverTransaction q) => CreateFactorTx(q));
 
-			MockTasks.Setup(x => x.GetArtifact(MockApiCtx.Object, vPrimArtId)).Returns(new Artifact());
-			MockTasks.Setup(x => x.GetArtifact(MockApiCtx.Object, vRelArtId)).Returns(new Artifact());
+			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(vPrimArtId)).Returns(new Artifact());
+			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(vRelArtId)).Returns(new Artifact());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -109,14 +109,14 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrPrimaryArtifactNotFound() {
-			MockTasks.Setup(x => x.GetArtifact(MockApiCtx.Object, vPrimArtId)).Returns((Artifact)null);
+			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(vPrimArtId)).Returns((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRelatedArtifactNotFound() {
-			MockTasks.Setup(x => x.GetArtifact(MockApiCtx.Object, vRelArtId)).Returns((Artifact)null);
+			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(vRelArtId)).Returns((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 		
