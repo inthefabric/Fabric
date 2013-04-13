@@ -1,15 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
 	public class DbResult : IDbResult { //TEST: DbResult functions
-
-		//Regex from http://stackoverflow.com/questions/3776458/
-		//	split-a-comma-separated-string-with-both-quoted-and-unquoted-strings
-		private static readonly Regex SmartCommaSplit = 
-			new Regex("(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)", RegexOptions.Compiled);
 
 		public string Request { get; set; }
 		public bool Success { get; set; }

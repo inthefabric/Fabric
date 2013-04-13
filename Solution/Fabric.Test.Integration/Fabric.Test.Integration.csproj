@@ -73,6 +73,7 @@
     <Compile Include="FabApiModify\Tasks\XGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\XGetUrlByAbsoluteUrl.cs" />
     <Compile Include="FabApiModify\XCreateUrl.cs" />
+    <Compile Include="FabApiWeb\Tasks\XGetMemberTypeAssignByMember.cs" />
     <Compile Include="FabApiWeb\XChangeMemberType.cs" />
     <Compile Include="FabApiWeb\XRemoveOauthDomain.cs" />
     <Compile Include="FabApiWeb\Tasks\XGetOauthDomainByDomain.cs" />

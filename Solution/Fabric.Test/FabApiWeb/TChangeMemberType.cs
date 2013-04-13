@@ -2,6 +2,7 @@ using Fabric.Api.Web;
 using Fabric.Api.Web.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Domain;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -17,9 +18,11 @@ namespace Fabric.Test.FabApiWeb {
 		private long vMemberId;
 		private byte vMemberTypeId;
 
-		private Member vResultAssigningMember;
 		private Member vResultMember;
 		private MemberTypeAssign vResultMta;
+		private Member vResultAssigningMember;
+		private MemberTypeAssign vResultAssigningMta;
+		private MemberTypeAssign vResultNewMta;
 		private SuccessResult vResult;
 		
 		
@@ -32,21 +35,31 @@ namespace Fabric.Test.FabApiWeb {
 			vMemberTypeId = 4;
 
 			vResultAssigningMember = new Member();
+			vResultMta = new MemberTypeAssign { MemberTypeId = (byte)MemberTypeId.Member };
 			vResultMember = new Member();
-			vResultMta = new MemberTypeAssign();
+			vResultAssigningMta = new MemberTypeAssign { MemberTypeId = (byte)MemberTypeId.Admin };
+			vResultNewMta = new MemberTypeAssign();
 
 			MockTasks
 				.Setup(x => x.GetMemberOfApp(MockApiCtx.Object, vAppId, vMemberId))
 				.Returns(vResultMember);
 
 			MockTasks
+				.Setup(x => x.GetMemberTypeAssignByMember(MockApiCtx.Object, vMemberId))
+				.Returns(vResultMta);
+
+			MockTasks
 				.Setup(x => x.GetMemberOfApp(MockApiCtx.Object, vAppId, vAssigningMemberId))
 				.Returns(vResultAssigningMember);
 
 			MockTasks
+				.Setup(x => x.GetMemberTypeAssignByMember(MockApiCtx.Object, vAssigningMemberId))
+				.Returns(vResultAssigningMta);
+
+			MockTasks
 				.Setup(x => x.AddMemberTypeAssign(MockApiCtx.Object,
 					vAssigningMemberId, vMemberId, vMemberTypeId))
-				.Returns(vResultMta);
+				.Returns(vResultNewMta);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -103,6 +116,16 @@ namespace Fabric.Test.FabApiWeb {
 			Assert.AreNotEqual(-1, f.Criteria.IndexOf("&"+ChangeMemberType.MemberIdParam),
 				"Incorrect Fault.Criteria.");
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrMemberIsDataProv() {
+			vResultMta.MemberTypeId = (byte)MemberTypeId.DataProvider;
+
+			FabPreventedFault f = TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
+			Assert.AreEqual(FabFault.Code.ActionNotPermitted, f.ErrCode,
+				"Incorrect Fault.ErrCode.");
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
@@ -114,6 +137,19 @@ namespace Fabric.Test.FabApiWeb {
 			FabNotFoundFault f = TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 			Assert.AreNotEqual(-1, f.Criteria.IndexOf("&"+ChangeMemberType.AssigningMemberIdParam),
 				"Incorrect Fault.Criteria.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(MemberTypeId.None)]
+		[TestCase(MemberTypeId.Invite)]
+		[TestCase(MemberTypeId.Member)]
+		[TestCase(MemberTypeId.Request)]
+		public void ErrAssigningMemberIsNotAllowed(MemberTypeId pMemTypeId) {
+			vResultAssigningMta.MemberTypeId = (byte)pMemTypeId;
+
+			FabPreventedFault f = TestUtil.CheckThrows<FabPreventedFault>(true, TestGo);
+			Assert.AreEqual(FabFault.Code.ActionNotPermitted, f.ErrCode,
+				"Incorrect Fault.ErrCode.");
 		}
 
 	}

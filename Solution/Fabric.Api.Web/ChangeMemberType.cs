@@ -41,6 +41,18 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
+			ConfirmTargetMember();
+			ConfirmAssigningMember();
+			
+			MemberTypeAssign newMta = Tasks.AddMemberTypeAssign(
+				ApiCtx, vAssigningMemberId, vMemberId, vMemberTypeId);
+			return new SuccessResult(newMta != null);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void ConfirmTargetMember() {
 			Member mem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vMemberId);
 
 			if ( mem == null ) {
@@ -50,14 +62,14 @@ namespace Fabric.Api.Web {
 
 			MemberTypeAssign mta = Tasks.GetMemberTypeAssignByMember(ApiCtx, vMemberId);
 
-			//TEST: ChangeMemberType: DataProvider prevention
 			if ( mta.MemberTypeId == (byte)MemberTypeId.DataProvider ) {
-				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted, 
+				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
 					"The DataProvider's "+typeof(MemberType).Name+" cannot be changed.");
 			}
+		}
 
-			////
-			
+		/*--------------------------------------------------------------------------------------------*/
+		private void ConfirmAssigningMember() {
 			Member assignMem = Tasks.GetMemberOfApp(ApiCtx, vAppId, vAssigningMemberId);
 
 			if ( assignMem == null ) {
@@ -67,7 +79,6 @@ namespace Fabric.Api.Web {
 
 			MemberTypeAssign assignMta = Tasks.GetMemberTypeAssignByMember(ApiCtx, vAssigningMemberId);
 
-			//TEST: ChangeMemberType: assigning member verification
 			switch ( assignMta.MemberTypeId ) {
 				case (byte)MemberTypeId.DataProvider:
 				case (byte)MemberTypeId.Admin:
@@ -79,12 +90,6 @@ namespace Fabric.Api.Web {
 					throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
 						"The DataProvider's "+typeof(MemberType).Name+" cannot be changed.");
 			}
-			
-			////
-			
-			MemberTypeAssign newMta = Tasks.AddMemberTypeAssign(
-				ApiCtx, vAssigningMemberId, vMemberId, vMemberTypeId);
-			return new SuccessResult(newMta != null);
 		}
 
 	}

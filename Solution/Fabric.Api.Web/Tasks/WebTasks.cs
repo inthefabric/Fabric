@@ -130,7 +130,6 @@ namespace Fabric.Api.Web.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: WebTasks.GetMemberTypeAssignByMember()
 		public MemberTypeAssign GetMemberTypeAssignByMember(IApiContext pApiCtx, long pMemberId) {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Member { MemberId = pMemberId })

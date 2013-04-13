@@ -20,8 +20,6 @@ namespace Fabric.Test.FabApiModify {
 
 		private bool vResult;
 		
-		//TODO: add more Vector.Value boundary tests
-		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -79,9 +77,17 @@ namespace Fabric.Test.FabApiModify {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(-1)]
-		[TestCase(101)]
-		public void ErrValueBounds(long pVal) {
+		[TestCase(VectorTypeId.StdPerc, VectorUnitPrefixId.Base, -1)]
+		[TestCase(VectorTypeId.StdPerc, VectorUnitPrefixId.Base, 101)]
+		[TestCase(VectorTypeId.OppAgree, VectorUnitPrefixId.Base, -101)]
+		[TestCase(VectorTypeId.OppAgree, VectorUnitPrefixId.Base, 101)]
+		[TestCase(VectorTypeId.OppAgree, VectorUnitPrefixId.Kilo, -11)]
+		[TestCase(VectorTypeId.OppAgree, VectorUnitPrefixId.Kilo, 11)]
+		[TestCase(VectorTypeId.OppAgree, VectorUnitPrefixId.Giga, -1)]
+		[TestCase(VectorTypeId.OppAgree, VectorUnitPrefixId.Giga, 1)]
+		public void ErrValueBounds(VectorTypeId pTypeId, VectorUnitPrefixId pPrefId, long pVal) {
+			vVecTypeId = (byte)pTypeId;
+			vVecUnitPrefId = (byte)pPrefId;
 			vValue = pVal;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
