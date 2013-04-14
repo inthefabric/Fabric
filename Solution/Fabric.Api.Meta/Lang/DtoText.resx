@@ -483,28 +483,28 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
     <value>TODO</value>
   </data>
   <data name="BatchNewClass" xml:space="preserve">
-    <value>Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Mod.AddClass]] documentation for details and parameter restrictions.</value>
+    <value>Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Modify.AddClass]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactor" xml:space="preserve">
-    <value>Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Mod.AddFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Modify.AddFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactorDescriptor" xml:space="preserve">
-    <value>Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Mod.AttachDescriptorToFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Modify.AttachDescriptorToFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactorDirector" xml:space="preserve">
-    <value>Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Mod.AttachDirectorToFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Modify.AttachDirectorToFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactorEventor" xml:space="preserve">
-    <value>Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Mod.AttachEventorToFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Modify.AttachEventorToFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactorIdentor" xml:space="preserve">
-    <value>Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Mod.AttachIdentorToFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Modify.AttachIdentorToFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactorLocator" xml:space="preserve">
-    <value>Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Mod.AttachLocatorToFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Modify.AttachLocatorToFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewFactorVector" xml:space="preserve">
-    <value>Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Mod.AttachVectorToFactor]] documentation for details and parameter restrictions.</value>
+    <value>Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Modify.AttachVectorToFactor]] documentation for details and parameter restrictions.</value>
   </data>
   <data name="BatchNewObject" xml:space="preserve">
     <value>TODO</value>

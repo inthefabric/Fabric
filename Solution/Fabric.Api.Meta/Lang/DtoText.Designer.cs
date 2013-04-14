@@ -85,7 +85,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Mod.AddClass]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Modify.AddClass]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewClass {
             get {
@@ -94,7 +94,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Mod.AddFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Modify.AddFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactor {
             get {
@@ -103,7 +103,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Mod.AttachDescriptorToFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Modify.AttachDescriptorToFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactorDescriptor {
             get {
@@ -112,7 +112,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Mod.AttachDirectorToFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Modify.AttachDirectorToFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactorDirector {
             get {
@@ -121,7 +121,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Mod.AttachEventorToFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Modify.AttachEventorToFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactorEventor {
             get {
@@ -130,7 +130,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Mod.AttachIdentorToFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Modify.AttachIdentorToFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactorIdentor {
             get {
@@ -139,7 +139,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Mod.AttachLocatorToFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Modify.AttachLocatorToFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactorLocator {
             get {
@@ -148,7 +148,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Mod.AttachVectorToFactor]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Modify.AttachVectorToFactor]] documentation for details and parameter restrictions..
         /// </summary>
         internal static string BatchNewFactorVector {
             get {
