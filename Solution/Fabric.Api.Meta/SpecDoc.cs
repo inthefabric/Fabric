@@ -245,7 +245,7 @@ namespace Fabric.Api.Meta {
 					continue;
 				}
 
-				if ( att.ReturnType.Name != sso.ReturnType ) {
+				if ( SchemaHelperProp.GetTypeName(att.ReturnType) != sso.ReturnType ) {
 					throw new Exception("ServiceOperation ReturnType mismatch: "+
 						att.ReturnType.Name+" vs. "+sso.ReturnType);
 				}
