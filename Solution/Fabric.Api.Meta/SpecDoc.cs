@@ -13,7 +13,6 @@ using Fabric.Api.Oauth;
 using Fabric.Api.Traversal;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Traversal;
 using Weaver.Items;
 
@@ -366,7 +365,7 @@ namespace Fabric.Api.Meta {
 					dpa.DomainPropName : pi.Name);
 
 				var specProp = new FabSpecObjectProp();
-				specProp.Name = (dpa == null ? pi.Name : dpa.DisplayName);
+				specProp.Name = (dpa != null && dpa.DisplayName != null ? dpa.DisplayName : pi.Name);
 				specProp.Type = SchemaHelperProp.GetTypeName(pi.PropertyType);
 				specProp.Description = GetDtoPropText(n+"_"+pi.Name);
 				specProp.IsOptional = (dpa != null && dpa.IsOptional ? true : (bool?)null);
