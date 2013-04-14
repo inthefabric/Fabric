@@ -11,9 +11,9 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CacheManager(bool pForTesting=false) {
+		public CacheManager(string pDiskCacheName, bool pForTesting=false) {
 			Memory = new MemCache();
-			UniqueClasses = new ClassDiskCache(pForTesting);
+			UniqueClasses = new ClassDiskCache(pDiskCacheName, pForTesting);
 		}
 
 	}

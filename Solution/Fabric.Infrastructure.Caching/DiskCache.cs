@@ -12,11 +12,11 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void BuildMap(BPlusTree<TKey, TVal>.OptionsV2 pOptions, bool pForTesting) {
+		protected void BuildMap(string pName, BPlusTree<TKey, TVal>.OptionsV2 pOptions) {
 			string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 			dir = Path.Combine(dir, "Fabric");
 
-			pOptions.FileName = Path.Combine(dir, GetType().Name+(pForTesting ? "Test" : ""));
+			pOptions.FileName = Path.Combine(dir, GetType().Name+pName);
 			Log.Debug(GetType().Name+" File: "+pOptions.FileName);
 
 			vMap = new BPlusTree<TKey, TVal>(pOptions);

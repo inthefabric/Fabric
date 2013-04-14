@@ -11,7 +11,7 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassDiskCache(bool pForTesting) {
+		public ClassDiskCache(string pDiskCacheName, bool pForTesting) {
 			var opt = new BPlusTree<string, long>.OptionsV2(
 				PrimitiveSerializer.String, PrimitiveSerializer.Int64, StringComparer.Ordinal);
 			opt.CreateFile = CreatePolicy.IfNeeded;
@@ -22,7 +22,7 @@ namespace Fabric.Infrastructure.Caching {
 				//opt.StoragePerformance = StoragePerformance.Fastest;
 			}
 
-			BuildMap(opt, pForTesting);
+			BuildMap(pDiskCacheName, opt);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
