@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Batch;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Dto.Traversal;
+using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto {
@@ -200,21 +201,21 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachDescriptorToFactor";
 				op.Uri = ModDescriptorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(bool).Name;
+				op.ReturnType = SchemaHelperProp.GetTypeName(typeof(bool));
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
 				op.Name = "AttachDirectorToFactor";
 				op.Uri = ModDirectorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(bool).Name;
+				op.ReturnType = SchemaHelperProp.GetTypeName(typeof(bool));
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
 				op.Name = "AttachEventorToFactor";
 				op.Uri = ModEventorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(bool).Name;
+				op.ReturnType = SchemaHelperProp.GetTypeName(typeof(bool));
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
@@ -249,7 +250,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachIdentorToFactor";
 				op.Uri = ModIdentorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(bool).Name;
+				op.ReturnType = SchemaHelperProp.GetTypeName(typeof(bool));
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
@@ -263,7 +264,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachLocatorToFactor";
 				op.Uri = ModLocatorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(bool).Name;
+				op.ReturnType = SchemaHelperProp.GetTypeName(typeof(bool));
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();
@@ -277,7 +278,7 @@ namespace Fabric.Api.Dto {
 				op.Name = "AttachVectorToFactor";
 				op.Uri = ModVectorsUri;
 				op.Method = Post;
-				op.ReturnType = typeof(bool).Name;
+				op.ReturnType = SchemaHelperProp.GetTypeName(typeof(bool));
 				s.Operations.Add(op);
 			}
 			else {
