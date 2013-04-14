@@ -1,4 +1,4 @@
-﻿#define MONO_DEV
+﻿//#define MONO_DEV
 
 using System;
 using System.Configuration;
@@ -63,8 +63,8 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 1, 22, "29fc060ce66b");
-				Version.SetDate(2013, 4, 6);
+				Version.SetBuild(0, 1, 23, "29fc060ce66b");
+				Version.SetDate(2013, 4, 14);
 				Log.Debug("Fabric Version: "+Version.Version);
 
 				Cache = new CacheManager();

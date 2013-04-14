@@ -85,20 +85,92 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Mod.AddClass]] documentation for details and parameter restrictions..
         /// </summary>
-        internal static string ArtifactOwnerNode {
+        internal static string BatchNewClass {
             get {
-                return ResourceManager.GetString("ArtifactOwnerNode", resourceCulture);
+                return ResourceManager.GetString("BatchNewClass", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact. Example types include: !App, !Class, !Instance, etc..
+        ///   Looks up a localized string similar to Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Mod.AddFactor]] documentation for details and parameter restrictions..
         /// </summary>
-        internal static string ArtifactType {
+        internal static string BatchNewFactor {
             get {
-                return ResourceManager.GetString("ArtifactType", resourceCulture);
+                return ResourceManager.GetString("BatchNewFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Mod.AttachDescriptorToFactor]] documentation for details and parameter restrictions..
+        /// </summary>
+        internal static string BatchNewFactorDescriptor {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDescriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Mod.AttachDirectorToFactor]] documentation for details and parameter restrictions..
+        /// </summary>
+        internal static string BatchNewFactorDirector {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDirector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Mod.AttachEventorToFactor]] documentation for details and parameter restrictions..
+        /// </summary>
+        internal static string BatchNewFactorEventor {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Mod.AttachIdentorToFactor]] documentation for details and parameter restrictions..
+        /// </summary>
+        internal static string BatchNewFactorIdentor {
+            get {
+                return ResourceManager.GetString("BatchNewFactorIdentor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Mod.AttachLocatorToFactor]] documentation for details and parameter restrictions..
+        /// </summary>
+        internal static string BatchNewFactorLocator {
+            get {
+                return ResourceManager.GetString("BatchNewFactorLocator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Mod.AttachVectorToFactor]] documentation for details and parameter restrictions..
+        /// </summary>
+        internal static string BatchNewFactorVector {
+            get {
+                return ResourceManager.GetString("BatchNewFactorVector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BatchNewObject {
+            get {
+                return ResourceManager.GetString("BatchNewObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BatchResult {
+            get {
+                return ResourceManager.GetString("BatchResult", resourceCulture);
             }
         }
         
@@ -144,15 +216,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc..
-        /// </summary>
-        internal static string CrowdianType {
-            get {
-                return ResourceManager.GetString("CrowdianType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
         internal static string CrowdianTypeAssign {
@@ -171,15 +234,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Descriptor {
             get {
                 return ResourceManager.GetString("Descriptor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor. Example types include: Is A, Refers To, Sounds Like, etc..
-        /// </summary>
-        internal static string DescriptorType {
-            get {
-                return ResourceManager.GetString("DescriptorType", resourceCulture);
             }
         }
         
@@ -206,15 +260,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc..
-        /// </summary>
-        internal static string DirectorType {
-            get {
-                return ResourceManager.GetString("DirectorType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to When a fault or error occurs, a !FabError is returned in place of the expected response data. The information it provides should help determine what caused the issue for the given request..
         /// </summary>
         internal static string Error {
@@ -237,24 +282,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc..
-        /// </summary>
-        internal static string EventorPrecision {
-            get {
-                return ResourceManager.GetString("EventorPrecision", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides temporal significance (via Eventor) for a particular Factor.  Example types include: Start, Occur, Expected, etc..
-        /// </summary>
-        internal static string EventorType {
-            get {
-                return ResourceManager.GetString("EventorType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
         ///
         ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. There are various !Factor-related components (known as !Factor Elements) available. Each has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
@@ -273,24 +300,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string FactorAssertion {
             get {
                 return ResourceManager.GetString("FactorAssertion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The {{Item}} is one of six Factor Elements. Each Element provides a specific type of meaning to a Factor..
-        /// </summary>
-        internal static string FactorElem_Main {
-            get {
-                return ResourceManager.GetString("FactorElem_Main", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string FactorElementNode {
-            get {
-                return ResourceManager.GetString("FactorElementNode", resourceCulture);
             }
         }
         
@@ -322,15 +331,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Identor {
             get {
                 return ResourceManager.GetString("Identor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc..
-        /// </summary>
-        internal static string IdentorType {
-            get {
-                return ResourceManager.GetString("IdentorType", resourceCulture);
             }
         }
         
@@ -373,15 +373,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides spatial context and boundaries (via Locator) for a particular Factor. Example types include: Earth Coordinate, Mars Coordinate, Relative 3D Position, etc..
-        /// </summary>
-        internal static string LocatorType {
-            get {
-                return ResourceManager.GetString("LocatorType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by adjusting its MemberType.
         ///
         ///Every item added to Fabric is associated with a particular !Member. Thus, Fabric can determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc..
@@ -389,15 +380,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Member {
             get {
                 return ResourceManager.GetString("Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Member.  Example types include: !Member, Admin, Data Provider, etc..
-        /// </summary>
-        internal static string MemberType {
-            get {
-                return ResourceManager.GetString("MemberType", resourceCulture);
             }
         }
         
@@ -443,15 +425,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string NodeForAction {
             get {
                 return ResourceManager.GetString("NodeForAction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string NodeForType {
-            get {
-                return ResourceManager.GetString("NodeForType", resourceCulture);
             }
         }
         
@@ -590,60 +563,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Vector {
             get {
                 return ResourceManager.GetString("Vector", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType. Example ranges include: Negative Numeric, Full Agreement, Positive Favorability, etc..
-        /// </summary>
-        internal static string VectorRange {
-            get {
-                return ResourceManager.GetString("VectorRange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A relatively-positioned point which provides meaning to a numerical range. Example levels include: Maximum, Somewhat Disagree, Mostly Favorable, etc..
-        /// </summary>
-        internal static string VectorRangeLevel {
-            get {
-                return ResourceManager.GetString("VectorRangeLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor. Example types include: Full Percentage, Standard Agreement, Opposable Favorability, etc..
-        /// </summary>
-        internal static string VectorType {
-            get {
-                return ResourceManager.GetString("VectorType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides a unit of measurement for the numeric value of a particular Vector. Example units include: Metre, Second, Byte, etc..
-        /// </summary>
-        internal static string VectorUnit {
-            get {
-                return ResourceManager.GetString("VectorUnit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string VectorUnitDerived {
-            get {
-                return ResourceManager.GetString("VectorUnitDerived", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc..
-        /// </summary>
-        internal static string VectorUnitPrefix {
-            get {
-                return ResourceManager.GetString("VectorUnitPrefix", resourceCulture);
             }
         }
     }

@@ -30,6 +30,7 @@ namespace Fabric.Api.Services {
 			Directors,
 			Eventors,
 			Factors,
+			FactorsBatch,
 			Identors,
 			Instances,
 			Locators,
@@ -70,6 +71,7 @@ namespace Fabric.Api.Services {
 				case Route.Directors: return Directors();
 				case Route.Eventors: return Eventors();
 				case Route.Factors: return Factors();
+				case Route.FactorsBatch: return FactorsBatch();
 				case Route.Identors: return Identors();
 				case Route.Instances: return Instances();
 				case Route.Locators: return Locators();
@@ -169,6 +171,21 @@ namespace Fabric.Api.Services {
 					)
 					.Go(ApiCtx);
 					return ToJsonList(new FabFactor(f));
+			}
+
+			throw BadRequest();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private string FactorsBatch() {
+			switch ( NancyReq.Method ) {
+				case "POST":
+					IList<FabBatchResult> results = new BatchCreateFactor(
+						NewModTasks(),
+						GetPostString(BatchCreateFactor.FactorsParam)
+					)
+					.Go(ApiCtx);
+					return results.ToJson();
 			}
 
 			throw BadRequest();

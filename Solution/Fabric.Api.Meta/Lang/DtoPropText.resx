@@ -159,27 +159,6 @@
   <data name="User_Name" xml:space="preserve">
     <value>A unique username.</value>
   </data>
-  <data name="VectorRangeLevel_Position" xml:space="preserve">
-    <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
-  </data>
-  <data name="VectorRange_VectorRangeLevelIds" xml:space="preserve">
-    <value>The set of points/labels that describe a numerical range.</value>
-  </data>
-  <data name="VectorType_Max" xml:space="preserve">
-    <value>The maximum Vector value allowed.</value>
-  </data>
-  <data name="VectorType_Min" xml:space="preserve">
-    <value>The minimum Vector value allowed.</value>
-  </data>
-  <data name="VectorUnitPrefix_Amount" xml:space="preserve">
-    <value>The difference in magnitude (a multipler) relative to the base unit.</value>
-  </data>
-  <data name="VectorUnitPrefix_Symbol" xml:space="preserve">
-    <value>An abbreviation, which is typically placed directly before the VectorUnit symbol.</value>
-  </data>
-  <data name="VectorUnit_Symbol" xml:space="preserve">
-    <value>A unique symbol or abbreviation.</value>
-  </data>
   <data name="Class_Disamb" xml:space="preserve">
     <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
   </data>
@@ -224,12 +203,6 @@
   </data>
   <data name="NodeForAction_Performed" xml:space="preserve">
     <value>TODO</value>
-  </data>
-  <data name="NodeForType_Description" xml:space="preserve">
-    <value>A summary of this object's intended meaning or purpose.</value>
-  </data>
-  <data name="NodeForType_Name" xml:space="preserve">
-    <value>A descriptive name or title.</value>
   </data>
   <data name="Object_FabType" xml:space="preserve">
     <value>The data type of this object.</value>
@@ -288,32 +261,11 @@
   <data name="Factor_Created" xml:space="preserve">
     <value>The date/time of creation.</value>
   </data>
-  <data name="LocatorType_MaxX" xml:space="preserve">
-    <value>The maximum Locator X-coordinate value.</value>
-  </data>
-  <data name="LocatorType_MaxY" xml:space="preserve">
-    <value>The maximum Locator Y-coordinate value.</value>
-  </data>
-  <data name="LocatorType_MaxZ" xml:space="preserve">
-    <value>The maximum Locator Z-coordinate value.</value>
-  </data>
-  <data name="LocatorType_MinX" xml:space="preserve">
-    <value>The minimum Locator X-coordinate value.</value>
-  </data>
-  <data name="LocatorType_MinY" xml:space="preserve">
-    <value>The minimum Locator Y-coordinate value.</value>
-  </data>
-  <data name="LocatorType_MinZ" xml:space="preserve">
-    <value>The minimum Locator Z-coordinate value.</value>
-  </data>
   <data name="Class_Name" xml:space="preserve">
     <value>A descriptive name or title.</value>
   </data>
   <data name="Url_Name" xml:space="preserve">
     <value>A descriptive name or title.</value>
-  </data>
-  <data name="VectorUnitDerived_WithExponent" xml:space="preserve">
-    <value>TODO</value>
   </data>
   <data name="Response_HttpStatus" xml:space="preserve">
     <value>TODO</value>
@@ -461,5 +413,179 @@
   </data>
   <data name="MetaVersion_Year" xml:space="preserve">
     <value>TODO</value>
+  </data>
+  <data name="BatchNewClass_Disamb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewClass_Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewClass_Note" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDescriptor_PrimaryArtifactRefineId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDescriptor_RelatedArtifactRefineId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDescriptor_TypeId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDescriptor_TypeRefineId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDirector_PrimaryActionId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDirector_RelatedActionId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorDirector_TypeId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_DateTime" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_PrecisionId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_TypeId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorIdentor_TypeId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorIdentor_Value" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorLocator_TypeId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorLocator_ValueX" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorLocator_ValueY" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorLocator_ValueZ" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorVector_AxisArtifactId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorVector_TypeId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorVector_UnitId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorVector_UnitPrefixId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorVector_Value" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Descriptor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Director" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Eventor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_FactorAssertionId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Identor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_IsDefining" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Locator" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Note" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_PrimaryArtifactId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_RelatedArtifactId" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactor_Vector" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewObject_BatchId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="BatchResult_BatchId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="BatchResult_Error" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="BatchResult_ResultId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Descriptor_TypeId" xml:space="preserve">
+    <value>Specifies the type of relationship or connection.</value>
+  </data>
+  <data name="Director_PrimaryActionId" xml:space="preserve">
+    <value>Specifies the action to be performed on the Factor's primary Artifact.</value>
+  </data>
+  <data name="Director_RelatedActionId" xml:space="preserve">
+    <value>Specifies the action to be performed on the Factor's related Artifact.</value>
+  </data>
+  <data name="Director_TypeId" xml:space="preserve">
+    <value>Specifies the type and reason for the pathway.</value>
+  </data>
+  <data name="Eventor_PrecisionId" xml:space="preserve">
+    <value>Specifies the level of accuracy given to this point in time.</value>
+  </data>
+  <data name="Eventor_TypeId" xml:space="preserve">
+    <value>Specifies the significance of this point in time.</value>
+  </data>
+  <data name="Factor_Descriptor" xml:space="preserve">
+    <value>This element defines the relationship between the primary and related Artifact.</value>
+  </data>
+  <data name="Factor_Director" xml:space="preserve">
+    <value>This element creates a directional pathway between the primary and related Artifacts.</value>
+  </data>
+  <data name="Factor_Eventor" xml:space="preserve">
+    <value>This element applies the concept of time.</value>
+  </data>
+  <data name="Factor_FactorAssertionId" xml:space="preserve">
+    <value>Specifies the type of information and/or level of confidence.</value>
+  </data>
+  <data name="Factor_Identor" xml:space="preserve">
+    <value>This element applies a name or identifier.</value>
+  </data>
+  <data name="Factor_Locator" xml:space="preserve">
+    <value>This element provides a geographical or relative position.</value>
+  </data>
+  <data name="Factor_Vector" xml:space="preserve">
+    <value>This element applies a numeric axis and value.</value>
+  </data>
+  <data name="Identor_TypeId" xml:space="preserve">
+    <value>Specifies the value's purpose or intent.</value>
+  </data>
+  <data name="Locator_TypeId" xml:space="preserve">
+    <value>Specifies the spatial context of the coordinate.</value>
+  </data>
+  <data name="MemberTypeAssign_MemberTypeId" xml:space="preserve">
+    <value>Specifies the Member's state and/or access privileges.</value>
+  </data>
+  <data name="Vector_TypeId" xml:space="preserve">
+    <value>Specifies its value's boundaries and context.</value>
+  </data>
+  <data name="Vector_UnitId" xml:space="preserve">
+    <value>Specifies its value's unit of measurement.</value>
+  </data>
+  <data name="Vector_UnitPrefixId" xml:space="preserve">
+    <value>Specifies its value's order of magnitude.</value>
   </data>
 </root>

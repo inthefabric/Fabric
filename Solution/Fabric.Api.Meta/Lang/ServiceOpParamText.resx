@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Modify_AddClasses_Classes" xml:space="preserve">
+    <value>TODO</value>
+  </data>
   <data name="Modify_AddClass_Disamb" xml:space="preserve">
     <value>The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.</value>
   </data>
@@ -125,6 +128,9 @@
   </data>
   <data name="Modify_AddClass_Note" xml:space="preserve">
     <value>A brief description of the new Class. It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="Modify_AddFactors_Factors" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Modify_AddFactor_FactorAssertionId" xml:space="preserve">
     <value>Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the 'Undefined' FactorAssertion.</value>

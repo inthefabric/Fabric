@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/10/2013 12:55:31 PM
+// Generated on 4/14/2013 10:56:51 AM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -284,6 +284,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Performed";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("NodeForAction_Performed");
+					pProp.Enum = null;
 					pProp.IsTimestamp = true;
 					break;
 
@@ -291,6 +292,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Note";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("NodeForAction_Note");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -298,6 +300,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "ArtifactId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -305,6 +308,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Created";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Artifact_Created");
+					pProp.Enum = null;
 					pProp.IsTimestamp = true;
 					break;
 
@@ -312,6 +316,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "AppId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -319,6 +324,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("App_Name");
+					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
 					pProp.IsUnique = true;
 					break;
@@ -327,6 +333,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "ClassId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -334,12 +341,14 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Class_Name");
+					pProp.Enum = null;
 					break;
 
 				case "Class.Disamb":
 					pProp.Name = "Disamb";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Class_Disamb");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -347,6 +356,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Note";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Class_Note");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -354,6 +364,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "InstanceId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -361,6 +372,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Instance_Name");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -368,6 +380,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Disamb";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Instance_Disamb");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -375,6 +388,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Note";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Instance_Note");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -382,6 +396,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "MemberId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -389,6 +404,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "MemberTypeAssignId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -396,12 +412,14 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "MemberTypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("MemberTypeAssign_MemberTypeId");
+					pProp.Enum = "MemberTypeId";
 					break;
 
 				case "Url.UrlId":
 					pProp.Name = "UrlId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -409,12 +427,14 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Url_Name");
+					pProp.Enum = null;
 					break;
 
 				case "Url.AbsoluteUrl":
 					pProp.Name = "AbsoluteUrl";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Url_AbsoluteUrl");
+					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
 					pProp.IsUnique = true;
 					break;
@@ -423,6 +443,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "UserId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -430,6 +451,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("User_Name");
+					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
 					pProp.IsUnique = true;
 					break;
@@ -438,6 +460,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "FactorId";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
+					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
 
@@ -445,18 +468,21 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "FactorAssertionId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_FactorAssertionId");
+					pProp.Enum = "FactorAssertionId";
 					break;
 
 				case "Factor.IsDefining":
 					pProp.Name = "IsDefining";
 					pProp.Type = "bool";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_IsDefining");
+					pProp.Enum = null;
 					break;
 
 				case "Factor.Created":
 					pProp.Name = "Created";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Created");
+					pProp.Enum = null;
 					pProp.IsTimestamp = true;
 					break;
 
@@ -464,6 +490,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Completed";
 					pProp.Type = "long?";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Completed");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
@@ -471,109 +498,127 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "Note";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_Note");
+					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
 
-				case "Factor.Descriptor_TypeId":
-					pProp.Name = "Descriptor_TypeId";
+				case "Descriptor.TypeId":
+					pProp.Name = "TypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Descriptor_TypeId");
+					pProp.Description = SpecDoc.GetDtoPropText("Descriptor_TypeId");
+					pProp.Enum = "DescriptorTypeId";
 					break;
 
-				case "Factor.Director_TypeId":
-					pProp.Name = "Director_TypeId";
+				case "Director.TypeId":
+					pProp.Name = "TypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_TypeId");
+					pProp.Description = SpecDoc.GetDtoPropText("Director_TypeId");
+					pProp.Enum = "DirectorTypeId";
 					break;
 
-				case "Factor.Director_PrimaryActionId":
-					pProp.Name = "Director_PrimaryActionId";
+				case "Director.PrimaryActionId":
+					pProp.Name = "PrimaryActionId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_PrimaryActionId");
+					pProp.Description = SpecDoc.GetDtoPropText("Director_PrimaryActionId");
+					pProp.Enum = "DirectorActionId";
 					break;
 
-				case "Factor.Director_RelatedActionId":
-					pProp.Name = "Director_RelatedActionId";
+				case "Director.RelatedActionId":
+					pProp.Name = "RelatedActionId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Director_RelatedActionId");
+					pProp.Description = SpecDoc.GetDtoPropText("Director_RelatedActionId");
+					pProp.Enum = "DirectorActionId";
 					break;
 
-				case "Factor.Eventor_TypeId":
-					pProp.Name = "Eventor_TypeId";
+				case "Eventor.TypeId":
+					pProp.Name = "TypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_TypeId");
+					pProp.Description = SpecDoc.GetDtoPropText("Eventor_TypeId");
+					pProp.Enum = "EventorTypeId";
 					break;
 
-				case "Factor.Eventor_PrecisionId":
-					pProp.Name = "Eventor_PrecisionId";
+				case "Eventor.PrecisionId":
+					pProp.Name = "PrecisionId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_PrecisionId");
+					pProp.Description = SpecDoc.GetDtoPropText("Eventor_PrecisionId");
+					pProp.Enum = "EventorPrecisionId";
 					break;
 
-				case "Factor.Eventor_DateTime":
-					pProp.Name = "Eventor_DateTime";
+				case "Eventor.DateTime":
+					pProp.Name = "DateTime";
 					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Eventor_DateTime");
+					pProp.Description = SpecDoc.GetDtoPropText("Eventor_DateTime");
+					pProp.Enum = null;
 					break;
 
-				case "Factor.Identor_TypeId":
-					pProp.Name = "Identor_TypeId";
+				case "Identor.TypeId":
+					pProp.Name = "TypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Identor_TypeId");
+					pProp.Description = SpecDoc.GetDtoPropText("Identor_TypeId");
+					pProp.Enum = "IdentorTypeId";
 					break;
 
-				case "Factor.Identor_Value":
-					pProp.Name = "Identor_Value";
+				case "Identor.Value":
+					pProp.Name = "Value";
 					pProp.Type = "string";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Identor_Value");
+					pProp.Description = SpecDoc.GetDtoPropText("Identor_Value");
+					pProp.Enum = null;
 					break;
 
-				case "Factor.Locator_TypeId":
-					pProp.Name = "Locator_TypeId";
+				case "Locator.TypeId":
+					pProp.Name = "TypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_TypeId");
+					pProp.Description = SpecDoc.GetDtoPropText("Locator_TypeId");
+					pProp.Enum = "LocatorTypeId";
 					break;
 
-				case "Factor.Locator_ValueX":
-					pProp.Name = "Locator_ValueX";
+				case "Locator.ValueX":
+					pProp.Name = "ValueX";
 					pProp.Type = "double";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueX");
+					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueX");
+					pProp.Enum = null;
 					break;
 
-				case "Factor.Locator_ValueY":
-					pProp.Name = "Locator_ValueY";
+				case "Locator.ValueY":
+					pProp.Name = "ValueY";
 					pProp.Type = "double";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueY");
+					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueY");
+					pProp.Enum = null;
 					break;
 
-				case "Factor.Locator_ValueZ":
-					pProp.Name = "Locator_ValueZ";
+				case "Locator.ValueZ":
+					pProp.Name = "ValueZ";
 					pProp.Type = "double";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Locator_ValueZ");
+					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueZ");
+					pProp.Enum = null;
 					break;
 
-				case "Factor.Vector_TypeId":
-					pProp.Name = "Vector_TypeId";
+				case "Vector.TypeId":
+					pProp.Name = "TypeId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_TypeId");
+					pProp.Description = SpecDoc.GetDtoPropText("Vector_TypeId");
+					pProp.Enum = "VectorTypeId";
 					break;
 
-				case "Factor.Vector_UnitId":
-					pProp.Name = "Vector_UnitId";
+				case "Vector.UnitId":
+					pProp.Name = "UnitId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_UnitId");
+					pProp.Description = SpecDoc.GetDtoPropText("Vector_UnitId");
+					pProp.Enum = "VectorUnitId";
 					break;
 
-				case "Factor.Vector_UnitPrefixId":
-					pProp.Name = "Vector_UnitPrefixId";
+				case "Vector.UnitPrefixId":
+					pProp.Name = "UnitPrefixId";
 					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_UnitPrefixId");
+					pProp.Description = SpecDoc.GetDtoPropText("Vector_UnitPrefixId");
+					pProp.Enum = "VectorUnitPrefixId";
 					break;
 
-				case "Factor.Vector_Value":
-					pProp.Name = "Vector_Value";
+				case "Vector.Value":
+					pProp.Name = "Value";
 					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Factor_Vector_Value");
+					pProp.Description = SpecDoc.GetDtoPropText("Vector_Value");
+					pProp.Enum = null;
 					break;
 			}
 		}
@@ -1069,7 +1114,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "MemberType";
-			e.Description = SpecDoc.GetDtoText("MemberType");
+			e.Description = SpecDoc.GetEnumText("MemberType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1088,7 +1133,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "DescriptorType";
-			e.Description = SpecDoc.GetDtoText("DescriptorType");
+			e.Description = SpecDoc.GetEnumText("DescriptorType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1107,7 +1152,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "DirectorType";
-			e.Description = SpecDoc.GetDtoText("DirectorType");
+			e.Description = SpecDoc.GetEnumText("DirectorType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1126,7 +1171,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "DirectorAction";
-			e.Description = SpecDoc.GetDtoText("DirectorAction");
+			e.Description = SpecDoc.GetEnumText("DirectorAction");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1145,7 +1190,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "EventorPrecision";
-			e.Description = SpecDoc.GetDtoText("EventorPrecision");
+			e.Description = SpecDoc.GetEnumText("EventorPrecision");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1164,7 +1209,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "EventorType";
-			e.Description = SpecDoc.GetDtoText("EventorType");
+			e.Description = SpecDoc.GetEnumText("EventorType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1183,7 +1228,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "FactorAssertion";
-			e.Description = SpecDoc.GetDtoText("FactorAssertion");
+			e.Description = SpecDoc.GetEnumText("FactorAssertion");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1202,7 +1247,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "IdentorType";
-			e.Description = SpecDoc.GetDtoText("IdentorType");
+			e.Description = SpecDoc.GetEnumText("IdentorType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1221,43 +1266,43 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "LocatorType";
-			e.Description = SpecDoc.GetDtoText("LocatorType");
+			e.Description = SpecDoc.GetEnumText("LocatorType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "MinX";
-				p.Description = SpecDoc.GetDtoPropText("LocatorType_MinX");
+				p.Description = SpecDoc.GetEnumPropText("LocatorType_MinX");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MaxX";
-				p.Description = SpecDoc.GetDtoPropText("LocatorType_MaxX");
+				p.Description = SpecDoc.GetEnumPropText("LocatorType_MaxX");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MinY";
-				p.Description = SpecDoc.GetDtoPropText("LocatorType_MinY");
+				p.Description = SpecDoc.GetEnumPropText("LocatorType_MinY");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MaxY";
-				p.Description = SpecDoc.GetDtoPropText("LocatorType_MaxY");
+				p.Description = SpecDoc.GetEnumPropText("LocatorType_MaxY");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MinZ";
-				p.Description = SpecDoc.GetDtoPropText("LocatorType_MinZ");
+				p.Description = SpecDoc.GetEnumPropText("LocatorType_MinZ");
 				p.Type = "double";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "MaxZ";
-				p.Description = SpecDoc.GetDtoPropText("LocatorType_MaxZ");
+				p.Description = SpecDoc.GetEnumPropText("LocatorType_MaxZ");
 				p.Type = "double";
 				e.Properties.Add(p);
 
@@ -1282,25 +1327,25 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorType";
-			e.Description = SpecDoc.GetDtoText("VectorType");
+			e.Description = SpecDoc.GetEnumText("VectorType");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "VectorRangeId";
-				p.Description = SpecDoc.GetDtoPropText("VectorType_VectorRangeId");
+				p.Description = SpecDoc.GetEnumPropText("VectorType_VectorRangeId");
 				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Min";
-				p.Description = SpecDoc.GetDtoPropText("VectorType_Min");
+				p.Description = SpecDoc.GetEnumPropText("VectorType_Min");
 				p.Type = "long";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Max";
-				p.Description = SpecDoc.GetDtoPropText("VectorType_Max");
+				p.Description = SpecDoc.GetEnumPropText("VectorType_Max");
 				p.Type = "long";
 				e.Properties.Add(p);
 
@@ -1322,13 +1367,13 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorRangeLevel";
-			e.Description = SpecDoc.GetDtoText("VectorRangeLevel");
+			e.Description = SpecDoc.GetEnumText("VectorRangeLevel");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "Position";
-				p.Description = SpecDoc.GetDtoPropText("VectorRangeLevel_Position");
+				p.Description = SpecDoc.GetEnumPropText("VectorRangeLevel_Position");
 				p.Type = "float";
 				e.Properties.Add(p);
 
@@ -1348,13 +1393,13 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorRange";
-			e.Description = SpecDoc.GetDtoText("VectorRange");
+			e.Description = SpecDoc.GetEnumText("VectorRange");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "VectorRangeLevelIds";
-				p.Description = SpecDoc.GetDtoPropText("VectorRange_VectorRangeLevelIds");
+				p.Description = SpecDoc.GetEnumPropText("VectorRange_VectorRangeLevelIds");
 				p.Type = "byte[]";
 				e.Properties.Add(p);
 
@@ -1374,7 +1419,7 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorUnit";
-			e.Description = SpecDoc.GetDtoText("VectorUnit");
+			e.Description = SpecDoc.GetEnumText("VectorUnit");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -1393,13 +1438,13 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorUnitPrefix";
-			e.Description = SpecDoc.GetDtoText("VectorUnitPrefix");
+			e.Description = SpecDoc.GetEnumText("VectorUnitPrefix");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "Amount";
-				p.Description = SpecDoc.GetDtoPropText("VectorUnitPrefix_Amount");
+				p.Description = SpecDoc.GetEnumPropText("VectorUnitPrefix_Amount");
 				p.Type = "double";
 				e.Properties.Add(p);
 
@@ -1419,31 +1464,31 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "VectorUnitDerived";
-			e.Description = SpecDoc.GetDtoText("VectorUnitDerived");
+			e.Description = SpecDoc.GetEnumText("VectorUnitDerived");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
 				p = new FabSpecObjectProp();
 				p.Name = "DefinesVectorUnitId";
-				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_DefinesVectorUnitId");
+				p.Description = SpecDoc.GetEnumPropText("VectorUnitDerived_DefinesVectorUnitId");
 				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "RaisesVectorUnitId";
-				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_RaisesVectorUnitId");
+				p.Description = SpecDoc.GetEnumPropText("VectorUnitDerived_RaisesVectorUnitId");
 				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "WithExponent";
-				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_WithExponent");
+				p.Description = SpecDoc.GetEnumPropText("VectorUnitDerived_WithExponent");
 				p.Type = "int";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "RaisesVectorUnitPrefixId";
-				p.Description = SpecDoc.GetDtoPropText("VectorUnitDerived_RaisesVectorUnitPrefixId");
+				p.Description = SpecDoc.GetEnumPropText("VectorUnitDerived_RaisesVectorUnitPrefixId");
 				p.Type = "byte";
 				e.Properties.Add(p);
 

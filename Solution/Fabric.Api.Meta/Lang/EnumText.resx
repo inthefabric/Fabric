@@ -117,70 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDefinesMember" xml:space="preserve">
-    <value>Links an App to a particular Member.</value>
+  <data name="ArtifactType" xml:space="preserve">
+    <value>Describes the object type associated with a particular Artifact. Example types include: !App, !Class, !Instance, etc.</value>
   </data>
-  <data name="FactorDescriptorRefinesPrimaryWithArtifact" xml:space="preserve">
-    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the Factor's primary Artifact.</value>
+  <data name="CrowdianType" xml:space="preserve">
+    <value>Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc.</value>
   </data>
-  <data name="FactorDescriptorRefinesRelatedWithArtifact" xml:space="preserve">
-    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the Factor's related Artifact.</value>
+  <data name="DescriptorType" xml:space="preserve">
+    <value>Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor. Example types include: Is A, Refers To, Sounds Like, etc.</value>
   </data>
-  <data name="FactorDescriptorRefinesTypeWithArtifact" xml:space="preserve">
-    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the DescriptorType's meaning or purpose.</value>
+  <data name="DirectorAction" xml:space="preserve">
+    <value>Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc.</value>
   </data>
-  <data name="FactorUsesPrimaryArtifact" xml:space="preserve">
-    <value>Links a Factor to its primary Artifact, which represents the starting point of the Factor's directional Artifact relationship.</value>
+  <data name="DirectorType" xml:space="preserve">
+    <value>Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc.</value>
   </data>
-  <data name="FactorUsesRelatedArtifact" xml:space="preserve">
-    <value>Links a Factor to its related Artifact, which represents the ending point of the Factor's directional Artifact relationship.</value>
+  <data name="EventorPrecision" xml:space="preserve">
+    <value>Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc.</value>
   </data>
-  <data name="MemberCreatesArtifact" xml:space="preserve">
-    <value>Links a Member to the Artifact that it created.</value>
+  <data name="EventorType" xml:space="preserve">
+    <value>Provides temporal significance (via Eventor) for a particular Factor.  Example types include: Start, Occur, Expected, etc.</value>
   </data>
-  <data name="MemberCreatesFactor" xml:space="preserve">
-    <value>Links a Member to the Factor that it created.</value>
+  <data name="FactorAssertion" xml:space="preserve">
+    <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
   </data>
-  <data name="MemberCreatesMemberTypeAssign" xml:space="preserve">
-    <value>Links a Member to the MemberTypeAssign that it created.</value>
+  <data name="IdentorType" xml:space="preserve">
+    <value>Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc.</value>
   </data>
-  <data name="MemberHasHistoricMemberTypeAssign" xml:space="preserve">
-    <value>Links a Member to a historical MemberTypeAssign.</value>
+  <data name="LocatorType" xml:space="preserve">
+    <value>Provides spatial context and boundaries (via Locator) for a particular Factor. Example types include: Earth Coordinate, Mars Coordinate, Relative 3D Position, etc.</value>
   </data>
-  <data name="MemberHasMemberTypeAssign" xml:space="preserve">
-    <value>Links a Member to its active MemberTypeAssign.</value>
+  <data name="MemberType" xml:space="preserve">
+    <value>Describes the level of access and control given to a particular Member.  Example types include: !Member, Admin, Data Provider, etc.</value>
   </data>
-  <data name="RootContainsApp" xml:space="preserve">
-    <value>Links the Root node to an App.</value>
+  <data name="VectorRange" xml:space="preserve">
+    <value>Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType. Example ranges include: Negative Numeric, Full Agreement, Positive Favorability, etc.</value>
   </data>
-  <data name="RootContainsArtifact" xml:space="preserve">
-    <value>Links the Root node to an Artifact.</value>
+  <data name="VectorRangeLevel" xml:space="preserve">
+    <value>A relatively-positioned point which provides meaning to a numerical range. Example levels include: Maximum, Somewhat Disagree, Mostly Favorable, etc.</value>
   </data>
-  <data name="RootContainsClass" xml:space="preserve">
-    <value>Links the Root node to a Class.</value>
+  <data name="VectorType" xml:space="preserve">
+    <value>Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor. Example types include: Full Percentage, Standard Agreement, Opposable Favorability, etc.</value>
   </data>
-  <data name="RootContainsFactor" xml:space="preserve">
-    <value>Links the Root node to a Factor.</value>
+  <data name="VectorUnit" xml:space="preserve">
+    <value>Provides a unit of measurement for the numeric value of a particular Vector. Example units include: Metre, Second, Byte, etc.</value>
   </data>
-  <data name="RootContainsInstance" xml:space="preserve">
-    <value>Links the Root node to an Instance.</value>
+  <data name="VectorUnitPrefix" xml:space="preserve">
+    <value>Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc.</value>
   </data>
-  <data name="RootContainsMember" xml:space="preserve">
-    <value>Links the Root node to a Member.</value>
-  </data>
-  <data name="RootContainsMemberTypeAssign" xml:space="preserve">
-    <value>Links the Root node to a MemberTypeAssign.</value>
-  </data>
-  <data name="RootContainsUrl" xml:space="preserve">
-    <value>Links the Root node to a Url.</value>
-  </data>
-  <data name="RootContainsUser" xml:space="preserve">
-    <value>Links the Root node to a User.</value>
-  </data>
-  <data name="UserDefinesMember" xml:space="preserve">
-    <value>Links a User to a particular Member.</value>
-  </data>
-  <data name="FactorVectorUsesAxisArtifact" xml:space="preserve">
-    <value>Links a Vector to an Artifact that 'labels' its value's axis.</value>
+  <data name="VectorUnitDerived" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>

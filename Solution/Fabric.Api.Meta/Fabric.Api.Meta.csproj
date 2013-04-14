@@ -56,6 +56,16 @@
     <Compile Include="GetSpec.cs" />
     <Compile Include="GetTime.cs" />
     <Compile Include="GetVersion.cs" />
+    <Compile Include="Lang\EnumPropText.Designer.cs">
+      <DependentUpon>EnumPropText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\EnumText.Designer.cs">
+      <DependentUpon>EnumText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Lang\ServiceOpParamText.Designer.cs">
       <DependentUpon>ServiceOpParamText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -105,6 +115,16 @@
     <Compile Include="SpecDoc.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lang\EnumPropText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumPropText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\EnumText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\ServiceOpParamText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceOpParamText.Designer.cs</LastGenOutput>

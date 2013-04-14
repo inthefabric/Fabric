@@ -95,11 +95,18 @@ foreach ( string name in nodes ) {
 	IList<SchemaHelperProp> props = hn.GetProps(true);
 
 	foreach ( SchemaHelperProp hp in props ) {
-		WeaverPropSchema prop = hp.PropSchema;
+		FabricPropSchema prop = hp.PropSchema;
 		string propType = hp.TypeName;
 		string propName = prop.Name;
+		string nodeName = node.Name;
 		string propItems = "";
 		string lineEnd = "\r\n\t\t\t\t\t";
+
+		if ( hp.IsSubProp() ) {
+			int subI = propName.IndexOf('_');
+			nodeName = propName.Substring(0, subI);
+			propName = propName.Substring(subI+1);
+		}
 		
 		if ( prop.IsCaseInsensitive != null ) {
 			propItems += "pProp.IsCaseInsensitive = "+prop.IsCaseInsensitive.ToString().ToLower()+";"+lineEnd;
@@ -121,14 +128,15 @@ foreach ( string name in nodes ) {
 			propItems += "pProp.IsUnique = "+prop.IsUnique.ToString().ToLower()+";"+lineEnd;
 		}
 
-		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : node.Name+"_"+propName);
+		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : nodeName+"_"+propName);
 
 #>
 
-				case "<#= node.Name #>.<#= propName #>":
+				case "<#= nodeName #>.<#= propName #>":
 					pProp.Name = "<#= propName #>";
 					pProp.Type = "<#= propType #>";
 					pProp.Description = SpecDoc.GetDtoPropText("<#= resxDesc #>");
+					pProp.Enum = <#= prop.EnumName == null ? "null" : "\""+prop.EnumName+"\"" #>;
 					<#= propItems #>break;
 <#
 	} //end prop loop
@@ -260,7 +268,7 @@ foreach ( Type type in StaticTypes.TypeList ) {
 #>
 			e = new FabSpecEnum();
 			e.Name = "<#= type.Name #>";
-			e.Description = SpecDoc.GetDtoText("<#= type.Name #>");
+			e.Description = SpecDoc.GetEnumText("<#= type.Name #>");
 			e.Extends = "BaseEnum";
 			e.Properties = new List<FabSpecObjectProp>();
 			
@@ -270,7 +278,7 @@ foreach ( Type type in StaticTypes.TypeList ) {
 #>
 				p = new FabSpecObjectProp();
 				p.Name = "<#= prop.Name #>";
-				p.Description = SpecDoc.GetDtoPropText("<#= type.Name+"_"+prop.Name #>");
+				p.Description = SpecDoc.GetEnumPropText("<#= type.Name+"_"+prop.Name #>");
 				p.Type = "<#= SchemaHelperProp.GetTypeName(pt) #>";
 				e.Properties.Add(p);
 

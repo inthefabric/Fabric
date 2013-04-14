@@ -15,13 +15,13 @@ using Weaver.Interfaces;
 namespace Fabric.Api.Modify {
 	
 	/*================================================================================================*/
-	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModClassesBatchUri, typeof(FabBatchResult),
+	[ServiceOp(FabHome.ModUri, FabHome.Post, FabHome.ModFactorsBatchUri, typeof(FabBatchResult),
 		Auth=ServiceAuthType.Member)]
 	public class BatchCreateFactor : BaseModifyFunc<FabBatchResult[]> { //TEST: BatchCreateFactor
 		
-		public const string ClassesParam = "Classes";
+		public const string FactorsParam = "Factors";
 
-		[ServiceOpParam(ServiceOpParamType.Form, ClassesParam, 0, typeof(Class))]
+		[ServiceOpParam(ServiceOpParamType.Form, FactorsParam, 0, typeof(Class))]
 		private FabBatchNewFactor[] vObjects;
 		
 		private readonly string vObjectsJson;
@@ -40,20 +40,20 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			if ( vObjectsJson == null ) {
-				throw new FabArgumentNullFault(ClassesParam);
+				throw new FabArgumentNullFault(FactorsParam);
 			}
 
 			try {
 				vObjects = JsonSerializer.DeserializeFromString<FabBatchNewFactor[]>(vObjectsJson);
 			}
 			catch ( Exception ) {
-				throw new FabArgumentValueFault("Malformed "+ClassesParam+" JSON data.");
+				throw new FabArgumentValueFault("Malformed "+FactorsParam+" JSON data.");
 			}
 
 			int n = vObjects.Length;
 
 			if ( n == 0 ) {
-				throw new FabArgumentValueFault("The "+ClassesParam+" batch list is empty.");
+				throw new FabArgumentValueFault("The "+FactorsParam+" batch list is empty.");
 			}
 
 			//TODO: BatchCreateFactor max length bound (first, determine a reasonable maximum)

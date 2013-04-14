@@ -49,7 +49,7 @@ namespace Fabric.Api.Dto.Batch {
 
 
 	/*================================================================================================*/
-	public class FabBatchNewFactorDescriptor {
+	public class FabBatchNewFactorDescriptor : FabObject {
 
 		[DtoProp(IsOptional=false)]
 		public byte TypeId { get; set; }
@@ -63,11 +63,16 @@ namespace Fabric.Api.Dto.Batch {
 		[DtoProp(IsOptional=true)]
 		public long? TypeRefineId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabBatchNewFactorDirector {
+	public class FabBatchNewFactorDirector : FabObject {
 
 		[DtoProp(IsOptional=false)]
 		public byte TypeId { get; set; }
@@ -78,11 +83,16 @@ namespace Fabric.Api.Dto.Batch {
 		[DtoProp(IsOptional=false)]
 		public byte RelatedActionId { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabBatchNewFactorEventor {
+	public class FabBatchNewFactorEventor : FabObject {
 
 		[DtoProp(IsOptional=false)]
 		public byte TypeId { get; set; }
@@ -93,11 +103,16 @@ namespace Fabric.Api.Dto.Batch {
 		[DtoProp(IsOptional=false)]
 		public long DateTime { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabBatchNewFactorIdentor {
+	public class FabBatchNewFactorIdentor : FabObject {
 
 		[DtoProp(IsOptional=false)]
 		public byte TypeId { get; set; }
@@ -105,11 +120,16 @@ namespace Fabric.Api.Dto.Batch {
 		[DtoProp(IsOptional=false)]
 		public string Value { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabBatchNewFactorLocator {
+	public class FabBatchNewFactorLocator : FabObject {
 
 		[DtoProp(IsOptional=false)]
 		public byte TypeId { get; set; }
@@ -123,11 +143,16 @@ namespace Fabric.Api.Dto.Batch {
 		[DtoProp(IsOptional=false)]
 		public double ValueZ { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
+
 	}
 
 
 	/*================================================================================================*/
-	public class FabBatchNewFactorVector {
+	public class FabBatchNewFactorVector : FabObject {
 
 		[DtoProp(IsOptional=false)]
 		public byte TypeId { get; set; }
@@ -143,6 +168,11 @@ namespace Fabric.Api.Dto.Batch {
 
 		[DtoProp(IsOptional=false)]
 		public long AxisArtifactId { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDbDto pDbDto) { }
 
 	}
 

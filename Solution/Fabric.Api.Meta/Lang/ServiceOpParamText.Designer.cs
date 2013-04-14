@@ -88,6 +88,15 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Modify_AddClasses_Classes {
+            get {
+                return ResourceManager.GetString("Modify_AddClasses_Classes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the &apos;Undefined&apos; FactorAssertion..
         /// </summary>
         internal static string Modify_AddFactor_FactorAssertionId {
@@ -129,6 +138,15 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Modify_AddFactor_RelatedArtifactId {
             get {
                 return ResourceManager.GetString("Modify_AddFactor_RelatedArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Modify_AddFactors_Factors {
+            get {
+                return ResourceManager.GetString("Modify_AddFactors_Factors", resourceCulture);
             }
         }
         

@@ -137,9 +137,6 @@ There are no restrictions on what an !Artifact can represent.  Fabric encourages
 
 Each !Artifact is linked to exactly one ArtifactOwnerNode item, where the type of this item is specified by the ArtifactType.</value>
   </data>
-  <data name="ArtifactType" xml:space="preserve">
-    <value>Describes the object type associated with a particular Artifact. Example types include: !App, !Class, !Instance, etc.</value>
-  </data>
   <data name="Crowd" xml:space="preserve">
     <value>A group or collection of Users. The members of a !Crowd are called Crowdians.
 
@@ -159,26 +156,11 @@ If desired, the Crowd administrator(s) can also apply a weighting value to each 
 
 There are various restrictions (based on Crowd properties) for !Crowdian creation. There is an appropriate Fabric API request (such as [[adding a !Crowdian to a private Crowd|Req|social.me.crowds.privCrowdId.crowdians.private.post) for each possible scenario.</value>
   </data>
-  <data name="CrowdianType" xml:space="preserve">
-    <value>Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc.</value>
-  </data>
-  <data name="DescriptorType" xml:space="preserve">
-    <value>Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor. Example types include: Is A, Refers To, Sounds Like, etc.</value>
-  </data>
   <data name="DirectorAction" xml:space="preserve">
     <value>Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc.</value>
   </data>
-  <data name="DirectorType" xml:space="preserve">
-    <value>Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc.</value>
-  </data>
   <data name="Error" xml:space="preserve">
     <value>When a fault or error occurs, a !FabError is returned in place of the expected response data. The information it provides should help determine what caused the issue for the given request.</value>
-  </data>
-  <data name="EventorPrecision" xml:space="preserve">
-    <value>Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc.</value>
-  </data>
-  <data name="EventorType" xml:space="preserve">
-    <value>Provides temporal significance (via Eventor) for a particular Factor.  Example types include: Start, Occur, Expected, etc.</value>
   </data>
   <data name="FactorAssertion" xml:space="preserve">
     <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
@@ -186,24 +168,15 @@ There are various restrictions (based on Crowd properties) for !Crowdian creatio
   <data name="Fault" xml:space="preserve">
     <value>The base class for all Fault objects.</value>
   </data>
-  <data name="IdentorType" xml:space="preserve">
-    <value>Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc.</value>
-  </data>
   <data name="Label" xml:space="preserve">
     <value>A word, phrase, code, or other text-based value.
 
 !Labels are less formal (and less effective) than a Class or Instance, and should only be used in certain circumstances.  For example, some value or code (like 'A-1234' or 'study for science test') might have a useful purpose for a particular User.</value>
   </data>
-  <data name="LocatorType" xml:space="preserve">
-    <value>Provides spatial context and boundaries (via Locator) for a particular Factor. Example types include: Earth Coordinate, Mars Coordinate, Relative 3D Position, etc.</value>
-  </data>
   <data name="Member" xml:space="preserve">
     <value>An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by adjusting its MemberType.
 
 Every item added to Fabric is associated with a particular !Member. Thus, Fabric can determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc.</value>
-  </data>
-  <data name="MemberType" xml:space="preserve">
-    <value>Describes the level of access and control given to a particular Member.  Example types include: !Member, Admin, Data Provider, etc.</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>A registered Fabric account that has indirect access (via Apps) to the Fabric API. A !User can become a Member of an App, and then use the App's interface to interact with Fabric. An App's interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
@@ -211,21 +184,6 @@ Every item added to Fabric is associated with a particular !Member. Thus, Fabric
 !Users control their private account data and preferences using the Fabric website.
 
 Every item added to Fabric is associated with (via Member) a !User and and an App. Thus, Fabric can determine which !User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular !User or Member, etc.</value>
-  </data>
-  <data name="VectorRange" xml:space="preserve">
-    <value>Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType. Example ranges include: Negative Numeric, Full Agreement, Positive Favorability, etc.</value>
-  </data>
-  <data name="VectorRangeLevel" xml:space="preserve">
-    <value>A relatively-positioned point which provides meaning to a numerical range. Example levels include: Maximum, Somewhat Disagree, Mostly Favorable, etc.</value>
-  </data>
-  <data name="VectorType" xml:space="preserve">
-    <value>Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor. Example types include: Full Percentage, Standard Agreement, Opposable Favorability, etc.</value>
-  </data>
-  <data name="VectorUnit" xml:space="preserve">
-    <value>Provides a unit of measurement for the numeric value of a particular Vector. Example units include: Metre, Second, Byte, etc.</value>
-  </data>
-  <data name="VectorUnitPrefix" xml:space="preserve">
-    <value>Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc.</value>
   </data>
   <data name="Class" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
@@ -340,9 +298,6 @@ The six !Factor Elements are called Descriptor, Director, Eventor, Identor, Loca
 Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. The FactorAssertionKey allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.
 
 Each !Factor has a trio of boolean states. IsComplete states whether the !Factor is completed or still under construction. IsDefining states whether the Factor is a vital piece of data, which could be useful in uniquely identifying the primary Artifact. IsPublic states whether the Factor is public (available to all Apps and Users) or not. Non-public Factors are primarily accessible to the App responsible for creating it, but may be accessible by other Apps which have certain access rights.</value>
-  </data>
-  <data name="FactorElem_Main" xml:space="preserve">
-    <value>The {{Item}} is one of six Factor Elements. Each Element provides a specific type of meaning to a Factor.</value>
   </data>
   <data name="Identor" xml:space="preserve">
     <value>Applies a name or identifier to a particular Factor.
@@ -466,13 +421,7 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
   <data name="NodeForAction" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="NodeForType" xml:space="preserve">
-    <value>TODO</value>
-  </data>
   <data name="CrowdianTypeAssign" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="FactorElementNode" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="MemberTypeAssign" xml:space="preserve">
@@ -480,12 +429,6 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
   </data>
   <data name="Root" xml:space="preserve">
     <value>Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects.</value>
-  </data>
-  <data name="VectorUnitDerived" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="ArtifactOwnerNode" xml:space="preserve">
-    <value>TODO</value>
   </data>
   <data name="OauthAccess" xml:space="preserve">
     <value>Provides an OAuth access token and other related information. Every Fabric API request requires an access token. To include an OAuth access token with a FabricAPI request, add an "Authorization" header to the HTTP request with a value of "Bearer=[your OAuth access code here]".</value>
@@ -537,6 +480,36 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
     <value>TODO</value>
   </data>
   <data name="MetaVersion" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="BatchNewClass" xml:space="preserve">
+    <value>Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Mod.AddClass]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactor" xml:space="preserve">
+    <value>Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Mod.AddFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactorDescriptor" xml:space="preserve">
+    <value>Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Mod.AttachDescriptorToFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactorDirector" xml:space="preserve">
+    <value>Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Mod.AttachDirectorToFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactorEventor" xml:space="preserve">
+    <value>Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Mod.AttachEventorToFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactorIdentor" xml:space="preserve">
+    <value>Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Mod.AttachIdentorToFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactorLocator" xml:space="preserve">
+    <value>Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Mod.AttachLocatorToFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewFactorVector" xml:space="preserve">
+    <value>Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Mod.AttachVectorToFactor]] documentation for details and parameter restrictions.</value>
+  </data>
+  <data name="BatchNewObject" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="BatchResult" xml:space="preserve">
     <value>TODO</value>
   </data>
 </root>

@@ -129,8 +129,14 @@
   <data name="Modify_AddClass" xml:space="preserve">
     <value>Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
+  <data name="Modify_AddClasses" xml:space="preserve">
+    <value>TODO</value>
+  </data>
   <data name="Modify_AddFactor" xml:space="preserve">
     <value>Create a new Factor. The Factor begins in the 'incomplete' state, with no FactorElements attached.</value>
+  </data>
+  <data name="Modify_AddFactors" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Modify_AddInstance" xml:space="preserve">
     <value>Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric.</value>

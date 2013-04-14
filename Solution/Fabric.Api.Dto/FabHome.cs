@@ -37,6 +37,7 @@ namespace Fabric.Api.Dto {
 		public const string ModDirectorsUri = "/Directors";
 		public const string ModEventorsUri = "/Eventors";
 		public const string ModFactorsUri = "/Factors";
+		public const string ModFactorsBatchUri = "/Factors/Batch";
 		public const string ModIdentorsUri = "/Identors";
 		public const string ModInstancesUri = "/Instances";
 		public const string ModLocatorsUri = "/Locators";
@@ -221,6 +222,13 @@ namespace Fabric.Api.Dto {
 				op.Uri = ModFactorsUri;
 				op.Method = Post;
 				op.ReturnType = typeof(FabFactor).Name;
+				s.Operations.Add(op);
+
+				op = new FabServiceOperation();
+				op.Name = "AddFactors";
+				op.Uri = ModFactorsBatchUri;
+				op.Method = Post;
+				op.ReturnType = typeof(FabBatchResult).Name;
 				s.Operations.Add(op);
 
 				op = new FabServiceOperation();

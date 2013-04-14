@@ -65,7 +65,7 @@ namespace Fabric.Api.Meta {
 				FabSpecObject sd = GetSpecDto(t);
 				Objects.Add(sd);
 
-				if ( sd.Name.IndexOf("FabSpec") == 0 ) { //t.Namespace == MetaDtoNamespace) ) {
+				if ( sd.Name.IndexOf("FabSpec") == 0 ) {
 					sd.Description = null;
 
 					foreach ( FabSpecObjectProp p in sd.Properties ) {
@@ -159,6 +159,18 @@ namespace Fabric.Api.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public static string GetServiceOpParamText(string pName) {
 			string s = ServiceOpParamText.ResourceManager.GetString(pName);
+			return FormatResourceString(pName, s);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetEnumText(string pName) {
+			string s = EnumText.ResourceManager.GetString(pName);
+			return FormatResourceString(pName, s);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetEnumPropText(string pName) {
+			string s = EnumPropText.ResourceManager.GetString(pName);
 			return FormatResourceString(pName, s);
 		}
 
@@ -303,7 +315,7 @@ namespace Fabric.Api.Meta {
 			SchemaHelperNode shn = SchemaHelper.GetNode(n);
 			sd.IsBaseClass = (shn != null && shn.NodeSchema.IsBaseClass);
 
-			//OPTIMIZE: determine these automatically by checking through all the "extends" values
+			//IMPROVE: determine these automatically by checking through all the "extends" values
 			if ( pType == typeof(FabNode) || pType == typeof(FabObject) || 
 					pType == typeof(FabBatchNewObject) || pType == typeof(FabSpecValue) ) {
 				sd.IsBaseClass = true;

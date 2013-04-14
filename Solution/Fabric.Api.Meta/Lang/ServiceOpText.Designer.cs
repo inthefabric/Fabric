@@ -97,11 +97,29 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Modify_AddClasses {
+            get {
+                return ResourceManager.GetString("Modify_AddClasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new Factor. The Factor begins in the &apos;incomplete&apos; state, with no FactorElements attached..
         /// </summary>
         internal static string Modify_AddFactor {
             get {
                 return ResourceManager.GetString("Modify_AddFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Modify_AddFactors {
+            get {
+                return ResourceManager.GetString("Modify_AddFactors", resourceCulture);
             }
         }
         

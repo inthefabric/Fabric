@@ -19,6 +19,7 @@ namespace Fabric.Api {
 			const string directors = mod+FabHome.ModDirectorsUri;
 			const string eventors = mod+FabHome.ModEventorsUri;
 			const string factors = mod+FabHome.ModFactorsUri;
+			const string factorsB = mod+FabHome.ModFactorsBatchUri;
 			const string identors = mod+FabHome.ModIdentorsUri;
 			const string instances = mod+FabHome.ModInstancesUri;
 			const string locators = mod+FabHome.ModLocatorsUri;
@@ -33,6 +34,7 @@ namespace Fabric.Api {
 			Post[eventors] = (p => Spec(Context, ModifyController.Route.Eventors));
 			Post[factors] = (p => Spec(Context, ModifyController.Route.Factors));
 			Put[factors] = (p => Spec(Context, ModifyController.Route.Factors));
+			Put[factorsB] = (p => Spec(Context, ModifyController.Route.FactorsBatch));
 			Delete[factors] = (p => Spec(Context, ModifyController.Route.Factors));
 			Post[identors] = (p => Spec(Context, ModifyController.Route.Identors));
 			Post[instances] = (p => Spec(Context, ModifyController.Route.Instances));

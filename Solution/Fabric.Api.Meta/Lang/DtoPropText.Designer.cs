@@ -97,6 +97,357 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewClass_Disamb {
+            get {
+                return ResourceManager.GetString("BatchNewClass_Disamb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewClass_Name {
+            get {
+                return ResourceManager.GetString("BatchNewClass_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewClass_Note {
+            get {
+                return ResourceManager.GetString("BatchNewClass_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Descriptor {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Director {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Director", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Eventor {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Eventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_FactorAssertionId {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_FactorAssertionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Identor {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Identor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_IsDefining {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_IsDefining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Locator {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Locator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Note {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_PrimaryArtifactId {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_PrimaryArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_RelatedArtifactId {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_RelatedArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactor_Vector {
+            get {
+                return ResourceManager.GetString("BatchNewFactor_Vector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDescriptor_PrimaryArtifactRefineId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDescriptor_PrimaryArtifactRefineId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDescriptor_RelatedArtifactRefineId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDescriptor_RelatedArtifactRefineId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDescriptor_TypeId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDescriptor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDescriptor_TypeRefineId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDescriptor_TypeRefineId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDirector_PrimaryActionId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDirector_PrimaryActionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDirector_RelatedActionId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDirector_RelatedActionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorDirector_TypeId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorDirector_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_DateTime {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_PrecisionId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_PrecisionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_TypeId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorIdentor_TypeId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorIdentor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorIdentor_Value {
+            get {
+                return ResourceManager.GetString("BatchNewFactorIdentor_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorLocator_TypeId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorLocator_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorLocator_ValueX {
+            get {
+                return ResourceManager.GetString("BatchNewFactorLocator_ValueX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorLocator_ValueY {
+            get {
+                return ResourceManager.GetString("BatchNewFactorLocator_ValueY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorLocator_ValueZ {
+            get {
+                return ResourceManager.GetString("BatchNewFactorLocator_ValueZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorVector_AxisArtifactId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorVector_AxisArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorVector_TypeId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorVector_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorVector_UnitId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorVector_UnitId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorVector_UnitPrefixId {
+            get {
+                return ResourceManager.GetString("BatchNewFactorVector_UnitPrefixId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorVector_Value {
+            get {
+                return ResourceManager.GetString("BatchNewFactorVector_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BatchNewObject_BatchId {
+            get {
+                return ResourceManager.GetString("BatchNewObject_BatchId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BatchResult_BatchId {
+            get {
+                return ResourceManager.GetString("BatchResult_BatchId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BatchResult_Error {
+            get {
+                return ResourceManager.GetString("BatchResult_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BatchResult_ResultId {
+            get {
+                return ResourceManager.GetString("BatchResult_ResultId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A secondary label or identifier, used to resolve unique-name conflicts..
         /// </summary>
         internal static string Class_Disamb {
@@ -169,6 +520,42 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the type of relationship or connection..
+        /// </summary>
+        internal static string Descriptor_TypeId {
+            get {
+                return ResourceManager.GetString("Descriptor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the action to be performed on the Factor&apos;s primary Artifact..
+        /// </summary>
+        internal static string Director_PrimaryActionId {
+            get {
+                return ResourceManager.GetString("Director_PrimaryActionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the action to be performed on the Factor&apos;s related Artifact..
+        /// </summary>
+        internal static string Director_RelatedActionId {
+            get {
+                return ResourceManager.GetString("Director_RelatedActionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the type and reason for the pathway..
+        /// </summary>
+        internal static string Director_TypeId {
+            get {
+                return ResourceManager.GetString("Director_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A numeric value which identifies the specific error type..
         /// </summary>
         internal static string Error_Code {
@@ -205,6 +592,24 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the level of accuracy given to this point in time..
+        /// </summary>
+        internal static string Eventor_PrecisionId {
+            get {
+                return ResourceManager.GetString("Eventor_PrecisionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the significance of this point in time..
+        /// </summary>
+        internal static string Eventor_TypeId {
+            get {
+                return ResourceManager.GetString("Eventor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The date/time of completion. This value is null if the !Factor is not complete..
         /// </summary>
         internal static string Factor_Completed {
@@ -219,6 +624,51 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Factor_Created {
             get {
                 return ResourceManager.GetString("Factor_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This element defines the relationship between the primary and related Artifact..
+        /// </summary>
+        internal static string Factor_Descriptor {
+            get {
+                return ResourceManager.GetString("Factor_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This element creates a directional pathway between the primary and related Artifacts..
+        /// </summary>
+        internal static string Factor_Director {
+            get {
+                return ResourceManager.GetString("Factor_Director", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This element applies the concept of time..
+        /// </summary>
+        internal static string Factor_Eventor {
+            get {
+                return ResourceManager.GetString("Factor_Eventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the type of information and/or level of confidence..
+        /// </summary>
+        internal static string Factor_FactorAssertionId {
+            get {
+                return ResourceManager.GetString("Factor_FactorAssertionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This element applies a name or identifier..
+        /// </summary>
+        internal static string Factor_Identor {
+            get {
+                return ResourceManager.GetString("Factor_Identor", resourceCulture);
             }
         }
         
@@ -241,11 +691,29 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This element provides a geographical or relative position..
+        /// </summary>
+        internal static string Factor_Locator {
+            get {
+                return ResourceManager.GetString("Factor_Locator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A summary of the !Factor&apos;s intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor&apos;s Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase..
         /// </summary>
         internal static string Factor_Note {
             get {
                 return ResourceManager.GetString("Factor_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This element applies a numeric axis and value..
+        /// </summary>
+        internal static string Factor_Vector {
+            get {
+                return ResourceManager.GetString("Factor_Vector", resourceCulture);
             }
         }
         
@@ -264,6 +732,15 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Home_Services {
             get {
                 return ResourceManager.GetString("Home_Services", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the value&apos;s purpose or intent..
+        /// </summary>
+        internal static string Identor_TypeId {
+            get {
+                return ResourceManager.GetString("Identor_TypeId", resourceCulture);
             }
         }
         
@@ -331,6 +808,15 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the spatial context of the coordinate..
+        /// </summary>
+        internal static string Locator_TypeId {
+            get {
+                return ResourceManager.GetString("Locator_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A value representing longitude, time/progress, width, or a particular three-dimensional axis..
         /// </summary>
         internal static string Locator_ValueX {
@@ -358,56 +844,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The maximum Locator X-coordinate value..
+        ///   Looks up a localized string similar to Specifies the Member&apos;s state and/or access privileges..
         /// </summary>
-        internal static string LocatorType_MaxX {
+        internal static string MemberTypeAssign_MemberTypeId {
             get {
-                return ResourceManager.GetString("LocatorType_MaxX", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The maximum Locator Y-coordinate value..
-        /// </summary>
-        internal static string LocatorType_MaxY {
-            get {
-                return ResourceManager.GetString("LocatorType_MaxY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The maximum Locator Z-coordinate value..
-        /// </summary>
-        internal static string LocatorType_MaxZ {
-            get {
-                return ResourceManager.GetString("LocatorType_MaxZ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The minimum Locator X-coordinate value..
-        /// </summary>
-        internal static string LocatorType_MinX {
-            get {
-                return ResourceManager.GetString("LocatorType_MinX", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The minimum Locator Y-coordinate value..
-        /// </summary>
-        internal static string LocatorType_MinY {
-            get {
-                return ResourceManager.GetString("LocatorType_MinY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The minimum Locator Z-coordinate value..
-        /// </summary>
-        internal static string LocatorType_MinZ {
-            get {
-                return ResourceManager.GetString("LocatorType_MinZ", resourceCulture);
+                return ResourceManager.GetString("MemberTypeAssign_MemberTypeId", resourceCulture);
             }
         }
         
@@ -588,24 +1029,6 @@ namespace Fabric.Api.Meta.Lang {
         internal static string NodeForAction_Performed {
             get {
                 return ResourceManager.GetString("NodeForAction_Performed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A summary of this object&apos;s intended meaning or purpose..
-        /// </summary>
-        internal static string NodeForType_Description {
-            get {
-                return ResourceManager.GetString("NodeForType_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A descriptive name or title..
-        /// </summary>
-        internal static string NodeForType_Name {
-            get {
-                return ResourceManager.GetString("NodeForType_Name", resourceCulture);
             }
         }
         
@@ -1015,83 +1438,38 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies its value&apos;s boundaries and context..
+        /// </summary>
+        internal static string Vector_TypeId {
+            get {
+                return ResourceManager.GetString("Vector_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies its value&apos;s unit of measurement..
+        /// </summary>
+        internal static string Vector_UnitId {
+            get {
+                return ResourceManager.GetString("Vector_UnitId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies its value&apos;s order of magnitude..
+        /// </summary>
+        internal static string Vector_UnitPrefixId {
+            get {
+                return ResourceManager.GetString("Vector_UnitPrefixId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807..
         /// </summary>
         internal static string Vector_Value {
             get {
                 return ResourceManager.GetString("Vector_Value", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The set of points/labels that describe a numerical range..
-        /// </summary>
-        internal static string VectorRange_VectorRangeLevelIds {
-            get {
-                return ResourceManager.GetString("VectorRange_VectorRangeLevelIds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A value (between 0.0 and 1.0) which defines the relative position between a numeric range&apos;s minimum and maximum boundaries..
-        /// </summary>
-        internal static string VectorRangeLevel_Position {
-            get {
-                return ResourceManager.GetString("VectorRangeLevel_Position", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The maximum Vector value allowed..
-        /// </summary>
-        internal static string VectorType_Max {
-            get {
-                return ResourceManager.GetString("VectorType_Max", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The minimum Vector value allowed..
-        /// </summary>
-        internal static string VectorType_Min {
-            get {
-                return ResourceManager.GetString("VectorType_Min", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A unique symbol or abbreviation..
-        /// </summary>
-        internal static string VectorUnit_Symbol {
-            get {
-                return ResourceManager.GetString("VectorUnit_Symbol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string VectorUnitDerived_WithExponent {
-            get {
-                return ResourceManager.GetString("VectorUnitDerived_WithExponent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The difference in magnitude (a multipler) relative to the base unit..
-        /// </summary>
-        internal static string VectorUnitPrefix_Amount {
-            get {
-                return ResourceManager.GetString("VectorUnitPrefix_Amount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An abbreviation, which is typically placed directly before the VectorUnit symbol..
-        /// </summary>
-        internal static string VectorUnitPrefix_Symbol {
-            get {
-                return ResourceManager.GetString("VectorUnitPrefix_Symbol", resourceCulture);
             }
         }
     }

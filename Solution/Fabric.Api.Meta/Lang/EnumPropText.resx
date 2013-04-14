@@ -117,70 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDefinesMember" xml:space="preserve">
-    <value>Links an App to a particular Member.</value>
+  <data name="VectorRangeLevel_Position" xml:space="preserve">
+    <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
   </data>
-  <data name="FactorDescriptorRefinesPrimaryWithArtifact" xml:space="preserve">
-    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the Factor's primary Artifact.</value>
+  <data name="VectorRange_VectorRangeLevelIds" xml:space="preserve">
+    <value>The set of points/labels that describe a numerical range.</value>
   </data>
-  <data name="FactorDescriptorRefinesRelatedWithArtifact" xml:space="preserve">
-    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the Factor's related Artifact.</value>
+  <data name="VectorType_Max" xml:space="preserve">
+    <value>The maximum Vector value allowed.</value>
   </data>
-  <data name="FactorDescriptorRefinesTypeWithArtifact" xml:space="preserve">
-    <value>Links a Descriptor to an Artifact that specifies or clarifies a particular aspect of the DescriptorType's meaning or purpose.</value>
+  <data name="VectorType_Min" xml:space="preserve">
+    <value>The minimum Vector value allowed.</value>
   </data>
-  <data name="FactorUsesPrimaryArtifact" xml:space="preserve">
-    <value>Links a Factor to its primary Artifact, which represents the starting point of the Factor's directional Artifact relationship.</value>
+  <data name="VectorUnitPrefix_Amount" xml:space="preserve">
+    <value>The difference in magnitude (a multipler) relative to the base unit.</value>
   </data>
-  <data name="FactorUsesRelatedArtifact" xml:space="preserve">
-    <value>Links a Factor to its related Artifact, which represents the ending point of the Factor's directional Artifact relationship.</value>
+  <data name="VectorUnitPrefix_Symbol" xml:space="preserve">
+    <value>An abbreviation, which is typically placed directly before the VectorUnit symbol.</value>
   </data>
-  <data name="MemberCreatesArtifact" xml:space="preserve">
-    <value>Links a Member to the Artifact that it created.</value>
+  <data name="VectorUnit_Symbol" xml:space="preserve">
+    <value>A unique symbol or abbreviation.</value>
   </data>
-  <data name="MemberCreatesFactor" xml:space="preserve">
-    <value>Links a Member to the Factor that it created.</value>
+  <data name="BaseEnum_Description" xml:space="preserve">
+    <value>A summary of this object's intended meaning or purpose.</value>
   </data>
-  <data name="MemberCreatesMemberTypeAssign" xml:space="preserve">
-    <value>Links a Member to the MemberTypeAssign that it created.</value>
+  <data name="BaseEnum_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
   </data>
-  <data name="MemberHasHistoricMemberTypeAssign" xml:space="preserve">
-    <value>Links a Member to a historical MemberTypeAssign.</value>
+  <data name="LocatorType_MaxX" xml:space="preserve">
+    <value>The maximum Locator X-coordinate value.</value>
   </data>
-  <data name="MemberHasMemberTypeAssign" xml:space="preserve">
-    <value>Links a Member to its active MemberTypeAssign.</value>
+  <data name="LocatorType_MaxY" xml:space="preserve">
+    <value>The maximum Locator Y-coordinate value.</value>
   </data>
-  <data name="RootContainsApp" xml:space="preserve">
-    <value>Links the Root node to an App.</value>
+  <data name="LocatorType_MaxZ" xml:space="preserve">
+    <value>The maximum Locator Z-coordinate value.</value>
   </data>
-  <data name="RootContainsArtifact" xml:space="preserve">
-    <value>Links the Root node to an Artifact.</value>
+  <data name="LocatorType_MinX" xml:space="preserve">
+    <value>The minimum Locator X-coordinate value.</value>
   </data>
-  <data name="RootContainsClass" xml:space="preserve">
-    <value>Links the Root node to a Class.</value>
+  <data name="LocatorType_MinY" xml:space="preserve">
+    <value>The minimum Locator Y-coordinate value.</value>
   </data>
-  <data name="RootContainsFactor" xml:space="preserve">
-    <value>Links the Root node to a Factor.</value>
+  <data name="LocatorType_MinZ" xml:space="preserve">
+    <value>The minimum Locator Z-coordinate value.</value>
   </data>
-  <data name="RootContainsInstance" xml:space="preserve">
-    <value>Links the Root node to an Instance.</value>
+  <data name="VectorUnitDerived_WithExponent" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="RootContainsMember" xml:space="preserve">
-    <value>Links the Root node to a Member.</value>
+  <data name="VectorType_VectorRangeId" xml:space="preserve">
+    <value>Specifies a meaningful points/labels mapped to the numerical range.</value>
   </data>
-  <data name="RootContainsMemberTypeAssign" xml:space="preserve">
-    <value>Links the Root node to a MemberTypeAssign.</value>
+  <data name="VectorUnitDerived_DefinesVectorUnitId" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="RootContainsUrl" xml:space="preserve">
-    <value>Links the Root node to a Url.</value>
+  <data name="VectorUnitDerived_RaisesVectorUnitId" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="RootContainsUser" xml:space="preserve">
-    <value>Links the Root node to a User.</value>
-  </data>
-  <data name="UserDefinesMember" xml:space="preserve">
-    <value>Links a User to a particular Member.</value>
-  </data>
-  <data name="FactorVectorUsesAxisArtifact" xml:space="preserve">
-    <value>Links a Vector to an Artifact that 'labels' its value's axis.</value>
+  <data name="VectorUnitDerived_RaisesVectorUnitPrefixId" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>
