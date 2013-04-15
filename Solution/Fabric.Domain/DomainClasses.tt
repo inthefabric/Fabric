@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Packages/Weaver.1.0.0/Weaver.dll" #>
-<#@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Solution/Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain.Meta" #>

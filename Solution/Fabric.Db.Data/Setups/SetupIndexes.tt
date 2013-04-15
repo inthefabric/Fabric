@@ -60,7 +60,7 @@ foreach ( string name in nodes ) {
 	
 			//<#= node.Name #> Vertex
 
-			pSet.AddIndexQuery(BuildGroup("<#= node.Name #>", <#= groupId++ #>));
+			//pSet.AddIndexQuery(BuildGroup("<#= node.Name #>", <#= groupId++ #>));
 <#
 
 	IList<SchemaHelperProp> props = hn.GetProps(false);

@@ -18,6 +18,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("NewApp", UserZach, SetupUsers.EmailId.Zach_AEI)]
 		[TestCase("Mel's New App", UserMel, SetupUsers.EmailId.MKin_Gmail)]
+		[TestCase("Epic Fail", UserGal, SetupUsers.EmailId.PhoApp_ZK)]
 		public void Success(string pName, SetupUsers.UserId pCreatorUserId,
 																	SetupUsers.EmailId pExpectEmailId) {
 			IWeaverVarAlias<App> appVar;

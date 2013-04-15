@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/11/2013 5:50:17 PM
+// Generated on 4/15/2013 11:26:45 AM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -21,20 +21,20 @@ namespace Fabric.Db.Data.Setups {
 	
 			//Artifact Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Artifact", 2));
+			//pSet.AddIndexQuery(BuildGroup("Artifact", 2));
 			pSet.AddIndexQuery(BuildKey("Artifact", "ArtifactId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("Artifact", "Created", "Long", false));
 	
 			//App Vertex
 
-			pSet.AddIndexQuery(BuildGroup("App", 3));
+			//pSet.AddIndexQuery(BuildGroup("App", 3));
 			pSet.AddIndexQuery(BuildKey("App", "AppId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("App", "Name", "String", false));
 			//pSet.AddIndexQuery(BuildKey("App", "Secret", "String", false));
 	
 			//Class Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Class", 4));
+			//pSet.AddIndexQuery(BuildGroup("Class", 4));
 			pSet.AddIndexQuery(BuildKey("Class", "ClassId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("Class", "Name", "String", false));
 			//pSet.AddIndexQuery(BuildKey("Class", "Disamb", "String", false));
@@ -42,7 +42,7 @@ namespace Fabric.Db.Data.Setups {
 	
 			//Email Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Email", 5));
+			//pSet.AddIndexQuery(BuildGroup("Email", 5));
 			pSet.AddIndexQuery(BuildKey("Email", "EmailId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("Email", "Address", "String", false));
 			//pSet.AddIndexQuery(BuildKey("Email", "Code", "String", false));
@@ -51,7 +51,7 @@ namespace Fabric.Db.Data.Setups {
 	
 			//Instance Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Instance", 6));
+			//pSet.AddIndexQuery(BuildGroup("Instance", 6));
 			pSet.AddIndexQuery(BuildKey("Instance", "InstanceId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("Instance", "Name", "String", false));
 			//pSet.AddIndexQuery(BuildKey("Instance", "Disamb", "String", false));
@@ -59,32 +59,32 @@ namespace Fabric.Db.Data.Setups {
 	
 			//Member Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Member", 7));
+			//pSet.AddIndexQuery(BuildGroup("Member", 7));
 			pSet.AddIndexQuery(BuildKey("Member", "MemberId", "Long", true));
 	
 			//MemberTypeAssign Vertex
 
-			pSet.AddIndexQuery(BuildGroup("MemberTypeAssign", 8));
+			//pSet.AddIndexQuery(BuildGroup("MemberTypeAssign", 8));
 			pSet.AddIndexQuery(BuildKey("MemberTypeAssign", "MemberTypeAssignId", "Long", true));
 			pSet.AddIndexQuery(BuildKey("MemberTypeAssign", "MemberTypeId", "Integer", true));
 	
 			//Url Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Url", 9));
+			//pSet.AddIndexQuery(BuildGroup("Url", 9));
 			pSet.AddIndexQuery(BuildKey("Url", "UrlId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("Url", "Name", "String", false));
 			//pSet.AddIndexQuery(BuildKey("Url", "AbsoluteUrl", "String", false));
 	
 			//User Vertex
 
-			pSet.AddIndexQuery(BuildGroup("User", 10));
+			//pSet.AddIndexQuery(BuildGroup("User", 10));
 			pSet.AddIndexQuery(BuildKey("User", "UserId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("User", "Name", "String", false));
 			//pSet.AddIndexQuery(BuildKey("User", "Password", "String", false));
 	
 			//Factor Vertex
 
-			pSet.AddIndexQuery(BuildGroup("Factor", 11));
+			//pSet.AddIndexQuery(BuildGroup("Factor", 11));
 			pSet.AddIndexQuery(BuildKey("Factor", "FactorId", "Long", true));
 			pSet.AddIndexQuery(BuildKey("Factor", "FactorAssertionId", "Integer", true));
 			//pSet.AddIndexQuery(BuildKey("Factor", "IsDefining", "Boolean", false));
@@ -112,7 +112,7 @@ namespace Fabric.Db.Data.Setups {
 	
 			//OauthAccess Vertex
 
-			pSet.AddIndexQuery(BuildGroup("OauthAccess", 12));
+			//pSet.AddIndexQuery(BuildGroup("OauthAccess", 12));
 			pSet.AddIndexQuery(BuildKey("OauthAccess", "OauthAccessId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("OauthAccess", "Token", "String", false));
 			//pSet.AddIndexQuery(BuildKey("OauthAccess", "Refresh", "String", false));
@@ -121,13 +121,13 @@ namespace Fabric.Db.Data.Setups {
 	
 			//OauthDomain Vertex
 
-			pSet.AddIndexQuery(BuildGroup("OauthDomain", 13));
+			//pSet.AddIndexQuery(BuildGroup("OauthDomain", 13));
 			pSet.AddIndexQuery(BuildKey("OauthDomain", "OauthDomainId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("OauthDomain", "Domain", "String", false));
 	
 			//OauthGrant Vertex
 
-			pSet.AddIndexQuery(BuildGroup("OauthGrant", 14));
+			//pSet.AddIndexQuery(BuildGroup("OauthGrant", 14));
 			pSet.AddIndexQuery(BuildKey("OauthGrant", "OauthGrantId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("OauthGrant", "RedirectUri", "String", false));
 			//pSet.AddIndexQuery(BuildKey("OauthGrant", "Code", "String", false));
@@ -135,14 +135,14 @@ namespace Fabric.Db.Data.Setups {
 	
 			//OauthScope Vertex
 
-			pSet.AddIndexQuery(BuildGroup("OauthScope", 15));
+			//pSet.AddIndexQuery(BuildGroup("OauthScope", 15));
 			pSet.AddIndexQuery(BuildKey("OauthScope", "OauthScopeId", "Long", true));
 			//pSet.AddIndexQuery(BuildKey("OauthScope", "Allow", "Boolean", false));
 			//pSet.AddIndexQuery(BuildKey("OauthScope", "Created", "Long", false));
 	
 			//Edges
 
-			pSet.AddIndexQuery(BuildLabel("AppUsesEmail", true, true,
+			pSet.AddIndexQuery(BuildLabel("AppUsesEmail", false, true,
 				new [] {
 					"App_AppId",
 					"Email_EmailId"

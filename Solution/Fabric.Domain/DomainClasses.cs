@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/13/2013 2:43:12 PM
+// Generated on 4/15/2013 11:24:32 AM
 
 using System;
 using System.Linq.Expressions;
@@ -547,8 +547,8 @@ namespace Fabric.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual AppUsesEmail InAppUses {
-			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromOne); }
+		public virtual AppUsesEmail InAppListUses {
+			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

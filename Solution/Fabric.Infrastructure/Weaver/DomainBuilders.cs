@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/11/2013 5:50:18 PM
+// Generated on 4/15/2013 11:24:33 AM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -509,7 +509,7 @@ namespace Fabric.Infrastructure.Weaver {
 	/*================================================================================================*/
 	public class EmailBuilder : DomainBuilder<Email> {
 
-		public virtual IWeaverVarAlias<App> InAppUses { get; private set; }
+		public virtual IList<IWeaverVarAlias<App>> InAppListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<User>> InUserListUses { get; private set; }
 		
 
@@ -528,32 +528,33 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppUses(IWeaverVarAlias<App> pTargetNodeVar) {
+		public virtual void AddToInAppListUses(IWeaverVarAlias<App> pTargetNodeVar) {
 			TxBuild.AddRel<AppUsesEmail>(pTargetNodeVar, NodeVar);
-			InAppUses = pTargetNodeVar;
+			InAppListUses = (InAppListUses ?? new List<IWeaverVarAlias<App>>());
+			InAppListUses.Add(pTargetNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppUses(App pApp, out IWeaverVarAlias<App> pNodeVar) {
+		public virtual void AddToInAppListUses(App pApp, out IWeaverVarAlias<App> pNodeVar) {
 			TxBuild.GetNode(pApp, out pNodeVar);
-			SetInAppUses(pNodeVar);
+			AddToInAppListUses(pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppUses(App pApp) {
+		public virtual void AddToInAppListUses(App pApp) {
 			IWeaverVarAlias<App> nodeVar;
-			SetInAppUses(pApp, out nodeVar);
+			AddToInAppListUses(pApp, out nodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppUses(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetInAppUses(new App { AppId = pAppId }, out pNodeVar);
+		public virtual void AddToInAppListUses(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
+			AddToInAppListUses(new App { AppId = pAppId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppUses(long pAppId) {
+		public virtual void AddToInAppListUses(long pAppId) {
 			IWeaverVarAlias<App> nodeVar;
-			SetInAppUses(pAppId, out nodeVar);
+			AddToInAppListUses(pAppId, out nodeVar);
 		}
 		
 		

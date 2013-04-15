@@ -341,7 +341,7 @@ namespace Fabric.Domain.Meta {
 			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
 			const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
 
-			AddRel(app, uses, email, oto, ifo);
+			AddRel(app, uses, email, oto, ifzom);
 			AddRel(app, defines, member, otoom, ifo);
 
 			//AddRel(crowd, defines, crowdian, otoom, ifo);
