@@ -129,14 +129,19 @@ foreach ( string name in nodes ) {
 		}
 
 		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : nodeName+"_"+propName);
-
+		string enu = "null";
+		
+		if ( prop.EnumName != null ) {
+			enu = prop.EnumName;
+			enu = "\""+enu.Substring(0, enu.Length-2)+"\"";
+		}
 #>
 
 				case "<#= nodeName #>.<#= propName #>":
 					pProp.Name = "<#= propName #>";
 					pProp.Type = "<#= propType #>";
 					pProp.Description = SpecDoc.GetDtoPropText("<#= resxDesc #>");
-					pProp.Enum = <#= prop.EnumName == null ? "null" : "\""+prop.EnumName+"\"" #>;
+					pProp.Enum = <#= enu #>;
 					<#= propItems #>break;
 <#
 	} //end prop loop

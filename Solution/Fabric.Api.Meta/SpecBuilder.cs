@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/14/2013 8:59:20 PM
+// Generated on 4/15/2013 10:20:08 AM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -412,7 +412,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "MemberTypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("MemberTypeAssign_MemberTypeId");
-					pProp.Enum = "MemberTypeId";
+					pProp.Enum = "MemberType";
 					break;
 
 				case "Url.UrlId":
@@ -468,7 +468,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "FactorAssertionId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_FactorAssertionId");
-					pProp.Enum = "FactorAssertionId";
+					pProp.Enum = "FactorAssertion";
 					break;
 
 				case "Factor.IsDefining":
@@ -506,42 +506,42 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Descriptor_TypeId");
-					pProp.Enum = "DescriptorTypeId";
+					pProp.Enum = "DescriptorType";
 					break;
 
 				case "Director.TypeId":
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Director_TypeId");
-					pProp.Enum = "DirectorTypeId";
+					pProp.Enum = "DirectorType";
 					break;
 
 				case "Director.PrimaryActionId":
 					pProp.Name = "PrimaryActionId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Director_PrimaryActionId");
-					pProp.Enum = "DirectorActionId";
+					pProp.Enum = "DirectorAction";
 					break;
 
 				case "Director.RelatedActionId":
 					pProp.Name = "RelatedActionId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Director_RelatedActionId");
-					pProp.Enum = "DirectorActionId";
+					pProp.Enum = "DirectorAction";
 					break;
 
 				case "Eventor.TypeId":
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Eventor_TypeId");
-					pProp.Enum = "EventorTypeId";
+					pProp.Enum = "EventorType";
 					break;
 
 				case "Eventor.PrecisionId":
 					pProp.Name = "PrecisionId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Eventor_PrecisionId");
-					pProp.Enum = "EventorPrecisionId";
+					pProp.Enum = "EventorPrecision";
 					break;
 
 				case "Eventor.DateTime":
@@ -555,7 +555,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Identor_TypeId");
-					pProp.Enum = "IdentorTypeId";
+					pProp.Enum = "IdentorType";
 					break;
 
 				case "Identor.Value":
@@ -569,7 +569,7 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Locator_TypeId");
-					pProp.Enum = "LocatorTypeId";
+					pProp.Enum = "LocatorType";
 					break;
 
 				case "Locator.ValueX":
@@ -597,21 +597,21 @@ namespace Fabric.Api.Meta {
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Vector_TypeId");
-					pProp.Enum = "VectorTypeId";
+					pProp.Enum = "VectorType";
 					break;
 
 				case "Vector.UnitId":
 					pProp.Name = "UnitId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Vector_UnitId");
-					pProp.Enum = "VectorUnitId";
+					pProp.Enum = "VectorUnit";
 					break;
 
 				case "Vector.UnitPrefixId":
 					pProp.Name = "UnitPrefixId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Vector_UnitPrefixId");
-					pProp.Enum = "VectorUnitPrefixId";
+					pProp.Enum = "VectorUnitPrefix";
 					break;
 
 				case "Vector.Value":
