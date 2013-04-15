@@ -70,6 +70,15 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BaseEnum {
+            get {
+                return ResourceManager.GetString("BaseEnum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc..
         /// </summary>
         internal static string CrowdianType {

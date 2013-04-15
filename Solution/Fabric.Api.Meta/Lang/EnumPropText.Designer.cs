@@ -70,6 +70,24 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BaseEnum_EnumId {
+            get {
+                return ResourceManager.GetString("BaseEnum_EnumId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string BaseEnum_Id {
+            get {
+                return ResourceManager.GetString("BaseEnum_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A descriptive name or title..
         /// </summary>
         internal static string BaseEnum_Name {

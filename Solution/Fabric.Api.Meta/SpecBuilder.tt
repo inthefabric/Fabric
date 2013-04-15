@@ -245,7 +245,9 @@ foreach ( string name in nodes ) {
 
 			e = new FabSpecEnum();
 			e.Name = "BaseEnum";
+			e.Description = SpecDoc.GetEnumText("BaseEnum");
 			e.Properties = new List<FabSpecObjectProp>();
+			list.Add(e);
 			
 <#
 PropertyInfo[] baseProps = typeof(BaseType).GetProperties();
@@ -255,7 +257,7 @@ foreach ( PropertyInfo prop in baseProps ) {
 #>
 				p = new FabSpecObjectProp();
 				p.Name = "<#= prop.Name #>";
-				p.Description = SpecDoc.GetDtoPropText("BaseEnum_<#= prop.Name #>");
+				p.Description = SpecDoc.GetEnumPropText("BaseEnum_<#= prop.Name #>");
 				p.Type = "<#= SchemaHelperProp.GetTypeName(pt) #>";
 				e.Properties.Add(p);
 

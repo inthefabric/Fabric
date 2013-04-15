@@ -177,4 +177,10 @@
   <data name="VectorUnitDerived_RaisesVectorUnitPrefixId" xml:space="preserve">
     <value>TODO</value>
   </data>
+  <data name="BaseEnum_EnumId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="BaseEnum_Id" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

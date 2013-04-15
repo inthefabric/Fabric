@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/14/2013 10:56:51 AM
+// Generated on 4/14/2013 8:59:20 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -1086,29 +1086,31 @@ namespace Fabric.Api.Meta {
 
 			e = new FabSpecEnum();
 			e.Name = "BaseEnum";
+			e.Description = SpecDoc.GetEnumText("BaseEnum");
 			e.Properties = new List<FabSpecObjectProp>();
+			list.Add(e);
 			
 				p = new FabSpecObjectProp();
 				p.Name = "Id";
-				p.Description = SpecDoc.GetDtoPropText("BaseEnum_Id");
+				p.Description = SpecDoc.GetEnumPropText("BaseEnum_Id");
 				p.Type = "byte";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "EnumId";
-				p.Description = SpecDoc.GetDtoPropText("BaseEnum_EnumId");
+				p.Description = SpecDoc.GetEnumPropText("BaseEnum_EnumId");
 				p.Type = "string";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Name";
-				p.Description = SpecDoc.GetDtoPropText("BaseEnum_Name");
+				p.Description = SpecDoc.GetEnumPropText("BaseEnum_Name");
 				p.Type = "string";
 				e.Properties.Add(p);
 
 				p = new FabSpecObjectProp();
 				p.Name = "Description";
-				p.Description = SpecDoc.GetDtoPropText("BaseEnum_Description");
+				p.Description = SpecDoc.GetEnumPropText("BaseEnum_Description");
 				p.Type = "string";
 				e.Properties.Add(p);
 
