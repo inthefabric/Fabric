@@ -70,7 +70,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A unique string (with no spaces) that can be used by Fabric clients when creating an enumeration..
         /// </summary>
         internal static string BaseEnum_EnumId {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The numeric identifier for this enumeration item..
         /// </summary>
         internal static string BaseEnum_Id {
             get {
@@ -205,7 +205,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to One or more VectorUnitDerived items are used to represent a conversion into this particular [[unit|Enum|VectorUnit]]..
         /// </summary>
         internal static string VectorUnitDerived_DefinesVectorUnitId {
             get {
@@ -214,7 +214,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The [[unit|Enum|VectorUnit]] for this particular item..
         /// </summary>
         internal static string VectorUnitDerived_RaisesVectorUnitId {
             get {
@@ -223,7 +223,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The [[unit prefix|Enum|VectorUnitPrefix]] that affects the &quot;raises&quot; unit..
         /// </summary>
         internal static string VectorUnitDerived_RaisesVectorUnitPrefixId {
             get {
@@ -232,7 +232,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The exponent that affects the &quot;raises&quot; unit..
         /// </summary>
         internal static string VectorUnitDerived_WithExponent {
             get {

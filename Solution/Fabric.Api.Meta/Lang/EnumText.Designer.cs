@@ -61,7 +61,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact. Example types include: !App, !Class, !Instance, etc..
+        ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact..
         /// </summary>
         internal static string ArtifactType {
             get {
@@ -70,7 +70,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The base class for all Fabric enumerations..
         /// </summary>
         internal static string BaseEnum {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc..
+        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Crowdian..
         /// </summary>
         internal static string CrowdianType {
             get {
@@ -88,7 +88,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor. Example types include: Is A, Refers To, Sounds Like, etc..
+        ///   Looks up a localized string similar to Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor..
         /// </summary>
         internal static string DescriptorType {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc..
+        ///   Looks up a localized string similar to Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor..
         /// </summary>
         internal static string DirectorAction {
             get {
@@ -106,7 +106,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc..
+        ///   Looks up a localized string similar to Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor..
         /// </summary>
         internal static string DirectorType {
             get {
@@ -115,7 +115,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc..
+        ///   Looks up a localized string similar to Describes the level of date/time precision (via Eventor) given to a particular Factor..
         /// </summary>
         internal static string EventorPrecision {
             get {
@@ -124,7 +124,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides temporal significance (via Eventor) for a particular Factor.  Example types include: Start, Occur, Expected, etc..
+        ///   Looks up a localized string similar to Provides temporal significance (via Eventor) for a particular Factor..
         /// </summary>
         internal static string EventorType {
             get {
@@ -133,7 +133,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc..
+        ///   Looks up a localized string similar to Describes the type of information (and/or level of confidence) provided by a particular Factor..
         /// </summary>
         internal static string FactorAssertion {
             get {
@@ -142,7 +142,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc..
+        ///   Looks up a localized string similar to Provides a hint about the text (via Identor) that identifies a particular Factor..
         /// </summary>
         internal static string IdentorType {
             get {
@@ -151,7 +151,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides spatial context and boundaries (via Locator) for a particular Factor. Example types include: Earth Coordinate, Mars Coordinate, Relative 3D Position, etc..
+        ///   Looks up a localized string similar to Provides spatial context and boundaries (via Locator) for a particular Factor..
         /// </summary>
         internal static string LocatorType {
             get {
@@ -160,7 +160,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Member.  Example types include: !Member, Admin, Data Provider, etc..
+        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Member..
         /// </summary>
         internal static string MemberType {
             get {
@@ -169,7 +169,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType. Example ranges include: Negative Numeric, Full Agreement, Positive Favorability, etc..
+        ///   Looks up a localized string similar to Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType..
         /// </summary>
         internal static string VectorRange {
             get {
@@ -178,7 +178,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A relatively-positioned point which provides meaning to a numerical range. Example levels include: Maximum, Somewhat Disagree, Mostly Favorable, etc..
+        ///   Looks up a localized string similar to A relatively-positioned point which provides meaning to a numerical range..
         /// </summary>
         internal static string VectorRangeLevel {
             get {
@@ -187,7 +187,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor. Example types include: Full Percentage, Standard Agreement, Opposable Favorability, etc..
+        ///   Looks up a localized string similar to Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor..
         /// </summary>
         internal static string VectorType {
             get {
@@ -196,7 +196,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides a unit of measurement for the numeric value of a particular Vector. Example units include: Metre, Second, Byte, etc..
+        ///   Looks up a localized string similar to Provides a unit of measurement for the numeric value of a particular Vector..
         /// </summary>
         internal static string VectorUnit {
             get {
@@ -205,7 +205,17 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides conversion formulas from the [[&quot;derived&quot; unit|Enum|VectorUnit]] to one or more [[&quot;raises&quot; units|Enum|VectorUnit]]. Each &quot;raises&quot; unit receives a [[unit prefix|Enum|VectorUnitPrefix]] and an exponent value.
+        ///
+        ///[(EX|Watt Example|_Description_
+        ///The Watt unit conversion is defined with three seperate VectorUnitDerived items:
+        ///- WattGram
+        ///- WattMetre
+        ///- WattSec
+        ///
+        ///_Equation_
+        ///Those three items represent the Watt conversion equation:
+        ///1 Watt = 1 (Kg)*(m^2)/(s^3))].
         /// </summary>
         internal static string VectorUnitDerived {
             get {
@@ -214,7 +224,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc..
+        ///   Looks up a localized string similar to Provides a level of magnitude for the numeric value of a particular Vector..
         /// </summary>
         internal static string VectorUnitPrefix {
             get {

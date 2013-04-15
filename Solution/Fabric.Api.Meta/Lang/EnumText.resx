@@ -118,57 +118,67 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ArtifactType" xml:space="preserve">
-    <value>Describes the object type associated with a particular Artifact. Example types include: !App, !Class, !Instance, etc.</value>
+    <value>Describes the object type associated with a particular Artifact.</value>
   </data>
   <data name="CrowdianType" xml:space="preserve">
-    <value>Describes the level of access and control given to a particular Crowdian. Example types include: Invite, !Member, Admin, etc.</value>
+    <value>Describes the level of access and control given to a particular Crowdian.</value>
   </data>
   <data name="DescriptorType" xml:space="preserve">
-    <value>Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor. Example types include: Is A, Refers To, Sounds Like, etc.</value>
+    <value>Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor.</value>
   </data>
   <data name="DirectorAction" xml:space="preserve">
-    <value>Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc.</value>
+    <value>Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor.</value>
   </data>
   <data name="DirectorType" xml:space="preserve">
-    <value>Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor. Example types include: Hyperlink, Suggested Path, Defined Path, etc.</value>
+    <value>Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor.</value>
   </data>
   <data name="EventorPrecision" xml:space="preserve">
-    <value>Describes the level of date/time precision (via Eventor) given to a particular Factor. Example precisions include: Year, Day, Second, etc.</value>
+    <value>Describes the level of date/time precision (via Eventor) given to a particular Factor.</value>
   </data>
   <data name="EventorType" xml:space="preserve">
-    <value>Provides temporal significance (via Eventor) for a particular Factor.  Example types include: Start, Occur, Expected, etc.</value>
+    <value>Provides temporal significance (via Eventor) for a particular Factor.</value>
   </data>
   <data name="FactorAssertion" xml:space="preserve">
-    <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
+    <value>Describes the type of information (and/or level of confidence) provided by a particular Factor.</value>
   </data>
   <data name="IdentorType" xml:space="preserve">
-    <value>Provides a hint about the text (via Identor) that identifies a particular Factor. Example types include: Text, Key, etc.</value>
+    <value>Provides a hint about the text (via Identor) that identifies a particular Factor.</value>
   </data>
   <data name="LocatorType" xml:space="preserve">
-    <value>Provides spatial context and boundaries (via Locator) for a particular Factor. Example types include: Earth Coordinate, Mars Coordinate, Relative 3D Position, etc.</value>
+    <value>Provides spatial context and boundaries (via Locator) for a particular Factor.</value>
   </data>
   <data name="MemberType" xml:space="preserve">
-    <value>Describes the level of access and control given to a particular Member.  Example types include: !Member, Admin, Data Provider, etc.</value>
+    <value>Describes the level of access and control given to a particular Member.</value>
   </data>
   <data name="VectorRange" xml:space="preserve">
-    <value>Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType. Example ranges include: Negative Numeric, Full Agreement, Positive Favorability, etc.</value>
+    <value>Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType.</value>
   </data>
   <data name="VectorRangeLevel" xml:space="preserve">
-    <value>A relatively-positioned point which provides meaning to a numerical range. Example levels include: Maximum, Somewhat Disagree, Mostly Favorable, etc.</value>
+    <value>A relatively-positioned point which provides meaning to a numerical range.</value>
   </data>
   <data name="VectorType" xml:space="preserve">
-    <value>Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor. Example types include: Full Percentage, Standard Agreement, Opposable Favorability, etc.</value>
+    <value>Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor.</value>
   </data>
   <data name="VectorUnit" xml:space="preserve">
-    <value>Provides a unit of measurement for the numeric value of a particular Vector. Example units include: Metre, Second, Byte, etc.</value>
+    <value>Provides a unit of measurement for the numeric value of a particular Vector.</value>
   </data>
   <data name="VectorUnitPrefix" xml:space="preserve">
-    <value>Provides a level of magnitude for the numeric value of a particular Vector. Example unit prefixes include: Kilo, Nano, Gibi, etc.</value>
+    <value>Provides a level of magnitude for the numeric value of a particular Vector.</value>
   </data>
   <data name="VectorUnitDerived" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides conversion formulas from the [["derived" unit|Enum|VectorUnit]] to one or more [["raises" units|Enum|VectorUnit]]. Each "raises" unit receives a [[unit prefix|Enum|VectorUnitPrefix]] and an exponent value.
+
+[(EX|Watt Example|_Description_
+The Watt unit conversion is defined with three seperate VectorUnitDerived items:
+- WattGram
+- WattMetre
+- WattSec
+
+_Equation_
+Those three items represent the Watt conversion equation:
+1 Watt = 1 (Kg)*(m^2)/(s^3))]</value>
   </data>
   <data name="BaseEnum" xml:space="preserve">
-    <value>TODO</value>
+    <value>The base class for all Fabric enumerations.</value>
   </data>
 </root>
