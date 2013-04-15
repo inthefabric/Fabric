@@ -32,6 +32,18 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);
 			Register<FuncLimitStep>((p => new FuncLimitStep(p)), FuncLimitStep.AllowedForStep);
 			Register<FuncWhereIdStep>((p => new FuncWhereIdStep(p)), FuncWhereIdStep.AllowedForStep);
+
+			//Available for Artifact
+			Register<FuncWhereAppStep>(
+				(p => new FuncWhereAppStep(p)), FuncWhereAppStep.AllowedForStep);
+			Register<FuncWhereClassStep>(
+				(p => new FuncWhereClassStep(p)), FuncWhereClassStep.AllowedForStep);
+			Register<FuncWhereInstanceStep>(
+				(p => new FuncWhereInstanceStep(p)), FuncWhereInstanceStep.AllowedForStep);
+			Register<FuncWhereUrlStep>(
+				(p => new FuncWhereUrlStep(p)), FuncWhereUrlStep.AllowedForStep);
+			Register<FuncWhereUserStep>(
+				(p => new FuncWhereUserStep(p)), FuncWhereUserStep.AllowedForStep);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

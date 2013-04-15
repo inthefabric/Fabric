@@ -57,7 +57,15 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			////
 
 			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
-			INodeStep ns = (INodeStep)ProxyStep;
+			INodeStep ns;
+
+			if ( ProxyStep is IFuncStep ) {
+				ns = (INodeStep)((IFuncStep)ProxyStep).ProxyStep;
+			}
+			else {
+				ns = (INodeStep)ProxyStep;
+			}
+
 			string idParam = Path.AddParam(new WeaverQueryVal(Id));
 			Path.AppendToCurrentSegment("('"+ns.TypeIdName+"',Tokens.T.eq,"+idParam+")", false);
 		}

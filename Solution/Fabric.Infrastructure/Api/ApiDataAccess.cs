@@ -55,6 +55,7 @@ namespace Fabric.Infrastructure.Api {
 			try {
 				Sema.WaitOne();
 				++TcpCount;
+				//Log.Debug("QUERY: "+Query);
 				RawResult = GetRawResult(Query);
 				Sema.Release();
 

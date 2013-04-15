@@ -55,6 +55,7 @@
     <Compile Include="IPath.cs" />
     <Compile Include="PathSegment.cs" />
     <Compile Include="Steps\FabStepDataFault.cs" />
+    <Compile Include="Steps\Functions\FuncWhereTypeStep.cs" />
     <Compile Include="Steps\Functions\FuncWhereIdStep.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFuncStep.cs" />
