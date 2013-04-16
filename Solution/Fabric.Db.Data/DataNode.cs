@@ -50,7 +50,7 @@ namespace Fabric.Db.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverQuery AddQuery {
-			get { return Weave.Inst.AddNode(Node); }
+			get { return Weave.Inst.AddNode(NodeT); }
 		}
 
 	}

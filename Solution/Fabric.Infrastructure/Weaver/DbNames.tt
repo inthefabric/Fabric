@@ -1,0 +1,73 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)../Packages/Weaver.1.0.0/Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System.Collections.Generic;
+using Fabric.Domain;
+using Weaver.Interfaces;
+using Weaver.Items;
+
+namespace Fabric.Infrastructure.Weaver {
+
+	// ReSharper disable InconsistentNaming
+
+	/*================================================================================================*/
+	public static class NodeDbName {
+
+<#
+var schema = new Schema();
+IList<WeaverNodeSchema> nodes = schema.Nodes;
+
+foreach ( WeaverNodeSchema ns in nodes ) {
+#>
+		public const string <#= ns.Name #> = "<#= ns.DbName #>";
+<#
+} //end node loop
+#>
+
+	}
+
+
+	/*================================================================================================*/
+	public static class PropDbName {
+
+<#
+foreach ( WeaverNodeSchema ns in nodes ) {
+	foreach ( WeaverPropSchema ps in ns.Props ) {
+#>
+		public const string <#= ns.Name+'_'+ps.Name #> = "<#= ps.DbName #>";
+<#
+	} //end prop loop
+#>
+
+<#
+} //end node loop
+#>
+	}
+
+
+	/*================================================================================================*/
+	public static class RelDbName {
+
+<#
+foreach ( WeaverRelSchema rs in schema.Rels ) {
+#>
+		public const string <#= rs.Name #> = "<#= rs.DbName #>";
+<#
+} //end node loop
+#>
+
+	}
+
+	// ReSharper restore InconsistentNaming
+
+}

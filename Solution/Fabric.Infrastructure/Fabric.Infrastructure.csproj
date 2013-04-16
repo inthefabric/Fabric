@@ -63,6 +63,11 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\ApiEnums.cs" />
+    <Compile Include="Weaver\DbNames.cs">
+      <DependentUpon>DbNames.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Weaver\Weave.cs" />
     <Compile Include="Api\EncryptUtil.cs" />
     <Compile Include="Api\AuthUtil.cs" />
@@ -137,6 +142,10 @@
       <LastGenOutput>DomainValidators.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Weaver\DbNames.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbNames.cs</LastGenOutput>
+    </None>
     <None Include="Weaver\DomainBuilders.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainBuilders.cs</LastGenOutput>

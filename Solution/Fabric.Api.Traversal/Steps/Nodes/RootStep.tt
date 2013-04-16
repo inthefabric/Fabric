@@ -18,6 +18,7 @@ using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
@@ -82,7 +83,7 @@ foreach ( string name in nodeNames ) {
 			get {
 				var step = new <#= name #>Step(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.<#= name #>));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}

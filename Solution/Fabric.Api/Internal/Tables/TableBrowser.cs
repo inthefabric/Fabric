@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Weaver;
 using Nancy;
 using Nancy.Responses.Negotiation;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Internal.Tables {
@@ -50,7 +50,7 @@ namespace Fabric.Api.Internal.Tables {
 				query += "g.V.retain(x).bothE.aggregate(x).iterate();";
 				query += "x";
 
-				IWeaverQuery q = new WeaverQuery();
+				IWeaverQuery q = Weave.Inst.NewQuery();
 				q.FinalizeQuery(query);
 				IApiDataAccess data = ctx.DbData("getTable", q);
 				model.TableHtml = BuildHtml(data);

@@ -72,7 +72,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			IWeaverTransaction tx = new WeaverTransaction();
+			IWeaverTransaction tx = Weave.Inst.NewTx();
 			IWeaverVarAlias agg;
 			IWeaverFuncAs<OauthAccess> oaAlias;
 

@@ -3,6 +3,7 @@ using Fabric.Api.Traversal;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiTraversal {
@@ -63,7 +64,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			vUri = "/ActiveApp";
 			TestPath();
 			CheckSuccess<App>(1);
-			CheckTypeId<App>(vModel.DtoList[0], ApiCtx.AppId);
+			CheckTypeId(vModel.DtoList[0], PropDbName.App_AppId, ApiCtx.AppId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -73,7 +74,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			vUri = "/ActiveUser";
 			TestPath();
 			CheckSuccess<User>(1);
-			CheckTypeId<User>(vModel.DtoList[0], ApiCtx.UserId);
+			CheckTypeId(vModel.DtoList[0], PropDbName.User_UserId, ApiCtx.UserId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -83,7 +84,8 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			vUri = "/ActiveMember";
 			TestPath();
 			CheckSuccess<Member>(1);
-			CheckTypeId<Member>(vModel.DtoList[0], (long)SetupUsers.MemberId.GalZach);
+			CheckTypeId(vModel.DtoList[0], 
+				PropDbName.Member_MemberId, (long)SetupUsers.MemberId.GalZach);
 		}
 
 
@@ -118,7 +120,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			vUri = "/ContainsFactorList/Limit("+pStart+","+pCount+")";
 			TestPath();
 			CheckSuccess<Factor>(pCount);
-			CheckTypeId<Factor>(vModel.DtoList[0], pStart+1);
+			CheckTypeId(vModel.DtoList[0], PropDbName.Factor_FactorId, pStart+1);
 		}
 
 
@@ -138,13 +140,12 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void CheckTypeId<T>(IDbDto pDbDto, long pId) where T : INode {
-			string key = typeof(T).Name+"Id";
-			Assert.True(pDbDto.Data.ContainsKey(key), "DbDto does not contain key '"+key+"'.");
+		private void CheckTypeId(IDbDto pDbDto, string pIdProp, long pId) {
+			Assert.True(pDbDto.Data.ContainsKey(pIdProp), "DbDto does not contain key '"+pIdProp+"'.");
 
-			string val = pDbDto.Data[key];
+			string val = pDbDto.Data[pIdProp];
 			long valId = long.Parse(val);
-			Assert.AreEqual(pId, valId, "Incorrect DbDto.Data['"+key+"'].");
+			Assert.AreEqual(pId, valId, "Incorrect DbDto.Data['"+pIdProp+"'].");
 		}
 
 	}

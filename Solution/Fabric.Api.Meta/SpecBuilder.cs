@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:03 AM
+// Generated on 4/16/2013 3:43:12 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -16,6 +16,9 @@ namespace Fabric.Api.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FillSpecValue(string pTypeName, string pPropName, FabSpecValue pValue) {
 			switch ( pTypeName+"."+pPropName ) {
+
+				case "Node.FabType":
+					break;
 
 				case "NodeForAction.Performed":
 					break;

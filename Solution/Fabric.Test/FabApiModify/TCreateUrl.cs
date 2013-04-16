@@ -57,8 +57,8 @@ namespace Fabric.Test.FabApiModify {
 		private Url CreateUrlTx(IWeaverTransaction pTx) {
 			TestUtil.LogWeaverScript(pTx);
 
-			string expectPartial = 
-				"_V0=g.V('"+typeof(Member).Name+"Id',_TP0).next();"+
+			const string expectPartial = 
+				"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP0).next();"+
 				"AU;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

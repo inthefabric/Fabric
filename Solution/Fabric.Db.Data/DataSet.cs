@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Fabric.Domain;
-using Weaver;
+using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
@@ -39,7 +39,7 @@ namespace Fabric.Db.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClearPreviousData() {
-			var q = new WeaverQuery();
+			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery("g.V.remove()"); //also removes all edges
 			Initialization.Add(q);
 		}
@@ -89,7 +89,7 @@ namespace Fabric.Db.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverTransaction GetIndexTx() {
-			var tx = new WeaverTransaction();
+			var tx = Weave.Inst.NewTx();
 
 			foreach ( IWeaverQuery q in Indexes ) {
 				tx.AddQuery(q);

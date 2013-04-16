@@ -48,7 +48,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string Execute() {
-			var tx = new WeaverTransaction();
+			var tx = Weave.Inst.NewTx();
 			IWeaverFuncAs<OauthGrant> ogAlias;
 			
 			var newOg = new OauthGrant();

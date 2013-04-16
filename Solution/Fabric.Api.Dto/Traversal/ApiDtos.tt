@@ -135,6 +135,7 @@ foreach ( string name in nodes ) {
 	foreach ( SchemaHelperProp hp in props ) { 
 		string propType = hp.TypeName;
 		string propName = hp.PropSchema.Name;
+		string propDbName = hp.PropSchema.DbName;
 		string dotPropName = hp.PropSchema.Name.Replace('_', '.');
 		string parseType = propType.Replace("?", "");
 #>
@@ -142,12 +143,12 @@ foreach ( string name in nodes ) {
 <#
 		if ( hp.PropSchema.IsNullable == true || propType == "string" || hp.IsSubProp() ) {
 #>
-			found = pData.TryGetValue("<#= propName #>", out val);
+			found = pData.TryGetValue("<#= propDbName #>", out val);
 <#
 		}
 		else { //not string nor nullable
 #>
-			val = pData["<#= propName #>"];
+			val = pData["<#= propDbName #>"];
 <#
 		}
 

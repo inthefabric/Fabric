@@ -9,7 +9,6 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
@@ -156,7 +155,7 @@ namespace Fabric.Api.Modify {
 				return;
 			}
 
-			var q = new WeaverQuery();
+			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery("["+string.Join(",", nodeIds)+"]");
 			txb.Transaction.AddQuery(q);
 

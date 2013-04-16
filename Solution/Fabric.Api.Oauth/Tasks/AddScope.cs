@@ -44,7 +44,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthScope Execute() {
-			var tx = new WeaverTransaction();
+			var tx = Weave.Inst.NewTx();
 			IWeaverFuncAs<OauthScope> osAlias;
 			
 			var newOs = new OauthScope();

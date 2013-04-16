@@ -1,9 +1,7 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
@@ -61,7 +59,7 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.LogWeaverScript(pTx);
 
 			string expectPartial = 
-				"_V0=g.V('"+typeof(Member).Name+"Id',_TP0).next();"+
+				"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP0).next();"+
 				"INST;";
 
 			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");

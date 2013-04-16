@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:00 AM
+// Generated on 4/16/2013 3:43:11 PM
 
 using System;
 using System.Linq.Expressions;
@@ -297,7 +297,16 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public abstract class NodeForAction : Node {
+	public abstract partial class Node {
+	
+		[WeaverItemProperty]
+		//[PropIsInternal(True)]
+		public virtual int FabType { get; set; }
+
+	}
+
+	/*================================================================================================*/
+	public abstract partial class NodeForAction : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsTimestamp(True)]
@@ -315,7 +324,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Artifact : Node {
+	public partial class Artifact : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -384,7 +393,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class App : Artifact {
+	public partial class App : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -455,7 +464,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Class : Artifact {
+	public partial class Class : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -501,7 +510,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Email : Node {
+	public partial class Email : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -559,7 +568,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Instance : Artifact {
+	public partial class Instance : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -606,7 +615,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Member : Node {
+	public partial class Member : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -668,7 +677,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssign : NodeForAction {
+	public partial class MemberTypeAssign : NodeForAction {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -713,7 +722,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Url : Artifact {
+	public partial class Url : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -752,7 +761,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class User : Artifact {
+	public partial class User : Artifact {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -819,7 +828,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class Factor : Node {
+	public partial class Factor : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -976,7 +985,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthAccess : Node {
+	public partial class OauthAccess : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1032,7 +1041,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthDomain : Node {
+	public partial class OauthDomain : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1070,7 +1079,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthGrant : Node {
+	public partial class OauthGrant : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]
@@ -1121,7 +1130,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public class OauthScope : Node {
+	public partial class OauthScope : Node {
 	
 		[WeaverItemProperty]
 		//[PropIsPrimaryKey(True)]

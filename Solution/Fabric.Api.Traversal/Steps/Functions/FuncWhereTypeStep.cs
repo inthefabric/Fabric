@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
@@ -29,7 +30,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			base.SetDataAndUpdatePath(pData);
 			ExpectParamCount(0);
 			ProxyStep = GetNodeStep(Path);
-			Path.AppendToCurrentSegment("('FabType',Tokens.T.eq,"+(int)GetFabType()+")", false);
+			Path.AppendToCurrentSegment(
+				"('"+PropDbName.Node_FabType+"',Tokens.T.eq,"+(int)GetFabType()+")", false);
 		}
 
 

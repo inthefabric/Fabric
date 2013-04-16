@@ -1,0 +1,157 @@
+﻿// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on 4/16/2013 3:45:21 PM
+
+using System.Collections.Generic;
+using Fabric.Domain;
+using Weaver.Interfaces;
+using Weaver.Items;
+
+namespace Fabric.Infrastructure.Weaver {
+
+	// ReSharper disable InconsistentNaming
+
+	/*================================================================================================*/
+	public static class NodeDbName {
+
+		public const string Node = "N";
+		public const string NodeForAction = "NA";
+		public const string Artifact = "A";
+		public const string App = "Ap";
+		public const string Class = "Cl";
+		public const string Email = "E";
+		public const string Instance = "In";
+		public const string Member = "M";
+		public const string MemberTypeAssign = "MTA";
+		public const string Url = "Ur";
+		public const string User = "U";
+		public const string Factor = "F";
+		public const string OauthAccess = "OA";
+		public const string OauthDomain = "OD";
+		public const string OauthGrant = "OG";
+		public const string OauthScope = "OS";
+
+	}
+
+
+	/*================================================================================================*/
+	public static class PropDbName {
+
+		public const string Node_FabType = "N_FT";
+
+		public const string NodeForAction_Performed = "NA_Pe";
+		public const string NodeForAction_Note = "NA_No";
+
+		public const string Artifact_ArtifactId = "A_AId";
+		public const string Artifact_Created = "A_Cr";
+
+		public const string App_AppId = "Ap_Id";
+		public const string App_Name = "Ap_Na";
+		public const string App_Secret = "Ap_Se";
+
+		public const string Class_ClassId = "Cl_Id";
+		public const string Class_Name = "Cl_Na";
+		public const string Class_Disamb = "Cl_Di";
+		public const string Class_Note = "Cl_No";
+
+		public const string Email_EmailId = "E_Id";
+		public const string Email_Address = "E_Ad";
+		public const string Email_Code = "E_Co";
+		public const string Email_Created = "E_Cr";
+		public const string Email_Verified = "E_Ve";
+
+		public const string Instance_InstanceId = "In_Id";
+		public const string Instance_Name = "In_Na";
+		public const string Instance_Disamb = "In_Di";
+		public const string Instance_Note = "In_No";
+
+		public const string Member_MemberId = "M_Id";
+
+		public const string MemberTypeAssign_MemberTypeAssignId = "MTA_Id";
+		public const string MemberTypeAssign_MemberTypeId = "MTA_Mt";
+
+		public const string Url_UrlId = "Ur_Id";
+		public const string Url_Name = "Ur_Na";
+		public const string Url_AbsoluteUrl = "Ur_Ab";
+
+		public const string User_UserId = "U_Id";
+		public const string User_Name = "U_Na";
+		public const string User_Password = "U_Pa";
+
+		public const string Factor_FactorId = "F_Id";
+		public const string Factor_FactorAssertionId = "F_Fa";
+		public const string Factor_IsDefining = "F_Df";
+		public const string Factor_Created = "F_Cr";
+		public const string Factor_Deleted = "F_Dl";
+		public const string Factor_Completed = "F_Co";
+		public const string Factor_Note = "F_No";
+		public const string Factor_Descriptor_TypeId = "F_DeT";
+		public const string Factor_Director_TypeId = "F_DiT";
+		public const string Factor_Director_PrimaryActionId = "F_DiP";
+		public const string Factor_Director_RelatedActionId = "F_DiR";
+		public const string Factor_Eventor_TypeId = "F_EvT";
+		public const string Factor_Eventor_PrecisionId = "F_EvP";
+		public const string Factor_Eventor_DateTime = "F_EvD";
+		public const string Factor_Identor_TypeId = "F_IdT";
+		public const string Factor_Identor_Value = "F_IdV";
+		public const string Factor_Locator_TypeId = "F_LoT";
+		public const string Factor_Locator_ValueX = "F_LoX";
+		public const string Factor_Locator_ValueY = "F_LoY";
+		public const string Factor_Locator_ValueZ = "F_LoZ";
+		public const string Factor_Vector_TypeId = "F_VeT";
+		public const string Factor_Vector_UnitId = "F_VeU";
+		public const string Factor_Vector_UnitPrefixId = "F_VeP";
+		public const string Factor_Vector_Value = "F_VeV";
+
+		public const string OauthAccess_OauthAccessId = "OA_Id";
+		public const string OauthAccess_Token = "OA_To";
+		public const string OauthAccess_Refresh = "OA_Re";
+		public const string OauthAccess_Expires = "OA_Ex";
+		public const string OauthAccess_IsClientOnly = "OA_CO";
+
+		public const string OauthDomain_OauthDomainId = "OD_Id";
+		public const string OauthDomain_Domain = "OD_Do";
+
+		public const string OauthGrant_OauthGrantId = "OG_Id";
+		public const string OauthGrant_RedirectUri = "OG_Re";
+		public const string OauthGrant_Code = "OG_Co";
+		public const string OauthGrant_Expires = "OG_Ex";
+
+		public const string OauthScope_OauthScopeId = "OS_Id";
+		public const string OauthScope_Allow = "OS_Al";
+		public const string OauthScope_Created = "OS_Cr";
+
+	}
+
+
+	/*================================================================================================*/
+	public static class RelDbName {
+
+		public const string AppUsesEmail = "Ap-U-E";
+		public const string AppDefinesMember = "Ap-D-M";
+		public const string MemberHasMemberTypeAssign = "M-H-MTA";
+		public const string MemberHasHistoricMemberTypeAssign = "M-HH-MTA";
+		public const string MemberCreatesArtifact = "M-C-A";
+		public const string MemberCreatesMemberTypeAssign = "M-C-MTA";
+		public const string MemberCreatesFactor = "M-C-F";
+		public const string UserUsesEmail = "U-U-E";
+		public const string UserDefinesMember = "U-D-M";
+		public const string FactorUsesPrimaryArtifact = "F-UP-A";
+		public const string FactorUsesRelatedArtifact = "F-UR-A";
+		public const string FactorDescriptorRefinesPrimaryWithArtifact = "F-DRP-A";
+		public const string FactorDescriptorRefinesRelatedWithArtifact = "F-DRR-A";
+		public const string FactorDescriptorRefinesTypeWithArtifact = "F-DRT-A";
+		public const string FactorVectorUsesAxisArtifact = "F-VUA-A";
+		public const string OauthAccessUsesApp = "OA-U-Ap";
+		public const string OauthAccessUsesUser = "OA-U-U";
+		public const string OauthDomainUsesApp = "OD-U-Ap";
+		public const string OauthGrantUsesApp = "OG-U-Ap";
+		public const string OauthGrantUsesUser = "OG-U-U";
+		public const string OauthScopeUsesApp = "OS-U-Ap";
+		public const string OauthScopeUsesUser = "OS-U-U";
+
+	}
+
+	// ReSharper restore InconsistentNaming
+
+}

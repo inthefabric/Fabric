@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:01 AM
+// Generated on 4/16/2013 3:47:48 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -11,377 +11,469 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupAll(DataSet pSet) {
-			pSet.AddIndexQuery(BuildKey("FabType", "FabType", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("Shared", "Name", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Shared", "Created", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("Shared", "Disamb", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Shared", "Note", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Shared", "Code", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Shared", "Expires", "Long", false));
+
+			//VERTICES
+
+			pSet.AddIndexQuery(BuildKey(null, "FT", "Integer", true));
+
+			//Node
+			pSet.AddIndexQuery(BuildGroup("N", 2));
+			pSet.AddIndexQuery(BuildKey("N", "N_FT", "Integer", true));
+
+			//NodeForAction
+			pSet.AddIndexQuery(BuildGroup("NA", 3));
+			pSet.AddIndexQuery(BuildKey("NA", "NA_Pe", "Long", false));
+			pSet.AddIndexQuery(BuildKey("NA", "NA_No", "String", false));
+
+			//Artifact
+			pSet.AddIndexQuery(BuildGroup("A", 4));
+			pSet.AddIndexQuery(BuildKey("A", "A_AId", "Long", true));
+			pSet.AddIndexQuery(BuildKey("A", "A_Cr", "Long", false));
+
+			//App
+			pSet.AddIndexQuery(BuildGroup("Ap", 5));
+			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Se", "String", false));
+
+			//Class
+			pSet.AddIndexQuery(BuildGroup("Cl", 6));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Di", "String", false));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_No", "String", false));
+
+			//Email
+			pSet.AddIndexQuery(BuildGroup("E", 7));
+			pSet.AddIndexQuery(BuildKey("E", "E_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("E", "E_Ad", "String", false));
+			pSet.AddIndexQuery(BuildKey("E", "E_Co", "String", false));
+			pSet.AddIndexQuery(BuildKey("E", "E_Cr", "Long", false));
+			pSet.AddIndexQuery(BuildKey("E", "E_Ve", "Long", false));
+
+			//Instance
+			pSet.AddIndexQuery(BuildGroup("In", 8));
+			pSet.AddIndexQuery(BuildKey("In", "In_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("In", "In_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("In", "In_Di", "String", false));
+			pSet.AddIndexQuery(BuildKey("In", "In_No", "String", false));
+
+			//Member
+			pSet.AddIndexQuery(BuildGroup("M", 9));
+			pSet.AddIndexQuery(BuildKey("M", "M_Id", "Long", true));
+
+			//MemberTypeAssign
+			pSet.AddIndexQuery(BuildGroup("MTA", 10));
+			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Mt", "Integer", true));
+
+			//Url
+			pSet.AddIndexQuery(BuildGroup("Ur", 11));
+			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Ab", "String", false));
+
+			//User
+			pSet.AddIndexQuery(BuildGroup("U", 12));
+			pSet.AddIndexQuery(BuildKey("U", "U_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("U", "U_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("U", "U_Pa", "String", false));
+
+			//Factor
+			pSet.AddIndexQuery(BuildGroup("F", 13));
+			pSet.AddIndexQuery(BuildKey("F", "F_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_Fa", "Integer", true));
+			//pSet.AddIndexQuery(BuildKey("F", "F_Df", "Boolean", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_Cr", "Long", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_Dl", "Long", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_Co", "Long", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_No", "String", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_DeT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiP", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiR", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvP", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvD", "Long", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_IdT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_IdV", "String", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoX", "Double", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoY", "Double", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoZ", "Double", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeU", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeP", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeV", "Long", false));
+
+			//OauthAccess
+			pSet.AddIndexQuery(BuildGroup("OA", 14));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_To", "String", false));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_Re", "String", false));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_Ex", "Long", false));
+			//pSet.AddIndexQuery(BuildKey("OA", "OA_CO", "Boolean", false));
+
+			//OauthDomain
+			pSet.AddIndexQuery(BuildGroup("OD", 15));
+			pSet.AddIndexQuery(BuildKey("OD", "OD_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("OD", "OD_Do", "String", false));
+
+			//OauthGrant
+			pSet.AddIndexQuery(BuildGroup("OG", 16));
+			pSet.AddIndexQuery(BuildKey("OG", "OG_Id", "Long", true));
+			pSet.AddIndexQuery(BuildKey("OG", "OG_Re", "String", false));
+			pSet.AddIndexQuery(BuildKey("OG", "OG_Co", "String", false));
+			pSet.AddIndexQuery(BuildKey("OG", "OG_Ex", "Long", false));
+
+			//OauthScope
+			pSet.AddIndexQuery(BuildGroup("OS", 17));
+			pSet.AddIndexQuery(BuildKey("OS", "OS_Id", "Long", true));
+			//pSet.AddIndexQuery(BuildKey("OS", "OS_Al", "Boolean", false));
+			pSet.AddIndexQuery(BuildKey("OS", "OS_Cr", "Long", false));
 	
-			//Artifact Vertex
+			//EDGES
 
-			//pSet.AddIndexQuery(BuildGroup("Artifact", 2));
-			pSet.AddIndexQuery(BuildKey("Artifact", "ArtifactId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("Artifact", "Created", "Long", false));
-	
-			//App Vertex
+			//AppUsesEmail
+			pSet.AddIndexQuery(BuildLabel("Ap-U-E", false, true,	new [] {
+				"Ap_Id",
+				"Ap_Na",
+				"Ap_Se",
+				"E_Id",
+				"E_Ad",
+				"E_Co",
+				"E_Cr",
+				"E_Ve"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("App", 3));
-			pSet.AddIndexQuery(BuildKey("App", "AppId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("App", "Name", "String", false));
-			//pSet.AddIndexQuery(BuildKey("App", "Secret", "String", false));
-	
-			//Class Vertex
+			//AppDefinesMember
+			pSet.AddIndexQuery(BuildLabel("Ap-D-M", true, false,	new [] {
+				"Ap_Id",
+				"Ap_Na",
+				"Ap_Se",
+				"M_Id"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("Class", 4));
-			pSet.AddIndexQuery(BuildKey("Class", "ClassId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("Class", "Name", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Class", "Disamb", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Class", "Note", "String", false));
-	
-			//Email Vertex
+			//MemberHasMemberTypeAssign
+			pSet.AddIndexQuery(BuildLabel("M-H-MTA", true, true,	new [] {
+				"M_Id",
+				"MTA_Id",
+				"MTA_Mt"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("Email", 5));
-			pSet.AddIndexQuery(BuildKey("Email", "EmailId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("Email", "Address", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Email", "Code", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Email", "Created", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("Email", "Verified", "Long", false));
-	
-			//Instance Vertex
+			//MemberHasHistoricMemberTypeAssign
+			pSet.AddIndexQuery(BuildLabel("M-HH-MTA", true, false,	new [] {
+				"M_Id",
+				"MTA_Id",
+				"MTA_Mt"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("Instance", 6));
-			pSet.AddIndexQuery(BuildKey("Instance", "InstanceId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("Instance", "Name", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Instance", "Disamb", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Instance", "Note", "String", false));
-	
-			//Member Vertex
+			//MemberCreatesArtifact
+			pSet.AddIndexQuery(BuildLabel("M-C-A", true, false,	new [] {
+				"M_Id",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("Member", 7));
-			pSet.AddIndexQuery(BuildKey("Member", "MemberId", "Long", true));
-	
-			//MemberTypeAssign Vertex
+			//MemberCreatesMemberTypeAssign
+			pSet.AddIndexQuery(BuildLabel("M-C-MTA", true, false,	new [] {
+				"M_Id",
+				"MTA_Id",
+				"MTA_Mt"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("MemberTypeAssign", 8));
-			pSet.AddIndexQuery(BuildKey("MemberTypeAssign", "MemberTypeAssignId", "Long", true));
-			pSet.AddIndexQuery(BuildKey("MemberTypeAssign", "MemberTypeId", "Integer", true));
-	
-			//Url Vertex
+			//MemberCreatesFactor
+			pSet.AddIndexQuery(BuildLabel("M-C-F", true, false,	new [] {
+				"M_Id",
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("Url", 9));
-			pSet.AddIndexQuery(BuildKey("Url", "UrlId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("Url", "Name", "String", false));
-			//pSet.AddIndexQuery(BuildKey("Url", "AbsoluteUrl", "String", false));
-	
-			//User Vertex
+			//UserUsesEmail
+			pSet.AddIndexQuery(BuildLabel("U-U-E", false, true,	new [] {
+				"U_Id",
+				"U_Na",
+				"U_Pa",
+				"E_Id",
+				"E_Ad",
+				"E_Co",
+				"E_Cr",
+				"E_Ve"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("User", 10));
-			pSet.AddIndexQuery(BuildKey("User", "UserId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("User", "Name", "String", false));
-			//pSet.AddIndexQuery(BuildKey("User", "Password", "String", false));
-	
-			//Factor Vertex
+			//UserDefinesMember
+			pSet.AddIndexQuery(BuildLabel("U-D-M", true, false,	new [] {
+				"U_Id",
+				"U_Na",
+				"U_Pa",
+				"M_Id"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("Factor", 11));
-			pSet.AddIndexQuery(BuildKey("Factor", "FactorId", "Long", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "FactorAssertionId", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("Factor", "IsDefining", "Boolean", false));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Created", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Deleted", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Completed", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Note", "String", false));
-			pSet.AddIndexQuery(BuildKey("Factor", "Descriptor_TypeId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Director_TypeId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Director_PrimaryActionId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Director_RelatedActionId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Eventor_TypeId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Eventor_PrecisionId", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Eventor_DateTime", "Long", false));
-			pSet.AddIndexQuery(BuildKey("Factor", "Identor_TypeId", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Identor_Value", "String", false));
-			pSet.AddIndexQuery(BuildKey("Factor", "Locator_TypeId", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Locator_ValueX", "Double", false));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Locator_ValueY", "Double", false));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Locator_ValueZ", "Double", false));
-			pSet.AddIndexQuery(BuildKey("Factor", "Vector_TypeId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Vector_UnitId", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("Factor", "Vector_UnitPrefixId", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("Factor", "Vector_Value", "Long", false));
-	
-			//OauthAccess Vertex
+			//FactorUsesPrimaryArtifact
+			pSet.AddIndexQuery(BuildLabel("F-UP-A", false, true,	new [] {
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("OauthAccess", 12));
-			pSet.AddIndexQuery(BuildKey("OauthAccess", "OauthAccessId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("OauthAccess", "Token", "String", false));
-			//pSet.AddIndexQuery(BuildKey("OauthAccess", "Refresh", "String", false));
-			//pSet.AddIndexQuery(BuildKey("OauthAccess", "Expires", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("OauthAccess", "IsClientOnly", "Boolean", false));
-	
-			//OauthDomain Vertex
+			//FactorUsesRelatedArtifact
+			pSet.AddIndexQuery(BuildLabel("F-UR-A", false, true,	new [] {
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("OauthDomain", 13));
-			pSet.AddIndexQuery(BuildKey("OauthDomain", "OauthDomainId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("OauthDomain", "Domain", "String", false));
-	
-			//OauthGrant Vertex
+			//FactorDescriptorRefinesPrimaryWithArtifact
+			pSet.AddIndexQuery(BuildLabel("F-DRP-A", false, true,	new [] {
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("OauthGrant", 14));
-			pSet.AddIndexQuery(BuildKey("OauthGrant", "OauthGrantId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("OauthGrant", "RedirectUri", "String", false));
-			//pSet.AddIndexQuery(BuildKey("OauthGrant", "Code", "String", false));
-			//pSet.AddIndexQuery(BuildKey("OauthGrant", "Expires", "Long", false));
-	
-			//OauthScope Vertex
+			//FactorDescriptorRefinesRelatedWithArtifact
+			pSet.AddIndexQuery(BuildLabel("F-DRR-A", false, true,	new [] {
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			//pSet.AddIndexQuery(BuildGroup("OauthScope", 15));
-			pSet.AddIndexQuery(BuildKey("OauthScope", "OauthScopeId", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("OauthScope", "Allow", "Boolean", false));
-			//pSet.AddIndexQuery(BuildKey("OauthScope", "Created", "Long", false));
-	
-			//Edges
+			//FactorDescriptorRefinesTypeWithArtifact
+			pSet.AddIndexQuery(BuildLabel("F-DRT-A", false, true,	new [] {
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("AppUsesEmail", false, true,
-				new [] {
-					"App_AppId",
-					"Email_EmailId"
-				}
-			));
+			//FactorVectorUsesAxisArtifact
+			pSet.AddIndexQuery(BuildLabel("F-VUA-A", false, true,	new [] {
+				"F_Id",
+				"F_Fa",
+				"F_Cr",
+				"F_Dl",
+				"F_Co",
+				"F_No",
+				"F_DeT",
+				"F_DiT",
+				"F_DiP",
+				"F_DiR",
+				"F_EvT",
+				"F_EvP",
+				"F_EvD",
+				"F_IdT",
+				"F_IdV",
+				"F_LoT",
+				"F_LoX",
+				"F_LoY",
+				"F_LoZ",
+				"F_VeT",
+				"F_VeU",
+				"F_VeP",
+				"F_VeV",
+				"A_AId",
+				"A_Cr"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("AppDefinesMember", true, false,
-				new [] {
-					"App_AppId",
-					"Member_MemberId"
-				}
-			));
+			//OauthAccessUsesApp
+			pSet.AddIndexQuery(BuildLabel("OA-U-Ap", false, true,	new [] {
+				"OA_Id",
+				"OA_To",
+				"OA_Re",
+				"OA_Ex",
+				"Ap_Id",
+				"Ap_Na",
+				"Ap_Se"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("MemberHasMemberTypeAssign", true, true,
-				new [] {
-					"Member_MemberId",
-					"MemberTypeAssign_MemberTypeAssignId",
-					"MemberTypeAssign_MemberTypeId"
-				}
-			));
+			//OauthAccessUsesUser
+			pSet.AddIndexQuery(BuildLabel("OA-U-U", false, true,	new [] {
+				"OA_Id",
+				"OA_To",
+				"OA_Re",
+				"OA_Ex",
+				"U_Id",
+				"U_Na",
+				"U_Pa"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("MemberHasHistoricMemberTypeAssign", true, false,
-				new [] {
-					"Member_MemberId",
-					"MemberTypeAssign_MemberTypeAssignId",
-					"MemberTypeAssign_MemberTypeId"
-				}
-			));
+			//OauthDomainUsesApp
+			pSet.AddIndexQuery(BuildLabel("OD-U-Ap", false, true,	new [] {
+				"OD_Id",
+				"OD_Do",
+				"Ap_Id",
+				"Ap_Na",
+				"Ap_Se"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("MemberCreatesArtifact", true, false,
-				new [] {
-					"Member_MemberId",
-					"Artifact_ArtifactId"
-				}
-			));
+			//OauthGrantUsesApp
+			pSet.AddIndexQuery(BuildLabel("OG-U-Ap", false, true,	new [] {
+				"OG_Id",
+				"OG_Re",
+				"OG_Co",
+				"OG_Ex",
+				"Ap_Id",
+				"Ap_Na",
+				"Ap_Se"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("MemberCreatesMemberTypeAssign", true, false,
-				new [] {
-					"Member_MemberId",
-					"MemberTypeAssign_MemberTypeAssignId",
-					"MemberTypeAssign_MemberTypeId"
-				}
-			));
+			//OauthGrantUsesUser
+			pSet.AddIndexQuery(BuildLabel("OG-U-U", false, true,	new [] {
+				"OG_Id",
+				"OG_Re",
+				"OG_Co",
+				"OG_Ex",
+				"U_Id",
+				"U_Na",
+				"U_Pa"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("MemberCreatesFactor", true, false,
-				new [] {
-					"Member_MemberId",
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId"
-				}
-			));
+			//OauthScopeUsesApp
+			pSet.AddIndexQuery(BuildLabel("OS-U-Ap", false, true,	new [] {
+				"OS_Id",
+				"OS_Cr",
+				"Ap_Id",
+				"Ap_Na",
+				"Ap_Se"
+			}));
 
-			pSet.AddIndexQuery(BuildLabel("UserUsesEmail", false, true,
-				new [] {
-					"User_UserId",
-					"Email_EmailId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("UserDefinesMember", true, false,
-				new [] {
-					"User_UserId",
-					"Member_MemberId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("FactorUsesPrimaryArtifact", false, true,
-				new [] {
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId",
-					"Artifact_ArtifactId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("FactorUsesRelatedArtifact", false, true,
-				new [] {
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId",
-					"Artifact_ArtifactId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("FactorDescriptorRefinesPrimaryWithArtifact", false, true,
-				new [] {
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId",
-					"Artifact_ArtifactId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("FactorDescriptorRefinesRelatedWithArtifact", false, true,
-				new [] {
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId",
-					"Artifact_ArtifactId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("FactorDescriptorRefinesTypeWithArtifact", false, true,
-				new [] {
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId",
-					"Artifact_ArtifactId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("FactorVectorUsesAxisArtifact", false, true,
-				new [] {
-					"Factor_FactorId",
-					"Factor_FactorAssertionId",
-					"Factor_Descriptor_TypeId",
-					"Factor_Director_TypeId",
-					"Factor_Director_PrimaryActionId",
-					"Factor_Director_RelatedActionId",
-					"Factor_Eventor_TypeId",
-					"Factor_Eventor_PrecisionId",
-					"Factor_Identor_TypeId",
-					"Factor_Locator_TypeId",
-					"Factor_Vector_TypeId",
-					"Factor_Vector_UnitId",
-					"Factor_Vector_UnitPrefixId",
-					"Artifact_ArtifactId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthAccessUsesApp", false, true,
-				new [] {
-					"OauthAccess_OauthAccessId",
-					"App_AppId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthAccessUsesUser", false, true,
-				new [] {
-					"OauthAccess_OauthAccessId",
-					"User_UserId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthDomainUsesApp", false, true,
-				new [] {
-					"OauthDomain_OauthDomainId",
-					"App_AppId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthGrantUsesApp", false, true,
-				new [] {
-					"OauthGrant_OauthGrantId",
-					"App_AppId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthGrantUsesUser", false, true,
-				new [] {
-					"OauthGrant_OauthGrantId",
-					"User_UserId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthScopeUsesApp", false, true,
-				new [] {
-					"OauthScope_OauthScopeId",
-					"App_AppId"
-				}
-			));
-
-			pSet.AddIndexQuery(BuildLabel("OauthScopeUsesUser", false, true,
-				new [] {
-					"OauthScope_OauthScopeId",
-					"User_UserId"
-				}
-			));
+			//OauthScopeUsesUser
+			pSet.AddIndexQuery(BuildLabel("OS-U-U", false, true,	new [] {
+				"OS_Id",
+				"OS_Cr",
+				"U_Id",
+				"U_Na",
+				"U_Pa"
+			}));
 		}
 
 	}

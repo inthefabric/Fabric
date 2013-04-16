@@ -65,7 +65,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private bool GetMemberData(out Member pMem, out MemberTypeAssign pMta) {
-			var tx = new WeaverTransaction();
+			var tx = Weave.Inst.NewTx();
 			IWeaverFuncAs<Member> memberAlias;
 			IWeaverVarAlias aggVar;
 

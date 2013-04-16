@@ -37,7 +37,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override RefreshResult Execute() {
-			var tx = new WeaverTransaction();
+			var tx = Weave.Inst.NewTx();
 			IWeaverFuncAs<OauthAccess> accessAlias;
 			IWeaverVarAlias listVar;
 			

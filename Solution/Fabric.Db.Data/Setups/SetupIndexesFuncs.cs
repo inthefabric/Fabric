@@ -1,4 +1,4 @@
-﻿using Weaver;
+﻿using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data.Setups {
@@ -12,25 +12,24 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IWeaverQuery BuildGroup(string pNode, int pId) {
-			var q = new WeaverQuery();
-			q.FinalizeQuery(TitanPath+"TypeGroup "+pNode+"Group = "+
+			var q = Weave.Inst.NewQuery();
+			q.FinalizeQuery(TitanPath+"TypeGroup Group_"+pNode+" = "+
 				TitanPath+"TypeGroup.of("+pId+",'"+pNode+"')");
 			return q;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverQuery BuildKey(string pNode, string pProp, string pType, 
-																	/*string pGroup,*/ bool pIndex) {
+		private static IWeaverQuery BuildKey(string pNode, string pProp, string pType, bool pIndex) {
 			string script = 
-				TitanPath+"TitanKey "+pNode+"_"+pProp+" = "+
+				TitanPath+"TitanKey "+pProp+" = "+
 					"g.makeType()"+
 					".dataType("+pType+".class)"+
 					".name('"+pProp+"')"+
 					".unique(OUT)"; //,NO_LOCK)";
 
-			/*if ( pGroup != null ) {
-				script += ".group("+pGroup+")";
-			}*/
+			if ( pNode != null ) {
+				script += ".group(Group_"+pNode+")";
+			}
 
 			if ( pIndex ) {
 				script += ".indexed(Vertex.class)";
@@ -38,7 +37,7 @@ namespace Fabric.Db.Data.Setups {
 
 			script += ".makePropertyKey()";
 
-			var q = new WeaverQuery();
+			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery(script);
 			return q;
 		}
@@ -47,7 +46,7 @@ namespace Fabric.Db.Data.Setups {
 		private static IWeaverQuery BuildLabel(string pName, bool pInUnique, bool pOutUnique,
 												/*string[] pPrimaryKeys,*/ string[] pSignatureKeys) {
 			string script = 
-				TitanPath+"TitanLabel "+pName+" = "+
+				//TitanPath+"TitanLabel "+pName.Replace('-', '_')+" = "+
 					"g.makeType()"+
 					".name('"+pName+"')"+
 					//".primaryKey("+string.Join(",", pPrimaryKeys)+")";
@@ -63,7 +62,7 @@ namespace Fabric.Db.Data.Setups {
 
 			script += ".makeEdgeLabel()";
 
-			var q = new WeaverQuery();
+			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery(script);
 			return q;
 		}

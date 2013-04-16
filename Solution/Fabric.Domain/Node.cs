@@ -5,10 +5,7 @@ using Weaver.Items;
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public abstract class Node : WeaverNode, INode, INodeWithId {
-
-		[WeaverItemProperty]
-		public int FabType { get; private set; }
+	public abstract partial class Node : WeaverNode, INode, INodeWithId {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

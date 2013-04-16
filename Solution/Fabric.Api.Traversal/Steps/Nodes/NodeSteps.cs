@@ -1,11 +1,12 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:03 AM
+// Generated on 4/16/2013 3:43:12 PM
 
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -27,7 +28,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "AppId"; } }
+		public override string TypeIdName { get { return PropDbName.App_AppId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -50,7 +51,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep DefinesMemberList {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "outE('AppDefinesMember').inV");
+				Path.AddSegment(step, "outE('Ap-D-M').inV");
 				return step;
 			}
 		}
@@ -74,7 +75,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "ClassId"; } }
+		public override string TypeIdName { get { return PropDbName.Class_ClassId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -104,7 +105,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "InstanceId"; } }
+		public override string TypeIdName { get { return PropDbName.Instance_InstanceId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -141,7 +142,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "MemberId"; } }
+		public override string TypeIdName { get { return PropDbName.Member_MemberId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -170,7 +171,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IAppStep InAppDefines {
 			get {
 				var step = new AppStep(Path);
-				Path.AddSegment(step, "inE('AppDefinesMember').outV");
+				Path.AddSegment(step, "inE('Ap-D-M').outV");
 				return step;
 			}
 		}
@@ -179,7 +180,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberTypeAssignStep HasMemberTypeAssign {
 			get {
 				var step = new MemberTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('MemberHasMemberTypeAssign').inV");
+				Path.AddSegment(step, "outE('M-H-MTA').inV");
 				return step;
 			}
 		}
@@ -188,7 +189,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberTypeAssignStep HasHistoricMemberTypeAssignList {
 			get {
 				var step = new MemberTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('MemberHasHistoricMemberTypeAssign').inV");
+				Path.AddSegment(step, "outE('M-HH-MTA').inV");
 				return step;
 			}
 		}
@@ -197,7 +198,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep CreatesArtifactList {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('MemberCreatesArtifact').inV");
+				Path.AddSegment(step, "outE('M-C-A').inV");
 				return step;
 			}
 		}
@@ -206,7 +207,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberTypeAssignStep CreatesMemberTypeAssignList {
 			get {
 				var step = new MemberTypeAssignStep(Path);
-				Path.AddSegment(step, "outE('MemberCreatesMemberTypeAssign').inV");
+				Path.AddSegment(step, "outE('M-C-MTA').inV");
 				return step;
 			}
 		}
@@ -215,7 +216,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep CreatesFactorList {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "outE('MemberCreatesFactor').inV");
+				Path.AddSegment(step, "outE('M-C-F').inV");
 				return step;
 			}
 		}
@@ -224,7 +225,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IUserStep InUserDefines {
 			get {
 				var step = new UserStep(Path);
-				Path.AddSegment(step, "inE('UserDefinesMember').outV");
+				Path.AddSegment(step, "inE('U-D-M').outV");
 				return step;
 			}
 		}
@@ -251,7 +252,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "MemberTypeAssignId"; } }
+		public override string TypeIdName { get { return PropDbName.MemberTypeAssign_MemberTypeAssignId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -276,7 +277,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep InMemberHas {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberHasMemberTypeAssign').outV");
+				Path.AddSegment(step, "inE('M-H-MTA').outV");
 				return step;
 			}
 		}
@@ -285,7 +286,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep InMemberHasHistoric {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberHasHistoricMemberTypeAssign').outV");
+				Path.AddSegment(step, "inE('M-HH-MTA').outV");
 				return step;
 			}
 		}
@@ -294,7 +295,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep InMemberCreates {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberCreatesMemberTypeAssign').outV");
+				Path.AddSegment(step, "inE('M-C-MTA').outV");
 				return step;
 			}
 		}
@@ -318,7 +319,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "UrlId"; } }
+		public override string TypeIdName { get { return PropDbName.Url_UrlId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -349,7 +350,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "UserId"; } }
+		public override string TypeIdName { get { return PropDbName.User_UserId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -372,7 +373,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep DefinesMemberList {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "outE('UserDefinesMember').inV");
+				Path.AddSegment(step, "outE('U-D-M').inV");
 				return step;
 			}
 		}
@@ -403,7 +404,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		partial void ConstructorHook();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "FactorId"; } }
+		public override string TypeIdName { get { return PropDbName.Factor_FactorId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -432,7 +433,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep InMemberCreates {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberCreatesFactor').outV");
+				Path.AddSegment(step, "inE('M-C-F').outV");
 				return step;
 			}
 		}
@@ -441,7 +442,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep UsesPrimaryArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesPrimaryArtifact').inV");
+				Path.AddSegment(step, "outE('F-UP-A').inV");
 				return step;
 			}
 		}
@@ -450,7 +451,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep UsesRelatedArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorUsesRelatedArtifact').inV");
+				Path.AddSegment(step, "outE('F-UR-A').inV");
 				return step;
 			}
 		}
@@ -459,7 +460,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep DescriptorRefinesPrimaryWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorDescriptorRefinesPrimaryWithArtifact').inV");
+				Path.AddSegment(step, "outE('F-DRP-A').inV");
 				return step;
 			}
 		}
@@ -468,7 +469,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep DescriptorRefinesRelatedWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorDescriptorRefinesRelatedWithArtifact').inV");
+				Path.AddSegment(step, "outE('F-DRR-A').inV");
 				return step;
 			}
 		}
@@ -477,7 +478,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep DescriptorRefinesTypeWithArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorDescriptorRefinesTypeWithArtifact').inV");
+				Path.AddSegment(step, "outE('F-DRT-A').inV");
 				return step;
 			}
 		}
@@ -486,7 +487,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IArtifactStep VectorUsesAxisArtifact {
 			get {
 				var step = new ArtifactStep(Path);
-				Path.AddSegment(step, "outE('FactorVectorUsesAxisArtifact').inV");
+				Path.AddSegment(step, "outE('F-VUA-A').inV");
 				return step;
 			}
 		}

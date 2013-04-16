@@ -20,65 +20,39 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupAll(DataSet pSet) {
-			pSet.AddIndexQuery(BuildKey("FabType", "FabType", "Integer", true));
+
+			//VERTICES
+
+			pSet.AddIndexQuery(BuildKey(null, "FT", "Integer", true));
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+var schema = new Schema();
+IList<WeaverNodeSchema> nodes = schema.Nodes;
 int groupId = 2;
 var propNameMap = new Dictionary<string, SchemaHelperProp>();
-var propNameDupMap = new Dictionary<string, SchemaHelperProp>();
+var propSkipMap = new Dictionary<string, bool>();
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
-	if ( node.IsAbstract ) { continue; }
-	IList<SchemaHelperProp> props = hn.GetProps(false);
-
-	foreach ( SchemaHelperProp hp in props ) {
-		FabricPropSchema prop = hp.PropSchema;
-		
-		if ( !propNameMap.ContainsKey(prop.Name) ) {
-			propNameMap.Add(prop.Name, hp);
-		}
-		else if ( !propNameDupMap.ContainsKey(prop.Name) ) {
-			propNameDupMap.Add(prop.Name, hp);
-		}
-	}
-}
-
-foreach ( string propName in propNameDupMap.Keys ) {
-	SchemaHelperProp hp = propNameDupMap[propName];
+foreach ( WeaverNodeSchema node in nodes ) {
+	//if ( node.IsAbstract ) { continue; }
 #>
-			//pSet.AddIndexQuery(BuildKey("Shared", "<#= propName #>", "<#= hp.TitanTypeName #>", false));
-<#
-} //end propNameMap loop
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
-	if ( node.IsAbstract ) { continue; }
-#>
-	
-			//<#= node.Name #> Vertex
-
-			//pSet.AddIndexQuery(BuildGroup("<#= node.Name #>", <#= groupId++ #>));
+			//<#= node.Name #>
+			pSet.AddIndexQuery(BuildGroup("<#= node.DbName #>", <#= groupId++ #>));
 <#
 
-	IList<SchemaHelperProp> props = hn.GetProps(false);
-
-	foreach ( SchemaHelperProp hp in props ) {
-		FabricPropSchema prop = hp.PropSchema;
-		bool skip = propNameDupMap.ContainsKey(prop.Name);
-		string propType = hp.TypeName;
+	foreach ( WeaverPropSchema ps in node.Props ) {
+		FabricPropSchema prop = (FabricPropSchema)ps;
+		string titanType = SchemaHelperProp.GetTitanTypeName(prop.Type);
 		bool index = (prop.IsPrimaryKey == true || prop.EnumName != null || prop.Name == "FabType");
-		if ( !index ) { skip = true; }
+		bool skip = (prop.Type == typeof(bool)); //Titan 0.3.0 fails for Boolean properties
+		if ( skip ) { propSkipMap.Add(prop.DbName, true); }
 #>
-			<#= skip ? "//" : "" #>pSet.AddIndexQuery(BuildKey("<#= node.Name #>", "<#= prop.Name #>", "<#= hp.TitanTypeName #>", <#= index.ToString().ToLower() #>));
+			<#= skip ? "//" : "" #>pSet.AddIndexQuery(BuildKey("<#= node.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>));
 <#
 	} //end prop loop
 } //end node loop
 #>
 	
-			//Edges
+			//EDGES
 <#
 IList<string> rels = SchemaHelper.GetRels();
 
@@ -95,41 +69,29 @@ foreach ( string name in rels ) {
 	var keys = new List<string>();
 	var sigs = new List<string>();
 
-	foreach ( SchemaHelperProp hp in fromProps ) {
-		string key = from.NodeSchema.Name+"_"+hp.PropSchema.Name;
+	var props = new List<FabricPropSchema>();
+	foreach ( SchemaHelperProp hp in fromProps ) { props.Add((FabricPropSchema)hp.PropSchema); }
+	foreach ( SchemaHelperProp hp in toProps ) { props.Add((FabricPropSchema)hp.PropSchema); }
 
-		if ( propNameDupMap.ContainsKey(hp.PropSchema.Name) ) {
-			//key = "Shared_"+hp.PropSchema.Name;
+	foreach ( FabricPropSchema prop in props ) {
+		string key = prop.DbName;
+
+		if ( propSkipMap.ContainsKey(key) ) {
 			continue;
 		}
 
 		sigs.Add(key);
 
-		if ( hp.PropSchema.IsPrimaryKey == true || hp.PropSchema.EnumName != null ) {
-			keys.Add(key);
-		}
-	}
-
-	foreach ( SchemaHelperProp hp in toProps ) {
-		string key = to.NodeSchema.Name+"_"+hp.PropSchema.Name;
-		
-		if ( propNameDupMap.ContainsKey(hp.PropSchema.Name) ) {
-			continue;
-		}
-
-		sigs.Add(key);
-
-		if ( hp.PropSchema.IsPrimaryKey == true || hp.PropSchema.EnumName != null ) {
+		if ( prop.IsPrimaryKey == true || prop.EnumName != null ) {
 			keys.Add(key);
 		}
 	}
 #>
 
-			pSet.AddIndexQuery(BuildLabel("<#= rel.RelName #>", <#= inUnique #>, <#= outUnique #>,
-				new [] {
-					"<#= string.Join("\",\r\n\t\t\t\t\t\"", keys) #>"
-				}
-			));
+			//<#= rel.RelName #>
+			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>,	new [] {
+				"<#= string.Join("\",\r\n\t\t\t\t\"", sigs) #>"
+			}));
 <#
 } //end rel names loop
 #>

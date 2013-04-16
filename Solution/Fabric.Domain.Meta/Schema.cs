@@ -38,8 +38,17 @@ namespace Fabric.Domain.Meta {
 			FabricPropSchema p;
 
 			////
+
+			WeaverNodeSchema node = AddNode("Node", "N");
+			node.IsAbstract = true;
+			node.IsBaseClass = true;
+			node.IsInternal = true;
+			p = AddProp(node, "FabType", "FT", typeof(int));
+				p.IsInternal = true;
+
+			////
 			
-			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", "Na");
+			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", "NA");
 			nodeForAction.IsAbstract = true;
 			nodeForAction.IsBaseClass = true;
 			p = AddProp(nodeForAction, "Performed", "Pe", typeof(DateTime));
@@ -53,7 +62,7 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
 			artifact.IsBaseClass = true;
-			p = AddProp(artifact, "ArtifactId", "Id", typeof(long));
+			p = AddProp(artifact, "ArtifactId", "AId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(artifact, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
@@ -415,7 +424,7 @@ namespace Fabric.Domain.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		private FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, string pDbName,
 																						Type pType) {
-			var p = new FabricPropSchema(pName, pNode.DbName+"."+pDbName, pType);
+			var p = new FabricPropSchema(pName, pNode.DbName+'_'+pDbName, pType);
 			pNode.Props.Add(p);
 			//Console.WriteLine(" - "+p.DbName+" ("+pNode.Name+"."+p.Name+")");
 			return p;

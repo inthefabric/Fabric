@@ -17,7 +17,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TxBuilder() {
-			Transaction = new WeaverTransaction();
+			Transaction = Weave.Inst.NewTx();
 			vVarHash = new HashSet<IWeaverVarAlias>();
 		}
 

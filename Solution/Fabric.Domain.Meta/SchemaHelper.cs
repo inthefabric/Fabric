@@ -1,9 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 12:22:07 PM
+// Generated on 4/16/2013 3:43:12 PM
 
 using System.Collections.Generic;
-using Weaver.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -98,21 +97,22 @@ namespace Fabric.Domain.Meta {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
-				case "NodeForAction": return new SchemaHelperNode(s.Nodes[0]);
-				case "Artifact": return new SchemaHelperNode(s.Nodes[1]);
-				case "App": return new SchemaHelperNode(s.Nodes[2]);
-				case "Class": return new SchemaHelperNode(s.Nodes[3]);
-				case "Email": return new SchemaHelperNode(s.Nodes[4]);
-				case "Instance": return new SchemaHelperNode(s.Nodes[5]);
-				case "Member": return new SchemaHelperNode(s.Nodes[6]);
-				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[7]);
-				case "Url": return new SchemaHelperNode(s.Nodes[8]);
-				case "User": return new SchemaHelperNode(s.Nodes[9]);
-				case "Factor": return new SchemaHelperNode(s.Nodes[10]);
-				case "OauthAccess": return new SchemaHelperNode(s.Nodes[11]);
-				case "OauthDomain": return new SchemaHelperNode(s.Nodes[12]);
-				case "OauthGrant": return new SchemaHelperNode(s.Nodes[13]);
-				case "OauthScope": return new SchemaHelperNode(s.Nodes[14]);
+				case "Node": return new SchemaHelperNode(s.Nodes[0]);
+				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]);
+				case "Artifact": return new SchemaHelperNode(s.Nodes[2]);
+				case "App": return new SchemaHelperNode(s.Nodes[3]);
+				case "Class": return new SchemaHelperNode(s.Nodes[4]);
+				case "Email": return new SchemaHelperNode(s.Nodes[5]);
+				case "Instance": return new SchemaHelperNode(s.Nodes[6]);
+				case "Member": return new SchemaHelperNode(s.Nodes[7]);
+				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]);
+				case "Url": return new SchemaHelperNode(s.Nodes[9]);
+				case "User": return new SchemaHelperNode(s.Nodes[10]);
+				case "Factor": return new SchemaHelperNode(s.Nodes[11]);
+				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]);
+				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]);
+				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]);
+				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]);
 			}
 
 			return null;
@@ -121,6 +121,7 @@ namespace Fabric.Domain.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public static IList<string> GetNodes() {
 			return new List<string> {
+				"Node",
 				"NodeForAction",
 				"Artifact",
 				"App",
@@ -157,28 +158,31 @@ namespace Fabric.Domain.Meta {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static IList<WeaverNodeSchema> GetWeaverNodeSchemaList() {
+		/*--------------------------------------------------------------------------------------------* /
+		public static IList<WeaverNodeSchema> GetNodeSchemaListForWeaver() {
 			if ( WeaverNodeSchemaList == null ) {
 				WeaverNodeSchemaList = new List<WeaverNodeSchema> {
-					BuildNodeForWeaver("App"),
-					BuildNodeForWeaver("Class"),
-					BuildNodeForWeaver("Email"),
-					BuildNodeForWeaver("Instance"),
-					BuildNodeForWeaver("Member"),
-					BuildNodeForWeaver("MemberTypeAssign"),
-					BuildNodeForWeaver("Url"),
-					BuildNodeForWeaver("User"),
-					BuildNodeForWeaver("Factor"),
-					BuildNodeForWeaver("OauthAccess"),
-					BuildNodeForWeaver("OauthDomain"),
-					BuildNodeForWeaver("OauthGrant"),
-					BuildNodeForWeaver("OauthScope"),
+					GetNodeSchemaForWeaver("Node"),
+					GetNodeSchemaForWeaver("NodeForAction"),
+					GetNodeSchemaForWeaver("Artifact"),
+					GetNodeSchemaForWeaver("App"),
+					GetNodeSchemaForWeaver("Class"),
+					GetNodeSchemaForWeaver("Email"),
+					GetNodeSchemaForWeaver("Instance"),
+					GetNodeSchemaForWeaver("Member"),
+					GetNodeSchemaForWeaver("MemberTypeAssign"),
+					GetNodeSchemaForWeaver("Url"),
+					GetNodeSchemaForWeaver("User"),
+					GetNodeSchemaForWeaver("Factor"),
+					GetNodeSchemaForWeaver("OauthAccess"),
+					GetNodeSchemaForWeaver("OauthDomain"),
+					GetNodeSchemaForWeaver("OauthGrant"),
+					GetNodeSchemaForWeaver("OauthScope"),
 				};
 			}
 
 			return WeaverNodeSchemaList;
-		}
+		}*/
 
 	}
 

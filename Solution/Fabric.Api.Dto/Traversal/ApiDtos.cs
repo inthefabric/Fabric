@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:02 AM
+// Generated on 4/16/2013 3:43:11 PM
 
 using System;
 using System.Collections.Generic;
@@ -33,10 +33,10 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["Performed"];
+			val = pData["NA_Pe"];
 			Performed = long.Parse(val);
 
-			found = pData.TryGetValue("Note", out val);
+			found = pData.TryGetValue("NA_No", out val);
 			if ( found ) { Note = val; }
 		}
 		
@@ -83,10 +83,10 @@ namespace Fabric.Api.Dto.Traversal {
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
 
-			val = pData["ArtifactId"];
+			val = pData["A_AId"];
 			ArtifactId = long.Parse(val);
 
-			val = pData["Created"];
+			val = pData["A_Cr"];
 			Created = long.Parse(val);
 		}
 		
@@ -136,10 +136,10 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["AppId"];
+			val = pData["Ap_Id"];
 			AppId = long.Parse(val);
 
-			found = pData.TryGetValue("Name", out val);
+			found = pData.TryGetValue("Ap_Na", out val);
 			if ( found ) { Name = val; }
 		}
 		
@@ -195,16 +195,16 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["ClassId"];
+			val = pData["Cl_Id"];
 			ClassId = long.Parse(val);
 
-			found = pData.TryGetValue("Name", out val);
+			found = pData.TryGetValue("Cl_Na", out val);
 			if ( found ) { Name = val; }
 
-			found = pData.TryGetValue("Disamb", out val);
+			found = pData.TryGetValue("Cl_Di", out val);
 			if ( found ) { Disamb = val; }
 
-			found = pData.TryGetValue("Note", out val);
+			found = pData.TryGetValue("Cl_No", out val);
 			if ( found ) { Note = val; }
 		}
 		
@@ -262,16 +262,16 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["InstanceId"];
+			val = pData["In_Id"];
 			InstanceId = long.Parse(val);
 
-			found = pData.TryGetValue("Name", out val);
+			found = pData.TryGetValue("In_Na", out val);
 			if ( found ) { Name = val; }
 
-			found = pData.TryGetValue("Disamb", out val);
+			found = pData.TryGetValue("In_Di", out val);
 			if ( found ) { Disamb = val; }
 
-			found = pData.TryGetValue("Note", out val);
+			found = pData.TryGetValue("In_No", out val);
 			if ( found ) { Note = val; }
 		}
 		
@@ -317,7 +317,7 @@ namespace Fabric.Api.Dto.Traversal {
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			string val;
 
-			val = pData["MemberId"];
+			val = pData["M_Id"];
 			MemberId = long.Parse(val);
 		}
 		
@@ -365,10 +365,10 @@ namespace Fabric.Api.Dto.Traversal {
 
 			string val;
 
-			val = pData["MemberTypeAssignId"];
+			val = pData["MTA_Id"];
 			MemberTypeAssignId = long.Parse(val);
 
-			val = pData["MemberTypeId"];
+			val = pData["MTA_Mt"];
 			MemberTypeId = byte.Parse(val);
 		}
 		
@@ -421,13 +421,13 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["UrlId"];
+			val = pData["Ur_Id"];
 			UrlId = long.Parse(val);
 
-			found = pData.TryGetValue("Name", out val);
+			found = pData.TryGetValue("Ur_Na", out val);
 			if ( found ) { Name = val; }
 
-			found = pData.TryGetValue("AbsoluteUrl", out val);
+			found = pData.TryGetValue("Ur_Ab", out val);
 			if ( found ) { AbsoluteUrl = val; }
 		}
 		
@@ -478,10 +478,10 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["UserId"];
+			val = pData["U_Id"];
 			UserId = long.Parse(val);
 
-			found = pData.TryGetValue("Name", out val);
+			found = pData.TryGetValue("U_Na", out val);
 			if ( found ) { Name = val; }
 		}
 		
@@ -559,118 +559,118 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["FactorId"];
+			val = pData["F_Id"];
 			FactorId = long.Parse(val);
 
-			val = pData["FactorAssertionId"];
+			val = pData["F_Fa"];
 			FactorAssertionId = byte.Parse(val);
 
-			val = pData["IsDefining"];
+			val = pData["F_Df"];
 			IsDefining = bool.Parse(val);
 
-			val = pData["Created"];
+			val = pData["F_Cr"];
 			Created = long.Parse(val);
 
-			found = pData.TryGetValue("Completed", out val);
+			found = pData.TryGetValue("F_Co", out val);
 			if ( found ) { Completed = long.Parse(val); }
 
-			found = pData.TryGetValue("Note", out val);
+			found = pData.TryGetValue("F_No", out val);
 			if ( found ) { Note = val; }
 
-			found = pData.TryGetValue("Descriptor_TypeId", out val);
+			found = pData.TryGetValue("F_DeT", out val);
 			if ( found ) {
 				if ( Descriptor == null ) { Descriptor = new FabDescriptor(); }
 				Descriptor.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Director_TypeId", out val);
+			found = pData.TryGetValue("F_DiT", out val);
 			if ( found ) {
 				if ( Director == null ) { Director = new FabDirector(); }
 				Director.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Director_PrimaryActionId", out val);
+			found = pData.TryGetValue("F_DiP", out val);
 			if ( found ) {
 				if ( Director == null ) { Director = new FabDirector(); }
 				Director.PrimaryActionId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Director_RelatedActionId", out val);
+			found = pData.TryGetValue("F_DiR", out val);
 			if ( found ) {
 				if ( Director == null ) { Director = new FabDirector(); }
 				Director.RelatedActionId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Eventor_TypeId", out val);
+			found = pData.TryGetValue("F_EvT", out val);
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Eventor_PrecisionId", out val);
+			found = pData.TryGetValue("F_EvP", out val);
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.PrecisionId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Eventor_DateTime", out val);
+			found = pData.TryGetValue("F_EvD", out val);
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.DateTime = long.Parse(val);
 			}
 
-			found = pData.TryGetValue("Identor_TypeId", out val);
+			found = pData.TryGetValue("F_IdT", out val);
 			if ( found ) {
 				if ( Identor == null ) { Identor = new FabIdentor(); }
 				Identor.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Identor_Value", out val);
+			found = pData.TryGetValue("F_IdV", out val);
 			if ( found ) { Identor.Value = val; }
 
-			found = pData.TryGetValue("Locator_TypeId", out val);
+			found = pData.TryGetValue("F_LoT", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Locator_ValueX", out val);
+			found = pData.TryGetValue("F_LoX", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.ValueX = double.Parse(val);
 			}
 
-			found = pData.TryGetValue("Locator_ValueY", out val);
+			found = pData.TryGetValue("F_LoY", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.ValueY = double.Parse(val);
 			}
 
-			found = pData.TryGetValue("Locator_ValueZ", out val);
+			found = pData.TryGetValue("F_LoZ", out val);
 			if ( found ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
 				Locator.ValueZ = double.Parse(val);
 			}
 
-			found = pData.TryGetValue("Vector_TypeId", out val);
+			found = pData.TryGetValue("F_VeT", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Vector_UnitId", out val);
+			found = pData.TryGetValue("F_VeU", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.UnitId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Vector_UnitPrefixId", out val);
+			found = pData.TryGetValue("F_VeP", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.UnitPrefixId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("Vector_Value", out val);
+			found = pData.TryGetValue("F_VeV", out val);
 			if ( found ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.Value = long.Parse(val);

@@ -12,7 +12,6 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System.Collections.Generic;
-using Weaver.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -136,17 +135,14 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static IList<WeaverNodeSchema> GetWeaverNodeSchemaList() {
+		/*--------------------------------------------------------------------------------------------* /
+		public static IList<WeaverNodeSchema> GetNodeSchemaListForWeaver() {
 			if ( WeaverNodeSchemaList == null ) {
 				WeaverNodeSchemaList = new List<WeaverNodeSchema> {
 <#
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	if ( node.IsBaseClass ) {
-		continue;
-	}
 #>
-					BuildNodeForWeaver("<#= node.Name #>"),
+					GetNodeSchemaForWeaver("<#= node.Name #>"),
 <#
 } //end node loop
 #>
@@ -154,7 +150,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			}
 
 			return WeaverNodeSchemaList;
-		}
+		}*/
 
 	}
 

@@ -72,7 +72,7 @@ namespace Fabric.Db.Data {
 		public IWeaverQuery AddQuery {
 			get {
 				if ( vAddQuery == null ) {
-					vAddQuery = Weave.Inst.AddRel(FromNode, Rel, ToNode);
+					vAddQuery = Weave.Inst.AddRel(FromNodeT, RelT, ToNodeT);
 				}
 
 				return vAddQuery;

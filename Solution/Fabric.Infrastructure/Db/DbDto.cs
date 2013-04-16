@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Db {
@@ -47,8 +48,8 @@ namespace Fabric.Infrastructure.Db {
 				case "vertex":
 					int ft = 0;
 					
-					if ( Data != null && Data.ContainsKey("FabType") ) {
-						ft = int.Parse(Data["FabType"]);
+					if ( Data != null && Data.ContainsKey(PropDbName.Node_FabType) ) {
+						ft = int.Parse(Data[PropDbName.Node_FabType]);
 					}
 
 					Item = ItemType.Node;

@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using Weaver.Schema;
-
-namespace Fabric.Domain.Meta {
+﻿namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public static partial class SchemaHelper {
 		
 		private static Schema SchemaInner;
-		private static IList<WeaverNodeSchema> WeaverNodeSchemaList;
+		//private static IList<WeaverNodeSchema> WeaverNodeSchemaList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,8 +18,31 @@ namespace Fabric.Domain.Meta {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static WeaverNodeSchema BuildNodeForWeaver(string pNodeName) {
+		/*--------------------------------------------------------------------------------------------* /
+		public static IList<FabricPropSchema> GetSubPropsForWeaver(WeaverNodeSchema pBaseNode) {
+			if ( !pBaseNode.IsBaseClass ) {
+				return pBaseNode.Props.Cast<FabricPropSchema>().ToList();
+			}
+
+			var list = new List<FabricPropSchema>();
+
+			foreach ( string nodeName in GetNodes() ) {
+				WeaverNodeSchema ns = GetNodeSchemaForWeaver(nodeName);
+
+				if ( ns.BaseNode == null || ns.BaseNode.Name != pBaseNode.Name ) {
+					continue;
+				}
+
+				list.AddRange(GetSubPropsForWeaver(ns));
+			}
+
+			return list;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------* /
+		private static WeaverNodeSchema GetNodeSchemaForWeaver(string pNodeName) {
 			WeaverNodeSchema ns = GetNode(pNodeName).NodeSchema;
 
 			var newNs = new WeaverNodeSchema(ns.Name, ns.DbName);
@@ -33,29 +53,25 @@ namespace Fabric.Domain.Meta {
 			}
 
 			FillBaseNodeProps(newNs, newNs.BaseNode);
-
-			var psType = new WeaverPropSchema("FabType", newNs.DbName+".FT", typeof(int));
-			newNs.Props.Add(psType);
-			
 			return newNs;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private static void FillBaseNodeProps(WeaverNodeSchema pNode, WeaverNodeSchema pBase) {
 			if ( pBase == null ) {
 				return;
 			}
 
 			foreach ( WeaverPropSchema ps in pBase.Props ) {
-				string db = pNode.DbName+'.'+ps.DbName.Split('.')[1];
+				string db = pNode.DbName+'_'+ps.DbName.Split('_')[1];
 
-				var psNew = new WeaverPropSchema(ps.Name, db, ps.Type);
-				psNew.IsNullable = ps.IsNullable; //probably not necessary
+				var psNew = new FabricPropSchema(ps.Name, db, ps.Type);
+				psNew.EnumName = ((FabricPropSchema)ps).EnumName;
 				pNode.Props.Add(psNew);
 			}
 
 			FillBaseNodeProps(pNode, pBase.BaseNode);
-		}
+		}*/
 
 	}
 

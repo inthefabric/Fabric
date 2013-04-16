@@ -49,7 +49,7 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendSetupTx() {
 			Log.Debug("Remove all nodes");
-			var tx = new WeaverTransaction();
+			var tx = Weave.Inst.NewTx();
 
 			foreach ( IWeaverQuery q in vDataSet.Initialization ) {
 				tx.AddQuery(q);
@@ -70,7 +70,7 @@ namespace Fabric.Api.Internal.Setups {
 			int count = 0;
 
 			while ( true ) {
-				var tx = new WeaverTransaction();
+				var tx = Weave.Inst.NewTx();
 				string listScript = "";
 				int start = count;
 				int limit = 1;
@@ -89,7 +89,7 @@ namespace Fabric.Api.Internal.Setups {
 					listScript += nodeVar.Name+".id,";
 				}
 
-				var listQ = new WeaverQuery();
+				var listQ = Weave.Inst.NewQuery();
 				listQ.FinalizeQuery("["+listScript.Substring(0, listScript.Length-1)+"]");
 				tx.AddQuery(listQ);
 
@@ -117,7 +117,7 @@ namespace Fabric.Api.Internal.Setups {
 			int count = 0;
 
 			while ( true ) {
-				var tx = new WeaverTransaction();
+				var tx = Weave.Inst.NewTx();
 				int limit = 10;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 

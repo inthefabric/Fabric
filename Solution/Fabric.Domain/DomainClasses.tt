@@ -69,11 +69,12 @@ IList<string> nodes = SchemaHelper.GetNodes();
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
 	WeaverNodeSchema node = hn.NodeSchema;
-	string baseNode = (hn.HasParentClass ? node.BaseNode.Name : "Node");
+	bool isMainNode = (name == "Node");
+	string baseNode = (isMainNode ? "" : " : "+(hn.HasParentClass ? node.BaseNode.Name : "Node"));
 	string abs = (node.IsAbstract ? "abstract " : "");
 #>
 	/*================================================================================================*/
-	public <#= abs #>class <#= node.Name #> : <#= baseNode #> {
+	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
 	
 <#
 	IList<SchemaHelperProp> props = hn.GetProps(false);
@@ -144,16 +145,6 @@ foreach ( string name in nodes ) {
 <#
 	}
 
-	if ( node.IsRoot ) {
-#>
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override bool IsRoot { get { return (Path == null || PathIndex == 0); } }
-
-<#
-	} //end if "isRoot"
-	
 	if ( !node.IsAbstract ) {
 		string fabType = (node.IsAbstract ? "Abstract" : (node.IsBaseClass ? "BaseClass" : node.Name));
 		if ( fabType == "Root" ) { fabType = "Abstract"; }
@@ -166,7 +157,7 @@ foreach ( string name in nodes ) {
 <#	
 	} //end abstract condition
 
-	if ( node.IsBaseClass ) {
+	if ( node.IsBaseClass && !isMainNode ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= node.Name #>(NodeFabType pFabType) : base(pFabType) {}

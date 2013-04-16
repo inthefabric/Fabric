@@ -1,12 +1,13 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:03 AM
+// Generated on 4/16/2013 3:46:31 PM
 
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
@@ -68,7 +69,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new AppStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.App));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -78,7 +79,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new ClassStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Class));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -88,7 +89,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new InstanceStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Instance));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -98,7 +99,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new MemberStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Member));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -108,7 +109,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new MemberTypeAssignStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.MemberTypeAssign));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -118,7 +119,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new UrlStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Url));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -128,7 +129,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new UserStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.User));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}
@@ -138,7 +139,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 			get {
 				var step = new FactorStep(Path);
 				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.Factor));
-				Path.AddSegment(step, "V('FabType',"+p+")");
+				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}
 		}

@@ -14,9 +14,9 @@ namespace Fabric.Infrastructure.Weaver {
 		public static WeaverInstance Init() {
 			var s = new Schema();
 
-			/*var nodes = SchemaHelper.GetWeaverNodeSchemaList();
+			var nodes = s.Nodes;
 
-			foreach ( WeaverNodeSchema ns in nodes ) {
+			/*foreach ( WeaverNodeSchema ns in nodes ) {
 				Log.Debug("NODE: "+ns.DbName+" ("+ns.Name+")");
 
 				foreach ( WeaverPropSchema ps in ns.Props ) {
@@ -24,7 +24,7 @@ namespace Fabric.Infrastructure.Weaver {
 				}
 			}*/
 
-			return new WeaverInstance(SchemaHelper.GetWeaverNodeSchemaList(), s.Rels);
+			return new WeaverInstance(nodes, s.Rels);
 		}
 
 	}

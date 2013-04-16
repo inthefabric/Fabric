@@ -26,23 +26,23 @@ namespace Fabric.Test.FabDbData {
 
 			foreach ( WeaverQuery q in ds.Initialization ) {
 				string json = WeaverQueryToJson(q);
-				//Log.Debug(json);
+				Log.Debug(json);
 			}
 
 			foreach ( WeaverQuery q in ds.Indexes ) {
 				string json = WeaverQueryToJson(q);
-				//Log.Debug(json);
+				Log.Debug(json);
 			}
 
 			foreach ( IDataNode n in ds.Nodes ) {
 				string json = WeaverQueryToJson(n.AddQuery);
-				//Log.Debug("["+nodeI+"] -- "+json);
+				Log.Debug("["+nodeI+"] -- "+json);
 				n.Node.Id = (nodeI++)+"";
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {
 				string json = WeaverQueryToJson(r.AddQuery);
-				//Log.Debug(json);
+				Log.Debug(json);
 			}
 		}
 

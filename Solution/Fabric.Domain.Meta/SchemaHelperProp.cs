@@ -8,7 +8,6 @@ namespace Fabric.Domain.Meta {
 		public FabricPropSchema PropSchema { get; private set; }
 
 		public string TypeName { get; private set; }
-		public string TitanTypeName { get; private set; }
 		public string SubPropName { get; private set; }
 
 
@@ -17,7 +16,6 @@ namespace Fabric.Domain.Meta {
 		public SchemaHelperProp(FabricPropSchema pProp) {
 			PropSchema = pProp;
 			TypeName = GetTypeName(PropSchema.Type, (PropSchema.IsNullable == true));
-			TitanTypeName = GetTitanTypeName(PropSchema.Type);
 
 			if ( IsSubProp() ) {
 				SubPropName = PropSchema.Name.Split('_')[1];

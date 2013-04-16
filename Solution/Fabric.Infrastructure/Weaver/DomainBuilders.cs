@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:30:01 AM
+// Generated on 4/16/2013 3:43:11 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -8,6 +8,21 @@ using Weaver.Interfaces;
 using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
+
+	/*================================================================================================*/
+	public abstract class NodeBuilder<T> : DomainBuilder<T> where T : INode, new() {
+
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public NodeBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public NodeBuilder(TxBuilder pTx) : base(pTx) {}
+
+
+	}
 
 	/*================================================================================================*/
 	public abstract class NodeForActionBuilder<T> : DomainBuilder<T> where T : INode, new() {
