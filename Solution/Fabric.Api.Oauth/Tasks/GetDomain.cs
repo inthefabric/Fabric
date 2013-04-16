@@ -2,6 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -61,7 +62,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override DomainResult Execute() {
-			string domainProp = WeaverUtil.GetPropertyName<OauthDomain>(x => x.Domain);
+			string domainProp = WeaverUtil.GetPropertyName<OauthDomain>(Weave.Inst.Config,x=> x.Domain);
 			string filterStep = "filter{it.getProperty('"+domainProp+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 

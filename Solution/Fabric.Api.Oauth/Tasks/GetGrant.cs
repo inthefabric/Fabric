@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -43,11 +44,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 
 			var ogUpdate = new OauthGrant { Code = "" };
-			var grantUpdater = new WeaverUpdates<OauthGrant>();
+			var grantUpdater = Weave.Inst.NewUpdates<OauthGrant>();
 			grantUpdater.AddUpdate(ogUpdate, x => x.Code); //set to empty string
 
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out listVar)
+				Weave.Inst.InitListVar(tx, out listVar)
 			);
 
 			tx.AddQuery(

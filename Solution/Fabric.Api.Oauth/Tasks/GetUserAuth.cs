@@ -2,6 +2,7 @@
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -41,7 +42,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override User Execute() {
-			string nameProp = WeaverUtil.GetPropertyName<User>(x => x.Name);
+			string nameProp = WeaverUtil.GetPropertyName<User>(Weave.Inst.Config, x => x.Name);
 			string filterStep = "filter{it.getProperty('"+nameProp+"').toLowerCase()==_P2}";
 
 			IWeaverQuery q = 

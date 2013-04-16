@@ -67,7 +67,7 @@ namespace Fabric.Api.Web {
 			IWeaverVarAlias listVar;
 			
 			txb.Transaction.AddQuery(
-				WeaverTasks.InitListVar(txb.Transaction, list, out listVar)
+				Weave.Inst.InitListVar(txb.Transaction, list, out listVar)
 			);
 
 			////

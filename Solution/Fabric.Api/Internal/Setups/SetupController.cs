@@ -4,6 +4,7 @@ using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Nancy;
 using Weaver;
 using Weaver.Interfaces;
@@ -84,7 +85,7 @@ namespace Fabric.Api.Internal.Setups {
 					IWeaverVarAlias nodeVar;
 					count++;
 
-					tx.AddQuery(WeaverTasks.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
+					tx.AddQuery(Weave.Inst.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
 					listScript += nodeVar.Name+".id,";
 				}
 

@@ -4,6 +4,7 @@ using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver;
@@ -141,10 +142,11 @@ namespace Fabric.Test.Integration {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNodeByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
-																where T : class, INodeWithId, new() {
+											where T : class, INodeWithId, IWeaverItemIndexable, new() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V('FabType',"+(int)NodeFabTypeUtil.TypeMap[typeof(T)]+")"+
-				".has('"+WeaverUtil.GetPropertyName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
+				".has('"+WeaverUtil.GetPropertyName(Weave.Inst.Config, pProp)+
+				"',Tokens.T.eq,"+pValWithQuotes+")");
 			return ApiCtx.DbSingle<T>("TEST.GetNodeByProp", q);
 		}
 

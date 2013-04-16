@@ -3,6 +3,7 @@ using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver;
 using Weaver.Interfaces;
@@ -67,7 +68,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			f.FactorId = vFactorId;
 			f.Descriptor_TypeId = (byte)DescriptorTypeId.IsA;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(f, x => x.Descriptor_TypeId);
 
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(f).UpdateEach(up).End();

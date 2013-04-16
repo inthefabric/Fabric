@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -43,19 +44,19 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromType<T>() where T : class, INode, new() {
-			return WeaverTasks.BeginPath<T>(x => x.FabType, 
+			return Weave.Inst.BeginPath<T>(x => x.FabType, 
 				(int)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromVar<T>(IWeaverVarAlias<T> pVar, bool pCopyItem)
 																		where T : class, INode, new() {
-			return WeaverTasks.BeginPath(pVar, pCopyItem).BaseNode;
+			return Weave.Inst.BeginPath(pVar, pCopyItem).BaseNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
-			return WeaverTasks.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
+			return Weave.Inst.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
 				pNodeWithId.GetTypeId()).BaseNode;
 		}
 		

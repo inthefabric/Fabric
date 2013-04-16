@@ -51,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			newOs.Allow = vAllow;
 			newOs.Created = ApiCtx.UtcNow.Ticks;
 			
-			var updates = new WeaverUpdates<OauthScope>();
+			var updates = Weave.Inst.NewUpdates<OauthScope>();
 			updates.AddUpdate(newOs, x => x.Allow);
 			updates.AddUpdate(newOs, x => x.Created);
 

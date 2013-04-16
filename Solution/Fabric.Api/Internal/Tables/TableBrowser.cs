@@ -28,7 +28,7 @@ namespace Fabric.Api.Internal.Tables {
 		/*--------------------------------------------------------------------------------------------*/
 		public Negotiator GetResponse() {
 			var model = new TableModel();
-			var ctx = new ApiContext("localhost", 8185);
+			var ctx = new ApiContext("localhost", 8185, null);
 
 			try {
 				string table = vModule.Context.Request.Path.Substring("/tables/browse/".Length);

@@ -56,7 +56,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			newOg.Expires = ApiCtx.UtcNow.AddMinutes(2).Ticks;
 			newOg.Code = ApiCtx.Code32;
 			
-			var updates = new WeaverUpdates<OauthGrant>();
+			var updates = Weave.Inst.NewUpdates<OauthGrant>();
 			updates.AddUpdate(newOg, x => x.RedirectUri);
 			updates.AddUpdate(newOg, x => x.Expires);
 			updates.AddUpdate(newOg, x => x.Code);

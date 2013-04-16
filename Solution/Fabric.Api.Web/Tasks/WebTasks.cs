@@ -2,9 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
@@ -28,7 +26,7 @@ namespace Fabric.Api.Web.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
-			string propName = WeaverUtil.GetPropertyName<User>(x => x.Name);
+			string propName = WeaverUtil.GetPropertyName<User>(Weave.Inst.Config, x => x.Name);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
@@ -49,7 +47,7 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
-			string propName = WeaverUtil.GetPropertyName<App>(x => x.Name);
+			string propName = WeaverUtil.GetPropertyName<App>(Weave.Inst.Config, x => x.Name);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
@@ -73,7 +71,7 @@ namespace Fabric.Api.Web.Tasks {
 			user.UserId = pUserId;
 			user.Password = FabricUtil.HashPassword(pPassword);
 
-			var updates = new WeaverUpdates<User>();
+			var updates = Weave.Inst.NewUpdates<User>();
 			updates.AddUpdate(user, u => u.Password);
 
 			IWeaverQuery q = 
@@ -90,7 +88,7 @@ namespace Fabric.Api.Web.Tasks {
 			app.AppId = pAppId;
 			app.Name = pName;
 			
-			var updates = new WeaverUpdates<App>();
+			var updates = Weave.Inst.NewUpdates<App>();
 			updates.AddUpdate(app, x => x.Name);
 			
 			IWeaverQuery q = 
@@ -107,7 +105,7 @@ namespace Fabric.Api.Web.Tasks {
 			app.AppId = pAppId;
 			app.Secret = pSecret;
 			
-			var updates = new WeaverUpdates<App>();
+			var updates = Weave.Inst.NewUpdates<App>();
 			updates.AddUpdate(app, x => x.Secret);
 			
 			IWeaverQuery q = 
@@ -155,7 +153,7 @@ namespace Fabric.Api.Web.Tasks {
 				.End();
 
 			IWeaverVarAlias<MemberTypeAssign> mtaAlias;
-			q = WeaverTasks.StoreQueryResultAsVar(txb.Transaction, q, out mtaAlias);
+			q = Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out mtaAlias);
 			txb.Transaction.AddQuery(q);
 			txb.RegisterVarWithTxBuilder(mtaAlias);
 		
@@ -188,7 +186,7 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomain GetOauthDomainByDomain(IApiContext pApiCtx, long pAppId, string pDomain) {
-			string propName = WeaverUtil.GetPropertyName<OauthDomain>(x => x.Domain);
+			string propName = WeaverUtil.GetPropertyName<OauthDomain>(Weave.Inst.Config, x => x.Domain);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
@@ -300,7 +298,7 @@ namespace Fabric.Api.Web.Tasks {
 				.End();
 
 			IWeaverVarAlias<Email> emailVar;
-			q = WeaverTasks.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar);
+			q = Weave.Inst.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar);
 			pTxBuild.Transaction.AddQuery(q);
 			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 

@@ -70,7 +70,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverVarAlias aggVar;
 
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out aggVar)
+				Weave.Inst.InitListVar(tx, out aggVar)
 			);
 
 			tx.AddQuery(

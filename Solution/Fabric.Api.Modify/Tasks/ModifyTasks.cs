@@ -24,7 +24,7 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
-			string propName = WeaverUtil.GetPropertyName<Url>(x => x.AbsoluteUrl);
+			string propName = WeaverUtil.GetPropertyName<Url>(Weave.Inst.Config, x => x.AbsoluteUrl);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
@@ -108,7 +108,7 @@ namespace Fabric.Api.Modify.Tasks {
 			var txb = new TxBuilder();
 			pFactor.Descriptor_TypeId = pDescTypeId;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
 
 			IWeaverQuery q = 
@@ -120,7 +120,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
-				WeaverTasks.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
+				Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
 			);
 
 			////
@@ -150,7 +150,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pFactor.Director_PrimaryActionId = pPrimActId;
 			pFactor.Director_RelatedActionId = pRelActId;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Director_TypeId);
 			up.AddUpdate(pFactor, x => x.Director_PrimaryActionId);
 			up.AddUpdate(pFactor, x => x.Director_RelatedActionId);
@@ -166,7 +166,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pFactor.Eventor_PrecisionId = pEvePrecId;
 			pFactor.Eventor_DateTime = pDateTime;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Eventor_TypeId);
 			up.AddUpdate(pFactor, x => x.Eventor_PrecisionId);
 			up.AddUpdate(pFactor, x => x.Eventor_DateTime);
@@ -181,7 +181,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pFactor.Identor_TypeId = pIdenTypeId;
 			pFactor.Identor_Value = pValue;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Identor_TypeId);
 			up.AddUpdate(pFactor, x => x.Identor_Value);
 
@@ -197,7 +197,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pFactor.Locator_ValueY = pY;
 			pFactor.Locator_ValueZ = pZ;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Locator_TypeId);
 			up.AddUpdate(pFactor, x => x.Locator_ValueX);
 			up.AddUpdate(pFactor, x => x.Locator_ValueY);
@@ -216,7 +216,7 @@ namespace Fabric.Api.Modify.Tasks {
 			pFactor.Vector_UnitPrefixId = pVecUnitPrefId;
 			pFactor.Vector_Value = pValue;
 
-			var up = new WeaverUpdates<Factor>();
+			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(pFactor, x => x.Vector_TypeId);
 			up.AddUpdate(pFactor, x => x.Vector_UnitId);
 			up.AddUpdate(pFactor, x => x.Vector_UnitPrefixId);
@@ -231,7 +231,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
-				WeaverTasks.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
+				Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
 			);
 
 			////
@@ -246,7 +246,7 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor UpdateFactor(IApiContext pApiCtx, Factor pFactor, bool pCompleted, bool pDeleted){
 			var f = new Factor();
-			var updates = new WeaverUpdates<Factor>();
+			var updates = Weave.Inst.NewUpdates<Factor>();
 
 			if ( pCompleted ) {
 				f.Completed = pApiCtx.UtcNow.Ticks;

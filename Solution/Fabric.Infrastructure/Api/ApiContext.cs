@@ -25,10 +25,6 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiContext(string pRexConnUrl, int pRexConnPort) :
-															this(pRexConnUrl, pRexConnPort, null) {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public ApiContext(string pRexConnUrl, int pRexConnPort, ICacheManager pCache) {
 			RexConnUrl = pRexConnUrl;
 			RexConnPort = pRexConnPort;

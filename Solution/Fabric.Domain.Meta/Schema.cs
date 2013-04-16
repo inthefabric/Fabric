@@ -389,16 +389,16 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WeaverNodeSchema AddNode(string pName, string pShort) {
+		private WeaverNodeSchema AddNode(string pName, string pShort) {
 			var n = new WeaverNodeSchema(pName, pShort);
 			Nodes.Add(n);
 			return n;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public WeaverRelSchema AddRel(WeaverNodeSchema pFrom, string pRelType, WeaverNodeSchema pTo,
+		private WeaverRelSchema AddRel(WeaverNodeSchema pFrom, string pRelType, WeaverNodeSchema pTo,
 				WeaverRelConn pFromConn, WeaverRelConn pToConn) {
-			var r = new WeaverRelSchema(pFrom, pRelType, pTo);
+			var r = new WeaverRelSchema(pFrom, pRelType, pRelType, pTo);
 			r.FromNodeConn = pFromConn;
 			r.ToNodeConn = pToConn;
 			Rels.Add(r);
@@ -406,8 +406,8 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, Type pType) {
-			var p = new FabricPropSchema(pName, pType);
+		private FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, Type pType) {
+			var p = new FabricPropSchema(pName, pName, pType);
 			pNode.Props.Add(p);
 			return p;
 		}

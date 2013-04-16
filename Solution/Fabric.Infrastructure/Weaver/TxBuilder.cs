@@ -54,9 +54,9 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
-			IWeaverQuery q = WeaverTasks.BeginPath(
+			IWeaverQuery q = Weave.Inst.BeginPath(
 				pNodeWithId.GetTypeIdProp<T>(), pNodeWithId.GetTypeId()).BaseNode.Next().End();
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
+			q = Weave.Inst.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
@@ -64,8 +64,8 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNodeByNodeId<T>(T pNodeWithNodeId, out IWeaverVarAlias<T> pNodeVar)
 																		where T : class, INode, new() {
-			IWeaverQuery q = WeaverTasks.BeginPath<T>(pNodeWithNodeId.Id).BaseNode.End();
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
+			IWeaverQuery q = Weave.Inst.BeginPath<T>(pNodeWithNodeId.Id).BaseNode.End();
+			q = Weave.Inst.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
@@ -75,8 +75,8 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddNode<T>(T pNode, bool pIncludeNulls, out IWeaverVarAlias<T> pNewNodeVar)
 																					where T : INode {
-			IWeaverQuery q = WeaverTasks.AddNode(pNode, pIncludeNulls);
-			q = WeaverTasks.StoreQueryResultAsVar(Transaction, q, out pNewNodeVar);
+			IWeaverQuery q = Weave.Inst.AddNode(pNode, pIncludeNulls);
+			q = Weave.Inst.StoreQueryResultAsVar(Transaction, q, out pNewNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNewNodeVar);
 		}
@@ -88,7 +88,7 @@ namespace Fabric.Infrastructure.Weaver {
 			VerifyVar(pToVar);
 
 			Transaction.AddQuery(
-				WeaverTasks.AddRel(pFromVar, new TRel(), pToVar)
+				Weave.Inst.AddRel(pFromVar, new TRel(), pToVar)
 			);
 		}
 

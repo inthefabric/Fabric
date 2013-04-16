@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
-using Weaver;
+using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
@@ -50,7 +50,7 @@ namespace Fabric.Db.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverQuery AddQuery {
-			get { return WeaverTasks.AddNode(Node); }
+			get { return Weave.Inst.AddNode(Node); }
 		}
 
 	}

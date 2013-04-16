@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -41,7 +42,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverVarAlias listVar;
 			
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out listVar)
+				Weave.Inst.InitListVar(tx, out listVar)
 			);
 
 			tx.AddQuery(

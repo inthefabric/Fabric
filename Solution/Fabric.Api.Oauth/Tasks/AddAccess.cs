@@ -64,7 +64,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			oa.Token = "";
 			oa.Refresh = "";
 
-			var updates = new WeaverUpdates<OauthAccess>();
+			var updates = Weave.Inst.NewUpdates<OauthAccess>();
 			updates.AddUpdate(oa, x => x.Token); //set token to empty string
 			updates.AddUpdate(oa, x => x.Refresh); //set refresh to empty string
 

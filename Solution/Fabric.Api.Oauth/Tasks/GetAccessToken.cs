@@ -4,6 +4,7 @@ using Fabric.Api.Dto.Oauth;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -76,7 +77,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverFuncAs<OauthAccess> oaAlias;
 
 			tx.AddQuery(
-				WeaverTasks.InitListVar(tx, out agg)
+				Weave.Inst.InitListVar(tx, out agg)
 			);
 
 			tx.AddQuery(

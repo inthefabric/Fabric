@@ -1,18 +1,20 @@
-﻿using System;
-using Weaver.Schema;
+﻿using Fabric.Domain.Meta;
+using Weaver;
 
-namespace Fabric.Domain.Meta {
+namespace Fabric.Infrastructure.Weaver {
 
 	/*================================================================================================*/
-	public class FabricPropSchema : WeaverPropSchema {
+	public static class Weave {
 
-		public string EnumName { get; set; }
+		public static WeaverInstance Inst = Init();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabricPropSchema(string pName, string pDbName, Type pType) : 
-																		base(pName, pDbName, pType) {}
+		public static WeaverInstance Init() {
+			var s = new Schema();
+			return new WeaverInstance(s.Nodes, s.Rels);
+		}
 
 	}
 

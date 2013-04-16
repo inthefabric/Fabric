@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -19,7 +20,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FuncActiveAppStep(IPath pPath) : base(pPath) {
-			string prop = WeaverUtil.GetPropertyName<App>(x => x.AppId);
+			string prop = WeaverUtil.GetPropertyName<App>(Weave.Inst.Config, x => x.AppId);
 			string idParam = Path.AddParam(new WeaverQueryVal(Path.AppId));
 			Path.AddSegment(this, "V('"+prop+"',"+idParam+")");
 			ProxyStep = new AppStep(Path);

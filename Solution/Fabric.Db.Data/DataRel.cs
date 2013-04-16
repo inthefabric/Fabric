@@ -1,5 +1,5 @@
 ﻿using System;
-using Weaver;
+using Fabric.Infrastructure.Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
@@ -72,7 +72,7 @@ namespace Fabric.Db.Data {
 		public IWeaverQuery AddQuery {
 			get {
 				if ( vAddQuery == null ) {
-					vAddQuery = WeaverTasks.AddRel(FromNode, Rel, ToNode);
+					vAddQuery = Weave.Inst.AddRel(FromNode, Rel, ToNode);
 				}
 
 				return vAddQuery;
