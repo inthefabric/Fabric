@@ -4,6 +4,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -63,7 +64,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			NodeConnections conn = GetNodeConnections(updatedFactor);
 			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
 			conn.AssertRel<FactorVectorUsesAxisArtifact, Artifact>(true,
-				vAxisArtId, typeof(Artifact).Name+"Id");
+				vAxisArtId, PropDbName.Artifact_ArtifactId);
 			
 			NewRelCount = 1;
 		}

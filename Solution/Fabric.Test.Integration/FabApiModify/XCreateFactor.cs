@@ -4,6 +4,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -63,7 +64,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.NotNull(newFactor, "New Factor was not created.");
 			Assert.AreEqual(newFactor.FactorId, vResult.FactorId, "Incorrect Result.FactorId.");
 
-			string artId = typeof(Artifact).Name+"Id";
+			const string artId = PropDbName.Artifact_ArtifactId;
 
 			NodeConnections conn = GetNodeConnections(newFactor);
 			conn.AssertRelCount(1, 2);

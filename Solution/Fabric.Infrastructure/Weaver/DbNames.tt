@@ -11,6 +11,7 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using System;
 using System.Collections.Generic;
 using Fabric.Domain;
 using Weaver.Interfaces;
@@ -52,6 +53,33 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 <#
 } //end node loop
 #>
+
+		public static IDictionary<Type, string> TypeIdMap;
+		public static IDictionary<string, string> StrTypeIdMap;
+		private static readonly bool IsInit = Init();
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool Init() {
+			TypeIdMap = new Dictionary<Type, string>();
+			StrTypeIdMap = new Dictionary<string, string>();
+			
+<#
+foreach ( WeaverNodeSchema ns in nodes ) {
+	foreach ( WeaverPropSchema ps in ns.Props ) {
+		if ( ps.IsPrimaryKey != true ) { continue; }
+#>
+			TypeIdMap.Add(typeof(<#= ns.Name #>), <#= ns.Name+'_'+ps.Name #>);
+			StrTypeIdMap.Add("<#= ns.Name #>", <#= ns.Name+'_'+ps.Name #>);
+
+<#
+	} //end prop loop
+} //end node loop
+#>
+			return true;
+		}
+
 	}
 
 
@@ -65,6 +93,26 @@ foreach ( WeaverRelSchema rs in schema.Rels ) {
 <#
 } //end node loop
 #>
+
+		public static IDictionary<Type, string> TypeMap;
+		private static readonly bool IsInit = Init();
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool Init() {
+			TypeMap = new Dictionary<Type, string>();
+			
+<#
+foreach ( WeaverRelSchema rs in schema.Rels ) {
+#>
+			TypeMap.Add(typeof(<#= rs.Name #>), <#= rs.Name #>);
+<#
+} //end re; loop
+#>
+
+			return true;
+		}
 
 	}
 

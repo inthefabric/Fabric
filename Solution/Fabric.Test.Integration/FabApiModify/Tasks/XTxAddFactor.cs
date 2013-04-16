@@ -1,6 +1,7 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -38,7 +39,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.Null(newFactor.Completed, "Incorrect Completed.");
 			Assert.Null(newFactor.Deleted, "Incorrect Deleted.");
 			
-			string artId = typeof(Artifact).Name+"Id";
+			const string artId = PropDbName.Artifact_ArtifactId;
 
 			NodeConnections conn = GetNodeConnections(newFactor);
 			conn.AssertRelCount(1, 2);

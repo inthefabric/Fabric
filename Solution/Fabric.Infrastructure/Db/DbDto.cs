@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Db {
 	
@@ -77,28 +76,18 @@ namespace Fabric.Infrastructure.Db {
 
 			Type resultType = typeof(T);
 
-			if ( resultType.Name != Class ) {
+			//TODO: Implement a type check that works with new DbName functionality
+			/*if ( resultType.Name != Class ) {
+				//IMPROVE: implement more flexible super-class checks
 				if ( resultType != ArtifactType || !ArtifactType.IsAssignableFrom(resultType) ) {
 					throw new Exception("Incorrect conversion from DbDto class '"+
 						Class+"' to type '"+resultType.Name+"'.");
 				}
-			}
-			
-			//OPTIMIZE: Going to JSON then back again is inefficient. Consider moving the serialization
-			//from JSON to Dictionary into DbDto. Then DbDto will have the raw string, and can 
-			//serialize directly to (T) in this function.
+			}*/
 
-			T result;
-
-			if ( Data == null ) {
-				result = new T();
-			}
-			else {
-				string json = JsonSerializer.SerializeToString(Data);
-				result = JsonSerializer.DeserializeFromString<T>(json);
-			}
-
+			T result = new T();
 			result.Id = Id;
+			result.FillWithData(Data);
 
 			IRel rel = (result as IRel);
 

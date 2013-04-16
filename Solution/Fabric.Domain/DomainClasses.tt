@@ -12,6 +12,7 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Weaver.Items;
 using Weaver.Interfaces;
@@ -176,6 +177,45 @@ foreach ( string name in nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as <#= node.Name #>).<#= node.Name #>Id);
+		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void FillWithData(IDictionary<string,string> pData) {
+			if ( pData == null ) {
+				return;
+			}
+<#
+		if ( node.BaseNode != null && !node.BaseNode.IsAbstract ) {
+#>
+			
+			base.FillWithData(pData);
+<#
+		} //end BaseNode condition
+
+		foreach ( SchemaHelperProp hp in props ) { 
+			WeaverPropSchema prop = hp.PropSchema;
+			string propType = hp.TypeName.Replace("?", "");;
+#>
+			
+			if ( pData.ContainsKey("<#= prop.DbName #>") ) {
+<#
+			if ( prop.Type.IsValueType ) {
+#>
+				<#= prop.Name #> = <#= propType #>.Parse(pData["<#= prop.DbName #>"]);
+<#
+			}
+			else {
+#>
+				<#= prop.Name #> = pData["<#= prop.DbName #>"];
+<#
+			} //end value type condition
+#>
+			}
+<#
+		} //end prop loop
+#>
 		}
 
 		

@@ -1,4 +1,5 @@
-﻿using Weaver.Interfaces;
+﻿using System.Collections.Generic;
+using Weaver.Interfaces;
 using Weaver.Items;
 
 namespace Fabric.Domain {
@@ -11,6 +12,11 @@ namespace Fabric.Domain {
 
 		public string ToNodeId { get; set; }
 		public string FromNodeId { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void FillWithData(IDictionary<string, string> pData) {}
 
 	}
 

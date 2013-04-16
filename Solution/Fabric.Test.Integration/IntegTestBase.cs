@@ -143,8 +143,10 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNodeByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
 											where T : class, INodeWithId, IWeaverItemIndexable, new() {
+			int ft = (int)NodeFabTypeUtil.TypeMap[typeof(T)];
+
 			var q = Weave.Inst.NewQuery();
-			q.FinalizeQuery("g.V('FabType',"+(int)NodeFabTypeUtil.TypeMap[typeof(T)]+")"+
+			q.FinalizeQuery("g.V('"+PropDbName.Node_FabType+"',"+ft+")"+
 				".has('"+WeaverUtil.GetPropertyName(Weave.Inst.Config, pProp)+
 				"',Tokens.T.eq,"+pValWithQuotes+")");
 			return ApiCtx.DbSingle<T>("TEST.GetNodeByProp", q);
@@ -178,14 +180,16 @@ namespace Fabric.Test.Integration {
 																where T : class, INodeWithId, new() {
 			var q = Weave.Inst.NewQuery();
 			string idParam = q.AddParam(new WeaverQueryVal(pId));
-			q.FinalizeQuery("g.V('"+typeof(T).Name+"Id',"+idParam+")[0]"+pAppendScript);
+			q.FinalizeQuery("g.V('"+PropDbName.TypeIdMap[typeof(T)]+"',"+idParam+")[0]"+pAppendScript);
 			return q;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected IWeaverQuery GetNodeByPropQuery<T>(string pAppendScript="") where T : INodeWithId {
+			int ft = (int)NodeFabTypeUtil.TypeMap[typeof(T)];
+
 			var q = Weave.Inst.NewQuery();
-			q.FinalizeQuery("g.V('FabType',"+(int)NodeFabTypeUtil.TypeMap[typeof(T)]+")"+pAppendScript);
+			q.FinalizeQuery("g.V('"+PropDbName.Node_FabType+"',"+ft+")"+pAppendScript);
 			return q;
 		}
 

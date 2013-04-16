@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Weaver.Items;
 
@@ -24,6 +25,11 @@ namespace Fabric.Domain {
 		public virtual Expression<Func<T, object>> GetTypeIdProp<T>() where T : INode {
 			return (x => x.Id);
 		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public abstract void FillWithData(IDictionary<string, string> pData);
 
 	}
 

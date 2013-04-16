@@ -1,7 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:45:21 PM
+// Generated on 4/16/2013 4:42:23 PM
 
+using System;
 using System.Collections.Generic;
 using Fabric.Domain;
 using Weaver.Interfaces;
@@ -121,6 +122,63 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string OauthScope_Allow = "OS_Al";
 		public const string OauthScope_Created = "OS_Cr";
 
+
+		public static IDictionary<Type, string> TypeIdMap;
+		public static IDictionary<string, string> StrTypeIdMap;
+		private static readonly bool IsInit = Init();
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool Init() {
+			TypeIdMap = new Dictionary<Type, string>();
+			StrTypeIdMap = new Dictionary<string, string>();
+			
+			TypeIdMap.Add(typeof(Artifact), Artifact_ArtifactId);
+			StrTypeIdMap.Add("Artifact", Artifact_ArtifactId);
+
+			TypeIdMap.Add(typeof(App), App_AppId);
+			StrTypeIdMap.Add("App", App_AppId);
+
+			TypeIdMap.Add(typeof(Class), Class_ClassId);
+			StrTypeIdMap.Add("Class", Class_ClassId);
+
+			TypeIdMap.Add(typeof(Email), Email_EmailId);
+			StrTypeIdMap.Add("Email", Email_EmailId);
+
+			TypeIdMap.Add(typeof(Instance), Instance_InstanceId);
+			StrTypeIdMap.Add("Instance", Instance_InstanceId);
+
+			TypeIdMap.Add(typeof(Member), Member_MemberId);
+			StrTypeIdMap.Add("Member", Member_MemberId);
+
+			TypeIdMap.Add(typeof(MemberTypeAssign), MemberTypeAssign_MemberTypeAssignId);
+			StrTypeIdMap.Add("MemberTypeAssign", MemberTypeAssign_MemberTypeAssignId);
+
+			TypeIdMap.Add(typeof(Url), Url_UrlId);
+			StrTypeIdMap.Add("Url", Url_UrlId);
+
+			TypeIdMap.Add(typeof(User), User_UserId);
+			StrTypeIdMap.Add("User", User_UserId);
+
+			TypeIdMap.Add(typeof(Factor), Factor_FactorId);
+			StrTypeIdMap.Add("Factor", Factor_FactorId);
+
+			TypeIdMap.Add(typeof(OauthAccess), OauthAccess_OauthAccessId);
+			StrTypeIdMap.Add("OauthAccess", OauthAccess_OauthAccessId);
+
+			TypeIdMap.Add(typeof(OauthDomain), OauthDomain_OauthDomainId);
+			StrTypeIdMap.Add("OauthDomain", OauthDomain_OauthDomainId);
+
+			TypeIdMap.Add(typeof(OauthGrant), OauthGrant_OauthGrantId);
+			StrTypeIdMap.Add("OauthGrant", OauthGrant_OauthGrantId);
+
+			TypeIdMap.Add(typeof(OauthScope), OauthScope_OauthScopeId);
+			StrTypeIdMap.Add("OauthScope", OauthScope_OauthScopeId);
+
+			return true;
+		}
+
 	}
 
 
@@ -149,6 +207,41 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string OauthGrantUsesUser = "OG-U-U";
 		public const string OauthScopeUsesApp = "OS-U-Ap";
 		public const string OauthScopeUsesUser = "OS-U-U";
+
+		public static IDictionary<Type, string> TypeMap;
+		private static readonly bool IsInit = Init();
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool Init() {
+			TypeMap = new Dictionary<Type, string>();
+			
+			TypeMap.Add(typeof(AppUsesEmail), AppUsesEmail);
+			TypeMap.Add(typeof(AppDefinesMember), AppDefinesMember);
+			TypeMap.Add(typeof(MemberHasMemberTypeAssign), MemberHasMemberTypeAssign);
+			TypeMap.Add(typeof(MemberHasHistoricMemberTypeAssign), MemberHasHistoricMemberTypeAssign);
+			TypeMap.Add(typeof(MemberCreatesArtifact), MemberCreatesArtifact);
+			TypeMap.Add(typeof(MemberCreatesMemberTypeAssign), MemberCreatesMemberTypeAssign);
+			TypeMap.Add(typeof(MemberCreatesFactor), MemberCreatesFactor);
+			TypeMap.Add(typeof(UserUsesEmail), UserUsesEmail);
+			TypeMap.Add(typeof(UserDefinesMember), UserDefinesMember);
+			TypeMap.Add(typeof(FactorUsesPrimaryArtifact), FactorUsesPrimaryArtifact);
+			TypeMap.Add(typeof(FactorUsesRelatedArtifact), FactorUsesRelatedArtifact);
+			TypeMap.Add(typeof(FactorDescriptorRefinesPrimaryWithArtifact), FactorDescriptorRefinesPrimaryWithArtifact);
+			TypeMap.Add(typeof(FactorDescriptorRefinesRelatedWithArtifact), FactorDescriptorRefinesRelatedWithArtifact);
+			TypeMap.Add(typeof(FactorDescriptorRefinesTypeWithArtifact), FactorDescriptorRefinesTypeWithArtifact);
+			TypeMap.Add(typeof(FactorVectorUsesAxisArtifact), FactorVectorUsesAxisArtifact);
+			TypeMap.Add(typeof(OauthAccessUsesApp), OauthAccessUsesApp);
+			TypeMap.Add(typeof(OauthAccessUsesUser), OauthAccessUsesUser);
+			TypeMap.Add(typeof(OauthDomainUsesApp), OauthDomainUsesApp);
+			TypeMap.Add(typeof(OauthGrantUsesApp), OauthGrantUsesApp);
+			TypeMap.Add(typeof(OauthGrantUsesUser), OauthGrantUsesUser);
+			TypeMap.Add(typeof(OauthScopeUsesApp), OauthScopeUsesApp);
+			TypeMap.Add(typeof(OauthScopeUsesUser), OauthScopeUsesUser);
+
+			return true;
+		}
 
 	}
 

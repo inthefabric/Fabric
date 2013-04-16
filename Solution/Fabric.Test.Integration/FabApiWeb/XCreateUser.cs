@@ -3,6 +3,7 @@ using Fabric.Api.Web.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using Fabric.Test.Util;
 using NUnit.Framework;
@@ -91,8 +92,8 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			conn.AssertRel<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
-			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, 
-				newUser.ArtifactId, typeof(Artifact).Name+"Id");
+			conn.AssertRel<MemberCreatesArtifact, Artifact>(true,
+				newUser.ArtifactId, PropDbName.Artifact_ArtifactId);
 			NewRelCount += 4-2;
 			
 			conn = GetNodeConnections(newMta);

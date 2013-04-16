@@ -1,6 +1,7 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
@@ -31,7 +32,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			NodeConnections conn = GetNodeConnections(fac);
 			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
 			conn.AssertRel<FactorVectorUsesAxisArtifact, Artifact>(true,
-				(long)pAxisArtId, typeof(Artifact).Name+"Id");
+				(long)pAxisArtId, PropDbName.Artifact_ArtifactId);
 
 			NewRelCount = 1;
 		}

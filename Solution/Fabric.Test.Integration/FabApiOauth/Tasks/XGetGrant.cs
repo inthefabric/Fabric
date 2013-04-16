@@ -4,6 +4,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -78,7 +79,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCodes() {
-			IWeaverQuery q = GetNodeByPropQuery<OauthGrant>(".has('Code',Tokens.T.eq,'').count()");
+			IWeaverQuery q = GetNodeByPropQuery<OauthGrant>(
+				".has('"+PropDbName.OauthGrant_Code+"',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
 			return int.Parse(data.Result.Text);
 		}

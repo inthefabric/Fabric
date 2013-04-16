@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver;
@@ -96,7 +97,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountTokens() {
-			IWeaverQuery q = GetNodeByPropQuery<OauthAccess>(".has('Token',Tokens.T.eq,'').count()");
+			IWeaverQuery q = GetNodeByPropQuery<OauthAccess>(
+				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
 			return int.Parse(data.Result.Text);
 		}

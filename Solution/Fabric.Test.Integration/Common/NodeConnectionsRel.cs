@@ -1,4 +1,5 @@
 ﻿using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Weaver;
 
 namespace Fabric.Test.Integration.Common {
 
@@ -20,8 +21,10 @@ namespace Fabric.Test.Integration.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override string ToString() {
-			return (IsOutgoing ? "--> " : "<-- ")+TargetNode.Class+"["+TargetNode.Id+", "+
-				TargetNode.Data[TargetNode.Class+"Id"]+"] / "+Rel.Class+"["+Rel.Id+"]";
+			return (IsOutgoing ? "--> " : "<-- ")+
+				TargetNode.Class+"["+TargetNode.Id+", "+
+				TargetNode.Data[PropDbName.StrTypeIdMap[TargetNode.Class]]+"] / "+
+				Rel.Class+"["+Rel.Id+"]";
 		}
 
 	}

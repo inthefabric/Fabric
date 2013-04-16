@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver.Interfaces;
 
@@ -61,7 +63,7 @@ namespace Fabric.Test.Integration.Common {
 			int count = 0;
 
 			foreach ( NodeConnectionRel rel in rels ) {
-				if ( rel.Rel.Class != typeof(TRel).Name ) {
+				if ( rel.Rel.Class != RelDbName.TypeMap[typeof(TRel)] ) {
 					continue;
 				}
 
@@ -79,7 +81,7 @@ namespace Fabric.Test.Integration.Common {
 			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 
 			foreach ( NodeConnectionRel rel in rels ) {
-				if ( rel.Rel.Class != typeof(TRel).Name ) {
+				if ( rel.Rel.Class != RelDbName.TypeMap[typeof(TRel)] ) {
 					continue;
 				}
 
@@ -87,7 +89,7 @@ namespace Fabric.Test.Integration.Common {
 					continue;
 				}
 
-				string prop = (pIdProperty ?? rel.TargetNode.Class+"Id");
+				string prop = (pIdProperty ?? PropDbName.StrTypeIdMap[rel.TargetNode.Class]);
 				string targId = rel.TargetNode.Data[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {

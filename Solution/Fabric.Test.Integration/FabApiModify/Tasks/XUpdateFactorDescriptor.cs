@@ -1,6 +1,7 @@
 ﻿using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 
@@ -56,7 +57,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			if ( pRelArtRefId != null ) { refRels++; }
 			if ( pDescTypeRefId != null ) { refRels++; }
 
-			string idProp = typeof(Artifact).Name+"Id";
+			const string idProp = PropDbName.Artifact_ArtifactId;
 
 			if ( pPrimArtRefId != null ) {
 				pConn.AssertRel<FactorDescriptorRefinesPrimaryWithArtifact, Artifact>(
