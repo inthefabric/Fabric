@@ -12,6 +12,7 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System.Collections.Generic;
+using Weaver.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -29,10 +30,10 @@ var relTypeMap = new Dictionary<string, bool>();
 var relMap = new Dictionary<string, bool>();
 
 foreach ( WeaverRelSchema rel in schema.Rels ) {
-	if ( relTypeMap.ContainsKey(rel.Name) ) { continue; }
-	relTypeMap.Add(rel.Name, true);
+	if ( relTypeMap.ContainsKey(rel.RelType) ) { continue; }
+	relTypeMap.Add(rel.RelType, true);
 #>
-				"<#= rel.Name #>",
+				"<#= rel.RelType #>",
 <#
 } // end rel loop
 #>
@@ -131,6 +132,28 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 } //end node loop
 #>
 			};
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<WeaverNodeSchema> GetWeaverNodeSchemaList() {
+			if ( WeaverNodeSchemaList == null ) {
+				WeaverNodeSchemaList = new List<WeaverNodeSchema> {
+<#
+foreach ( WeaverNodeSchema node in schema.Nodes ) {
+	if ( node.IsBaseClass ) {
+		continue;
+	}
+#>
+					BuildNodeForWeaver("<#= node.Name #>"),
+<#
+} //end node loop
+#>
+				};
+			}
+
+			return WeaverNodeSchemaList;
 		}
 
 	}

@@ -1,8 +1,9 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/10/2013 12:55:32 PM
+// Generated on 4/16/2013 12:22:07 PM
 
 using System.Collections.Generic;
+using Weaver.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -35,28 +36,28 @@ namespace Fabric.Domain.Meta {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
-				case "AppUsesEmail": return new SchemaHelperRel(s.Rels[0]);
-				case "AppDefinesMember": return new SchemaHelperRel(s.Rels[1]);
-				case "MemberHasMemberTypeAssign": return new SchemaHelperRel(s.Rels[2]);
-				case "MemberHasHistoricMemberTypeAssign": return new SchemaHelperRel(s.Rels[3]);
-				case "MemberCreatesArtifact": return new SchemaHelperRel(s.Rels[4]);
-				case "MemberCreatesMemberTypeAssign": return new SchemaHelperRel(s.Rels[5]);
-				case "MemberCreatesFactor": return new SchemaHelperRel(s.Rels[6]);
-				case "UserUsesEmail": return new SchemaHelperRel(s.Rels[7]);
-				case "UserDefinesMember": return new SchemaHelperRel(s.Rels[8]);
-				case "FactorUsesPrimaryArtifact": return new SchemaHelperRel(s.Rels[9]);
-				case "FactorUsesRelatedArtifact": return new SchemaHelperRel(s.Rels[10]);
-				case "FactorDescriptorRefinesPrimaryWithArtifact": return new SchemaHelperRel(s.Rels[11]);
-				case "FactorDescriptorRefinesRelatedWithArtifact": return new SchemaHelperRel(s.Rels[12]);
-				case "FactorDescriptorRefinesTypeWithArtifact": return new SchemaHelperRel(s.Rels[13]);
-				case "FactorVectorUsesAxisArtifact": return new SchemaHelperRel(s.Rels[14]);
-				case "OauthAccessUsesApp": return new SchemaHelperRel(s.Rels[15]);
-				case "OauthAccessUsesUser": return new SchemaHelperRel(s.Rels[16]);
-				case "OauthDomainUsesApp": return new SchemaHelperRel(s.Rels[17]);
-				case "OauthGrantUsesApp": return new SchemaHelperRel(s.Rels[18]);
-				case "OauthGrantUsesUser": return new SchemaHelperRel(s.Rels[19]);
-				case "OauthScopeUsesApp": return new SchemaHelperRel(s.Rels[20]);
-				case "OauthScopeUsesUser": return new SchemaHelperRel(s.Rels[21]);
+				case "AppAppUsesEmailEmail": return new SchemaHelperRel(s.Rels[0]);
+				case "AppAppDefinesMemberMember": return new SchemaHelperRel(s.Rels[1]);
+				case "MemberMemberHasMemberTypeAssignMemberTypeAssign": return new SchemaHelperRel(s.Rels[2]);
+				case "MemberMemberHasHistoricMemberTypeAssignMemberTypeAssign": return new SchemaHelperRel(s.Rels[3]);
+				case "MemberMemberCreatesArtifactArtifact": return new SchemaHelperRel(s.Rels[4]);
+				case "MemberMemberCreatesMemberTypeAssignMemberTypeAssign": return new SchemaHelperRel(s.Rels[5]);
+				case "MemberMemberCreatesFactorFactor": return new SchemaHelperRel(s.Rels[6]);
+				case "UserUserUsesEmailEmail": return new SchemaHelperRel(s.Rels[7]);
+				case "UserUserDefinesMemberMember": return new SchemaHelperRel(s.Rels[8]);
+				case "FactorFactorUsesPrimaryArtifactArtifact": return new SchemaHelperRel(s.Rels[9]);
+				case "FactorFactorUsesRelatedArtifactArtifact": return new SchemaHelperRel(s.Rels[10]);
+				case "FactorFactorDescriptorRefinesPrimaryWithArtifactArtifact": return new SchemaHelperRel(s.Rels[11]);
+				case "FactorFactorDescriptorRefinesRelatedWithArtifactArtifact": return new SchemaHelperRel(s.Rels[12]);
+				case "FactorFactorDescriptorRefinesTypeWithArtifactArtifact": return new SchemaHelperRel(s.Rels[13]);
+				case "FactorFactorVectorUsesAxisArtifactArtifact": return new SchemaHelperRel(s.Rels[14]);
+				case "OauthAccessOauthAccessUsesAppApp": return new SchemaHelperRel(s.Rels[15]);
+				case "OauthAccessOauthAccessUsesUserUser": return new SchemaHelperRel(s.Rels[16]);
+				case "OauthDomainOauthDomainUsesAppApp": return new SchemaHelperRel(s.Rels[17]);
+				case "OauthGrantOauthGrantUsesAppApp": return new SchemaHelperRel(s.Rels[18]);
+				case "OauthGrantOauthGrantUsesUserUser": return new SchemaHelperRel(s.Rels[19]);
+				case "OauthScopeOauthScopeUsesAppApp": return new SchemaHelperRel(s.Rels[20]);
+				case "OauthScopeOauthScopeUsesUserUser": return new SchemaHelperRel(s.Rels[21]);
 			}
 
 			return null;
@@ -65,28 +66,28 @@ namespace Fabric.Domain.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public static IList<string> GetRels() {
 			return new List<string> {
-				"AppUsesEmail",
-				"AppDefinesMember",
-				"MemberHasMemberTypeAssign",
-				"MemberHasHistoricMemberTypeAssign",
-				"MemberCreatesArtifact",
-				"MemberCreatesMemberTypeAssign",
-				"MemberCreatesFactor",
-				"UserUsesEmail",
-				"UserDefinesMember",
-				"FactorUsesPrimaryArtifact",
-				"FactorUsesRelatedArtifact",
-				"FactorDescriptorRefinesPrimaryWithArtifact",
-				"FactorDescriptorRefinesRelatedWithArtifact",
-				"FactorDescriptorRefinesTypeWithArtifact",
-				"FactorVectorUsesAxisArtifact",
-				"OauthAccessUsesApp",
-				"OauthAccessUsesUser",
-				"OauthDomainUsesApp",
-				"OauthGrantUsesApp",
-				"OauthGrantUsesUser",
-				"OauthScopeUsesApp",
-				"OauthScopeUsesUser",
+				"AppAppUsesEmailEmail",
+				"AppAppDefinesMemberMember",
+				"MemberMemberHasMemberTypeAssignMemberTypeAssign",
+				"MemberMemberHasHistoricMemberTypeAssignMemberTypeAssign",
+				"MemberMemberCreatesArtifactArtifact",
+				"MemberMemberCreatesMemberTypeAssignMemberTypeAssign",
+				"MemberMemberCreatesFactorFactor",
+				"UserUserUsesEmailEmail",
+				"UserUserDefinesMemberMember",
+				"FactorFactorUsesPrimaryArtifactArtifact",
+				"FactorFactorUsesRelatedArtifactArtifact",
+				"FactorFactorDescriptorRefinesPrimaryWithArtifactArtifact",
+				"FactorFactorDescriptorRefinesRelatedWithArtifactArtifact",
+				"FactorFactorDescriptorRefinesTypeWithArtifactArtifact",
+				"FactorFactorVectorUsesAxisArtifactArtifact",
+				"OauthAccessOauthAccessUsesAppApp",
+				"OauthAccessOauthAccessUsesUserUser",
+				"OauthDomainOauthDomainUsesAppApp",
+				"OauthGrantOauthGrantUsesAppApp",
+				"OauthGrantOauthGrantUsesUserUser",
+				"OauthScopeOauthScopeUsesAppApp",
+				"OauthScopeOauthScopeUsesUserUser",
 			};
 		}
 		
@@ -152,6 +153,31 @@ namespace Fabric.Domain.Meta {
 				"User",
 				"Factor",
 			};
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<WeaverNodeSchema> GetWeaverNodeSchemaList() {
+			if ( WeaverNodeSchemaList == null ) {
+				WeaverNodeSchemaList = new List<WeaverNodeSchema> {
+					BuildNodeForWeaver("App"),
+					BuildNodeForWeaver("Class"),
+					BuildNodeForWeaver("Email"),
+					BuildNodeForWeaver("Instance"),
+					BuildNodeForWeaver("Member"),
+					BuildNodeForWeaver("MemberTypeAssign"),
+					BuildNodeForWeaver("Url"),
+					BuildNodeForWeaver("User"),
+					BuildNodeForWeaver("Factor"),
+					BuildNodeForWeaver("OauthAccess"),
+					BuildNodeForWeaver("OauthDomain"),
+					BuildNodeForWeaver("OauthGrant"),
+					BuildNodeForWeaver("OauthScope"),
+				};
+			}
+
+			return WeaverNodeSchemaList;
 		}
 
 	}

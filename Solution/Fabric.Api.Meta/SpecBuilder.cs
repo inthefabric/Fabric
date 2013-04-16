@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/15/2013 10:20:08 AM
+// Generated on 4/16/2013 11:30:03 AM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -643,6 +643,11 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("WhereApp");
+					pObject.TraversalFunctions.Add("WhereClass");
+					pObject.TraversalFunctions.Add("WhereInstance");
+					pObject.TraversalFunctions.Add("WhereUrl");
+					pObject.TraversalFunctions.Add("WhereUser");
 					break;
 
 				case "App":

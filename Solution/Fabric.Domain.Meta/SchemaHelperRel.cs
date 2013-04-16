@@ -22,9 +22,9 @@ namespace Fabric.Domain.Meta {
 			RelSchema = pRel;
 			
 			FromNodeName = RelSchema.FromNode.Name;
-			RelTypeName = RelSchema.Name;
+			RelTypeName = RelSchema.RelType;
 			ToNodeName = RelSchema.ToNode.Name;
-			RelName = FromNodeName+RelSchema.Name+ToNodeName;
+			RelName = RelSchema.Name;
 
 			WeaverBaseClass = "Rel<"+FromNodeName+", "+RelTypeName+", "+ToNodeName+">";
 		}

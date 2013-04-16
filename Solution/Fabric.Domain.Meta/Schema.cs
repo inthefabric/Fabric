@@ -39,12 +39,12 @@ namespace Fabric.Domain.Meta {
 
 			////
 			
-			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", null);
+			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", "Na");
 			nodeForAction.IsAbstract = true;
 			nodeForAction.IsBaseClass = true;
-			p = AddProp(nodeForAction, "Performed", typeof(DateTime));
+			p = AddProp(nodeForAction, "Performed", "Pe", typeof(DateTime));
 				p.IsTimestamp = true;
-			p = AddProp(nodeForAction, "Note", typeof(string));
+			p = AddProp(nodeForAction, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
@@ -53,40 +53,40 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
 			artifact.IsBaseClass = true;
-			p = AddProp(artifact, "ArtifactId", typeof(long));
-			p.IsPrimaryKey = true;
-			p = AddProp(artifact, "Created", typeof(DateTime));
-			p.IsTimestamp = true;
+			p = AddProp(artifact, "ArtifactId", "Id", typeof(long));
+				p.IsPrimaryKey = true;
+			p = AddProp(artifact, "Created", "Cr", typeof(DateTime));
+				p.IsTimestamp = true;
 
 			WeaverNodeSchema app = AddNode("App", "Ap");
 			app.BaseNode = artifact;
-			p = AddProp(app, "AppId", typeof(long));
+			p = AddProp(app, "AppId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(app, "Name", typeof(string));
+			p = AddProp(app, "Name", "Na", typeof(string));
 				p.LenMin = 3;
 				p.LenMax = 64;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidTitleRegex;
-			p = AddProp(app, "Secret", typeof(string));
+			p = AddProp(app, "Secret", "Se", typeof(string));
 				p.Len = 32;
 				p.IsInternal = true;
 				p.ValidRegex = ValidCodeRegex;
 
 			WeaverNodeSchema clas = AddNode("Class", "Cl");
 			clas.BaseNode = artifact;
-			p = AddProp(clas, "ClassId", typeof(long));
+			p = AddProp(clas, "ClassId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(clas, "Name", typeof(string));
+			p = AddProp(clas, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.ValidRegex = ValidTitleRegex;
-			p = AddProp(clas, "Disamb", typeof(string));
+			p = AddProp(clas, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
-			p = AddProp(clas, "Note", typeof(string));
+			p = AddProp(clas, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
@@ -124,37 +124,37 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema email = AddNode("Email", "E");
 			email.IsInternal = true;
-			p = AddProp(email, "EmailId", typeof(long));
+			p = AddProp(email, "EmailId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(email, "Address", typeof(string));
+			p = AddProp(email, "Address", "Ad", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidEmailRegex;
-			p = AddProp(email, "Code", typeof(string));
+			p = AddProp(email, "Code", "Co", typeof(string));
 				p.Len = 32;
 				p.ValidRegex = ValidCodeRegex;
-			p = AddProp(email, "Created", typeof(DateTime));
+			p = AddProp(email, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
-			p = AddProp(email, "Verified", typeof(DateTime));
+			p = AddProp(email, "Verified", "Ve", typeof(DateTime));
 				p.IsNullable = true;
 			
 			WeaverNodeSchema instance = AddNode("Instance", "In");
 			instance.BaseNode = artifact;
-			p = AddProp(instance, "InstanceId", typeof(long));
+			p = AddProp(instance, "InstanceId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(instance, "Name", typeof(string));
+			p = AddProp(instance, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
-			p = AddProp(instance, "Disamb", typeof(string));
+			p = AddProp(instance, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
-			p = AddProp(instance, "Note", typeof(string));
+			p = AddProp(instance, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
@@ -172,24 +172,24 @@ namespace Fabric.Domain.Meta {
 				p.ValidRegex = ValidTitleRegex;*/
 
 			WeaverNodeSchema member = AddNode("Member", "M");
-			p = AddProp(member, "MemberId", typeof(long));
+			p = AddProp(member, "MemberId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema memberTypeAssign = AddNode("MemberTypeAssign", "MTA");
 			memberTypeAssign.BaseNode = nodeForAction;
-			p = AddProp(memberTypeAssign, "MemberTypeAssignId", typeof(long));
+			p = AddProp(memberTypeAssign, "MemberTypeAssignId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(memberTypeAssign, "MemberTypeId", typeof(byte));
+			p = AddProp(memberTypeAssign, "MemberTypeId", "Mt", typeof(byte));
 				p.EnumName = "MemberTypeId";
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
 			url.BaseNode = artifact;
-			p = AddProp(url, "UrlId", typeof(long));
+			p = AddProp(url, "UrlId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(url, "Name", typeof(string));
+			p = AddProp(url, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
-			p = AddProp(url, "AbsoluteUrl", typeof(string));
+			p = AddProp(url, "AbsoluteUrl", "Ab", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 2048;
 				p.IsUnique = true;
@@ -197,15 +197,15 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema user = AddNode("User", "U");
 			user.BaseNode = artifact;
-			p = AddProp(user, "UserId", typeof(long));
+			p = AddProp(user, "UserId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(user, "Name", typeof(string));
+			p = AddProp(user, "Name", "Na", typeof(string));
 				p.LenMin = 4;
 				p.LenMax = 16;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidUserRegex;
-			p = AddProp(user, "Password", typeof(string));
+			p = AddProp(user, "Password", "Pa", typeof(string));
 				p.LenMin = 8;
 				p.LenMax = 32;
 				p.IsInternal = true;
@@ -214,123 +214,125 @@ namespace Fabric.Domain.Meta {
 			////
 
 			WeaverNodeSchema factor = AddNode("Factor", "F");
-			p = AddProp(factor, "FactorId", typeof(long));
+			p = AddProp(factor, "FactorId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(factor, "FactorAssertionId", typeof(byte));
+			p = AddProp(factor, "FactorAssertionId", "Fa", typeof(byte));
 				p.EnumName = "FactorAssertionId";
 			//p = AddProp(factor, "IsPublic", typeof(bool));
-			p = AddProp(factor, "IsDefining", typeof(bool));
-			p = AddProp(factor, "Created", typeof(DateTime));
+			p = AddProp(factor, "IsDefining", "Df", typeof(bool));
+			p = AddProp(factor, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
-			p = AddProp(factor, "Deleted", typeof(DateTime));
+			p = AddProp(factor, "Deleted", "Dl", typeof(DateTime));
 				p.IsNullable = true;
 				p.IsInternal = true;
-			p = AddProp(factor, "Completed", typeof(DateTime));
+			p = AddProp(factor, "Completed", "Co", typeof(DateTime));
 				p.IsNullable = true;
-			p = AddProp(factor, "Note", typeof(string));
+			p = AddProp(factor, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsNullable = true;
 
-			p = AddProp(factor, "Descriptor_TypeId", typeof(byte));
+			p = AddProp(factor, "Descriptor_TypeId", "DeT", typeof(byte));
 				p.EnumName = "DescriptorTypeId";
 
-			p = AddProp(factor, "Director_TypeId", typeof(byte));
+			p = AddProp(factor, "Director_TypeId", "DiT", typeof(byte));
 				p.EnumName = "DirectorTypeId";
-			p = AddProp(factor, "Director_PrimaryActionId", typeof(byte));
+			p = AddProp(factor, "Director_PrimaryActionId", "DiP", typeof(byte));
 				p.EnumName = "DirectorActionId";
-			p = AddProp(factor, "Director_RelatedActionId", typeof(byte));
+			p = AddProp(factor, "Director_RelatedActionId", "DiR", typeof(byte));
 			p.EnumName = "DirectorActionId";
 
-			p = AddProp(factor, "Eventor_TypeId", typeof(byte));
+			p = AddProp(factor, "Eventor_TypeId", "EvT", typeof(byte));
 				p.EnumName = "EventorTypeId";
-			p = AddProp(factor, "Eventor_PrecisionId", typeof(byte));
+			p = AddProp(factor, "Eventor_PrecisionId", "EvP", typeof(byte));
 				p.EnumName = "EventorPrecisionId";
-			p = AddProp(factor, "Eventor_DateTime", typeof(DateTime));
+			p = AddProp(factor, "Eventor_DateTime", "EvD", typeof(DateTime));
 				p.Min = 1;
 
-			p = AddProp(factor, "Identor_TypeId", typeof(byte));
+			p = AddProp(factor, "Identor_TypeId", "IdT", typeof(byte));
 				p.EnumName = "IdentorTypeId";
-			p = AddProp(factor, "Identor_Value", typeof(string));
+			p = AddProp(factor, "Identor_Value", "IdV", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 
-			p = AddProp(factor, "Locator_TypeId", typeof(byte));
+			p = AddProp(factor, "Locator_TypeId", "LoT", typeof(byte));
 				p.EnumName = "LocatorTypeId";
-			p = AddProp(factor, "Locator_ValueX", typeof(double));
-			p = AddProp(factor, "Locator_ValueY", typeof(double));
-			p = AddProp(factor, "Locator_ValueZ", typeof(double));
+			p = AddProp(factor, "Locator_ValueX", "LoX", typeof(double));
+			p = AddProp(factor, "Locator_ValueY", "LoY", typeof(double));
+			p = AddProp(factor, "Locator_ValueZ", "LoZ", typeof(double));
 
-			p = AddProp(factor, "Vector_TypeId", typeof(byte));
+			p = AddProp(factor, "Vector_TypeId", "VeT", typeof(byte));
 				p.EnumName = "VectorTypeId";
-			p = AddProp(factor, "Vector_UnitId", typeof(byte));
+			p = AddProp(factor, "Vector_UnitId", "VeU", typeof(byte));
 				p.EnumName = "VectorUnitId";
-			p = AddProp(factor, "Vector_UnitPrefixId", typeof(byte));
+			p = AddProp(factor, "Vector_UnitPrefixId", "VeP", typeof(byte));
 				p.EnumName = "VectorUnitPrefixId";
-			p = AddProp(factor, "Vector_Value", typeof(long));
+			p = AddProp(factor, "Vector_Value", "VeV", typeof(long));
 			
 			////
 
 			WeaverNodeSchema oauthAccess = AddNode("OauthAccess", "OA");
 			oauthAccess.IsInternal = true;
-			p = AddProp(oauthAccess, "OauthAccessId", typeof(long));
+			p = AddProp(oauthAccess, "OauthAccessId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(oauthAccess, "Token", typeof(string));
+			p = AddProp(oauthAccess, "Token", "To", typeof(string));
 				p.Len = 32;
 				p.IsNullable = true;
 				p.IsUnique = true;
 				p.ValidRegex = ValidCodeRegex;
-			p = AddProp(oauthAccess, "Refresh", typeof(string));
+			p = AddProp(oauthAccess, "Refresh", "Re", typeof(string));
 				p.Len = 32;
 				p.IsNullable = true;
 				p.ValidRegex = ValidCodeRegex;
-			p = AddProp(oauthAccess, "Expires", typeof(DateTime));
-			p = AddProp(oauthAccess, "IsClientOnly", typeof(bool));
+			p = AddProp(oauthAccess, "Expires", "Ex", typeof(DateTime));
+			p = AddProp(oauthAccess, "IsClientOnly", "CO", typeof(bool));
 
 			WeaverNodeSchema oauthDomain = AddNode("OauthDomain", "OD");
 			oauthDomain.IsInternal = true;
-			p = AddProp(oauthDomain, "OauthDomainId", typeof(long));
+			p = AddProp(oauthDomain, "OauthDomainId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(oauthDomain, "Domain", typeof(string));
+			p = AddProp(oauthDomain, "Domain", "Do", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
 			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
 			oauthGrant.IsInternal = true;
-			p = AddProp(oauthGrant, "OauthGrantId", typeof(long));
+			p = AddProp(oauthGrant, "OauthGrantId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(oauthGrant, "RedirectUri", typeof(string));
+			p = AddProp(oauthGrant, "RedirectUri", "Re", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 450;
-			p = AddProp(oauthGrant, "Code", typeof(string));
+			p = AddProp(oauthGrant, "Code", "Co", typeof(string));
 				p.Len = 32;
 				p.IsUnique = true;
 				p.ValidRegex = ValidCodeRegex;
-			p = AddProp(oauthGrant, "Expires", typeof(DateTime));
+			p = AddProp(oauthGrant, "Expires", "Ex", typeof(DateTime));
 
 			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");
 			oauthScope.IsInternal = true;
-			p = AddProp(oauthScope, "OauthScopeId", typeof(long));
+			p = AddProp(oauthScope, "OauthScopeId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
-			p = AddProp(oauthScope, "Allow", typeof(bool));
-			p = AddProp(oauthScope, "Created", typeof(DateTime));
+			p = AddProp(oauthScope, "Allow", "Al", typeof(bool));
+			p = AddProp(oauthScope, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
 
 			////
 
-			const string has = "Has";
-			const string hasHistoric = "HasHistoric";
-			const string uses = "Uses";
-			const string usesPrimary = "UsesPrimary";
-			const string usesRelated = "UsesRelated";
-			const string creates = "Creates";
-			//const string replaces = "Replaces";
-			const string refinesPrimaryWith = "DescriptorRefinesPrimaryWith";
-			const string refinesRelatedWith = "DescriptorRefinesRelatedWith";
-			const string refinesTypeWith = "DescriptorRefinesTypeWith";
-			const string usesAxis = "VectorUsesAxis";
-			const string defines = "Defines";
+			var has = new KeyValuePair<string, string>("Has", "H");
+			var hasHistoric = new KeyValuePair<string, string>("HasHistoric", "HH");
+			var uses = new KeyValuePair<string, string>("Uses", "U");
+			var usesPrimary = new KeyValuePair<string, string>("UsesPrimary", "UP");
+			var usesRelated = new KeyValuePair<string, string>("UsesRelated", "UR");
+			var creates = new KeyValuePair<string, string>("Creates", "C");
+			//var replaces = new KeyValuePair<string, string>("Replaces", "R");
+			var refinesPrimaryWith = 
+				new KeyValuePair<string, string>("DescriptorRefinesPrimaryWith", "DRP");
+			var refinesRelatedWith = 
+				new KeyValuePair<string, string>("DescriptorRefinesRelatedWith", "DRR");
+			var refinesTypeWith = new KeyValuePair<string, string>("DescriptorRefinesTypeWith", "DRT");
+			var usesAxis = new KeyValuePair<string, string>("VectorUsesAxis", "VUA");
+			var defines = new KeyValuePair<string, string>("Defines", "D");
 
 			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
 			const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
@@ -385,30 +387,37 @@ namespace Fabric.Domain.Meta {
 			AddRel(oauthScope, uses, app, oto, ifzom);
 			AddRel(oauthScope, uses, user, oto, ifzom);
 		}
-		
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private WeaverNodeSchema AddNode(string pName, string pShort) {
-			var n = new WeaverNodeSchema(pName, pShort);
+		private WeaverNodeSchema AddNode(string pName, string pDbName) {
+			var n = new WeaverNodeSchema(pName, pDbName);
 			Nodes.Add(n);
+			//Console.WriteLine("NODE: "+n.DbName+" ("+n.Name+")");
 			return n;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private WeaverRelSchema AddRel(WeaverNodeSchema pFrom, string pRelType, WeaverNodeSchema pTo,
-				WeaverRelConn pFromConn, WeaverRelConn pToConn) {
-			var r = new WeaverRelSchema(pFrom, pRelType, pRelType, pTo);
+		private WeaverRelSchema AddRel(WeaverNodeSchema pFrom, KeyValuePair<string, string> pRelType,
+								WeaverNodeSchema pTo, WeaverRelConn pFromConn, WeaverRelConn pToConn) {
+			string name = pFrom.Name+pRelType.Key+pTo.Name;
+			string db = pFrom.DbName+"-"+pRelType.Value+"-"+pTo.DbName;
+
+			var r = new WeaverRelSchema(pFrom, name, db, pRelType.Key, pTo);
 			r.FromNodeConn = pFromConn;
 			r.ToNodeConn = pToConn;
 			Rels.Add(r);
+			//Console.WriteLine("REL: "+db+" ("+r.Name+")");
 			return r;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, Type pType) {
-			var p = new FabricPropSchema(pName, pName, pType);
+		private FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, string pDbName,
+																						Type pType) {
+			var p = new FabricPropSchema(pName, pNode.DbName+"."+pDbName, pType);
 			pNode.Props.Add(p);
+			//Console.WriteLine(" - "+p.DbName+" ("+pNode.Name+"."+p.Name+")");
 			return p;
 		}
 

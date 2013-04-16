@@ -2,6 +2,7 @@
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver;
 using Weaver.Interfaces;
@@ -18,6 +19,8 @@ namespace Fabric.Test.FabDbData {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void SetupAll(bool pIsForTesting) {
+			var x = Weave.Inst;
+
 			DataSet ds = Setup.SetupAll(pIsForTesting);
 			long nodeI = 1000;
 
