@@ -416,13 +416,13 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
     <value>The response wrapper for all API requests. It contains a data payload, error information, and/or other metadata.</value>
   </data>
   <data name="Node" xml:space="preserve">
-    <value>TODO</value>
+    <value>The base class for all nodes present in the Fabric "graph".  Only Nodes are present and traversable via the [[Traversal Service|Serv|Traversal]].</value>
   </data>
   <data name="NodeForAction" xml:space="preserve">
-    <value>TODO</value>
+    <value>The base class for various "actions" that can occur.</value>
   </data>
   <data name="MemberTypeAssign" xml:space="preserve">
-    <value>TODO</value>
+    <value>An assignment of a MemberType to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns.</value>
   </data>
   <data name="Root" xml:space="preserve">
     <value>Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects.</value>
@@ -440,9 +440,6 @@ This redirect is used in one particular scenario: the [[OAuth login process|Oper
   </data>
   <data name="OauthLogout" xml:space="preserve">
     <value>The result of an OAuth logout.</value>
-  </data>
-  <data name="Oauth" xml:space="preserve">
-    <value>TODO</value>
   </data>
   <data name="Object" xml:space="preserve">
     <value>The base class for all !Objects returned by Fabric's services.</value>
@@ -471,7 +468,7 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
     <value>A task, query, or operation that belongs to a Service.</value>
   </data>
   <data name="StepLink" xml:space="preserve">
-    <value>TODO</value>
+    <value>Contains all the relevant information about a Node's traversal link.</value>
   </data>
   <data name="MetaTime" xml:space="preserve">
     <value>Contains the current Fabric system time. Fabric uses the UTC timezone for all dates, times, and timestamps.</value>

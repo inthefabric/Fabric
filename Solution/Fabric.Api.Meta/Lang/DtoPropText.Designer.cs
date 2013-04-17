@@ -1366,7 +1366,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Node type returned by the opposite end of this link..
         /// </summary>
         internal static string StepLink_Class {
             get {
@@ -1375,7 +1375,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Indicates whether this link is outgoing (starting from the current Node) or incoming (starting from another Node)..
         /// </summary>
         internal static string StepLink_IsOut {
             get {
@@ -1384,7 +1384,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The relation type of this link..
         /// </summary>
         internal static string StepLink_Rel {
             get {
@@ -1393,7 +1393,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Append this value to the current URI to add this link to the traversal path..
         /// </summary>
         internal static string StepLink_Uri {
             get {

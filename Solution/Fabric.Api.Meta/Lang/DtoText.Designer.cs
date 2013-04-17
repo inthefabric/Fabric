@@ -375,7 +375,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to An assignment of a MemberType to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns..
         /// </summary>
         internal static string MemberTypeAssign {
             get {
@@ -402,7 +402,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The base class for all nodes present in the Fabric &quot;graph&quot;.  Only Nodes are present and traversable via the [[Traversal Service|Serv|Traversal]]..
         /// </summary>
         internal static string Node {
             get {
@@ -411,20 +411,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The base class for various &quot;actions&quot; that can occur..
         /// </summary>
         internal static string NodeForAction {
             get {
                 return ResourceManager.GetString("NodeForAction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Oauth {
-            get {
-                return ResourceManager.GetString("Oauth", resourceCulture);
             }
         }
         
@@ -512,7 +503,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Contains all the relevant information about a Node&apos;s traversal link..
         /// </summary>
         internal static string StepLink {
             get {
