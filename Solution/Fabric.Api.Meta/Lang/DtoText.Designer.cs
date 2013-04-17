@@ -259,11 +259,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applies the concept of time to a particular Factor.
+        ///   Looks up a localized string similar to A Factor Element that applies the concept of time to a particular Factor.
         ///
-        ///An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The EventorType provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
+        ///An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
         ///
-        ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The EventorPrecision allows a point in time to specify a level of accuracy ranging from o [rest of string was truncated]&quot;;.
+        ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The [[EventorPrecision|Enum|EventorPrecision]] [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Eventor {
             get {
@@ -312,11 +312,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applies a name or identifier to a particular Factor.
+        ///   Looks up a localized string similar to A Factor Element that applies a name or identifier to a particular Factor.
         ///
         ///An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
         ///
-        ///The IdentorType hints at the purpose or intent of the !Identor. A &apos;Text&apos; IdentorType is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A &apos;Key&apos; IdentorType is typically meant to associate [rest of string was truncated]&quot;;.
+        ///The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A &apos;Text&apos; [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organiza [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Identor {
             get {
@@ -348,13 +348,12 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Positions a Factor using geographic or relative coordinates.
+        ///   Looks up a localized string similar to A Factor Element that positions a Factor using geographic or relative coordinates.
         ///
-        ///A !Locator attaches a three-dimensional coordinate to a Factor. The LocatorType defines the spatial context of the coordinate, supporting both geographic and relative positioning.
+        ///A !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.
         ///
         ///Geographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.
-        ///[(EX|Geographic Example|_Objective:_
-        ///Specify t [rest of string was truncated]&quot;;.
+        ///[(EX [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Locator {
             get {
@@ -537,9 +536,9 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applies a meaningful numeric axis and value to a particular Factor.
+        ///   Looks up a localized string similar to A Factor Element that applies a meaningful numeric axis and value to a particular Factor.
         ///
-        ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &apos;axis&apos;. This axis depends entirely upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &apos;Height&apos; or &apos;Shutter Speed&apos;. A !Vector that provides an opinion might use an Artifact like &apos;Quality&apos; or &apos;Excitement&apos;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other  [rest of string was truncated]&quot;;.
+        ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &apos;axis&apos;. This axis depends entirely upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &apos;Height&apos; or &apos;Shutter Speed&apos;. A !Vector that provides an opinion might use an Artifact like &apos;Quality&apos; or &apos;Excitement&apos;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Arti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Vector {
             get {
