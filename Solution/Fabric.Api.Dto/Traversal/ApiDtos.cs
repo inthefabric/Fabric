@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:11 PM
+// Generated on 4/17/2013 4:25:27 PM
 
 using System;
 using System.Collections.Generic;
@@ -519,7 +519,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
-		[DtoProp(IsOptional=true)]
+		[DtoProp(IsOptional=false)]
 		public FabDescriptor Descriptor { get; set; }
 		
 		[DtoProp(IsOptional=true)]

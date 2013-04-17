@@ -247,13 +247,14 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(factor, "Descriptor_TypeId", "DeT", typeof(byte));
 				p.EnumName = "DescriptorTypeId";
+				p.SubObjIsOptional = false;
 
 			p = AddProp(factor, "Director_TypeId", "DiT", typeof(byte));
 				p.EnumName = "DirectorTypeId";
 			p = AddProp(factor, "Director_PrimaryActionId", "DiP", typeof(byte));
 				p.EnumName = "DirectorActionId";
 			p = AddProp(factor, "Director_RelatedActionId", "DiR", typeof(byte));
-			p.EnumName = "DirectorActionId";
+				p.EnumName = "DirectorActionId";
 
 			p = AddProp(factor, "Eventor_TypeId", "EvT", typeof(byte));
 				p.EnumName = "EventorTypeId";

@@ -64,13 +64,14 @@ foreach ( string name in nodes ) {
 
 	foreach ( string subName in subNames ) { 
 		IList<SchemaHelperProp> subProps = hn.GetSubProps(subName);
+		string subOpt = hn.GetSubPropIsOptional(subName).ToString().ToLower();
 
 		foreach ( SchemaHelperProp hp in subProps ) {
 			propList += (propList == "" ? "" : ", ")+"\""+subName+"."+hp.SubPropName+"\"";
 		}
 #>
 		
-		[DtoProp(IsOptional=true)]
+		[DtoProp(IsOptional=<#= subOpt #>)]
 		public Fab<#= subName+" "+subName #> { get; set; }
 <#
 	} //end prop loop

@@ -14,6 +14,7 @@ namespace Fabric.Domain.Meta {
 		private readonly IList<SchemaHelperProp> vProps;
 		private readonly IList<SchemaHelperNodeRel> vRels;
 		private readonly IDictionary<string, IList<SchemaHelperProp>> vSubMap;
+		private readonly IDictionary<string, bool> vSubOptMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,6 +27,7 @@ namespace Fabric.Domain.Meta {
 			vProps = new List<SchemaHelperProp>();
 			vRels = new List<SchemaHelperNodeRel>();
 			vSubMap = new Dictionary<string, IList<SchemaHelperProp>>();
+			vSubOptMap = new Dictionary<string, bool>();
 
 			foreach ( FabricPropSchema ps in NodeSchema.Props ) {
 				var hp = new SchemaHelperProp(ps);
@@ -39,13 +41,17 @@ namespace Fabric.Domain.Meta {
 				}
 
 				string sub = name.Substring(0, underI);
-				string prop = name.Substring(underI+1);
 
 				if ( !vSubMap.ContainsKey(sub) ) {
 					vSubMap.Add(sub, new List<SchemaHelperProp>());
+					vSubOptMap.Add(sub, true);
 				}
 
 				vSubMap[sub].Add(hp);
+
+				if ( ps.SubObjIsOptional == false ) {
+					vSubOptMap[sub] = false;
+				}
 			}
 
 			foreach ( WeaverRelSchema pr in SchemaHelper.SchemaInstance.Rels ) {
@@ -84,6 +90,11 @@ namespace Fabric.Domain.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<string> GetSubNames() {
 			return vSubMap.Keys.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool GetSubPropIsOptional(string pSubName) {
+			return vSubOptMap[pSubName];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
