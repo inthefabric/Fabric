@@ -23,15 +23,15 @@ namespace Fabric.Api.Services {
 		private static FabService ServiceDto;
 		private static string ServiceDtoJson;
 
-		private readonly FabMetaVersion vVersion;
+		private readonly FabMetaVersion vVers;
 		private readonly Route vRoute;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MetaController(Request pRequest, IApiContext pApiCtx, FabMetaVersion pVersion, 
+		public MetaController(Request pRequest, IApiContext pApiCtx, FabMetaVersion pVers, 
 						IOauthTasks pOauthTasks, Route pRoute) : base(pRequest, pApiCtx, pOauthTasks) {
-			vVersion = pVersion;
+			vVers = pVers;
 			vRoute = pRoute;
 		}
 
@@ -47,11 +47,11 @@ namespace Fabric.Api.Services {
 					return NewFabJsonResponse(ServiceDtoJson);
 
 				case Route.Spec:
-					var getDoc = new GetSpec(vVersion.Version);
+					var getDoc = new GetSpec(vVers.Version, vVers.Timestamp);
 					return NewFabJsonResponse(getDoc.Go(ApiCtx));
 
 				case Route.Version:
-					var getVer = new GetVersion(vVersion);
+					var getVer = new GetVersion(vVers);
 					var verList = new List<FabMetaVersion>();
 					verList.Add(getVer.Go(ApiCtx));
 					return NewFabJsonResponse(verList.ToJson());

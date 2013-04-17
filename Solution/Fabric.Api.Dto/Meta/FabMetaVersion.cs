@@ -1,4 +1,5 @@
-﻿using Fabric.Infrastructure.Db;
+﻿using System;
+using Fabric.Infrastructure.Db;
 
 namespace Fabric.Api.Dto.Meta {
 
@@ -11,6 +12,7 @@ namespace Fabric.Api.Dto.Meta {
 		public int Patch { get; private set; }
 		public string Revision { get; private set; }
 
+		public long Timestamp { get; private set; }
 		public int Year { get; private set; }
 		public int Month { get; private set; }
 		public int Day { get; private set; }
@@ -24,13 +26,12 @@ namespace Fabric.Api.Dto.Meta {
 			Patch = pPatch;
 			Revision = pRevision;
 			Version = Major+"."+Minor+"."+Patch+"."+Revision;
-		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public void SetDate(int pYear, int pMonth, int pDay) {
-			Year = pYear;
-			Month = pMonth;
-			Day = pDay;
+			var d = DateTime.UtcNow;
+			Timestamp = d.Ticks;
+			Year = d.Year;
+			Month = d.Month;
+			Day = d.Day;
 		}
 
 
