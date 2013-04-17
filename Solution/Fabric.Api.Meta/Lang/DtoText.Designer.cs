@@ -76,7 +76,7 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to An object which is able to (via Factor connections) accumulate meaning, context, user sentiment, and relationships.  !Artifacts and Factors are the central components of the Fabric architecture.
         ///
-        ///Every !Artifact maps exclusively to one other item in the Fabric architecture (such as an App, Class, Instance, or User). Fabric generates an !Artifact automatically each time a new !Artifact-enabled item is created.  Technically, each of these items &apos;has&apos; an associated !Artifact. However, due to the item&apos;s exclu [rest of string was truncated]&quot;;.
+        ///There are no restrictions on what an !Artifact can represent.  Fabric encourages the generous use of Factors to identify and describe each new !Artifact. Ideally, the Factor connections will distinguish an !Artifact from all others..
         /// </summary>
         internal static string Artifact {
             get {
@@ -176,9 +176,9 @@ namespace Fabric.Api.Meta.Lang {
         
         /// <summary>
         ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
-        ///[(EX|Documentation Note|To explain the !Class object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
-        ///- A !Class receives Factors via its associated Artifact.
-        ///- Each Factor references two Art [rest of string was truncated]&quot;;.
+        ///
+        ///A !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amonst all other !Classes.
+        ///[(EX|Ellie&apos;s Class Example|Ellie is building an App for dog lovers, but there are not yet animal-relat [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Class {
             get {
@@ -327,9 +327,9 @@ namespace Fabric.Api.Meta.Lang {
         
         /// <summary>
         ///   Looks up a localized string similar to Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.
-        ///[(EX|Documentation Note|To explain the !Instance object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
-        ///- An !Instance receives Factors via its associated Artifact.
-        ///- Each Factor references  [rest of string was truncated]&quot;;.
+        ///
+        ///An !Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply Factors to make the Instance as specific and meaningful as possible.
+        ///[(EX|Ellie&apos;s Instance Example|_Continued f [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Instance {
             get {
@@ -514,9 +514,9 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A hyperlink or path (uniform resource locator) to some web page, a file, or some other type of content.
         ///
-        ///While a !Url does have an associated Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:
-        ///- The news article and photo (via their Artifacts) can receive Factors independently.
-        ///- The !Url (via its Artifact) should  [rest of string was truncated]&quot;;.
+        ///While a !Url is a type of Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:
+        ///- The news article and photo Instances can receive Factors independently.
+        ///- The !Url should only receive Factors related to the actual [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Url {
             get {

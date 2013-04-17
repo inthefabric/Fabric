@@ -208,7 +208,7 @@
     <value>The data type of this object.</value>
   </data>
   <data name="Node_Uri" xml:space="preserve">
-    <value>Provides the traversal step necessary to filter the results to this particular node.</value>
+    <value>Append this value to the current URI to filter down to this specific Node in current traversal path.</value>
   </data>
   <data name="Object_TypeId" xml:space="preserve">
     <value>Uniquely identifies this object amongst all other objects of this type.</value>

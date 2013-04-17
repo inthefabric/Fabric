@@ -1006,7 +1006,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides the traversal step necessary to filter the results to this particular node..
+        ///   Looks up a localized string similar to Append this value to the current URI to filter down to this specific Node in current traversal path..
         /// </summary>
         internal static string Node_Uri {
             get {

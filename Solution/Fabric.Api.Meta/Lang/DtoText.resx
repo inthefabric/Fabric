@@ -131,11 +131,7 @@ Every item added to Fabric is associated with (via Member) a User and and an !Ap
   <data name="Artifact" xml:space="preserve">
     <value>An object which is able to (via Factor connections) accumulate meaning, context, user sentiment, and relationships.  !Artifacts and Factors are the central components of the Fabric architecture.
 
-Every !Artifact maps exclusively to one other item in the Fabric architecture (such as an App, Class, Instance, or User). Fabric generates an !Artifact automatically each time a new !Artifact-enabled item is created.  Technically, each of these items 'has' an associated !Artifact. However, due to the item's exclusive ownership, it is conceptually correct to say that each of these items 'is' an !Artifact.
-
-There are no restrictions on what an !Artifact can represent.  Fabric encourages the generous use of Factors to identify and describe each new !Artifact. Ideally, the Factor connections will distinguish an !Artifact from all others.
-
-Each !Artifact is linked to exactly one ArtifactOwnerNode item, where the type of this item is specified by the ArtifactType.</value>
+There are no restrictions on what an !Artifact can represent.  Fabric encourages the generous use of Factors to identify and describe each new !Artifact. Ideally, the Factor connections will distinguish an !Artifact from all others.</value>
   </data>
   <data name="Crowd" xml:space="preserve">
     <value>A group or collection of Users. The members of a !Crowd are called Crowdians.
@@ -187,12 +183,8 @@ Every item added to Fabric is associated with (via Member) a !User and and an Ap
   </data>
   <data name="Class" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
-[(EX|Documentation Note|To explain the !Class object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
-- A !Class receives Factors via its associated Artifact.
-- Each Factor references two Artifacts, which creates a relationship between them.
-- An 'is a' relationship refers to a Factor that uses an 'Is A' Descriptor.)]
 
-A !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amonst all other !Classes. An Artifact (of any type) can only have 'is a' relationships with !Classes.
+A !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amonst all other !Classes.
 [(EX|Ellie's Class Example|Ellie is building an App for dog lovers, but there are not yet animal-related !Classes for Ellie to use. She first creates broad !Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').
 
 She then creates narrower !Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A !Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' !Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]</value>
@@ -200,9 +192,9 @@ She then creates narrower !Classes for each dog grouping (like 'Working Dog') an
   <data name="Url" xml:space="preserve">
     <value>A hyperlink or path (uniform resource locator) to some web page, a file, or some other type of content.
 
-While a !Url does have an associated Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:
-- The news article and photo (via their Artifacts) can receive Factors independently.
-- The !Url (via its Artifact) should only receive Factors related to the actual web page, its design, etc.
+While a !Url is a type of Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:
+- The news article and photo Instances can receive Factors independently.
+- The !Url should only receive Factors related to the actual web page, its design, etc.
 - Every !Url that displays this particular news article can refer the same news article Instance.</value>
   </data>
   <data name="Descriptor" xml:space="preserve">
@@ -446,12 +438,8 @@ This redirect is used in one particular scenario: the [[OAuth login process|Oper
   </data>
   <data name="Instance" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.
-[(EX|Documentation Note|To explain the !Instance object more intuitively, this documentation simplifies some concepts of the Fabric architecture. Please be aware of the full complexity:
-- An !Instance receives Factors via its associated Artifact.
-- Each Factor references two Artifacts, which creates a relationship between them.
-- An 'is a' relationship refers to a Factor that uses an 'Is A' Descriptor.)]
 
-An !Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply Factors to make the Instance as specific and meaningful as possible. Each Instance must have an 'is a' relationship with at least one Class.
+An !Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply Factors to make the Instance as specific and meaningful as possible.
 [(EX|Ellie's Instance Example|_Continued from Ellie's Class Example..._
 
 After completing her new Classes, Ellie would like to add her own dog. She creates an !Instance named 'Gulliver', and attaches several Factors to make the Instance as unique as possible. Her Factors define that Gulliver is a Lhasa Apso breed, is owned by Ellie, and was born in September 2007.)] [(EX|Zach's Instance Example|Zach built an App that allows users to rate restaurants and individual meals. He created Classes for restaurant chains and meal types. He also created !Instances for specific restaurants (with relevant relationships for each).
