@@ -61,7 +61,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A named alias, which represents a particular place in the traversal path. This value must be unique across all other aliases in the traversal path..
         /// </summary>
         internal static string As_Alias {
             get {
@@ -70,7 +70,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The target named alias, which was defined by an [[As|Func|As]] function earlier in the traversal path..
         /// </summary>
         internal static string Back_Alias {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The maximum number of nodes to return..
         /// </summary>
         internal static string Limit_Count {
             get {
@@ -88,7 +88,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The starting index for the returned list of nodes..
         /// </summary>
         internal static string Limit_Index {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The target node Id..
         /// </summary>
         internal static string WhereId_Id {
             get {

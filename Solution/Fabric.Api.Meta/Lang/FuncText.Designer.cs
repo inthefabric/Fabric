@@ -61,7 +61,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Creates a named alias for the current step of the traversal path. Execution of the traversal path can return to this alias using the [[Back|Func|Back]] function..
         /// </summary>
         internal static string As {
             get {
@@ -70,7 +70,12 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Func|As]] function.
+        ///
+        ///When traversal execution reaches a Back function step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.
+        ///
+        ///The return type of the Back function is determined by the return type of the corresponding alias.
+        ///[(EX|Return Type Example|_ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Back {
             get {
@@ -79,7 +84,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Restricts the size and starting index of the node list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution..
         /// </summary>
         internal static string Limit {
             get {
@@ -88,11 +93,58 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Restricts the results to include only App nodes..
+        /// </summary>
+        internal static string WhereApp {
+            get {
+                return ResourceManager.GetString("WhereApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restricts the results to include only Class nodes..
+        /// </summary>
+        internal static string WhereClass {
+            get {
+                return ResourceManager.GetString("WhereClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restricts the results to a single Id value. 
+        ///
+        ///Note that each node type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
         /// </summary>
         internal static string WhereId {
             get {
                 return ResourceManager.GetString("WhereId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restricts the results to include only Instance nodes..
+        /// </summary>
+        internal static string WhereInstance {
+            get {
+                return ResourceManager.GetString("WhereInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restricts the results to include only Url nodes..
+        /// </summary>
+        internal static string WhereUrl {
+            get {
+                return ResourceManager.GetString("WhereUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restricts the results to include only User nodes..
+        /// </summary>
+        internal static string WhereUser {
+            get {
+                return ResourceManager.GetString("WhereUser", resourceCulture);
             }
         }
     }

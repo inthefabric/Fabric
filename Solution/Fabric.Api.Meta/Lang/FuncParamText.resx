@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="As_Alias" xml:space="preserve">
-    <value>TODO</value>
+    <value>A named alias, which represents a particular place in the traversal path. This value must be unique across all other aliases in the traversal path.</value>
   </data>
   <data name="Back_Alias" xml:space="preserve">
-    <value>TODO</value>
+    <value>The target named alias, which was defined by an [[As|Func|As]] function earlier in the traversal path.</value>
   </data>
   <data name="Limit_Count" xml:space="preserve">
-    <value>TODO</value>
+    <value>The maximum number of nodes to return.</value>
   </data>
   <data name="Limit_Index" xml:space="preserve">
-    <value>TODO</value>
+    <value>The starting index for the returned list of nodes.</value>
   </data>
   <data name="WhereId_Id" xml:space="preserve">
-    <value>TODO</value>
+    <value>The target node Id.</value>
   </data>
 </root>
