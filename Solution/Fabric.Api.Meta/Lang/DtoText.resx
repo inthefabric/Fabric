@@ -462,10 +462,10 @@ After completing her new Classes, Ellie would like to add her own dog. She creat
 When Users rate a particular meal, they also specify the restaurant, the day/time the meal was served, and the meal type. Behind the scenes, the App uses this data to construct a new !Instance and its relationships. Because Zach's !Instances are well-defined, one User could rate the same meal (at the same restaurant) every day, creating a unique and meaningful Instance each time.)]</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>TODO</value>
+    <value>The complete collection of Fabric API services.</value>
   </data>
   <data name="Service" xml:space="preserve">
-    <value>A collection of similar ServiceOperations which all share a similar purpose.</value>
+    <value>A collection of ServiceOperations which all share a similar purpose.</value>
   </data>
   <data name="ServiceOperation" xml:space="preserve">
     <value>A task, query, or operation that belongs to a Service.</value>

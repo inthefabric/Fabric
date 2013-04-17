@@ -304,7 +304,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The complete collection of Fabric API services..
         /// </summary>
         internal static string Home {
             get {
@@ -494,7 +494,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A collection of similar ServiceOperations which all share a similar purpose..
+        ///   Looks up a localized string similar to A collection of ServiceOperations which all share a similar purpose..
         /// </summary>
         internal static string Service {
             get {

@@ -727,7 +727,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The complete list of services..
         /// </summary>
         internal static string Home_Services {
             get {
@@ -1303,7 +1303,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The service name..
         /// </summary>
         internal static string Service_Name {
             get {
@@ -1312,7 +1312,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The complete list of operations for this service..
         /// </summary>
         internal static string Service_Operations {
             get {
@@ -1321,7 +1321,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Append this path to the current URI to obtain details about this service..
         /// </summary>
         internal static string Service_Uri {
             get {
@@ -1330,7 +1330,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The required HTTP method..
         /// </summary>
         internal static string ServiceOperation_Method {
             get {
@@ -1339,7 +1339,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A descriptive name for this operation..
         /// </summary>
         internal static string ServiceOperation_Name {
             get {
@@ -1348,7 +1348,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The type of Object returned by this operation..
         /// </summary>
         internal static string ServiceOperation_ReturnType {
             get {
@@ -1357,7 +1357,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Append this value to the current URI (and use the correct HTTP method) to invoke this operation..
         /// </summary>
         internal static string ServiceOperation_Uri {
             get {

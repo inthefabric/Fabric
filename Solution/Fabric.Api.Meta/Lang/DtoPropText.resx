@@ -337,28 +337,28 @@
     <value>TODO</value>
   </data>
   <data name="Home_Services" xml:space="preserve">
-    <value>TODO</value>
+    <value>The complete list of services.</value>
   </data>
   <data name="ServiceOperation_Method" xml:space="preserve">
-    <value>TODO</value>
+    <value>The required HTTP method.</value>
   </data>
   <data name="ServiceOperation_Name" xml:space="preserve">
-    <value>TODO</value>
+    <value>A descriptive name for this operation.</value>
   </data>
   <data name="ServiceOperation_ReturnType" xml:space="preserve">
-    <value>TODO</value>
+    <value>The type of Object returned by this operation.</value>
   </data>
   <data name="ServiceOperation_Uri" xml:space="preserve">
-    <value>TODO</value>
+    <value>Append this value to the current URI (and use the correct HTTP method) to invoke this operation.</value>
   </data>
   <data name="Service_Name" xml:space="preserve">
-    <value>TODO</value>
+    <value>The service name.</value>
   </data>
   <data name="Service_Operations" xml:space="preserve">
-    <value>TODO</value>
+    <value>The complete list of operations for this service.</value>
   </data>
   <data name="Service_Uri" xml:space="preserve">
-    <value>TODO</value>
+    <value>Append this path to the current URI to obtain details about this service.</value>
   </data>
   <data name="MetaTime_Day" xml:space="preserve">
     <value>The current day of the month.</value>
