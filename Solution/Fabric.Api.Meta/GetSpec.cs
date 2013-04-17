@@ -15,12 +15,14 @@ namespace Fabric.Api.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public GetSpec(string pBuildVers, long pBuildTime) {
+		public GetSpec(FabMetaVersion pVersion) {
 			if ( DocDto == null ) {
 				var doc = new SpecDoc();
 				DocDto = doc.GetFabSpec();
-				DocDto.BuildVersion = pBuildVers;
-				DocDto.BuildTimestamp = pBuildTime;
+				DocDto.BuildVersion = pVersion.Version;
+				DocDto.BuildYear = pVersion.Year;
+				DocDto.BuildMonth = pVersion.Month;
+				DocDto.BuildDay = pVersion.Day;
 				DocDtoJson = new [] { DocDto }.ToJson();
 			}
 		}

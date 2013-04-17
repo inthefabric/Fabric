@@ -47,7 +47,7 @@ namespace Fabric.Api.Services {
 					return NewFabJsonResponse(ServiceDtoJson);
 
 				case Route.Spec:
-					var getDoc = new GetSpec(vVers.Version, vVers.Timestamp);
+					var getDoc = new GetSpec(vVers);
 					return NewFabJsonResponse(getDoc.Go(ApiCtx));
 
 				case Route.Version:
