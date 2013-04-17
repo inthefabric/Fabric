@@ -1006,7 +1006,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides the traversal step necessary to filter the results to this particular node..
         /// </summary>
         internal static string Node_Uri {
             get {
@@ -1015,7 +1015,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A brief note describing this action..
         /// </summary>
         internal static string NodeForAction_Note {
             get {
@@ -1024,7 +1024,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The date/time this action was performed..
         /// </summary>
         internal static string NodeForAction_Performed {
             get {
@@ -1159,7 +1159,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to If an authenticated Member made this request, this identifies the App associated with that Member..
         /// </summary>
         internal static string Response_AppId {
             get {
@@ -1168,7 +1168,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The base URI for the Fabric API..
         /// </summary>
         internal static string Response_BaseUri {
             get {
@@ -1177,7 +1177,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The number of results in the returned Data list..
         /// </summary>
         internal static string Response_Count {
             get {
@@ -1186,7 +1186,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Contains the result of the request as a list of zero or more Objects..
         /// </summary>
         internal static string Response_Data {
             get {
@@ -1195,7 +1195,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The number of characters in the JSON representation of the Data list..
         /// </summary>
         internal static string Response_DataLen {
             get {
@@ -1204,7 +1204,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The time (in milliseconds) that it took the database server(s) to complete all data requests..
         /// </summary>
         internal static string Response_DbMs {
             get {
@@ -1213,7 +1213,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to If an error occurred, this contains information about the problem. Typically, the Data value is null when an Error value is present..
         /// </summary>
         internal static string Response_Error {
             get {
@@ -1222,7 +1222,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The traversal functions available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_Functions {
             get {
@@ -1231,7 +1231,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Indicates whether there are more nodes available beyond the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_HasMore {
             get {
@@ -1240,7 +1240,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The HTTP status returned by this request..
         /// </summary>
         internal static string Response_HttpStatus {
             get {
@@ -1249,7 +1249,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The traversal links available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_Links {
             get {
@@ -1258,7 +1258,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The URI of the current request..
         /// </summary>
         internal static string Response_RequestUri {
             get {
@@ -1267,7 +1267,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The starting index of the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_StartIndex {
             get {
@@ -1276,7 +1276,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The date/time of the current request..
         /// </summary>
         internal static string Response_Timestamp {
             get {
@@ -1285,7 +1285,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The time (in milliseconds) that it took the server(s) to complete this request..
         /// </summary>
         internal static string Response_TotalMs {
             get {
@@ -1294,16 +1294,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Response_Type {
-            get {
-                return ResourceManager.GetString("Response_Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to If an authenticated Member made this request, this identifies the User associated with that Member..
         /// </summary>
         internal static string Response_UserId {
             get {

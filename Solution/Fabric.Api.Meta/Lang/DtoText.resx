@@ -413,15 +413,12 @@ _Factor Phrase:_
 Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]</value>
   </data>
   <data name="Response" xml:space="preserve">
-    <value>The API response wrapper; contains the Data payload and other metadata.</value>
+    <value>The response wrapper for all API requests. It contains a data payload, error information, and/or other metadata.</value>
   </data>
   <data name="Node" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="NodeForAction" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="CrowdianTypeAssign" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="MemberTypeAssign" xml:space="preserve">

@@ -54,6 +54,14 @@ namespace Fabric.Api.Meta {
 			resp.Description = GetDtoText(resp.Name.Substring(3));
 			resp.Properties = ReflectProps(typeof(FabResponse));
 
+			foreach ( FabSpecObjectProp prop in resp.Properties ) {
+				if ( prop.Name != "Data" ) {
+					continue;
+				}
+
+				prop.Type = SchemaHelperProp.GetTypeName(typeof(List<FabObject>));
+			}
+
 			Objects = new List<FabSpecObject>();
 			Objects.Add(resp);
 

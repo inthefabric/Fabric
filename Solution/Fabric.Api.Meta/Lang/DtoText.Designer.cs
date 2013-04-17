@@ -216,15 +216,6 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string CrowdianTypeAssign {
-            get {
-                return ResourceManager.GetString("CrowdianTypeAssign", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Describes and refines the relationship between the two Artifacts of a particular Factor.
         ///
         ///The primary purpose of a !Descriptor is to describe the relationship between a Factor&apos;s primary Artifact and related Artifact. The DescriptorType provides this description, establishing meaningful connections like a A &apos;is a&apos; B, or C &apos;sounds like&apos; D.
@@ -485,7 +476,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The API response wrapper; contains the Data payload and other metadata..
+        ///   Looks up a localized string similar to The response wrapper for all API requests. It contains a data payload, error information, and/or other metadata..
         /// </summary>
         internal static string Response {
             get {

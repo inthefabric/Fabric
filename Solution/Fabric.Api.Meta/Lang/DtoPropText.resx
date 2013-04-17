@@ -199,55 +199,52 @@
     <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
   </data>
   <data name="NodeForAction_Note" xml:space="preserve">
-    <value>TODO</value>
+    <value>A brief note describing this action.</value>
   </data>
   <data name="NodeForAction_Performed" xml:space="preserve">
-    <value>TODO</value>
+    <value>The date/time this action was performed.</value>
   </data>
   <data name="Object_FabType" xml:space="preserve">
     <value>The data type of this object.</value>
   </data>
   <data name="Node_Uri" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides the traversal step necessary to filter the results to this particular node.</value>
   </data>
   <data name="Object_TypeId" xml:space="preserve">
     <value>Uniquely identifies this object amongst all other objects of this type.</value>
   </data>
   <data name="Response_Links" xml:space="preserve">
-    <value>TODO</value>
+    <value>The traversal links available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_BaseUri" xml:space="preserve">
-    <value>TODO</value>
+    <value>The base URI for the Fabric API.</value>
   </data>
   <data name="Response_Count" xml:space="preserve">
-    <value>TODO</value>
+    <value>The number of results in the returned Data list.</value>
   </data>
   <data name="Response_Data" xml:space="preserve">
-    <value>TODO</value>
+    <value>Contains the result of the request as a list of zero or more Objects.</value>
   </data>
   <data name="Response_DataLen" xml:space="preserve">
-    <value>TODO</value>
+    <value>The number of characters in the JSON representation of the Data list.</value>
   </data>
   <data name="Response_DbMs" xml:space="preserve">
-    <value>TODO</value>
+    <value>The time (in milliseconds) that it took the database server(s) to complete all data requests.</value>
   </data>
   <data name="Response_HasMore" xml:space="preserve">
-    <value>TODO</value>
+    <value>Indicates whether there are more nodes available beyond the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_RequestUri" xml:space="preserve">
-    <value>TODO</value>
+    <value>The URI of the current request.</value>
   </data>
   <data name="Response_StartIndex" xml:space="preserve">
-    <value>TODO</value>
+    <value>The starting index of the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_Timestamp" xml:space="preserve">
-    <value>TODO</value>
+    <value>The date/time of the current request.</value>
   </data>
   <data name="Response_TotalMs" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="Response_Type" xml:space="preserve">
-    <value>TODO</value>
+    <value>The time (in milliseconds) that it took the server(s) to complete this request.</value>
   </data>
   <data name="Artifact_Created" xml:space="preserve">
     <value>The date/time of creation.</value>
@@ -268,13 +265,13 @@
     <value>A descriptive name or title.</value>
   </data>
   <data name="Response_HttpStatus" xml:space="preserve">
-    <value>TODO</value>
+    <value>The HTTP status returned by this request.</value>
   </data>
   <data name="Response_Error" xml:space="preserve">
-    <value>TODO</value>
+    <value>If an error occurred, this contains information about the problem. Typically, the Data value is null when an Error value is present.</value>
   </data>
   <data name="Response_Functions" xml:space="preserve">
-    <value>TODO</value>
+    <value>The traversal functions available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="OauthAccess_AccessToken" xml:space="preserve">
     <value>A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
@@ -313,10 +310,10 @@
     <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
   </data>
   <data name="Response_AppId" xml:space="preserve">
-    <value>TODO</value>
+    <value>If an authenticated Member made this request, this identifies the App associated with that Member.</value>
   </data>
   <data name="Response_UserId" xml:space="preserve">
-    <value>TODO</value>
+    <value>If an authenticated Member made this request, this identifies the User associated with that Member.</value>
   </data>
   <data name="Instance_Disamb" xml:space="preserve">
     <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
