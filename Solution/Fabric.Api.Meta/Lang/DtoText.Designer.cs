@@ -251,7 +251,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When a fault or error occurs, a !FabError is returned in place of the expected response data. The information it provides should help determine what caused the issue for the given request..
+        ///   Looks up a localized string similar to When a fault or error occurs, a !FabError is included in the response data. The information it provides should help determine what caused the issue for the given request..
         /// </summary>
         internal static string Error {
             get {
@@ -364,9 +364,9 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by adjusting its MemberType.
+        ///   Looks up a localized string similar to An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different [[MemberType|Enum|MemberType]].
         ///
-        ///Every item added to Fabric is associated with a particular !Member. Thus, Fabric can determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc..
+        ///Every item added to Fabric is associated with a particular !Member. This enables Fabric to determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc..
         /// </summary>
         internal static string Member {
             get {
@@ -375,7 +375,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An assignment of a MemberType to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns..
+        ///   Looks up a localized string similar to An assignment of a [[MemberType|Enum|MemberType]] to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns..
         /// </summary>
         internal static string MemberTypeAssign {
             get {

@@ -156,7 +156,7 @@ There are various restrictions (based on Crowd properties) for !Crowdian creatio
     <value>Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc.</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>When a fault or error occurs, a !FabError is returned in place of the expected response data. The information it provides should help determine what caused the issue for the given request.</value>
+    <value>When a fault or error occurs, a !FabError is included in the response data. The information it provides should help determine what caused the issue for the given request.</value>
   </data>
   <data name="FactorAssertion" xml:space="preserve">
     <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
@@ -170,9 +170,9 @@ There are various restrictions (based on Crowd properties) for !Crowdian creatio
 !Labels are less formal (and less effective) than a Class or Instance, and should only be used in certain circumstances.  For example, some value or code (like 'A-1234' or 'study for science test') might have a useful purpose for a particular User.</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by adjusting its MemberType.
+    <value>An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different [[MemberType|Enum|MemberType]].
 
-Every item added to Fabric is associated with a particular !Member. Thus, Fabric can determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc.</value>
+Every item added to Fabric is associated with a particular !Member. This enables Fabric to determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc.</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>A registered Fabric account that has indirect access (via Apps) to the Fabric API. A !User can become a Member of an App, and then use the App's interface to interact with Fabric. An App's interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
@@ -414,7 +414,7 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
     <value>The base class for various "actions" that can occur.</value>
   </data>
   <data name="MemberTypeAssign" xml:space="preserve">
-    <value>An assignment of a MemberType to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns.</value>
+    <value>An assignment of a [[MemberType|Enum|MemberType]] to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns.</value>
   </data>
   <data name="Root" xml:space="preserve">
     <value>Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects.</value>
