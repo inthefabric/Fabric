@@ -35,6 +35,29 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 } //end node loop
 #>
 
+		public static IDictionary<Type, string> TypeMap;
+		public static IDictionary<string, string> NameMap;
+		private static readonly bool IsInit = Init();
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool Init() {
+			TypeMap = new Dictionary<Type, string>();
+			NameMap = new Dictionary<string, string>();
+			
+<#
+foreach ( WeaverNodeSchema ns in nodes ) {
+#>
+			TypeMap.Add(typeof(<#= ns.Name #>), <#= ns.Name #>);
+			NameMap.Add("<#= ns.Name #>", <#= ns.Name #>);
+
+<#
+} //end node loop
+#>
+			return true;
+		}
+
 	}
 
 

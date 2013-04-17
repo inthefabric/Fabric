@@ -92,7 +92,7 @@ int ni = 0;
 
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
 #>
-				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]);
+				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]); //<#= node.BaseNode+"" #>
 <#
 	++ni;
 } //end node loop

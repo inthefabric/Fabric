@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:12 PM
+// Generated on 4/16/2013 11:55:46 PM
 
 using System.Collections.Generic;
 
@@ -97,22 +97,22 @@ namespace Fabric.Domain.Meta {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
-				case "Node": return new SchemaHelperNode(s.Nodes[0]);
-				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]);
-				case "Artifact": return new SchemaHelperNode(s.Nodes[2]);
-				case "App": return new SchemaHelperNode(s.Nodes[3]);
-				case "Class": return new SchemaHelperNode(s.Nodes[4]);
-				case "Email": return new SchemaHelperNode(s.Nodes[5]);
-				case "Instance": return new SchemaHelperNode(s.Nodes[6]);
-				case "Member": return new SchemaHelperNode(s.Nodes[7]);
-				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]);
-				case "Url": return new SchemaHelperNode(s.Nodes[9]);
-				case "User": return new SchemaHelperNode(s.Nodes[10]);
-				case "Factor": return new SchemaHelperNode(s.Nodes[11]);
-				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]);
-				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]);
-				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]);
-				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]);
+				case "Node": return new SchemaHelperNode(s.Nodes[0]); //
+				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]); //Weaver.Schema.WeaverNodeSchema
+				case "Artifact": return new SchemaHelperNode(s.Nodes[2]); //Weaver.Schema.WeaverNodeSchema
+				case "App": return new SchemaHelperNode(s.Nodes[3]); //Weaver.Schema.WeaverNodeSchema
+				case "Class": return new SchemaHelperNode(s.Nodes[4]); //Weaver.Schema.WeaverNodeSchema
+				case "Email": return new SchemaHelperNode(s.Nodes[5]); //Weaver.Schema.WeaverNodeSchema
+				case "Instance": return new SchemaHelperNode(s.Nodes[6]); //Weaver.Schema.WeaverNodeSchema
+				case "Member": return new SchemaHelperNode(s.Nodes[7]); //
+				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]); //Weaver.Schema.WeaverNodeSchema
+				case "Url": return new SchemaHelperNode(s.Nodes[9]); //Weaver.Schema.WeaverNodeSchema
+				case "User": return new SchemaHelperNode(s.Nodes[10]); //Weaver.Schema.WeaverNodeSchema
+				case "Factor": return new SchemaHelperNode(s.Nodes[11]); //Weaver.Schema.WeaverNodeSchema
+				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]); //Weaver.Schema.WeaverNodeSchema
+				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]); //Weaver.Schema.WeaverNodeSchema
+				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]); //Weaver.Schema.WeaverNodeSchema
+				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]); //Weaver.Schema.WeaverNodeSchema
 			}
 
 			return null;

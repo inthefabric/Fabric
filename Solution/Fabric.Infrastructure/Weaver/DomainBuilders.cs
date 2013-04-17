@@ -1,11 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:11 PM
+// Generated on 4/16/2013 11:58:08 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
 using Weaver.Interfaces;
-using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -522,7 +521,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EmailBuilder : DomainBuilder<Email> {
+	public class EmailBuilder : NodeBuilder<Email> {
 
 		public virtual IList<IWeaverVarAlias<App>> InAppListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<User>> InUserListUses { get; private set; }
@@ -1196,7 +1195,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class FactorBuilder : DomainBuilder<Factor> {
+	public class FactorBuilder : NodeBuilder<Factor> {
 
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesPrimaryArtifact { get; private set; }
@@ -1440,7 +1439,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthAccessBuilder : DomainBuilder<OauthAccess> {
+	public class OauthAccessBuilder : NodeBuilder<OauthAccess> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -1524,7 +1523,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthDomainBuilder : DomainBuilder<OauthDomain> {
+	public class OauthDomainBuilder : NodeBuilder<OauthDomain> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		
@@ -1576,7 +1575,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthGrantBuilder : DomainBuilder<OauthGrant> {
+	public class OauthGrantBuilder : NodeBuilder<OauthGrant> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -1660,7 +1659,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class OauthScopeBuilder : DomainBuilder<OauthScope> {
+	public class OauthScopeBuilder : NodeBuilder<OauthScope> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }

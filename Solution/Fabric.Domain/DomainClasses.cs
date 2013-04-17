@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 4:15:23 PM
+// Generated on 4/16/2013 11:55:42 PM
 
 using System;
 using System.Collections.Generic;
@@ -304,6 +304,20 @@ namespace Fabric.Domain {
 		//[PropIsInternal(True)]
 		public virtual int FabType { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void FillWithData(IDictionary<string,string> pData) {
+			if ( pData == null ) {
+				return;
+			}
+			
+			if ( pData.ContainsKey("N_FT") ) {
+				FabType = int.Parse(pData["N_FT"]);
+			}
+
+		}
+
 	}
 
 	/*================================================================================================*/
@@ -321,6 +335,26 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public NodeForAction(NodeFabType pFabType) : base(pFabType) {}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void FillWithData(IDictionary<string,string> pData) {
+			if ( pData == null ) {
+				return;
+			}
+			
+			base.FillWithData(pData);
+			
+			if ( pData.ContainsKey("NA_Pe") ) {
+				Performed = long.Parse(pData["NA_Pe"]);
+			}
+			
+			if ( pData.ContainsKey("NA_No") ) {
+				Note = pData["NA_No"];
+			}
+
+		}
 
 	}
 
@@ -353,7 +387,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Artifact).ArtifactId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -362,6 +395,8 @@ namespace Fabric.Domain {
 				return;
 			}
 			
+			base.FillWithData(pData);
+			
 			if ( pData.ContainsKey("A_AId") ) {
 				ArtifactId = long.Parse(pData["A_AId"]);
 			}
@@ -369,10 +404,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("A_Cr") ) {
 				Created = long.Parse(pData["A_Cr"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesArtifact InMemberCreates {
 			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOne); }
@@ -446,7 +480,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as App).AppId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -468,10 +501,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("Ap_Se") ) {
 				Secret = pData["Ap_Se"];
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail UsesEmail {
 			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToOne); }
@@ -545,7 +577,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Class).ClassId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -571,10 +602,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("Cl_No") ) {
 				Note = pData["Cl_No"];
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	/*================================================================================================*/
@@ -620,7 +650,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Email).EmailId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -628,6 +657,8 @@ namespace Fabric.Domain {
 			if ( pData == null ) {
 				return;
 			}
+			
+			base.FillWithData(pData);
 			
 			if ( pData.ContainsKey("E_Id") ) {
 				EmailId = long.Parse(pData["E_Id"]);
@@ -648,10 +679,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("E_Ve") ) {
 				Verified = long.Parse(pData["E_Ve"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail InAppListUses {
 			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromZeroOrMore); }
@@ -706,7 +736,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Instance).InstanceId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -732,10 +761,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("In_No") ) {
 				Note = pData["In_No"];
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	/*================================================================================================*/
@@ -760,7 +788,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Member).MemberId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -772,10 +799,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("M_Id") ) {
 				MemberId = long.Parse(pData["M_Id"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppDefinesMember InAppDefines {
 			get { return NewRel<AppDefinesMember>(WeaverRelConn.InFromOne); }
@@ -838,7 +864,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as MemberTypeAssign).MemberTypeAssignId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -847,6 +872,8 @@ namespace Fabric.Domain {
 				return;
 			}
 			
+			base.FillWithData(pData);
+			
 			if ( pData.ContainsKey("MTA_Id") ) {
 				MemberTypeAssignId = long.Parse(pData["MTA_Id"]);
 			}
@@ -854,10 +881,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("MTA_Mt") ) {
 				MemberTypeId = byte.Parse(pData["MTA_Mt"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign InMemberHas {
 			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOne); }
@@ -909,7 +935,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Url).UrlId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -931,10 +956,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("Ur_Ab") ) {
 				AbsoluteUrl = pData["Ur_Ab"];
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	/*================================================================================================*/
@@ -974,7 +998,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as User).UserId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -996,10 +1019,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("U_Pa") ) {
 				Password = pData["U_Pa"];
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserUsesEmail UsesEmail {
 			get { return NewRel<UserUsesEmail>(WeaverRelConn.OutToOne); }
@@ -1144,7 +1166,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Factor).FactorId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1152,6 +1173,8 @@ namespace Fabric.Domain {
 			if ( pData == null ) {
 				return;
 			}
+			
+			base.FillWithData(pData);
 			
 			if ( pData.ContainsKey("F_Id") ) {
 				FactorId = long.Parse(pData["F_Id"]);
@@ -1248,10 +1271,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("F_VeV") ) {
 				Vector_Value = long.Parse(pData["F_VeV"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesFactor InMemberCreates {
 			get { return NewRel<MemberCreatesFactor>(WeaverRelConn.InFromOne); }
@@ -1330,7 +1352,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthAccess).OauthAccessId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1338,6 +1359,8 @@ namespace Fabric.Domain {
 			if ( pData == null ) {
 				return;
 			}
+			
+			base.FillWithData(pData);
 			
 			if ( pData.ContainsKey("OA_Id") ) {
 				OauthAccessId = long.Parse(pData["OA_Id"]);
@@ -1358,10 +1381,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("OA_CO") ) {
 				IsClientOnly = bool.Parse(pData["OA_CO"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthAccessUsesApp UsesApp {
 			get { return NewRel<OauthAccessUsesApp>(WeaverRelConn.OutToOne); }
@@ -1402,7 +1424,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthDomain).OauthDomainId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1411,6 +1432,8 @@ namespace Fabric.Domain {
 				return;
 			}
 			
+			base.FillWithData(pData);
+			
 			if ( pData.ContainsKey("OD_Id") ) {
 				OauthDomainId = long.Parse(pData["OD_Id"]);
 			}
@@ -1418,10 +1441,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("OD_Do") ) {
 				Domain = pData["OD_Do"];
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthDomainUsesApp UsesApp {
 			get { return NewRel<OauthDomainUsesApp>(WeaverRelConn.OutToOne); }
@@ -1465,7 +1487,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthGrant).OauthGrantId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1473,6 +1494,8 @@ namespace Fabric.Domain {
 			if ( pData == null ) {
 				return;
 			}
+			
+			base.FillWithData(pData);
 			
 			if ( pData.ContainsKey("OG_Id") ) {
 				OauthGrantId = long.Parse(pData["OG_Id"]);
@@ -1489,10 +1512,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("OG_Ex") ) {
 				Expires = long.Parse(pData["OG_Ex"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthGrantUsesApp UsesApp {
 			get { return NewRel<OauthGrantUsesApp>(WeaverRelConn.OutToOne); }
@@ -1534,7 +1556,6 @@ namespace Fabric.Domain {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthScope).OauthScopeId);
 		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1542,6 +1563,8 @@ namespace Fabric.Domain {
 			if ( pData == null ) {
 				return;
 			}
+			
+			base.FillWithData(pData);
 			
 			if ( pData.ContainsKey("OS_Id") ) {
 				OauthScopeId = long.Parse(pData["OS_Id"]);
@@ -1554,10 +1577,9 @@ namespace Fabric.Domain {
 			if ( pData.ContainsKey("OS_Cr") ) {
 				Created = long.Parse(pData["OS_Cr"]);
 			}
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthScopeUsesApp UsesApp {
 			get { return NewRel<OauthScopeUsesApp>(WeaverRelConn.OutToOne); }

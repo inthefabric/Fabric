@@ -49,6 +49,7 @@ namespace Fabric.Domain.Meta {
 			////
 			
 			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", "NA");
+			nodeForAction.BaseNode = node;
 			nodeForAction.IsAbstract = true;
 			nodeForAction.IsBaseClass = true;
 			p = AddProp(nodeForAction, "Performed", "Pe", typeof(DateTime));
@@ -61,6 +62,7 @@ namespace Fabric.Domain.Meta {
 			////
 
 			WeaverNodeSchema artifact = AddNode("Artifact", "A");
+			artifact.BaseNode = node;
 			artifact.IsBaseClass = true;
 			p = AddProp(artifact, "ArtifactId", "AId", typeof(long));
 				p.IsPrimaryKey = true;
@@ -132,6 +134,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(crowdianTypeAssign, "Weight", typeof(float));*/
 
 			WeaverNodeSchema email = AddNode("Email", "E");
+			email.BaseNode = node;
 			email.IsInternal = true;
 			p = AddProp(email, "EmailId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -223,6 +226,7 @@ namespace Fabric.Domain.Meta {
 			////
 
 			WeaverNodeSchema factor = AddNode("Factor", "F");
+			factor.BaseNode = node;
 			p = AddProp(factor, "FactorId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(factor, "FactorAssertionId", "Fa", typeof(byte));
@@ -281,6 +285,7 @@ namespace Fabric.Domain.Meta {
 			////
 
 			WeaverNodeSchema oauthAccess = AddNode("OauthAccess", "OA");
+			oauthAccess.BaseNode = node;
 			oauthAccess.IsInternal = true;
 			p = AddProp(oauthAccess, "OauthAccessId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -297,6 +302,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthAccess, "IsClientOnly", "CO", typeof(bool));
 
 			WeaverNodeSchema oauthDomain = AddNode("OauthDomain", "OD");
+			oauthDomain.BaseNode = node;
 			oauthDomain.IsInternal = true;
 			p = AddProp(oauthDomain, "OauthDomainId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -306,6 +312,7 @@ namespace Fabric.Domain.Meta {
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
 			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
+			oauthGrant.BaseNode = node;
 			oauthGrant.IsInternal = true;
 			p = AddProp(oauthGrant, "OauthGrantId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -319,6 +326,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthGrant, "Expires", "Ex", typeof(DateTime));
 
 			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");
+			oauthScope.BaseNode = node;
 			oauthScope.IsInternal = true;
 			p = AddProp(oauthScope, "OauthScopeId", "Id", typeof(long));
 				p.IsPrimaryKey = true;

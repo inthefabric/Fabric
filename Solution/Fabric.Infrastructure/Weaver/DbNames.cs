@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 4:42:23 PM
+// Generated on 4/16/2013 11:55:44 PM
 
 using System;
 using System.Collections.Generic;
@@ -31,6 +31,68 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string OauthDomain = "OD";
 		public const string OauthGrant = "OG";
 		public const string OauthScope = "OS";
+
+		public static IDictionary<Type, string> TypeMap;
+		public static IDictionary<string, string> NameMap;
+		private static readonly bool IsInit = Init();
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool Init() {
+			TypeMap = new Dictionary<Type, string>();
+			NameMap = new Dictionary<string, string>();
+			
+			TypeMap.Add(typeof(Node), Node);
+			NameMap.Add("Node", Node);
+
+			TypeMap.Add(typeof(NodeForAction), NodeForAction);
+			NameMap.Add("NodeForAction", NodeForAction);
+
+			TypeMap.Add(typeof(Artifact), Artifact);
+			NameMap.Add("Artifact", Artifact);
+
+			TypeMap.Add(typeof(App), App);
+			NameMap.Add("App", App);
+
+			TypeMap.Add(typeof(Class), Class);
+			NameMap.Add("Class", Class);
+
+			TypeMap.Add(typeof(Email), Email);
+			NameMap.Add("Email", Email);
+
+			TypeMap.Add(typeof(Instance), Instance);
+			NameMap.Add("Instance", Instance);
+
+			TypeMap.Add(typeof(Member), Member);
+			NameMap.Add("Member", Member);
+
+			TypeMap.Add(typeof(MemberTypeAssign), MemberTypeAssign);
+			NameMap.Add("MemberTypeAssign", MemberTypeAssign);
+
+			TypeMap.Add(typeof(Url), Url);
+			NameMap.Add("Url", Url);
+
+			TypeMap.Add(typeof(User), User);
+			NameMap.Add("User", User);
+
+			TypeMap.Add(typeof(Factor), Factor);
+			NameMap.Add("Factor", Factor);
+
+			TypeMap.Add(typeof(OauthAccess), OauthAccess);
+			NameMap.Add("OauthAccess", OauthAccess);
+
+			TypeMap.Add(typeof(OauthDomain), OauthDomain);
+			NameMap.Add("OauthDomain", OauthDomain);
+
+			TypeMap.Add(typeof(OauthGrant), OauthGrant);
+			NameMap.Add("OauthGrant", OauthGrant);
+
+			TypeMap.Add(typeof(OauthScope), OauthScope);
+			NameMap.Add("OauthScope", OauthScope);
+
+			return true;
+		}
 
 	}
 

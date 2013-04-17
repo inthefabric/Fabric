@@ -178,25 +178,29 @@ foreach ( string name in nodes ) {
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as <#= node.Name #>).<#= node.Name #>Id);
 		}
-		
+<#
+	} //end abstract condition
+
+	string fillOver = (isMainNode ? "virtual" : "override");
+#>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void FillWithData(IDictionary<string,string> pData) {
+		public <#= fillOver #> void FillWithData(IDictionary<string,string> pData) {
 			if ( pData == null ) {
 				return;
 			}
 <#
-		if ( node.BaseNode != null && !node.BaseNode.IsAbstract ) {
+		if ( node.BaseNode != null ) {
 #>
 			
 			base.FillWithData(pData);
 <#
 		} //end BaseNode condition
 
-		foreach ( SchemaHelperProp hp in props ) { 
-			WeaverPropSchema prop = hp.PropSchema;
-			string propType = hp.TypeName.Replace("?", "");;
+	foreach ( SchemaHelperProp hp in props ) { 
+		WeaverPropSchema prop = hp.PropSchema;
+		string propType = hp.TypeName.Replace("?", "");;
 #>
 			
 			if ( pData.ContainsKey("<#= prop.DbName #>") ) {
@@ -214,15 +218,12 @@ foreach ( string name in nodes ) {
 #>
 			}
 <#
-		} //end prop loop
+	} //end prop loop
 #>
+
 		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
-	} //end abstract condition
-
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
