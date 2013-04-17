@@ -216,11 +216,10 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes and refines the relationship between the two Artifacts of a particular Factor.
+        ///   Looks up a localized string similar to A Factor Element that describes and refines the relationship between the two Artifacts. !Descriptors are the only required Factor Element.
         ///
-        ///The primary purpose of a !Descriptor is to describe the relationship between a Factor&apos;s primary Artifact and related Artifact. The DescriptorType provides this description, establishing meaningful connections like a A &apos;is a&apos; B, or C &apos;sounds like&apos; D.
-        ///
-        ///The Artifact relationship (defined by a Factor) is directional, flowing from the primary Artifact to the related Artifact. The DescriptorType, therefore, must coordina [rest of string was truncated]&quot;;.
+        ///First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship&apos;s direction.
+        ///[(EX|R [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Descriptor {
             get {
@@ -229,11 +228,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creates a directional, action-based pathway between the two Artifacts of a particular Factor.
+        ///   Looks up a localized string similar to A Factor Element that creates a directional, action-based pathway between the two Artifacts of a particular Factor.
         ///
-        ///The nature of a !Director&apos;s pathway depends on its DirectorType. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
+        ///The nature of a !Director&apos;s pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
         ///
-        ///A !Director specifies a DirectorAction for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is [rest of string was truncated]&quot;;.
+        ///A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on t [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Director {
             get {
@@ -275,9 +274,9 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
         ///
-        ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. There are various !Factor-related components (known as !Factor Elements) available. Each has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+        ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor Elements. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
         ///
-        ///The six !Factor Elements are called Descript [rest of string was truncated]&quot;;.
+        ///There are six !Factor Elements: Descriptor, Director, Event [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Factor {
             get {

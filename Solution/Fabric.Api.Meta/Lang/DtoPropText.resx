@@ -190,7 +190,7 @@
     <value>The date/time of completion. This value is null if the !Factor is not complete.</value>
   </data>
   <data name="Factor_IsDefining" xml:space="preserve">
-    <value>Specifies whether this !Factor helps to uniquely define the primary Artifact.</value>
+    <value>Specifies whether this !Factor helps to directly and uniquely define the primary Artifact.</value>
   </data>
   <data name="Factor_IsPublic" xml:space="preserve">
     <value>Specifies the level of access.</value>

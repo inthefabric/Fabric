@@ -198,47 +198,43 @@ While a !Url is a type of Artifact, it should be used with certain constraints. 
 - Every !Url that displays this particular news article can refer the same news article Instance.</value>
   </data>
   <data name="Descriptor" xml:space="preserve">
-    <value>Describes and refines the relationship between the two Artifacts of a particular Factor.
+    <value>A Factor Element that describes and refines the relationship between the two Artifacts. !Descriptors are the only required Factor Element.
 
-The primary purpose of a !Descriptor is to describe the relationship between a Factor's primary Artifact and related Artifact. The DescriptorType provides this description, establishing meaningful connections like a A 'is a' B, or C 'sounds like' D.
-
-The Artifact relationship (defined by a Factor) is directional, flowing from the primary Artifact to the related Artifact. The DescriptorType, therefore, must coordinate with the relationship's direction.
+First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A "is a" B, or C "sounds like" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.
 [(EX|Relationship Example|_Objective:_
 Describe that a circle is a shape. 
 
 _Method:_
 - The Factor uses 'Circle' as the primary Artifact and 'Shape' as the related Artifact.
-- The !Descriptor uses the 'Is A' DescriptorType.
+- The !Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].
 
 _Factor Phrase:_
 Circle ... Is A ... Shape.)]
 
-!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any available Artifact, a !Descriptor may refine the DescriptorType, the Factor's primary Artifact, and/or the Factor's related Artifact.
+!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.
 [(EX|Refinement Example|_Objective:_
 Describe that car A and car B have headlights with a similar shape.
 
 _Method:_
 - The Factor uses 'Car A' as the primary Artifact and 'Car B' as the related Artifact.
-- The !Descriptor uses the 'Is Similar To' DescriptorType, uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the DescriptorType.
+- The !Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]].
 
 _Factor Phrase:_
-Car A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]
-
-!Descriptors are the only required Factor Element. If a Factor is completed without a Descriptor, Fabric automatically attaches one. The default !Descriptor uses the 'Is Related To' DescriptorType with no refinements.</value>
+Car A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]</value>
   </data>
   <data name="Director" xml:space="preserve">
-    <value>Creates a directional, action-based pathway between the two Artifacts of a particular Factor.
+    <value>A Factor Element that creates a directional, action-based pathway between the two Artifacts of a particular Factor.
 
-The nature of a !Director's pathway depends on its DirectorType. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
+The nature of a !Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
 
-A !Director specifies a DirectorAction for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.
+A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.
 [(EX|Defined Pathway Example|_Objective:_
 Direct along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.
 
 _Method:_
 - The Factor uses 'Song C' as the primary Artifact and 'Song D' as the related Artifact.
-- The Descriptor, by default, uses the 'IsRelatedTo' DescriptorType.
-- The !Director uses the 'Defined Path' DirectorType and the 'Listen' DirectorAction for each Artifact.
+- The Descriptor, by default, uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].
+- The !Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each Artifact.
 
 _Factor Phrase:_
 Song C ... Is Related To ... Song D. (Performing the) Listen (action on) ... Song C ... (leads via) Defined Path (toward) ... (performing the) Listen (action on) ... Song D.)] [(EX|Suggested Pathway Example|_Objective:_
@@ -246,8 +242,8 @@ Direct along a suggested pathway of listening to song A and then learning about 
 
 _Method:_
 - The Factor uses 'Song A' as the primary Artifact and 'Singer B' as the related Artifact.
-- The Descriptor, by default, uses the 'IsRelatedTo' DescriptorType.
-- The !Director uses the 'Suggested Path' DirectorType, the 'Listen' primary DirectorAction, and the 'Learn' related DirectorAction.
+- The Descriptor, by default, uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].
+- The !Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].
 
 _Factor Phrase:_
 Song A ... Is Related To ... Song B.  (Performing the) Listen (action on) ... Song A ... (leads via) Suggested Path (toward) ... (performing the) Learn (action on) ... Singer B.)]</value>
@@ -283,13 +279,11 @@ _Note: every Factor recieves a timestamp upon creation. This timestamp is not re
   <data name="Factor" xml:space="preserve">
     <value>Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
 
-A !Factor forms a directional relationship from its primary Artifact to its related Artifact. There are various !Factor-related components (known as !Factor Elements) available. Each has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor Elements. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
 
-The six !Factor Elements are called Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.
+There are six !Factor Elements: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.
 
-Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. The FactorAssertionKey allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.
-
-Each !Factor has a trio of boolean states. IsComplete states whether the !Factor is completed or still under construction. IsDefining states whether the Factor is a vital piece of data, which could be useful in uniquely identifying the primary Artifact. IsPublic states whether the Factor is public (available to all Apps and Users) or not. Non-public Factors are primarily accessible to the App responsible for creating it, but may be accessible by other Apps which have certain access rights.</value>
+Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A [[FactorAssertion|Enum|FactorAssertion]] allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.</value>
   </data>
   <data name="Identor" xml:space="preserve">
     <value>Applies a name or identifier to a particular Factor.

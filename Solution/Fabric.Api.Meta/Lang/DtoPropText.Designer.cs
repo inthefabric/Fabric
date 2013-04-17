@@ -673,7 +673,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies whether this !Factor helps to uniquely define the primary Artifact..
+        ///   Looks up a localized string similar to Specifies whether this !Factor helps to directly and uniquely define the primary Artifact..
         /// </summary>
         internal static string Factor_IsDefining {
             get {
