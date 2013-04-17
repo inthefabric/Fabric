@@ -221,13 +221,13 @@ Logging out of an OAuth session does not revoke the the App scope accepted by th
     <value>The latest specification and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now.</value>
   </data>
   <data name="Traversal_GetActiveApp" xml:space="preserve">
-    <value>TODO</value>
+    <value>Get the App that is associated with the currently authenticated Member.</value>
   </data>
   <data name="Traversal_GetActiveMember" xml:space="preserve">
-    <value>TODO</value>
+    <value>Get the the currently authenticated Member.</value>
   </data>
   <data name="Traversal_GetActiveUser" xml:space="preserve">
-    <value>TODO</value>
+    <value>Get the User that is associated with the currently authenticated Member.</value>
   </data>
   <data name="Traversal_GetRoot" xml:space="preserve">
     <value>The starting point for all traversal queries. Use traversal links and traversal functions to navigate through Fabric's objects. These links and functions are capable of performing both simple and highly complex queries.</value>

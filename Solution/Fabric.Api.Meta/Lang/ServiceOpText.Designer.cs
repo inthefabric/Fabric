@@ -302,7 +302,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Get the App that is associated with the currently authenticated Member..
         /// </summary>
         internal static string Traversal_GetActiveApp {
             get {
@@ -311,7 +311,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Get the the currently authenticated Member..
         /// </summary>
         internal static string Traversal_GetActiveMember {
             get {
@@ -320,7 +320,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Get the User that is associated with the currently authenticated Member..
         /// </summary>
         internal static string Traversal_GetActiveUser {
             get {
