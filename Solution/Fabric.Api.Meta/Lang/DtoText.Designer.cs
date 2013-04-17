@@ -393,7 +393,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Contains the current Fabric system time. Fabric uses the UTC timezone for all dates, times, and timestamps..
         /// </summary>
         internal static string MetaTime {
             get {
@@ -402,7 +402,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Contains the current Fabric version information. Fabric uses semantic versioning..
         /// </summary>
         internal static string MetaVersion {
             get {

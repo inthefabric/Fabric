@@ -364,55 +364,55 @@
     <value>TODO</value>
   </data>
   <data name="MetaTime_Day" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current day of the month.</value>
   </data>
   <data name="MetaTime_Hour" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current hour (using 24-hour time).</value>
   </data>
   <data name="MetaTime_Millisecond" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current millisecond.</value>
   </data>
   <data name="MetaTime_Minute" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current minute.</value>
   </data>
   <data name="MetaTime_Month" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current month.</value>
   </data>
   <data name="MetaTime_Second" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current second.</value>
   </data>
   <data name="MetaTime_Ticks" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current number of Ticks since January 1, 0001.  A Tick is one ten-millionth of a second; there are 10,000 Ticks per millisecond.</value>
   </data>
   <data name="MetaTime_Unix" xml:space="preserve">
-    <value>TODO</value>
+    <value>A Unix timestamp value, derived from the Ticks value.</value>
   </data>
   <data name="MetaTime_Year" xml:space="preserve">
-    <value>TODO</value>
+    <value>The current year.</value>
   </data>
   <data name="MetaVersion_Day" xml:space="preserve">
-    <value>TODO</value>
+    <value>The day of the month that this build was released.</value>
   </data>
   <data name="MetaVersion_Major" xml:space="preserve">
-    <value>TODO</value>
+    <value>The major revision number for this build. This value is only incremented in cases where significant or important changes have occurred. These changes may introduce backwards-incompatability with previous builds.</value>
   </data>
   <data name="MetaVersion_Minor" xml:space="preserve">
-    <value>TODO</value>
+    <value>The minor revision number for this build. This value is incremented in cases when substantial functionality or improvements are introduced. It may also occur when certain functionality becomes deprecated.</value>
   </data>
   <data name="MetaVersion_Month" xml:space="preserve">
-    <value>TODO</value>
+    <value>The month that this build was released.</value>
   </data>
   <data name="MetaVersion_Patch" xml:space="preserve">
-    <value>TODO</value>
+    <value>The patch revision number for this build. This value is incremented when bug fixes or other internal changes occur.</value>
   </data>
   <data name="MetaVersion_Revision" xml:space="preserve">
-    <value>TODO</value>
+    <value>The revision text is derived from internal build information. It may be safely omitted from the build's version string.</value>
   </data>
   <data name="MetaVersion_Version" xml:space="preserve">
-    <value>TODO</value>
+    <value>This build's full version string, in the format: "Major.Minor.Patch.Revision".</value>
   </data>
   <data name="MetaVersion_Year" xml:space="preserve">
-    <value>TODO</value>
+    <value>The year that this build was released.</value>
   </data>
   <data name="BatchNewClass_Disamb" xml:space="preserve">
     <value />

@@ -61,7 +61,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load the latest specifications and documentation for all Fabric API services..
+        ///   Looks up a localized string similar to Get the latest specifications and documentation for all Fabric API services..
         /// </summary>
         internal static string Meta_GetSpecification {
             get {
@@ -70,7 +70,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Get the current Fabric server time..
         /// </summary>
         internal static string Meta_GetTime {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Get the current Fabric version..
         /// </summary>
         internal static string Meta_GetVersion {
             get {

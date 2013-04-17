@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Meta_GetSpecification" xml:space="preserve">
-    <value>Load the latest specifications and documentation for all Fabric API services.</value>
+    <value>Get the latest specifications and documentation for all Fabric API services.</value>
   </data>
   <data name="Meta_GetTime" xml:space="preserve">
-    <value>TODO</value>
+    <value>Get the current Fabric server time.</value>
   </data>
   <data name="Meta_GetVersion" xml:space="preserve">
-    <value>TODO</value>
+    <value>Get the current Fabric version.</value>
   </data>
   <data name="Modify_AddClass" xml:space="preserve">
     <value>Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.</value>

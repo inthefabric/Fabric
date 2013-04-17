@@ -853,7 +853,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current day of the month..
         /// </summary>
         internal static string MetaTime_Day {
             get {
@@ -862,7 +862,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current hour (using 24-hour time)..
         /// </summary>
         internal static string MetaTime_Hour {
             get {
@@ -871,7 +871,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current millisecond..
         /// </summary>
         internal static string MetaTime_Millisecond {
             get {
@@ -880,7 +880,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current minute..
         /// </summary>
         internal static string MetaTime_Minute {
             get {
@@ -889,7 +889,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current month..
         /// </summary>
         internal static string MetaTime_Month {
             get {
@@ -898,7 +898,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current second..
         /// </summary>
         internal static string MetaTime_Second {
             get {
@@ -907,7 +907,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current number of Ticks since January 1, 0001.  A Tick is one ten-millionth of a second; there are 10,000 Ticks per millisecond..
         /// </summary>
         internal static string MetaTime_Ticks {
             get {
@@ -916,7 +916,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A Unix timestamp value, derived from the Ticks value..
         /// </summary>
         internal static string MetaTime_Unix {
             get {
@@ -925,7 +925,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The current year..
         /// </summary>
         internal static string MetaTime_Year {
             get {
@@ -934,7 +934,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The day of the month that this build was released..
         /// </summary>
         internal static string MetaVersion_Day {
             get {
@@ -943,7 +943,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The major revision number for this build. This value is only incremented in cases where significant or important changes have occurred. These changes may introduce backwards-incompatability with previous builds..
         /// </summary>
         internal static string MetaVersion_Major {
             get {
@@ -952,7 +952,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The minor revision number for this build. This value is incremented in cases when substantial functionality or improvements are introduced. It may also occur when certain functionality becomes deprecated..
         /// </summary>
         internal static string MetaVersion_Minor {
             get {
@@ -961,7 +961,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The month that this build was released..
         /// </summary>
         internal static string MetaVersion_Month {
             get {
@@ -970,7 +970,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The patch revision number for this build. This value is incremented when bug fixes or other internal changes occur..
         /// </summary>
         internal static string MetaVersion_Patch {
             get {
@@ -979,7 +979,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The revision text is derived from internal build information. It may be safely omitted from the build&apos;s version string..
         /// </summary>
         internal static string MetaVersion_Revision {
             get {
@@ -988,7 +988,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to This build&apos;s full version string, in the format: &quot;Major.Minor.Patch.Revision&quot;..
         /// </summary>
         internal static string MetaVersion_Version {
             get {
@@ -997,7 +997,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The year that this build was released..
         /// </summary>
         internal static string MetaVersion_Year {
             get {

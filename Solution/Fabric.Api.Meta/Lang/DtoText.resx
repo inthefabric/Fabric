@@ -477,10 +477,10 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
     <value>TODO</value>
   </data>
   <data name="MetaTime" xml:space="preserve">
-    <value>TODO</value>
+    <value>Contains the current Fabric system time. Fabric uses the UTC timezone for all dates, times, and timestamps.</value>
   </data>
   <data name="MetaVersion" xml:space="preserve">
-    <value>TODO</value>
+    <value>Contains the current Fabric version information. Fabric uses semantic versioning.</value>
   </data>
   <data name="BatchNewClass" xml:space="preserve">
     <value>Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Modify.AddClass]] documentation for details and parameter restrictions.</value>
