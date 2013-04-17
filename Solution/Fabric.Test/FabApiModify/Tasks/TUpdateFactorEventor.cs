@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,12 +12,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactorEventor : TModifyTasks {
 
-		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P)"+
+		private const string Query = 
+			"g.V('"+PropDbName.Factor_FactorId+"',_P)"+
 				".sideEffect{"+
-					"it.setProperty('Eventor_TypeId',_P);"+
-					"it.setProperty('Eventor*PrecisionId',_P);"+
-					"it.setProperty('Eventor_DateTime',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Eventor_TypeId+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Eventor_PrecisionId+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Eventor_DateTime+"',_P)"+
 				"};";
 
 		private Factor vFactor;
@@ -43,7 +44,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.LogWeaverScript(pQuery);
 			UsageMap.Increment("UpdateFactorEventor");
 
-			string expect = TestUtil.InsertParamIndexes(Query, "_P").Replace('*', '_');
+			string expect = TestUtil.InsertParamIndexes(Query, "_P");
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
 			
 			TestUtil.CheckParams(pQuery.Params, "_P", new object[] {

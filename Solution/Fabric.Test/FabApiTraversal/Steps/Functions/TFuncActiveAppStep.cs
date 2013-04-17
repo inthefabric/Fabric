@@ -3,8 +3,8 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
-			string script = "V('"+typeof(App).Name+"Id',_P0)";
+			const string script = "V('"+PropDbName.App_AppId+"',_P0)";
 			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}
 

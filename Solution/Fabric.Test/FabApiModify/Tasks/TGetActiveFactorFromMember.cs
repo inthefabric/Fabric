@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,12 +11,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetActiveFactorFromMember : TModifyTasks {
 
-		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P0)"+
-				".has('Deleted',Tokens.T.eq,_P1)"+
+		private const string Query = 
+			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
+				".has('"+PropDbName.Factor_Deleted+"',Tokens.T.eq,_P1)"+
 				".as('step2')"+
-			".inE('"+typeof(MemberCreatesFactor).Name+"').outV"+
-				".has('"+typeof(Member).Name+"Id',Tokens.T.eq,_P2)"+
+			".inE('"+RelDbName.MemberCreatesFactor+"').outV"+
+				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P2)"+
 			".back('step2');";
 
 		private long vFactorId;

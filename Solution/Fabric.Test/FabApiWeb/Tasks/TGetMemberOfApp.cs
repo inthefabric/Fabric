@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,10 +11,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TGetMemberOfApp : TWebTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',_P0)"+
-			".outE('"+typeof(AppDefinesMember).Name+"').inV"+
-				".has('"+typeof(Member).Name+"Id',Tokens.T.eq,_P1);";
+		private const string Query =
+			"g.V('"+PropDbName.App_AppId+"',_P0)"+
+			".outE('"+RelDbName.AppDefinesMember+"').inV"+
+				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P1);";
 
 		private long vAppId;
 		private long vMemberId;

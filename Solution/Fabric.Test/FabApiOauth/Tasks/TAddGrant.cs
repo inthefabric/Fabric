@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -14,30 +15,30 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddGrant {
 
-		private readonly static string QueryUpdateGrantTx =
-			"g.V('"+typeof(User).Name+"Id',_TP)"+
-			".inE('"+typeof(OauthGrantUsesUser).Name+"').outV"+
+		private const string QueryUpdateGrantTx =
+			"g.V('"+PropDbName.User_UserId+"',_TP)"+
+			".inE('"+RelDbName.OauthGrantUsesUser+"').outV"+
 				".as('step3')"+
-			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
-				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_TP)"+
+			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
+				".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_TP)"+
 			".back('step3')"+
 				".sideEffect{"+
-					"it.setProperty('RedirectUri',_TP);"+
-					"it.setProperty('Expires',_TP);"+
-					"it.setProperty('Code',_TP)"+
+					"it.setProperty('"+PropDbName.OauthGrant_RedirectUri+"',_TP);"+
+					"it.setProperty('"+PropDbName.OauthGrant_Expires+"',_TP);"+
+					"it.setProperty('"+PropDbName.OauthGrant_Code+"',_TP)"+
 				"};";
 
-		private readonly static string QueryAddGrantTx =
+		private const string QueryAddGrantTx =
 			"_V0=g.addVertex(["+
-				typeof(OauthGrant).Name+"Id:_TP,"+
-				"RedirectUri:_TP,"+
-				"Code:_TP,"+
-				"Expires:_TP,"+
-				"FabType:_TP"+
+				PropDbName.OauthGrant_OauthGrantId+":_TP,"+
+				PropDbName.OauthGrant_RedirectUri+":_TP,"+
+				PropDbName.OauthGrant_Code+":_TP,"+
+				PropDbName.OauthGrant_Expires+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
+			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
 		protected long vAppId;
@@ -126,9 +127,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUtcNow.AddMinutes(2).Ticks,
 				(int)NodeFabType.OauthGrant,
 				vAppId,
-				typeof(OauthGrantUsesApp).Name,
+				RelDbName.OauthGrantUsesApp,
 				vUserId,
-				typeof(OauthGrantUsesUser).Name
+				RelDbName.OauthGrantUsesUser
 			});
 			
 			return null;

@@ -4,7 +4,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -16,55 +16,55 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddMemberEnsure {
 
-		private readonly static string QueryGetMemberTx =
+		private const string QueryGetMemberTx =
 			"_V0=[];"+
-			"g.V('"+typeof(User).Name+"Id',_TP)"+
-			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
+			"g.V('"+PropDbName.User_UserId+"',_TP)"+
+			".outE('"+RelDbName.UserDefinesMember+"').inV"+
 				".as('step3')"+
-			".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-			".has('"+typeof(App).Name+"Id',Tokens.T.eq,_TP)"+
+			".inE('"+RelDbName.AppDefinesMember+"').outV"+
+			".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_TP)"+
 			".back('step3')"+
 				".aggregate(_V0)"+
-			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
+			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
 				".aggregate(_V0)"+
 				".iterate();"+
 			"_V0;";
-			
-		private readonly static string QueryAddMemberTx =
+
+		private const string QueryAddMemberTx =
 			"_V0=g.addVertex(["+
-				typeof(Member).Name+"Id:_TP,"+
-				"FabType:_TP"+
+				PropDbName.Member_MemberId+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
+			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
 			"g.addEdge(_V2,_V0,_TP);"+
 			"_V3=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:_TP,"+
-				typeof(MemberType).Name+"Id:_TP,"+
-				"Performed:_TP,"+
-				"Note:_TP,"+
-				"FabType:_TP"+
+				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
+				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
+				PropDbName.NodeForAction_Performed+":_TP,"+
+				PropDbName.NodeForAction_Note+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V3,_TP);"+
-			"_V4=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
+			"_V4=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V4,_V3,_TP);";
 
-		private readonly static string QueryUpdateMemberTx =
-			"_V0=g.V('"+typeof(MemberTypeAssign).Name+"Id',_TP).next();"+
-			"_V0.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
+		private const string QueryUpdateMemberTx =
+			"_V0=g.V('"+PropDbName.MemberTypeAssign_MemberTypeAssignId+"',_TP).next();"+
+			"_V0.inE('"+RelDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
-			"_V1=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
 			"_V2=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:_TP,"+
-				typeof(MemberType).Name+"Id:_TP,"+
-				"Performed:_TP,"+
-				"Note:_TP,"+
-				"FabType:_TP"+
+				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
+				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
+				PropDbName.NodeForAction_Performed+":_TP,"+
+				PropDbName.NodeForAction_Note+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V1,_V2,_TP);"+
-			"_V3=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
+			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V3,_V2,_TP);";
 		
 		private long vAppId;
@@ -154,17 +154,17 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vNewMemId,
 				(int)NodeFabType.Member,
 				vAppId,
-				typeof(AppDefinesMember).Name,
+				RelDbName.AppDefinesMember,
 				vUserId,
-				typeof(UserDefinesMember).Name,
+				RelDbName.UserDefinesMember,
 				vNewMtaId,
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
 				(int)NodeFabType.MemberTypeAssign,
-				typeof(MemberHasMemberTypeAssign).Name,
+				RelDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
-				typeof(MemberCreatesMemberTypeAssign).Name
+				RelDbName.MemberCreatesMemberTypeAssign
 			});
 			
 			return vMockGetMemberTxResult.Object;
@@ -181,15 +181,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vMtaResult.MemberTypeAssignId,
 				vMemberResult.MemberId,
-				typeof(MemberHasHistoricMemberTypeAssign).Name,
+				RelDbName.MemberHasHistoricMemberTypeAssign,
 				vNewMtaId,
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
 				(int)NodeFabType.MemberTypeAssign,
-				typeof(MemberHasMemberTypeAssign).Name,
+				RelDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
-				typeof(MemberCreatesMemberTypeAssign).Name
+				RelDbName.MemberCreatesMemberTypeAssign
 			});
 			
 			return vMockGetMemberTxResult.Object;

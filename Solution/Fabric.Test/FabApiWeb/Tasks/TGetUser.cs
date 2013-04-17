@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,8 +11,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TGetUser : TWebTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',_P0);";
+		private const string Query =
+			"g.V('"+PropDbName.User_UserId+"',_P0);";
 
 		private long vUserId;
 		private User vUserResult;

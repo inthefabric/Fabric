@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -10,16 +11,16 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TTxAddApp : TWebTasks {
 
-		private static readonly string Query = 
+		private const string Query = 
 			"_V0=[];"+ //Member
-			"_V1=g.V('"+typeof(User).Name+"Id',_TP)"+
-				".outE('"+typeof(UserUsesEmail).Name+"').inV.next();"+
+			"_V1=g.V('"+PropDbName.User_UserId+"',_TP)"+
+				".outE('"+RelDbName.UserUsesEmail+"').inV.next();"+
 			"_V2=g.addVertex(["+
-				typeof(App).Name+"Id:_TP,"+
-				"Name:_TP,"+
-				"ArtifactId:_TP,"+
-				"Created:_TP,"+
-				"FabType:_TP"+
+				PropDbName.App_AppId+":_TP,"+
+				PropDbName.App_Name+":_TP,"+
+				PropDbName.Artifact_ArtifactId+":_TP,"+
+				PropDbName.Artifact_Created+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V2,_V1,_TP);"+
 			"g.addEdge(_V0,_V2,_TP);";
@@ -71,8 +72,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(int)NodeFabType.App,
-				typeof(AppUsesEmail).Name,
-				typeof(MemberCreatesArtifact).Name
+				RelDbName.AppUsesEmail,
+				RelDbName.MemberCreatesArtifact
 			});
 		}
 

@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,12 +12,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactorDirector : TModifyTasks {
 
-		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P)"+
+		private const string Query = 
+			"g.V('"+PropDbName.Factor_FactorId+"',_P)"+
 				".sideEffect{"+
-					"it.setProperty('Director_TypeId',_P);"+
-					"it.setProperty('Director*PrimaryActionId',_P);"+ //star avoids "_P" replacement
-					"it.setProperty('Director_RelatedActionId',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Director_TypeId+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Director_PrimaryActionId+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Director_RelatedActionId+"',_P)"+
 				"};";
 
 

@@ -13,6 +13,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(EventorTypeId.Start, EventorPrecisionId.Minute, 1298529385923859238)]
+		[TestCase(EventorTypeId.Start, EventorPrecisionId.Minute, long.MaxValue)]
+		[TestCase(EventorTypeId.Start, EventorPrecisionId.Minute, long.MinValue)]
 		public void Success(EventorTypeId pEveTypeId, EventorPrecisionId pEvePrecId, long pDateTime) {
 			var f = new Factor { FactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete };
 

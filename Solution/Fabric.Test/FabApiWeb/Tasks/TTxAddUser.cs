@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Domain;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -11,16 +12,16 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TTxAddUser : TWebTasks {
 
-		private static readonly string Query = 
+		private const string Query = 
 			"_V0=[];"+ //Email
 			"_V1=[];"+ //Member
 			"_V2=g.addVertex(["+
-				typeof(User).Name+"Id:_TP,"+
-				"Name:_TP,"+
-				"Password:_TP,"+
-				"ArtifactId:_TP,"+
-				"Created:_TP,"+
-				"FabType:_TP"+
+				PropDbName.User_UserId+":_TP,"+
+				PropDbName.User_Name+":_TP,"+
+				PropDbName.User_Password+":_TP,"+
+				PropDbName.Artifact_ArtifactId+":_TP,"+
+				PropDbName.Artifact_Created+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V2,_V0,_TP);"+
 			"g.addEdge(_V1,_V2,_TP);";
@@ -74,8 +75,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(int)NodeFabType.User,
-				typeof(UserUsesEmail).Name,
-				typeof(MemberCreatesArtifact).Name
+				RelDbName.UserUsesEmail,
+				RelDbName.MemberCreatesArtifact
 			});
 		}
 

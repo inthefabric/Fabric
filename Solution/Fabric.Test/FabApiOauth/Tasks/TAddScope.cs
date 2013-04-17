@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -14,28 +15,28 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddScope {
 
-		private readonly static string QueryUpdateScopeTx =
-			"g.V('"+typeof(User).Name+"Id',_TP)"+
-			".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
+		private const string QueryUpdateScopeTx =
+			"g.V('"+PropDbName.User_UserId+"',_TP)"+
+			".inE('"+RelDbName.OauthScopeUsesUser+"').outV"+
 				".as('step3')"+
-			".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
-				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_TP)"+
+			".outE('"+RelDbName.OauthScopeUsesApp+"').inV"+
+				".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_TP)"+
 			".back('step3')"+
 				".sideEffect{"+
-					"it.setProperty('Allow',_TP);"+
-					"it.setProperty('Created',_TP)"+
+					"it.setProperty('"+PropDbName.OauthScope_Allow+"',_TP);"+
+					"it.setProperty('"+PropDbName.OauthScope_Created+"',_TP)"+
 				"};";
 
-		private readonly static string QueryAddScopeTx =
+		private const string QueryAddScopeTx =
 			"_V0=g.addVertex(["+
-				typeof(OauthScope).Name+"Id:_TP,"+
-				"Allow:_TP,"+
-				"Created:_TP,"+
-				"FabType:_TP"+
+				PropDbName.OauthScope_OauthScopeId+":_TP,"+
+				PropDbName.OauthScope_Allow+":_TP,"+
+				PropDbName.OauthScope_Created+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
+			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);"+
 			"_V0;";
 
@@ -121,9 +122,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUtcNow.Ticks,
 				(int)NodeFabType.OauthScope,
 				vAppId,
-				typeof(OauthScopeUsesApp).Name,
+				RelDbName.OauthScopeUsesApp,
 				vUserId,
-				typeof(OauthScopeUsesUser).Name
+				RelDbName.OauthScopeUsesUser
 			});
 			
 			return vAddScopeResult;

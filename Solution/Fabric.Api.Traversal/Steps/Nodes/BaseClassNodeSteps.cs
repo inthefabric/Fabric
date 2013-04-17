@@ -1,11 +1,12 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:12 PM
+// Generated on 4/16/2013 10:47:46 PM
 
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -153,7 +154,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "ArtifactId"; } }
+		public override string TypeIdName { get { return PropDbName.Artifact_ArtifactId; } }
 		public override bool TypeIdIsLong { get { return true; } }
 
 	}

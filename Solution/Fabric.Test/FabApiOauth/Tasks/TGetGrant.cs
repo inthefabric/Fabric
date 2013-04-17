@@ -4,6 +4,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -15,21 +16,21 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetGrant {
 
-		private readonly static string QueryGetAndUpdateTx =
+		private const string QueryGetAndUpdateTx =
 			"_V0=[];"+
-			"g.V('FabType',_TP)"+
-				".has('Code',Tokens.T.eq,_TP)"+
-				".has('Expires',Tokens.T.gt,_TP)"+
+			"g.V('"+PropDbName.Node_FabType+"',_TP)"+
+				".has('"+PropDbName.OauthGrant_Code+"',Tokens.T.eq,_TP)"+
+				".has('"+PropDbName.OauthGrant_Expires+"',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+
 				".as('step4')"+
-			".outE('"+typeof(OauthGrantUsesApp).Name+"').inV"+
+			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
 				".aggregate(_V0)"+
 			".back('step4')"+
-			".outE('"+typeof(OauthGrantUsesUser).Name+"').inV"+
+			".outE('"+RelDbName.OauthGrantUsesUser+"').inV"+
 				".aggregate(_V0)"+
 			".back('step4')"+
 				".sideEffect{"+
-					"it.setProperty('Code',_TP)"+
+					"it.setProperty('"+PropDbName.OauthGrant_Code+"',_TP)"+
 				"}"+
 				".iterate();"+
 			"_V0;";

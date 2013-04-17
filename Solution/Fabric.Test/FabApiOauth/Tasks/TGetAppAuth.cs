@@ -2,6 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -13,9 +14,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetAppAuth{
 
-		private readonly static string QueryGetApp =
-			"g.V('"+typeof(App).Name+"Id',_P0)"+
-				".has('Secret',Tokens.T.eq,_P1);";
+		private const string QueryGetApp =
+			"g.V('"+PropDbName.App_AppId+"',_P0)"+
+				".has('"+PropDbName.App_Secret+"',Tokens.T.eq,_P1);";
 
 		private long vAppId;
 		private string vAppSecret;

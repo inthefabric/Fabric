@@ -1,5 +1,5 @@
-﻿using Fabric.Domain;
-using Fabric.Infrastructure.Api;
+﻿using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,10 +11,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TDeleteOauthDomain : TWebTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',_P0)"+
-			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".has('"+typeof(OauthDomain).Name+"Id',Tokens.T.eq,_P1)"+
+		private const string Query =
+			"g.V('"+PropDbName.App_AppId+"',_P0)"+
+			".inE('"+RelDbName.OauthDomainUsesApp+"').outV"+
+				".has('"+PropDbName.OauthDomain_OauthDomainId+"',Tokens.T.eq,_P1)"+
 				".remove();";
 
 		private long vAppId;

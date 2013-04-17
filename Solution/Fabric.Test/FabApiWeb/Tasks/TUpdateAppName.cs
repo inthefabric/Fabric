@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,9 +11,11 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TUpdateAppName : TWebTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(App).Name+"Id',_P0)"+
-				".sideEffect{it.setProperty('Name',_P1)};";
+		private const string Query =
+			"g.V('"+PropDbName.App_AppId+"',_P0)"+
+				".sideEffect{"+
+					"it.setProperty('"+PropDbName.App_Name+"',_P1)"+
+				"};";
 
 		private long vAppId;
 		private string vName;

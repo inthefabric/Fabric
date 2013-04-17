@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
@@ -146,7 +147,7 @@ foreach ( string name in nodeNames ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "<#= node.Name #>Id"; } }
+		public override string TypeIdName { get { return PropDbName.<#= node.Name #>_<#= node.Name #>Id; } }
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 
 	}

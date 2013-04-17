@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
-using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -11,20 +11,20 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TTxAddFactor : TModifyTasks {
 
-		private static readonly string Query = 
+		private const string Query = 
 			"_V0=g.addVertex(["+
-				typeof(Factor).Name+"Id:_TP"+","+
-				typeof(FactorAssertion).Name+"Id:_TP"+","+
-				"IsDefining:_TP"+","+
-				"Created:_TP"+","+
-				"Note:_TP"+","+
-				"FabType:_TP"+""+
+				PropDbName.Factor_FactorId+":_TP"+","+
+				PropDbName.Factor_FactorAssertionId+":_TP"+","+
+				PropDbName.Factor_IsDefining+":_TP"+","+
+				PropDbName.Factor_Created+":_TP"+","+
+				PropDbName.Factor_Note+":_TP"+","+
+				PropDbName.Node_FabType+":_TP"+""+
 			"]);"+
-			"_V1=g.V('"+typeof(Artifact).Name+"Id',_TP"+").next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP"+").next();"+
 			"g.addEdge(_V0,_V1,_TP"+");"+
-			"_V2=g.V('"+typeof(Artifact).Name+"Id',_TP"+").next();"+
+			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP"+").next();"+
 			"g.addEdge(_V0,_V2,_TP"+");"+
-			"_V3=g.V('"+typeof(Member).Name+"Id',_TP"+").next();"+
+			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP"+").next();"+
 			"g.addEdge(_V3,_V0,_TP"+");";
 
 		private long vPrimArtId;
@@ -76,11 +76,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vNote,
 				(int)NodeFabType.Factor,
 				vPrimArtId,
-				typeof(FactorUsesPrimaryArtifact).Name,
+				RelDbName.FactorUsesPrimaryArtifact,
 				vRelArtId,
-				typeof(FactorUsesRelatedArtifact).Name,
+				RelDbName.FactorUsesRelatedArtifact,
 				mem.MemberId,
-				typeof(MemberCreatesFactor).Name
+				RelDbName.MemberCreatesFactor
 			});
 		}
 

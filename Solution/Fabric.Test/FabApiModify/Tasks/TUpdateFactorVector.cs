@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,16 +12,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactorVector : TModifyTasks {
 
-		private static readonly string Query = 
-			"_V0=g.V('"+typeof(Factor).Name+"Id',_TP)"+
+		private const string Query = 
+			"_V0=g.V('"+PropDbName.Factor_FactorId+"',_TP)"+
 				".sideEffect{"+
-					"it.setProperty('Vector_TypeId',_TP);"+
-					"it.setProperty('Vector_UnitId',_TP);"+
-					"it.setProperty('Vector_UnitPrefixId',_TP);"+
-					"it.setProperty('Vector_Value',_TP)"+
+					"it.setProperty('"+PropDbName.Factor_Vector_TypeId+"',_TP);"+
+					"it.setProperty('"+PropDbName.Factor_Vector_UnitId+"',_TP);"+
+					"it.setProperty('"+PropDbName.Factor_Vector_UnitPrefixId+"',_TP);"+
+					"it.setProperty('"+PropDbName.Factor_Vector_Value+"',_TP)"+
 				"}"+
 				".next();"+
-			"_V1=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);";
 
 		private Factor vFactor;
@@ -61,7 +62,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vVecUnitPrefId,
 				vValue,
 				vAxisArtId,
-				typeof(FactorVectorUsesAxisArtifact).Name
+				RelDbName.FactorVectorUsesAxisArtifact
 			});
 
 			return null;

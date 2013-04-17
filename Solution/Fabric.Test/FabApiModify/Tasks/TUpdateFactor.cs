@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,8 +12,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactor : TModifyTasks {
 
-		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P0)"+
+		private const string Query = 
+			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
 				".sideEffect{"+
 					"it.setProperty('{{PropName}}',_P1)"+
 				"};";
@@ -47,7 +48,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("UpdateFactor");
 
 			string expect = Query
-				.Replace("{{PropName}}", (vCompleted ? "Completed" : "Deleted"));
+				.Replace("{{PropName}}", 
+					(vCompleted ? PropDbName.Factor_Completed : PropDbName.Factor_Deleted));
 
 			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pQuery.Params, "_P0", vFactor.FactorId);

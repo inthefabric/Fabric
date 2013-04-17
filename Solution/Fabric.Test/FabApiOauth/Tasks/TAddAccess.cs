@@ -5,6 +5,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -16,54 +17,54 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TAddAccess {
 
-		private readonly static string QueryClearTokens =
-			"g.V('AppId',_P)"+
-			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
-				".has('Token',Tokens.T.neq,_P)"+
-				".has('IsClientOnly',Tokens.T.eq,_P)"+
+		private const string QueryClearTokens =
+			"g.V('"+PropDbName.App_AppId+"',_P)"+
+			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
+				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.neq,_P)"+
+				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".as('step5')" +
-			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV" +
-				".has('"+typeof(User).Name+"Id',Tokens.T.eq,_P)" +
+			".outE('"+RelDbName.OauthAccessUsesUser+"').inV" +
+				".has('"+PropDbName.User_UserId+"',Tokens.T.eq,_P)" +
 			".back('step5')" +
 				".sideEffect{"+
-					"it.setProperty('Token',_P);"+
-					"it.setProperty('Refresh',_P)"+
+					"it.setProperty('"+PropDbName.OauthAccess_Token+"',_P);"+
+					"it.setProperty('"+PropDbName.OauthAccess_Refresh+"',_P)"+
 				"};";
 
-		private readonly static string QueryClearTokensClientOnly =
-			"g.V('AppId',_P)"+
-			".inE('"+typeof(OauthAccessUsesApp).Name+"').outV"+
-				".has('Token',Tokens.T.neq,_P)"+
-				".has('IsClientOnly',Tokens.T.eq,_P)"+
+		private const string QueryClearTokensClientOnly =
+			"g.V('"+PropDbName.App_AppId+"',_P)"+
+			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
+				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.neq,_P)"+
+				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".sideEffect{"+
-					"it.setProperty('Token',_P);"+
-					"it.setProperty('Refresh',_P)"+
+					"it.setProperty('"+PropDbName.OauthAccess_Token+"',_P);"+
+					"it.setProperty('"+PropDbName.OauthAccess_Refresh+"',_P)"+
 				"};";
 
-		private readonly static string QueryAddAccessTx =
+		private const string QueryAddAccessTx =
 			"_V0=g.addVertex(["+
-				typeof(OauthAccess).Name+"Id:_TP,"+
-				"Token:_TP,"+
-				"Refresh:_TP,"+
-				"Expires:_TP,"+
-				"IsClientOnly:_TP,"+
-				"FabType:_TP"+
+				PropDbName.OauthAccess_OauthAccessId+":_TP,"+
+				PropDbName.OauthAccess_Token+":_TP,"+
+				PropDbName.OauthAccess_Refresh+":_TP,"+
+				PropDbName.OauthAccess_Expires+":_TP,"+
+				PropDbName.OauthAccess_IsClientOnly+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+typeof(User).Name+"Id',_TP).next();"+
+			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
-		private readonly static string QueryAddAccessTxClientOnly =
+		private const string QueryAddAccessTxClientOnly =
 			"_V0=g.addVertex(["+
-				typeof(OauthAccess).Name+"Id:_TP,"+
-				"Token:_TP,"+
-				"Refresh:_TP,"+
-				"Expires:_TP,"+
-				"IsClientOnly:_TP,"+
-				"FabType:_TP"+
+				PropDbName.OauthAccess_OauthAccessId+":_TP,"+
+				PropDbName.OauthAccess_Token+":_TP,"+
+				PropDbName.OauthAccess_Refresh+":_TP,"+
+				PropDbName.OauthAccess_Expires+":_TP,"+
+				PropDbName.OauthAccess_IsClientOnly+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);";
 
 		protected long vAddOauthAccessId;
@@ -173,11 +174,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vals.Add(vClientOnly);
 			vals.Add((int)NodeFabType.OauthAccess);
 			vals.Add(vAppId);
-			vals.Add(typeof(OauthAccessUsesApp).Name);
+			vals.Add(RelDbName.OauthAccessUsesApp);
 
 			if ( !vClientOnly ) {
 				vals.Add(vUserId);
-				vals.Add(typeof(OauthAccessUsesUser).Name);
+				vals.Add(RelDbName.OauthAccessUsesUser);
 			}
 
 			TestUtil.CheckParams(pScripted.Params, "_TP", vals);

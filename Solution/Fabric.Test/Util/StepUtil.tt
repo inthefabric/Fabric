@@ -65,13 +65,12 @@ foreach ( string name in nodes ) {
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void <#= node.Name #>Step() {
-			TestStep("<#= node.Name #>", (tn, p) => new <#= node.Name #>Step(tn, p));
-		}
+			TestStep("<#= node.Name #>", PropDbName.<#= node.Name #>_<#= node.Name #>Id, tn => new <#= node.Name #>Step(tn));
+		}*/
 
 <#
 }
 #>
-		*/
 	}
 
 }

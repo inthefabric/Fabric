@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:11 PM
+// Generated on 4/16/2013 10:45:48 PM
 
 using System.Collections.Generic;
 
@@ -111,58 +111,57 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void ArtifactStep() {
-			TestStep("Artifact", (tn, p) => new ArtifactStep(tn, p));
-		}
+			TestStep("Artifact", PropDbName.Artifact_ArtifactId, tn => new ArtifactStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void AppStep() {
-			TestStep("App", (tn, p) => new AppStep(tn, p));
-		}
+			TestStep("App", PropDbName.App_AppId, tn => new AppStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void ClassStep() {
-			TestStep("Class", (tn, p) => new ClassStep(tn, p));
-		}
+			TestStep("Class", PropDbName.Class_ClassId, tn => new ClassStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void InstanceStep() {
-			TestStep("Instance", (tn, p) => new InstanceStep(tn, p));
-		}
+			TestStep("Instance", PropDbName.Instance_InstanceId, tn => new InstanceStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void MemberStep() {
-			TestStep("Member", (tn, p) => new MemberStep(tn, p));
-		}
+			TestStep("Member", PropDbName.Member_MemberId, tn => new MemberStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void MemberTypeAssignStep() {
-			TestStep("MemberTypeAssign", (tn, p) => new MemberTypeAssignStep(tn, p));
-		}
+			TestStep("MemberTypeAssign", PropDbName.MemberTypeAssign_MemberTypeAssignId, tn => new MemberTypeAssignStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void UrlStep() {
-			TestStep("Url", (tn, p) => new UrlStep(tn, p));
-		}
+			TestStep("Url", PropDbName.Url_UrlId, tn => new UrlStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void UserStep() {
-			TestStep("User", (tn, p) => new UserStep(tn, p));
-		}
+			TestStep("User", PropDbName.User_UserId, tn => new UserStep(tn));
+		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void FactorStep() {
-			TestStep("Factor", (tn, p) => new FactorStep(tn, p));
-		}
+			TestStep("Factor", PropDbName.Factor_FactorId, tn => new FactorStep(tn));
+		}*/
 
-		*/
 	}
 
 }

@@ -3,7 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -15,16 +15,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetDataProv {
 
-		private readonly static string QueryGetUser =
-			"g.V('"+typeof(User).Name+"Id',_P0)"+
+		private const string QueryGetUser =
+			"g.V('"+PropDbName.User_UserId+"',_P0)"+
 				".as('step1')"+
-			".outE('"+typeof(UserDefinesMember).Name+"').inV"+
+			".outE('"+RelDbName.UserDefinesMember+"').inV"+
 				".as('step4')"+
-			".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-				".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
+			".inE('"+RelDbName.AppDefinesMember+"').outV"+
+				".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_P1)"+
 			".back('step4')"+
-			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
-				".has('"+typeof(MemberType).Name+"Id',Tokens.T.eq,_P2)"+
+			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
+				".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.eq,_P2)"+
 			".back('step1');";
 
 		private long vAppId;

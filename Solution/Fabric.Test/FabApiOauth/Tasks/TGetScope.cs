@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -14,12 +15,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetScope {
 
-		private readonly static string QueryGetMatchingScope =
-			"g.V('"+typeof(User).Name+"Id',_P0)"+
-				".inE('"+typeof(OauthScopeUsesUser).Name+"').outV"+
+		private const string QueryGetMatchingScope =
+			"g.V('"+PropDbName.User_UserId+"',_P0)"+
+				".inE('"+RelDbName.OauthScopeUsesUser+"').outV"+
 					".as('step3')"+
-				".outE('"+typeof(OauthScopeUsesApp).Name+"').inV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
+				".outE('"+RelDbName.OauthScopeUsesApp+"').inV"+
+					".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_P1)"+
 				".back('step3');";
 
 		private long vAppId;

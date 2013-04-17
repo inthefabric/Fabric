@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -10,12 +11,12 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TTxAddEmail : TWebTasks {
 
-		private static readonly string Query = 
+		private const string Query = 
 			"_V0=g.addVertex(["+
-				typeof(Email).Name+"Id:_TP,"+
-				"Address:_TP,"+
-				"Created:_TP,"+
-				"FabType:_TP"+
+				PropDbName.Email_EmailId+":_TP,"+
+				PropDbName.Email_Address+":_TP,"+
+				PropDbName.Email_Created+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);";
 
 		private string vAddress;

@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,9 +11,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetUrlByAbsoluteUrl : TModifyTasks {
 
-		private readonly static string Query =
-			"g.V('FabType',_P0)"+
-				".filter{it.getProperty('AbsoluteUrl').toLowerCase()==_P1};";
+		private const string Query =
+			"g.V('"+PropDbName.Node_FabType+"',_P0)"+
+				".filter{it.getProperty('"+PropDbName.Url_AbsoluteUrl+"').toLowerCase()==_P1};";
 
 		private string vAbsoluteUrl;
 		private Url vUrlResult;

@@ -1,6 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -12,17 +12,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetValidMemberByContext : TModifyTasks {
 
-		private readonly static string Query =
-			"g.V('"+typeof(User).Name+"Id',_P0)"+
-				".outE('"+typeof(UserDefinesMember).Name+"').inV"+
+		private const string Query =
+			"g.V('"+PropDbName.User_UserId+"',_P0)"+
+				".outE('"+RelDbName.UserDefinesMember+"').inV"+
 					".as('step3')"+
-				".inE('"+typeof(AppDefinesMember).Name+"').outV"+
-					".has('"+typeof(App).Name+"Id',Tokens.T.eq,_P1)"+
+				".inE('"+RelDbName.AppDefinesMember+"').outV"+
+					".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_P1)"+
 				".back('step3')"+
-				".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV"+
-					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P2)"+
-					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P3)"+
-					".has('"+typeof(MemberType).Name+"Id',Tokens.T.neq,_P4)"+
+				".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
+					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P2)"+
+					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P3)"+
+					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P4)"+
 				".back('step3');";
 
 		private long vUserId;

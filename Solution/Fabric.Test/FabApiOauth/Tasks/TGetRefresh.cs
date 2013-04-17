@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -14,16 +15,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetRefresh {
 
-		private readonly static string QueryGetAccessTx =
+		private const string QueryGetAccessTx =
 			"_V0=[];"+
-			"g.V('FabType',_TP)"+
-				".has('Refresh',Tokens.T.eq,_TP)"+
-				".has('IsClientOnly',Tokens.T.eq,_TP)"+
+			"g.V('"+PropDbName.Node_FabType+"',_TP)"+
+				".has('"+PropDbName.OauthAccess_Refresh+"',Tokens.T.eq,_TP)"+
+				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_TP)"+
 				".as('step3')"+
-			".outE('"+typeof(OauthAccessUsesApp).Name+"').inV"+
+			".outE('"+RelDbName.OauthAccessUsesApp+"').inV"+
 				".aggregate(_V0)"+
 			".back('step3')"+
-			".outE('"+typeof(OauthAccessUsesUser).Name+"').inV"+
+			".outE('"+RelDbName.OauthAccessUsesUser+"').inV"+
 				".aggregate(_V0)"+
 				".iterate();"+
 			"_V0;";

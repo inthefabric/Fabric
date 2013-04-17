@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiDto {
@@ -23,11 +24,11 @@ namespace Fabric.Test.FabApiDto {
 			var dd = new DbDto();
 			dd.Id = "x99";
 			dd.Data = new Dictionary<string, string>();
-			dd.Data.Add("ClassId", classId+"");
-			dd.Data.Add("Name", name);
-			dd.Data.Add("Disamb", disamb);
-			dd.Data.Add("ArtifactId", artId+"");
-			dd.Data.Add("Created", created+"");
+			dd.Data.Add(PropDbName.Class_ClassId, classId+"");
+			dd.Data.Add(PropDbName.Class_Name, name);
+			dd.Data.Add(PropDbName.Class_Disamb, disamb);
+			dd.Data.Add(PropDbName.Artifact_ArtifactId, artId+"");
+			dd.Data.Add(PropDbName.Artifact_Created, created+"");
 
 			var dt = new FabClass();
 			dt.Fill(dd);

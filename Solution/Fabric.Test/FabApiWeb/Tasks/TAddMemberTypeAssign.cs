@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
-using Fabric.Infrastructure.Domain.Types;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -13,18 +13,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TAddMemberTypeAssign : TWebTasks {
 
 		private static readonly string Query =
-			"_V0=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
-			"_V1=_V0.outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV.next();"+
-			"_V1.inE('"+typeof(MemberHasMemberTypeAssign).Name+"')"+
+			"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
+			"_V1=_V0.outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV.next();"+
+			"_V1.inE('"+RelDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
 			"g.addEdge(_V0,_V1,_TP);"+
 			"_V2=g.addVertex(["+
-				typeof(MemberTypeAssign).Name+"Id:_TP,"+
-				typeof(MemberType).Name+"Id:_TP,"+
-				"Performed:_TP,"+
-				"FabType:_TP"+
+				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
+				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
+				PropDbName.NodeForAction_Performed+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V3=g.V('"+typeof(Member).Name+"Id',_TP).next();"+
+			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V3,_V2,_TP);"+
 			"g.addEdge(_V0,_V2,_TP);"+
 			"_V2;";
@@ -67,14 +67,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vMemberId,
-				typeof(MemberHasHistoricMemberTypeAssign).Name,
+				RelDbName.MemberHasHistoricMemberTypeAssign,
 				vNewMtaId,
 				vMemberTypeId,
 				vUtcNow.Ticks,
 				(int)NodeFabType.MemberTypeAssign,
 				vAssigningMemberId,
-				typeof(MemberCreatesMemberTypeAssign).Name,
-				typeof(MemberHasMemberTypeAssign).Name
+				RelDbName.MemberCreatesMemberTypeAssign,
+				RelDbName.MemberHasMemberTypeAssign
 			});
 
 			return vMtaResult;

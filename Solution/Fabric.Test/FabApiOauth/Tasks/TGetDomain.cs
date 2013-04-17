@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -14,10 +15,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	[TestFixture]
 	public class TGetDomain {
 
-		private static readonly string QueryGetDomain =
-			"g.V('"+typeof(App).Name+"Id',_P0)"+
-			".inE('"+typeof(OauthDomainUsesApp).Name+"').outV"+
-				".filter{it.getProperty('Domain').toLowerCase()==_P1};";
+		private const string QueryGetDomain =
+			"g.V('"+PropDbName.App_AppId+"',_P0)"+
+			".inE('"+RelDbName.OauthDomainUsesApp+"').outV"+
+				".filter{it.getProperty('"+PropDbName.OauthDomain_Domain+"').toLowerCase()==_P1};";
 
 		private long vAppId;
 		private string vRedirUri;

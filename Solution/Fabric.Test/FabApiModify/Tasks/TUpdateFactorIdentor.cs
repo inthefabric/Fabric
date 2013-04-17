@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,11 +12,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactorIdentor : TModifyTasks {
 
-		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P)"+
+		private const string Query = 
+			"g.V('"+PropDbName.Factor_FactorId+"',_P)"+
 				".sideEffect{"+
-					"it.setProperty('Identor_TypeId',_P);"+
-					"it.setProperty('Identor_Value',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Identor_TypeId+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Identor_Value+"',_P)"+
 				"};";
 
 		private Factor vFactor;

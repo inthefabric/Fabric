@@ -6,6 +6,7 @@ using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -19,7 +20,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestStep<T>(string pStepName, Func<IPath, T> pNewStep) where T : INodeStep {
+		private void TestStep<T>(string pStepName, string pTypeIdProp, 
+														Func<IPath, T> pNewStep) where T : INodeStep {
 			string[] availSteps;
 			bool isRoot = (pStepName == "Root");
 			bool isArtifact = (pStepName == "Artifact");
@@ -29,7 +31,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
 			IPath p = new Mock<IPath>().Object;
 			INodeStep step = pNewStep(p);
-			Assert.AreEqual(pStepName+"Id", step.TypeIdName, "Incorrect TypeIdName.");
+			Assert.AreEqual(pTypeIdProp, step.TypeIdName, "Incorrect TypeIdName.");
 
 			////
 
@@ -116,111 +118,57 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void AppStep() {
-			TestStep("App", p => new AppStep(p));
+		public void ArtifactStep() {
+			TestStep("Artifact", PropDbName.Artifact_ArtifactId, tn => new ArtifactStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ArtifactStep() {
-			TestStep("Artifact", p => new ArtifactStep(p));
+		public void AppStep() {
+			TestStep("App", PropDbName.App_AppId, tn => new AppStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ClassStep() {
-			TestStep("Class", p => new ClassStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdStep() {
-			TestStep("Crowd", p => new CrowdStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdianStep() {
-			TestStep("Crowdian", p => new CrowdianStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void CrowdianTypeAssignStep() {
-			TestStep("CrowdianTypeAssign", p => new CrowdianTypeAssignStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void EmailStep() {
-			TestStep("Email", p => new EmailStep(p));
+			TestStep("Class", PropDbName.Class_ClassId, tn => new ClassStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void InstanceStep() {
-			TestStep("Instance", p => new InstanceStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void LabelStep() {
-			TestStep("Label", p => new LabelStep(p));
+			TestStep("Instance", PropDbName.Instance_InstanceId, tn => new InstanceStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void MemberStep() {
-			TestStep("Member", p => new MemberStep(p));
+			TestStep("Member", PropDbName.Member_MemberId, tn => new MemberStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void MemberTypeAssignStep() {
-			TestStep("MemberTypeAssign", p => new MemberTypeAssignStep(p));
+			TestStep("MemberTypeAssign", PropDbName.MemberTypeAssign_MemberTypeAssignId, tn => new MemberTypeAssignStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void UrlStep() {
-			TestStep("Url", p => new UrlStep(p));
+			TestStep("Url", PropDbName.Url_UrlId, tn => new UrlStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void UserStep() {
-			TestStep("User", p => new UserStep(p));
+			TestStep("User", PropDbName.User_UserId, tn => new UserStep(tn));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorStep() {
-			TestStep("Factor", p => new FactorStep(p));
+			TestStep("Factor", PropDbName.Factor_FactorId, tn => new FactorStep(tn));
 		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void OauthAccessStep() {
-			TestStep("OauthAccess", p => new OauthAccessStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void OauthDomainStep() {
-			TestStep("OauthDomain", p => new OauthDomainStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void OauthGrantStep() {
-			TestStep("OauthGrant", p => new OauthGrantStep(p));
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		[Test]
-		public void OauthScopeStep() {
-			TestStep("OauthScope", p => new OauthScopeStep(p));
-		}*/
 
 	}
 

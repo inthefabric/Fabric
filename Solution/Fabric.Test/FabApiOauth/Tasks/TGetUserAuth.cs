@@ -3,6 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -15,9 +16,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetUserAuth {
 
 		private const string QueryGetUserAuth =
-			"g.V('FabType',_P0)"+
-				".has('Password',Tokens.T.eq,_P1)"+
-				".filter{it.getProperty('Name').toLowerCase()==_P2};";
+			"g.V('"+PropDbName.Node_FabType+"',_P0)"+
+				".has('"+PropDbName.User_Password+"',Tokens.T.eq,_P1)"+
+				".filter{"+
+					"it.getProperty('"+PropDbName.User_Name+"').toLowerCase()==_P2"+
+				"};";
 
 		private string vUsername;
 		private string vPassword;

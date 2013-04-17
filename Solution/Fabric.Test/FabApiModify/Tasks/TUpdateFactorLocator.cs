@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,13 +12,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactorLocator : TModifyTasks {
 
-		private static readonly string Query = 
-			"g.V('"+typeof(Factor).Name+"Id',_P)"+
+		private const string Query = 
+			"g.V('"+PropDbName.Factor_FactorId+"',_P)"+
 				".sideEffect{"+
-					"it.setProperty('Locator_TypeId',_P);"+
-					"it.setProperty('Locator_ValueX',_P);"+
-					"it.setProperty('Locator_ValueY',_P);"+
-					"it.setProperty('Locator_ValueZ',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Locator_TypeId+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Locator_ValueX+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Locator_ValueY+"',_P);"+
+					"it.setProperty('"+PropDbName.Factor_Locator_ValueZ+"',_P)"+
 				"};";
 
 		private Factor vFactor;

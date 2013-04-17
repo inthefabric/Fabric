@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,9 +11,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TGetMemberTypeAssignByMember : TWebTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(Member).Name+"Id',_P0)"+
-			".outE('"+typeof(MemberHasMemberTypeAssign).Name+"').inV;";
+		private const string Query =
+			"g.V('"+PropDbName.Member_MemberId+"',_P0)"+
+			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV;";
 
 		private long vMemberId;
 		private MemberTypeAssign vMtaResult;

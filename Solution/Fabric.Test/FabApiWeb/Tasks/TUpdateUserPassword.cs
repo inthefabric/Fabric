@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,9 +12,11 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TUpdateUserPassword : TWebTasks {
 
-		private static readonly string Query =
-			"g.V('"+typeof(User).Name+"Id',_P0)"+
-				".sideEffect{it.setProperty('Password',_P1)};";
+		private const string Query =
+			"g.V('"+PropDbName.User_UserId+"',_P0)"+
+				".sideEffect{"+
+					"it.setProperty('"+PropDbName.User_Password+"',_P1)"+
+				"};";
 
 		private long vUserId;
 		private string vPassword;

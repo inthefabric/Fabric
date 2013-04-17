@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -10,13 +11,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TAddOauthDomain : TWebTasks {
 
-		private static readonly string Query =
+		private const string Query =
 			"_V0=g.addVertex(["+
-				typeof(OauthDomain).Name+"Id:_TP,"+
-				"Domain:_TP,"+
-				"FabType:_TP"+
+				PropDbName.OauthDomain_OauthDomainId+":_TP,"+
+				PropDbName.OauthDomain_Domain+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+typeof(App).Name+"Id',_TP).next();"+
+			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
 			"_V0;";
 
@@ -54,7 +55,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vDomain,
 				(int)NodeFabType.OauthDomain,
 				vAppId,
-				typeof(OauthDomainUsesApp).Name
+				RelDbName.OauthDomainUsesApp
 			});
 
 			return vDomainResult;

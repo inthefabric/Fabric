@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -11,8 +12,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetAppByName : TWebTasks {
 
 		private const string Query =
-			"g.V('FabType',_P0)"+
-				".filter{it.getProperty('Name').toLowerCase()==_P1};";
+			"g.V('"+PropDbName.Node_FabType+"',_P0)"+
+				".filter{"+
+					"it.getProperty('"+PropDbName.App_Name+"').toLowerCase()==_P1"+
+				"};";
 
 		private string vName;
 		private App vAppResult;

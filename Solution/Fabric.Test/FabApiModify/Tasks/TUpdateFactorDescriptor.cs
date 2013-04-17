@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -12,23 +13,23 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TUpdateFactorDescriptor : TModifyTasks {
 
-		private static readonly string QueryStart = 
-			"_V0=g.V('"+typeof(Factor).Name+"Id',_TP)"+
+		private const string QueryStart = 
+			"_V0=g.V('"+PropDbName.Factor_FactorId+"',_TP)"+
 				".sideEffect{"+
-					"it.setProperty('Descriptor_TypeId',_TP)"+
+					"it.setProperty('"+PropDbName.Factor_Descriptor_TypeId+"',_TP)"+
 				"}"+
 				".next();";
 
-		private static readonly string QueryPrimRef = 
-			"_V{{PrimV}}=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+
+		private const string QueryPrimRef = 
+			"_V{{PrimV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V{{PrimV}},_TP);";
 
-		private static readonly string QueryRelRef = 
-			"_V{{RelV}}=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+
+		private const string QueryRelRef = 
+			"_V{{RelV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V{{RelV}},_TP);";
 
-		private static readonly string QueryTypeRef = 
-			"_V{{TypeV}}=g.V('"+typeof(Artifact).Name+"Id',_TP).next();"+
+		private const string QueryTypeRef = 
+			"_V{{TypeV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V{{TypeV}},_TP);";
 
 		private Factor vFactor;
@@ -67,21 +68,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			if ( vPrimArtRefId != null ) {
 				expect += QueryPrimRef.Replace("{{PrimV}}", v+"");
 				paramList.Add(vPrimArtRefId);
-				paramList.Add(typeof(FactorDescriptorRefinesPrimaryWithArtifact).Name);
+				paramList.Add(RelDbName.FactorDescriptorRefinesPrimaryWithArtifact);
 				v++;
 			}
 
 			if ( vRelArtRefId != null ) {
 				expect += QueryRelRef.Replace("{{RelV}}", v+"");
 				paramList.Add(vRelArtRefId);
-				paramList.Add(typeof(FactorDescriptorRefinesRelatedWithArtifact).Name);
+				paramList.Add(RelDbName.FactorDescriptorRefinesRelatedWithArtifact);
 				v++;
 			}
 
 			if ( vDescTypeRefId != null ) {
 				expect += QueryTypeRef.Replace("{{TypeV}}", v+"");
 				paramList.Add(vDescTypeRefId);
-				paramList.Add(typeof(FactorDescriptorRefinesTypeWithArtifact).Name);
+				paramList.Add(RelDbName.FactorDescriptorRefinesTypeWithArtifact);
 			}
 			
 			expect = TestUtil.InsertParamIndexes(expect, "_TP");

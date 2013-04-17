@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using Weaver.Interfaces;
@@ -10,15 +11,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TTxAddUrl : TModifyTasks {
 
-		private static readonly string Query = 
+		private const string Query = 
 			"_V0=[];"+ //Member
 			"_V1=g.addVertex(["+
-				typeof(Url).Name+"Id:_TP,"+
-				"Name:_TP,"+
-				"AbsoluteUrl:_TP,"+
-				"ArtifactId:_TP,"+
-				"Created:_TP,"+
-				"FabType:_TP"+
+				PropDbName.Url_UrlId+":_TP,"+
+				PropDbName.Url_Name+":_TP,"+
+				PropDbName.Url_AbsoluteUrl+":_TP,"+
+				PropDbName.Artifact_ArtifactId+":_TP,"+
+				PropDbName.Artifact_Created+":_TP,"+
+				PropDbName.Node_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP);";
 
@@ -67,7 +68,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(int)NodeFabType.Url,
-				typeof(MemberCreatesArtifact).Name
+				RelDbName.MemberCreatesArtifact
 			});
 		}
 

@@ -3,6 +3,7 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -14,11 +15,11 @@ namespace Fabric.Test.FabApiOauth {
 	[TestFixture]
 	public class TOauthGrantCore {
 	
-		private readonly static string QueryGetApp =
-			"g.V('"+typeof(App).Name+"Id',_P0);";
+		private const string QueryGetApp =
+			"g.V('"+PropDbName.App_AppId+"',_P0);";
 			
-		private readonly static string QueryGetUser =
-			"g.V('"+typeof(User).Name+"Id',_P0);";
+		private const string QueryGetUser =
+			"g.V('"+PropDbName.User_UserId+"',_P0);";
 
 		private string vClientId;
 		private long vClientIdLong;
