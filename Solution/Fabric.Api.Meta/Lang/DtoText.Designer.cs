@@ -216,10 +216,9 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that describes and refines the relationship between the two Artifacts. !Descriptors are the only required Factor Element.
+        ///   Looks up a localized string similar to A Factor Element that describes and refines the relationship between the Factor&apos;s two Artifacts. !Descriptors are the only required Factor Element.
         ///
-        ///First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship&apos;s direction.
-        ///[(EX|R [rest of string was truncated]&quot;;.
+        ///First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship&apos;s direction [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Descriptor {
             get {
@@ -228,11 +227,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that creates a directional, action-based pathway between the two Artifacts of a particular Factor.
+        ///   Looks up a localized string similar to A Factor Element that creates a directional, action-based flow between the Factor&apos;s two Artifacts.
         ///
         ///The nature of a !Director&apos;s pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
         ///
-        ///A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on t [rest of string was truncated]&quot;;.
+        ///A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Artifa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Director {
             get {
@@ -316,7 +315,7 @@ namespace Fabric.Api.Meta.Lang {
         ///
         ///An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
         ///
-        ///The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A &apos;Text&apos; [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organiza [rest of string was truncated]&quot;;.
+        ///The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A &quot;Text&quot; [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organiza [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Identor {
             get {
@@ -538,7 +537,7 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A Factor Element that applies a meaningful numeric axis and value to a particular Factor.
         ///
-        ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &apos;axis&apos;. This axis depends entirely upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &apos;Height&apos; or &apos;Shutter Speed&apos;. A !Vector that provides an opinion might use an Artifact like &apos;Quality&apos; or &apos;Excitement&apos;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Arti [rest of string was truncated]&quot;;.
+        ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &quot;axis&quot;. This axis depends entirely upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &quot;Height&quot; or &quot;Shutter Speed&quot;. A !Vector that provides an opinion might use an Artifact like &quot;Quality&quot; or &quot;Excitement&quot;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Arti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Vector {
             get {
