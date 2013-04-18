@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 
@@ -75,6 +76,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
+			if ( pDtoType == typeof(FabRoot) ) { return false; }
 			return true;
 		}
 
