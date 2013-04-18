@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 10:47:46 PM
+// Generated on 4/17/2013 8:03:17 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +66,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IMemberStep InMemberCreates {
 			get {
 				var step = new MemberStep(Path);
-				Path.AddSegment(step, "inE('MemberCreatesArtifact').outV");
+				Path.AddSegment(step, "inE('M-C-A').outV");
 				return step;
 			}
 		}
@@ -75,7 +75,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep InFactorListUsesPrimary {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesPrimaryArtifact').outV");
+				Path.AddSegment(step, "inE('F-UP-A').outV");
 				return step;
 			}
 		}
@@ -84,7 +84,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep InFactorListUsesRelated {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorUsesRelatedArtifact').outV");
+				Path.AddSegment(step, "inE('F-UR-A').outV");
 				return step;
 			}
 		}
@@ -93,7 +93,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep InFactorListDescriptorRefinesPrimaryWith {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorDescriptorRefinesPrimaryWithArtifact').outV");
+				Path.AddSegment(step, "inE('F-DRP-A').outV");
 				return step;
 			}
 		}
@@ -102,7 +102,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep InFactorListDescriptorRefinesRelatedWith {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorDescriptorRefinesRelatedWithArtifact').outV");
+				Path.AddSegment(step, "inE('F-DRR-A').outV");
 				return step;
 			}
 		}
@@ -111,7 +111,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep InFactorListDescriptorRefinesTypeWith {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorDescriptorRefinesTypeWithArtifact').outV");
+				Path.AddSegment(step, "inE('F-DRT-A').outV");
 				return step;
 			}
 		}
@@ -120,7 +120,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public IFactorStep InFactorListVectorUsesAxis {
 			get {
 				var step = new FactorStep(Path);
-				Path.AddSegment(step, "inE('FactorVectorUsesAxisArtifact').outV");
+				Path.AddSegment(step, "inE('F-VUA-A').outV");
 				return step;
 			}
 		}

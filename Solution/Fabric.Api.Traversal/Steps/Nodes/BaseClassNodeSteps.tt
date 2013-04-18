@@ -97,7 +97,7 @@ foreach ( string name in nodeNames ) {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		var propType = hr.TargetNodeType+"Step";
-		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelName+"')."+
+		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelSchema.DbName+"')."+
 			(hr.IsOutgoing ? "inV" : "outV");
 #>
 		/*--------------------------------------------------------------------------------------------*/
