@@ -113,7 +113,7 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Restricts the results to a single Id value. 
         ///
-        ///Note that each node type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
+        ///that each node type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
         /// </summary>
         internal static string WhereId {
             get {

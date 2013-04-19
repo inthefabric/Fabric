@@ -67,6 +67,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 					BatchId = 134, Name = "Test5c", Disamb = "1234", Note = "This is my note." }
 			});
 
+			for ( int i = 0 ; i < 100 ; ++i ) {
+				vClasses.Add(new FabBatchNewClass {
+					BatchId = 1000+i,
+					Name = "BigTest"+i,
+					Disamb = "1234"
+				});
+			}
+
 			vClassesJson = vClasses.ToJson();
 
 			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);

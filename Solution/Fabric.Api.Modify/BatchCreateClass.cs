@@ -66,7 +66,7 @@ namespace Fabric.Api.Modify {
 			vResults = new FabBatchResult[n];
 
 			var dupMap = new HashSet<string>();
-			const int size = 20;
+			const int size = 50;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewClass nc = vObjects[i];

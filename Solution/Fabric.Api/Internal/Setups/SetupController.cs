@@ -6,7 +6,6 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Nancy;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Internal.Setups {
@@ -29,7 +28,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
-				vDataSet = Setup.SetupAll(true);
+				vDataSet = Setup.SetupAll(false);
 
 				//SendSetupTx();
 				SendIndexTx();
