@@ -1,5 +1,6 @@
 VisualizeGit.bat
 Global/GlobalAppSettings.config
+*.log
 
 #################
 ## Eclipse

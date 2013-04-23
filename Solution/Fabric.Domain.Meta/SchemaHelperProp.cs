@@ -79,6 +79,10 @@ namespace Fabric.Domain.Meta {
 					n = GetTypeName(pType.GetGenericArguments()[0])+"[]";
 					break;
 
+				case "Dictionary`2": //IMPROVE: this is currently a special case for FabSpecEnum
+					n = "Dictionary<string, object>";
+					break;
+
 				case "Nullable`1":
 					n = GetTypeName(pType.GetGenericArguments()[0])+"?";
 					break;
