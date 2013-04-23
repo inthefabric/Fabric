@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:47:48 PM
+// Generated on 4/22/2013 11:22:56 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -65,7 +65,7 @@ namespace Fabric.Db.Data.Setups {
 			//MemberTypeAssign
 			pSet.AddIndexQuery(BuildGroup("MTA", 10));
 			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Id", "Long", true));
-			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Mt", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Mt", "Byte", true));
 
 			//Url
 			pSet.AddIndexQuery(BuildGroup("Ur", 11));
@@ -82,28 +82,28 @@ namespace Fabric.Db.Data.Setups {
 			//Factor
 			pSet.AddIndexQuery(BuildGroup("F", 13));
 			pSet.AddIndexQuery(BuildKey("F", "F_Id", "Long", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_Fa", "Integer", true));
-			//pSet.AddIndexQuery(BuildKey("F", "F_Df", "Boolean", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_Fa", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_Df", "Boolean", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Cr", "Long", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Dl", "Long", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Co", "Long", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_No", "String", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_DeT", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_DiT", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_DiP", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_DiR", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_EvT", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_EvP", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DeT", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiT", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiP", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiR", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvT", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvP", "Byte", true));
 			pSet.AddIndexQuery(BuildKey("F", "F_EvD", "Long", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_IdT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_IdT", "Byte", true));
 			pSet.AddIndexQuery(BuildKey("F", "F_IdV", "String", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_LoT", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoT", "Byte", true));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoX", "Double", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoY", "Double", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoZ", "Double", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeT", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeU", "Integer", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeP", "Integer", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeT", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeU", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeP", "Byte", true));
 			pSet.AddIndexQuery(BuildKey("F", "F_VeV", "Long", false));
 
 			//OauthAccess
@@ -112,7 +112,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildKey("OA", "OA_To", "String", false));
 			pSet.AddIndexQuery(BuildKey("OA", "OA_Re", "String", false));
 			pSet.AddIndexQuery(BuildKey("OA", "OA_Ex", "Long", false));
-			//pSet.AddIndexQuery(BuildKey("OA", "OA_CO", "Boolean", false));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_CO", "Boolean", false));
 
 			//OauthDomain
 			pSet.AddIndexQuery(BuildGroup("OD", 15));
@@ -129,7 +129,7 @@ namespace Fabric.Db.Data.Setups {
 			//OauthScope
 			pSet.AddIndexQuery(BuildGroup("OS", 17));
 			pSet.AddIndexQuery(BuildKey("OS", "OS_Id", "Long", true));
-			//pSet.AddIndexQuery(BuildKey("OS", "OS_Al", "Boolean", false));
+			pSet.AddIndexQuery(BuildKey("OS", "OS_Al", "Boolean", false));
 			pSet.AddIndexQuery(BuildKey("OS", "OS_Cr", "Long", false));
 	
 			//EDGES
@@ -187,6 +187,7 @@ namespace Fabric.Db.Data.Setups {
 				"M_Id",
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -234,6 +235,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("F-UP-A", false, true,	new [] {
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -263,6 +265,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("F-UR-A", false, true,	new [] {
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -292,6 +295,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("F-DRP-A", false, true,	new [] {
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -321,6 +325,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("F-DRR-A", false, true,	new [] {
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -350,6 +355,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("F-DRT-A", false, true,	new [] {
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -379,6 +385,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("F-VUA-A", false, true,	new [] {
 				"F_Id",
 				"F_Fa",
+				"F_Df",
 				"F_Cr",
 				"F_Dl",
 				"F_Co",
@@ -410,6 +417,7 @@ namespace Fabric.Db.Data.Setups {
 				"OA_To",
 				"OA_Re",
 				"OA_Ex",
+				"OA_CO",
 				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se"
@@ -421,6 +429,7 @@ namespace Fabric.Db.Data.Setups {
 				"OA_To",
 				"OA_Re",
 				"OA_Ex",
+				"OA_CO",
 				"U_Id",
 				"U_Na",
 				"U_Pa"
@@ -460,6 +469,7 @@ namespace Fabric.Db.Data.Setups {
 			//OauthScopeUsesApp
 			pSet.AddIndexQuery(BuildLabel("OS-U-Ap", false, true,	new [] {
 				"OS_Id",
+				"OS_Al",
 				"OS_Cr",
 				"Ap_Id",
 				"Ap_Na",
@@ -469,6 +479,7 @@ namespace Fabric.Db.Data.Setups {
 			//OauthScopeUsesUser
 			pSet.AddIndexQuery(BuildLabel("OS-U-U", false, true,	new [] {
 				"OS_Id",
+				"OS_Al",
 				"OS_Cr",
 				"U_Id",
 				"U_Na",

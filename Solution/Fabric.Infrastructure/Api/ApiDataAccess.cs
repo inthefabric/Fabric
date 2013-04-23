@@ -165,7 +165,7 @@ namespace Fabric.Infrastructure.Api {
 					q = Regex.Replace(q, key+end, key+".toInteger()");
 				}
 				else if ( qv.Original is byte ) {
-					q = Regex.Replace(q, key+end, key+".toInteger()"); //".byteValue()");
+					q = Regex.Replace(q, key+end, key+".byteValue()");
 				}
 				else if ( qv.Original is float ) {
 					q = Regex.Replace(q, key+end, key+".toFloat()");
