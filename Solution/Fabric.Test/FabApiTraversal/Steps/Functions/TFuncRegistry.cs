@@ -18,8 +18,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new[] { "/ActiveApp", "/ActiveUser", "/ActiveMember", "/As" })]
-		[TestCase(false, new[] { "activeapp", "activeuser", "activemember", "as" })]
+		[TestCase(true, new[] { "/ActiveApp", "/ActiveUser", "/ActiveMember" })]
+		[TestCase(false, new[] { "activeapp", "activeuser", "activemember" })]
 		public void GetAvailableFuncsForRoot(bool pUri, string[] pExpect) {
 			var p = new Mock<IPath>();
 			var art = new RootStep(p.Object);

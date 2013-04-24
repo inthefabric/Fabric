@@ -120,8 +120,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(typeof(FabRoot), true)]
+		[TestCase(typeof(FabRoot), false)]
 		[TestCase(typeof(FabArtifact), true)]
+		[TestCase(typeof(FabClass), true)]
+		[TestCase(typeof(FabFactor), true)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
 			bool result = FuncAsStep.AllowedForStep(pDtoType);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
