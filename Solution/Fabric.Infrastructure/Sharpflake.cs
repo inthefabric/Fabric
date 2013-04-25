@@ -85,13 +85,15 @@ namespace Fabric.Infrastructure {
 			get {
 				long m = Sharpflake.GetMilli();
 
-				if ( m > vLastMilli ) {
-					vLastMilli = m;
-					vIndex = 0;
-				}
-				else if ( ++vIndex >= 256 ) {
-					SpinUntilNextMilli();
-					vIndex = 0;
+				lock ( this ) {
+					if ( m > vLastMilli ) {
+						vLastMilli = m;
+						vIndex = 0;
+					}
+					else if ( ++vIndex >= 256 ) {
+						SpinUntilNextMilli();
+						vIndex = 0;
+					}
 				}
 
 				return vIndex;

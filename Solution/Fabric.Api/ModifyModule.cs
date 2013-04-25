@@ -33,8 +33,8 @@ namespace Fabric.Api {
 			Post[directors] = (p => Spec(Context, ModifyController.Route.Directors));
 			Post[eventors] = (p => Spec(Context, ModifyController.Route.Eventors));
 			Post[factors] = (p => Spec(Context, ModifyController.Route.Factors));
-			Put[factors] = (p => Spec(Context, ModifyController.Route.Factors));
-			Put[factorsB] = (p => Spec(Context, ModifyController.Route.FactorsBatch));
+			Post[factors] = (p => Spec(Context, ModifyController.Route.Factors));
+			Post[factorsB] = (p => Spec(Context, ModifyController.Route.FactorsBatch));
 			Delete[factors] = (p => Spec(Context, ModifyController.Route.Factors));
 			Post[identors] = (p => Spec(Context, ModifyController.Route.Identors));
 			Post[instances] = (p => Spec(Context, ModifyController.Route.Instances));

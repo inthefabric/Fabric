@@ -61,6 +61,10 @@ namespace Fabric.Infrastructure.Api {
 
 				Result = JsonSerializer.DeserializeFromString<DbResult>(RawResult);
 
+				if ( Result == null ) {
+					throw new Exception("Result is null.");
+				}
+
 				if ( !Result.Success ) {
 					throw new Exception("Result.Success is false.");
 				}
