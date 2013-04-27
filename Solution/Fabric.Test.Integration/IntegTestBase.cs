@@ -100,14 +100,17 @@ namespace Fabric.Test.Integration {
 
 			if ( !IsReadOnlyTest ) {
 				var q = Weave.Inst.NewQuery();
-				q.FinalizeQuery("g.V.remove()");
-				IApiDataAccess data = ApiCtx.DbData("TEST.RemoveAll", q);
-				Assert.AreEqual("", data.Result.Text, "There was an issue with the RemoveAll query!");
+				q.FinalizeQuery("g.V.remove();1");
+				IApiDataAccess remAllData = ApiCtx.DbData("TEST.RemoveAll", q);
 
 				q = Weave.Inst.NewQuery();
 				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
-				data = ApiCtx.DbData("TEST.Reload", q);
-				Assert.AreEqual("1", data.Result.Text, "There was an issue with the Reload query!");
+				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Reload", q);
+
+				Assert.AreEqual("1", remAllData.Result.TextList[0],
+					"There was an issue with the RemoveAll query!");
+				Assert.AreEqual("1", reloadData.Result.TextList[0],
+					"There was an issue with the Reload query!");
 				Log.Info("");
 			}
 			else {

@@ -80,7 +80,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IWeaverQuery q = GetNodeByPropQuery<Factor>(
 				".has('"+PropDbName.Factor_Completed+"',Tokens.T.neq,null).count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCompleted", q);
-			return int.Parse(data.Result.Text);
+			return int.Parse(data.Result.TextList[0]);
 		}
 
 	}

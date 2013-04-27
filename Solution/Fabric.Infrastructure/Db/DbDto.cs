@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
+using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Db {
 	
@@ -35,15 +36,15 @@ namespace Fabric.Infrastructure.Db {
 		public DbDto() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DbDto(DbDtoRaw pRaw) {
-			Id = pRaw._id;
-			Data = pRaw._properties;
-
-			if ( Id == null ) {
+		public DbDto(JsonObject pObj) {
+			if ( !pObj.ContainsKey("_id") ) {
 				return;
 			}
 
-			switch ( pRaw._type ) {
+			Id = pObj["_id"];
+			Data = pObj.Object("_properties").ToStringDictionary();
+
+			switch ( pObj["_type"] ) {
 				case "vertex":
 					int ft = 0;
 					
@@ -57,14 +58,14 @@ namespace Fabric.Infrastructure.Db {
 
 				case "edge":
 					Item = ItemType.Rel;
-					Class = pRaw._label;
-					FromNodeId = pRaw._outV;
-					ToNodeId = pRaw._inV;
+					Class = pObj["_label"];
+					FromNodeId = pObj["_outV"];
+					ToNodeId = pObj["_inV"];
 					break;
 
 				default:
 					Item = ItemType.Error;
-					throw new Exception("Unknown ItemType: "+pRaw._type);
+					throw new Exception("Unknown ItemType: "+pObj["_type"]);
 			}
 		}
 		

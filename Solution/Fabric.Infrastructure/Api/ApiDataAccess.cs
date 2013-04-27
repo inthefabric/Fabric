@@ -23,12 +23,14 @@ namespace Fabric.Infrastructure.Api {
 
 		public string Script { get; private set; }
 		public IDictionary<string, IWeaverQueryVal> Params { get; private set; }
-		public string Query { get; private set; }
+		public RexConnTcpRequest Request { get; private set; }
 
-		public string RawResult { get; private set; }
+		public string ResponseJson { get; private set; }
+		public RexConnTcpResponse Response { get; private set; }
 		public IDbResult Result { get; private set; }
 		public IList<IDbDto> ResultDtoList { get; private set; }
 
+		private string vReqJson;
 		private Exception vUnhandledException;
 
 
@@ -39,7 +41,7 @@ namespace Fabric.Infrastructure.Api {
 			ApiCtx = pContext;
 			Script = pScript;
 			Params = pParams;
-			Query = BuildQuery(Script, Params);
+			Request = BuildRequest(Script, Params);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -55,43 +57,46 @@ namespace Fabric.Infrastructure.Api {
 			try {
 				Sema.WaitOne();
 				++TcpCount;
-				//Log.Debug("QUERY: "+Query);
-				RawResult = GetRawResult(Query);
+
+				JsConfig.EmitCamelCaseNames = true;
+				vReqJson = JsonSerializer.SerializeToString(Request);
+				JsConfig.EmitCamelCaseNames = false;
+
+				//Log.Debug("REQUEST: "+vReqJson);
+				ResponseJson = GetRawResult(vReqJson);
 				Sema.Release();
 
-				Result = JsonSerializer.DeserializeFromString<DbResult>(RawResult);
+				Response = JsonSerializer.DeserializeFromString<RexConnTcpResponse>(ResponseJson);
 
-				if ( Result == null ) {
-					throw new Exception("Result is null.");
+				if ( Response == null ) {
+					throw new Exception("Response is null.");
 				}
 
-				if ( !Result.Success ) {
-					throw new Exception("Result.Success is false.");
+				if ( Response.Err != null ) {
+					throw new Exception("Response has an error.");
 				}
 
-				Result.BuildDbDtos(RawResult);
+				Result = new DbResult(Response, ResponseJson);
 			}
 			catch ( WebException we ) {
 				vUnhandledException = we;
 
-				Result = new DbResult();
-				Result.Exception = we+"";
+				Response = new RexConnTcpResponse();
+				Response.Err = we+"";
 
 				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
 
 				if ( s != null ) {
 					var sr = new StreamReader(s);
-					Result.Message = sr.ReadToEnd();
-					Log.Error(ApiCtx.ContextId, "Grem", Result.Message);
+					Log.Error(ApiCtx.ContextId, "Grem", sr.ReadToEnd());
 				}
 			}
 			catch ( Exception e ) {
 				vUnhandledException = e;
-				Log.Error(ApiCtx.ContextId, "Unhandled raw: ", RawResult);
+				Log.Error(ApiCtx.ContextId, "Unhandled raw: ", ResponseJson);
 
-				Result = new DbResult();
-				Result.Exception = e+"";
-				Result.Message = "Unhandled exception.";
+				Result = new DbResult(Response, "");
+				Result.Exception = Result.Exception+". Exception: "+e;
 			}
 
 			--TcpCount;
@@ -100,8 +105,8 @@ namespace Fabric.Infrastructure.Api {
 
 			if ( vUnhandledException != null ) {
 				vUnhandledException = new Exception("ApiDataAccess exception:"+
-					"\nQuery = "+Query+
-					"\nResultString = "+RawResult+
+					"\nQuery = "+Request+
+					"\nResultString = "+ResponseJson+
 					"\nUnhandedException = "+vUnhandledException, vUnhandledException);
 				throw vUnhandledException;
 			}
@@ -112,12 +117,12 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual string GetRawResult(string pQuery) {
+		protected virtual string GetRawResult(string pReqJson) {
 			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
 			tcp.ReceiveBufferSize = 1048576;
 			tcp.SendBufferSize = 1048576;
 
-			byte[] data = Encoding.ASCII.GetBytes(ApiCtx.ContextId+"#"+pQuery+"\n");
+			byte[] data = Encoding.ASCII.GetBytes(pReqJson+"\n");
 			NetworkStream stream = tcp.GetStream();
 			stream.Write(data, 0, data.Length);
 
@@ -139,11 +144,22 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected static string BuildQuery(string pScript, IDictionary<string,IWeaverQueryVal> pParams){
+		private RexConnTcpRequest BuildRequest(string pScript,
+														IDictionary<string, IWeaverQueryVal> pParams) {
+			var req = new RexConnTcpRequest();
+			req.ReqId = ApiCtx.ContextId.ToString();
+			req.CmdList = new List<RexConnTcpRequestCommand>();
+
+			var cmd = new RexConnTcpRequestCommand();
+			cmd.Cmd = RexConnCommand.Query;
+			cmd.Args = new List<string>();
+			req.CmdList.Add(cmd);
+
 			string q = FabricUtil.JsonUnquote(pScript);
 
 			if ( pParams == null ) {
-				return q;
+				cmd.Args.Add(q);
+				return req;
 			}
 
 			string p = "";
@@ -176,7 +192,9 @@ namespace Fabric.Infrastructure.Api {
 				}
 			}
 
-			return q+"#{"+p+"}";
+			cmd.Args.Add(q);
+			cmd.Args.Add("{"+p+"}");
+			return req;
 		}
 
 
@@ -228,7 +246,7 @@ namespace Fabric.Infrastructure.Api {
 				Result.QueryTime +x+
 				DateTime.UtcNow.Ticks +x+
 				TcpCount +x+
-				Query.Length;
+				vReqJson.Length;
 
 			if ( vUnhandledException == null ) {
 				Log.Info(ApiCtx.ContextId, name, v1);

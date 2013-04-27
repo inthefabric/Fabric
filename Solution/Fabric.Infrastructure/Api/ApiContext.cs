@@ -102,8 +102,8 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			if ( da.TypedResultList.Count > 1 ) {
-				Log.Debug("DbSingle Error > Query: "+a.Query);
-				Log.Debug("DbSingle Error > RawResult: "+da.RawResult);
+				Log.Debug("DbSingle Error > Query: "+a.Request);
+				Log.Debug("DbSingle Error > RawResult: "+da.ResponseJson);
 				throw new Exception("DbSingle<"+typeof(T).Name+"> expects 1 result, but received "+
 					da.TypedResultList.Count);
 			}

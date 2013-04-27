@@ -100,7 +100,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			IWeaverQuery q = GetNodeByPropQuery<OauthAccess>(
 				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
-			return int.Parse(data.Result.Text);
+			return int.Parse(data.Result.TextList[0]);
 		}
 
 	}

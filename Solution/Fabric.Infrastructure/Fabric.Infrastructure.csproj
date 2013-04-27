@@ -63,6 +63,7 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\ApiEnums.cs" />
+    <Compile Include="Db\RexConnTcp.cs" />
     <Compile Include="Weaver\DbNames.cs">
       <DependentUpon>DbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -86,7 +87,6 @@
     <Compile Include="Api\Faults\FabNotFoundFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Api\ApiDataAccess.cs" />
-    <Compile Include="Db\DbDtoRaw.cs" />
     <Compile Include="Domain\Types\IBaseType.cs" />
     <Compile Include="Domain\Types\VectorUnitPrefix.cs" />
     <Compile Include="Domain\Types\VectorUnitDerived.cs" />

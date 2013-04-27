@@ -82,7 +82,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			IWeaverQuery q = GetNodeByPropQuery<OauthGrant>(
 				".has('"+PropDbName.OauthGrant_Code+"',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
-			return int.Parse(data.Result.Text);
+			return int.Parse(data.Result.TextList[0]);
 		}
 
 	}

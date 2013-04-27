@@ -12,9 +12,10 @@ namespace Fabric.Infrastructure.Api {
 
 		string Script { get; }
 		IDictionary<string, IWeaverQueryVal> Params { get; }
-		string Query { get; }
+		RexConnTcpRequest Request { get; }
 
-		string RawResult { get; }
+		string ResponseJson { get; }
+		RexConnTcpResponse Response { get; }
 		IDbResult Result { get; }
 		IList<IDbDto> ResultDtoList { get; }
 

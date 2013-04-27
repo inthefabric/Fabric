@@ -1,66 +1,74 @@
 ﻿using System.Collections.Generic;
+using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
 	public class DbResult : IDbResult { //TEST: DbResult functions
 
-		public string Request { get; set; }
-		public bool Success { get; set; }
-		public int QueryTime { get; set; }
+		public int QueryTime { get; private set; }
+		public IList<DbDto> DbDtos { get; private set; }
+
 		public double ServerTime { get; set; }
 		public string Exception { get; set; }
 		public string Message { get; set; }
-		public string Text { get; set; }
-		public IList<string> TextList { get; set; }
 
-		public IList<DbDtoRaw> Results { get; set; }
-		public IList<DbDto> DbDtos { get; set; }
+		private readonly string vResponseJson;
+		private IList<string> vTextList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void BuildDbDtos(string pResultJson) {
+		public DbResult(RexConnTcpResponse pResponse, string pResponseJson) {
+			Exception = pResponse.Err;
+			QueryTime = (int)pResponse.Timer;
 			DbDtos = new List<DbDto>();
 
-			if ( Results != null ) {
-				foreach ( DbDtoRaw r in Results ) {
-					DbDtos.Add(new DbDto(r));
+			vResponseJson = pResponseJson;
+
+			foreach ( RexConnTcpResponseCommand rc in pResponse.CmdList ) {
+				foreach ( JsonObject jo in rc.Results ) {
+					DbDtos.Add(new DbDto(jo));
+				}
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<string> TextList {
+			get {
+				if ( vTextList == null ) {
+					BuildTextList();
 				}
 
-				Results = null;
+				return vTextList;
 			}
+		}
 
-			if ( DbDtos.Count > 0 && DbDtos[0].Id != null ) {
-				return;
-			}
-
-			const string textResultStart = "\"results\":[";
-			int startI = pResultJson.IndexOf(textResultStart);
+		/*--------------------------------------------------------------------------------------------*/
+		private void BuildTextList() {
+			vTextList = new List<string>();
+			
+			const string startText = "\"results\":[";
+			int startI = vResponseJson.IndexOf(startText);
 
 			if ( startI == -1 ) {
 				return;
 			}
 
-			startI += textResultStart.Length;
-			int endI = pResultJson.IndexOf("],", startI);
+			startI += startText.Length;
+			int endI = vResponseJson.IndexOf("]}", startI);
+			string text = vResponseJson.Substring(startI, endI-startI);
 
-			Text = pResultJson.Substring(startI, endI-startI);
-			BuildTextList();
-			DbDtos = null;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void BuildTextList() {
-			TextList = new List<string>();
+			////
+			
 			int i = 0;
 			int j = -1;
-			int lastIndex = Text.Length-1;
+			int lastIndex = text.Length-1;
 			bool inQuote = false;
 			int inCurly = 0;
 			int inSquare = 0;
 
-			foreach ( char c in Text ) {
+			foreach ( char c in text ) {
 				++j;
 
 				switch ( c ) {
@@ -76,13 +84,13 @@ namespace Fabric.Infrastructure.Db {
 				}
 
 				if ( c == ',' ) {
-					TextList.Add(Text.Substring(i,j-i).Trim());
+					TextList.Add(text.Substring(i,j-i).Trim());
 					i = j+1;
 					continue;
 				}
 
 				if ( j == lastIndex ) {
-					TextList.Add(Text.Substring(i).Trim());
+					TextList.Add(text.Substring(i).Trim());
 					break;
 				}
 			}

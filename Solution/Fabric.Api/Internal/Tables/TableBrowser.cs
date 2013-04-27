@@ -70,7 +70,7 @@ namespace Fabric.Api.Internal.Tables {
 			vDtos = pData.Result.DbDtos;
 
 			if ( vDtos == null ) {
-				return pData.RawResult;
+				return pData.ResponseJson;
 			}
 
 			////
