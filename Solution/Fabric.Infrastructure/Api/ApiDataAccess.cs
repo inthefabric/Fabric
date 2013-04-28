@@ -173,8 +173,6 @@ namespace Fabric.Infrastructure.Api {
 			cmd.Args.Add("1");
 			req.CmdList.Add(cmd);*/
 
-			//MatchCollection mc = Regex.Matches(s, @"_(\w+?)(\d+)");
-
 			AddSessionAction(req, RexConnSessionAction.Start);
 
 			foreach ( IWeaverScript ws in pScriptedList ) {

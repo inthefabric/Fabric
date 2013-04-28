@@ -27,8 +27,7 @@ namespace Fabric.Api.Modify {
 		private readonly string vObjectsJson;
 		private FactorOperationSet[] vOpSets;
 		private FabBatchResult[] vResults;
-		private List<int> vVerifyIndexes;
-		private List<int> vIndexes;
+		private List<List<int>> vIndexes;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,22 +59,32 @@ namespace Fabric.Api.Modify {
 
 			////
 
+			var currIndexGroup = new List<int>();
+			vIndexes = new List<List<int>>();
+			vIndexes.Add(currIndexGroup);
+
 			vOpSets = new FactorOperationSet[n];
 			vResults = new FabBatchResult[n];
-			vVerifyIndexes = new List<int>();
+
+			const int size = 50;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewFactor nf = vObjects[i];
-				
+
 				var res = new FabBatchResult();
 				res.BatchId = nf.BatchId;
 				vResults[i] = res;
-				
+
+				if ( currIndexGroup.Count == size ) {
+					currIndexGroup = new List<int>();
+					vIndexes.Add(currIndexGroup);
+				}
+
 				try {
 					var fos = new FactorOperationSet(Tasks, nf);
 					fos.ValidateParamsForBatch();
 					vOpSets[i] = fos;
-					vVerifyIndexes.Add(i);
+					currIndexGroup.Add(i);
 				}
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);
@@ -88,21 +97,17 @@ namespace Fabric.Api.Modify {
 			Member mem = GetContextMember();
 
 			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 20;
-			Parallel.ForEach(vVerifyIndexes, opt, VerifyRequiredNodes);
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
+			Parallel.ForEach(vIndexes, opt, VerifyRequiredNodes);
 
 			////
 			
-			vIndexes = new List<int>();
 			int n = vObjects.Length;
 
 			for ( int i = 0 ; i < n ; ++i ) {
-				if ( vResults[i].Error != null ) {
-					continue;
+				if ( vResults[i].Error == null ) {
+					vOpSets[i].SetCreator(mem);
 				}
-
-				vOpSets[i].SetCreator(mem);
-				vIndexes.Add(i);
 			}
 
 			Parallel.ForEach(vIndexes, opt, InsertFactors);
@@ -110,30 +115,41 @@ namespace Fabric.Api.Modify {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyRequiredNodes(int pIndex, ParallelLoopState pState, long pThreadId) {
-			try {
-				FactorOperationSet fos = vOpSets[pIndex];
-				fos.VerifyRequiredNodesForBatch(ApiCtx);
-			}
-			catch ( FabFault fault ) {
-				FabBatchResult res = vResults[pIndex];
-				res.Error = FabError.ForFault(fault);
+		private void VerifyRequiredNodes(IList<int> pIndexes, ParallelLoopState pState, long pThreadId){
+			foreach ( int i in pIndexes ) {
+				try {
+					FactorOperationSet fos = vOpSets[i];
+					fos.VerifyRequiredNodesForBatch(ApiCtx);
+				}
+				catch ( FabFault fault ) {
+					FabBatchResult res = vResults[i];
+					res.Error = FabError.ForFault(fault);
+				}
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void InsertFactors(int pIndex, ParallelLoopState pState, long pThreadId) {
-			FabBatchResult res = vResults[pIndex];
+		private void InsertFactors(IList<int> pIndexes, ParallelLoopState pState, long pThreadId) {
+			var list = new List<IWeaverScript>();
 
-			try {
-				FactorOperationSet fos = vOpSets[pIndex];
-				ApiCtx.DbData("BatchCreateFactorNodeTx", fos.GetNodeTx(ApiCtx));
-				res.ResultId = fos.FactorId;
-				//Log.Debug("NodeId: "+data.GetStringResultAt(0));
+			foreach ( int i in pIndexes ) {
+				FabBatchResult res = vResults[i];
+
+				if ( res.Error != null ) {
+					continue;
+				}
+
+				try {
+					FactorOperationSet fos = vOpSets[i];
+					list.AddRange(fos.GetNodeQueries(ApiCtx));
+					res.ResultId = fos.FactorId;
+				}
+				catch ( FabFault fault ) {
+					res.Error = FabError.ForFault(fault);
+				}
 			}
-			catch ( FabFault fault ) {
-				res.Error = FabError.ForFault(fault);
-			}
+
+			ApiCtx.DbData("BatchCreateFactorNodeTx", list);
 		}
 
 	}
@@ -227,7 +243,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IWeaverTransaction GetNodeTx(IApiContext pApiCtx) {
+		public IList<IWeaverScript> GetNodeQueries(IApiContext pApiCtx) {
 			FactorId = pApiCtx.GetSharpflakeId<Factor>();
 
 			var f = new Factor();
@@ -273,44 +289,70 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			//OPTIMIZE: Inserting Factor data this way isn't ideal, because it leads to different 
-			//Gremlin scripts almost every time. The database has to compile any script which is not
-			//cached, leading to long wait times until the most common insertion scripts are cached.
-			//Could possibly split up these commands, however, they would lose their "transaction"
-			//grouping, which is not preferable. The API would need to manually delete elements if
-			//later portions of the "transaction" group fail.
+			var list = new List<IWeaverScript>();
 
 			var txb = new TxBuilder();
 			var facBuild = new FactorBuilder(txb, f);
 			facBuild.AddNode();
-			facBuild.SetUsesPrimaryArtifact(vBatch.PrimaryArtifactId);
-			facBuild.SetUsesRelatedArtifact(vBatch.RelatedArtifactId);
-			facBuild.SetInMemberCreates(vMember);
+
+			var facVar = new WeaverVarAlias<Factor>(txb.Transaction) { Name = "_F" };
+			var q = new WeaverQuery();
+			q.FinalizeQuery(facBuild.NodeVar.Name);
+			q.StoreResultAsVar(facVar);
+			txb.Transaction.AddQuery(q);
+
+			txb.Transaction.AddQuery(
+				ApiFunc.NewPathFromVar(facVar, false).Prop(x => x.Id).End()
+			);
+
+			list.Add(txb.Finish());
+
+			AppendQueries(list, facVar, fb => {
+				fb.SetUsesPrimaryArtifact(vBatch.PrimaryArtifactId);
+				fb.SetUsesRelatedArtifact(vBatch.RelatedArtifactId);
+				fb.SetInMemberCreates(vMember);
+			});
 
 			if ( vBatch.Descriptor.PrimaryArtifactRefineId != null ) {
-				facBuild.SetDescriptorRefinesPrimaryWithArtifact((
-					long)vBatch.Descriptor.PrimaryArtifactRefineId);
+				AppendQueries(list, facVar, fb =>
+					fb.SetDescriptorRefinesPrimaryWithArtifact(
+						(long)vBatch.Descriptor.PrimaryArtifactRefineId)
+				);
 			}
 
 			if ( vBatch.Descriptor.RelatedArtifactRefineId != null ) {
-				facBuild.SetDescriptorRefinesRelatedWithArtifact(
-					(long)vBatch.Descriptor.RelatedArtifactRefineId);
+				AppendQueries(list, facVar, fb =>
+					fb.SetDescriptorRefinesRelatedWithArtifact(
+						(long)vBatch.Descriptor.RelatedArtifactRefineId)
+				);
 			}
 
 			if ( vBatch.Descriptor.TypeRefineId != null ) {
-				facBuild.SetDescriptorRefinesTypeWithArtifact(
-					(long)vBatch.Descriptor.TypeRefineId);
+				AppendQueries(list, facVar, fb =>
+					fb.SetDescriptorRefinesTypeWithArtifact((long)vBatch.Descriptor.TypeRefineId)
+				);
 			}
 
 			if ( vBatch.Vector != null ) {
-				facBuild.SetVectorUsesAxisArtifact(vBatch.Vector.AxisArtifactId);
+				AppendQueries(list, facVar, fb =>
+					fb.SetVectorUsesAxisArtifact(vBatch.Vector.AxisArtifactId)
+				);
 			}
 
-			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromVar(facBuild.NodeVar, false).Prop(x => x.Id).End()
-			);
+			return list;
+		}
 
-			return txb.Finish();
+		/*--------------------------------------------------------------------------------------------*/
+		private void AppendQueries(IList<IWeaverScript> pList, IWeaverVarAlias<Factor> pFacVar,
+																	Action<FactorBuilder> pAction) {
+			var facBuild = new FactorBuilder(new TxBuilder());
+			facBuild.SetNodeVar(pFacVar);
+			pAction(facBuild);
+
+			IWeaverQuery q = new WeaverQuery();
+			q.FinalizeQuery("1"); //skip unnecessary return data
+			facBuild.TxBuild.Transaction.AddQuery(q);
+			pList.Add(facBuild.TxBuild.Finish());
 		}
 
 	}

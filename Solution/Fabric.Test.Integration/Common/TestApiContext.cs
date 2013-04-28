@@ -38,7 +38,11 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetSharpflakeId<T>() {
 			long id = Sharpflake.GetId<T>();
-			SharpflakeIds.Add(id);
+
+			lock ( this ) {
+				SharpflakeIds.Add(id);
+			}
+
 			return id;
 		}
 

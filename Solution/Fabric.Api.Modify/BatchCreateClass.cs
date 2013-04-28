@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify.Tasks;
@@ -110,19 +111,15 @@ namespace Fabric.Api.Modify {
 		protected override FabBatchResult[] Execute() {
 			GetContextMember();
 
-			/*var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 10;
-			Parallel.ForEach(vIndexes, opt, InsertClass);*/
-
-			foreach ( List<int> i in vIndexes ) {
-				InsertClass(i);
-			}
+			var opt = new ParallelOptions();
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
+			Parallel.ForEach(vIndexes, opt, InsertClass);
 
 			return vResults;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void InsertClass(List<int> pIndexes) { //, ParallelLoopState pState, long pThreadId) {
+		private void InsertClass(List<int> pIndexes, ParallelLoopState pState, long pThreadId) {
 			int n = pIndexes.Count;
 			var classes = new List<Class>();
 			var txList = new List<IWeaverScript>();
