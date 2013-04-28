@@ -107,7 +107,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 					continue;
 				}
 
-				Log.Debug(res.BatchId+": "+res.ResultId);
+				//Log.Debug(res.BatchId+": "+res.ResultId);
 			}
 
 			NewNodeCount = 1*(vClasses.Count-3); //skip 3 items with intentional errors

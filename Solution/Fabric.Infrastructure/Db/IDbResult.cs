@@ -8,6 +8,7 @@ namespace Fabric.Infrastructure.Db {
 		int QueryTime { get; }
 		IList<string> TextList { get; }
 		IList<DbDto> DbDtos { get; }
+		IList<IList<DbDto>> CmdDbDtos { get; }
 
 		double ServerTime { get; set; }
 		string Exception { get; set; }

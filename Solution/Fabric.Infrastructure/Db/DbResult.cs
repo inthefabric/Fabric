@@ -7,6 +7,7 @@ namespace Fabric.Infrastructure.Db {
 	public class DbResult : IDbResult { //TEST: DbResult functions
 
 		public int QueryTime { get; private set; }
+		public IList<IList<DbDto>> CmdDbDtos { get; private set; }
 		public IList<DbDto> DbDtos { get; private set; }
 
 		public double ServerTime { get; set; }
@@ -23,12 +24,22 @@ namespace Fabric.Infrastructure.Db {
 			Exception = pResponse.Err;
 			QueryTime = (int)pResponse.Timer;
 			DbDtos = new List<DbDto>();
+			CmdDbDtos = new List<IList<DbDto>>();
 
 			vResponseJson = pResponseJson;
 
 			foreach ( RexConnTcpResponseCommand rc in pResponse.CmdList ) {
+				var cmdDtos = new List<DbDto>();
+				CmdDbDtos.Add(cmdDtos);
+
+				if ( rc.Results == null ) {
+					continue;
+				}
+
 				foreach ( JsonObject jo in rc.Results ) {
-					DbDtos.Add(new DbDto(jo));
+					var dto = new DbDto(jo);
+					DbDtos.Add(dto);
+					cmdDtos.Add(dto);
 				}
 			}
 		}
@@ -45,7 +56,7 @@ namespace Fabric.Infrastructure.Db {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void BuildTextList() {
+		private void BuildTextList() { //TODO: support RexConnect "session" mode
 			vTextList = new List<string>();
 			
 			const string startText = "\"results\":[";

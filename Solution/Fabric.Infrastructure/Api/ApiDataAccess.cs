@@ -41,12 +41,19 @@ namespace Fabric.Infrastructure.Api {
 			ApiCtx = pContext;
 			Script = pScript;
 			Params = pParams;
+
 			Request = BuildRequest(Script, Params);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiDataAccess(IApiContext pContext, IWeaverScript pScripted) :
 												this(pContext, pScripted.Script, pScripted.Params) {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public ApiDataAccess(IApiContext pContext, IList<IWeaverScript> pScriptedList) {
+			ApiCtx = pContext;
+			Request = BuildRequest(pScriptedList);
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,17 +156,48 @@ namespace Fabric.Infrastructure.Api {
 			var req = new RexConnTcpRequest();
 			req.ReqId = ApiCtx.ContextId.ToString();
 			req.CmdList = new List<RexConnTcpRequestCommand>();
+			req.CmdList.Add(BuildRequestCommand(pScript, pParams));
+			return req;
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private RexConnTcpRequest BuildRequest(IList<IWeaverScript> pScriptedList) {
+			var req = new RexConnTcpRequest();
+			req.ReqId = ApiCtx.ContextId.ToString();
+			req.CmdList = new List<RexConnTcpRequestCommand>();
+
+			/*RexConnTcpRequestCommand cmd = new RexConnTcpRequestCommand();
+			cmd.Cmd = RexConnCommand.Config;
+			cmd.Args = new List<string>();
+			cmd.Args.Add(RexConnConfigSetting.Debug);
+			cmd.Args.Add("1");
+			req.CmdList.Add(cmd);*/
+
+			//MatchCollection mc = Regex.Matches(s, @"_(\w+?)(\d+)");
+
+			AddSessionAction(req, RexConnSessionAction.Start);
+
+			foreach ( IWeaverScript ws in pScriptedList ) {
+				req.CmdList.Add(BuildRequestCommand(ws.Script, ws.Params));
+			}
+
+			AddSessionAction(req, RexConnSessionAction.Commit);
+			AddSessionAction(req, RexConnSessionAction.Close);
+			return req;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private RexConnTcpRequestCommand BuildRequestCommand(string pScript,
+														IDictionary<string, IWeaverQueryVal> pParams) {
 			var cmd = new RexConnTcpRequestCommand();
 			cmd.Cmd = RexConnCommand.Query;
 			cmd.Args = new List<string>();
-			req.CmdList.Add(cmd);
 
 			string q = FabricUtil.JsonUnquote(pScript);
 
 			if ( pParams == null ) {
 				cmd.Args.Add(q);
-				return req;
+				return cmd;
 			}
 
 			string p = "";
@@ -194,7 +232,15 @@ namespace Fabric.Infrastructure.Api {
 
 			cmd.Args.Add(q);
 			cmd.Args.Add("{"+p+"}");
-			return req;
+			return cmd;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddSessionAction(RexConnTcpRequest pReq, string pAction) {
+			var cmd = new RexConnTcpRequestCommand();
+			cmd.Cmd = RexConnCommand.Session;
+			cmd.Args = new List<string>(new[] { pAction });
+			pReq.CmdList.Add(cmd);
 		}
 
 

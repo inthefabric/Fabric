@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify.Tasks;
@@ -9,6 +8,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Api.Modify {
@@ -66,7 +66,7 @@ namespace Fabric.Api.Modify {
 			vResults = new FabBatchResult[n];
 
 			var dupMap = new HashSet<string>();
-			const int size = 50;
+			const int size = 100;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewClass nc = vObjects[i];
@@ -110,20 +110,22 @@ namespace Fabric.Api.Modify {
 		protected override FabBatchResult[] Execute() {
 			GetContextMember();
 
-			var opt = new ParallelOptions();
+			/*var opt = new ParallelOptions();
 			opt.MaxDegreeOfParallelism = 10;
-			Parallel.ForEach(vIndexes, opt, InsertClass);
+			Parallel.ForEach(vIndexes, opt, InsertClass);*/
+
+			foreach ( List<int> i in vIndexes ) {
+				InsertClass(i);
+			}
+
 			return vResults;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void InsertClass(List<int> pIndexes, ParallelLoopState pState, long pThreadId) {
+		private void InsertClass(List<int> pIndexes) { //, ParallelLoopState pState, long pThreadId) {
 			int n = pIndexes.Count;
-			var nodeIds = new List<string>();
 			var classes = new List<Class>();
-
-			TxBuilder txb = null;
-			IWeaverVarAlias<Member> memVar = null;
+			var txList = new List<IWeaverScript>();
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				int index = pIndexes[i];
@@ -132,34 +134,30 @@ namespace Fabric.Api.Modify {
 				try {
 					CreateClass cc = vCreateFuncs[index];
 					IWeaverVarAlias<Class> classVar;
+					IWeaverVarAlias<Member> memVar;
 
-					if ( txb == null ) {
-						txb = cc.GetFullTxForBatch(ApiCtx, out memVar, out classVar);
-					}
-					else {
-						cc.AppendTxForBatch(ApiCtx, txb, memVar, out classVar);
-					}
+					TxBuilder txb = cc.GetFullTxForBatch(ApiCtx, out memVar, out classVar);
+
+					txb.Transaction.AddQuery(
+						NewPathFromVar(classVar, false).Prop(x => x.Id).End()
+					);
+
+					txList.Add(txb.Finish());
 
 					Class c = cc.GetNewClassForBatch();
 					res.ResultId = c.ClassId;
-
 					classes.Add(c);
-					nodeIds.Add(classVar.Name+".id");
 				}
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);
 				}
 			}
 
-			if ( txb == null ) {
+			if ( classes.Count == 0 ) {
 				return;
 			}
 
-			var q = Weave.Inst.NewQuery();
-			q.FinalizeQuery("["+string.Join(",", nodeIds)+"]");
-			txb.Transaction.AddQuery(q);
-
-			ApiCtx.DbData("BatchCreateClassTx", txb.Finish());
+			ApiCtx.DbData("BatchCreateClassTx", txList);
 
 			foreach ( Class c in classes ) {
 				ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);

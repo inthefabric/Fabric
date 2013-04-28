@@ -13,11 +13,11 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TestApiDataAccess(IApiContext pContext, string pScript,
-													IDictionary<string, IWeaverQueryVal> pParams=null) :
-													base(pContext, pScript, pParams) { }
+												IDictionary<string, IWeaverQueryVal> pParams=null) :
+												base(pContext, pScript, pParams) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiDataAccess(IApiContext pContext, IWeaverScript pScripted) :
+		public TestApiDataAccess(IApiContext pContext, IWeaverScript pScripted):
 												this(pContext, pScripted.Script, pScripted.Params) {}
 
 

@@ -72,6 +72,12 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		public IApiDataAccess DbData(string pQueryName, IList<IWeaverScript> pScriptedList) {
+			var a = NewAccess(pScriptedList);
+			return DbDataAccess(pQueryName, a);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new() {
 			T item = Cache.Memory.FindNode<T>(pTypeId);
 			
@@ -129,6 +135,11 @@ namespace Fabric.Infrastructure.Api {
 		protected virtual IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted)
 																		where T : IItemWithId, new() {
 			return new ApiDataAccess<T>(this, pScripted);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IApiDataAccess NewAccess(IList<IWeaverScript> pScriptedList) {
+			return new ApiDataAccess(this, pScriptedList);
 		}
 
 

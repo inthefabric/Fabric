@@ -15,7 +15,6 @@ namespace Fabric.Infrastructure.Api {
 		Guid ContextId { get; }
 		long UserId { get; }
 		long AppId { get; }
-		//long MemberId { get; }
 		AnalyticsManager Analytics { get; }
 		ICacheManager Cache { get; }
 
@@ -26,7 +25,6 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void SetAppUserId(long? pAppId, long? pUserId);
-		//void SetMemberId(long pMemberId);
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +37,9 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted);
+
+		/*--------------------------------------------------------------------------------------------*/
+		IApiDataAccess DbData(string pQueryName, IList<IWeaverScript> pScriptedList);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new();
