@@ -90,6 +90,7 @@ namespace Fabric.Infrastructure.Api {
 
 				Response = new RexConnTcpResponse();
 				Response.Err = we+"";
+				Response.CmdList = new List<RexConnTcpResponseCommand>();
 
 				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
 
@@ -102,7 +103,11 @@ namespace Fabric.Infrastructure.Api {
 				vUnhandledException = e;
 				Log.Error(ApiCtx.ContextId, "Unhandled raw: ", ResponseJson);
 
-				Result = new DbResult(Response, "");
+				Response = new RexConnTcpResponse();
+				Response.Err = e+"";
+				Response.CmdList = new List<RexConnTcpResponseCommand>();
+
+				Result = new DbResult(Response, ResponseJson);
 				Result.Exception = Result.Exception+". Exception: "+e;
 			}
 
