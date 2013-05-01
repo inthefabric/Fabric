@@ -25,7 +25,7 @@ namespace Fabric.Infrastructure.Db {
 		public string ToNodeId { get; set; }
 		public string FromNodeId { get; set; }
 
-		public IDictionary<string, string> Data { get; set; }
+		public JsonObject Data { get; set; }
 
 		public string Message { get; set; }
 		public string Exception { get; set; }
@@ -42,7 +42,7 @@ namespace Fabric.Infrastructure.Db {
 			}
 
 			Id = pObj["_id"];
-			Data = pObj.Object("_properties").ToStringDictionary();
+			Data = pObj.Object("_properties");
 
 			switch ( pObj["_type"] ) {
 				case "vertex":
@@ -53,7 +53,14 @@ namespace Fabric.Infrastructure.Db {
 					}
 
 					Item = ItemType.Node;
-					Class = NodeFabTypeUtil.ValueMap[ft]+"";
+					
+					NodeFabType nft = NodeFabTypeUtil.ValueMap[ft];
+					Class = nft+"";
+
+					if ( nft == NodeFabType.Unspecified ) {
+						throw new Exception("Unspecified node class: Id="+Id);
+					}
+					
 					break;
 
 				case "edge":

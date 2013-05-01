@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Fabric.Domain;
+﻿using Fabric.Domain;
+using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Db {
 	
@@ -12,7 +12,7 @@ namespace Fabric.Infrastructure.Db {
 		string ToNodeId { get; set; }
 		string FromNodeId { get; set; }
 
-		IDictionary<string, string> Data { get; set; }
+		JsonObject Data { get; set; }
 
 		string Message { get; set; }
 		string Exception { get; set; }

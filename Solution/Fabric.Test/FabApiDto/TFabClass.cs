@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Fabric.Api.Dto.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
+using ServiceStack.Text;
 
 namespace Fabric.Test.FabApiDto {
 
@@ -23,7 +23,7 @@ namespace Fabric.Test.FabApiDto {
 
 			var dd = new DbDto();
 			dd.Id = "x99";
-			dd.Data = new Dictionary<string, string>();
+			dd.Data = new JsonObject();
 			dd.Data.Add(PropDbName.Class_ClassId, classId+"");
 			dd.Data.Add(PropDbName.Class_Name, name);
 			dd.Data.Add(PropDbName.Class_Disamb, disamb);
