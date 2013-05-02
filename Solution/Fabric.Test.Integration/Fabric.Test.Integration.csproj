@@ -116,6 +116,7 @@
     <Compile Include="FabApiServer\Oauth\XOauthLoginControllerPost.cs" />
     <Compile Include="FabApiTraversal\XPathRouter.cs" />
     <Compile Include="FabApiWeb\XBaseWebFunc.cs" />
+    <Compile Include="FabInfra\XSharpflake.cs" />
     <Compile Include="FabInfra\XCreateApp.cs" />
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />

@@ -10,10 +10,15 @@ namespace Fabric.Infrastructure {
 	/*================================================================================================*/
 	public static class Sharpflake {
 
-		//Skip: 1 bit (IDs type signed long/Int64)
-		//Millis: 43 bits
-		//Server: 12 bits
-		//Sequence: 8 bits
+		public const int MilliBitCount = 43;
+		public const int ServerBitCount = 12;
+		public const int SequenceBitCount = 8;
+
+		public const int MilliBitIndex = 1; //Skip 1 bit (IDs type signed long/Int64)
+		public const int ServerBitIndex = MilliBitIndex+MilliBitCount;
+		public const int SequenceBitIndex = ServerBitIndex+ServerBitCount;
+		
+		public const int SequenceMax = (1 << SequenceBitCount);
 
 		private const int ServerId = 0; //0 to 4095
 
@@ -34,8 +39,6 @@ namespace Fabric.Infrastructure {
 				Log.Debug("Clock moved backwards; sleeping for the next "+(LastMilli-m)+"ms...");
 				Thread.Sleep((int)(LastMilli-m+1));
 				return GetMilli();
-				//throw new Exception("Clock moved backwards; rejecting requests for the next "+
-				//	(LastMilli-m)+"ms. "+m+" / "+LastMilli);
 			}
 
 			LastMilli = m;
@@ -59,16 +62,11 @@ namespace Fabric.Infrastructure {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static long GetId<T>() where T : INode {
-			long m = GetMilli();
-			return (m << 20) + (ServerId << 8) + GetSequence<T>().NextIndex;
+			SharpflakeSequence seq = GetSequence<T>();
+			long m;
+			int i = seq.GetNextIndex(out m);
+			return (m << 20) + (ServerId << 8) + i;
 		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public static string GetIdStr<T>() where T : INode {
-			long m = GetMilli();
-			return Convert.ToString(m<<20, 2) + "." + Convert.ToString(ServerId<<8, 2) + "." +
-				Convert.ToString(GetSequence<T>().NextIndex, 2);
-		}*/
 
 	}
 	
@@ -76,32 +74,36 @@ namespace Fabric.Infrastructure {
 	internal class SharpflakeSequence {
 
 		private long vLastMilli;
-		private int vIndex; // 0 to 255
+		private int vIndex;
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public int NextIndex {
-			get {
-				long m = Sharpflake.GetMilli();
+		public int GetNextIndex(out long pMilli) {
+			long m;
+			int i;
 
-				lock ( this ) {
-					if ( m > vLastMilli ) {
-						vLastMilli = m;
-						vIndex = 0;
-					}
-					else if ( ++vIndex >= 256 ) {
-						SpinUntilNextMilli();
-						vIndex = 0;
-					}
+			lock ( this ) {
+				m = Sharpflake.GetMilli();
+
+				if ( m > vLastMilli ) {
+					vLastMilli = m;
+					vIndex = 0;
+				}
+				else if ( ++vIndex >= Sharpflake.SequenceMax ) {
+					m = SpinUntilNextMilli();
+					vIndex = 0;
 				}
 
-				return vIndex;
+				i = vIndex; //capture value before leaving the lock
 			}
+
+			pMilli = m;
+			return i;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void SpinUntilNextMilli() {
+		private long SpinUntilNextMilli() {
 			long m = Sharpflake.GetMilli();
 
 			while ( m <= vLastMilli ) {
@@ -109,6 +111,7 @@ namespace Fabric.Infrastructure {
 			}
 
 			vLastMilli = m;
+			return m;
 		}
 
 	}
