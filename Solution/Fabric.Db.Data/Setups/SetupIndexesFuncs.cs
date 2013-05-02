@@ -6,22 +6,19 @@ namespace Fabric.Db.Data.Setups {
 	/*================================================================================================*/
 	public static partial class SetupIndexes {
 
-		private const string TitanPath = "com.thinkaurelius.titan.core.";
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IWeaverQuery BuildGroup(string pNode, int pId) {
 			var q = Weave.Inst.NewQuery();
-			q.FinalizeQuery(TitanPath+"TypeGroup Group_"+pNode+" = "+
-				TitanPath+"TypeGroup.of("+pId+",'"+pNode+"')");
+			q.FinalizeQuery("Group_"+pNode+" = "+
+				"com.thinkaurelius.titan.core.TypeGroup.of("+pId+",'"+pNode+"')");
 			return q;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private static IWeaverQuery BuildKey(string pNode, string pProp, string pType, bool pIndex) {
-			string script = 
-				TitanPath+"TitanKey "+pProp+" = "+
+			string script = pProp+" = "+
 					"g.makeType()"+
 					".dataType("+pType+".class)"+
 					".name('"+pProp+"')"+
@@ -46,11 +43,10 @@ namespace Fabric.Db.Data.Setups {
 		private static IWeaverQuery BuildLabel(string pName, bool pInUnique, bool pOutUnique,
 												/*string[] pPrimaryKeys,*/ string[] pSignatureKeys) {
 			string script = 
-				//TitanPath+"TitanLabel "+pName.Replace('-', '_')+" = "+
-					"g.makeType()"+
-					".name('"+pName+"')"+
-					//".primaryKey("+string.Join(",", pPrimaryKeys)+")";
-					".signature("+string.Join(",", pSignatureKeys)+")";
+				"g.makeType()"+
+				".name('"+pName+"')"+
+				//".primaryKey("+string.Join(",", pPrimaryKeys)+")";
+				".signature("+string.Join(",", pSignatureKeys)+")";
 
 			if ( pInUnique ) {
 				script += ".unique(IN)";

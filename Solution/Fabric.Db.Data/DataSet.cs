@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
+using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
@@ -85,17 +86,6 @@ namespace Fabric.Db.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddIndexQuery(IWeaverQuery pQuery) {
 			Indexes.Add(pQuery);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IWeaverTransaction GetIndexTx() {
-			var tx = Weave.Inst.NewTx();
-
-			foreach ( IWeaverQuery q in Indexes ) {
-				tx.AddQuery(q);
-			}
-
-			return tx.Finish();
 		}
 
 

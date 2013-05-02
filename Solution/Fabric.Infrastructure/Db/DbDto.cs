@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
@@ -13,6 +12,7 @@ namespace Fabric.Infrastructure.Db {
 		public enum ItemType {
 			Node = 1,
 			Rel,
+			Unknown,
 			Error
 		}
 
@@ -46,15 +46,20 @@ namespace Fabric.Infrastructure.Db {
 
 			switch ( pObj["_type"] ) {
 				case "vertex":
-					int ft = 0;
+					NodeFabType nft = NodeFabType.Unspecified;
+
+					if ( Data == null ) {
+						Item = ItemType.Unknown;
+						Class = nft+"";
+						break;
+					}
 					
-					if ( Data != null && Data.ContainsKey(PropDbName.Node_FabType) ) {
-						ft = int.Parse(Data[PropDbName.Node_FabType]);
+					if ( Data.ContainsKey(PropDbName.Node_FabType) ) {
+						int ft = int.Parse(Data[PropDbName.Node_FabType]);
+						nft = NodeFabTypeUtil.ValueMap[ft];
 					}
 
 					Item = ItemType.Node;
-					
-					NodeFabType nft = NodeFabTypeUtil.ValueMap[ft];
 					Class = nft+"";
 
 					if ( nft == NodeFabType.Unspecified ) {

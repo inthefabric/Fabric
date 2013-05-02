@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Fabric.Api.Common;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
@@ -61,7 +62,7 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes");
-			ApiCtx.DbData("addIndex", vDataSet.GetIndexTx());
+			ApiCtx.DbData("addIndex", vDataSet.Indexes.ToList<IWeaverScript>());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

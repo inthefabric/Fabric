@@ -117,7 +117,7 @@ namespace Fabric.Infrastructure.Api {
 
 			if ( vUnhandledException != null ) {
 				vUnhandledException = new Exception("ApiDataAccess exception:"+
-					"\nQuery = "+Request+
+					"\nQuery = "+JsonSerializer.SerializeToString(Request)+
 					"\nResultString = "+ResponseJson+
 					"\nUnhandedException = "+vUnhandledException, vUnhandledException);
 				throw vUnhandledException;
