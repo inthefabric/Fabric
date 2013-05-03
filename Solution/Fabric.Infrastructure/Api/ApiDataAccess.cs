@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define REX_CONN_DEBUG
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -64,6 +66,13 @@ namespace Fabric.Infrastructure.Api {
 			try {
 				Sema.WaitOne();
 				++TcpCount;
+
+#if REX_CONN_DEBUG
+				var debugCmd = new RexConnTcpRequestCommand();
+				debugCmd.Cmd = RexConnCommand.Config;
+				debugCmd.Args = new List<string>(new [] { RexConnConfigSetting.Debug, "1" });
+				Request.CmdList.Insert(0, debugCmd);
+#endif
 
 				JsConfig.EmitCamelCaseNames = true;
 				vReqJson = JsonSerializer.SerializeToString(Request);
@@ -171,12 +180,12 @@ namespace Fabric.Infrastructure.Api {
 			req.ReqId = ApiCtx.ContextId.ToString();
 			req.CmdList = new List<RexConnTcpRequestCommand>();
 
-			/*RexConnTcpRequestCommand cmd = new RexConnTcpRequestCommand();
-			cmd.Cmd = RexConnCommand.Config;
-			cmd.Args = new List<string>();
-			cmd.Args.Add(RexConnConfigSetting.Debug);
-			cmd.Args.Add("1");
-			req.CmdList.Add(cmd);*/
+#if REX_CONN_DEBUG
+			var debugCmd = new RexConnTcpRequestCommand();
+			debugCmd.Cmd = RexConnCommand.Config;
+			debugCmd.Args = new List<string>(new[] { RexConnConfigSetting.Debug, "1" });
+			req.CmdList.Add(debugCmd);
+#endif
 
 			AddSessionAction(req, RexConnSessionAction.Start);
 
@@ -226,7 +235,7 @@ namespace Fabric.Infrastructure.Api {
 					q = Regex.Replace(q, key+end, key+".toInteger()");
 				}
 				else if ( qv.Original is byte ) {
-					q = Regex.Replace(q, key+end, key+".toInteger()"); //".byteValue()");
+					q = Regex.Replace(q, key+end, key+".byteValue()");
 				}
 				else if ( qv.Original is float ) {
 					q = Regex.Replace(q, key+end, key+".toFloat()");

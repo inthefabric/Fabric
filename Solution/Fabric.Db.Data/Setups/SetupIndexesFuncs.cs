@@ -32,7 +32,7 @@ namespace Fabric.Db.Data.Setups {
 				script += ".indexed(Vertex.class)";
 			}
 
-			script += ".makePropertyKey()";
+			script += ".makePropertyKey();1";
 
 			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery(script);
@@ -56,7 +56,7 @@ namespace Fabric.Db.Data.Setups {
 				script += ".unique(OUT)";
 			}
 
-			script += ".makeEdgeLabel()";
+			script += ".makeEdgeLabel();1";
 
 			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery(script);

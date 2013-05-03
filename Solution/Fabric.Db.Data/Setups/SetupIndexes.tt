@@ -29,6 +29,7 @@ var schema = new Schema();
 IList<WeaverNodeSchema> nodes = schema.Nodes;
 int groupId = 2;
 var propNameMap = new Dictionary<string, SchemaHelperProp>();
+var propSkipMap = new Dictionary<string, bool>();
 
 foreach ( WeaverNodeSchema node in nodes ) {
 	//if ( node.IsAbstract ) { continue; }
@@ -42,9 +43,8 @@ foreach ( WeaverNodeSchema node in nodes ) {
 		FabricPropSchema prop = (FabricPropSchema)ps;
 		string titanType = SchemaHelperProp.GetTitanTypeName(prop.Type);
 		bool index = (prop.IsPrimaryKey == true || prop.EnumName != null || prop.Name == "FabType");
-		if ( prop.Type == typeof(bool) ) { titanType = "Object"; } //Titan 0.3.0 fails for Boolean properties
 #>
-			pSet.AddIndexQuery(BuildKey("<#= node.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>)); //<#= prop.Type.Name #>
+			pSet.AddIndexQuery(BuildKey("<#= node.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>));
 <#
 	} //end prop loop
 } //end node loop
@@ -74,7 +74,7 @@ foreach ( string name in rels ) {
 	foreach ( FabricPropSchema prop in props ) {
 		string key = prop.DbName;
 
-		if ( prop.Type == typeof(bool) ) { //Titan 0.3.0 fails for Boolean properties
+		if ( propSkipMap.ContainsKey(key) ) {
 			continue;
 		}
 
@@ -87,7 +87,7 @@ foreach ( string name in rels ) {
 #>
 
 			//<#= rel.RelName #>
-			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>,	new [] {
+			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>, new [] {
 				"<#= string.Join("\",\r\n\t\t\t\t\"", sigs) #>"
 			}));
 <#
