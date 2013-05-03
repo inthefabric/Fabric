@@ -135,6 +135,14 @@ namespace Fabric.Infrastructure.Api {
 			if ( Result.DbDtos != null ) {
 				ResultDtoList = new List<IDbDto>(Result.DbDtos);
 			}
+
+			for ( int i = 0 ; i < Response.CmdList.Count ; ++i ) {
+				RexConnTcpResponseCommand rc = Response.CmdList[i];
+
+				if ( rc.Err != null ) {
+					Log.Warn(ApiCtx.ContextId, "DATA", "Response.CmdList["+i+"] error: "+rc.Err);
+				}
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
