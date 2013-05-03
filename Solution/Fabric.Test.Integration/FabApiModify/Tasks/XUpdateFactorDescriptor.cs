@@ -41,7 +41,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			CheckNewDescriptorConns(conn, f.FactorId, (byte)pDescTypeId, (long?)pPrimArtRefId,
 				(long?)pRelArtRefId, (long?)pDescTypeRefId, out relCount);
-
+			
 			NewRelCount = relCount;
 		}
 

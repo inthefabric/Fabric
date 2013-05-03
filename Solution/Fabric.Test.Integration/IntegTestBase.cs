@@ -4,6 +4,7 @@ using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
@@ -48,13 +49,15 @@ namespace Fabric.Test.Integration {
 			Log.Info("SetUp started");
 
 			vStartTime = DateTime.UtcNow.Ticks;
+			
 			ApiCtx = new TestApiContext();
+			ApiCtx.PerformSessionAction(RexConnSessionAction.Start);
+
 			NewNodeCount = 0;
 			NewRelCount = 0;
 
 			TestSetUp();
 
-			//vCounts = CountNodesAndRels();
 			vCounts = new Tuple<int, int>(259, 590); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
@@ -86,36 +89,12 @@ namespace Fabric.Test.Integration {
 			Tuple<int, int> c = CountNodesAndRels();
 			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
 
+			ApiCtx.CloseInternalSessions();
+			ApiCtx.PerformSessionAction(RexConnSessionAction.Rollback);
+			ApiCtx.PerformSessionAction(RexConnSessionAction.Close);
+
 			int nodeDiff = c.Item1-vCounts.Item1;
 			int relDiff = c.Item2-vCounts.Item2;
-
-			if ( IsReadOnlyTest && 
-					(nodeDiff != 0 || relDiff != 0 || NewNodeCount != 0 || NewRelCount != 0) ) {
-				Log.Info("");
-				Log.Info("WARNING: Overriding read-only mode due to counts: "+
-					nodeDiff+", "+relDiff+", "+NewNodeCount+", "+NewRelCount);
-				Log.Info("");
-				IsReadOnlyTest = false;
-			}
-
-			if ( !IsReadOnlyTest ) {
-				var q = Weave.Inst.NewQuery();
-				q.FinalizeQuery("g.V.remove();1");
-				IApiDataAccess remAllData = ApiCtx.DbData("TEST.RemoveAll", q);
-
-				q = Weave.Inst.NewQuery();
-				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
-				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Reload", q);
-
-				Assert.AreEqual("1", remAllData.Result.TextList[0],
-					"There was an issue with the RemoveAll query!");
-				Assert.AreEqual("1", reloadData.Result.TextList[0],
-					"There was an issue with the Reload query!");
-				Log.Info("");
-			}
-			else {
-				Log.Info("READ ONLY MODE: skipped database reset");
-			}
 
 			Assert.AreEqual(NewNodeCount, nodeDiff, "Incorrect new node count.");
 			Assert.AreEqual(NewRelCount, relDiff, "Incorrect new rel count.");
@@ -165,6 +144,13 @@ namespace Fabric.Test.Integration {
 				nodeQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
 
 			IApiDataAccess data = ApiCtx.DbData("TEST.GetNodeConnections", q);
+
+			//when the "x" variable is not reset, the integration test fails
+			//resulting bug report: http://github.com/thinkaurelius/titan/issues/255
+			q = Weave.Inst.NewQuery();
+			q.FinalizeQuery("x=null");
+			ApiCtx.DbData("TEST.GetNodeConnections", q);
+
 			return new NodeConnections(pNode, data);
 		}
 

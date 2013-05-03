@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Fabric.Infrastructure.Db;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -140,6 +141,11 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess NewAccess(IList<IWeaverScript> pScriptedList) {
 			return new ApiDataAccess(this, pScriptedList);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IApiDataAccess NewAccess(RexConnTcpRequest pReq) {
+			return new ApiDataAccess(this, pReq);
 		}
 
 

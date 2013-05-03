@@ -24,6 +24,13 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public override void Execute() {
+			TestApiDataAccess.AlterExecute(ApiCtx, Request);
+			base.Execute();
+			TestApiDataAccess.PostExecute(ApiCtx, Response);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetRawResult(string pReqJson) {
 			long t = DateTime.UtcNow.Ticks;
 			string json = base.GetRawResult(pReqJson);

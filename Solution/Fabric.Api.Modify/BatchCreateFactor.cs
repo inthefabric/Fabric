@@ -98,7 +98,7 @@ namespace Fabric.Api.Modify {
 
 			var opt = new ParallelOptions();
 			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
-			Parallel.ForEach(vIndexes, opt, VerifyRequiredNodes);
+			//Parallel.ForEach(vIndexes, opt, VerifyRequiredNodes);
 
 			////
 			
@@ -114,7 +114,7 @@ namespace Fabric.Api.Modify {
 			return vResults;
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private void VerifyRequiredNodes(IList<int> pIndexes, ParallelLoopState pState, long pThreadId){
 			foreach ( int i in pIndexes ) {
 				try {
@@ -226,14 +226,14 @@ namespace Fabric.Api.Modify {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void VerifyRequiredNodesForBatch(IApiContext pApiCtx) {
 			vCreate.VerifyRequiredNodesForBatch(pApiCtx);
 
 			foreach ( AttachFactorElement afe in vElems ) {
 				afe.VerifyRequiredNodesForBatch(pApiCtx);
 			}
-		}
+		}*/
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetCreator(Member pMember) {
