@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
@@ -96,9 +98,7 @@ namespace Fabric.Api.Modify {
 		protected override FabBatchResult[] Execute() {
 			Member mem = GetContextMember();
 
-			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
-			//Parallel.ForEach(vIndexes, opt, VerifyRequiredNodes);
+			VerifyRequiredArtifacts();
 
 			////
 			
@@ -110,20 +110,64 @@ namespace Fabric.Api.Modify {
 				}
 			}
 
+			var opt = new ParallelOptions();
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
 			Parallel.ForEach(vIndexes, opt, InsertFactors);
 			return vResults;
 		}
 		
-		/*--------------------------------------------------------------------------------------------* /
-		private void VerifyRequiredNodes(IList<int> pIndexes, ParallelLoopState pState, long pThreadId){
-			foreach ( int i in pIndexes ) {
-				try {
+		/*--------------------------------------------------------------------------------------------*/
+		private void VerifyRequiredArtifacts() {
+			var map = new Dictionary<long, IList<KeyValuePair<int, string>>>();
+
+			foreach ( List<int> indexList in vIndexes ) {
+				foreach ( int i in indexList ) {
 					FactorOperationSet fos = vOpSets[i];
-					fos.VerifyRequiredNodesForBatch(ApiCtx);
+
+					foreach ( KeyValuePair<string, long> pair in fos.RequiredArtifacts ) {
+						if ( !map.ContainsKey(pair.Value) ) {
+							map.Add(pair.Value, new List<KeyValuePair<int, string>>());
+						}
+
+						map[pair.Value].Add(new KeyValuePair<int, string>(i, pair.Key));
+					}
 				}
-				catch ( FabFault fault ) {
-					FabBatchResult res = vResults[i];
-					res.Error = FabError.ForFault(fault);
+			}
+
+			var queries = new List<IWeaverScript>();
+
+			foreach ( long artId in map.Keys ) {
+				var q = new WeaverQuery();
+				string artParam = q.AddParam(new WeaverQueryVal(artId));
+				q.FinalizeQuery("g.V('"+PropDbName.Artifact_ArtifactId+"',"+artParam+")."+
+					PropDbName.Artifact_ArtifactId);
+				queries.Add(q);
+			}
+
+			////
+
+			IApiDataAccess data = ApiCtx.DbData("GetBatchArtifacts", queries);
+			int n = queries.Count;
+			
+			for ( int i = 0 ; i < n ; ++i ) {
+				IList<string> list = data.Result.GetTextListForCommandAt(i+1); //skip Session.Start
+				string val = null;
+
+				if ( list != null && list.Count > 0 ) {
+					val = list[0];
+				}
+
+				long id;
+				long.TryParse(val, out id);
+				long expectId = map.Keys.ElementAt(i);
+
+				if ( id == expectId ) {
+					continue;
+				}
+
+				foreach ( KeyValuePair<int, string> pair in map[expectId] ) {
+					var nf = new FabNotFoundFault(typeof(Artifact), pair.Value+"="+expectId);
+					vResults[pair.Key].Error = FabError.ForFault(nf);
 				}
 			}
 		}
@@ -149,7 +193,22 @@ namespace Fabric.Api.Modify {
 				}
 			}
 
-			ApiCtx.DbData("BatchCreateFactorNodeTx", list);
+			////
+
+			if ( list.Count == 0 ) {
+				return;
+			}
+
+			try {
+				ApiCtx.DbData("BatchCreateFactorNodeTx", list);
+			}
+			catch ( Exception e ) {
+				Log.Error("BatchCreateFactor batch exception: "+e);
+
+				foreach ( int i in pIndexes ) {
+					vResults[i].Error = FabError.ForInternalServerError();
+				}
+			}
 		}
 
 	}
@@ -159,6 +218,7 @@ namespace Fabric.Api.Modify {
 	public class FactorOperationSet {
 
 		public long FactorId { get; private set; }
+		public List<KeyValuePair<string, long>> RequiredArtifacts { get; private set; }
 
 		private readonly CreateFactor vCreate;
 		private readonly List<AttachFactorElement> vElems;
@@ -215,6 +275,19 @@ namespace Fabric.Api.Modify {
 					vBatch.Vector.AxisArtifactId, vBatch.Vector.UnitId, vBatch.Vector.UnitPrefixId);
 				vElems.Add(vec);
 			}
+
+			RequiredArtifacts = new List<KeyValuePair<string, long>>();
+			RequiredArtifacts.AddRange(vCreate.GetRequiredArtifactIdsForBatch().ToList());
+
+			foreach ( AttachFactorElement afe in vElems ) {
+				Dictionary<string, long> arts = afe.GetRequiredArtifactIdsForBatch();
+				
+				if ( arts == null ) {
+					continue;
+				}
+
+				RequiredArtifacts.AddRange(arts.ToList());
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -223,15 +296,6 @@ namespace Fabric.Api.Modify {
 
 			foreach ( AttachFactorElement afe in vElems ) {
 				afe.ValidateParamsForBatch();
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public void VerifyRequiredNodesForBatch(IApiContext pApiCtx) {
-			vCreate.VerifyRequiredNodesForBatch(pApiCtx);
-
-			foreach ( AttachFactorElement afe in vElems ) {
-				afe.VerifyRequiredNodesForBatch(pApiCtx);
 			}
 		}
 		

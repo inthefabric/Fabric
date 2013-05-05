@@ -1,9 +1,9 @@
-﻿using Fabric.Api.Dto;
+﻿using System.Collections.Generic;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Modify {
 
@@ -62,18 +62,22 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyRequiredNodes() {
-			if ( vPrimArtRefId != null && ApiCtx.DbNodeById<Artifact>((long)vPrimArtRefId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vPrimArtRefId);
+		protected override Dictionary<string, long> GetRequiredArtifactIds() {
+			var map = new Dictionary<string, long>();
+
+			if ( vPrimArtRefId != null ) {
+				map.Add(PrimArtRefParam, (long)vPrimArtRefId);
 			}
 
-			if ( vRelArtRefId != null && ApiCtx.DbNodeById<Artifact>((long)vRelArtRefId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), PrimArtRefParam+"="+vRelArtRefId);
+			if ( vRelArtRefId != null ) {
+				map.Add(RelArtRefParam, (long)vRelArtRefId);
 			}
 
-			if ( vDescTypeRefId != null && ApiCtx.DbNodeById<Artifact>((long)vDescTypeRefId) == null ){
-				throw new FabNotFoundFault(typeof(Artifact), DescTypeRefParam+"="+vDescTypeRefId);
+			if ( vDescTypeRefId != null ) {
+				map.Add(DescTypeRefParam, (long)vDescTypeRefId);
 			}
+
+			return map;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

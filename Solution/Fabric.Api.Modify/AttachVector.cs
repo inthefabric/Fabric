@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System.Collections.Generic;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
@@ -69,10 +70,10 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyRequiredNodes() {
-			if ( ApiCtx.DbNodeById<Artifact>(vAxisArtId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), AxisArtParam+"="+vAxisArtId);
-			}
+		protected override Dictionary<string, long> GetRequiredArtifactIds() {
+			var map = new Dictionary<string, long>();
+			map.Add(AxisArtParam, vAxisArtId);
+			return map;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -3,6 +3,7 @@ using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using ServiceStack.Text;
@@ -67,7 +68,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 					BatchId = 134, Name = "Test5c", Disamb = "1234", Note = "This is my note." }
 			});
 
-			for ( int i = 0 ; i < 100 ; ++i ) {
+			for ( int i = 0 ; i < 300 ; ++i ) {
 				vClasses.Add(new FabBatchNewClass {
 					BatchId = 1000+i,
 					Name = "BigTest"+i,
@@ -90,9 +91,24 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void Success() {
+		[TestCase(true)]
+		[TestCase(false)]
+		public void Success(bool pFailCommand) {
 			IsReadOnlyTest = false;
+			bool altered = false;
+
+			if ( pFailCommand ) { //Generate a database error
+				ApiCtx.AlterRequestJson = (r => {
+					int i = r.IndexOf(PropDbName.Class_ClassId);
+
+					if ( !altered && i != -1 ) {
+						altered = true;
+						r = r.Insert(i+PropDbName.Class_ClassId.Length+1, "x");
+					}
+
+					return r;
+				});
+			}
 			
 			TestGo();
 
@@ -100,18 +116,21 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 
+			int expectFails = (pFailCommand ? 103 : 3);
+			int fails = 0;
+
 			foreach ( FabBatchResult res in vResults ) {
 				if ( res.Error != null ) {
+					fails++;
 					Log.Debug(res.BatchId+": "+res.Error.Name+" ("+res.Error.Code+"): "+
 						res.Error.Message);
-					continue;
 				}
-
-				//Log.Debug(res.BatchId+": "+res.ResultId);
 			}
 
-			NewNodeCount = 1*(vClasses.Count-3); //skip 3 items with intentional errors
-			NewRelCount = 1*(vClasses.Count-3);
+			NewNodeCount = 1*(vClasses.Count-expectFails);
+			NewRelCount = 1*(vClasses.Count-expectFails);
+
+			Assert.AreEqual(expectFails, fails, "Incorrect Resuls.Error count.");
 		}
 		
 

@@ -14,6 +14,11 @@ namespace Fabric.Infrastructure.Db {
 		string Exception { get; set; }
 		string Message { get; set; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		IList<string> GetTextListForCommandAt(int pIndex);
+
 	}
 
 }

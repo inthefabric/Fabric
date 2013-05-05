@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System.Collections.Generic;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
@@ -77,7 +78,7 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyRequiredNodes() {}
+		protected override Dictionary<string, long> GetRequiredArtifactIds() { return null; }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {

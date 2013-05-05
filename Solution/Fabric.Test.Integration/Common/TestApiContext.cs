@@ -13,12 +13,14 @@ namespace Fabric.Test.Integration.Common {
 		public DateTime? TestUtcNow { get; set; }
 		//public string TestCode32 { get; set; }
 		public IList<long> SharpflakeIds { get; private set; }
+		public Func<string, string> AlterRequestJson { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TestApiContext() : base("rexster", 8185, new CacheManager("ApiTest", true)) {
 			SharpflakeIds = new List<long>();
+			AlterRequestJson = (r => r);
 		}
 
 
@@ -56,6 +58,11 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted) {
 			return new TestApiDataAccess<T>(this, pScripted);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override IApiDataAccess NewAccess(IList<IWeaverScript> pScriptedList) {
+			return new TestApiDataAccess(this, pScriptedList);
 		}
 
 

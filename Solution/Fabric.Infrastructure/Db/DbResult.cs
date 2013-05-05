@@ -15,7 +15,7 @@ namespace Fabric.Infrastructure.Db {
 		public string Message { get; set; }
 
 		private readonly string vResponseJson;
-		private IList<string> vTextList;
+		private IList<IList<string>> vTextList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,24 +51,47 @@ namespace Fabric.Infrastructure.Db {
 					BuildTextList();
 				}
 
-				return vTextList;
+				return vTextList[0];
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void BuildTextList() { //TODO: support RexConnect "session" mode
-			vTextList = new List<string>();
-			
-			const string startText = "\"results\":[";
-			int startI = vResponseJson.IndexOf(startText);
-
-			if ( startI == -1 ) {
-				return;
+		public IList<string> GetTextListForCommandAt(int pIndex) {
+			if ( vTextList == null ) {
+				BuildTextList();
 			}
 
-			startI += startText.Length;
-			int endI = vResponseJson.IndexOf("]}", startI);
-			string text = vResponseJson.Substring(startI, endI-startI);
+			return vTextList[pIndex];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void BuildTextList() { //TODO: support RexConnect "session" mode
+			vTextList = new List<IList<string>>();
+			int startI = 0;
+
+			while ( true ) {
+				startI = BuildTextListResults(startI);
+
+				if ( startI == -1 ) {
+					break;
+				}
+			}
+		}
+			
+		/*--------------------------------------------------------------------------------------------*/
+		private int BuildTextListResults(int pStartI) {
+			const string startText = "\"results\":[";
+			var list = new List<string>();
+
+			pStartI = vResponseJson.IndexOf(startText, pStartI);
+
+			if ( pStartI == -1 ) {
+				return -1;
+			}
+
+			pStartI += startText.Length;
+			int endI = vResponseJson.IndexOf("]}", pStartI);
+			string text = vResponseJson.Substring(pStartI, endI-pStartI);
 
 			////
 			
@@ -95,17 +118,19 @@ namespace Fabric.Infrastructure.Db {
 				}
 
 				if ( c == ',' ) {
-					TextList.Add(text.Substring(i,j-i).Trim());
+					list.Add(text.Substring(i, j-i).Trim());
 					i = j+1;
 					continue;
 				}
 
 				if ( j == lastIndex ) {
-					TextList.Add(text.Substring(i).Trim());
+					list.Add(text.Substring(i).Trim());
 					break;
 				}
 			}
 
+			vTextList.Add(list);
+			return endI+2;
 		}
 
 	}

@@ -5,6 +5,7 @@ using Fabric.Api.Dto;
 using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
@@ -150,11 +151,22 @@ namespace Fabric.Api.Modify {
 				}
 			}
 
+			////
+
 			if ( classes.Count == 0 ) {
 				return;
 			}
 
-			ApiCtx.DbData("BatchCreateClassTx", txList);
+			try {
+				ApiCtx.DbData("BatchCreateClassTx", txList);
+			}
+			catch ( Exception e ) {
+				Log.Error("BatchCreateClass batch exception: "+e);
+
+				foreach ( int i in pIndexes ) {
+					vResults[i].Error = FabError.ForInternalServerError();
+				}
+			}
 
 			foreach ( Class c in classes ) {
 				ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);

@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto;
+﻿using System.Collections.Generic;
+using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
@@ -96,9 +97,11 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal void VerifyRequiredNodesForBatch(IApiContext pApiCtx) {
-			SetApiCtx(pApiCtx);
-			VerifyRequiredNodes();
+		internal Dictionary<string, long> GetRequiredArtifactIdsForBatch() {
+			var map = new Dictionary<string, long>();
+			map.Add(PrimArtParam, vPrimArtId);
+			map.Add(RelArtParam, vRelArtId);
+			return map;
 		}
 
 	}

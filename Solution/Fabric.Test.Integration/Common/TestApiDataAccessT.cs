@@ -26,6 +26,7 @@ namespace Fabric.Test.Integration.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetRawResult(string pReqJson) {
 			long t = DateTime.UtcNow.Ticks;
+			pReqJson = ((TestApiContext)ApiCtx).AlterRequestJson(pReqJson);
 			string json = base.GetRawResult(pReqJson);
 			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
 			Log.Info("");

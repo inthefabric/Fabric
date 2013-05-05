@@ -147,6 +147,50 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 			});
 
+			//PrimaryArtifactId does not exist
+			vFactors.Add(new FabBatchNewFactor {
+				BatchId = batchId++,
+				PrimaryArtifactId = 9999999,
+				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Art,
+				FactorAssertionId = (byte)FactorAssertionId.Guess,
+				IsDefining = false,
+				Descriptor = new FabBatchNewFactorDescriptor {
+					TypeId = (byte)DescriptorTypeId.IsInterestedIn
+				}
+			});
+
+			//Descriptor.TypeRefineId does not exist
+			vFactors.Add(new FabBatchNewFactor {
+				BatchId = batchId++,
+				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Aei,
+				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Art,
+				FactorAssertionId = (byte)FactorAssertionId.Guess,
+				IsDefining = false,
+				Descriptor = new FabBatchNewFactorDescriptor {
+					TypeId = (byte)DescriptorTypeId.IsInterestedIn,
+					TypeRefineId = 88888888
+				}
+			});
+
+			//Vector.AxisArtifactId does not exist
+			vFactors.Add(new FabBatchNewFactor {
+				BatchId = batchId++,
+				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Aei,
+				RelatedArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Caldonia,
+				FactorAssertionId = (byte)FactorAssertionId.Fact,
+				IsDefining = false,
+				Descriptor = new FabBatchNewFactorDescriptor {
+					TypeId = (byte)DescriptorTypeId.IsFoundIn
+				},
+				Vector = new FabBatchNewFactorVector {
+					TypeId = (byte)VectorTypeId.FullLong,
+					UnitId = (byte)VectorUnitId.Acceleration,
+					UnitPrefixId = (byte)VectorUnitPrefixId.Giga,
+					Value = 123,
+					AxisArtifactId = 777777777
+				}
+			});
+
 			//Missing Eventor.PrecisionId
 			vFactors.Add(new FabBatchNewFactor {
 				BatchId = batchId++,
@@ -185,19 +229,22 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.NotNull(vResults, "Results should not be null.");
 			
 			////
+			
+			const int expectFails = 6;
+			int fails = 0;
 
 			foreach ( FabBatchResult res in vResults ) {
 				if ( res.Error != null ) {
+					fails++;
 					Log.Debug(res.BatchId+": "+res.Error.Name+" ("+res.Error.Code+"): "+
 						res.Error.Message);
-					continue;
 				}
-
-				//Log.Debug(res.BatchId+": "+res.ResultId);
 			}
 
-			NewNodeCount = vFactors.Count-3; //3 failures expected
+			NewNodeCount = vFactors.Count-expectFails;
 			NewRelCount += NewNodeCount*3+vNewRels;
+
+			Assert.AreEqual(expectFails, fails, "Incorrect Resuls.Error count.");
 		}
 		
 

@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Modify.Tasks;
+﻿using System.Collections.Generic;
+using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
@@ -27,7 +28,7 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract void VerifyRequiredNodes();
+		protected abstract Dictionary<string, long> GetRequiredArtifactIds();
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool Execute() {
@@ -52,6 +53,21 @@ namespace Fabric.Api.Modify {
 			return AddElementToFactor(f);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private void VerifyRequiredNodes() {
+			Dictionary<string, long> map = GetRequiredArtifactIds();
+
+			if ( map == null ) {
+				return;
+			}
+
+			foreach ( KeyValuePair<string, long> pair in map ) {
+				if ( ApiCtx.DbNodeById<Artifact>(pair.Value) == null ) {
+					throw new FabNotFoundFault(typeof(Artifact), pair.Key+"="+pair.Value);
+				}
+			}
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -68,9 +84,8 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal void VerifyRequiredNodesForBatch(IApiContext pApiCtx) {
-			SetApiCtx(pApiCtx);
-			VerifyRequiredNodes();
+		internal Dictionary<string, long> GetRequiredArtifactIdsForBatch() {
+			return GetRequiredArtifactIds();
 		}
 
 	}
