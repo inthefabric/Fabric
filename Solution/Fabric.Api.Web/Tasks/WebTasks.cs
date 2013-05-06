@@ -250,7 +250,6 @@ namespace Fabric.Api.Web.Tasks {
 								IWeaverVarAlias<Email> pEmailVar, out IWeaverVarAlias<User> pUserVar, 
 								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			var user = new User();
-			user.ArtifactId = pApiCtx.GetSharpflakeId<User>();
 			user.Name = pName;
 			user.Password = FabricUtil.HashPassword(pPassword);
 			user.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
@@ -303,7 +302,6 @@ namespace Fabric.Api.Web.Tasks {
 			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 
 			var app = new App();
-			app.ArtifactId = pApiCtx.GetSharpflakeId<App>();
 			app.Name = pName;
 			app.Secret = pApiCtx.Code32;
 			app.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
