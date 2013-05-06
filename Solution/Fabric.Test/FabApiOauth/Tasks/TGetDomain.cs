@@ -16,7 +16,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDomain {
 
 		private const string QueryGetDomain =
-			"g.V('"+PropDbName.App_AppId+"',_P0)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
 			".inE('"+RelDbName.OauthDomainUsesApp+"').outV"+
 				".filter{it.getProperty('"+PropDbName.OauthDomain_Domain+"').toLowerCase()==_P1};";
 

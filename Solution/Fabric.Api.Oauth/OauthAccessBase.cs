@@ -125,7 +125,7 @@ namespace Fabric.Api.Oauth {
 				throw GetFault(AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);
 			}
 
-			return app.AppId;
+			return app.ArtifactId;
 		}
 
 

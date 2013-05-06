@@ -24,7 +24,7 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.AppId(vAppId, AppIdParam);
+			Tasks.Validator.ArtifactId(vAppId, AppIdParam);
 			Tasks.Validator.AppName(vName, NameParam);
 		}
 

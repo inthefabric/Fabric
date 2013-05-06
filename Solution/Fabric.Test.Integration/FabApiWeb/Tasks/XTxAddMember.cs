@@ -18,7 +18,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		public void Success(SetupUsers.UserId pUserId) {
 			IWeaverVarAlias<User> userVar;
 			IWeaverVarAlias<Member> memVar;
-			var useUser = new User { UserId = (long)pUserId };
+			var useUser = new User { ArtifactId = (long)pUserId };
 
 			TxBuild.GetNode(useUser, out userVar);
 			Tasks.TxAddMember(ApiCtx, TxBuild, userVar, out memVar);
@@ -38,7 +38,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			NodeConnections conn = GetNodeConnections(newMember);
 			conn.AssertRelCount(2, 1);
-			conn.AssertRel<UserDefinesMember, User>(false, useUser.UserId);
+			conn.AssertRel<UserDefinesMember, User>(false, useUser.ArtifactId);
 			conn.AssertRel<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);

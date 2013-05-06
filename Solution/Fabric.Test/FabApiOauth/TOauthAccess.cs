@@ -39,7 +39,7 @@ namespace Fabric.Test.FabApiOauth {
 			vMockCtx = new Mock<IApiContext>();
 			vMockTasks = new Mock<IOauthTasks>();
 
-			vGetAppAuthResult = new App { AppId = vAppId };
+			vGetAppAuthResult = new App { ArtifactId = vAppId };
 
 			vAccessResult = new FabOauthAccess();
 

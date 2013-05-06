@@ -39,7 +39,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Class result = Tasks.GetClassByNameDisamb(MockApiCtx.Object, vName, vDisamb);
 
 			Assert.NotNull(result, "Result should not be null.");
-			Assert.AreEqual(classId, result.ClassId, "Incorrect Result.ClassId.");
+			Assert.AreEqual(classId, result.ArtifactId, "Incorrect Result.ArtifactId.");
 			Assert.AreEqual(vName, result.Name, "Incorrect Result.Name.");
 			Assert.AreEqual(vDisamb, result.Disamb, "Incorrect Result.Disamb.");
 		}

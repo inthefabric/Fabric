@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:20:46 PM
+// Generated on 5/5/2013 10:12:44 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +46,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(ArtifactStep.AvailNodeLinks).ToList(); }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return PropDbName.Artifact_ArtifactId; } }
+		public override bool TypeIdIsLong { get { return true; } }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {

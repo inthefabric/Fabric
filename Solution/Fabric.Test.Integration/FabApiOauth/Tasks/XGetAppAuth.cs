@@ -39,7 +39,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			if ( pExpectFound ) {
 				Assert.NotNull(result, "Result should be filled.");
-				Assert.AreEqual(vAppId, result.AppId, "Incorrect AppId.");
+				Assert.AreEqual(vAppId, result.ArtifactId, "Incorrect AppId.");
 			}
 			else {
 				Assert.Null(result, "Result should be null.");

@@ -20,7 +20,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.Node_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
+			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V2,_V1,_TP);"+
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+

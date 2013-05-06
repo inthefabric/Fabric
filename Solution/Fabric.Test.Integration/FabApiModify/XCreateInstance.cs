@@ -55,7 +55,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			Instance newInstance = GetNode<Instance>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newInstance, "New Instance was not created.");
-			Assert.AreEqual(newInstance.InstanceId, vResult.InstanceId, "Incorrect Result.InstanceId.");
+			Assert.AreEqual(newInstance.ArtifactId, vResult.ArtifactId, "Incorrect Result.ArtifactId.");
 
 			NodeConnections conn = GetNodeConnections(newInstance);
 			conn.AssertRelCount(1, 0);

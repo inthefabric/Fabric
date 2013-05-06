@@ -1,9 +1,7 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
@@ -37,7 +35,7 @@ namespace Fabric.Test.FabApiModify {
 			vOutClassVar = GetTxVar<Class>("CLASS");
 
 			vResultClass = new Class();
-			vResultClass.ClassId = 84761294623;
+			vResultClass.ArtifactId = 84761294623;
 			vResultClass.Name = vName;
 			vResultClass.Disamb = vDisamb;
 
@@ -97,7 +95,7 @@ namespace Fabric.Test.FabApiModify {
 			MockValidator.Verify(x => x.ClassName(vName, CreateClass.NameParam), Times.Once());
 			MockValidator.Verify(x => x.ClassDisamb(vDisamb, CreateClass.DisambParam), Times.Once());
 			MockValidator.Verify(x => x.ClassNote(vNote, CreateClass.NoteParam), Times.Once());
-			MockClassCache.Verify(x => x.AddClass(vResultClass.ClassId, vName, vDisamb), Times.Once());
+			MockClassCache.Verify(x => x.AddClass(vResultClass.ArtifactId, vName, vDisamb), Times.Once());
 		}
 
 

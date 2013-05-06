@@ -45,7 +45,7 @@ namespace Fabric.Api.Oauth {
 				throw GetFault(AccessErrors.unauthorized_client, AccessErrorDescs.BadDataProvId);
 			}
 
-			return SendAccessCode(vClientId, dp.UserId);
+			return SendAccessCode(vClientId, dp.ArtifactId);
 		}
 
 	}

@@ -16,12 +16,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDataProv {
 
 		private const string QueryGetUser =
-			"g.V('"+PropDbName.User_UserId+"',_P0)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
 				".as('step1')"+
 			".outE('"+RelDbName.UserDefinesMember+"').inV"+
 				".as('step4')"+
 			".inE('"+RelDbName.AppDefinesMember+"').outV"+
-				".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_P1)"+
+				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
 			".back('step4')"+
 			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
 				".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.eq,_P2)"+

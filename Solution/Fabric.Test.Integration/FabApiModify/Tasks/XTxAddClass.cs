@@ -31,7 +31,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Class newClass = GetNode<Class>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newClass, "New Class was not created.");
-			Assert.AreNotEqual(0, newClass.ClassId, "Incorrect ClassId.");
+			Assert.AreNotEqual(0, newClass.ArtifactId, "Incorrect ClassId.");
 			Assert.AreEqual(pName, newClass.Name, "Incorrect Name.");
 			Assert.AreEqual(pDisamb, newClass.Disamb, "Incorrect Disamb.");
 			Assert.AreEqual(pNote, newClass.Note, "Incorrect Note.");

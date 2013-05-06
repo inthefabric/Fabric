@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:20:46 PM
+// Generated on 5/5/2013 10:11:19 PM
 
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +26,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return PropDbName.App_AppId; } }
-		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -73,10 +69,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return PropDbName.Class_ClassId; } }
-		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -103,10 +95,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return PropDbName.Instance_InstanceId; } }
-		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -140,10 +128,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return PropDbName.Member_MemberId; } }
 		public override bool TypeIdIsLong { get { return true; } }
+
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -250,10 +238,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return PropDbName.MemberTypeAssign_MemberTypeAssignId; } }
 		public override bool TypeIdIsLong { get { return true; } }
+
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -317,10 +305,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return PropDbName.Url_UrlId; } }
-		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -348,10 +332,6 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return PropDbName.User_UserId; } }
-		public override bool TypeIdIsLong { get { return false; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
@@ -402,10 +382,10 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return PropDbName.Factor_FactorId; } }
 		public override bool TypeIdIsLong { get { return true; } }
+
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {

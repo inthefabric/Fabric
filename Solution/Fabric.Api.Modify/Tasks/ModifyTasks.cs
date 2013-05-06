@@ -270,7 +270,6 @@ namespace Fabric.Api.Modify.Tasks {
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
 									IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();
-			url.UrlId = pApiCtx.GetSharpflakeId<Url>();
 			url.AbsoluteUrl = pAbsoluteUrl;
 			url.Name = pName;
 			url.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
@@ -286,7 +285,6 @@ namespace Fabric.Api.Modify.Tasks {
 		public long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			var c = new Class();
-			c.ClassId = pApiCtx.GetSharpflakeId<Class>();
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = pNote;
@@ -297,14 +295,13 @@ namespace Fabric.Api.Modify.Tasks {
 			classBuild.AddNode();
 			classBuild.SetInMemberCreates(pMemVar);
 			pClassVar = classBuild.NodeVar;
-			return c.ClassId;
+			return c.ArtifactId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void TxAddInstance(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Instance> pInstVar) {
 			var c = new Instance();
-			c.InstanceId = pApiCtx.GetSharpflakeId<Instance>();
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = pNote;

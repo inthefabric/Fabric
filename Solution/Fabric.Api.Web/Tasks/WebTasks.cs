@@ -41,7 +41,7 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUser(IApiContext pApiCtx, long pUserId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { UserId = pUserId }).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId }).End();
 			return pApiCtx.DbSingle<User>("GetUser", q);
 		}
 
@@ -61,14 +61,14 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IApiContext pApiCtx, long pAppId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { AppId = pAppId }).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId }).End();
 			return pApiCtx.DbSingle<App>("GetApp", q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword) {
 			var user = new User();
-			user.UserId = pUserId;
+			user.ArtifactId = pUserId;
 			user.Password = FabricUtil.HashPassword(pPassword);
 
 			var updates = Weave.Inst.NewUpdates<User>();
@@ -85,7 +85,7 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public App UpdateAppName(IApiContext pApiCtx, long pAppId, string pName) {
 			var app = new App();
-			app.AppId = pAppId;
+			app.ArtifactId = pAppId;
 			app.Name = pName;
 			
 			var updates = Weave.Inst.NewUpdates<App>();
@@ -102,7 +102,7 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public App UpdateAppSecret(IApiContext pApiCtx, long pAppId, string pSecret) {
 			var app = new App();
-			app.AppId = pAppId;
+			app.ArtifactId = pAppId;
 			app.Secret = pSecret;
 			
 			var updates = Weave.Inst.NewUpdates<App>();
@@ -119,7 +119,7 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Member GetMemberOfApp(IApiContext pApiCtx, long pAppId, long pMemberId) {
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
+				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.DefinesMemberList.ToMember
 					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
 				.End();
@@ -190,7 +190,7 @@ namespace Fabric.Api.Web.Tasks {
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
+				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep(filterStep)
 				.End();
@@ -218,7 +218,7 @@ namespace Fabric.Api.Web.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public bool DeleteOauthDomain(IApiContext pApiCtx, long pAppId, long pOauthDomainId) {
 			IWeaverQuery q =
-				ApiFunc.NewPathFromIndex(new App { AppId = pAppId })
+				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.InOauthDomainListUses.FromOauthDomain
 					.Has(x => x.OauthDomainId, WeaverFuncHasOp.EqualTo, pOauthDomainId)
 					.RemoveEach()
@@ -250,7 +250,7 @@ namespace Fabric.Api.Web.Tasks {
 								IWeaverVarAlias<Email> pEmailVar, out IWeaverVarAlias<User> pUserVar, 
 								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			var user = new User();
-			user.UserId = pApiCtx.GetSharpflakeId<User>();
+			user.ArtifactId = pApiCtx.GetSharpflakeId<User>();
 			user.Name = pName;
 			user.Password = FabricUtil.HashPassword(pPassword);
 			user.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
@@ -292,7 +292,7 @@ namespace Fabric.Api.Web.Tasks {
 										out IWeaverVarAlias<App> pAppVar,
 										out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new User { UserId = pUserId })
+				ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId })
 				.UsesEmail.ToEmail
 					.Next()
 				.End();
@@ -303,7 +303,7 @@ namespace Fabric.Api.Web.Tasks {
 			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 
 			var app = new App();
-			app.AppId = pApiCtx.GetSharpflakeId<App>();
+			app.ArtifactId = pApiCtx.GetSharpflakeId<App>();
 			app.Name = pName;
 			app.Secret = pApiCtx.Code32;
 			app.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();

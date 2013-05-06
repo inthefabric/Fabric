@@ -69,6 +69,10 @@ foreach ( string name in nodeNames ) {
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(<#= node.Name #>Step.AvailNodeLinks).ToList(); }
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public override string TypeIdName { get { return PropDbName.Artifact_ArtifactId; } }
+		public override bool TypeIdIsLong { get { return true; } }
 
 <#
 	} //end abstract condition

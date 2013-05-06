@@ -29,7 +29,7 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.UserId(vUserId, UserIdParam);
+			Tasks.Validator.ArtifactId(vUserId, UserIdParam);
 			Tasks.Validator.UserPassword(vNewPass, NewPasswordParam);
 		}
 

@@ -1,9 +1,7 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Weaver;
 using Weaver.Functions;
 using Weaver.Interfaces;
@@ -53,12 +51,12 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverFuncAs<Member> memberAlias;
 
 			IWeaverQuery q = 
-				NewPathFromIndex(new User { UserId = vDataProvUserId})
+				NewPathFromIndex(new User { ArtifactId = vDataProvUserId})
 					.As(out userAlias)
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)
 				.InAppDefines.FromApp
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(memberAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Has(x => x.MemberTypeId, WeaverFuncHasOp.EqualTo, (byte)MemberTypeId.DataProvider)

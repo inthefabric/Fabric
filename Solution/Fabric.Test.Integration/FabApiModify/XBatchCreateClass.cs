@@ -99,11 +99,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			if ( pFailCommand ) { //Generate a database error
 				ApiCtx.AlterRequestJson = (r => {
-					int i = r.IndexOf(PropDbName.Class_ClassId);
+					int i = r.IndexOf(PropDbName.Artifact_ArtifactId);
 
 					if ( !altered && i != -1 ) {
 						altered = true;
-						r = r.Insert(i+PropDbName.Class_ClassId.Length+1, "x");
+						r = r.Insert(i+PropDbName.Artifact_ArtifactId.Length+2, "x");
 					}
 
 					return r;

@@ -57,7 +57,7 @@ namespace Fabric.Api.Modify {
 			TxBuilder txb = GetFullTx(out memVar, out classVar);
 
 			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
-			ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, vName, vDisamb);
+			ApiCtx.Cache.UniqueClasses.AddClass(c.ArtifactId, vName, vDisamb);
 			return c;
 		}
 		
@@ -72,7 +72,7 @@ namespace Fabric.Api.Modify {
 			string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
 
 			throw new FabDuplicateFault(typeof(Class), NameParam, name,
-				"Conflicts with ClassId="+c.ClassId+".");
+				"Conflicts with ClassId="+c.ArtifactId+".");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -118,7 +118,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		internal Class GetNewClassForBatch() {
 			var c = new Class();
-			c.ClassId = vNewClassId;
+			c.ArtifactId = vNewClassId;
 			c.Name = vName;
 			c.Disamb = vDisamb;
 			c.Note = vNote;

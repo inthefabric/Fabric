@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabInfra {
 		[Test]
 		public void Edge() {
 			IWeaverQuery q = 
-				Weave.Inst.BeginPath<User>(u => u.UserId, 2).BaseNode
+				Weave.Inst.BeginPath<User>(u => u.ArtifactId, 2).BaseNode
 				.UsesEmail
 				.End();
 

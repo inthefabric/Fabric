@@ -12,7 +12,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	public class TGetApp : TWebTasks {
 
 		private const string Query =
-			"g.V('"+PropDbName.App_AppId+"',_P0);";
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0);";
 
 		private long vAppId;
 		private App vAppResult;

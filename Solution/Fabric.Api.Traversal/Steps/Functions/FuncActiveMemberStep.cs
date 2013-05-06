@@ -29,10 +29,10 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		public FuncActiveMemberStep(IPath pPath) : base(pPath) {
 			if ( Script == null ) {
 				IWeaverQuery q = 
-					ApiFunc.NewPathFromIndex(new User { UserId = 0 })
+					ApiFunc.NewPathFromIndex(new User { ArtifactId = 0 })
 					.DefinesMemberList.ToMember
 					.InAppDefines.FromApp
-						.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, (long)0)
+						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)0)
 					.End();
 
 				Script = q.Script

@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
+using Fabric.Domain.Meta;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
@@ -181,9 +182,13 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		private IWeaverQuery GetNodeQuery<T>(long pId, string pAppendScript="")
 																where T : class, INodeWithId, new() {
+			SchemaHelperNode hn = SchemaHelper.GetNode(typeof(T).Name);
+			string pkType = hn.GetPrimaryKeyProp().PropSchema.Name;
+			pkType = pkType.Substring(0, pkType.Length-2);
+
 			var q = Weave.Inst.NewQuery();
 			string idParam = q.AddParam(new WeaverQueryVal(pId));
-			q.FinalizeQuery("g.V('"+PropDbName.TypeIdMap[typeof(T)]+"',"+idParam+")[0]"+pAppendScript);
+			q.FinalizeQuery("g.V('"+PropDbName.StrTypeIdMap[pkType]+"',"+idParam+")[0]"+pAppendScript);
 			return q;
 		}
 

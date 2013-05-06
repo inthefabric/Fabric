@@ -45,6 +45,7 @@ foreach ( string name in nodeNames ) {
 	}
 
 	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
+	bool isArtifactSubclass = (node.BaseNode != null && node.BaseNode.Name == "Artifact");
 #>
 	/*================================================================================================*/
 	public partial class <#= node.Name #>Step : <#= baseNode #>Step<<#= "Fab"+node.Name #>>, I<#= node.Name #>Step {
@@ -69,11 +70,16 @@ foreach ( string name in nodeNames ) {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
-
+<#
+		if ( !isArtifactSubclass ) {
+#>
 		/*--------------------------------------------------------------------------------------------*/
 		public override string TypeIdName { get { return PropDbName.<#= node.Name+"_"+node.Name+"Id" #>; } }
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
-		
+
+<#
+		} //end artsub condition
+#>		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
 			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }

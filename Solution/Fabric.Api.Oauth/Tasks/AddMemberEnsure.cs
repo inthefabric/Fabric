@@ -74,11 +74,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.AddQuery(
-				NewPathFromIndex(new User { UserId = vUserId })
+				NewPathFromIndex(new User { ArtifactId = vUserId })
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)
 				.InAppDefines.FromApp
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(memberAlias)
 					.Aggregate(aggVar)
 				.HasMemberTypeAssign.ToMemberTypeAssign

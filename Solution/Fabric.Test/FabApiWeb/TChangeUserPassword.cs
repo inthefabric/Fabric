@@ -57,7 +57,7 @@ namespace Fabric.Test.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Incorrect Result.Success.");
 
-			MockValidator.Verify(x => x.UserId(vUserId, ChangeUserPassword.UserIdParam), Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vUserId, ChangeUserPassword.UserIdParam), Times.Once());
 			MockValidator.Verify(x => x.UserPassword(vNewPass, ChangeUserPassword.NewPasswordParam),
 				Times.Once());
 		}

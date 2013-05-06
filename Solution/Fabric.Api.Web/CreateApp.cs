@@ -27,7 +27,7 @@ namespace Fabric.Api.Web {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			Tasks.Validator.AppName(vName, NameParam);
-			Tasks.Validator.UserId(vUserId, UserIdParam);
+			Tasks.Validator.ArtifactId(vUserId, UserIdParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -52,8 +52,8 @@ namespace Fabric.Api.Web {
 
 			var txb = new TxBuilder();
 
-			Tasks.TxAddApp(ApiCtx, txb, vName, user.UserId, out appVar, out setMemberCreates);
-			Tasks.TxAddDataProvMember(ApiCtx, txb, appVar, user.UserId, out memVar);
+			Tasks.TxAddApp(ApiCtx, txb, vName, user.ArtifactId, out appVar, out setMemberCreates);
+			Tasks.TxAddDataProvMember(ApiCtx, txb, appVar, user.ArtifactId, out memVar);
 			setMemberCreates(memVar);
 
 			////

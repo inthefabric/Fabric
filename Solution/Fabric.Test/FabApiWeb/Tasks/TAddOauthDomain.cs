@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.OauthDomain_Domain+":_TP,"+
 				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
 			"_V0;";
 

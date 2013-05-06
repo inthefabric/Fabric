@@ -53,7 +53,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			Url newUrl = GetNode<Url>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUrl, "New Url was not created.");
-			Assert.AreEqual(newUrl.UrlId, vResult.UrlId, "Incorrect Result.UrlId.");
+			Assert.AreEqual(newUrl.ArtifactId, vResult.ArtifactId, "Incorrect Result.ArtifactId.");
 
 			NodeConnections conn = GetNodeConnections(newUrl);
 			conn.AssertRelCount(1, 0);

@@ -242,83 +242,83 @@ namespace Fabric.Db.Data.Setups {
 			AddCrowd(CrowdId.DataProv, "Data Providers", "Only DPs.", false, true,
 				SetupArtifacts.ArtifactId.Cro_DataProv, SetupUsers.MemberId.FabFabData);
 
-			const SetupUsers.UserId fabData = SetupUsers.UserId.FabData;
-			const SetupUsers.UserId galData = SetupUsers.UserId.GalData;
-			const SetupUsers.UserId bookData = SetupUsers.UserId.BookData;
-			const SetupUsers.UserId zach = SetupUsers.UserId.Zach;
-			const SetupUsers.UserId mel = SetupUsers.UserId.Mel;
-			const SetupUsers.UserId ellie = SetupUsers.UserId.Ellie;
-			const SetupUsers.UserId penny = SetupUsers.UserId.Penny;
+			const SetupUsers.ArtifactId fabData = SetupUsers.ArtifactId.FabData;
+			const SetupUsers.ArtifactId galData = SetupUsers.ArtifactId.GalData;
+			const SetupUsers.ArtifactId bookData = SetupUsers.ArtifactId.BookData;
+			const SetupUsers.ArtifactId zach = SetupUsers.ArtifactId.Zach;
+			const SetupUsers.ArtifactId mel = SetupUsers.ArtifactId.Mel;
+			const SetupUsers.ArtifactId ellie = SetupUsers.ArtifactId.Ellie;
+			const SetupUsers.ArtifactId penny = SetupUsers.ArtifactId.Penny;
 
 			AddCrowdian(CrowdianId.Test1_Zach, CrowdId.Test1, zach, CrowdianTypeId.Admin, 1.0f,
-				CrowdianTypeAssignId.T1ZachAdminByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.T1ZachAdminByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.Test1_Mel, CrowdId.Test1, mel, CrowdianTypeId.Admin, 1.0f,
-				CrowdianTypeAssignId.T1MelAdminByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.T1MelAdminByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.Test1_Ellie, CrowdId.Test1, ellie, CrowdianTypeId.Member, 0.5f,
-				CrowdianTypeAssignId.T1EllieMemberByMel, SetupUsers.UserId.Mel);
+				CrowdianTypeAssignId.T1EllieMemberByMel, SetupUsers.ArtifactId.Mel);
 			AddCrowdian(CrowdianId.Test1_FabData, CrowdId.Test1, fabData, CrowdianTypeId.Member, 0.2f,
-				CrowdianTypeAssignId.T1FabMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.T1FabMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.Test1_GalData, CrowdId.Test1, galData, CrowdianTypeId.Member, 0.3f,
-				CrowdianTypeAssignId.T1GalMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.T1GalMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.Test1_BookData, CrowdId.Test1, bookData, CrowdianTypeId.Member, 0.1f,
-				CrowdianTypeAssignId.T1BookMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.T1BookMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.Test1_Penny, CrowdId.Test1, penny, CrowdianTypeId.Member, 0.5f,
-				CrowdianTypeAssignId.T1PennyMemberByMel, SetupUsers.UserId.Mel);
+				CrowdianTypeAssignId.T1PennyMemberByMel, SetupUsers.ArtifactId.Mel);
 
 			AddCrowdian(CrowdianId.ZachFam_Zach, CrowdId.ZachFamCir, zach, CrowdianTypeId.Admin, 1.0f,
-				CrowdianTypeAssignId.ZfZachAdminByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.ZfZachAdminByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachFam_Mel, CrowdId.ZachFamCir, mel, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.ZfMelMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.ZfMelMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachFam_Ellie, CrowdId.ZachFamCir, ellie, CrowdianTypeId.Member,1.0f,
-				CrowdianTypeAssignId.ZfEllieMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.ZfEllieMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachFam_Penny, CrowdId.ZachFamCir, penny, CrowdianTypeId.Member,1.0f,
-				CrowdianTypeAssignId.ZfPennyMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.ZfPennyMemberByZach, SetupUsers.ArtifactId.Zach);
 
 			AddCrowdian(CrowdianId.ZachWork_Zach, CrowdId.ZachWorkCir, zach, CrowdianTypeId.Admin, 0.2f,
-				CrowdianTypeAssignId.ZwZachAdminByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.ZwZachAdminByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachWork_FabData, CrowdId.ZachWorkCir, fabData,CrowdianTypeId.Member,
-				1.0f, CrowdianTypeAssignId.ZwFabMemberByZach, SetupUsers.UserId.Zach);
+				1.0f, CrowdianTypeAssignId.ZwFabMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachWork_GalData, CrowdId.ZachWorkCir, galData,CrowdianTypeId.Member,
-				1.0f, CrowdianTypeAssignId.ZwGalMemberByZach, SetupUsers.UserId.Zach);
+				1.0f, CrowdianTypeAssignId.ZwGalMemberByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachWork_BookData, CrowdId.ZachWorkCir, bookData,
 				CrowdianTypeId.Member, 1.0f, CrowdianTypeAssignId.ZwBookMemberByZach,
-				SetupUsers.UserId.Zach);
+				SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.ZachWork_Mel, CrowdId.ZachWorkCir, mel, CrowdianTypeId.Member, 0.2f,
-				CrowdianTypeAssignId.ZwMelMemberByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.ZwMelMemberByZach, SetupUsers.ArtifactId.Zach);
 
 			AddCrowdian(CrowdianId.MelFam_Mel, CrowdId.MelFamCir, mel, CrowdianTypeId.Admin, 0.0f,
-				CrowdianTypeAssignId.MfMelAdminByMel, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.MfMelAdminByMel, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.MelFam_Zach, CrowdId.MelFamCir, zach, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.MfZachMemberByMel, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.MfZachMemberByMel, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.MelFam_Ellie, CrowdId.MelFamCir, ellie, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.MfEllieMemberByMel, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.MfEllieMemberByMel, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.MelFam_Penny, CrowdId.MelFamCir, penny, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.MfPennyMemberByMel, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.MfPennyMemberByMel, SetupUsers.ArtifactId.Zach);
 
 			AddCrowdian(CrowdianId.Crit_GalData, CrowdId.PhoCrit, galData, CrowdianTypeId.Admin, 1.0f,
-				CrowdianTypeAssignId.CritGalAdminByGal, SetupUsers.UserId.GalData);
+				CrowdianTypeAssignId.CritGalAdminByGal, SetupUsers.ArtifactId.GalData);
 			AddCrowdian(CrowdianId.Crit_Zach, CrowdId.PhoCrit, zach, CrowdianTypeId.Invite, 0.0f,
-				CrowdianTypeAssignId.CriZachIntiveByGal, SetupUsers.UserId.GalData);
+				CrowdianTypeAssignId.CriZachIntiveByGal, SetupUsers.ArtifactId.GalData);
 			AddCrowdian(CrowdianId.Crit_Mel, CrowdId.PhoCrit, mel, CrowdianTypeId.Invite, 0.0f,
-				CrowdianTypeAssignId.CritMelInviteByGal, SetupUsers.UserId.GalData);
+				CrowdianTypeAssignId.CritMelInviteByGal, SetupUsers.ArtifactId.GalData);
 			AddCrowdian(CrowdianId.Crit_Ellie, CrowdId.PhoCrit, ellie, CrowdianTypeId.Request, 0.0f,
-				CrowdianTypeAssignId.CritEllieRequestByElie, SetupUsers.UserId.Ellie);
+				CrowdianTypeAssignId.CritEllieRequestByElie, SetupUsers.ArtifactId.Ellie);
 
 			AddCrowdian(CrowdianId.Love_Mel, CrowdId.PhoLove, mel, CrowdianTypeId.Admin, 1.0f,
-				CrowdianTypeAssignId.LoveMelAdminByMel, SetupUsers.UserId.Mel);
+				CrowdianTypeAssignId.LoveMelAdminByMel, SetupUsers.ArtifactId.Mel);
 			AddCrowdian(CrowdianId.Love_Zach, CrowdId.PhoLove, zach, CrowdianTypeId.Request, 0.0f,
-				CrowdianTypeAssignId.LoveZachRequestByZach, SetupUsers.UserId.Zach);
+				CrowdianTypeAssignId.LoveZachRequestByZach, SetupUsers.ArtifactId.Zach);
 			AddCrowdian(CrowdianId.Love_Ellie, CrowdId.PhoLove, ellie, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.LoveEllieMemberByMel, SetupUsers.UserId.Mel);
+				CrowdianTypeAssignId.LoveEllieMemberByMel, SetupUsers.ArtifactId.Mel);
 			AddCrowdian(CrowdianId.Love_GalData, CrowdId.PhoLove, galData, CrowdianTypeId.Member, 0.5f,
-				CrowdianTypeAssignId.LoveGalMemberByMel, SetupUsers.UserId.Mel);
+				CrowdianTypeAssignId.LoveGalMemberByMel, SetupUsers.ArtifactId.Mel);
 
 			AddCrowdian(CrowdianId.Dp_FabData, CrowdId.DataProv, fabData, CrowdianTypeId.Admin, 0.0f,
-				CrowdianTypeAssignId.DpFabAdminByFab, SetupUsers.UserId.FabData);
+				CrowdianTypeAssignId.DpFabAdminByFab, SetupUsers.ArtifactId.FabData);
 			AddCrowdian(CrowdianId.Dp_GalData, CrowdId.DataProv, galData, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.DbGalMemberByFab, SetupUsers.UserId.FabData);
+				CrowdianTypeAssignId.DbGalMemberByFab, SetupUsers.ArtifactId.FabData);
 			AddCrowdian(CrowdianId.Dp_BookData, CrowdId.DataProv, bookData, CrowdianTypeId.Member, 1.0f,
-				CrowdianTypeAssignId.DbBookMemberByFab, SetupUsers.UserId.FabData);
+				CrowdianTypeAssignId.DbBookMemberByFab, SetupUsers.ArtifactId.FabData);
 			*/
 
 			const SetupUsers.MemberId ffd = SetupUsers.MemberId.FabFabData;
@@ -419,6 +419,7 @@ namespace Fabric.Db.Data.Setups {
 		public void AddUrl(UrlId pId, string pAbsoluteUrl, string pName,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var u = new Url();
+			u.ArtifactId = (byte)pId;
 			u.Name = pName;
 			u.AbsoluteUrl = pAbsoluteUrl;
 
@@ -428,9 +429,6 @@ namespace Fabric.Db.Data.Setups {
 			
 			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Url>((long)pId),
 				pArtId, pMemberId, vTestMode);
-
-			////
-
 			vSet.ElapseTime();
 		}
 
@@ -486,9 +484,9 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
-		public void AddCrowdian(CrowdianId pId, CrowdId pCrowdId, SetupUsers.UserId pUserId,
+		public void AddCrowdian(CrowdianId pId, CrowdId pCrowdId, SetupUsers.ArtifactId pUserId,
 									CrowdianTypeId pTypeId, float pWeight, CrowdianTypeAssignId pCtaId,
-									SetupUsers.UserId pAssignerId){
+									SetupUsers.ArtifactId pAssignerId){
 			var c = new Crowdian();
 			c.CrowdianId = (long)pId;
 
@@ -534,6 +532,7 @@ namespace Fabric.Db.Data.Setups {
 		public void AddClass(ClassId pId, string pName, string pDisamb,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var c = new Class();
+			c.ArtifactId = (byte)pId;
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = null;
@@ -544,29 +543,24 @@ namespace Fabric.Db.Data.Setups {
 
 			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Class>((long)pId),
 				pArtId, pMemberId, vTestMode);
-
-			////
-			
 			vSet.ElapseTime();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddInstance(InstanceId pId, string pName, string pDisamb,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
-			var c = new Instance();
-			c.Name = pName;
-			c.Disamb = pDisamb;
-			c.Note = null;
+			var i = new Instance();
+			i.ArtifactId = (byte)pId;
+			i.Name = pName;
+			i.Disamb = pDisamb;
+			i.Note = null;
 
-			vSet.AddNode(c, vTestMode);
+			vSet.AddNode(i, vTestMode);
 
 			////
 
 			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Instance>((long)pId), 
 				pArtId, pMemberId, vTestMode);
-
-			////
-
 			vSet.ElapseTime();
 		}
 

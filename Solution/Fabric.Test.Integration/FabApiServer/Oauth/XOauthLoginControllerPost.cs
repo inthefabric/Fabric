@@ -215,7 +215,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			FabOauthLogin login = vLoginCtrl.LoginDto;
 
 			Assert.True(login.ShowLoginPage, "Incorrect LoginDto.ShowLoginPage.");
-			Assert.AreEqual(int.Parse(vClientId), login.AppId, "Incorrect LoginDto.AppId.");
+			Assert.AreEqual(int.Parse(vClientId), login.AppId, "Incorrect LoginDto.ArtifactId.");
 			Assert.AreEqual(0, login.LoggedUserId, "Incorrect LoginDto.LoggedUserId.");
 			Assert.Null(login.LoggedUserName, "LoginDto.LoggedUserName should be null.");
 		}

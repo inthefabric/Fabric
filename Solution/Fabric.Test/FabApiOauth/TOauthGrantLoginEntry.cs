@@ -30,18 +30,18 @@ namespace Fabric.Test.FabApiOauth {
 			vResponseType = "code";
 			vSwitchMode = "0";
 			
-			vCoreAppResult = new App() { AppId = 15235, Name = "TestApp" };
+			vCoreAppResult = new App { ArtifactId = 15235, Name = "TestApp" };
 			const string coreRedirUri = "http://www.test.com/oauth";
 			
 			vMockCtx = new Mock<IApiContext>();
 			
 			vMockTasks = new Mock<IOauthTasks>();
-			vMockTasks.Setup(x => x.GetDomain(vCoreAppResult.AppId, coreRedirUri, vMockCtx.Object))
+			vMockTasks.Setup(x => x.GetDomain(vCoreAppResult.ArtifactId, coreRedirUri, vMockCtx.Object))
 				.Returns(new DomainResult());
 			
 			vMockCore = new Mock<IOauthGrantCore>();
 			vMockCore.SetupGet(x => x.RedirectUri).Returns(coreRedirUri);
-			vMockCore.SetupGet(x => x.AppId).Returns(vCoreAppResult.AppId);
+			vMockCore.SetupGet(x => x.AppId).Returns(vCoreAppResult.ArtifactId);
 			vMockCore.Setup(x => x.GetApp(vMockCtx.Object)).Returns(vCoreAppResult);
 			vMockCore.Setup(x => x.GetFault(It.IsAny<GrantErrors>(), It.IsAny<GrantErrorDescs>()))
 				.Returns(new OauthException("x", "y"));
@@ -95,7 +95,7 @@ namespace Fabric.Test.FabApiOauth {
 			User user = null;
 			
 			if ( pHasUser ) {
-				user = new User { UserId = 35353, Name = "TestUser" };
+				user = new User { ArtifactId = 35353, Name = "TestUser" };
 				vMockCore.Setup(x => x.GetUser(vMockCtx.Object)).Returns(user);
 			}
 			
@@ -103,11 +103,11 @@ namespace Fabric.Test.FabApiOauth {
 			
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(pShowLogin, result.ShowLoginPage, "Incorrect Result.ShowLoginPage.");
-			Assert.AreEqual(vCoreAppResult.AppId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vCoreAppResult.ArtifactId, result.AppId, "Incorrect Result.AppId.");
 			Assert.AreEqual(vCoreAppResult.Name, result.AppName, "Incorrect Result.AppName.");
 			
 			if ( pHasUser ) {
-				Assert.AreEqual(user.UserId, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
+				Assert.AreEqual(user.ArtifactId, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
 				Assert.AreEqual(user.Name, result.LoggedUserName, "Incorrect Result.LoggedUserName.");
 			}
 			else {
@@ -169,7 +169,7 @@ namespace Fabric.Test.FabApiOauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRedirMismatch() {
-			vMockTasks.Setup(x => x.GetDomain(vCoreAppResult.AppId, vMockCore.Object.RedirectUri,
+			vMockTasks.Setup(x => x.GetDomain(vCoreAppResult.ArtifactId, vMockCore.Object.RedirectUri,
 				vMockCtx.Object)).Returns((DomainResult)null);
 				
 			TestUtil.CheckThrows<OauthException>(true, () => TestGo());

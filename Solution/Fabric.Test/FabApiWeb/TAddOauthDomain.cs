@@ -57,7 +57,7 @@ namespace Fabric.Test.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.AreEqual(vResultDomain, vResult, "Incorrect result.");
 
-			MockValidator.Verify(x => x.AppId(vAppId, AddOauthDomain.AppIdParam), Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vAppId, AddOauthDomain.AppIdParam), Times.Once());
 			MockValidator.Verify(x => x.OauthDomainDomain(vDomain, AddOauthDomain.DomainParam),
 				Times.Once());
 		}

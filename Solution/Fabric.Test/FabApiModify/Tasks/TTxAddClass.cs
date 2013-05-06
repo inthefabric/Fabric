@@ -14,7 +14,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private const string Query = 
 			"_V0=[];"+ //Member
 			"_V1=g.addVertex(["+
-				PropDbName.Class_ClassId+":_TP,"+
 				PropDbName.Class_Name+":_TP,"+
 				PropDbName.Class_Disamb+":_TP,"+
 				PropDbName.Class_Note+":_TP,"+
@@ -27,7 +26,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private string vName;
 		private string vDisamb;
 		private string vNote;
-		private long vNewClassId;
 		private long vNewArtifactId;
 		private DateTime vUtcNow;
 		
@@ -38,11 +36,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vName = "My Class";
 			vDisamb = "by Zach";
 			vNote = "It's just okay.";
-			vNewClassId = 798756473;
 			vNewArtifactId = 27357427;
 			vUtcNow = DateTime.UtcNow;
 
-			MockApiCtx.Setup(x => x.GetSharpflakeId<Class>()).Returns(vNewClassId);
 			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtifactId);
 			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 		}
@@ -65,7 +61,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
-				vNewClassId,
 				vName,
 				vDisamb,
 				vNote,

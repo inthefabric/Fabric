@@ -64,7 +64,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			vUri = "/ActiveApp";
 			TestPath();
 			CheckSuccess<App>(1);
-			CheckTypeId(vModel.DtoList[0], PropDbName.App_AppId, ApiCtx.AppId);
+			CheckTypeId(vModel.DtoList[0], PropDbName.Artifact_ArtifactId, ApiCtx.AppId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -74,7 +74,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			vUri = "/ActiveUser";
 			TestPath();
 			CheckSuccess<User>(1);
-			CheckTypeId(vModel.DtoList[0], PropDbName.User_UserId, ApiCtx.UserId);
+			CheckTypeId(vModel.DtoList[0], PropDbName.Artifact_ArtifactId, ApiCtx.UserId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

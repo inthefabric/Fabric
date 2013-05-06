@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
-			string script = "V('"+PropDbName.User_UserId+"',_P0)";
+			string script = "V('"+PropDbName.Artifact_ArtifactId+"',_P0)";
 			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}
 

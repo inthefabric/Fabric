@@ -87,8 +87,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			var gr = new GrantResult();
 			gr.GrantId = og.OauthGrantId;
-			gr.AppId = data.GetResultAt<App>(1).AppId;
-			gr.UserId = data.GetResultAt<User>(2).UserId;
+			gr.AppId = data.GetResultAt<App>(1).ArtifactId;
+			gr.UserId = data.GetResultAt<User>(2).ArtifactId;
 			gr.Code = vCode;
 			gr.RedirectUri = og.RedirectUri;
 			return gr;

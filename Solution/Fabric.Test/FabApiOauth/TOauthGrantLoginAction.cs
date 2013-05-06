@@ -29,7 +29,7 @@ namespace Fabric.Test.FabApiOauth {
 			vUsername = "zachkinstner";
 			vPassword = "testpass";
 			
-			vCoreAppResult = new App { AppId = 1234, Name = "TestApp" };
+			vCoreAppResult = new App { ArtifactId = 1234, Name = "TestApp" };
 			
 			vMockCtx = new Mock<IApiContext>();
 			
@@ -52,7 +52,7 @@ namespace Fabric.Test.FabApiOauth {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void Success(bool pAlreadyAllowedScope) {
-			var user = new User { UserId = 4325, Name = "TestUser" };
+			var user = new User { ArtifactId = 4325, Name = "TestUser" };
 			LoginScopeResult scope = null;
 
 			vMockTasks.Setup(x => x.GetUserAuth(vUsername, vPassword, vMockCtx.Object))
@@ -76,9 +76,9 @@ namespace Fabric.Test.FabApiOauth {
 			Assert.AreEqual(false, result.ShowLoginPage, "Incorrect Result.ShowLoginPage.");
 			Assert.Null(result.LoginErrorText, "Result.LoginErrorText should be null.");
 			
-			Assert.AreEqual(vCoreAppResult.AppId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vCoreAppResult.ArtifactId, result.AppId, "Incorrect Result.AppId.");
 			Assert.AreEqual(vCoreAppResult.Name, result.AppName, "Incorrect Result.AppName.");
-			Assert.AreEqual(user.UserId, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
+			Assert.AreEqual(user.ArtifactId, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
 			Assert.AreEqual(user.Name, result.LoggedUserName, "Incorrect Result.LoggedUserName.");
 
 			if ( pAlreadyAllowedScope ) {
@@ -90,7 +90,7 @@ namespace Fabric.Test.FabApiOauth {
 				Assert.Null(result.ScopeCode, "Result.ScopeCode should be null.");
 			}
 
-			vMockCore.Verify(x => x.SetUserId(user.UserId), Times.Once());
+			vMockCore.Verify(x => x.SetUserId(user.ArtifactId), Times.Once());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -105,7 +105,7 @@ namespace Fabric.Test.FabApiOauth {
 			Assert.AreEqual(true, result.ShowLoginPage, "Incorrect Result.ShowLoginPage.");
 			Assert.NotNull(result.LoginErrorText, "Result.LoginErrorText should be filled.");
 			
-			Assert.AreEqual(vCoreAppResult.AppId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vCoreAppResult.ArtifactId, result.AppId, "Incorrect Result.AppId.");
 			Assert.AreEqual(vCoreAppResult.Name, result.AppName, "Incorrect Result.AppName.");
 			Assert.AreEqual(0, result.LoggedUserId, "Incorrect Result.LoggedUserId.");
 			Assert.Null(result.LoggedUserName, "Result.LoggedUserName should be null.");

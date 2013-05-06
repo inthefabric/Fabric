@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			string filterStep = "filter{it.getProperty('"+domainProp+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = 
-				NewPathFromIndex(new App { AppId = vAppId })
+				NewPathFromIndex(new App { ArtifactId = vAppId })
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep(filterStep)
 				.End();

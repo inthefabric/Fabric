@@ -57,7 +57,7 @@ namespace Fabric.Test.FabApiWeb {
 				);
 
 			vResultApp = new App();
-			var findUser = new User { UserId = vUserId };
+			var findUser = new User { ArtifactId = vUserId };
 
 			MockTasks
 				.Setup(x => x.GetUser(MockApiCtx.Object, vUserId))
@@ -96,7 +96,7 @@ namespace Fabric.Test.FabApiWeb {
 			Assert.NotNull(vResultMemAlias, "ResultMemAlias should not be null.");
 
 			MockValidator.Verify(x => x.AppName(vName, CreateApp.NameParam), Times.Once());
-			MockValidator.Verify(x => x.UserId(vUserId, CreateApp.UserIdParam), Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vUserId, CreateApp.UserIdParam), Times.Once());
 		}
 
 

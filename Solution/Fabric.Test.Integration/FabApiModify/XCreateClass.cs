@@ -59,7 +59,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			Class newClass = GetNode<Class>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newClass, "New Class was not created.");
-			Assert.AreEqual(newClass.ClassId, vResult.ClassId, "Incorrect Result.ClassId.");
+			Assert.AreEqual(newClass.ArtifactId, vResult.ArtifactId, "Incorrect Result.ArtifactId.");
 
 			NodeConnections conn = GetNodeConnections(newClass);
 			conn.AssertRelCount(1, 0);
@@ -144,7 +144,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 
 				Class c = (Class)dn.Node;
-				cdc.AddClass(c.ClassId, c.Name, c.Disamb);
+				cdc.AddClass(c.ArtifactId, c.Name, c.Disamb);
 			}
 		}
 

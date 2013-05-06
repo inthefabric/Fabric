@@ -89,7 +89,7 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IApiContext pContext) {
-			var app = new App { AppId = AppId };
+			var app = new App { ArtifactId = AppId };
 			app = pContext.DbSingle<App>(Query.GetApp+"", ApiFunc.NewNodeQuery(app));
 
 			if ( app == null ) {
@@ -105,7 +105,7 @@ namespace Fabric.Api.Oauth {
 				return null;
 			}
 
-			var user = new User { UserId = (long)UserId };
+			var user = new User { ArtifactId = (long)UserId };
 			return pContext.DbSingle<User>(Query.GetUser+"", ApiFunc.NewNodeQuery(user));
 		}
 

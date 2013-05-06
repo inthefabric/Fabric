@@ -40,7 +40,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			User newUser = GetNode<User>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUser, "New User was not created.");
-			Assert.AreNotEqual(0, newUser.UserId, "Incorrect UserId.");
+			Assert.AreNotEqual(0, newUser.ArtifactId, "Incorrect UserId.");
 			Assert.AreEqual(pName, newUser.Name, "Incorrect Name.");
 			Assert.AreEqual(FabricUtil.HashPassword(pPassword), newUser.Password,
 				"Incorrect Password.");

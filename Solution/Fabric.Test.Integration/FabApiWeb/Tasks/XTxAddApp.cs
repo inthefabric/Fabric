@@ -39,7 +39,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			App newApp = GetNode<App>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newApp, "New App was not created.");
-			Assert.AreNotEqual(0, newApp.AppId, "Incorrect AppId.");
+			Assert.AreNotEqual(0, newApp.ArtifactId, "Incorrect AppId.");
 			Assert.AreEqual(pName, newApp.Name, "Incorrect Name.");
 			Assert.AreEqual(32, newApp.Secret.Length, "Incorrect Secret length.");
 

@@ -143,7 +143,7 @@ namespace Fabric.Api.Modify {
 					txList.Add(txb.Finish());
 
 					Class c = cc.GetNewClassForBatch();
-					res.ResultId = c.ClassId;
+					res.ResultId = c.ArtifactId;
 					classes.Add(c);
 				}
 				catch ( FabFault fault ) {
@@ -169,7 +169,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			foreach ( Class c in classes ) {
-				ApiCtx.Cache.UniqueClasses.AddClass(c.ClassId, c.Name, c.Disamb);
+				ApiCtx.Cache.UniqueClasses.AddClass(c.ArtifactId, c.Name, c.Disamb);
 			}
 		}
 

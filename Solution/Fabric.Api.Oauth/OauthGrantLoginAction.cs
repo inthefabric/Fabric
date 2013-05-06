@@ -35,7 +35,7 @@ namespace Fabric.Api.Oauth {
 			var result = new FabOauthLogin();
 
 			App app = vCore.GetApp(ApiCtx);
-			result.AppId = app.AppId;
+			result.AppId = app.ArtifactId;
 			result.AppName = app.Name;
 
 			User user = vTasks.GetUserAuth(vUsername, vPassword, ApiCtx);
@@ -46,8 +46,8 @@ namespace Fabric.Api.Oauth {
 				return result;
 			}
 
-			vCore.SetUserId(user.UserId);
-			result.LoggedUserId = user.UserId;
+			vCore.SetUserId(user.ArtifactId);
+			result.LoggedUserId = user.ArtifactId;
 			result.LoggedUserName = user.Name;
 
 			LoginScopeResult scope = vCore.GetGrantCodeIfScopeAlreadyAllowed(vTasks, ApiCtx);

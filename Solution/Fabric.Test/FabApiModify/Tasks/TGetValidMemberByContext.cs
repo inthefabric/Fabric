@@ -13,11 +13,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetValidMemberByContext : TModifyTasks {
 
 		private const string Query =
-			"g.V('"+PropDbName.User_UserId+"',_P0)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
 				".outE('"+RelDbName.UserDefinesMember+"').inV"+
 					".as('step3')"+
 				".inE('"+RelDbName.AppDefinesMember+"').outV"+
-					".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_P1)"+
+					".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
 				".back('step3')"+
 				".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
 					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P2)"+

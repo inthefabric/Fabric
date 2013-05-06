@@ -113,11 +113,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 
 			OauthAccess oa = data.GetResultAt<OauthAccess>(0);
-			long appId = data.GetResultAt<App>(1).AppId;
+			long appId = data.GetResultAt<App>(1).ArtifactId;
 			long? userId = null;
 
 			if ( count == 3 ) {
-				userId = data.GetResultAt<User>(2).UserId;
+				userId = data.GetResultAt<User>(2).ArtifactId;
 			}
 
 			tuple = new Tuple<OauthAccess, long, long?>(oa, appId, userId);

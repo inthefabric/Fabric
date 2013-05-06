@@ -45,11 +45,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverFuncAs<OauthScope> scopeAlias;
 
 			IWeaverQuery q =
-				NewPathFromIndex(new User { UserId = vUserId })
+				NewPathFromIndex(new User { ArtifactId = vUserId })
 				.InOauthScopeListUses.FromOauthScope
 					.As(out scopeAlias)
 				.UsesApp.ToApp
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(scopeAlias)
 				.End();
 

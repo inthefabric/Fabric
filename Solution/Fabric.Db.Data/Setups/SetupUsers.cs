@@ -56,19 +56,19 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		public enum UserId {
-			FabData = 1,
-			Zach,
-			Mel,
-			GalData,
-			Ellie,
-			Penny,
-			BookData
+			FabData = SetupArtifacts.ArtifactId.User_FabData,
+			Zach = SetupArtifacts.ArtifactId.User_Zach,
+			Mel = SetupArtifacts.ArtifactId.User_Mel,
+			GalData = SetupArtifacts.ArtifactId.User_GalData,
+			Ellie = SetupArtifacts.ArtifactId.User_Ellie,
+			Penny = SetupArtifacts.ArtifactId.User_Penny,
+			BookData = SetupArtifacts.ArtifactId.User_BookData
 		}
 
 		public enum AppId {
-			FabSys = 1,
-			KinPhoGal,
-			Bookmarker
+			FabSys = SetupArtifacts.ArtifactId.App_FabSys,
+			KinPhoGal = SetupArtifacts.ArtifactId.App_KinPhoGal,
+			Bookmarker = SetupArtifacts.ArtifactId.App_Bookmarker
 		}
 
 		public const int NumEmails = 7;
@@ -103,8 +103,8 @@ namespace Fabric.Db.Data.Setups {
 			AddUser(UserId.FabData, "Fabric", "DifficultToGuess", EmailId.DP_ITF);
 			AddMember(MemberId.FabFabData, AppId.FabSys, UserId.FabData,
 				MemberTypeId.DataProvider, MemberTypeAssignId.FabFabDataBySystem, MemberId.FabFabData);
-			FillAppArtifact(SetupArtifacts.ArtifactId.App_FabSys, AppId.FabSys, MemberId.FabFabData);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_FabData, UserId.FabData,MemberId.FabFabData);
+			FillAppArtifact(SetupArtifacts.ArtifactId.App_FabSys, MemberId.FabFabData);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_FabData, MemberId.FabFabData);
 			vSet.ElapseTime();
 
 			////
@@ -115,28 +115,27 @@ namespace Fabric.Db.Data.Setups {
 			AddUser(UserId.Zach, "zachkinstner", "asdfasdf", EmailId.Zach_AEI);
 			AddMember(MemberId.FabZach, AppId.FabSys, UserId.Zach,
 				MemberTypeId.Owner, MemberTypeAssignId.FabZachBySystem, MemberId.FabFabData);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_Zach, UserId.Zach, MemberId.FabZach);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_Zach, MemberId.FabZach);
 			vSet.ElapseTime();
 
 			AddEmail(EmailId.MKin_Gmail, "mkinstner@gmail.com");
 			AddUser(UserId.Mel, "melkins", "EllieBear1", EmailId.MKin_Gmail);
 			AddMember(MemberId.FabMel, AppId.FabSys, UserId.Mel,
 				MemberTypeId.Member, MemberTypeAssignId.FabMelBySystem, MemberId.FabMel);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_Mel, UserId.Mel, MemberId.FabMel);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_Mel, MemberId.FabMel);
 			vSet.ElapseTime();
 
 			AddEmail(EmailId.PhoApp_ZK, "PhotoApp@zachkinstner.com");
 			AddUser(UserId.GalData, "KinstnerPhotos", "snapshot1234", EmailId.PhoApp_ZK);
 			AddMember(MemberId.FabGalData, AppId.FabSys, UserId.GalData,
 				MemberTypeId.Member, MemberTypeAssignId.FabGalDataBySystem, MemberId.FabFabData);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_GalData, UserId.GalData,MemberId.FabGalData);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_GalData, MemberId.FabGalData);
 			vSet.ElapseTime();
 
 			AddApp(AppId.KinPhoGal, "Kinstner Photo Gallery", EmailId.PhoApp_ZK, KinPhoGalSecret);
 			AddMember(MemberId.GalGalData, AppId.KinPhoGal, UserId.GalData,
 				MemberTypeId.DataProvider, MemberTypeAssignId.GalGalDataBySystem, MemberId.FabFabData);
-			FillAppArtifact(SetupArtifacts.ArtifactId.App_KinPhoGal,
-				AppId.KinPhoGal, MemberId.FabGalData);
+			FillAppArtifact(SetupArtifacts.ArtifactId.App_KinPhoGal, MemberId.FabGalData);
 			vSet.ElapseTime();
 
 			AddMember(MemberId.GalZach, AppId.KinPhoGal, UserId.Zach,
@@ -147,7 +146,7 @@ namespace Fabric.Db.Data.Setups {
 			AddUser(UserId.Ellie, "EllieJoy", "iLOVEdaddy", EmailId.EJ_ZK);
 			AddMember(MemberId.FabEllie, AppId.FabSys, UserId.Ellie,
 				MemberTypeId.Member, MemberTypeAssignId.FabEllieBySystem, MemberId.FabFabData);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_Ellie, UserId.Ellie, MemberId.FabEllie);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_Ellie,MemberId.FabEllie);
 			vSet.ElapseTime();
 
 			AddMember(MemberId.GalEllie, AppId.KinPhoGal, UserId.Ellie,
@@ -162,22 +161,20 @@ namespace Fabric.Db.Data.Setups {
 			AddUser(UserId.Penny, "PennyJane", "iLOVEdaddyTOO!", EmailId.PJ_ZK);
 			AddMember(MemberId.FabPenny, AppId.FabSys, UserId.Penny,
 				MemberTypeId.Member, MemberTypeAssignId.FabPennyBySystem, MemberId.FabFabData);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_Penny, UserId.Penny, MemberId.FabPenny);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_Penny, MemberId.FabPenny);
 			vSet.ElapseTime();
 
 			AddEmail(EmailId.FabApp_Book, "fabricApp@bookmarker.com");
 			AddUser(UserId.BookData, "BookmarkerDP", "bookpass", EmailId.FabApp_Book);
 			AddMember(MemberId.FabBookData, AppId.FabSys, UserId.BookData,
 				MemberTypeId.Member, MemberTypeAssignId.FabBookDataBySystem, MemberId.FabFabData);
-			FillUserArtifact(SetupArtifacts.ArtifactId.User_BookData,
-				UserId.BookData, MemberId.FabBookData);
+			FillUserArtifact(SetupArtifacts.ArtifactId.User_BookData, MemberId.FabBookData);
 			vSet.ElapseTime();
 
 			AddApp(AppId.Bookmarker, "The Bookmarker", EmailId.FabApp_Book, BookmarkSecret);
 			AddMember(MemberId.BookBookData, AppId.Bookmarker, UserId.BookData,
 				MemberTypeId.DataProvider, MemberTypeAssignId.BookBookDataBySystem, MemberId.FabFabData);
-			FillAppArtifact(SetupArtifacts.ArtifactId.App_Bookmarker,
-				AppId.Bookmarker, MemberId.FabBookData);
+			FillAppArtifact(SetupArtifacts.ArtifactId.App_Bookmarker,  MemberId.FabBookData);
 			vSet.ElapseTime();
 
 			AddMember(MemberId.BookZach, AppId.Bookmarker, UserId.Zach,
@@ -261,6 +258,7 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddApp(AppId pId, string pName, EmailId pEmailId, string pSecret) {
 			var a = new App();
+			a.ArtifactId = (long)pId;
 			a.Name = pName;
 			a.Secret = pSecret;
 
@@ -274,6 +272,7 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddUser(UserId pId, string pName, string pPass, EmailId pEmailId) {
 			var u = new User();
+			u.ArtifactId = (byte)pId;
 			u.Name = pName;
 			u.Password = FabricUtil.HashPassword(pPass);
 
@@ -287,15 +286,14 @@ namespace Fabric.Db.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void FillUserArtifact(SetupArtifacts.ArtifactId pId, UserId pUserId,
-																				MemberId pCreatorId) {
-			Artifact user = vSet.GetNode<User>((long)pUserId);
+		private void FillUserArtifact(SetupArtifacts.ArtifactId pId, MemberId pCreatorId) {
+			Artifact user = vSet.GetNode<User>((long)pId);
 			SetupArtifacts.FillArtifact(vSet, user, pId, pCreatorId, vTestMode);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void FillAppArtifact(SetupArtifacts.ArtifactId pId, AppId pAppId, MemberId pCreatorId) {
-			Artifact app = vSet.GetNode<App>((long)pAppId);
+		private void FillAppArtifact(SetupArtifacts.ArtifactId pId, MemberId pCreatorId) {
+			Artifact app = vSet.GetNode<App>((long)pId);
 			SetupArtifacts.FillArtifact(vSet, app, pId, pCreatorId, vTestMode);
 		}
 

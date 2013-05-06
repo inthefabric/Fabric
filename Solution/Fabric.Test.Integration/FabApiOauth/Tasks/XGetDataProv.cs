@@ -38,7 +38,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			if ( pExpectId != null ) {
 				Assert.NotNull(result, "Result should be filled.");
-				Assert.AreEqual((long)pExpectId, result.UserId, "Incorrect UserId.");
+				Assert.AreEqual((long)pExpectId, result.ArtifactId, "Incorrect UserId.");
 			}
 			else {
 				Assert.Null(result, "Result should be null.");

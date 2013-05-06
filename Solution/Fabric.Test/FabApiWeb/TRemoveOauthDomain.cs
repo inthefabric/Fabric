@@ -42,7 +42,7 @@ namespace Fabric.Test.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Incorrect result.");
 
-			MockValidator.Verify(x => x.AppId(vAppId, RemoveOauthDomain.AppIdParam), Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vAppId, RemoveOauthDomain.AppIdParam), Times.Once());
 			MockValidator.Verify(x => x.OauthDomainId(vOauthDomainId,
 				RemoveOauthDomain.OauthDomainIdParam), Times.Once());
 		}

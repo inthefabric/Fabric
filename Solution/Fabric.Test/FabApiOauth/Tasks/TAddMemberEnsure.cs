@@ -18,11 +18,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryGetMemberTx =
 			"_V0=[];"+
-			"g.V('"+PropDbName.User_UserId+"',_TP)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
 			".outE('"+RelDbName.UserDefinesMember+"').inV"+
 				".as('step3')"+
 			".inE('"+RelDbName.AppDefinesMember+"').outV"+
-			".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_TP)"+
+			".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
 			".back('step3')"+
 				".aggregate(_V0)"+
 			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
@@ -35,9 +35,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.Member_MemberId+":_TP,"+
 				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
-			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
+			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V2,_V0,_TP);"+
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+

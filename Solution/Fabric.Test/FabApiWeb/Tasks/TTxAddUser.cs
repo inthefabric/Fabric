@@ -16,7 +16,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V0=[];"+ //Email
 			"_V1=[];"+ //Member
 			"_V2=g.addVertex(["+
-				PropDbName.User_UserId+":_TP,"+
 				PropDbName.User_Name+":_TP,"+
 				PropDbName.User_Password+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
@@ -28,7 +27,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private string vName;
 		private string vPassword;
-		private long vNewUserId;
 		private long vNewArtifactId;
 		private DateTime vUtcNow;
 		
@@ -38,11 +36,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		protected override void TestSetUp() {
 			vName = "NewUser";
 			vPassword = "TestPassword";
-			vNewUserId = 346137173314;
 			vNewArtifactId = 27357427;
 			vUtcNow = DateTime.UtcNow;
 
-			MockApiCtx.Setup(x => x.GetSharpflakeId<User>()).Returns(vNewUserId);
 			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtifactId);
 			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 		}
@@ -69,7 +65,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
-				vNewUserId,
 				vName,
 				FabricUtil.HashPassword(vPassword),
 				vNewArtifactId,

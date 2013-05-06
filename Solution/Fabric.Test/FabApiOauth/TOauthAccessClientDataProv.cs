@@ -24,7 +24,7 @@ namespace Fabric.Test.FabApiOauth {
 			vDataProvId = vDataProvIdLong+"";
 
 			vUserResult = new User();
-			vUserResult.UserId = vDataProvIdLong;
+			vUserResult.ArtifactId = vDataProvIdLong;
 
 			vMockTasks
 				.Setup(x => x.GetDataProv(vAppId, vDataProvIdLong, vMockCtx.Object))

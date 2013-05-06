@@ -56,11 +56,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			updates.AddUpdate(newOs, x => x.Created);
 
 			tx.AddQuery(
-				NewPathFromIndex(new User { UserId = vUserId })
+				NewPathFromIndex(new User { ArtifactId = vUserId })
 					.InOauthScopeListUses.FromOauthScope
 					.As(out osAlias)
 				.UsesApp.ToApp
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(osAlias)
 					.UpdateEach(updates)
 				.End()

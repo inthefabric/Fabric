@@ -18,13 +18,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddAccess {
 
 		private const string QueryClearTokens =
-			"g.V('"+PropDbName.App_AppId+"',_P)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
 			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
 				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.neq,_P)"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".as('step5')" +
 			".outE('"+RelDbName.OauthAccessUsesUser+"').inV" +
-				".has('"+PropDbName.User_UserId+"',Tokens.T.eq,_P)" +
+				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P)" +
 			".back('step5')" +
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.OauthAccess_Token+"',_P);"+
@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"};";
 
 		private const string QueryClearTokensClientOnly =
-			"g.V('"+PropDbName.App_AppId+"',_P)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
 			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
 				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.neq,_P)"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
@@ -50,9 +50,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthAccess_IsClientOnly+":_TP,"+
 				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
+			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
 		private const string QueryAddAccessTxClientOnly =
@@ -64,7 +64,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthAccess_IsClientOnly+":_TP,"+
 				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);";
 
 		protected long vAddOauthAccessId;

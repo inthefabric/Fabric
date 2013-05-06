@@ -58,10 +58,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vResultGrant.RedirectUri = "test.com/redir";
 			
 			vResultApp = new App();
-			vResultApp.AppId = 456;
+			vResultApp.ArtifactId = 456;
 			
 			vResultUser = new User();
-			vResultUser.UserId = 9878;
+			vResultUser.ArtifactId = 9878;
 
 			vMockGetAndUpdateTxResult = new Mock<IApiDataAccess>();
 			vMockGetAndUpdateTxResult.Setup(x => x.GetResultAt<OauthGrant>(0)).Returns(vResultGrant);
@@ -120,8 +120,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(vResultGrant.Code, result.Code, "Incorrect Result.AccessToken.");
 			Assert.AreEqual(vResultGrant.RedirectUri, result.RedirectUri,
 				"Incorrect Result.RedirectUri.");
-			Assert.AreEqual(vResultApp.AppId, result.AppId, "Incorrect Result.AppId.");
-			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
+			Assert.AreEqual(vResultApp.ArtifactId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vResultUser.ArtifactId, result.UserId, "Incorrect Result.UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

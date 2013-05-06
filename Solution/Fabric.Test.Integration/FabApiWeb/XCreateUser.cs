@@ -60,8 +60,8 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			
 			User newUser = GetNode<User>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newUser, "New User was not created.");
-			Assert.AreEqual(newUser.UserId, vResult.NewUser.UserId,
-				"Incorrect Result.NewUser.UserId.");
+			Assert.AreEqual(newUser.ArtifactId, vResult.NewUser.ArtifactId,
+				"Incorrect Result.NewUser.ArtifactId.");
 
 			Assert.AreEqual(ApiCtx.SharpflakeIds[2], newUser.ArtifactId, "Incorrect User.ArtifactId.");
 			                
@@ -76,7 +76,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			
 			NodeConnections conn = GetNodeConnections(newEmail);
 			conn.AssertRelCount(1, 0);
-			conn.AssertRel<UserUsesEmail, User>(false, newUser.UserId);
+			conn.AssertRel<UserUsesEmail, User>(false, newUser.ArtifactId);
 			NewRelCount += 1;
 			
 			conn = GetNodeConnections(newUser);
@@ -88,7 +88,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			
 			conn = GetNodeConnections(newMember);
 			conn.AssertRelCount(2, 2);
-			conn.AssertRel<UserDefinesMember, User>(false, newUser.UserId);
+			conn.AssertRel<UserDefinesMember, User>(false, newUser.ArtifactId);
 			conn.AssertRel<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);

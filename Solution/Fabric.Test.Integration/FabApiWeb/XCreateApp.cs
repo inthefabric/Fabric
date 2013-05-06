@@ -53,7 +53,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			
 			App newApp = GetNode<App>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newApp, "New App was not created.");
-			Assert.AreEqual(newApp.AppId, vResult.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(newApp.ArtifactId, vResult.ArtifactId, "Incorrect Result.ArtifactId.");
 
 			Assert.AreEqual(ApiCtx.SharpflakeIds[1], newApp.ArtifactId, "Incorrect App.ArtifactId.");
 
@@ -76,7 +76,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			conn = GetNodeConnections(newMember);
 			conn.AssertRelCount(2, 2);
 			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
-			conn.AssertRel<AppDefinesMember, App>(false, newApp.AppId);
+			conn.AssertRel<AppDefinesMember, App>(false, newApp.ArtifactId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
 			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, 

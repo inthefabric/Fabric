@@ -45,10 +45,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap = new UsageMap();
 			
 			vResultApp = new App();
-			vResultApp.AppId = 456;
+			vResultApp.ArtifactId = 456;
 			
 			vResultUser = new User();
-			vResultUser.UserId = 9878;
+			vResultUser.ArtifactId = 9878;
 
 			vMockGetAccessTxResult = new Mock<IApiDataAccess>();
 			vMockGetAccessTxResult.Setup(x => x.GetResultAt<App>(0)).Returns(vResultApp);
@@ -99,8 +99,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			vUsageMap.AssertUses(GetRefresh.Query.GetAppUserTx+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vResultApp.AppId, result.AppId, "Incorrect Result.AppId.");
-			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
+			Assert.AreEqual(vResultApp.ArtifactId, result.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vResultUser.ArtifactId, result.UserId, "Incorrect Result.UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -34,7 +34,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			User result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vUserId, result.UserId, "Incorrect UserId.");
+			Assert.AreEqual(vUserId, result.ArtifactId, "Incorrect UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

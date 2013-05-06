@@ -16,11 +16,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TAddGrant {
 
 		private const string QueryUpdateGrantTx =
-			"g.V('"+PropDbName.User_UserId+"',_TP)"+
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
 			".inE('"+RelDbName.OauthGrantUsesUser+"').outV"+
 				".as('step3')"+
 			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
-				".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_TP)"+
+				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
 			".back('step3')"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.OauthGrant_RedirectUri+"',_TP);"+
@@ -36,9 +36,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthGrant_Expires+":_TP,"+
 				PropDbName.Node_FabType+":_TP"+
 			"]);"+
-			"_V1=g.V('"+PropDbName.App_AppId+"',_TP).next();"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
-			"_V2=g.V('"+PropDbName.User_UserId+"',_TP).next();"+
+			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V2,_TP);";
 
 		protected long vAppId;

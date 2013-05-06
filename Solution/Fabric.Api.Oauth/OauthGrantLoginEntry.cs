@@ -83,9 +83,9 @@ namespace Fabric.Api.Oauth {
 			User user = vCore.GetUser(ApiCtx);
 			
 			result.ShowLoginPage = (user == null || switchBool);
-			result.AppId = app.AppId;
+			result.AppId = app.ArtifactId;
 			result.AppName = app.Name;
-			result.LoggedUserId = (user == null ? 0 : user.UserId);
+			result.LoggedUserId = (user == null ? 0 : user.ArtifactId);
 			result.LoggedUserName = (user == null ? null : user.Name);
 			return result;
 		}

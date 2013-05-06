@@ -16,10 +16,10 @@ namespace Fabric.Test.FabApiOauth {
 	public class TOauthGrantCore {
 	
 		private const string QueryGetApp =
-			"g.V('"+PropDbName.App_AppId+"',_P0);";
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0);";
 			
 		private const string QueryGetUser =
-			"g.V('"+PropDbName.User_UserId+"',_P0);";
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0);";
 
 		private string vClientId;
 		private long vClientIdLong;

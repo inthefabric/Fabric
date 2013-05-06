@@ -70,7 +70,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			IWeaverQuery updateOa;
 			
-			OauthAccess pathOa = NewPathFromIndex(new App { AppId = vAppId })
+			OauthAccess pathOa = NewPathFromIndex(new App { ArtifactId = vAppId })
 				.InOauthAccessListUses.FromOauthAccess
 					.Has(x => x.Token, WeaverFuncHasOp.NotEqualTo, null)
 					.Has(x => x.IsClientOnly, WeaverFuncHasOp.EqualTo, vClientOnly);
@@ -86,7 +86,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				updateOa = pathOa
 						.As(out oaAlias)
 					.UsesUser.ToUser
-						.Has(x => x.UserId, WeaverFuncHasOp.EqualTo, vUserId)
+						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vUserId)
 					.Back(oaAlias)
 						.UpdateEach(updates)
 					.End();

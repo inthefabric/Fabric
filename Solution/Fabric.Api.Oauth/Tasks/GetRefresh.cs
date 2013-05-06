@@ -75,8 +75,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			var rr = new RefreshResult();
-			rr.AppId = data.GetResultAt<App>(0).AppId;
-			rr.UserId = data.GetResultAt<User>(1).UserId;
+			rr.AppId = data.GetResultAt<App>(0).ArtifactId;
+			rr.UserId = data.GetResultAt<User>(1).ArtifactId;
 			return rr;
 		}
 

@@ -6,8 +6,6 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
-using Weaver;
-using Weaver.Functions;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {

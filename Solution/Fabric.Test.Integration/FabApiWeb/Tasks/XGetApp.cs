@@ -34,7 +34,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			App result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vAppId, result.AppId, "Incorrect AppId.");
+			Assert.AreEqual(vAppId, result.ArtifactId, "Incorrect AppId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

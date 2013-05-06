@@ -1,12 +1,12 @@
 ﻿namespace Fabric.Infrastructure.Domain {
 
 	/*================================================================================================*/
-	public enum AppId {
-		FabricSystem = 1
+	public enum AppId { //ArtifactId
+		FabricSystem = 2
 	}
 
 	/*================================================================================================*/
-	public enum UserId {
+	public enum UserId { //ArtifactId
 		Fabric = 1
 	}
 

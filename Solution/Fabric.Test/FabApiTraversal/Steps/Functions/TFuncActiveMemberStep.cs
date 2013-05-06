@@ -40,10 +40,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
 			const string script = 
-				"V('"+PropDbName.User_UserId+"',_P0)"+
+				"V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
 				".outE('"+RelDbName.UserDefinesMember+"').inV"+
 				".inE('"+RelDbName.AppDefinesMember+"').outV"+
-					".has('"+PropDbName.App_AppId+"',Tokens.T.eq,_P1)"+
+					".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
 				".back(3)[0]";
 
 			p.Verify(x => x.AddSegment(s, script), Times.Once());

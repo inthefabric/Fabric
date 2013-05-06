@@ -59,10 +59,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vResultAccess.Expires = vUtcNow.AddSeconds(vExpiresInSec).Ticks;
 
 			vResultApp = new App();
-			vResultApp.AppId = 456;
+			vResultApp.ArtifactId = 456;
 
 			vResultUser = new User();
-			vResultUser.UserId = 9878;
+			vResultUser.ArtifactId = 9878;
 
 			vMockGetAccessTxResult = new Mock<IApiDataAccess>();
 			vMockGetAccessTxResult.Setup(x => x.GetResultAt<OauthAccess>(0)).Returns(vResultAccess);
@@ -122,15 +122,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			CheckSuccessResult(result);
 			vUsageMap.AssertUses(GetAccessToken.Query.GetAccessTx+"", 1);
-			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
+			Assert.AreEqual(vResultUser.ArtifactId, result.UserId, "Incorrect Result.UserId.");
 
 			vMockMemCache.Verify(
 				x => x.AddOauthAccess(
 					vToken,
 					It.Is<Tuple<OauthAccess, long, long?>>(tuple =>
 						tuple.Item1 == vResultAccess && 
-						tuple.Item2 == vResultApp.AppId &&
-						tuple.Item3 == vResultUser.UserId
+						tuple.Item2 == vResultApp.ArtifactId &&
+						tuple.Item3 == vResultUser.ArtifactId
 					),
 					It.Is<int>(exp => exp == vExpiresInSec)
 				)
@@ -154,7 +154,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 					vToken,
 					It.Is<Tuple<OauthAccess, long, long?>>(tuple => 
 						tuple.Item1 == vResultAccess && 
-						tuple.Item2 == vResultApp.AppId &&
+						tuple.Item2 == vResultApp.ArtifactId &&
 						tuple.Item3 == null
 					),
 					It.Is<int>(exp => exp == vExpiresInSec)
@@ -167,14 +167,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(false)]
 		public void SuccessCache(bool pViaTask) {
 			var tuple = new Tuple<OauthAccess, long, long?>(
-				vResultAccess, vResultApp.AppId, vResultUser.UserId);
+				vResultAccess, vResultApp.ArtifactId, vResultUser.ArtifactId);
 			vMockMemCache.Setup(x => x.FindOauthAccess(vToken)).Returns(tuple);
 
 			FabOauthAccess result = TestGo(pViaTask);
 
 			CheckSuccessResult(result);
 			vUsageMap.AssertUses(GetAccessToken.Query.GetAccessTx+"", 0);
-			Assert.AreEqual(vResultUser.UserId, result.UserId, "Incorrect Result.UserId.");
+			Assert.AreEqual(vResultUser.ArtifactId, result.UserId, "Incorrect Result.UserId.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -229,7 +229,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				"Incorrect Result.RefreshToken.");
 			Assert.AreEqual("bearer", pResult.TokenType, "Incorrect Result.TokenType.");
 			Assert.AreEqual(vExpiresInSec, pResult.ExpiresIn, "Incorrect Result.ExpiresIn.");
-			Assert.AreEqual(vResultApp.AppId, pResult.AppId, "Incorrect Result.AppId.");
+			Assert.AreEqual(vResultApp.ArtifactId, pResult.AppId, "Incorrect Result.AppId.");
 		}
 
 	}

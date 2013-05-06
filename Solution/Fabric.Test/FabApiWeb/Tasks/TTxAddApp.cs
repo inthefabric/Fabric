@@ -13,10 +13,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private const string Query = 
 			"_V0=[];"+ //Member
-			"_V1=g.V('"+PropDbName.User_UserId+"',_TP)"+
+			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
 				".outE('"+RelDbName.UserUsesEmail+"').inV.next();"+
 			"_V2=g.addVertex(["+
-				PropDbName.App_AppId+":_TP,"+
 				PropDbName.App_Name+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
@@ -27,7 +26,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private string vName;
 		private long vUserId;
-		private long vNewAppId;
 		private long vNewArtifactId;
 		private DateTime vUtcNow;
 		
@@ -37,11 +35,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		protected override void TestSetUp() {
 			vName = "NewApp";
 			vUserId = 9876;
-			vNewAppId = 43562742344;
 			vNewArtifactId = 27357427;
 			vUtcNow = DateTime.UtcNow;
 
-			MockApiCtx.Setup(x => x.GetSharpflakeId<App>()).Returns(vNewAppId);
 			MockApiCtx.Setup(x => x.GetSharpflakeId<Artifact>()).Returns(vNewArtifactId);
 			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 		}
@@ -67,7 +63,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vUserId,
-				vNewAppId,
 				vName,
 				vNewArtifactId,
 				vUtcNow.Ticks,

@@ -29,7 +29,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Instance newInstance = GetNode<Instance>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newInstance, "New Instance was not created.");
-			Assert.AreNotEqual(0, newInstance.InstanceId, "Incorrect InstanceId.");
+			Assert.AreNotEqual(0, newInstance.ArtifactId, "Incorrect InstanceId.");
 			Assert.AreEqual(pName, newInstance.Name, "Incorrect Name.");
 			Assert.AreEqual(pDisamb, newInstance.Disamb, "Incorrect Disamb.");
 			Assert.AreEqual(pNote, newInstance.Note, "Incorrect Note.");
