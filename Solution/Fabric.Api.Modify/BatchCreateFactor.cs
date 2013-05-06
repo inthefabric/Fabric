@@ -125,6 +125,10 @@ namespace Fabric.Api.Modify {
 					FactorOperationSet fos = vOpSets[i];
 
 					foreach ( KeyValuePair<string, long> pair in fos.RequiredArtifacts ) {
+						if ( ApiCtx.Cache.Memory.FindExists<Artifact>(pair.Value) == true ) {
+							continue; //skip verification; the Artifact exists
+						}
+
 						if ( !map.ContainsKey(pair.Value) ) {
 							map.Add(pair.Value, new List<KeyValuePair<int, string>>());
 						}
@@ -162,6 +166,7 @@ namespace Fabric.Api.Modify {
 				long expectId = map.Keys.ElementAt(i);
 
 				if ( id == expectId ) {
+					ApiCtx.Cache.Memory.AddExists<Artifact>(id);
 					continue;
 				}
 

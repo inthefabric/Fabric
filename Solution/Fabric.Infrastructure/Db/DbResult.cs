@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Db {
@@ -69,12 +70,18 @@ namespace Fabric.Infrastructure.Db {
 			vTextList = new List<IList<string>>();
 			int startI = 0;
 
-			while ( true ) {
-				startI = BuildTextListResults(startI);
+			try {
+				while ( true ) {
+					startI = BuildTextListResults(startI);
 
-				if ( startI == -1 ) {
-					break;
+					if ( startI == -1 ) {
+						break;
+					}
 				}
+			}
+			catch ( Exception e ) {
+				Log.Error("DbResult.BuildTextList(): "+e+"\nJSON: "+vResponseJson+"\nSTARTI: "+startI);
+				throw e;
 			}
 		}
 			

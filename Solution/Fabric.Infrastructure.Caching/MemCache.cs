@@ -25,6 +25,29 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public void AddExists<T>(long pNodeTypeId, CacheItemPolicy pPolicy=null) where T : INodeWithId {
+			if ( pPolicy == null ) {
+				pPolicy = NewPolicy(3600);
+			}
+
+			Add(GetDomainNodeKey<T>(pNodeTypeId), true, pPolicy);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool? FindExists<T>(long pNodeTypeId) where T : INodeWithId {
+			string key = GetDomainNodeKey<T>(pNodeTypeId);
+			return (Contains(key) ? (bool)Get(key) : (bool?)null);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool? RemoveExists<T>(long pNodeTypeId) where T : INodeWithId {
+			string key = GetDomainNodeKey<T>(pNodeTypeId);
+			return (Contains(key) ? (bool)Remove(key) : (bool?)null);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static CacheItemPolicy NewPolicy(int pExpiresInSec, bool pSliding=true) {
 			var pol = new CacheItemPolicy();
 
