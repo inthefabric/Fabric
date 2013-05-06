@@ -1,12 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:18 PM
+// Generated on 5/6/2013 2:37:39 PM
 
 using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Weaver.Interfaces;
-using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -194,14 +192,29 @@ namespace Fabric.Infrastructure.Weaver {
 			TypeIdMap.Add(typeof(Artifact), Artifact_ArtifactId);
 			StrTypeIdMap.Add("Artifact", Artifact_ArtifactId);
 
+			TypeIdMap.Add(typeof(App), Artifact_ArtifactId);
+			StrTypeIdMap.Add("App", Artifact_ArtifactId);
+
+			TypeIdMap.Add(typeof(Class), Artifact_ArtifactId);
+			StrTypeIdMap.Add("Class", Artifact_ArtifactId);
+
 			TypeIdMap.Add(typeof(Email), Email_EmailId);
 			StrTypeIdMap.Add("Email", Email_EmailId);
+
+			TypeIdMap.Add(typeof(Instance), Artifact_ArtifactId);
+			StrTypeIdMap.Add("Instance", Artifact_ArtifactId);
 
 			TypeIdMap.Add(typeof(Member), Member_MemberId);
 			StrTypeIdMap.Add("Member", Member_MemberId);
 
 			TypeIdMap.Add(typeof(MemberTypeAssign), MemberTypeAssign_MemberTypeAssignId);
 			StrTypeIdMap.Add("MemberTypeAssign", MemberTypeAssign_MemberTypeAssignId);
+
+			TypeIdMap.Add(typeof(Url), Artifact_ArtifactId);
+			StrTypeIdMap.Add("Url", Artifact_ArtifactId);
+
+			TypeIdMap.Add(typeof(User), Artifact_ArtifactId);
+			StrTypeIdMap.Add("User", Artifact_ArtifactId);
 
 			TypeIdMap.Add(typeof(Factor), Factor_FactorId);
 			StrTypeIdMap.Add("Factor", Factor_FactorId);

@@ -78,7 +78,7 @@ namespace Fabric.Infrastructure.Api {
 				vReqJson = JsonSerializer.SerializeToString(Request);
 				JsConfig.EmitCamelCaseNames = false;
 
-				Log.Debug("REQUEST: "+vReqJson);
+				//Log.Debug("REQUEST: "+vReqJson);
 				ResponseJson = GetRawResult(vReqJson);
 				Sema.Release();
 
@@ -166,7 +166,7 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			tcp.Close();
-			Log.Debug("RESULT: "+respData);
+			//Log.Debug("RESULT: "+respData);
 			return respData;
 		}
 

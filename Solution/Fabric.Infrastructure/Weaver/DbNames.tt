@@ -14,8 +14,6 @@
 using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Weaver.Interfaces;
-using Weaver.Items;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -90,14 +88,17 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 			
 <#
 foreach ( WeaverNodeSchema ns in nodes ) {
-	foreach ( WeaverPropSchema ps in ns.Props ) {
-		if ( ps.IsPrimaryKey != true ) { continue; }
+	var hn = new SchemaHelperNode(ns);
+	SchemaHelperProp hp = hn.GetPrimaryKeyProp();
+	if ( hp == null ) { continue; }
+
+	string pkName = hp.PropSchema.Name;
+	pkName = pkName.Substring(0, pkName.Length-2)+"_"+pkName;
 #>
-			TypeIdMap.Add(typeof(<#= ns.Name #>), <#= ns.Name+'_'+ps.Name #>);
-			StrTypeIdMap.Add("<#= ns.Name #>", <#= ns.Name+'_'+ps.Name #>);
+			TypeIdMap.Add(typeof(<#= ns.Name #>), <#= pkName #>);
+			StrTypeIdMap.Add("<#= ns.Name #>", <#= pkName #>);
 
 <#
-	} //end prop loop
 } //end node loop
 #>
 			return true;

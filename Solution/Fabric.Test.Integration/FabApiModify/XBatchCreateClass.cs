@@ -14,7 +14,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 	[TestFixture]
 	public class XBatchCreateClass : XBaseModifyFunc {
 		
-		private IList<FabBatchNewClass> vClasses;
+		private List<FabBatchNewClass> vClasses;
 		private string vClassesJson;
 
 		private IList<FabBatchResult> vResults;
@@ -24,8 +24,18 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			base.TestSetUp();
+			
+			vClasses = new List<FabBatchNewClass>();
 
-			vClasses = new List<FabBatchNewClass>(new[] {
+			for ( int i = 0 ; i < 300 ; ++i ) {
+				vClasses.Add(new FabBatchNewClass {
+					BatchId = 1000+i,
+					Name = "BigTest"+i,
+					Disamb = "1234"
+				});
+			}
+
+			vClasses.AddRange(new List<FabBatchNewClass>(new[] {
 				new FabBatchNewClass { 
 					BatchId = 100, Name = "Test1", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
@@ -66,15 +76,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 					BatchId = 133, Name = "Test4c", Disamb = "1234", Note = "This is my note." },
 				new FabBatchNewClass { 
 					BatchId = 134, Name = "Test5c", Disamb = "1234", Note = "This is my note." }
-			});
-
-			for ( int i = 0 ; i < 300 ; ++i ) {
-				vClasses.Add(new FabBatchNewClass {
-					BatchId = 1000+i,
-					Name = "BigTest"+i,
-					Disamb = "1234"
-				});
-			}
+			}));
 
 			vClassesJson = vClasses.ToJson();
 
@@ -99,11 +101,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			if ( pFailCommand ) { //Generate a database error
 				ApiCtx.AlterRequestJson = (r => {
-					int i = r.IndexOf(PropDbName.Artifact_ArtifactId);
+					int i = r.IndexOf(PropDbName.Class_Disamb);
 
 					if ( !altered && i != -1 ) {
 						altered = true;
-						r = r.Insert(i+PropDbName.Artifact_ArtifactId.Length+2, "x");
+						r = r.Insert(i+PropDbName.Class_Disamb.Length+2, "x");
 					}
 
 					return r;
