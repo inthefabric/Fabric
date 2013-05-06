@@ -71,12 +71,13 @@ foreach ( string name in nodes ) {
 
 <#
 	if ( !node.IsBaseClass ) {
-		string idType = hn.GetPrimaryKeyProp().TypeName;
+		SchemaHelperProp pkProp = hn.GetPrimaryKeyProp();
+		string pkName = pkProp.PropSchema.Name;
+		string idType = pkProp.TypeName;
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Builder(TxBuilder pTx, <#= idType #> p<#= node.Name #>Id) : 
-			base(pTx, new <#= node.Name #> { <#= node.Name #>Id = p<#= node.Name #>Id }) {}
-		
+		public <#= node.Name #>Builder(TxBuilder pTx, <#= idType #> p<#= pkName #>) : 
+			base(pTx, new <#= node.Name #> { <#= pkName #> = p<#= pkName #> }) {}
 		
 <#
 	} //end abstract condition
@@ -87,6 +88,7 @@ foreach ( string name in nodes ) {
 		bool isRoot = (t == "Root");
 		SchemaHelperProp targKeyProp = SchemaHelper.GetNode(hr.TargetNodeType).GetPrimaryKeyProp();
 		string targNodeIdType = (targKeyProp != null ? targKeyProp.TypeName : "XXX");
+		string targPkName = targKeyProp.PropSchema.Name;
 		
 		if ( !isRoot ) {
 #>		
@@ -132,8 +134,9 @@ foreach ( string name in nodes ) {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void <#= method #>(<#= targNodeIdType #> p<#= t #>Id, out IWeaverVarAlias<<#= t #>> pNodeVar) {
-			<#= method #>(new <#= t #> { <#= t #>Id = p<#= t #>Id }, out pNodeVar);
+		//<#= targPkName #>
+		public virtual void <#= method #>(<#= targNodeIdType #> p<#= targPkName #>, out IWeaverVarAlias<<#= t #>> pNodeVar) {
+			<#= method #>(new <#= t #> { <#= targPkName #> = p<#= targPkName #> }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

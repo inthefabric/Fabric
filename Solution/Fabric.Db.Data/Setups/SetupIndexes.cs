@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/3/2013 11:18:10 AM
+// Generated on 5/5/2013 9:20:44 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -32,13 +32,11 @@ namespace Fabric.Db.Data.Setups {
 
 			//App
 			pSet.AddIndexQuery(BuildGroup("Ap", 5));
-			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Id", "Long", true));
 			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Na", "String", false));
 			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Se", "String", false));
 
 			//Class
 			pSet.AddIndexQuery(BuildGroup("Cl", 6));
-			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Id", "Long", true));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Na", "String", false));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Di", "String", false));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_No", "String", false));
@@ -53,7 +51,6 @@ namespace Fabric.Db.Data.Setups {
 
 			//Instance
 			pSet.AddIndexQuery(BuildGroup("In", 8));
-			pSet.AddIndexQuery(BuildKey("In", "In_Id", "Long", true));
 			pSet.AddIndexQuery(BuildKey("In", "In_Na", "String", false));
 			pSet.AddIndexQuery(BuildKey("In", "In_Di", "String", false));
 			pSet.AddIndexQuery(BuildKey("In", "In_No", "String", false));
@@ -69,13 +66,11 @@ namespace Fabric.Db.Data.Setups {
 
 			//Url
 			pSet.AddIndexQuery(BuildGroup("Ur", 11));
-			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Id", "Long", true));
 			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Na", "String", false));
 			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Ab", "String", false));
 
 			//User
 			pSet.AddIndexQuery(BuildGroup("U", 12));
-			pSet.AddIndexQuery(BuildKey("U", "U_Id", "Long", true));
 			pSet.AddIndexQuery(BuildKey("U", "U_Na", "String", false));
 			pSet.AddIndexQuery(BuildKey("U", "U_Pa", "String", false));
 
@@ -136,7 +131,6 @@ namespace Fabric.Db.Data.Setups {
 
 			//AppUsesEmail
 			pSet.AddIndexQuery(BuildLabel("Ap-U-E", false, true, new [] {
-				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se",
 				"E_Id",
@@ -148,7 +142,6 @@ namespace Fabric.Db.Data.Setups {
 
 			//AppDefinesMember
 			pSet.AddIndexQuery(BuildLabel("Ap-D-M", true, false, new [] {
-				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se",
 				"M_Id"
@@ -213,7 +206,6 @@ namespace Fabric.Db.Data.Setups {
 
 			//UserUsesEmail
 			pSet.AddIndexQuery(BuildLabel("U-U-E", false, true, new [] {
-				"U_Id",
 				"U_Na",
 				"U_Pa",
 				"E_Id",
@@ -225,7 +217,6 @@ namespace Fabric.Db.Data.Setups {
 
 			//UserDefinesMember
 			pSet.AddIndexQuery(BuildLabel("U-D-M", true, false, new [] {
-				"U_Id",
 				"U_Na",
 				"U_Pa",
 				"M_Id"
@@ -418,7 +409,6 @@ namespace Fabric.Db.Data.Setups {
 				"OA_Re",
 				"OA_Ex",
 				"OA_CO",
-				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se"
 			}));
@@ -430,7 +420,6 @@ namespace Fabric.Db.Data.Setups {
 				"OA_Re",
 				"OA_Ex",
 				"OA_CO",
-				"U_Id",
 				"U_Na",
 				"U_Pa"
 			}));
@@ -439,7 +428,6 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildLabel("OD-U-Ap", false, true, new [] {
 				"OD_Id",
 				"OD_Do",
-				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se"
 			}));
@@ -450,7 +438,6 @@ namespace Fabric.Db.Data.Setups {
 				"OG_Re",
 				"OG_Co",
 				"OG_Ex",
-				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se"
 			}));
@@ -461,7 +448,6 @@ namespace Fabric.Db.Data.Setups {
 				"OG_Re",
 				"OG_Co",
 				"OG_Ex",
-				"U_Id",
 				"U_Na",
 				"U_Pa"
 			}));
@@ -471,7 +457,6 @@ namespace Fabric.Db.Data.Setups {
 				"OS_Id",
 				"OS_Al",
 				"OS_Cr",
-				"Ap_Id",
 				"Ap_Na",
 				"Ap_Se"
 			}));
@@ -481,7 +466,6 @@ namespace Fabric.Db.Data.Setups {
 				"OS_Id",
 				"OS_Al",
 				"OS_Cr",
-				"U_Id",
 				"U_Na",
 				"U_Pa"
 			}));

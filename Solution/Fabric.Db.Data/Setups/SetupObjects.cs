@@ -419,11 +419,10 @@ namespace Fabric.Db.Data.Setups {
 		public void AddUrl(UrlId pId, string pAbsoluteUrl, string pName,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var u = new Url();
-			u.UrlId = (long)pId;
 			u.Name = pName;
 			u.AbsoluteUrl = pAbsoluteUrl;
 
-			vSet.AddNodeAndIndex(u, x => x.UrlId, vTestMode);
+			vSet.AddNode(u, vTestMode);
 
 			////
 			
@@ -535,12 +534,11 @@ namespace Fabric.Db.Data.Setups {
 		public void AddClass(ClassId pId, string pName, string pDisamb,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var c = new Class();
-			c.ClassId = (long)pId;
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = null;
 
-			vSet.AddNodeAndIndex(c, x => x.ClassId, vTestMode);
+			vSet.AddNode(c, vTestMode);
 
 			////
 
@@ -556,12 +554,11 @@ namespace Fabric.Db.Data.Setups {
 		public void AddInstance(InstanceId pId, string pName, string pDisamb,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var c = new Instance();
-			c.InstanceId = (long)pId;
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			c.Note = null;
 
-			vSet.AddNodeAndIndex(c, x => x.InstanceId, vTestMode);
+			vSet.AddNode(c, vTestMode);
 
 			////
 

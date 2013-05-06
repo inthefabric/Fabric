@@ -73,6 +73,7 @@ foreach ( string name in nodes ) {
 	bool isMainNode = (name == "Node");
 	string baseNode = (isMainNode ? "" : " : "+(hn.HasParentClass ? node.BaseNode.Name : "Node"));
 	string abs = (node.IsAbstract ? "abstract " : "");
+	bool isArtifactSubclass = (node.BaseNode != null && node.BaseNode.Name == "Artifact");
 #>
 	/*================================================================================================*/
 	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
@@ -166,7 +167,7 @@ foreach ( string name in nodes ) {
 <#
 	} //end base class condition
 
-	if ( !node.IsAbstract ) {
+	if ( !node.IsAbstract && !isArtifactSubclass ) {
 #>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

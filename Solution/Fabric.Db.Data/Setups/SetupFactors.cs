@@ -942,7 +942,7 @@ namespace Fabric.Db.Data.Setups {
 				f.Deleted = dt.AddMinutes(5).Ticks;
 			}
 
-			vSet.AddNodeAndIndex(f, x => x.FactorId, vTestMode);
+			vSet.AddNode(f, vTestMode);
 
 			var relM = DataRel.Create(vSet.GetNode<Member>((long)pMemId),
 				new MemberCreatesFactor(), f, vTestMode);

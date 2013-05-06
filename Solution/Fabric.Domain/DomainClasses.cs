@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:55:42 PM
+// Generated on 5/5/2013 9:20:44 PM
 
 using System;
 using System.Collections.Generic;
@@ -448,10 +448,6 @@ namespace Fabric.Domain {
 	public partial class App : Artifact {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		public virtual long AppId { get; set; }
-
-		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
 		//[PropLenMax(64)]
@@ -473,26 +469,12 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return AppId; }
-		public override void SetTypeId(long pTypeId) { AppId = pTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as App).AppId);
-		}
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public override void FillWithData(IDictionary<string,string> pData) {
 			if ( pData == null ) {
 				return;
 			}
 			
 			base.FillWithData(pData);
-			
-			if ( pData.ContainsKey("Ap_Id") ) {
-				AppId = long.Parse(pData["Ap_Id"]);
-			}
 			
 			if ( pData.ContainsKey("Ap_Na") ) {
 				Name = pData["Ap_Na"];
@@ -540,10 +522,6 @@ namespace Fabric.Domain {
 	public partial class Class : Artifact {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		public virtual long ClassId { get; set; }
-
-		[WeaverItemProperty]
 		//[PropLenMax(128)]
 		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
@@ -570,26 +548,12 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return ClassId; }
-		public override void SetTypeId(long pTypeId) { ClassId = pTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Class).ClassId);
-		}
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public override void FillWithData(IDictionary<string,string> pData) {
 			if ( pData == null ) {
 				return;
 			}
 			
 			base.FillWithData(pData);
-			
-			if ( pData.ContainsKey("Cl_Id") ) {
-				ClassId = long.Parse(pData["Cl_Id"]);
-			}
 			
 			if ( pData.ContainsKey("Cl_Na") ) {
 				Name = pData["Cl_Na"];
@@ -698,10 +662,6 @@ namespace Fabric.Domain {
 	public partial class Instance : Artifact {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		public virtual long InstanceId { get; set; }
-
-		[WeaverItemProperty]
 		//[PropIsNullable(True)]
 		//[PropLenMax(128)]
 		//[PropLenMin(1)]
@@ -729,26 +689,12 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return InstanceId; }
-		public override void SetTypeId(long pTypeId) { InstanceId = pTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Instance).InstanceId);
-		}
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public override void FillWithData(IDictionary<string,string> pData) {
 			if ( pData == null ) {
 				return;
 			}
 			
 			base.FillWithData(pData);
-			
-			if ( pData.ContainsKey("In_Id") ) {
-				InstanceId = long.Parse(pData["In_Id"]);
-			}
 			
 			if ( pData.ContainsKey("In_Na") ) {
 				Name = pData["In_Na"];
@@ -905,10 +851,6 @@ namespace Fabric.Domain {
 	public partial class Url : Artifact {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		public virtual long UrlId { get; set; }
-
-		[WeaverItemProperty]
 		//[PropLenMax(128)]
 		//[PropLenMin(1)]
 		public virtual string Name { get; set; }
@@ -928,26 +870,12 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return UrlId; }
-		public override void SetTypeId(long pTypeId) { UrlId = pTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as Url).UrlId);
-		}
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public override void FillWithData(IDictionary<string,string> pData) {
 			if ( pData == null ) {
 				return;
 			}
 			
 			base.FillWithData(pData);
-			
-			if ( pData.ContainsKey("Ur_Id") ) {
-				UrlId = long.Parse(pData["Ur_Id"]);
-			}
 			
 			if ( pData.ContainsKey("Ur_Na") ) {
 				Name = pData["Ur_Na"];
@@ -964,10 +892,6 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	public partial class User : Artifact {
 	
-		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
-		public virtual long UserId { get; set; }
-
 		[WeaverItemProperty]
 		//[PropIsCaseInsensitive(True)]
 		//[PropIsUnique(True)]
@@ -991,26 +915,12 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return UserId; }
-		public override void SetTypeId(long pTypeId) { UserId = pTypeId; }
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as User).UserId);
-		}
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public override void FillWithData(IDictionary<string,string> pData) {
 			if ( pData == null ) {
 				return;
 			}
 			
 			base.FillWithData(pData);
-			
-			if ( pData.ContainsKey("U_Id") ) {
-				UserId = long.Parse(pData["U_Id"]);
-			}
 			
 			if ( pData.ContainsKey("U_Na") ) {
 				Name = pData["U_Na"];

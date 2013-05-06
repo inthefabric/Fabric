@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:11 PM
+// Generated on 5/5/2013 9:20:45 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -24,14 +24,10 @@ namespace Fabric.Infrastructure.Domain {
 		void ArtifactId(long pValue);
 		void ArtifactCreated(long pValue, string pParamName);
 		void ArtifactCreated(long pValue);
-		void AppId(long pValue, string pParamName);
-		void AppId(long pValue);
 		void AppName(string pValue, string pParamName);
 		void AppName(string pValue);
 		void AppSecret(string pValue, string pParamName);
 		void AppSecret(string pValue);
-		void ClassId(long pValue, string pParamName);
-		void ClassId(long pValue);
 		void ClassName(string pValue, string pParamName);
 		void ClassName(string pValue);
 		void ClassDisamb(string pValue, string pParamName);
@@ -48,8 +44,6 @@ namespace Fabric.Infrastructure.Domain {
 		void EmailCreated(long pValue);
 		void EmailVerified(long pValue, string pParamName);
 		void EmailVerified(long pValue);
-		void InstanceId(long pValue, string pParamName);
-		void InstanceId(long pValue);
 		void InstanceName(string pValue, string pParamName);
 		void InstanceName(string pValue);
 		void InstanceDisamb(string pValue, string pParamName);
@@ -62,14 +56,10 @@ namespace Fabric.Infrastructure.Domain {
 		void MemberTypeAssignId(long pValue);
 		void MemberTypeAssignMemberTypeId(byte pValue, string pParamName);
 		void MemberTypeAssignMemberTypeId(byte pValue);
-		void UrlId(long pValue, string pParamName);
-		void UrlId(long pValue);
 		void UrlName(string pValue, string pParamName);
 		void UrlName(string pValue);
 		void UrlAbsoluteUrl(string pValue, string pParamName);
 		void UrlAbsoluteUrl(string pValue);
-		void UserId(long pValue, string pParamName);
-		void UserId(long pValue);
 		void UserName(string pValue, string pParamName);
 		void UserName(string pValue);
 		void UserPassword(string pValue, string pParamName);
@@ -216,16 +206,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AppId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void AppId(long pValue) {
-			AppId(pValue, "AppId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public void AppName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
 			LengthBetween(pParamName, pValue, 3, 64);
@@ -250,16 +230,6 @@ namespace Fabric.Infrastructure.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void ClassId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void ClassId(long pValue) {
-			ClassId(pValue, "ClassId");
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
@@ -353,16 +323,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void InstanceId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void InstanceId(long pValue) {
-			InstanceId(pValue, "InstanceId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public void InstanceName(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
 			LengthBetween(pParamName, pValue, 1, 128);
@@ -434,16 +394,6 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void UrlId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void UrlId(long pValue) {
-			UrlId(pValue, "UrlId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public void UrlName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
 			LengthBetween(pParamName, pValue, 1, 128);
@@ -467,16 +417,6 @@ namespace Fabric.Infrastructure.Domain {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void UserId(long pValue, string pParamName) {
-			LongNotEqualTo(pParamName, pValue, 0);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void UserId(long pValue) {
-			UserId(pValue, "UserId");
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public void UserName(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);

@@ -111,6 +111,10 @@ namespace Fabric.Domain.Meta {
 					return hp;
 				}
 			}
+
+			if ( NodeSchema.BaseNode != null ) {
+				return new SchemaHelperNode(NodeSchema.BaseNode).GetPrimaryKeyProp();
+			}
 			
 			return null;
 		}

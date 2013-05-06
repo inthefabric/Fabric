@@ -47,11 +47,11 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverFuncAs<Member> memAlias;
 
 			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new User { UserId = pApiCtx.UserId })
+				ApiFunc.NewPathFromIndex(new User { ArtifactId = pApiCtx.UserId })
 				.DefinesMemberList.ToMember
 					.As(out memAlias)
 				.InAppDefines.FromApp
-					.Has(x => x.AppId, WeaverFuncHasOp.EqualTo, pApiCtx.AppId)
+					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, pApiCtx.AppId)
 				.Back(memAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.None)
@@ -78,7 +78,7 @@ namespace Fabric.Api.Modify.Tasks {
 			}
 
 			var c = new Class();
-			c.ClassId = (long)classId;
+			c.ArtifactId = (long)classId;
 			c.Name = pName;
 			c.Disamb = pDisamb;
 			return c;

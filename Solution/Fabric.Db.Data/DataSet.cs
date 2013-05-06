@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Db.Data {
@@ -91,8 +89,7 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public bool AddNodeAndIndex<T>(T pDomainNode, Expression<Func<T,object>> pIndexValueFunc,
-															bool pIsForTesting) where T : INode {
+		public bool AddNode<T>(T pDomainNode, bool pIsForTesting) where T : INode {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
 			DataNode<T> n = DataNode.Create(pDomainNode, pIsForTesting);
 			Nodes.Add(n);

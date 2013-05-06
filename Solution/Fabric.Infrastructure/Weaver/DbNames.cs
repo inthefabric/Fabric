@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:55:44 PM
+// Generated on 5/5/2013 9:20:45 PM
 
 using System;
 using System.Collections.Generic;
@@ -108,11 +108,9 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string Artifact_ArtifactId = "A_AId";
 		public const string Artifact_Created = "A_Cr";
 
-		public const string App_AppId = "Ap_Id";
 		public const string App_Name = "Ap_Na";
 		public const string App_Secret = "Ap_Se";
 
-		public const string Class_ClassId = "Cl_Id";
 		public const string Class_Name = "Cl_Na";
 		public const string Class_Disamb = "Cl_Di";
 		public const string Class_Note = "Cl_No";
@@ -123,7 +121,6 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string Email_Created = "E_Cr";
 		public const string Email_Verified = "E_Ve";
 
-		public const string Instance_InstanceId = "In_Id";
 		public const string Instance_Name = "In_Na";
 		public const string Instance_Disamb = "In_Di";
 		public const string Instance_Note = "In_No";
@@ -133,11 +130,9 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string MemberTypeAssign_MemberTypeAssignId = "MTA_Id";
 		public const string MemberTypeAssign_MemberTypeId = "MTA_Mt";
 
-		public const string Url_UrlId = "Ur_Id";
 		public const string Url_Name = "Ur_Na";
 		public const string Url_AbsoluteUrl = "Ur_Ab";
 
-		public const string User_UserId = "U_Id";
 		public const string User_Name = "U_Na";
 		public const string User_Password = "U_Pa";
 
@@ -199,29 +194,14 @@ namespace Fabric.Infrastructure.Weaver {
 			TypeIdMap.Add(typeof(Artifact), Artifact_ArtifactId);
 			StrTypeIdMap.Add("Artifact", Artifact_ArtifactId);
 
-			TypeIdMap.Add(typeof(App), App_AppId);
-			StrTypeIdMap.Add("App", App_AppId);
-
-			TypeIdMap.Add(typeof(Class), Class_ClassId);
-			StrTypeIdMap.Add("Class", Class_ClassId);
-
 			TypeIdMap.Add(typeof(Email), Email_EmailId);
 			StrTypeIdMap.Add("Email", Email_EmailId);
-
-			TypeIdMap.Add(typeof(Instance), Instance_InstanceId);
-			StrTypeIdMap.Add("Instance", Instance_InstanceId);
 
 			TypeIdMap.Add(typeof(Member), Member_MemberId);
 			StrTypeIdMap.Add("Member", Member_MemberId);
 
 			TypeIdMap.Add(typeof(MemberTypeAssign), MemberTypeAssign_MemberTypeAssignId);
 			StrTypeIdMap.Add("MemberTypeAssign", MemberTypeAssign_MemberTypeAssignId);
-
-			TypeIdMap.Add(typeof(Url), Url_UrlId);
-			StrTypeIdMap.Add("Url", Url_UrlId);
-
-			TypeIdMap.Add(typeof(User), User_UserId);
-			StrTypeIdMap.Add("User", User_UserId);
 
 			TypeIdMap.Add(typeof(Factor), Factor_FactorId);
 			StrTypeIdMap.Add("Factor", Factor_FactorId);

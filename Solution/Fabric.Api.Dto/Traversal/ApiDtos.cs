@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/17/2013 4:25:27 PM
+// Generated on 5/5/2013 9:20:45 PM
 
 using System;
 using System.Collections.Generic;
@@ -107,13 +107,10 @@ namespace Fabric.Api.Dto.Traversal {
 	public class FabApp : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
-		public long AppId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"AppId", "Name"
+			"Name"
 		};
 
 
@@ -127,7 +124,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return AppId; } }
+		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -136,9 +133,6 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["Ap_Id"];
-			AppId = long.Parse(val);
-
 			found = pData.TryGetValue("Ap_Na", out val);
 			if ( found ) { Name = val; }
 		}
@@ -146,7 +140,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(App pNode) {
 			base.FillWithNode(pNode);
-			AppId = pNode.AppId;
 			Name = pNode.Name;
 		}
 		
@@ -160,9 +153,6 @@ namespace Fabric.Api.Dto.Traversal {
 	public class FabClass : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
-		public long ClassId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
 		[DtoProp(IsOptional=true)]
@@ -172,7 +162,7 @@ namespace Fabric.Api.Dto.Traversal {
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"ClassId", "Name", "Disamb", "Note"
+			"Name", "Disamb", "Note"
 		};
 
 
@@ -186,7 +176,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return ClassId; } }
+		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -194,9 +184,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 			string val;
 			bool found;
-
-			val = pData["Cl_Id"];
-			ClassId = long.Parse(val);
 
 			found = pData.TryGetValue("Cl_Na", out val);
 			if ( found ) { Name = val; }
@@ -211,7 +198,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(Class pNode) {
 			base.FillWithNode(pNode);
-			ClassId = pNode.ClassId;
 			Name = pNode.Name;
 			Disamb = pNode.Disamb;
 			Note = pNode.Note;
@@ -226,9 +212,6 @@ namespace Fabric.Api.Dto.Traversal {
 	/*================================================================================================*/
 	public class FabInstance : FabArtifact {
 		
-		[DtoProp(IsOptional=false)]
-		public long InstanceId { get; set; }
-		
 		[DtoProp(IsOptional=true)]
 		public string Name { get; set; }
 		
@@ -239,7 +222,7 @@ namespace Fabric.Api.Dto.Traversal {
 		public string Note { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"InstanceId", "Name", "Disamb", "Note"
+			"Name", "Disamb", "Note"
 		};
 
 
@@ -253,7 +236,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return InstanceId; } }
+		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -261,9 +244,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 			string val;
 			bool found;
-
-			val = pData["In_Id"];
-			InstanceId = long.Parse(val);
 
 			found = pData.TryGetValue("In_Na", out val);
 			if ( found ) { Name = val; }
@@ -278,7 +258,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(Instance pNode) {
 			base.FillWithNode(pNode);
-			InstanceId = pNode.InstanceId;
 			Name = pNode.Name;
 			Disamb = pNode.Disamb;
 			Note = pNode.Note;
@@ -389,16 +368,13 @@ namespace Fabric.Api.Dto.Traversal {
 	public class FabUrl : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
-		public long UrlId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
 		[DtoProp(IsOptional=false)]
 		public string AbsoluteUrl { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"UrlId", "Name", "AbsoluteUrl"
+			"Name", "AbsoluteUrl"
 		};
 
 
@@ -412,7 +388,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return UrlId; } }
+		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -420,9 +396,6 @@ namespace Fabric.Api.Dto.Traversal {
 
 			string val;
 			bool found;
-
-			val = pData["Ur_Id"];
-			UrlId = long.Parse(val);
 
 			found = pData.TryGetValue("Ur_Na", out val);
 			if ( found ) { Name = val; }
@@ -434,7 +407,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(Url pNode) {
 			base.FillWithNode(pNode);
-			UrlId = pNode.UrlId;
 			Name = pNode.Name;
 			AbsoluteUrl = pNode.AbsoluteUrl;
 		}
@@ -449,13 +421,10 @@ namespace Fabric.Api.Dto.Traversal {
 	public class FabUser : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
-		public long UserId { get; set; }
-		
-		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
 		private static readonly List<string> AvailNodeProps = new List<string> {
-			"UserId", "Name"
+			"Name"
 		};
 
 
@@ -469,7 +438,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return UserId; } }
+		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -478,9 +447,6 @@ namespace Fabric.Api.Dto.Traversal {
 			string val;
 			bool found;
 
-			val = pData["U_Id"];
-			UserId = long.Parse(val);
-
 			found = pData.TryGetValue("U_Na", out val);
 			if ( found ) { Name = val; }
 		}
@@ -488,7 +454,6 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithNode(User pNode) {
 			base.FillWithNode(pNode);
-			UserId = pNode.UserId;
 			Name = pNode.Name;
 		}
 		

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 11:58:08 PM
+// Generated on 5/5/2013 9:20:45 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -78,6 +78,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -110,6 +111,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToInFactorListUsesPrimary(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToInFactorListUsesPrimary(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -142,6 +144,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToInFactorListUsesRelated(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToInFactorListUsesRelated(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -174,6 +177,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToInFactorListDescriptorRefinesPrimaryWith(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -206,6 +210,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToInFactorListDescriptorRefinesRelatedWith(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -238,6 +243,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToInFactorListDescriptorRefinesTypeWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToInFactorListDescriptorRefinesTypeWith(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -270,6 +276,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToInFactorListVectorUsesAxis(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToInFactorListVectorUsesAxis(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -302,9 +309,8 @@ namespace Fabric.Infrastructure.Weaver {
 		public AppBuilder(TxBuilder pTx) : base(pTx) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public AppBuilder(TxBuilder pTx, long pAppId) : 
-			base(pTx, new App { AppId = pAppId }) {}
-		
+		public AppBuilder(TxBuilder pTx, long pArtifactId) : 
+			base(pTx, new App { ArtifactId = pArtifactId }) {}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -327,6 +333,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//EmailId
 		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
 			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
 		}
@@ -359,6 +366,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -391,6 +399,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthAccessId
 		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
 			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
 		}
@@ -423,6 +432,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthDomainId
 		public virtual void AddToInOauthDomainListUses(long pOauthDomainId, out IWeaverVarAlias<OauthDomain> pNodeVar) {
 			AddToInOauthDomainListUses(new OauthDomain { OauthDomainId = pOauthDomainId }, out pNodeVar);
 		}
@@ -455,6 +465,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthGrantId
 		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
 			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
 		}
@@ -487,6 +498,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthScopeId
 		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
 			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
 		}
@@ -513,9 +525,8 @@ namespace Fabric.Infrastructure.Weaver {
 		public ClassBuilder(TxBuilder pTx) : base(pTx) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassBuilder(TxBuilder pTx, long pClassId) : 
-			base(pTx, new Class { ClassId = pClassId }) {}
-		
+		public ClassBuilder(TxBuilder pTx, long pArtifactId) : 
+			base(pTx, new Class { ArtifactId = pArtifactId }) {}
 		
 
 	}
@@ -539,7 +550,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new Email { EmailId = pEmailId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInAppListUses(IWeaverVarAlias<App> pTargetNodeVar) {
@@ -561,8 +571,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInAppListUses(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			AddToInAppListUses(new App { AppId = pAppId }, out pNodeVar);
+		//ArtifactId
+		public virtual void AddToInAppListUses(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
+			AddToInAppListUses(new App { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -593,8 +604,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInUserListUses(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			AddToInUserListUses(new User { UserId = pUserId }, out pNodeVar);
+		//ArtifactId
+		public virtual void AddToInUserListUses(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
+			AddToInUserListUses(new User { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -619,9 +631,8 @@ namespace Fabric.Infrastructure.Weaver {
 		public InstanceBuilder(TxBuilder pTx) : base(pTx) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public InstanceBuilder(TxBuilder pTx, long pInstanceId) : 
-			base(pTx, new Instance { InstanceId = pInstanceId }) {}
-		
+		public InstanceBuilder(TxBuilder pTx, long pArtifactId) : 
+			base(pTx, new Instance { ArtifactId = pArtifactId }) {}
 		
 
 	}
@@ -650,7 +661,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new Member { MemberId = pMemberId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppDefines(IWeaverVarAlias<App> pTargetNodeVar) {
@@ -671,8 +681,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppDefines(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetInAppDefines(new App { AppId = pAppId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetInAppDefines(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
+			SetInAppDefines(new App { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -702,6 +713,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberTypeAssignId
 		public virtual void SetHasMemberTypeAssign(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			SetHasMemberTypeAssign(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
 		}
@@ -734,6 +746,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberTypeAssignId
 		public virtual void AddToHasHistoricMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			AddToHasHistoricMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
 		}
@@ -766,6 +779,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void AddToCreatesArtifactList(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			AddToCreatesArtifactList(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -798,6 +812,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberTypeAssignId
 		public virtual void AddToCreatesMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
 			AddToCreatesMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
 		}
@@ -830,6 +845,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//FactorId
 		public virtual void AddToCreatesFactorList(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
 			AddToCreatesFactorList(new Factor { FactorId = pFactorId }, out pNodeVar);
 		}
@@ -861,8 +877,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetInUserDefines(new User { UserId = pUserId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetInUserDefines(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
+			SetInUserDefines(new User { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -894,7 +911,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHas(IWeaverVarAlias<Member> pTargetNodeVar) {
@@ -915,6 +931,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void SetInMemberHas(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberHas(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -946,6 +963,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void SetInMemberHasHistoric(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberHasHistoric(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -977,6 +995,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -1003,9 +1022,8 @@ namespace Fabric.Infrastructure.Weaver {
 		public UrlBuilder(TxBuilder pTx) : base(pTx) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlBuilder(TxBuilder pTx, long pUrlId) : 
-			base(pTx, new Url { UrlId = pUrlId }) {}
-		
+		public UrlBuilder(TxBuilder pTx, long pArtifactId) : 
+			base(pTx, new Url { ArtifactId = pArtifactId }) {}
 		
 
 	}
@@ -1028,9 +1046,8 @@ namespace Fabric.Infrastructure.Weaver {
 		public UserBuilder(TxBuilder pTx) : base(pTx) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public UserBuilder(TxBuilder pTx, long pUserId) : 
-			base(pTx, new User { UserId = pUserId }) {}
-		
+		public UserBuilder(TxBuilder pTx, long pArtifactId) : 
+			base(pTx, new User { ArtifactId = pArtifactId }) {}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1053,6 +1070,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//EmailId
 		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
 			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
 		}
@@ -1085,6 +1103,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -1117,6 +1136,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthAccessId
 		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
 			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
 		}
@@ -1149,6 +1169,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthGrantId
 		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
 			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
 		}
@@ -1181,6 +1202,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//OauthScopeId
 		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
 			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
 		}
@@ -1218,7 +1240,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new Factor { FactorId = pFactorId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
@@ -1239,6 +1260,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//MemberId
 		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
 			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
 		}
@@ -1270,6 +1292,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void SetUsesPrimaryArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetUsesPrimaryArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -1301,6 +1324,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void SetUsesRelatedArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetUsesRelatedArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -1332,6 +1356,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void SetDescriptorRefinesPrimaryWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetDescriptorRefinesPrimaryWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -1363,6 +1388,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void SetDescriptorRefinesRelatedWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetDescriptorRefinesRelatedWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -1394,6 +1420,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void SetDescriptorRefinesTypeWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetDescriptorRefinesTypeWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -1425,6 +1452,7 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+		//ArtifactId
 		public virtual void SetVectorUsesAxisArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
 			SetVectorUsesAxisArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
 		}
@@ -1457,7 +1485,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new OauthAccess { OauthAccessId = pOauthAccessId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
@@ -1478,8 +1505,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1509,8 +1537,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetUsesUser(new User { UserId = pUserId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
+			SetUsesUser(new User { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1540,7 +1569,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new OauthDomain { OauthDomainId = pOauthDomainId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
@@ -1561,8 +1589,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1593,7 +1622,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new OauthGrant { OauthGrantId = pOauthGrantId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
@@ -1614,8 +1642,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1645,8 +1674,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetUsesUser(new User { UserId = pUserId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
+			SetUsesUser(new User { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1677,7 +1707,6 @@ namespace Fabric.Infrastructure.Weaver {
 			base(pTx, new OauthScope { OauthScopeId = pOauthScopeId }) {}
 		
 		
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
@@ -1698,8 +1727,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(long pAppId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { AppId = pAppId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -1729,8 +1759,9 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(long pUserId, out IWeaverVarAlias<User> pNodeVar) {
-			SetUsesUser(new User { UserId = pUserId }, out pNodeVar);
+		//ArtifactId
+		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
+			SetUsesUser(new User { ArtifactId = pArtifactId }, out pNodeVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

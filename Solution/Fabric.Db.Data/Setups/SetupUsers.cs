@@ -208,7 +208,7 @@ namespace Fabric.Db.Data.Setups {
 			e.Created = vSet.SetupTimestamp;
 			e.Verified = vSet.SetupTimestamp+10000000;
 
-			vSet.AddNodeAndIndex(e, x => x.EmailId, vTestMode);
+			vSet.AddNode(e, vTestMode);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -217,7 +217,7 @@ namespace Fabric.Db.Data.Setups {
 			var m = new Member();
 			m.MemberId = (long)pId;
 
-			vSet.AddNodeAndIndex(m, x => x.MemberId, vTestMode);
+			vSet.AddNode(m, vTestMode);
 
 			var relA = DataRel.Create(vSet.GetNode<App>((long)pAppId),
 				new AppDefinesMember(), m, vTestMode);
@@ -238,7 +238,7 @@ namespace Fabric.Db.Data.Setups {
 			mta.MemberTypeId = (byte)pMemTypeId;
 			mta.Performed = vSet.SetupTimestamp;
 
-			vSet.AddNodeAndIndex(mta, x => x.MemberTypeAssignId, vTestMode);
+			vSet.AddNode(mta, vTestMode);
 
 			var relAsn = DataRel.Create(vSet.GetNode<Member>((long)pAssignerId),
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
@@ -261,11 +261,10 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddApp(AppId pId, string pName, EmailId pEmailId, string pSecret) {
 			var a = new App();
-			a.AppId = (long)pId;
 			a.Name = pName;
 			a.Secret = pSecret;
 
-			vSet.AddNodeAndIndex(a, x => x.AppId, vTestMode);
+			vSet.AddNode(a, vTestMode);
 
 			var relE = DataRel.Create(
 				a, new AppUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);
@@ -275,11 +274,10 @@ namespace Fabric.Db.Data.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddUser(UserId pId, string pName, string pPass, EmailId pEmailId) {
 			var u = new User();
-			u.UserId = (long)pId;
 			u.Name = pName;
 			u.Password = FabricUtil.HashPassword(pPass);
 
-			vSet.AddNodeAndIndex(u, x => x.UserId, vTestMode);
+			vSet.AddNode(u, vTestMode);
 
 			var relE = DataRel.Create(
 				u, new UserUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);

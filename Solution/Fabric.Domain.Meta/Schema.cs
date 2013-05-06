@@ -71,8 +71,6 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema app = AddNode("App", "Ap");
 			app.BaseNode = artifact;
-			p = AddProp(app, "AppId", "Id", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(app, "Name", "Na", typeof(string));
 				p.LenMin = 3;
 				p.LenMax = 64;
@@ -86,8 +84,6 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema clas = AddNode("Class", "Cl");
 			clas.BaseNode = artifact;
-			p = AddProp(clas, "ClassId", "Id", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(clas, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -105,8 +101,6 @@ namespace Fabric.Domain.Meta {
 			/*WeaverNodeSchema crowd = AddNode("Crowd", "C");
 			crowd.BaseNode = artifact;
 			crowd.IsInternal = true;
-			p = AddProp(crowd, "CrowdId", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(crowd, "Name", typeof(string));
 				p.LenMin = 3;
 				p.LenMax = 64;
@@ -118,12 +112,6 @@ namespace Fabric.Domain.Meta {
 			WeaverNodeSchema crowdian = AddNode("Crowdian", "Cn");
 			crowdian.IsInternal = true;
 			p = AddProp(crowdian, "CrowdianId", typeof(long));
-				p.IsPrimaryKey = true;
-
-			WeaverNodeSchema crowdianType = AddNode("CrowdianType", "CT");
-			crowdianType.IsInternal = true;
-			crowdianType.BaseNode = nodeForType;
-			p = AddProp(crowdianType, "CrowdianTypeId", typeof(long));
 				p.IsPrimaryKey = true;
 
 			WeaverNodeSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
@@ -154,8 +142,6 @@ namespace Fabric.Domain.Meta {
 			
 			WeaverNodeSchema instance = AddNode("Instance", "In");
 			instance.BaseNode = artifact;
-			p = AddProp(instance, "InstanceId", "Id", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(instance, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -174,8 +160,6 @@ namespace Fabric.Domain.Meta {
 			/*WeaverNodeSchema label = AddNode("Label", "L");
 			label.IsInternal = true;
 			label.BaseNode = artifact;
-			p = AddProp(label, "LabelId", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(label, "Name", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -196,8 +180,6 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
 			url.BaseNode = artifact;
-			p = AddProp(url, "UrlId", "Id", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(url, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -209,8 +191,6 @@ namespace Fabric.Domain.Meta {
 
 			WeaverNodeSchema user = AddNode("User", "U");
 			user.BaseNode = artifact;
-			p = AddProp(user, "UserId", "Id", typeof(long));
-				p.IsPrimaryKey = true;
 			p = AddProp(user, "Name", "Na", typeof(string));
 				p.LenMin = 4;
 				p.LenMax = 16;

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 4/16/2013 3:43:12 PM
+// Generated on 5/5/2013 9:20:47 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -34,9 +34,6 @@ namespace Fabric.Api.Meta {
 				case "Artifact.Created":
 					break;
 
-				case "App.AppId":
-					break;
-
 				case "App.Name":
 					pValue.LenMax = 64;
 					pValue.LenMin = 3;
@@ -46,9 +43,6 @@ namespace Fabric.Api.Meta {
 				case "App.Secret":
 					pValue.Len = 32;
 					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
-					break;
-
-				case "Class.ClassId":
 					break;
 
 				case "Class.Name":
@@ -88,9 +82,6 @@ namespace Fabric.Api.Meta {
 				case "Email.Verified":
 					break;
 
-				case "Instance.InstanceId":
-					break;
-
 				case "Instance.Name":
 					pValue.LenMax = 128;
 					pValue.LenMin = 1;
@@ -117,9 +108,6 @@ namespace Fabric.Api.Meta {
 				case "MemberTypeAssign.MemberTypeId":
 					break;
 
-				case "Url.UrlId":
-					break;
-
 				case "Url.Name":
 					pValue.LenMax = 128;
 					pValue.LenMin = 1;
@@ -128,9 +116,6 @@ namespace Fabric.Api.Meta {
 				case "Url.AbsoluteUrl":
 					pValue.LenMax = 2048;
 					pValue.LenMin = 1;
-					break;
-
-				case "User.UserId":
 					break;
 
 				case "User.Name":
@@ -315,14 +300,6 @@ namespace Fabric.Api.Meta {
 					pProp.IsTimestamp = true;
 					break;
 
-				case "App.AppId":
-					pProp.Name = "AppId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.Enum = null;
-					pProp.IsPrimaryKey = true;
-					break;
-
 				case "App.Name":
 					pProp.Name = "Name";
 					pProp.Type = "string";
@@ -330,14 +307,6 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
 					pProp.IsUnique = true;
-					break;
-
-				case "Class.ClassId":
-					pProp.Name = "ClassId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.Enum = null;
-					pProp.IsPrimaryKey = true;
 					break;
 
 				case "Class.Name":
@@ -361,14 +330,6 @@ namespace Fabric.Api.Meta {
 					pProp.Description = SpecDoc.GetDtoPropText("Class_Note");
 					pProp.Enum = null;
 					pProp.IsNullable = true;
-					break;
-
-				case "Instance.InstanceId":
-					pProp.Name = "InstanceId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.Enum = null;
-					pProp.IsPrimaryKey = true;
 					break;
 
 				case "Instance.Name":
@@ -418,14 +379,6 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "MemberType";
 					break;
 
-				case "Url.UrlId":
-					pProp.Name = "UrlId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.Enum = null;
-					pProp.IsPrimaryKey = true;
-					break;
-
 				case "Url.Name":
 					pProp.Name = "Name";
 					pProp.Type = "string";
@@ -440,14 +393,6 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
 					pProp.IsUnique = true;
-					break;
-
-				case "User.UserId":
-					pProp.Name = "UserId";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Object_TypeId");
-					pProp.Enum = null;
-					pProp.IsPrimaryKey = true;
 					break;
 
 				case "User.Name":
