@@ -119,13 +119,18 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyRequiredArtifacts() {
 			var map = new Dictionary<long, IList<KeyValuePair<int, string>>>();
+			int count = 0;
+			int hit = 0;
 
 			foreach ( List<int> indexList in vIndexes ) {
 				foreach ( int i in indexList ) {
 					FactorOperationSet fos = vOpSets[i];
 
 					foreach ( KeyValuePair<string, long> pair in fos.RequiredArtifacts ) {
+						count++;
+
 						if ( ApiCtx.Cache.Memory.FindExists<Artifact>(pair.Value) == true ) {
+							hit++;
 							continue; //skip verification; the Artifact exists
 						}
 
@@ -137,6 +142,8 @@ namespace Fabric.Api.Modify {
 					}
 				}
 			}
+
+			Log.Debug("Artifact Cache: "+hit+"/"+count);
 
 			var queries = new List<IWeaverScript>();
 

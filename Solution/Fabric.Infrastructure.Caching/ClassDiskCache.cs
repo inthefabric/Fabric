@@ -12,11 +12,11 @@ namespace Fabric.Infrastructure.Caching {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassDiskCache(string pDiskCacheName, bool pForTesting) {
-			//return;
+			return;
 			var opt = new BPlusTree<string, long>.OptionsV2(
 				PrimitiveSerializer.String, PrimitiveSerializer.Int64, StringComparer.Ordinal);
 			opt.CreateFile = CreatePolicy.IfNeeded;
-			opt.StoragePerformance = StoragePerformance.LogFileInCache;
+			opt.StoragePerformance = StoragePerformance.CommitToDisk;
 
 			if ( pForTesting ) {
 				opt.CreateFile = CreatePolicy.Always;
@@ -35,7 +35,7 @@ namespace Fabric.Infrastructure.Caching {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddClass(long pClassId, string pName, string pDisamb) {
-			//return;
+			return;
 			DateTime t = DateTime.UtcNow;
 			string key = GetMapKey(pName, pDisamb);
 			Add(key, pClassId);
@@ -44,7 +44,7 @@ namespace Fabric.Infrastructure.Caching {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public long? FindClassId(string pName, string pDisamb) {
-			//return null;
+			return null;
 			DateTime t = DateTime.UtcNow;
 			string key = GetMapKey(pName, pDisamb);
 			long? result = (ContainsKey(key) ? Get(key) : (long?)null);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:18 PM
+// Generated on 5/7/2013 11:54:55 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -13,8 +13,6 @@ namespace Fabric.Db.Data.Setups {
 		public static void SetupAll(DataSet pSet) {
 
 			//VERTICES
-
-			pSet.AddIndexQuery(BuildKey(null, "FT", "Integer", true));
 
 			//Node
 			pSet.AddIndexQuery(BuildGroup("N", 2));

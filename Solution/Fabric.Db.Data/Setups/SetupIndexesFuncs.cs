@@ -22,7 +22,7 @@ namespace Fabric.Db.Data.Setups {
 					"g.makeType()"+
 					".dataType("+pType+".class)"+
 					".name('"+pProp+"')"+
-					".unique(OUT)"; //,NO_LOCK)";
+					".unique(OUT)"; //,com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency.NO_LOCK)";
 
 			if ( pNode != null ) {
 				script += ".group(Group_"+pNode+")";

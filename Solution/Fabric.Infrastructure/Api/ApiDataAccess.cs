@@ -57,6 +57,12 @@ namespace Fabric.Infrastructure.Api {
 			Request = BuildRequest(pScriptedList);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public ApiDataAccess(IApiContext pContext, RexConnTcpRequest pRequest) {
+			ApiCtx = pContext;
+			Request = pRequest;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -207,7 +213,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private RexConnTcpRequestCommand BuildRequestCommand(string pScript,
+		public static RexConnTcpRequestCommand BuildRequestCommand(string pScript,
 														IDictionary<string, IWeaverQueryVal> pParams) {
 			var cmd = new RexConnTcpRequestCommand();
 			cmd.Cmd = RexConnCommand.Query;
@@ -256,7 +262,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddSessionAction(RexConnTcpRequest pReq, string pAction) {
+		public static void AddSessionAction(RexConnTcpRequest pReq, string pAction) {
 			var cmd = new RexConnTcpRequestCommand();
 			cmd.Cmd = RexConnCommand.Session;
 			cmd.Args = new List<string>(new[] { pAction });

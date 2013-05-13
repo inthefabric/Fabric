@@ -22,8 +22,6 @@ namespace Fabric.Db.Data.Setups {
 		public static void SetupAll(DataSet pSet) {
 
 			//VERTICES
-
-			pSet.AddIndexQuery(BuildKey(null, "FT", "Integer", true));
 <#
 var schema = new Schema();
 IList<WeaverNodeSchema> nodes = schema.Nodes;

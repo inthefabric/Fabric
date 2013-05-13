@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Fabric.Infrastructure.Db;
 using Weaver;
 using Weaver.Interfaces;
 
@@ -76,6 +77,12 @@ namespace Fabric.Infrastructure.Api {
 			var a = NewAccess(pScriptedList);
 			return DbDataAccess(pQueryName, a);
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IApiDataAccess DbData(string pQueryName, RexConnTcpRequest pRequest) {
+			var a = NewAccess(pRequest);
+			return DbDataAccess(pQueryName, a);
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new() {
@@ -140,6 +147,11 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess NewAccess(IList<IWeaverScript> pScriptedList) {
 			return new ApiDataAccess(this, pScriptedList);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual IApiDataAccess NewAccess(RexConnTcpRequest pRequest) {
+			return new ApiDataAccess(this, pRequest);
 		}
 
 

@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using Fabric.Api.Common;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using Nancy;
 using Weaver.Interfaces;
@@ -24,7 +25,7 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildResponse() {
 			try {
-				if ( NancyReq.Query["pass"] != "asdfasdf" ) {
+				if ( NancyReq.Query["pass"] != "build-0.1.29" ) {
 					return "Password required.";
 				}
 
@@ -61,8 +62,26 @@ namespace Fabric.Api.Internal.Setups {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
-			Log.Debug("Create Indexes");
-			ApiCtx.DbData("addIndex", vDataSet.Indexes.ToList<IWeaverScript>());
+			Log.Debug("Create Indexes...");
+
+			var req = new RexConnTcpRequest();
+			req.ReqId = ApiCtx.ContextId.ToString();
+			req.CmdList = new List<RexConnTcpRequestCommand>();
+			ApiDataAccess.AddSessionAction(req, RexConnSessionAction.Start);
+			IApiDataAccess data = ApiCtx.DbData("StartIndexes", req);
+
+			req.SessId = data.Response.SessId;
+
+			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
+				req.CmdList = new List<RexConnTcpRequestCommand>();
+				req.CmdList.Add(ApiDataAccess.BuildRequestCommand(q.Script, q.Params));
+				ApiCtx.DbData("AddIndex", req);
+			}
+			
+			req.CmdList = new List<RexConnTcpRequestCommand>();
+			ApiDataAccess.AddSessionAction(req, RexConnSessionAction.Commit);
+			ApiDataAccess.AddSessionAction(req, RexConnSessionAction.Close);
+			ApiCtx.DbData("CommitIndexes", req);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
