@@ -77,6 +77,7 @@ namespace Fabric.Domain.Meta {
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidTitleRegex;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(app, "Secret", "Se", typeof(string));
 				p.Len = 32;
 				p.IsInternal = true;
@@ -88,11 +89,13 @@ namespace Fabric.Domain.Meta {
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.ValidRegex = ValidTitleRegex;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(clas, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(clas, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
@@ -147,11 +150,13 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(instance, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(instance, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
@@ -183,11 +188,13 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(url, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(url, "AbsoluteUrl", "Ab", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 2048;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
+				p.IndexWithElasticSearch = true;
 
 			WeaverNodeSchema user = AddNode("User", "U");
 			user.BaseNode = artifact;
@@ -197,6 +204,7 @@ namespace Fabric.Domain.Meta {
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidUserRegex;
+				p.IndexWithElasticSearch = true;
 			p = AddProp(user, "Password", "Pa", typeof(string));
 				p.LenMin = 8;
 				p.LenMax = 32;
@@ -290,6 +298,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthDomain, "Domain", "Do", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
+				p.IsCaseInsensitive = true; //TODO: ensure that domains are stored with ToLower()
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
 			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
@@ -300,6 +309,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthGrant, "RedirectUri", "Re", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 450;
+				p.IsCaseInsensitive = true; //TODO: ensure that redirect URL is stored with ToLower()
 			p = AddProp(oauthGrant, "Code", "Co", typeof(string));
 				p.Len = 32;
 				p.IsUnique = true;

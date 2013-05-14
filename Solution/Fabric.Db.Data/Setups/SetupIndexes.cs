@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/7/2013 11:54:55 PM
+// Generated on 5/13/2013 4:55:45 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -30,13 +30,13 @@ namespace Fabric.Db.Data.Setups {
 
 			//App
 			pSet.AddIndexQuery(BuildGroup("Ap", 5));
-			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Na", "String", true, "search"));
 			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Se", "String", false));
 
 			//Class
 			pSet.AddIndexQuery(BuildGroup("Cl", 6));
-			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Na", "String", false));
-			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Di", "String", false));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Na", "String", true, "search"));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Di", "String", true, "search"));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_No", "String", false));
 
 			//Email
@@ -49,8 +49,8 @@ namespace Fabric.Db.Data.Setups {
 
 			//Instance
 			pSet.AddIndexQuery(BuildGroup("In", 8));
-			pSet.AddIndexQuery(BuildKey("In", "In_Na", "String", false));
-			pSet.AddIndexQuery(BuildKey("In", "In_Di", "String", false));
+			pSet.AddIndexQuery(BuildKey("In", "In_Na", "String", true, "search"));
+			pSet.AddIndexQuery(BuildKey("In", "In_Di", "String", true, "search"));
 			pSet.AddIndexQuery(BuildKey("In", "In_No", "String", false));
 
 			//Member
@@ -60,43 +60,43 @@ namespace Fabric.Db.Data.Setups {
 			//MemberTypeAssign
 			pSet.AddIndexQuery(BuildGroup("MTA", 10));
 			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Id", "Long", true));
-			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Mt", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("MTA", "MTA_Mt", "Byte", false));
 
 			//Url
 			pSet.AddIndexQuery(BuildGroup("Ur", 11));
-			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Na", "String", false));
-			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Ab", "String", false));
+			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Na", "String", true, "search"));
+			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Ab", "String", true, "search"));
 
 			//User
 			pSet.AddIndexQuery(BuildGroup("U", 12));
-			pSet.AddIndexQuery(BuildKey("U", "U_Na", "String", false));
+			pSet.AddIndexQuery(BuildKey("U", "U_Na", "String", true, "search"));
 			pSet.AddIndexQuery(BuildKey("U", "U_Pa", "String", false));
 
 			//Factor
 			pSet.AddIndexQuery(BuildGroup("F", 13));
 			pSet.AddIndexQuery(BuildKey("F", "F_Id", "Long", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_Fa", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_Fa", "Byte", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Df", "Boolean", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Cr", "Long", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Dl", "Long", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_Co", "Long", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_No", "String", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_DeT", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_DiT", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_DiP", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_DiR", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_EvT", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_EvP", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_DeT", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiT", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiP", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_DiR", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvT", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvP", "Byte", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_EvD", "Long", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_IdT", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_IdT", "Byte", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_IdV", "String", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_LoT", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoT", "Byte", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoX", "Double", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoY", "Double", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoZ", "Double", false));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeT", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeU", "Byte", true));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeP", "Byte", true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeT", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeU", "Byte", false));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeP", "Byte", false));
 			pSet.AddIndexQuery(BuildKey("F", "F_VeV", "Long", false));
 
 			//OauthAccess

@@ -17,7 +17,8 @@ namespace Fabric.Db.Data.Setups {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverQuery BuildKey(string pNode, string pProp, string pType, bool pIndex) {
+		private static IWeaverQuery BuildKey(string pNode, string pProp, string pType, bool pIndex, 
+																				string pIndexer=null) {
 			string script = pProp+" = "+
 					"g.makeType()"+
 					".dataType("+pType+".class)"+
@@ -29,7 +30,7 @@ namespace Fabric.Db.Data.Setups {
 			}
 
 			if ( pIndex ) {
-				script += ".indexed(Vertex.class)";
+				script += ".indexed("+(pIndexer == null ? "" : "'"+pIndexer+"', ")+"Vertex.class)";
 			}
 
 			script += ".makePropertyKey();1";

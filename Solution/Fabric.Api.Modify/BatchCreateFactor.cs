@@ -68,7 +68,7 @@ namespace Fabric.Api.Modify {
 			vOpSets = new FactorOperationSet[n];
 			vResults = new FabBatchResult[n];
 
-			const int size = 50;
+			const int size = 100;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewFactor nf = vObjects[i];
@@ -98,7 +98,7 @@ namespace Fabric.Api.Modify {
 		protected override FabBatchResult[] Execute() {
 			Member mem = GetContextMember();
 
-			VerifyRequiredArtifacts();
+			//VerifyRequiredArtifacts();
 
 			////
 			
@@ -122,66 +122,74 @@ namespace Fabric.Api.Modify {
 			int count = 0;
 			int hit = 0;
 
-			foreach ( List<int> indexList in vIndexes ) {
-				foreach ( int i in indexList ) {
-					FactorOperationSet fos = vOpSets[i];
+			lock ( vIndexes ) {
 
-					foreach ( KeyValuePair<string, long> pair in fos.RequiredArtifacts ) {
-						count++;
+				foreach ( List<int> indexList in vIndexes ) {
+					foreach ( int i in indexList ) {
+						FactorOperationSet fos = vOpSets[i];
 
-						if ( ApiCtx.Cache.Memory.FindExists<Artifact>(pair.Value) == true ) {
-							hit++;
-							continue; //skip verification; the Artifact exists
+						foreach ( KeyValuePair<string, long> pair in fos.RequiredArtifacts ) {
+							count++;
+
+							if ( ApiCtx.Cache.Memory.FindExists<Artifact>(pair.Value) == true ) {
+								hit++;
+								continue; //skip verification; the Artifact exists
+							}
+
+							if ( !map.ContainsKey(pair.Value) ) {
+								map.Add(pair.Value, new List<KeyValuePair<int, string>>());
+							}
+
+							map[pair.Value].Add(new KeyValuePair<int, string>(i, pair.Key));
 						}
-
-						if ( !map.ContainsKey(pair.Value) ) {
-							map.Add(pair.Value, new List<KeyValuePair<int, string>>());
-						}
-
-						map[pair.Value].Add(new KeyValuePair<int, string>(i, pair.Key));
 					}
 				}
-			}
 
-			Log.Debug("Artifact Cache: "+hit+"/"+count);
+				var queries = new List<IWeaverScript>();
 
-			var queries = new List<IWeaverScript>();
-
-			foreach ( long artId in map.Keys ) {
-				var q = new WeaverQuery();
-				string artParam = q.AddParam(new WeaverQueryVal(artId));
-				q.FinalizeQuery("g.V('"+PropDbName.Artifact_ArtifactId+"',"+artParam+")."+
-					PropDbName.Artifact_ArtifactId);
-				queries.Add(q);
-			}
-
-			////
-
-			IApiDataAccess data = ApiCtx.DbData("GetBatchArtifacts", queries);
-			int n = queries.Count;
-			
-			for ( int i = 0 ; i < n ; ++i ) {
-				IList<string> list = data.Result.GetTextListForCommandAt(i+1); //skip Session.Start
-				string val = null;
-
-				if ( list != null && list.Count > 0 ) {
-					val = list[0];
+				foreach ( long artId in map.Keys ) {
+					var q = new WeaverQuery();
+					string artParam = q.AddParam(new WeaverQueryVal(artId));
+					q.FinalizeQuery("g.V('"+PropDbName.Artifact_ArtifactId+"',"+artParam+")."+
+						PropDbName.Artifact_ArtifactId);
+					queries.Add(q);
 				}
 
-				long id;
-				long.TryParse(val, out id);
-				long expectId = map.Keys.ElementAt(i);
+				////
 
-				if ( id == expectId ) {
-					ApiCtx.Cache.Memory.AddExists<Artifact>(id);
-					continue;
+				int n = queries.Count;
+				const int size = 100;
+				Log.Debug("Artifacts:  cache="+hit+"/"+count+",  quer="+n);
+
+				for ( int a = 0 ; a < n ; a += size ) {
+					int len = Math.Min(size, n-a);
+					IApiDataAccess data = ApiCtx.DbData("GetBatchArts"+a, queries.GetRange(a,len));
+
+					for ( int i = 0 ; i < len ; ++i ) {
+						IList<string> list = data.Result.GetTextListForCommandAt(i+1); //Skip Session
+						string val = null;
+
+						if ( list != null && list.Count > 0 ) {
+							val = list[0];
+						}
+
+						long id;
+						long.TryParse(val, out id);
+						long expectId = map.Keys.ElementAt(a+i);
+
+						if ( id == expectId ) {
+							ApiCtx.Cache.Memory.AddExists<Artifact>(id);
+							continue;
+						}
+
+						foreach ( KeyValuePair<int, string> pair in map[expectId] ) {
+							var nf = new FabNotFoundFault(typeof(Artifact), pair.Value+"="+expectId);
+							vResults[pair.Key].Error = FabError.ForFault(nf);
+						}
+					}
 				}
 
-				foreach ( KeyValuePair<int, string> pair in map[expectId] ) {
-					var nf = new FabNotFoundFault(typeof(Artifact), pair.Value+"="+expectId);
-					vResults[pair.Key].Error = FabError.ForFault(nf);
-				}
-			}
+			} //end lock
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
