@@ -147,7 +147,7 @@ namespace Fabric.Test.Integration {
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNodeByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
 											where T : class, INodeWithId, IWeaverItemIndexable, new() {
-			int ft = (int)NodeFabTypeUtil.TypeMap[typeof(T)];
+			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery("g.V('"+PropDbName.Node_FabType+"',"+ft+")"+
@@ -194,7 +194,7 @@ namespace Fabric.Test.Integration {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected IWeaverQuery GetNodeByPropQuery<T>(string pAppendScript="") where T : INodeWithId {
-			int ft = (int)NodeFabTypeUtil.TypeMap[typeof(T)];
+			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = Weave.Inst.NewQuery();
 			q.FinalizeQuery("g.V('"+PropDbName.Node_FabType+"',"+ft+")"+pAppendScript);

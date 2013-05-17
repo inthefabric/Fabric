@@ -53,7 +53,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vNewDomainId,
 				vDomain,
-				(int)NodeFabType.OauthDomain,
+				(byte)NodeFabType.OauthDomain,
 				vAppId,
 				RelDbName.OauthDomainUsesApp
 			});

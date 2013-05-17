@@ -62,7 +62,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vAbsoluteUrl,
 				vNewArtifactId,
 				vUtcNow.Ticks,
-				(int)NodeFabType.Url,
+				(byte)NodeFabType.Url,
 				RelDbName.MemberCreatesArtifact
 			});
 		}

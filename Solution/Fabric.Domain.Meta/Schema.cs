@@ -43,7 +43,7 @@ namespace Fabric.Domain.Meta {
 			node.IsAbstract = true;
 			node.IsBaseClass = true;
 			node.IsInternal = true;
-			p = AddProp(node, "FabType", "FT", typeof(int));
+			p = AddProp(node, "FabType", "FT", typeof(byte));
 				p.IsInternal = true;
 
 			////

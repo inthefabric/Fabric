@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:18 PM
+// Generated on 5/16/2013 10:09:02 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -14,8 +14,8 @@ namespace Fabric.Infrastructure.Domain {
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void NodeFabType(int pValue, string pParamName);
-		void NodeFabType(int pValue);
+		void NodeFabType(byte pValue, string pParamName);
+		void NodeFabType(byte pValue);
 		void NodeForActionPerformed(long pValue, string pParamName);
 		void NodeForActionPerformed(long pValue);
 		void NodeForActionNote(string pValue, string pParamName);
@@ -149,12 +149,12 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeFabType(int pValue, string pParamName) {
+		public void NodeFabType(byte pValue, string pParamName) {
 			throw new Exception("FabType has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeFabType(int pValue) {
+		public void NodeFabType(byte pValue) {
 			NodeFabType(pValue, "FabType");
 		}
 

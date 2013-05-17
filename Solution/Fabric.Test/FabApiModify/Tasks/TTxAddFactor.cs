@@ -74,7 +74,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				true,
 				vUtcNow.Ticks,
 				vNote,
-				(int)NodeFabType.Factor,
+				(byte)NodeFabType.Factor,
 				vPrimArtId,
 				RelDbName.FactorUsesPrimaryArtifact,
 				vRelArtId,

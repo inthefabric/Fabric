@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:18 PM
+// Generated on 5/16/2013 10:09:01 PM
 
 using System.Collections.Generic;
 
@@ -117,19 +117,19 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void AppStep() {
-			TestStep("App", PropDbName.Artifact_ArtifactId, tn => new AppStep(tn));
+			TestStep("App", PropDbName.App_AppId, tn => new AppStep(tn));
 		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void ClassStep() {
-			TestStep("Class", PropDbName.Artifact_ArtifactId, tn => new ClassStep(tn));
+			TestStep("Class", PropDbName.Class_ClassId, tn => new ClassStep(tn));
 		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void InstanceStep() {
-			TestStep("Instance", PropDbName.Artifact_ArtifactId, tn => new InstanceStep(tn));
+			TestStep("Instance", PropDbName.Instance_InstanceId, tn => new InstanceStep(tn));
 		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
@@ -147,13 +147,13 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void UrlStep() {
-			TestStep("Url", PropDbName.Artifact_ArtifactId, tn => new UrlStep(tn));
+			TestStep("Url", PropDbName.Url_UrlId, tn => new UrlStep(tn));
 		}*/
 
 		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void UserStep() {
-			TestStep("User", PropDbName.Artifact_ArtifactId, tn => new UserStep(tn));
+			TestStep("User", PropDbName.User_UserId, tn => new UserStep(tn));
 		}*/
 
 		/*--------------------------------------------------------------------------------------------* /

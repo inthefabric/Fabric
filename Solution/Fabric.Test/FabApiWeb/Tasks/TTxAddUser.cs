@@ -69,7 +69,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				FabricUtil.HashPassword(vPassword),
 				vNewArtifactId,
 				vUtcNow.Ticks,
-				(int)NodeFabType.User,
+				(byte)NodeFabType.User,
 				RelDbName.UserUsesEmail,
 				RelDbName.MemberCreatesArtifact
 			});

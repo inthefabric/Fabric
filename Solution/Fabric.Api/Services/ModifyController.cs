@@ -7,6 +7,7 @@ using Fabric.Api.Modify;
 using Fabric.Api.Modify.Tasks;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
@@ -58,7 +59,9 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
-			return NewFabJsonResponse(GetRouteJson());
+			string json = GetRouteJson();
+			Log.Debug("ModifyResponse: "+json);
+			return NewFabJsonResponse(json);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

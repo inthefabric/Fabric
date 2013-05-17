@@ -97,7 +97,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
-				(int)NodeFabType.OauthGrant,
+				(byte)NodeFabType.OauthGrant,
 				vResultGrant.Code,
 				vUtcNow.Ticks,
 				""

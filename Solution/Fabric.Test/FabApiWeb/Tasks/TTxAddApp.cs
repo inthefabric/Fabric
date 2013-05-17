@@ -66,7 +66,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vName,
 				vNewArtifactId,
 				vUtcNow.Ticks,
-				(int)NodeFabType.App,
+				(byte)NodeFabType.App,
 				RelDbName.AppUsesEmail,
 				RelDbName.MemberCreatesArtifact
 			});

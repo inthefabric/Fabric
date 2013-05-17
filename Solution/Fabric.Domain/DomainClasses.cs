@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:18 PM
+// Generated on 5/16/2013 10:09:01 PM
 
 using System;
 using System.Collections.Generic;
@@ -302,7 +302,7 @@ namespace Fabric.Domain {
 	
 		[WeaverItemProperty]
 		//[PropIsInternal(True)]
-		public virtual int FabType { get; set; }
+		public virtual byte FabType { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,7 +313,7 @@ namespace Fabric.Domain {
 			}
 			
 			if ( pData.ContainsKey("N_FT") ) {
-				FabType = int.Parse(pData["N_FT"]);
+				FabType = byte.Parse(pData["N_FT"]);
 			}
 
 		}
@@ -1314,6 +1314,7 @@ namespace Fabric.Domain {
 		public virtual long OauthDomainId { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsCaseInsensitive(True)]
 		//[PropLenMax(256)]
 		//[PropLenMin(1)]
 		//[PropValidRegex(@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$")]
@@ -1369,6 +1370,7 @@ namespace Fabric.Domain {
 		public virtual long OauthGrantId { get; set; }
 
 		[WeaverItemProperty]
+		//[PropIsCaseInsensitive(True)]
 		//[PropLenMax(450)]
 		//[PropLenMin(1)]
 		public virtual string RedirectUri { get; set; }

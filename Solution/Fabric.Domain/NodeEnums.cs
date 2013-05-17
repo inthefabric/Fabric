@@ -6,21 +6,17 @@ namespace Fabric.Domain {
 
 	/*================================================================================================*/
 	public enum NodeFabType {
-		BaseClass = -1,
-		Unspecified = 0,
-
-		App = 1000,
+		BaseClass = 0,
+		Unspecified,
+		App,
 		Class,
 		Instance,
 		Url,
 		User,
-
-		Member = 2000,
+		Member,
 		MemberTypeAssign,
-			
-		Factor = 3000,
-			
-		Email = 4000,
+		Factor,
+		Email,
 		OauthAccess,
 		OauthDomain,
 		OauthGrant,
@@ -31,7 +27,7 @@ namespace Fabric.Domain {
 	public static class NodeFabTypeUtil {
 
 		public static IDictionary<Type, NodeFabType> TypeMap;
-		public static IDictionary<int, NodeFabType> ValueMap;
+		public static IDictionary<byte, NodeFabType> ValueMap;
 
 		private static readonly bool IsInit = Init();
 
@@ -59,11 +55,11 @@ namespace Fabric.Domain {
 			
 			////
 
-			ValueMap = new Dictionary<int, NodeFabType>();
+			ValueMap = new Dictionary<byte, NodeFabType>();
 			IEnumerable<NodeFabType> types = Enum.GetValues(typeof(NodeFabType)).Cast<NodeFabType>();
 
 			foreach ( NodeFabType type in types ) {
-				ValueMap.Add((int)type, type);
+				ValueMap.Add((byte)type, type);
 			}
 
 			return true;

@@ -55,7 +55,7 @@ namespace Fabric.Infrastructure.Db {
 					}
 					
 					if ( Data.ContainsKey(PropDbName.Node_FabType) ) {
-						int ft = int.Parse(Data[PropDbName.Node_FabType]);
+						byte ft = byte.Parse(Data[PropDbName.Node_FabType]);
 						nft = NodeFabTypeUtil.ValueMap[ft];
 					}
 

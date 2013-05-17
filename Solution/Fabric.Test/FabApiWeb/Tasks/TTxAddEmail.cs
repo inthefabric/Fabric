@@ -55,7 +55,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewEmailId,
 				vAddress,
 				vUtcNow.Ticks,
-				(int)NodeFabType.Email
+				(byte)NodeFabType.Email
 			});
 		}
 

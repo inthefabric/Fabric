@@ -120,7 +120,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vAddOauthScopeId,
 				vAllow,
 				vUtcNow.Ticks,
-				(int)NodeFabType.OauthScope,
+				(byte)NodeFabType.OauthScope,
 				vAppId,
 				RelDbName.OauthScopeUsesApp,
 				vUserId,

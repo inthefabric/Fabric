@@ -172,7 +172,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vals.Add(vRefreshCode);
 			vals.Add(vUtcNow.AddSeconds(vExpireSec).Ticks);
 			vals.Add(vClientOnly);
-			vals.Add((int)NodeFabType.OauthAccess);
+			vals.Add((byte)NodeFabType.OauthAccess);
 			vals.Add(vAppId);
 			vals.Add(RelDbName.OauthAccessUsesApp);
 

@@ -36,7 +36,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetUrlByAbsoluteUrl");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.Url);
+			TestUtil.CheckParam(pQuery.Params, "_P0", (byte)NodeFabType.Url);
 			TestUtil.CheckParam(pQuery.Params, "_P1", vAbsoluteUrl.ToLower());
 
 			return vUrlResult;

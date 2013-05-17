@@ -63,7 +63,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap.Increment(GetUserAuth.Query.GetUser+"");
 
 			Assert.AreEqual(QueryGetUserAuth, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.User);
+			TestUtil.CheckParam(pQuery.Params, "_P0", (byte)NodeFabType.User);
 			TestUtil.CheckParam(pQuery.Params, "_P1", FabricUtil.HashPassword(vPassword));
 			TestUtil.CheckParam(pQuery.Params, "_P2", vUsername.ToLower());
 

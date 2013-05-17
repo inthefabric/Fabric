@@ -38,7 +38,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			UsageMap.Increment("GetUserByName");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", (int)NodeFabType.User);
+			TestUtil.CheckParam(pQuery.Params, "_P0", (byte)NodeFabType.User);
 			TestUtil.CheckParam(pQuery.Params, "_P1", vName.ToLower());
 
 			return vUserResult;

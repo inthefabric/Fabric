@@ -125,7 +125,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vRedirUri,
 				vGrantCode,
 				vUtcNow.AddMinutes(2).Ticks,
-				(int)NodeFabType.OauthGrant,
+				(byte)NodeFabType.OauthGrant,
 				vAppId,
 				RelDbName.OauthGrantUsesApp,
 				vUserId,

@@ -152,7 +152,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vNewMemId,
-				(int)NodeFabType.Member,
+				(byte)NodeFabType.Member,
 				vAppId,
 				RelDbName.AppDefinesMember,
 				vUserId,
@@ -161,7 +161,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
-				(int)NodeFabType.MemberTypeAssign,
+				(byte)NodeFabType.MemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
 				RelDbName.MemberCreatesMemberTypeAssign
@@ -186,7 +186,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
-				(int)NodeFabType.MemberTypeAssign,
+				(byte)NodeFabType.MemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
 				RelDbName.MemberCreatesMemberTypeAssign

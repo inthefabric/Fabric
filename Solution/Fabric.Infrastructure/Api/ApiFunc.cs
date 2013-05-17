@@ -45,7 +45,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromType<T>() where T : class, INode, new() {
 			return Weave.Inst.BeginPath<T>(x => x.FabType, 
-				(int)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseNode;
+				(byte)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseNode;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

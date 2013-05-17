@@ -30,9 +30,12 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				long time = DateTime.UtcNow.Ticks;
+#if DEBUG
 				vDataSet = Setup.SetupAll(true);
-
-				//SendSetupTx();
+#else
+				vDataSet = Setup.SetupAll(false);
+#endif
+				//SendSetupTx();d
 				SendIndexTx();
 				SendNodeTx();
 				SendRelTx();

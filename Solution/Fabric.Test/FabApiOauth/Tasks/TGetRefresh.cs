@@ -81,7 +81,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
-				(int)NodeFabType.OauthAccess,
+				(byte)NodeFabType.OauthAccess,
 				vRefToken,
 				false
 			});

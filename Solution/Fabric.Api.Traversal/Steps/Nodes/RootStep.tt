@@ -82,7 +82,7 @@ foreach ( string name in nodeNames ) {
 		public I<#= name #>Step Contains<#= name #>List {
 			get {
 				var step = new <#= name #>Step(Path);
-				string p = Path.AddParam(new WeaverQueryVal((int)NodeFabType.<#= name #>));
+				string p = Path.AddParam(new WeaverQueryVal((byte)NodeFabType.<#= name #>));
 				Path.AddSegment(step, "V('"+PropDbName.Node_FabType+"',"+p+")");
 				return step;
 			}

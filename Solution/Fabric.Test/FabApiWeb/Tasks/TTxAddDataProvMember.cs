@@ -70,14 +70,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vNewMemberId,
-				(int)NodeFabType.Member,
+				(byte)NodeFabType.Member,
 				vUserId,
 				RelDbName.UserDefinesMember,
 				RelDbName.AppDefinesMember,
 				vNewMtaId,
 				(long)MemberTypeId.DataProvider,
 				vUtcNow.Ticks,
-				(int)NodeFabType.MemberTypeAssign,
+				(byte)NodeFabType.MemberTypeAssign,
 				(long)SetupUsers.MemberTypeAssignId.FabFabDataBySystem,
 				RelDbName.MemberCreatesMemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign

@@ -71,7 +71,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewMtaId,
 				vMemberTypeId,
 				vUtcNow.Ticks,
-				(int)NodeFabType.MemberTypeAssign,
+				(byte)NodeFabType.MemberTypeAssign,
 				vAssigningMemberId,
 				RelDbName.MemberCreatesMemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign

@@ -41,9 +41,9 @@ foreach ( WeaverNodeSchema node in nodes ) {
 		FabricPropSchema prop = (FabricPropSchema)ps;
 		string titanType = SchemaHelperProp.GetTitanTypeName(prop.Type);
 		bool index = (prop.IsPrimaryKey == true || prop.IndexWithElasticSearch || prop.Name == "FabType");
-		string indexer = (prop.IndexWithElasticSearch ? ", \"search\"" : "");
+		bool elastic = (prop.IndexWithElasticSearch || prop.IsTimestamp == true);
 #>
-			pSet.AddIndexQuery(BuildKey("<#= node.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #><#= indexer #>));
+			pSet.AddIndexQuery(BuildKey("<#= node.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>, <#= elastic.ToString().ToLower() #>));
 <#
 	} //end prop loop
 } //end node loop
