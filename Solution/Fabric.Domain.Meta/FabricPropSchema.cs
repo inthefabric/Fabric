@@ -8,7 +8,8 @@ namespace Fabric.Domain.Meta {
 
 		public string EnumName { get; set; }
 		public bool? SubObjIsOptional { get; set; }
-		public bool IndexWithElasticSearch { get; set; }
+		public bool? IndexWithTitan { get; set; }
+		public bool? IndexWithElasticSearch { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
