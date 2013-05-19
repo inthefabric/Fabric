@@ -252,7 +252,6 @@ namespace Fabric.Domain.Meta {
 				p.EnumName = "EventorPrecisionId";
 			p = AddProp(factor, "Eventor_DateTime", "EvD", typeof(DateTime));
 				p.Min = 1;
-				p.IndexWithElasticSearch = true;
 
 			p = AddProp(factor, "Identor_TypeId", "IdT", typeof(byte));
 				p.EnumName = "IdentorTypeId";
@@ -260,15 +259,13 @@ namespace Fabric.Domain.Meta {
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IndexWithTitan = true;
+				p.IndexWithElasticSearch = true;
 
 			p = AddProp(factor, "Locator_TypeId", "LoT", typeof(byte));
 				p.EnumName = "LocatorTypeId";
 			p = AddProp(factor, "Locator_ValueX", "LoX", typeof(double));
-				p.IndexWithElasticSearch = true;
 			p = AddProp(factor, "Locator_ValueY", "LoY", typeof(double));
-				p.IndexWithElasticSearch = true;
 			p = AddProp(factor, "Locator_ValueZ", "LoZ", typeof(double));
-				p.IndexWithElasticSearch = true;
 
 			p = AddProp(factor, "Vector_TypeId", "VeT", typeof(byte));
 				p.EnumName = "VectorTypeId";
@@ -277,7 +274,6 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(factor, "Vector_UnitPrefixId", "VeP", typeof(byte));
 				p.EnumName = "VectorUnitPrefixId";
 			p = AddProp(factor, "Vector_Value", "VeV", typeof(long));
-				p.IndexWithElasticSearch = true;
 			
 			////
 

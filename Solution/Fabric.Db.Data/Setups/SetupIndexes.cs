@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/18/2013 3:45:21 PM
+// Generated on 5/18/2013 9:01:44 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -87,17 +87,17 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildKey("F", "F_DiR", "Byte", false, false));
 			pSet.AddIndexQuery(BuildKey("F", "F_EvT", "Byte", false, false));
 			pSet.AddIndexQuery(BuildKey("F", "F_EvP", "Byte", false, false));
-			pSet.AddIndexQuery(BuildKey("F", "F_EvD", "Long", false, true));
+			pSet.AddIndexQuery(BuildKey("F", "F_EvD", "Long", false, false));
 			pSet.AddIndexQuery(BuildKey("F", "F_IdT", "Byte", false, false));
-			pSet.AddIndexQuery(BuildKey("F", "F_IdV", "String", true, false));
+			pSet.AddIndexQuery(BuildKey("F", "F_IdV", "String", true, true));
 			pSet.AddIndexQuery(BuildKey("F", "F_LoT", "Byte", false, false));
-			pSet.AddIndexQuery(BuildKey("F", "F_LoX", "Double", false, true));
-			pSet.AddIndexQuery(BuildKey("F", "F_LoY", "Double", false, true));
-			pSet.AddIndexQuery(BuildKey("F", "F_LoZ", "Double", false, true));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoX", "Double", false, false));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoY", "Double", false, false));
+			pSet.AddIndexQuery(BuildKey("F", "F_LoZ", "Double", false, false));
 			pSet.AddIndexQuery(BuildKey("F", "F_VeT", "Byte", false, false));
 			pSet.AddIndexQuery(BuildKey("F", "F_VeU", "Byte", false, false));
 			pSet.AddIndexQuery(BuildKey("F", "F_VeP", "Byte", false, false));
-			pSet.AddIndexQuery(BuildKey("F", "F_VeV", "Long", false, true));
+			pSet.AddIndexQuery(BuildKey("F", "F_VeV", "Long", false, false));
 
 			//OauthAccess
 			pSet.AddIndexQuery(BuildGroup("OA", 14));
