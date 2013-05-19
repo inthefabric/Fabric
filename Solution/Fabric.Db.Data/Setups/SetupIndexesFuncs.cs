@@ -32,11 +32,11 @@ namespace Fabric.Db.Data.Setups {
 			if ( pIndex ) {
 				script += ".indexed(Vertex.class)";
 			}
-#if !DEBUG
+			
 			if ( pElastic ) {
 				script += ".indexed('search',Vertex.class)";
 			}
-#endif
+
 			script += ".makePropertyKey();1";
 
 			var q = Weave.Inst.NewQuery();

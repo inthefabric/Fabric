@@ -35,7 +35,7 @@ namespace Fabric.Api.Internal.Setups {
 #else
 				vDataSet = Setup.SetupAll(false);
 #endif
-				//SendSetupTx();d
+				//SendSetupTx();
 				SendIndexTx();
 				SendNodeTx();
 				SendRelTx();
