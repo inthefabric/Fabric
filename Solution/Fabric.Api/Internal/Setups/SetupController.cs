@@ -25,7 +25,7 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildResponse() {
 			try {
-				if ( NancyReq.Query["pass"] != "build-0.1.29" ) {
+				if ( NancyReq.Query["pass"] != "build-0.1.30" ) {
 					return "Password required.";
 				}
 
