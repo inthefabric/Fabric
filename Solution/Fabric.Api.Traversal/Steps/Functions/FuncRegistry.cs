@@ -18,8 +18,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			if ( RegItems != null ) { return; }
 			RegItems = new List<FuncRegistryItem>();
 			RegItemMap = new Dictionary<string, FuncRegistryItem>();
-			
+
 			//Available for FabRoot
+			FuncIdIndexStep.RegisterAllFunctions();
 			Register<FuncActiveAppStep>(
 				(p => new FuncActiveAppStep(p)), FuncActiveAppStep.AllowedForStep);
 			Register<FuncActiveUserStep>(
@@ -47,7 +48,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void Register<T>(Func<IPath, IFuncStep> pNew,
+		internal static void Register<T>(Func<IPath, IFuncStep> pNew,
 														Func<Type, bool> pAllow) where T : IFuncStep {
 			Init();
 

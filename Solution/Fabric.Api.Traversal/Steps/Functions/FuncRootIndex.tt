@@ -1,0 +1,72 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Weaver.Items" #>
+<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Domain;
+using Fabric.Infrastructure.Traversal;
+
+namespace Fabric.Api.Traversal.Steps.Functions {
+<#
+IList<string> nodeNames = SchemaHelper.GetRootLinks();
+#>
+
+	/*================================================================================================*/
+	public abstract partial class FuncIdIndexStep {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		internal static void RegisterAllFunctions() {
+<#
+foreach ( string name in nodeNames ) {
+#>
+			FuncRegistry.Register<Func<#= name #>IdIndexStep>(
+				(p => new Func<#= name #>IdIndexStep(p)), AllowedForStep);
+<#
+} //end node loop
+#>
+		}
+
+	}
+
+<#
+foreach ( string name in nodeNames ) {
+	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+#>
+
+	/*================================================================================================*/
+	[Func("<#= name #>")]
+	public class Func<#= name #>IdIndexStep : FuncIdIndexStep {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Func<#= name #>IdIndexStep(IPath pPath) : base(pPath) {
+			ProxyStep = new <#= name #>Step(pPath);
+<#
+	if ( !hn.NodeSchema.IsBaseClass ) {
+#>
+			FabType = (byte)NodeFabType.<#= name #>;
+<#
+	}
+#>
+		}
+
+	}
+
+<#
+} //end node loop
+#>
+}

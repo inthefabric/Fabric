@@ -122,7 +122,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 			return new List<string> {
 <#
 foreach ( WeaverNodeSchema node in schema.Nodes ) {
-	if ( node.IsBaseClass || node.IsInternal ) {
+	if ( node.IsAbstract || node.IsInternal ) {
 		continue;
 	}
 #>

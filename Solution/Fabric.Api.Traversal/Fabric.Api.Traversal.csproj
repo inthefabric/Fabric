@@ -55,11 +55,17 @@
     <Compile Include="IPath.cs" />
     <Compile Include="PathSegment.cs" />
     <Compile Include="Steps\FabStepDataFault.cs" />
+    <Compile Include="Steps\Functions\FuncIdIndexStep.cs" />
     <Compile Include="Steps\Functions\FuncWhereTypeStep.cs" />
     <Compile Include="Steps\Functions\FuncWhereIdStep.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFuncStep.cs" />
     <Compile Include="Steps\Functions\FuncRegistry.cs" />
+    <Compile Include="Steps\Functions\FuncRootIndex.cs">
+      <DependentUpon>FuncRootIndex.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Steps\IStepData.cs" />
     <Compile Include="Steps\IBaseStep.cs" />
     <Compile Include="Steps\IFinalStep.cs" />
@@ -72,11 +78,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseClassNodeSteps.tt</DependentUpon>
     </Compile>
-    <Compile Include="Steps\Nodes\RootStep.cs">
-      <DependentUpon>RootStep.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Steps\Nodes\RootStep.cs" />
     <Compile Include="Steps\Nodes\NodeStepInterfaces.cs">
       <DependentUpon>NodeStepInterfaces.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -103,13 +105,13 @@
     <Compile Include="TraversalModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Steps\Functions\FuncRootIndex.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FuncRootIndex.cs</LastGenOutput>
+    </None>
     <None Include="Steps\Nodes\BaseClassNodeSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BaseClassNodeSteps.cs</LastGenOutput>
-    </None>
-    <None Include="Steps\Nodes\RootStep.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RootStep.cs</LastGenOutput>
     </None>
     <None Include="Steps\Nodes\NodeStepInterfaces.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

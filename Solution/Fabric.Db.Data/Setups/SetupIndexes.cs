@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/18/2013 9:01:44 PM
+// Generated on 5/20/2013 3:31:30 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -16,7 +16,7 @@ namespace Fabric.Db.Data.Setups {
 
 			//Node
 			pSet.AddIndexQuery(BuildGroup("N", 2));
-			pSet.AddIndexQuery(BuildKey("N", "N_FT", "Byte", true, false));
+			pSet.AddIndexQuery(BuildKey("N", "N_FT", "Byte", false, false));
 
 			//NodeForAction
 			pSet.AddIndexQuery(BuildGroup("NA", 3));
