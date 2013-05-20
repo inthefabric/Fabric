@@ -4,8 +4,9 @@ using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
+using Weaver;
 
-namespace Fabric.Api.Traversal.Steps.Functions {
+namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 
 	/*================================================================================================*/
 	public interface IFuncWhereAppStep : IFuncStep {}
@@ -30,8 +31,10 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			base.SetDataAndUpdatePath(pData);
 			ExpectParamCount(0);
 			ProxyStep = GetNodeStep(Path);
-			Path.AppendToCurrentSegment(
-				"('"+PropDbName.Node_FabType+"',Tokens.T.eq,"+(int)GetFabType()+")", false);
+
+			string propParam = Path.AddParam(new WeaverQueryVal(PropDbName.Node_FabType));
+			string ftParam = Path.AddParam(new WeaverQueryVal((byte)GetFabType()));
+			Path.AppendToCurrentSegment("("+propParam+",Tokens.T.eq,"+ftParam+")", false);
 		}
 
 
