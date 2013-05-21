@@ -150,7 +150,7 @@ namespace Fabric.Test.Integration {
 			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = Weave.Inst.NewQuery();
-			q.FinalizeQuery("g.V('"+PropDbName.Node_FabType+"',"+ft+")"+
+			q.FinalizeQuery("g.V.has('"+PropDbName.Node_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
 				".has('"+WeaverUtil.GetPropertyName(Weave.Inst.Config, pProp)+
 				"',Tokens.T.eq,"+pValWithQuotes+")");
 			return ApiCtx.DbSingle<T>("TEST.GetNodeByProp", q);
@@ -197,7 +197,8 @@ namespace Fabric.Test.Integration {
 			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = Weave.Inst.NewQuery();
-			q.FinalizeQuery("g.V('"+PropDbName.Node_FabType+"',"+ft+")"+pAppendScript);
+			q.FinalizeQuery("g.V.has('"+PropDbName.Node_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
+				pAppendScript);
 			return q;
 		}
 
