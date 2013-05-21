@@ -100,7 +100,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void SetupMemberType() {
-
 			AddMemberType(MemberTypeId.None, "None",
 				"The User is not associated with this App.");
 			AddMemberType(MemberTypeId.Request, "Request",
@@ -184,6 +183,9 @@ namespace Fabric.Infrastructure.Domain.Types {
 				"the related Artifact.");
 			AddDescriptorType(DescriptorTypeId.Requires, "Requires",
 				"The primary Artifact requires, implies, needs, or demands "+
+				"the related Artifact.");
+			AddDescriptorType(DescriptorTypeId.InteractsWith, "Interacts With",
+				"The primary Artifact interacts, associates, combines, meets, or communicates with "+
 				"the related Artifact.");
 
 			AddDescriptorType(DescriptorTypeId.LooksLike, "Looks Like",
