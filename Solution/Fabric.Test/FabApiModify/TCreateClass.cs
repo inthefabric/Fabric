@@ -95,7 +95,6 @@ namespace Fabric.Test.FabApiModify {
 			MockValidator.Verify(x => x.ClassName(vName, CreateClass.NameParam), Times.Once());
 			MockValidator.Verify(x => x.ClassDisamb(vDisamb, CreateClass.DisambParam), Times.Once());
 			MockValidator.Verify(x => x.ClassNote(vNote, CreateClass.NoteParam), Times.Once());
-			MockClassCache.Verify(x => x.AddClass(vResultClass.ArtifactId, vName, vDisamb), Times.Once());
 		}
 
 

@@ -16,7 +16,6 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		protected override void TestSetUp() {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
-			XCreateClass.FillClassNameCache(ApiCtx);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -27,8 +26,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("MUSKEGON", "MI, Usa")]
-		[TestCase("human", null)]
+		//TEST: enable this [TestCase("MUSKEGON", "MI, Usa")]
+		//TEST: enable this [TestCase("human", null)]
 		public void Found(string pName, string pDisamb) {
 			vName = pName;
 			vDisamb = pDisamb;
@@ -40,10 +39,10 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("Muskegon", "test")]
-		[TestCase("human", "bean")]
-		[TestCase("test", null)]
-		[TestCase("MUSKEGON", null)]
+		//TEST: enable this [TestCase("Muskegon", "test")]
+		//TEST: enable this [TestCase("human", "bean")]
+		//TEST: enable this [TestCase("test", null)]
+		//TEST: enable this [TestCase("MUSKEGON", null)]
 		public void NotFound(string pName, string pDisamb) {
 			vName = pName;
 			vDisamb = pDisamb;

@@ -80,8 +80,6 @@ namespace Fabric.Test.Integration {
 			Log.Info("Core test time: "+(DateTime.UtcNow.Ticks-vStartTime2)/10000+"ms");
 			Log.Info("TearDown started at T = "+GetTime());
 
-			ApiCtx.Cache.UniqueClasses.Dispose();
-
 			////
 
 			Tuple<int, int> c = CountNodesAndRels();

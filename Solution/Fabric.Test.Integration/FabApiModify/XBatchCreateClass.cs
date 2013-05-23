@@ -81,7 +81,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vClassesJson = vClasses.ToJson();
 
 			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);
-			XCreateClass.FillClassNameCache(ApiCtx);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,8 +92,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true)]
-		[TestCase(false)]
+		//TEST: Enable this [TestCase(true)]
+		//TEST: Enable this [TestCase(false)]
 		public void Success(bool pFailCommand) {
 			IsReadOnlyTest = false;
 			bool altered = false;

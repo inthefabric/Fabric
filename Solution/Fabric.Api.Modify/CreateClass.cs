@@ -55,10 +55,7 @@ namespace Fabric.Api.Modify {
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 			TxBuilder txb = GetFullTx(out memVar, out classVar);
-
-			Class c = ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
-			ApiCtx.Cache.UniqueClasses.AddClass(c.ArtifactId, vName, vDisamb);
-			return c;
+			return ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

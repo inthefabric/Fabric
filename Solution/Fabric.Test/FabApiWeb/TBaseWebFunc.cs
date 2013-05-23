@@ -38,7 +38,6 @@ namespace Fabric.Test.FabApiWeb {
 
 			MockClassCache = new Mock<IClassDiskCache>();
 			MockMemCache = new Mock<IMemCache>();
-			MockCacheManager.SetupGet(x => x.UniqueClasses).Returns(MockClassCache.Object);
 			MockCacheManager.SetupGet(x => x.Memory).Returns(MockMemCache.Object);
 
 			TestSetUp();

@@ -6,8 +6,8 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AddClass(long pClassId, string pName, string pDisamb);
-		long? FindClassId(string pName, string pDisamb);
+		//void AddClass(long pClassId, string pName, string pDisamb);
+		//long? FindClassId(string pName, string pDisamb);
 		void Dispose();
 
 	}

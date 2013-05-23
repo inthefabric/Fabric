@@ -169,10 +169,6 @@ namespace Fabric.Api.Modify {
 					vResults[i].Error = FabError.ForInternalServerError();
 				}
 			}
-
-			foreach ( Class c in classes ) {
-				ApiCtx.Cache.UniqueClasses.AddClass(c.ArtifactId, c.Name, c.Disamb);
-			}
 		}
 
 	}

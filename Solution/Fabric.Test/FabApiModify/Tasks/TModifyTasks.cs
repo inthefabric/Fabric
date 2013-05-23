@@ -5,7 +5,6 @@ using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Weaver;
 using Weaver.Interfaces;
 
 namespace Fabric.Test.FabApiModify.Tasks {
@@ -37,7 +36,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			MockClassCache = new Mock<IClassDiskCache>();
 			MockMemCache = new Mock<IMemCache>();
-			MockCacheManager.SetupGet(x => x.UniqueClasses).Returns(MockClassCache.Object);
 			MockCacheManager.SetupGet(x => x.Memory).Returns(MockMemCache.Object);
 
 			TestSetUp();

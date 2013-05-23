@@ -71,17 +71,8 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			long? classId = pApiCtx.Cache.UniqueClasses.FindClassId(pName, pDisamb);
-			
-			if ( classId == null ) {
-				return null;
-			}
-
-			var c = new Class();
-			c.ArtifactId = (long)classId;
-			c.Name = pName;
-			c.Disamb = pDisamb;
-			return c;
+			//TODO: Implement an ElasticSearch query using case-insensitive name/disamb indexes
+			return null;
 		}
 
 
