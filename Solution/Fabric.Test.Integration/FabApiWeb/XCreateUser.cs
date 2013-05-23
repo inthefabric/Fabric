@@ -62,13 +62,11 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(newUser, "New User was not created.");
 			Assert.AreEqual(newUser.ArtifactId, vResult.NewUser.ArtifactId,
 				"Incorrect Result.NewUser.ArtifactId.");
-
-			Assert.AreEqual(ApiCtx.SharpflakeIds[2], newUser.ArtifactId, "Incorrect User.ArtifactId.");
 			                
-			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[3]);
+			Member newMember = GetNode<Member>(ApiCtx.SharpflakeIds[2]);
 			Assert.NotNull(newMember, "New Member was not created.");
 			
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[4]);
+			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[3]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			
 			NewNodeCount = 4;

@@ -11,7 +11,6 @@ namespace Fabric.Test.Integration.Common {
 	public class TestApiContext : ApiContext {
 
 		public DateTime? TestUtcNow { get; set; }
-		//public string TestCode32 { get; set; }
 		public IList<long> SharpflakeIds { get; private set; }
 		public Func<string, string> AlterRequestJson { get; set; }
 
@@ -39,13 +38,11 @@ namespace Fabric.Test.Integration.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetSharpflakeId<T>() {
-			long id = Sharpflake.GetId<T>();
-
 			lock ( this ) {
+				long id = Sharpflake.GetId<T>();
 				SharpflakeIds.Add(id);
+				return id;
 			}
-
-			return id;
 		}
 
 
