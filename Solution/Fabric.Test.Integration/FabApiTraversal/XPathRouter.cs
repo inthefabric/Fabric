@@ -49,10 +49,10 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ContainsAppList() {
-			vUri = "/ContainsAppList";
+		public void App() {
+			vUri = "/App("+(long)SetupArtifacts.ArtifactId.App_KinPhoGal+")";
 			TestPath();
-			CheckSuccess<App>(SetupUsers.NumApps);
+			CheckSuccess<App>(1);
 		}
 
 
@@ -93,8 +93,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorsWithMelAsPrimary() {
-			vUri = "/ContainsFactorList/As(F)/UsesPrimaryArtifact/WhereUser/WhereId("+
-				(long)SetupUsers.UserId.Mel+")/Back(F)";
+			vUri = "/User("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary";
 			TestPath();
 			CheckSuccess<Factor>(10);
 		}
@@ -102,9 +101,8 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorsWithMelAsPrimaryCreatedByMel() {
-			vUri = "/ContainsFactorList/As(F)/UsesPrimaryArtifact/WhereUser/WhereId("+
-				(long)SetupUsers.UserId.Mel+")/Back(F)/InMemberCreates/InUserDefines/WhereId("+
-				(long)SetupUsers.UserId.Mel+")/Back(F)";
+			vUri = "/User("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary/As(F)/"+
+				"InMemberCreates/InUserDefines/WhereId(4)/Back(F)";
 			TestPath();
 			CheckSuccess<Factor>(9);
 		}
@@ -113,14 +111,16 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0, 4)]
-		[TestCase(10, 50)]
+		[TestCase(3, 50)]
 		[TestCase(20, 32)]
-		[TestCase(99, 1)]
+		[TestCase(52, 1)]
 		public void Limit(int pStart, int pCount) {
-			vUri = "/ContainsFactorList/Limit("+pStart+","+pCount+")";
+			vUri = "/App("+(long)SetupArtifacts.ArtifactId.App_FabSys+")/DefinesMemberList/"+
+				"CreatesFactorList/Limit("+pStart+","+pCount+")";
+
 			TestPath();
 			CheckSuccess<Factor>(pCount);
-			CheckTypeId(vModel.DtoList[0], PropDbName.Factor_FactorId, pStart+1);
+			//CheckTypeId(vModel.DtoList[0], PropDbName.Factor_FactorId, pStart+1);
 		}
 
 

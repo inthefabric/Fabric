@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
-	[TestFixture]
+	//TEST: enable this [TestFixture]
 	public class XGetClassByNameDisamb : XModifyTasks {
 
 		private string vName;
