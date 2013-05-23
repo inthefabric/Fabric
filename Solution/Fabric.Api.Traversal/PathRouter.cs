@@ -11,7 +11,8 @@ namespace Fabric.Api.Traversal {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static IFinalStep GetPath(IStep pRoot, string pUri) {
-			string[] parts = (pUri.Length > 0 ? pUri.Split('/') : new string[0]);
+			string uri = pUri.Replace("%20", "");
+			string[] parts = (uri.Length > 0 ? uri.Split('/') : new string[0]);
 			int n = parts.Length;
 			IStep step = pRoot;
 			

@@ -36,10 +36,13 @@ namespace Fabric.Test.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("this/a/test/path")]
 		[TestCase("this/a/test/path/")]
+		[TestCase("this/a/test(1)/path(123,2364)")]
+		[TestCase("this/a/test(%201%20%20)/path(%20%20123,%20%20%20%202364%20%20)")]
 		[TestCase("0/1/2/3")]
 		[TestCase("ContainsArtifactList/InUserHas/InMemberListUses/CreatedFactorList")]
 		public void GetPath4(string pUri) {
-			string[] parts = pUri.Split('/');
+			string uri = pUri.Replace("%20", "");
+			string[] parts = uri.Split('/');
 			var mockStep0 = new Mock<IStep>();
 			var mockStep1 = new Mock<IStep>();
 			var mockStep2 = new Mock<IStep>();
@@ -54,7 +57,7 @@ namespace Fabric.Test.FabApiTraversal {
 			mockStep4.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true, null))
 				.Returns(mockStepLast.Object);
 
-			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, pUri);
+			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, uri);
 
 			Assert.AreEqual(mockStepLast.Object, resultStep, "Incorrect result.");
 		}
