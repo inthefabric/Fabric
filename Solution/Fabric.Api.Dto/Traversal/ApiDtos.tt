@@ -94,10 +94,14 @@ foreach ( string name in nodes ) {
 			FillWithNode(pNode);
 		}
 		
+<#
+		if ( hasTypeId ) {
+#>
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return <#= (hasTypeId ? node.Name+"Id" : "0") #>; } }
+		protected override long TypeId { get { return <#= node.Name+"Id" #>; } }
 		
 <#
+		} //end typeId condition
 	} //end non-abstract
 #>
 		/*--------------------------------------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:19 PM
+// Generated on 5/22/2013 9:47:27 PM
 
 using System;
 using System.Collections.Generic;
@@ -124,9 +124,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return 0; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
 
@@ -174,9 +171,6 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabClass(Class pNode) : this() {
 			FillWithNode(pNode);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -234,9 +228,6 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabInstance(Instance pNode) : this() {
 			FillWithNode(pNode);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -388,9 +379,6 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return 0; } }
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 			base.FillResultData(pData);
 
@@ -436,9 +424,6 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabUser(User pNode) : this() {
 			FillWithNode(pNode);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return 0; } }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
