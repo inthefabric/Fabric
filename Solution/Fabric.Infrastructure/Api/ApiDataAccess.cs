@@ -154,21 +154,24 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pReqJson) {
 			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
-			tcp.ReceiveBufferSize = 1048576;
-			tcp.SendBufferSize = 1048576;
 
-			byte[] data = Encoding.ASCII.GetBytes(pReqJson+"\n");
+			byte[] dataLen = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(pReqJson.Length));
+			byte[] data = Encoding.ASCII.GetBytes(pReqJson);
+
 			NetworkStream stream = tcp.GetStream();
+			stream.Write(dataLen, 0, dataLen.Length); //begin with the request's string length
 			stream.Write(data, 0, data.Length);
 
 			int size = tcp.ReceiveBufferSize;
 			int bytes = size;
+			int offset = 4;
 			string respData = "";
 
 			while ( bytes == size ) {
 				data = new byte[size];
 				bytes = stream.Read(data, 0, data.Length);
-				respData += Encoding.ASCII.GetString(data, 0, bytes);
+				respData += Encoding.ASCII.GetString(data, offset, bytes-offset);
+				offset = 0; //only the first read needs the offset
 			}
 
 			tcp.Close();
