@@ -46,12 +46,18 @@ namespace Fabric.Db.Data.Setups {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private static IWeaverQuery BuildLabel(string pName, bool pInUnique, bool pOutUnique,
-												/*string[] pPrimaryKeys,*/ string[] pSignatureKeys) {
+													string[] pPrimaryKeys, string[] pSignatureKeys) {
 			string script = 
 				"g.makeType()"+
-				".name('"+pName+"')"+
-				//".primaryKey("+string.Join(",", pPrimaryKeys)+")";
-				".signature("+string.Join(",", pSignatureKeys)+")";
+				".name('"+pName+"')";
+
+			if ( pPrimaryKeys.Length > 0 && pPrimaryKeys[0] != "" ) {
+				script += ".primaryKey("+string.Join(",", pPrimaryKeys)+")";
+			}
+
+			if ( pSignatureKeys.Length > 0 && pSignatureKeys[0] != "" ) {
+				script += ".signature("+string.Join(",", pSignatureKeys)+")";
+			}
 
 			if ( pInUnique ) {
 				script += ".unique(IN)";

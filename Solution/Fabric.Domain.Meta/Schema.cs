@@ -54,6 +54,7 @@ namespace Fabric.Domain.Meta {
 			nodeForAction.IsBaseClass = true;
 			p = AddProp(nodeForAction, "Performed", "Pe", typeof(DateTime));
 				p.IsTimestamp = true;
+				p.IsVertexCentricIndex = true;
 			p = AddProp(nodeForAction, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
@@ -69,6 +70,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(artifact, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
 				p.IndexWithElasticSearch = true;
+				p.IsVertexCentricIndex = true;
 
 			WeaverNodeSchema app = AddNode("App", "Ap");
 			app.BaseNode = artifact;
@@ -183,6 +185,7 @@ namespace Fabric.Domain.Meta {
 				p.IsPrimaryKey = true;
 			p = AddProp(memberTypeAssign, "MemberTypeId", "Mt", typeof(byte));
 				p.EnumName = "MemberTypeId";
+				p.IsVertexCentricIndex = true;
 
 			WeaverNodeSchema url = AddNode("Url", "Ur");
 			url.BaseNode = artifact;
@@ -220,10 +223,13 @@ namespace Fabric.Domain.Meta {
 				p.IsPrimaryKey = true;
 			p = AddProp(factor, "FactorAssertionId", "Fa", typeof(byte));
 				p.EnumName = "FactorAssertionId";
+				p.IsVertexCentricIndex = true;
 			//p = AddProp(factor, "IsPublic", typeof(bool));
 			p = AddProp(factor, "IsDefining", "Df", typeof(bool));
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
+				p.IsVertexCentricIndex = true;
 				p.IndexWithElasticSearch = true;
 			p = AddProp(factor, "Deleted", "Dl", typeof(DateTime));
 				p.IsNullable = true;
@@ -238,42 +244,59 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(factor, "Descriptor_TypeId", "DeT", typeof(byte));
 				p.EnumName = "DescriptorTypeId";
 				p.SubObjIsOptional = false;
+				p.IsVertexCentricIndex = true;
 
 			p = AddProp(factor, "Director_TypeId", "DiT", typeof(byte));
 				p.EnumName = "DirectorTypeId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Director_PrimaryActionId", "DiP", typeof(byte));
 				p.EnumName = "DirectorActionId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Director_RelatedActionId", "DiR", typeof(byte));
 				p.EnumName = "DirectorActionId";
+				p.IsVertexCentricIndex = true;
 
 			p = AddProp(factor, "Eventor_TypeId", "EvT", typeof(byte));
 				p.EnumName = "EventorTypeId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Eventor_PrecisionId", "EvP", typeof(byte));
 				p.EnumName = "EventorPrecisionId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Eventor_DateTime", "EvD", typeof(DateTime));
 				p.Min = 1;
+				p.IsVertexCentricIndex = true;
 
 			p = AddProp(factor, "Identor_TypeId", "IdT", typeof(byte));
 				p.EnumName = "IdentorTypeId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Identor_Value", "IdV", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IndexWithTitan = true;
 				p.IndexWithElasticSearch = true;
+				p.IsVertexCentricIndex = true;
 
 			p = AddProp(factor, "Locator_TypeId", "LoT", typeof(byte));
 				p.EnumName = "LocatorTypeId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Locator_ValueX", "LoX", typeof(double));
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Locator_ValueY", "LoY", typeof(double));
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Locator_ValueZ", "LoZ", typeof(double));
+				p.IsVertexCentricIndex = true;
 
 			p = AddProp(factor, "Vector_TypeId", "VeT", typeof(byte));
 				p.EnumName = "VectorTypeId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Vector_UnitId", "VeU", typeof(byte));
 				p.EnumName = "VectorUnitId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Vector_UnitPrefixId", "VeP", typeof(byte));
 				p.EnumName = "VectorUnitPrefixId";
+				p.IsVertexCentricIndex = true;
 			p = AddProp(factor, "Vector_Value", "VeV", typeof(long));
+				p.IsVertexCentricIndex = true;
 			
 			////
 

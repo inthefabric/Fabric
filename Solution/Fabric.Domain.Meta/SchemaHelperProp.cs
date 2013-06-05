@@ -26,6 +26,12 @@ namespace Fabric.Domain.Meta {
 		public bool IsSubProp() {
 			return (PropSchema.Name.IndexOf('_') != -1);
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool UseVertexCentricIndexForRel(SchemaHelperRel pRel) {
+			return (PropSchema.IsVertexCentricIndex && 
+				pRel.GetRelHasMany(true) && pRel.GetRelHasMany(false));
+		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

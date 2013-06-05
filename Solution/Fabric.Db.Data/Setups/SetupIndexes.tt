@@ -66,29 +66,36 @@ foreach ( string name in rels ) {
 	var keys = new List<string>();
 	var sigs = new List<string>();
 
-	var props = new List<FabricPropSchema>();
-	foreach ( SchemaHelperProp hp in fromProps ) { props.Add((FabricPropSchema)hp.PropSchema); }
-	foreach ( SchemaHelperProp hp in toProps ) { props.Add((FabricPropSchema)hp.PropSchema); }
+	var props = new List<SchemaHelperProp>();
+	foreach ( SchemaHelperProp hp in fromProps ) { props.Add(hp); }
+	foreach ( SchemaHelperProp hp in toProps ) { props.Add(hp); }
 
-	foreach ( FabricPropSchema prop in props ) {
+	foreach ( SchemaHelperProp hp in props ) {
+		FabricPropSchema prop = (FabricPropSchema)hp.PropSchema;
 		string key = prop.DbName;
 
 		if ( propSkipMap.ContainsKey(key) ) {
 			continue;
 		}
 
-		sigs.Add(key);
-
-		if ( prop.IsPrimaryKey == true || prop.EnumName != null ) {
+		if ( hp.UseVertexCentricIndexForRel(rel) ) {
 			keys.Add(key);
+		}
+		else {
+			sigs.Add(key);
 		}
 	}
 #>
 
 			//<#= rel.RelName #>
-			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>, new [] {
-				"<#= string.Join("\",\r\n\t\t\t\t\"", sigs) #>"
-			}));
+			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>, 
+				new [] {
+					"<#= string.Join("\",\r\n\t\t\t\t\t\"", keys) #>"
+				},
+				new [] {
+					"<#= string.Join("\",\r\n\t\t\t\t\t\"", sigs) #>"
+				}
+			));
 <#
 } //end rel names loop
 #>

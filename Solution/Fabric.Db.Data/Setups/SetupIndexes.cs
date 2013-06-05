@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/20/2013 3:31:30 PM
+// Generated on 6/4/2013 9:43:23 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -128,345 +128,455 @@ namespace Fabric.Db.Data.Setups {
 			//EDGES
 
 			//AppUsesEmail
-			pSet.AddIndexQuery(BuildLabel("Ap-U-E", false, true, new [] {
-				"Ap_Na",
-				"Ap_Se",
-				"E_Id",
-				"E_Ad",
-				"E_Co",
-				"E_Cr",
-				"E_Ve"
-			}));
+			pSet.AddIndexQuery(BuildLabel("Ap-U-E", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"Ap_Na",
+					"Ap_Se",
+					"E_Id",
+					"E_Ad",
+					"E_Co",
+					"E_Cr",
+					"E_Ve"
+				}
+			));
 
 			//AppDefinesMember
-			pSet.AddIndexQuery(BuildLabel("Ap-D-M", true, false, new [] {
-				"Ap_Na",
-				"Ap_Se",
-				"M_Id"
-			}));
+			pSet.AddIndexQuery(BuildLabel("Ap-D-M", true, false, 
+				new [] {
+					""
+				},
+				new [] {
+					"Ap_Na",
+					"Ap_Se",
+					"M_Id"
+				}
+			));
 
 			//MemberHasMemberTypeAssign
-			pSet.AddIndexQuery(BuildLabel("M-H-MTA", true, true, new [] {
-				"M_Id",
-				"MTA_Id",
-				"MTA_Mt"
-			}));
+			pSet.AddIndexQuery(BuildLabel("M-H-MTA", true, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"M_Id",
+					"MTA_Id",
+					"MTA_Mt"
+				}
+			));
 
 			//MemberHasHistoricMemberTypeAssign
-			pSet.AddIndexQuery(BuildLabel("M-HH-MTA", true, false, new [] {
-				"M_Id",
-				"MTA_Id",
-				"MTA_Mt"
-			}));
+			pSet.AddIndexQuery(BuildLabel("M-HH-MTA", true, false, 
+				new [] {
+					""
+				},
+				new [] {
+					"M_Id",
+					"MTA_Id",
+					"MTA_Mt"
+				}
+			));
 
 			//MemberCreatesArtifact
-			pSet.AddIndexQuery(BuildLabel("M-C-A", true, false, new [] {
-				"M_Id",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("M-C-A", true, false, 
+				new [] {
+					""
+				},
+				new [] {
+					"M_Id",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//MemberCreatesMemberTypeAssign
-			pSet.AddIndexQuery(BuildLabel("M-C-MTA", true, false, new [] {
-				"M_Id",
-				"MTA_Id",
-				"MTA_Mt"
-			}));
+			pSet.AddIndexQuery(BuildLabel("M-C-MTA", true, false, 
+				new [] {
+					""
+				},
+				new [] {
+					"M_Id",
+					"MTA_Id",
+					"MTA_Mt"
+				}
+			));
 
 			//MemberCreatesFactor
-			pSet.AddIndexQuery(BuildLabel("M-C-F", true, false, new [] {
-				"M_Id",
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV"
-			}));
+			pSet.AddIndexQuery(BuildLabel("M-C-F", true, false, 
+				new [] {
+					""
+				},
+				new [] {
+					"M_Id",
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV"
+				}
+			));
 
 			//UserUsesEmail
-			pSet.AddIndexQuery(BuildLabel("U-U-E", false, true, new [] {
-				"U_Na",
-				"U_Pa",
-				"E_Id",
-				"E_Ad",
-				"E_Co",
-				"E_Cr",
-				"E_Ve"
-			}));
+			pSet.AddIndexQuery(BuildLabel("U-U-E", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"U_Na",
+					"U_Pa",
+					"E_Id",
+					"E_Ad",
+					"E_Co",
+					"E_Cr",
+					"E_Ve"
+				}
+			));
 
 			//UserDefinesMember
-			pSet.AddIndexQuery(BuildLabel("U-D-M", true, false, new [] {
-				"U_Na",
-				"U_Pa",
-				"M_Id"
-			}));
+			pSet.AddIndexQuery(BuildLabel("U-D-M", true, false, 
+				new [] {
+					""
+				},
+				new [] {
+					"U_Na",
+					"U_Pa",
+					"M_Id"
+				}
+			));
 
 			//FactorUsesPrimaryArtifact
-			pSet.AddIndexQuery(BuildLabel("F-UP-A", false, true, new [] {
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("F-UP-A", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//FactorUsesRelatedArtifact
-			pSet.AddIndexQuery(BuildLabel("F-UR-A", false, true, new [] {
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("F-UR-A", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//FactorDescriptorRefinesPrimaryWithArtifact
-			pSet.AddIndexQuery(BuildLabel("F-DRP-A", false, true, new [] {
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("F-DRP-A", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//FactorDescriptorRefinesRelatedWithArtifact
-			pSet.AddIndexQuery(BuildLabel("F-DRR-A", false, true, new [] {
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("F-DRR-A", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//FactorDescriptorRefinesTypeWithArtifact
-			pSet.AddIndexQuery(BuildLabel("F-DRT-A", false, true, new [] {
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("F-DRT-A", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//FactorVectorUsesAxisArtifact
-			pSet.AddIndexQuery(BuildLabel("F-VUA-A", false, true, new [] {
-				"F_Id",
-				"F_Fa",
-				"F_Df",
-				"F_Cr",
-				"F_Dl",
-				"F_Co",
-				"F_No",
-				"F_DeT",
-				"F_DiT",
-				"F_DiP",
-				"F_DiR",
-				"F_EvT",
-				"F_EvP",
-				"F_EvD",
-				"F_IdT",
-				"F_IdV",
-				"F_LoT",
-				"F_LoX",
-				"F_LoY",
-				"F_LoZ",
-				"F_VeT",
-				"F_VeU",
-				"F_VeP",
-				"F_VeV",
-				"A_AId",
-				"A_Cr"
-			}));
+			pSet.AddIndexQuery(BuildLabel("F-VUA-A", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"F_Id",
+					"F_Fa",
+					"F_Df",
+					"F_Cr",
+					"F_Dl",
+					"F_Co",
+					"F_No",
+					"F_DeT",
+					"F_DiT",
+					"F_DiP",
+					"F_DiR",
+					"F_EvT",
+					"F_EvP",
+					"F_EvD",
+					"F_IdT",
+					"F_IdV",
+					"F_LoT",
+					"F_LoX",
+					"F_LoY",
+					"F_LoZ",
+					"F_VeT",
+					"F_VeU",
+					"F_VeP",
+					"F_VeV",
+					"A_AId",
+					"A_Cr"
+				}
+			));
 
 			//OauthAccessUsesApp
-			pSet.AddIndexQuery(BuildLabel("OA-U-Ap", false, true, new [] {
-				"OA_Id",
-				"OA_To",
-				"OA_Re",
-				"OA_Ex",
-				"OA_CO",
-				"Ap_Na",
-				"Ap_Se"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OA-U-Ap", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OA_Id",
+					"OA_To",
+					"OA_Re",
+					"OA_Ex",
+					"OA_CO",
+					"Ap_Na",
+					"Ap_Se"
+				}
+			));
 
 			//OauthAccessUsesUser
-			pSet.AddIndexQuery(BuildLabel("OA-U-U", false, true, new [] {
-				"OA_Id",
-				"OA_To",
-				"OA_Re",
-				"OA_Ex",
-				"OA_CO",
-				"U_Na",
-				"U_Pa"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OA-U-U", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OA_Id",
+					"OA_To",
+					"OA_Re",
+					"OA_Ex",
+					"OA_CO",
+					"U_Na",
+					"U_Pa"
+				}
+			));
 
 			//OauthDomainUsesApp
-			pSet.AddIndexQuery(BuildLabel("OD-U-Ap", false, true, new [] {
-				"OD_Id",
-				"OD_Do",
-				"Ap_Na",
-				"Ap_Se"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OD-U-Ap", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OD_Id",
+					"OD_Do",
+					"Ap_Na",
+					"Ap_Se"
+				}
+			));
 
 			//OauthGrantUsesApp
-			pSet.AddIndexQuery(BuildLabel("OG-U-Ap", false, true, new [] {
-				"OG_Id",
-				"OG_Re",
-				"OG_Co",
-				"OG_Ex",
-				"Ap_Na",
-				"Ap_Se"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OG-U-Ap", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OG_Id",
+					"OG_Re",
+					"OG_Co",
+					"OG_Ex",
+					"Ap_Na",
+					"Ap_Se"
+				}
+			));
 
 			//OauthGrantUsesUser
-			pSet.AddIndexQuery(BuildLabel("OG-U-U", false, true, new [] {
-				"OG_Id",
-				"OG_Re",
-				"OG_Co",
-				"OG_Ex",
-				"U_Na",
-				"U_Pa"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OG-U-U", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OG_Id",
+					"OG_Re",
+					"OG_Co",
+					"OG_Ex",
+					"U_Na",
+					"U_Pa"
+				}
+			));
 
 			//OauthScopeUsesApp
-			pSet.AddIndexQuery(BuildLabel("OS-U-Ap", false, true, new [] {
-				"OS_Id",
-				"OS_Al",
-				"OS_Cr",
-				"Ap_Na",
-				"Ap_Se"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OS-U-Ap", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OS_Id",
+					"OS_Al",
+					"OS_Cr",
+					"Ap_Na",
+					"Ap_Se"
+				}
+			));
 
 			//OauthScopeUsesUser
-			pSet.AddIndexQuery(BuildLabel("OS-U-U", false, true, new [] {
-				"OS_Id",
-				"OS_Al",
-				"OS_Cr",
-				"U_Na",
-				"U_Pa"
-			}));
+			pSet.AddIndexQuery(BuildLabel("OS-U-U", false, true, 
+				new [] {
+					""
+				},
+				new [] {
+					"OS_Id",
+					"OS_Al",
+					"OS_Cr",
+					"U_Na",
+					"U_Pa"
+				}
+			));
 		}
 
 	}
