@@ -83,7 +83,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
-					.Has(x => x.Deleted, WeaverFuncHasOp.EqualTo, null) //Factor is not deleted
+					.HasNot(x => x.Deleted) //Factor is not deleted
 					.As(out factorAlias)
 				.InMemberCreates.FromMember
 					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
