@@ -112,6 +112,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0, 4)]
 		[TestCase(3, 50)]
+		[TestCase(0, 50)]
 		[TestCase(20, 32)]
 		[TestCase(52, 1)]
 		public void Limit(int pStart, int pCount) {
@@ -120,7 +121,6 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 			TestPath();
 			CheckSuccess<Factor>(pCount);
-			//CheckTypeId(vModel.DtoList[0], PropDbName.Factor_FactorId, pStart+1);
 		}
 
 

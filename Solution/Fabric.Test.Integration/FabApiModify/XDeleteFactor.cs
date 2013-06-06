@@ -59,7 +59,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountDeleted() {
 			IWeaverQuery q = GetNodeByPropQuery<Factor>(
-				".has('"+PropDbName.Factor_Deleted+"',Tokens.T.neq,null).count()");
+				".has('"+PropDbName.Factor_Deleted+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountDeleted", q);
 			return int.Parse(data.Result.TextList[0]);
 		}

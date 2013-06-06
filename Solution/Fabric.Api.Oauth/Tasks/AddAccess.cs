@@ -72,7 +72,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			OauthAccess pathOa = NewPathFromIndex(new App { ArtifactId = vAppId })
 				.InOauthAccessListUses.FromOauthAccess
-					.Has(x => x.Token, WeaverFuncHasOp.NotEqualTo, null)
+					.Has(x => x.Token)
 					.Has(x => x.IsClientOnly, WeaverFuncHasOp.EqualTo, vClientOnly);
 
 			if ( vClientOnly ) {

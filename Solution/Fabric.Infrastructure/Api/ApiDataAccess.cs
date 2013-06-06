@@ -154,6 +154,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pReqJson) {
 			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
+			tcp.SendBufferSize = tcp.ReceiveBufferSize = 1<<16;
 
 			byte[] dataLen = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(pReqJson.Length));
 			byte[] data = Encoding.ASCII.GetBytes(pReqJson);
@@ -162,17 +163,37 @@ namespace Fabric.Infrastructure.Api {
 			stream.Write(dataLen, 0, dataLen.Length); //begin with the request's string length
 			stream.Write(data, 0, data.Length);
 
-			int size = tcp.ReceiveBufferSize;
-			int bytes = size;
-			int offset = 4;
-			string respData = "";
+			//TODO: Get string length from the first four bytes
+			/*data = new byte[4];
+			stream.Read(data, 0, data.Length);
 
-			while ( bytes == size ) {
+			foreach ( byte b in data ) {
+				Log.Debug(" - "+b);
+			}*/
+
+			data = new byte[tcp.ReceiveBufferSize];
+			int bytes = stream.Read(data, 0, data.Length);
+			string respData = Encoding.ASCII.GetString(data, 4, bytes-4);
+
+			/*const int size = 1<<11;
+			int offset = 4;
+			var respData = new StringBuilder();
+			string test = "";
+
+			while ( true ) {
 				data = new byte[size];
-				bytes = stream.Read(data, 0, data.Length);
-				respData += Encoding.ASCII.GetString(data, offset, bytes-offset);
+				int bytes = stream.Read(data, 0, data.Length);
+
+				respData.AppendFormat("{0}", Encoding.ASCII.GetString(data, offset, bytes-offset));
 				offset = 0; //only the first read needs the offset
+				test += "R: "+bytes+" / "+size+" / "+stream.DataAvailable+"\n";
+
+				if ( !stream.DataAvailable ) {
+					break;
+				}
 			}
+
+			Log.Debug(test);*/
 
 			tcp.Close();
 			//Log.Debug("RESULT: "+respData);

@@ -13,10 +13,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private const string Query = 
 			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
-				".has('"+PropDbName.Factor_Deleted+"',Tokens.T.eq,_P1)"+
+				".hasNot('"+PropDbName.Factor_Deleted+"')"+
 				".as('step2')"+
 			".inE('"+RelDbName.MemberCreatesFactor+"').outV"+
-				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P2)"+
+				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P1)"+
 			".back('step2');";
 
 		private long vFactorId;
@@ -43,8 +43,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParam(pQuery.Params, "_P0", vFactorId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", null);
-			TestUtil.CheckParam(pQuery.Params, "_P2", vMemberId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vMemberId);
 
 			return vFactorResult;
 		}

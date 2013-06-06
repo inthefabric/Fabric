@@ -78,7 +78,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCompleted() {
 			IWeaverQuery q = GetNodeByPropQuery<Factor>(
-				".has('"+PropDbName.Factor_Completed+"',Tokens.T.neq,null).count()");
+				".has('"+PropDbName.Factor_Completed+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCompleted", q);
 			return int.Parse(data.Result.TextList[0]);
 		}

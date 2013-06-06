@@ -2,6 +2,7 @@
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
+using Weaver;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
@@ -64,9 +65,16 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 
 			////
+			
+			//The Limit function intentionally requests one more result than it needs. This allows the
+			//API to determine if there are more items available after the requested set of items.
 
 			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
-			Path.AppendToCurrentSegment("["+Index+".."+(Index+Count)+"]", false);
+
+			string i0Param = Path.AddParam(new WeaverQueryVal(Index));
+			string i1Param = Path.AddParam(new WeaverQueryVal(Index+Count));
+			
+			Path.AppendToCurrentSegment("["+i0Param+".."+i1Param+"]", false);
 		}
 
 

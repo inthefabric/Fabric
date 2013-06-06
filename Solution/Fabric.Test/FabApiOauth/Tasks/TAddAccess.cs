@@ -20,7 +20,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private const string QueryClearTokens =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
 			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
-				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.neq,_P)"+
+				".has('"+PropDbName.OauthAccess_Token+"')"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".as('step5')" +
 			".outE('"+RelDbName.OauthAccessUsesUser+"').inV" +
@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private const string QueryClearTokensClientOnly =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
 			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
-				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.neq,_P)"+
+				".has('"+PropDbName.OauthAccess_Token+"')"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.OauthAccess_Token+"',_P);"+
@@ -140,7 +140,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			var vals = new List<object>();
 			vals.Add(vAppId);
-			vals.Add(null);
 			vals.Add(vClientOnly);
 
 			if ( vClientOnly ) {
