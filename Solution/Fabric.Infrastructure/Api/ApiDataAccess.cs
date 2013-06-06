@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -67,7 +68,9 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
-			DateTime t = DateTime.UtcNow;
+			//ApiCtx.ProfilerTrace(this, "ex.start");
+			var sw = new Stopwatch();
+			sw.Start();
 
 			try {
 				Sema.WaitOne();
@@ -85,7 +88,9 @@ namespace Fabric.Infrastructure.Api {
 				JsConfig.EmitCamelCaseNames = false;
 
 				//Log.Debug("REQUEST: "+vReqJson);
+				//ApiCtx.ProfilerTrace(this, "ex.get");
 				ResponseJson = GetRawResult(vReqJson);
+				//ApiCtx.ProfilerTrace(this, "ex.resp");
 				Sema.Release();
 
 				Response = JsonSerializer.DeserializeFromString<RexConnTcpResponse>(ResponseJson);
@@ -127,7 +132,7 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			--TcpCount;
-			Result.ServerTime = (DateTime.UtcNow-t).TotalMilliseconds;
+			Result.ServerTime = (int)sw.ElapsedMilliseconds;
 			LogAction();
 
 			if ( vUnhandledException != null ) {
@@ -142,6 +147,7 @@ namespace Fabric.Infrastructure.Api {
 				ResultDtoList = new List<IDbDto>(Result.DbDtos);
 			}
 
+
 			for ( int i = 0 ; i < Response.CmdList.Count ; ++i ) {
 				RexConnTcpResponseCommand rc = Response.CmdList[i];
 
@@ -149,17 +155,23 @@ namespace Fabric.Infrastructure.Api {
 					Log.Warn(ApiCtx.ContextId, "DATA", "Response.CmdList["+i+"] error: "+rc.Err);
 				}
 			}
+
+			//ApiCtx.ProfilerTrace(this, "ex.done");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pReqJson) {
+			//ApiCtx.ProfilerTrace(this, "grr1");
 			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
+			//ApiCtx.ProfilerTrace(this, "grr2");
 			tcp.SendBufferSize = tcp.ReceiveBufferSize = 1<<16;
 
 			byte[] dataLen = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(pReqJson.Length));
 			byte[] data = Encoding.ASCII.GetBytes(pReqJson);
+			//ApiCtx.ProfilerTrace(this, "grr3");
 
 			NetworkStream stream = tcp.GetStream();
+			//ApiCtx.ProfilerTrace(this, "grr4");
 			stream.Write(dataLen, 0, dataLen.Length); //begin with the request's string length
 			stream.Write(data, 0, data.Length);
 
@@ -171,9 +183,11 @@ namespace Fabric.Infrastructure.Api {
 				Log.Debug(" - "+b);
 			}*/
 
+			//ApiCtx.ProfilerTrace(this, "grr5");
 			data = new byte[tcp.ReceiveBufferSize];
 			int bytes = stream.Read(data, 0, data.Length);
 			string respData = Encoding.ASCII.GetString(data, 4, bytes-4);
+			//ApiCtx.ProfilerTrace(this, "grr6");
 
 			/*const int size = 1<<11;
 			int offset = 4;
@@ -197,6 +211,7 @@ namespace Fabric.Infrastructure.Api {
 
 			tcp.Close();
 			//Log.Debug("RESULT: "+respData);
+			//ApiCtx.ProfilerTrace(this, "grr7");
 			return respData;
 		}
 

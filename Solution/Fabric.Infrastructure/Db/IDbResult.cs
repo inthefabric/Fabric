@@ -10,7 +10,7 @@ namespace Fabric.Infrastructure.Db {
 		IList<DbDto> DbDtos { get; }
 		IList<IList<DbDto>> CmdDbDtos { get; }
 
-		double ServerTime { get; set; }
+		int ServerTime { get; set; }
 		string Exception { get; set; }
 		string Message { get; set; }
 

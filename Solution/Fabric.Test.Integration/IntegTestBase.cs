@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
@@ -21,8 +22,8 @@ namespace Fabric.Test.Integration {
 		protected int NewNodeCount { get; set; }
 		protected int NewRelCount { get; set; }
 
-		private long vStartTime;
-		private long vStartTime2;
+		private Stopwatch vWatch;
+		private Stopwatch vWatch2;
 		private Tuple<int,int> vCounts;
 
 		protected const SetupUsers.AppId AppFab = SetupUsers.AppId.FabSys;
@@ -48,7 +49,9 @@ namespace Fabric.Test.Integration {
 
 			Log.Info("SetUp started");
 
-			vStartTime = DateTime.UtcNow.Ticks;
+			vWatch = new Stopwatch();
+			vWatch.Start();
+
 			ApiCtx = new TestApiContext();
 			NewNodeCount = 0;
 			NewRelCount = 0;
@@ -63,7 +66,8 @@ namespace Fabric.Test.Integration {
 			Log.Info("");
 			Log.Info("=====================================");
 
-			vStartTime2 = DateTime.UtcNow.Ticks;
+			vWatch2 = new Stopwatch();
+			vWatch2.Start();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -77,7 +81,7 @@ namespace Fabric.Test.Integration {
 			Log.Info("");
 			Log.Info("=====================================");
 			Log.Info("");
-			Log.Info("Core test time: "+(DateTime.UtcNow.Ticks-vStartTime2)/10000+"ms");
+			Log.Info("Core test time: "+vWatch2.ElapsedMilliseconds+"ms");
 			Log.Info("TearDown started at T = "+GetTime());
 
 			////
@@ -203,7 +207,7 @@ namespace Fabric.Test.Integration {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetTime() {
-			return (DateTime.UtcNow.Ticks-vStartTime)/10000+"ms";
+			return vWatch.ElapsedMilliseconds+"ms";
 		}
 
 	}

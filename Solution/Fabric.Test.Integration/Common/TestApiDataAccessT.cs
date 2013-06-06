@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
@@ -25,10 +25,13 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetRawResult(string pReqJson) {
-			long t = DateTime.UtcNow.Ticks;
+			var sw = new Stopwatch();
+			sw.Start();
+
 			pReqJson = ((TestApiContext)ApiCtx).AlterRequestJson(pReqJson);
 			string json = base.GetRawResult(pReqJson);
-			Log.Info("Query<"+typeof(T).Name+">: "+(DateTime.UtcNow.Ticks-t)/10000+"ms");
+
+			Log.Info("Query<"+typeof(T).Name+">: "+sw.ElapsedMilliseconds+"ms");
 			Log.Info("");
 			return json;
 		}

@@ -109,12 +109,11 @@ namespace Fabric.Api.Common {
 			ApiCtx.Analytics.TrackEvent("Response", "StartIndex", "", (int)FabResp.StartIndex);
 			ApiCtx.Analytics.TrackEvent("Response", "Count", "", FabResp.Count);
 			ApiCtx.Analytics.TrackEvent("Response", "HasMore", "", (FabResp.HasMore ? 1 : 0));
-			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "",
-				(int)ApiCtx.DbQueryExecutionCount);
+			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "", ApiCtx.DbQueryExecutionCount);
 			ApiCtx.Analytics.TrackEvent("Response", "HttpStatus", "", FabResp.HttpStatus);
 
 			//FRv1: (FabResponse log, version 1)
-			//	Class, ip, QueryCount, DbMs, TotalMs, DataLen, StartIndex, Count, HasMore,
+			//	Class, ip, QueryCount, TotalMs, DbMs, DataLen, StartIndex, Count, HasMore,
 			//		AppId, UserId, Timestamp, HttpStatus, IsError, method, path, Exception
 
 			const string name = "FRv1";
@@ -124,8 +123,8 @@ namespace Fabric.Api.Common {
 				GetType().Name +x+
 				NancyReq.UserHostAddress +x+
 				ApiCtx.DbQueryExecutionCount +x+
-				FabResp.DbMs +x+
 				FabResp.TotalMs +x+
+				FabResp.DbMs +x+
 				FabResp.DataLen +x+
 				FabResp.StartIndex +x+
 				FabResp.Count +x+

@@ -11,7 +11,7 @@ namespace Fabric.Infrastructure.Db {
 		public IList<IList<DbDto>> CmdDbDtos { get; private set; }
 		public IList<DbDto> DbDtos { get; private set; }
 
-		public double ServerTime { get; set; }
+		public int ServerTime { get; set; }
 		public string Exception { get; set; }
 		public string Message { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Db;
@@ -23,10 +24,15 @@ namespace Fabric.Infrastructure.Api {
 		public int DbQueryExecutionCount { get; private set; }
 		public int DbQueryMillis { get; private set; }
 
+		private readonly Stopwatch vProfiler;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiContext(string pRexConnUrl, int pRexConnPort, ICacheManager pCache) {
+			vProfiler = new Stopwatch();
+			vProfiler.Start();
+
 			RexConnUrl = pRexConnUrl;
 			RexConnPort = pRexConnPort;
 			Cache = pCache;
@@ -171,6 +177,19 @@ namespace Fabric.Infrastructure.Api {
 			DbQueryExecutionCount++;
 			DbQueryMillis += pDbQuery.Result.QueryTime;
 			return pDbQuery;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void ProfilerTrace(object pObj, string pName) {
+			ProfilerTrace(pObj.GetType().Name, pName);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ProfilerTrace(string pObjName, string pName) {
+			Log.Debug("---> "+String.Format("{0,7:##0.000}", vProfiler.Elapsed.TotalMilliseconds)+
+				"ms ("+pObjName+"."+pName+")");
 		}
 
 	}

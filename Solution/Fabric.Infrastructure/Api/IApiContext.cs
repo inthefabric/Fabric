@@ -54,6 +54,12 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted) where T : IItemWithId, new();
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		void ProfilerTrace(object pObj, string pName);
+		void ProfilerTrace(string pObjName, string pName);
+
 	}
 
 }

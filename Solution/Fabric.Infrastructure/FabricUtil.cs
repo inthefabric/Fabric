@@ -37,6 +37,7 @@ namespace Fabric.Infrastructure {
 
 			return sb.ToString();
 		}
+
 	}
 
 }

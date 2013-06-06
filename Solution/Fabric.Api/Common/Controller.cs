@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using Fabric.Api.Dto;
 using Fabric.Api.Util;
@@ -21,7 +22,7 @@ namespace Fabric.Api.Common {
 		protected DynamicDictionary Form { get; private set; }
 		protected Exception UnhandledException { get; private set; }
 
-		private long vTicks;
+		private int vMillis;
 		private Response vResp;
 
 
@@ -36,7 +37,8 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Response Execute() {
-			long t = DateTime.UtcNow.Ticks;
+			var sw = new Stopwatch();
+			sw.Start();
 
 			try {
 				vResp = BuildResponse();
@@ -52,7 +54,7 @@ namespace Fabric.Api.Common {
 				}
 			}
 
-			vTicks = DateTime.UtcNow.Ticks-t;
+			vMillis = (int)sw.ElapsedMilliseconds;
 			PreLogAction();
 			LogAction();
 			return vResp;
@@ -80,7 +82,7 @@ namespace Fabric.Api.Common {
 		protected virtual void LogAction() {
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
 			ApiCtx.Analytics.TrackEvent("Response", "DbMs", "", ApiCtx.DbQueryMillis);
-			ApiCtx.Analytics.TrackEvent("Response", "TotalMs", "", (int)(vTicks/10000));
+			ApiCtx.Analytics.TrackEvent("Response", "TotalMs", "", (int)(vMillis/10000));
 			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "",
 				(int)ApiCtx.DbQueryExecutionCount);
 			ApiCtx.Analytics.TrackEvent("Response", "HttpStatus", "", (int)vResp.StatusCode);
@@ -96,7 +98,7 @@ namespace Fabric.Api.Common {
 				NancyReq.UserHostAddress +x+
 				ApiCtx.DbQueryExecutionCount +x+
 				ApiCtx.DbQueryMillis +x+
-				vTicks/10000 +x+
+				vMillis +x+
 				DateTime.UtcNow.Ticks +x+
 				(int)vResp.StatusCode +x+
 				NancyReq.Method +x+

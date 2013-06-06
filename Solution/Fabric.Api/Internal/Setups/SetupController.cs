@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Fabric.Api.Common;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
@@ -29,7 +30,9 @@ namespace Fabric.Api.Internal.Setups {
 					return "Password required.";
 				}
 
-				long time = DateTime.UtcNow.Ticks;
+				var sw = new Stopwatch();
+				sw.Start();
+
 #if DEBUG
 				vDataSet = Setup.SetupAll(true);
 #else
@@ -40,7 +43,7 @@ namespace Fabric.Api.Internal.Setups {
 				SendNodeTx();
 				SendRelTx();
 
-				return "success: "+(DateTime.UtcNow.Ticks-time)/10000000.0;
+				return "success: "+sw.ElapsedMilliseconds/1000.0+"sec";
 			}
 			catch ( Exception ex ) {
 				Log.Error("error", ex);

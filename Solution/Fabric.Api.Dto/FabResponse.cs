@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
 
@@ -25,6 +26,8 @@ namespace Fabric.Api.Dto {
 		public int HttpStatus { get; set; }
 		public FabError Error { get; set; }
 
+		private Stopwatch vWatch;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -35,16 +38,15 @@ namespace Fabric.Api.Dto {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void StartEvent() {
+			vWatch = new Stopwatch();
+			vWatch.Start();
+
 			Timestamp = DateTime.UtcNow.Ticks;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Complete() {
-			TotalMs = (int)((DateTime.UtcNow.Ticks-Timestamp)/10000);
-
-			if ( TotalMs < DbMs ) { //sometimes Total is 1 millisecond less than Db
-				TotalMs = DbMs;
-			}
+			TotalMs = (int)vWatch.ElapsedMilliseconds;
 		}
 
 
