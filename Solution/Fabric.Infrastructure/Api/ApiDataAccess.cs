@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
 using ServiceStack.Text;
@@ -19,7 +18,6 @@ namespace Fabric.Infrastructure.Api {
 	/*================================================================================================*/
 	public class ApiDataAccess : IApiDataAccess {
 
-		private static readonly Semaphore Sema = new Semaphore(20, 20, "ApiDataAccess");
 		private static int TcpCount;
 
 		public IApiContext ApiCtx { get; private set; }
@@ -34,6 +32,7 @@ namespace Fabric.Infrastructure.Api {
 		public IList<IDbDto> ResultDtoList { get; private set; }
 
 		private string vReqJson;
+		private TcpClientPool vTcpPool;
 		private Exception vUnhandledException;
 
 
@@ -45,6 +44,7 @@ namespace Fabric.Infrastructure.Api {
 			Script = pScript;
 			Params = pParams;
 
+			vTcpPool = TcpClientPool.GetPool(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
 			Request = BuildRequest(Script, Params);
 		}
 
@@ -73,7 +73,6 @@ namespace Fabric.Infrastructure.Api {
 			sw.Start();
 
 			try {
-				Sema.WaitOne();
 				++TcpCount;
 
 #if REX_CONN_DEBUG
@@ -91,7 +90,6 @@ namespace Fabric.Infrastructure.Api {
 				//ApiCtx.ProfilerTrace(this, "ex.get");
 				ResponseJson = GetRawResult(vReqJson);
 				//ApiCtx.ProfilerTrace(this, "ex.resp");
-				Sema.Release();
 
 				Response = JsonSerializer.DeserializeFromString<RexConnTcpResponse>(ResponseJson);
 
@@ -162,7 +160,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pReqJson) {
 			//ApiCtx.ProfilerTrace(this, "grr1");
-			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
+			TimedTcpClient tcp = vTcpPool.TakeClient();
 			//ApiCtx.ProfilerTrace(this, "grr2");
 			tcp.SendBufferSize = tcp.ReceiveBufferSize = 1<<16;
 
@@ -209,7 +207,7 @@ namespace Fabric.Infrastructure.Api {
 
 			Log.Debug(test);*/
 
-			tcp.Close();
+			vTcpPool.ReturnClient(tcp);
 			//Log.Debug("RESULT: "+respData);
 			//ApiCtx.ProfilerTrace(this, "grr7");
 			return respData;

@@ -63,6 +63,8 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\ApiEnums.cs" />
+    <Compile Include="Api\TimedTcpClient.cs" />
+    <Compile Include="Api\TcpClientPool.cs" />
     <Compile Include="Db\RexConnTcp.cs" />
     <Compile Include="Weaver\DbNames.cs">
       <DependentUpon>DbNames.tt</DependentUpon>
