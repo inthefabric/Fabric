@@ -116,6 +116,7 @@
     <Compile Include="FabApiServer\Oauth\XOauthLoginControllerPost.cs" />
     <Compile Include="FabApiTraversal\XPathRouter.cs" />
     <Compile Include="FabApiWeb\XBaseWebFunc.cs" />
+    <Compile Include="FabInfra\XTiming.cs" />
     <Compile Include="FabInfra\XParallel.cs" />
     <Compile Include="FabInfra\XSharpflake.cs" />
     <Compile Include="FabInfra\XCreateApp.cs" />
@@ -139,8 +140,14 @@
     <Reference Include="Moq">
       <HintPath>..\..\Packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="MsgPack">
+      <HintPath>..\..\Packages\MsgPack.Cli.0.3.1\lib\net40-client\MsgPack.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RexProClient">
+      <HintPath>..\..\Packages\RexProClient\RexProClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Caching" />

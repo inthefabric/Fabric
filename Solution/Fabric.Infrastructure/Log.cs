@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define DEBUG_LISTENER
+
+using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using log4net;
@@ -23,6 +25,9 @@ namespace Fabric.Infrastructure {
 			if ( Configured ) { return; }
 			XmlConfigurator.Configure();
 			Configured = true;
+#if DEBUG_LISTENER
+			System.Diagnostics.Debug.Listeners.Add(new LogDebugListener());
+#endif
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -154,10 +159,33 @@ namespace Fabric.Infrastructure {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void ConsoleOut(string pText, Exception pException=null) {
+#if !DEBUG_LISTENER
 			Trace.WriteLine(pText);
 			if ( pException != null ) { Trace.WriteLine(pException); }
+#endif
 		}
 
 	}
+
+
+#if DEBUG_LISTENER
+	/*================================================================================================*/
+	[ExcludeFromCodeCoverage]
+	public class LogDebugListener : TraceListener {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Write(string pMsg) {
+			Log.Debug("***DEBUG*** "+pMsg);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void WriteLine(string pMsg) {
+			Log.Debug("***DEBUG*** "+pMsg);
+		}
+
+	}
+#endif
 
 }
