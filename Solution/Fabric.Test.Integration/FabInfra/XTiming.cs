@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.IO;
+using System.Net;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using NUnit.Framework;
@@ -42,8 +44,6 @@ namespace Fabric.Test.Integration.FabInfra {
 
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RexConnSerial() {
@@ -53,6 +53,18 @@ namespace Fabric.Test.Integration.FabInfra {
 
 			for ( int i = 0 ; i < 10 ; ++i ) {
 				RunRexConn(i);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RestApiSerial() {
+			RunRestApi(-1);
+			vResults = "";
+			vTimeSum = 0;
+
+			for ( int i = 0 ; i < 10 ; ++i ) {
+				RunRestApi(i);
 			}
 		}
 
@@ -66,12 +78,13 @@ namespace Fabric.Test.Integration.FabInfra {
 			sw.Start();
 
 			var rexPro = new RexProClient(() => tcp);
-			rexPro.Query("g");
+			dynamic data = rexPro.Query("g");
 
 			vResults += "RunRexPro: "+sw.Elapsed.TotalMilliseconds+"ms\n";
 			vTimeSum += sw.Elapsed.TotalMilliseconds;
 
 			vRexProTcpPool.ReturnClient(tcp);
+			Log.Debug("DATA: "+data);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -82,10 +95,26 @@ namespace Fabric.Test.Integration.FabInfra {
 			var sw = new Stopwatch();
 			sw.Start();
 
-			ApiCtx.DbData("G", wq);
+			var data = ApiCtx.DbData("G", wq);
 
 			vResults += "RunRexConn: "+sw.Elapsed.TotalMilliseconds+"ms\n";
 			vTimeSum += sw.Elapsed.TotalMilliseconds;
+			Log.Debug("DATA: "+data.ResponseJson);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void RunRestApi(int pIndex) {
+			var req = HttpWebRequest.Create("http://rexster:8182/graphs/graph/tp/gremlin?script=g");
+
+			var sw = new Stopwatch();
+			sw.Start();
+
+			WebResponse data = req.GetResponse();
+
+			vResults += "RunRestApi: "+sw.Elapsed.TotalMilliseconds+"ms\n";
+			vTimeSum += sw.Elapsed.TotalMilliseconds;
+			var sr = new StreamReader(data.GetResponseStream());
+			Log.Debug("DATA: "+sr.ReadToEnd());
 		}
 		
 	}
