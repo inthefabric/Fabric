@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Db;
 using NUnit.Framework;
@@ -19,8 +20,12 @@ namespace Fabric.Test.Integration.FabInfra {
 	[TestFixture]
 	public class XTiming : IntegTestBase {
 
-		private const string RexProDataPattern =
-			@"Result: ""titangraph\[\nlocal: data/FabricTest\]"",";
+		//private const string RexProDataPattern =
+		//	@"Result: ""titangraph\[\n\s*local: data/FabricTest\n\s*\]"",";
+		private const string RexProDataPatternA =
+			@"""titangraph\[";
+		private const string RexProDataPatternB =
+			@"local: data/FabricTest";
 
 		private const string RexConnDataPattern =
 			@"{""reqId"":""1234"",""timer"":\d+,""cmdList"":\[{""timer"":\d+,""results"":\[""titangraph\[local:data/FabricTest\]""\]}\]}";
@@ -30,17 +35,29 @@ namespace Fabric.Test.Integration.FabInfra {
 
 		private string vResults;
 		private double vTimeSum;
+		private int vRunCount;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			IsReadOnlyTest = true;
+			vRunCount = 10;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestPostTearDown() {
-			Log.Debug("Results:\n"+vResults+"AVG: "+vTimeSum/10.0+"ms");
+			Log.Debug("------------------------------\n");
+			Log.Debug("Results:\n"+vResults+"AVG: "+vTimeSum/(double)vRunCount+"ms");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void Prepare(Action<int> pRunAction) {
+			vResults = "";
+			pRunAction(-1);
+			pRunAction(-1);
+			vResults = "";
+			vTimeSum = 0;
 		}
 		
 		
@@ -48,26 +65,19 @@ namespace Fabric.Test.Integration.FabInfra {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RexProSerial() {
-			RunRexPro(-1);
-			RunRexPro(-1);
-			vResults = "";
-			vTimeSum = 0;
+			Prepare(RunRexPro);
 
-			for ( int i = 0 ; i < 10 ; ++i ) {
+			for ( int i = 0 ; i < vRunCount ; ++i ) {
 				RunRexPro(i);
 			}
-
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RexConnSerial() {
-			RunRexConn(-1);
-			RunRexConn(-1);
-			vResults = "";
-			vTimeSum = 0;
+			Prepare(RunRexConn);
 
-			for ( int i = 0 ; i < 10 ; ++i ) {
+			for ( int i = 0 ; i < vRunCount ; ++i ) {
 				RunRexConn(i);
 			}
 		}
@@ -75,14 +85,37 @@ namespace Fabric.Test.Integration.FabInfra {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RestApiSerial() {
-			RunRestApi(-1);
-			RunRestApi(-1);
-			vResults = "";
-			vTimeSum = 0;
+			Prepare(RunRestApi);
 
-			for ( int i = 0 ; i < 10 ; ++i ) {
+			for ( int i = 0 ; i < vRunCount ; ++i ) {
 				RunRestApi(i);
 			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RexProParallel() {
+			Prepare(RunRexPro);
+			vRunCount = 20;
+			Parallel.For(0, vRunCount, RunRexPro);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RexConnParallel() {
+			Prepare(RunRexConn);
+			vRunCount = 20;
+			Parallel.For(0, vRunCount, RunRexConn);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RestApiParallel() {
+			Prepare(RunRestApi);
+			vRunCount = 20;
+			Parallel.For(0, vRunCount, RunRestApi);
 		}
 
 
@@ -105,19 +138,21 @@ namespace Fabric.Test.Integration.FabInfra {
 			sw.Stop();
 			double t3 = sw.Elapsed.TotalMilliseconds;
 
-			vResults += String.Format("RunRexPro:"+
-				"  {0,8:#0.0000}ms,"+
-				"  {1,8:#0.0000}ms,"+
-				"  {2,8:#0.0000}ms,"+
-				"  {3,8:#0.0000}ms\n",
-				t0, t1, t2, t3
-			);
+			lock ( this ) {
+				vTimeSum += sw.Elapsed.TotalMilliseconds;
 
-			vTimeSum += sw.Elapsed.TotalMilliseconds;
+				vResults += String.Format("RunRexPro:"+
+					"  {0,8:#0.0000}ms,"+
+					"  {1,8:#0.0000}ms,"+
+					"  {2,8:#0.0000}ms,"+
+					"  {3,8:#0.0000}ms\n",
+					t0, t1, t2, t3
+				);
+			}
 
-			Log.Debug("JSON: "+json);
-			Log.Debug("PATT: "+RexProDataPattern);
-			//Assert.True(Regex.IsMatch(resp, RexProDataPattern), "Incorrect data.");
+			//Log.Debug("JSON: "+json);
+			Assert.True(Regex.IsMatch(json, RexProDataPatternA), "Incorrect data A.");
+			Assert.True(Regex.IsMatch(json, RexProDataPatternB), "Incorrect data B.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -130,7 +165,10 @@ namespace Fabric.Test.Integration.FabInfra {
 			req.CmdList = new List<RexConnTcpRequestCommand>(new[] { cmd });
 			double t0 = sw.Elapsed.TotalMilliseconds;
 
+			JsConfig.EmitCamelCaseNames = true;
 			string script = JsonSerializer.SerializeToString(req);
+			JsConfig.EmitCamelCaseNames = false;
+
 			byte[] dataLen = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(script.Length));
 			byte[] data = Encoding.ASCII.GetBytes(script);
 			double t1 = sw.Elapsed.TotalMilliseconds;
@@ -147,17 +185,19 @@ namespace Fabric.Test.Integration.FabInfra {
 			sw.Stop();
 			double t3 = sw.Elapsed.TotalMilliseconds;
 
-			vResults += String.Format("RunRexConn:"+
-				"  {0,8:#0.0000}ms,"+
-				"  {1,8:#0.0000}ms,"+
-				"  {2,8:#0.0000}ms,"+
-				"  {3,8:#0.0000}ms\n",
-				t0, t1, t2, t3
-			);
+			lock ( this ) {
+				vTimeSum += sw.Elapsed.TotalMilliseconds;
 
-			vTimeSum += sw.Elapsed.TotalMilliseconds;
+				vResults += String.Format("RunRexConn:"+
+					"  {0,8:#0.0000}ms,"+
+					"  {1,8:#0.0000}ms,"+
+					"  {2,8:#0.0000}ms,"+
+					"  {3,8:#0.0000}ms\n",
+					t0, t1, t2, t3
+				);
+			}
 
-			Log.Debug("JSON: "+json);
+			//Log.Debug("JSON: "+json);
 			Assert.True(Regex.IsMatch(json, RexConnDataPattern), "Incorrect data.");
 		}
 
@@ -179,17 +219,19 @@ namespace Fabric.Test.Integration.FabInfra {
 			sw.Stop();
 			double t3 = sw.Elapsed.TotalMilliseconds;
 
-			vResults += String.Format("RunRestApi:"+
+			lock ( this ) {
+				vTimeSum += sw.Elapsed.TotalMilliseconds;
+
+				vResults += String.Format("RunRestApi:"+
 				"  {0,8:#0.0000}ms,"+
 				"  {1,8:#0.0000}ms,"+
 				"  {2,8:#0.0000}ms,"+
 				"  {3,8:#0.0000}ms\n",
-				t0, t1, t2, t3
-			);
+					t0, t1, t2, t3
+				);
+			}
 
-			vTimeSum += sw.Elapsed.TotalMilliseconds;
-
-			Log.Debug("JSON: "+json);
+			//Log.Debug("JSON: "+json);
 			Assert.True(Regex.IsMatch(json, RestApiDataPattern), "Incorrect data.");
 		}
 		
