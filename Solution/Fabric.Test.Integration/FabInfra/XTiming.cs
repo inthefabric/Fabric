@@ -20,6 +20,32 @@ namespace Fabric.Test.Integration.FabInfra {
 	[TestFixture]
 	public class XTiming : IntegTestBase {
 
+		/*
+		private const string TestScript = "g";
+		private const string VerifyJsonPatternA = "titangraph";
+		private const string VerifyJsonPatternB = "FabricTest";
+		private const bool VerifyGraphJson = true;
+		*/
+
+		/*
+		private const string TestScript = "g.v(4)";
+		private const string VerifyJsonPatternA = @"""E_Ad"":""dataprov@inthefabric.com""";
+		private const string VerifyJsonPatternB = @"""E_Co"":""274bbd733ecc46f3a27b7c189ee091f4""";
+		private const bool VerifyGraphJson = false;
+		*/
+
+		/*
+		private const string TestScript = "g.V.both.both.count()";
+		private const string VerifyJsonPatternA = @"16942";
+		private const string VerifyJsonPatternB = @"";
+		private const bool VerifyGraphJson = false;
+		*/
+
+		private const string TestScript = "g.V[0..30]";
+		private const string VerifyJsonPatternA = @"""E_Co"":""e3d6522a5c3d4f609ed9e3c4ba9eb145""";
+		private const string VerifyJsonPatternB = @"""Ap_Na"":""Fabric System""";
+		private const bool VerifyGraphJson = false;
+
 		//private const string RexProDataPattern =
 		//	@"Result: ""titangraph\[\n\s*local: data/FabricTest\n\s*\]"",";
 		private const string RexProDataPatternA =
@@ -48,7 +74,7 @@ namespace Fabric.Test.Integration.FabInfra {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestPostTearDown() {
 			Log.Debug("------------------------------\n");
-			Log.Debug("Results:\n"+vResults+"AVG: "+vTimeSum/(double)vRunCount+"ms");
+			Log.Debug("Results:\n"+vResults+"AVG: "+vTimeSum/vRunCount+"ms");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -128,7 +154,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			var rexPro = new RexProClient("rexster", 8184);
 			double t0 = sw.Elapsed.TotalMilliseconds;
 
-			var sr = new ScriptRequest { Script = "g" };
+			var sr = new ScriptRequest { Script = TestScript };
 			double t1 = sw.Elapsed.TotalMilliseconds;
 
 			ScriptResponse resp = rexPro.ExecuteScript(sr);
@@ -150,9 +176,12 @@ namespace Fabric.Test.Integration.FabInfra {
 				);
 			}
 
-			//Log.Debug("JSON: "+json);
-			Assert.True(Regex.IsMatch(json, RexProDataPatternA), "Incorrect data A.");
-			Assert.True(Regex.IsMatch(json, RexProDataPatternB), "Incorrect data B.");
+			//VerifyJson(json);
+
+			if ( VerifyGraphJson ) {
+				Assert.True(Regex.IsMatch(json, RexProDataPatternA), "Incorrect data A.");
+				Assert.True(Regex.IsMatch(json, RexProDataPatternB), "Incorrect data B.");
+			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -161,7 +190,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			sw.Start();
 
 			var req = new RexConnTcpRequest { ReqId = "1234" };
-			var cmd = new RexConnTcpRequestCommand { Cmd = "query", Args = new[] { "g", "" }};
+			var cmd = new RexConnTcpRequestCommand { Cmd = "query", Args = new[] { TestScript, "" } };
 			req.CmdList = new List<RexConnTcpRequestCommand>(new[] { cmd });
 			double t0 = sw.Elapsed.TotalMilliseconds;
 
@@ -197,8 +226,11 @@ namespace Fabric.Test.Integration.FabInfra {
 				);
 			}
 
-			//Log.Debug("JSON: "+json);
-			Assert.True(Regex.IsMatch(json, RexConnDataPattern), "Incorrect data.");
+			VerifyJson(json);
+
+			if ( VerifyGraphJson ) {
+				Assert.True(Regex.IsMatch(json, RexConnDataPattern), "Incorrect data.");
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -206,7 +238,8 @@ namespace Fabric.Test.Integration.FabInfra {
 			var sw = new Stopwatch();
 			sw.Start();
 
-			var req = HttpWebRequest.Create("http://rexster:8182/graphs/graph/tp/gremlin?script=g");
+			var req = HttpWebRequest.Create(
+				"http://rexster:8182/graphs/graph/tp/gremlin?script="+TestScript);
 			double t0 = sw.Elapsed.TotalMilliseconds;
 
 			WebResponse resp = req.GetResponse();
@@ -223,16 +256,29 @@ namespace Fabric.Test.Integration.FabInfra {
 				vTimeSum += sw.Elapsed.TotalMilliseconds;
 
 				vResults += String.Format("RunRestApi:"+
-				"  {0,8:#0.0000}ms,"+
-				"  {1,8:#0.0000}ms,"+
-				"  {2,8:#0.0000}ms,"+
-				"  {3,8:#0.0000}ms\n",
+					"  {0,8:#0.0000}ms,"+
+					"  {1,8:#0.0000}ms,"+
+					"  {2,8:#0.0000}ms,"+
+					"  {3,8:#0.0000}ms\n",
 					t0, t1, t2, t3
 				);
 			}
 
-			//Log.Debug("JSON: "+json);
-			Assert.True(Regex.IsMatch(json, RestApiDataPattern), "Incorrect data.");
+			VerifyJson(json);
+
+			if ( VerifyGraphJson ) {
+				Assert.True(Regex.IsMatch(json, RestApiDataPattern), "Incorrect data.");
+			}
+		}
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void VerifyJson(string pJson) {
+			//Log.Debug("JSON: "+pJson);
+			//Log.Debug("SIZE: "+pJson.Length);
+			Assert.True(Regex.IsMatch(pJson, VerifyJsonPatternA), "Incorrect data A.");
+			Assert.True(Regex.IsMatch(pJson, VerifyJsonPatternB), "Incorrect data B.");
 		}
 		
 	}
