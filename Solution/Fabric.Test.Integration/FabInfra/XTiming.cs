@@ -13,18 +13,18 @@ namespace Fabric.Test.Integration.FabInfra {
 
 		private TcpClientPool vRexProTcpPool;
 		private string vResults;
+		private double vTimeSum;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vRexProTcpPool = TcpClientPool.GetPool(ApiCtx.RexConnUrl, 8184);
-			vResults = "";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestPostTearDown() {
-			Log.Debug("Results:\n"+vResults);
+			Log.Debug("Results:\n"+vResults+"AVG: "+vTimeSum/10.0+"ms");
 		}
 		
 		
@@ -32,14 +32,25 @@ namespace Fabric.Test.Integration.FabInfra {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RexProSerial() {
+			RunRexPro(-1);
+			vResults = "";
+			vTimeSum = 0;
+
 			for ( int i = 0 ; i < 10 ; ++i ) {
 				RunRexPro(i);
 			}
+
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void RexConnSerial() {
+			RunRexConn(-1);
+			vResults = "";
+			vTimeSum = 0;
+
 			for ( int i = 0 ; i < 10 ; ++i ) {
 				RunRexConn(i);
 			}
@@ -56,7 +67,9 @@ namespace Fabric.Test.Integration.FabInfra {
 
 			var rexPro = new RexProClient(() => tcp);
 			rexPro.Query("g");
+
 			vResults += "RunRexPro: "+sw.Elapsed.TotalMilliseconds+"ms\n";
+			vTimeSum += sw.Elapsed.TotalMilliseconds;
 
 			vRexProTcpPool.ReturnClient(tcp);
 		}
@@ -70,7 +83,9 @@ namespace Fabric.Test.Integration.FabInfra {
 			sw.Start();
 
 			ApiCtx.DbData("G", wq);
+
 			vResults += "RunRexConn: "+sw.Elapsed.TotalMilliseconds+"ms\n";
+			vTimeSum += sw.Elapsed.TotalMilliseconds;
 		}
 		
 	}
