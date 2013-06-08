@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/4/2013 9:43:23 PM
+// Generated on 6/8/2013 2:11:06 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -102,8 +102,8 @@ namespace Fabric.Db.Data.Setups {
 			//OauthAccess
 			pSet.AddIndexQuery(BuildGroup("OA", 14));
 			pSet.AddIndexQuery(BuildKey("OA", "OA_Id", "Long", true, false));
-			pSet.AddIndexQuery(BuildKey("OA", "OA_To", "String", false, false));
-			pSet.AddIndexQuery(BuildKey("OA", "OA_Re", "String", false, false));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_To", "String", true, false));
+			pSet.AddIndexQuery(BuildKey("OA", "OA_Re", "String", true, false));
 			pSet.AddIndexQuery(BuildKey("OA", "OA_Ex", "Long", false, false));
 			pSet.AddIndexQuery(BuildKey("OA", "OA_CO", "Boolean", false, false));
 
@@ -116,7 +116,7 @@ namespace Fabric.Db.Data.Setups {
 			pSet.AddIndexQuery(BuildGroup("OG", 16));
 			pSet.AddIndexQuery(BuildKey("OG", "OG_Id", "Long", true, false));
 			pSet.AddIndexQuery(BuildKey("OG", "OG_Re", "String", false, false));
-			pSet.AddIndexQuery(BuildKey("OG", "OG_Co", "String", false, false));
+			pSet.AddIndexQuery(BuildKey("OG", "OG_Co", "String", true, false));
 			pSet.AddIndexQuery(BuildKey("OG", "OG_Ex", "Long", false, false));
 
 			//OauthScope

@@ -310,10 +310,12 @@ namespace Fabric.Domain.Meta {
 				p.IsNullable = true;
 				p.IsUnique = true;
 				p.ValidRegex = ValidCodeRegex;
+				p.IndexWithTitan = true;
 			p = AddProp(oauthAccess, "Refresh", "Re", typeof(string));
 				p.Len = 32;
 				p.IsNullable = true;
 				p.ValidRegex = ValidCodeRegex;
+				p.IndexWithTitan = true;
 			p = AddProp(oauthAccess, "Expires", "Ex", typeof(DateTime));
 			p = AddProp(oauthAccess, "IsClientOnly", "CO", typeof(bool));
 
@@ -341,6 +343,7 @@ namespace Fabric.Domain.Meta {
 				p.Len = 32;
 				p.IsUnique = true;
 				p.ValidRegex = ValidCodeRegex;
+				p.IndexWithTitan = true;
 			p = AddProp(oauthGrant, "Expires", "Ex", typeof(DateTime));
 
 			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");
