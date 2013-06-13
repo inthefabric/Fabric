@@ -24,12 +24,12 @@ namespace Fabric.Db.Data.Setups {
 			//VERTICES
 <#
 var schema = new Schema();
-IList<WeaverNodeSchema> nodes = schema.Nodes;
+IList<WeaverVertexSchema> nodes = schema.Nodes;
 int groupId = 2;
 var propNameMap = new Dictionary<string, SchemaHelperProp>();
 var propSkipMap = new Dictionary<string, bool>();
 
-foreach ( WeaverNodeSchema node in nodes ) {
+foreach ( WeaverVertexSchema node in nodes ) {
 	//if ( node.IsAbstract ) { continue; }
 #>
 
@@ -51,12 +51,12 @@ foreach ( WeaverNodeSchema node in nodes ) {
 	
 			//EDGES
 <#
-IList<string> rels = SchemaHelper.GetRels();
+IList<string> rels = SchemaHelper.GetEdges();
 
 foreach ( string name in rels ) {
-	SchemaHelperRel rel = SchemaHelper.GetRel(name);
-	SchemaHelperNode from = SchemaHelper.GetNode(rel.FromNodeName);
-	SchemaHelperNode to = SchemaHelper.GetNode(rel.ToNodeName);
+	SchemaHelperRel rel = SchemaHelper.GetEdge(name);
+	SchemaHelperNode from = SchemaHelper.GetNode(rel.OutVertexName);
+	SchemaHelperNode to = SchemaHelper.GetNode(rel.InVertexName);
 	IList<SchemaHelperProp> fromProps = from.GetProps(false);
 	IList<SchemaHelperProp> toProps = to.GetProps(false);
 	SchemaHelperNodeRel fromRel = new SchemaHelperNodeRel(from, rel.RelSchema);
@@ -87,7 +87,7 @@ foreach ( string name in rels ) {
 	}
 #>
 
-			//<#= rel.RelName #>
+			//<#= rel.EdgeName #>
 			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>, 
 				new [] {
 					"<#= string.Join("\",\r\n\t\t\t\t\t\"", keys) #>"

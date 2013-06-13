@@ -1,5 +1,5 @@
 ﻿using System;
-using Weaver.Schema;
+using Weaver.Core.Schema;
 
 namespace Fabric.Domain.Meta {
 

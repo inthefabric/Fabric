@@ -7,9 +7,9 @@ namespace Fabric.Db.Data {
 	/*================================================================================================*/
 	public interface  IDataRel {
 
-		IWeaverNode FromNode { get; }
-		IWeaverRel Rel { get; }
-		IWeaverNode ToNode { get; }
+		IWeaverVertex OutVertex { get; }
+		IWeaverEdge Rel { get; }
+		IWeaverVertex InVertex { get; }
 		bool IsForTesting { get; }
 		IWeaverQuery AddQuery { get; }
 		string TestVal { get; set; }
@@ -22,24 +22,24 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static DataRel<TFrom, TRel, TTo> Create<TFrom, TRel, TTo>(TFrom pFromNode, TRel pRel,
-												TTo pToNode, bool pIsForTest) where TFrom : IWeaverNode
-												where TRel : IWeaverRel where TTo : IWeaverNode{
-			return new DataRel<TFrom, TRel, TTo>(pFromNode, pRel, pToNode, pIsForTest);
+		public static DataRel<TFrom, TRel, TTo> Create<TFrom, TRel, TTo>(TFrom pOutVertex, TRel pRel,
+												TTo pInVertex, bool pIsForTest) where TFrom : IWeaverVertex
+												where TRel : IWeaverEdge where TTo : IWeaverVertex{
+			return new DataRel<TFrom, TRel, TTo>(pOutVertex, pRel, pInVertex, pIsForTest);
 		}
 
 	}
 
 	/*================================================================================================*/
-	public class DataRel<TFrom, TRel, TTo> : IDataRel where TFrom : IWeaverNode
-													where TRel : IWeaverRel where TTo : IWeaverNode {
+	public class DataRel<TFrom, TRel, TTo> : IDataRel where TFrom : IWeaverVertex
+													where TRel : IWeaverEdge where TTo : IWeaverVertex {
 
-		public TFrom FromNodeT { get; private set; }
-		public IWeaverNode FromNode { get; private set; }
+		public TFrom OutVertexT { get; private set; }
+		public IWeaverVertex OutVertex { get; private set; }
 		public TRel RelT { get; private set; }
-		public IWeaverRel Rel { get; private set; }
-		public TTo ToNodeT { get; private set; }
-		public IWeaverNode ToNode { get; private set; }
+		public IWeaverEdge Rel { get; private set; }
+		public TTo InVertexT { get; private set; }
+		public IWeaverVertex InVertex { get; private set; }
 		public bool IsForTesting { get; private set; }
 		public string TestVal { get; set; }
 
@@ -48,23 +48,23 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataRel(TFrom pFromNode, TRel pRel, TTo pToNode, bool pIsForTesting) {
-			FromNode = pFromNode;
-			FromNodeT = pFromNode;
+		public DataRel(TFrom pOutVertex, TRel pRel, TTo pInVertex, bool pIsForTesting) {
+			OutVertex = pOutVertex;
+			OutVertexT = pOutVertex;
 			RelT = pRel;
 			Rel = pRel;
-			ToNode = pToNode;
-			ToNodeT = pToNode;
+			InVertex = pInVertex;
+			InVertexT = pInVertex;
 			IsForTesting = pIsForTesting;
 
-			if ( pRel.FromNodeType != typeof(TFrom) ) {
-				throw new Exception("Incorrect FromNodeType '"+typeof(TFrom)+
-					"', expected '"+pRel.FromNodeType+"'.");
+			if ( pRel.OutVertexType != typeof(TFrom) ) {
+				throw new Exception("Incorrect OutVertexType '"+typeof(TFrom)+
+					"', expected '"+pRel.OutVertexType+"'.");
 			}
 
-			if ( pRel.ToNodeType != typeof(TTo) ) {
-				throw new Exception("Incorrect ToNodeType '"+typeof(TTo)+
-					"', expected '"+pRel.ToNodeType+"'.");
+			if ( pRel.InVertexType != typeof(TTo) ) {
+				throw new Exception("Incorrect InVertexType '"+typeof(TTo)+
+					"', expected '"+pRel.InVertexType+"'.");
 			}
 		}
 
@@ -72,7 +72,7 @@ namespace Fabric.Db.Data {
 		public IWeaverQuery AddQuery {
 			get {
 				if ( vAddQuery == null ) {
-					vAddQuery = Weave.Inst.AddRel(FromNodeT, RelT, ToNodeT);
+					vAddQuery = Weave.Inst.AddRel(OutVertexT, RelT, InVertexT);
 				}
 
 				return vAddQuery;

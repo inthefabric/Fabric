@@ -18,7 +18,7 @@ namespace Fabric.Db.Data {
 		private readonly Random vRand;
 		private DateTime vCurrDate;
 		private readonly Dictionary<string, INode> vNodeMap;
-		private readonly Dictionary<IWeaverNode, IDataNode> vDataNodeMap;
+		private readonly Dictionary<IWeaverVertex, IDataNode> vDataNodeMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ namespace Fabric.Db.Data {
 			vRand = new Random(999);
 			vCurrDate = DateTime.UtcNow.AddDays(-10);
 			vNodeMap = new Dictionary<string, INode>();
-			vDataNodeMap = new Dictionary<IWeaverNode, IDataNode>();
+			vDataNodeMap = new Dictionary<IWeaverVertex, IDataNode>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -75,7 +75,7 @@ namespace Fabric.Db.Data {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataNode GetDataNode(IWeaverNode pDomainNode) {
+		public IDataNode GetDataNode(IWeaverVertex pDomainNode) {
 			return vDataNodeMap[pDomainNode];
 		}
 
@@ -110,7 +110,7 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataRel<TFrom, TRel, TTo> AddRel<TFrom, TRel, TTo>(DataRel<TFrom, TRel, TTo> pRel)
-							where TFrom : INode where TRel : IWeaverRel where TTo : INode {
+							where TFrom : INode where TRel : IWeaverEdge where TTo : INode {
 			if ( !IsForTesting && pRel.IsForTesting ) { return pRel; }
 			Rels.Add(pRel);
 			return pRel;

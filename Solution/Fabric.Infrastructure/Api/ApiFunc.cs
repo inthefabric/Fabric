@@ -45,19 +45,19 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromType<T>() where T : class, INode, new() {
 			return Weave.Inst.BeginPath<T>(x => x.FabType, 
-				(byte)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseNode;
+				(byte)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseVertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromVar<T>(IWeaverVarAlias<T> pVar, bool pCopyItem)
 																		where T : class, INode, new() {
-			return Weave.Inst.BeginPath(pVar, pCopyItem).BaseNode;
+			return Weave.Inst.BeginPath(pVar, pCopyItem).BaseVertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
 			return Weave.Inst.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
-				pNodeWithId.GetTypeId()).BaseNode;
+				pNodeWithId.GetTypeId()).BaseVertex;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

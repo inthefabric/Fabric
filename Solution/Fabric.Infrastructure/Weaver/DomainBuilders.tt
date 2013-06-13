@@ -18,17 +18,17 @@ using Weaver.Interfaces;
 namespace Fabric.Infrastructure.Weaver {
 
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	
 	if ( node.IsRoot ) { continue; }
 
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges();
 	string nodeType = (node.IsBaseClass ? "T" : node.Name);
-	string baseType = (node.BaseNode == null ? "Domain" : node.BaseNode.Name);
+	string baseType = (node.BaseVertex == null ? "Domain" : node.BaseVertex.Name);
 
 	if ( node.IsBaseClass ) {
 #>
@@ -98,12 +98,12 @@ foreach ( string name in nodes ) {
 <#
 			if ( hr.IsOutgoing ) {
 #>
-			TxBuild.AddRel<<#= hr.RelName #>>(NodeVar, pTargetNodeVar);
+			TxBuild.AddRel<<#= hr.EdgeName #>>(NodeVar, pTargetNodeVar);
 <#
 			}
 			else {
 #>
-			TxBuild.AddRel<<#= hr.RelName #>>(pTargetNodeVar, NodeVar);
+			TxBuild.AddRel<<#= hr.EdgeName #>>(pTargetNodeVar, NodeVar);
 <#
 			}
 			

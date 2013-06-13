@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
@@ -21,18 +21,18 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<string> GetRelTypes() {
+		public static IList<string> GetEdgeTypes() {
 			return new List<string> {
 <#
 var schema = new Schema();
 var relTypeMap = new Dictionary<string, bool>();
 var relMap = new Dictionary<string, bool>();
 
-foreach ( WeaverRelSchema rel in schema.Rels ) {
-	if ( relTypeMap.ContainsKey(rel.RelType) ) { continue; }
-	relTypeMap.Add(rel.RelType, true);
+foreach ( WeaverEdgeSchema rel in schema.Rels ) {
+	if ( relTypeMap.ContainsKey(rel.EdgeType) ) { continue; }
+	relTypeMap.Add(rel.EdgeType, true);
 #>
-				"<#= rel.RelType #>",
+				"<#= rel.EdgeType #>",
 <#
 } // end rel loop
 #>
@@ -42,16 +42,16 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static SchemaHelperRel GetRel(string pName) {
+		public static SchemaHelperRel GetEdge(string pName) {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
 <#
 int ri = 0;
 
-foreach ( WeaverRelSchema rel in schema.Rels ) {
-	var fromNode = rel.FromNode.Name;
-	var toNode = rel.ToNode.Name;
+foreach ( WeaverEdgeSchema rel in schema.Rels ) {
+	var fromNode = rel.OutVertex.Name;
+	var toNode = rel.InVertex.Name;
 	string relClass = fromNode+rel.Name+toNode;
 		
 	if ( relMap.ContainsKey(relClass) ) { continue; }
@@ -68,7 +68,7 @@ foreach ( WeaverRelSchema rel in schema.Rels ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<string> GetRels() {
+		public static IList<string> GetEdges() {
 			return new List<string> {
 <#
 foreach ( string key in relMap.Keys ) {
@@ -90,9 +90,9 @@ foreach ( string key in relMap.Keys ) {
 <#
 int ni = 0;
 
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema node in schema.Nodes ) {
 #>
-				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]); //<#= node.BaseNode+"" #>
+				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]); //<#= node.BaseVertex+"" #>
 <#
 	++ni;
 } //end node loop
@@ -103,10 +103,10 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<string> GetNodes() {
+		public static IList<string> GetVertices() {
 			return new List<string> {
 <#
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema node in schema.Nodes ) {
 #>
 				"<#= node.Name #>",
 <#
@@ -121,7 +121,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		public static IList<string> GetRootLinks() {
 			return new List<string> {
 <#
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema node in schema.Nodes ) {
 	if ( node.IsAbstract || node.IsInternal ) {
 		continue;
 	}
@@ -136,11 +136,11 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		public static IList<WeaverNodeSchema> GetNodeSchemaListForWeaver() {
-			if ( WeaverNodeSchemaList == null ) {
-				WeaverNodeSchemaList = new List<WeaverNodeSchema> {
+		public static IList<WeaverVertexSchema> GetNodeSchemaListForWeaver() {
+			if ( WeaverVertexSchemaList == null ) {
+				WeaverVertexSchemaList = new List<WeaverVertexSchema> {
 <#
-foreach ( WeaverNodeSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema node in schema.Nodes ) {
 #>
 					GetNodeSchemaForWeaver("<#= node.Name #>"),
 <#
@@ -149,7 +149,7 @@ foreach ( WeaverNodeSchema node in schema.Nodes ) {
 				};
 			}
 
-			return WeaverNodeSchemaList;
+			return WeaverVertexSchemaList;
 		}*/
 
 	}

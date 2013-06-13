@@ -4,7 +4,7 @@
 	public static partial class SchemaHelper {
 		
 		private static Schema SchemaInner;
-		//private static IList<WeaverNodeSchema> WeaverNodeSchemaList;
+		//private static IList<WeaverVertexSchema> WeaverVertexSchemaList;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,17 +19,17 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		public static IList<FabricPropSchema> GetSubPropsForWeaver(WeaverNodeSchema pBaseNode) {
-			if ( !pBaseNode.IsBaseClass ) {
-				return pBaseNode.Props.Cast<FabricPropSchema>().ToList();
+		public static IList<FabricPropSchema> GetSubPropsForWeaver(WeaverVertexSchema pBaseVertex) {
+			if ( !pBaseVertex.IsBaseClass ) {
+				return pBaseVertex.Props.Cast<FabricPropSchema>().ToList();
 			}
 
 			var list = new List<FabricPropSchema>();
 
-			foreach ( string nodeName in GetNodes() ) {
-				WeaverNodeSchema ns = GetNodeSchemaForWeaver(nodeName);
+			foreach ( string nodeName in GetVertices() ) {
+				WeaverVertexSchema ns = GetNodeSchemaForWeaver(nodeName);
 
-				if ( ns.BaseNode == null || ns.BaseNode.Name != pBaseNode.Name ) {
+				if ( ns.BaseVertex == null || ns.BaseVertex.Name != pBaseVertex.Name ) {
 					continue;
 				}
 
@@ -42,22 +42,22 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		private static WeaverNodeSchema GetNodeSchemaForWeaver(string pNodeName) {
-			WeaverNodeSchema ns = GetNode(pNodeName).NodeSchema;
+		private static WeaverVertexSchema GetNodeSchemaForWeaver(string pNodeName) {
+			WeaverVertexSchema ns = GetNode(pNodeName).NodeSchema;
 
-			var newNs = new WeaverNodeSchema(ns.Name, ns.DbName);
-			newNs.BaseNode = ns.BaseNode;
+			var newNs = new WeaverVertexSchema(ns.Name, ns.DbName);
+			newNs.BaseVertex = ns.BaseVertex;
 
 			foreach ( WeaverPropSchema ps in ns.Props ) {
 				newNs.Props.Add(ps);
 			}
 
-			FillBaseNodeProps(newNs, newNs.BaseNode);
+			FillBaseVertexProps(newNs, newNs.BaseVertex);
 			return newNs;
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
-		private static void FillBaseNodeProps(WeaverNodeSchema pNode, WeaverNodeSchema pBase) {
+		private static void FillBaseVertexProps(WeaverVertexSchema pNode, WeaverVertexSchema pBase) {
 			if ( pBase == null ) {
 				return;
 			}
@@ -70,7 +70,7 @@
 				pNode.Props.Add(psNew);
 			}
 
-			FillBaseNodeProps(pNode, pBase.BaseNode);
+			FillBaseVertexProps(pNode, pBase.BaseVertex);
 		}*/
 
 	}

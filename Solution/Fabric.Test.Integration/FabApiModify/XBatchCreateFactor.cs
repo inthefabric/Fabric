@@ -93,36 +93,36 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 				
 				foreach ( IDataRel dr in ds.Rels ) {
-					if ( dr.FromNode != f ) {
+					if ( dr.OutVertex != f ) {
 						continue;
 					}
 
-					Artifact a = (Artifact)dr.ToNode;
+					Artifact a = (Artifact)dr.InVertex;
 
-					if ( dr.Rel.RelType is UsesPrimary ) {
+					if ( dr.Rel.EdgeType is UsesPrimary ) {
 						bnf.PrimaryArtifactId = a.ArtifactId;
 					}
-					else if ( dr.Rel.RelType is UsesRelated ) {
+					else if ( dr.Rel.EdgeType is UsesRelated ) {
 						bnf.RelatedArtifactId = a.ArtifactId;
 					}
-					else if ( dr.Rel.RelType is DescriptorRefinesPrimaryWith ) {
+					else if ( dr.Rel.EdgeType is DescriptorRefinesPrimaryWith ) {
 						bnf.Descriptor.PrimaryArtifactRefineId = a.ArtifactId;
 						vNewRels++;
 					}
-					else if ( dr.Rel.RelType is DescriptorRefinesRelatedWith ) {
+					else if ( dr.Rel.EdgeType is DescriptorRefinesRelatedWith ) {
 						bnf.Descriptor.RelatedArtifactRefineId = a.ArtifactId;
 						vNewRels++;
 					}
-					else if ( dr.Rel.RelType is DescriptorRefinesTypeWith ) {
+					else if ( dr.Rel.EdgeType is DescriptorRefinesTypeWith ) {
 						bnf.Descriptor.TypeRefineId = a.ArtifactId;
 						vNewRels++;
 					}
-					else if ( dr.Rel.RelType is VectorUsesAxis ) {
+					else if ( dr.Rel.EdgeType is VectorUsesAxis ) {
 						bnf.Vector.AxisArtifactId = a.ArtifactId;
 						vNewRels++;
 					}
 					else {
-						throw new Exception("Missed edge: "+dr.Rel.RelType);
+						throw new Exception("Missed edge: "+dr.Rel.EdgeType);
 					}
 				}
 			}

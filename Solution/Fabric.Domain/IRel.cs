@@ -1,12 +1,12 @@
-﻿using Weaver.Interfaces;
+﻿using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public interface IRel : IWeaverRel {
+	public interface IRel : IWeaverEdge {
 
-		string ToNodeId { get; set; }
-		string FromNodeId { get; set; }
+		string InVertexId { get; set; }
+		string OutVertexId { get; set; }
 		
 	}
 

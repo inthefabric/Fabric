@@ -58,7 +58,7 @@ namespace Fabric.Test.Integration.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRelCount<TRel>(bool pIsOutgoing, int pCount) where TRel : IWeaverRel {
+		public void AssertRelCount<TRel>(bool pIsOutgoing, int pCount) where TRel : IWeaverEdge {
 			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 			int count = 0;
 
@@ -77,7 +77,7 @@ namespace Fabric.Test.Integration.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AssertRel<TRel, TNode>(bool pIsOutgoing, long pTargetId, string pIdProperty=null)
-													where TRel : IWeaverRel where TNode : INodeWithId {
+													where TRel : IWeaverEdge where TNode : INodeWithId {
 			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 
 			foreach ( NodeConnectionRel rel in rels ) {
@@ -107,12 +107,12 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddRel(IDbDto pDbDto) {
-			if ( pDbDto.FromNodeId == Node.Id ) {
-				var rel = new NodeConnectionRel(pDbDto, true, GetTargetNode(pDbDto.ToNodeId));
+			if ( pDbDto.OutVertexId == Node.Id ) {
+				var rel = new NodeConnectionRel(pDbDto, true, GetTargetNode(pDbDto.InVertexId));
 				OutRels.Add(rel);
 			}
 			else {
-				var rel = new NodeConnectionRel(pDbDto, false, GetTargetNode(pDbDto.FromNodeId));
+				var rel = new NodeConnectionRel(pDbDto, false, GetTargetNode(pDbDto.OutVertexId));
 				InRels.Add(rel);
 			}
 		}

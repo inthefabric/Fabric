@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
@@ -22,17 +22,17 @@ using Fabric.Infrastructure.Weaver;
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 <#
-IList<string> nodeNames = SchemaHelper.GetNodes();
+IList<string> nodeNames = SchemaHelper.GetVertices();
 
 foreach ( string name in nodeNames ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 
 	if ( !node.IsBaseClass || node.IsInternal ) {
 		continue;
 	}
 
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
 	var linkRels = new List<SchemaHelperNodeRel>();
 	string typeIdIsLong = "false";
 	
@@ -43,7 +43,7 @@ foreach ( string name in nodeNames ) {
 	}
 	
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		if ( node.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 		linkRels.Add(hr);
 	}
 #>
@@ -130,9 +130,9 @@ foreach ( string name in nodeNames ) {
 		internal static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		if ( node.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 #>
-			new StepLink("<#= hr.RelTypeName #>", "<#= hr.TargetNodeType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
+			new StepLink("<#= hr.EdgeTypeName #>", "<#= hr.TargetNodeType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
 <#
 	}
 #>

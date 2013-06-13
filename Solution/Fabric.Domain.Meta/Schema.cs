@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Weaver.Items;
-using Weaver.Schema;
+using Weaver.Core.Elements;
+using Weaver.Core.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -26,20 +26,20 @@ namespace Fabric.Domain.Meta {
 		public const string ValidOauthDomainRegexp =
 			@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$";
 
-		public List<WeaverNodeSchema> Nodes { get; private set; }
-		public List<WeaverRelSchema> Rels { get; private set; }
+		public List<WeaverVertexSchema> Nodes { get; private set; }
+		public List<WeaverEdgeSchema> Rels { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Schema() {
-			Nodes = new List<WeaverNodeSchema>();
-			Rels = new List<WeaverRelSchema>();
+			Nodes = new List<WeaverVertexSchema>();
+			Rels = new List<WeaverEdgeSchema>();
 			FabricPropSchema p;
 
 			////
 
-			WeaverNodeSchema node = AddNode("Node", "N");
+			WeaverVertexSchema node = AddNode("Node", "N");
 			node.IsAbstract = true;
 			node.IsBaseClass = true;
 			node.IsInternal = true;
@@ -48,8 +48,8 @@ namespace Fabric.Domain.Meta {
 
 			////
 			
-			WeaverNodeSchema nodeForAction = AddNode("NodeForAction", "NA");
-			nodeForAction.BaseNode = node;
+			WeaverVertexSchema nodeForAction = AddNode("NodeForAction", "NA");
+			nodeForAction.BaseVertex = node;
 			nodeForAction.IsAbstract = true;
 			nodeForAction.IsBaseClass = true;
 			p = AddProp(nodeForAction, "Performed", "Pe", typeof(DateTime));
@@ -62,8 +62,8 @@ namespace Fabric.Domain.Meta {
 
 			////
 
-			WeaverNodeSchema artifact = AddNode("Artifact", "A");
-			artifact.BaseNode = node;
+			WeaverVertexSchema artifact = AddNode("Artifact", "A");
+			artifact.BaseVertex = node;
 			artifact.IsBaseClass = true;
 			p = AddProp(artifact, "ArtifactId", "AId", typeof(long));
 				p.IsPrimaryKey = true;
@@ -72,8 +72,8 @@ namespace Fabric.Domain.Meta {
 				p.IndexWithElasticSearch = true;
 				p.IsVertexCentricIndex = true;
 
-			WeaverNodeSchema app = AddNode("App", "Ap");
-			app.BaseNode = artifact;
+			WeaverVertexSchema app = AddNode("App", "Ap");
+			app.BaseVertex = artifact;
 			p = AddProp(app, "Name", "Na", typeof(string));
 				p.LenMin = 3;
 				p.LenMax = 64;
@@ -86,8 +86,8 @@ namespace Fabric.Domain.Meta {
 				p.IsInternal = true;
 				p.ValidRegex = ValidCodeRegex;
 
-			WeaverNodeSchema clas = AddNode("Class", "Cl");
-			clas.BaseNode = artifact;
+			WeaverVertexSchema clas = AddNode("Class", "Cl");
+			clas.BaseVertex = artifact;
 			p = AddProp(clas, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -104,8 +104,8 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 256;
 				p.IsNullable = true;
 
-			/*WeaverNodeSchema crowd = AddNode("Crowd", "C");
-			crowd.BaseNode = artifact;
+			/*WeaverVertexSchema crowd = AddNode("Crowd", "C");
+			crowd.BaseVertex = artifact;
 			crowd.IsInternal = true;
 			p = AddProp(crowd, "Name", typeof(string));
 				p.LenMin = 3;
@@ -115,20 +115,20 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(crowd, "IsPrivate", typeof(bool));
 			p = AddProp(crowd, "IsInviteOnly", typeof(bool));
 
-			WeaverNodeSchema crowdian = AddNode("Crowdian", "Cn");
+			WeaverVertexSchema crowdian = AddNode("Crowdian", "Cn");
 			crowdian.IsInternal = true;
 			p = AddProp(crowdian, "CrowdianId", typeof(long));
 				p.IsPrimaryKey = true;
 
-			WeaverNodeSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
+			WeaverVertexSchema crowdianTypeAssign = AddNode("CrowdianTypeAssign", "CTA");
 			crowdianTypeAssign.IsInternal = true;
-			crowdianTypeAssign.BaseNode = nodeForAction;
+			crowdianTypeAssign.BaseVertex = nodeForAction;
 			p = AddProp(crowdianTypeAssign, "CrowdianTypeAssignId", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(crowdianTypeAssign, "Weight", typeof(float));*/
 
-			WeaverNodeSchema email = AddNode("Email", "E");
-			email.BaseNode = node;
+			WeaverVertexSchema email = AddNode("Email", "E");
+			email.BaseVertex = node;
 			email.IsInternal = true;
 			p = AddProp(email, "EmailId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -146,8 +146,8 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(email, "Verified", "Ve", typeof(DateTime));
 				p.IsNullable = true;
 			
-			WeaverNodeSchema instance = AddNode("Instance", "In");
-			instance.BaseNode = artifact;
+			WeaverVertexSchema instance = AddNode("Instance", "In");
+			instance.BaseVertex = artifact;
 			p = AddProp(instance, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -165,9 +165,9 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 256;
 				p.IsNullable = true;
 
-			/*WeaverNodeSchema label = AddNode("Label", "L");
+			/*WeaverVertexSchema label = AddNode("Label", "L");
 			label.IsInternal = true;
-			label.BaseNode = artifact;
+			label.BaseVertex = artifact;
 			p = AddProp(label, "Name", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -175,20 +175,20 @@ namespace Fabric.Domain.Meta {
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidTitleRegex;*/
 
-			WeaverNodeSchema member = AddNode("Member", "M");
+			WeaverVertexSchema member = AddNode("Member", "M");
 			p = AddProp(member, "MemberId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
 
-			WeaverNodeSchema memberTypeAssign = AddNode("MemberTypeAssign", "MTA");
-			memberTypeAssign.BaseNode = nodeForAction;
+			WeaverVertexSchema memberTypeAssign = AddNode("MemberTypeAssign", "MTA");
+			memberTypeAssign.BaseVertex = nodeForAction;
 			p = AddProp(memberTypeAssign, "MemberTypeAssignId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(memberTypeAssign, "MemberTypeId", "Mt", typeof(byte));
 				p.EnumName = "MemberTypeId";
 				p.IsVertexCentricIndex = true;
 
-			WeaverNodeSchema url = AddNode("Url", "Ur");
-			url.BaseNode = artifact;
+			WeaverVertexSchema url = AddNode("Url", "Ur");
+			url.BaseVertex = artifact;
 			p = AddProp(url, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -200,8 +200,8 @@ namespace Fabric.Domain.Meta {
 				p.IsCaseInsensitive = true;
 				p.IndexWithElasticSearch = true;
 
-			WeaverNodeSchema user = AddNode("User", "U");
-			user.BaseNode = artifact;
+			WeaverVertexSchema user = AddNode("User", "U");
+			user.BaseVertex = artifact;
 			p = AddProp(user, "Name", "Na", typeof(string));
 				p.LenMin = 4;
 				p.LenMax = 16;
@@ -217,8 +217,8 @@ namespace Fabric.Domain.Meta {
 
 			////
 
-			WeaverNodeSchema factor = AddNode("Factor", "F");
-			factor.BaseNode = node;
+			WeaverVertexSchema factor = AddNode("Factor", "F");
+			factor.BaseVertex = node;
 			p = AddProp(factor, "FactorId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
 			p = AddProp(factor, "FactorAssertionId", "Fa", typeof(byte));
@@ -300,8 +300,8 @@ namespace Fabric.Domain.Meta {
 			
 			////
 
-			WeaverNodeSchema oauthAccess = AddNode("OauthAccess", "OA");
-			oauthAccess.BaseNode = node;
+			WeaverVertexSchema oauthAccess = AddNode("OauthAccess", "OA");
+			oauthAccess.BaseVertex = node;
 			oauthAccess.IsInternal = true;
 			p = AddProp(oauthAccess, "OauthAccessId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -319,8 +319,8 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthAccess, "Expires", "Ex", typeof(DateTime));
 			p = AddProp(oauthAccess, "IsClientOnly", "CO", typeof(bool));
 
-			WeaverNodeSchema oauthDomain = AddNode("OauthDomain", "OD");
-			oauthDomain.BaseNode = node;
+			WeaverVertexSchema oauthDomain = AddNode("OauthDomain", "OD");
+			oauthDomain.BaseVertex = node;
 			oauthDomain.IsInternal = true;
 			p = AddProp(oauthDomain, "OauthDomainId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -330,8 +330,8 @@ namespace Fabric.Domain.Meta {
 				p.IsCaseInsensitive = true; //TODO: ensure that domains are stored with ToLower()
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
-			WeaverNodeSchema oauthGrant = AddNode("OauthGrant", "OG");
-			oauthGrant.BaseNode = node;
+			WeaverVertexSchema oauthGrant = AddNode("OauthGrant", "OG");
+			oauthGrant.BaseVertex = node;
 			oauthGrant.IsInternal = true;
 			p = AddProp(oauthGrant, "OauthGrantId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -346,8 +346,8 @@ namespace Fabric.Domain.Meta {
 				p.IndexWithTitan = true;
 			p = AddProp(oauthGrant, "Expires", "Ex", typeof(DateTime));
 
-			WeaverNodeSchema oauthScope = AddNode("OauthScope", "OS");
-			oauthScope.BaseNode = node;
+			WeaverVertexSchema oauthScope = AddNode("OauthScope", "OS");
+			oauthScope.BaseVertex = node;
 			oauthScope.IsInternal = true;
 			p = AddProp(oauthScope, "OauthScopeId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
@@ -372,14 +372,14 @@ namespace Fabric.Domain.Meta {
 			var usesAxis = new KeyValuePair<string, string>("VectorUsesAxis", "VUA");
 			var defines = new KeyValuePair<string, string>("Defines", "D");
 
-			const WeaverRelConn ifo = WeaverRelConn.InFromOne;
-			const WeaverRelConn ifoom = WeaverRelConn.InFromOneOrMore;
-			const WeaverRelConn ifzom = WeaverRelConn.InFromZeroOrMore;
-			//const WeaverRelConn ifzoo = WeaverRelConn.InFromZeroOrOne;
-			const WeaverRelConn oto = WeaverRelConn.OutToOne;
-			const WeaverRelConn otoom = WeaverRelConn.OutToOneOrMore;
-			const WeaverRelConn otzom = WeaverRelConn.OutToZeroOrMore;
-			const WeaverRelConn otzoo = WeaverRelConn.OutToZeroOrOne;
+			const WeaverEdgeConn ifo = WeaverEdgeConn.InFromOne;
+			const WeaverEdgeConn ifoom = WeaverEdgeConn.InFromOneOrMore;
+			const WeaverEdgeConn ifzom = WeaverEdgeConn.InFromZeroOrMore;
+			//const WeaverEdgeConn ifzoo = WeaverEdgeConn.InFromZeroOrOne;
+			const WeaverEdgeConn oto = WeaverEdgeConn.OutToOne;
+			const WeaverEdgeConn otoom = WeaverEdgeConn.OutToOneOrMore;
+			const WeaverEdgeConn otzom = WeaverEdgeConn.OutToZeroOrMore;
+			const WeaverEdgeConn otzoo = WeaverEdgeConn.OutToZeroOrOne;
 
 			AddRel(app, uses, email, oto, ifzom);
 			AddRel(app, defines, member, otoom, ifo);
@@ -429,29 +429,29 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private WeaverNodeSchema AddNode(string pName, string pDbName) {
-			var n = new WeaverNodeSchema(pName, pDbName);
+		private WeaverVertexSchema AddNode(string pName, string pDbName) {
+			var n = new WeaverVertexSchema(pName, pDbName);
 			Nodes.Add(n);
 			//Console.WriteLine("NODE: "+n.DbName+" ("+n.Name+")");
 			return n;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private WeaverRelSchema AddRel(WeaverNodeSchema pFrom, KeyValuePair<string, string> pRelType,
-								WeaverNodeSchema pTo, WeaverRelConn pFromConn, WeaverRelConn pToConn) {
-			string name = pFrom.Name+pRelType.Key+pTo.Name;
-			string db = pFrom.DbName+"-"+pRelType.Value+"-"+pTo.DbName;
+		private WeaverEdgeSchema AddRel(WeaverVertexSchema pFrom, KeyValuePair<string, string> pEdgeType,
+								WeaverVertexSchema pTo, WeaverEdgeConn pFromConn, WeaverEdgeConn pToConn) {
+			string name = pFrom.Name+pEdgeType.Key+pTo.Name;
+			string db = pFrom.DbName+"-"+pEdgeType.Value+"-"+pTo.DbName;
 
-			var r = new WeaverRelSchema(pFrom, name, db, pRelType.Key, pTo);
-			r.FromNodeConn = pFromConn;
-			r.ToNodeConn = pToConn;
+			var r = new WeaverEdgeSchema(pFrom, name, db, pEdgeType.Key, pTo);
+			r.OutVertexConn = pFromConn;
+			r.InVertexConn = pToConn;
 			Rels.Add(r);
 			//Console.WriteLine("REL: "+db+" ("+r.Name+")");
 			return r;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private FabricPropSchema AddProp(WeaverNodeSchema pNode, string pName, string pDbName,
+		private FabricPropSchema AddProp(WeaverVertexSchema pNode, string pName, string pDbName,
 																						Type pType) {
 			var p = new FabricPropSchema(pName, pNode.DbName+'_'+pDbName, pType);
 			pNode.Props.Add(p);

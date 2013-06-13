@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
@@ -29,11 +29,11 @@ namespace Fabric.Test.Util {
 			var map = new Dictionary<string, string[]>();
 			
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsAbstract || node.IsInternal ) { continue; }
 
 	IList<SchemaHelperNodeRel> nodeRels = hn.GetNestedRels(true);
@@ -41,7 +41,7 @@ foreach ( string name in nodes ) {
 			map.Add("<#= node.Name #>", new string [] {
 <#
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.FromNodeName == "Root" ) { continue; }
+		if ( node.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 #>
 				"/<#= hr.RelPropName #>",
 <#
@@ -59,7 +59,7 @@ foreach ( string name in nodes ) {
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsAbstract || node.IsInternal ) { continue; }
 #>
 		/*--------------------------------------------------------------------------------------------* /

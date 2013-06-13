@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
@@ -16,12 +16,12 @@
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	
 <#
-IList<string> nodeNames = SchemaHelper.GetNodes();
+IList<string> nodeNames = SchemaHelper.GetVertices();
 var intMap = new Dictionary<string,bool>();
 
 foreach ( string name in nodeNames ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 		if ( intMap.ContainsKey(hr.RelPropName) ) { continue; }
@@ -38,11 +38,11 @@ foreach ( string name in nodeNames ) {
 
 foreach ( string name in nodeNames ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
-	string baseNode = (node.BaseNode == null ? "Node" : node.BaseNode.Name);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
+	string baseNode = (node.BaseVertex == null ? "Node" : node.BaseVertex.Name);
 	string interfaces = "I"+baseNode+"Step";
 
 	if ( node.Name == "Root" ) {

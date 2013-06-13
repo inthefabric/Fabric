@@ -4,9 +4,9 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -39,7 +39,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override GrantResult Execute() {
 			var tx = Weave.Inst.NewTx();
 			IWeaverVarAlias listVar;
-			IWeaverFuncAs<OauthGrant> grantAlias;
+			IWeaverStepAs<OauthGrant> grantAlias;
 			
 			////
 
@@ -52,6 +52,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.AddQuery(
+				Weave.Inst
 				NewPathFromType<OauthGrant>()
 					.Has(x => x.Code, WeaverFuncHasOp.EqualTo, vCode)
 					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)

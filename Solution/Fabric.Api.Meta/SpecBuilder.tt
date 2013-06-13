@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Api.Dto\bin\Debug\Fabric.Api.Dto.dll" #>
@@ -35,14 +35,14 @@ namespace Fabric.Api.Meta {
 		public static void FillSpecValue(string pTypeName, string pPropName, FabSpecValue pValue) {
 			switch ( pTypeName+"."+pPropName ) {
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 string fabApiDtoNamespace = typeof(FabNode).AssemblyQualifiedName;
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 
-	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseNode.Name : "Node");
+	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseVertex.Name : "Node");
 	IList<SchemaHelperProp> props = hn.GetProps(false);
 
 	foreach ( SchemaHelperProp hp in props ) {
@@ -88,10 +88,10 @@ foreach ( string name in nodes ) {
 <#
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 
-	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseNode.Name : "Node");
+	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseVertex.Name : "Node");
 	IList<SchemaHelperProp> props = hn.GetProps(true);
 
 	foreach ( SchemaHelperProp hp in props ) {
@@ -158,7 +158,7 @@ foreach ( string name in nodes ) {
 <#
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 #>
 
@@ -198,14 +198,14 @@ foreach ( string name in nodes ) {
 <#
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 #>
 
 				case "<#= node.Name #>":
 <#
 	
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels(true);
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
 	bool first = true;
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
@@ -219,14 +219,14 @@ foreach ( string name in nodes ) {
 #>
 					link = new FabSpecTravLink();
 					link.Name = "<#= hr.RelPropName #>";
-					link.Type = "<#= hr.RelName #>";
-					link.Description = SpecDoc.GetDtoLinkText("<#= hr.RelName #>");
+					link.Type = "<#= hr.EdgeName #>";
+					link.Description = SpecDoc.GetDtoLinkText("<#= hr.EdgeName #>");
 					link.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
-					link.From = "Fab<#= hr.FromNodeName #>";
-					link.FromConn = "<#= hr.RelSchema.FromNodeConn+"" #>";
-					link.Relation = "<#= hr.RelTypeName #>";
-					link.To = "Fab<#= hr.ToNodeName #>";
-					link.ToConn = "<#= hr.RelSchema.ToNodeConn+"" #>";
+					link.From = "Fab<#= hr.OutVertexName #>";
+					link.FromConn = "<#= hr.RelSchema.OutVertexConn+"" #>";
+					link.Relation = "<#= hr.EdgeTypeName #>";
+					link.To = "Fab<#= hr.InVertexName #>";
+					link.ToConn = "<#= hr.RelSchema.InVertexConn+"" #>";
 					pObject.TraversalLinks.Add(link);
 
 <#

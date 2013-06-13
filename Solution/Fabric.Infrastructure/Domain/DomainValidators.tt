@@ -26,11 +26,11 @@ namespace Fabric.Infrastructure.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	
 	if ( node.IsRoot ) { continue; }
 	
@@ -55,7 +55,7 @@ foreach ( string name in nodes ) {
 <#
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	
 	if ( node.IsRoot ) { continue; }
 	

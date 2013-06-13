@@ -94,8 +94,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="Weaver">
-      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    <Reference Include="Weaver.Core">
+      <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

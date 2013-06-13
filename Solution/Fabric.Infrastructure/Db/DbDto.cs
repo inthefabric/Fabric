@@ -22,8 +22,8 @@ namespace Fabric.Infrastructure.Db {
 		public string Id { get; set; }
 		public string Class { get; set; }
 
-		public string ToNodeId { get; set; }
-		public string FromNodeId { get; set; }
+		public string InVertexId { get; set; }
+		public string OutVertexId { get; set; }
 
 		public JsonObject Data { get; set; }
 
@@ -71,8 +71,8 @@ namespace Fabric.Infrastructure.Db {
 				case "edge":
 					Item = ItemType.Rel;
 					Class = pObj["_label"];
-					FromNodeId = pObj["_outV"];
-					ToNodeId = pObj["_inV"];
+					OutVertexId = pObj["_outV"];
+					InVertexId = pObj["_inV"];
 					break;
 
 				default:
@@ -105,8 +105,8 @@ namespace Fabric.Infrastructure.Db {
 			IRel rel = (result as IRel);
 
 			if ( rel != null ) {
-				rel.FromNodeId = FromNodeId;
-				rel.ToNodeId = ToNodeId;
+				rel.OutVertexId = OutVertexId;
+				rel.InVertexId = InVertexId;
 			}
 
 			return result;

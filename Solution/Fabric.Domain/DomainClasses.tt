@@ -1,11 +1,11 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
-<#@ import namespace="Weaver.Items" #>
-<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="Weaver.Core.Elements" #>
+<#@ import namespace="Weaver.Core.Schema" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
 // Changes made to this source file will be overwritten
@@ -14,135 +14,109 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Weaver.Items;
-using Weaver.Interfaces;
+using Fabric.Domain;
+using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
 
 
-	/* Relationship Types */
+	/* Edge Types */
 	
 	
 <#
-IList<string> relTypes = SchemaHelper.GetRelTypes();
+IList<string> edgeTypes = SchemaHelper.GetEdgeTypes();
 
-foreach ( string name in relTypes ) {
+foreach ( string name in edgeTypes ) {
 #>
 	/*================================================================================================*/
-	public class <#= name #> : IWeaverRelType {
+	public class <#= name #> : IWeaverEdgeType {
 	
 		public string Label { get { return "<#= name #>"; } }
 
 	}
 
 <#
-} //end rel types loop
+} //end edge types loop
 #>
 
-	/* Relationships */
+	/* Edges */
 
 
 <#
-IList<string> rels = SchemaHelper.GetRels();
+IList<string> edges = SchemaHelper.GetEdges();
 
-foreach ( string name in rels ) {
-	SchemaHelperRel rel = SchemaHelper.GetRel(name);
+foreach ( string name in edges ) {
+	SchemaHelperRel edge = SchemaHelper.GetEdge(name);
 #>
 	/*================================================================================================*/
-	public class <#= rel.RelName #> : <#= rel.WeaverBaseClass #>, IItemWithId {
+	public class <#= edge.EdgeName #> : <#= edge.WeaverBaseClass #>, IItemWithId {
 			
-		public virtual <#= rel.FromNodeName #> From<#= rel.FromNodeName #> { get { return FromNode; } }
-		public virtual <#= rel.ToNodeName #> To<#= rel.ToNodeName #> { get { return ToNode; } }
-		public override string Label { get { return "<#= rel.RelName #>"; } }
+		public virtual <#= edge.OutVertexName #> From<#= edge.OutVertexName #> { get { return OutVertex; } }
+		public virtual <#= edge.InVertexName #> To<#= edge.InVertexName #> { get { return InVertex; } }
+		public override string Label { get { return "<#= edge.EdgeName #>"; } }
 
 	}
-
+	
 <#
-} //end rel names loop
+} //end edge names loop
 #>
+
 
 	/* Nodes */
 
 
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	bool isMainNode = (name == "Node");
-	string baseNode = (isMainNode ? "" : " : "+(hn.HasParentClass ? node.BaseNode.Name : "Node"));
+	string baseNode = (isMainNode ? "" : " : "+(hn.HasParentClass ? node.BaseVertex.Name : "Node"));
 	string abs = (node.IsAbstract ? "abstract " : "");
-	bool isArtifactSubclass = (node.BaseNode != null && node.BaseNode.Name == "Artifact");
+	bool isArtifactSubclass = (node.BaseVertex != null && node.BaseVertex.Name == "Artifact");
+
+	if ( node.IsBaseClass ) {
+		if ( !node.IsAbstract ) {
 #>
 	/*================================================================================================*/
-	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
+	public partial class <#= node.Name #> : <#= node.Name #><<#= node.Name #>> {
+	
+	}
 	
 <#
+		}
+
+		if ( !isMainNode ) {
+			baseNode += "<T>";
+		}
+#>
+	/*================================================================================================*/
+	public <#= abs #>partial class <#= node.Name #><T><#= baseNode #> where T : class, IWeaverVertex {
+	
+<#
+	}
+	else {
+#>
+	/*================================================================================================*/
+	public <#= abs #>partial class <#= node.Name #><#= baseNode #><<#= node.Name #>> {
+	
+<#
+	}
+
 	IList<SchemaHelperProp> props = hn.GetProps(false);
 
 	foreach ( SchemaHelperProp hp in props ) { 
 		WeaverPropSchema prop = hp.PropSchema;
 		string propType = hp.TypeName;
 		string propName = prop.Name;
-		string attribs = "";
-		string attEnd = "\r\n\t\t";
 
 		if ( prop.Type.IsValueType && hp.IsSubProp() ) {
 			propType += "?";
 		}
-
-		attribs += "[WeaverItemProperty]"+attEnd;
-
-		if ( prop.IsCaseInsensitive != null ) {
-			attribs += "//[PropIsCaseInsensitive("+prop.IsCaseInsensitive+")]"+attEnd;
-		}
-
-		if ( prop.IsNullable != null ) {
-			attribs += "//[PropIsNullable("+prop.IsNullable+")]"+attEnd;
-		}
-
-		if ( prop.IsPrimaryKey != null ) {
-			attribs += "//[PropIsPrimaryKey("+prop.IsPrimaryKey+")]"+attEnd;
-		}
-
-		if ( prop.IsTimestamp != null ) {
-			attribs += "//[PropIsTimestamp("+prop.IsTimestamp+")]"+attEnd;
-		}
-
-		if ( prop.IsUnique != null ) {
-			attribs += "//[PropIsUnique("+prop.IsUnique+")]"+attEnd;
-		}
-
-		if ( prop.IsInternal != null ) {
-			attribs += "//[PropIsInternal("+prop.IsInternal+")]"+attEnd;
-		}
-
-		if ( prop.IsPassword != null ) {
-			attribs += "//[PropIsPassword("+prop.IsPassword+")]"+attEnd;
-		}
-
-		if ( prop.Len != null ) {
-			attribs += "//[PropLen("+prop.Len+")]"+attEnd;
-		}
-
-		if ( prop.LenMax != null ) {
-			attribs += "//[PropLenMax("+prop.LenMax+")]"+attEnd;
-		}
-
-		if ( prop.LenMin != null ) {
-			attribs += "//[PropLenMin("+prop.LenMin+")]"+attEnd;
-		}
-
-		if ( prop.ValidRegex != null ) {
-			attribs += "//[PropValidRegex(@\""+prop.ValidRegex+"\")]"+attEnd;
-		}
-
-		if ( hp.IsSubProp() ) {
-			attribs += "//[PropIsSubProp(\""+hp.SubPropName+"\")]"+attEnd;
-		}
 #>
-		<#= attribs #>public virtual <#= propType+" "+propName #> { get; set; }
+		[WeaverItemProperty]
+		public virtual <#= propType+" "+propName #> { get; set; }
 
 <#
 	}
@@ -168,6 +142,7 @@ foreach ( string name in nodes ) {
 	} //end base class condition
 
 	if ( !node.IsAbstract && !isArtifactSubclass ) {
+		string exprType = (node.IsBaseClass ? "T" : node.Name);
 #>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +151,7 @@ foreach ( string name in nodes ) {
 		public override void SetTypeId(long pTypeId) { <#= node.Name #>Id = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<<#= exprType #>, object>> GetTypeIdProp() {
 			return (x => (x as <#= node.Name #>).<#= node.Name #>Id);
 		}
 <#
@@ -192,12 +167,12 @@ foreach ( string name in nodes ) {
 				return;
 			}
 <#
-		if ( node.BaseNode != null ) {
+		if ( node.BaseVertex != null ) {
 #>
 			
 			base.FillWithData(pData);
 <#
-		} //end BaseNode condition
+		} //end BaseVertex condition
 
 	foreach ( SchemaHelperProp hp in props ) { 
 		WeaverPropSchema prop = hp.PropSchema;
@@ -225,13 +200,13 @@ foreach ( string name in nodes ) {
 		}
 
 <#
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetRels();
+	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges();
 
 	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual <#= hr.RelName #> <#= hr.RelPropName #> {
-			get { return NewRel<<#= hr.RelName #>>(WeaverRelConn.<#= hr.Conn+"" #>); }
+		public virtual <#= hr.EdgeName #> <#= hr.RelPropName #> {
+			get { return NewEdge<<#= hr.EdgeName #>>(WeaverEdgeConn.<#= hr.Conn+"" #>); }
 		}
 
 <#

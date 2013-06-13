@@ -12,7 +12,7 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<string> GetRelTypes() {
+		public static IList<string> GetEdgeTypes() {
 			return new List<string> {
 				"Uses",
 				"Defines",
@@ -31,7 +31,7 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static SchemaHelperRel GetRel(string pName) {
+		public static SchemaHelperRel GetEdge(string pName) {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
@@ -63,7 +63,7 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<string> GetRels() {
+		public static IList<string> GetEdges() {
 			return new List<string> {
 				"AppAppUsesEmailEmail",
 				"AppAppDefinesMemberMember",
@@ -98,28 +98,28 @@ namespace Fabric.Domain.Meta {
 
 			switch ( pName ) {
 				case "Node": return new SchemaHelperNode(s.Nodes[0]); //
-				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]); //Weaver.Schema.WeaverNodeSchema
-				case "Artifact": return new SchemaHelperNode(s.Nodes[2]); //Weaver.Schema.WeaverNodeSchema
-				case "App": return new SchemaHelperNode(s.Nodes[3]); //Weaver.Schema.WeaverNodeSchema
-				case "Class": return new SchemaHelperNode(s.Nodes[4]); //Weaver.Schema.WeaverNodeSchema
-				case "Email": return new SchemaHelperNode(s.Nodes[5]); //Weaver.Schema.WeaverNodeSchema
-				case "Instance": return new SchemaHelperNode(s.Nodes[6]); //Weaver.Schema.WeaverNodeSchema
+				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]); //Weaver.Schema.WeaverVertexSchema
+				case "Artifact": return new SchemaHelperNode(s.Nodes[2]); //Weaver.Schema.WeaverVertexSchema
+				case "App": return new SchemaHelperNode(s.Nodes[3]); //Weaver.Schema.WeaverVertexSchema
+				case "Class": return new SchemaHelperNode(s.Nodes[4]); //Weaver.Schema.WeaverVertexSchema
+				case "Email": return new SchemaHelperNode(s.Nodes[5]); //Weaver.Schema.WeaverVertexSchema
+				case "Instance": return new SchemaHelperNode(s.Nodes[6]); //Weaver.Schema.WeaverVertexSchema
 				case "Member": return new SchemaHelperNode(s.Nodes[7]); //
-				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]); //Weaver.Schema.WeaverNodeSchema
-				case "Url": return new SchemaHelperNode(s.Nodes[9]); //Weaver.Schema.WeaverNodeSchema
-				case "User": return new SchemaHelperNode(s.Nodes[10]); //Weaver.Schema.WeaverNodeSchema
-				case "Factor": return new SchemaHelperNode(s.Nodes[11]); //Weaver.Schema.WeaverNodeSchema
-				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]); //Weaver.Schema.WeaverNodeSchema
-				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]); //Weaver.Schema.WeaverNodeSchema
-				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]); //Weaver.Schema.WeaverNodeSchema
-				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]); //Weaver.Schema.WeaverNodeSchema
+				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]); //Weaver.Schema.WeaverVertexSchema
+				case "Url": return new SchemaHelperNode(s.Nodes[9]); //Weaver.Schema.WeaverVertexSchema
+				case "User": return new SchemaHelperNode(s.Nodes[10]); //Weaver.Schema.WeaverVertexSchema
+				case "Factor": return new SchemaHelperNode(s.Nodes[11]); //Weaver.Schema.WeaverVertexSchema
+				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]); //Weaver.Schema.WeaverVertexSchema
+				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]); //Weaver.Schema.WeaverVertexSchema
+				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]); //Weaver.Schema.WeaverVertexSchema
+				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]); //Weaver.Schema.WeaverVertexSchema
 			}
 
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<string> GetNodes() {
+		public static IList<string> GetVertices() {
 			return new List<string> {
 				"Node",
 				"NodeForAction",
@@ -160,9 +160,9 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		public static IList<WeaverNodeSchema> GetNodeSchemaListForWeaver() {
-			if ( WeaverNodeSchemaList == null ) {
-				WeaverNodeSchemaList = new List<WeaverNodeSchema> {
+		public static IList<WeaverVertexSchema> GetNodeSchemaListForWeaver() {
+			if ( WeaverVertexSchemaList == null ) {
+				WeaverVertexSchemaList = new List<WeaverVertexSchema> {
 					GetNodeSchemaForWeaver("Node"),
 					GetNodeSchemaForWeaver("NodeForAction"),
 					GetNodeSchemaForWeaver("Artifact"),
@@ -182,7 +182,7 @@ namespace Fabric.Domain.Meta {
 				};
 			}
 
-			return WeaverNodeSchemaList;
+			return WeaverVertexSchemaList;
 		}*/
 
 	}

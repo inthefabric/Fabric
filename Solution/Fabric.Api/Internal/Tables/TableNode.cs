@@ -55,27 +55,27 @@ namespace Fabric.Api.Internal.Tables {
 			}
 
 			foreach ( string key in OutMap.Keys ) {
-				string rk = GetRelKey(OutMap[key][0], true);
+				string rk = GetEdgeKey(OutMap[key][0], true);
 				if ( pColMap.ContainsKey(rk) ) { continue; }
 				pColMap.Add(rk, pColMap.Keys.Count);
 			}
 
 			foreach ( string key in InMap.Keys ) {
-				string rk = GetRelKey(InMap[key][0], false);
+				string rk = GetEdgeKey(InMap[key][0], false);
 				if ( pColMap.ContainsKey(rk) ) { continue; }
 				pColMap.Add(rk, pColMap.Keys.Count);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string GetRelKey(IDbDto pRel, bool pIsOutgoing) {
+		private string GetEdgeKey(IDbDto pRel, bool pIsOutgoing) {
 			string name = pRel.Class;
 			object o = Activator.CreateInstance("Fabric.Domain", "Fabric.Domain."+name).Unwrap();
 			
-			IWeaverRel r = (o as IWeaverRel);
+			IWeaverEdge r = (o as IWeaverEdge);
 			if ( r == null ) { return name; }
 
-			string lbl = r.RelType.Label;
+			string lbl = r.EdgeType.Label;
 			int lblI = name.IndexOf(lbl);
 			string node;
 
@@ -144,11 +144,11 @@ namespace Fabric.Api.Internal.Tables {
 
 			foreach ( string key in map.Keys ) {
 				List<IDbDto> dtos = map[key];
-				string rk = GetRelKey(dtos[0], pIsOut);
+				string rk = GetEdgeKey(dtos[0], pIsOut);
 				var nodeIds = new List<string>();
 
 				foreach ( DbDto dto in dtos ) {
-					string nodeId = (pIsOut ? dto.ToNodeId : dto.FromNodeId)+"";
+					string nodeId = (pIsOut ? dto.InVertexId : dto.OutVertexId)+"";
 					/*string[] relNameParts = rk.Split(' ');
 					int relNameI = (pIsOut ? relNameParts.Length-1 : 1);
 					string nodeClass = relNameParts[relNameI];

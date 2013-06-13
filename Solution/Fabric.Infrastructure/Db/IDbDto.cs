@@ -9,8 +9,8 @@ namespace Fabric.Infrastructure.Db {
 		DbDto.ItemType Item { get; set; }
 		string Id { get; set; }
 		string Class { get; set; }
-		string ToNodeId { get; set; }
-		string FromNodeId { get; set; }
+		string InVertexId { get; set; }
+		string OutVertexId { get; set; }
 
 		JsonObject Data { get; set; }
 

@@ -151,9 +151,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="Weaver">
-      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
-    </Reference>
     <Reference Include="CsQuery">
       <HintPath>..\..\Packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
     </Reference>
@@ -165,6 +162,9 @@
     </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.42.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.42\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Core">
+      <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ output extension=".css" #> 
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
@@ -15,11 +15,11 @@ Generated on <#= DateTime.Now.ToString() #> */
 <#
 var rand = new Random(999);
 
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 
 	if ( node.IsBaseClass ) { continue; }
 #>
@@ -31,7 +31,7 @@ foreach ( string name in nodes ) {
 /* RELS */
 
 <#
-IList<string> relTypes = SchemaHelper.GetRelTypes();
+IList<string> relTypes = SchemaHelper.GetEdgeTypes();
 
 foreach ( string name in relTypes ) {
 	string col = NewColor(rand, 0.2);

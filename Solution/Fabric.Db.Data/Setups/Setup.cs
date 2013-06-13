@@ -24,8 +24,8 @@
 				}
 
 				foreach ( IDataRel rel in ds.Rels ) {
-					rel.TestVal = ds.GetDataNode(rel.FromNode).TestVal+"|"+
-						rel.Rel.Label+"|"+ds.GetDataNode(rel.ToNode).TestVal;
+					rel.TestVal = ds.GetDataNode(rel.OutVertex).TestVal+"|"+
+						rel.Rel.Label+"|"+ds.GetDataNode(rel.InVertex).TestVal;
 				}
 			}
 

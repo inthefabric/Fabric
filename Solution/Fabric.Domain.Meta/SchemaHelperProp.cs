@@ -30,7 +30,7 @@ namespace Fabric.Domain.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public bool UseVertexCentricIndexForRel(SchemaHelperRel pRel) {
 			return (PropSchema.IsVertexCentricIndex && 
-				pRel.GetRelHasMany(true) && pRel.GetRelHasMany(false));
+				pRel.GetEdgeHasMany(true) && pRel.GetEdgeHasMany(false));
 		}
 		
 

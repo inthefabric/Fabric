@@ -343,10 +343,10 @@ namespace Fabric.Api.Meta {
 					link.Description = GetDtoLinkText(link.Type);
 					link.IsOutgoing = true;
 					link.From = pType.Name;
-					link.FromConn = WeaverRelConn.InFromOne+"";
+					link.FromConn = WeaverEdgeConn.InFromOne+"";
 					link.Relation = "Contains";
 					link.To = "Fab"+name;
-					link.ToConn = WeaverRelConn.OutToZeroOrMore+"";
+					link.ToConn = WeaverEdgeConn.OutToZeroOrMore+"";
 					sd.TraversalLinks.Add(link);
 				}
 			}

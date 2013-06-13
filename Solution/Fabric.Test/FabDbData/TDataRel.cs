@@ -14,7 +14,7 @@ namespace Fabric.Test.FabDbData {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void NewBadFromNode() {
+		public void NewBadOutVertex() {
 			TestUtil.CheckThrows<Exception>(true, () => {
 				var dr = new DataRel<Member, FactorVectorUsesAxisArtifact, Artifact>(
 					new Member(), new FactorVectorUsesAxisArtifact(), new Artifact(), false);
@@ -23,7 +23,7 @@ namespace Fabric.Test.FabDbData {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void NewBadToNode() {
+		public void NewBadInVertex() {
 			TestUtil.CheckThrows<Exception>(true, () => {
 				var dr = new DataRel<User, UserUsesEmail, Member>(
 					new User(), new UserUsesEmail(), new Member(), false);

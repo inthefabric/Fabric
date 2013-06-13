@@ -1,307 +1,307 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/16/2013 10:09:01 PM
+// Generated on 6/13/2013 7:26:04 PM
 
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Weaver.Items;
-using Weaver.Interfaces;
+using Fabric.Domain;
+using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
 
 
-	/* Relationship Types */
+	/* Edge Types */
 	
 	
 	/*================================================================================================*/
-	public class Uses : IWeaverRelType {
+	public class Uses : IWeaverEdgeType {
 	
 		public string Label { get { return "Uses"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class Defines : IWeaverRelType {
+	public class Defines : IWeaverEdgeType {
 	
 		public string Label { get { return "Defines"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class Has : IWeaverRelType {
+	public class Has : IWeaverEdgeType {
 	
 		public string Label { get { return "Has"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class HasHistoric : IWeaverRelType {
+	public class HasHistoric : IWeaverEdgeType {
 	
 		public string Label { get { return "HasHistoric"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class Creates : IWeaverRelType {
+	public class Creates : IWeaverEdgeType {
 	
 		public string Label { get { return "Creates"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class UsesPrimary : IWeaverRelType {
+	public class UsesPrimary : IWeaverEdgeType {
 	
 		public string Label { get { return "UsesPrimary"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class UsesRelated : IWeaverRelType {
+	public class UsesRelated : IWeaverEdgeType {
 	
 		public string Label { get { return "UsesRelated"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class DescriptorRefinesPrimaryWith : IWeaverRelType {
+	public class DescriptorRefinesPrimaryWith : IWeaverEdgeType {
 	
 		public string Label { get { return "DescriptorRefinesPrimaryWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class DescriptorRefinesRelatedWith : IWeaverRelType {
+	public class DescriptorRefinesRelatedWith : IWeaverEdgeType {
 	
 		public string Label { get { return "DescriptorRefinesRelatedWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class DescriptorRefinesTypeWith : IWeaverRelType {
+	public class DescriptorRefinesTypeWith : IWeaverEdgeType {
 	
 		public string Label { get { return "DescriptorRefinesTypeWith"; } }
 
 	}
 
 	/*================================================================================================*/
-	public class VectorUsesAxis : IWeaverRelType {
+	public class VectorUsesAxis : IWeaverEdgeType {
 	
 		public string Label { get { return "VectorUsesAxis"; } }
 
 	}
 
 
-	/* Relationships */
+	/* Edges */
 
 
 	/*================================================================================================*/
-	public class AppUsesEmail : Rel<App, Uses, Email>, IItemWithId {
+	public class AppUsesEmail : Rel<AppUsesEmail, App, Uses, Email>, IItemWithId {
 			
-		public virtual App FromApp { get { return FromNode; } }
-		public virtual Email ToEmail { get { return ToNode; } }
+		public virtual App FromApp { get { return OutVertex; } }
+		public virtual Email ToEmail { get { return InVertex; } }
 		public override string Label { get { return "AppUsesEmail"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class AppDefinesMember : Rel<App, Defines, Member>, IItemWithId {
+	public class AppDefinesMember : Rel<AppDefinesMember, App, Defines, Member>, IItemWithId {
 			
-		public virtual App FromApp { get { return FromNode; } }
-		public virtual Member ToMember { get { return ToNode; } }
+		public virtual App FromApp { get { return OutVertex; } }
+		public virtual Member ToMember { get { return InVertex; } }
 		public override string Label { get { return "AppDefinesMember"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class MemberHasMemberTypeAssign : Rel<Member, Has, MemberTypeAssign>, IItemWithId {
+	public class MemberHasMemberTypeAssign : Rel<MemberHasMemberTypeAssign, Member, Has, MemberTypeAssign>, IItemWithId {
 			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
+		public virtual Member FromMember { get { return OutVertex; } }
+		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
 		public override string Label { get { return "MemberHasMemberTypeAssign"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class MemberHasHistoricMemberTypeAssign : Rel<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
+	public class MemberHasHistoricMemberTypeAssign : Rel<MemberHasHistoricMemberTypeAssign, Member, HasHistoric, MemberTypeAssign>, IItemWithId {
 			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
+		public virtual Member FromMember { get { return OutVertex; } }
+		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
 		public override string Label { get { return "MemberHasHistoricMemberTypeAssign"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class MemberCreatesArtifact : Rel<Member, Creates, Artifact>, IItemWithId {
+	public class MemberCreatesArtifact : Rel<MemberCreatesArtifact, Member, Creates, Artifact>, IItemWithId {
 			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Member FromMember { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "MemberCreatesArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class MemberCreatesMemberTypeAssign : Rel<Member, Creates, MemberTypeAssign>, IItemWithId {
+	public class MemberCreatesMemberTypeAssign : Rel<MemberCreatesMemberTypeAssign, Member, Creates, MemberTypeAssign>, IItemWithId {
 			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual MemberTypeAssign ToMemberTypeAssign { get { return ToNode; } }
+		public virtual Member FromMember { get { return OutVertex; } }
+		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
 		public override string Label { get { return "MemberCreatesMemberTypeAssign"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class MemberCreatesFactor : Rel<Member, Creates, Factor>, IItemWithId {
+	public class MemberCreatesFactor : Rel<MemberCreatesFactor, Member, Creates, Factor>, IItemWithId {
 			
-		public virtual Member FromMember { get { return FromNode; } }
-		public virtual Factor ToFactor { get { return ToNode; } }
+		public virtual Member FromMember { get { return OutVertex; } }
+		public virtual Factor ToFactor { get { return InVertex; } }
 		public override string Label { get { return "MemberCreatesFactor"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class UserUsesEmail : Rel<User, Uses, Email>, IItemWithId {
+	public class UserUsesEmail : Rel<UserUsesEmail, User, Uses, Email>, IItemWithId {
 			
-		public virtual User FromUser { get { return FromNode; } }
-		public virtual Email ToEmail { get { return ToNode; } }
+		public virtual User FromUser { get { return OutVertex; } }
+		public virtual Email ToEmail { get { return InVertex; } }
 		public override string Label { get { return "UserUsesEmail"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class UserDefinesMember : Rel<User, Defines, Member>, IItemWithId {
+	public class UserDefinesMember : Rel<UserDefinesMember, User, Defines, Member>, IItemWithId {
 			
-		public virtual User FromUser { get { return FromNode; } }
-		public virtual Member ToMember { get { return ToNode; } }
+		public virtual User FromUser { get { return OutVertex; } }
+		public virtual Member ToMember { get { return InVertex; } }
 		public override string Label { get { return "UserDefinesMember"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class FactorUsesPrimaryArtifact : Rel<Factor, UsesPrimary, Artifact>, IItemWithId {
+	public class FactorUsesPrimaryArtifact : Rel<FactorUsesPrimaryArtifact, Factor, UsesPrimary, Artifact>, IItemWithId {
 			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Factor FromFactor { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesPrimaryArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class FactorUsesRelatedArtifact : Rel<Factor, UsesRelated, Artifact>, IItemWithId {
+	public class FactorUsesRelatedArtifact : Rel<FactorUsesRelatedArtifact, Factor, UsesRelated, Artifact>, IItemWithId {
 			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Factor FromFactor { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesRelatedArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesPrimaryWithArtifact : Rel<Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesPrimaryWithArtifact : Rel<FactorDescriptorRefinesPrimaryWithArtifact, Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
 			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Factor FromFactor { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesPrimaryWithArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesRelatedWithArtifact : Rel<Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesRelatedWithArtifact : Rel<FactorDescriptorRefinesRelatedWithArtifact, Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
 			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Factor FromFactor { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesRelatedWithArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesTypeWithArtifact : Rel<Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesTypeWithArtifact : Rel<FactorDescriptorRefinesTypeWithArtifact, Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
 			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Factor FromFactor { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesTypeWithArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class FactorVectorUsesAxisArtifact : Rel<Factor, VectorUsesAxis, Artifact>, IItemWithId {
+	public class FactorVectorUsesAxisArtifact : Rel<FactorVectorUsesAxisArtifact, Factor, VectorUsesAxis, Artifact>, IItemWithId {
 			
-		public virtual Factor FromFactor { get { return FromNode; } }
-		public virtual Artifact ToArtifact { get { return ToNode; } }
+		public virtual Factor FromFactor { get { return OutVertex; } }
+		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorVectorUsesAxisArtifact"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthAccessUsesApp : Rel<OauthAccess, Uses, App>, IItemWithId {
+	public class OauthAccessUsesApp : Rel<OauthAccessUsesApp, OauthAccess, Uses, App>, IItemWithId {
 			
-		public virtual OauthAccess FromOauthAccess { get { return FromNode; } }
-		public virtual App ToApp { get { return ToNode; } }
+		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
+		public virtual App ToApp { get { return InVertex; } }
 		public override string Label { get { return "OauthAccessUsesApp"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthAccessUsesUser : Rel<OauthAccess, Uses, User>, IItemWithId {
+	public class OauthAccessUsesUser : Rel<OauthAccessUsesUser, OauthAccess, Uses, User>, IItemWithId {
 			
-		public virtual OauthAccess FromOauthAccess { get { return FromNode; } }
-		public virtual User ToUser { get { return ToNode; } }
+		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
+		public virtual User ToUser { get { return InVertex; } }
 		public override string Label { get { return "OauthAccessUsesUser"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthDomainUsesApp : Rel<OauthDomain, Uses, App>, IItemWithId {
+	public class OauthDomainUsesApp : Rel<OauthDomainUsesApp, OauthDomain, Uses, App>, IItemWithId {
 			
-		public virtual OauthDomain FromOauthDomain { get { return FromNode; } }
-		public virtual App ToApp { get { return ToNode; } }
+		public virtual OauthDomain FromOauthDomain { get { return OutVertex; } }
+		public virtual App ToApp { get { return InVertex; } }
 		public override string Label { get { return "OauthDomainUsesApp"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthGrantUsesApp : Rel<OauthGrant, Uses, App>, IItemWithId {
+	public class OauthGrantUsesApp : Rel<OauthGrantUsesApp, OauthGrant, Uses, App>, IItemWithId {
 			
-		public virtual OauthGrant FromOauthGrant { get { return FromNode; } }
-		public virtual App ToApp { get { return ToNode; } }
+		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
+		public virtual App ToApp { get { return InVertex; } }
 		public override string Label { get { return "OauthGrantUsesApp"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthGrantUsesUser : Rel<OauthGrant, Uses, User>, IItemWithId {
+	public class OauthGrantUsesUser : Rel<OauthGrantUsesUser, OauthGrant, Uses, User>, IItemWithId {
 			
-		public virtual OauthGrant FromOauthGrant { get { return FromNode; } }
-		public virtual User ToUser { get { return ToNode; } }
+		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
+		public virtual User ToUser { get { return InVertex; } }
 		public override string Label { get { return "OauthGrantUsesUser"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthScopeUsesApp : Rel<OauthScope, Uses, App>, IItemWithId {
+	public class OauthScopeUsesApp : Rel<OauthScopeUsesApp, OauthScope, Uses, App>, IItemWithId {
 			
-		public virtual OauthScope FromOauthScope { get { return FromNode; } }
-		public virtual App ToApp { get { return ToNode; } }
+		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
+		public virtual App ToApp { get { return InVertex; } }
 		public override string Label { get { return "OauthScopeUsesApp"; } }
 
 	}
-
+	
 	/*================================================================================================*/
-	public class OauthScopeUsesUser : Rel<OauthScope, Uses, User>, IItemWithId {
+	public class OauthScopeUsesUser : Rel<OauthScopeUsesUser, OauthScope, Uses, User>, IItemWithId {
 			
-		public virtual OauthScope FromOauthScope { get { return FromNode; } }
-		public virtual User ToUser { get { return ToNode; } }
+		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
+		public virtual User ToUser { get { return InVertex; } }
 		public override string Label { get { return "OauthScopeUsesUser"; } }
 
 	}
+	
 
 
 	/* Nodes */
 
 
 	/*================================================================================================*/
-	public abstract partial class Node {
+	public abstract partial class Node<T> where T : class, IWeaverVertex {
 	
 		[WeaverItemProperty]
-		//[PropIsInternal(True)]
 		public virtual byte FabType { get; set; }
 
 
@@ -321,16 +321,12 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public abstract partial class NodeForAction : Node {
+	public abstract partial class NodeForAction<T> : Node<T> where T : class, IWeaverVertex {
 	
 		[WeaverItemProperty]
-		//[PropIsTimestamp(True)]
 		public virtual long Performed { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -359,14 +355,17 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Artifact : Node {
+	public partial class Artifact : Artifact<Artifact> {
+	
+	}
+	
+	/*================================================================================================*/
+	public partial class Artifact<T> : Node<T> where T : class, IWeaverVertex {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long ArtifactId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsTimestamp(True)]
 		public virtual long Created { get; set; }
 
 
@@ -384,7 +383,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { ArtifactId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<T, object>> GetTypeIdProp() {
 			return (x => (x as Artifact).ArtifactId);
 		}
 
@@ -409,56 +408,48 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesArtifact InMemberCreates {
-			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<MemberCreatesArtifact>(WeaverEdgeConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesPrimaryArtifact InFactorListUsesPrimary {
-			get { return NewRel<FactorUsesPrimaryArtifact>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<FactorUsesPrimaryArtifact>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesRelatedArtifact InFactorListUsesRelated {
-			get { return NewRel<FactorUsesRelatedArtifact>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<FactorUsesRelatedArtifact>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorDescriptorRefinesPrimaryWithArtifact InFactorListDescriptorRefinesPrimaryWith {
-			get { return NewRel<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorDescriptorRefinesRelatedWithArtifact InFactorListDescriptorRefinesRelatedWith {
-			get { return NewRel<FactorDescriptorRefinesRelatedWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<FactorDescriptorRefinesRelatedWithArtifact>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorDescriptorRefinesTypeWithArtifact InFactorListDescriptorRefinesTypeWith {
-			get { return NewRel<FactorDescriptorRefinesTypeWithArtifact>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<FactorDescriptorRefinesTypeWithArtifact>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorVectorUsesAxisArtifact InFactorListVectorUsesAxis {
-			get { return NewRel<FactorVectorUsesAxisArtifact>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<FactorVectorUsesAxisArtifact>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class App : Artifact {
+	public partial class App : Artifact<App> {
 	
 		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(64)]
-		//[PropLenMin(3)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsInternal(True)]
-		//[PropLen(32)]
-		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Secret { get; set; }
 
 
@@ -488,56 +479,46 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail UsesEmail {
-			get { return NewRel<AppUsesEmail>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<AppUsesEmail>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppDefinesMember DefinesMemberList {
-			get { return NewRel<AppDefinesMember>(WeaverRelConn.OutToOneOrMore); }
+			get { return NewEdge<AppDefinesMember>(WeaverEdgeConn.OutToOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthAccessUsesApp InOauthAccessListUses {
-			get { return NewRel<OauthAccessUsesApp>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthAccessUsesApp>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthDomainUsesApp InOauthDomainListUses {
-			get { return NewRel<OauthDomainUsesApp>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthDomainUsesApp>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthGrantUsesApp InOauthGrantListUses {
-			get { return NewRel<OauthGrantUsesApp>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthGrantUsesApp>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthScopeUsesApp InOauthScopeListUses {
-			get { return NewRel<OauthScopeUsesApp>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthScopeUsesApp>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class Class : Artifact {
+	public partial class Class : Artifact<Class> {
 	
 		[WeaverItemProperty]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 
@@ -572,31 +553,21 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Email : Node {
+	public partial class Email : Node<Email> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long EmailId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
 		public virtual string Address { get; set; }
 
 		[WeaverItemProperty]
-		//[PropLen(32)]
-		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Code { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsTimestamp(True)]
 		public virtual long Created { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
 		public virtual long? Verified { get; set; }
 
 
@@ -611,7 +582,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { EmailId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<Email, object>> GetTypeIdProp() {
 			return (x => (x as Email).EmailId);
 		}
 
@@ -648,37 +619,26 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppUsesEmail InAppListUses {
-			get { return NewRel<AppUsesEmail>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<AppUsesEmail>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserUsesEmail InUserListUses {
-			get { return NewRel<UserUsesEmail>(WeaverRelConn.InFromOneOrMore); }
+			get { return NewEdge<UserUsesEmail>(WeaverEdgeConn.InFromOneOrMore); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class Instance : Artifact {
+	public partial class Instance : Artifact<Instance> {
 	
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'"<>~]*$")]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 
@@ -713,10 +673,9 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Member : Node {
+	public partial class Member : Node<Member> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long MemberId { get; set; }
 
 
@@ -731,7 +690,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { MemberId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<Member, object>> GetTypeIdProp() {
 			return (x => (x as Member).MemberId);
 		}
 
@@ -750,46 +709,45 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual AppDefinesMember InAppDefines {
-			get { return NewRel<AppDefinesMember>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<AppDefinesMember>(WeaverEdgeConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign HasMemberTypeAssign {
-			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<MemberHasMemberTypeAssign>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasHistoricMemberTypeAssign HasHistoricMemberTypeAssignList {
-			get { return NewRel<MemberHasHistoricMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+			get { return NewEdge<MemberHasHistoricMemberTypeAssign>(WeaverEdgeConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesArtifact CreatesArtifactList {
-			get { return NewRel<MemberCreatesArtifact>(WeaverRelConn.OutToZeroOrMore); }
+			get { return NewEdge<MemberCreatesArtifact>(WeaverEdgeConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesMemberTypeAssign CreatesMemberTypeAssignList {
-			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.OutToZeroOrMore); }
+			get { return NewEdge<MemberCreatesMemberTypeAssign>(WeaverEdgeConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesFactor CreatesFactorList {
-			get { return NewRel<MemberCreatesFactor>(WeaverRelConn.OutToZeroOrMore); }
+			get { return NewEdge<MemberCreatesFactor>(WeaverEdgeConn.OutToZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserDefinesMember InUserDefines {
-			get { return NewRel<UserDefinesMember>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<UserDefinesMember>(WeaverEdgeConn.InFromOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssign : NodeForAction {
+	public partial class MemberTypeAssign : NodeForAction<MemberTypeAssign> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long MemberTypeAssignId { get; set; }
 
 		[WeaverItemProperty]
@@ -807,7 +765,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { MemberTypeAssignId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<MemberTypeAssign, object>> GetTypeIdProp() {
 			return (x => (x as MemberTypeAssign).MemberTypeAssignId);
 		}
 
@@ -832,34 +790,28 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasMemberTypeAssign InMemberHas {
-			get { return NewRel<MemberHasMemberTypeAssign>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<MemberHasMemberTypeAssign>(WeaverEdgeConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberHasHistoricMemberTypeAssign InMemberHasHistoric {
-			get { return NewRel<MemberHasHistoricMemberTypeAssign>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<MemberHasHistoricMemberTypeAssign>(WeaverEdgeConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesMemberTypeAssign InMemberCreates {
-			get { return NewRel<MemberCreatesMemberTypeAssign>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<MemberCreatesMemberTypeAssign>(WeaverEdgeConn.InFromOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class Url : Artifact {
+	public partial class Url : Artifact<Url> {
 	
 		[WeaverItemProperty]
-		//[PropLenMax(128)]
-		//[PropLenMin(1)]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(2048)]
-		//[PropLenMin(1)]
 		public virtual string AbsoluteUrl { get; set; }
 
 
@@ -890,21 +842,12 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class User : Artifact {
+	public partial class User : Artifact<User> {
 	
 		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropIsUnique(True)]
-		//[PropLenMax(16)]
-		//[PropLenMin(4)]
-		//[PropValidRegex(@"^[a-zA-Z0-9_]*$")]
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsInternal(True)]
-		//[PropIsPassword(True)]
-		//[PropLenMax(32)]
-		//[PropLenMin(8)]
 		public virtual string Password { get; set; }
 
 
@@ -934,36 +877,35 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserUsesEmail UsesEmail {
-			get { return NewRel<UserUsesEmail>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<UserUsesEmail>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual UserDefinesMember DefinesMemberList {
-			get { return NewRel<UserDefinesMember>(WeaverRelConn.OutToOneOrMore); }
+			get { return NewEdge<UserDefinesMember>(WeaverEdgeConn.OutToOneOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthAccessUsesUser InOauthAccessListUses {
-			get { return NewRel<OauthAccessUsesUser>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthAccessUsesUser>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthGrantUsesUser InOauthGrantListUses {
-			get { return NewRel<OauthGrantUsesUser>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthGrantUsesUser>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthScopeUsesUser InOauthScopeListUses {
-			get { return NewRel<OauthScopeUsesUser>(WeaverRelConn.InFromZeroOrMore); }
+			get { return NewEdge<OauthScopeUsesUser>(WeaverEdgeConn.InFromZeroOrMore); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class Factor : Node {
+	public partial class Factor : Node<Factor> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long FactorId { get; set; }
 
 		[WeaverItemProperty]
@@ -973,92 +915,66 @@ namespace Fabric.Domain {
 		public virtual bool IsDefining { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsTimestamp(True)]
 		public virtual long Created { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropIsInternal(True)]
 		public virtual long? Deleted { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
 		public virtual long? Completed { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
 		public virtual string Note { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("TypeId")]
 		public virtual byte? Descriptor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("TypeId")]
 		public virtual byte? Director_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("PrimaryActionId")]
 		public virtual byte? Director_PrimaryActionId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("RelatedActionId")]
 		public virtual byte? Director_RelatedActionId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("TypeId")]
 		public virtual byte? Eventor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("PrecisionId")]
 		public virtual byte? Eventor_PrecisionId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("DateTime")]
 		public virtual long? Eventor_DateTime { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("TypeId")]
 		public virtual byte? Identor_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
-		//[PropIsSubProp("Value")]
 		public virtual string Identor_Value { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("TypeId")]
 		public virtual byte? Locator_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("ValueX")]
 		public virtual double? Locator_ValueX { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("ValueY")]
 		public virtual double? Locator_ValueY { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("ValueZ")]
 		public virtual double? Locator_ValueZ { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("TypeId")]
 		public virtual byte? Vector_TypeId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("UnitId")]
 		public virtual byte? Vector_UnitId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("UnitPrefixId")]
 		public virtual byte? Vector_UnitPrefixId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsSubProp("Value")]
 		public virtual long? Vector_Value { get; set; }
 
 
@@ -1073,7 +989,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { FactorId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<Factor, object>> GetTypeIdProp() {
 			return (x => (x as Factor).FactorId);
 		}
 
@@ -1186,59 +1102,51 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesFactor InMemberCreates {
-			get { return NewRel<MemberCreatesFactor>(WeaverRelConn.InFromOne); }
+			get { return NewEdge<MemberCreatesFactor>(WeaverEdgeConn.InFromOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesPrimaryArtifact UsesPrimaryArtifact {
-			get { return NewRel<FactorUsesPrimaryArtifact>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<FactorUsesPrimaryArtifact>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesRelatedArtifact UsesRelatedArtifact {
-			get { return NewRel<FactorUsesRelatedArtifact>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<FactorUsesRelatedArtifact>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorDescriptorRefinesPrimaryWithArtifact DescriptorRefinesPrimaryWithArtifact {
-			get { return NewRel<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+			get { return NewEdge<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverEdgeConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorDescriptorRefinesRelatedWithArtifact DescriptorRefinesRelatedWithArtifact {
-			get { return NewRel<FactorDescriptorRefinesRelatedWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+			get { return NewEdge<FactorDescriptorRefinesRelatedWithArtifact>(WeaverEdgeConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorDescriptorRefinesTypeWithArtifact DescriptorRefinesTypeWithArtifact {
-			get { return NewRel<FactorDescriptorRefinesTypeWithArtifact>(WeaverRelConn.OutToZeroOrOne); }
+			get { return NewEdge<FactorDescriptorRefinesTypeWithArtifact>(WeaverEdgeConn.OutToZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorVectorUsesAxisArtifact VectorUsesAxisArtifact {
-			get { return NewRel<FactorVectorUsesAxisArtifact>(WeaverRelConn.OutToZeroOrOne); }
+			get { return NewEdge<FactorVectorUsesAxisArtifact>(WeaverEdgeConn.OutToZeroOrOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthAccess : Node {
+	public partial class OauthAccess : Node<OauthAccess> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long OauthAccessId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropIsUnique(True)]
-		//[PropLen(32)]
-		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Token { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsNullable(True)]
-		//[PropLen(32)]
-		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Refresh { get; set; }
 
 		[WeaverItemProperty]
@@ -1259,7 +1167,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthAccessId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<OauthAccess, object>> GetTypeIdProp() {
 			return (x => (x as OauthAccess).OauthAccessId);
 		}
 
@@ -1296,28 +1204,23 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthAccessUsesApp UsesApp {
-			get { return NewRel<OauthAccessUsesApp>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<OauthAccessUsesApp>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthAccessUsesUser UsesUser {
-			get { return NewRel<OauthAccessUsesUser>(WeaverRelConn.OutToZeroOrOne); }
+			get { return NewEdge<OauthAccessUsesUser>(WeaverEdgeConn.OutToZeroOrOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthDomain : Node {
+	public partial class OauthDomain : Node<OauthDomain> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long OauthDomainId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropLenMax(256)]
-		//[PropLenMin(1)]
-		//[PropValidRegex(@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$")]
 		public virtual string Domain { get; set; }
 
 
@@ -1332,7 +1235,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthDomainId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<OauthDomain, object>> GetTypeIdProp() {
 			return (x => (x as OauthDomain).OauthDomainId);
 		}
 
@@ -1357,28 +1260,21 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthDomainUsesApp UsesApp {
-			get { return NewRel<OauthDomainUsesApp>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<OauthDomainUsesApp>(WeaverEdgeConn.OutToOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthGrant : Node {
+	public partial class OauthGrant : Node<OauthGrant> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long OauthGrantId { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsCaseInsensitive(True)]
-		//[PropLenMax(450)]
-		//[PropLenMin(1)]
 		public virtual string RedirectUri { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsUnique(True)]
-		//[PropLen(32)]
-		//[PropValidRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Code { get; set; }
 
 		[WeaverItemProperty]
@@ -1396,7 +1292,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthGrantId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<OauthGrant, object>> GetTypeIdProp() {
 			return (x => (x as OauthGrant).OauthGrantId);
 		}
 
@@ -1429,28 +1325,26 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthGrantUsesApp UsesApp {
-			get { return NewRel<OauthGrantUsesApp>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<OauthGrantUsesApp>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthGrantUsesUser UsesUser {
-			get { return NewRel<OauthGrantUsesUser>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<OauthGrantUsesUser>(WeaverEdgeConn.OutToOne); }
 		}
 
 	}
 
 	/*================================================================================================*/
-	public partial class OauthScope : Node {
+	public partial class OauthScope : Node<OauthScope> {
 	
 		[WeaverItemProperty]
-		//[PropIsPrimaryKey(True)]
 		public virtual long OauthScopeId { get; set; }
 
 		[WeaverItemProperty]
 		public virtual bool Allow { get; set; }
 
 		[WeaverItemProperty]
-		//[PropIsTimestamp(True)]
 		public virtual long Created { get; set; }
 
 
@@ -1465,7 +1359,7 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthScopeId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
+		public override Expression<Func<OauthScope, object>> GetTypeIdProp() {
 			return (x => (x as OauthScope).OauthScopeId);
 		}
 
@@ -1494,12 +1388,12 @@ namespace Fabric.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthScopeUsesApp UsesApp {
-			get { return NewRel<OauthScopeUsesApp>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<OauthScopeUsesApp>(WeaverEdgeConn.OutToOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual OauthScopeUsesUser UsesUser {
-			get { return NewRel<OauthScopeUsesUser>(WeaverRelConn.OutToOne); }
+			get { return NewEdge<OauthScopeUsesUser>(WeaverEdgeConn.OutToOne); }
 		}
 
 	}

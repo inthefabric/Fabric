@@ -24,9 +24,9 @@ namespace Fabric.Infrastructure.Weaver {
 
 <#
 var schema = new Schema();
-IList<WeaverNodeSchema> nodes = schema.Nodes;
+IList<WeaverVertexSchema> nodes = schema.Nodes;
 
-foreach ( WeaverNodeSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in nodes ) {
 #>
 		public const string <#= ns.Name #> = "<#= ns.DbName #>";
 <#
@@ -45,7 +45,7 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 			NameMap = new Dictionary<string, string>();
 			
 <#
-foreach ( WeaverNodeSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in nodes ) {
 #>
 			TypeMap.Add(typeof(<#= ns.Name #>), <#= ns.Name #>);
 			NameMap.Add("<#= ns.Name #>", <#= ns.Name #>);
@@ -63,7 +63,7 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 	public static class PropDbName {
 
 <#
-foreach ( WeaverNodeSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in nodes ) {
 	foreach ( WeaverPropSchema ps in ns.Props ) {
 #>
 		public const string <#= ns.Name+'_'+ps.Name #> = "<#= ps.DbName #>";
@@ -87,7 +87,7 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 			StrTypeIdMap = new Dictionary<string, string>();
 			
 <#
-foreach ( WeaverNodeSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in nodes ) {
 	var hn = new SchemaHelperNode(ns);
 	SchemaHelperProp hp = hn.GetPrimaryKeyProp();
 	if ( hp == null ) { continue; }
@@ -111,7 +111,7 @@ foreach ( WeaverNodeSchema ns in nodes ) {
 	public static class RelDbName {
 
 <#
-foreach ( WeaverRelSchema rs in schema.Rels ) {
+foreach ( WeaverEdgeSchema rs in schema.Rels ) {
 #>
 		public const string <#= rs.Name #> = "<#= rs.DbName #>";
 <#
@@ -128,7 +128,7 @@ foreach ( WeaverRelSchema rs in schema.Rels ) {
 			TypeMap = new Dictionary<Type, string>();
 			
 <#
-foreach ( WeaverRelSchema rs in schema.Rels ) {
+foreach ( WeaverEdgeSchema rs in schema.Rels ) {
 #>
 			TypeMap.Add(typeof(<#= rs.Name #>), <#= rs.Name #>);
 <#

@@ -78,8 +78,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Weaver">
-      <HintPath>..\..\Packages\Weaver.1.0.0\Weaver.dll</HintPath>
+    <Reference Include="Weaver.Core">
+      <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

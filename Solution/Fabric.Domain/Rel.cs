@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using Weaver.Interfaces;
-using Weaver.Items;
+using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public abstract class Rel<TFrom, TType, TTo> : WeaverRel<TFrom,TType,TTo>, IRel
-																	where TFrom : IWeaverNode, new()
-																	where TType : IWeaverRelType, new()
-																	where TTo : IWeaverNode, new() {
+	public abstract class Rel<TEdge, TOut, TType, TIn> : WeaverEdge<TEdge, TOut,TType,TIn>, IRel
+																	where TEdge : class, IWeaverEdge
+																	where TOut : IWeaverVertex, new()
+																	where TType : IWeaverEdgeType, new()
+																	where TIn : IWeaverVertex, new() {
 
-		public string ToNodeId { get; set; }
-		public string FromNodeId { get; set; }
+		public string InVertexId { get; set; }
+		public string OutVertexId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

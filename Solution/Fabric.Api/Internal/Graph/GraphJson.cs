@@ -106,14 +106,14 @@ namespace Fabric.Api.Internal.Graph {
 				foreach ( DbDto l in links ) {
 					dynamic linkObj = new ExpandoObject();
 					linkObj.id = l.Id;
-					linkObj.type = ExtractRelType(l);
+					linkObj.type = ExtractEdgeType(l);
 
-					if ( l.FromNodeId != null ) {
-						linkObj.start = linkObj.source = nodeIdMap[l.FromNodeId].index;
+					if ( l.OutVertexId != null ) {
+						linkObj.start = linkObj.source = nodeIdMap[l.OutVertexId].index;
 					}
 
-					if ( l.ToNodeId != null ) {
-						linkObj.end = linkObj.target = nodeIdMap[l.ToNodeId].index;
+					if ( l.InVertexId != null ) {
+						linkObj.end = linkObj.target = nodeIdMap[l.InVertexId].index;
 					}
 
 					if ( linkObj.start == 1 || linkObj.end == 1 ) { continue; }
@@ -129,11 +129,11 @@ namespace Fabric.Api.Internal.Graph {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string ExtractRelType(DbDto pLink) {
+		private string ExtractEdgeType(DbDto pLink) {
 			string name = pLink.Class;
 			object o = Activator.CreateInstance("Fabric.Domain", "Fabric.Domain."+name).Unwrap();
-			IWeaverRel r = (o as IWeaverRel);
-			return (r == null ? name : r.RelType.Label);
+			IWeaverEdge r = (o as IWeaverEdge);
+			return (r == null ? name : r.EdgeType.Label);
 		}
 
 	}

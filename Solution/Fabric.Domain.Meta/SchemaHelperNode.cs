@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Weaver.Schema;
+using Weaver.Core.Schema;
 
 namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
 	public class SchemaHelperNode {
 
-		public WeaverNodeSchema NodeSchema { get; private set; }
+		public WeaverVertexSchema NodeSchema { get; private set; }
 
 		public bool HasParentClass { get; private set; }
 
@@ -19,10 +19,10 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SchemaHelperNode(WeaverNodeSchema pNode) {
+		public SchemaHelperNode(WeaverVertexSchema pNode) {
 			NodeSchema = pNode;
 
-			HasParentClass = (NodeSchema.BaseNode != null);
+			HasParentClass = (NodeSchema.BaseVertex != null);
 
 			vProps = new List<SchemaHelperProp>();
 			vRels = new List<SchemaHelperNodeRel>();
@@ -54,8 +54,8 @@ namespace Fabric.Domain.Meta {
 				}
 			}
 
-			foreach ( WeaverRelSchema pr in SchemaHelper.SchemaInstance.Rels ) {
-				if ( pr.FromNode != NodeSchema && pr.ToNode != NodeSchema ) { continue; }
+			foreach ( WeaverEdgeSchema pr in SchemaHelper.SchemaInstance.Rels ) {
+				if ( pr.OutVertex != NodeSchema && pr.InVertex != NodeSchema ) { continue; }
 				vRels.Add(new SchemaHelperNodeRel(this, pr));
 			}
 		}
@@ -69,7 +69,7 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<SchemaHelperNodeRel> GetRels(bool pSkipInternal=false) {
+		public IList<SchemaHelperNodeRel> GetEdges(bool pSkipInternal=false) {
 			return vRels
 				.Where(r => (!pSkipInternal || !r.IsTargetNodeInternal))
 				.ToList();
@@ -77,13 +77,13 @@ namespace Fabric.Domain.Meta {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<SchemaHelperNodeRel> GetNestedRels(bool pSkipInternal=false) {
-			if ( NodeSchema.BaseNode == null ) {
-				return GetRels(pSkipInternal);
+			if ( NodeSchema.BaseVertex == null ) {
+				return GetEdges(pSkipInternal);
 			}
 
-			var parent = new SchemaHelperNode(NodeSchema.BaseNode);
+			var parent = new SchemaHelperNode(NodeSchema.BaseVertex);
 			List<SchemaHelperNodeRel> rels = parent.GetNestedRels(pSkipInternal).ToList();
-			rels.AddRange(GetRels(pSkipInternal));
+			rels.AddRange(GetEdges(pSkipInternal));
 			return rels;
 		}
 
@@ -112,8 +112,8 @@ namespace Fabric.Domain.Meta {
 				}
 			}
 
-			if ( NodeSchema.BaseNode != null ) {
-				return new SchemaHelperNode(NodeSchema.BaseNode).GetPrimaryKeyProp();
+			if ( NodeSchema.BaseVertex != null ) {
+				return new SchemaHelperNode(NodeSchema.BaseVertex).GetPrimaryKeyProp();
 			}
 			
 			return null;

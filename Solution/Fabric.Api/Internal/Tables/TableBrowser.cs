@@ -83,12 +83,12 @@ namespace Fabric.Api.Internal.Tables {
 			}
 
 			foreach ( IDbDto dto in vDtos ) {
-				if ( dto.Id == null || dto.ToNodeId == null || dto.FromNodeId == null ) { continue; }
+				if ( dto.Id == null || dto.InVertexId == null || dto.OutVertexId == null ) { continue; }
 				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
 
 				TableNode toNode, fromNode;
-				vNodes.TryGetValue(dto.ToNodeId, out toNode);
-				vNodes.TryGetValue(dto.FromNodeId, out fromNode);
+				vNodes.TryGetValue(dto.InVertexId, out toNode);
+				vNodes.TryGetValue(dto.OutVertexId, out fromNode);
 
 				if ( toNode != null ) {
 					toNode.AddRelIn(dto);

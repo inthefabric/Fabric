@@ -1,5 +1,5 @@
-﻿using Weaver.Items;
-using Weaver.Schema;
+﻿using Weaver.Core.Elements;
+using Weaver.Core.Schema;
 
 namespace Fabric.Domain.Meta {
 
@@ -7,7 +7,7 @@ namespace Fabric.Domain.Meta {
 	public class SchemaHelperNodeRel : SchemaHelperRel {
 
 		public bool IsOutgoing { get; private set; }
-		public WeaverRelConn Conn { get; private set; }
+		public WeaverEdgeConn Conn { get; private set; }
 		public bool IsMany { get; private set; }
 		public bool IsTargetNodeInternal { get; private set; }
 		public string RelPropName { get; private set; }
@@ -16,14 +16,14 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SchemaHelperNodeRel(SchemaHelperNode pHelpNode, WeaverRelSchema pRel) : base(pRel) {
-			IsOutgoing = (pRel.FromNode == pHelpNode.NodeSchema);
-			Conn = (IsOutgoing ? pRel.FromNodeConn : pRel.ToNodeConn);
+		public SchemaHelperNodeRel(SchemaHelperNode pHelpNode, WeaverEdgeSchema pRel) : base(pRel) {
+			IsOutgoing = (pRel.OutVertex == pHelpNode.NodeSchema);
+			Conn = (IsOutgoing ? pRel.OutVertexConn : pRel.InVertexConn);
 
-			IsMany = GetRelHasMany(IsOutgoing);
-			IsTargetNodeInternal = GetRelNodeIsInternal(IsOutgoing);
-			RelPropName = GetRelPropName(IsOutgoing);
-			TargetNodeType = GetRelNodeType(IsOutgoing);
+			IsMany = GetEdgeHasMany(IsOutgoing);
+			IsTargetNodeInternal = GetEdgeNodeIsInternal(IsOutgoing);
+			RelPropName = GetEdgePropName(IsOutgoing);
+			TargetNodeType = GetEdgeNodeType(IsOutgoing);
 		}
 
 	}

@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.1.0.0\Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <# //@ assembly name="/Users/zachkinstner/Documents/FabricProject/Fabric2/Packages/Weaver.1.0.0/Weaver.dll" #>
@@ -25,14 +25,14 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Traversal {
 	
 <#
-IList<string> nodes = SchemaHelper.GetNodes();
+IList<string> nodes = SchemaHelper.GetVertices();
 
 foreach ( string name in nodes ) {
 	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverNodeSchema node = hn.NodeSchema;
+	WeaverVertexSchema node = hn.NodeSchema;
 	if ( node.IsInternal ) { continue; }
 
-	string baseNode = (hn.HasParentClass ? node.BaseNode.Name : "Node");
+	string baseNode = (hn.HasParentClass ? node.BaseVertex.Name : "Node");
 	string abs = (node.IsAbstract ? "abstract " : "");
 	bool hasTypeId = false;
 #>

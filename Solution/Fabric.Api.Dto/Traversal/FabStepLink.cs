@@ -19,7 +19,7 @@ namespace Fabric.Api.Dto.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabStepLink(IStepLink pLink) {
 			IsOut = pLink.IsOutgoing;
-			Rel = pLink.RelType;
+			Rel = pLink.EdgeType;
 			Class = "Fab"+pLink.Node;
 			Uri = pLink.Uri;
 		}
