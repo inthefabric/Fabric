@@ -287,13 +287,13 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillUserArtifact(SetupArtifacts.ArtifactId pId, MemberId pCreatorId) {
-			Artifact user = vSet.GetNode<User>((long)pId);
+			User user = vSet.GetNode<User>((long)pId);
 			SetupArtifacts.FillArtifact(vSet, user, pId, pCreatorId, vTestMode);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillAppArtifact(SetupArtifacts.ArtifactId pId, MemberId pCreatorId) {
-			Artifact app = vSet.GetNode<App>((long)pId);
+			App app = vSet.GetNode<App>((long)pId);
 			SetupArtifacts.FillArtifact(vSet, app, pId, pCreatorId, vTestMode);
 		}
 

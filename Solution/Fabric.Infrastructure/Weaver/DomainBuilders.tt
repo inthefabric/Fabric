@@ -1,11 +1,11 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)../Packages/Weaver.1.0.0/Weaver.dll" #>
+<#@ assembly name="$(SolutionDir)../Packages/Weaver/Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
-<#@ import namespace="Weaver.Items" #>
-<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="Weaver.Core.Query" #>
+<#@ import namespace="Weaver.Core.Schema" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
 // Changes made to this source file will be overwritten
@@ -13,7 +13,7 @@
 
 using System.Collections.Generic;
 using Fabric.Domain;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -33,7 +33,7 @@ foreach ( string name in nodes ) {
 	if ( node.IsBaseClass ) {
 #>
 	/*================================================================================================*/
-	public abstract class <#= node.Name #>Builder<<#= nodeType #>> : DomainBuilder<T> where T : INode, new() {
+	public abstract class <#= node.Name #>Builder<<#= nodeType #>> : DomainBuilder<T> where T : class, INode<T>, new() {
 
 <#
 	}

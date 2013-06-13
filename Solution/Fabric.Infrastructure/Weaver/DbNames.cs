@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/6/2013 2:37:39 PM
+// Generated on 6/13/2013 7:45:05 PM
 
 using System;
 using System.Collections.Generic;
@@ -41,10 +41,8 @@ namespace Fabric.Infrastructure.Weaver {
 			TypeMap = new Dictionary<Type, string>();
 			NameMap = new Dictionary<string, string>();
 			
-			TypeMap.Add(typeof(Node), Node);
 			NameMap.Add("Node", Node);
 
-			TypeMap.Add(typeof(NodeForAction), NodeForAction);
 			NameMap.Add("NodeForAction", NodeForAction);
 
 			TypeMap.Add(typeof(Artifact), Artifact);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
+using Weaver.Core.Query;
 
 namespace Fabric.Db.Data {
 
@@ -72,7 +73,7 @@ namespace Fabric.Db.Data {
 		public IWeaverQuery AddQuery {
 			get {
 				if ( vAddQuery == null ) {
-					vAddQuery = Weave.Inst.AddRel(OutVertexT, RelT, InVertexT);
+					vAddQuery = Weave.Inst.Graph.AddEdge(OutVertexT, RelT, InVertexT);
 				}
 
 				return vAddQuery;

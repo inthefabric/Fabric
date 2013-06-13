@@ -23,7 +23,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			IWeaverQuery q = 
 				Weave.Inst.BeginPath<User>(u => u.ArtifactId, 2).BaseVertex
 				.UsesEmail
-				.End();
+				.ToQuery();
 
 			ApiCtx.DbList<UserUsesEmail>("test", q);
 		}

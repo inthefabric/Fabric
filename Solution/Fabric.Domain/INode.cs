@@ -5,7 +5,7 @@ using Weaver.Core.Elements;
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public interface INode<T> : IWeaverVertex<T> where T : class, IWeaverVertex {
+	public interface INode : IWeaverVertex {
 
 		byte FabType { get; }
 
@@ -14,6 +14,16 @@ namespace Fabric.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		long GetTypeId();
 		void SetTypeId(long pTypeId);
+
+	}
+
+
+	/*================================================================================================*/
+	public interface INode<T> : INode, IWeaverVertex<T> where T : class, IWeaverVertex {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		Expression<Func<T, object>> GetTypeIdProp();
 		
 	}

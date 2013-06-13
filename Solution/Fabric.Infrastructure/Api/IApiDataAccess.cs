@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 

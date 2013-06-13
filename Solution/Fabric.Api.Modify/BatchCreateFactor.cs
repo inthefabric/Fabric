@@ -386,7 +386,7 @@ namespace Fabric.Api.Modify {
 			txb.Transaction.AddQuery(q);
 
 			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromVar(facVar, false).Prop(x => x.Id).End()
+				ApiFunc.NewPathFromVar(facVar, false).Prop(x => x.Id).ToQuery()
 			);
 
 			list.Add(txb.Finish());

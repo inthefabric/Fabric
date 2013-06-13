@@ -1,5 +1,4 @@
-﻿using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+﻿using Weaver.Core.Query;
 
 namespace Fabric.Db.Data.Setups {
 
@@ -10,7 +9,7 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IWeaverQuery BuildGroup(string pNode, int pId) {
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery("Group_"+pNode+" = "+
 				"com.thinkaurelius.titan.core.TypeGroup.of("+pId+",'"+pNode+"')");
 			return q;
@@ -23,7 +22,8 @@ namespace Fabric.Db.Data.Setups {
 					"g.makeType()"+
 					".dataType("+pType+".class)"+
 					".name('"+pProp+"')"+
-					".unique(OUT)"; //,com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency.NO_LOCK)";
+					".unique(OUT)"; 
+					//,com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency.NO_LOCK)";
 
 			if ( pNode != null ) {
 				script += ".group(Group_"+pNode+")";
@@ -39,7 +39,7 @@ namespace Fabric.Db.Data.Setups {
 
 			script += ".makePropertyKey();1";
 
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery(script);
 			return q;
 		}
@@ -69,7 +69,7 @@ namespace Fabric.Db.Data.Setups {
 
 			script += ".makeEdgeLabel();1";
 
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery(script);
 			return q;
 		}

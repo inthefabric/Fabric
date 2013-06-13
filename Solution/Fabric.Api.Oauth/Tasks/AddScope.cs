@@ -63,7 +63,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(osAlias)
 					.UpdateEach(updates)
-				.End()
+				.ToQuery()
 			);
 
 			tx.Finish();

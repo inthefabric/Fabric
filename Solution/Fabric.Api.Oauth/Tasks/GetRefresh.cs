@@ -56,7 +56,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.UsesUser.ToUser
 					.Aggregate(listVar)
 					.Iterate()
-				.End()
+				.ToQuery()
 			);
 
 			tx.Finish(listVar);

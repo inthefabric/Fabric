@@ -1,8 +1,7 @@
 ﻿using System;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 	
@@ -42,27 +41,21 @@ namespace Fabric.Infrastructure.Api {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static T NewPathFromType<T>() where T : class, INode, new() {
-			return Weave.Inst.BeginPath<T>(x => x.FabType, 
-				(byte)NodeFabTypeUtil.TypeMap[typeof(T)]).BaseVertex;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static T NewPathFromVar<T>(IWeaverVarAlias<T> pVar, bool pCopyItem)
 																		where T : class, INode, new() {
 			return Weave.Inst.BeginPath(pVar, pCopyItem).BaseVertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
-			return Weave.Inst.BeginPath(pNodeWithId.GetTypeIdProp<T>(),
-				pNodeWithId.GetTypeId()).BaseVertex;
+		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode<T>, new() {
+			return Weave.Inst.Graph.V.ExactIndex(pNodeWithId.GetTypeIdProp(),
+				pNodeWithId.GetTypeId());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static IWeaverQuery NewNodeQuery<T>(T pNodeWithId) where T : class, INode, new() {
-			return NewPathFromIndex(pNodeWithId).End();
+		public static IWeaverQuery NewNodeQuery<T>(T pNodeWithId) where T : class, INode<T>, new() {
+			return NewPathFromIndex(pNodeWithId).ToQuery();
 		}
 
 	}

@@ -49,7 +49,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				NewPathFromType<User>()
 					.Has(x => x.Password, WeaverFuncHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 					.CustomStep(filterStep)
-				.End();
+				.ToQuery();
 
 			q.AddStringParam(vUsername.ToLower());
 			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);

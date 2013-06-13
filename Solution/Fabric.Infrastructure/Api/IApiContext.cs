@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Db;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 	
@@ -46,7 +46,7 @@ namespace Fabric.Infrastructure.Api {
 		IApiDataAccess DbData(string pQueryName, RexConnTcpRequest pRequest);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new();
+		T DbNodeById<T>(long pTypeId) where T : class, INode<T>, INodeWithId, new();
 		
 		/*--------------------------------------------------------------------------------------------*/
 		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : class, IItemWithId, new();

@@ -4,8 +4,7 @@ using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Db;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -91,7 +90,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new() {
+		public T DbNodeById<T>(long pTypeId) where T : class, INode<T>, INodeWithId, new() {
 			T item = Cache.Memory.FindNode<T>(pTypeId);
 			
 			if ( item != null ) {
@@ -100,7 +99,7 @@ namespace Fabric.Infrastructure.Api {
 			
 			item = new T();
 			((INode)item).SetTypeId(pTypeId);
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(item).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(item).ToQuery();
 			item = DbSingle<T>("Get"+typeof(T).Name+"ById", q);
 			
 			if ( item != null ) {

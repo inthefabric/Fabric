@@ -30,7 +30,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromType<Url>()
 					.CustomStep(filterStep)
-				.End();
+				.ToQuery();
 
 			q.AddStringParam(pAbsoluteUrl.ToLower());
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
@@ -58,7 +58,7 @@ namespace Fabric.Api.Modify.Tasks {
 					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.Invite)
 					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.Request)
 				.Back(memAlias)
-				.End();
+				.ToQuery();
 
 			mem = pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
 
@@ -88,7 +88,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.InMemberCreates.FromMember
 					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
 				.Back(factorAlias)
-				.End();
+				.ToQuery();
 
 			return pApiCtx.DbSingle<Factor>("GetActiveFactorFromMember", q);
 		}
@@ -106,7 +106,7 @@ namespace Fabric.Api.Modify.Tasks {
 				ApiFunc.NewPathFromIndex(pFactor)
 					.UpdateEach(up)
 					.Next()
-				.End();
+				.ToQuery();
 
 			IWeaverVarAlias<Factor> facVar;
 
@@ -146,7 +146,7 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Director_PrimaryActionId);
 			up.AddUpdate(pFactor, x => x.Director_RelatedActionId);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorDirector", q);
 		}
 
@@ -162,7 +162,7 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Eventor_PrecisionId);
 			up.AddUpdate(pFactor, x => x.Eventor_DateTime);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorEventor", q);
 		}
 
@@ -176,7 +176,7 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Identor_TypeId);
 			up.AddUpdate(pFactor, x => x.Identor_Value);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorIdentor", q);
 		}
 
@@ -194,7 +194,7 @@ namespace Fabric.Api.Modify.Tasks {
 			up.AddUpdate(pFactor, x => x.Locator_ValueY);
 			up.AddUpdate(pFactor, x => x.Locator_ValueZ);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorLocator", q);
 		}
 
@@ -217,7 +217,7 @@ namespace Fabric.Api.Modify.Tasks {
 				ApiFunc.NewPathFromIndex(pFactor)
 					.UpdateEach(up)
 					.Next()
-				.End();
+				.ToQuery();
 			
 			IWeaverVarAlias<Factor> facVar;
 
@@ -250,7 +250,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
 				.UpdateEach(updates)
-				.End();
+				.ToQuery();
 
 			return pApiCtx.DbSingle<Factor>("UpdateFactor", q);
 		}

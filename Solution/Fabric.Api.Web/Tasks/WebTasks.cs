@@ -32,7 +32,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromType<User>()
 					.CustomStep(filterStep)
-				.End();
+				.ToQuery();
 
 			q.AddStringParam(pName.ToLower());
 			return pApiCtx.DbSingle<User>("GetUserByName", q);
@@ -41,7 +41,7 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUser(IApiContext pApiCtx, long pUserId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId }).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId }).ToQuery();
 			return pApiCtx.DbSingle<User>("GetUser", q);
 		}
 
@@ -53,7 +53,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromType<App>()
 					.CustomStep(filterStep)
-				.End();
+				.ToQuery();
 
 			q.AddStringParam(pName.ToLower());
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
@@ -61,7 +61,7 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IApiContext pApiCtx, long pAppId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId }).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId }).ToQuery();
 			return pApiCtx.DbSingle<App>("GetApp", q);
 		}
 		
@@ -77,7 +77,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(user)
 					.UpdateEach(updates)
-				.End();
+				.ToQuery();
 
 			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);
 		}
@@ -94,7 +94,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(app)
 					.UpdateEach(updates)
-					.End();
+					.ToQuery();
 					
 			return pApiCtx.DbSingle<App>("UpdateAppName", q);
 		}
@@ -111,7 +111,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(app)
 					.UpdateEach(updates)
-					.End();
+					.ToQuery();
 			
 			return pApiCtx.DbSingle<App>("UpdateAppSecret", q);
 		}
@@ -122,7 +122,7 @@ namespace Fabric.Api.Web.Tasks {
 				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.DefinesMemberList.ToMember
 					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
-				.End();
+				.ToQuery();
 			
 			return pApiCtx.DbSingle<Member>("GetMemberOfApp", q);
 		}
@@ -132,7 +132,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Member { MemberId = pMemberId })
 				.HasMemberTypeAssign.ToMemberTypeAssign
-				.End();
+				.ToQuery();
 
 			return pApiCtx.DbSingle<MemberTypeAssign>("GetMemberTypeAssignByMember", q);
 		}
@@ -150,7 +150,7 @@ namespace Fabric.Api.Web.Tasks {
 				ApiFunc.NewPathFromVar(memAlias, false)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Next()
-				.End();
+				.ToQuery();
 
 			IWeaverVarAlias<MemberTypeAssign> mtaAlias;
 			q = Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out mtaAlias);
@@ -161,7 +161,7 @@ namespace Fabric.Api.Web.Tasks {
 				ApiFunc.NewPathFromVar(mtaAlias, false)
 				.InMemberHas
 					.RemoveEach() //remove relationship between Member and MTA
-				.End()
+				.ToQuery()
 			);
 
 			var memBuild = new MemberBuilder(txb, pMemberId);
@@ -193,7 +193,7 @@ namespace Fabric.Api.Web.Tasks {
 				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep(filterStep)
-				.End();
+				.ToQuery();
 
 			q.AddStringParam(pDomain.ToLower());
 			return pApiCtx.DbSingle<OauthDomain>("GetOauthDomainByDomain", q);
@@ -222,7 +222,7 @@ namespace Fabric.Api.Web.Tasks {
 				.InOauthDomainListUses.FromOauthDomain
 					.Has(x => x.OauthDomainId, WeaverFuncHasOp.EqualTo, pOauthDomainId)
 					.RemoveEach()
-				.End();
+				.ToQuery();
 				
 			pApiCtx.DbData("DeleteOauthDomain", q);
 			return true;
@@ -294,7 +294,7 @@ namespace Fabric.Api.Web.Tasks {
 				ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId })
 				.UsesEmail.ToEmail
 					.Next()
-				.End();
+				.ToQuery();
 
 			IWeaverVarAlias<Email> emailVar;
 			q = Weave.Inst.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar);

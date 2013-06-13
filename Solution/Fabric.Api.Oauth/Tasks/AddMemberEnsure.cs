@@ -84,7 +84,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Aggregate(aggVar)
 					.Iterate()
-				.End()
+				.ToQuery()
 			);
 
 			tx.Finish(aggVar);
@@ -153,7 +153,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				NewPathFromVar(mtaVar, false)
 				.InMemberHas
 					.RemoveEach()
-				.End()
+				.ToQuery()
 			);
 
 			//Move original to use Member-HasHistoric-MemberTypeAssign relationship

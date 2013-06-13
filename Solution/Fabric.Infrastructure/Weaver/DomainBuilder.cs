@@ -1,11 +1,11 @@
 ﻿using System;
 using Fabric.Domain;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Weaver {
 	
 	/*================================================================================================*/
-	public class DomainBuilder<T> where T : INode, new() { //TEST: DomainBuilder
+	public class DomainBuilder<T> where T : class, INode<T>, new() { //TEST: DomainBuilder
 
 		public TxBuilder TxBuild { get; private set; }
 		public T Node { get; private set; }
@@ -26,9 +26,9 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode(bool pIncludeNulls=false) {
+		public void AddNode() {
 			IWeaverVarAlias<T> nodeVar;
-			TxBuild.AddNode(Node, pIncludeNulls, out nodeVar);
+			TxBuild.AddNode(Node, out nodeVar);
 			NodeVar = nodeVar;
 		}
 		

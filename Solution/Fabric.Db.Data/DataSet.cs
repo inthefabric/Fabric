@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
+using Weaver.Core.Query;
 
 namespace Fabric.Db.Data {
 
@@ -38,7 +38,7 @@ namespace Fabric.Db.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClearPreviousData() {
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.remove()"); //also removes all edges
 			Initialization.Add(q);
 		}

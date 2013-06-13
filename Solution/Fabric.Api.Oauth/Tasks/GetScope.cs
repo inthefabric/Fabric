@@ -51,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.UsesApp.ToApp
 					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
 				.Back(scopeAlias)
-				.End();
+				.ToQuery();
 
 			OauthScope scope = ApiCtx.DbSingle<OauthScope>(Query.GetMatchingScope+"", q);
 

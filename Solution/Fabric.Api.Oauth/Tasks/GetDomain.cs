@@ -69,7 +69,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				NewPathFromIndex(new App { ArtifactId = vAppId })
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep(filterStep)
-				.End();
+				.ToQuery();
 
 			q.AddStringParam(vRedirectDomain.ToLower());
 			OauthDomain od = ApiCtx.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);

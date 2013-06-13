@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
+using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -17,7 +17,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TxBuilder() {
-			Transaction = Weave.Inst.NewTx();
+			Transaction = new WeaverTransaction();
 			vVarHash = new HashSet<IWeaverVarAlias>();
 		}
 
@@ -49,23 +49,28 @@ namespace Fabric.Infrastructure.Weaver {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private string GetNextVarName() {
+			return "_V"+vVarHash.Count;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
-																		where T : class, INode, new() {
-			IWeaverQuery q = Weave.Inst.BeginPath(
-				pNodeWithId.GetTypeIdProp<T>(), pNodeWithId.GetTypeId()).BaseVertex.Next().End();
-			q = Weave.Inst.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
+																	where T : class, INode<T>, new() {
+			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(
+				pNodeWithId.GetTypeIdProp(), pNodeWithId.GetTypeId()).Next().ToQuery();
+			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNodeByNodeId<T>(T pNodeWithNodeId, out IWeaverVarAlias<T> pNodeVar)
-																		where T : class, INode, new() {
-			IWeaverQuery q = Weave.Inst.BeginPath<T>(pNodeWithNodeId.Id).BaseVertex.End();
-			q = Weave.Inst.StoreQueryResultAsVar(Transaction, q, out pNodeVar);
+																	where T : class, INode<T>, new() {
+			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pNodeWithNodeId.Id).ToQuery();
+			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
 		}
@@ -73,22 +78,22 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T>(T pNode, bool pIncludeNulls, out IWeaverVarAlias<T> pNewNodeVar)
-																					where T : INode {
-			IWeaverQuery q = Weave.Inst.AddNode(pNode, pIncludeNulls);
-			q = Weave.Inst.StoreQueryResultAsVar(Transaction, q, out pNewNodeVar);
+		public void AddNode<T>(T pNode, out IWeaverVarAlias<T> pNewNodeVar)
+																			where T : class, INode<T> {
+			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pNode);
+			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNewNodeVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddRel<TRel>(IWeaverVarAlias pFromVar, IWeaverVarAlias pToVar)
-																		where TRel : IWeaverEdge, new() {
+																	where TRel : IWeaverEdge, new() {
 			VerifyVar(pFromVar);
 			VerifyVar(pToVar);
 
 			Transaction.AddQuery(
-				Weave.Inst.AddRel(pFromVar, new TRel(), pToVar)
+				Weave.Inst.Graph.AddEdge(pFromVar, new TRel(), pToVar)
 			);
 		}
 

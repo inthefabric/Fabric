@@ -43,7 +43,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverQuery getApp = 
 				NewPathFromIndex<App>(new App { ArtifactId = vAppId })
 					.Has(x => x.Secret, WeaverFuncHasOp.EqualTo, vAppSecret)
-				.End();
+				.ToQuery();
 				
 			return ApiCtx.DbSingle<App>(Query.GetApp+"", getApp);
 		}

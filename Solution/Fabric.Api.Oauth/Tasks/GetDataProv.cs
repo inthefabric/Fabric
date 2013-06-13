@@ -61,7 +61,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Has(x => x.MemberTypeId, WeaverFuncHasOp.EqualTo, (byte)MemberTypeId.DataProvider)
 				.Back(userAlias)
-				.End();
+				.ToQuery();
 
 			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
 		}

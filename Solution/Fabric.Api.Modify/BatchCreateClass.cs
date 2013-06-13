@@ -137,7 +137,7 @@ namespace Fabric.Api.Modify {
 					TxBuilder txb = cc.GetFullTxForBatch(ApiCtx, out memVar, out classVar);
 
 					txb.Transaction.AddQuery(
-						NewPathFromVar(classVar, false).Prop(x => x.Id).End()
+						NewPathFromVar(classVar, false).Prop(x => x.Id).ToQuery()
 					);
 
 					txList.Add(txb.Finish());

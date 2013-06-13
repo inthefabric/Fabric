@@ -71,7 +71,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			var up = Weave.Inst.NewUpdates<Factor>();
 			up.AddUpdate(f, x => x.Descriptor_TypeId);
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(f).UpdateEach(up).End();
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(f).UpdateEach(up).ToQuery();
 			ApiCtx.DbData("TEST.AttachDescriptor", q);
 		}
 

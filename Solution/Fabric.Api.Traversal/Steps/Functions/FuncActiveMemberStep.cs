@@ -33,7 +33,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 					.DefinesMemberList.ToMember
 					.InAppDefines.FromApp
 						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)0)
-					.End();
+					.ToQuery();
 
 				Script = q.Script
 					.Substring(2, q.Script.Length-3)+ //remove "g." and final ";"

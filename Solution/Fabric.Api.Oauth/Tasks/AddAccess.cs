@@ -78,7 +78,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			if ( vClientOnly ) {
 				updateOa = pathOa
 						.UpdateEach(updates)
-					.End();
+					.ToQuery();
 			}
 			else {
 				IWeaverFuncAs<OauthAccess> oaAlias;
@@ -89,7 +89,7 @@ namespace Fabric.Api.Oauth.Tasks {
 						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vUserId)
 					.Back(oaAlias)
 						.UpdateEach(updates)
-					.End();
+					.ToQuery();
 			}
 
 			ApiCtx.DbData(Query.ClearTokens+"", updateOa);

@@ -92,7 +92,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.UsesUser.ToUser
 					.Aggregate(agg)
 					.Iterate()
-				.End()
+				.ToQuery()
 			);
 
 			tx.Finish(agg);

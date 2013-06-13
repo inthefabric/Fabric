@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(grantAlias)
 					.UpdateEach(grantUpdater)
 					.Iterate()
-				.End()
+				.ToQuery()
 			);
 
 			tx.Finish(listVar);
