@@ -3,8 +3,7 @@
 <#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
-<#@ import namespace="Weaver.Items" #>
-<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="Weaver.Core.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
@@ -92,7 +91,7 @@ int ni = 0;
 
 foreach ( WeaverVertexSchema node in schema.Nodes ) {
 #>
-				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]); //<#= node.BaseVertex+"" #>
+				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]);
 <#
 	++ni;
 } //end node loop

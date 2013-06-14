@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
 <#@ import namespace="Weaver" #>
-<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="Weaver.Core.Schema" #>
 /*GENERATED CODE
 Changes made to this source file will be overwritten
 Generated on <#= DateTime.Now.ToString() #> */

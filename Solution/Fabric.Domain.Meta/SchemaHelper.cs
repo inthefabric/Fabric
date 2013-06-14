@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/20/2013 3:31:34 PM
+// Generated on 6/13/2013 10:28:47 PM
 
 using System.Collections.Generic;
 
@@ -97,22 +97,22 @@ namespace Fabric.Domain.Meta {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
-				case "Node": return new SchemaHelperNode(s.Nodes[0]); //
-				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]); //Weaver.Schema.WeaverVertexSchema
-				case "Artifact": return new SchemaHelperNode(s.Nodes[2]); //Weaver.Schema.WeaverVertexSchema
-				case "App": return new SchemaHelperNode(s.Nodes[3]); //Weaver.Schema.WeaverVertexSchema
-				case "Class": return new SchemaHelperNode(s.Nodes[4]); //Weaver.Schema.WeaverVertexSchema
-				case "Email": return new SchemaHelperNode(s.Nodes[5]); //Weaver.Schema.WeaverVertexSchema
-				case "Instance": return new SchemaHelperNode(s.Nodes[6]); //Weaver.Schema.WeaverVertexSchema
-				case "Member": return new SchemaHelperNode(s.Nodes[7]); //
-				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]); //Weaver.Schema.WeaverVertexSchema
-				case "Url": return new SchemaHelperNode(s.Nodes[9]); //Weaver.Schema.WeaverVertexSchema
-				case "User": return new SchemaHelperNode(s.Nodes[10]); //Weaver.Schema.WeaverVertexSchema
-				case "Factor": return new SchemaHelperNode(s.Nodes[11]); //Weaver.Schema.WeaverVertexSchema
-				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]); //Weaver.Schema.WeaverVertexSchema
-				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]); //Weaver.Schema.WeaverVertexSchema
-				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]); //Weaver.Schema.WeaverVertexSchema
-				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]); //Weaver.Schema.WeaverVertexSchema
+				case "Node": return new SchemaHelperNode(s.Nodes[0]);
+				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]);
+				case "Artifact": return new SchemaHelperNode(s.Nodes[2]);
+				case "App": return new SchemaHelperNode(s.Nodes[3]);
+				case "Class": return new SchemaHelperNode(s.Nodes[4]);
+				case "Email": return new SchemaHelperNode(s.Nodes[5]);
+				case "Instance": return new SchemaHelperNode(s.Nodes[6]);
+				case "Member": return new SchemaHelperNode(s.Nodes[7]);
+				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]);
+				case "Url": return new SchemaHelperNode(s.Nodes[9]);
+				case "User": return new SchemaHelperNode(s.Nodes[10]);
+				case "Factor": return new SchemaHelperNode(s.Nodes[11]);
+				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]);
+				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]);
+				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]);
+				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]);
 			}
 
 			return null;

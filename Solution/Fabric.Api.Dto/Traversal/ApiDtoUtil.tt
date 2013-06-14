@@ -5,8 +5,7 @@
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
-<#@ import namespace="Weaver.Items" #>
-<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="Weaver.Core.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
