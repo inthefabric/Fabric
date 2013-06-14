@@ -11,8 +11,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Modify {
 	
@@ -374,19 +373,21 @@ namespace Fabric.Api.Modify {
 			////
 
 			var list = new List<IWeaverScript>();
+			IWeaverVarAlias<Factor> facVar;
 
 			var txb = new TxBuilder();
 			var facBuild = new FactorBuilder(txb, f);
 			facBuild.AddNode();
 
-			var facVar = new WeaverVarAlias<Factor>(txb.Transaction) { Name = "_F" };
 			var q = new WeaverQuery();
 			q.FinalizeQuery(facBuild.NodeVar.Name);
-			q.StoreResultAsVar(facVar);
-			txb.Transaction.AddQuery(q);
 
 			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromVar(facVar, false).Prop(x => x.Id).ToQuery()
+				WeaverQuery.StoreResultAsVar("_F", q, out facVar)
+			);
+
+			txb.Transaction.AddQuery(
+				Weave.Inst.FromVar(facVar).Property(x => x.Id).ToQuery()
 			);
 
 			list.Add(txb.Finish());

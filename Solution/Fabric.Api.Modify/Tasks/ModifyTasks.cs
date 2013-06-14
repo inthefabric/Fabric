@@ -2,9 +2,10 @@
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Parameters;
+using Weaver.Core.Steps.Statements;
 
 namespace Fabric.Api.Modify.Tasks {
 
@@ -24,15 +25,13 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
-			string propName = WeaverUtil.GetPropertyName<Url>(Weave.Inst.Config, x => x.AbsoluteUrl);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
-
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<Url>()
-					.CustomStep(filterStep)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ElasticIndex(
+					new WeaverParamElastic<Url>(x => x.AbsoluteUrl, 
+						WeaverParamElasticOp.Contains, pAbsoluteUrl)
+				)
 				.ToQuery();
 
-			q.AddStringParam(pAbsoluteUrl.ToLower());
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 
@@ -97,21 +96,19 @@ namespace Fabric.Api.Modify.Tasks {
 		public void UpdateFactorDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
 										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) {
 			var txb = new TxBuilder();
-			pFactor.Descriptor_TypeId = pDescTypeId;
-
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Descriptor_TypeId);
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(pFactor)
-					.UpdateEach(up)
+					.SideEffect(
+						new WeaverStatementSetProperty<Factor>(x => x.Descriptor_TypeId, pDescTypeId)
+					)
 					.Next()
 				.ToQuery();
 
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
-				WeaverQuery.StoreResultAsVar(txb.Transaction, q, out facVar)
+				WeaverQuery.StoreResultAsVar("_F", q, out facVar)
 			);
 
 			////
@@ -137,64 +134,57 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId,
 																	byte pPrimActId, byte pRelActId) {
-			pFactor.Director_TypeId = pDirTypeId;
-			pFactor.Director_PrimaryActionId = pPrimActId;
-			pFactor.Director_RelatedActionId = pRelActId;
+			IWeaverQuery q = 
+				ApiFunc.NewPathFromIndex(pFactor)
+				.SideEffect(
+					new WeaverStatementSetProperty<Factor>(x => x.Descriptor_TypeId, pDirTypeId),
+					new WeaverStatementSetProperty<Factor>(x => x.Director_PrimaryActionId, pPrimActId),
+					new WeaverStatementSetProperty<Factor>(x => x.Director_RelatedActionId, pRelActId)
+				)
+				.ToQuery();
 
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Director_TypeId);
-			up.AddUpdate(pFactor, x => x.Director_PrimaryActionId);
-			up.AddUpdate(pFactor, x => x.Director_RelatedActionId);
-
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorDirector", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
 																	byte pEvePrecId, long pDateTime) {
-			pFactor.Eventor_TypeId = pEveTypeId;
-			pFactor.Eventor_PrecisionId = pEvePrecId;
-			pFactor.Eventor_DateTime = pDateTime;
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+				.SideEffect(
+					new WeaverStatementSetProperty<Factor>(x => x.Eventor_TypeId, pEveTypeId),
+					new WeaverStatementSetProperty<Factor>(x => x.Eventor_PrecisionId, pEvePrecId),
+					new WeaverStatementSetProperty<Factor>(x => x.Eventor_DateTime, pDateTime)
+				)
+				.ToQuery();
 
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Eventor_TypeId);
-			up.AddUpdate(pFactor, x => x.Eventor_PrecisionId);
-			up.AddUpdate(pFactor, x => x.Eventor_DateTime);
-
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorEventor", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId,
 																						string pValue) {
-			pFactor.Identor_TypeId = pIdenTypeId;
-			pFactor.Identor_Value = pValue;
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+				.SideEffect(
+					new WeaverStatementSetProperty<Factor>(x => x.Identor_TypeId, pIdenTypeId),
+					new WeaverStatementSetProperty<Factor>(x => x.Identor_Value, pValue)
+				)
+				.ToQuery();
 
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Identor_TypeId);
-			up.AddUpdate(pFactor, x => x.Identor_Value);
-
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorIdentor", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
 																				double pY, double pZ) {
-			pFactor.Locator_TypeId = pLocTypeId;
-			pFactor.Locator_ValueX = pX;
-			pFactor.Locator_ValueY = pY;
-			pFactor.Locator_ValueZ = pZ;
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+				.SideEffect(
+					new WeaverStatementSetProperty<Factor>(x => x.Locator_TypeId, pLocTypeId),
+					new WeaverStatementSetProperty<Factor>(x => x.Locator_ValueX, pX),
+					new WeaverStatementSetProperty<Factor>(x => x.Locator_ValueY, pY),
+					new WeaverStatementSetProperty<Factor>(x => x.Locator_ValueZ, pZ)
+				)
+				.ToQuery();
 
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Locator_TypeId);
-			up.AddUpdate(pFactor, x => x.Locator_ValueX);
-			up.AddUpdate(pFactor, x => x.Locator_ValueY);
-			up.AddUpdate(pFactor, x => x.Locator_ValueZ);
-
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor).UpdateEach(up).ToQuery();
 			pApiCtx.DbData("UpdateFactorLocator", q);
 		}
 
@@ -202,27 +192,21 @@ namespace Fabric.Api.Modify.Tasks {
 		public void UpdateFactorVector(IApiContext pApiCtx, Factor pFactor, byte pVecTypeId,
 								long pValue, long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) {
 			var txb = new TxBuilder();
-			pFactor.Vector_TypeId = pVecTypeId;
-			pFactor.Vector_UnitId = pVecUnitId;
-			pFactor.Vector_UnitPrefixId = pVecUnitPrefId;
-			pFactor.Vector_Value = pValue;
 
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(pFactor, x => x.Vector_TypeId);
-			up.AddUpdate(pFactor, x => x.Vector_UnitId);
-			up.AddUpdate(pFactor, x => x.Vector_UnitPrefixId);
-			up.AddUpdate(pFactor, x => x.Vector_Value);
-
-			IWeaverQuery q =
-				ApiFunc.NewPathFromIndex(pFactor)
-					.UpdateEach(up)
-					.Next()
+			IWeaverQuery q =ApiFunc.NewPathFromIndex(pFactor)
+				.SideEffect(
+					new WeaverStatementSetProperty<Factor>(x => x.Vector_TypeId, pVecTypeId),
+					new WeaverStatementSetProperty<Factor>(x => x.Vector_UnitId, pVecUnitId),
+					new WeaverStatementSetProperty<Factor>(x => x.Vector_UnitPrefixId, pVecUnitPrefId),
+					new WeaverStatementSetProperty<Factor>(x => x.Vector_Value, pValue)
+				)
+				.Next()
 				.ToQuery();
 			
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
-				WeaverQuery.StoreResultAsVar(txb.Transaction, q, out facVar)
+				WeaverQuery.StoreResultAsVar("_F", q, out facVar)
 			);
 
 			////
@@ -236,23 +220,17 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor UpdateFactor(IApiContext pApiCtx, Factor pFactor, bool pCompleted, bool pDeleted){
-			var f = new Factor();
-			var updates = Weave.Inst.NewUpdates<Factor>();
+			Factor facPath = ApiFunc.NewPathFromIndex(pFactor);
+			long now = pApiCtx.UtcNow.Ticks;
 
 			if ( pCompleted ) {
-				f.Completed = pApiCtx.UtcNow.Ticks;
-				updates.AddUpdate(f, x => x.Completed);
+				facPath.SideEffect(new WeaverStatementSetProperty<Factor>(x => x.Completed, now));
 			}
 			else if ( pDeleted ) {
-				f.Deleted = pApiCtx.UtcNow.Ticks;
-				updates.AddUpdate(f, x => x.Deleted);
+				facPath.SideEffect(new WeaverStatementSetProperty<Factor>(x => x.Deleted, now));
 			}
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
-				.UpdateEach(updates)
-				.ToQuery();
-
-			return pApiCtx.DbSingle<Factor>("UpdateFactor", q);
+			return pApiCtx.DbSingle<Factor>("UpdateFactor", facPath.ToQuery());
 		}
 
 

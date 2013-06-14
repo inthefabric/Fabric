@@ -2,7 +2,7 @@
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Modify.Tasks {
 

@@ -4,10 +4,10 @@ using System.Dynamic;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
-using Fabric.Infrastructure.Weaver;
 using Nancy;
 using ServiceStack.Text;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Internal.Graph {
 
@@ -37,7 +37,7 @@ namespace Fabric.Api.Internal.Graph {
 
 				var ctx = new ApiContext("localhost", 8185, null);
 
-				IWeaverQuery query = Weave.Inst.NewQuery();
+				IWeaverQuery query = new WeaverQuery();
 				query.FinalizeQuery(q);
 				IApiDataAccess data = ctx.DbData("getGraphData", query);
 

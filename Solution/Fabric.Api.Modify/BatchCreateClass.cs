@@ -10,8 +10,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Modify {
 	
@@ -137,7 +136,7 @@ namespace Fabric.Api.Modify {
 					TxBuilder txb = cc.GetFullTxForBatch(ApiCtx, out memVar, out classVar);
 
 					txb.Transaction.AddQuery(
-						NewPathFromVar(classVar, false).Prop(x => x.Id).ToQuery()
+						Weave.Inst.FromVar(classVar).Property(x => x.Id).ToQuery()
 					);
 
 					txList.Add(txb.Finish());

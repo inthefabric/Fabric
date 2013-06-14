@@ -5,7 +5,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Modify {
 	

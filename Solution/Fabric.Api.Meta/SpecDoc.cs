@@ -14,7 +14,7 @@ using Fabric.Api.Traversal;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
-using Weaver.Items;
+using Weaver.Core.Elements;
 
 namespace Fabric.Api.Meta {
 

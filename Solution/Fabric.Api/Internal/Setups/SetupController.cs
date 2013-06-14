@@ -7,9 +7,8 @@ using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
-using Fabric.Infrastructure.Weaver;
 using Nancy;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Internal.Setups {
 
@@ -56,7 +55,7 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendSetupTx() {
 			Log.Debug("Remove all nodes");
-			var tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
 
 			foreach ( IWeaverQuery q in vDataSet.Initialization ) {
 				tx.AddQuery(q);
@@ -95,7 +94,7 @@ namespace Fabric.Api.Internal.Setups {
 			int count = 0;
 
 			while ( true ) {
-				var tx = Weave.Inst.NewTx();
+				var tx = new WeaverTransaction();
 				string listScript = "";
 				int start = count;
 				int limit = 1;
@@ -110,11 +109,11 @@ namespace Fabric.Api.Internal.Setups {
 					IWeaverVarAlias nodeVar;
 					count++;
 
-					tx.AddQuery(WeaverQuery.StoreResultAsVar(tx, n.AddQuery, out nodeVar));
+					tx.AddQuery(WeaverQuery.StoreResultAsVar("node", n.AddQuery, out nodeVar));
 					listScript += nodeVar.Name+".id,";
 				}
 
-				var listQ = Weave.Inst.NewQuery();
+				var listQ = new WeaverQuery();
 				listQ.FinalizeQuery("["+listScript.Substring(0, listScript.Length-1)+"]");
 				tx.AddQuery(listQ);
 
@@ -142,7 +141,7 @@ namespace Fabric.Api.Internal.Setups {
 			int count = 0;
 
 			while ( true ) {
-				var tx = Weave.Inst.NewTx();
+				var tx = new WeaverTransaction();
 				int limit = 10;
 				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Util;
 using Fabric.Infrastructure.Db;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
 
 namespace Fabric.Api.Internal.Tables {
 
