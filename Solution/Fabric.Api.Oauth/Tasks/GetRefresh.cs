@@ -4,9 +4,8 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -37,17 +36,17 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override RefreshResult Execute() {
-			var tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
 			IWeaverStepAs<OauthAccess> accessAlias;
 			IWeaverVarAlias listVar;
 			
 			tx.AddQuery(
-				Weave.Inst.InitListVar(tx, out listVar)
+				WeaverQuery.InitListVar("list", out listVar)
 			);
 
 			tx.AddQuery(
-				NewPathFromType<OauthAccess>()
-					.Has(x => x.Refresh, WeaverStepHasOp.EqualTo, vRefreshToken)
+				Weave.Inst.Graph
+				.V.ExactIndex<OauthAccess>(x => x.Refresh, vRefreshToken)
 					.Has(x => x.IsClientOnly, WeaverStepHasOp.EqualTo, false)
 					.As(out accessAlias)
 				.UsesApp.ToApp

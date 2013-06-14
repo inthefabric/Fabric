@@ -2,9 +2,9 @@
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Statements;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -48,27 +48,24 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string Execute() {
-			var tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
+			string code = ApiCtx.Code32;
+			long exp = ApiCtx.UtcNow.AddMinutes(2).Ticks;
 			IWeaverStepAs<OauthGrant> ogAlias;
 			
-			var newOg = new OauthGrant();
-			newOg.RedirectUri = vRedirectUri;
-			newOg.Expires = ApiCtx.UtcNow.AddMinutes(2).Ticks;
-			newOg.Code = ApiCtx.Code32;
-			
-			var updates = Weave.Inst.NewUpdates<OauthGrant>();
-			updates.AddUpdate(newOg, x => x.RedirectUri);
-			updates.AddUpdate(newOg, x => x.Expires);
-			updates.AddUpdate(newOg, x => x.Code);
-			
 			tx.AddQuery(
-				NewPathFromIndex(new User { ArtifactId = vUserId })
+				Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, vUserId)
 				.InOauthGrantListUses.FromOauthGrant
 					.As(out ogAlias)
 				.UsesApp.ToApp
 					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(ogAlias)
-					.UpdateEach(updates)
+					.SideEffect(
+						new WeaverStatementSetProperty<OauthGrant>(x => x.RedirectUri, vRedirectUri),
+						new WeaverStatementSetProperty<OauthGrant>(x => x.Expires, exp),
+						new WeaverStatementSetProperty<OauthGrant>(x => x.Code, code)
+					)
 				.ToQuery()
 			);
 
@@ -76,12 +73,14 @@ namespace Fabric.Api.Oauth.Tasks {
 			OauthGrant og = ApiCtx.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
 			
 			if ( og != null ) {
-				return newOg.Code;
+				return code;
 			}
 			
 			////
 			
 			var txb = new TxBuilder();
+
+			var newOg = new OauthGrant();
 			newOg.OauthGrantId = ApiCtx.GetSharpflakeId<OauthGrant>();
 			
 			var ogBuild = new OauthGrantBuilder(txb, newOg);

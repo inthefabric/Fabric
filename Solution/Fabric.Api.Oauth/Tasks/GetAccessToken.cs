@@ -5,9 +5,8 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -72,17 +71,17 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			IWeaverTransaction tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
 			IWeaverVarAlias agg;
 			IWeaverStepAs<OauthAccess> oaAlias;
 
 			tx.AddQuery(
-				Weave.Inst.InitListVar(tx, out agg)
+				WeaverQuery.InitListVar("agg", out agg)
 			);
 
 			tx.AddQuery(
-				NewPathFromType<OauthAccess>()
-					.Has(x => x.Token, WeaverStepHasOp.EqualTo, vToken)
+				Weave.Inst.Graph
+				.V.ExactIndex<OauthAccess>(x => x.Token, vToken)
 					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
 					.Aggregate(agg)
 					.As(out oaAlias)

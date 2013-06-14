@@ -2,9 +2,9 @@
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Statements;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -44,25 +44,21 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthScope Execute() {
-			var tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
 			IWeaverStepAs<OauthScope> osAlias;
-			
-			var newOs = new OauthScope();
-			newOs.Allow = vAllow;
-			newOs.Created = ApiCtx.UtcNow.Ticks;
-			
-			var updates = Weave.Inst.NewUpdates<OauthScope>();
-			updates.AddUpdate(newOs, x => x.Allow);
-			updates.AddUpdate(newOs, x => x.Created);
 
 			tx.AddQuery(
-				NewPathFromIndex(new User { ArtifactId = vUserId })
-					.InOauthScopeListUses.FromOauthScope
+				Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, vUserId)
+				.InOauthScopeListUses.FromOauthScope
 					.As(out osAlias)
 				.UsesApp.ToApp
 					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(osAlias)
-					.UpdateEach(updates)
+					.SideEffect(
+						new WeaverStatementSetProperty<OauthScope>(x => x.Allow, vAllow),
+						new WeaverStatementSetProperty<OauthScope>(x => x.Created, ApiCtx.UtcNow.Ticks)
+					)
 				.ToQuery()
 			);
 
@@ -76,6 +72,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			////
 			
 			var txb = new TxBuilder();
+
+			var newOs = new OauthScope();
 			newOs.OauthScopeId = ApiCtx.GetSharpflakeId<OauthScope>();
 			
 			var osBuild = new OauthScopeBuilder(txb, newOs);

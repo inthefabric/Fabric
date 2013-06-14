@@ -34,7 +34,6 @@ namespace Fabric.Api.Web.Tasks {
 				)
 				.ToQuery();
 
-			q.AddStringParam(pName.ToLower());
 			return pApiCtx.DbSingle<User>("GetUserByName", q);
 
 		}
@@ -47,18 +46,17 @@ namespace Fabric.Api.Web.Tasks {
 				)
 				.ToQuery();
 
-			q.AddStringParam(pName.ToLower());
 			return pApiCtx.DbSingle<App>("GetAppByName", q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword) {
-			var update = new WeaverStatementSetProperty<User>(x => x.Password,
-				FabricUtil.HashPassword(pPassword));
-
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.ArtifactId, pUserId)
-				.SideEffect(update)
+					.SideEffect(
+						new WeaverStatementSetProperty<User>(x => x.Password,
+							FabricUtil.HashPassword(pPassword))
+					)
 				.ToQuery();
 
 			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);
@@ -66,11 +64,9 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public App UpdateAppName(IApiContext pApiCtx, long pAppId, string pName) {
-			var update = new WeaverStatementSetProperty<App>(x => x.Name, pName);
-			
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
-				.SideEffect(update)
+					.SideEffect(new WeaverStatementSetProperty<App>(x => x.Name, pName))
 				.ToQuery();
 					
 			return pApiCtx.DbSingle<App>("UpdateAppName", q);
@@ -82,7 +78,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
-				.SideEffect(update)
+					.SideEffect	(update)
 				.ToQuery();
 
 			return pApiCtx.DbSingle<App>("UpdateAppSecret", q);

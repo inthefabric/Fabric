@@ -1,9 +1,9 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Fabric.Infrastructure.Weaver;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -40,8 +40,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override App Execute() {
-			IWeaverQuery getApp = 
-				NewPathFromIndex<App>(new App { ArtifactId = vAppId })
+			IWeaverQuery getApp = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, vAppId)
 					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, vAppSecret)
 				.ToQuery();
 				

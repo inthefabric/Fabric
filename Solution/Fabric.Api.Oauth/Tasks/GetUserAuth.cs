@@ -3,9 +3,9 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Parameters;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -42,16 +42,14 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override User Execute() {
-			string nameProp = WeaverUtil.GetPropertyName<User>(Weave.Inst.Config, x => x.Name);
-			string filterStep = "filter{it.getProperty('"+nameProp+"').toLowerCase()==_P2}";
-
 			IWeaverQuery q = 
-				NewPathFromType<User>()
-					.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
-					.CustomStep(filterStep)
+				Weave.Inst.Graph
+				.V.ElasticIndex(
+					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, vUsername)
+				)
+				.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 				.ToQuery();
 
-			q.AddStringParam(vUsername.ToLower());
 			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
 		}
 		

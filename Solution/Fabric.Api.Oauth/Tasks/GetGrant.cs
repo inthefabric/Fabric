@@ -4,9 +4,9 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver.Core;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Weaver.Core.Steps.Statements;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -37,24 +37,19 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override GrantResult Execute() {
-			var tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
 			IWeaverVarAlias listVar;
 			IWeaverStepAs<OauthGrant> grantAlias;
 			
 			////
 
-			var ogUpdate = new OauthGrant { Code = "" };
-			var grantUpdater = Weave.Inst.NewUpdates<OauthGrant>();
-			grantUpdater.AddUpdate(ogUpdate, x => x.Code); //set to empty string
-
 			tx.AddQuery(
-				Weave.Inst.InitListVar(tx, out listVar)
+				WeaverQuery.InitListVar("list", out listVar)
 			);
 
 			tx.AddQuery(
-				Weave.Inst
-				NewPathFromType<OauthGrant>()
-					.Has(x => x.Code, WeaverStepHasOp.EqualTo, vCode)
+				Weave.Inst.Graph
+				.V.ExactIndex<OauthGrant>(x => x.Code, vCode)
 					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
 					.Aggregate(listVar)
 					.As(out grantAlias)
@@ -64,7 +59,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.UsesUser.ToUser
 					.Aggregate(listVar)
 				.Back(grantAlias)
-					.UpdateEach(grantUpdater)
+					.SideEffect(new WeaverStatementRemoveProperty<OauthGrant>(x => x.Code))
 					.Iterate()
 				.ToQuery()
 			);

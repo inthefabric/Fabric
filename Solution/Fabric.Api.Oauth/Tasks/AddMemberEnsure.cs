@@ -4,9 +4,8 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -65,16 +64,17 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private bool GetMemberData(out Member pMem, out MemberTypeAssign pMta) {
-			var tx = Weave.Inst.NewTx();
+			var tx = new WeaverTransaction();
 			IWeaverStepAs<Member> memberAlias;
 			IWeaverVarAlias aggVar;
 
 			tx.AddQuery(
-				Weave.Inst.InitListVar(tx, out aggVar)
+				WeaverQuery.InitListVar("agg", out aggVar)
 			);
 
 			tx.AddQuery(
-				NewPathFromIndex(new User { ArtifactId = vUserId })
+				Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, vUserId)
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)
 				.InAppDefines.FromApp
@@ -150,9 +150,9 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Remove original Member-Has-MemberTypeAssign relationship
 
 			txb.Transaction.AddQuery(
-				NewPathFromVar(mtaVar, false)
+				Weave.Inst.FromVar(mtaVar)
 				.InMemberHas
-					.RemoveEach()
+					.Remove()
 				.ToQuery()
 			);
 

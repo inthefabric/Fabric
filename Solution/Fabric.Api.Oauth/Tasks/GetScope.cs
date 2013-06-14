@@ -3,9 +3,9 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Fabric.Infrastructure.Weaver;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -44,8 +44,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override ScopeResult Execute() {
 			IWeaverStepAs<OauthScope> scopeAlias;
 
-			IWeaverQuery q =
-				NewPathFromIndex(new User { ArtifactId = vUserId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, vUserId)
 				.InOauthScopeListUses.FromOauthScope
 					.As(out scopeAlias)
 				.UsesApp.ToApp

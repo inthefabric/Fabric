@@ -3,8 +3,9 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Parameters;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -62,13 +63,14 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override DomainResult Execute() {
-			string domainProp = WeaverUtil.GetPropertyName<OauthDomain>(Weave.Inst.Config,x=> x.Domain);
-			string filterStep = "filter{it.getProperty('"+domainProp+"').toLowerCase()==_P1}";
-
 			IWeaverQuery q = 
-				NewPathFromIndex(new App { ArtifactId = vAppId })
-				.InOauthDomainListUses.FromOauthDomain
-					.CustomStep(filterStep)
+				Weave.Inst.Graph
+				.V.ElasticIndex(
+					new WeaverParamElastic<OauthDomain>(
+						x => x.Domain, WeaverParamElasticOp.Contains, vRedirectDomain)
+				)
+				.UsesApp.ToApp
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.ToQuery();
 
 			q.AddStringParam(vRedirectDomain.ToLower());

@@ -2,9 +2,9 @@
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Fabric.Infrastructure.Weaver;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -41,17 +41,11 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override User Execute() {
-			/*User dp = QueryOver<User>()
-			   .Where(p => p.Id == vDataProvId)
-			   .JoinQueryOver<Member>(p => p.Members, JoinType.InnerJoin)
-			   .Where(m => m.App.Id == vClientId && m.MemberType.Id == (int)MemberTypeIds.DataProvider)
-			   .Take(1).SingleOrDefault();*/
-
 			IWeaverStepAs<User> userAlias;
 			IWeaverStepAs<Member> memberAlias;
 
-			IWeaverQuery q = 
-				NewPathFromIndex(new User { ArtifactId = vDataProvUserId})
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, vDataProvUserId)
 					.As(out userAlias)
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)

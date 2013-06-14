@@ -3,9 +3,9 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Statements;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -60,39 +60,30 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Clear out the Token value of old records instead of removing the row. The rows will
 			//provide good historical data about logins and app usage.
 
-			var oa = new OauthAccess();
-			oa.Token = "";
-			oa.Refresh = "";
-
-			var updates = Weave.Inst.NewUpdates<OauthAccess>();
-			updates.AddUpdate(oa, x => x.Token); //set token to empty string
-			updates.AddUpdate(oa, x => x.Refresh); //set refresh to empty string
-
-			IWeaverQuery updateOa;
-			
-			OauthAccess pathOa = NewPathFromIndex(new App { ArtifactId = vAppId })
+			OauthAccess pathOa = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, vAppId)
 				.InOauthAccessListUses.FromOauthAccess
 					.Has(x => x.Token)
 					.Has(x => x.IsClientOnly, WeaverStepHasOp.EqualTo, vClientOnly);
 
-			if ( vClientOnly ) {
-				updateOa = pathOa
-						.UpdateEach(updates)
-					.ToQuery();
-			}
-			else {
+			if ( !vClientOnly ) {
 				IWeaverStepAs<OauthAccess> oaAlias;
 
-				updateOa = pathOa
+				pathOa = pathOa
 						.As(out oaAlias)
 					.UsesUser.ToUser
 						.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vUserId)
-					.Back(oaAlias)
-						.UpdateEach(updates)
-					.ToQuery();
+					.Back(oaAlias);
 			}
 
-			ApiCtx.DbData(Query.ClearTokens+"", updateOa);
+			IWeaverQuery q = pathOa
+				.SideEffect(
+					new WeaverStatementRemoveProperty<OauthAccess>(x => x.Token),
+					new WeaverStatementRemoveProperty<OauthAccess>(x => x.Refresh)
+				)
+				.ToQuery();
+
+			ApiCtx.DbData(Query.ClearTokens+"", q);
 			ApiCtx.Cache.Memory.RemoveOauthAccesses(vAppId, vUserId);
 		}
 
