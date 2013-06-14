@@ -5,8 +5,7 @@ using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -45,7 +44,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected IWeaverVarAlias<T> GetTxVar<T>() where T : INode {
 			IWeaverVarAlias v;
-			TxBuild.Transaction.AddQuery(WeaverQuery.InitListVar(TxBuild.Transaction, out v));
+			TxBuild.Transaction.AddQuery(WeaverQuery.InitListVar("???", out v));
 
 			var tv = new Mock<IWeaverVarAlias<T>>();
 			tv.SetupGet(x => x.Name).Returns(v.Name);

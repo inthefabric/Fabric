@@ -5,7 +5,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.FabDbData {
 

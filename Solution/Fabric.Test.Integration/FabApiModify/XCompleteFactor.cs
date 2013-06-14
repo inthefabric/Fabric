@@ -5,8 +5,8 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps.Statements;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -64,14 +64,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void AttachTestDescriptor() {
-			var f = new Factor();
-			f.FactorId = vFactorId;
-			f.Descriptor_TypeId = (byte)DescriptorTypeId.IsA;
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Factor>(x => x.FactorId, vFactorId)
+				.SideEffect(
+					new WeaverStatementSetProperty<Factor>(
+						x => x.Descriptor_TypeId, (byte)DescriptorTypeId.IsA)
+				)
+				.ToQuery();
 
-			var up = Weave.Inst.NewUpdates<Factor>();
-			up.AddUpdate(f, x => x.Descriptor_TypeId);
-
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(f).UpdateEach(up).ToQuery();
 			ApiCtx.DbData("TEST.AttachDescriptor", q);
 		}
 

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.Common {
 

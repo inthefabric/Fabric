@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using Fabric.Infrastructure;
 using NUnit.Framework;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Util {
 

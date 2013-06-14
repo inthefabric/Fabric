@@ -3,7 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.FabApiModify {
 

@@ -87,7 +87,6 @@
     <Compile Include="FabApiWeb\Tasks\XAddOauthDomain.cs" />
     <Compile Include="FabApiWeb\Tasks\XUpdateAppSecret.cs" />
     <Compile Include="FabApiWeb\Tasks\XUpdateAppName.cs" />
-    <Compile Include="FabApiWeb\Tasks\XGetApp.cs" />
     <Compile Include="FabApiWeb\XChangeUserPassword.cs" />
     <Compile Include="FabApiWeb\Tasks\XWebTasks.cs" />
     <Compile Include="FabApiWeb\Tasks\XUpdateUserPassword.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="FabApiModify\Tasks\XModifyTasks.cs" />
     <Compile Include="FabApiWeb\Tasks\XGetAppByName.cs" />
     <Compile Include="FabApiWeb\Tasks\XGetUserByName.cs" />
-    <Compile Include="FabApiWeb\Tasks\XGetUser.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddMemberEnsure.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddScope.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddGrant.cs" />

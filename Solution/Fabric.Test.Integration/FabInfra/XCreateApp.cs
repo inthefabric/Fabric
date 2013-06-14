@@ -1,8 +1,7 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.FabInfra {
 
@@ -20,8 +19,8 @@ namespace Fabric.Test.Integration.FabInfra {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Edge() {
-			IWeaverQuery q = 
-				Weave.Inst.BeginPath<User>(u => u.ArtifactId, 2).BaseVertex
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(u => u.ArtifactId, 2)
 				.UsesEmail
 				.ToQuery();
 

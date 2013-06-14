@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.Common {
 	

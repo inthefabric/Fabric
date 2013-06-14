@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.FabApiModify.Tasks {
 

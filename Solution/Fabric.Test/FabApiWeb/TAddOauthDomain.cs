@@ -28,8 +28,8 @@ namespace Fabric.Test.FabApiWeb {
 			vResultApp = new App();
 			vResultDomain = new OauthDomain();
 
-			MockTasks
-				.Setup(x => x.GetApp(MockApiCtx.Object, vAppId))
+			MockApiCtx
+				.Setup(x => x.DbNodeById<App>(vAppId))
 				.Returns(vResultApp);
 
 			MockTasks
@@ -67,7 +67,7 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrAppNotFound() {
-			MockTasks.Setup(x => x.GetApp(MockApiCtx.Object, vAppId)).Returns((App)null);
+			MockApiCtx.Setup(x => x.DbNodeById<App>(vAppId)).Returns((App)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

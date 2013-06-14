@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiWeb {
 
 			vResultUser = new User();
 
-			MockTasks.Setup(x => x.GetUser(MockApiCtx.Object, vUserId)).Returns(vResultUserId);
+			MockApiCtx.Setup(x => x.DbNodeById<User>(vUserId)).Returns(vResultUser);
 
 			MockTasks
 				.Setup(x => x.UpdateUserPassword(MockApiCtx.Object, vUserId, vNewPass))
@@ -80,7 +80,7 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrUserNotFound() {
-			MockTasks.Setup(x => x.GetUser(MockApiCtx.Object, vUserId)).Returns((User)null);
+			MockApiCtx.Setup(x => x.DbNodeById<User>(vUserId)).Returns((User)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

@@ -9,8 +9,9 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
+using Weaver.Core.Query;
+using Weaver.Core.Util;
 
 namespace Fabric.Test.Integration {
 
@@ -102,11 +103,11 @@ namespace Fabric.Test.Integration {
 			}
 
 			if ( !IsReadOnlyTest ) {
-				var q = Weave.Inst.NewQuery();
+				var q = new WeaverQuery();
 				q.FinalizeQuery("g.V.remove();1");
 				IApiDataAccess remAllData = ApiCtx.DbData("TEST.RemoveAll", q);
 
-				q = Weave.Inst.NewQuery();
+				q = new WeaverQuery();
 				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
 				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Reload", q);
 
@@ -148,10 +149,10 @@ namespace Fabric.Test.Integration {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected T GetNodeByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
-											where T : class, INodeWithId, IWeaverItemIndexable, new() {
+												where T : class, INodeWithId, IWeaverElement, new() {
 			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
 
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.has('"+PropDbName.Node_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
 				".has('"+WeaverUtil.GetPropertyName(Weave.Inst.Config, pProp)+
 				"',Tokens.T.eq,"+pValWithQuotes+")");
@@ -162,7 +163,7 @@ namespace Fabric.Test.Integration {
 		protected NodeConnections GetNodeConnections<T>(T pNode) where T : class, INodeWithId, new() {
 			string nodeQ = "g.v("+pNode.Id+")";
 
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery("x=[];"+
 				nodeQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
 				nodeQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
@@ -175,7 +176,7 @@ namespace Fabric.Test.Integration {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private Tuple<int, int> CountNodesAndRels() {
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountVE", q);
 			return new Tuple<int, int>(data.GetIntResultAt(0), data.GetIntResultAt(1));
@@ -188,7 +189,7 @@ namespace Fabric.Test.Integration {
 			string pkType = hn.GetPrimaryKeyProp().PropSchema.Name;
 			pkType = pkType.Substring(0, pkType.Length-2);
 
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			string idParam = q.AddParam(new WeaverQueryVal(pId));
 			q.FinalizeQuery("g.V('"+PropDbName.StrTypeIdMap[pkType]+"',"+idParam+")[0]"+pAppendScript);
 			return q;
@@ -198,7 +199,7 @@ namespace Fabric.Test.Integration {
 		protected IWeaverQuery GetNodeByPropQuery<T>(string pAppendScript="") where T : INodeWithId {
 			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
 
-			var q = Weave.Inst.NewQuery();
+			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.has('"+PropDbName.Node_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
 				pAppendScript);
 			return q;

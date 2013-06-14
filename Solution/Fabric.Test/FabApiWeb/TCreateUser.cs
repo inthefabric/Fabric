@@ -11,7 +11,7 @@ using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiWeb {
 

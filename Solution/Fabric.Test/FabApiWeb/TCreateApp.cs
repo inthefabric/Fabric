@@ -7,7 +7,7 @@ using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiWeb {
 
@@ -59,8 +59,8 @@ namespace Fabric.Test.FabApiWeb {
 			vResultApp = new App();
 			var findUser = new User { ArtifactId = vUserId };
 
-			MockTasks
-				.Setup(x => x.GetUser(MockApiCtx.Object, vUserId))
+			MockApiCtx
+				.Setup(x => x.DbNodeById<User>(vUserId))
 				.Returns(findUser);
 			
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
@@ -114,8 +114,8 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrUserNotFound() {
-			MockTasks
-				.Setup(x => x.GetUser(MockApiCtx.Object, vUserId))
+			MockApiCtx
+				.Setup(x => x.DbNodeById<User>(vUserId))
 				.Returns((User)null);
 
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);

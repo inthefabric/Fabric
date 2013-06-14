@@ -86,7 +86,6 @@
     <Compile Include="FabApiWeb\Tasks\TAddOauthDomain.cs" />
     <Compile Include="FabApiWeb\Tasks\TUpdateAppSecret.cs" />
     <Compile Include="FabApiWeb\Tasks\TUpdateAppName.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetApp.cs" />
     <Compile Include="FabApiWeb\Tasks\TWebTasks.cs" />
     <Compile Include="FabApiWeb\Tasks\TUpdateUserPassword.cs" />
     <Compile Include="FabApiWeb\TChangeUserPassword.cs" />
@@ -98,7 +97,6 @@
     <Compile Include="FabApiWeb\Tasks\TTxAddMember.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddUser.cs" />
     <Compile Include="FabApiWeb\Tasks\TTxAddEmail.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetUser.cs" />
     <Compile Include="FabApiWeb\Tasks\TGetAppByName.cs" />
     <Compile Include="FabApiModify\Tasks\TModifyTasks.cs" />
     <Compile Include="FabApiWeb\Tasks\TGetUserByName.cs" />

@@ -37,7 +37,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 
 			const string fabDom = "Fabric.Domain";
 			Object domObj = Activator.CreateInstance(fabDom, fabDom+"."+pStepName).Unwrap();
-			Assert.True((domObj is Node), "Incorrect domain type: '"+domObj.GetType().Name+"'.");
+			Assert.True((domObj is INode), "Incorrect domain type: '"+domObj.GetType().Name+"'.");
 			Assert.AreEqual(isRoot, (step is IFinalStep), "Incorrect IFinalStep usage.");
 
 			if ( isRoot ) {
@@ -45,7 +45,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 				Assert.True(((IFinalStep)step).UseLocalData, "Incorrect UseLocalData.");
 			}
 			else {
-				Node domNode = (Node)domObj;
+				INode domNode = (INode)domObj;
 				PropertyInfo nodeIdProp = domNode.GetType().GetProperty(pStepName+"Id");
 				//Assert.AreEqual(nodeIdProp.PropertyType == typeof(long), step.TypeIdIsLong,
 				//	"Incorrect TypeIdIsLong.");

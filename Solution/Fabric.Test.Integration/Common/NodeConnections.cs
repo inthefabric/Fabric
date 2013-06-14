@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
-using Weaver.Interfaces;
+using Weaver.Core.Elements;
 
 namespace Fabric.Test.Integration.Common {
 
