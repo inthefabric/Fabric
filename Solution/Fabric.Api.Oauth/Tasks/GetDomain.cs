@@ -5,7 +5,8 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
-using Weaver.Core.Steps.Parameters;
+using Weaver.Titan;
+using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -64,8 +65,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override DomainResult Execute() {
 			IWeaverQuery q = 
-				Weave.Inst.Graph
-				.V.ElasticIndex(
+				Weave.Inst.TitanGraph()
+				.QueryV().ElasticIndex(
 					new WeaverParamElastic<OauthDomain>(
 						x => x.Domain, WeaverParamElasticOp.Contains, vRedirectDomain)
 				)

@@ -5,7 +5,8 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
-using Weaver.Core.Steps.Parameters;
+using Weaver.Titan;
+using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -43,8 +44,8 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override User Execute() {
 			IWeaverQuery q = 
-				Weave.Inst.Graph
-				.V.ElasticIndex(
+				Weave.Inst.TitanGraph()
+				.QueryV().ElasticIndex(
 					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, vUsername)
 				)
 				.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))

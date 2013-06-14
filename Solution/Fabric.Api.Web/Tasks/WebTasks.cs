@@ -6,9 +6,10 @@ using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
-using Weaver.Core.Steps.Parameters;
 using Weaver.Core.Steps.Statements;
 using Weaver.Core.Util;
+using Weaver.Titan;
+using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -28,8 +29,8 @@ namespace Fabric.Api.Web.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ElasticIndex(
+			IWeaverQuery q = Weave.Inst.TitanGraph()
+				.QueryV().ElasticIndex(
 					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, pName)
 				)
 				.ToQuery();
@@ -40,8 +41,8 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ElasticIndex(
+			IWeaverQuery q = Weave.Inst.TitanGraph()
+				.QueryV().ElasticIndex(
 					new WeaverParamElastic<App>(x => x.Name, WeaverParamElasticOp.Contains, pName)
 				)
 				.ToQuery();

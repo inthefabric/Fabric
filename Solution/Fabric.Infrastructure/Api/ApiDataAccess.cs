@@ -86,7 +86,7 @@ namespace Fabric.Infrastructure.Api {
 				vReqJson = JsonSerializer.SerializeToString(Request);
 				JsConfig.EmitCamelCaseNames = false;
 
-				//Log.Debug("REQUEST: "+vReqJson);
+				Log.Debug("REQUEST: "+vReqJson);
 				//ApiCtx.ProfilerTrace(this, "ex.get");
 				ResponseJson = GetRawResult(vReqJson);
 				//ApiCtx.ProfilerTrace(this, "ex.resp");
@@ -208,7 +208,7 @@ namespace Fabric.Infrastructure.Api {
 			Log.Debug(test);*/
 
 			vTcpPool.ReturnClient(tcp);
-			//Log.Debug("RESULT: "+respData);
+			Log.Debug("RESULT: "+respData);
 			//ApiCtx.ProfilerTrace(this, "grr7");
 			return respData;
 		}
