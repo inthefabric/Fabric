@@ -111,7 +111,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
-				Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
+				WeaverQuery.StoreResultAsVar(txb.Transaction, q, out facVar)
 			);
 
 			////
@@ -222,7 +222,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverVarAlias<Factor> facVar;
 
 			txb.Transaction.AddQuery(
-				Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out facVar)
+				WeaverQuery.StoreResultAsVar(txb.Transaction, q, out facVar)
 			);
 
 			////

@@ -35,7 +35,7 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
-			User user = Tasks.GetUser(ApiCtx, vUserId);
+			User user = ApiCtx.DbNodeById<User>(vUserId);
 
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);

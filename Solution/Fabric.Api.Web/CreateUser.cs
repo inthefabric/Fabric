@@ -6,8 +6,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Web {
 	
@@ -67,7 +66,7 @@ namespace Fabric.Api.Web {
 			IWeaverVarAlias listVar;
 			
 			txb.Transaction.AddQuery(
-				Weave.Inst.InitListVar(txb.Transaction, list, out listVar)
+				WeaverQuery.InitListVar("list", list, out listVar)
 			);
 
 			////

@@ -29,7 +29,8 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthDomain Execute() {
-			App app = Tasks.GetApp(ApiCtx, vAppId);
+			App app = ApiCtx.DbNodeById<App>(vAppId);
+
 			
 			if ( app == null ) {
 				throw new FabNotFoundFault(typeof(App), AppIdParam+"="+vAppId);

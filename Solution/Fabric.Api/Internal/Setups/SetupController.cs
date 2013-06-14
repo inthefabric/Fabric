@@ -110,7 +110,7 @@ namespace Fabric.Api.Internal.Setups {
 					IWeaverVarAlias nodeVar;
 					count++;
 
-					tx.AddQuery(Weave.Inst.StoreQueryResultAsVar(tx, n.AddQuery, out nodeVar));
+					tx.AddQuery(WeaverQuery.StoreResultAsVar(tx, n.AddQuery, out nodeVar));
 					listScript += nodeVar.Name+".id,";
 				}
 

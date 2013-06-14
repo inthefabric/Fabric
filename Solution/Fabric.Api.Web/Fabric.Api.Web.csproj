@@ -60,14 +60,6 @@
     <Compile Include="RemoveOauthDomain.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
-      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
-      <Name>Fabric.Api.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
-      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
-      <Name>Fabric.Api.Modify</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>

@@ -41,12 +41,6 @@ namespace Fabric.Infrastructure.Api {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public static T NewPathFromVar<T>(IWeaverVarAlias<T> pVar, bool pCopyItem)
-																		where T : class, INode, new() {
-			return Weave.Inst.BeginPath(pVar, pCopyItem).BaseVertex;
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode<T>, new() {
 			return Weave.Inst.Graph.V.ExactIndex(pNodeWithId.GetTypeIdProp(),

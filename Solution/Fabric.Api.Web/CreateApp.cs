@@ -3,7 +3,7 @@ using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Web {
 
@@ -38,7 +38,7 @@ namespace Fabric.Api.Web {
 
 			////
 
-			User user = Tasks.GetUser(ApiCtx, vUserId);
+			User user = ApiCtx.DbNodeById<User>(vUserId);
 
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);

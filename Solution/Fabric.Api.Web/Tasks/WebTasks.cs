@@ -4,9 +4,11 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
+using Weaver.Core.Steps.Parameters;
+using Weaver.Core.Steps.Statements;
+using Weaver.Core.Util;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -26,12 +28,10 @@ namespace Fabric.Api.Web.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
-			string propName = WeaverUtil.GetPropertyName<User>(Weave.Inst.Config, x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
-
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<User>()
-					.CustomStep(filterStep)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ElasticIndex(
+					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, pName)
+				)
 				.ToQuery();
 
 			q.AddStringParam(pName.ToLower());
@@ -40,19 +40,11 @@ namespace Fabric.Api.Web.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public User GetUser(IApiContext pApiCtx, long pUserId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId }).ToQuery();
-			return pApiCtx.DbSingle<User>("GetUser", q);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
-			string propName = WeaverUtil.GetPropertyName<App>(Weave.Inst.Config, x => x.Name);
-			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
-
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromType<App>()
-					.CustomStep(filterStep)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ElasticIndex(
+					new WeaverParamElastic<App>(x => x.Name, WeaverParamElasticOp.Contains, pName)
+				)
 				.ToQuery();
 
 			q.AddStringParam(pName.ToLower());
@@ -60,23 +52,13 @@ namespace Fabric.Api.Web.Tasks {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public App GetApp(IApiContext pApiCtx, long pAppId) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId }).ToQuery();
-			return pApiCtx.DbSingle<App>("GetApp", q);
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		public User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword) {
-			var user = new User();
-			user.ArtifactId = pUserId;
-			user.Password = FabricUtil.HashPassword(pPassword);
+			var update = new WeaverStatementSetProperty<User>(x => x.Password,
+				FabricUtil.HashPassword(pPassword));
 
-			var updates = Weave.Inst.NewUpdates<User>();
-			updates.AddUpdate(user, u => u.Password);
-
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(user)
-					.UpdateEach(updates)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, pUserId)
+				.SideEffect(update)
 				.ToQuery();
 
 			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);
@@ -84,42 +66,32 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public App UpdateAppName(IApiContext pApiCtx, long pAppId, string pName) {
-			var app = new App();
-			app.ArtifactId = pAppId;
-			app.Name = pName;
+			var update = new WeaverStatementSetProperty<App>(x => x.Name, pName);
 			
-			var updates = Weave.Inst.NewUpdates<App>();
-			updates.AddUpdate(app, x => x.Name);
-			
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(app)
-					.UpdateEach(updates)
-					.ToQuery();
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
+				.SideEffect(update)
+				.ToQuery();
 					
 			return pApiCtx.DbSingle<App>("UpdateAppName", q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public App UpdateAppSecret(IApiContext pApiCtx, long pAppId, string pSecret) {
-			var app = new App();
-			app.ArtifactId = pAppId;
-			app.Secret = pSecret;
-			
-			var updates = Weave.Inst.NewUpdates<App>();
-			updates.AddUpdate(app, x => x.Secret);
-			
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(app)
-					.UpdateEach(updates)
-					.ToQuery();
-			
+			var update = new WeaverStatementSetProperty<App>(x => x.Secret, pSecret);
+
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
+				.SideEffect(update)
+				.ToQuery();
+
 			return pApiCtx.DbSingle<App>("UpdateAppSecret", q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public Member GetMemberOfApp(IApiContext pApiCtx, long pAppId, long pMemberId) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
 				.DefinesMemberList.ToMember
 					.Has(x => x.MemberId, WeaverStepHasOp.EqualTo, pMemberId)
 				.ToQuery();
@@ -146,21 +118,20 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverVarAlias<Member> memAlias;
 			txb.GetNode(mem, out memAlias);
 
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromVar(memAlias, false)
+			IWeaverQuery q = Weave.Inst.FromVar(memAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 					.Next()
 				.ToQuery();
 
 			IWeaverVarAlias<MemberTypeAssign> mtaAlias;
-			q = Weave.Inst.StoreQueryResultAsVar(txb.Transaction, q, out mtaAlias);
+			q = WeaverQuery.StoreResultAsVar("mta", q, out mtaAlias);
 			txb.Transaction.AddQuery(q);
 			txb.RegisterVarWithTxBuilder(mtaAlias);
 		
 			txb.Transaction.AddQuery(
-				ApiFunc.NewPathFromVar(mtaAlias, false)
+				Weave.Inst.FromVar(mtaAlias)
 				.InMemberHas
-					.RemoveEach() //remove relationship between Member and MTA
+					.Remove() //remove relationship between Member and MTA
 				.ToQuery()
 			);
 
@@ -189,8 +160,8 @@ namespace Fabric.Api.Web.Tasks {
 			string propName = WeaverUtil.GetPropertyName<OauthDomain>(Weave.Inst.Config, x => x.Domain);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
 				.InOauthDomainListUses.FromOauthDomain
 					.CustomStep(filterStep)
 				.ToQuery();
@@ -217,11 +188,11 @@ namespace Fabric.Api.Web.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public bool DeleteOauthDomain(IApiContext pApiCtx, long pAppId, long pOauthDomainId) {
-			IWeaverQuery q =
-				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
 				.InOauthDomainListUses.FromOauthDomain
 					.Has(x => x.OauthDomainId, WeaverStepHasOp.EqualTo, pOauthDomainId)
-					.RemoveEach()
+					.Remove()
 				.ToQuery();
 				
 			pApiCtx.DbData("DeleteOauthDomain", q);
@@ -290,14 +261,14 @@ namespace Fabric.Api.Web.Tasks {
 		public void TxAddApp(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, long pUserId,
 										out IWeaverVarAlias<App> pAppVar,
 										out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new User { ArtifactId = pUserId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, pUserId)
 				.UsesEmail.ToEmail
 					.Next()
 				.ToQuery();
 
 			IWeaverVarAlias<Email> emailVar;
-			q = Weave.Inst.StoreQueryResultAsVar(pTxBuild.Transaction, q, out emailVar);
+			q = WeaverQuery.StoreResultAsVar("em", q, out emailVar);
 			pTxBuild.Transaction.AddQuery(q);
 			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 

@@ -3,7 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -18,13 +18,7 @@ namespace Fabric.Api.Web.Tasks {
 		User GetUserByName(IApiContext pApiCtx, string pName);
 
 		/*--------------------------------------------------------------------------------------------*/
-		User GetUser(IApiContext pApiCtx, long pUserId);
-
-		/*--------------------------------------------------------------------------------------------*/
 		App GetAppByName(IApiContext pApiCtx, string pName);
-		
-		/*--------------------------------------------------------------------------------------------*/
-		App GetApp(IApiContext pApiCtx, long pAppId);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		User UpdateUserPassword(IApiContext pApiCtx, long pUserId, string pPassword);
