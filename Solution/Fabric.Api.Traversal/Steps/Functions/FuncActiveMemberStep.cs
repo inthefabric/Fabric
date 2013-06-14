@@ -5,9 +5,8 @@ using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
-using Weaver;
-using Weaver.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
+using Weaver.Core.Steps;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
@@ -32,7 +31,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 					ApiFunc.NewPathFromIndex(new User { ArtifactId = 0 })
 					.DefinesMemberList.ToMember
 					.InAppDefines.FromApp
-						.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, (long)0)
+						.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, (long)0)
 					.ToQuery();
 
 				Script = q.Script

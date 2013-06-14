@@ -38,7 +38,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override RefreshResult Execute() {
 			var tx = Weave.Inst.NewTx();
-			IWeaverFuncAs<OauthAccess> accessAlias;
+			IWeaverStepAs<OauthAccess> accessAlias;
 			IWeaverVarAlias listVar;
 			
 			tx.AddQuery(
@@ -47,8 +47,8 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.AddQuery(
 				NewPathFromType<OauthAccess>()
-					.Has(x => x.Refresh, WeaverFuncHasOp.EqualTo, vRefreshToken)
-					.Has(x => x.IsClientOnly, WeaverFuncHasOp.EqualTo, false)
+					.Has(x => x.Refresh, WeaverStepHasOp.EqualTo, vRefreshToken)
+					.Has(x => x.IsClientOnly, WeaverStepHasOp.EqualTo, false)
 					.As(out accessAlias)
 				.UsesApp.ToApp
 					.Aggregate(listVar)

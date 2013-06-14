@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal {
 

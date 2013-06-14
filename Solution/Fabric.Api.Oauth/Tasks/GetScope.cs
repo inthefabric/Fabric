@@ -42,14 +42,14 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override ScopeResult Execute() {
-			IWeaverFuncAs<OauthScope> scopeAlias;
+			IWeaverStepAs<OauthScope> scopeAlias;
 
 			IWeaverQuery q =
 				NewPathFromIndex(new User { ArtifactId = vUserId })
 				.InOauthScopeListUses.FromOauthScope
 					.As(out scopeAlias)
 				.UsesApp.ToApp
-					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(scopeAlias)
 				.ToQuery();
 

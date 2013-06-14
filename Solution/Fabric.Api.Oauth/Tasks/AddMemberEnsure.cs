@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private bool GetMemberData(out Member pMem, out MemberTypeAssign pMta) {
 			var tx = Weave.Inst.NewTx();
-			IWeaverFuncAs<Member> memberAlias;
+			IWeaverStepAs<Member> memberAlias;
 			IWeaverVarAlias aggVar;
 
 			tx.AddQuery(
@@ -78,7 +78,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)
 				.InAppDefines.FromApp
-					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(memberAlias)
 					.Aggregate(aggVar)
 				.HasMemberTypeAssign.ToMemberTypeAssign

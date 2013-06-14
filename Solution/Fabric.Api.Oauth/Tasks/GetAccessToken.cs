@@ -74,7 +74,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			IWeaverTransaction tx = Weave.Inst.NewTx();
 			IWeaverVarAlias agg;
-			IWeaverFuncAs<OauthAccess> oaAlias;
+			IWeaverStepAs<OauthAccess> oaAlias;
 
 			tx.AddQuery(
 				Weave.Inst.InitListVar(tx, out agg)
@@ -82,8 +82,8 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			tx.AddQuery(
 				NewPathFromType<OauthAccess>()
-					.Has(x => x.Token, WeaverFuncHasOp.EqualTo, vToken)
-					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
+					.Has(x => x.Token, WeaverStepHasOp.EqualTo, vToken)
+					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
 					.Aggregate(agg)
 					.As(out oaAlias)
 				.UsesApp.ToApp

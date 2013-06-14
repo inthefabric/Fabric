@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Api.Traversal.Steps.Nodes;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Interfaces;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal {
 
@@ -24,7 +23,7 @@ namespace Fabric.Api.Traversal {
 		public Path() {
 			vSegments = new List<PathSegment>();
 			vAliasMap = new Dictionary<string, IFuncAsStep>();
-			vQuery = Weave.Inst.NewQuery();
+			vQuery = new WeaverQuery();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -44,19 +44,19 @@ namespace Fabric.Api.Modify.Tasks {
 				return mem;
 			}
 
-			IWeaverFuncAs<Member> memAlias;
+			IWeaverStepAs<Member> memAlias;
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new User { ArtifactId = pApiCtx.UserId })
 				.DefinesMemberList.ToMember
 					.As(out memAlias)
 				.InAppDefines.FromApp
-					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, pApiCtx.AppId)
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, pApiCtx.AppId)
 				.Back(memAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.None)
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.Invite)
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.NotEqualTo, (byte)MemberTypeId.Request)
+					.Has(x => x.MemberTypeId, WeaverStepHasOp.NotEqualTo, (byte)MemberTypeId.None)
+					.Has(x => x.MemberTypeId, WeaverStepHasOp.NotEqualTo, (byte)MemberTypeId.Invite)
+					.Has(x => x.MemberTypeId, WeaverStepHasOp.NotEqualTo, (byte)MemberTypeId.Request)
 				.Back(memAlias)
 				.ToQuery();
 
@@ -79,14 +79,14 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId) {
-			IWeaverFuncAs<Factor> factorAlias;
+			IWeaverStepAs<Factor> factorAlias;
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
 					.HasNot(x => x.Deleted) //Factor is not deleted
 					.As(out factorAlias)
 				.InMemberCreates.FromMember
-					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
+					.Has(x => x.MemberId, WeaverStepHasOp.EqualTo, pMemberId)
 				.Back(factorAlias)
 				.ToQuery();
 

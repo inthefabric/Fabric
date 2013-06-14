@@ -47,7 +47,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			IWeaverQuery q = 
 				NewPathFromType<User>()
-					.Has(x => x.Password, WeaverFuncHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
+					.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 					.CustomStep(filterStep)
 				.ToQuery();
 

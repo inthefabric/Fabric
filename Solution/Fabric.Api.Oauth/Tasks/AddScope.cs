@@ -45,7 +45,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthScope Execute() {
 			var tx = Weave.Inst.NewTx();
-			IWeaverFuncAs<OauthScope> osAlias;
+			IWeaverStepAs<OauthScope> osAlias;
 			
 			var newOs = new OauthScope();
 			newOs.Allow = vAllow;
@@ -60,7 +60,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.InOauthScopeListUses.FromOauthScope
 					.As(out osAlias)
 				.UsesApp.ToApp
-					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(osAlias)
 					.UpdateEach(updates)
 				.ToQuery()

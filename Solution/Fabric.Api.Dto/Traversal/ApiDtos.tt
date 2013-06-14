@@ -8,8 +8,7 @@
 <#@ import namespace="System" #>
 <#@ import namespace="Fabric.Domain" #>
 <#@ import namespace="Fabric.Domain.Meta" #>
-<#@ import namespace="Weaver.Items" #>
-<#@ import namespace="Weaver.Schema" #>
+<#@ import namespace="Weaver.Core.Schema" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // GENERATED CODE
@@ -187,7 +186,18 @@ foreach ( string name in nodes ) {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
+<#
+	if ( node.IsAbstract ) {
+#>
+		public void FillWithNode<T>(T pNode) where T : <#= node.Name #><T> {
+<#
+	}
+	else {
+#>
 		public void FillWithNode(<#= node.Name #> pNode) {
+<#
+	} //end IsAbstract condition
+#>
 			base.FillWithNode(pNode);
 <#
 	foreach ( SchemaHelperProp hp in props ) { 

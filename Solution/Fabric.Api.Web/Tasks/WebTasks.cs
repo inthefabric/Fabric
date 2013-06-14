@@ -121,7 +121,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.DefinesMemberList.ToMember
-					.Has(x => x.MemberId, WeaverFuncHasOp.EqualTo, pMemberId)
+					.Has(x => x.MemberId, WeaverStepHasOp.EqualTo, pMemberId)
 				.ToQuery();
 			
 			return pApiCtx.DbSingle<Member>("GetMemberOfApp", q);
@@ -220,7 +220,7 @@ namespace Fabric.Api.Web.Tasks {
 			IWeaverQuery q =
 				ApiFunc.NewPathFromIndex(new App { ArtifactId = pAppId })
 				.InOauthDomainListUses.FromOauthDomain
-					.Has(x => x.OauthDomainId, WeaverFuncHasOp.EqualTo, pOauthDomainId)
+					.Has(x => x.OauthDomainId, WeaverStepHasOp.EqualTo, pOauthDomainId)
 					.RemoveEach()
 				.ToQuery();
 				

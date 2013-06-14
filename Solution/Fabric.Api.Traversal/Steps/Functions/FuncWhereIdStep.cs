@@ -3,7 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
-using Weaver;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 

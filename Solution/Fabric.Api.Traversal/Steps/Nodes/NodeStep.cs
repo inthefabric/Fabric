@@ -1,5 +1,5 @@
 ﻿using Fabric.Api.Dto.Traversal;
-using Weaver;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Nodes {
 	

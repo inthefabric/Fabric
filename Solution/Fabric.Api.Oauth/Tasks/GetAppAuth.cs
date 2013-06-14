@@ -42,7 +42,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		protected override App Execute() {
 			IWeaverQuery getApp = 
 				NewPathFromIndex<App>(new App { ArtifactId = vAppId })
-					.Has(x => x.Secret, WeaverFuncHasOp.EqualTo, vAppSecret)
+					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, vAppSecret)
 				.ToQuery();
 				
 			return ApiCtx.DbSingle<App>(Query.GetApp+"", getApp);

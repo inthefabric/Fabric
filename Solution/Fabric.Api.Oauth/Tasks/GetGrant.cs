@@ -54,8 +54,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			tx.AddQuery(
 				Weave.Inst
 				NewPathFromType<OauthGrant>()
-					.Has(x => x.Code, WeaverFuncHasOp.EqualTo, vCode)
-					.Has(x => x.Expires, WeaverFuncHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
+					.Has(x => x.Code, WeaverStepHasOp.EqualTo, vCode)
+					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, ApiCtx.UtcNow.Ticks)
 					.Aggregate(listVar)
 					.As(out grantAlias)
 				.UsesApp.ToApp

@@ -49,7 +49,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string Execute() {
 			var tx = Weave.Inst.NewTx();
-			IWeaverFuncAs<OauthGrant> ogAlias;
+			IWeaverStepAs<OauthGrant> ogAlias;
 			
 			var newOg = new OauthGrant();
 			newOg.RedirectUri = vRedirectUri;
@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.InOauthGrantListUses.FromOauthGrant
 					.As(out ogAlias)
 				.UsesApp.ToApp
-					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(ogAlias)
 					.UpdateEach(updates)
 				.ToQuery()

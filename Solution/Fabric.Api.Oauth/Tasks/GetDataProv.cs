@@ -47,8 +47,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			   .Where(m => m.App.Id == vClientId && m.MemberType.Id == (int)MemberTypeIds.DataProvider)
 			   .Take(1).SingleOrDefault();*/
 
-			IWeaverFuncAs<User> userAlias;
-			IWeaverFuncAs<Member> memberAlias;
+			IWeaverStepAs<User> userAlias;
+			IWeaverStepAs<Member> memberAlias;
 
 			IWeaverQuery q = 
 				NewPathFromIndex(new User { ArtifactId = vDataProvUserId})
@@ -56,10 +56,10 @@ namespace Fabric.Api.Oauth.Tasks {
 				.DefinesMemberList.ToMember
 					.As(out memberAlias)
 				.InAppDefines.FromApp
-					.Has(x => x.ArtifactId, WeaverFuncHasOp.EqualTo, vAppId)
+					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(memberAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
-					.Has(x => x.MemberTypeId, WeaverFuncHasOp.EqualTo, (byte)MemberTypeId.DataProvider)
+					.Has(x => x.MemberTypeId, WeaverStepHasOp.EqualTo, (byte)MemberTypeId.DataProvider)
 				.Back(userAlias)
 				.ToQuery();
 

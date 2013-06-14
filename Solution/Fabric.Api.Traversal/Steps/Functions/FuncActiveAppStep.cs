@@ -4,7 +4,8 @@ using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
-using Weaver;
+using Weaver.Core.Query;
+using Weaver.Core.Util;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
