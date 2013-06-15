@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private const string Query =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
 				".sideEffect{"+
-					"it.setProperty('"+PropDbName.User_Password+"',_P1)"+
+					"it.setProperty('"+PropDbName.User_Password+"',_P1);"+
 				"};";
 
 		private long vUserId;

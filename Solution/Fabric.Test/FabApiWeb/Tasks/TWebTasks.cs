@@ -42,9 +42,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverVarAlias<T> GetTxVar<T>() where T : INode {
+		protected IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : INode {
 			IWeaverVarAlias v;
-			TxBuild.Transaction.AddQuery(WeaverQuery.InitListVar("???", out v));
+			TxBuild.Transaction.AddQuery(WeaverQuery.InitListVar(pName, out v));
 
 			var tv = new Mock<IWeaverVarAlias<T>>();
 			tv.SetupGet(x => x.Name).Returns(v.Name);

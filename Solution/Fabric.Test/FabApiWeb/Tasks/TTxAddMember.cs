@@ -54,7 +54,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<User> userVar = GetTxVar<User>();
+			IWeaverVarAlias<User> userVar = GetTxVar<User>("_V0");
 			IWeaverVarAlias<Member> memberVar;
 
 			Tasks.TxAddMember(MockApiCtx.Object, TxBuild, userVar, out memberVar);

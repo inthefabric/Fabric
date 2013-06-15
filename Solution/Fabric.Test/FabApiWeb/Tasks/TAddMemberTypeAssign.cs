@@ -14,10 +14,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query =
 			"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"_V1=_V0.outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV.next();"+
-			"_V1.inE('"+RelDbName.MemberHasMemberTypeAssign+"')"+
+			"_MTA=_V0.outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV.next();"+
+			"_MTA.inE('"+RelDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
-			"g.addEdge(_V0,_V1,_TP);"+
+			"g.addEdge(_V0,_MTA,_TP);"+
 			"_V2=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+

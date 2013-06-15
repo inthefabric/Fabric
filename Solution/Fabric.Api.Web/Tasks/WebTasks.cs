@@ -40,6 +40,8 @@ namespace Fabric.Api.Web.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		//TODO: WebTasks.GetAppByName must split names by string and search each token
+		//Verify the full exact name AFTER getting the result (ToLower)
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
 			IWeaverQuery q = Weave.Inst.TitanGraph()
 				.QueryV().ElasticIndex(
@@ -121,7 +123,7 @@ namespace Fabric.Api.Web.Tasks {
 				.ToQuery();
 
 			IWeaverVarAlias<MemberTypeAssign> mtaAlias;
-			q = WeaverQuery.StoreResultAsVar("mta", q, out mtaAlias);
+			q = WeaverQuery.StoreResultAsVar("_MTA", q, out mtaAlias);
 			txb.Transaction.AddQuery(q);
 			txb.RegisterVarWithTxBuilder(mtaAlias);
 		
@@ -265,7 +267,7 @@ namespace Fabric.Api.Web.Tasks {
 				.ToQuery();
 
 			IWeaverVarAlias<Email> emailVar;
-			q = WeaverQuery.StoreResultAsVar("em", q, out emailVar);
+			q = WeaverQuery.StoreResultAsVar("_EM", q, out emailVar);
 			pTxBuild.Transaction.AddQuery(q);
 			pTxBuild.RegisterVarWithTxBuilder(emailVar);
 

@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiWeb {
 
 			vResultUser = new User();
 
-			MockApiCtx.Setup(x => x.DbNodeById<User>(vUserId)).Returns(vResultUser);
+			MockApiCtx.Setup(x => x.DbNodeById<User>(vUserId)).Returns(vResultUserId);
 
 			MockTasks
 				.Setup(x => x.UpdateUserPassword(MockApiCtx.Object, vUserId, vNewPass))
@@ -52,12 +52,14 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
+			Log.Debug("PASS: "+vOldPass+" / "+vNewPass);
 			TestGo();
 
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Incorrect Result.Success.");
 
-			MockValidator.Verify(x => x.ArtifactId(vUserId, ChangeUserPassword.UserIdParam), Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vUserId, ChangeUserPassword.UserIdParam),
+				Times.Once());
 			MockValidator.Verify(x => x.UserPassword(vNewPass, ChangeUserPassword.NewPasswordParam),
 				Times.Once());
 		}

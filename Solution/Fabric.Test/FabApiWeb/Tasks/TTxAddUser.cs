@@ -48,8 +48,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Email> emailVar = GetTxVar<Email>();
-			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
+			IWeaverVarAlias<Email> emailVar = GetTxVar<Email>("_V0");
+			IWeaverVarAlias<Member> memVar = GetTxVar<Member>("_V1");
 			IWeaverVarAlias<User> userVar;
 			Action<IWeaverVarAlias<Member>> setMem;
 

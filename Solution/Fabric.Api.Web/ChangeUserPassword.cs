@@ -40,7 +40,9 @@ namespace Fabric.Api.Web {
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);
 			}
-
+			
+			Log.Debug("User.pass="+user.Password+" / "+vOldPass+" / "+FabricUtil.HashPassword(vOldPass));
+			
 			if ( user.Password != FabricUtil.HashPassword(vOldPass) ) {
 				throw new FabPreventedFault(FabFault.Code.ActionNotPermitted,
 					"Incorrect "+OldPasswordParam+".");

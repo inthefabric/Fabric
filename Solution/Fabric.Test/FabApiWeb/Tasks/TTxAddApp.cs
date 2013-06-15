@@ -47,7 +47,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
+			IWeaverVarAlias<Member> memVar = GetTxVar<Member>("_V0");
 			IWeaverVarAlias<App> appVar;
 			Action<IWeaverVarAlias<Member>> setMem;
 
