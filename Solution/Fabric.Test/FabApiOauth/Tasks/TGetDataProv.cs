@@ -17,15 +17,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryGetUser =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
-				".as('step1')"+
+				".as('step3')"+
 			".outE('"+RelDbName.UserDefinesMember+"').inV"+
-				".as('step4')"+
+				".as('step6')"+
 			".inE('"+RelDbName.AppDefinesMember+"').outV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
-			".back('step4')"+
+			".back('step6')"+
 			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
 				".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.eq,_P2)"+
-			".back('step1');";
+			".back('step3');";
 
 		private long vAppId;
 		private long vDataProvUserId;

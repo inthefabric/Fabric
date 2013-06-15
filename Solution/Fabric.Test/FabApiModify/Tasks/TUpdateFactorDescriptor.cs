@@ -14,23 +14,23 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TUpdateFactorDescriptor : TModifyTasks {
 
 		private const string QueryStart = 
-			"_V0=g.V('"+PropDbName.Factor_FactorId+"',_TP)"+
+			"_F=g.V('"+PropDbName.Factor_FactorId+"',_TP)"+
 				".sideEffect{"+
-					"it.setProperty('"+PropDbName.Factor_Descriptor_TypeId+"',_TP)"+
+					"it.setProperty('"+PropDbName.Factor_Descriptor_TypeId+"',_TP);"+
 				"}"+
 				".next();";
 
 		private const string QueryPrimRef = 
 			"_V{{PrimV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V{{PrimV}},_TP);";
+			"g.addEdge(_F,_V{{PrimV}},_TP);";
 
 		private const string QueryRelRef = 
 			"_V{{RelV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V{{RelV}},_TP);";
+			"g.addEdge(_F,_V{{RelV}},_TP);";
 
 		private const string QueryTypeRef = 
 			"_V{{TypeV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V{{TypeV}},_TP);";
+			"g.addEdge(_F,_V{{TypeV}},_TP);";
 
 		private Factor vFactor;
 		private byte vDescTypeId;

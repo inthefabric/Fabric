@@ -17,9 +17,8 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.Factor_Director_TypeId+"',_P);"+
 					"it.setProperty('"+PropDbName.Factor_Director_PrimaryActionId+"',_P);"+
-					"it.setProperty('"+PropDbName.Factor_Director_RelatedActionId+"',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Director_RelatedActionId+"',_P);"+
 				"};";
-
 
 		private Factor vFactor;
 		private byte vDirTypeId;

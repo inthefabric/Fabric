@@ -41,7 +41,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverVarAlias listVar;
 			
 			tx.AddQuery(
-				WeaverQuery.InitListVar("list", out listVar)
+				WeaverQuery.InitListVar("_V0", out listVar)
 			);
 
 			tx.AddQuery(

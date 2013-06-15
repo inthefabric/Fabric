@@ -20,10 +20,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V0=[];"+
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
 			".outE('"+RelDbName.UserDefinesMember+"').inV"+
-				".as('step3')"+
+				".as('step5')"+
 			".inE('"+RelDbName.AppDefinesMember+"').outV"+
 			".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
-			".back('step3')"+
+			".back('step5')"+
 				".aggregate(_V0)"+
 			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
 				".aggregate(_V0)"+

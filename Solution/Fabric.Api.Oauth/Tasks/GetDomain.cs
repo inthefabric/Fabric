@@ -56,8 +56,6 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			int wwwI = vRedirectDomain.IndexOf("www.");
 			if ( wwwI == 0 ) { vRedirectDomain = vRedirectDomain.Substring(4); }
-
-			vRedirectDomain = vRedirectDomain.ToLower();
 		}
 		
 

@@ -14,10 +14,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private const string Query = 
 			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
 				".hasNot('"+PropDbName.Factor_Deleted+"')"+
-				".as('step2')"+
+				".as('step4')"+
 			".inE('"+RelDbName.MemberCreatesFactor+"').outV"+
 				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P1)"+
-			".back('step2');";
+			".back('step4');";
 
 		private long vFactorId;
 		private long vMemberId;

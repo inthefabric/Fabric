@@ -13,16 +13,16 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TUpdateFactorVector : TModifyTasks {
 
 		private const string Query = 
-			"_V0=g.V('"+PropDbName.Factor_FactorId+"',_TP)"+
+			"_F=g.V('"+PropDbName.Factor_FactorId+"',_TP)"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.Factor_Vector_TypeId+"',_TP);"+
 					"it.setProperty('"+PropDbName.Factor_Vector_UnitId+"',_TP);"+
 					"it.setProperty('"+PropDbName.Factor_Vector_UnitPrefixId+"',_TP);"+
-					"it.setProperty('"+PropDbName.Factor_Vector_Value+"',_TP)"+
+					"it.setProperty('"+PropDbName.Factor_Vector_Value+"',_TP);"+
 				"}"+
 				".next();"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V1,_TP);";
+			"g.addEdge(_F,_V1,_TP);";
 
 		private Factor vFactor;
 		private byte vVecTypeId;

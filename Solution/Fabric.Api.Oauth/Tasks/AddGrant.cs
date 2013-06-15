@@ -49,9 +49,12 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string Execute() {
 			var tx = new WeaverTransaction();
-			string code = ApiCtx.Code32;
-			long exp = ApiCtx.UtcNow.AddMinutes(2).Ticks;
 			IWeaverStepAs<OauthGrant> ogAlias;
+			
+			var newOg = new OauthGrant();
+			newOg.RedirectUri = vRedirectUri;
+			newOg.Code = ApiCtx.Code32;
+			newOg.Expires = ApiCtx.UtcNow.AddMinutes(2).Ticks;
 			
 			tx.AddQuery(
 				Weave.Inst.Graph
@@ -62,9 +65,10 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
 				.Back(ogAlias)
 					.SideEffect(
-						new WeaverStatementSetProperty<OauthGrant>(x => x.RedirectUri, vRedirectUri),
-						new WeaverStatementSetProperty<OauthGrant>(x => x.Expires, exp),
-						new WeaverStatementSetProperty<OauthGrant>(x => x.Code, code)
+						new WeaverStatementSetProperty<OauthGrant>(
+							x => x.RedirectUri, newOg.RedirectUri),
+						new WeaverStatementSetProperty<OauthGrant>(x => x.Expires, newOg.Expires),
+						new WeaverStatementSetProperty<OauthGrant>(x => x.Code, newOg.Code)
 					)
 				.ToQuery()
 			);
@@ -73,14 +77,12 @@ namespace Fabric.Api.Oauth.Tasks {
 			OauthGrant og = ApiCtx.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
 			
 			if ( og != null ) {
-				return code;
+				return newOg.Code;
 			}
 			
 			////
 			
 			var txb = new TxBuilder();
-
-			var newOg = new OauthGrant();
 			newOg.OauthGrantId = ApiCtx.GetSharpflakeId<OauthGrant>();
 			
 			var ogBuild = new OauthGrantBuilder(txb, newOg);

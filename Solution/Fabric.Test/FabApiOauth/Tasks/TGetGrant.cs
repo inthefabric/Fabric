@@ -18,19 +18,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryGetAndUpdateTx =
 			"_V0=[];"+
-			"g.V('"+PropDbName.Node_FabType+"',_TP)"+
-				".has('"+PropDbName.OauthGrant_Code+"',Tokens.T.eq,_TP)"+
+			"g.V('"+PropDbName.OauthGrant_Code+"',_TP)"+
 				".has('"+PropDbName.OauthGrant_Expires+"',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+
-				".as('step4')"+
+				".as('step5')"+
 			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
 				".aggregate(_V0)"+
-			".back('step4')"+
+			".back('step5')"+
 			".outE('"+RelDbName.OauthGrantUsesUser+"').inV"+
 				".aggregate(_V0)"+
-			".back('step4')"+
+			".back('step5')"+
 				".sideEffect{"+
-					"it.setProperty('"+PropDbName.OauthGrant_Code+"',_TP)"+
+					"it.removeProperty('"+PropDbName.OauthGrant_Code+"');"+
 				"}"+
 				".iterate();"+
 			"_V0;";
@@ -97,10 +96,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
-				(byte)NodeFabType.OauthGrant,
 				vResultGrant.Code,
-				vUtcNow.Ticks,
-				""
+				vUtcNow.Ticks
 			});
 
 			return vMockGetAndUpdateTxResult.Object;

@@ -16,7 +16,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.V('"+PropDbName.Factor_FactorId+"',_P)"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.Factor_Identor_TypeId+"',_P);"+
-					"it.setProperty('"+PropDbName.Factor_Identor_Value+"',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Identor_Value+"',_P);"+
 				"};";
 
 		private Factor vFactor;

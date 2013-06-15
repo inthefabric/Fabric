@@ -18,7 +18,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 					"it.setProperty('"+PropDbName.Factor_Locator_TypeId+"',_P);"+
 					"it.setProperty('"+PropDbName.Factor_Locator_ValueX+"',_P);"+
 					"it.setProperty('"+PropDbName.Factor_Locator_ValueY+"',_P);"+
-					"it.setProperty('"+PropDbName.Factor_Locator_ValueZ+"',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Locator_ValueZ+"',_P);"+
 				"};";
 
 		private Factor vFactor;

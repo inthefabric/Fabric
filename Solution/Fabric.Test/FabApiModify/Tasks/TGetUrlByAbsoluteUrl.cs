@@ -12,8 +12,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public class TGetUrlByAbsoluteUrl : TModifyTasks {
 
 		private const string Query =
-			"g.V('"+PropDbName.Node_FabType+"',_P0)"+
-				".filter{it.getProperty('"+PropDbName.Url_AbsoluteUrl+"').toLowerCase()==_P1};";
+			"g.query()"+
+			".has('"+PropDbName.Url_AbsoluteUrl+
+				"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
+			".vertices();";
 
 		private string vAbsoluteUrl;
 		private Url vUrlResult;
@@ -36,8 +38,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			UsageMap.Increment("GetUrlByAbsoluteUrl");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", (byte)NodeFabType.Url);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vAbsoluteUrl.ToLower());
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAbsoluteUrl.ToLower());
 
 			return vUrlResult;
 		}

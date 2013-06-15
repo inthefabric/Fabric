@@ -15,15 +15,15 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private const string Query =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
 				".outE('"+RelDbName.UserDefinesMember+"').inV"+
-					".as('step3')"+
+					".as('step5')"+
 				".inE('"+RelDbName.AppDefinesMember+"').outV"+
 					".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
-				".back('step3')"+
+				".back('step5')"+
 				".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
 					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P2)"+
 					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P3)"+
 					".has('"+PropDbName.MemberTypeAssign_MemberTypeId+"',Tokens.T.neq,_P4)"+
-				".back('step3');";
+				".back('step5');";
 
 		private long vUserId;
 		private long vAppId;

@@ -18,13 +18,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private const string QueryUpdateScopeTx =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
 			".inE('"+RelDbName.OauthScopeUsesUser+"').outV"+
-				".as('step3')"+
+				".as('step5')"+
 			".outE('"+RelDbName.OauthScopeUsesApp+"').inV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
-			".back('step3')"+
+			".back('step5')"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.OauthScope_Allow+"',_TP);"+
-					"it.setProperty('"+PropDbName.OauthScope_Created+"',_TP)"+
+					"it.setProperty('"+PropDbName.OauthScope_Created+"',_TP);"+
 				"};";
 
 		private const string QueryAddScopeTx =

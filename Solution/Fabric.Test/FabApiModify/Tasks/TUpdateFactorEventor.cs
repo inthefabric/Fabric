@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.Factor_Eventor_TypeId+"',_P);"+
 					"it.setProperty('"+PropDbName.Factor_Eventor_PrecisionId+"',_P);"+
-					"it.setProperty('"+PropDbName.Factor_Eventor_DateTime+"',_P)"+
+					"it.setProperty('"+PropDbName.Factor_Eventor_DateTime+"',_P);"+
 				"};";
 
 		private Factor vFactor;

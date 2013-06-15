@@ -19,14 +19,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryGetAccessTx = 
 			"_V0=[];"+
-			"g.V('"+PropDbName.Node_FabType+"',_TP)"+
-				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.eq,_TP)"+
+			"g.V('"+PropDbName.OauthAccess_Token+"',_TP)"+
 				".has('"+PropDbName.OauthAccess_Expires+"',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+
-				".as('step4')"+
+				".as('step5')"+
 			".outE('"+RelDbName.OauthAccessUsesApp+"').inV"+
 				".aggregate(_V0)"+
-			".back('step4')"+
+			".back('step5')"+
 			".outE('"+RelDbName.OauthAccessUsesUser+"').inV"+
 				".aggregate(_V0)"+
 				".iterate();"+
@@ -104,7 +103,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
-				(byte)NodeFabType.OauthAccess,
 				vToken,
 				vUtcNow.Ticks
 			});

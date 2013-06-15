@@ -138,7 +138,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(pFactor)
 				.SideEffect(
-					new WeaverStatementSetProperty<Factor>(x => x.Descriptor_TypeId, pDirTypeId),
+					new WeaverStatementSetProperty<Factor>(x => x.Director_TypeId, pDirTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Director_PrimaryActionId, pPrimActId),
 					new WeaverStatementSetProperty<Factor>(x => x.Director_RelatedActionId, pRelActId)
 				)
@@ -194,7 +194,7 @@ namespace Fabric.Api.Modify.Tasks {
 								long pValue, long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) {
 			var txb = new TxBuilder();
 
-			IWeaverQuery q =ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Vector_TypeId, pVecTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Vector_UnitId, pVecUnitId),

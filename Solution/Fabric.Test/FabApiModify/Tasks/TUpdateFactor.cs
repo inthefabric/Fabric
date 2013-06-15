@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private const string Query = 
 			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
 				".sideEffect{"+
-					"it.setProperty('{{PropName}}',_P1)"+
+					"it.setProperty('{{PropName}}',_P1);"+
 				"};";
 
 		private Factor vFactor;

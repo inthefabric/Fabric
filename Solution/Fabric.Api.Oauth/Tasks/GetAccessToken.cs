@@ -76,7 +76,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverStepAs<OauthAccess> oaAlias;
 
 			tx.AddQuery(
-				WeaverQuery.InitListVar("agg", out agg)
+				WeaverQuery.InitListVar("_V0", out agg)
 			);
 
 			tx.AddQuery(

@@ -18,14 +18,14 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private const string QueryUpdateGrantTx =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
 			".inE('"+RelDbName.OauthGrantUsesUser+"').outV"+
-				".as('step3')"+
+				".as('step5')"+
 			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
-			".back('step3')"+
+			".back('step5')"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.OauthGrant_RedirectUri+"',_TP);"+
 					"it.setProperty('"+PropDbName.OauthGrant_Expires+"',_TP);"+
-					"it.setProperty('"+PropDbName.OauthGrant_Code+"',_TP)"+
+					"it.setProperty('"+PropDbName.OauthGrant_Code+"',_TP);"+
 				"};";
 
 		private const string QueryAddGrantTx =
