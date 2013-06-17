@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/13/2013 7:26:04 PM
+// Generated on 6/17/2013 7:30:59 PM
 
 using System;
 using System.Collections.Generic;
@@ -138,6 +138,12 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "MemberCreatesArtifact"; } }
 
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
+
 	}
 	
 	/*================================================================================================*/
@@ -183,6 +189,12 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesPrimaryArtifact"; } }
 
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
+
 	}
 	
 	/*================================================================================================*/
@@ -191,6 +203,12 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesRelatedArtifact"; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
 
 	}
 	
@@ -201,6 +219,12 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesPrimaryWithArtifact"; } }
 
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
+
 	}
 	
 	/*================================================================================================*/
@@ -209,6 +233,12 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesRelatedWithArtifact"; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
 
 	}
 	
@@ -219,6 +249,12 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesTypeWithArtifact"; } }
 
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
+
 	}
 	
 	/*================================================================================================*/
@@ -227,6 +263,12 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorVectorUsesAxisArtifact"; } }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
 
 	}
 	

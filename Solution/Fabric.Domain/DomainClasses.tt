@@ -55,6 +55,31 @@ foreach ( string name in edges ) {
 		public virtual <#= edge.InVertexName #> To<#= edge.InVertexName #> { get { return InVertex; } }
 		public override string Label { get { return "<#= edge.EdgeName #>"; } }
 
+<#
+		WeaverVertexSchema hnOut = SchemaHelper.GetNode(edge.OutVertexName).NodeSchema;
+		WeaverVertexSchema hnIn = SchemaHelper.GetNode(edge.InVertexName).NodeSchema;
+		
+		if ( hnOut.IsBaseClass && !hnOut.IsAbstract ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidOutVertexType(Type pType) {
+			return typeof(Artifact<>).IsAssignableFrom(pType);
+		}
+
+<#
+		} //end Out condition
+
+		if ( hnIn.IsBaseClass && !hnIn.IsAbstract ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsValidInVertexType(Type pType) {
+			return (pType.BaseType != null && 
+				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
+		}
+
+<#
+		} //end In condition
+#>
 	}
 	
 <#
