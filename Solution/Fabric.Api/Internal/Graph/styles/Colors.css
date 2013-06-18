@@ -5,19 +5,19 @@ Generated on 5/5/2013 9:59:18 PM */
 
 /* NODES */
 
-.nodeApp { fill: rgba(48,230,199,0.9); }
-.nodeClass { fill: rgba(77,144,132,0.9); }
-.nodeEmail { fill: rgba(131,224,40,0.9); }
-.nodeInstance { fill: rgba(119,250,238,0.9); }
-.nodeMember { fill: rgba(52,133,10,0.9); }
-.nodeMemberTypeAssign { fill: rgba(48,39,149,0.9); }
-.nodeUrl { fill: rgba(168,159,216,0.9); }
-.nodeUser { fill: rgba(190,232,169,0.9); }
-.nodeFactor { fill: rgba(16,27,208,0.9); }
-.nodeOauthAccess { fill: rgba(103,109,167,0.9); }
-.nodeOauthDomain { fill: rgba(234,118,91,0.9); }
-.nodeOauthGrant { fill: rgba(49,131,9,0.9); }
-.nodeOauthScope { fill: rgba(59,109,69,0.9); }
+.vertexApp { fill: rgba(48,230,199,0.9); }
+.vertexClass { fill: rgba(77,144,132,0.9); }
+.vertexEmail { fill: rgba(131,224,40,0.9); }
+.vertexInstance { fill: rgba(119,250,238,0.9); }
+.vertexMember { fill: rgba(52,133,10,0.9); }
+.vertexMemberTypeAssign { fill: rgba(48,39,149,0.9); }
+.vertexUrl { fill: rgba(168,159,216,0.9); }
+.vertexUser { fill: rgba(190,232,169,0.9); }
+.vertexFactor { fill: rgba(16,27,208,0.9); }
+.vertexOauthAccess { fill: rgba(103,109,167,0.9); }
+.vertexOauthDomain { fill: rgba(234,118,91,0.9); }
+.vertexOauthGrant { fill: rgba(49,131,9,0.9); }
+.vertexOauthScope { fill: rgba(59,109,69,0.9); }
 
 /* RELS */
 

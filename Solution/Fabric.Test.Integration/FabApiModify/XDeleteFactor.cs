@@ -34,7 +34,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IsReadOnlyTest = false;
 			vDeleted = true;
 
-			Factor newFac = GetNode<Factor>(vFactorId);
+			Factor newFac = GetVertex<Factor>(vFactorId);
 			Assert.NotNull(newFac, "Target Factor is missing.");
 			Assert.Null(newFac.Deleted, "Deleted should be null.");
 
@@ -45,20 +45,20 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.AreEqual(vFactorId, vResult.FactorId, "Incorrect Result.FactorId.");
 
-			Factor updateFac = GetNode<Factor>(vFactorId);
+			Factor updateFac = GetVertex<Factor>(vFactorId);
 			Assert.NotNull(newFac, "Target Factor was deleted.");
 			Assert.NotNull(updateFac.Deleted, "Deleted should be filled.");
 
 			int updatedCompCount = CountDeleted();
 			Assert.AreEqual(compCount+1, updatedCompCount, "Incorrect updated Deleted count.");
 
-			NewNodeCount = 0;
+			NewVertexCount = 0;
 			NewRelCount = 0;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountDeleted() {
-			IWeaverQuery q = GetNodeByPropQuery<Factor>(
+			IWeaverQuery q = GetVertexByPropQuery<Factor>(
 				".has('"+PropDbName.Factor_Deleted+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountDeleted", q);
 			return int.Parse(data.Result.TextList[0]);

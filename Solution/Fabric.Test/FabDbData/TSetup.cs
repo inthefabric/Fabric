@@ -22,7 +22,7 @@ namespace Fabric.Test.FabDbData {
 			var x = Weave.Inst;
 
 			DataSet ds = Setup.SetupAll(pIsForTesting);
-			long nodeI = 1000;
+			long vertexI = 1000;
 
 			foreach ( WeaverQuery q in ds.Initialization ) {
 				string json = WeaverQueryToJson(q);
@@ -34,10 +34,10 @@ namespace Fabric.Test.FabDbData {
 				Log.Debug(json);
 			}
 
-			foreach ( IDataNode n in ds.Nodes ) {
+			foreach ( IDataVertex n in ds.Vertices ) {
 				string json = WeaverQueryToJson(n.AddQuery);
-				Log.Debug("["+nodeI+"] -- "+json);
-				n.Node.Id = (nodeI++)+"";
+				Log.Debug("["+vertexI+"] -- "+json);
+				n.Vertex.Id = (vertexI++)+"";
 			}
 
 			foreach ( IDataRel r in ds.Rels ) {

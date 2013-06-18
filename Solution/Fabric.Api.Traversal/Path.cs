@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal {
@@ -132,11 +132,11 @@ namespace Fabric.Api.Traversal {
 				int startI = 0;
 
 				if ( vSegments.Count >= 3 ) {
-					INodeStep node = (vSegments[1].Step as INodeStep);
+					IVertexStep vertex = (vSegments[1].Step as IVertexStep);
 					IFuncWhereIdStep whereId = (vSegments[2].Step as IFuncWhereIdStep);
 
-					if ( node != null && whereId != null ) {
-						s = node.GetKeyIndexScript(whereId.Id);
+					if ( vertex != null && whereId != null ) {
+						s = vertex.GetKeyIndexScript(whereId.Id);
 						startI = 3;
 					}
 				}

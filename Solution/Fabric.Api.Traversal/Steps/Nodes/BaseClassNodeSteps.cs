@@ -8,17 +8,17 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 
 	/*================================================================================================*/
-	public abstract partial class NodeForActionStep<T> : NodeStep<T>, INodeForActionStep
-																			where T : FabNode, new() {
+	public abstract partial class VertexForActionStep<T> : VertexStep<T>, IVertexForActionStep
+																			where T : FabVertex, new() {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected NodeForActionStep(IPath pPath) : base(pPath) {
+		protected VertexForActionStep(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -29,8 +29,8 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 
 	/*================================================================================================*/
-	public abstract partial class ArtifactStep<T> : NodeStep<T>, IArtifactStep
-																			where T : FabNode, new() {
+	public abstract partial class ArtifactStep<T> : VertexStep<T>, IArtifactStep
+																			where T : FabVertex, new() {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(ArtifactStep.AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(ArtifactStep.AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -135,7 +135,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ArtifactStep : ArtifactStep<FabArtifact> {
 	
-		internal static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		internal static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
 			new StepLink("UsesPrimary", "Factor", false, "/InFactorListUsesPrimary"),
 			new StepLink("UsesRelated", "Factor", false, "/InFactorListUsesRelated"),

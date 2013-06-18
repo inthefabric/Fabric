@@ -423,11 +423,11 @@ namespace Fabric.Db.Data.Setups {
 			u.Name = pName;
 			u.AbsoluteUrl = pAbsoluteUrl;
 
-			vSet.AddNode(u, vTestMode);
+			vSet.AddVertex(u, vTestMode);
 
 			////
 			
-			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Url>((long)pId),
+			SetupArtifacts.FillArtifact(vSet, vSet.GetVertex<Url>((long)pId),
 				pArtId, pMemberId, vTestMode);
 			vSet.ElapseTime();
 		}
@@ -439,7 +439,7 @@ namespace Fabric.Db.Data.Setups {
 			l.LabelId = (long)pId;
 			l.Name = pName;
 
-			vSet.AddNodeAndIndex(l, x => x.LabelId, vTestMode);
+			vSet.AddVertexAndIndex(l, x => x.LabelId, vTestMode);
 			vSet.AddRootRel<RootContainsLabel>(l, vTestMode);
 
 			////
@@ -448,7 +448,7 @@ namespace Fabric.Db.Data.Setups {
 				vSet, pArtId, ArtifactTypeId.Label, pMemberId, vTestMode);
 
 			var rel = DataRel.Create(
-				vSet.GetNode<Label>((long)pId), new LabelHasArtifact(), a, vTestMode);
+				vSet.GetVertex<Label>((long)pId), new LabelHasArtifact(), a, vTestMode);
 			vSet.AddRel(rel);
 
 			////
@@ -466,7 +466,7 @@ namespace Fabric.Db.Data.Setups {
 			c.IsPrivate = pIsPrivate;
 			c.IsInviteOnly = pIsInvOnly;
 
-			vSet.AddNodeAndIndex(c, x => x.CrowdId, vTestMode);
+			vSet.AddVertexAndIndex(c, x => x.CrowdId, vTestMode);
 			vSet.AddRootRel<RootContainsCrowd>(c, vTestMode);
 
 			////
@@ -475,7 +475,7 @@ namespace Fabric.Db.Data.Setups {
 				vSet, pArtId, ArtifactTypeId.Crowd, pMemberId, vTestMode);
 
 			var rel = DataRel.Create(
-				vSet.GetNode<Crowd>((long)pId), new CrowdHasArtifact(), a, vTestMode);
+				vSet.GetVertex<Crowd>((long)pId), new CrowdHasArtifact(), a, vTestMode);
 			vSet.AddRel(rel);
 
 			////
@@ -490,14 +490,14 @@ namespace Fabric.Db.Data.Setups {
 			var c = new Crowdian();
 			c.CrowdianId = (long)pId;
 
-			vSet.AddNodeAndIndex(c, x => x.CrowdianId, vTestMode);
+			vSet.AddVertexAndIndex(c, x => x.CrowdianId, vTestMode);
 			vSet.AddRootRel<RootContainsCrowdian>(c, vTestMode);
 
-			var relCro = DataRel.Create(vSet.GetNode<Crowd>((long)pCrowdId),
+			var relCro = DataRel.Create(vSet.GetVertex<Crowd>((long)pCrowdId),
 				new CrowdDefinesCrowdian(), c, vTestMode);
 			vSet.AddRel(relCro);
 
-			var relUser = DataRel.Create(vSet.GetNode<User>((long)pUserId),
+			var relUser = DataRel.Create(vSet.GetVertex<User>((long)pUserId),
 				new UserDefinesCrowdian(), c, vTestMode);
 			vSet.AddRel(relUser);
 
@@ -507,7 +507,7 @@ namespace Fabric.Db.Data.Setups {
 			cta.CrowdianTypeAssignId = (long)pCtaId;
 			cta.Weight = pWeight;
 
-			vSet.AddNodeAndIndex(cta, x => x.CrowdianTypeAssignId, vTestMode);
+			vSet.AddVertexAndIndex(cta, x => x.CrowdianTypeAssignId, vTestMode);
 			vSet.AddRootRel<RootContainsCrowdianTypeAssign>(cta, vTestMode);
 
 			////
@@ -516,10 +516,10 @@ namespace Fabric.Db.Data.Setups {
 			vSet.AddRel(relC);
 
 			var relCt = DataRel.Create(cta, new CrowdianTypeAssignUsesCrowdianType(),
-				vSet.GetNode<CrowdianType>((long)pTypeId), vTestMode);
+				vSet.GetVertex<CrowdianType>((long)pTypeId), vTestMode);
 			vSet.AddRel(relCt);
 
-			var relU = DataRel.Create(vSet.GetNode<User>((long)pAssignerId),
+			var relU = DataRel.Create(vSet.GetVertex<User>((long)pAssignerId),
 				new UserCreatesCrowdianTypeAssign(), cta, vTestMode);
 			vSet.AddRel(relU);
 
@@ -537,11 +537,11 @@ namespace Fabric.Db.Data.Setups {
 			c.Disamb = pDisamb;
 			c.Note = null;
 
-			vSet.AddNode(c, vTestMode);
+			vSet.AddVertex(c, vTestMode);
 
 			////
 
-			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Class>((long)pId),
+			SetupArtifacts.FillArtifact(vSet, vSet.GetVertex<Class>((long)pId),
 				pArtId, pMemberId, vTestMode);
 			vSet.ElapseTime();
 		}
@@ -555,11 +555,11 @@ namespace Fabric.Db.Data.Setups {
 			i.Disamb = pDisamb;
 			i.Note = null;
 
-			vSet.AddNode(i, vTestMode);
+			vSet.AddVertex(i, vTestMode);
 
 			////
 
-			SetupArtifacts.FillArtifact(vSet, vSet.GetNode<Instance>((long)pId), 
+			SetupArtifacts.FillArtifact(vSet, vSet.GetVertex<Instance>((long)pId), 
 				pArtId, pMemberId, vTestMode);
 			vSet.ElapseTime();
 		}

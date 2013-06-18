@@ -23,17 +23,17 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			////
 
-			Email newEmail = GetNode<Email>(ApiCtx.SharpflakeIds[0]);
+			Email newEmail = GetVertex<Email>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newEmail, "New Email was not created.");
 			Assert.AreEqual(pAddress, newEmail.Address, "Incorrect Address.");
 			Assert.AreEqual(32, newEmail.Code.Length, "Incorrect Code length.");
 			Assert.AreNotEqual(0, newEmail.Created, "Incorrect Created.");
 			Assert.Null(newEmail.Verified, "Incorrect Verified.");
 			
-			NodeConnections conn = GetNodeConnections(newEmail);
+			VertexConnections conn = GetVertexConnections(newEmail);
 			conn.AssertRelCount(0, 0);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 0;
 		}
 

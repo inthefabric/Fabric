@@ -24,19 +24,19 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Traversal {
 	
 <#
-IList<string> nodes = SchemaHelper.GetVertices();
+IList<string> verts = SchemaHelper.GetVertices();
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsInternal ) { continue; }
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsInternal ) { continue; }
 
-	string baseNode = (hn.HasParentClass ? node.BaseVertex.Name : "Node");
-	string abs = (node.IsAbstract ? "abstract " : "");
+	string baseVertex = (hn.HasParentClass ? vertex.BaseVertex.Name : "Vertex");
+	string abs = (vertex.IsAbstract ? "abstract " : "");
 	bool hasTypeId = false;
 #>
 	/*================================================================================================*/
-	public <#= abs #>class Fab<#= node.Name #> : Fab<#= baseNode #> {
+	public <#= abs #>class Fab<#= vertex.Name #> : Fab<#= baseVertex #> {
 <#
 	IList<SchemaHelperProp> props = hn.GetProps(true, true);
 	string propList = "";
@@ -47,7 +47,7 @@ foreach ( string name in nodes ) {
 		string propName = prop.Name;
 		string isOpt = (prop.IsNullable == true ? "true" : "false");
 
-		if ( propName == node.Name+"Id" ) {
+		if ( propName == vertex.Name+"Id" ) {
 			hasTypeId = true;
 		}
 
@@ -76,28 +76,28 @@ foreach ( string name in nodes ) {
 	} //end prop loop
 #>
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			<#= propList #>
 		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Fab<#= node.Name #>() {}
+		public Fab<#= vertex.Name #>() {}
 		
 <#
-	if ( !node.IsAbstract ) {
+	if ( !vertex.IsAbstract ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public Fab<#= node.Name #>(<#= node.Name #> pNode) : this() {
-			FillWithNode(pNode);
+		public Fab<#= vertex.Name #>(<#= vertex.Name #> pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 <#
 		if ( hasTypeId ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		protected override long TypeId { get { return <#= node.Name+"Id" #>; } }
+		protected override long TypeId { get { return <#= vertex.Name+"Id" #>; } }
 		
 <#
 		} //end typeId condition
@@ -106,15 +106,15 @@ foreach ( string name in nodes ) {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
 <#
-	if ( baseNode != "Node" ) {
+	if ( baseVertex != "Vertex" ) {
 #>
 			base.FillResultData(pData);
 
 <#
-	} //end non-FabNode baseNode
+	} //end non-FabVertex baseVertex
 	
 	bool showFound = false;
-	bool showVal = (node.Props.Count > 0);
+	bool showVal = (vertex.Props.Count > 0);
 	
 	foreach ( SchemaHelperProp hp in props ) { 
 		if ( hp.PropSchema.IsNullable == true || hp.TypeName == "string" ) {
@@ -187,18 +187,18 @@ foreach ( string name in nodes ) {
 		
 		/*--------------------------------------------------------------------------------------------*/
 <#
-	if ( node.IsAbstract ) {
+	if ( vertex.IsAbstract ) {
 #>
-		public void FillWithNode<T>(T pNode) where T : <#= node.Name #> {
+		public void FillWithVertex<T>(T pVertex) where T : <#= vertex.Name #> {
 <#
 	}
 	else {
 #>
-		public void FillWithNode(<#= node.Name #> pNode) {
+		public void FillWithVertex(<#= vertex.Name #> pVertex) {
 <#
 	} //end IsAbstract condition
 #>
-			base.FillWithNode(pNode);
+			base.FillWithVertex(pVertex);
 <#
 	foreach ( SchemaHelperProp hp in props ) { 
 		string propType = hp.TypeName;
@@ -210,14 +210,14 @@ foreach ( string name in nodes ) {
 			string subName = propName.Substring(0, propName.IndexOf('_'));
 #>
 
-			if ( pNode.<#= propName #> != null ) {
+			if ( pVertex.<#= propName #> != null ) {
 				if ( <#= subName #> == null ) { <#= subName #> = new Fab<#= subName #>(); }
-				<#= dotPropName #> = (<#= propType #>)pNode.<#= propName #>;
+				<#= dotPropName #> = (<#= propType #>)pVertex.<#= propName #>;
 			}
 <#		}
 		else {
 #>
-			<#= dotPropName #> = pNode.<#= propName #>;
+			<#= dotPropName #> = pVertex.<#= propName #>;
 <#
 		}//end subprop condition
 
@@ -227,7 +227,7 @@ foreach ( string name in nodes ) {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
@@ -261,6 +261,6 @@ foreach ( string name in nodes ) {
 <#
 		} //end subname loop
 	} //end subName count condition
-} // end Node loop
+} // end Vertex loop
 #>
 }

@@ -38,7 +38,7 @@ namespace Fabric.Api.Web {
 
 			////
 
-			User user = ApiCtx.DbNodeById<User>(vUserId);
+			User user = ApiCtx.DbVertexById<User>(vUserId);
 
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);

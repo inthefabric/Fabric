@@ -65,7 +65,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual long GetSharpflakeId<T>() where T : INode {
+		public virtual long GetSharpflakeId<T>() where T : IVertex {
 			return Sharpflake.GetId<T>();
 		}
 
@@ -90,20 +90,20 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new() {
-			T item = Cache.Memory.FindNode<T>(pTypeId);
+		public T DbVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new() {
+			T item = Cache.Memory.FindVertex<T>(pTypeId);
 			
 			if ( item != null ) {
 				return item;
 			}
 			
 			item = new T();
-			((INode)item).SetTypeId(pTypeId);
+			((IVertex)item).SetTypeId(pTypeId);
 			IWeaverQuery q = ApiFunc.NewPathFromIndex(item).ToQuery();
 			item = DbSingle<T>("Get"+typeof(T).Name+"ById", q);
 			
 			if ( item != null ) {
-				Cache.Memory.AddNode(item);
+				Cache.Memory.AddVertex(item);
 			}
 			
 			return item;

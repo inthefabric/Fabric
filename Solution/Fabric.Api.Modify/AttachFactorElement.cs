@@ -49,12 +49,12 @@ namespace Fabric.Api.Modify {
 					"This "+typeof(Factor).Name+" already has an attached "+GetElementName()+".");
 			}
 
-			VerifyRequiredNodes();
+			VerifyRequiredVertices();
 			return AddElementToFactor(f);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyRequiredNodes() {
+		private void VerifyRequiredVertices() {
 			Dictionary<string, long> map = GetRequiredArtifactIds();
 
 			if ( map == null ) {
@@ -62,7 +62,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			foreach ( KeyValuePair<string, long> pair in map ) {
-				if ( ApiCtx.DbNodeById<Artifact>(pair.Value) == null ) {
+				if ( ApiCtx.DbVertexById<Artifact>(pair.Value) == null ) {
 					throw new FabNotFoundFault(typeof(Artifact), pair.Key+"="+pair.Value);
 				}
 			}

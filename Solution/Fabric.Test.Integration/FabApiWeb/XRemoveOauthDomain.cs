@@ -49,10 +49,10 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Incorrect Result.Success.");
 
-			OauthDomain tryDom = GetNode<OauthDomain>(vOauthDomainId);
+			OauthDomain tryDom = GetVertex<OauthDomain>(vOauthDomainId);
 			Assert.Null(tryDom, "Target OauthDomain was not deleted.");
 
-			NewNodeCount = -1;
+			NewVertexCount = -1;
 			NewRelCount = -1;
 		}
 

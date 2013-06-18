@@ -136,7 +136,7 @@ Get a list of Artifacts created by those Members:
 Retrace to the "M" alias, which returns Members:
 - /!Root/ContainsMemberList/As(M)/CreatesArtifactList/Back(M))]
 
-When execution retraces the traversal path, it does so _only_ from the nodes that are currently active at the Back function step. This makes the Back function useful for complex filtering.
+When execution retraces the traversal path, it does so _only_ from the verts that are currently active at the Back function step. This makes the Back function useful for complex filtering.
 
 [(EX|Retrace Example|_Objective_
 Find all the Members of a particular App (AppId = 123) that have created at least one Artifact.
@@ -158,26 +158,26 @@ Retrace to the Member list, which now also excludes any Members who have not cre
 - /!Root/ContainsMemberList/As(M)/InAppDefines/WhereId(2)/Back(M)/CreatesArtifactList/Back(M))]</value>
   </data>
   <data name="Limit" xml:space="preserve">
-    <value>Restricts the size and starting index of the node list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution.</value>
+    <value>Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution.</value>
   </data>
   <data name="WhereApp" xml:space="preserve">
-    <value>Restricts the results to include only App nodes.</value>
+    <value>Restricts the results to include only App verts.</value>
   </data>
   <data name="WhereClass" xml:space="preserve">
-    <value>Restricts the results to include only Class nodes.</value>
+    <value>Restricts the results to include only Class verts.</value>
   </data>
   <data name="WhereId" xml:space="preserve">
     <value>Restricts the results to a single Id value. 
 
-Note that each node type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId.</value>
+Note that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId.</value>
   </data>
   <data name="WhereInstance" xml:space="preserve">
-    <value>Restricts the results to include only Instance nodes.</value>
+    <value>Restricts the results to include only Instance verts.</value>
   </data>
   <data name="WhereUrl" xml:space="preserve">
-    <value>Restricts the results to include only Url nodes.</value>
+    <value>Restricts the results to include only Url verts.</value>
   </data>
   <data name="WhereUser" xml:space="preserve">
-    <value>Restricts the results to include only User nodes.</value>
+    <value>Restricts the results to include only User verts.</value>
   </data>
 </root>

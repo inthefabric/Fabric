@@ -30,15 +30,15 @@ namespace Fabric.Test.FabApiModify {
 			vDescTypeRefId = 5439225;
 
 			MockApiCtx
-				.Setup(x => x.DbNodeById<Artifact>((long)vPrimArtRefId))
+				.Setup(x => x.DbVertexById<Artifact>((long)vPrimArtRefId))
 				.Returns(new Artifact());
 
 			MockApiCtx
-				.Setup(x => x.DbNodeById<Artifact>((long)vRelArtRefId))
+				.Setup(x => x.DbVertexById<Artifact>((long)vRelArtRefId))
 				.Returns(new Artifact());
 
 			MockApiCtx
-				.Setup(x => x.DbNodeById<Artifact>((long)vDescTypeRefId))
+				.Setup(x => x.DbVertexById<Artifact>((long)vDescTypeRefId))
 				.Returns(new Artifact());
 
 			MockTasks
@@ -107,7 +107,7 @@ namespace Fabric.Test.FabApiModify {
 				case "T": vDescTypeRefId = refId; break;
 			}
 
-			MockApiCtx.Setup(x => x.DbNodeById<Artifact>(refId)).Returns((Artifact)null);
+			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(refId)).Returns((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

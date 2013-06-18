@@ -50,7 +50,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			////
 
-			OauthAccess clearOa = GetNode<OauthAccess>((long)pClearedAccessId);
+			OauthAccess clearOa = GetVertex<OauthAccess>((long)pClearedAccessId);
 			Assert.NotNull(clearOa, "Target OauthAccess is missing.");
 			Assert.NotNull(clearOa.Token, "Target OauthAccess must have a Token value.");
 			Assert.NotNull(clearOa.Refresh, "Target OauthAccess must have a Refresh value.");
@@ -62,10 +62,10 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			FabOauthAccess result = TestGo();
 			Assert.NotNull(result, "Result should be filled.");
 
-			OauthAccess newOa = GetNodeByProp<OauthAccess>(x => x.Token, "'"+result.AccessToken+"'");
+			OauthAccess newOa = GetVertexByProp<OauthAccess>(x => x.Token, "'"+result.AccessToken+"'");
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
 
-			NodeConnections conn = GetNodeConnections(newOa);
+			VertexConnections conn = GetVertexConnections(newOa);
 			conn.AssertRelCount(0, (vClientOnly ? 1 : 2));
 
 			if ( vClientOnly ) {
@@ -79,7 +79,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			////
 
-			clearOa = GetNode<OauthAccess>((long)pClearedAccessId);
+			clearOa = GetVertex<OauthAccess>((long)pClearedAccessId);
 			Assert.NotNull(clearOa, "Target OauthAccess was deleted.");
 			Assert.AreEqual("", clearOa.Token, "Target OauthAccess.Token was not cleared.");
 			Assert.AreEqual("", clearOa.Refresh, "Target OauthAccess.Refresh was not cleared.");
@@ -87,7 +87,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			int updatedTokenCount = CountTokens();
 			Assert.AreEqual(tokenCount+1, updatedTokenCount, "Incorrect updated Token count.");
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = (vClientOnly ? 1 : 2);
 		}
 
@@ -95,7 +95,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountTokens() {
-			IWeaverQuery q = GetNodeByPropQuery<OauthAccess>(
+			IWeaverQuery q = GetVertexByPropQuery<OauthAccess>(
 				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
 			return int.Parse(data.Result.TextList[0]);

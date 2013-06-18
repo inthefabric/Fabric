@@ -19,17 +19,17 @@ namespace Fabric.Infrastructure.Weaver {
 	// ReSharper disable InconsistentNaming
 
 	/*================================================================================================*/
-	public static class NodeDbName {
+	public static class VertexDbName {
 
 <#
 var schema = new Schema();
-IList<WeaverVertexSchema> nodes = schema.Nodes;
+IList<WeaverVertexSchema> verts = schema.Vertices;
 
-foreach ( WeaverVertexSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in verts ) {
 #>
 		public const string <#= ns.Name #> = "<#= ns.DbName #>";
 <#
-} //end node loop
+} //end vertex loop
 #>
 
 		public static IDictionary<Type, string> TypeMap;
@@ -44,7 +44,7 @@ foreach ( WeaverVertexSchema ns in nodes ) {
 			NameMap = new Dictionary<string, string>();
 			
 <#
-foreach ( WeaverVertexSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in verts ) {
 	if ( !ns.IsAbstract ) {
 #>
 			TypeMap.Add(typeof(<#= ns.Name #>), <#= ns.Name #>);
@@ -54,7 +54,7 @@ foreach ( WeaverVertexSchema ns in nodes ) {
 			NameMap.Add("<#= ns.Name #>", <#= ns.Name #>);
 
 <#
-} //end node loop
+} //end vertex loop
 #>
 			return true;
 		}
@@ -66,7 +66,7 @@ foreach ( WeaverVertexSchema ns in nodes ) {
 	public static class PropDbName {
 
 <#
-foreach ( WeaverVertexSchema ns in nodes ) {
+foreach ( WeaverVertexSchema ns in verts ) {
 	foreach ( WeaverPropSchema ps in ns.Props ) {
 #>
 		public const string <#= ns.Name+'_'+ps.Name #> = "<#= ps.DbName #>";
@@ -75,7 +75,7 @@ foreach ( WeaverVertexSchema ns in nodes ) {
 #>
 
 <#
-} //end node loop
+} //end vertex loop
 #>
 
 		public static IDictionary<Type, string> TypeIdMap;
@@ -90,8 +90,8 @@ foreach ( WeaverVertexSchema ns in nodes ) {
 			StrTypeIdMap = new Dictionary<string, string>();
 			
 <#
-foreach ( WeaverVertexSchema ns in nodes ) {
-	var hn = new SchemaHelperNode(ns);
+foreach ( WeaverVertexSchema ns in verts ) {
+	var hn = new SchemaHelperVertex(ns);
 	SchemaHelperProp hp = hn.GetPrimaryKeyProp();
 	if ( hp == null ) { continue; }
 
@@ -102,7 +102,7 @@ foreach ( WeaverVertexSchema ns in nodes ) {
 			StrTypeIdMap.Add("<#= ns.Name #>", <#= pkName #>);
 
 <#
-} //end node loop
+} //end vertex loop
 #>
 			return true;
 		}
@@ -118,7 +118,7 @@ foreach ( WeaverEdgeSchema rs in schema.Rels ) {
 #>
 		public const string <#= rs.Name #> = "<#= rs.DbName #>";
 <#
-} //end node loop
+} //end vertex loop
 #>
 
 		public static IDictionary<Type, string> TypeMap;

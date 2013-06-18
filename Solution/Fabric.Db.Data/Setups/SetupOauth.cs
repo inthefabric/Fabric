@@ -182,10 +182,10 @@ namespace Fabric.Db.Data.Setups {
 			od.OauthDomainId = (long)pId;
 			od.Domain = pDomain;
 
-			vSet.AddNode(od, vTestMode);
+			vSet.AddVertex(od, vTestMode);
 
 			var relA = DataRel.Create(od, new OauthDomainUsesApp(),
-				vSet.GetNode<App>((long)pAppId), vTestMode);
+				vSet.GetVertex<App>((long)pAppId), vTestMode);
 			vSet.AddRel(relA);
 		}
 
@@ -199,15 +199,15 @@ namespace Fabric.Db.Data.Setups {
 			oa.Refresh = (pRefresh ?? FabricUtil.Code32);
 			oa.IsClientOnly = (pUserId == null);
 
-			vSet.AddNode(oa, vTestMode);
+			vSet.AddVertex(oa, vTestMode);
 
 			var relA = DataRel.Create(oa, new OauthAccessUsesApp(),
-				vSet.GetNode<App>((long)pAppId), vTestMode);
+				vSet.GetVertex<App>((long)pAppId), vTestMode);
 			vSet.AddRel(relA);
 
 			if ( pUserId != null ) {
 				var relU = DataRel.Create(oa, new OauthAccessUsesUser(),
-					vSet.GetNode<User>((long)pUserId), vTestMode);
+					vSet.GetVertex<User>((long)pUserId), vTestMode);
 				vSet.AddRel(relU);
 			}
 		}
@@ -221,14 +221,14 @@ namespace Fabric.Db.Data.Setups {
 			og.Code = pCode;
 			og.Expires = pExpires.Ticks;
 
-			vSet.AddNode(og, vTestMode);
+			vSet.AddVertex(og, vTestMode);
 
 			var relA = DataRel.Create(og, new OauthGrantUsesApp(),
-				vSet.GetNode<App>((long)pAppId), vTestMode);
+				vSet.GetVertex<App>((long)pAppId), vTestMode);
 			vSet.AddRel(relA);
 
 			var relU = DataRel.Create(og, new OauthGrantUsesUser(),
-				vSet.GetNode<User>((long)pUserId), vTestMode);
+				vSet.GetVertex<User>((long)pUserId), vTestMode);
 			vSet.AddRel(relU);
 		}
 
@@ -240,14 +240,14 @@ namespace Fabric.Db.Data.Setups {
 			os.Allow = pAllow;
 			os.Created = vSet.NowTimestamp;
 
-			vSet.AddNode(os, vTestMode);
+			vSet.AddVertex(os, vTestMode);
 
 			var relA = DataRel.Create(os, new OauthScopeUsesApp(),
-				vSet.GetNode<App>((long)pAppId), vTestMode);
+				vSet.GetVertex<App>((long)pAppId), vTestMode);
 			vSet.AddRel(relA);
 
 			var relU = DataRel.Create(os, new OauthScopeUsesUser(),
-				vSet.GetNode<User>((long)pUserId), vTestMode);
+				vSet.GetVertex<User>((long)pUserId), vTestMode);
 			vSet.AddRel(relU);
 
 			vSet.ElapseTime();

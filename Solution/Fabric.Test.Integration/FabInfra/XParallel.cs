@@ -45,7 +45,7 @@ namespace Fabric.Test.Integration.FabInfra {
 				req, apiCtx, new OauthTasks(), ModifyController.Route.Factors);
 			modFactors.Execute();
 
-			NewNodeCount += 1; //see XCreateFactor
+			NewVertexCount += 1; //see XCreateFactor
 			NewRelCount += 3;
 		}
 

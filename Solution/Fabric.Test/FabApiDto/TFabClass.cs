@@ -42,7 +42,7 @@ namespace Fabric.Test.FabApiDto {
 		[Test]
 		public void AvailableProps() {
 			var dt = new FabClass();
-			Assert.True(dt.HasProperty("NodeId"), "Missing 'NodeId' property.");
+			Assert.True(dt.HasProperty("VertexId"), "Missing 'VertexId' property.");
 			Assert.True(dt.HasProperty("Name"), "Missing 'Name' property.");
 			Assert.True(dt.HasProperty("Disamb"), "Missing 'Disamb' property.");
 			Assert.True(dt.HasProperty("ArtifactId"), "Missing 'ArtifactId' property.");

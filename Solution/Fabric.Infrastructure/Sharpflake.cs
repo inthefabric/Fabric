@@ -46,7 +46,7 @@ namespace Fabric.Infrastructure {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static SharpflakeSequence GetSequence<T>() where T : INode {
+		private static SharpflakeSequence GetSequence<T>() where T : IVertex {
 			Type t = typeof(T);
 
 			lock ( Sequence ) {
@@ -61,7 +61,7 @@ namespace Fabric.Infrastructure {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static long GetId<T>() where T : INode {
+		public static long GetId<T>() where T : IVertex {
 			SharpflakeSequence seq = GetSequence<T>();
 			long m;
 			int i = seq.GetNextIndex(out m);

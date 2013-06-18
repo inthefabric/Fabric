@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthGrant_RedirectUri+":_TP,"+
 				PropDbName.OauthGrant_Code+":_TP,"+
 				PropDbName.OauthGrant_Expires+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
@@ -125,7 +125,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vRedirUri,
 				vGrantCode,
 				vUtcNow.AddMinutes(2).Ticks,
-				(byte)NodeFabType.OauthGrant,
+				(byte)VertexFabType.OauthGrant,
 				vAppId,
 				RelDbName.OauthGrantUsesApp,
 				vUserId,

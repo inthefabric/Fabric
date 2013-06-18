@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The maximum number of nodes to return..
+        ///   Looks up a localized string similar to The maximum number of verts to return..
         /// </summary>
         internal static string Limit_Count {
             get {
@@ -88,7 +88,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The starting index for the returned list of nodes..
+        ///   Looks up a localized string similar to The starting index for the returned list of verts..
         /// </summary>
         internal static string Limit_Index {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The target node Id..
+        ///   Looks up a localized string similar to The target vertex Id..
         /// </summary>
         internal static string WhereId_Id {
             get {

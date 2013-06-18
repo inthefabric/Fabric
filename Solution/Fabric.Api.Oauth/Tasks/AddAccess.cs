@@ -53,7 +53,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess Execute() {
 			ClearOldTokens();
-			return AddAccessNodeAndRels();
+			return AddAccessVertexAndRels();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -91,7 +91,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthAccess AddAccessNodeAndRels() {
+		private FabOauthAccess AddAccessVertexAndRels() {
 			var txb = new TxBuilder();
 		
 			var oa = new OauthAccess();
@@ -102,7 +102,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			oa.IsClientOnly = vClientOnly;
 			
 			var oaBuild = new OauthAccessBuilder(txb, oa);
-			oaBuild.AddNode();
+			oaBuild.AddVertex();
 			oaBuild.SetUsesApp(vAppId);
 			
 			if ( vUserId != null ) {

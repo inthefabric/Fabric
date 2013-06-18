@@ -1,9 +1,9 @@
 ﻿using Fabric.Api.Dto.Traversal;
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 
 	/*================================================================================================*/
-	public class RootStep : NodeStep<FabRoot>, IFinalStep {
+	public class RootStep : VertexStep<FabRoot>, IFinalStep {
 
 		public bool UseLocalData { get { return true; } }
 		public long Index { get { return 0; } }

@@ -3,7 +3,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
@@ -45,7 +45,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		public void SetDataAndUpdatePath(long pId) {
 			const string typeIdName = "ArtifactId";
 
-			var proxy = new Mock<INodeStep>();
+			var proxy = new Mock<IVertexStep>();
 			proxy.SetupGet(x => x.TypeIdName).Returns(typeIdName);
 
 			var proxySeg = new Mock<IPathSegment>();

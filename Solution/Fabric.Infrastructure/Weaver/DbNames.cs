@@ -11,10 +11,10 @@ namespace Fabric.Infrastructure.Weaver {
 	// ReSharper disable InconsistentNaming
 
 	/*================================================================================================*/
-	public static class NodeDbName {
+	public static class VertexDbName {
 
-		public const string Node = "N";
-		public const string NodeForAction = "NA";
+		public const string Vertex = "N";
+		public const string VertexForAction = "NA";
 		public const string Artifact = "A";
 		public const string App = "Ap";
 		public const string Class = "Cl";
@@ -41,9 +41,9 @@ namespace Fabric.Infrastructure.Weaver {
 			TypeMap = new Dictionary<Type, string>();
 			NameMap = new Dictionary<string, string>();
 			
-			NameMap.Add("Node", Node);
+			NameMap.Add("Vertex", Vertex);
 
-			NameMap.Add("NodeForAction", NodeForAction);
+			NameMap.Add("VertexForAction", VertexForAction);
 
 			TypeMap.Add(typeof(Artifact), Artifact);
 			NameMap.Add("Artifact", Artifact);
@@ -96,10 +96,10 @@ namespace Fabric.Infrastructure.Weaver {
 	/*================================================================================================*/
 	public static class PropDbName {
 
-		public const string Node_FabType = "N_FT";
+		public const string Vertex_FabType = "N_FT";
 
-		public const string NodeForAction_Performed = "NA_Pe";
-		public const string NodeForAction_Note = "NA_No";
+		public const string VertexForAction_Performed = "NA_Pe";
+		public const string VertexForAction_Note = "NA_No";
 
 		public const string Artifact_ArtifactId = "A_AId";
 		public const string Artifact_Created = "A_Cr";

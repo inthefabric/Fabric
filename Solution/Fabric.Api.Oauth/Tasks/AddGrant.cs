@@ -87,7 +87,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			newOg.OauthGrantId = ApiCtx.GetSharpflakeId<OauthGrant>();
 			
 			var ogBuild = new OauthGrantBuilder(txb, newOg);
-			ogBuild.AddNode();
+			ogBuild.AddVertex();
 			ogBuild.SetUsesApp(vAppId);
 			ogBuild.SetUsesUser(vUserId);
 			

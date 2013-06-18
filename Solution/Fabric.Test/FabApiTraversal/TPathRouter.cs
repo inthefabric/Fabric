@@ -1,7 +1,7 @@
 ﻿using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Test.Common;
 using Moq;
 using NUnit.Framework;

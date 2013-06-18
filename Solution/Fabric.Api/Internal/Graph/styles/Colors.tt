@@ -15,15 +15,15 @@ Generated on <#= DateTime.Now.ToString() #> */
 <#
 var rand = new Random(999);
 
-IList<string> nodes = SchemaHelper.GetVertices();
+IList<string> verts = SchemaHelper.GetVertices();
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
 
-	if ( node.IsBaseClass ) { continue; }
+	if ( vertex.IsBaseClass ) { continue; }
 #>
-.node<#= node.Name #> { fill: <#= NewColor(rand, 0.9) #>; }
+.vertex<#= vertex.Name #> { fill: <#= NewColor(rand, 0.9) #>; }
 <#
 }
 #>

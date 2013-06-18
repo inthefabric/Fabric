@@ -1,7 +1,7 @@
-﻿namespace Fabric.Api.Traversal.Steps.Nodes {
+﻿namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 	/*================================================================================================*/
-	public interface INodeStep : IStep {
+	public interface IVertexStep : IStep {
 
 		/*--------------------------------------------------------------------------------------------*/
 		string TypeIdName { get; }

@@ -113,9 +113,9 @@ namespace Fabric.Db.Data.Setups {
 
 			pArtifact.ArtifactId = (long)pId;
 			pArtifact.Created = pSet.SetupTimestamp;
-			pSet.RegisterBaseClassNode(pArtifact, typeof(Artifact), pArtifact.ArtifactId, pTestMode);
+			pSet.RegisterBaseClassVertex(pArtifact, typeof(Artifact), pArtifact.ArtifactId, pTestMode);
 
-			Member m = pSet.GetNode<Member>((long)pCreatorId);
+			Member m = pSet.GetVertex<Member>((long)pCreatorId);
 			var relM = DataRel.Create(m, new MemberCreatesArtifact(), pArtifact, pTestMode);
 			pSet.AddRel(relM);
 		}

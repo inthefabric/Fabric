@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			IWeaverVarAlias<Url> urlVar;
 			var mem = new Member { MemberId = (long)SetupUsers.MemberId.GalZach };
 
-			TxBuild.GetNode(mem, out memVar);
+			TxBuild.GetVertex(mem, out memVar);
 			Tasks.TxAddUrl(ApiCtx, TxBuild, pAbsoluteUrl, pName, memVar, out urlVar);
 			FinishTx();
 
@@ -29,17 +29,17 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			////
 
-			Url newUrl = GetNode<Url>(ApiCtx.SharpflakeIds[0]);
+			Url newUrl = GetVertex<Url>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUrl, "New Url was not created.");
 			Assert.AreNotEqual(0, newUrl.ArtifactId, "Incorrect UrlId.");
 			Assert.AreEqual(pAbsoluteUrl, newUrl.AbsoluteUrl, "Incorrect AbsolueUrl.");
 			Assert.AreEqual(pName, newUrl.Name, "Incorrect Name.");
 
-			NodeConnections conn = GetNodeConnections(newUrl);
+			VertexConnections conn = GetVertexConnections(newUrl);
 			conn.AssertRelCount(1, 0);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 1;
 		}
 

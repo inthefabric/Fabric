@@ -49,7 +49,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			Assert.True(vResult, "Incorrect Result.");
 
-			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Factor updatedFactor = GetVertex<Factor>(FactorId);
 			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
 			Assert.AreEqual(vLocTypeId, updatedFactor.Locator_TypeId, "Incorrect Locator_TypeId.");
 		}

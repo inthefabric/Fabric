@@ -9,12 +9,12 @@ namespace Fabric.Test.Util {
 	/*================================================================================================*/
 	public static class StepUtil {
 
-		public static Dictionary<string, string[]> NodeStepMap = BuildNodeStepMap();
+		public static Dictionary<string, string[]> VertexStepMap = BuildVertexStepMap();
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static Dictionary<string, string[]> BuildNodeStepMap() {
+		private static Dictionary<string, string[]> BuildVertexStepMap() {
 			var map = new Dictionary<string, string[]>();
 			
 			map.Add("Artifact", new string [] {

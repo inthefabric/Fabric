@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;

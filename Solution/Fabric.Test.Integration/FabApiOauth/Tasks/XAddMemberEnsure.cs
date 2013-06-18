@@ -51,26 +51,26 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			////
 			
-			Member newMem = GetNode<Member>(ApiCtx.SharpflakeIds[0]);
+			Member newMem = GetVertex<Member>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMem, "New Member was not created.");
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[1]);
+			MemberTypeAssign newMta = GetVertex<MemberTypeAssign>(ApiCtx.SharpflakeIds[1]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
-			NodeConnections conn = GetNodeConnections(newMem);
+			VertexConnections conn = GetVertexConnections(newMem);
 			conn.AssertRelCount(2, 1);
 			conn.AssertRel<AppDefinesMember, App>(false, vAppId);
 			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
 			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
 
-			conn = GetNodeConnections(newMta);
+			conn = GetVertexConnections(newMta);
 			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMem.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 
-			NewNodeCount = 2;
+			NewVertexCount = 2;
 			NewRelCount = 4;
 		}
 
@@ -82,10 +82,10 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			vAppId = (long)pAppId;
 			vUserId = (long)pUserId;
 
-			Member origMem = GetNode<Member>((long)pUpdateMemberId);
+			Member origMem = GetVertex<Member>((long)pUpdateMemberId);
 			Assert.NotNull(origMem, "Member is missing.");
 
-			NodeConnections conn = GetNodeConnections(origMem);
+			VertexConnections conn = GetVertexConnections(origMem);
 			conn.AssertRelCount<MemberHasMemberTypeAssign>(true, 1);
 			conn.AssertRelCount<MemberHasHistoricMemberTypeAssign>(true, 0);
 
@@ -96,13 +96,13 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			////
 			
-			Member updateMem = GetNode<Member>((long)pUpdateMemberId);
+			Member updateMem = GetVertex<Member>((long)pUpdateMemberId);
 			Assert.NotNull(updateMem, "The Member was deleted.");
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
+			MemberTypeAssign newMta = GetVertex<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
-			conn = GetNodeConnections(updateMem);
+			conn = GetVertexConnections(updateMem);
 			conn.AssertRelCount(2, 2);
 			conn.AssertRel<AppDefinesMember, App>(false, vAppId);
 			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
@@ -111,13 +111,13 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			conn.AssertRel<MemberHasHistoricMemberTypeAssign, MemberTypeAssign>(
 				true, (long)pUpdateMtaId);
 
-			conn = GetNodeConnections(newMta);
+			conn = GetVertexConnections(newMta);
 			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, updateMem.MemberId);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 2;
 		}
 

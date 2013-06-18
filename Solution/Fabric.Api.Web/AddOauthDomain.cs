@@ -29,7 +29,7 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthDomain Execute() {
-			App app = ApiCtx.DbNodeById<App>(vAppId);
+			App app = ApiCtx.DbVertexById<App>(vAppId);
 
 			
 			if ( app == null ) {

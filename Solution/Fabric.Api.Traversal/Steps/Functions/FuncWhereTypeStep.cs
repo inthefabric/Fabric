@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
@@ -17,7 +17,7 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 
 
 	/*================================================================================================*/
-	public abstract class FuncWhereTypeStep<T> : FuncStep where T : FabNode, new() {
+	public abstract class FuncWhereTypeStep<T> : FuncStep where T : FabVertex, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,9 +30,9 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
 			ExpectParamCount(0);
-			ProxyStep = GetNodeStep(Path);
+			ProxyStep = GetVertexStep(Path);
 
-			string propParam = Path.AddParam(new WeaverQueryVal(PropDbName.Node_FabType));
+			string propParam = Path.AddParam(new WeaverQueryVal(PropDbName.Vertex_FabType));
 			string ftParam = Path.AddParam(new WeaverQueryVal((byte)GetFabType()));
 			Path.AppendToCurrentSegment("("+propParam+",Tokens.T.eq,"+ftParam+")", false);
 		}
@@ -40,8 +40,8 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract NodeFabType GetFabType();
-		protected abstract NodeStep<T> GetNodeStep(IPath pPath);
+		protected abstract VertexFabType GetFabType();
+		protected abstract VertexStep<T> GetVertexStep(IPath pPath);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,12 +63,12 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 		public FuncWhereAppStep(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeFabType GetFabType() {
-			return NodeFabType.App;
+		protected override VertexFabType GetFabType() {
+			return VertexFabType.App;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeStep<FabApp> GetNodeStep(IPath pPath) {
+		protected override VertexStep<FabApp> GetVertexStep(IPath pPath) {
 			return new AppStep(pPath);
 		}
 
@@ -91,12 +91,12 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 		public FuncWhereClassStep(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeFabType GetFabType() {
-			return NodeFabType.Class;
+		protected override VertexFabType GetFabType() {
+			return VertexFabType.Class;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeStep<FabClass> GetNodeStep(IPath pPath) {
+		protected override VertexStep<FabClass> GetVertexStep(IPath pPath) {
 			return new ClassStep(pPath);
 		}
 
@@ -120,12 +120,12 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 		public FuncWhereInstanceStep(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeFabType GetFabType() {
-			return NodeFabType.Instance;
+		protected override VertexFabType GetFabType() {
+			return VertexFabType.Instance;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeStep<FabInstance> GetNodeStep(IPath pPath) {
+		protected override VertexStep<FabInstance> GetVertexStep(IPath pPath) {
 			return new InstanceStep(pPath);
 		}
 
@@ -149,12 +149,12 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 		public FuncWhereUrlStep(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeFabType GetFabType() {
-			return NodeFabType.Url;
+		protected override VertexFabType GetFabType() {
+			return VertexFabType.Url;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeStep<FabUrl> GetNodeStep(IPath pPath) {
+		protected override VertexStep<FabUrl> GetVertexStep(IPath pPath) {
 			return new UrlStep(pPath);
 		}
 
@@ -178,12 +178,12 @@ namespace Fabric.Api.Traversal.Steps.Functions { //TEST: all FuncWhereTypeSteps
 		public FuncWhereUserStep(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeFabType GetFabType() {
-			return NodeFabType.User;
+		protected override VertexFabType GetFabType() {
+			return VertexFabType.User;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override NodeStep<FabUser> GetNodeStep(IPath pPath) {
+		protected override VertexStep<FabUser> GetVertexStep(IPath pPath) {
 			return new UserStep(pPath);
 		}
 

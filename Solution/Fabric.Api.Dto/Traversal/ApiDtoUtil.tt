@@ -24,17 +24,17 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IFabNode ToDto(DbDto pDbDto) {
+		public static IFabVertex ToDto(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
 <#
-IList<string> nodes = SchemaHelper.GetVertices();
+IList<string> verts = SchemaHelper.GetVertices();
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsAbstract || node.IsInternal ) { continue; }
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsAbstract || vertex.IsInternal ) { continue; }
 #>
-				case "<#= node.Name #>": return ToDto<Fab<#= node.Name #>>(pDbDto);
+				case "<#= vertex.Name #>": return ToDto<Fab<#= vertex.Name #>>(pDbDto);
 <#
 }
 #>
@@ -46,12 +46,12 @@ foreach ( string name in nodes ) {
 		public static string ToDtoJson(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
 <#
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsAbstract || node.IsInternal ) { continue; }
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsAbstract || vertex.IsInternal ) { continue; }
 #>
-				case "<#= node.Name #>": return ToDtoJson<Fab<#= node.Name #>>(pDbDto);
+				case "<#= vertex.Name #>": return ToDtoJson<Fab<#= vertex.Name #>>(pDbDto);
 <#
 }
 #>
@@ -60,17 +60,17 @@ foreach ( string name in nodes ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static T ToDto<T>(DbDto pDbDto) where T : IFabNode, new() {
-			var node = new T();
-			node.Fill(pDbDto);
-			return node;
+		private static T ToDto<T>(DbDto pDbDto) where T : IFabVertex, new() {
+			var vertex = new T();
+			vertex.Fill(pDbDto);
+			return vertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string ToDtoJson<T>(DbDto pDbDto) where T : IFabNode, new() {
-			var node = new T();
-			node.Fill(pDbDto);
-			return node.ToJson();
+		private static string ToDtoJson<T>(DbDto pDbDto) where T : IFabVertex, new() {
+			var vertex = new T();
+			vertex.Fill(pDbDto);
+			return vertex.ToJson();
 		}
 
 	}

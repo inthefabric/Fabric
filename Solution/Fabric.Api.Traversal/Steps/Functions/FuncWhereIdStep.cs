@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 using Weaver.Core.Query;
@@ -57,13 +57,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			////
 
 			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
-			INodeStep ns;
+			IVertexStep ns;
 
 			if ( ProxyStep is IFuncStep ) {
-				ns = (INodeStep)((IFuncStep)ProxyStep).ProxyStep;
+				ns = (IVertexStep)((IFuncStep)ProxyStep).ProxyStep;
 			}
 			else {
-				ns = (INodeStep)ProxyStep;
+				ns = (IVertexStep)ProxyStep;
 			}
 
 			string idParam = Path.AddParam(new WeaverQueryVal(Id));

@@ -33,7 +33,7 @@ namespace Fabric.Api.Services.Views {
 		/*--------------------------------------------------------------------------------------------*/
 		private string BuildTypedHtml() {
 			if ( vInfo.Resp.Error != null ) {
-				return BuildNodeHtml(vInfo.Resp.Error);
+				return BuildVertexHtml(vInfo.Resp.Error);
 			}
 
 			if ( vInfo.DtoList == null ) {
@@ -44,22 +44,22 @@ namespace Fabric.Api.Services.Views {
 			var i = 0;
 
 			foreach ( DbDto dbDto in vInfo.DtoList ) {
-				IFabNode n = ApiDtoUtil.ToDto(dbDto);
+				IFabVertex n = ApiDtoUtil.ToDto(dbDto);
 				html += (i++ == 0 ? "" : "<br/>");
-				html += BuildNodeHtml(n);
+				html += BuildVertexHtml(n);
 			}
 
 			return html;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string BuildNodeHtml(IFabObject pNode) {
-			PropertyInfo[] props = pNode.GetType().GetProperties();
+		private string BuildVertexHtml(IFabObject pVertex) {
+			PropertyInfo[] props = pVertex.GetType().GetProperties();
 			string html = "";
 
 			foreach ( PropertyInfo pi in props ) {
 				html += "<b>"+pi.Name+":</b> ";
-				var val = pi.GetValue(pNode, null);
+				var val = pi.GetValue(pVertex, null);
 
 				if ( val == null ) {
 					html += "<span style='color:gray;'>null</span><br/>";
@@ -68,7 +68,7 @@ namespace Fabric.Api.Services.Views {
 
 				if ( typeof(FabObject).IsAssignableFrom(pi.PropertyType) ) {
 					html += "<div style='margin-left:25px; padding-left:5px; "+
-						"border-left:1px solid gray'>"+BuildNodeHtml((IFabObject)val)+"</div>";
+						"border-left:1px solid gray'>"+BuildVertexHtml((IFabObject)val)+"</div>";
 					continue;
 				}
 

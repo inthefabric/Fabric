@@ -5,7 +5,7 @@ using Fabric.Api.Dto.Traversal;
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
-	public class TestFabNode : FabNode {
+	public class TestFabVertex : FabVertex {
 
 		protected override long TypeId { get { return 1; } }
 

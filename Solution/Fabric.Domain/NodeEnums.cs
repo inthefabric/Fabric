@@ -5,7 +5,7 @@ using System.Linq;
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public enum NodeFabType {
+	public enum VertexFabType {
 		BaseClass = 0,
 		Unspecified,
 		App,
@@ -24,10 +24,10 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public static class NodeFabTypeUtil {
+	public static class VertexFabTypeUtil {
 
-		public static IDictionary<Type, NodeFabType> TypeMap;
-		public static IDictionary<byte, NodeFabType> ValueMap;
+		public static IDictionary<Type, VertexFabType> TypeMap;
+		public static IDictionary<byte, VertexFabType> ValueMap;
 
 		private static readonly bool IsInit = Init();
 
@@ -35,30 +35,30 @@ namespace Fabric.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static bool Init() {
-			TypeMap = new Dictionary<Type, NodeFabType>();
-			TypeMap.Add(typeof(App), NodeFabType.App);
-			TypeMap.Add(typeof(Class), NodeFabType.Class);
-			TypeMap.Add(typeof(Instance), NodeFabType.Instance);
-			TypeMap.Add(typeof(Url), NodeFabType.Url);
-			TypeMap.Add(typeof(User), NodeFabType.User);
+			TypeMap = new Dictionary<Type, VertexFabType>();
+			TypeMap.Add(typeof(App), VertexFabType.App);
+			TypeMap.Add(typeof(Class), VertexFabType.Class);
+			TypeMap.Add(typeof(Instance), VertexFabType.Instance);
+			TypeMap.Add(typeof(Url), VertexFabType.Url);
+			TypeMap.Add(typeof(User), VertexFabType.User);
 
-			TypeMap.Add(typeof(Member), NodeFabType.Member);
-			TypeMap.Add(typeof(MemberTypeAssign), NodeFabType.MemberTypeAssign);
+			TypeMap.Add(typeof(Member), VertexFabType.Member);
+			TypeMap.Add(typeof(MemberTypeAssign), VertexFabType.MemberTypeAssign);
 
-			TypeMap.Add(typeof(Factor), NodeFabType.Factor);
+			TypeMap.Add(typeof(Factor), VertexFabType.Factor);
 
-			TypeMap.Add(typeof(Email), NodeFabType.Email);
-			TypeMap.Add(typeof(OauthAccess), NodeFabType.OauthAccess);
-			TypeMap.Add(typeof(OauthDomain), NodeFabType.OauthDomain);
-			TypeMap.Add(typeof(OauthGrant), NodeFabType.OauthGrant);
-			TypeMap.Add(typeof(OauthScope), NodeFabType.OauthScope);
+			TypeMap.Add(typeof(Email), VertexFabType.Email);
+			TypeMap.Add(typeof(OauthAccess), VertexFabType.OauthAccess);
+			TypeMap.Add(typeof(OauthDomain), VertexFabType.OauthDomain);
+			TypeMap.Add(typeof(OauthGrant), VertexFabType.OauthGrant);
+			TypeMap.Add(typeof(OauthScope), VertexFabType.OauthScope);
 			
 			////
 
-			ValueMap = new Dictionary<byte, NodeFabType>();
-			IEnumerable<NodeFabType> types = Enum.GetValues(typeof(NodeFabType)).Cast<NodeFabType>();
+			ValueMap = new Dictionary<byte, VertexFabType>();
+			IEnumerable<VertexFabType> types = Enum.GetValues(typeof(VertexFabType)).Cast<VertexFabType>();
 
-			foreach ( NodeFabType type in types ) {
+			foreach ( VertexFabType type in types ) {
 				ValueMap.Add((byte)type, type);
 			}
 

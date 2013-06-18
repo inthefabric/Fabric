@@ -81,11 +81,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			newOs.OauthScopeId = ApiCtx.GetSharpflakeId<OauthScope>();
 			
 			var osBuild = new OauthScopeBuilder(txb, newOs);
-			osBuild.AddNode();
+			osBuild.AddVertex();
 			osBuild.SetUsesApp(vAppId);
 			osBuild.SetUsesUser(vUserId);
 			
-			txb.Transaction.Finish(osBuild.NodeVar);
+			txb.Transaction.Finish(osBuild.VertexVar);
 			newOs = ApiCtx.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
 			return newOs;
 		}

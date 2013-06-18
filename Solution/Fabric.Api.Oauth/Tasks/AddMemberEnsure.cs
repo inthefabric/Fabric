@@ -132,11 +132,11 @@ namespace Fabric.Api.Oauth.Tasks {
 			newMem.MemberId = ApiCtx.GetSharpflakeId<Member>();
 			
 			var memBuild = new MemberBuilder(txb, newMem);
-			memBuild.AddNode();
+			memBuild.AddVertex();
 			memBuild.SetInAppDefines(vAppId);
 			memBuild.SetInUserDefines(vUserId);
 
-			AddMemberTypeAssignWithTx(txb, memBuild.NodeVar);
+			AddMemberTypeAssignWithTx(txb, memBuild.VertexVar);
 			ApiCtx.DbData(Query.AddMemberTx+"", txb.Finish());
 		}
 
@@ -146,7 +146,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<MemberTypeAssign> mtaVar;
 
-			txb.GetNode(pAssign, out mtaVar);
+			txb.GetVertex(pAssign, out mtaVar);
 			
 			//Remove original Member-Has-MemberTypeAssign relationship
 
@@ -159,7 +159,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			//Move original to use Member-HasHistoric-MemberTypeAssign relationship
 
-			txb.GetNode(pMember, out memVar);
+			txb.GetVertex(pMember, out memVar);
 			txb.AddRel<MemberHasHistoricMemberTypeAssign>(memVar, mtaVar);
 
 			//Finish transaction
@@ -179,7 +179,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			newAssign.Note = "First login.";
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, newAssign);
-			mtaBuild.AddNode();
+			mtaBuild.AddVertex();
 			mtaBuild.SetInMemberHas(pMemVar);
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
 		}

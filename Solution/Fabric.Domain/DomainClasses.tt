@@ -56,8 +56,8 @@ foreach ( string name in edges ) {
 		public override string Label { get { return "<#= edge.EdgeName #>"; } }
 
 <#
-		WeaverVertexSchema hnOut = SchemaHelper.GetNode(edge.OutVertexName).NodeSchema;
-		WeaverVertexSchema hnIn = SchemaHelper.GetNode(edge.InVertexName).NodeSchema;
+		WeaverVertexSchema hnOut = SchemaHelper.GetVertex(edge.OutVertexName).VertexSchema;
+		WeaverVertexSchema hnIn = SchemaHelper.GetVertex(edge.InVertexName).VertexSchema;
 		
 		if ( hnOut.IsBaseClass && !hnOut.IsAbstract ) {
 #>
@@ -95,27 +95,27 @@ foreach ( string name in edges ) {
 
 
 <#
-IList<string> nodes = SchemaHelper.GetVertices();
+IList<string> verts = SchemaHelper.GetVertices();
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	bool isMainNode = (name == "Node");
-	string baseNode = (isMainNode ? "" : " : "+(hn.HasParentClass ? node.BaseVertex.Name : "Node"));
-	string abs = (node.IsAbstract ? "abstract " : "");
-	bool isArtifactSubclass = (node.BaseVertex != null && node.BaseVertex.Name == "Artifact");
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	bool isMainVertex = (name == "Vertex");
+	string baseVertex = (isMainVertex ? "" : " : "+(hn.HasParentClass ? vertex.BaseVertex.Name : "Vertex"));
+	string abs = (vertex.IsAbstract ? "abstract " : "");
+	bool isArtifactSubclass = (vertex.BaseVertex != null && vertex.BaseVertex.Name == "Artifact");
 
-	if ( node.IsBaseClass ) {
+	if ( vertex.IsBaseClass ) {
 #>
 	/*================================================================================================*/
-	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
+	public <#= abs #>partial class <#= vertex.Name #><#= baseVertex #> {
 	
 <#
 	}
 	else {
 #>
 	/*================================================================================================*/
-	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
+	public <#= abs #>partial class <#= vertex.Name #><#= baseVertex #> {
 	
 <#
 	}
@@ -137,43 +137,43 @@ foreach ( string name in nodes ) {
 <#
 	}
 
-	if ( !node.IsAbstract ) {
-		string fabType = (node.IsAbstract ? "Abstract" : (node.IsBaseClass ? "BaseClass" : node.Name));
+	if ( !vertex.IsAbstract ) {
+		string fabType = (vertex.IsAbstract ? "Abstract" : (vertex.IsBaseClass ? "BaseClass" : vertex.Name));
 		if ( fabType == "Root" ) { fabType = "Abstract"; }
 #>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>() : base(NodeFabType.<#= fabType #>) {}
+		public <#= vertex.Name #>() : base(VertexFabType.<#= fabType #>) {}
 
 <#	
 	} //end abstract condition
 
-	if ( node.IsBaseClass && !isMainNode ) {
+	if ( vertex.IsBaseClass && !isMainVertex ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>(NodeFabType pFabType) : base(pFabType) {}
+		public <#= vertex.Name #>(VertexFabType pFabType) : base(pFabType) {}
 
 <#
 	} //end base class condition
 
-	if ( !node.IsAbstract && !isArtifactSubclass ) {
+	if ( !vertex.IsAbstract && !isArtifactSubclass ) {
 #>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override long GetTypeId() { return <#= node.Name #>Id; }
-		public override void SetTypeId(long pTypeId) { <#= node.Name #>Id = pTypeId; }
+		public override long GetTypeId() { return <#= vertex.Name #>Id; }
+		public override void SetTypeId(long pTypeId) { <#= vertex.Name #>Id = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
-			return (x => (x as <#= node.Name #>).<#= node.Name #>Id);
+			return (x => (x as <#= vertex.Name #>).<#= vertex.Name #>Id);
 		}
 
 <#
 	} //end abstract condition
 
-	string fillOver = (isMainNode ? "virtual" : "override");
+	string fillOver = (isMainVertex ? "virtual" : "override");
 #>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -183,7 +183,7 @@ foreach ( string name in nodes ) {
 				return;
 			}
 <#
-		if ( node.BaseVertex != null ) {
+		if ( vertex.BaseVertex != null ) {
 #>
 			
 			base.FillWithData(pData);
@@ -216,9 +216,9 @@ foreach ( string name in nodes ) {
 		}
 
 <#
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges();
+	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges();
 
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual <#= hr.EdgeName #> <#= hr.RelPropName #> {

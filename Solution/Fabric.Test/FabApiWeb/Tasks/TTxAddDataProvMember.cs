@@ -17,7 +17,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V0=[];"+ //App
 			"_V1=g.addVertex(["+
 				PropDbName.Member_MemberId+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V2,_V1,_TP);"+
@@ -25,8 +25,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
-				PropDbName.NodeForAction_Performed+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.VertexForAction_Performed+":_TP,"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V4=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V4,_V3,_TP);"+
@@ -70,14 +70,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vNewMemberId,
-				(byte)NodeFabType.Member,
+				(byte)VertexFabType.Member,
 				vUserId,
 				RelDbName.UserDefinesMember,
 				RelDbName.AppDefinesMember,
 				vNewMtaId,
 				(long)MemberTypeId.DataProvider,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.MemberTypeAssign,
+				(byte)VertexFabType.MemberTypeAssign,
 				(long)SetupUsers.MemberTypeAssignId.FabFabDataBySystem,
 				RelDbName.MemberCreatesMemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign

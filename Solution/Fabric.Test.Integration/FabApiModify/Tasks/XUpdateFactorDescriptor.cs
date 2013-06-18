@@ -33,10 +33,10 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Tasks.UpdateFactorDescriptor(ApiCtx, f, (byte)pDescTypeId,
 				(long?)pPrimArtRefId, (long?)pRelArtRefId, (long?)pDescTypeRefId);
 
-			Factor updatedFactor = GetNode<Factor>(f.FactorId);
+			Factor updatedFactor = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
 
-			NodeConnections conn = GetNodeConnections(updatedFactor);
+			VertexConnections conn = GetVertexConnections(updatedFactor);
 			int relCount;
 
 			CheckNewDescriptorConns(conn, f.FactorId, (byte)pDescTypeId, (long?)pPrimArtRefId,
@@ -48,7 +48,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CheckNewDescriptorConns(NodeConnections pConn, long pFactorId,
+		public static void CheckNewDescriptorConns(VertexConnections pConn, long pFactorId,
 											byte pDescTypeId, long? pPrimArtRefId, long? pRelArtRefId, 
 											long? pDescTypeRefId, out int pRelCount) {
 

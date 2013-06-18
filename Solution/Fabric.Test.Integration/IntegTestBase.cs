@@ -20,7 +20,7 @@ namespace Fabric.Test.Integration {
 
 		protected TestApiContext ApiCtx { get; private set; }
 		protected bool IsReadOnlyTest { get; set; }
-		protected int NewNodeCount { get; set; }
+		protected int NewVertexCount { get; set; }
 		protected int NewRelCount { get; set; }
 
 		private Stopwatch vWatch;
@@ -54,12 +54,12 @@ namespace Fabric.Test.Integration {
 			vWatch.Start();
 
 			ApiCtx = new TestApiContext();
-			NewNodeCount = 0;
+			NewVertexCount = 0;
 			NewRelCount = 0;
 
 			TestSetUp();
 
-			//vCounts = CountNodesAndRels();
+			//vCounts = CountVerticesAndRels();
 			vCounts = new Tuple<int, int>(259, 590); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
@@ -87,17 +87,17 @@ namespace Fabric.Test.Integration {
 
 			////
 
-			Tuple<int, int> c = CountNodesAndRels();
+			Tuple<int, int> c = CountVerticesAndRels();
 			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
 
-			int nodeDiff = c.Item1-vCounts.Item1;
+			int vertexDiff = c.Item1-vCounts.Item1;
 			int relDiff = c.Item2-vCounts.Item2;
 
 			if ( IsReadOnlyTest && 
-					(nodeDiff != 0 || relDiff != 0 || NewNodeCount != 0 || NewRelCount != 0) ) {
+					(vertexDiff != 0 || relDiff != 0 || NewVertexCount != 0 || NewRelCount != 0) ) {
 				Log.Info("");
 				Log.Info("WARNING: Overriding read-only mode due to counts: "+
-					nodeDiff+", "+relDiff+", "+NewNodeCount+", "+NewRelCount);
+					vertexDiff+", "+relDiff+", "+NewVertexCount+", "+NewRelCount);
 				Log.Info("");
 				IsReadOnlyTest = false;
 			}
@@ -121,11 +121,11 @@ namespace Fabric.Test.Integration {
 				Log.Info("READ ONLY MODE: skipped database reset");
 			}
 
-			Assert.AreEqual(NewNodeCount, nodeDiff, "Incorrect new node count.");
+			Assert.AreEqual(NewVertexCount, vertexDiff, "Incorrect new vertex count.");
 			Assert.AreEqual(NewRelCount, relDiff, "Incorrect new rel count.");
 
 			if ( IsReadOnlyTest ) {
-				Assert.AreEqual(0, NewNodeCount, "NewNodeCount should be zero!");
+				Assert.AreEqual(0, NewVertexCount, "NewVertexCount should be zero!");
 				Assert.AreEqual(0, NewRelCount, "NewRelCount should be zero!");
 			}
 
@@ -143,39 +143,39 @@ namespace Fabric.Test.Integration {
 		protected virtual void TestPostTearDown() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T GetNode<T>(long pId) where T : class, INodeWithId, new() {
-			return ApiCtx.DbSingle<T>("TEST.GetNode", GetNodeQuery<T>(pId));
+		protected T GetVertex<T>(long pId) where T : class, IVertexWithId, new() {
+			return ApiCtx.DbSingle<T>("TEST.GetVertex", GetVertexQuery<T>(pId));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T GetNodeByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
-												where T : class, INodeWithId, IWeaverElement, new() {
-			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
+		protected T GetVertexByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
+												where T : class, IVertexWithId, IWeaverElement, new() {
+			int ft = (byte)VertexFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V.has('"+PropDbName.Node_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
+			q.FinalizeQuery("g.V.has('"+PropDbName.Vertex_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
 				".has('"+WeaverUtil.GetPropertyName(Weave.Inst.Config, pProp)+
 				"',Tokens.T.eq,"+pValWithQuotes+")");
-			return ApiCtx.DbSingle<T>("TEST.GetNodeByProp", q);
+			return ApiCtx.DbSingle<T>("TEST.GetVertexByProp", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected NodeConnections GetNodeConnections<T>(T pNode) where T : class, INodeWithId, new() {
-			string nodeQ = "g.v("+pNode.Id+")";
+		protected VertexConnections GetVertexConnections<T>(T pVertex) where T : class, IVertexWithId, new() {
+			string vertexQ = "g.v("+pVertex.Id+")";
 
 			var q = new WeaverQuery();
 			q.FinalizeQuery("x=[];"+
-				nodeQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
-				nodeQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
+				vertexQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
+				vertexQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
 
-			IApiDataAccess data = ApiCtx.DbData("TEST.GetNodeConnections", q);
-			return new NodeConnections(pNode, data);
+			IApiDataAccess data = ApiCtx.DbData("TEST.GetVertexConnections", q);
+			return new VertexConnections(pVertex, data);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private Tuple<int, int> CountNodesAndRels() {
+		private Tuple<int, int> CountVerticesAndRels() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountVE", q);
@@ -183,9 +183,9 @@ namespace Fabric.Test.Integration {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IWeaverQuery GetNodeQuery<T>(long pId, string pAppendScript="")
-																where T : class, INodeWithId, new() {
-			SchemaHelperNode hn = SchemaHelper.GetNode(typeof(T).Name);
+		private IWeaverQuery GetVertexQuery<T>(long pId, string pAppendScript="")
+																where T : class, IVertexWithId, new() {
+			SchemaHelperVertex hn = SchemaHelper.GetVertex(typeof(T).Name);
 			string pkType = hn.GetPrimaryKeyProp().PropSchema.Name;
 			pkType = pkType.Substring(0, pkType.Length-2);
 
@@ -196,11 +196,11 @@ namespace Fabric.Test.Integration {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverQuery GetNodeByPropQuery<T>(string pAppendScript="") where T : INodeWithId {
-			int ft = (byte)NodeFabTypeUtil.TypeMap[typeof(T)];
+		protected IWeaverQuery GetVertexByPropQuery<T>(string pAppendScript="") where T : IVertexWithId {
+			int ft = (byte)VertexFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V.has('"+PropDbName.Node_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
+			q.FinalizeQuery("g.V.has('"+PropDbName.Vertex_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
 				pAppendScript);
 			return q;
 		}

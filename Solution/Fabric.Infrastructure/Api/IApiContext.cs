@@ -32,7 +32,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		DateTime UtcNow { get; }
 		string Code32 { get; }
-		long GetSharpflakeId<T>() where T : INode;
+		long GetSharpflakeId<T>() where T : IVertex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ namespace Fabric.Infrastructure.Api {
 		IApiDataAccess DbData(string pQueryName, RexConnTcpRequest pRequest);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new();
+		T DbVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new();
 		
 		/*--------------------------------------------------------------------------------------------*/
 		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : class, IItemWithId, new();

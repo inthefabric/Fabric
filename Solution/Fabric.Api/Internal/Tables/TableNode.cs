@@ -7,7 +7,7 @@ using Weaver.Core.Elements;
 namespace Fabric.Api.Internal.Tables {
 
 	/*================================================================================================*/
-	public class TableNode {
+	public class TableVertex {
 
 		public IDbDto Dto { get; set; }
 		public int Index { get; set; }
@@ -18,7 +18,7 @@ namespace Fabric.Api.Internal.Tables {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TableNode(IDbDto pDto, int pIndex) {
+		public TableVertex(IDbDto pDto, int pIndex) {
 			Dto = pDto;
 			Index = pIndex;
 			InMap = new Dictionary<string, List<IDbDto>>();
@@ -77,15 +77,15 @@ namespace Fabric.Api.Internal.Tables {
 
 			string lbl = r.EdgeType.Label;
 			int lblI = name.IndexOf(lbl);
-			string node;
+			string vertex;
 
 			if ( pIsOutgoing ) {
-				node = name.Substring(lblI+lbl.Length);
-				return "OUT&gt; "+lbl+" "+node;
+				vertex = name.Substring(lblI+lbl.Length);
+				return "OUT&gt; "+lbl+" "+vertex;
 			}
 			
-			node = name.Substring(0, lblI);
-			return "&lt;IN "+node+" "+lbl;
+			vertex = name.Substring(0, lblI);
+			return "&lt;IN "+vertex+" "+lbl;
 		}
 
 
@@ -101,7 +101,7 @@ namespace Fabric.Api.Internal.Tables {
 			string html =
 				HtmlUtil.Wrap("td", "<a href='/tables/browse/"+Dto.Class+"'>"+Dto.Class+"</a>")+
 				//HtmlUtil.Wrap("td", "<a href='/tables/browse/"+Dto.Class+"/"+Dto.Id+"'>"+Dto.Id+"</a>");
-				HtmlUtil.Wrap("td", "<a href='/tables/browse/node/"+Dto.Id+"'>"+Dto.Id+"</a>");
+				HtmlUtil.Wrap("td", "<a href='/tables/browse/vertex/"+Dto.Id+"'>"+Dto.Id+"</a>");
 
 			var cols = new string[pColMap.Keys.Count-2];
 
@@ -145,18 +145,18 @@ namespace Fabric.Api.Internal.Tables {
 			foreach ( string key in map.Keys ) {
 				List<IDbDto> dtos = map[key];
 				string rk = GetEdgeKey(dtos[0], pIsOut);
-				var nodeIds = new List<string>();
+				var vertexIds = new List<string>();
 
 				foreach ( DbDto dto in dtos ) {
-					string nodeId = (pIsOut ? dto.InVertexId : dto.OutVertexId)+"";
+					string vertexId = (pIsOut ? dto.InVertexId : dto.OutVertexId)+"";
 					/*string[] relNameParts = rk.Split(' ');
 					int relNameI = (pIsOut ? relNameParts.Length-1 : 1);
-					string nodeClass = relNameParts[relNameI];
-					nodeIds.Add("<a href='/tables/browse/"+nodeClass+"/"+nodeId+"'>"+nodeId+"</a>");*/
-					nodeIds.Add("<a href='/tables/browse/node/"+nodeId+"'>"+nodeId+"</a>");
+					string vertexClass = relNameParts[relNameI];
+					vertexIds.Add("<a href='/tables/browse/"+vertexClass+"/"+vertexId+"'>"+vertexId+"</a>");*/
+					vertexIds.Add("<a href='/tables/browse/vertex/"+vertexId+"'>"+vertexId+"</a>");
 				}
 
-				pDataCols[pColMap[rk]-2] = string.Join(" ", nodeIds);
+				pDataCols[pColMap[rk]-2] = string.Join(" ", vertexIds);
 			}
 		}
 

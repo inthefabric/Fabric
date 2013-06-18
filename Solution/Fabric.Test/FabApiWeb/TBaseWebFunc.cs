@@ -49,7 +49,7 @@ namespace Fabric.Test.FabApiWeb {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : INode {
+		protected IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : IVertex {
 			var tv = new Mock<IWeaverVarAlias<T>>();
 			tv.SetupGet(x => x.Name).Returns(pName);
 			tv.SetupGet(x => x.VarType).Returns(typeof(T));

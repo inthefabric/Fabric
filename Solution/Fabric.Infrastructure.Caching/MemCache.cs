@@ -25,23 +25,23 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddExists<T>(long pNodeTypeId, CacheItemPolicy pPolicy=null) where T : INodeWithId {
+		public void AddExists<T>(long pVertexTypeId, CacheItemPolicy pPolicy=null) where T : IVertexWithId {
 			if ( pPolicy == null ) {
 				pPolicy = NewPolicy(3600);
 			}
 
-			Add(GetDomainNodeKey<T>(pNodeTypeId), true, pPolicy);
+			Add(GetDomainVertexKey<T>(pVertexTypeId), true, pPolicy);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public bool? FindExists<T>(long pNodeTypeId) where T : INodeWithId {
-			string key = GetDomainNodeKey<T>(pNodeTypeId);
+		public bool? FindExists<T>(long pVertexTypeId) where T : IVertexWithId {
+			string key = GetDomainVertexKey<T>(pVertexTypeId);
 			return (Contains(key) ? (bool)Get(key) : (bool?)null);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public bool? RemoveExists<T>(long pNodeTypeId) where T : INodeWithId {
-			string key = GetDomainNodeKey<T>(pNodeTypeId);
+		public bool? RemoveExists<T>(long pVertexTypeId) where T : IVertexWithId {
+			string key = GetDomainVertexKey<T>(pVertexTypeId);
 			return (Contains(key) ? (bool)Remove(key) : (bool?)null);
 		}
 
@@ -64,29 +64,29 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T>(T pNode, CacheItemPolicy pPolicy=null) where T : INodeWithId {
+		public void AddVertex<T>(T pVertex, CacheItemPolicy pPolicy=null) where T : IVertexWithId {
 			if ( pPolicy == null ) {
 				pPolicy = NewPolicy(3600);
 			}
 
-			Add(GetDomainNodeKey<T>(pNode.GetTypeId()), pNode, pPolicy);
+			Add(GetDomainVertexKey<T>(pVertex.GetTypeId()), pVertex, pPolicy);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T FindNode<T>(long pNodeTypeId) where T : INodeWithId {
-			string key = GetDomainNodeKey<T>(pNodeTypeId);
+		public T FindVertex<T>(long pVertexTypeId) where T : IVertexWithId {
+			string key = GetDomainVertexKey<T>(pVertexTypeId);
 			return (Contains(key) ? (T)Get(key) : default(T));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public T RemoveNode<T>(long pNodeTypeId) where T : INodeWithId {
-			string key = GetDomainNodeKey<T>(pNodeTypeId);
+		public T RemoveVertex<T>(long pVertexTypeId) where T : IVertexWithId {
+			string key = GetDomainVertexKey<T>(pVertexTypeId);
 			return (Contains(key) ? (T)Remove(key) : default(T));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetDomainNodeKey<T>(long pNodeTypeId) where T : INodeWithId {
-			return typeof(T).Name+"|"+pNodeTypeId;
+		private static string GetDomainVertexKey<T>(long pVertexTypeId) where T : IVertexWithId {
+			return typeof(T).Name+"|"+pVertexTypeId;
 		}
 
 

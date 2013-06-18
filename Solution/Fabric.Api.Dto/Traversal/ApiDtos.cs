@@ -11,7 +11,7 @@ using Fabric.Infrastructure.Db;
 namespace Fabric.Api.Dto.Traversal {
 	
 	/*================================================================================================*/
-	public abstract class FabNodeForAction : FabNode {
+	public abstract class FabVertexForAction : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long Performed { get; set; }
@@ -19,14 +19,14 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"Performed", "Note"
 		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabNodeForAction() {}
+		public FabVertexForAction() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void FillResultData(IDictionary<string,string> pData) {
@@ -41,20 +41,20 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode<T>(T pNode) where T : NodeForAction {
-			base.FillWithNode(pNode);
-			Performed = pNode.Performed;
-			Note = pNode.Note;
+		public void FillWithVertex<T>(T pVertex) where T : VertexForAction {
+			base.FillWithVertex(pVertex);
+			Performed = pVertex.Performed;
+			Note = pVertex.Note;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
 	/*================================================================================================*/
-	public class FabArtifact : FabNode {
+	public class FabArtifact : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long ArtifactId { get; set; }
@@ -62,7 +62,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public long Created { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"ArtifactId", "Created"
 		};
 
@@ -72,8 +72,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabArtifact() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifact(Artifact pNode) : this() {
-			FillWithNode(pNode);
+		public FabArtifact(Artifact pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -91,15 +91,15 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Artifact pNode) {
-			base.FillWithNode(pNode);
-			ArtifactId = pNode.ArtifactId;
-			Created = pNode.Created;
+		public void FillWithVertex(Artifact pVertex) {
+			base.FillWithVertex(pVertex);
+			ArtifactId = pVertex.ArtifactId;
+			Created = pVertex.Created;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
@@ -109,7 +109,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"Name"
 		};
 
@@ -119,8 +119,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabApp() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabApp(App pNode) : this() {
-			FillWithNode(pNode);
+		public FabApp(App pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -135,14 +135,14 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(App pNode) {
-			base.FillWithNode(pNode);
-			Name = pNode.Name;
+		public void FillWithVertex(App pVertex) {
+			base.FillWithVertex(pVertex);
+			Name = pVertex.Name;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
@@ -158,7 +158,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"Name", "Disamb", "Note"
 		};
 
@@ -168,8 +168,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabClass() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabClass(Class pNode) : this() {
-			FillWithNode(pNode);
+		public FabClass(Class pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -190,16 +190,16 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Class pNode) {
-			base.FillWithNode(pNode);
-			Name = pNode.Name;
-			Disamb = pNode.Disamb;
-			Note = pNode.Note;
+		public void FillWithVertex(Class pVertex) {
+			base.FillWithVertex(pVertex);
+			Name = pVertex.Name;
+			Disamb = pVertex.Disamb;
+			Note = pVertex.Note;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
@@ -215,7 +215,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=true)]
 		public string Note { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"Name", "Disamb", "Note"
 		};
 
@@ -225,8 +225,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabInstance() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabInstance(Instance pNode) : this() {
-			FillWithNode(pNode);
+		public FabInstance(Instance pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -247,26 +247,26 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Instance pNode) {
-			base.FillWithNode(pNode);
-			Name = pNode.Name;
-			Disamb = pNode.Disamb;
-			Note = pNode.Note;
+		public void FillWithVertex(Instance pVertex) {
+			base.FillWithVertex(pVertex);
+			Name = pVertex.Name;
+			Disamb = pVertex.Disamb;
+			Note = pVertex.Note;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
 	/*================================================================================================*/
-	public class FabMember : FabNode {
+	public class FabMember : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long MemberId { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"MemberId"
 		};
 
@@ -276,8 +276,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabMember() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabMember(Member pNode) : this() {
-			FillWithNode(pNode);
+		public FabMember(Member pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -292,19 +292,19 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Member pNode) {
-			base.FillWithNode(pNode);
-			MemberId = pNode.MemberId;
+		public void FillWithVertex(Member pVertex) {
+			base.FillWithVertex(pVertex);
+			MemberId = pVertex.MemberId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
 	/*================================================================================================*/
-	public class FabMemberTypeAssign : FabNodeForAction {
+	public class FabMemberTypeAssign : FabVertexForAction {
 		
 		[DtoProp(IsOptional=false)]
 		public long MemberTypeAssignId { get; set; }
@@ -312,7 +312,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public byte MemberTypeId { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"MemberTypeAssignId", "MemberTypeId"
 		};
 
@@ -322,8 +322,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabMemberTypeAssign() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabMemberTypeAssign(MemberTypeAssign pNode) : this() {
-			FillWithNode(pNode);
+		public FabMemberTypeAssign(MemberTypeAssign pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -343,15 +343,15 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(MemberTypeAssign pNode) {
-			base.FillWithNode(pNode);
-			MemberTypeAssignId = pNode.MemberTypeAssignId;
-			MemberTypeId = pNode.MemberTypeId;
+		public void FillWithVertex(MemberTypeAssign pVertex) {
+			base.FillWithVertex(pVertex);
+			MemberTypeAssignId = pVertex.MemberTypeAssignId;
+			MemberTypeId = pVertex.MemberTypeId;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
@@ -364,7 +364,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public string AbsoluteUrl { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"Name", "AbsoluteUrl"
 		};
 
@@ -374,8 +374,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabUrl() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUrl(Url pNode) : this() {
-			FillWithNode(pNode);
+		public FabUrl(Url pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -393,15 +393,15 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Url pNode) {
-			base.FillWithNode(pNode);
-			Name = pNode.Name;
-			AbsoluteUrl = pNode.AbsoluteUrl;
+		public void FillWithVertex(Url pVertex) {
+			base.FillWithVertex(pVertex);
+			Name = pVertex.Name;
+			AbsoluteUrl = pVertex.AbsoluteUrl;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
@@ -411,7 +411,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"Name"
 		};
 
@@ -421,8 +421,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabUser() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUser(User pNode) : this() {
-			FillWithNode(pNode);
+		public FabUser(User pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -437,19 +437,19 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(User pNode) {
-			base.FillWithNode(pNode);
-			Name = pNode.Name;
+		public void FillWithVertex(User pVertex) {
+			base.FillWithVertex(pVertex);
+			Name = pVertex.Name;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}
 	/*================================================================================================*/
-	public class FabFactor : FabNode {
+	public class FabFactor : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long FactorId { get; set; }
@@ -487,7 +487,7 @@ namespace Fabric.Api.Dto.Traversal {
 		[DtoProp(IsOptional=true)]
 		public FabVector Vector { get; set; }
 		
-		private static readonly List<string> AvailNodeProps = new List<string> {
+		private static readonly List<string> AvailVertexProps = new List<string> {
 			"FactorId", "FactorAssertionId", "IsDefining", "Created", "Completed", "Note", "Descriptor.TypeId", "Director.TypeId", "Director.PrimaryActionId", "Director.RelatedActionId", "Eventor.TypeId", "Eventor.PrecisionId", "Eventor.DateTime", "Identor.TypeId", "Identor.Value", "Locator.TypeId", "Locator.ValueX", "Locator.ValueY", "Locator.ValueZ", "Vector.TypeId", "Vector.UnitId", "Vector.UnitPrefixId", "Vector.Value"
 		};
 
@@ -497,8 +497,8 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabFactor() {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabFactor(Factor pNode) : this() {
-			FillWithNode(pNode);
+		public FabFactor(Factor pVertex) : this() {
+			FillWithVertex(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -628,104 +628,104 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(Factor pNode) {
-			base.FillWithNode(pNode);
-			FactorId = pNode.FactorId;
-			FactorAssertionId = pNode.FactorAssertionId;
-			IsDefining = pNode.IsDefining;
-			Created = pNode.Created;
-			Completed = pNode.Completed;
-			Note = pNode.Note;
+		public void FillWithVertex(Factor pVertex) {
+			base.FillWithVertex(pVertex);
+			FactorId = pVertex.FactorId;
+			FactorAssertionId = pVertex.FactorAssertionId;
+			IsDefining = pVertex.IsDefining;
+			Created = pVertex.Created;
+			Completed = pVertex.Completed;
+			Note = pVertex.Note;
 
-			if ( pNode.Descriptor_TypeId != null ) {
+			if ( pVertex.Descriptor_TypeId != null ) {
 				if ( Descriptor == null ) { Descriptor = new FabDescriptor(); }
-				Descriptor.TypeId = (byte)pNode.Descriptor_TypeId;
+				Descriptor.TypeId = (byte)pVertex.Descriptor_TypeId;
 			}
 
-			if ( pNode.Director_TypeId != null ) {
+			if ( pVertex.Director_TypeId != null ) {
 				if ( Director == null ) { Director = new FabDirector(); }
-				Director.TypeId = (byte)pNode.Director_TypeId;
+				Director.TypeId = (byte)pVertex.Director_TypeId;
 			}
 
-			if ( pNode.Director_PrimaryActionId != null ) {
+			if ( pVertex.Director_PrimaryActionId != null ) {
 				if ( Director == null ) { Director = new FabDirector(); }
-				Director.PrimaryActionId = (byte)pNode.Director_PrimaryActionId;
+				Director.PrimaryActionId = (byte)pVertex.Director_PrimaryActionId;
 			}
 
-			if ( pNode.Director_RelatedActionId != null ) {
+			if ( pVertex.Director_RelatedActionId != null ) {
 				if ( Director == null ) { Director = new FabDirector(); }
-				Director.RelatedActionId = (byte)pNode.Director_RelatedActionId;
+				Director.RelatedActionId = (byte)pVertex.Director_RelatedActionId;
 			}
 
-			if ( pNode.Eventor_TypeId != null ) {
+			if ( pVertex.Eventor_TypeId != null ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.TypeId = (byte)pNode.Eventor_TypeId;
+				Eventor.TypeId = (byte)pVertex.Eventor_TypeId;
 			}
 
-			if ( pNode.Eventor_PrecisionId != null ) {
+			if ( pVertex.Eventor_PrecisionId != null ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.PrecisionId = (byte)pNode.Eventor_PrecisionId;
+				Eventor.PrecisionId = (byte)pVertex.Eventor_PrecisionId;
 			}
 
-			if ( pNode.Eventor_DateTime != null ) {
+			if ( pVertex.Eventor_DateTime != null ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.DateTime = (long)pNode.Eventor_DateTime;
+				Eventor.DateTime = (long)pVertex.Eventor_DateTime;
 			}
 
-			if ( pNode.Identor_TypeId != null ) {
+			if ( pVertex.Identor_TypeId != null ) {
 				if ( Identor == null ) { Identor = new FabIdentor(); }
-				Identor.TypeId = (byte)pNode.Identor_TypeId;
+				Identor.TypeId = (byte)pVertex.Identor_TypeId;
 			}
 
-			if ( pNode.Identor_Value != null ) {
+			if ( pVertex.Identor_Value != null ) {
 				if ( Identor == null ) { Identor = new FabIdentor(); }
-				Identor.Value = (string)pNode.Identor_Value;
+				Identor.Value = (string)pVertex.Identor_Value;
 			}
 
-			if ( pNode.Locator_TypeId != null ) {
+			if ( pVertex.Locator_TypeId != null ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
-				Locator.TypeId = (byte)pNode.Locator_TypeId;
+				Locator.TypeId = (byte)pVertex.Locator_TypeId;
 			}
 
-			if ( pNode.Locator_ValueX != null ) {
+			if ( pVertex.Locator_ValueX != null ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
-				Locator.ValueX = (double)pNode.Locator_ValueX;
+				Locator.ValueX = (double)pVertex.Locator_ValueX;
 			}
 
-			if ( pNode.Locator_ValueY != null ) {
+			if ( pVertex.Locator_ValueY != null ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
-				Locator.ValueY = (double)pNode.Locator_ValueY;
+				Locator.ValueY = (double)pVertex.Locator_ValueY;
 			}
 
-			if ( pNode.Locator_ValueZ != null ) {
+			if ( pVertex.Locator_ValueZ != null ) {
 				if ( Locator == null ) { Locator = new FabLocator(); }
-				Locator.ValueZ = (double)pNode.Locator_ValueZ;
+				Locator.ValueZ = (double)pVertex.Locator_ValueZ;
 			}
 
-			if ( pNode.Vector_TypeId != null ) {
+			if ( pVertex.Vector_TypeId != null ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
-				Vector.TypeId = (byte)pNode.Vector_TypeId;
+				Vector.TypeId = (byte)pVertex.Vector_TypeId;
 			}
 
-			if ( pNode.Vector_UnitId != null ) {
+			if ( pVertex.Vector_UnitId != null ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
-				Vector.UnitId = (byte)pNode.Vector_UnitId;
+				Vector.UnitId = (byte)pVertex.Vector_UnitId;
 			}
 
-			if ( pNode.Vector_UnitPrefixId != null ) {
+			if ( pVertex.Vector_UnitPrefixId != null ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
-				Vector.UnitPrefixId = (byte)pNode.Vector_UnitPrefixId;
+				Vector.UnitPrefixId = (byte)pVertex.Vector_UnitPrefixId;
 			}
 
-			if ( pNode.Vector_Value != null ) {
+			if ( pVertex.Vector_Value != null ) {
 				if ( Vector == null ) { Vector = new FabVector(); }
-				Vector.Value = (long)pNode.Vector_Value;
+				Vector.Value = (long)pVertex.Vector_Value;
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
-			get { return base.AvailableProps.Concat(AvailNodeProps).ToList(); }
+			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
 	}

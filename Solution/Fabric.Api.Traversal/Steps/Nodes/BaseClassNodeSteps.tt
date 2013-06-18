@@ -18,55 +18,55 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 <#
-IList<string> nodeNames = SchemaHelper.GetVertices();
+IList<string> vertexNames = SchemaHelper.GetVertices();
 
-foreach ( string name in nodeNames ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
+foreach ( string name in vertexNames ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
 
-	if ( !node.IsBaseClass || node.IsInternal ) {
+	if ( !vertex.IsBaseClass || vertex.IsInternal ) {
 		continue;
 	}
 
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
-	var linkRels = new List<SchemaHelperNodeRel>();
+	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
+	var linkRels = new List<SchemaHelperVertexRel>();
 	string typeIdIsLong = "false";
 	
-	foreach ( WeaverPropSchema prop in node.Props ) {
-		if ( prop.Name != node.Name+"Id" ) { continue; }
+	foreach ( WeaverPropSchema prop in vertex.Props ) {
+		if ( prop.Name != vertex.Name+"Id" ) { continue; }
 		typeIdIsLong = (prop.Type == typeof(long) ? "true" : "false");
 		break;
 	}
 	
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+		if ( vertex.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 		linkRels.Add(hr);
 	}
 #>
 
 	/*================================================================================================*/
-	public abstract partial class <#= node.Name #>Step<T> : NodeStep<T>, I<#= node.Name #>Step
-																			where T : FabNode, new() {
+	public abstract partial class <#= vertex.Name #>Step<T> : VertexStep<T>, I<#= vertex.Name #>Step
+																			where T : FabVertex, new() {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected <#= node.Name #>Step(IPath pPath) : base(pPath) {
+		protected <#= vertex.Name #>Step(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		partial void ConstructorHook();
 <#
-	if ( !node.IsAbstract ) {
+	if ( !vertex.IsAbstract ) {
 #>
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(<#= node.Name #>Step.AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(<#= vertex.Name #>Step.AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -82,12 +82,12 @@ foreach ( string name in nodeNames ) {
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 <#
-		foreach ( SchemaHelperNodeRel hr in linkRels ) {
+		foreach ( SchemaHelperVertexRel hr in linkRels ) {
 			var propName = hr.RelPropName;
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;
 <#
-		} //end nodeRels loop
+		} //end vertexRels loop
 #>
 			}
 
@@ -98,8 +98,8 @@ foreach ( string name in nodeNames ) {
 #>
 
 <#
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		var propType = hr.TargetNodeType+"Step";
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+		var propType = hr.TargetVertexType+"Step";
 		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelSchema.DbName+"')."+
 			(hr.IsOutgoing ? "inV" : "outV");
 #>
@@ -113,25 +113,25 @@ foreach ( string name in nodeNames ) {
 		}
 
 <#
-	} //end nodeRels loop
+	} //end vertexRels loop
 #>
 	}
 
 <#
-	if ( node.IsAbstract ) {
+	if ( vertex.IsAbstract ) {
 		continue;
 	}
 #>
 
 	/*================================================================================================*/
-	public partial class <#= node.Name #>Step : <#= node.Name #>Step<Fab<#= node.Name #>> {
+	public partial class <#= vertex.Name #>Step : <#= vertex.Name #>Step<Fab<#= vertex.Name #>> {
 	
-		internal static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		internal static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 <#
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
-		if ( node.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+		if ( vertex.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 #>
-			new StepLink("<#= hr.EdgeTypeName #>", "<#= hr.TargetNodeType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
+			new StepLink("<#= hr.EdgeTypeName #>", "<#= hr.TargetVertexType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
 <#
 	}
 #>
@@ -140,7 +140,7 @@ foreach ( string name in nodeNames ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= node.Name #>Step(IPath pPath) : base(pPath) {
+		public <#= vertex.Name #>Step(IPath pPath) : base(pPath) {
 			ConstructorHook();
 		}
 		
@@ -150,12 +150,12 @@ foreach ( string name in nodeNames ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return PropDbName.<#= node.Name #>_<#= node.Name #>Id; } }
+		public override string TypeIdName { get { return PropDbName.<#= vertex.Name #>_<#= vertex.Name #>Id; } }
 		public override bool TypeIdIsLong { get { return <#= typeIdIsLong #>; } }
 
 	}
 
 <#
-} //end nodes loop
+} //end verts loop
 #>
 }

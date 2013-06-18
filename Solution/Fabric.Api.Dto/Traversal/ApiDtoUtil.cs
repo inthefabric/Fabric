@@ -14,7 +14,7 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IFabNode ToDto(DbDto pDbDto) {
+		public static IFabVertex ToDto(DbDto pDbDto) {
 			switch ( pDbDto.Class ) {
 				case "Artifact": return ToDto<FabArtifact>(pDbDto);
 				case "App": return ToDto<FabApp>(pDbDto);
@@ -46,17 +46,17 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static T ToDto<T>(DbDto pDbDto) where T : IFabNode, new() {
-			var node = new T();
-			node.Fill(pDbDto);
-			return node;
+		private static T ToDto<T>(DbDto pDbDto) where T : IFabVertex, new() {
+			var vertex = new T();
+			vertex.Fill(pDbDto);
+			return vertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string ToDtoJson<T>(DbDto pDbDto) where T : IFabNode, new() {
-			var node = new T();
-			node.Fill(pDbDto);
-			return node.ToJson();
+		private static string ToDtoJson<T>(DbDto pDbDto) where T : IFabVertex, new() {
+			var vertex = new T();
+			vertex.Fill(pDbDto);
+			return vertex.ToJson();
 		}
 
 	}

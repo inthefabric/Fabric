@@ -369,7 +369,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public abstract partial class Node {
+	public abstract partial class Vertex {
 	
 		[WeaverItemProperty]
 		public virtual byte FabType { get; set; }
@@ -391,7 +391,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public abstract partial class NodeForAction : Node {
+	public abstract partial class VertexForAction : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long Performed { get; set; }
@@ -400,7 +400,7 @@ namespace Fabric.Domain {
 		public virtual string Note { get; set; }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public NodeForAction(NodeFabType pFabType) : base(pFabType) {}
+		public VertexForAction(VertexFabType pFabType) : base(pFabType) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -425,7 +425,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Artifact : Node {
+	public partial class Artifact : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long ArtifactId { get; set; }
@@ -436,10 +436,10 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Artifact() : base(NodeFabType.BaseClass) {}
+		public Artifact() : base(VertexFabType.BaseClass) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Artifact(NodeFabType pFabType) : base(pFabType) {}
+		public Artifact(VertexFabType pFabType) : base(pFabType) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -521,7 +521,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public App() : base(NodeFabType.App) {}
+		public App() : base(VertexFabType.App) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -590,7 +590,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Class() : base(NodeFabType.Class) {}
+		public Class() : base(VertexFabType.Class) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -619,7 +619,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Email : Node {
+	public partial class Email : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long EmailId { get; set; }
@@ -639,7 +639,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Email() : base(NodeFabType.Email) {}
+		public Email() : base(VertexFabType.Email) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -711,7 +711,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Instance() : base(NodeFabType.Instance) {}
+		public Instance() : base(VertexFabType.Instance) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -740,7 +740,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Member : Node {
+	public partial class Member : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long MemberId { get; set; }
@@ -748,7 +748,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Member() : base(NodeFabType.Member) {}
+		public Member() : base(VertexFabType.Member) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -815,7 +815,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssign : NodeForAction {
+	public partial class MemberTypeAssign : VertexForAction {
 	
 		[WeaverItemProperty]
 		public virtual long MemberTypeAssignId { get; set; }
@@ -826,7 +826,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssign() : base(NodeFabType.MemberTypeAssign) {}
+		public MemberTypeAssign() : base(VertexFabType.MemberTypeAssign) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -888,7 +888,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Url() : base(NodeFabType.Url) {}
+		public Url() : base(VertexFabType.Url) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -924,7 +924,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public User() : base(NodeFabType.User) {}
+		public User() : base(VertexFabType.User) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -974,7 +974,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Factor : Node {
+	public partial class Factor : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long FactorId { get; set; }
@@ -1051,7 +1051,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Factor() : base(NodeFabType.Factor) {}
+		public Factor() : base(VertexFabType.Factor) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1210,7 +1210,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthAccess : Node {
+	public partial class OauthAccess : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long OauthAccessId { get; set; }
@@ -1230,7 +1230,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccess() : base(NodeFabType.OauthAccess) {}
+		public OauthAccess() : base(VertexFabType.OauthAccess) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1288,7 +1288,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthDomain : Node {
+	public partial class OauthDomain : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long OauthDomainId { get; set; }
@@ -1299,7 +1299,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomain() : base(NodeFabType.OauthDomain) {}
+		public OauthDomain() : base(VertexFabType.OauthDomain) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1340,7 +1340,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthGrant : Node {
+	public partial class OauthGrant : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long OauthGrantId { get; set; }
@@ -1357,7 +1357,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrant() : base(NodeFabType.OauthGrant) {}
+		public OauthGrant() : base(VertexFabType.OauthGrant) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1411,7 +1411,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthScope : Node {
+	public partial class OauthScope : Vertex {
 	
 		[WeaverItemProperty]
 		public virtual long OauthScopeId { get; set; }
@@ -1425,7 +1425,7 @@ namespace Fabric.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScope() : base(NodeFabType.OauthScope) {}
+		public OauthScope() : base(VertexFabType.OauthScope) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

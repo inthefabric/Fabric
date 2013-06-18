@@ -116,7 +116,7 @@ namespace Fabric.Api.Modify.Tasks {
 			////
 
 			var facBuild = new FactorBuilder(txb, pFactor);
-			facBuild.SetNodeVar(facVar);
+			facBuild.SetVertexVar(facVar);
 
 			if ( pPrimArtRefId != null ) {
 				facBuild.SetDescriptorRefinesPrimaryWithArtifact((long)pPrimArtRefId);
@@ -214,7 +214,7 @@ namespace Fabric.Api.Modify.Tasks {
 			////
 
 			var facBuild = new FactorBuilder(txb, pFactor);
-			facBuild.SetNodeVar(facVar);
+			facBuild.SetVertexVar(facVar);
 			facBuild.SetVectorUsesAxisArtifact(pAxisArtId);
 
 			pApiCtx.DbData("UpdateFactorVector", txb.Finish());
@@ -247,9 +247,9 @@ namespace Fabric.Api.Modify.Tasks {
 			url.Created = pApiCtx.UtcNow.Ticks;
 
 			var urlBuild = new UrlBuilder(pTxBuild, url);
-			urlBuild.AddNode();
+			urlBuild.AddVertex();
 			urlBuild.SetInMemberCreates(pMemVar);
-			pUrlVar = urlBuild.NodeVar;
+			pUrlVar = urlBuild.VertexVar;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -263,9 +263,9 @@ namespace Fabric.Api.Modify.Tasks {
 			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var classBuild = new ClassBuilder(pTxBuild, c);
-			classBuild.AddNode();
+			classBuild.AddVertex();
 			classBuild.SetInMemberCreates(pMemVar);
-			pClassVar = classBuild.NodeVar;
+			pClassVar = classBuild.VertexVar;
 			return c.ArtifactId;
 		}
 
@@ -280,9 +280,9 @@ namespace Fabric.Api.Modify.Tasks {
 			c.Created = pApiCtx.UtcNow.Ticks;
 
 			var instBuild = new InstanceBuilder(pTxBuild, c);
-			instBuild.AddNode();
+			instBuild.AddVertex();
 			instBuild.SetInMemberCreates(pMemVar);
-			pInstVar = instBuild.NodeVar;
+			pInstVar = instBuild.VertexVar;
 		}
 
 
@@ -299,11 +299,11 @@ namespace Fabric.Api.Modify.Tasks {
 			fac.Created = pApiCtx.UtcNow.Ticks;
 
 			var facBuild = new FactorBuilder(pTxBuild, fac);
-			facBuild.AddNode();
+			facBuild.AddVertex();
 			facBuild.SetUsesPrimaryArtifact(pPrimArtId);
 			facBuild.SetUsesRelatedArtifact(pRelArtId);
 			facBuild.SetInMemberCreates(pCreator);
-			pFactorVar = facBuild.NodeVar;
+			pFactorVar = facBuild.VertexVar;
 		}
 		
 	}

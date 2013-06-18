@@ -1,7 +1,7 @@
 ﻿namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public interface INodeWithId : IItemWithId {
+	public interface IVertexWithId : IItemWithId {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

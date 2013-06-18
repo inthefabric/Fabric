@@ -90,7 +90,7 @@ namespace Fabric.Api.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IApiContext pContext) {
 			var app = new App { ArtifactId = AppId };
-			app = pContext.DbSingle<App>(Query.GetApp+"", ApiFunc.NewNodeQuery(app));
+			app = pContext.DbSingle<App>(Query.GetApp+"", ApiFunc.NewVertexQuery(app));
 
 			if ( app == null ) {
 				throw GetFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
@@ -106,7 +106,7 @@ namespace Fabric.Api.Oauth {
 			}
 
 			var user = new User { ArtifactId = (long)UserId };
-			return pContext.DbSingle<User>(Query.GetUser+"", ApiFunc.NewNodeQuery(user));
+			return pContext.DbSingle<User>(Query.GetUser+"", ApiFunc.NewVertexQuery(user));
 		}
 
 

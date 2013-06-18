@@ -401,10 +401,10 @@ Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ...
   <data name="Response" xml:space="preserve">
     <value>The response wrapper for all API requests. It contains a data payload, error information, and/or other metadata.</value>
   </data>
-  <data name="Node" xml:space="preserve">
-    <value>The base class for all nodes present in the Fabric "graph".  Only Nodes are present and traversable via the [[Traversal Service|Serv|Traversal]].</value>
+  <data name="Vertex" xml:space="preserve">
+    <value>The base class for all verts present in the Fabric "graph".  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]].</value>
   </data>
-  <data name="NodeForAction" xml:space="preserve">
+  <data name="VertexForAction" xml:space="preserve">
     <value>The base class for various "actions" that can occur.</value>
   </data>
   <data name="MemberTypeAssign" xml:space="preserve">
@@ -450,7 +450,7 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
     <value>A task, query, or operation that belongs to a Service.</value>
   </data>
   <data name="StepLink" xml:space="preserve">
-    <value>Contains all the relevant information about a Node's traversal link.</value>
+    <value>Contains all the relevant information about a Vertex's traversal link.</value>
   </data>
   <data name="MetaTime" xml:space="preserve">
     <value>Contains the current Fabric system time. Fabric uses the UTC timezone for all dates, times, and timestamps.</value>

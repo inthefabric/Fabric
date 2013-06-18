@@ -49,9 +49,9 @@ foreach ( WeaverEdgeSchema rel in schema.Rels ) {
 int ri = 0;
 
 foreach ( WeaverEdgeSchema rel in schema.Rels ) {
-	var fromNode = rel.OutVertex.Name;
-	var toNode = rel.InVertex.Name;
-	string relClass = fromNode+rel.Name+toNode;
+	var fromVertex = rel.OutVertex.Name;
+	var toVertex = rel.InVertex.Name;
+	string relClass = fromVertex+rel.Name+toVertex;
 		
 	if ( relMap.ContainsKey(relClass) ) { continue; }
 	relMap.Add(relClass, true);
@@ -82,19 +82,19 @@ foreach ( string key in relMap.Keys ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static SchemaHelperNode GetNode(string pName) {
+		public static SchemaHelperVertex GetVertex(string pName) {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
 <#
 int ni = 0;
 
-foreach ( WeaverVertexSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema vertex in schema.Vertices ) {
 #>
-				case "<#= node.Name #>": return new SchemaHelperNode(s.Nodes[<#= ni #>]);
+				case "<#= vertex.Name #>": return new SchemaHelperVertex(s.Vertices[<#= ni #>]);
 <#
 	++ni;
-} //end node loop
+} //end vertex loop
 #>
 			}
 
@@ -105,11 +105,11 @@ foreach ( WeaverVertexSchema node in schema.Nodes ) {
 		public static IList<string> GetVertices() {
 			return new List<string> {
 <#
-foreach ( WeaverVertexSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema vertex in schema.Vertices ) {
 #>
-				"<#= node.Name #>",
+				"<#= vertex.Name #>",
 <#
-} // end node loop
+} // end vertex loop
 #>
 			};
 		}
@@ -120,14 +120,14 @@ foreach ( WeaverVertexSchema node in schema.Nodes ) {
 		public static IList<string> GetRootLinks() {
 			return new List<string> {
 <#
-foreach ( WeaverVertexSchema node in schema.Nodes ) {
-	if ( node.IsAbstract || node.IsInternal ) {
+foreach ( WeaverVertexSchema vertex in schema.Vertices ) {
+	if ( vertex.IsAbstract || vertex.IsInternal ) {
 		continue;
 	}
 #>
-				"<#= node.Name #>",
+				"<#= vertex.Name #>",
 <#
-} //end node loop
+} //end vertex loop
 #>
 			};
 		}
@@ -135,15 +135,15 @@ foreach ( WeaverVertexSchema node in schema.Nodes ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		public static IList<WeaverVertexSchema> GetNodeSchemaListForWeaver() {
+		public static IList<WeaverVertexSchema> GetVertexSchemaListForWeaver() {
 			if ( WeaverVertexSchemaList == null ) {
 				WeaverVertexSchemaList = new List<WeaverVertexSchema> {
 <#
-foreach ( WeaverVertexSchema node in schema.Nodes ) {
+foreach ( WeaverVertexSchema vertex in schema.Vertices ) {
 #>
-					GetNodeSchemaForWeaver("<#= node.Name #>"),
+					GetVertexSchemaForWeaver("<#= vertex.Name #>"),
 <#
-} //end node loop
+} //end vertex loop
 #>
 				};
 			}

@@ -10,7 +10,7 @@ namespace Fabric.Infrastructure.Db {
 	public class DbDto : IDbDto {
 
 		public enum ItemType {
-			Node = 1,
+			Vertex = 1,
 			Rel,
 			Unknown,
 			Error
@@ -46,7 +46,7 @@ namespace Fabric.Infrastructure.Db {
 
 			switch ( pObj["_type"] ) {
 				case "vertex":
-					NodeFabType nft = NodeFabType.Unspecified;
+					VertexFabType nft = VertexFabType.Unspecified;
 
 					if ( Data == null ) {
 						Item = ItemType.Unknown;
@@ -54,16 +54,16 @@ namespace Fabric.Infrastructure.Db {
 						break;
 					}
 					
-					if ( Data.ContainsKey(PropDbName.Node_FabType) ) {
-						byte ft = byte.Parse(Data[PropDbName.Node_FabType]);
-						nft = NodeFabTypeUtil.ValueMap[ft];
+					if ( Data.ContainsKey(PropDbName.Vertex_FabType) ) {
+						byte ft = byte.Parse(Data[PropDbName.Vertex_FabType]);
+						nft = VertexFabTypeUtil.ValueMap[ft];
 					}
 
-					Item = ItemType.Node;
+					Item = ItemType.Vertex;
 					Class = nft+"";
 
-					if ( nft == NodeFabType.Unspecified ) {
-						throw new Exception("Unspecified node class: Id="+Id);
+					if ( nft == VertexFabType.Unspecified ) {
+						throw new Exception("Unspecified vertex class: Id="+Id);
 					}
 					
 					break;

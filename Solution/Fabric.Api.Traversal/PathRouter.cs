@@ -1,6 +1,6 @@
 ﻿using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 
 namespace Fabric.Api.Traversal {
 

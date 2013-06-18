@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		protected override void TestSetUp() {
 			IsReadOnlyTest = true;
 
-			OauthAccess oa = GetNode<OauthAccess>((long)SetupOauth.OauthAccessId.GalZach);
+			OauthAccess oa = GetVertex<OauthAccess>((long)SetupOauth.OauthAccessId.GalZach);
 			ApiCtx.TestUtcNow = new DateTime(oa.Expires).AddMinutes(-2);
 		}
 

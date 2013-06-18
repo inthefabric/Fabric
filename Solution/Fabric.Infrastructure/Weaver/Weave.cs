@@ -13,7 +13,7 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		private static WeaverInstance Init() {
 			var s = new Schema();
-			return new WeaverInstance(s.Nodes, s.Rels);
+			return new WeaverInstance(s.Vertices, s.Rels);
 		}
 
 	}

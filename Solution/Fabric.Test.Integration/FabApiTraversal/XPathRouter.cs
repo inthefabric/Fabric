@@ -126,7 +126,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void CheckSuccess<T>(int pDtoCount) where T : INode {
+		private void CheckSuccess<T>(int pDtoCount) where T : IVertex {
 			Assert.Null(vModel.Resp.Error, "Model.Resp.Error should be null.");
 			Assert.NotNull(vModel.DtoList, "Model.DtoList should be filled.");
 			Assert.NotNull(vModel.Resp.Functions, "Model.Resp.Functions should be filled.");

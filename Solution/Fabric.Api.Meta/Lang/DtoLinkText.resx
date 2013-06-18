@@ -151,31 +151,31 @@
     <value>Links a Member to its active MemberTypeAssign.</value>
   </data>
   <data name="RootContainsApp" xml:space="preserve">
-    <value>Links the Root node to an App.</value>
+    <value>Links the Root vertex to an App.</value>
   </data>
   <data name="RootContainsArtifact" xml:space="preserve">
-    <value>Links the Root node to an Artifact.</value>
+    <value>Links the Root vertex to an Artifact.</value>
   </data>
   <data name="RootContainsClass" xml:space="preserve">
-    <value>Links the Root node to a Class.</value>
+    <value>Links the Root vertex to a Class.</value>
   </data>
   <data name="RootContainsFactor" xml:space="preserve">
-    <value>Links the Root node to a Factor.</value>
+    <value>Links the Root vertex to a Factor.</value>
   </data>
   <data name="RootContainsInstance" xml:space="preserve">
-    <value>Links the Root node to an Instance.</value>
+    <value>Links the Root vertex to an Instance.</value>
   </data>
   <data name="RootContainsMember" xml:space="preserve">
-    <value>Links the Root node to a Member.</value>
+    <value>Links the Root vertex to a Member.</value>
   </data>
   <data name="RootContainsMemberTypeAssign" xml:space="preserve">
-    <value>Links the Root node to a MemberTypeAssign.</value>
+    <value>Links the Root vertex to a MemberTypeAssign.</value>
   </data>
   <data name="RootContainsUrl" xml:space="preserve">
-    <value>Links the Root node to a Url.</value>
+    <value>Links the Root vertex to a Url.</value>
   </data>
   <data name="RootContainsUser" xml:space="preserve">
-    <value>Links the Root node to a User.</value>
+    <value>Links the Root vertex to a User.</value>
   </data>
   <data name="UserDefinesMember" xml:space="preserve">
     <value>Links a User to a particular Member.</value>

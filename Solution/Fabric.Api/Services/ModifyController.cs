@@ -92,7 +92,7 @@ namespace Fabric.Api.Services {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string ToJsonList<T>(T pItem) where T : IFabNode {
+		private string ToJsonList<T>(T pItem) where T : IFabVertex {
 			return new [] { pItem }.ToJson(); //return list for FabResponse<T>
 		}
 

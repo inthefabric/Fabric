@@ -113,7 +113,7 @@ namespace Fabric.Api.Modify {
 			GetContextMember();
 
 			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB vertex count
 			Parallel.ForEach(vIndexes, opt, InsertClass);
 
 			return vResults;

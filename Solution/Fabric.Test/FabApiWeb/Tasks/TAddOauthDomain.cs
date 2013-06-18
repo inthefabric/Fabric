@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V0=g.addVertex(["+
 				PropDbName.OauthDomain_OauthDomainId+":_TP,"+
 				PropDbName.OauthDomain_Domain+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
@@ -53,7 +53,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vNewDomainId,
 				vDomain,
-				(byte)NodeFabType.OauthDomain,
+				(byte)VertexFabType.OauthDomain,
 				vAppId,
 				RelDbName.OauthDomainUsesApp
 			});

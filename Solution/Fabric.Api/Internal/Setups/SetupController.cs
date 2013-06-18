@@ -39,7 +39,7 @@ namespace Fabric.Api.Internal.Setups {
 #endif
 				//SendSetupTx();
 				SendIndexTx();
-				SendNodeTx();
+				SendVertexTx();
 				SendRelTx();
 
 				return "success: "+sw.ElapsedMilliseconds/1000.0+"sec";
@@ -54,7 +54,7 @@ namespace Fabric.Api.Internal.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendSetupTx() {
-			Log.Debug("Remove all nodes");
+			Log.Debug("Remove all verts");
 			var tx = new WeaverTransaction();
 
 			foreach ( IWeaverQuery q in vDataSet.Initialization ) {
@@ -90,7 +90,7 @@ namespace Fabric.Api.Internal.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void SendNodeTx() {
+		private void SendVertexTx() {
 			int count = 0;
 
 			while ( true ) {
@@ -98,19 +98,19 @@ namespace Fabric.Api.Internal.Setups {
 				string listScript = "";
 				int start = count;
 				int limit = 1;
-				Log.Debug("Node "+start+" / "+vDataSet.Nodes.Count);
+				Log.Debug("Vertex "+start+" / "+vDataSet.Vertices.Count);
 
-				for ( int i = start ; i < vDataSet.Nodes.Count ; ++i ) {
+				for ( int i = start ; i < vDataSet.Vertices.Count ; ++i ) {
 					if ( --limit < 0 ) {
 						break;
 					}
 
-					IDataNode n = vDataSet.Nodes[i];
-					IWeaverVarAlias nodeVar;
+					IDataVertex n = vDataSet.Vertices[i];
+					IWeaverVarAlias vertexVar;
 					count++;
 
-					tx.AddQuery(WeaverQuery.StoreResultAsVar("node", n.AddQuery, out nodeVar));
-					listScript += nodeVar.Name+".id,";
+					tx.AddQuery(WeaverQuery.StoreResultAsVar("vertex", n.AddQuery, out vertexVar));
+					listScript += vertexVar.Name+".id,";
 				}
 
 				var listQ = new WeaverQuery();
@@ -118,19 +118,19 @@ namespace Fabric.Api.Internal.Setups {
 				tx.AddQuery(listQ);
 
 				tx.Finish();
-				IApiDataAccess nodeData = ApiCtx.DbData("addNodeTx", tx);
+				IApiDataAccess vertexData = ApiCtx.DbData("addVertexTx", tx);
 
-				for ( int i = 0 ; i < nodeData.Result.TextList.Count ; ++i ) {
-					string idStr = nodeData.Result.TextList[i];
+				for ( int i = 0 ; i < vertexData.Result.TextList.Count ; ++i ) {
+					string idStr = vertexData.Result.TextList[i];
 
 					if ( idStr == null ) {
-						throw new Exception("Node is null at index "+i+".");
+						throw new Exception("Vertex is null at index "+i+".");
 					}
 
-					vDataSet.Nodes[start+i].Node.Id = idStr;
+					vDataSet.Vertices[start+i].Vertex.Id = idStr;
 				}
 
-				if ( count >= vDataSet.Nodes.Count ) {
+				if ( count >= vDataSet.Vertices.Count ) {
 					break;
 				}
 			}

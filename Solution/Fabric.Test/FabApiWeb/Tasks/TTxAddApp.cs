@@ -19,7 +19,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.App_Name+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V2,_EM,_TP);"+
 			"g.addEdge(_V0,_V2,_TP);";
@@ -66,7 +66,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vName,
 				vNewArtifactId,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.App,
+				(byte)VertexFabType.App,
 				RelDbName.AppUsesEmail,
 				RelDbName.MemberCreatesArtifact
 			});

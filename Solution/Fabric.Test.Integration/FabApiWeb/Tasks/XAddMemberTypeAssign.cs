@@ -38,24 +38,24 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			
 			////
 
-			MemberTypeAssign movedMta = GetNode<MemberTypeAssign>((long)pReplaceMtaId);
+			MemberTypeAssign movedMta = GetVertex<MemberTypeAssign>((long)pReplaceMtaId);
 			Assert.NotNull(movedMta, "Moved MemberTypeAssign was deleted.");
 			
-			NodeConnections conn = GetNodeConnections(movedMta);
+			VertexConnections conn = GetVertexConnections(movedMta);
 			conn.AssertRel<MemberHasHistoricMemberTypeAssign, Member>(false, vMemberId);
 
 			////
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
+			MemberTypeAssign newMta = GetVertex<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
-			conn = GetNodeConnections(newMta);
+			conn = GetVertexConnections(newMta);
 			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, vAssigningMemberId);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, vMemberId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 2;
 		}
 

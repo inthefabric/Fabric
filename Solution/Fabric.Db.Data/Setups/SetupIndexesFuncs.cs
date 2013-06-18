@@ -8,15 +8,15 @@ namespace Fabric.Db.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverQuery BuildGroup(string pNode, int pId) {
+		private static IWeaverQuery BuildGroup(string pVertex, int pId) {
 			var q = new WeaverQuery();
-			q.FinalizeQuery("Group_"+pNode+" = "+
-				"com.thinkaurelius.titan.core.TypeGroup.of("+pId+",'"+pNode+"')");
+			q.FinalizeQuery("Group_"+pVertex+" = "+
+				"com.thinkaurelius.titan.core.TypeGroup.of("+pId+",'"+pVertex+"')");
 			return q;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverQuery BuildKey(string pNode, string pProp, string pType, bool pIndex, 
+		private static IWeaverQuery BuildKey(string pVertex, string pProp, string pType, bool pIndex, 
 																						bool pElastic) {
 			string script = pProp+" = "+
 					"g.makeType()"+
@@ -25,8 +25,8 @@ namespace Fabric.Db.Data.Setups {
 					".unique(OUT)"; 
 					//,com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency.NO_LOCK)";
 
-			if ( pNode != null ) {
-				script += ".group(Group_"+pNode+")";
+			if ( pVertex != null ) {
+				script += ".group(Group_"+pVertex+")";
 			}
 
 			if ( pIndex ) {

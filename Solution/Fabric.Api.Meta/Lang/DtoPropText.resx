@@ -198,23 +198,23 @@
   <data name="Factor_Note" xml:space="preserve">
     <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
   </data>
-  <data name="NodeForAction_Note" xml:space="preserve">
+  <data name="VertexForAction_Note" xml:space="preserve">
     <value>A brief note describing this action.</value>
   </data>
-  <data name="NodeForAction_Performed" xml:space="preserve">
+  <data name="VertexForAction_Performed" xml:space="preserve">
     <value>The date/time this action was performed.</value>
   </data>
   <data name="Object_FabType" xml:space="preserve">
     <value>The data type of this object.</value>
   </data>
-  <data name="Node_Uri" xml:space="preserve">
-    <value>Append this value to the current URI to filter down to this specific Node in current traversal path.</value>
+  <data name="Vertex_Uri" xml:space="preserve">
+    <value>Append this value to the current URI to filter down to this specific Vertex in current traversal path.</value>
   </data>
   <data name="Object_TypeId" xml:space="preserve">
     <value>Uniquely identifies this object amongst all other objects of this type.</value>
   </data>
   <data name="Response_Links" xml:space="preserve">
-    <value>The traversal links available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
+    <value>The traversal links available for the current vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_BaseUri" xml:space="preserve">
     <value>The base URI for the Fabric API.</value>
@@ -232,13 +232,13 @@
     <value>The time (in milliseconds) that it took the database server(s) to complete all data requests.</value>
   </data>
   <data name="Response_HasMore" xml:space="preserve">
-    <value>Indicates whether there are more nodes available beyond the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
+    <value>Indicates whether there are more verts available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_RequestUri" xml:space="preserve">
     <value>The URI of the current request.</value>
   </data>
   <data name="Response_StartIndex" xml:space="preserve">
-    <value>The starting index of the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
+    <value>The starting index of the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_Timestamp" xml:space="preserve">
     <value>The date/time of the current request.</value>
@@ -271,7 +271,7 @@
     <value>If an error occurred, this contains information about the problem. Typically, the Data value is null when an Error value is present.</value>
   </data>
   <data name="Response_Functions" xml:space="preserve">
-    <value>The traversal functions available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
+    <value>The traversal functions available for the current vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="OauthAccess_AccessToken" xml:space="preserve">
     <value>A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
@@ -325,10 +325,10 @@
     <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.</value>
   </data>
   <data name="StepLink_Class" xml:space="preserve">
-    <value>The Node type returned by the opposite end of this link.</value>
+    <value>The Vertex type returned by the opposite end of this link.</value>
   </data>
   <data name="StepLink_IsOut" xml:space="preserve">
-    <value>Indicates whether this link is outgoing (starting from the current Node) or incoming (starting from another Node).</value>
+    <value>Indicates whether this link is outgoing (starting from the current Vertex) or incoming (starting from another Vertex).</value>
   </data>
   <data name="StepLink_Rel" xml:space="preserve">
     <value>The relation type of this link.</value>

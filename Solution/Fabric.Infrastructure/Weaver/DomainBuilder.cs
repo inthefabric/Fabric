@@ -5,19 +5,19 @@ using Weaver.Core.Query;
 namespace Fabric.Infrastructure.Weaver {
 	
 	/*================================================================================================*/
-	public class DomainBuilder<T> where T : class, INode, new() { //TEST: DomainBuilder
+	public class DomainBuilder<T> where T : class, IVertex, new() { //TEST: DomainBuilder
 
 		public TxBuilder TxBuild { get; private set; }
-		public T Node { get; private set; }
+		public T Vertex { get; private set; }
 
-		public IWeaverVarAlias<T> NodeVar { get; private set; }
+		public IWeaverVarAlias<T> VertexVar { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DomainBuilder(TxBuilder pTx, T pNode) {
+		public DomainBuilder(TxBuilder pTx, T pVertex) {
 			TxBuild = pTx;
-			Node = pNode;
+			Vertex = pVertex;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -26,20 +26,20 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode() {
-			IWeaverVarAlias<T> nodeVar;
-			TxBuild.AddNode(Node, out nodeVar);
-			NodeVar = nodeVar;
+		public void AddVertex() {
+			IWeaverVarAlias<T> vertexVar;
+			TxBuild.AddVertex(Vertex, out vertexVar);
+			VertexVar = vertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetNodeVar(IWeaverVarAlias<T> pNodeVar) {
-			if ( NodeVar != null ) {
-				throw new Exception("NodeVar is already set.");
+		public void SetVertexVar(IWeaverVarAlias<T> pVertexVar) {
+			if ( VertexVar != null ) {
+				throw new Exception("VertexVar is already set.");
 			}
 
-			NodeVar = pNodeVar;
-			TxBuild.RegisterVarWithTxBuilder(NodeVar);
+			VertexVar = pVertexVar;
+			TxBuild.RegisterVarWithTxBuilder(VertexVar);
 		}
 		
 	}

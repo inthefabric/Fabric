@@ -30,7 +30,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			////
 
-			Factor newFactor = GetNode<Factor>(ApiCtx.SharpflakeIds[0]);
+			Factor newFactor = GetVertex<Factor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newFactor, "New Factor was not created.");
 			Assert.AreNotEqual(0, newFactor.FactorId, "Incorrect FactorId.");
 			Assert.AreEqual(pIsDef, newFactor.IsDefining, "Incorrect IsDefining.");
@@ -41,13 +41,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			
 			const string artId = PropDbName.Artifact_ArtifactId;
 
-			NodeConnections conn = GetNodeConnections(newFactor);
+			VertexConnections conn = GetVertexConnections(newFactor);
 			conn.AssertRelCount(1, 2);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, (long)pMemberId);
 			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId, artId);
 			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, (long)pRelArtId, artId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 3;
 		}
 

@@ -48,7 +48,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthAccess_Refresh+":_TP,"+
 				PropDbName.OauthAccess_Expires+":_TP,"+
 				PropDbName.OauthAccess_IsClientOnly+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
@@ -62,7 +62,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthAccess_Refresh+":_TP,"+
 				PropDbName.OauthAccess_Expires+":_TP,"+
 				PropDbName.OauthAccess_IsClientOnly+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);";
@@ -165,7 +165,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vals.Add(vRefreshCode);
 			vals.Add(vUtcNow.AddSeconds(vExpireSec).Ticks);
 			vals.Add(vClientOnly);
-			vals.Add((byte)NodeFabType.OauthAccess);
+			vals.Add((byte)VertexFabType.OauthAccess);
 			vals.Add(vAppId);
 			vals.Add(RelDbName.OauthAccessUsesApp);
 

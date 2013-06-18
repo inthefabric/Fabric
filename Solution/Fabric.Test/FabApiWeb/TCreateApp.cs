@@ -60,7 +60,7 @@ namespace Fabric.Test.FabApiWeb {
 			var findUser = new User { ArtifactId = vUserId };
 
 			MockApiCtx
-				.Setup(x => x.DbNodeById<User>(vUserId))
+				.Setup(x => x.DbVertexById<User>(vUserId))
 				.Returns(findUser);
 			
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
@@ -115,7 +115,7 @@ namespace Fabric.Test.FabApiWeb {
 		[Test]
 		public void ErrUserNotFound() {
 			MockApiCtx
-				.Setup(x => x.DbNodeById<User>(vUserId))
+				.Setup(x => x.DbVertexById<User>(vUserId))
 				.Returns((User)null);
 
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);

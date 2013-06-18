@@ -30,7 +30,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Updated() {
-			App oldApp = GetNode<App>(vAppId);
+			App oldApp = GetVertex<App>(vAppId);
 			Assert.NotNull(oldApp, "Target App is missing.");
 			Assert.AreNotEqual(vName, oldApp.Name, "Target App.Name is incorrect.");
 
@@ -40,7 +40,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreEqual(vAppId, result.ArtifactId, "Incorrect AppId.");
 			Assert.AreEqual(vName, result.Name, "Incorrect Name.");
 
-			App upApp = GetNode<App>(vAppId);
+			App upApp = GetVertex<App>(vAppId);
 			Assert.AreEqual(vName, upApp.Name, "Target App.Name not updated.");
 		}
 

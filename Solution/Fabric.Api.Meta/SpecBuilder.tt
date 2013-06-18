@@ -34,14 +34,14 @@ namespace Fabric.Api.Meta {
 		public static void FillSpecValue(string pTypeName, string pPropName, FabSpecValue pValue) {
 			switch ( pTypeName+"."+pPropName ) {
 <#
-IList<string> nodes = SchemaHelper.GetVertices();
-string fabApiDtoNamespace = typeof(FabNode).AssemblyQualifiedName;
+IList<string> verts = SchemaHelper.GetVertices();
+string fabApiDtoNamespace = typeof(FabVertex).AssemblyQualifiedName;
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
 
-	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseVertex.Name : "Node");
+	string baseVertex = "Fab"+(hn.HasParentClass ? vertex.BaseVertex.Name : "Vertex");
 	IList<SchemaHelperProp> props = hn.GetProps(false);
 
 	foreach ( SchemaHelperProp hp in props ) {
@@ -68,11 +68,11 @@ foreach ( string name in nodes ) {
 
 #>
 
-				case "<#= node.Name #>.<#= propName #>":
+				case "<#= vertex.Name #>.<#= propName #>":
 					<#= propItems #>break;
 <#
 	} //end prop loop
-} // end node loop
+} // end vertex loop
 #>
 			}
 		}
@@ -85,25 +85,25 @@ foreach ( string name in nodes ) {
 
 			switch ( pTypeName+"."+pPropName ) {
 <#
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsInternal ) { continue; }
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsInternal ) { continue; }
 
-	string baseNode = "Fab"+(hn.HasParentClass ? node.BaseVertex.Name : "Node");
+	string baseVertex = "Fab"+(hn.HasParentClass ? vertex.BaseVertex.Name : "Vertex");
 	IList<SchemaHelperProp> props = hn.GetProps(true);
 
 	foreach ( SchemaHelperProp hp in props ) {
 		FabricPropSchema prop = hp.PropSchema;
 		string propType = hp.TypeName;
 		string propName = prop.Name;
-		string nodeName = node.Name;
+		string vertexName = vertex.Name;
 		string propItems = "";
 		string lineEnd = "\r\n\t\t\t\t\t";
 
 		if ( hp.IsSubProp() ) {
 			int subI = propName.IndexOf('_');
-			nodeName = propName.Substring(0, subI);
+			vertexName = propName.Substring(0, subI);
 			propName = propName.Substring(subI+1);
 		}
 		
@@ -127,7 +127,7 @@ foreach ( string name in nodes ) {
 			propItems += "pProp.IsUnique = "+prop.IsUnique.ToString().ToLower()+";"+lineEnd;
 		}
 
-		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : nodeName+"_"+propName);
+		string resxDesc = (prop.IsPrimaryKey == true ? "Object_TypeId" : vertexName+"_"+propName);
 		string enu = "null";
 		
 		if ( prop.EnumName != null ) {
@@ -136,7 +136,7 @@ foreach ( string name in nodes ) {
 		}
 #>
 
-				case "<#= nodeName #>.<#= propName #>":
+				case "<#= vertexName #>.<#= propName #>":
 					pProp.Name = "<#= propName #>";
 					pProp.Type = "<#= propType #>";
 					pProp.Description = SpecDoc.GetDtoPropText("<#= resxDesc #>");
@@ -144,7 +144,7 @@ foreach ( string name in nodes ) {
 					<#= propItems #>break;
 <#
 	} //end prop loop
-} // end node loop
+} // end vertex loop
 #>
 			}
 		}
@@ -155,15 +155,15 @@ foreach ( string name in nodes ) {
 		public static void FillSpecObjectTravFuncs(string pTypeName, FabSpecObject pObject) {
 			switch ( pTypeName ) {
 <#
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsInternal ) { continue; }
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsInternal ) { continue; }
 #>
 
-				case "<#= node.Name #>":
+				case "<#= vertex.Name #>":
 <#
-	string dtoAqn = fabApiDtoNamespace.Replace("FabNode", "Fab"+node.Name);
+	string dtoAqn = fabApiDtoNamespace.Replace("FabVertex", "Fab"+vertex.Name);
 	Type dtoType = Type.GetType(dtoAqn);
 	List<string> availFuncs = FuncRegistry.GetAvailableFuncs(dtoType, true, false);
 	bool first = true;
@@ -182,7 +182,7 @@ foreach ( string name in nodes ) {
 #>
 					break;
 <#
-} // end node loop
+} // end vertex loop
 #>
 			}
 		}
@@ -195,19 +195,19 @@ foreach ( string name in nodes ) {
 
 			switch ( pTypeName ) {
 <#
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsInternal ) { continue; }
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsInternal ) { continue; }
 #>
 
-				case "<#= node.Name #>":
+				case "<#= vertex.Name #>":
 <#
 	
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
+	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
 	bool first = true;
 
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
 		if ( first ) {
 			first = false;
 #>
@@ -233,7 +233,7 @@ foreach ( string name in nodes ) {
 #>
 					break;
 <#
-} // end node loop
+} // end vertex loop
 #>
 			}
 

@@ -25,25 +25,25 @@ namespace Fabric.Infrastructure.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 <#
-IList<string> nodes = SchemaHelper.GetVertices();
+IList<string> verts = SchemaHelper.GetVertices();
 
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
 	
-	if ( node.IsRoot ) { continue; }
+	if ( vertex.IsRoot ) { continue; }
 	
-	IList<SchemaHelperProp> nodeProps = hn.GetProps();
+	IList<SchemaHelperProp> vertexProps = hn.GetProps();
 
-	foreach ( SchemaHelperProp hp in nodeProps ) {
+	foreach ( SchemaHelperProp hp in vertexProps ) {
 		WeaverPropSchema prop = hp.PropSchema;
-		string method = (prop.IsPrimaryKey == true ? "" : node.Name)+prop.Name;
+		string method = (prop.IsPrimaryKey == true ? "" : vertex.Name)+prop.Name;
 #>
 		void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue, string pParamName);
 		void <#= method #>(<#= SchemaHelperProp.GetTypeName(prop.Type) #> pValue);
 <#
 	} //end prop loop
-} //end node loop
+} //end vertex loop
 #>
 	}
 
@@ -52,20 +52,20 @@ foreach ( string name in nodes ) {
 	public partial class DomainValidator : IDomainValidator {
 
 <#
-foreach ( string name in nodes ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
 	
-	if ( node.IsRoot ) { continue; }
+	if ( vertex.IsRoot ) { continue; }
 	
-	IList<SchemaHelperProp> nodeProps = hn.GetProps();
+	IList<SchemaHelperProp> vertexProps = hn.GetProps();
 #>
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
-	foreach ( SchemaHelperProp hp in nodeProps ) {
+	foreach ( SchemaHelperProp hp in vertexProps ) {
 		FabricPropSchema prop = hp.PropSchema;
-		string method = (prop.IsPrimaryKey == true ? "" : node.Name)+prop.Name;
+		string method = (prop.IsPrimaryKey == true ? "" : vertex.Name)+prop.Name;
 		int count = 0;
 #>
 		/*--------------------------------------------------------------------------------------------*/
@@ -159,7 +159,7 @@ foreach ( string name in nodes ) {
 
 <#
 	} //end prop loop
-} //end node loop
+} //end vertex loop
 #>
 	}
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;

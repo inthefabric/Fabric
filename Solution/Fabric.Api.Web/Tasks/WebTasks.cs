@@ -116,7 +116,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			var mem = new Member { MemberId = pMemberId };
 			IWeaverVarAlias<Member> memAlias;
-			txb.GetNode(mem, out memAlias);
+			txb.GetVertex(mem, out memAlias);
 
 			IWeaverQuery q = Weave.Inst.FromVar(memAlias)
 				.HasMemberTypeAssign.ToMemberTypeAssign
@@ -136,7 +136,7 @@ namespace Fabric.Api.Web.Tasks {
 			);
 
 			var memBuild = new MemberBuilder(txb, pMemberId);
-			memBuild.SetNodeVar(memAlias);
+			memBuild.SetVertexVar(memAlias);
 			memBuild.AddToHasHistoricMemberTypeAssignList(mtaAlias);
 			
 			////
@@ -147,11 +147,11 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 			
 			var mtaBuild = new MemberTypeAssignBuilder(txb, mta);
-			mtaBuild.AddNode();
+			mtaBuild.AddVertex();
 			mtaBuild.SetInMemberCreates(pAssigningMemberId);
 			mtaBuild.SetInMemberHas(memAlias);
 
-			txb.Finish(mtaBuild.NodeVar);
+			txb.Finish(mtaBuild.VertexVar);
 			return pApiCtx.DbSingle<MemberTypeAssign>("AddMemberTypeAssign", txb.Transaction);
 		}
 
@@ -179,10 +179,10 @@ namespace Fabric.Api.Web.Tasks {
 			od.Domain = pDomain;
 			
 			var odBuild = new OauthDomainBuilder(txb, od);
-			odBuild.AddNode();
+			odBuild.AddVertex();
 			odBuild.SetUsesApp(pAppId);
 			
-			txb.Finish(odBuild.NodeVar);
+			txb.Finish(odBuild.VertexVar);
 			return pApiCtx.DbSingle<OauthDomain>("AddOauthDomain", txb.Transaction);
 		}
 		
@@ -212,8 +212,8 @@ namespace Fabric.Api.Web.Tasks {
 			email.Verified = null;
 
 			var emailBuild = new EmailBuilder(pTxBuild, email);
-			emailBuild.AddNode();
-			pEmailVar = emailBuild.NodeVar;
+			emailBuild.AddVertex();
+			pEmailVar = emailBuild.VertexVar;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -227,10 +227,10 @@ namespace Fabric.Api.Web.Tasks {
 			user.Created = pApiCtx.UtcNow.Ticks;
 
 			var userBuild = new UserBuilder(pTxBuild, user);
-			userBuild.AddNode();
+			userBuild.AddVertex();
 			userBuild.SetUsesEmail(pEmailVar);
 
-			pUserVar = userBuild.NodeVar;
+			pUserVar = userBuild.VertexVar;
 			pSetMemberCreatesAction = userBuild.SetInMemberCreates;
 		}
 
@@ -246,15 +246,15 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
-			memBuild.AddNode();
+			memBuild.AddVertex();
 			memBuild.SetInUserDefines(pUserVar);
 			memBuild.SetInAppDefines((long)AppId.FabricSystem);
-			pMemVar = memBuild.NodeVar;
+			pMemVar = memBuild.VertexVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
-			mtaBuild.AddNode();
+			mtaBuild.AddVertex();
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
-			mtaBuild.SetInMemberHas(memBuild.NodeVar);
+			mtaBuild.SetInMemberHas(memBuild.VertexVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -279,10 +279,10 @@ namespace Fabric.Api.Web.Tasks {
 			app.Created = pApiCtx.UtcNow.Ticks;
 
 			var appBuild = new AppBuilder(pTxBuild, app);
-			appBuild.AddNode();
+			appBuild.AddVertex();
 			appBuild.SetUsesEmail(emailVar);
 
-			pAppVar = appBuild.NodeVar;
+			pAppVar = appBuild.VertexVar;
 			pSetMemberCreatesAction = appBuild.SetInMemberCreates;
 		}
 
@@ -298,15 +298,15 @@ namespace Fabric.Api.Web.Tasks {
 			mta.Performed = pApiCtx.UtcNow.Ticks;
 
 			var memBuild = new MemberBuilder(pTxBuild, mem);
-			memBuild.AddNode();
+			memBuild.AddVertex();
 			memBuild.SetInUserDefines(pUserId);
 			memBuild.SetInAppDefines(pAppVar);
-			pMemVar = memBuild.NodeVar;
+			pMemVar = memBuild.VertexVar;
 
 			var mtaBuild = new MemberTypeAssignBuilder(pTxBuild, mta);
-			mtaBuild.AddNode();
+			mtaBuild.AddVertex();
 			mtaBuild.SetInMemberCreates((long)MemberId.FabFabData);
-			mtaBuild.SetInMemberHas(memBuild.NodeVar);
+			mtaBuild.SetInMemberHas(memBuild.VertexVar);
 		}
 
 	}

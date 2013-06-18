@@ -93,26 +93,26 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static SchemaHelperNode GetNode(string pName) {
+		public static SchemaHelperVertex GetVertex(string pName) {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
-				case "Node": return new SchemaHelperNode(s.Nodes[0]);
-				case "NodeForAction": return new SchemaHelperNode(s.Nodes[1]);
-				case "Artifact": return new SchemaHelperNode(s.Nodes[2]);
-				case "App": return new SchemaHelperNode(s.Nodes[3]);
-				case "Class": return new SchemaHelperNode(s.Nodes[4]);
-				case "Email": return new SchemaHelperNode(s.Nodes[5]);
-				case "Instance": return new SchemaHelperNode(s.Nodes[6]);
-				case "Member": return new SchemaHelperNode(s.Nodes[7]);
-				case "MemberTypeAssign": return new SchemaHelperNode(s.Nodes[8]);
-				case "Url": return new SchemaHelperNode(s.Nodes[9]);
-				case "User": return new SchemaHelperNode(s.Nodes[10]);
-				case "Factor": return new SchemaHelperNode(s.Nodes[11]);
-				case "OauthAccess": return new SchemaHelperNode(s.Nodes[12]);
-				case "OauthDomain": return new SchemaHelperNode(s.Nodes[13]);
-				case "OauthGrant": return new SchemaHelperNode(s.Nodes[14]);
-				case "OauthScope": return new SchemaHelperNode(s.Nodes[15]);
+				case "Vertex": return new SchemaHelperVertex(s.Vertices[0]);
+				case "VertexForAction": return new SchemaHelperVertex(s.Vertices[1]);
+				case "Artifact": return new SchemaHelperVertex(s.Vertices[2]);
+				case "App": return new SchemaHelperVertex(s.Vertices[3]);
+				case "Class": return new SchemaHelperVertex(s.Vertices[4]);
+				case "Email": return new SchemaHelperVertex(s.Vertices[5]);
+				case "Instance": return new SchemaHelperVertex(s.Vertices[6]);
+				case "Member": return new SchemaHelperVertex(s.Vertices[7]);
+				case "MemberTypeAssign": return new SchemaHelperVertex(s.Vertices[8]);
+				case "Url": return new SchemaHelperVertex(s.Vertices[9]);
+				case "User": return new SchemaHelperVertex(s.Vertices[10]);
+				case "Factor": return new SchemaHelperVertex(s.Vertices[11]);
+				case "OauthAccess": return new SchemaHelperVertex(s.Vertices[12]);
+				case "OauthDomain": return new SchemaHelperVertex(s.Vertices[13]);
+				case "OauthGrant": return new SchemaHelperVertex(s.Vertices[14]);
+				case "OauthScope": return new SchemaHelperVertex(s.Vertices[15]);
 			}
 
 			return null;
@@ -121,8 +121,8 @@ namespace Fabric.Domain.Meta {
 		/*--------------------------------------------------------------------------------------------*/
 		public static IList<string> GetVertices() {
 			return new List<string> {
-				"Node",
-				"NodeForAction",
+				"Vertex",
+				"VertexForAction",
 				"Artifact",
 				"App",
 				"Class",
@@ -160,25 +160,25 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		public static IList<WeaverVertexSchema> GetNodeSchemaListForWeaver() {
+		public static IList<WeaverVertexSchema> GetVertexSchemaListForWeaver() {
 			if ( WeaverVertexSchemaList == null ) {
 				WeaverVertexSchemaList = new List<WeaverVertexSchema> {
-					GetNodeSchemaForWeaver("Node"),
-					GetNodeSchemaForWeaver("NodeForAction"),
-					GetNodeSchemaForWeaver("Artifact"),
-					GetNodeSchemaForWeaver("App"),
-					GetNodeSchemaForWeaver("Class"),
-					GetNodeSchemaForWeaver("Email"),
-					GetNodeSchemaForWeaver("Instance"),
-					GetNodeSchemaForWeaver("Member"),
-					GetNodeSchemaForWeaver("MemberTypeAssign"),
-					GetNodeSchemaForWeaver("Url"),
-					GetNodeSchemaForWeaver("User"),
-					GetNodeSchemaForWeaver("Factor"),
-					GetNodeSchemaForWeaver("OauthAccess"),
-					GetNodeSchemaForWeaver("OauthDomain"),
-					GetNodeSchemaForWeaver("OauthGrant"),
-					GetNodeSchemaForWeaver("OauthScope"),
+					GetVertexSchemaForWeaver("Vertex"),
+					GetVertexSchemaForWeaver("VertexForAction"),
+					GetVertexSchemaForWeaver("Artifact"),
+					GetVertexSchemaForWeaver("App"),
+					GetVertexSchemaForWeaver("Class"),
+					GetVertexSchemaForWeaver("Email"),
+					GetVertexSchemaForWeaver("Instance"),
+					GetVertexSchemaForWeaver("Member"),
+					GetVertexSchemaForWeaver("MemberTypeAssign"),
+					GetVertexSchemaForWeaver("Url"),
+					GetVertexSchemaForWeaver("User"),
+					GetVertexSchemaForWeaver("Factor"),
+					GetVertexSchemaForWeaver("OauthAccess"),
+					GetVertexSchemaForWeaver("OauthDomain"),
+					GetVertexSchemaForWeaver("OauthGrant"),
+					GetVertexSchemaForWeaver("OauthScope"),
 				};
 			}
 

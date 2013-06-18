@@ -20,7 +20,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.User_Password+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V2,_V0,_TP);"+
 			"g.addEdge(_V1,_V2,_TP);";
@@ -69,7 +69,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				FabricUtil.HashPassword(vPassword),
 				vNewArtifactId,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.User,
+				(byte)VertexFabType.User,
 				RelDbName.UserUsesEmail,
 				RelDbName.MemberCreatesArtifact
 			});

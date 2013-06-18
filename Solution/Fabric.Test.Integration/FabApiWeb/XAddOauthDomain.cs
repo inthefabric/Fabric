@@ -49,16 +49,16 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.AreNotEqual(0, vResult.OauthDomainId, "Incorrect Result.OauthDomainId.");
 
-			OauthDomain newDom = GetNode<OauthDomain>(ApiCtx.SharpflakeIds[0]);
+			OauthDomain newDom = GetVertex<OauthDomain>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newDom, "New OauthDomain was not created.");
 			Assert.AreNotEqual(0, newDom.OauthDomainId, "Incorrect OauthDomainId.");
 			Assert.AreEqual(vDomain, newDom.Domain, "Incorrect Result.Domain.");
 
-			NodeConnections conn = GetNodeConnections(newDom);
+			VertexConnections conn = GetVertexConnections(newDom);
 			conn.AssertRelCount(0, 1);
 			conn.AssertRel<OauthDomainUsesApp, App>(true, vAppId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 1;
 		}
 

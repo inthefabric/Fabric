@@ -11,14 +11,14 @@ namespace Fabric.Db.Data {
 
 		public IList<IWeaverQuery> Initialization { get; private set; }
 		public IList<IWeaverQuery> Indexes { get; private set; }
-		public IList<IDataNode> Nodes { get; private set; }
+		public IList<IDataVertex> Vertices { get; private set; }
 		public IList<IDataRel> Rels { get; private set; }
 		public bool IsForTesting { get; private set; }
 
 		private readonly Random vRand;
 		private DateTime vCurrDate;
-		private readonly Dictionary<string, INode> vNodeMap;
-		private readonly Dictionary<IWeaverVertex, IDataNode> vDataNodeMap;
+		private readonly Dictionary<string, IVertex> vVertexMap;
+		private readonly Dictionary<IWeaverVertex, IDataVertex> vDataVertexMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,14 +26,14 @@ namespace Fabric.Db.Data {
 		public DataSet(bool pIsForTesting) {
 			Initialization = new List<IWeaverQuery>();
 			Indexes = new List<IWeaverQuery>();
-			Nodes = new List<IDataNode>();
+			Vertices = new List<IDataVertex>();
 			Rels = new List<IDataRel>();
 			IsForTesting = pIsForTesting;
 
 			vRand = new Random(999);
 			vCurrDate = DateTime.UtcNow.AddDays(-10);
-			vNodeMap = new Dictionary<string, INode>();
-			vDataNodeMap = new Dictionary<IWeaverVertex, IDataNode>();
+			vVertexMap = new Dictionary<string, IVertex>();
+			vDataVertexMap = new Dictionary<IWeaverVertex, IDataVertex>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -68,15 +68,15 @@ namespace Fabric.Db.Data {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public T GetNode<T>(long pNodeTypeId) where T : INode {
-			INode n;
-			vNodeMap.TryGetValue(typeof(T).Name+pNodeTypeId, out n);
+		public T GetVertex<T>(long pVertexTypeId) where T : IVertex {
+			IVertex n;
+			vVertexMap.TryGetValue(typeof(T).Name+pVertexTypeId, out n);
 			return (T)n;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataNode GetDataNode(IWeaverVertex pDomainNode) {
-			return vDataNodeMap[pDomainNode];
+		public IDataVertex GetDataVertex(IWeaverVertex pDomainVertex) {
+			return vDataVertexMap[pDomainVertex];
 		}
 
 
@@ -89,20 +89,20 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public bool AddNode<T>(T pDomainNode, bool pIsForTesting) where T : INode {
+		public bool AddVertex<T>(T pDomainVertex, bool pIsForTesting) where T : IVertex {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
-			DataNode<T> n = DataNode.Create(pDomainNode, pIsForTesting);
-			Nodes.Add(n);
-			vNodeMap.Add(typeof(T).Name+pDomainNode.GetTypeId(), pDomainNode);
-			vDataNodeMap.Add(pDomainNode, n);
+			DataVertex<T> n = DataVertex.Create(pDomainVertex, pIsForTesting);
+			Vertices.Add(n);
+			vVertexMap.Add(typeof(T).Name+pDomainVertex.GetTypeId(), pDomainVertex);
+			vDataVertexMap.Add(pDomainVertex, n);
 			return true;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public bool RegisterBaseClassNode<T>(T pDomainNode, Type pBaseClassType, long pTypeId, 
-																bool pIsForTesting) where T : INode {
+		public bool RegisterBaseClassVertex<T>(T pDomainVertex, Type pBaseClassType, long pTypeId, 
+																bool pIsForTesting) where T : IVertex {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
-			vNodeMap.Add(pBaseClassType.Name+pTypeId, pDomainNode);
+			vVertexMap.Add(pBaseClassType.Name+pTypeId, pDomainVertex);
 			return true;
 		}
 
@@ -110,7 +110,7 @@ namespace Fabric.Db.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataRel<TFrom, TRel, TTo> AddRel<TFrom, TRel, TTo>(DataRel<TFrom, TRel, TTo> pRel)
-							where TFrom : INode where TRel : IWeaverEdge where TTo : INode {
+							where TFrom : IVertex where TRel : IWeaverEdge where TTo : IVertex {
 			if ( !IsForTesting && pRel.IsForTesting ) { return pRel; }
 			Rels.Add(pRel);
 			return pRel;

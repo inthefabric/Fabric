@@ -39,7 +39,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vFactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete;
 			vCompleted = true;
 
-			Factor newFac = GetNode<Factor>(vFactorId);
+			Factor newFac = GetVertex<Factor>(vFactorId);
 			Assert.NotNull(newFac, "Target Factor is missing.");
 			Assert.Null(newFac.Completed, "Completed should be null.");
 
@@ -55,7 +55,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.AreEqual(vFactorId, vResult.FactorId, "Incorrect Result.FactorId.");
 
-			Factor updateFac = GetNode<Factor>(vFactorId);
+			Factor updateFac = GetVertex<Factor>(vFactorId);
 			Assert.NotNull(newFac, "Target Factor was deleted.");
 			Assert.NotNull(updateFac.Completed, "Completed should be filled.");
 
@@ -78,7 +78,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCompleted() {
-			IWeaverQuery q = GetNodeByPropQuery<Factor>(
+			IWeaverQuery q = GetVertexByPropQuery<Factor>(
 				".has('"+PropDbName.Factor_Completed+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCompleted", q);
 			return int.Parse(data.Result.TextList[0]);

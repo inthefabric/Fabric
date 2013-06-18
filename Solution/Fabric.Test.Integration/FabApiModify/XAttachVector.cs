@@ -55,13 +55,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			Assert.True(vResult, "Incorrect Result.");
 
-			Factor updatedFactor = GetNode<Factor>(FactorId);
+			Factor updatedFactor = GetVertex<Factor>(FactorId);
 			Assert.NotNull(updatedFactor, "Updated Factor was deleted.");
 			Assert.AreEqual(vVecTypeId, updatedFactor.Vector_TypeId, "Incorrect Vector_TypeId.");
 
 			////
 			
-			NodeConnections conn = GetNodeConnections(updatedFactor);
+			VertexConnections conn = GetVertexConnections(updatedFactor);
 			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
 			conn.AssertRel<FactorVectorUsesAxisArtifact, Artifact>(true,
 				vAxisArtId, PropDbName.Artifact_ArtifactId);

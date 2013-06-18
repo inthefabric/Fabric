@@ -4,40 +4,40 @@ using System.Reflection;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
+namespace Fabric.Test.FabApiTraversal.Steps.Vertices {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TNodeSteps {
+	public class TVertexSteps {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestStep<T>(string pStepName, string pTypeIdProp, 
-														Func<IPath, T> pNewStep) where T : INodeStep {
+														Func<IPath, T> pNewStep) where T : IVertexStep {
 			string[] availSteps;
 			bool isRoot = (pStepName == "Root");
 			bool isArtifact = (pStepName == "Artifact");
 
-			bool found = StepUtil.NodeStepMap.TryGetValue(pStepName, out availSteps);
-			Assert.True(found, pStepName+" is not an accepted NodeStep name.");
+			bool found = StepUtil.VertexStepMap.TryGetValue(pStepName, out availSteps);
+			Assert.True(found, pStepName+" is not an accepted VertexStep name.");
 
 			IPath p = new Mock<IPath>().Object;
-			INodeStep step = pNewStep(p);
+			IVertexStep step = pNewStep(p);
 			Assert.AreEqual(pTypeIdProp, step.TypeIdName, "Incorrect TypeIdName.");
 
 			////
 
 			const string fabDom = "Fabric.Domain";
 			Object domObj = Activator.CreateInstance(fabDom, fabDom+"."+pStepName).Unwrap();
-			Assert.True((domObj is INode), "Incorrect domain type: '"+domObj.GetType().Name+"'.");
+			Assert.True((domObj is IVertex), "Incorrect domain type: '"+domObj.GetType().Name+"'.");
 			Assert.AreEqual(isRoot, (step is IFinalStep), "Incorrect IFinalStep usage.");
 
 			if ( isRoot ) {
@@ -45,9 +45,9 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 				Assert.True(((IFinalStep)step).UseLocalData, "Incorrect UseLocalData.");
 			}
 			else {
-				INode domNode = (INode)domObj;
-				PropertyInfo nodeIdProp = domNode.GetType().GetProperty(pStepName+"Id");
-				//Assert.AreEqual(nodeIdProp.PropertyType == typeof(long), step.TypeIdIsLong,
+				IVertex domVertex = (IVertex)domObj;
+				PropertyInfo vertexIdProp = domVertex.GetType().GetProperty(pStepName+"Id");
+				//Assert.AreEqual(vertexIdProp.PropertyType == typeof(long), step.TypeIdIsLong,
 				//	"Incorrect TypeIdIsLong.");
 			}
 
@@ -91,7 +91,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestNextStep(INodeStep pStep, string pStepText, Mock<IPath> pMockPath) {
+		private void TestNextStep(IVertexStep pStep, string pStepText, Mock<IPath> pMockPath) {
 			pStep.SetDataAndUpdatePath(new StepData("first"));
 
 			IStep next = pStep.GetNextStep(pStepText);
@@ -103,15 +103,15 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 				"Next step '"+pStepText+"' does not contain expected name '"+lowerTn+"'.");
 
 			Times t = Times.Exactly(pStep is RootStep ? 2 : 1);
-			pMockPath.Verify(x => x.AddSegment(It.IsAny<INodeStep>(), It.IsAny<string>()), t);
+			pMockPath.Verify(x => x.AddSegment(It.IsAny<IVertexStep>(), It.IsAny<string>()), t);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void TotalNodeStepKeys() {
-			Assert.AreEqual(9, StepUtil.NodeStepMap.Keys.Count, "Incorrect NodeStepMap.Keys.Count.");
+		public void TotalVertexStepKeys() {
+			Assert.AreEqual(9, StepUtil.VertexStepMap.Keys.Count, "Incorrect VertexStepMap.Keys.Count.");
 		}
 
 

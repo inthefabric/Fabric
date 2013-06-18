@@ -2,7 +2,7 @@
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -72,14 +72,14 @@ namespace Fabric.Test.FabApiTraversal {
 			string expectScript = expectShortcut+"."+script3;
 			Mock<IStep> mockStep;
 
-			var nodeStep = new Mock<INodeStep>();
-			nodeStep.Setup(x => x.GetKeyIndexScript(typeId)).Returns(expectShortcut);
+			var vertexStep = new Mock<IVertexStep>();
+			vertexStep.Setup(x => x.GetKeyIndexScript(typeId)).Returns(expectShortcut);
 
 			var whereId = new Mock<IFuncWhereIdStep>();
 			whereId.SetupGet(x => x.Id).Returns(typeId);
 
 			TestAddSegmentToPath(p, script0, out mockStep);
-			p.AddSegment(nodeStep.Object, "XXX");
+			p.AddSegment(vertexStep.Object, "XXX");
 			p.AddSegment(whereId.Object, "XXX");
 			TestAddSegmentToPath(p, script3, out mockStep);
 

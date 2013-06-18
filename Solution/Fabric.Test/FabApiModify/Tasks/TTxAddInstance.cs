@@ -19,7 +19,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				PropDbName.Instance_Note+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V1,_TP);";
 
@@ -66,7 +66,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vNote,
 				vNewArtifactId,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.Instance,
+				(byte)VertexFabType.Instance,
 				RelDbName.MemberCreatesArtifact
 			});
 		}

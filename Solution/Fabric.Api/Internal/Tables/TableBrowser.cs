@@ -15,7 +15,7 @@ namespace Fabric.Api.Internal.Tables {
 		private readonly NancyModule vModule;
 
 		private IList<DbDto> vDtos;
-		private IDictionary<string, TableNode> vNodes;
+		private IDictionary<string, TableVertex> vVertices;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,27 +74,27 @@ namespace Fabric.Api.Internal.Tables {
 
 			////
 
-			vNodes = new Dictionary<string, TableNode>();
+			vVertices = new Dictionary<string, TableVertex>();
 
 			foreach ( IDbDto dto in vDtos ) {
-				if ( dto.Id == null || dto.Item != DbDto.ItemType.Node ) { continue; }
-				vNodes.Add(dto.Id, new TableNode(dto, vNodes.Count));
+				if ( dto.Id == null || dto.Item != DbDto.ItemType.Vertex ) { continue; }
+				vVertices.Add(dto.Id, new TableVertex(dto, vVertices.Count));
 			}
 
 			foreach ( IDbDto dto in vDtos ) {
 				if ( dto.Id == null || dto.InVertexId == null || dto.OutVertexId == null ) { continue; }
 				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
 
-				TableNode toNode, fromNode;
-				vNodes.TryGetValue(dto.InVertexId, out toNode);
-				vNodes.TryGetValue(dto.OutVertexId, out fromNode);
+				TableVertex toVertex, fromVertex;
+				vVertices.TryGetValue(dto.InVertexId, out toVertex);
+				vVertices.TryGetValue(dto.OutVertexId, out fromVertex);
 
-				if ( toNode != null ) {
-					toNode.AddRelIn(dto);
+				if ( toVertex != null ) {
+					toVertex.AddRelIn(dto);
 				}
 
-				if ( fromNode != null ) {
-					fromNode.AddRelOut(dto);
+				if ( fromVertex != null ) {
+					fromVertex.AddRelOut(dto);
 				}
 			}
 
@@ -102,9 +102,9 @@ namespace Fabric.Api.Internal.Tables {
 			
 			var colMap = new Dictionary<string, int>();
 			colMap.Add("Class", 0);
-			colMap.Add("NodeId", 1);
+			colMap.Add("VertexId", 1);
 
-			foreach ( TableNode n in vNodes.Values ) {
+			foreach ( TableVertex n in vVertices.Values ) {
 				n.AddNewDataKeys(colMap);
 			}
 
@@ -118,7 +118,7 @@ namespace Fabric.Api.Internal.Tables {
 
 			html += "</tr></thead><tbody>";
 
-			foreach ( TableNode n in vNodes.Values ) {
+			foreach ( TableVertex n in vVertices.Values ) {
 				html += n.ToHtmlRow(colMap);
 			}
 

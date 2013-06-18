@@ -1,6 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
@@ -50,13 +50,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 
-			INodeStep ns = (INodeStep)ProxyStep;
+			IVertexStep ns = (IVertexStep)ProxyStep;
 			string propParam = Path.AddParam(new WeaverQueryVal(ns.TypeIdName));
 			string idParam = Path.AddParam(new WeaverQueryVal(Id));
 			Path.AppendToCurrentSegment("("+propParam+","+idParam+")", false);
 
 			if ( FabType != null ) {
-				propParam = Path.AddParam(new WeaverQueryVal(PropDbName.Node_FabType));
+				propParam = Path.AddParam(new WeaverQueryVal(PropDbName.Vertex_FabType));
 				string ftParam = Path.AddParam(new WeaverQueryVal((byte)FabType));
 				Path.AppendToCurrentSegment("has("+propParam+","+ftParam+")");
 			}

@@ -6,16 +6,16 @@ using Fabric.Domain;
 namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
-	public abstract class FabNode : FabObject, IFabNode {
+	public abstract class FabVertex : FabObject, IFabVertex {
 
 		public string Uri { get; set; }
 
-		protected string NodeId { get; set; }
+		protected string VertexId { get; set; }
 		protected abstract long TypeId { get; }
 		protected virtual List<string> AvailableProps { get { return AvailProps; } }
 
 		public static readonly List<string> AvailProps = new List<string> {
-			"NodeId" 
+			"VertexId" 
 		};
 
 
@@ -26,7 +26,7 @@ namespace Fabric.Api.Dto.Traversal {
 				throw new Exception("DbDto.Id is null.");
 			}
 
-			NodeId = pDbDto.Id;
+			VertexId = pDbDto.Id;
 			FillResultData(pDbDto.Data);
 
 			Uri = "/WhereId("+TypeId+")";
@@ -36,8 +36,8 @@ namespace Fabric.Api.Dto.Traversal {
 		protected abstract void FillResultData(IDictionary<string,string> pData);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode(INode pNode) {
-			NodeId = pNode.Id;
+		public void FillWithVertex(IVertex pVertex) {
+			VertexId = pVertex.Id;
 		}
 
 

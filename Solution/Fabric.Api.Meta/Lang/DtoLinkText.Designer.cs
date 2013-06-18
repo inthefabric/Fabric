@@ -169,7 +169,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to an App..
+        ///   Looks up a localized string similar to Links the Root vertex to an App..
         /// </summary>
         internal static string RootContainsApp {
             get {
@@ -178,7 +178,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to an Artifact..
+        ///   Looks up a localized string similar to Links the Root vertex to an Artifact..
         /// </summary>
         internal static string RootContainsArtifact {
             get {
@@ -187,7 +187,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to a Class..
+        ///   Looks up a localized string similar to Links the Root vertex to a Class..
         /// </summary>
         internal static string RootContainsClass {
             get {
@@ -196,7 +196,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to a Factor..
+        ///   Looks up a localized string similar to Links the Root vertex to a Factor..
         /// </summary>
         internal static string RootContainsFactor {
             get {
@@ -205,7 +205,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to an Instance..
+        ///   Looks up a localized string similar to Links the Root vertex to an Instance..
         /// </summary>
         internal static string RootContainsInstance {
             get {
@@ -214,7 +214,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to a Member..
+        ///   Looks up a localized string similar to Links the Root vertex to a Member..
         /// </summary>
         internal static string RootContainsMember {
             get {
@@ -223,7 +223,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to a MemberTypeAssign..
+        ///   Looks up a localized string similar to Links the Root vertex to a MemberTypeAssign..
         /// </summary>
         internal static string RootContainsMemberTypeAssign {
             get {
@@ -232,7 +232,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to a Url..
+        ///   Looks up a localized string similar to Links the Root vertex to a Url..
         /// </summary>
         internal static string RootContainsUrl {
             get {
@@ -241,7 +241,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Links the Root node to a User..
+        ///   Looks up a localized string similar to Links the Root vertex to a User..
         /// </summary>
         internal static string RootContainsUser {
             get {

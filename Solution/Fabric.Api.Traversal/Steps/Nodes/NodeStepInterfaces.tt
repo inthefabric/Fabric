@@ -12,60 +12,60 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 <#
-IList<string> nodeNames = SchemaHelper.GetVertices();
+IList<string> vertexNames = SchemaHelper.GetVertices();
 var intMap = new Dictionary<string,bool>();
 
-foreach ( string name in nodeNames ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
+foreach ( string name in vertexNames ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
 
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
 		if ( intMap.ContainsKey(hr.RelPropName) ) { continue; }
 		intMap.Add(hr.RelPropName, true);
 #>
 	/*================================================================================================*/
 	public interface I<#= hr.RelPropName #> {
-		I<#= hr.TargetNodeType #>Step <#= hr.RelPropName #> { get; }
+		I<#= hr.TargetVertexType #>Step <#= hr.RelPropName #> { get; }
 	}
 
 <#
-	} //end nodeRels loop
-} //end nodes loop
+	} //end vertexRels loop
+} //end verts loop
 
-foreach ( string name in nodeNames ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
-	WeaverVertexSchema node = hn.NodeSchema;
-	if ( node.IsInternal ) { continue; }
+foreach ( string name in vertexNames ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	WeaverVertexSchema vertex = hn.VertexSchema;
+	if ( vertex.IsInternal ) { continue; }
 
-	IList<SchemaHelperNodeRel> nodeRels = hn.GetEdges(true);
-	string baseNode = (node.BaseVertex == null ? "Node" : node.BaseVertex.Name);
-	string interfaces = "I"+baseNode+"Step";
+	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
+	string baseVertex = (vertex.BaseVertex == null ? "Vertex" : vertex.BaseVertex.Name);
+	string interfaces = "I"+baseVertex+"Step";
 
-	if ( node.Name == "Root" ) {
+	if ( vertex.Name == "Root" ) {
 		interfaces += ", IFinalStep";
 	}
 
-	foreach ( SchemaHelperNodeRel hr in nodeRels ) {
+	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
 		interfaces += ", I"+hr.RelPropName;
 	}
 	
 	string typeIdIsLong = "false";
 	
-	foreach ( WeaverPropSchema prop in node.Props ) {
-		if ( prop.Name != node.Name+"Id" ) { continue; }
+	foreach ( WeaverPropSchema prop in vertex.Props ) {
+		if ( prop.Name != vertex.Name+"Id" ) { continue; }
 		typeIdIsLong = (prop.Type == typeof(long) ? "true" : "false");
 		break;
 	}
 #>
 	/*================================================================================================*/
-	public interface I<#= node.Name #>Step :
+	public interface I<#= vertex.Name #>Step :
 		<#= interfaces #> {
 	}
 
 <#
-} //end nodes loop
+} //end verts loop
 #>
 }

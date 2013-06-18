@@ -58,32 +58,32 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
-																		where T : class, INode, new() {
+		public void GetVertex<T>(T pVertexWithId, out IWeaverVarAlias<T> pVertexVar)
+																		where T : class, IVertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(
-				pNodeWithId.GetTypeIdProp<T>(), pNodeWithId.GetTypeId()).Next().ToQuery();
-			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNodeVar);
+				pVertexWithId.GetTypeIdProp<T>(), pVertexWithId.GetTypeId()).Next().ToQuery();
+			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
-			vVarHash.Add(pNodeVar);
+			vVarHash.Add(pVertexVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetNodeByNodeId<T>(T pNodeWithNodeId, out IWeaverVarAlias<T> pNodeVar)
-																		where T : class, INode, new() {
-			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pNodeWithNodeId.Id).ToQuery();
-			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNodeVar);
+		public void GetVertexByVertexId<T>(T pVertexWithVertexId, out IWeaverVarAlias<T> pVertexVar)
+																		where T : class, IVertex, new() {
+			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pVertexWithVertexId.Id).ToQuery();
+			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
-			vVarHash.Add(pNodeVar);
+			vVarHash.Add(pVertexVar);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T>(T pNode, out IWeaverVarAlias<T> pNewNodeVar) where T : class, INode {
-			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pNode);
-			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewNodeVar);
+		public void AddVertex<T>(T pVertex, out IWeaverVarAlias<T> pNewVertexVar) where T : class, IVertex {
+			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
+			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewVertexVar);
 			Transaction.AddQuery(q);
-			vVarHash.Add(pNewNodeVar);
+			vVarHash.Add(pNewVertexVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

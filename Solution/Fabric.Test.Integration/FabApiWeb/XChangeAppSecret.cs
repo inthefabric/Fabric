@@ -38,14 +38,14 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		public void Success() {
 			IsReadOnlyTest = false;
 
-			App oldApp = GetNode<App>(vAppId);
+			App oldApp = GetVertex<App>(vAppId);
 
 			TestGo();
 
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Result.Success should not be null.");
 
-			App upApp = GetNode<App>(vAppId);
+			App upApp = GetVertex<App>(vAppId);
 			Assert.AreNotEqual(oldApp.Secret, upApp.Secret, "Target App.Secret not updated.");
 		}
 

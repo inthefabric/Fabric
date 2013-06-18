@@ -9,37 +9,37 @@ using Weaver.Core.Query;
 namespace Fabric.Infrastructure.Weaver {
 
 	/*================================================================================================*/
-	public abstract class NodeBuilder<T> : DomainBuilder<T> where T : class, INode, new() {
+	public abstract class VertexBuilder<T> : DomainBuilder<T> where T : class, IVertex, new() {
 
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public NodeBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
+		public VertexBuilder(TxBuilder pTx, T pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public NodeBuilder(TxBuilder pTx) : base(pTx) {}
+		public VertexBuilder(TxBuilder pTx) : base(pTx) {}
 
 
 	}
 
 	/*================================================================================================*/
-	public abstract class NodeForActionBuilder<T> : DomainBuilder<T> where T : class, INode, new() {
+	public abstract class VertexForActionBuilder<T> : DomainBuilder<T> where T : class, IVertex, new() {
 
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public NodeForActionBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
+		public VertexForActionBuilder(TxBuilder pTx, T pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public NodeForActionBuilder(TxBuilder pTx) : base(pTx) {}
+		public VertexForActionBuilder(TxBuilder pTx) : base(pTx) {}
 
 
 	}
 
 	/*================================================================================================*/
-	public abstract class ArtifactBuilder<T> : DomainBuilder<T> where T : class, INode, new() {
+	public abstract class ArtifactBuilder<T> : DomainBuilder<T> where T : class, IVertex, new() {
 
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesPrimary { get; private set; }
@@ -52,7 +52,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactBuilder(TxBuilder pTx, T pNode) : base(pTx, pNode) {}
+		public ArtifactBuilder(TxBuilder pTx, T pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactBuilder(TxBuilder pTx) : base(pTx) {}
@@ -60,231 +60,231 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesArtifact>(pTargetNodeVar, NodeVar);
-			InMemberCreates = pTargetNodeVar;
+		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<MemberCreatesArtifact>(pTargetVertexVar, VertexVar);
+			InMemberCreates = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberCreates(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			SetInMemberCreates(pNodeVar);
+		public virtual void SetInMemberCreates(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			SetInMemberCreates(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberCreates(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberCreates(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			SetInMemberCreates(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberCreates(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberCreates(pMemberId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesPrimary(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesPrimaryArtifact>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInFactorListUsesPrimary(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<FactorUsesPrimaryArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListUsesPrimary = (InFactorListUsesPrimary ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListUsesPrimary.Add(pTargetNodeVar);
+			InFactorListUsesPrimary.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesPrimary(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListUsesPrimary(pNodeVar);
+		public virtual void AddToInFactorListUsesPrimary(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToInFactorListUsesPrimary(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListUsesPrimary(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListUsesPrimary(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListUsesPrimary(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToInFactorListUsesPrimary(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListUsesPrimary(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListUsesPrimary(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToInFactorListUsesPrimary(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListUsesPrimary(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListUsesPrimary(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListUsesPrimary(pFactorId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesRelated(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesRelatedArtifact>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInFactorListUsesRelated(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<FactorUsesRelatedArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListUsesRelated = (InFactorListUsesRelated ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListUsesRelated.Add(pTargetNodeVar);
+			InFactorListUsesRelated.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListUsesRelated(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListUsesRelated(pNodeVar);
+		public virtual void AddToInFactorListUsesRelated(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToInFactorListUsesRelated(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListUsesRelated(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListUsesRelated(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListUsesRelated(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToInFactorListUsesRelated(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListUsesRelated(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListUsesRelated(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToInFactorListUsesRelated(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListUsesRelated(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListUsesRelated(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListUsesRelated(pFactorId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListDescriptorRefinesPrimaryWith = (InFactorListDescriptorRefinesPrimaryWith ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListDescriptorRefinesPrimaryWith.Add(pTargetNodeVar);
+			InFactorListDescriptorRefinesPrimaryWith.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListDescriptorRefinesPrimaryWith(pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToInFactorListDescriptorRefinesPrimaryWith(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListDescriptorRefinesPrimaryWith(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListDescriptorRefinesPrimaryWith(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListDescriptorRefinesPrimaryWith(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToInFactorListDescriptorRefinesPrimaryWith(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListDescriptorRefinesPrimaryWith(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListDescriptorRefinesPrimaryWith(pFactorId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListDescriptorRefinesRelatedWith = (InFactorListDescriptorRefinesRelatedWith ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListDescriptorRefinesRelatedWith.Add(pTargetNodeVar);
+			InFactorListDescriptorRefinesRelatedWith.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListDescriptorRefinesRelatedWith(pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToInFactorListDescriptorRefinesRelatedWith(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListDescriptorRefinesRelatedWith(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListDescriptorRefinesRelatedWith(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListDescriptorRefinesRelatedWith(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToInFactorListDescriptorRefinesRelatedWith(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListDescriptorRefinesRelatedWith(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListDescriptorRefinesRelatedWith(pFactorId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListDescriptorRefinesTypeWith(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListDescriptorRefinesTypeWith = (InFactorListDescriptorRefinesTypeWith ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListDescriptorRefinesTypeWith.Add(pTargetNodeVar);
+			InFactorListDescriptorRefinesTypeWith.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListDescriptorRefinesTypeWith(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListDescriptorRefinesTypeWith(pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToInFactorListDescriptorRefinesTypeWith(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesTypeWith(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListDescriptorRefinesTypeWith(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListDescriptorRefinesTypeWith(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToInFactorListDescriptorRefinesTypeWith(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListDescriptorRefinesTypeWith(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListDescriptorRefinesTypeWith(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToInFactorListDescriptorRefinesTypeWith(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesTypeWith(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListDescriptorRefinesTypeWith(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListDescriptorRefinesTypeWith(pFactorId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListVectorUsesAxis(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInFactorListVectorUsesAxis(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListVectorUsesAxis = (InFactorListVectorUsesAxis ?? new List<IWeaverVarAlias<Factor>>());
-			InFactorListVectorUsesAxis.Add(pTargetNodeVar);
+			InFactorListVectorUsesAxis.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInFactorListVectorUsesAxis(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToInFactorListVectorUsesAxis(pNodeVar);
+		public virtual void AddToInFactorListVectorUsesAxis(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToInFactorListVectorUsesAxis(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListVectorUsesAxis(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListVectorUsesAxis(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListVectorUsesAxis(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToInFactorListVectorUsesAxis(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToInFactorListVectorUsesAxis(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToInFactorListVectorUsesAxis(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToInFactorListVectorUsesAxis(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListVectorUsesAxis(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToInFactorListVectorUsesAxis(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToInFactorListVectorUsesAxis(pFactorId, out vertexVar);
 		}
 		
 
@@ -303,7 +303,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppBuilder(TxBuilder pTx, App pNode) : base(pTx, pNode) {}
+		public AppBuilder(TxBuilder pTx, App pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public AppBuilder(TxBuilder pTx) : base(pTx) {}
@@ -315,198 +315,198 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetNodeVar) {
-			TxBuild.AddRel<AppUsesEmail>(NodeVar, pTargetNodeVar);
-			UsesEmail = pTargetNodeVar;
+		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetVertexVar) {
+			TxBuild.AddRel<AppUsesEmail>(VertexVar, pTargetVertexVar);
+			UsesEmail = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(Email pEmail, out IWeaverVarAlias<Email> pNodeVar) {
-			TxBuild.GetNode(pEmail, out pNodeVar);
-			SetUsesEmail(pNodeVar);
+		public virtual void SetUsesEmail(Email pEmail, out IWeaverVarAlias<Email> pVertexVar) {
+			TxBuild.GetVertex(pEmail, out pVertexVar);
+			SetUsesEmail(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(Email pEmail) {
-			IWeaverVarAlias<Email> nodeVar;
-			SetUsesEmail(pEmail, out nodeVar);
+			IWeaverVarAlias<Email> vertexVar;
+			SetUsesEmail(pEmail, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//EmailId
-		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
-			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
+		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pVertexVar) {
+			SetUsesEmail(new Email { EmailId = pEmailId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(long pEmailId) {
-			IWeaverVarAlias<Email> nodeVar;
-			SetUsesEmail(pEmailId, out nodeVar);
+			IWeaverVarAlias<Email> vertexVar;
+			SetUsesEmail(pEmailId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<AppDefinesMember>(NodeVar, pTargetNodeVar);
+		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<AppDefinesMember>(VertexVar, pTargetVertexVar);
 			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
-			DefinesMemberList.Add(pTargetNodeVar);
+			DefinesMemberList.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			AddToDefinesMemberList(pNodeVar);
+		public virtual void AddToDefinesMemberList(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			AddToDefinesMemberList(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToDefinesMemberList(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			AddToDefinesMemberList(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			AddToDefinesMemberList(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToDefinesMemberList(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			AddToDefinesMemberList(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			AddToDefinesMemberList(pMemberId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetVertexVar) {
+			TxBuild.AddRel<OauthAccessUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
-			InOauthAccessListUses.Add(pTargetNodeVar);
+			InOauthAccessListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess, out IWeaverVarAlias<OauthAccess> pNodeVar) {
-			TxBuild.GetNode(pOauthAccess, out pNodeVar);
-			AddToInOauthAccessListUses(pNodeVar);
+		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess, out IWeaverVarAlias<OauthAccess> pVertexVar) {
+			TxBuild.GetVertex(pOauthAccess, out pVertexVar);
+			AddToInOauthAccessListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess) {
-			IWeaverVarAlias<OauthAccess> nodeVar;
-			AddToInOauthAccessListUses(pOauthAccess, out nodeVar);
+			IWeaverVarAlias<OauthAccess> vertexVar;
+			AddToInOauthAccessListUses(pOauthAccess, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthAccessId
-		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
-			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
+		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pVertexVar) {
+			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthAccessListUses(long pOauthAccessId) {
-			IWeaverVarAlias<OauthAccess> nodeVar;
-			AddToInOauthAccessListUses(pOauthAccessId, out nodeVar);
+			IWeaverVarAlias<OauthAccess> vertexVar;
+			AddToInOauthAccessListUses(pOauthAccessId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(IWeaverVarAlias<OauthDomain> pTargetNodeVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthDomainListUses(IWeaverVarAlias<OauthDomain> pTargetVertexVar) {
+			TxBuild.AddRel<OauthDomainUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthDomainListUses = (InOauthDomainListUses ?? new List<IWeaverVarAlias<OauthDomain>>());
-			InOauthDomainListUses.Add(pTargetNodeVar);
+			InOauthDomainListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain, out IWeaverVarAlias<OauthDomain> pNodeVar) {
-			TxBuild.GetNode(pOauthDomain, out pNodeVar);
-			AddToInOauthDomainListUses(pNodeVar);
+		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain, out IWeaverVarAlias<OauthDomain> pVertexVar) {
+			TxBuild.GetVertex(pOauthDomain, out pVertexVar);
+			AddToInOauthDomainListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthDomainListUses(OauthDomain pOauthDomain) {
-			IWeaverVarAlias<OauthDomain> nodeVar;
-			AddToInOauthDomainListUses(pOauthDomain, out nodeVar);
+			IWeaverVarAlias<OauthDomain> vertexVar;
+			AddToInOauthDomainListUses(pOauthDomain, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthDomainId
-		public virtual void AddToInOauthDomainListUses(long pOauthDomainId, out IWeaverVarAlias<OauthDomain> pNodeVar) {
-			AddToInOauthDomainListUses(new OauthDomain { OauthDomainId = pOauthDomainId }, out pNodeVar);
+		public virtual void AddToInOauthDomainListUses(long pOauthDomainId, out IWeaverVarAlias<OauthDomain> pVertexVar) {
+			AddToInOauthDomainListUses(new OauthDomain { OauthDomainId = pOauthDomainId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthDomainListUses(long pOauthDomainId) {
-			IWeaverVarAlias<OauthDomain> nodeVar;
-			AddToInOauthDomainListUses(pOauthDomainId, out nodeVar);
+			IWeaverVarAlias<OauthDomain> vertexVar;
+			AddToInOauthDomainListUses(pOauthDomainId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetVertexVar) {
+			TxBuild.AddRel<OauthGrantUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
-			InOauthGrantListUses.Add(pTargetNodeVar);
+			InOauthGrantListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant, out IWeaverVarAlias<OauthGrant> pNodeVar) {
-			TxBuild.GetNode(pOauthGrant, out pNodeVar);
-			AddToInOauthGrantListUses(pNodeVar);
+		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant, out IWeaverVarAlias<OauthGrant> pVertexVar) {
+			TxBuild.GetVertex(pOauthGrant, out pVertexVar);
+			AddToInOauthGrantListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant) {
-			IWeaverVarAlias<OauthGrant> nodeVar;
-			AddToInOauthGrantListUses(pOauthGrant, out nodeVar);
+			IWeaverVarAlias<OauthGrant> vertexVar;
+			AddToInOauthGrantListUses(pOauthGrant, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthGrantId
-		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
-			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
+		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pVertexVar) {
+			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthGrantListUses(long pOauthGrantId) {
-			IWeaverVarAlias<OauthGrant> nodeVar;
-			AddToInOauthGrantListUses(pOauthGrantId, out nodeVar);
+			IWeaverVarAlias<OauthGrant> vertexVar;
+			AddToInOauthGrantListUses(pOauthGrantId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetVertexVar) {
+			TxBuild.AddRel<OauthScopeUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
-			InOauthScopeListUses.Add(pTargetNodeVar);
+			InOauthScopeListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope, out IWeaverVarAlias<OauthScope> pNodeVar) {
-			TxBuild.GetNode(pOauthScope, out pNodeVar);
-			AddToInOauthScopeListUses(pNodeVar);
+		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope, out IWeaverVarAlias<OauthScope> pVertexVar) {
+			TxBuild.GetVertex(pOauthScope, out pVertexVar);
+			AddToInOauthScopeListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope) {
-			IWeaverVarAlias<OauthScope> nodeVar;
-			AddToInOauthScopeListUses(pOauthScope, out nodeVar);
+			IWeaverVarAlias<OauthScope> vertexVar;
+			AddToInOauthScopeListUses(pOauthScope, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthScopeId
-		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
-			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
+		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pVertexVar) {
+			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthScopeListUses(long pOauthScopeId) {
-			IWeaverVarAlias<OauthScope> nodeVar;
-			AddToInOauthScopeListUses(pOauthScopeId, out nodeVar);
+			IWeaverVarAlias<OauthScope> vertexVar;
+			AddToInOauthScopeListUses(pOauthScopeId, out vertexVar);
 		}
 		
 
@@ -519,7 +519,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassBuilder(TxBuilder pTx, Class pNode) : base(pTx, pNode) {}
+		public ClassBuilder(TxBuilder pTx, Class pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassBuilder(TxBuilder pTx) : base(pTx) {}
@@ -532,7 +532,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class EmailBuilder : NodeBuilder<Email> {
+	public class EmailBuilder : VertexBuilder<Email> {
 
 		public virtual IList<IWeaverVarAlias<App>> InAppListUses { get; private set; }
 		public virtual IList<IWeaverVarAlias<User>> InUserListUses { get; private set; }
@@ -540,7 +540,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailBuilder(TxBuilder pTx, Email pNode) : base(pTx, pNode) {}
+		public EmailBuilder(TxBuilder pTx, Email pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailBuilder(TxBuilder pTx) : base(pTx) {}
@@ -552,67 +552,67 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInAppListUses(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<AppUsesEmail>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInAppListUses(IWeaverVarAlias<App> pTargetVertexVar) {
+			TxBuild.AddRel<AppUsesEmail>(pTargetVertexVar, VertexVar);
 			InAppListUses = (InAppListUses ?? new List<IWeaverVarAlias<App>>());
-			InAppListUses.Add(pTargetNodeVar);
+			InAppListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInAppListUses(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			AddToInAppListUses(pNodeVar);
+		public virtual void AddToInAppListUses(App pApp, out IWeaverVarAlias<App> pVertexVar) {
+			TxBuild.GetVertex(pApp, out pVertexVar);
+			AddToInAppListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInAppListUses(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			AddToInAppListUses(pApp, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			AddToInAppListUses(pApp, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void AddToInAppListUses(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
-			AddToInAppListUses(new App { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void AddToInAppListUses(long pArtifactId, out IWeaverVarAlias<App> pVertexVar) {
+			AddToInAppListUses(new App { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInAppListUses(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			AddToInAppListUses(pAppId, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			AddToInAppListUses(pAppId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInUserListUses(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserUsesEmail>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInUserListUses(IWeaverVarAlias<User> pTargetVertexVar) {
+			TxBuild.AddRel<UserUsesEmail>(pTargetVertexVar, VertexVar);
 			InUserListUses = (InUserListUses ?? new List<IWeaverVarAlias<User>>());
-			InUserListUses.Add(pTargetNodeVar);
+			InUserListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInUserListUses(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			AddToInUserListUses(pNodeVar);
+		public virtual void AddToInUserListUses(User pUser, out IWeaverVarAlias<User> pVertexVar) {
+			TxBuild.GetVertex(pUser, out pVertexVar);
+			AddToInUserListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInUserListUses(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			AddToInUserListUses(pUser, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			AddToInUserListUses(pUser, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void AddToInUserListUses(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
-			AddToInUserListUses(new User { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void AddToInUserListUses(long pArtifactId, out IWeaverVarAlias<User> pVertexVar) {
+			AddToInUserListUses(new User { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInUserListUses(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			AddToInUserListUses(pUserId, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			AddToInUserListUses(pUserId, out vertexVar);
 		}
 		
 
@@ -625,7 +625,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public InstanceBuilder(TxBuilder pTx, Instance pNode) : base(pTx, pNode) {}
+		public InstanceBuilder(TxBuilder pTx, Instance pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceBuilder(TxBuilder pTx) : base(pTx) {}
@@ -638,7 +638,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberBuilder : NodeBuilder<Member> {
+	public class MemberBuilder : VertexBuilder<Member> {
 
 		public virtual IWeaverVarAlias<App> InAppDefines { get; private set; }
 		public virtual IWeaverVarAlias<MemberTypeAssign> HasMemberTypeAssign { get; private set; }
@@ -651,7 +651,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberBuilder(TxBuilder pTx, Member pNode) : base(pTx, pNode) {}
+		public MemberBuilder(TxBuilder pTx, Member pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberBuilder(TxBuilder pTx) : base(pTx) {}
@@ -663,236 +663,236 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppDefines(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<AppDefinesMember>(pTargetNodeVar, NodeVar);
-			InAppDefines = pTargetNodeVar;
+		public virtual void SetInAppDefines(IWeaverVarAlias<App> pTargetVertexVar) {
+			TxBuild.AddRel<AppDefinesMember>(pTargetVertexVar, VertexVar);
+			InAppDefines = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInAppDefines(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			SetInAppDefines(pNodeVar);
+		public virtual void SetInAppDefines(App pApp, out IWeaverVarAlias<App> pVertexVar) {
+			TxBuild.GetVertex(pApp, out pVertexVar);
+			SetInAppDefines(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppDefines(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			SetInAppDefines(pApp, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetInAppDefines(pApp, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetInAppDefines(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
-			SetInAppDefines(new App { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetInAppDefines(long pArtifactId, out IWeaverVarAlias<App> pVertexVar) {
+			SetInAppDefines(new App { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppDefines(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			SetInAppDefines(pAppId, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetInAppDefines(pAppId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasMemberTypeAssign(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasMemberTypeAssign>(NodeVar, pTargetNodeVar);
-			HasMemberTypeAssign = pTargetNodeVar;
+		public virtual void SetHasMemberTypeAssign(IWeaverVarAlias<MemberTypeAssign> pTargetVertexVar) {
+			TxBuild.AddRel<MemberHasMemberTypeAssign>(VertexVar, pTargetVertexVar);
+			HasMemberTypeAssign = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetHasMemberTypeAssign(MemberTypeAssign pMemberTypeAssign, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pMemberTypeAssign, out pNodeVar);
-			SetHasMemberTypeAssign(pNodeVar);
+		public virtual void SetHasMemberTypeAssign(MemberTypeAssign pMemberTypeAssign, out IWeaverVarAlias<MemberTypeAssign> pVertexVar) {
+			TxBuild.GetVertex(pMemberTypeAssign, out pVertexVar);
+			SetHasMemberTypeAssign(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasMemberTypeAssign(MemberTypeAssign pMemberTypeAssign) {
-			IWeaverVarAlias<MemberTypeAssign> nodeVar;
-			SetHasMemberTypeAssign(pMemberTypeAssign, out nodeVar);
+			IWeaverVarAlias<MemberTypeAssign> vertexVar;
+			SetHasMemberTypeAssign(pMemberTypeAssign, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberTypeAssignId
-		public virtual void SetHasMemberTypeAssign(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
-			SetHasMemberTypeAssign(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		public virtual void SetHasMemberTypeAssign(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pVertexVar) {
+			SetHasMemberTypeAssign(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasMemberTypeAssign(long pMemberTypeAssignId) {
-			IWeaverVarAlias<MemberTypeAssign> nodeVar;
-			SetHasMemberTypeAssign(pMemberTypeAssignId, out nodeVar);
+			IWeaverVarAlias<MemberTypeAssign> vertexVar;
+			SetHasMemberTypeAssign(pMemberTypeAssignId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(NodeVar, pTargetNodeVar);
+		public virtual void AddToHasHistoricMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetVertexVar) {
+			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(VertexVar, pTargetVertexVar);
 			HasHistoricMemberTypeAssignList = (HasHistoricMemberTypeAssignList ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
-			HasHistoricMemberTypeAssignList.Add(pTargetNodeVar);
+			HasHistoricMemberTypeAssignList.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToHasHistoricMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pMemberTypeAssign, out pNodeVar);
-			AddToHasHistoricMemberTypeAssignList(pNodeVar);
+		public virtual void AddToHasHistoricMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign, out IWeaverVarAlias<MemberTypeAssign> pVertexVar) {
+			TxBuild.GetVertex(pMemberTypeAssign, out pVertexVar);
+			AddToHasHistoricMemberTypeAssignList(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToHasHistoricMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign) {
-			IWeaverVarAlias<MemberTypeAssign> nodeVar;
-			AddToHasHistoricMemberTypeAssignList(pMemberTypeAssign, out nodeVar);
+			IWeaverVarAlias<MemberTypeAssign> vertexVar;
+			AddToHasHistoricMemberTypeAssignList(pMemberTypeAssign, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberTypeAssignId
-		public virtual void AddToHasHistoricMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
-			AddToHasHistoricMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		public virtual void AddToHasHistoricMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pVertexVar) {
+			AddToHasHistoricMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToHasHistoricMemberTypeAssignList(long pMemberTypeAssignId) {
-			IWeaverVarAlias<MemberTypeAssign> nodeVar;
-			AddToHasHistoricMemberTypeAssignList(pMemberTypeAssignId, out nodeVar);
+			IWeaverVarAlias<MemberTypeAssign> vertexVar;
+			AddToHasHistoricMemberTypeAssignList(pMemberTypeAssignId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesArtifactList(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesArtifact>(NodeVar, pTargetNodeVar);
+		public virtual void AddToCreatesArtifactList(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<MemberCreatesArtifact>(VertexVar, pTargetVertexVar);
 			CreatesArtifactList = (CreatesArtifactList ?? new List<IWeaverVarAlias<Artifact>>());
-			CreatesArtifactList.Add(pTargetNodeVar);
+			CreatesArtifactList.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesArtifactList(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			AddToCreatesArtifactList(pNodeVar);
+		public virtual void AddToCreatesArtifactList(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			AddToCreatesArtifactList(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesArtifactList(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			AddToCreatesArtifactList(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			AddToCreatesArtifactList(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void AddToCreatesArtifactList(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			AddToCreatesArtifactList(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void AddToCreatesArtifactList(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			AddToCreatesArtifactList(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesArtifactList(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			AddToCreatesArtifactList(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			AddToCreatesArtifactList(pArtifactId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(NodeVar, pTargetNodeVar);
+		public virtual void AddToCreatesMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetVertexVar) {
+			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(VertexVar, pTargetVertexVar);
 			CreatesMemberTypeAssignList = (CreatesMemberTypeAssignList ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
-			CreatesMemberTypeAssignList.Add(pTargetNodeVar);
+			CreatesMemberTypeAssignList.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
-			TxBuild.GetNode(pMemberTypeAssign, out pNodeVar);
-			AddToCreatesMemberTypeAssignList(pNodeVar);
+		public virtual void AddToCreatesMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign, out IWeaverVarAlias<MemberTypeAssign> pVertexVar) {
+			TxBuild.GetVertex(pMemberTypeAssign, out pVertexVar);
+			AddToCreatesMemberTypeAssignList(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesMemberTypeAssignList(MemberTypeAssign pMemberTypeAssign) {
-			IWeaverVarAlias<MemberTypeAssign> nodeVar;
-			AddToCreatesMemberTypeAssignList(pMemberTypeAssign, out nodeVar);
+			IWeaverVarAlias<MemberTypeAssign> vertexVar;
+			AddToCreatesMemberTypeAssignList(pMemberTypeAssign, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberTypeAssignId
-		public virtual void AddToCreatesMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pNodeVar) {
-			AddToCreatesMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pNodeVar);
+		public virtual void AddToCreatesMemberTypeAssignList(long pMemberTypeAssignId, out IWeaverVarAlias<MemberTypeAssign> pVertexVar) {
+			AddToCreatesMemberTypeAssignList(new MemberTypeAssign { MemberTypeAssignId = pMemberTypeAssignId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesMemberTypeAssignList(long pMemberTypeAssignId) {
-			IWeaverVarAlias<MemberTypeAssign> nodeVar;
-			AddToCreatesMemberTypeAssignList(pMemberTypeAssignId, out nodeVar);
+			IWeaverVarAlias<MemberTypeAssign> vertexVar;
+			AddToCreatesMemberTypeAssignList(pMemberTypeAssignId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesFactorList(IWeaverVarAlias<Factor> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesFactor>(NodeVar, pTargetNodeVar);
+		public virtual void AddToCreatesFactorList(IWeaverVarAlias<Factor> pTargetVertexVar) {
+			TxBuild.AddRel<MemberCreatesFactor>(VertexVar, pTargetVertexVar);
 			CreatesFactorList = (CreatesFactorList ?? new List<IWeaverVarAlias<Factor>>());
-			CreatesFactorList.Add(pTargetNodeVar);
+			CreatesFactorList.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToCreatesFactorList(Factor pFactor, out IWeaverVarAlias<Factor> pNodeVar) {
-			TxBuild.GetNode(pFactor, out pNodeVar);
-			AddToCreatesFactorList(pNodeVar);
+		public virtual void AddToCreatesFactorList(Factor pFactor, out IWeaverVarAlias<Factor> pVertexVar) {
+			TxBuild.GetVertex(pFactor, out pVertexVar);
+			AddToCreatesFactorList(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesFactorList(Factor pFactor) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToCreatesFactorList(pFactor, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToCreatesFactorList(pFactor, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//FactorId
-		public virtual void AddToCreatesFactorList(long pFactorId, out IWeaverVarAlias<Factor> pNodeVar) {
-			AddToCreatesFactorList(new Factor { FactorId = pFactorId }, out pNodeVar);
+		public virtual void AddToCreatesFactorList(long pFactorId, out IWeaverVarAlias<Factor> pVertexVar) {
+			AddToCreatesFactorList(new Factor { FactorId = pFactorId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesFactorList(long pFactorId) {
-			IWeaverVarAlias<Factor> nodeVar;
-			AddToCreatesFactorList(pFactorId, out nodeVar);
+			IWeaverVarAlias<Factor> vertexVar;
+			AddToCreatesFactorList(pFactorId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesMember>(pTargetNodeVar, NodeVar);
-			InUserDefines = pTargetNodeVar;
+		public virtual void SetInUserDefines(IWeaverVarAlias<User> pTargetVertexVar) {
+			TxBuild.AddRel<UserDefinesMember>(pTargetVertexVar, VertexVar);
+			InUserDefines = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInUserDefines(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetInUserDefines(pNodeVar);
+		public virtual void SetInUserDefines(User pUser, out IWeaverVarAlias<User> pVertexVar) {
+			TxBuild.GetVertex(pUser, out pVertexVar);
+			SetInUserDefines(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserDefines(pUser, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetInUserDefines(pUser, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetInUserDefines(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
-			SetInUserDefines(new User { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetInUserDefines(long pArtifactId, out IWeaverVarAlias<User> pVertexVar) {
+			SetInUserDefines(new User { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetInUserDefines(pUserId, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetInUserDefines(pUserId, out vertexVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class MemberTypeAssignBuilder : NodeForActionBuilder<MemberTypeAssign> {
+	public class MemberTypeAssignBuilder : VertexForActionBuilder<MemberTypeAssign> {
 
 		public virtual IWeaverVarAlias<Member> InMemberHas { get; private set; }
 		public virtual IWeaverVarAlias<Member> InMemberHasHistoric { get; private set; }
@@ -901,7 +901,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignBuilder(TxBuilder pTx, MemberTypeAssign pNode) : base(pTx, pNode) {}
+		public MemberTypeAssignBuilder(TxBuilder pTx, MemberTypeAssign pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignBuilder(TxBuilder pTx) : base(pTx) {}
@@ -913,97 +913,97 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberHas(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasMemberTypeAssign>(pTargetNodeVar, NodeVar);
-			InMemberHas = pTargetNodeVar;
+		public virtual void SetInMemberHas(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<MemberHasMemberTypeAssign>(pTargetVertexVar, VertexVar);
+			InMemberHas = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberHas(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			SetInMemberHas(pNodeVar);
+		public virtual void SetInMemberHas(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			SetInMemberHas(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHas(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberHas(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberHas(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void SetInMemberHas(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			SetInMemberHas(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void SetInMemberHas(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			SetInMemberHas(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHas(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberHas(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberHas(pMemberId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberHasHistoric(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(pTargetNodeVar, NodeVar);
-			InMemberHasHistoric = pTargetNodeVar;
+		public virtual void SetInMemberHasHistoric(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(pTargetVertexVar, VertexVar);
+			InMemberHasHistoric = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberHasHistoric(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			SetInMemberHasHistoric(pNodeVar);
+		public virtual void SetInMemberHasHistoric(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			SetInMemberHasHistoric(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHasHistoric(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberHasHistoric(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberHasHistoric(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void SetInMemberHasHistoric(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			SetInMemberHasHistoric(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void SetInMemberHasHistoric(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			SetInMemberHasHistoric(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHasHistoric(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberHasHistoric(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberHasHistoric(pMemberId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(pTargetNodeVar, NodeVar);
-			InMemberCreates = pTargetNodeVar;
+		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(pTargetVertexVar, VertexVar);
+			InMemberCreates = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberCreates(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			SetInMemberCreates(pNodeVar);
+		public virtual void SetInMemberCreates(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			SetInMemberCreates(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberCreates(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberCreates(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			SetInMemberCreates(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberCreates(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberCreates(pMemberId, out vertexVar);
 		}
 		
 
@@ -1016,7 +1016,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlBuilder(TxBuilder pTx, Url pNode) : base(pTx, pNode) {}
+		public UrlBuilder(TxBuilder pTx, Url pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1040,7 +1040,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UserBuilder(TxBuilder pTx, User pNode) : base(pTx, pNode) {}
+		public UserBuilder(TxBuilder pTx, User pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public UserBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1052,172 +1052,172 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetNodeVar) {
-			TxBuild.AddRel<UserUsesEmail>(NodeVar, pTargetNodeVar);
-			UsesEmail = pTargetNodeVar;
+		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetVertexVar) {
+			TxBuild.AddRel<UserUsesEmail>(VertexVar, pTargetVertexVar);
+			UsesEmail = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesEmail(Email pEmail, out IWeaverVarAlias<Email> pNodeVar) {
-			TxBuild.GetNode(pEmail, out pNodeVar);
-			SetUsesEmail(pNodeVar);
+		public virtual void SetUsesEmail(Email pEmail, out IWeaverVarAlias<Email> pVertexVar) {
+			TxBuild.GetVertex(pEmail, out pVertexVar);
+			SetUsesEmail(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(Email pEmail) {
-			IWeaverVarAlias<Email> nodeVar;
-			SetUsesEmail(pEmail, out nodeVar);
+			IWeaverVarAlias<Email> vertexVar;
+			SetUsesEmail(pEmail, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//EmailId
-		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pNodeVar) {
-			SetUsesEmail(new Email { EmailId = pEmailId }, out pNodeVar);
+		public virtual void SetUsesEmail(long pEmailId, out IWeaverVarAlias<Email> pVertexVar) {
+			SetUsesEmail(new Email { EmailId = pEmailId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(long pEmailId) {
-			IWeaverVarAlias<Email> nodeVar;
-			SetUsesEmail(pEmailId, out nodeVar);
+			IWeaverVarAlias<Email> vertexVar;
+			SetUsesEmail(pEmailId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<UserDefinesMember>(NodeVar, pTargetNodeVar);
+		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<UserDefinesMember>(VertexVar, pTargetVertexVar);
 			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
-			DefinesMemberList.Add(pTargetNodeVar);
+			DefinesMemberList.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToDefinesMemberList(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			AddToDefinesMemberList(pNodeVar);
+		public virtual void AddToDefinesMemberList(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			AddToDefinesMemberList(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToDefinesMemberList(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			AddToDefinesMemberList(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			AddToDefinesMemberList(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void AddToDefinesMemberList(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			AddToDefinesMemberList(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToDefinesMemberList(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			AddToDefinesMemberList(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			AddToDefinesMemberList(pMemberId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesUser>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetVertexVar) {
+			TxBuild.AddRel<OauthAccessUsesUser>(pTargetVertexVar, VertexVar);
 			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
-			InOauthAccessListUses.Add(pTargetNodeVar);
+			InOauthAccessListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess, out IWeaverVarAlias<OauthAccess> pNodeVar) {
-			TxBuild.GetNode(pOauthAccess, out pNodeVar);
-			AddToInOauthAccessListUses(pNodeVar);
+		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess, out IWeaverVarAlias<OauthAccess> pVertexVar) {
+			TxBuild.GetVertex(pOauthAccess, out pVertexVar);
+			AddToInOauthAccessListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthAccessListUses(OauthAccess pOauthAccess) {
-			IWeaverVarAlias<OauthAccess> nodeVar;
-			AddToInOauthAccessListUses(pOauthAccess, out nodeVar);
+			IWeaverVarAlias<OauthAccess> vertexVar;
+			AddToInOauthAccessListUses(pOauthAccess, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthAccessId
-		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pNodeVar) {
-			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pNodeVar);
+		public virtual void AddToInOauthAccessListUses(long pOauthAccessId, out IWeaverVarAlias<OauthAccess> pVertexVar) {
+			AddToInOauthAccessListUses(new OauthAccess { OauthAccessId = pOauthAccessId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthAccessListUses(long pOauthAccessId) {
-			IWeaverVarAlias<OauthAccess> nodeVar;
-			AddToInOauthAccessListUses(pOauthAccessId, out nodeVar);
+			IWeaverVarAlias<OauthAccess> vertexVar;
+			AddToInOauthAccessListUses(pOauthAccessId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesUser>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetVertexVar) {
+			TxBuild.AddRel<OauthGrantUsesUser>(pTargetVertexVar, VertexVar);
 			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
-			InOauthGrantListUses.Add(pTargetNodeVar);
+			InOauthGrantListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant, out IWeaverVarAlias<OauthGrant> pNodeVar) {
-			TxBuild.GetNode(pOauthGrant, out pNodeVar);
-			AddToInOauthGrantListUses(pNodeVar);
+		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant, out IWeaverVarAlias<OauthGrant> pVertexVar) {
+			TxBuild.GetVertex(pOauthGrant, out pVertexVar);
+			AddToInOauthGrantListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthGrantListUses(OauthGrant pOauthGrant) {
-			IWeaverVarAlias<OauthGrant> nodeVar;
-			AddToInOauthGrantListUses(pOauthGrant, out nodeVar);
+			IWeaverVarAlias<OauthGrant> vertexVar;
+			AddToInOauthGrantListUses(pOauthGrant, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthGrantId
-		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pNodeVar) {
-			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pNodeVar);
+		public virtual void AddToInOauthGrantListUses(long pOauthGrantId, out IWeaverVarAlias<OauthGrant> pVertexVar) {
+			AddToInOauthGrantListUses(new OauthGrant { OauthGrantId = pOauthGrantId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthGrantListUses(long pOauthGrantId) {
-			IWeaverVarAlias<OauthGrant> nodeVar;
-			AddToInOauthGrantListUses(pOauthGrantId, out nodeVar);
+			IWeaverVarAlias<OauthGrant> vertexVar;
+			AddToInOauthGrantListUses(pOauthGrantId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesUser>(pTargetNodeVar, NodeVar);
+		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetVertexVar) {
+			TxBuild.AddRel<OauthScopeUsesUser>(pTargetVertexVar, VertexVar);
 			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
-			InOauthScopeListUses.Add(pTargetNodeVar);
+			InOauthScopeListUses.Add(pTargetVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope, out IWeaverVarAlias<OauthScope> pNodeVar) {
-			TxBuild.GetNode(pOauthScope, out pNodeVar);
-			AddToInOauthScopeListUses(pNodeVar);
+		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope, out IWeaverVarAlias<OauthScope> pVertexVar) {
+			TxBuild.GetVertex(pOauthScope, out pVertexVar);
+			AddToInOauthScopeListUses(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthScopeListUses(OauthScope pOauthScope) {
-			IWeaverVarAlias<OauthScope> nodeVar;
-			AddToInOauthScopeListUses(pOauthScope, out nodeVar);
+			IWeaverVarAlias<OauthScope> vertexVar;
+			AddToInOauthScopeListUses(pOauthScope, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//OauthScopeId
-		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pNodeVar) {
-			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pNodeVar);
+		public virtual void AddToInOauthScopeListUses(long pOauthScopeId, out IWeaverVarAlias<OauthScope> pVertexVar) {
+			AddToInOauthScopeListUses(new OauthScope { OauthScopeId = pOauthScopeId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthScopeListUses(long pOauthScopeId) {
-			IWeaverVarAlias<OauthScope> nodeVar;
-			AddToInOauthScopeListUses(pOauthScopeId, out nodeVar);
+			IWeaverVarAlias<OauthScope> vertexVar;
+			AddToInOauthScopeListUses(pOauthScopeId, out vertexVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class FactorBuilder : NodeBuilder<Factor> {
+	public class FactorBuilder : VertexBuilder<Factor> {
 
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IWeaverVarAlias<Artifact> UsesPrimaryArtifact { get; private set; }
@@ -1230,7 +1230,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorBuilder(TxBuilder pTx, Factor pNode) : base(pTx, pNode) {}
+		public FactorBuilder(TxBuilder pTx, Factor pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1242,232 +1242,232 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetNodeVar) {
-			TxBuild.AddRel<MemberCreatesFactor>(pTargetNodeVar, NodeVar);
-			InMemberCreates = pTargetNodeVar;
+		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetVertexVar) {
+			TxBuild.AddRel<MemberCreatesFactor>(pTargetVertexVar, VertexVar);
+			InMemberCreates = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetInMemberCreates(Member pMember, out IWeaverVarAlias<Member> pNodeVar) {
-			TxBuild.GetNode(pMember, out pNodeVar);
-			SetInMemberCreates(pNodeVar);
+		public virtual void SetInMemberCreates(Member pMember, out IWeaverVarAlias<Member> pVertexVar) {
+			TxBuild.GetVertex(pMember, out pVertexVar);
+			SetInMemberCreates(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(Member pMember) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberCreates(pMember, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberCreates(pMember, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//MemberId
-		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pNodeVar) {
-			SetInMemberCreates(new Member { MemberId = pMemberId }, out pNodeVar);
+		public virtual void SetInMemberCreates(long pMemberId, out IWeaverVarAlias<Member> pVertexVar) {
+			SetInMemberCreates(new Member { MemberId = pMemberId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(long pMemberId) {
-			IWeaverVarAlias<Member> nodeVar;
-			SetInMemberCreates(pMemberId, out nodeVar);
+			IWeaverVarAlias<Member> vertexVar;
+			SetInMemberCreates(pMemberId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesPrimaryArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesPrimaryArtifact>(NodeVar, pTargetNodeVar);
-			UsesPrimaryArtifact = pTargetNodeVar;
+		public virtual void SetUsesPrimaryArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<FactorUsesPrimaryArtifact>(VertexVar, pTargetVertexVar);
+			UsesPrimaryArtifact = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesPrimaryArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetUsesPrimaryArtifact(pNodeVar);
+		public virtual void SetUsesPrimaryArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			SetUsesPrimaryArtifact(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetUsesPrimaryArtifact(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetUsesPrimaryArtifact(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesPrimaryArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetUsesPrimaryArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesPrimaryArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			SetUsesPrimaryArtifact(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetUsesPrimaryArtifact(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetUsesPrimaryArtifact(pArtifactId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesRelatedArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorUsesRelatedArtifact>(NodeVar, pTargetNodeVar);
-			UsesRelatedArtifact = pTargetNodeVar;
+		public virtual void SetUsesRelatedArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<FactorUsesRelatedArtifact>(VertexVar, pTargetVertexVar);
+			UsesRelatedArtifact = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesRelatedArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetUsesRelatedArtifact(pNodeVar);
+		public virtual void SetUsesRelatedArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			SetUsesRelatedArtifact(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetUsesRelatedArtifact(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetUsesRelatedArtifact(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesRelatedArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetUsesRelatedArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesRelatedArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			SetUsesRelatedArtifact(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetUsesRelatedArtifact(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetUsesRelatedArtifact(pArtifactId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDescriptorRefinesPrimaryWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(NodeVar, pTargetNodeVar);
-			DescriptorRefinesPrimaryWithArtifact = pTargetNodeVar;
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(VertexVar, pTargetVertexVar);
+			DescriptorRefinesPrimaryWithArtifact = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDescriptorRefinesPrimaryWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetDescriptorRefinesPrimaryWithArtifact(pNodeVar);
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			SetDescriptorRefinesPrimaryWithArtifact(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesPrimaryWithArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetDescriptorRefinesPrimaryWithArtifact(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetDescriptorRefinesPrimaryWithArtifact(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetDescriptorRefinesPrimaryWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetDescriptorRefinesPrimaryWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetDescriptorRefinesPrimaryWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			SetDescriptorRefinesPrimaryWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesPrimaryWithArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetDescriptorRefinesPrimaryWithArtifact(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetDescriptorRefinesPrimaryWithArtifact(pArtifactId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDescriptorRefinesRelatedWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(NodeVar, pTargetNodeVar);
-			DescriptorRefinesRelatedWithArtifact = pTargetNodeVar;
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(VertexVar, pTargetVertexVar);
+			DescriptorRefinesRelatedWithArtifact = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDescriptorRefinesRelatedWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetDescriptorRefinesRelatedWithArtifact(pNodeVar);
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			SetDescriptorRefinesRelatedWithArtifact(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesRelatedWithArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetDescriptorRefinesRelatedWithArtifact(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetDescriptorRefinesRelatedWithArtifact(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetDescriptorRefinesRelatedWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetDescriptorRefinesRelatedWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetDescriptorRefinesRelatedWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			SetDescriptorRefinesRelatedWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesRelatedWithArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetDescriptorRefinesRelatedWithArtifact(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetDescriptorRefinesRelatedWithArtifact(pArtifactId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDescriptorRefinesTypeWithArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(NodeVar, pTargetNodeVar);
-			DescriptorRefinesTypeWithArtifact = pTargetNodeVar;
+		public virtual void SetDescriptorRefinesTypeWithArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(VertexVar, pTargetVertexVar);
+			DescriptorRefinesTypeWithArtifact = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetDescriptorRefinesTypeWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetDescriptorRefinesTypeWithArtifact(pNodeVar);
+		public virtual void SetDescriptorRefinesTypeWithArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			SetDescriptorRefinesTypeWithArtifact(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesTypeWithArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetDescriptorRefinesTypeWithArtifact(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetDescriptorRefinesTypeWithArtifact(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetDescriptorRefinesTypeWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetDescriptorRefinesTypeWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetDescriptorRefinesTypeWithArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			SetDescriptorRefinesTypeWithArtifact(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesTypeWithArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetDescriptorRefinesTypeWithArtifact(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetDescriptorRefinesTypeWithArtifact(pArtifactId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetVectorUsesAxisArtifact(IWeaverVarAlias<Artifact> pTargetNodeVar) {
-			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(NodeVar, pTargetNodeVar);
-			VectorUsesAxisArtifact = pTargetNodeVar;
+		public virtual void SetVectorUsesAxisArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
+			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(VertexVar, pTargetVertexVar);
+			VectorUsesAxisArtifact = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetVectorUsesAxisArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pNodeVar) {
-			TxBuild.GetNode(pArtifact, out pNodeVar);
-			SetVectorUsesAxisArtifact(pNodeVar);
+		public virtual void SetVectorUsesAxisArtifact(Artifact pArtifact, out IWeaverVarAlias<Artifact> pVertexVar) {
+			TxBuild.GetVertex(pArtifact, out pVertexVar);
+			SetVectorUsesAxisArtifact(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetVectorUsesAxisArtifact(Artifact pArtifact) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetVectorUsesAxisArtifact(pArtifact, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetVectorUsesAxisArtifact(pArtifact, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetVectorUsesAxisArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pNodeVar) {
-			SetVectorUsesAxisArtifact(new Artifact { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetVectorUsesAxisArtifact(long pArtifactId, out IWeaverVarAlias<Artifact> pVertexVar) {
+			SetVectorUsesAxisArtifact(new Artifact { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetVectorUsesAxisArtifact(long pArtifactId) {
-			IWeaverVarAlias<Artifact> nodeVar;
-			SetVectorUsesAxisArtifact(pArtifactId, out nodeVar);
+			IWeaverVarAlias<Artifact> vertexVar;
+			SetVectorUsesAxisArtifact(pArtifactId, out vertexVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class OauthAccessBuilder : NodeBuilder<OauthAccess> {
+	public class OauthAccessBuilder : VertexBuilder<OauthAccess> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -1475,7 +1475,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessBuilder(TxBuilder pTx, OauthAccess pNode) : base(pTx, pNode) {}
+		public OauthAccessBuilder(TxBuilder pTx, OauthAccess pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccessBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1487,79 +1487,79 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(NodeVar, pTargetNodeVar);
-			UsesApp = pTargetNodeVar;
+		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
+			TxBuild.AddRel<OauthAccessUsesApp>(VertexVar, pTargetVertexVar);
+			UsesApp = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			SetUsesApp(pNodeVar);
+		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pVertexVar) {
+			TxBuild.GetVertex(pApp, out pVertexVar);
+			SetUsesApp(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pApp, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pApp, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pVertexVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pAppId, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pAppId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<OauthAccessUsesUser>(NodeVar, pTargetNodeVar);
-			UsesUser = pTargetNodeVar;
+		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetVertexVar) {
+			TxBuild.AddRel<OauthAccessUsesUser>(VertexVar, pTargetVertexVar);
+			UsesUser = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetUsesUser(pNodeVar);
+		public virtual void SetUsesUser(User pUser, out IWeaverVarAlias<User> pVertexVar) {
+			TxBuild.GetVertex(pUser, out pVertexVar);
+			SetUsesUser(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetUsesUser(pUser, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetUsesUser(pUser, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
-			SetUsesUser(new User { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pVertexVar) {
+			SetUsesUser(new User { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetUsesUser(pUserId, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetUsesUser(pUserId, out vertexVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class OauthDomainBuilder : NodeBuilder<OauthDomain> {
+	public class OauthDomainBuilder : VertexBuilder<OauthDomain> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomainBuilder(TxBuilder pTx, OauthDomain pNode) : base(pTx, pNode) {}
+		public OauthDomainBuilder(TxBuilder pTx, OauthDomain pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1571,40 +1571,40 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(NodeVar, pTargetNodeVar);
-			UsesApp = pTargetNodeVar;
+		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
+			TxBuild.AddRel<OauthDomainUsesApp>(VertexVar, pTargetVertexVar);
+			UsesApp = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			SetUsesApp(pNodeVar);
+		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pVertexVar) {
+			TxBuild.GetVertex(pApp, out pVertexVar);
+			SetUsesApp(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pApp, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pApp, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pVertexVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pAppId, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pAppId, out vertexVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class OauthGrantBuilder : NodeBuilder<OauthGrant> {
+	public class OauthGrantBuilder : VertexBuilder<OauthGrant> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -1612,7 +1612,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrantBuilder(TxBuilder pTx, OauthGrant pNode) : base(pTx, pNode) {}
+		public OauthGrantBuilder(TxBuilder pTx, OauthGrant pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrantBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1624,72 +1624,72 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(NodeVar, pTargetNodeVar);
-			UsesApp = pTargetNodeVar;
+		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
+			TxBuild.AddRel<OauthGrantUsesApp>(VertexVar, pTargetVertexVar);
+			UsesApp = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			SetUsesApp(pNodeVar);
+		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pVertexVar) {
+			TxBuild.GetVertex(pApp, out pVertexVar);
+			SetUsesApp(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pApp, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pApp, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pVertexVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pAppId, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pAppId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<OauthGrantUsesUser>(NodeVar, pTargetNodeVar);
-			UsesUser = pTargetNodeVar;
+		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetVertexVar) {
+			TxBuild.AddRel<OauthGrantUsesUser>(VertexVar, pTargetVertexVar);
+			UsesUser = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetUsesUser(pNodeVar);
+		public virtual void SetUsesUser(User pUser, out IWeaverVarAlias<User> pVertexVar) {
+			TxBuild.GetVertex(pUser, out pVertexVar);
+			SetUsesUser(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetUsesUser(pUser, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetUsesUser(pUser, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
-			SetUsesUser(new User { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pVertexVar) {
+			SetUsesUser(new User { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetUsesUser(pUserId, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetUsesUser(pUserId, out vertexVar);
 		}
 		
 
 	}
 
 	/*================================================================================================*/
-	public class OauthScopeBuilder : NodeBuilder<OauthScope> {
+	public class OauthScopeBuilder : VertexBuilder<OauthScope> {
 
 		public virtual IWeaverVarAlias<App> UsesApp { get; private set; }
 		public virtual IWeaverVarAlias<User> UsesUser { get; private set; }
@@ -1697,7 +1697,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthScopeBuilder(TxBuilder pTx, OauthScope pNode) : base(pTx, pNode) {}
+		public OauthScopeBuilder(TxBuilder pTx, OauthScope pVertex) : base(pTx, pVertex) {}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeBuilder(TxBuilder pTx) : base(pTx) {}
@@ -1709,65 +1709,65 @@ namespace Fabric.Infrastructure.Weaver {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(NodeVar, pTargetNodeVar);
-			UsesApp = pTargetNodeVar;
+		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
+			TxBuild.AddRel<OauthScopeUsesApp>(VertexVar, pTargetVertexVar);
+			UsesApp = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pNodeVar) {
-			TxBuild.GetNode(pApp, out pNodeVar);
-			SetUsesApp(pNodeVar);
+		public virtual void SetUsesApp(App pApp, out IWeaverVarAlias<App> pVertexVar) {
+			TxBuild.GetVertex(pApp, out pVertexVar);
+			SetUsesApp(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(App pApp) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pApp, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pApp, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pNodeVar) {
-			SetUsesApp(new App { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesApp(long pArtifactId, out IWeaverVarAlias<App> pVertexVar) {
+			SetUsesApp(new App { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(long pAppId) {
-			IWeaverVarAlias<App> nodeVar;
-			SetUsesApp(pAppId, out nodeVar);
+			IWeaverVarAlias<App> vertexVar;
+			SetUsesApp(pAppId, out vertexVar);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetNodeVar) {
-			TxBuild.AddRel<OauthScopeUsesUser>(NodeVar, pTargetNodeVar);
-			UsesUser = pTargetNodeVar;
+		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetVertexVar) {
+			TxBuild.AddRel<OauthScopeUsesUser>(VertexVar, pTargetVertexVar);
+			UsesUser = pTargetVertexVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void SetUsesUser(User pUser, out IWeaverVarAlias<User> pNodeVar) {
-			TxBuild.GetNode(pUser, out pNodeVar);
-			SetUsesUser(pNodeVar);
+		public virtual void SetUsesUser(User pUser, out IWeaverVarAlias<User> pVertexVar) {
+			TxBuild.GetVertex(pUser, out pVertexVar);
+			SetUsesUser(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(User pUser) {
-			IWeaverVarAlias<User> nodeVar;
-			SetUsesUser(pUser, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetUsesUser(pUser, out vertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		//ArtifactId
-		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pNodeVar) {
-			SetUsesUser(new User { ArtifactId = pArtifactId }, out pNodeVar);
+		public virtual void SetUsesUser(long pArtifactId, out IWeaverVarAlias<User> pVertexVar) {
+			SetUsesUser(new User { ArtifactId = pArtifactId }, out pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(long pUserId) {
-			IWeaverVarAlias<User> nodeVar;
-			SetUsesUser(pUserId, out nodeVar);
+			IWeaverVarAlias<User> vertexVar;
+			SetUsesUser(pUserId, out vertexVar);
 		}
 		
 

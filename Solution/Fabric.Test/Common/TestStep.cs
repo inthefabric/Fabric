@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
-	public class TestStep : Step<TestFabNode> {
+	public class TestStep : Step<TestFabVertex> {
 
 		public static readonly List<IStepLink> TestAvailLinks = new List<IStepLink> {
-			new StepLink("Test", "SomeNode", true, "/PathToSomeNode"),
-			new StepLink("TEST2", "OtherNode", false, "/PathToOtherNode")
+			new StepLink("Test", "SomeVertex", true, "/PathToSomeVertex"),
+			new StepLink("TEST2", "OtherVertex", false, "/PathToOtherVertex")
 		};
 
 		public const string SegmentText = "testStep(x)";

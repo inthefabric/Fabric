@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			IWeaverVarAlias<Class> urlVar;
 			var mem = new Member { MemberId = (long)SetupUsers.MemberId.GalZach };
 
-			TxBuild.GetNode(mem, out memVar);
+			TxBuild.GetVertex(mem, out memVar);
 			Tasks.TxAddClass(ApiCtx, TxBuild, pName, pDisamb, pNote, memVar, out urlVar);
 			FinishTx();
 
@@ -29,18 +29,18 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			////
 
-			Class newClass = GetNode<Class>(ApiCtx.SharpflakeIds[0]);
+			Class newClass = GetVertex<Class>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newClass, "New Class was not created.");
 			Assert.AreNotEqual(0, newClass.ArtifactId, "Incorrect ClassId.");
 			Assert.AreEqual(pName, newClass.Name, "Incorrect Name.");
 			Assert.AreEqual(pDisamb, newClass.Disamb, "Incorrect Disamb.");
 			Assert.AreEqual(pNote, newClass.Note, "Incorrect Note.");
 
-			NodeConnections conn = GetNodeConnections(newClass);
+			VertexConnections conn = GetVertexConnections(newClass);
 			conn.AssertRelCount(1, 0);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 1;
 		}
 

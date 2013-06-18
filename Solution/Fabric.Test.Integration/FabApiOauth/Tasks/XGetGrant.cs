@@ -20,7 +20,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			OauthGrant og = GetNode<OauthGrant>((long)SetupOauth.OauthGrantId.GalMel);
+			OauthGrant og = GetVertex<OauthGrant>((long)SetupOauth.OauthGrantId.GalMel);
 			ApiCtx.TestUtcNow = new DateTime(og.Expires).AddMinutes(-20);
 		}
 
@@ -38,7 +38,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 									SetupUsers.AppId pExpectAppId, SetupUsers.UserId pExpectUserId) {
 			vCode = pCode;
 
-			OauthGrant clearOg = GetNode<OauthGrant>((long)pExpectId);
+			OauthGrant clearOg = GetVertex<OauthGrant>((long)pExpectId);
 			Assert.NotNull(clearOg, "Target OauthGrant is missing.");
 			Assert.NotNull(clearOg.Code, "Target OauthGrant must have a Token value.");
 
@@ -51,7 +51,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.AreEqual((long)pExpectAppId, result.AppId, "Incorrect AppId.");
 			Assert.AreEqual((long)pExpectUserId, result.UserId, "Incorrect UserId.");
 
-			clearOg = GetNode<OauthGrant>((long)pExpectId);
+			clearOg = GetVertex<OauthGrant>((long)pExpectId);
 			Assert.NotNull(clearOg, "Target OauthGrant was deleted.");
 			Assert.AreEqual("", clearOg.Code, "Target OauthGrant.Code was not cleared.");
 
@@ -79,7 +79,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCodes() {
-			IWeaverQuery q = GetNodeByPropQuery<OauthGrant>(
+			IWeaverQuery q = GetVertexByPropQuery<OauthGrant>(
 				".has('"+PropDbName.OauthGrant_Code+"',Tokens.T.eq,'').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
 			return int.Parse(data.Result.TextList[0]);

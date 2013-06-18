@@ -76,7 +76,7 @@ namespace Fabric.Api.Modify {
 		private TxBuilder GetFullTx(out IWeaverVarAlias<Member> pMemVar,
 																out IWeaverVarAlias<Class> pClassVar) {
 			var txb = new TxBuilder();
-			txb.GetNodeByNodeId(GetContextMember(), out pMemVar);
+			txb.GetVertexByVertexId(GetContextMember(), out pMemVar);
 			AppendTx(txb, pMemVar, out pClassVar);
 			return txb;
 		}

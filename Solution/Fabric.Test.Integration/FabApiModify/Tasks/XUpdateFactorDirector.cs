@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Tasks.UpdateFactorDirector(ApiCtx, f, (byte)pDirTypeId, (byte)pPrimActId, (byte)pRelActId);
 
-			Factor fac = GetNode<Factor>(f.FactorId);
+			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");
 			Assert.AreEqual((byte)pDirTypeId, fac.Director_TypeId, "Incorrect Director_TypeId.");
 		}

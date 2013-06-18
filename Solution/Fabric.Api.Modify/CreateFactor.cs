@@ -63,19 +63,19 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyRequiredNodes() {
-			if ( ApiCtx.DbNodeById<Artifact>(vPrimArtId) == null ) {
+		private void VerifyRequiredVertices() {
+			if ( ApiCtx.DbVertexById<Artifact>(vPrimArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtParam+"="+vPrimArtId);
 			}
 
-			if ( ApiCtx.DbNodeById<Artifact>(vRelArtId) == null ) {
+			if ( ApiCtx.DbVertexById<Artifact>(vRelArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), RelArtParam+"="+vRelArtId);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Factor Execute() {
-			VerifyRequiredNodes();
+			VerifyRequiredVertices();
 			Member m = GetContextMember();
 
 			IWeaverVarAlias<Factor> factorVar;

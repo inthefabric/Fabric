@@ -2,7 +2,7 @@
 // Changes made to this source file will be overwritten
 // Generated on 5/5/2013 9:59:19 PM
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 	/*================================================================================================*/
 	public interface IInMemberCreates {
@@ -140,13 +140,13 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public interface INodeForActionStep :
-		INodeStep {
+	public interface IVertexForActionStep :
+		IVertexStep {
 	}
 
 	/*================================================================================================*/
 	public interface IArtifactStep :
-		INodeStep, IInMemberCreates, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInFactorListDescriptorRefinesPrimaryWith, IInFactorListDescriptorRefinesRelatedWith, IInFactorListDescriptorRefinesTypeWith, IInFactorListVectorUsesAxis {
+		IVertexStep, IInMemberCreates, IInFactorListUsesPrimary, IInFactorListUsesRelated, IInFactorListDescriptorRefinesPrimaryWith, IInFactorListDescriptorRefinesRelatedWith, IInFactorListDescriptorRefinesTypeWith, IInFactorListVectorUsesAxis {
 	}
 
 	/*================================================================================================*/
@@ -166,12 +166,12 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IMemberStep :
-		INodeStep, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
+		IVertexStep, IInAppDefines, IHasMemberTypeAssign, IHasHistoricMemberTypeAssignList, ICreatesArtifactList, ICreatesMemberTypeAssignList, ICreatesFactorList, IInUserDefines {
 	}
 
 	/*================================================================================================*/
 	public interface IMemberTypeAssignStep :
-		INodeForActionStep, IInMemberHas, IInMemberHasHistoric, IInMemberCreates {
+		IVertexForActionStep, IInMemberHas, IInMemberHasHistoric, IInMemberCreates {
 	}
 
 	/*================================================================================================*/
@@ -186,7 +186,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 
 	/*================================================================================================*/
 	public interface IFactorStep :
-		INodeStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IDescriptorRefinesPrimaryWithArtifact, IDescriptorRefinesRelatedWithArtifact, IDescriptorRefinesTypeWithArtifact, IVectorUsesAxisArtifact {
+		IVertexStep, IInMemberCreates, IUsesPrimaryArtifact, IUsesRelatedArtifact, IDescriptorRefinesPrimaryWithArtifact, IDescriptorRefinesRelatedWithArtifact, IDescriptorRefinesTypeWithArtifact, IVectorUsesAxisArtifact {
 	}
 
 }

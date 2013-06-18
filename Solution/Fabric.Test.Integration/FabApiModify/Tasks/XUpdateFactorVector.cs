@@ -23,13 +23,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Tasks.UpdateFactorVector(ApiCtx, f, (byte)pVecTypeId, pValue, (long)pAxisArtId,
 				(byte)pVecUnitId, (byte)pVecUnitPrefId);
 
-			Factor fac = GetNode<Factor>(f.FactorId);
+			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");
 			Assert.AreEqual((byte)pVecTypeId, fac.Vector_TypeId, "Incorrect Vector_TypeId.");
 
 			////
 
-			NodeConnections conn = GetNodeConnections(fac);
+			VertexConnections conn = GetVertexConnections(fac);
 			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
 			conn.AssertRel<FactorVectorUsesAxisArtifact, Artifact>(true,
 				(long)pAxisArtId, PropDbName.Artifact_ArtifactId);

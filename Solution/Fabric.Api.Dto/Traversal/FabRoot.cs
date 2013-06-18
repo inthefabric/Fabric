@@ -3,7 +3,7 @@
 namespace Fabric.Api.Dto.Traversal {
 
 	/*================================================================================================*/
-	public class FabRoot : FabNode {
+	public class FabRoot : FabVertex {
 
 		protected override long TypeId { get { return 0; } }
 

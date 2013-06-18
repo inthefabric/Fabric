@@ -8,12 +8,12 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
 using Fabric.Infrastructure.Weaver;
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 	/*================================================================================================*/
 	public partial class AppStep : ArtifactStep<FabApp>, IAppStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
 
@@ -29,7 +29,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -57,7 +57,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class ClassStep : ArtifactStep<FabClass>, IClassStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 		};
 
 
@@ -72,7 +72,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 
@@ -83,7 +83,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class InstanceStep : ArtifactStep<FabInstance>, IInstanceStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 		};
 
 
@@ -98,7 +98,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 
@@ -107,9 +107,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberStep : NodeStep<FabMember>, IMemberStep {
+	public partial class MemberStep : VertexStep<FabMember>, IMemberStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Defines", "App", false, "/InAppDefines"),
 			new StepLink("Has", "MemberTypeAssign", true, "/HasMemberTypeAssign"),
 			new StepLink("HasHistoric", "MemberTypeAssign", true, "/HasHistoricMemberTypeAssignList"),
@@ -135,7 +135,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -221,9 +221,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssignStep : NodeForActionStep<FabMemberTypeAssign>, IMemberTypeAssignStep {
+	public partial class MemberTypeAssignStep : VertexForActionStep<FabMemberTypeAssign>, IMemberTypeAssignStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Has", "Member", false, "/InMemberHas"),
 			new StepLink("HasHistoric", "Member", false, "/InMemberHasHistoric"),
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
@@ -245,7 +245,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -293,7 +293,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class UrlStep : ArtifactStep<FabUrl>, IUrlStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 		};
 
 
@@ -308,7 +308,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 
@@ -319,7 +319,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	/*================================================================================================*/
 	public partial class UserStep : ArtifactStep<FabUser>, IUserStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Defines", "Member", true, "/DefinesMemberList"),
 		};
 
@@ -335,7 +335,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -361,9 +361,9 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 	}
 
 	/*================================================================================================*/
-	public partial class FactorStep : NodeStep<FabFactor>, IFactorStep {
+	public partial class FactorStep : VertexStep<FabFactor>, IFactorStep {
 		
-		private static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		private static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Creates", "Member", false, "/InMemberCreates"),
 			new StepLink("UsesPrimary", "Artifact", true, "/UsesPrimaryArtifact"),
 			new StepLink("UsesRelated", "Artifact", true, "/UsesRelatedArtifact"),
@@ -389,7 +389,7 @@ namespace Fabric.Api.Traversal.Steps.Nodes {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public override List<IStepLink> AvailableLinks {
-			get { return base.AvailableLinks.Concat(AvailNodeLinks).ToList(); }
+			get { return base.AvailableLinks.Concat(AvailVertexLinks).ToList(); }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

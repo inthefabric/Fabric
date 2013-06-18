@@ -399,20 +399,20 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The base class for all nodes present in the Fabric &quot;graph&quot;.  Only Nodes are present and traversable via the [[Traversal Service|Serv|Traversal]]..
+        ///   Looks up a localized string similar to The base class for all verts present in the Fabric &quot;graph&quot;.  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]]..
         /// </summary>
-        internal static string Node {
+        internal static string Vertex {
             get {
-                return ResourceManager.GetString("Node", resourceCulture);
+                return ResourceManager.GetString("Vertex", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The base class for various &quot;actions&quot; that can occur..
         /// </summary>
-        internal static string NodeForAction {
+        internal static string VertexForAction {
             get {
-                return ResourceManager.GetString("NodeForAction", resourceCulture);
+                return ResourceManager.GetString("VertexForAction", resourceCulture);
             }
         }
         
@@ -500,7 +500,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contains all the relevant information about a Node&apos;s traversal link..
+        ///   Looks up a localized string similar to Contains all the relevant information about a Vertex&apos;s traversal link..
         /// </summary>
         internal static string StepLink {
             get {

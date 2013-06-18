@@ -16,7 +16,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.Email_EmailId+":_TP,"+
 				PropDbName.Email_Address+":_TP,"+
 				PropDbName.Email_Created+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);";
 
 		private string vAddress;
@@ -55,7 +55,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewEmailId,
 				vAddress,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.Email
+				(byte)VertexFabType.Email
 			});
 		}
 

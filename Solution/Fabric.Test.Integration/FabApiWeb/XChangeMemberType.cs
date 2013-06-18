@@ -56,16 +56,16 @@ namespace Fabric.Test.Integration.FabApiWeb {
 
 			////
 
-			MemberTypeAssign newMta = GetNode<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
+			MemberTypeAssign newMta = GetVertex<MemberTypeAssign>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
-			NodeConnections conn = GetNodeConnections(newMta);
+			VertexConnections conn = GetVertexConnections(newMta);
 			conn.AssertRelCount(2, 0);
 			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, vAssigningMemberId);
 			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, vMemberId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 2;
 		}
 

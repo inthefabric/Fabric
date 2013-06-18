@@ -10,33 +10,33 @@ using Weaver.Core.Elements;
 namespace Fabric.Test.Integration.Common {
 
 	/*================================================================================================*/
-	public class NodeConnections {
+	public class VertexConnections {
 
-		public INodeWithId Node { get; private set; }
+		public IVertexWithId Vertex { get; private set; }
 		public IApiDataAccess DataAccess { get; private set; }
 
-		public IList<IDbDto> TargetNodes { get; private set; }
-		public IList<NodeConnectionRel> OutRels { get; private set; }
-		public IList<NodeConnectionRel> InRels { get; private set; }
+		public IList<IDbDto> TargetVertices { get; private set; }
+		public IList<VertexConnectionRel> OutRels { get; private set; }
+		public IList<VertexConnectionRel> InRels { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public NodeConnections(INodeWithId pNode, IApiDataAccess pData) {
-			Node = pNode;
+		public VertexConnections(IVertexWithId pVertex, IApiDataAccess pData) {
+			Vertex = pVertex;
 			DataAccess = pData;
 
-			TargetNodes = new List<IDbDto>();
-			OutRels = new List<NodeConnectionRel>();
-			InRels = new List<NodeConnectionRel>();
+			TargetVertices = new List<IDbDto>();
+			OutRels = new List<VertexConnectionRel>();
+			InRels = new List<VertexConnectionRel>();
 
 			if ( DataAccess.ResultDtoList == null ) {
 				return;
 			}
 
 			foreach ( IDbDto dbDto in DataAccess.ResultDtoList ) {
-				if ( dbDto.Item == DbDto.ItemType.Node ) {
-					TargetNodes.Add(dbDto);
+				if ( dbDto.Item == DbDto.ItemType.Vertex ) {
+					TargetVertices.Add(dbDto);
 				}
 			}
 
@@ -51,17 +51,17 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AssertRelCount(int pIncoming, int pOutgoing) {
-			string end = " count for "+Node.GetType().Name+".";
+			string end = " count for "+Vertex.GetType().Name+".";
 			Assert.AreEqual(pIncoming, InRels.Count, "Incorrect InRels"+end);
 			Assert.AreEqual(pOutgoing, OutRels.Count, "Incorrect OutRels"+end);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AssertRelCount<TRel>(bool pIsOutgoing, int pCount) where TRel : IWeaverEdge {
-			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
+			IList<VertexConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 			int count = 0;
 
-			foreach ( NodeConnectionRel rel in rels ) {
+			foreach ( VertexConnectionRel rel in rels ) {
 				if ( rel.Rel.Class != RelDbName.TypeMap[typeof(TRel)] ) {
 					continue;
 				}
@@ -70,26 +70,26 @@ namespace Fabric.Test.Integration.Common {
 			}
 
 			Assert.AreEqual(pCount, count, "Incorrect "+(pIsOutgoing ? "Out" : "In")+"Rel ["+
-				typeof(TRel).Name+"] count for "+Node.GetType().Name+".");
+				typeof(TRel).Name+"] count for "+Vertex.GetType().Name+".");
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRel<TRel, TNode>(bool pIsOutgoing, long pTargetId, string pIdProperty=null)
-													where TRel : IWeaverEdge where TNode : INodeWithId {
-			IList<NodeConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
+		public void AssertRel<TRel, TVertex>(bool pIsOutgoing, long pTargetId, string pIdProperty=null)
+													where TRel : IWeaverEdge where TVertex : IVertexWithId {
+			IList<VertexConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
 
-			foreach ( NodeConnectionRel rel in rels ) {
+			foreach ( VertexConnectionRel rel in rels ) {
 				if ( rel.Rel.Class != RelDbName.TypeMap[typeof(TRel)] ) {
 					continue;
 				}
 
-				if ( pIdProperty == null && rel.TargetNode.Class != typeof(TNode).Name ) {
+				if ( pIdProperty == null && rel.TargetVertex.Class != typeof(TVertex).Name ) {
 					continue;
 				}
 
-				string prop = (pIdProperty ?? PropDbName.StrTypeIdMap[rel.TargetNode.Class]);
-				string targId = rel.TargetNode.Data[prop];
+				string prop = (pIdProperty ?? PropDbName.StrTypeIdMap[rel.TargetVertex.Class]);
+				string targId = rel.TargetVertex.Data[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {
 					continue;
@@ -98,32 +98,32 @@ namespace Fabric.Test.Integration.Common {
 				return;
 			}
 
-			Assert.Fail((pIsOutgoing ? "Out" : "In")+"Rel ["+typeof(TRel).Name+"+"+typeof(TNode).Name+
-				"] was not found for "+Node.GetType().Name+".");
+			Assert.Fail((pIsOutgoing ? "Out" : "In")+"Rel ["+typeof(TRel).Name+"+"+typeof(TVertex).Name+
+				"] was not found for "+Vertex.GetType().Name+".");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddRel(IDbDto pDbDto) {
-			if ( pDbDto.OutVertexId == Node.Id ) {
-				var rel = new NodeConnectionRel(pDbDto, true, GetTargetNode(pDbDto.InVertexId));
+			if ( pDbDto.OutVertexId == Vertex.Id ) {
+				var rel = new VertexConnectionRel(pDbDto, true, GetTargetVertex(pDbDto.InVertexId));
 				OutRels.Add(rel);
 			}
 			else {
-				var rel = new NodeConnectionRel(pDbDto, false, GetTargetNode(pDbDto.OutVertexId));
+				var rel = new VertexConnectionRel(pDbDto, false, GetTargetVertex(pDbDto.OutVertexId));
 				InRels.Add(rel);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IDbDto GetTargetNode(string pNodeId) {
-			if ( pNodeId == null ) {
-				throw new Exception("NodeId cannot be null.");
+		private IDbDto GetTargetVertex(string pVertexId) {
+			if ( pVertexId == null ) {
+				throw new Exception("VertexId cannot be null.");
 			}
 
-			foreach ( IDbDto n in TargetNodes ) {
-				if ( n.Id == pNodeId ) {
+			foreach ( IDbDto n in TargetVertices ) {
+				if ( n.Id == pVertexId ) {
 					return n;
 				}
 			}
@@ -135,13 +135,13 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override string ToString() {
-			string s = Node.GetType().Name+"["+Node.Id+", "+Node.GetTypeId()+"]";
+			string s = Vertex.GetType().Name+"["+Vertex.Id+", "+Vertex.GetTypeId()+"]";
 
-			foreach ( NodeConnectionRel rel in OutRels ) {
+			foreach ( VertexConnectionRel rel in OutRels ) {
 				s += "\n\t* "+rel;
 			}
 
-			foreach ( NodeConnectionRel rel in InRels ) {
+			foreach ( VertexConnectionRel rel in InRels ) {
 				s += "\n\t* "+rel;
 			}
 

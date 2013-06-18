@@ -39,7 +39,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			vAppId = (long)pAppId;
 			vUserId = (long)pUserId;
 
-			OauthGrant origOg = GetNode<OauthGrant>((long)pUpdateGrantId);
+			OauthGrant origOg = GetVertex<OauthGrant>((long)pUpdateGrantId);
 			Assert.NotNull(origOg, "Target OauthGrant is missing.");
 
 			////
@@ -48,7 +48,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			Assert.AreNotEqual(origOg.Code, result, "Incorrect result.");
 
-			OauthGrant updateOg = GetNode<OauthGrant>((long)pUpdateGrantId);
+			OauthGrant updateOg = GetVertex<OauthGrant>((long)pUpdateGrantId);
 			Assert.NotNull(updateOg, "Target OauthGrant was deleted.");
 			Assert.AreNotEqual(origOg.RedirectUri, updateOg.RedirectUri,
 				"Target OauthGrant.RedirectUri was not updated.");
@@ -67,15 +67,15 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			string result = TestGo();
 			Assert.NotNull(result, "Result should not be null.");
 
-			OauthGrant newOg = GetNodeByProp<OauthGrant>(x => x.Code, "'"+result+"'");
+			OauthGrant newOg = GetVertexByProp<OauthGrant>(x => x.Code, "'"+result+"'");
 			Assert.NotNull(newOg, "New OauthGrant was not created.");
 
-			NodeConnections conn = GetNodeConnections(newOg);
+			VertexConnections conn = GetVertexConnections(newOg);
 			conn.AssertRelCount(0, 2);
 			conn.AssertRel<OauthGrantUsesApp, App>(true, vAppId);
 			conn.AssertRel<OauthGrantUsesUser, User>(true, vUserId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 2;
 		}
 

@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
-	public class TestNodeStep : NodeStep<TestFabNode> {
+	public class TestVertexStep : VertexStep<TestFabVertex> {
 
-		public static readonly List<IStepLink> AvailNodeLinks = new List<IStepLink> {
+		public static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 			new StepLink("Has", "Class", true, "/HasClass")
 		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestNodeStep(IPath pPath) : base(pPath) {}
+		public TestVertexStep(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override string TypeIdName { get { return "TestNodeStepId"; } }
+		public override string TypeIdName { get { return "TestVertexStepId"; } }
 		public override bool TypeIdIsLong { get { return true; } }
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override List<IStepLink> AvailableLinks { get { return AvailNodeLinks; } }
+		public override List<IStepLink> AvailableLinks { get { return AvailVertexLinks; } }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

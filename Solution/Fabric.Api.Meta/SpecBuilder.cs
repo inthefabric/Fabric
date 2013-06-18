@@ -17,13 +17,13 @@ namespace Fabric.Api.Meta {
 		public static void FillSpecValue(string pTypeName, string pPropName, FabSpecValue pValue) {
 			switch ( pTypeName+"."+pPropName ) {
 
-				case "Node.FabType":
+				case "Vertex.FabType":
 					break;
 
-				case "NodeForAction.Performed":
+				case "VertexForAction.Performed":
 					break;
 
-				case "NodeForAction.Note":
+				case "VertexForAction.Note":
 					pValue.LenMax = 256;
 					pValue.LenMin = 1;
 					break;
@@ -268,18 +268,18 @@ namespace Fabric.Api.Meta {
 
 			switch ( pTypeName+"."+pPropName ) {
 
-				case "NodeForAction.Performed":
+				case "VertexForAction.Performed":
 					pProp.Name = "Performed";
 					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("NodeForAction_Performed");
+					pProp.Description = SpecDoc.GetDtoPropText("VertexForAction_Performed");
 					pProp.Enum = null;
 					pProp.IsTimestamp = true;
 					break;
 
-				case "NodeForAction.Note":
+				case "VertexForAction.Note":
 					pProp.Name = "Note";
 					pProp.Type = "string";
-					pProp.Description = SpecDoc.GetDtoPropText("NodeForAction_Note");
+					pProp.Description = SpecDoc.GetDtoPropText("VertexForAction_Note");
 					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
@@ -577,7 +577,7 @@ namespace Fabric.Api.Meta {
 		public static void FillSpecObjectTravFuncs(string pTypeName, FabSpecObject pObject) {
 			switch ( pTypeName ) {
 
-				case "NodeForAction":
+				case "VertexForAction":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
@@ -672,7 +672,7 @@ namespace Fabric.Api.Meta {
 
 			switch ( pTypeName ) {
 
-				case "NodeForAction":
+				case "VertexForAction":
 					break;
 
 				case "Artifact":

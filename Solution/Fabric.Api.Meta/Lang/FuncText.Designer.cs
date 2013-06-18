@@ -84,7 +84,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the size and starting index of the node list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution..
+        ///   Looks up a localized string similar to Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution..
         /// </summary>
         internal static string Limit {
             get {
@@ -93,7 +93,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only App nodes..
+        ///   Looks up a localized string similar to Restricts the results to include only App verts..
         /// </summary>
         internal static string WhereApp {
             get {
@@ -102,7 +102,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only Class nodes..
+        ///   Looks up a localized string similar to Restricts the results to include only Class verts..
         /// </summary>
         internal static string WhereClass {
             get {
@@ -113,7 +113,7 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Restricts the results to a single Id value. 
         ///
-        ///that each node type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
+        ///that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
         /// </summary>
         internal static string WhereId {
             get {
@@ -122,7 +122,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only Instance nodes..
+        ///   Looks up a localized string similar to Restricts the results to include only Instance verts..
         /// </summary>
         internal static string WhereInstance {
             get {
@@ -131,7 +131,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only Url nodes..
+        ///   Looks up a localized string similar to Restricts the results to include only Url verts..
         /// </summary>
         internal static string WhereUrl {
             get {
@@ -140,7 +140,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only User nodes..
+        ///   Looks up a localized string similar to Restricts the results to include only User verts..
         /// </summary>
         internal static string WhereUser {
             get {

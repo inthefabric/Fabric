@@ -26,8 +26,8 @@
 
 			var list = new List<FabricPropSchema>();
 
-			foreach ( string nodeName in GetVertices() ) {
-				WeaverVertexSchema ns = GetNodeSchemaForWeaver(nodeName);
+			foreach ( string vertexName in GetVertices() ) {
+				WeaverVertexSchema ns = GetVertexSchemaForWeaver(vertexName);
 
 				if ( ns.BaseVertex == null || ns.BaseVertex.Name != pBaseVertex.Name ) {
 					continue;
@@ -42,8 +42,8 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /
-		private static WeaverVertexSchema GetNodeSchemaForWeaver(string pNodeName) {
-			WeaverVertexSchema ns = GetNode(pNodeName).NodeSchema;
+		private static WeaverVertexSchema GetVertexSchemaForWeaver(string pVertexName) {
+			WeaverVertexSchema ns = GetVertex(pVertexName).VertexSchema;
 
 			var newNs = new WeaverVertexSchema(ns.Name, ns.DbName);
 			newNs.BaseVertex = ns.BaseVertex;
@@ -57,20 +57,20 @@
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
-		private static void FillBaseVertexProps(WeaverVertexSchema pNode, WeaverVertexSchema pBase) {
+		private static void FillBaseVertexProps(WeaverVertexSchema pVertex, WeaverVertexSchema pBase) {
 			if ( pBase == null ) {
 				return;
 			}
 
 			foreach ( WeaverPropSchema ps in pBase.Props ) {
-				string db = pNode.DbName+'_'+ps.DbName.Split('_')[1];
+				string db = pVertex.DbName+'_'+ps.DbName.Split('_')[1];
 
 				var psNew = new FabricPropSchema(ps.Name, db, ps.Type);
 				psNew.EnumName = ((FabricPropSchema)ps).EnumName;
-				pNode.Props.Add(psNew);
+				pVertex.Props.Add(psNew);
 			}
 
-			FillBaseVertexProps(pNode, pBase.BaseVertex);
+			FillBaseVertexProps(pVertex, pBase.BaseVertex);
 		}*/
 
 	}

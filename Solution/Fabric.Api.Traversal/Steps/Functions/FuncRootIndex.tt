@@ -12,13 +12,13 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 <#
-IList<string> nodeNames = SchemaHelper.GetRootLinks();
+IList<string> vertexNames = SchemaHelper.GetRootLinks();
 #>
 
 	/*================================================================================================*/
@@ -29,20 +29,20 @@ IList<string> nodeNames = SchemaHelper.GetRootLinks();
 		/*--------------------------------------------------------------------------------------------*/
 		internal static void RegisterAllFunctions() {
 <#
-foreach ( string name in nodeNames ) {
+foreach ( string name in vertexNames ) {
 #>
 			FuncRegistry.Register<Func<#= name #>IdIndexStep>(
 				(p => new Func<#= name #>IdIndexStep(p)), AllowedForStep);
 <#
-} //end node loop
+} //end vertex loop
 #>
 		}
 
 	}
 
 <#
-foreach ( string name in nodeNames ) {
-	SchemaHelperNode hn = SchemaHelper.GetNode(name);
+foreach ( string name in vertexNames ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
 #>
 
 	/*================================================================================================*/
@@ -55,9 +55,9 @@ foreach ( string name in nodeNames ) {
 		public Func<#= name #>IdIndexStep(IPath pPath) : base(pPath) {
 			ProxyStep = new <#= name #>Step(pPath);
 <#
-	if ( !hn.NodeSchema.IsBaseClass ) {
+	if ( !hn.VertexSchema.IsBaseClass ) {
 #>
-			FabType = (byte)NodeFabType.<#= name #>;
+			FabType = (byte)VertexFabType.<#= name #>;
 <#
 	}
 #>
@@ -66,6 +66,6 @@ foreach ( string name in nodeNames ) {
 	}
 
 <#
-} //end node loop
+} //end vertex loop
 #>
 }

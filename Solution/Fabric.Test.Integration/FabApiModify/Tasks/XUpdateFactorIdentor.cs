@@ -18,7 +18,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Tasks.UpdateFactorIdentor(ApiCtx, f, (byte)pIdenTypeId, pValue);
 
-			Factor fac = GetNode<Factor>(f.FactorId);
+			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");
 			Assert.AreEqual((byte)pIdenTypeId, fac.Identor_TypeId, "Incorrect Identor_TypeId.");
 		}

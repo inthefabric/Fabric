@@ -60,19 +60,19 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 			
-			Factor newFactor = GetNode<Factor>(ApiCtx.SharpflakeIds[0]);
+			Factor newFactor = GetVertex<Factor>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newFactor, "New Factor was not created.");
 			Assert.AreEqual(newFactor.FactorId, vResult.FactorId, "Incorrect Result.FactorId.");
 
 			const string artId = PropDbName.Artifact_ArtifactId;
 
-			NodeConnections conn = GetNodeConnections(newFactor);
+			VertexConnections conn = GetVertexConnections(newFactor);
 			conn.AssertRelCount(1, 2);
 			conn.AssertRel<MemberCreatesFactor, Member>(false, vExpectMemberId);
 			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId, artId);
 			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, vRelArtId, artId);
 			
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 3;
 		}
 		

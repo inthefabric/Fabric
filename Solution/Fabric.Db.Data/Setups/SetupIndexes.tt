@@ -23,29 +23,29 @@ namespace Fabric.Db.Data.Setups {
 			//VERTICES
 <#
 var schema = new Schema();
-IList<WeaverVertexSchema> nodes = schema.Nodes;
+IList<WeaverVertexSchema> verts = schema.Vertices;
 int groupId = 2;
 var propNameMap = new Dictionary<string, SchemaHelperProp>();
 var propSkipMap = new Dictionary<string, bool>();
 
-foreach ( WeaverVertexSchema node in nodes ) {
-	//if ( node.IsAbstract ) { continue; }
+foreach ( WeaverVertexSchema vertex in verts ) {
+	//if ( vertex.IsAbstract ) { continue; }
 #>
 
-			//<#= node.Name #>
-			pSet.AddIndexQuery(BuildGroup("<#= node.DbName #>", <#= groupId++ #>));
+			//<#= vertex.Name #>
+			pSet.AddIndexQuery(BuildGroup("<#= vertex.DbName #>", <#= groupId++ #>));
 <#
 
-	foreach ( WeaverPropSchema ps in node.Props ) {
+	foreach ( WeaverPropSchema ps in vertex.Props ) {
 		FabricPropSchema prop = (FabricPropSchema)ps;
 		string titanType = SchemaHelperProp.GetTitanTypeName(prop.Type);
 		bool index = (prop.IsPrimaryKey == true || prop.IndexWithTitan == true);
 		bool elastic = (prop.IndexWithElasticSearch == true);
 #>
-			pSet.AddIndexQuery(BuildKey("<#= node.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>, <#= elastic.ToString().ToLower() #>));
+			pSet.AddIndexQuery(BuildKey("<#= vertex.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>, <#= elastic.ToString().ToLower() #>));
 <#
 	} //end prop loop
-} //end node loop
+} //end vertex loop
 #>
 	
 			//EDGES
@@ -54,12 +54,12 @@ IList<string> rels = SchemaHelper.GetEdges();
 
 foreach ( string name in rels ) {
 	SchemaHelperRel rel = SchemaHelper.GetEdge(name);
-	SchemaHelperNode from = SchemaHelper.GetNode(rel.OutVertexName);
-	SchemaHelperNode to = SchemaHelper.GetNode(rel.InVertexName);
+	SchemaHelperVertex from = SchemaHelper.GetVertex(rel.OutVertexName);
+	SchemaHelperVertex to = SchemaHelper.GetVertex(rel.InVertexName);
 	IList<SchemaHelperProp> fromProps = from.GetProps(false);
 	IList<SchemaHelperProp> toProps = to.GetProps(false);
-	SchemaHelperNodeRel fromRel = new SchemaHelperNodeRel(from, rel.RelSchema);
-	SchemaHelperNodeRel toRel = new SchemaHelperNodeRel(to, rel.RelSchema);
+	SchemaHelperVertexRel fromRel = new SchemaHelperVertexRel(from, rel.RelSchema);
+	SchemaHelperVertexRel toRel = new SchemaHelperVertexRel(to, rel.RelSchema);
 	string outUnique = (!fromRel.IsMany).ToString().ToLower();
 	string inUnique = (!toRel.IsMany).ToString().ToLower();
 	var keys = new List<string>();

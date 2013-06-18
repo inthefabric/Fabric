@@ -35,12 +35,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 			vFactors = new List<FabBatchNewFactor>();
 			vNewRels = 0;
 
-			foreach ( IDataNode dn in ds.Nodes ) {
-				if ( dn.NodeType != typeof(Factor) ) {
+			foreach ( IDataVertex dn in ds.Vertices ) {
+				if ( dn.VertexType != typeof(Factor) ) {
 					continue;
 				}
 
-				Factor f = (Factor)dn.Node;
+				Factor f = (Factor)dn.Vertex;
 
 				if ( f.Descriptor_TypeId == null ) {
 					continue;
@@ -241,8 +241,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 			}
 
-			NewNodeCount = vFactors.Count-expectFails;
-			NewRelCount += NewNodeCount*3+vNewRels;
+			NewVertexCount = vFactors.Count-expectFails;
+			NewRelCount += NewVertexCount*3+vNewRels;
 
 			Assert.AreEqual(expectFails, fails, "Incorrect Resuls.Error count.");
 		}

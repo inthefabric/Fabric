@@ -28,12 +28,12 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetEdgeNodeType(bool pIsOut) {
+		public string GetEdgeVertexType(bool pIsOut) {
 			return (pIsOut ? InVertexName : OutVertexName);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public bool GetEdgeNodeIsInternal(bool pIsOut) {
+		public bool GetEdgeVertexIsInternal(bool pIsOut) {
 			return (pIsOut ? RelSchema.InVertex.IsInternal : RelSchema.OutVertex.IsInternal);
 		}
 

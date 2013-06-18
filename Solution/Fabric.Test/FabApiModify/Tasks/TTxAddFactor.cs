@@ -18,7 +18,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				PropDbName.Factor_IsDefining+":_TP"+","+
 				PropDbName.Factor_Created+":_TP"+","+
 				PropDbName.Factor_Note+":_TP"+","+
-				PropDbName.Node_FabType+":_TP"+""+
+				PropDbName.Vertex_FabType+":_TP"+""+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP"+").next();"+
 			"g.addEdge(_V0,_V1,_TP"+");"+
@@ -74,7 +74,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				true,
 				vUtcNow.Ticks,
 				vNote,
-				(byte)NodeFabType.Factor,
+				(byte)VertexFabType.Factor,
 				vPrimArtId,
 				RelDbName.FactorUsesPrimaryArtifact,
 				vRelArtId,

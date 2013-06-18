@@ -1006,29 +1006,29 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Append this value to the current URI to filter down to this specific Node in current traversal path..
+        ///   Looks up a localized string similar to Append this value to the current URI to filter down to this specific Vertex in current traversal path..
         /// </summary>
-        internal static string Node_Uri {
+        internal static string Vertex_Uri {
             get {
-                return ResourceManager.GetString("Node_Uri", resourceCulture);
+                return ResourceManager.GetString("Vertex_Uri", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to A brief note describing this action..
         /// </summary>
-        internal static string NodeForAction_Note {
+        internal static string VertexForAction_Note {
             get {
-                return ResourceManager.GetString("NodeForAction_Note", resourceCulture);
+                return ResourceManager.GetString("VertexForAction_Note", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The date/time this action was performed..
         /// </summary>
-        internal static string NodeForAction_Performed {
+        internal static string VertexForAction_Performed {
             get {
-                return ResourceManager.GetString("NodeForAction_Performed", resourceCulture);
+                return ResourceManager.GetString("VertexForAction_Performed", resourceCulture);
             }
         }
         
@@ -1222,7 +1222,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The traversal functions available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
+        ///   Looks up a localized string similar to The traversal functions available for the current vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_Functions {
             get {
@@ -1231,7 +1231,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indicates whether there are more nodes available beyond the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
+        ///   Looks up a localized string similar to Indicates whether there are more verts available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_HasMore {
             get {
@@ -1249,7 +1249,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The traversal links available for the current node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
+        ///   Looks up a localized string similar to The traversal links available for the current vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_Links {
             get {
@@ -1267,7 +1267,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The starting index of the returned node list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
+        ///   Looks up a localized string similar to The starting index of the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_StartIndex {
             get {
@@ -1366,7 +1366,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Node type returned by the opposite end of this link..
+        ///   Looks up a localized string similar to The Vertex type returned by the opposite end of this link..
         /// </summary>
         internal static string StepLink_Class {
             get {
@@ -1375,7 +1375,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indicates whether this link is outgoing (starting from the current Node) or incoming (starting from another Node)..
+        ///   Looks up a localized string similar to Indicates whether this link is outgoing (starting from the current Vertex) or incoming (starting from another Vertex)..
         /// </summary>
         internal static string StepLink_IsOut {
             get {

@@ -6,10 +6,10 @@ using Weaver.Core.Query;
 namespace Fabric.Db.Data {
 
 	/*================================================================================================*/
-	public interface  IDataNode {
+	public interface  IDataVertex {
 
-		INode Node { get; }
-		Type NodeType { get; }
+		IVertex Vertex { get; }
+		Type VertexType { get; }
 		bool IsForTesting { get; }
 		IWeaverQuery AddQuery { get; }
 		int TestVal { get; set; }
@@ -17,23 +17,23 @@ namespace Fabric.Db.Data {
 	}
 
 	/*================================================================================================*/
-	public class DataNode {
+	public class DataVertex {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static DataNode<T> Create<T>(T pNode, bool pIsForTest) where T : INode {
-			return new DataNode<T>(pNode, pIsForTest);
+		public static DataVertex<T> Create<T>(T pVertex, bool pIsForTest) where T : IVertex {
+			return new DataVertex<T>(pVertex, pIsForTest);
 		}
 
 	}
 
 	/*================================================================================================*/
-	public class DataNode<T> : IDataNode where T : INode {
+	public class DataVertex<T> : IDataVertex where T : IVertex {
 
-		public T NodeT { get; private set; }
-		public Type NodeType { get; private set; }
-		public INode Node { get; private set; }
+		public T VertexT { get; private set; }
+		public Type VertexType { get; private set; }
+		public IVertex Vertex { get; private set; }
 
 		public bool IsForTesting { get; private set; }
 		public int TestVal { get; set; }
@@ -41,16 +41,16 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataNode(T pNode, bool pIsForTesting) {
-			Node = pNode;
-			NodeT = pNode;
-			NodeType = typeof(T);
+		public DataVertex(T pVertex, bool pIsForTesting) {
+			Vertex = pVertex;
+			VertexT = pVertex;
+			VertexType = typeof(T);
 			IsForTesting = pIsForTesting;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IWeaverQuery AddQuery {
-			get { return Weave.Inst.Graph.AddVertex(NodeT); }
+			get { return Weave.Inst.Graph.AddVertex(VertexT); }
 		}
 
 	}

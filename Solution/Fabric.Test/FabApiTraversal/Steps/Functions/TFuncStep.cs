@@ -1,7 +1,7 @@
 ﻿using System;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
@@ -58,7 +58,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void GetNextStep(bool pSetData) {
-			string stepText = StepUtil.NodeStepMap["Factor"][0].Substring(1);
+			string stepText = StepUtil.VertexStepMap["Factor"][0].Substring(1);
 
 			var next = new Mock<IStep>();
 			var proxy = new Mock<IStep>();

@@ -33,7 +33,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private const string QueryAddMemberTx =
 			"_V0=g.addVertex(["+
 				PropDbName.Member_MemberId+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
@@ -42,9 +42,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
-				PropDbName.NodeForAction_Performed+":_TP,"+
-				PropDbName.NodeForAction_Note+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.VertexForAction_Performed+":_TP,"+
+				PropDbName.VertexForAction_Note+":_TP,"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V0,_V3,_TP);"+
 			"_V4=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
@@ -59,9 +59,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"_V2=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
-				PropDbName.NodeForAction_Performed+":_TP,"+
-				PropDbName.NodeForAction_Note+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.VertexForAction_Performed+":_TP,"+
+				PropDbName.VertexForAction_Note+":_TP,"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"g.addEdge(_V1,_V2,_TP);"+
 			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
@@ -152,7 +152,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vNewMemId,
-				(byte)NodeFabType.Member,
+				(byte)VertexFabType.Member,
 				vAppId,
 				RelDbName.AppDefinesMember,
 				vUserId,
@@ -161,7 +161,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
-				(byte)NodeFabType.MemberTypeAssign,
+				(byte)VertexFabType.MemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
 				RelDbName.MemberCreatesMemberTypeAssign
@@ -186,7 +186,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
-				(byte)NodeFabType.MemberTypeAssign,
+				(byte)VertexFabType.MemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
 				RelDbName.MemberCreatesMemberTypeAssign

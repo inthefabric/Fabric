@@ -18,7 +18,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Tasks.UpdateFactorLocator(ApiCtx, f, (byte)pLocTypeId, pValueX, pValueY, pValueZ);
 
-			Factor fac = GetNode<Factor>(f.FactorId);
+			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");
 			Assert.AreEqual((byte)pLocTypeId, fac.Locator_TypeId, "Incorrect Locator_TypeId.");
 		}

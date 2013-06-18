@@ -205,7 +205,7 @@ namespace Fabric.Db.Data.Setups {
 			e.Created = vSet.SetupTimestamp;
 			e.Verified = vSet.SetupTimestamp+10000000;
 
-			vSet.AddNode(e, vTestMode);
+			vSet.AddVertex(e, vTestMode);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -214,13 +214,13 @@ namespace Fabric.Db.Data.Setups {
 			var m = new Member();
 			m.MemberId = (long)pId;
 
-			vSet.AddNode(m, vTestMode);
+			vSet.AddVertex(m, vTestMode);
 
-			var relA = DataRel.Create(vSet.GetNode<App>((long)pAppId),
+			var relA = DataRel.Create(vSet.GetVertex<App>((long)pAppId),
 				new AppDefinesMember(), m, vTestMode);
 			vSet.AddRel(relA);
 
-			var relU = DataRel.Create(vSet.GetNode<User>((long)pUserId),
+			var relU = DataRel.Create(vSet.GetVertex<User>((long)pUserId),
 				new UserDefinesMember(), m, vTestMode);
 			vSet.AddRel(relU);
 
@@ -235,15 +235,15 @@ namespace Fabric.Db.Data.Setups {
 			mta.MemberTypeId = (byte)pMemTypeId;
 			mta.Performed = vSet.SetupTimestamp;
 
-			vSet.AddNode(mta, vTestMode);
+			vSet.AddVertex(mta, vTestMode);
 
-			var relAsn = DataRel.Create(vSet.GetNode<Member>((long)pAssignerId),
+			var relAsn = DataRel.Create(vSet.GetVertex<Member>((long)pAssignerId),
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
 			vSet.AddRel(relAsn);
 
 			////
 
-			Member m = vSet.GetNode<Member>((long)pMemberId);
+			Member m = vSet.GetVertex<Member>((long)pMemberId);
 
 			if ( pIsHistoric ) {
 				var relMta = DataRel.Create(m, new MemberHasHistoricMemberTypeAssign(), mta, vTestMode);
@@ -262,10 +262,10 @@ namespace Fabric.Db.Data.Setups {
 			a.Name = pName;
 			a.Secret = pSecret;
 
-			vSet.AddNode(a, vTestMode);
+			vSet.AddVertex(a, vTestMode);
 
 			var relE = DataRel.Create(
-				a, new AppUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);
+				a, new AppUsesEmail(), vSet.GetVertex<Email>((long)pEmailId), vTestMode);
 			vSet.AddRel(relE);
 		}
 
@@ -276,10 +276,10 @@ namespace Fabric.Db.Data.Setups {
 			u.Name = pName;
 			u.Password = FabricUtil.HashPassword(pPass);
 
-			vSet.AddNode(u, vTestMode);
+			vSet.AddVertex(u, vTestMode);
 
 			var relE = DataRel.Create(
-				u, new UserUsesEmail(), vSet.GetNode<Email>((long)pEmailId), vTestMode);
+				u, new UserUsesEmail(), vSet.GetVertex<Email>((long)pEmailId), vTestMode);
 			vSet.AddRel(relE);
 		}
 
@@ -287,13 +287,13 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillUserArtifact(SetupArtifacts.ArtifactId pId, MemberId pCreatorId) {
-			User user = vSet.GetNode<User>((long)pId);
+			User user = vSet.GetVertex<User>((long)pId);
 			SetupArtifacts.FillArtifact(vSet, user, pId, pCreatorId, vTestMode);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void FillAppArtifact(SetupArtifacts.ArtifactId pId, MemberId pCreatorId) {
-			App app = vSet.GetNode<App>((long)pId);
+			App app = vSet.GetVertex<App>((long)pId);
 			SetupArtifacts.FillArtifact(vSet, app, pId, pCreatorId, vTestMode);
 		}
 

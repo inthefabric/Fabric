@@ -5,31 +5,31 @@ using Weaver.Core.Schema;
 namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
-	public class SchemaHelperNode {
+	public class SchemaHelperVertex {
 
-		public WeaverVertexSchema NodeSchema { get; private set; }
+		public WeaverVertexSchema VertexSchema { get; private set; }
 
 		public bool HasParentClass { get; private set; }
 
 		private readonly IList<SchemaHelperProp> vProps;
-		private readonly IList<SchemaHelperNodeRel> vRels;
+		private readonly IList<SchemaHelperVertexRel> vRels;
 		private readonly IDictionary<string, IList<SchemaHelperProp>> vSubMap;
 		private readonly IDictionary<string, bool> vSubOptMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SchemaHelperNode(WeaverVertexSchema pNode) {
-			NodeSchema = pNode;
+		public SchemaHelperVertex(WeaverVertexSchema pVertex) {
+			VertexSchema = pVertex;
 
-			HasParentClass = (NodeSchema.BaseVertex != null);
+			HasParentClass = (VertexSchema.BaseVertex != null);
 
 			vProps = new List<SchemaHelperProp>();
-			vRels = new List<SchemaHelperNodeRel>();
+			vRels = new List<SchemaHelperVertexRel>();
 			vSubMap = new Dictionary<string, IList<SchemaHelperProp>>();
 			vSubOptMap = new Dictionary<string, bool>();
 
-			foreach ( FabricPropSchema ps in NodeSchema.Props ) {
+			foreach ( FabricPropSchema ps in VertexSchema.Props ) {
 				var hp = new SchemaHelperProp(ps);
 				vProps.Add(hp);
 
@@ -55,8 +55,8 @@ namespace Fabric.Domain.Meta {
 			}
 
 			foreach ( WeaverEdgeSchema pr in SchemaHelper.SchemaInstance.Rels ) {
-				if ( pr.OutVertex != NodeSchema && pr.InVertex != NodeSchema ) { continue; }
-				vRels.Add(new SchemaHelperNodeRel(this, pr));
+				if ( pr.OutVertex != VertexSchema && pr.InVertex != VertexSchema ) { continue; }
+				vRels.Add(new SchemaHelperVertexRel(this, pr));
 			}
 		}
 
@@ -69,20 +69,20 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<SchemaHelperNodeRel> GetEdges(bool pSkipInternal=false) {
+		public IList<SchemaHelperVertexRel> GetEdges(bool pSkipInternal=false) {
 			return vRels
-				.Where(r => (!pSkipInternal || !r.IsTargetNodeInternal))
+				.Where(r => (!pSkipInternal || !r.IsTargetVertexInternal))
 				.ToList();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<SchemaHelperNodeRel> GetNestedRels(bool pSkipInternal=false) {
-			if ( NodeSchema.BaseVertex == null ) {
+		public IList<SchemaHelperVertexRel> GetNestedRels(bool pSkipInternal=false) {
+			if ( VertexSchema.BaseVertex == null ) {
 				return GetEdges(pSkipInternal);
 			}
 
-			var parent = new SchemaHelperNode(NodeSchema.BaseVertex);
-			List<SchemaHelperNodeRel> rels = parent.GetNestedRels(pSkipInternal).ToList();
+			var parent = new SchemaHelperVertex(VertexSchema.BaseVertex);
+			List<SchemaHelperVertexRel> rels = parent.GetNestedRels(pSkipInternal).ToList();
 			rels.AddRange(GetEdges(pSkipInternal));
 			return rels;
 		}
@@ -112,8 +112,8 @@ namespace Fabric.Domain.Meta {
 				}
 			}
 
-			if ( NodeSchema.BaseVertex != null ) {
-				return new SchemaHelperNode(NodeSchema.BaseVertex).GetPrimaryKeyProp();
+			if ( VertexSchema.BaseVertex != null ) {
+				return new SchemaHelperVertex(VertexSchema.BaseVertex).GetPrimaryKeyProp();
 			}
 			
 			return null;

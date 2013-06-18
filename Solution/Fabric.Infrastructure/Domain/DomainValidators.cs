@@ -14,12 +14,12 @@ namespace Fabric.Infrastructure.Domain {
 	
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void NodeFabType(byte pValue, string pParamName);
-		void NodeFabType(byte pValue);
-		void NodeForActionPerformed(long pValue, string pParamName);
-		void NodeForActionPerformed(long pValue);
-		void NodeForActionNote(string pValue, string pParamName);
-		void NodeForActionNote(string pValue);
+		void VertexFabType(byte pValue, string pParamName);
+		void VertexFabType(byte pValue);
+		void VertexForActionPerformed(long pValue, string pParamName);
+		void VertexForActionPerformed(long pValue);
+		void VertexForActionNote(string pValue, string pParamName);
+		void VertexForActionNote(string pValue);
 		void ArtifactId(long pValue, string pParamName);
 		void ArtifactId(long pValue);
 		void ArtifactCreated(long pValue, string pParamName);
@@ -149,36 +149,36 @@ namespace Fabric.Infrastructure.Domain {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeFabType(byte pValue, string pParamName) {
+		public void VertexFabType(byte pValue, string pParamName) {
 			throw new Exception("FabType has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeFabType(byte pValue) {
-			NodeFabType(pValue, "FabType");
+		public void VertexFabType(byte pValue) {
+			VertexFabType(pValue, "FabType");
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForActionPerformed(long pValue, string pParamName) {
+		public void VertexForActionPerformed(long pValue, string pParamName) {
 			throw new Exception("Performed has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForActionPerformed(long pValue) {
-			NodeForActionPerformed(pValue, "Performed");
+		public void VertexForActionPerformed(long pValue) {
+			VertexForActionPerformed(pValue, "Performed");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForActionNote(string pValue, string pParamName) {
+		public void VertexForActionNote(string pValue, string pParamName) {
 			if ( pValue == null ) { return; }
 			LengthBetween(pParamName, pValue, 1, 256);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void NodeForActionNote(string pValue) {
-			NodeForActionNote(pValue, "Note");
+		public void VertexForActionNote(string pValue) {
+			VertexForActionNote(pValue, "Note");
 		}
 
 		

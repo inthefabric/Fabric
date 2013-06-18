@@ -2,7 +2,7 @@
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
@@ -25,7 +25,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			var expectAvail = new[] { "Test", "TEST2" };
 
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
-			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
+			Assert.AreEqual(typeof(TestFabVertex), s.DtoType, "Incorrect DtoType.");
 			Assert.NotNull(s.AvailableLinks, "AvailableLinks should not be null.");
 			Assert.AreEqual(2, s.AvailableLinks.Count, "Incorrect AvailableLinks length.");
 			Assert.AreEqual(expectAvail[0], s.AvailableLinks[0].EdgeType, "Incorrect AvailableLinks.");

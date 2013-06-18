@@ -53,15 +53,15 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 			
-			Instance newInstance = GetNode<Instance>(ApiCtx.SharpflakeIds[0]);
+			Instance newInstance = GetVertex<Instance>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newInstance, "New Instance was not created.");
 			Assert.AreEqual(newInstance.ArtifactId, vResult.ArtifactId, "Incorrect Result.ArtifactId.");
 
-			NodeConnections conn = GetNodeConnections(newInstance);
+			VertexConnections conn = GetVertexConnections(newInstance);
 			conn.AssertRelCount(1, 0);
 			conn.AssertRel<MemberCreatesArtifact, Member>(false, vExpectMemberId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 1;
 		}
 		

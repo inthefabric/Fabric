@@ -4,7 +4,7 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Nodes;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -55,7 +55,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true)]
 		[TestCase(false)]
-		public void GetAvailableFuncsNotFabNode(bool pUri) {
+		public void GetAvailableFuncsNotFabVertex(bool pUri) {
 			TestUtil.CheckThrows<Exception>(true, () =>
 				FuncRegistry.GetAvailableFuncs(typeof(string), pUri, true));
 		}

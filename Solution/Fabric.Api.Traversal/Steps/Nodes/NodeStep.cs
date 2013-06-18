@@ -1,15 +1,15 @@
 ﻿using Fabric.Api.Dto.Traversal;
 using Weaver.Core.Query;
 
-namespace Fabric.Api.Traversal.Steps.Nodes {
+namespace Fabric.Api.Traversal.Steps.Vertices {
 	
 	/*================================================================================================*/
-	public abstract class NodeStep<T> : Step<T>, INodeStep where T : FabNode, new() {
+	public abstract class VertexStep<T> : Step<T>, IVertexStep where T : FabVertex, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected NodeStep(IPath pPath) : base(pPath) {}
+		protected VertexStep(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract string TypeIdName { get; }

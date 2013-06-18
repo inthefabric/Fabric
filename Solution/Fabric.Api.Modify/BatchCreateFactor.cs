@@ -111,7 +111,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB vertex count
 			Parallel.ForEach(vIndexes, opt, InsertFactors);
 			return vResults;
 		}
@@ -205,7 +205,7 @@ namespace Fabric.Api.Modify {
 
 				try {
 					FactorOperationSet fos = vOpSets[i];
-					list.AddRange(fos.GetNodeQueries(ApiCtx));
+					list.AddRange(fos.GetVertexQueries(ApiCtx));
 					res.ResultId = fos.FactorId;
 				}
 				catch ( FabFault fault ) {
@@ -220,7 +220,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			try {
-				ApiCtx.DbData("BatchCreateFactorNodeTx", list);
+				ApiCtx.DbData("BatchCreateFactorVertexTx", list);
 			}
 			catch ( Exception e ) {
 				Log.Error("BatchCreateFactor batch exception: "+e);
@@ -327,7 +327,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<IWeaverScript> GetNodeQueries(IApiContext pApiCtx) {
+		public IList<IWeaverScript> GetVertexQueries(IApiContext pApiCtx) {
 			FactorId = pApiCtx.GetSharpflakeId<Factor>();
 
 			var f = new Factor();
@@ -378,10 +378,10 @@ namespace Fabric.Api.Modify {
 
 			var txb = new TxBuilder();
 			var facBuild = new FactorBuilder(txb, f);
-			facBuild.AddNode();
+			facBuild.AddVertex();
 
 			var q = new WeaverQuery();
-			q.FinalizeQuery(facBuild.NodeVar.Name);
+			q.FinalizeQuery(facBuild.VertexVar.Name);
 
 			txb.Transaction.AddQuery(
 				WeaverQuery.StoreResultAsVar("_F", q, out facVar)
@@ -432,7 +432,7 @@ namespace Fabric.Api.Modify {
 		private void AppendQueries(IList<IWeaverScript> pList, IWeaverVarAlias<Factor> pFacVar,
 																	Action<FactorBuilder> pAction) {
 			var facBuild = new FactorBuilder(new TxBuilder());
-			facBuild.SetNodeVar(pFacVar);
+			facBuild.SetVertexVar(pFacVar);
 			pAction(facBuild);
 
 			IWeaverQuery q = new WeaverQuery();

@@ -249,7 +249,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			CheckRedirectSuccess(result);
 
 			//calls AddScope (1,2) and AddGrant (1,2)
-			NewNodeCount = 2;
+			NewVertexCount = 2;
 			NewRelCount = 4;
 		}
 
@@ -263,7 +263,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 			CheckError(result, GrantErrors.access_denied, GrantErrorDescs.AccessDeny);
 
 			//calls AddScope (1,2)
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 2;
 		}
 

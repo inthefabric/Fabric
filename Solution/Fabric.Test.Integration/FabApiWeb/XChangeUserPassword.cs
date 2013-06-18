@@ -48,7 +48,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Result.Success should not be null.");
 
-			User upUser = GetNode<User>(vUserId);
+			User upUser = GetVertex<User>(vUserId);
 			Assert.AreEqual(FabricUtil.HashPassword(vNewPass), upUser.Password,
 				"Target User.Password not updated.");
 		}

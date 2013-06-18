@@ -6,11 +6,11 @@ using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
+namespace Fabric.Test.FabApiTraversal.Steps.Vertices {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TNodeStep {
+	public class TVertexStep {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,10 +18,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void New() {
 			var p = new Mock<IPath>();
-			var s = new TestNodeStep(p.Object);
+			var s = new TestVertexStep(p.Object);
 
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
-			Assert.AreEqual(typeof(TestFabNode), s.DtoType, "Incorrect DtoType.");
+			Assert.AreEqual(typeof(TestFabVertex), s.DtoType, "Incorrect DtoType.");
 			Assert.NotNull(s.AvailableLinks, "AvailableLinks should not be null.");
 			Assert.AreEqual(1, s.AvailableLinks.Count, "Incorrect AvailableLinks length.");
 			Assert.AreEqual("Has", s.AvailableLinks[0].EdgeType, "Incorrect AvailableLinks.");
@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 		[Test]
 		public void SetDataAndUpdatePath() {
 			var p = new Mock<IPath>();
-			var s = new TestNodeStep(p.Object);
+			var s = new TestVertexStep(p.Object);
 			var d = new StepData("HasArtifact");
 
 			s.SetDataAndUpdatePath(d);
@@ -49,10 +49,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Nodes {
 			var p = new Mock<IPath>();
 			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
 
-			var s = new TestNodeStep(p.Object);
+			var s = new TestVertexStep(p.Object);
 			s.SetDataAndUpdatePath(new StepData("HasArtifact"));
 
-			Assert.AreEqual("g.V('TestNodeStepId',_P0)",
+			Assert.AreEqual("g.V('TestVertexStepId',_P0)",
 				s.GetKeyIndexScript(typeId), "Incorrect result.");
 		}
 

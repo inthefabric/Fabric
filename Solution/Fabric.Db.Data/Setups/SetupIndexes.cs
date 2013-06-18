@@ -14,11 +14,11 @@ namespace Fabric.Db.Data.Setups {
 
 			//VERTICES
 
-			//Node
+			//Vertex
 			pSet.AddIndexQuery(BuildGroup("N", 2));
 			pSet.AddIndexQuery(BuildKey("N", "N_FT", "Byte", false, false));
 
-			//NodeForAction
+			//VertexForAction
 			pSet.AddIndexQuery(BuildGroup("NA", 3));
 			pSet.AddIndexQuery(BuildKey("NA", "NA_Pe", "Long", false, false));
 			pSet.AddIndexQuery(BuildKey("NA", "NA_No", "String", false, false));

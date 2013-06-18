@@ -319,11 +319,11 @@ namespace Fabric.Api.Meta {
 				sd.Extends = pType.BaseType.Name;
 			}
 
-			SchemaHelperNode shn = SchemaHelper.GetNode(n);
-			sd.IsBaseClass = (shn != null && shn.NodeSchema.IsBaseClass);
+			SchemaHelperVertex shn = SchemaHelper.GetVertex(n);
+			sd.IsBaseClass = (shn != null && shn.VertexSchema.IsBaseClass);
 
 			//IMPROVE: determine these automatically by checking through all the "extends" values
-			if ( pType == typeof(FabNode) || pType == typeof(FabObject) || 
+			if ( pType == typeof(FabVertex) || pType == typeof(FabObject) || 
 					pType == typeof(FabBatchNewObject) || pType == typeof(FabSpecValue) ) {
 				sd.IsBaseClass = true;
 			}

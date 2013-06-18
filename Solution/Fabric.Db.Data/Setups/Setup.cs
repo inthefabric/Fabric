@@ -19,16 +19,16 @@
 			if ( pIsForTesting ) {
 				int testId = 0;
 
-				foreach ( IDataNode n in ds.Nodes ) {
+				foreach ( IDataVertex n in ds.Vertices ) {
 					n.TestVal = ++testId;
 				}
 
 				foreach ( IDataRel rel in ds.Rels ) {
 					System.Console.WriteLine(rel.OutVertex+" / "+rel.Rel.Label+" / "+rel.InVertex);
-					System.Console.WriteLine("OUT: "+ds.GetDataNode(rel.OutVertex).TestVal);
-					System.Console.WriteLine("IN: "+ds.GetDataNode(rel.InVertex).TestVal);
-					rel.TestVal = ds.GetDataNode(rel.OutVertex).TestVal+"|"+
-						rel.Rel.Label+"|"+ds.GetDataNode(rel.InVertex).TestVal;
+					System.Console.WriteLine("OUT: "+ds.GetDataVertex(rel.OutVertex).TestVal);
+					System.Console.WriteLine("IN: "+ds.GetDataVertex(rel.InVertex).TestVal);
+					rel.TestVal = ds.GetDataVertex(rel.OutVertex).TestVal+"|"+
+						rel.Rel.Label+"|"+ds.GetDataVertex(rel.InVertex).TestVal;
 				}
 			}
 

@@ -41,7 +41,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			vUserId = (long)pUserId;
 			vAllow = pAllow;
 
-			OauthScope origOs = GetNode<OauthScope>((long)pUpdateScopeId);
+			OauthScope origOs = GetVertex<OauthScope>((long)pUpdateScopeId);
 			Assert.NotNull(origOs, "Target OauthScope is missing.");
 
 			////
@@ -51,7 +51,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(result, "Result should not be null.");
 			Assert.AreEqual((long)pUpdateScopeId, result.OauthScopeId,"Incorrect Result.OauthScopeId.");
 
-			OauthScope updateOs = GetNode<OauthScope>((long)pUpdateScopeId);
+			OauthScope updateOs = GetVertex<OauthScope>((long)pUpdateScopeId);
 			Assert.NotNull(updateOs, "Target OauthScope was deleted.");
 			Assert.AreEqual(vAllow, updateOs.Allow, "Target OauthScope.Allow was not updated.");
 			Assert.AreNotEqual(origOs.Created, updateOs.Created,
@@ -70,15 +70,15 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(result, "Result should not be null.");
 			Assert.AreEqual(vAllow, result.Allow, "Incorrect Result.Allow.");
 
-			OauthScope newOs = GetNode<OauthScope>(result.OauthScopeId);
+			OauthScope newOs = GetVertex<OauthScope>(result.OauthScopeId);
 			Assert.NotNull(newOs, "New OauthScope was not created.");
 
-			NodeConnections conn = GetNodeConnections(newOs);
+			VertexConnections conn = GetVertexConnections(newOs);
 			conn.AssertRelCount(0, 2);
 			conn.AssertRel<OauthScopeUsesApp, App>(true, vAppId);
 			conn.AssertRel<OauthScopeUsesUser, User>(true, vUserId);
 
-			NewNodeCount = 1;
+			NewVertexCount = 1;
 			NewRelCount = 2;
 		}
 

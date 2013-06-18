@@ -53,7 +53,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : INode {
+		protected IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : IVertex {
 			IWeaverVarAlias v;
 			TxBuild.Transaction.AddQuery(WeaverQuery.InitListVar(pName, out v));
 

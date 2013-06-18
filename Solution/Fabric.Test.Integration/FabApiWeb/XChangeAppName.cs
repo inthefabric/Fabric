@@ -45,7 +45,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(vResult, "Result should not be null.");
 			Assert.True(vResult.Success, "Result.Success should not be null.");
 
-			App upApp = GetNode<App>(vAppId);
+			App upApp = GetVertex<App>(vAppId);
 			Assert.AreEqual(vName, upApp.Name, "Target App.Name not updated.");
 		}
 

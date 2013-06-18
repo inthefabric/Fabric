@@ -33,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		public void Updated() {
 			string expectPass = FabricUtil.HashPassword(vPassword);
 
-			User oldUser = GetNode<User>(vUserId);
+			User oldUser = GetVertex<User>(vUserId);
 			Assert.NotNull(oldUser, "Target User is missing.");
 			Assert.AreNotEqual(expectPass, oldUser.Password, "Target User.Password is incorrect.");
 
@@ -43,7 +43,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreEqual(vUserId, result.ArtifactId, "Incorrect UserId.");
 			Assert.AreEqual(expectPass, result.Password, "Incorrect Password.");
 
-			User upUser = GetNode<User>(vUserId);
+			User upUser = GetVertex<User>(vUserId);
 			Assert.AreEqual(expectPass, upUser.Password, "Target User.Password not updated.");
 		}
 

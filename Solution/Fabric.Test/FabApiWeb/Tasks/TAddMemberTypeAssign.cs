@@ -21,8 +21,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V2=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
-				PropDbName.NodeForAction_Performed+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.VertexForAction_Performed+":_TP,"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V3,_V2,_TP);"+
@@ -71,7 +71,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewMtaId,
 				vMemberTypeId,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.MemberTypeAssign,
+				(byte)VertexFabType.MemberTypeAssign,
 				vAssigningMemberId,
 				RelDbName.MemberCreatesMemberTypeAssign,
 				RelDbName.MemberHasMemberTypeAssign

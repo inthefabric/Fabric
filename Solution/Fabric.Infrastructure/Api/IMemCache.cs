@@ -10,16 +10,16 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AddExists<T>(long pNodeTypeId, CacheItemPolicy pPolicy=null) where T : INodeWithId;
-		bool? FindExists<T>(long pNodeTypeId) where T : INodeWithId;
-		bool? RemoveExists<T>(long pNodeTypeId) where T : INodeWithId;
+		void AddExists<T>(long pVertexTypeId, CacheItemPolicy pPolicy=null) where T : IVertexWithId;
+		bool? FindExists<T>(long pVertexTypeId) where T : IVertexWithId;
+		bool? RemoveExists<T>(long pVertexTypeId) where T : IVertexWithId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AddNode<T>(T pNode, CacheItemPolicy pPolicy=null) where T : INodeWithId;
-		T FindNode<T>(long pNodeTypeId) where T : INodeWithId;
-		T RemoveNode<T>(long pNodeTypeId) where T : INodeWithId;
+		void AddVertex<T>(T pVertex, CacheItemPolicy pPolicy=null) where T : IVertexWithId;
+		T FindVertex<T>(long pVertexTypeId) where T : IVertexWithId;
+		T RemoveVertex<T>(long pVertexTypeId) where T : IVertexWithId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

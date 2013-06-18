@@ -61,7 +61,7 @@ namespace Fabric.Api.Modify {
 			IWeaverVarAlias<Member> memVar;
 
 			var txb = new TxBuilder();
-			txb.GetNode(m, out memVar);
+			txb.GetVertex(m, out memVar);
 			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, memVar, out urlVar);
 			txb.RegisterVarWithTxBuilder(urlVar);
 

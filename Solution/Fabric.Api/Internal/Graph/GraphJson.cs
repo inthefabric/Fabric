@@ -41,19 +41,19 @@ namespace Fabric.Api.Internal.Graph {
 				query.FinalizeQuery(q);
 				IApiDataAccess data = ctx.DbData("getGraphData", query);
 
-				var nodes = new List<IDbDto>();
+				var verts = new List<IDbDto>();
 				var links = new List<IDbDto>();
-				var nodeIdMap = new Dictionary<string, dynamic>();
+				var vertexIdMap = new Dictionary<string, dynamic>();
 				var linkIdMap = new Dictionary<string, dynamic>();
 
 				foreach ( IDbDto dto in data.ResultDtoList ) {
 					string id = (dto.Id ?? "");
 
 					switch ( dto.Item ) {
-						case DbDto.ItemType.Node:
-							if ( nodeIdMap.ContainsKey(id) ) { continue; }
-							nodeIdMap.Add(id, dto);
-							nodes.Add(dto);
+						case DbDto.ItemType.Vertex:
+							if ( vertexIdMap.ContainsKey(id) ) { continue; }
+							vertexIdMap.Add(id, dto);
+							verts.Add(dto);
 							break;
 
 						case DbDto.ItemType.Rel:
@@ -65,33 +65,33 @@ namespace Fabric.Api.Internal.Graph {
 				}
 
 				obj = new ExpandoObject();
-				obj.nodes = new List<ExpandoObject>();
+				obj.verts = new List<ExpandoObject>();
 				obj.links = new List<ExpandoObject>();
 
-				nodeIdMap = new Dictionary<string, dynamic>();
+				vertexIdMap = new Dictionary<string, dynamic>();
 
-				int nodeI = 1;
+				int vertexI = 1;
 				var rand = new Random(999);
 
-				dynamic nodeObj = new ExpandoObject();
-				nodeObj.index = 0;
-				nodeObj.x = nodeObj.y = 0.5;
-				obj.nodes.Add(nodeObj);
+				dynamic vertexObj = new ExpandoObject();
+				vertexObj.index = 0;
+				vertexObj.x = vertexObj.y = 0.5;
+				obj.verts.Add(vertexObj);
 
-				foreach ( DbDto n in nodes ) {
-					nodeObj = new ExpandoObject();
-					nodeObj.index = nodeI++;
-					nodeObj.id = n.Id;
-					nodeObj.Class = n.Class;
-					nodeObj.name = n.Class;
-					nodeObj.Data = "";
+				foreach ( DbDto n in verts ) {
+					vertexObj = new ExpandoObject();
+					vertexObj.index = vertexI++;
+					vertexObj.id = n.Id;
+					vertexObj.Class = n.Class;
+					vertexObj.name = n.Class;
+					vertexObj.Data = "";
 
-					nodeObj.x = rand.NextDouble()*0.5+0.25;
-					nodeObj.y = rand.NextDouble()*0.5+0.25;
+					vertexObj.x = rand.NextDouble()*0.5+0.25;
+					vertexObj.y = rand.NextDouble()*0.5+0.25;
 
 					if ( n.Data != null ) {
 						foreach ( string key in n.Data.Keys ) {
-							nodeObj.Data += "\n - "+key+": "+n.Data[key];
+							vertexObj.Data += "\n - "+key+": "+n.Data[key];
 						}
 					}
 
@@ -99,8 +99,8 @@ namespace Fabric.Api.Internal.Graph {
 						name += ": "+n.Data["Name"];
 					}*/
 
-					obj.nodes.Add(nodeObj);
-					nodeIdMap.Add(nodeObj.id, nodeObj);
+					obj.verts.Add(vertexObj);
+					vertexIdMap.Add(vertexObj.id, vertexObj);
 				}
 
 				foreach ( DbDto l in links ) {
@@ -109,11 +109,11 @@ namespace Fabric.Api.Internal.Graph {
 					linkObj.type = ExtractEdgeType(l);
 
 					if ( l.OutVertexId != null ) {
-						linkObj.start = linkObj.source = nodeIdMap[l.OutVertexId].index;
+						linkObj.start = linkObj.source = vertexIdMap[l.OutVertexId].index;
 					}
 
 					if ( l.InVertexId != null ) {
-						linkObj.end = linkObj.target = nodeIdMap[l.InVertexId].index;
+						linkObj.end = linkObj.target = vertexIdMap[l.InVertexId].index;
 					}
 
 					if ( linkObj.start == 1 || linkObj.end == 1 ) { continue; }

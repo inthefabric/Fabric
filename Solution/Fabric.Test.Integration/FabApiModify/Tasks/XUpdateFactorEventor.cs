@@ -20,7 +20,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 			Tasks.UpdateFactorEventor(ApiCtx, f, (byte)pEveTypeId, (byte)pEvePrecId, pDateTime);
 
-			Factor fac = GetNode<Factor>(f.FactorId);
+			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");
 			Assert.AreEqual((byte)pEveTypeId, fac.Eventor_TypeId, "Incorrect Eventor_TypeId.");
 		}

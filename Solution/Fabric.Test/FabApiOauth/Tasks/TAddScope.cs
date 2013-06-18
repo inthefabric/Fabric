@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.OauthScope_OauthScopeId+":_TP,"+
 				PropDbName.OauthScope_Allow+":_TP,"+
 				PropDbName.OauthScope_Created+":_TP,"+
-				PropDbName.Node_FabType+":_TP"+
+				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_V0,_V1,_TP);"+
@@ -120,7 +120,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vAddOauthScopeId,
 				vAllow,
 				vUtcNow.Ticks,
-				(byte)NodeFabType.OauthScope,
+				(byte)VertexFabType.OauthScope,
 				vAppId,
 				RelDbName.OauthScopeUsesApp,
 				vUserId,

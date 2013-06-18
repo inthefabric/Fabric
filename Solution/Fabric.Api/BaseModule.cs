@@ -22,9 +22,9 @@ namespace Fabric.Api {
 
 		public static string ApiUrl;
 		public static int RexConnPort;
-		public static int NodeCount;
-		public static string[] NodeIpList;
-		public static int NodeIndex;
+		public static int VertexCount;
+		public static string[] VertexIpList;
+		public static int VertexIndex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,20 +45,20 @@ namespace Fabric.Api {
 #if MONO_DEV
 				ApiUrl = "http://localhost:9000";
 				RexConnPort = 8185;
-				NodeCount = 1;
-				NodeIpList = new string[1] { "rexster" };
+				VertexCount = 1;
+				VertexIpList = new string[1] { "rexster" };
 #else
 				ApiUrl = "http://"+ConfigurationManager.AppSettings[ConfPrefix+"Api"];
 				RexConnPort = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexConnPort"]);
-				NodeCount = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"NodeCount"]);
-				NodeIpList = new string[NodeCount];
+				VertexCount = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"VertexCount"]);
+				VertexIpList = new string[VertexCount];
 
-				for ( int i = 0 ; i < NodeCount ; ++i ) {
-					NodeIpList[i] = ConfigurationManager.AppSettings[ConfPrefix+"NodeIp"+(i+1)];
+				for ( int i = 0 ; i < VertexCount ; ++i ) {
+					VertexIpList[i] = ConfigurationManager.AppSettings[ConfPrefix+"VertexIp"+(i+1)];
 				}
 #endif
 
-				NodeIndex = 0;
+				VertexIndex = 0;
 			}
 			
 			if ( Version == null ) {
@@ -75,8 +75,8 @@ namespace Fabric.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
-			int i = (NodeIndex++)%NodeCount;
-			return new ApiContext(NodeIpList[i], RexConnPort, Cache);
+			int i = (VertexIndex++)%VertexCount;
+			return new ApiContext(VertexIpList[i], RexConnPort, Cache);
 		}
 
 

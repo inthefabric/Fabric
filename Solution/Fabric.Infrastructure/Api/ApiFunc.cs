@@ -42,14 +42,14 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static T NewPathFromIndex<T>(T pNodeWithId) where T : class, INode, new() {
-			return Weave.Inst.Graph.V.ExactIndex(pNodeWithId.GetTypeIdProp<T>(),
-				pNodeWithId.GetTypeId());
+		public static T NewPathFromIndex<T>(T pVertexWithId) where T : class, IVertex, new() {
+			return Weave.Inst.Graph.V.ExactIndex(pVertexWithId.GetTypeIdProp<T>(),
+				pVertexWithId.GetTypeId());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static IWeaverQuery NewNodeQuery<T>(T pNodeWithId) where T : class, INode, new() {
-			return NewPathFromIndex(pNodeWithId).ToQuery();
+		public static IWeaverQuery NewVertexQuery<T>(T pVertexWithId) where T : class, IVertex, new() {
+			return NewPathFromIndex(pVertexWithId).ToQuery();
 		}
 
 	}
