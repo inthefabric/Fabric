@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:19 PM
+// Generated on 6/18/2013 3:43:36 PM
 
 namespace Fabric.Api.Traversal.Steps.Vertices {
 	

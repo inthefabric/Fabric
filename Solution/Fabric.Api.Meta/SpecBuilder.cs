@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 5/5/2013 9:59:20 PM
+// Generated on 6/18/2013 3:43:36 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;

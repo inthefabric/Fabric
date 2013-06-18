@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/8/2013 2:11:06 PM
+// Generated on 6/18/2013 3:43:34 PM
 
 namespace Fabric.Db.Data.Setups {
 
