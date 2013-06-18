@@ -37,11 +37,11 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Assert.AreEqual(pNote, newClass.Note, "Incorrect Note.");
 
 			VertexConnections conn = GetVertexConnections(newClass);
-			conn.AssertRelCount(1, 0);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
+			conn.AssertEdgeCount(1, 0);
+			conn.AssertEdge<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewVertexCount = 1;
-			NewRelCount = 1;
+			NewEdgeCount = 1;
 		}
 
 	}

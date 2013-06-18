@@ -37,7 +37,7 @@ namespace Fabric.Test.Integration.FabInfra {
 
 			var req = new Request("POST", "", "UTF-8");
 			req.Form.Add(CreateFactor.PrimArtParam, SetupArtifacts.ArtifactId.User_Zach);
-			req.Form.Add(CreateFactor.RelArtParam, SetupArtifacts.ArtifactId.Thi_Art);
+			req.Form.Add(CreateFactor.EdgeArtParam, SetupArtifacts.ArtifactId.Thi_Art);
 			req.Form.Add(CreateFactor.AssertParam, FactorAssertionId.Fact);
 			req.Form.Add(CreateFactor.IsDefParam, false);
 
@@ -46,7 +46,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			modFactors.Execute();
 
 			NewVertexCount += 1; //see XCreateFactor
-			NewRelCount += 3;
+			NewEdgeCount += 3;
 		}
 
 

@@ -62,30 +62,30 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			
 			NewVertexCount = 3;
-			NewRelCount = 0;
+			NewEdgeCount = 0;
 			
 			VertexConnections conn = GetVertexConnections(newApp);
-			conn.AssertRelCount(1, 2);
-			conn.AssertRel<AppUsesEmail, Email>(true, (long)vExpectEmailId);
-			conn.AssertRel<AppDefinesMember, Member>(true, newMember.MemberId);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
-			NewRelCount += 3;
+			conn.AssertEdgeCount(1, 2);
+			conn.AssertEdge<AppUsesEmail, Email>(true, (long)vExpectEmailId);
+			conn.AssertEdge<AppDefinesMember, Member>(true, newMember.MemberId);
+			conn.AssertEdge<MemberCreatesArtifact, Member>(false, newMember.MemberId);
+			NewEdgeCount += 3;
 			
 			conn = GetVertexConnections(newMember);
-			conn.AssertRelCount(2, 2);
-			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
-			conn.AssertRel<AppDefinesMember, App>(false, newApp.ArtifactId);
-			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
+			conn.AssertEdgeCount(2, 2);
+			conn.AssertEdge<UserDefinesMember, User>(false, vUserId);
+			conn.AssertEdge<AppDefinesMember, App>(false, newApp.ArtifactId);
+			conn.AssertEdge<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
-			conn.AssertRel<MemberCreatesArtifact, Artifact>(true, 
+			conn.AssertEdge<MemberCreatesArtifact, Artifact>(true, 
 				newApp.ArtifactId, PropDbName.Artifact_ArtifactId);
-			NewRelCount += 4-2;
+			NewEdgeCount += 4-2;
 			
 			conn = GetVertexConnections(newMta);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
-			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
-			NewRelCount += 2-1;
+			conn.AssertEdgeCount(2, 0);
+			conn.AssertEdge<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
+			conn.AssertEdge<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
+			NewEdgeCount += 2-1;
 		}
 
 		

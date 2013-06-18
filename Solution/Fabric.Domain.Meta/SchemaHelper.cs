@@ -31,32 +31,32 @@ namespace Fabric.Domain.Meta {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static SchemaHelperRel GetEdge(string pName) {
+		public static SchemaHelperEdge GetEdge(string pName) {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
-				case "AppAppUsesEmailEmail": return new SchemaHelperRel(s.Rels[0]);
-				case "AppAppDefinesMemberMember": return new SchemaHelperRel(s.Rels[1]);
-				case "MemberMemberHasMemberTypeAssignMemberTypeAssign": return new SchemaHelperRel(s.Rels[2]);
-				case "MemberMemberHasHistoricMemberTypeAssignMemberTypeAssign": return new SchemaHelperRel(s.Rels[3]);
-				case "MemberMemberCreatesArtifactArtifact": return new SchemaHelperRel(s.Rels[4]);
-				case "MemberMemberCreatesMemberTypeAssignMemberTypeAssign": return new SchemaHelperRel(s.Rels[5]);
-				case "MemberMemberCreatesFactorFactor": return new SchemaHelperRel(s.Rels[6]);
-				case "UserUserUsesEmailEmail": return new SchemaHelperRel(s.Rels[7]);
-				case "UserUserDefinesMemberMember": return new SchemaHelperRel(s.Rels[8]);
-				case "FactorFactorUsesPrimaryArtifactArtifact": return new SchemaHelperRel(s.Rels[9]);
-				case "FactorFactorUsesRelatedArtifactArtifact": return new SchemaHelperRel(s.Rels[10]);
-				case "FactorFactorDescriptorRefinesPrimaryWithArtifactArtifact": return new SchemaHelperRel(s.Rels[11]);
-				case "FactorFactorDescriptorRefinesRelatedWithArtifactArtifact": return new SchemaHelperRel(s.Rels[12]);
-				case "FactorFactorDescriptorRefinesTypeWithArtifactArtifact": return new SchemaHelperRel(s.Rels[13]);
-				case "FactorFactorVectorUsesAxisArtifactArtifact": return new SchemaHelperRel(s.Rels[14]);
-				case "OauthAccessOauthAccessUsesAppApp": return new SchemaHelperRel(s.Rels[15]);
-				case "OauthAccessOauthAccessUsesUserUser": return new SchemaHelperRel(s.Rels[16]);
-				case "OauthDomainOauthDomainUsesAppApp": return new SchemaHelperRel(s.Rels[17]);
-				case "OauthGrantOauthGrantUsesAppApp": return new SchemaHelperRel(s.Rels[18]);
-				case "OauthGrantOauthGrantUsesUserUser": return new SchemaHelperRel(s.Rels[19]);
-				case "OauthScopeOauthScopeUsesAppApp": return new SchemaHelperRel(s.Rels[20]);
-				case "OauthScopeOauthScopeUsesUserUser": return new SchemaHelperRel(s.Rels[21]);
+				case "AppAppUsesEmailEmail": return new SchemaHelperEdge(s.Edges[0]);
+				case "AppAppDefinesMemberMember": return new SchemaHelperEdge(s.Edges[1]);
+				case "MemberMemberHasMemberTypeAssignMemberTypeAssign": return new SchemaHelperEdge(s.Edges[2]);
+				case "MemberMemberHasHistoricMemberTypeAssignMemberTypeAssign": return new SchemaHelperEdge(s.Edges[3]);
+				case "MemberMemberCreatesArtifactArtifact": return new SchemaHelperEdge(s.Edges[4]);
+				case "MemberMemberCreatesMemberTypeAssignMemberTypeAssign": return new SchemaHelperEdge(s.Edges[5]);
+				case "MemberMemberCreatesFactorFactor": return new SchemaHelperEdge(s.Edges[6]);
+				case "UserUserUsesEmailEmail": return new SchemaHelperEdge(s.Edges[7]);
+				case "UserUserDefinesMemberMember": return new SchemaHelperEdge(s.Edges[8]);
+				case "FactorFactorUsesPrimaryArtifactArtifact": return new SchemaHelperEdge(s.Edges[9]);
+				case "FactorFactorUsesRelatedArtifactArtifact": return new SchemaHelperEdge(s.Edges[10]);
+				case "FactorFactorDescriptorRefinesPrimaryWithArtifactArtifact": return new SchemaHelperEdge(s.Edges[11]);
+				case "FactorFactorDescriptorRefinesRelatedWithArtifactArtifact": return new SchemaHelperEdge(s.Edges[12]);
+				case "FactorFactorDescriptorRefinesTypeWithArtifactArtifact": return new SchemaHelperEdge(s.Edges[13]);
+				case "FactorFactorVectorUsesAxisArtifactArtifact": return new SchemaHelperEdge(s.Edges[14]);
+				case "OauthAccessOauthAccessUsesAppApp": return new SchemaHelperEdge(s.Edges[15]);
+				case "OauthAccessOauthAccessUsesUserUser": return new SchemaHelperEdge(s.Edges[16]);
+				case "OauthDomainOauthDomainUsesAppApp": return new SchemaHelperEdge(s.Edges[17]);
+				case "OauthGrantOauthGrantUsesAppApp": return new SchemaHelperEdge(s.Edges[18]);
+				case "OauthGrantOauthGrantUsesUserUser": return new SchemaHelperEdge(s.Edges[19]);
+				case "OauthScopeOauthScopeUsesAppApp": return new SchemaHelperEdge(s.Edges[20]);
+				case "OauthScopeOauthScopeUsesUserUser": return new SchemaHelperEdge(s.Edges[21]);
 			}
 
 			return null;

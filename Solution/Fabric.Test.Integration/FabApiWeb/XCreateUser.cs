@@ -70,35 +70,35 @@ namespace Fabric.Test.Integration.FabApiWeb {
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 			
 			NewVertexCount = 4;
-			NewRelCount = 0;
+			NewEdgeCount = 0;
 			
 			VertexConnections conn = GetVertexConnections(newEmail);
-			conn.AssertRelCount(1, 0);
-			conn.AssertRel<UserUsesEmail, User>(false, newUser.ArtifactId);
-			NewRelCount += 1;
+			conn.AssertEdgeCount(1, 0);
+			conn.AssertEdge<UserUsesEmail, User>(false, newUser.ArtifactId);
+			NewEdgeCount += 1;
 			
 			conn = GetVertexConnections(newUser);
-			conn.AssertRelCount(1, 2);
-			conn.AssertRel<UserUsesEmail, Email>(true, newEmail.EmailId);
-			conn.AssertRel<UserDefinesMember, Member>(true, newMember.MemberId);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, newMember.MemberId);
-			NewRelCount += 3-1;
+			conn.AssertEdgeCount(1, 2);
+			conn.AssertEdge<UserUsesEmail, Email>(true, newEmail.EmailId);
+			conn.AssertEdge<UserDefinesMember, Member>(true, newMember.MemberId);
+			conn.AssertEdge<MemberCreatesArtifact, Member>(false, newMember.MemberId);
+			NewEdgeCount += 3-1;
 			
 			conn = GetVertexConnections(newMember);
-			conn.AssertRelCount(2, 2);
-			conn.AssertRel<UserDefinesMember, User>(false, newUser.ArtifactId);
-			conn.AssertRel<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
-			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
+			conn.AssertEdgeCount(2, 2);
+			conn.AssertEdge<UserDefinesMember, User>(false, newUser.ArtifactId);
+			conn.AssertEdge<AppDefinesMember, App>(false, (long)AppId.FabricSystem);
+			conn.AssertEdge<MemberHasMemberTypeAssign, MemberTypeAssign>(true,
 				newMta.MemberTypeAssignId);
-			conn.AssertRel<MemberCreatesArtifact, Artifact>(true,
+			conn.AssertEdge<MemberCreatesArtifact, Artifact>(true,
 				newUser.ArtifactId, PropDbName.Artifact_ArtifactId);
-			NewRelCount += 4-2;
+			NewEdgeCount += 4-2;
 			
 			conn = GetVertexConnections(newMta);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
-			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
-			NewRelCount += 2-1;
+			conn.AssertEdgeCount(2, 0);
+			conn.AssertEdge<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
+			conn.AssertEdge<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
+			NewEdgeCount += 2-1;
 		}
 
 				

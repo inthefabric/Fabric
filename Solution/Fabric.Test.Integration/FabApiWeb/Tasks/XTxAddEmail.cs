@@ -31,10 +31,10 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.Null(newEmail.Verified, "Incorrect Verified.");
 			
 			VertexConnections conn = GetVertexConnections(newEmail);
-			conn.AssertRelCount(0, 0);
+			conn.AssertEdgeCount(0, 0);
 
 			NewVertexCount = 1;
-			NewRelCount = 0;
+			NewEdgeCount = 0;
 		}
 
 	}

@@ -29,11 +29,11 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		void UpdateFactorDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
-										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId);
+										long? pPrimArtRefId, long? pEdgeArtRefId, long? pDescTypeRefId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void UpdateFactorDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId, byte pPrimActId,
-																						byte pRelActId);
+																						byte pEdgeActId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId, byte pEvePrecId,
@@ -70,7 +70,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId, long pRelArtId,
+		void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId, long pEdgeArtId,
 											byte pAssertId, bool pIsDefining, string pNote,
 											Member pCreator, out IWeaverVarAlias<Factor> pFactorVar);
 

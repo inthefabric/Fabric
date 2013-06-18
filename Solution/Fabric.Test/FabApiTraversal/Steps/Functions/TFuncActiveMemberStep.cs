@@ -41,8 +41,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 			const string script = 
 				"V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
-				".outE('"+RelDbName.UserDefinesMember+"').inV"+
-				".inE('"+RelDbName.AppDefinesMember+"').outV"+
+				".outE('"+EdgeDbName.UserDefinesMember+"').inV"+
+				".inE('"+EdgeDbName.AppDefinesMember+"').outV"+
 					".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
 				".back(3)[0]";
 

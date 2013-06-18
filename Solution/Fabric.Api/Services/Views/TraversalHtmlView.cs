@@ -138,7 +138,7 @@ namespace Fabric.Api.Services.Views {
 				FabStepLink sl = vInfo.Resp.Links[i];
 				uri = vInfo.Resp.BaseUri+vInfo.Resp.RequestUri+sl.Uri;
 				html += (i == 0 ? "" : "<br/>")+"[ <a href='"+uri+"'>"+
-					(sl.IsOut ? "Out" : "In")+" | "+sl.Rel+" | "+sl.Class+"</a> ]";
+					(sl.IsOut ? "Out" : "In")+" | "+sl.Edge+" | "+sl.Class+"</a> ]";
 			}
 
 			html += "</div>";

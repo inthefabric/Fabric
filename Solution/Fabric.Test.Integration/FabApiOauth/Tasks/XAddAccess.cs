@@ -66,15 +66,15 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOa, "New OauthAccess was not created.");
 
 			VertexConnections conn = GetVertexConnections(newOa);
-			conn.AssertRelCount(0, (vClientOnly ? 1 : 2));
+			conn.AssertEdgeCount(0, (vClientOnly ? 1 : 2));
 
 			if ( vClientOnly ) {
-				conn.AssertRel<OauthAccessUsesApp, App>(true, vAppId);
+				conn.AssertEdge<OauthAccessUsesApp, App>(true, vAppId);
 			}
 			else {
 				Assert.NotNull(vUserId, "vUserId cannot be null.");
-				conn.AssertRel<OauthAccessUsesApp, App>(true, vAppId);
-				conn.AssertRel<OauthAccessUsesUser, User>(true, (long)vUserId);
+				conn.AssertEdge<OauthAccessUsesApp, App>(true, vAppId);
+				conn.AssertEdge<OauthAccessUsesUser, User>(true, (long)vUserId);
 			}
 
 			////
@@ -88,7 +88,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.AreEqual(tokenCount+1, updatedTokenCount, "Incorrect updated Token count.");
 
 			NewVertexCount = 1;
-			NewRelCount = (vClientOnly ? 1 : 2);
+			NewEdgeCount = (vClientOnly ? 1 : 2);
 		}
 
 

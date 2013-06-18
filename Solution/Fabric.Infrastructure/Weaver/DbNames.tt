@@ -111,10 +111,10 @@ foreach ( WeaverVertexSchema ns in verts ) {
 
 
 	/*================================================================================================*/
-	public static class RelDbName {
+	public static class EdgeDbName {
 
 <#
-foreach ( WeaverEdgeSchema rs in schema.Rels ) {
+foreach ( WeaverEdgeSchema rs in schema.Edges ) {
 #>
 		public const string <#= rs.Name #> = "<#= rs.DbName #>";
 <#
@@ -131,7 +131,7 @@ foreach ( WeaverEdgeSchema rs in schema.Rels ) {
 			TypeMap = new Dictionary<Type, string>();
 			
 <#
-foreach ( WeaverEdgeSchema rs in schema.Rels ) {
+foreach ( WeaverEdgeSchema rs in schema.Edges ) {
 #>
 			TypeMap.Add(typeof(<#= rs.Name #>), <#= rs.Name #>);
 <#

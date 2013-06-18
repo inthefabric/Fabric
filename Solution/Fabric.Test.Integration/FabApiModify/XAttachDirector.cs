@@ -15,7 +15,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		private byte vDirTypeId;
 		private byte vPrimActId;
-		private byte vRelActId;
+		private byte vEdgeActId;
 		
 		private bool vResult;
 		
@@ -28,12 +28,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			vDirTypeId = (byte)DirectorTypeId.DefinedPath;
 			vPrimActId = (byte)DirectorActionId.Locate;
-			vRelActId = (byte)DirectorActionId.Obtain;
+			vEdgeActId = (byte)DirectorActionId.Obtain;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new AttachDirector(Tasks, FactorId, vDirTypeId, vPrimActId, vRelActId);
+			var func = new AttachDirector(Tasks, FactorId, vDirTypeId, vPrimActId, vEdgeActId);
 			vResult = func.Go(ApiCtx);
 		}
 		

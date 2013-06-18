@@ -23,12 +23,12 @@
 					n.TestVal = ++testId;
 				}
 
-				foreach ( IDataRel rel in ds.Rels ) {
-					System.Console.WriteLine(rel.OutVertex+" / "+rel.Rel.Label+" / "+rel.InVertex);
-					System.Console.WriteLine("OUT: "+ds.GetDataVertex(rel.OutVertex).TestVal);
-					System.Console.WriteLine("IN: "+ds.GetDataVertex(rel.InVertex).TestVal);
-					rel.TestVal = ds.GetDataVertex(rel.OutVertex).TestVal+"|"+
-						rel.Rel.Label+"|"+ds.GetDataVertex(rel.InVertex).TestVal;
+				foreach ( IDataEdge edge in ds.Edges ) {
+					System.Console.WriteLine(edge.OutVertex+" / "+edge.Edge.Label+" / "+edge.InVertex);
+					System.Console.WriteLine("OUT: "+ds.GetDataVertex(edge.OutVertex).TestVal);
+					System.Console.WriteLine("IN: "+ds.GetDataVertex(edge.InVertex).TestVal);
+					edge.TestVal = ds.GetDataVertex(edge.OutVertex).TestVal+"|"+
+						edge.Edge.Label+"|"+ds.GetDataVertex(edge.InVertex).TestVal;
 				}
 			}
 

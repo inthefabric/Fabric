@@ -28,9 +28,9 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public bool UseVertexCentricIndexForRel(SchemaHelperRel pRel) {
+		public bool UseVertexCentricIndexForEdge(SchemaHelperEdge pEdge) {
 			return (PropSchema.IsVertexCentricIndex && 
-				pRel.GetEdgeHasMany(true) && pRel.GetEdgeHasMany(false));
+				pEdge.GetEdgeHasMany(true) && pEdge.GetEdgeHasMany(false));
 		}
 		
 

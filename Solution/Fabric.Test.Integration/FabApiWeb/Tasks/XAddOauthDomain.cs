@@ -42,11 +42,11 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreEqual(vDomain, newDom.Domain, "Incorrect Result.Domain.");
 
 			VertexConnections conn = GetVertexConnections(newDom);
-			conn.AssertRelCount(0, 1);
-			conn.AssertRel<OauthDomainUsesApp, App>(true, vAppId);
+			conn.AssertEdgeCount(0, 1);
+			conn.AssertEdge<OauthDomainUsesApp, App>(true, vAppId);
 
 			NewVertexCount = 1;
-			NewRelCount = 1;
+			NewEdgeCount = 1;
 		}
 
 	}

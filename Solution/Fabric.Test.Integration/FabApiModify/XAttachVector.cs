@@ -62,11 +62,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 			////
 			
 			VertexConnections conn = GetVertexConnections(updatedFactor);
-			conn.AssertRelCount(1, 2+1); //Factor starts with (1,2) (in,out) rels
-			conn.AssertRel<FactorVectorUsesAxisArtifact, Artifact>(true,
+			conn.AssertEdgeCount(1, 2+1); //Factor starts with (1,2) (in,out) edges
+			conn.AssertEdge<FactorVectorUsesAxisArtifact, Artifact>(true,
 				vAxisArtId, PropDbName.Artifact_ArtifactId);
 			
-			NewRelCount = 1;
+			NewEdgeCount = 1;
 		}
 
 		

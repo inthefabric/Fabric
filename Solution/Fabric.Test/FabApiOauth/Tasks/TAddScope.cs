@@ -17,9 +17,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryUpdateScopeTx =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
-			".inE('"+RelDbName.OauthScopeUsesUser+"').outV"+
+			".inE('"+EdgeDbName.OauthScopeUsesUser+"').outV"+
 				".as('step5')"+
-			".outE('"+RelDbName.OauthScopeUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthScopeUsesApp+"').inV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
 			".back('step5')"+
 				".sideEffect{"+
@@ -122,9 +122,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUtcNow.Ticks,
 				(byte)VertexFabType.OauthScope,
 				vAppId,
-				RelDbName.OauthScopeUsesApp,
+				EdgeDbName.OauthScopeUsesApp,
 				vUserId,
-				RelDbName.OauthScopeUsesUser
+				EdgeDbName.OauthScopeUsesUser
 			});
 			
 			return vAddScopeResult;

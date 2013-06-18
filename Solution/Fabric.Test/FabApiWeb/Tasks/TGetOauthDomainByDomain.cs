@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private const string Query =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
-			".inE('"+RelDbName.OauthDomainUsesApp+"').outV"+
+			".inE('"+EdgeDbName.OauthDomainUsesApp+"').outV"+
 				".filter{it.getProperty('"+PropDbName.OauthDomain_Domain+"').toLowerCase()==_P1};";
 
 		private long vAppId;

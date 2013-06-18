@@ -50,18 +50,18 @@ foreach ( WeaverVertexSchema vertex in verts ) {
 	
 			//EDGES
 <#
-IList<string> rels = SchemaHelper.GetEdges();
+IList<string> edges = SchemaHelper.GetEdges();
 
-foreach ( string name in rels ) {
-	SchemaHelperRel rel = SchemaHelper.GetEdge(name);
-	SchemaHelperVertex from = SchemaHelper.GetVertex(rel.OutVertexName);
-	SchemaHelperVertex to = SchemaHelper.GetVertex(rel.InVertexName);
+foreach ( string name in edges ) {
+	SchemaHelperEdge edge = SchemaHelper.GetEdge(name);
+	SchemaHelperVertex from = SchemaHelper.GetVertex(edge.OutVertexName);
+	SchemaHelperVertex to = SchemaHelper.GetVertex(edge.InVertexName);
 	IList<SchemaHelperProp> fromProps = from.GetProps(false);
 	IList<SchemaHelperProp> toProps = to.GetProps(false);
-	SchemaHelperVertexRel fromRel = new SchemaHelperVertexRel(from, rel.RelSchema);
-	SchemaHelperVertexRel toRel = new SchemaHelperVertexRel(to, rel.RelSchema);
-	string outUnique = (!fromRel.IsMany).ToString().ToLower();
-	string inUnique = (!toRel.IsMany).ToString().ToLower();
+	SchemaHelperVertexEdge fromEdge = new SchemaHelperVertexEdge(from, edge.EdgeSchema);
+	SchemaHelperVertexEdge toEdge = new SchemaHelperVertexEdge(to, edge.EdgeSchema);
+	string outUnique = (!fromEdge.IsMany).ToString().ToLower();
+	string inUnique = (!toEdge.IsMany).ToString().ToLower();
 	var keys = new List<string>();
 	var sigs = new List<string>();
 
@@ -77,7 +77,7 @@ foreach ( string name in rels ) {
 			continue;
 		}
 
-		if ( hp.UseVertexCentricIndexForRel(rel) ) {
+		if ( hp.UseVertexCentricIndexForEdge(edge) ) {
 			keys.Add(key);
 		}
 		else {
@@ -86,8 +86,8 @@ foreach ( string name in rels ) {
 	}
 #>
 
-			//<#= rel.EdgeName #>
-			pSet.AddIndexQuery(BuildLabel("<#= rel.RelSchema.DbName #>", <#= inUnique #>, <#= outUnique #>, 
+			//<#= edge.EdgeName #>
+			pSet.AddIndexQuery(BuildLabel("<#= edge.EdgeSchema.DbName #>", <#= inUnique #>, <#= outUnique #>, 
 				new [] {
 					"<#= string.Join("\",\r\n\t\t\t\t\t\"", keys) #>"
 				},
@@ -96,7 +96,7 @@ foreach ( string name in rels ) {
 				}
 			));
 <#
-} //end rel names loop
+} //end edge names loop
 #>
 		}
 

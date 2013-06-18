@@ -56,11 +56,11 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.AreEqual(newUrl.ArtifactId, vResult.ArtifactId, "Incorrect Result.ArtifactId.");
 
 			VertexConnections conn = GetVertexConnections(newUrl);
-			conn.AssertRelCount(1, 0);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, vExpectMemberId);
+			conn.AssertEdgeCount(1, 0);
+			conn.AssertEdge<MemberCreatesArtifact, Member>(false, vExpectMemberId);
 
 			NewVertexCount = 1;
-			NewRelCount = 1;
+			NewEdgeCount = 1;
 		}
 		
 

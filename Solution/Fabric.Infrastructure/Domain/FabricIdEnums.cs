@@ -124,9 +124,9 @@
 		EarthCoord = 1,
 		MoonCoord,
 		MarsCoord,
-		RelPos1D,
-		RelPos2D,
-		RelPos3D
+		EdgePos1D,
+		EdgePos2D,
+		EdgePos3D
 	}
 
 	/*================================================================================================*/

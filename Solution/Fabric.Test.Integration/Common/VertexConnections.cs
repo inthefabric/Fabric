@@ -16,8 +16,8 @@ namespace Fabric.Test.Integration.Common {
 		public IApiDataAccess DataAccess { get; private set; }
 
 		public IList<IDbDto> TargetVertices { get; private set; }
-		public IList<VertexConnectionRel> OutRels { get; private set; }
-		public IList<VertexConnectionRel> InRels { get; private set; }
+		public IList<VertexConnectionEdge> OutEdges { get; private set; }
+		public IList<VertexConnectionEdge> InEdges { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,8 +27,8 @@ namespace Fabric.Test.Integration.Common {
 			DataAccess = pData;
 
 			TargetVertices = new List<IDbDto>();
-			OutRels = new List<VertexConnectionRel>();
-			InRels = new List<VertexConnectionRel>();
+			OutEdges = new List<VertexConnectionEdge>();
+			InEdges = new List<VertexConnectionEdge>();
 
 			if ( DataAccess.ResultDtoList == null ) {
 				return;
@@ -41,8 +41,8 @@ namespace Fabric.Test.Integration.Common {
 			}
 
 			foreach ( IDbDto dbDto in DataAccess.ResultDtoList ) {
-				if ( dbDto.Item == DbDto.ItemType.Rel ) {
-					AddRel(dbDto);
+				if ( dbDto.Item == DbDto.ItemType.Edge ) {
+					AddEdge(dbDto);
 				}
 			}
 		}
@@ -50,46 +50,46 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRelCount(int pIncoming, int pOutgoing) {
+		public void AssertEdgeCount(int pIncoming, int pOutgoing) {
 			string end = " count for "+Vertex.GetType().Name+".";
-			Assert.AreEqual(pIncoming, InRels.Count, "Incorrect InRels"+end);
-			Assert.AreEqual(pOutgoing, OutRels.Count, "Incorrect OutRels"+end);
+			Assert.AreEqual(pIncoming, InEdges.Count, "Incorrect InEdges"+end);
+			Assert.AreEqual(pOutgoing, OutEdges.Count, "Incorrect OutEdges"+end);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRelCount<TRel>(bool pIsOutgoing, int pCount) where TRel : IWeaverEdge {
-			IList<VertexConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
+		public void AssertEdgeCount<TEdge>(bool pIsOutgoing, int pCount) where TEdge : IWeaverEdge {
+			IList<VertexConnectionEdge> edges = (pIsOutgoing ? OutEdges : InEdges);
 			int count = 0;
 
-			foreach ( VertexConnectionRel rel in rels ) {
-				if ( rel.Rel.Class != RelDbName.TypeMap[typeof(TRel)] ) {
+			foreach ( VertexConnectionEdge edge in edges ) {
+				if ( edge.Edge.Class != EdgeDbName.TypeMap[typeof(TEdge)] ) {
 					continue;
 				}
 
 				count++;
 			}
 
-			Assert.AreEqual(pCount, count, "Incorrect "+(pIsOutgoing ? "Out" : "In")+"Rel ["+
-				typeof(TRel).Name+"] count for "+Vertex.GetType().Name+".");
+			Assert.AreEqual(pCount, count, "Incorrect "+(pIsOutgoing ? "Out" : "In")+"Edge ["+
+				typeof(TEdge).Name+"] count for "+Vertex.GetType().Name+".");
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertRel<TRel, TVertex>(bool pIsOutgoing, long pTargetId, string pIdProperty=null)
-													where TRel : IWeaverEdge where TVertex : IVertexWithId {
-			IList<VertexConnectionRel> rels = (pIsOutgoing ? OutRels : InRels);
+		public void AssertEdge<TEdge, TVertex>(bool pIsOutgoing, long pTargetId, string pIdProperty=null)
+													where TEdge : IWeaverEdge where TVertex : IVertexWithId {
+			IList<VertexConnectionEdge> edges = (pIsOutgoing ? OutEdges : InEdges);
 
-			foreach ( VertexConnectionRel rel in rels ) {
-				if ( rel.Rel.Class != RelDbName.TypeMap[typeof(TRel)] ) {
+			foreach ( VertexConnectionEdge edge in edges ) {
+				if ( edge.Edge.Class != EdgeDbName.TypeMap[typeof(TEdge)] ) {
 					continue;
 				}
 
-				if ( pIdProperty == null && rel.TargetVertex.Class != typeof(TVertex).Name ) {
+				if ( pIdProperty == null && edge.TargetVertex.Class != typeof(TVertex).Name ) {
 					continue;
 				}
 
-				string prop = (pIdProperty ?? PropDbName.StrTypeIdMap[rel.TargetVertex.Class]);
-				string targId = rel.TargetVertex.Data[prop];
+				string prop = (pIdProperty ?? PropDbName.StrTypeIdMap[edge.TargetVertex.Class]);
+				string targId = edge.TargetVertex.Data[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {
 					continue;
@@ -98,21 +98,21 @@ namespace Fabric.Test.Integration.Common {
 				return;
 			}
 
-			Assert.Fail((pIsOutgoing ? "Out" : "In")+"Rel ["+typeof(TRel).Name+"+"+typeof(TVertex).Name+
+			Assert.Fail((pIsOutgoing ? "Out" : "In")+"Edge ["+typeof(TEdge).Name+"+"+typeof(TVertex).Name+
 				"] was not found for "+Vertex.GetType().Name+".");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddRel(IDbDto pDbDto) {
+		private void AddEdge(IDbDto pDbDto) {
 			if ( pDbDto.OutVertexId == Vertex.Id ) {
-				var rel = new VertexConnectionRel(pDbDto, true, GetTargetVertex(pDbDto.InVertexId));
-				OutRels.Add(rel);
+				var edge = new VertexConnectionEdge(pDbDto, true, GetTargetVertex(pDbDto.InVertexId));
+				OutEdges.Add(edge);
 			}
 			else {
-				var rel = new VertexConnectionRel(pDbDto, false, GetTargetVertex(pDbDto.OutVertexId));
-				InRels.Add(rel);
+				var edge = new VertexConnectionEdge(pDbDto, false, GetTargetVertex(pDbDto.OutVertexId));
+				InEdges.Add(edge);
 			}
 		}
 
@@ -137,12 +137,12 @@ namespace Fabric.Test.Integration.Common {
 		public override string ToString() {
 			string s = Vertex.GetType().Name+"["+Vertex.Id+", "+Vertex.GetTypeId()+"]";
 
-			foreach ( VertexConnectionRel rel in OutRels ) {
-				s += "\n\t* "+rel;
+			foreach ( VertexConnectionEdge edge in OutEdges ) {
+				s += "\n\t* "+edge;
 			}
 
-			foreach ( VertexConnectionRel rel in InRels ) {
-				s += "\n\t* "+rel;
+			foreach ( VertexConnectionEdge edge in InEdges ) {
+				s += "\n\t* "+edge;
 			}
 
 			return s;

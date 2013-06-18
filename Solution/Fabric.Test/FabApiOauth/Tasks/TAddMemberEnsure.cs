@@ -19,13 +19,13 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private const string QueryGetMemberTx =
 			"_V0=[];"+
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
-			".outE('"+RelDbName.UserDefinesMember+"').inV"+
+			".outE('"+EdgeDbName.UserDefinesMember+"').inV"+
 				".as('step5')"+
-			".inE('"+RelDbName.AppDefinesMember+"').outV"+
+			".inE('"+EdgeDbName.AppDefinesMember+"').outV"+
 			".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
 			".back('step5')"+
 				".aggregate(_V0)"+
-			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV"+
+			".outE('"+EdgeDbName.MemberHasMemberTypeAssign+"').inV"+
 				".aggregate(_V0)"+
 				".iterate();"+
 			"_V0;";
@@ -52,7 +52,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryUpdateMemberTx =
 			"_V0=g.V('"+PropDbName.MemberTypeAssign_MemberTypeAssignId+"',_TP).next();"+
-			"_V0.inE('"+RelDbName.MemberHasMemberTypeAssign+"')"+
+			"_V0.inE('"+EdgeDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
 			"_V1=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
 			"g.addEdge(_V1,_V0,_TP);"+
@@ -154,17 +154,17 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vNewMemId,
 				(byte)VertexFabType.Member,
 				vAppId,
-				RelDbName.AppDefinesMember,
+				EdgeDbName.AppDefinesMember,
 				vUserId,
-				RelDbName.UserDefinesMember,
+				EdgeDbName.UserDefinesMember,
 				vNewMtaId,
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
 				(byte)VertexFabType.MemberTypeAssign,
-				RelDbName.MemberHasMemberTypeAssign,
+				EdgeDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
-				RelDbName.MemberCreatesMemberTypeAssign
+				EdgeDbName.MemberCreatesMemberTypeAssign
 			});
 			
 			return vMockGetMemberTxResult.Object;
@@ -181,15 +181,15 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vMtaResult.MemberTypeAssignId,
 				vMemberResult.MemberId,
-				RelDbName.MemberHasHistoricMemberTypeAssign,
+				EdgeDbName.MemberHasHistoricMemberTypeAssign,
 				vNewMtaId,
 				(long)MemberTypeId.Member,
 				vUtcNow.Ticks,
 				"First login.",
 				(byte)VertexFabType.MemberTypeAssign,
-				RelDbName.MemberHasMemberTypeAssign,
+				EdgeDbName.MemberHasMemberTypeAssign,
 				(long)MemberId.FabFabData,
-				RelDbName.MemberCreatesMemberTypeAssign
+				EdgeDbName.MemberCreatesMemberTypeAssign
 			});
 			
 			return vMockGetMemberTxResult.Object;

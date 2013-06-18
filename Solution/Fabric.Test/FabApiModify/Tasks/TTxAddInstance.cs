@@ -67,7 +67,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.Instance,
-				RelDbName.MemberCreatesArtifact
+				EdgeDbName.MemberCreatesArtifact
 			});
 		}
 

@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private const string Query =
 			"g.V('"+PropDbName.Member_MemberId+"',_P0)"+
-			".outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV;";
+			".outE('"+EdgeDbName.MemberHasMemberTypeAssign+"').inV;";
 
 		private long vMemberId;
 		private MemberTypeAssign vMtaResult;

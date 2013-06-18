@@ -62,7 +62,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vVecUnitPrefId,
 				vValue,
 				vAxisArtId,
-				RelDbName.FactorVectorUsesAxisArtifact
+				EdgeDbName.FactorVectorUsesAxisArtifact
 			});
 
 			return null;

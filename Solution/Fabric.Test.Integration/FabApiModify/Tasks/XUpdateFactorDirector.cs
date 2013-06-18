@@ -14,10 +14,10 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(DirectorTypeId.DefinedPath, DirectorActionId.Read, DirectorActionId.Listen)]
 		public void Success(DirectorTypeId pDirTypeId, DirectorActionId pPrimActId,
-																		DirectorActionId pRelActId) {
+																		DirectorActionId pEdgeActId) {
 			var f = new Factor { FactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete };
 
-			Tasks.UpdateFactorDirector(ApiCtx, f, (byte)pDirTypeId, (byte)pPrimActId, (byte)pRelActId);
+			Tasks.UpdateFactorDirector(ApiCtx, f, (byte)pDirTypeId, (byte)pPrimActId, (byte)pEdgeActId);
 
 			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");

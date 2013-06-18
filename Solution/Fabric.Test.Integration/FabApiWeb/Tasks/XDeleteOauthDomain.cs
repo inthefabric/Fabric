@@ -42,7 +42,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.Null(tryDom, "Target OauthDomain was not deleted.");
 
 			NewVertexCount = -1;
-			NewRelCount = -1;
+			NewEdgeCount = -1;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -61,7 +61,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			IsReadOnlyTest = true;
 			NewVertexCount = 0;
-			NewRelCount = 0;
+			NewEdgeCount = 0;
 		}
 
 	}

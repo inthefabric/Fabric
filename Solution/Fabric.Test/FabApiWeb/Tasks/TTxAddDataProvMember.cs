@@ -72,15 +72,15 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewMemberId,
 				(byte)VertexFabType.Member,
 				vUserId,
-				RelDbName.UserDefinesMember,
-				RelDbName.AppDefinesMember,
+				EdgeDbName.UserDefinesMember,
+				EdgeDbName.AppDefinesMember,
 				vNewMtaId,
 				(long)MemberTypeId.DataProvider,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.MemberTypeAssign,
 				(long)SetupUsers.MemberTypeAssignId.FabFabDataBySystem,
-				RelDbName.MemberCreatesMemberTypeAssign,
-				RelDbName.MemberHasMemberTypeAssign
+				EdgeDbName.MemberCreatesMemberTypeAssign,
+				EdgeDbName.MemberHasMemberTypeAssign
 			});
 		}
 

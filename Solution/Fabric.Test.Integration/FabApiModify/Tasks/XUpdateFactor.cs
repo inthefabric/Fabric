@@ -46,7 +46,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(SetupFactors.FactorId.FZ_Art_Music_Incomplete)]
-		[TestCase(SetupFactors.FactorId.FZ_Zach_AEI_RelTo_ViewSuggView)]
+		[TestCase(SetupFactors.FactorId.FZ_Zach_AEI_EdgeTo_ViewSuggView)]
 		[TestCase(SetupFactors.FactorId.BB_Game_Tigers_HasA_Def)]
 		[TestCase(SetupFactors.FactorId.GG_CutePho_Photo_IsA_Focal)]
 		public void Deleted(SetupFactors.FactorId pFactorId) {

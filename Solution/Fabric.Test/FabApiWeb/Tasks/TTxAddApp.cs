@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		private const string Query = 
 			"_V0=[];"+ //Member
 			"_EM=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
-				".outE('"+RelDbName.UserUsesEmail+"').inV.next();"+
+				".outE('"+EdgeDbName.UserUsesEmail+"').inV.next();"+
 			"_V2=g.addVertex(["+
 				PropDbName.App_Name+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
@@ -67,8 +67,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.App,
-				RelDbName.AppUsesEmail,
-				RelDbName.MemberCreatesArtifact
+				EdgeDbName.AppUsesEmail,
+				EdgeDbName.MemberCreatesArtifact
 			});
 		}
 

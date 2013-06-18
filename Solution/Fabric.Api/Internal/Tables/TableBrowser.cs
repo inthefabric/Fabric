@@ -83,18 +83,18 @@ namespace Fabric.Api.Internal.Tables {
 
 			foreach ( IDbDto dto in vDtos ) {
 				if ( dto.Id == null || dto.InVertexId == null || dto.OutVertexId == null ) { continue; }
-				if ( dto.Item != DbDto.ItemType.Rel ) { continue; }
+				if ( dto.Item != DbDto.ItemType.Edge ) { continue; }
 
 				TableVertex toVertex, fromVertex;
 				vVertices.TryGetValue(dto.InVertexId, out toVertex);
 				vVertices.TryGetValue(dto.OutVertexId, out fromVertex);
 
 				if ( toVertex != null ) {
-					toVertex.AddRelIn(dto);
+					toVertex.AddEdgeIn(dto);
 				}
 
 				if ( fromVertex != null ) {
-					fromVertex.AddRelOut(dto);
+					fromVertex.AddEdgeOut(dto);
 				}
 			}
 

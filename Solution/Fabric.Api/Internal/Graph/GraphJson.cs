@@ -56,7 +56,7 @@ namespace Fabric.Api.Internal.Graph {
 							verts.Add(dto);
 							break;
 
-						case DbDto.ItemType.Rel:
+						case DbDto.ItemType.Edge:
 							if ( linkIdMap.ContainsKey(id) ) { continue; }
 							linkIdMap.Add(id, dto);
 							links.Add(dto);

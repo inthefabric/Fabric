@@ -40,7 +40,7 @@ namespace Fabric.Test.FabDbData {
 				n.Vertex.Id = (vertexI++)+"";
 			}
 
-			foreach ( IDataRel r in ds.Rels ) {
+			foreach ( IDataEdge r in ds.Edges ) {
 				string json = WeaverQueryToJson(r.AddQuery);
 				Log.Debug(json);
 			}

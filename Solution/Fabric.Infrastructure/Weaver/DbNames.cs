@@ -236,7 +236,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 
 	/*================================================================================================*/
-	public static class RelDbName {
+	public static class EdgeDbName {
 
 		public const string AppUsesEmail = "Ap-U-E";
 		public const string AppDefinesMember = "Ap-D-M";

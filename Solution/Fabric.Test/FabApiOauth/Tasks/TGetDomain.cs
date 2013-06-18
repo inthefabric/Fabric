@@ -20,7 +20,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".has('"+PropDbName.OauthDomain_Domain+
 					"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
 				".vertices()"+
-			".outE('"+RelDbName.OauthDomainUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthDomainUsesApp+"').inV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1);";
 
 		private long vAppId;

@@ -330,7 +330,7 @@
   <data name="StepLink_IsOut" xml:space="preserve">
     <value>Indicates whether this link is outgoing (starting from the current Vertex) or incoming (starting from another Vertex).</value>
   </data>
-  <data name="StepLink_Rel" xml:space="preserve">
+  <data name="StepLink_Edge" xml:space="preserve">
     <value>The relation type of this link.</value>
   </data>
   <data name="StepLink_Uri" xml:space="preserve">

@@ -116,8 +116,8 @@ namespace Fabric.Db.Data.Setups {
 			pSet.RegisterBaseClassVertex(pArtifact, typeof(Artifact), pArtifact.ArtifactId, pTestMode);
 
 			Member m = pSet.GetVertex<Member>((long)pCreatorId);
-			var relM = DataRel.Create(m, new MemberCreatesArtifact(), pArtifact, pTestMode);
-			pSet.AddRel(relM);
+			var edgeM = DataEdge.Create(m, new MemberCreatesArtifact(), pArtifact, pTestMode);
+			pSet.AddEdge(edgeM);
 		}
 
 	}

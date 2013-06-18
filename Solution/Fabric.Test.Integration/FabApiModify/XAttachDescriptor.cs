@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		private byte vDescTypeId;
 		private long? vPrimArtRefId;
-		private long? vRelArtRefId;
+		private long? vEdgeArtRefId;
 		private long? vDescTypeRefId;
 		
 		private bool vResult;
@@ -35,14 +35,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 			vDescTypeId = (byte)DescriptorTypeId.IsA;
 			vPrimArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Aei;
-			vRelArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Evolution;
+			vEdgeArtRefId = (long)SetupArtifacts.ArtifactId.Thi_Evolution;
 			vDescTypeRefId = (long)SetupArtifacts.ArtifactId.Thi_Blue;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
 			var func = new AttachDescriptor(Tasks, FactorId, vDescTypeId,
-				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
+				vPrimArtRefId, vEdgeArtRefId, vDescTypeRefId);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -58,12 +58,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 		[TestCase(DescriptorTypeId.SmellsLike, null, ArtA, ArtB)]
 		[TestCase(DescriptorTypeId.SmellsLike, ArtA, ArtB, ArtC)]
 		public void NewDescriptor(DescriptorTypeId pDescTypeId,SetupArtifacts.ArtifactId? pPrimArtRefId,
-				SetupArtifacts.ArtifactId? pDescTypeRefId, SetupArtifacts.ArtifactId? pRelArtRefId) {
+				SetupArtifacts.ArtifactId? pDescTypeRefId, SetupArtifacts.ArtifactId? pEdgeArtRefId) {
 			IsReadOnlyTest = false;
 
 			vDescTypeId = (byte)pDescTypeId;
 			vPrimArtRefId = (long?)pPrimArtRefId;
-			vRelArtRefId = (long?)pRelArtRefId;
+			vEdgeArtRefId = (long?)pEdgeArtRefId;
 			vDescTypeRefId = (long?)pDescTypeRefId;
 			
 			TestGo();
@@ -76,12 +76,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 				"Incorrect Descriptor_TypeId.");
 
 			VertexConnections conn = GetVertexConnections(updatedFactor);
-			int relCount;
+			int edgeCount;
 
 			XUpdateFactorDescriptor.CheckNewDescriptorConns(conn, FactorId, vDescTypeId, vPrimArtRefId,
-				vRelArtRefId, vDescTypeRefId, out relCount);
+				vEdgeArtRefId, vDescTypeRefId, out edgeCount);
 
-			NewRelCount = relCount;
+			NewEdgeCount = edgeCount;
 		}
 
 
@@ -109,7 +109,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRelatedArtifactValue() {
-			vRelArtRefId = 0;
+			vEdgeArtRefId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 

@@ -216,13 +216,13 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(m, vTestMode);
 
-			var relA = DataRel.Create(vSet.GetVertex<App>((long)pAppId),
+			var edgeA = DataEdge.Create(vSet.GetVertex<App>((long)pAppId),
 				new AppDefinesMember(), m, vTestMode);
-			vSet.AddRel(relA);
+			vSet.AddEdge(edgeA);
 
-			var relU = DataRel.Create(vSet.GetVertex<User>((long)pUserId),
+			var edgeU = DataEdge.Create(vSet.GetVertex<User>((long)pUserId),
 				new UserDefinesMember(), m, vTestMode);
-			vSet.AddRel(relU);
+			vSet.AddEdge(edgeU);
 
 			AddMemberTypeAssign(pId, false, pMemTypeAssnId, pMemTypeId, pAssignerId);
 		}
@@ -237,21 +237,21 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(mta, vTestMode);
 
-			var relAsn = DataRel.Create(vSet.GetVertex<Member>((long)pAssignerId),
+			var edgeAsn = DataEdge.Create(vSet.GetVertex<Member>((long)pAssignerId),
 				new MemberCreatesMemberTypeAssign(), mta, vTestMode);
-			vSet.AddRel(relAsn);
+			vSet.AddEdge(edgeAsn);
 
 			////
 
 			Member m = vSet.GetVertex<Member>((long)pMemberId);
 
 			if ( pIsHistoric ) {
-				var relMta = DataRel.Create(m, new MemberHasHistoricMemberTypeAssign(), mta, vTestMode);
-				vSet.AddRel(relMta);
+				var edgeMta = DataEdge.Create(m, new MemberHasHistoricMemberTypeAssign(), mta, vTestMode);
+				vSet.AddEdge(edgeMta);
 			}
 			else {
-				var relMta = DataRel.Create(m, new MemberHasMemberTypeAssign(), mta, vTestMode);
-				vSet.AddRel(relMta);
+				var edgeMta = DataEdge.Create(m, new MemberHasMemberTypeAssign(), mta, vTestMode);
+				vSet.AddEdge(edgeMta);
 			}
 		}
 
@@ -264,9 +264,9 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(a, vTestMode);
 
-			var relE = DataRel.Create(
+			var edgeE = DataEdge.Create(
 				a, new AppUsesEmail(), vSet.GetVertex<Email>((long)pEmailId), vTestMode);
-			vSet.AddRel(relE);
+			vSet.AddEdge(edgeE);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -278,9 +278,9 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(u, vTestMode);
 
-			var relE = DataRel.Create(
+			var edgeE = DataEdge.Create(
 				u, new UserUsesEmail(), vSet.GetVertex<Email>((long)pEmailId), vTestMode);
-			vSet.AddRel(relE);
+			vSet.AddEdge(edgeE);
 		}
 
 

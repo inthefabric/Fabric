@@ -21,7 +21,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		private IList<FabBatchNewFactor> vFactors;
 		private string vFactorsJson;
 
-		private int vNewRels;
+		private int vNewEdges;
 		private IList<FabBatchResult> vResults;
 		
 	
@@ -33,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			DataSet ds = Setup.SetupAll(true);
 
 			vFactors = new List<FabBatchNewFactor>();
-			vNewRels = 0;
+			vNewEdges = 0;
 
 			foreach ( IDataVertex dn in ds.Vertices ) {
 				if ( dn.VertexType != typeof(Factor) ) {
@@ -92,37 +92,37 @@ namespace Fabric.Test.Integration.FabApiModify {
 					bnf.Vector.UnitPrefixId = (byte)f.Vector_UnitPrefixId;
 				}
 				
-				foreach ( IDataRel dr in ds.Rels ) {
+				foreach ( IDataEdge dr in ds.Edges ) {
 					if ( dr.OutVertex != f ) {
 						continue;
 					}
 
 					Artifact a = (Artifact)dr.InVertex;
 
-					if ( dr.Rel.EdgeType is UsesPrimary ) {
+					if ( dr.Edge.EdgeType is UsesPrimary ) {
 						bnf.PrimaryArtifactId = a.ArtifactId;
 					}
-					else if ( dr.Rel.EdgeType is UsesRelated ) {
+					else if ( dr.Edge.EdgeType is UsesRelated ) {
 						bnf.RelatedArtifactId = a.ArtifactId;
 					}
-					else if ( dr.Rel.EdgeType is DescriptorRefinesPrimaryWith ) {
+					else if ( dr.Edge.EdgeType is DescriptorRefinesPrimaryWith ) {
 						bnf.Descriptor.PrimaryArtifactRefineId = a.ArtifactId;
-						vNewRels++;
+						vNewEdges++;
 					}
-					else if ( dr.Rel.EdgeType is DescriptorRefinesRelatedWith ) {
+					else if ( dr.Edge.EdgeType is DescriptorRefinesRelatedWith ) {
 						bnf.Descriptor.RelatedArtifactRefineId = a.ArtifactId;
-						vNewRels++;
+						vNewEdges++;
 					}
-					else if ( dr.Rel.EdgeType is DescriptorRefinesTypeWith ) {
+					else if ( dr.Edge.EdgeType is DescriptorRefinesTypeWith ) {
 						bnf.Descriptor.TypeRefineId = a.ArtifactId;
-						vNewRels++;
+						vNewEdges++;
 					}
-					else if ( dr.Rel.EdgeType is VectorUsesAxis ) {
+					else if ( dr.Edge.EdgeType is VectorUsesAxis ) {
 						bnf.Vector.AxisArtifactId = a.ArtifactId;
-						vNewRels++;
+						vNewEdges++;
 					}
 					else {
-						throw new Exception("Missed edge: "+dr.Rel.EdgeType);
+						throw new Exception("Missed edge: "+dr.Edge.EdgeType);
 					}
 				}
 			}
@@ -242,7 +242,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			}
 
 			NewVertexCount = vFactors.Count-expectFails;
-			NewRelCount += NewVertexCount*3+vNewRels;
+			NewEdgeCount += NewVertexCount*3+vNewEdges;
 
 			Assert.AreEqual(expectFails, fails, "Incorrect Resuls.Error count.");
 		}

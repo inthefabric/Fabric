@@ -26,21 +26,21 @@ namespace Fabric.Api.Internal.Tables {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddRelIn(IDbDto pRel) {
-			if ( !InMap.ContainsKey(pRel.Class) ) {
-				InMap.Add(pRel.Class, new List<IDbDto>());
+		public void AddEdgeIn(IDbDto pEdge) {
+			if ( !InMap.ContainsKey(pEdge.Class) ) {
+				InMap.Add(pEdge.Class, new List<IDbDto>());
 			}
 
-			InMap[pRel.Class].Add(pRel);
+			InMap[pEdge.Class].Add(pEdge);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddRelOut(IDbDto pRel) {
-			if ( !OutMap.ContainsKey(pRel.Class) ) {
-				OutMap.Add(pRel.Class, new List<IDbDto>());
+		public void AddEdgeOut(IDbDto pEdge) {
+			if ( !OutMap.ContainsKey(pEdge.Class) ) {
+				OutMap.Add(pEdge.Class, new List<IDbDto>());
 			}
 
-			OutMap[pRel.Class].Add(pRel);
+			OutMap[pEdge.Class].Add(pEdge);
 		}
 
 
@@ -68,8 +68,8 @@ namespace Fabric.Api.Internal.Tables {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private string GetEdgeKey(IDbDto pRel, bool pIsOutgoing) {
-			string name = pRel.Class;
+		private string GetEdgeKey(IDbDto pEdge, bool pIsOutgoing) {
+			string name = pEdge.Class;
 			object o = Activator.CreateInstance("Fabric.Domain", "Fabric.Domain."+name).Unwrap();
 			
 			IWeaverEdge r = (o as IWeaverEdge);
@@ -106,8 +106,8 @@ namespace Fabric.Api.Internal.Tables {
 			var cols = new string[pColMap.Keys.Count-2];
 
 			FillDataCols(cols, pColMap);
-			FillRelCols(cols, pColMap, true);
-			FillRelCols(cols, pColMap, false);
+			FillEdgeCols(cols, pColMap, true);
+			FillEdgeCols(cols, pColMap, false);
 
 			foreach ( string item in cols ) {
 				html += HtmlUtil.Wrap("td", item);
@@ -139,7 +139,7 @@ namespace Fabric.Api.Internal.Tables {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void FillRelCols(string[] pDataCols, Dictionary<string, int> pColMap, bool pIsOut) {
+		private void FillEdgeCols(string[] pDataCols, Dictionary<string, int> pColMap, bool pIsOut) {
 			Dictionary<string, List<IDbDto>> map = (pIsOut ? OutMap : InMap);
 
 			foreach ( string key in map.Keys ) {
@@ -149,9 +149,9 @@ namespace Fabric.Api.Internal.Tables {
 
 				foreach ( DbDto dto in dtos ) {
 					string vertexId = (pIsOut ? dto.InVertexId : dto.OutVertexId)+"";
-					/*string[] relNameParts = rk.Split(' ');
-					int relNameI = (pIsOut ? relNameParts.Length-1 : 1);
-					string vertexClass = relNameParts[relNameI];
+					/*string[] edgeNameParts = rk.Split(' ');
+					int edgeNameI = (pIsOut ? edgeNameParts.Length-1 : 1);
+					string vertexClass = edgeNameParts[edgeNameI];
 					vertexIds.Add("<a href='/tables/browse/"+vertexClass+"/"+vertexId+"'>"+vertexId+"</a>");*/
 					vertexIds.Add("<a href='/tables/browse/vertex/"+vertexId+"'>"+vertexId+"</a>");
 				}

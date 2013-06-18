@@ -204,10 +204,10 @@ foreach ( string name in verts ) {
 				case "<#= vertex.Name #>":
 <#
 	
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetEdges(true);
 	bool first = true;
 
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 		if ( first ) {
 			first = false;
 #>
@@ -217,19 +217,19 @@ foreach ( string name in verts ) {
 		}
 #>
 					link = new FabSpecTravLink();
-					link.Name = "<#= hr.RelPropName #>";
+					link.Name = "<#= hr.EdgePropName #>";
 					link.Type = "<#= hr.EdgeName #>";
 					link.Description = SpecDoc.GetDtoLinkText("<#= hr.EdgeName #>");
 					link.IsOutgoing = <#= hr.IsOutgoing.ToString().ToLower() #>;
 					link.From = "Fab<#= hr.OutVertexName #>";
-					link.FromConn = "<#= hr.RelSchema.OutVertexConn+"" #>";
+					link.FromConn = "<#= hr.EdgeSchema.OutVertexConn+"" #>";
 					link.Relation = "<#= hr.EdgeTypeName #>";
 					link.To = "Fab<#= hr.InVertexName #>";
-					link.ToConn = "<#= hr.RelSchema.InVertexConn+"" #>";
+					link.ToConn = "<#= hr.EdgeSchema.InVertexConn+"" #>";
 					pObject.TraversalLinks.Add(link);
 
 <#
-	} //end rel loop
+	} //end edge loop
 #>
 					break;
 <#

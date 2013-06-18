@@ -96,7 +96,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public class AppUsesEmail : Rel<App, Uses, Email>, IItemWithId {
+	public class AppUsesEmail : Edge<App, Uses, Email>, IItemWithId {
 			
 		public virtual App FromApp { get { return OutVertex; } }
 		public virtual Email ToEmail { get { return InVertex; } }
@@ -105,7 +105,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class AppDefinesMember : Rel<App, Defines, Member>, IItemWithId {
+	public class AppDefinesMember : Edge<App, Defines, Member>, IItemWithId {
 			
 		public virtual App FromApp { get { return OutVertex; } }
 		public virtual Member ToMember { get { return InVertex; } }
@@ -114,7 +114,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberHasMemberTypeAssign : Rel<Member, Has, MemberTypeAssign>, IItemWithId {
+	public class MemberHasMemberTypeAssign : Edge<Member, Has, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -123,7 +123,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberHasHistoricMemberTypeAssign : Rel<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
+	public class MemberHasHistoricMemberTypeAssign : Edge<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -132,7 +132,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberCreatesArtifact : Rel<Member, Creates, Artifact>, IItemWithId {
+	public class MemberCreatesArtifact : Edge<Member, Creates, Artifact>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -151,7 +151,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberCreatesMemberTypeAssign : Rel<Member, Creates, MemberTypeAssign>, IItemWithId {
+	public class MemberCreatesMemberTypeAssign : Edge<Member, Creates, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -160,7 +160,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberCreatesFactor : Rel<Member, Creates, Factor>, IItemWithId {
+	public class MemberCreatesFactor : Edge<Member, Creates, Factor>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual Factor ToFactor { get { return InVertex; } }
@@ -169,7 +169,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class UserUsesEmail : Rel<User, Uses, Email>, IItemWithId {
+	public class UserUsesEmail : Edge<User, Uses, Email>, IItemWithId {
 			
 		public virtual User FromUser { get { return OutVertex; } }
 		public virtual Email ToEmail { get { return InVertex; } }
@@ -178,7 +178,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class UserDefinesMember : Rel<User, Defines, Member>, IItemWithId {
+	public class UserDefinesMember : Edge<User, Defines, Member>, IItemWithId {
 			
 		public virtual User FromUser { get { return OutVertex; } }
 		public virtual Member ToMember { get { return InVertex; } }
@@ -187,7 +187,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorUsesPrimaryArtifact : Rel<Factor, UsesPrimary, Artifact>, IItemWithId {
+	public class FactorUsesPrimaryArtifact : Edge<Factor, UsesPrimary, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -206,7 +206,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorUsesRelatedArtifact : Rel<Factor, UsesRelated, Artifact>, IItemWithId {
+	public class FactorUsesRelatedArtifact : Edge<Factor, UsesRelated, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -225,7 +225,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesPrimaryWithArtifact : Rel<Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesPrimaryWithArtifact : Edge<Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -244,7 +244,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesRelatedWithArtifact : Rel<Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesRelatedWithArtifact : Edge<Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -263,7 +263,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesTypeWithArtifact : Rel<Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesTypeWithArtifact : Edge<Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -282,7 +282,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorVectorUsesAxisArtifact : Rel<Factor, VectorUsesAxis, Artifact>, IItemWithId {
+	public class FactorVectorUsesAxisArtifact : Edge<Factor, VectorUsesAxis, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -301,7 +301,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthAccessUsesApp : Rel<OauthAccess, Uses, App>, IItemWithId {
+	public class OauthAccessUsesApp : Edge<OauthAccess, Uses, App>, IItemWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -310,7 +310,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthAccessUsesUser : Rel<OauthAccess, Uses, User>, IItemWithId {
+	public class OauthAccessUsesUser : Edge<OauthAccess, Uses, User>, IItemWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -319,7 +319,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthDomainUsesApp : Rel<OauthDomain, Uses, App>, IItemWithId {
+	public class OauthDomainUsesApp : Edge<OauthDomain, Uses, App>, IItemWithId {
 			
 		public virtual OauthDomain FromOauthDomain { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -328,7 +328,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthGrantUsesApp : Rel<OauthGrant, Uses, App>, IItemWithId {
+	public class OauthGrantUsesApp : Edge<OauthGrant, Uses, App>, IItemWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -337,7 +337,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthGrantUsesUser : Rel<OauthGrant, Uses, User>, IItemWithId {
+	public class OauthGrantUsesUser : Edge<OauthGrant, Uses, User>, IItemWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -346,7 +346,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthScopeUsesApp : Rel<OauthScope, Uses, App>, IItemWithId {
+	public class OauthScopeUsesApp : Edge<OauthScope, Uses, App>, IItemWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -355,7 +355,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthScopeUsesUser : Rel<OauthScope, Uses, User>, IItemWithId {
+	public class OauthScopeUsesUser : Edge<OauthScope, Uses, User>, IItemWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }

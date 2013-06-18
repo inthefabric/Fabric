@@ -12,7 +12,7 @@ namespace Fabric.Db.Data {
 		public IList<IWeaverQuery> Initialization { get; private set; }
 		public IList<IWeaverQuery> Indexes { get; private set; }
 		public IList<IDataVertex> Vertices { get; private set; }
-		public IList<IDataRel> Rels { get; private set; }
+		public IList<IDataEdge> Edges { get; private set; }
 		public bool IsForTesting { get; private set; }
 
 		private readonly Random vRand;
@@ -27,7 +27,7 @@ namespace Fabric.Db.Data {
 			Initialization = new List<IWeaverQuery>();
 			Indexes = new List<IWeaverQuery>();
 			Vertices = new List<IDataVertex>();
-			Rels = new List<IDataRel>();
+			Edges = new List<IDataEdge>();
 			IsForTesting = pIsForTesting;
 
 			vRand = new Random(999);
@@ -109,11 +109,11 @@ namespace Fabric.Db.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataRel<TFrom, TRel, TTo> AddRel<TFrom, TRel, TTo>(DataRel<TFrom, TRel, TTo> pRel)
-							where TFrom : IVertex where TRel : IWeaverEdge where TTo : IVertex {
-			if ( !IsForTesting && pRel.IsForTesting ) { return pRel; }
-			Rels.Add(pRel);
-			return pRel;
+		public DataEdge<TFrom, TEdge, TTo> AddEdge<TFrom, TEdge, TTo>(DataEdge<TFrom, TEdge, TTo> pEdge)
+							where TFrom : IVertex where TEdge : IWeaverEdge where TTo : IVertex {
+			if ( !IsForTesting && pEdge.IsForTesting ) { return pEdge; }
+			Edges.Add(pEdge);
+			return pEdge;
 		}
 
 	}

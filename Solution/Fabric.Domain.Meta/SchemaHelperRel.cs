@@ -4,9 +4,9 @@ using Weaver.Core.Schema;
 namespace Fabric.Domain.Meta {
 
 	/*================================================================================================*/
-	public class SchemaHelperRel {
+	public class SchemaHelperEdge {
 
-		public WeaverEdgeSchema RelSchema { get; private set; }
+		public WeaverEdgeSchema EdgeSchema { get; private set; }
 
 		public string OutVertexName { get; private set; }
 		public string EdgeTypeName { get; private set; }
@@ -16,13 +16,13 @@ namespace Fabric.Domain.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SchemaHelperRel(WeaverEdgeSchema pRel) {
-			RelSchema = pRel;
+		public SchemaHelperEdge(WeaverEdgeSchema pEdge) {
+			EdgeSchema = pEdge;
 			
-			OutVertexName = RelSchema.OutVertex.Name;
-			EdgeTypeName = RelSchema.EdgeType;
-			InVertexName = RelSchema.InVertex.Name;
-			EdgeName = RelSchema.Name;
+			OutVertexName = EdgeSchema.OutVertex.Name;
+			EdgeTypeName = EdgeSchema.EdgeType;
+			InVertexName = EdgeSchema.InVertex.Name;
+			EdgeName = EdgeSchema.Name;
 		}
 
 
@@ -34,12 +34,12 @@ namespace Fabric.Domain.Meta {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public bool GetEdgeVertexIsInternal(bool pIsOut) {
-			return (pIsOut ? RelSchema.InVertex.IsInternal : RelSchema.OutVertex.IsInternal);
+			return (pIsOut ? EdgeSchema.InVertex.IsInternal : EdgeSchema.OutVertex.IsInternal);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public bool GetEdgeHasMany(bool pIsOut) {
-			WeaverEdgeConn c = (pIsOut ? RelSchema.OutVertexConn : RelSchema.InVertexConn);
+			WeaverEdgeConn c = (pIsOut ? EdgeSchema.OutVertexConn : EdgeSchema.InVertexConn);
 
 			return (pIsOut ?
 				(c == WeaverEdgeConn.OutToOneOrMore || c ==WeaverEdgeConn.OutToZeroOrMore) :

@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
 				".hasNot('"+PropDbName.Factor_Deleted+"')"+
 				".as('step4')"+
-			".inE('"+RelDbName.MemberCreatesFactor+"').outV"+
+			".inE('"+EdgeDbName.MemberCreatesFactor+"').outV"+
 				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P1)"+
 			".back('step4');";
 

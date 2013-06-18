@@ -17,12 +17,12 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(SetupArtifacts.ArtifactId.App_KinPhoGal, SetupArtifacts.ArtifactId.Thi_Favorite,
 			FactorAssertionId.Fact, true, "this is a note.", SetupUsers.MemberId.GalZach)]
-		public void Success(SetupArtifacts.ArtifactId pPrimArtId, SetupArtifacts.ArtifactId pRelArtId,
+		public void Success(SetupArtifacts.ArtifactId pPrimArtId, SetupArtifacts.ArtifactId pEdgeArtId,
 				FactorAssertionId pAssertId, bool pIsDef, string pNote, SetupUsers.MemberId pMemberId) {
 			var mem = new Member { MemberId = (long)pMemberId };
 			IWeaverVarAlias<Factor> factorVar;
 
-			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pRelArtId, (byte)pAssertId, 
+			Tasks.TxAddFactor(ApiCtx, TxBuild, (long)pPrimArtId, (long)pEdgeArtId, (byte)pAssertId, 
 				pIsDef, pNote, mem, out factorVar);
 			FinishTx();
 
@@ -42,13 +42,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			const string artId = PropDbName.Artifact_ArtifactId;
 
 			VertexConnections conn = GetVertexConnections(newFactor);
-			conn.AssertRelCount(1, 2);
-			conn.AssertRel<MemberCreatesFactor, Member>(false, (long)pMemberId);
-			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId, artId);
-			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, (long)pRelArtId, artId);
+			conn.AssertEdgeCount(1, 2);
+			conn.AssertEdge<MemberCreatesFactor, Member>(false, (long)pMemberId);
+			conn.AssertEdge<FactorUsesPrimaryArtifact, Artifact>(true, (long)pPrimArtId, artId);
+			conn.AssertEdge<FactorUsesRelatedArtifact, Artifact>(true, (long)pEdgeArtId, artId);
 
 			NewVertexCount = 1;
-			NewRelCount = 3;
+			NewEdgeCount = 3;
 		}
 
 	}

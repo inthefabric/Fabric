@@ -23,7 +23,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private Factor vFactor;
 		private byte vDirTypeId;
 		private byte vPrimActId;
-		private byte vRelActId;
+		private byte vEdgeActId;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vFactor = new Factor { FactorId = 132414 };
 			vDirTypeId = 9;
 			vPrimActId = 25;
-			vRelActId = 64;
+			vEdgeActId = 64;
 
 			MockApiCtx
 				.Setup(x => x.DbData("UpdateFactorDirector", It.IsAny<IWeaverQuery>()))
@@ -51,7 +51,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vFactor.FactorId,
 				vDirTypeId,
 				vPrimActId,
-				vRelActId
+				vEdgeActId
 			});
 
 			return null;
@@ -62,7 +62,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Update() {
-			Tasks.UpdateFactorDirector(MockApiCtx.Object, vFactor, vDirTypeId, vPrimActId, vRelActId);
+			Tasks.UpdateFactorDirector(MockApiCtx.Object, vFactor, vDirTypeId, vPrimActId, vEdgeActId);
 			UsageMap.AssertUses("UpdateFactorDirector", 1);
 		}
 

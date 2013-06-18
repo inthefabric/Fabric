@@ -44,12 +44,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreEqual(32, newApp.Secret.Length, "Incorrect Secret length.");
 
 			VertexConnections conn = GetVertexConnections(newApp);
-			conn.AssertRelCount(1, 1);
-			conn.AssertRel<AppUsesEmail, Email>(true, (long)pExpectEmailId);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
+			conn.AssertEdgeCount(1, 1);
+			conn.AssertEdge<AppUsesEmail, Email>(true, (long)pExpectEmailId);
+			conn.AssertEdge<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewVertexCount = 1;
-			NewRelCount = 2;
+			NewEdgeCount = 2;
 		}
 
 	}

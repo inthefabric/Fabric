@@ -20,19 +20,19 @@ var intMap = new Dictionary<string,bool>();
 
 foreach ( string name in vertexNames ) {
 	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetEdges(true);
 
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
-		if ( intMap.ContainsKey(hr.RelPropName) ) { continue; }
-		intMap.Add(hr.RelPropName, true);
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
+		if ( intMap.ContainsKey(hr.EdgePropName) ) { continue; }
+		intMap.Add(hr.EdgePropName, true);
 #>
 	/*================================================================================================*/
-	public interface I<#= hr.RelPropName #> {
-		I<#= hr.TargetVertexType #>Step <#= hr.RelPropName #> { get; }
+	public interface I<#= hr.EdgePropName #> {
+		I<#= hr.TargetVertexType #>Step <#= hr.EdgePropName #> { get; }
 	}
 
 <#
-	} //end vertexRels loop
+	} //end vertexEdges loop
 } //end verts loop
 
 foreach ( string name in vertexNames ) {
@@ -40,7 +40,7 @@ foreach ( string name in vertexNames ) {
 	WeaverVertexSchema vertex = hn.VertexSchema;
 	if ( vertex.IsInternal ) { continue; }
 
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetEdges(true);
 	string baseVertex = (vertex.BaseVertex == null ? "Vertex" : vertex.BaseVertex.Name);
 	string interfaces = "I"+baseVertex+"Step";
 
@@ -48,8 +48,8 @@ foreach ( string name in vertexNames ) {
 		interfaces += ", IFinalStep";
 	}
 
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
-		interfaces += ", I"+hr.RelPropName;
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
+		interfaces += ", I"+hr.EdgePropName;
 	}
 	
 	string typeIdIsLong = "false";

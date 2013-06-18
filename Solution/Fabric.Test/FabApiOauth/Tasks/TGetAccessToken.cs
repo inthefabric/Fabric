@@ -23,10 +23,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".has('"+PropDbName.OauthAccess_Expires+"',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+
 				".as('step5')"+
-			".outE('"+RelDbName.OauthAccessUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthAccessUsesApp+"').inV"+
 				".aggregate(_V0)"+
 			".back('step5')"+
-			".outE('"+RelDbName.OauthAccessUsesUser+"').inV"+
+			".outE('"+EdgeDbName.OauthAccessUsesUser+"').inV"+
 				".aggregate(_V0)"+
 				".iterate();"+
 			"_V0;";

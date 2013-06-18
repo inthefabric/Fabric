@@ -37,19 +37,19 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Assert.AreNotEqual(0, newMta.MemberTypeAssignId, "Incorrect MemberTypeAssignId.");
 
 			VertexConnections conn = GetVertexConnections(newMember);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<UserDefinesMember, User>(false, (long)pUserId);
-			conn.AssertRel<AppDefinesMember, App>(false, useApp.ArtifactId);
-			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
+			conn.AssertEdgeCount(2, 1);
+			conn.AssertEdge<UserDefinesMember, User>(false, (long)pUserId);
+			conn.AssertEdge<AppDefinesMember, App>(false, useApp.ArtifactId);
+			conn.AssertEdge<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
 
 			conn = GetVertexConnections(newMta);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
-			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
+			conn.AssertEdgeCount(2, 0);
+			conn.AssertEdge<MemberCreatesMemberTypeAssign, Member>(false, (long)MemberId.FabFabData);
+			conn.AssertEdge<MemberHasMemberTypeAssign, Member>(false, newMember.MemberId);
 
 			NewVertexCount = 2;
-			NewRelCount = 4;
+			NewEdgeCount = 4;
 		}
 
 	}

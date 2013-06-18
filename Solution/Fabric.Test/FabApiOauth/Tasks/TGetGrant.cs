@@ -22,10 +22,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".has('"+PropDbName.OauthGrant_Expires+"',Tokens.T.gt,_TP)"+
 				".aggregate(_V0)"+
 				".as('step5')"+
-			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthGrantUsesApp+"').inV"+
 				".aggregate(_V0)"+
 			".back('step5')"+
-			".outE('"+RelDbName.OauthGrantUsesUser+"').inV"+
+			".outE('"+EdgeDbName.OauthGrantUsesUser+"').inV"+
 				".aggregate(_V0)"+
 			".back('step5')"+
 				".sideEffect{"+

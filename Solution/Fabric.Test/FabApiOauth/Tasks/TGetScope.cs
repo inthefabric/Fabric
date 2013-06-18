@@ -17,9 +17,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryGetMatchingScope =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
-			".inE('"+RelDbName.OauthScopeUsesUser+"').outV"+
+			".inE('"+EdgeDbName.OauthScopeUsesUser+"').outV"+
 				".as('step5')"+
-			".outE('"+RelDbName.OauthScopeUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthScopeUsesApp+"').inV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
 			".back('step5');";
 

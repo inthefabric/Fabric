@@ -96,7 +96,7 @@ namespace Fabric.Api.Modify.Tasks {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorDescriptor(IApiContext pApiCtx, Factor pFactor, byte pDescTypeId,
-										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) {
+										long? pPrimArtRefId, long? pEdgeArtRefId, long? pDescTypeRefId) {
 			var txb = new TxBuilder();
 
 			IWeaverQuery q = 
@@ -122,8 +122,8 @@ namespace Fabric.Api.Modify.Tasks {
 				facBuild.SetDescriptorRefinesPrimaryWithArtifact((long)pPrimArtRefId);
 			}
 
-			if ( pRelArtRefId != null ) {
-				facBuild.SetDescriptorRefinesRelatedWithArtifact((long)pRelArtRefId);
+			if ( pEdgeArtRefId != null ) {
+				facBuild.SetDescriptorRefinesRelatedWithArtifact((long)pEdgeArtRefId);
 			}
 
 			if ( pDescTypeRefId != null ) {
@@ -135,13 +135,13 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId,
-																	byte pPrimActId, byte pRelActId) {
+																	byte pPrimActId, byte pEdgeActId) {
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Director_TypeId, pDirTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Director_PrimaryActionId, pPrimActId),
-					new WeaverStatementSetProperty<Factor>(x => x.Director_RelatedActionId, pRelActId)
+					new WeaverStatementSetProperty<Factor>(x => x.Director_RelatedActionId, pEdgeActId)
 				)
 				.ToQuery();
 
@@ -288,7 +288,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId,long pRelArtId,
+		public void TxAddFactor(IApiContext pApiCtx, TxBuilder pTxBuild, long pPrimArtId,long pEdgeArtId,
 										byte pAssertId, bool pIsDefining, string pNote, Member pCreator,
 										out IWeaverVarAlias<Factor> pFactorVar) {
 			var fac = new Factor();
@@ -301,7 +301,7 @@ namespace Fabric.Api.Modify.Tasks {
 			var facBuild = new FactorBuilder(pTxBuild, fac);
 			facBuild.AddVertex();
 			facBuild.SetUsesPrimaryArtifact(pPrimArtId);
-			facBuild.SetUsesRelatedArtifact(pRelArtId);
+			facBuild.SetUsesRelatedArtifact(pEdgeArtId);
 			facBuild.SetInMemberCreates(pCreator);
 			pFactorVar = facBuild.VertexVar;
 		}

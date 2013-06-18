@@ -31,9 +31,9 @@ foreach ( string name in verts ) {
 /* RELS */
 
 <#
-IList<string> relTypes = SchemaHelper.GetEdgeTypes();
+IList<string> edgeTypes = SchemaHelper.GetEdgeTypes();
 
-foreach ( string name in relTypes ) {
+foreach ( string name in edgeTypes ) {
 	string col = NewColor(rand, 0.2);
 #>
 .link<#= name #> { stroke: <#= col #>; }

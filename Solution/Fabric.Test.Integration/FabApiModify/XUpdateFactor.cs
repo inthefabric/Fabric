@@ -22,7 +22,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 
-			vFactorId = (long)SetupFactors.FactorId.FZ_Zach_AEI_RelTo_ViewSuggView;
+			vFactorId = (long)SetupFactors.FactorId.FZ_Zach_AEI_EdgeTo_ViewSuggView;
 			vCompleted = false;
 			vDeleted = false;
 

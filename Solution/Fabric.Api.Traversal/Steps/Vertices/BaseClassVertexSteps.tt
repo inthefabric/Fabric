@@ -31,8 +31,8 @@ foreach ( string name in vertexNames ) {
 		continue;
 	}
 
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges(true);
-	var linkRels = new List<SchemaHelperVertexRel>();
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetEdges(true);
+	var linkEdges = new List<SchemaHelperVertexEdge>();
 	string typeIdIsLong = "false";
 	
 	foreach ( WeaverPropSchema prop in vertex.Props ) {
@@ -41,9 +41,9 @@ foreach ( string name in vertexNames ) {
 		break;
 	}
 	
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 		if ( vertex.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
-		linkRels.Add(hr);
+		linkEdges.Add(hr);
 	}
 #>
 
@@ -76,35 +76,35 @@ foreach ( string name in vertexNames ) {
 <#
 	} //end abstract condition
 
-	if ( linkRels.Count > 0 ) {
+	if ( linkEdges.Count > 0 ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IStep GetLink(StepData pData) {
 			switch ( pData.Command ) {
 <#
-		foreach ( SchemaHelperVertexRel hr in linkRels ) {
-			var propName = hr.RelPropName;
+		foreach ( SchemaHelperVertexEdge hr in linkEdges ) {
+			var propName = hr.EdgePropName;
 #>
 				case "<#= propName.ToLower() #>": return <#= propName #>;
 <#
-		} //end vertexRels loop
+		} //end vertexEdges loop
 #>
 			}
 
 			return base.GetLink(pData);
 		}
 <#
-	} //end linkRels condition
+	} //end linkEdges condition
 #>
 
 <#
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 		var propType = hr.TargetVertexType+"Step";
-		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.RelSchema.DbName+"')."+
+		var script = (hr.IsOutgoing ? "outE" : "inE")+"('"+hr.EdgeSchema.DbName+"')."+
 			(hr.IsOutgoing ? "inV" : "outV");
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public I<#= propType #> <#= hr.RelPropName #> {
+		public I<#= propType #> <#= hr.EdgePropName #> {
 			get {
 				var step = new <#= propType #>(Path);
 				Path.AddSegment(step, "<#= script #>");
@@ -113,7 +113,7 @@ foreach ( string name in vertexNames ) {
 		}
 
 <#
-	} //end vertexRels loop
+	} //end vertexEdges loop
 #>
 	}
 
@@ -128,10 +128,10 @@ foreach ( string name in vertexNames ) {
 	
 		internal static readonly List<IStepLink> AvailVertexLinks = new List<IStepLink> {
 <#
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 		if ( vertex.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 #>
-			new StepLink("<#= hr.EdgeTypeName #>", "<#= hr.TargetVertexType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.RelPropName #>"),
+			new StepLink("<#= hr.EdgeTypeName #>", "<#= hr.TargetVertexType #>", <#= hr.IsOutgoing.ToString().ToLower() #>, "/<#= hr.EdgePropName #>"),
 <#
 	}
 #>

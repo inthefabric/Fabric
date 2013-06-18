@@ -19,11 +19,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryClearTokens =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
-			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
+			".inE('"+EdgeDbName.OauthAccessUsesApp+"').outV"+
 				".has('"+PropDbName.OauthAccess_Token+"')"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".as('step7')" +
-			".outE('"+RelDbName.OauthAccessUsesUser+"').inV" +
+			".outE('"+EdgeDbName.OauthAccessUsesUser+"').inV" +
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P)" +
 			".back('step7')" +
 				".sideEffect{"+
@@ -33,7 +33,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryClearTokensClientOnly =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
-			".inE('"+RelDbName.OauthAccessUsesApp+"').outV"+
+			".inE('"+EdgeDbName.OauthAccessUsesApp+"').outV"+
 				".has('"+PropDbName.OauthAccess_Token+"')"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_P)"+
 				".sideEffect{"+
@@ -167,11 +167,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vals.Add(vClientOnly);
 			vals.Add((byte)VertexFabType.OauthAccess);
 			vals.Add(vAppId);
-			vals.Add(RelDbName.OauthAccessUsesApp);
+			vals.Add(EdgeDbName.OauthAccessUsesApp);
 
 			if ( !vClientOnly ) {
 				vals.Add(vUserId);
-				vals.Add(RelDbName.OauthAccessUsesUser);
+				vals.Add(EdgeDbName.OauthAccessUsesUser);
 			}
 
 			TestUtil.CheckParams(pScripted.Params, "_TP", vals);

@@ -16,7 +16,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 	public class XCreateFactor : XBaseModifyFunc {
 
 		private long vPrimArtId;
-		private long vRelArtId;
+		private long vEdgeArtId;
 		private byte vAssertId;
 		private bool vIsDefining;
 		private string vNote;
@@ -32,7 +32,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IsReadOnlyTest = true;
 
 			vPrimArtId = (long)SetupArtifacts.ArtifactId.App_KinPhoGal;
-			vRelArtId = (long)SetupArtifacts.ArtifactId.User_Ellie;
+			vEdgeArtId = (long)SetupArtifacts.ArtifactId.User_Ellie;
 			vAssertId = (byte)FactorAssertionId.Guess;
 			vIsDefining = true;
 			vNote = "note here";
@@ -43,7 +43,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateFactor(Tasks, vPrimArtId, vRelArtId, vAssertId, vIsDefining, vNote);
+			var func = new CreateFactor(Tasks, vPrimArtId, vEdgeArtId, vAssertId, vIsDefining, vNote);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -67,13 +67,13 @@ namespace Fabric.Test.Integration.FabApiModify {
 			const string artId = PropDbName.Artifact_ArtifactId;
 
 			VertexConnections conn = GetVertexConnections(newFactor);
-			conn.AssertRelCount(1, 2);
-			conn.AssertRel<MemberCreatesFactor, Member>(false, vExpectMemberId);
-			conn.AssertRel<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId, artId);
-			conn.AssertRel<FactorUsesRelatedArtifact, Artifact>(true, vRelArtId, artId);
+			conn.AssertEdgeCount(1, 2);
+			conn.AssertEdge<MemberCreatesFactor, Member>(false, vExpectMemberId);
+			conn.AssertEdge<FactorUsesPrimaryArtifact, Artifact>(true, vPrimArtId, artId);
+			conn.AssertEdge<FactorUsesRelatedArtifact, Artifact>(true, vEdgeArtId, artId);
 			
 			NewVertexCount = 1;
-			NewRelCount = 3;
+			NewEdgeCount = 3;
 		}
 		
 
@@ -101,7 +101,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRelatedArtifactIdValue() {
-			vRelArtId = 0;
+			vEdgeArtId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 
@@ -132,7 +132,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRelatedArtifactNotFound() {
-			vRelArtId = 9999;
+			vEdgeArtId = 9999;
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

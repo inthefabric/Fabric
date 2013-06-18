@@ -4,17 +4,17 @@ using Fabric.Infrastructure.Weaver;
 namespace Fabric.Test.Integration.Common {
 
 	/*================================================================================================*/
-	public class VertexConnectionRel {
+	public class VertexConnectionEdge {
 
-		public IDbDto Rel { get; private set; }
+		public IDbDto Edge { get; private set; }
 		public bool IsOutgoing { get; private set; }
 		public IDbDto TargetVertex { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VertexConnectionRel(IDbDto pRel, bool pIsOutgoing, IDbDto pTargetVertex) {
-			Rel = pRel;
+		public VertexConnectionEdge(IDbDto pEdge, bool pIsOutgoing, IDbDto pTargetVertex) {
+			Edge = pEdge;
 			IsOutgoing = pIsOutgoing;
 			TargetVertex = pTargetVertex;
 		}
@@ -24,7 +24,7 @@ namespace Fabric.Test.Integration.Common {
 			return (IsOutgoing ? "--> " : "<-- ")+
 				TargetVertex.Class+"["+TargetVertex.Id+", "+
 				TargetVertex.Data[PropDbName.StrTypeIdMap[TargetVertex.Class]]+"] / "+
-				Rel.Class+"["+Rel.Id+"]";
+				Edge.Class+"["+Edge.Id+"]";
 		}
 
 	}

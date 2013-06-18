@@ -61,7 +61,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<MemberCreatesArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<MemberCreatesArtifact>(pTargetVertexVar, VertexVar);
 			InMemberCreates = pTargetVertexVar;
 		}
 		
@@ -93,7 +93,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListUsesPrimary(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<FactorUsesPrimaryArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<FactorUsesPrimaryArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListUsesPrimary = (InFactorListUsesPrimary ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUsesPrimary.Add(pTargetVertexVar);
 		}
@@ -126,7 +126,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListUsesRelated(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<FactorUsesRelatedArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<FactorUsesRelatedArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListUsesRelated = (InFactorListUsesRelated ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListUsesRelated.Add(pTargetVertexVar);
 		}
@@ -159,7 +159,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesPrimaryWith(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<FactorDescriptorRefinesPrimaryWithArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListDescriptorRefinesPrimaryWith = (InFactorListDescriptorRefinesPrimaryWith ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListDescriptorRefinesPrimaryWith.Add(pTargetVertexVar);
 		}
@@ -192,7 +192,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesRelatedWith(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<FactorDescriptorRefinesRelatedWithArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListDescriptorRefinesRelatedWith = (InFactorListDescriptorRefinesRelatedWith ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListDescriptorRefinesRelatedWith.Add(pTargetVertexVar);
 		}
@@ -225,7 +225,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListDescriptorRefinesTypeWith(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<FactorDescriptorRefinesTypeWithArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListDescriptorRefinesTypeWith = (InFactorListDescriptorRefinesTypeWith ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListDescriptorRefinesTypeWith.Add(pTargetVertexVar);
 		}
@@ -258,7 +258,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInFactorListVectorUsesAxis(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<FactorVectorUsesAxisArtifact>(pTargetVertexVar, VertexVar);
 			InFactorListVectorUsesAxis = (InFactorListVectorUsesAxis ?? new List<IWeaverVarAlias<Factor>>());
 			InFactorListVectorUsesAxis.Add(pTargetVertexVar);
 		}
@@ -316,7 +316,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetVertexVar) {
-			TxBuild.AddRel<AppUsesEmail>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<AppUsesEmail>(VertexVar, pTargetVertexVar);
 			UsesEmail = pTargetVertexVar;
 		}
 		
@@ -348,7 +348,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<AppDefinesMember>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<AppDefinesMember>(VertexVar, pTargetVertexVar);
 			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
 			DefinesMemberList.Add(pTargetVertexVar);
 		}
@@ -381,7 +381,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetVertexVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthAccessUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
 			InOauthAccessListUses.Add(pTargetVertexVar);
 		}
@@ -414,7 +414,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthDomainListUses(IWeaverVarAlias<OauthDomain> pTargetVertexVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthDomainUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthDomainListUses = (InOauthDomainListUses ?? new List<IWeaverVarAlias<OauthDomain>>());
 			InOauthDomainListUses.Add(pTargetVertexVar);
 		}
@@ -447,7 +447,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetVertexVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthGrantUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
 			InOauthGrantListUses.Add(pTargetVertexVar);
 		}
@@ -480,7 +480,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetVertexVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthScopeUsesApp>(pTargetVertexVar, VertexVar);
 			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
 			InOauthScopeListUses.Add(pTargetVertexVar);
 		}
@@ -553,7 +553,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInAppListUses(IWeaverVarAlias<App> pTargetVertexVar) {
-			TxBuild.AddRel<AppUsesEmail>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<AppUsesEmail>(pTargetVertexVar, VertexVar);
 			InAppListUses = (InAppListUses ?? new List<IWeaverVarAlias<App>>());
 			InAppListUses.Add(pTargetVertexVar);
 		}
@@ -586,7 +586,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInUserListUses(IWeaverVarAlias<User> pTargetVertexVar) {
-			TxBuild.AddRel<UserUsesEmail>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<UserUsesEmail>(pTargetVertexVar, VertexVar);
 			InUserListUses = (InUserListUses ?? new List<IWeaverVarAlias<User>>());
 			InUserListUses.Add(pTargetVertexVar);
 		}
@@ -664,7 +664,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInAppDefines(IWeaverVarAlias<App> pTargetVertexVar) {
-			TxBuild.AddRel<AppDefinesMember>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<AppDefinesMember>(pTargetVertexVar, VertexVar);
 			InAppDefines = pTargetVertexVar;
 		}
 		
@@ -696,7 +696,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetHasMemberTypeAssign(IWeaverVarAlias<MemberTypeAssign> pTargetVertexVar) {
-			TxBuild.AddRel<MemberHasMemberTypeAssign>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<MemberHasMemberTypeAssign>(VertexVar, pTargetVertexVar);
 			HasMemberTypeAssign = pTargetVertexVar;
 		}
 		
@@ -728,7 +728,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToHasHistoricMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetVertexVar) {
-			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<MemberHasHistoricMemberTypeAssign>(VertexVar, pTargetVertexVar);
 			HasHistoricMemberTypeAssignList = (HasHistoricMemberTypeAssignList ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
 			HasHistoricMemberTypeAssignList.Add(pTargetVertexVar);
 		}
@@ -761,7 +761,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesArtifactList(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<MemberCreatesArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<MemberCreatesArtifact>(VertexVar, pTargetVertexVar);
 			CreatesArtifactList = (CreatesArtifactList ?? new List<IWeaverVarAlias<Artifact>>());
 			CreatesArtifactList.Add(pTargetVertexVar);
 		}
@@ -794,7 +794,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesMemberTypeAssignList(IWeaverVarAlias<MemberTypeAssign> pTargetVertexVar) {
-			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<MemberCreatesMemberTypeAssign>(VertexVar, pTargetVertexVar);
 			CreatesMemberTypeAssignList = (CreatesMemberTypeAssignList ?? new List<IWeaverVarAlias<MemberTypeAssign>>());
 			CreatesMemberTypeAssignList.Add(pTargetVertexVar);
 		}
@@ -827,7 +827,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToCreatesFactorList(IWeaverVarAlias<Factor> pTargetVertexVar) {
-			TxBuild.AddRel<MemberCreatesFactor>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<MemberCreatesFactor>(VertexVar, pTargetVertexVar);
 			CreatesFactorList = (CreatesFactorList ?? new List<IWeaverVarAlias<Factor>>());
 			CreatesFactorList.Add(pTargetVertexVar);
 		}
@@ -860,7 +860,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInUserDefines(IWeaverVarAlias<User> pTargetVertexVar) {
-			TxBuild.AddRel<UserDefinesMember>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<UserDefinesMember>(pTargetVertexVar, VertexVar);
 			InUserDefines = pTargetVertexVar;
 		}
 		
@@ -914,7 +914,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHas(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<MemberHasMemberTypeAssign>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<MemberHasMemberTypeAssign>(pTargetVertexVar, VertexVar);
 			InMemberHas = pTargetVertexVar;
 		}
 		
@@ -946,7 +946,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberHasHistoric(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<MemberHasHistoricMemberTypeAssign>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<MemberHasHistoricMemberTypeAssign>(pTargetVertexVar, VertexVar);
 			InMemberHasHistoric = pTargetVertexVar;
 		}
 		
@@ -978,7 +978,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<MemberCreatesMemberTypeAssign>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<MemberCreatesMemberTypeAssign>(pTargetVertexVar, VertexVar);
 			InMemberCreates = pTargetVertexVar;
 		}
 		
@@ -1053,7 +1053,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesEmail(IWeaverVarAlias<Email> pTargetVertexVar) {
-			TxBuild.AddRel<UserUsesEmail>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<UserUsesEmail>(VertexVar, pTargetVertexVar);
 			UsesEmail = pTargetVertexVar;
 		}
 		
@@ -1085,7 +1085,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToDefinesMemberList(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<UserDefinesMember>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<UserDefinesMember>(VertexVar, pTargetVertexVar);
 			DefinesMemberList = (DefinesMemberList ?? new List<IWeaverVarAlias<Member>>());
 			DefinesMemberList.Add(pTargetVertexVar);
 		}
@@ -1118,7 +1118,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthAccessListUses(IWeaverVarAlias<OauthAccess> pTargetVertexVar) {
-			TxBuild.AddRel<OauthAccessUsesUser>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthAccessUsesUser>(pTargetVertexVar, VertexVar);
 			InOauthAccessListUses = (InOauthAccessListUses ?? new List<IWeaverVarAlias<OauthAccess>>());
 			InOauthAccessListUses.Add(pTargetVertexVar);
 		}
@@ -1151,7 +1151,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthGrantListUses(IWeaverVarAlias<OauthGrant> pTargetVertexVar) {
-			TxBuild.AddRel<OauthGrantUsesUser>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthGrantUsesUser>(pTargetVertexVar, VertexVar);
 			InOauthGrantListUses = (InOauthGrantListUses ?? new List<IWeaverVarAlias<OauthGrant>>());
 			InOauthGrantListUses.Add(pTargetVertexVar);
 		}
@@ -1184,7 +1184,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddToInOauthScopeListUses(IWeaverVarAlias<OauthScope> pTargetVertexVar) {
-			TxBuild.AddRel<OauthScopeUsesUser>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<OauthScopeUsesUser>(pTargetVertexVar, VertexVar);
 			InOauthScopeListUses = (InOauthScopeListUses ?? new List<IWeaverVarAlias<OauthScope>>());
 			InOauthScopeListUses.Add(pTargetVertexVar);
 		}
@@ -1243,7 +1243,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetInMemberCreates(IWeaverVarAlias<Member> pTargetVertexVar) {
-			TxBuild.AddRel<MemberCreatesFactor>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<MemberCreatesFactor>(pTargetVertexVar, VertexVar);
 			InMemberCreates = pTargetVertexVar;
 		}
 		
@@ -1275,7 +1275,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesPrimaryArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<FactorUsesPrimaryArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<FactorUsesPrimaryArtifact>(VertexVar, pTargetVertexVar);
 			UsesPrimaryArtifact = pTargetVertexVar;
 		}
 		
@@ -1307,7 +1307,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesRelatedArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<FactorUsesRelatedArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<FactorUsesRelatedArtifact>(VertexVar, pTargetVertexVar);
 			UsesRelatedArtifact = pTargetVertexVar;
 		}
 		
@@ -1339,7 +1339,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesPrimaryWithArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesPrimaryWithArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<FactorDescriptorRefinesPrimaryWithArtifact>(VertexVar, pTargetVertexVar);
 			DescriptorRefinesPrimaryWithArtifact = pTargetVertexVar;
 		}
 		
@@ -1371,7 +1371,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesRelatedWithArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesRelatedWithArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<FactorDescriptorRefinesRelatedWithArtifact>(VertexVar, pTargetVertexVar);
 			DescriptorRefinesRelatedWithArtifact = pTargetVertexVar;
 		}
 		
@@ -1403,7 +1403,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetDescriptorRefinesTypeWithArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<FactorDescriptorRefinesTypeWithArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<FactorDescriptorRefinesTypeWithArtifact>(VertexVar, pTargetVertexVar);
 			DescriptorRefinesTypeWithArtifact = pTargetVertexVar;
 		}
 		
@@ -1435,7 +1435,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetVectorUsesAxisArtifact(IWeaverVarAlias<Artifact> pTargetVertexVar) {
-			TxBuild.AddRel<FactorVectorUsesAxisArtifact>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<FactorVectorUsesAxisArtifact>(VertexVar, pTargetVertexVar);
 			VectorUsesAxisArtifact = pTargetVertexVar;
 		}
 		
@@ -1488,7 +1488,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
-			TxBuild.AddRel<OauthAccessUsesApp>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthAccessUsesApp>(VertexVar, pTargetVertexVar);
 			UsesApp = pTargetVertexVar;
 		}
 		
@@ -1520,7 +1520,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetVertexVar) {
-			TxBuild.AddRel<OauthAccessUsesUser>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthAccessUsesUser>(VertexVar, pTargetVertexVar);
 			UsesUser = pTargetVertexVar;
 		}
 		
@@ -1572,7 +1572,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
-			TxBuild.AddRel<OauthDomainUsesApp>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthDomainUsesApp>(VertexVar, pTargetVertexVar);
 			UsesApp = pTargetVertexVar;
 		}
 		
@@ -1625,7 +1625,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
-			TxBuild.AddRel<OauthGrantUsesApp>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthGrantUsesApp>(VertexVar, pTargetVertexVar);
 			UsesApp = pTargetVertexVar;
 		}
 		
@@ -1657,7 +1657,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetVertexVar) {
-			TxBuild.AddRel<OauthGrantUsesUser>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthGrantUsesUser>(VertexVar, pTargetVertexVar);
 			UsesUser = pTargetVertexVar;
 		}
 		
@@ -1710,7 +1710,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesApp(IWeaverVarAlias<App> pTargetVertexVar) {
-			TxBuild.AddRel<OauthScopeUsesApp>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthScopeUsesApp>(VertexVar, pTargetVertexVar);
 			UsesApp = pTargetVertexVar;
 		}
 		
@@ -1742,7 +1742,7 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void SetUsesUser(IWeaverVarAlias<User> pTargetVertexVar) {
-			TxBuild.AddRel<OauthScopeUsesUser>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<OauthScopeUsesUser>(VertexVar, pTargetVertexVar);
 			UsesUser = pTargetVertexVar;
 		}
 		

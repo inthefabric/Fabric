@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify {
 	public class TCreateFactor : TBaseModifyFunc {
 
 		private long vPrimArtId;
-		private long vRelArtId;
+		private long vEdgeArtId;
 		private byte vAssertId;
 		private bool vIsDefining;
 		private string vNote;
@@ -30,7 +30,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vPrimArtId = 1251253;
-			vRelArtId = 64362346;
+			vEdgeArtId = 64362346;
 			vAssertId = 1;
 			vIsDefining = true;
 			vNote = "note here";
@@ -46,7 +46,7 @@ namespace Fabric.Test.FabApiModify {
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
 						vPrimArtId,
-						vRelArtId,
+						vEdgeArtId,
 						vAssertId,
 						vIsDefining,
 						vNote,
@@ -62,7 +62,7 @@ namespace Fabric.Test.FabApiModify {
 				.Returns((string s, IWeaverTransaction q) => CreateFactorTx(q));
 
 			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vPrimArtId)).Returns(new Artifact());
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vRelArtId)).Returns(new Artifact());
+			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vEdgeArtId)).Returns(new Artifact());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -77,7 +77,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
 			var func = new CreateFactor(
-				MockTasks.Object, vPrimArtId, vRelArtId, vAssertId, vIsDefining, vNote);
+				MockTasks.Object, vPrimArtId, vEdgeArtId, vAssertId, vIsDefining, vNote);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -91,7 +91,7 @@ namespace Fabric.Test.FabApiModify {
 			Assert.AreEqual(vResultFactor, vResult, "Incorrect Result.");
 
 			MockValidator.Verify(x => x.ArtifactId(vPrimArtId, CreateFactor.PrimArtParam),Times.Once());
-			MockValidator.Verify(x => x.ArtifactId(vRelArtId, CreateFactor.RelArtParam), Times.Once());
+			MockValidator.Verify(x => x.ArtifactId(vEdgeArtId, CreateFactor.EdgeArtParam), Times.Once());
 			MockValidator.Verify(x => x.FactorFactorAssertionId(
 				vAssertId, CreateFactor.AssertParam), Times.Once());
 			MockValidator.Verify(x => x.FactorNote(vNote, CreateFactor.NoteParam), Times.Once());
@@ -102,7 +102,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrPrimaryEqualsRelated() {
-			vRelArtId = vPrimArtId;
+			vEdgeArtId = vPrimArtId;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
@@ -116,7 +116,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRelatedArtifactNotFound() {
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vRelArtId)).Returns((Artifact)null);
+			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vEdgeArtId)).Returns((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 		

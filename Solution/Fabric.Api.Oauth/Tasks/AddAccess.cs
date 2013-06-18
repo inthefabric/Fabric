@@ -53,7 +53,7 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabOauthAccess Execute() {
 			ClearOldTokens();
-			return AddAccessVertexAndRels();
+			return AddAccessVertexAndEdges();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -91,7 +91,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthAccess AddAccessVertexAndRels() {
+		private FabOauthAccess AddAccessVertexAndEdges() {
 			var txb = new TxBuilder();
 		
 			var oa = new OauthAccess();

@@ -55,7 +55,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vDomain,
 				(byte)VertexFabType.OauthDomain,
 				vAppId,
-				RelDbName.OauthDomainUsesApp
+				EdgeDbName.OauthDomainUsesApp
 			});
 
 			return vDomainResult;

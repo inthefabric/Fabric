@@ -46,12 +46,12 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 				"Incorrect Password.");
 
 			VertexConnections conn = GetVertexConnections(newUser);
-			conn.AssertRelCount(1, 1);
-			conn.AssertRel<UserUsesEmail, Email>(true, useEmail.EmailId);
-			conn.AssertRel<MemberCreatesArtifact, Member>(false, mem.MemberId);
+			conn.AssertEdgeCount(1, 1);
+			conn.AssertEdge<UserUsesEmail, Email>(true, useEmail.EmailId);
+			conn.AssertEdge<MemberCreatesArtifact, Member>(false, mem.MemberId);
 
 			NewVertexCount = 1;
-			NewRelCount = 2;
+			NewEdgeCount = 2;
 		}
 
 	}

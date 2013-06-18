@@ -35,16 +35,16 @@ foreach ( string name in verts ) {
 	WeaverVertexSchema vertex = hn.VertexSchema;
 	if ( vertex.IsAbstract || vertex.IsInternal ) { continue; }
 
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetNestedRels(true);
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetNestedEdges(true);
 #>
 			map.Add("<#= vertex.Name #>", new string [] {
 <#
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 		if ( vertex.Name != "Root" && hr.OutVertexName == "Root" ) { continue; }
 #>
-				"/<#= hr.RelPropName #>",
+				"/<#= hr.EdgePropName #>",
 <#
-	} //end vertexRels loop
+	} //end vertexEdges loop
 #>
 			});
 

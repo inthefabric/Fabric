@@ -20,10 +20,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			"g.V('"+PropDbName.OauthAccess_Refresh+"',_TP)"+
 				".has('"+PropDbName.OauthAccess_IsClientOnly+"',Tokens.T.eq,_TP)"+
 				".as('step4')"+
-			".outE('"+RelDbName.OauthAccessUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthAccessUsesApp+"').inV"+
 				".aggregate(_V0)"+
 			".back('step4')"+
-			".outE('"+RelDbName.OauthAccessUsesUser+"').inV"+
+			".outE('"+EdgeDbName.OauthAccessUsesUser+"').inV"+
 				".aggregate(_V0)"+
 				".iterate();"+
 			"_V0;";

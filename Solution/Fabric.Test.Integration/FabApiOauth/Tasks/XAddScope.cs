@@ -74,12 +74,12 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newOs, "New OauthScope was not created.");
 
 			VertexConnections conn = GetVertexConnections(newOs);
-			conn.AssertRelCount(0, 2);
-			conn.AssertRel<OauthScopeUsesApp, App>(true, vAppId);
-			conn.AssertRel<OauthScopeUsesUser, User>(true, vUserId);
+			conn.AssertEdgeCount(0, 2);
+			conn.AssertEdge<OauthScopeUsesApp, App>(true, vAppId);
+			conn.AssertEdge<OauthScopeUsesUser, User>(true, vUserId);
 
 			NewVertexCount = 1;
-			NewRelCount = 2;
+			NewEdgeCount = 2;
 		}
 
 	}

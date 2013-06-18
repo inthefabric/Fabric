@@ -160,7 +160,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Move original to use Member-HasHistoric-MemberTypeAssign relationship
 
 			txb.GetVertex(pMember, out memVar);
-			txb.AddRel<MemberHasHistoricMemberTypeAssign>(memVar, mtaVar);
+			txb.AddEdge<MemberHasHistoricMemberTypeAssign>(memVar, mtaVar);
 
 			//Finish transaction
 			

@@ -16,7 +16,7 @@ namespace Fabric.Api.Modify {
 	public class CreateFactor : BaseModifyFunc<Factor> {
 
 		public const string PrimArtParam = "PrimaryArtifactId";
-		public const string RelArtParam = "RelatedArtifactId";
+		public const string EdgeArtParam = "RelatedArtifactId";
 		public const string AssertParam = "FactorAssertionId";
 		public const string IsDefParam = "IsDefining";
 		public const string NoteParam = "Note";
@@ -25,9 +25,9 @@ namespace Fabric.Api.Modify {
 			DomainPropertyName="ArtifactId")]
 		private readonly long vPrimArtId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, RelArtParam, 1, typeof(Artifact),
+		[ServiceOpParam(ServiceOpParamType.Form, EdgeArtParam, 1, typeof(Artifact),
 			DomainPropertyName="ArtifactId")]
-		private readonly long vRelArtId;
+		private readonly long vEdgeArtId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, AssertParam, 2, typeof(Factor))]
 		private readonly byte vAssertId;
@@ -41,10 +41,10 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateFactor(IModifyTasks pTasks, long pPrimArtId, long pRelArtId, byte pAssertId, 
+		public CreateFactor(IModifyTasks pTasks, long pPrimArtId, long pEdgeArtId, byte pAssertId, 
 														bool pIsDefining, string pNote) : base(pTasks) {
 			vPrimArtId = pPrimArtId;
-			vRelArtId = pRelArtId;
+			vEdgeArtId = pEdgeArtId;
 			vAssertId = pAssertId;
 			vIsDefining = pIsDefining;
 			vNote = pNote;
@@ -53,12 +53,12 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
 			Tasks.Validator.ArtifactId(vPrimArtId, PrimArtParam);
-			Tasks.Validator.ArtifactId(vRelArtId, RelArtParam);
+			Tasks.Validator.ArtifactId(vEdgeArtId, EdgeArtParam);
 			Tasks.Validator.FactorFactorAssertionId(vAssertId, AssertParam);
 			Tasks.Validator.FactorNote(vNote, NoteParam);
 
-			if ( vPrimArtId == vRelArtId ) {
-				throw new FabArgumentValueFault(PrimArtParam+" cannot be equal to "+RelArtParam);
+			if ( vPrimArtId == vEdgeArtId ) {
+				throw new FabArgumentValueFault(PrimArtParam+" cannot be equal to "+EdgeArtParam);
 			}
 		}
 
@@ -68,8 +68,8 @@ namespace Fabric.Api.Modify {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtParam+"="+vPrimArtId);
 			}
 
-			if ( ApiCtx.DbVertexById<Artifact>(vRelArtId) == null ) {
-				throw new FabNotFoundFault(typeof(Artifact), RelArtParam+"="+vRelArtId);
+			if ( ApiCtx.DbVertexById<Artifact>(vEdgeArtId) == null ) {
+				throw new FabNotFoundFault(typeof(Artifact), EdgeArtParam+"="+vEdgeArtId);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Fabric.Api.Modify {
 
 			var txb = new TxBuilder();
 
-			Tasks.TxAddFactor(ApiCtx, txb, vPrimArtId, vRelArtId, vAssertId, 
+			Tasks.TxAddFactor(ApiCtx, txb, vPrimArtId, vEdgeArtId, vAssertId, 
 				vIsDefining, vNote, m, out factorVar);
 			
 			txb.RegisterVarWithTxBuilder(factorVar);
@@ -100,7 +100,7 @@ namespace Fabric.Api.Modify {
 		internal Dictionary<string, long> GetRequiredArtifactIdsForBatch() {
 			var map = new Dictionary<string, long>();
 			map.Add(PrimArtParam, vPrimArtId);
-			map.Add(RelArtParam, vRelArtId);
+			map.Add(EdgeArtParam, vEdgeArtId);
 			return map;
 		}
 

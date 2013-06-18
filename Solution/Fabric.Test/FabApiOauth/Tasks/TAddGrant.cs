@@ -17,9 +17,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private const string QueryUpdateGrantTx =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
-			".inE('"+RelDbName.OauthGrantUsesUser+"').outV"+
+			".inE('"+EdgeDbName.OauthGrantUsesUser+"').outV"+
 				".as('step5')"+
-			".outE('"+RelDbName.OauthGrantUsesApp+"').inV"+
+			".outE('"+EdgeDbName.OauthGrantUsesApp+"').inV"+
 				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_TP)"+
 			".back('step5')"+
 				".sideEffect{"+
@@ -127,9 +127,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUtcNow.AddMinutes(2).Ticks,
 				(byte)VertexFabType.OauthGrant,
 				vAppId,
-				RelDbName.OauthGrantUsesApp,
+				EdgeDbName.OauthGrantUsesApp,
 				vUserId,
-				RelDbName.OauthGrantUsesUser
+				EdgeDbName.OauthGrantUsesUser
 			});
 			
 			return null;

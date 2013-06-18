@@ -12,7 +12,7 @@ namespace Fabric.Domain.Meta {
 		public bool HasParentClass { get; private set; }
 
 		private readonly IList<SchemaHelperProp> vProps;
-		private readonly IList<SchemaHelperVertexRel> vRels;
+		private readonly IList<SchemaHelperVertexEdge> vEdges;
 		private readonly IDictionary<string, IList<SchemaHelperProp>> vSubMap;
 		private readonly IDictionary<string, bool> vSubOptMap;
 
@@ -25,7 +25,7 @@ namespace Fabric.Domain.Meta {
 			HasParentClass = (VertexSchema.BaseVertex != null);
 
 			vProps = new List<SchemaHelperProp>();
-			vRels = new List<SchemaHelperVertexRel>();
+			vEdges = new List<SchemaHelperVertexEdge>();
 			vSubMap = new Dictionary<string, IList<SchemaHelperProp>>();
 			vSubOptMap = new Dictionary<string, bool>();
 
@@ -54,9 +54,9 @@ namespace Fabric.Domain.Meta {
 				}
 			}
 
-			foreach ( WeaverEdgeSchema pr in SchemaHelper.SchemaInstance.Rels ) {
+			foreach ( WeaverEdgeSchema pr in SchemaHelper.SchemaInstance.Edges ) {
 				if ( pr.OutVertex != VertexSchema && pr.InVertex != VertexSchema ) { continue; }
-				vRels.Add(new SchemaHelperVertexRel(this, pr));
+				vEdges.Add(new SchemaHelperVertexEdge(this, pr));
 			}
 		}
 
@@ -69,22 +69,22 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<SchemaHelperVertexRel> GetEdges(bool pSkipInternal=false) {
-			return vRels
+		public IList<SchemaHelperVertexEdge> GetEdges(bool pSkipInternal=false) {
+			return vEdges
 				.Where(r => (!pSkipInternal || !r.IsTargetVertexInternal))
 				.ToList();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<SchemaHelperVertexRel> GetNestedRels(bool pSkipInternal=false) {
+		public IList<SchemaHelperVertexEdge> GetNestedEdges(bool pSkipInternal=false) {
 			if ( VertexSchema.BaseVertex == null ) {
 				return GetEdges(pSkipInternal);
 			}
 
 			var parent = new SchemaHelperVertex(VertexSchema.BaseVertex);
-			List<SchemaHelperVertexRel> rels = parent.GetNestedRels(pSkipInternal).ToList();
-			rels.AddRange(GetEdges(pSkipInternal));
-			return rels;
+			List<SchemaHelperVertexEdge> edges = parent.GetNestedEdges(pSkipInternal).ToList();
+			edges.AddRange(GetEdges(pSkipInternal));
+			return edges;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

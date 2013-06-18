@@ -250,7 +250,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			//calls AddScope (1,2) and AddGrant (1,2)
 			NewVertexCount = 2;
-			NewRelCount = 4;
+			NewEdgeCount = 4;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -264,7 +264,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			//calls AddScope (1,2)
 			NewVertexCount = 1;
-			NewRelCount = 2;
+			NewEdgeCount = 2;
 		}
 
 	}

@@ -26,7 +26,7 @@ foreach ( string name in verts ) {
 	
 	if ( vertex.IsRoot ) { continue; }
 
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges();
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetEdges();
 	string vertexType = (vertex.IsBaseClass ? "T" : vertex.Name);
 	string baseType = (vertex.BaseVertex == null ? "Domain" : vertex.BaseVertex.Name);
 
@@ -45,7 +45,7 @@ foreach ( string name in verts ) {
 <#
 	} //end abstract condition
 
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 		if ( hr.TargetVertexType == "Root" ) {
 			continue;
 		}
@@ -56,9 +56,9 @@ foreach ( string name in verts ) {
 			type = "IList<"+type+">";
 		}
 #>
-		public virtual <#= type #> <#= hr.RelPropName #> { get; private set; }
+		public virtual <#= type #> <#= hr.EdgePropName #> { get; private set; }
 <#
-	} //end rel loop
+	} //end edge loop
 #>
 		
 
@@ -82,8 +82,8 @@ foreach ( string name in verts ) {
 <#
 	} //end abstract condition
 
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
-		string method = (hr.IsMany ? "AddTo" : "Set")+hr.RelPropName;
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
+		string method = (hr.IsMany ? "AddTo" : "Set")+hr.EdgePropName;
 		string t = hr.TargetVertexType;
 		bool isRoot = (t == "Root");
 		SchemaHelperProp targKeyProp = SchemaHelper.GetVertex(hr.TargetVertexType).GetPrimaryKeyProp();
@@ -98,24 +98,24 @@ foreach ( string name in verts ) {
 <#
 			if ( hr.IsOutgoing ) {
 #>
-			TxBuild.AddRel<<#= hr.EdgeName #>>(VertexVar, pTargetVertexVar);
+			TxBuild.AddEdge<<#= hr.EdgeName #>>(VertexVar, pTargetVertexVar);
 <#
 			}
 			else {
 #>
-			TxBuild.AddRel<<#= hr.EdgeName #>>(pTargetVertexVar, VertexVar);
+			TxBuild.AddEdge<<#= hr.EdgeName #>>(pTargetVertexVar, VertexVar);
 <#
 			}
 			
 			if ( hr.IsMany ) {
 #>
-			<#= hr.RelPropName #> = (<#= hr.RelPropName #> ?? new List<IWeaverVarAlias<<#= t #>>>());
-			<#= hr.RelPropName #>.Add(pTargetVertexVar);
+			<#= hr.EdgePropName #> = (<#= hr.EdgePropName #> ?? new List<IWeaverVarAlias<<#= t #>>>());
+			<#= hr.EdgePropName #>.Add(pTargetVertexVar);
 <#
 			}
 			else {
 #>
-			<#= hr.RelPropName #> = pTargetVertexVar;
+			<#= hr.EdgePropName #> = pTargetVertexVar;
 <#
 			} //end is-many
 #>
@@ -147,7 +147,7 @@ foreach ( string name in verts ) {
 		
 <#
 		} //end if/else
-	} //end rel loop
+	} //end edge loop
 #>
 
 	}

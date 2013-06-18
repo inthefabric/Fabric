@@ -24,9 +24,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V{{PrimV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
 			"g.addEdge(_F,_V{{PrimV}},_TP);";
 
-		private const string QueryRelRef = 
-			"_V{{RelV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_F,_V{{RelV}},_TP);";
+		private const string QueryEdgeRef = 
+			"_V{{EdgeV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
+			"g.addEdge(_F,_V{{EdgeV}},_TP);";
 
 		private const string QueryTypeRef = 
 			"_V{{TypeV}}=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
@@ -35,7 +35,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private Factor vFactor;
 		private byte vDescTypeId;
 		private long? vPrimArtRefId;
-		private long? vRelArtRefId;
+		private long? vEdgeArtRefId;
 		private long? vDescTypeRefId;
 		
 		
@@ -45,7 +45,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vFactor = new Factor { FactorId = 132414 };
 			vDescTypeId = 9;
 			vPrimArtRefId = 935823;
-			vRelArtRefId = 25323;
+			vEdgeArtRefId = 25323;
 			vDescTypeRefId = 5439225;
 
 			MockApiCtx
@@ -68,21 +68,21 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			if ( vPrimArtRefId != null ) {
 				expect += QueryPrimRef.Replace("{{PrimV}}", v+"");
 				paramList.Add(vPrimArtRefId);
-				paramList.Add(RelDbName.FactorDescriptorRefinesPrimaryWithArtifact);
+				paramList.Add(EdgeDbName.FactorDescriptorRefinesPrimaryWithArtifact);
 				v++;
 			}
 
-			if ( vRelArtRefId != null ) {
-				expect += QueryRelRef.Replace("{{RelV}}", v+"");
-				paramList.Add(vRelArtRefId);
-				paramList.Add(RelDbName.FactorDescriptorRefinesRelatedWithArtifact);
+			if ( vEdgeArtRefId != null ) {
+				expect += QueryEdgeRef.Replace("{{EdgeV}}", v+"");
+				paramList.Add(vEdgeArtRefId);
+				paramList.Add(EdgeDbName.FactorDescriptorRefinesRelatedWithArtifact);
 				v++;
 			}
 
 			if ( vDescTypeRefId != null ) {
 				expect += QueryTypeRef.Replace("{{TypeV}}", v+"");
 				paramList.Add(vDescTypeRefId);
-				paramList.Add(RelDbName.FactorDescriptorRefinesTypeWithArtifact);
+				paramList.Add(EdgeDbName.FactorDescriptorRefinesTypeWithArtifact);
 			}
 			
 			expect = TestUtil.InsertParamIndexes(expect, "_TP");
@@ -102,13 +102,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[TestCase(123L, null, null)]
 		[TestCase(null, 456L, null)]
 		[TestCase(null, null, null)]
-		public void Update(long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) {
+		public void Update(long? pPrimArtRefId, long? pEdgeArtRefId, long? pDescTypeRefId) {
 			vPrimArtRefId = pPrimArtRefId;
-			vRelArtRefId = pRelArtRefId;
+			vEdgeArtRefId = pEdgeArtRefId;
 			vDescTypeRefId = pDescTypeRefId;
 
 			Tasks.UpdateFactorDescriptor(MockApiCtx.Object, vFactor, vDescTypeId, 
-				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
+				vPrimArtRefId, vEdgeArtRefId, vDescTypeRefId);
 		}
 
 	}

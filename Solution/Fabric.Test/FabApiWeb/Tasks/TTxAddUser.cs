@@ -70,8 +70,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.User,
-				RelDbName.UserUsesEmail,
-				RelDbName.MemberCreatesArtifact
+				EdgeDbName.UserUsesEmail,
+				EdgeDbName.MemberCreatesArtifact
 			});
 		}
 

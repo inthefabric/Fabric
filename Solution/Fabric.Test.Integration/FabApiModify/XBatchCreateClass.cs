@@ -129,7 +129,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			}
 
 			NewVertexCount = 1*(vClasses.Count-expectFails);
-			NewRelCount = 1*(vClasses.Count-expectFails);
+			NewEdgeCount = 1*(vClasses.Count-expectFails);
 
 			Assert.AreEqual(expectFails, fails, "Incorrect Resuls.Error count.");
 		}

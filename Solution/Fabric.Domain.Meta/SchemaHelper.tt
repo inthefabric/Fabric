@@ -24,16 +24,16 @@ namespace Fabric.Domain.Meta {
 			return new List<string> {
 <#
 var schema = new Schema();
-var relTypeMap = new Dictionary<string, bool>();
-var relMap = new Dictionary<string, bool>();
+var edgeTypeMap = new Dictionary<string, bool>();
+var edgeMap = new Dictionary<string, bool>();
 
-foreach ( WeaverEdgeSchema rel in schema.Rels ) {
-	if ( relTypeMap.ContainsKey(rel.EdgeType) ) { continue; }
-	relTypeMap.Add(rel.EdgeType, true);
+foreach ( WeaverEdgeSchema edge in schema.Edges ) {
+	if ( edgeTypeMap.ContainsKey(edge.EdgeType) ) { continue; }
+	edgeTypeMap.Add(edge.EdgeType, true);
 #>
-				"<#= rel.EdgeType #>",
+				"<#= edge.EdgeType #>",
 <#
-} // end rel loop
+} // end edge loop
 #>
 			};
 		}
@@ -41,25 +41,25 @@ foreach ( WeaverEdgeSchema rel in schema.Rels ) {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static SchemaHelperRel GetEdge(string pName) {
+		public static SchemaHelperEdge GetEdge(string pName) {
 			var s = SchemaInstance;
 
 			switch ( pName ) {
 <#
 int ri = 0;
 
-foreach ( WeaverEdgeSchema rel in schema.Rels ) {
-	var fromVertex = rel.OutVertex.Name;
-	var toVertex = rel.InVertex.Name;
-	string relClass = fromVertex+rel.Name+toVertex;
+foreach ( WeaverEdgeSchema edge in schema.Edges ) {
+	var fromVertex = edge.OutVertex.Name;
+	var toVertex = edge.InVertex.Name;
+	string edgeClass = fromVertex+edge.Name+toVertex;
 		
-	if ( relMap.ContainsKey(relClass) ) { continue; }
-	relMap.Add(relClass, true);
+	if ( edgeMap.ContainsKey(edgeClass) ) { continue; }
+	edgeMap.Add(edgeClass, true);
 #>
-				case "<#= relClass #>": return new SchemaHelperRel(s.Rels[<#= ri #>]);
+				case "<#= edgeClass #>": return new SchemaHelperEdge(s.Edges[<#= ri #>]);
 <#
 	++ri;
-} //end rel loop
+} //end edge loop
 #>
 			}
 
@@ -70,7 +70,7 @@ foreach ( WeaverEdgeSchema rel in schema.Rels ) {
 		public static IList<string> GetEdges() {
 			return new List<string> {
 <#
-foreach ( string key in relMap.Keys ) {
+foreach ( string key in edgeMap.Keys ) {
 #>
 				"<#= key #>",
 <#

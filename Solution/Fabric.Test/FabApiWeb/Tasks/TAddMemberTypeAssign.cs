@@ -14,8 +14,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private static readonly string Query =
 			"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"_MTA=_V0.outE('"+RelDbName.MemberHasMemberTypeAssign+"').inV.next();"+
-			"_MTA.inE('"+RelDbName.MemberHasMemberTypeAssign+"')"+
+			"_MTA=_V0.outE('"+EdgeDbName.MemberHasMemberTypeAssign+"').inV.next();"+
+			"_MTA.inE('"+EdgeDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
 			"g.addEdge(_V0,_MTA,_TP);"+
 			"_V2=g.addVertex(["+
@@ -67,14 +67,14 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vMemberId,
-				RelDbName.MemberHasHistoricMemberTypeAssign,
+				EdgeDbName.MemberHasHistoricMemberTypeAssign,
 				vNewMtaId,
 				vMemberTypeId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.MemberTypeAssign,
 				vAssigningMemberId,
-				RelDbName.MemberCreatesMemberTypeAssign,
-				RelDbName.MemberHasMemberTypeAssign
+				EdgeDbName.MemberCreatesMemberTypeAssign,
+				EdgeDbName.MemberHasMemberTypeAssign
 			});
 
 			return vMtaResult;

@@ -46,10 +46,10 @@ foreach ( string name in edgeTypes ) {
 IList<string> edges = SchemaHelper.GetEdges();
 
 foreach ( string name in edges ) {
-	SchemaHelperRel edge = SchemaHelper.GetEdge(name);
+	SchemaHelperEdge edge = SchemaHelper.GetEdge(name);
 #>
 	/*================================================================================================*/
-	public class <#= edge.EdgeName #> : Rel<<#= edge.OutVertexName #>, <#=edge.EdgeTypeName #>, <#= edge.InVertexName #>>, IItemWithId {
+	public class <#= edge.EdgeName #> : Edge<<#= edge.OutVertexName #>, <#=edge.EdgeTypeName #>, <#= edge.InVertexName #>>, IItemWithId {
 			
 		public virtual <#= edge.OutVertexName #> From<#= edge.OutVertexName #> { get { return OutVertex; } }
 		public virtual <#= edge.InVertexName #> To<#= edge.InVertexName #> { get { return InVertex; } }
@@ -216,12 +216,12 @@ foreach ( string name in verts ) {
 		}
 
 <#
-	IList<SchemaHelperVertexRel> vertexRels = hn.GetEdges();
+	IList<SchemaHelperVertexEdge> vertexEdges = hn.GetEdges();
 
-	foreach ( SchemaHelperVertexRel hr in vertexRels ) {
+	foreach ( SchemaHelperVertexEdge hr in vertexEdges ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual <#= hr.EdgeName #> <#= hr.RelPropName #> {
+		public virtual <#= hr.EdgeName #> <#= hr.EdgePropName #> {
 			get { return NewEdge<<#= hr.EdgeName #>>(WeaverEdgeConn.<#= hr.Conn+"" #>); }
 		}
 

@@ -11,7 +11,7 @@ namespace Fabric.Infrastructure.Db {
 
 		public enum ItemType {
 			Vertex = 1,
-			Rel,
+			Edge,
 			Unknown,
 			Error
 		}
@@ -69,7 +69,7 @@ namespace Fabric.Infrastructure.Db {
 					break;
 
 				case "edge":
-					Item = ItemType.Rel;
+					Item = ItemType.Edge;
 					Class = pObj["_label"];
 					OutVertexId = pObj["_outV"];
 					InVertexId = pObj["_inV"];
@@ -102,11 +102,11 @@ namespace Fabric.Infrastructure.Db {
 			result.Id = Id;
 			result.FillWithData(Data);
 
-			IRel rel = (result as IRel);
+			IEdge edge = (result as IEdge);
 
-			if ( rel != null ) {
-				rel.OutVertexId = OutVertexId;
-				rel.InVertexId = InVertexId;
+			if ( edge != null ) {
+				edge.OutVertexId = OutVertexId;
+				edge.InVertexId = InVertexId;
 			}
 
 			return result;

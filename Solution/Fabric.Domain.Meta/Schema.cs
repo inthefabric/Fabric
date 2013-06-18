@@ -27,14 +27,14 @@ namespace Fabric.Domain.Meta {
 			@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$";
 
 		public List<WeaverVertexSchema> Vertices { get; private set; }
-		public List<WeaverEdgeSchema> Rels { get; private set; }
+		public List<WeaverEdgeSchema> Edges { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Schema() {
 			Vertices = new List<WeaverVertexSchema>();
-			Rels = new List<WeaverEdgeSchema>();
+			Edges = new List<WeaverEdgeSchema>();
 			FabricPropSchema p;
 
 			////
@@ -382,49 +382,49 @@ namespace Fabric.Domain.Meta {
 			const WeaverEdgeConn otzom = WeaverEdgeConn.OutToZeroOrMore;
 			const WeaverEdgeConn otzoo = WeaverEdgeConn.OutToZeroOrOne;
 
-			AddRel(app, uses, email, oto, ifzom);
-			AddRel(app, defines, member, otoom, ifo);
+			AddEdge(app, uses, email, oto, ifzom);
+			AddEdge(app, defines, member, otoom, ifo);
 
-			//AddRel(crowd, defines, crowdian, otoom, ifo);
+			//AddEdge(crowd, defines, crowdian, otoom, ifo);
 
-			//AddRel(crowdian, has, crowdianTypeAssign, oto, ifo);
-			//AddRel(crowdian, hasHistoric, crowdianTypeAssign, otzom, ifo);
+			//AddEdge(crowdian, has, crowdianTypeAssign, oto, ifo);
+			//AddEdge(crowdian, hasHistoric, crowdianTypeAssign, otzom, ifo);
 
-			//AddRel(crowdianTypeAssign, uses, crowdianType, oto, ifzom);
+			//AddEdge(crowdianTypeAssign, uses, crowdianType, oto, ifzom);
 
-			AddRel(member, has, memberTypeAssign, oto, ifo);
-			AddRel(member, hasHistoric, memberTypeAssign, otzom, ifo);
-			AddRel(member, creates, artifact, otzom, ifo);
-			AddRel(member, creates, memberTypeAssign, otzom, ifo);
-			AddRel(member, creates, factor, otzom, ifo);
+			AddEdge(member, has, memberTypeAssign, oto, ifo);
+			AddEdge(member, hasHistoric, memberTypeAssign, otzom, ifo);
+			AddEdge(member, creates, artifact, otzom, ifo);
+			AddEdge(member, creates, memberTypeAssign, otzom, ifo);
+			AddEdge(member, creates, factor, otzom, ifo);
 
-			//AddRel(user, creates, crowdianTypeAssign, otzom, ifo);
-			//AddRel(user, defines, crowdian, otzom, ifo);
-			AddRel(user, uses, email, oto, ifoom);
-			AddRel(user, defines, member, otoom, ifo);
-
-			////
-
-			AddRel(factor, usesPrimary, artifact, oto, ifzom);
-			AddRel(factor, usesRelated, artifact, oto, ifzom);
-			//AddRel(factor, replaces, factor, otzoo, ifzoo);
-			AddRel(factor, refinesPrimaryWith, artifact, otzoo, ifzom); //Descriptor
-			AddRel(factor, refinesRelatedWith, artifact, otzoo, ifzom); //Descriptor
-			AddRel(factor, refinesTypeWith, artifact, otzoo, ifzom); //Descriptor
-			AddRel(factor, usesAxis, artifact, otzoo, ifzom); //Vector
+			//AddEdge(user, creates, crowdianTypeAssign, otzom, ifo);
+			//AddEdge(user, defines, crowdian, otzom, ifo);
+			AddEdge(user, uses, email, oto, ifoom);
+			AddEdge(user, defines, member, otoom, ifo);
 
 			////
 
-			AddRel(oauthAccess, uses, app, oto, ifzom);
-			AddRel(oauthAccess, uses, user, otzoo, ifzom);
+			AddEdge(factor, usesPrimary, artifact, oto, ifzom);
+			AddEdge(factor, usesRelated, artifact, oto, ifzom);
+			//AddEdge(factor, replaces, factor, otzoo, ifzoo);
+			AddEdge(factor, refinesPrimaryWith, artifact, otzoo, ifzom); //Descriptor
+			AddEdge(factor, refinesRelatedWith, artifact, otzoo, ifzom); //Descriptor
+			AddEdge(factor, refinesTypeWith, artifact, otzoo, ifzom); //Descriptor
+			AddEdge(factor, usesAxis, artifact, otzoo, ifzom); //Vector
 
-			AddRel(oauthDomain, uses, app, oto, ifzom);
+			////
 
-			AddRel(oauthGrant, uses, app, oto, ifzom);
-			AddRel(oauthGrant, uses, user, oto, ifzom);
+			AddEdge(oauthAccess, uses, app, oto, ifzom);
+			AddEdge(oauthAccess, uses, user, otzoo, ifzom);
 
-			AddRel(oauthScope, uses, app, oto, ifzom);
-			AddRel(oauthScope, uses, user, oto, ifzom);
+			AddEdge(oauthDomain, uses, app, oto, ifzom);
+
+			AddEdge(oauthGrant, uses, app, oto, ifzom);
+			AddEdge(oauthGrant, uses, user, oto, ifzom);
+
+			AddEdge(oauthScope, uses, app, oto, ifzom);
+			AddEdge(oauthScope, uses, user, oto, ifzom);
 		}
 
 
@@ -438,7 +438,7 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private WeaverEdgeSchema AddRel(WeaverVertexSchema pFrom, KeyValuePair<string, string> pEdgeType,
+		private WeaverEdgeSchema AddEdge(WeaverVertexSchema pFrom, KeyValuePair<string, string> pEdgeType,
 								WeaverVertexSchema pTo, WeaverEdgeConn pFromConn, WeaverEdgeConn pToConn) {
 			string name = pFrom.Name+pEdgeType.Key+pTo.Name;
 			string db = pFrom.DbName+"-"+pEdgeType.Value+"-"+pTo.DbName;
@@ -446,7 +446,7 @@ namespace Fabric.Domain.Meta {
 			var r = new WeaverEdgeSchema(pFrom, name, db, pEdgeType.Key, pTo);
 			r.OutVertexConn = pFromConn;
 			r.InVertexConn = pToConn;
-			Rels.Add(r);
+			Edges.Add(r);
 			//Console.WriteLine("REL: "+db+" ("+r.Name+")");
 			return r;
 		}

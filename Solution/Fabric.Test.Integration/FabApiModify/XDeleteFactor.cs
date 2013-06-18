@@ -53,7 +53,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			Assert.AreEqual(compCount+1, updatedCompCount, "Incorrect updated Deleted count.");
 
 			NewVertexCount = 0;
-			NewRelCount = 0;
+			NewEdgeCount = 0;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

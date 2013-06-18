@@ -28,7 +28,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.addEdge(_V3,_V0,_TP"+");";
 
 		private long vPrimArtId;
-		private long vRelArtId;
+		private long vEdgeArtId;
 		private byte vAssertId;
 		private bool vIsDefining;
 		private string vNote;
@@ -40,7 +40,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vPrimArtId = 1251253;
-			vRelArtId = 64362346;
+			vEdgeArtId = 64362346;
 			vAssertId = 1;
 			vIsDefining = true;
 			vNote = "note here";
@@ -59,7 +59,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			var mem = new Member { MemberId = 12345 };
 			IWeaverVarAlias<Factor> factorVar;
 
-			Tasks.TxAddFactor(MockApiCtx.Object, TxBuild, vPrimArtId, vRelArtId, vAssertId, vIsDefining,
+			Tasks.TxAddFactor(MockApiCtx.Object, TxBuild, vPrimArtId, vEdgeArtId, vAssertId, vIsDefining,
 				vNote, mem, out factorVar);
 			FinishTx();
 
@@ -76,11 +76,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vNote,
 				(byte)VertexFabType.Factor,
 				vPrimArtId,
-				RelDbName.FactorUsesPrimaryArtifact,
-				vRelArtId,
-				RelDbName.FactorUsesRelatedArtifact,
+				EdgeDbName.FactorUsesPrimaryArtifact,
+				vEdgeArtId,
+				EdgeDbName.FactorUsesRelatedArtifact,
 				mem.MemberId,
-				RelDbName.MemberCreatesFactor
+				EdgeDbName.MemberCreatesFactor
 			});
 		}
 

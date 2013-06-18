@@ -149,7 +149,7 @@ namespace Fabric.Api.Services {
 					f = new CreateFactor(
 						NewModTasks(),
 						GetPostLong(CreateFactor.PrimArtParam),
-						GetPostLong(CreateFactor.RelArtParam),
+						GetPostLong(CreateFactor.EdgeArtParam),
 						GetPostByte(CreateFactor.AssertParam),
 						GetPostBool(CreateFactor.IsDefParam),
 						GetPostString(CreateFactor.NoteParam, false)
@@ -203,7 +203,7 @@ namespace Fabric.Api.Services {
 						GetPostLong(AttachFactorElement.FactorParam),
 						GetPostByte(AttachDescriptor.DescTypeParam),
 						GetPostLong(AttachDescriptor.PrimArtRefParam, false),
-						GetPostLong(AttachDescriptor.RelArtRefParam, false),
+						GetPostLong(AttachDescriptor.EdgeArtRefParam, false),
 						GetPostLong(AttachDescriptor.DescTypeRefParam, false)
 					)
 					.Go(ApiCtx);
@@ -222,7 +222,7 @@ namespace Fabric.Api.Services {
 						GetPostLong(AttachFactorElement.FactorParam),
 						GetPostByte(AttachDirector.DirTypeParam),
 						GetPostByte(AttachDirector.PrimActionParam),
-						GetPostByte(AttachDirector.RelActionParam)
+						GetPostByte(AttachDirector.EdgeActionParam)
 					)
 					.Go(ApiCtx);
 					return ToBoolList(result);

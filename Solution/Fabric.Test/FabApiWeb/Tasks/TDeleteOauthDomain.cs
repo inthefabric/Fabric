@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 		private const string Query =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
-			".inE('"+RelDbName.OauthDomainUsesApp+"').outV"+
+			".inE('"+EdgeDbName.OauthDomainUsesApp+"').outV"+
 				".has('"+PropDbName.OauthDomain_OauthDomainId+"',Tokens.T.eq,_P1)"+
 				".remove();";
 

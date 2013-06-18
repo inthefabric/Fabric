@@ -14,7 +14,7 @@ namespace Fabric.Api.Modify {
 
 		public const string DirTypeParam = "DirectorTypeId";
 		public const string PrimActionParam = "PrimaryDirectorActionId";
-		public const string RelActionParam = "RelatedDirectorActionId";
+		public const string EdgeActionParam = "RelatedDirectorActionId";
 
 		[ServiceOpParam(ServiceOpParamType.Form, DirTypeParam, 1, typeof(Factor))]
 		private readonly byte vDirTypeId;
@@ -23,25 +23,25 @@ namespace Fabric.Api.Modify {
 			DomainPropertyName="DirectorActionId")]
 		private readonly byte vPrimActId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, RelActionParam, 3, typeof(Factor),
+		[ServiceOpParam(ServiceOpParamType.Form, EdgeActionParam, 3, typeof(Factor),
 			DomainPropertyName="DirectorActionId")]
-		private readonly byte vRelActId;
+		private readonly byte vEdgeActId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AttachDirector(IModifyTasks pTasks, long pFactorId, byte pDirTypeId, 
-											byte pPrimActId, byte pRelActId) : base(pTasks, pFactorId) {
+											byte pPrimActId, byte pEdgeActId) : base(pTasks, pFactorId) {
 			vDirTypeId = pDirTypeId; 
 			vPrimActId = pPrimActId;
-			vRelActId = pRelActId;
+			vEdgeActId = pEdgeActId;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.FactorDirector_TypeId(vDirTypeId, DirTypeParam);
 			Tasks.Validator.FactorDirector_PrimaryActionId(vPrimActId, PrimActionParam);
-			Tasks.Validator.FactorDirector_RelatedActionId(vRelActId, RelActionParam);
+			Tasks.Validator.FactorDirector_RelatedActionId(vEdgeActId, EdgeActionParam);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -49,7 +49,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
-			Tasks.UpdateFactorDirector(ApiCtx, pFactor, vDirTypeId, vPrimActId, vRelActId);
+			Tasks.UpdateFactorDirector(ApiCtx, pFactor, vDirTypeId, vPrimActId, vEdgeActId);
 			return true;
 		}
 

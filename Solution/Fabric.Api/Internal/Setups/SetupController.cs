@@ -40,7 +40,7 @@ namespace Fabric.Api.Internal.Setups {
 				//SendSetupTx();
 				SendIndexTx();
 				SendVertexTx();
-				SendRelTx();
+				SendEdgeTx();
 
 				return "success: "+sw.ElapsedMilliseconds/1000.0+"sec";
 			}
@@ -137,27 +137,27 @@ namespace Fabric.Api.Internal.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void SendRelTx() {
+		private void SendEdgeTx() {
 			int count = 0;
 
 			while ( true ) {
 				var tx = new WeaverTransaction();
 				int limit = 10;
-				Log.Debug("Rel "+count+" / "+vDataSet.Rels.Count);
+				Log.Debug("Edge "+count+" / "+vDataSet.Edges.Count);
 
-				for ( int i = count ; i < vDataSet.Rels.Count ; ++i ) {
+				for ( int i = count ; i < vDataSet.Edges.Count ; ++i ) {
 					if ( --limit < 0 ) {
 						break;
 					}
 
-					tx.AddQuery(vDataSet.Rels[i].AddQuery);
+					tx.AddQuery(vDataSet.Edges[i].AddQuery);
 					count++;
 				}
 
 				tx.Finish();
-				ApiCtx.DbData("addRelsTx", tx);
+				ApiCtx.DbData("addEdgesTx", tx);
 
-				if ( count >= vDataSet.Rels.Count ) {
+				if ( count >= vDataSet.Edges.Count ) {
 					break;
 				}
 			}

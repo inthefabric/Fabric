@@ -30,7 +30,7 @@ namespace Fabric.Db.Data.Setups {
 			FZ_Zach_ACT_PartIn_Overall,
 			FZ_Zach_GVSU_PartIn_Attend_Start,
 			FZ_Zach_GVSU_PartIn_Attend_End,
-			FZ_Zach_AEI_RelTo_ViewSuggView,
+			FZ_Zach_AEI_EdgeTo_ViewSuggView,
 			FZ_Zach_Software_Produce,
 			FZ_Zach_Art_Produce,
 			FZ_Zach_Graphics_Produce,
@@ -148,16 +148,16 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		public enum DescriptorRefId {
-			Rel_Male = 1,
-			Rel_Legal,
+			Edge_Male = 1,
+			Edge_Legal,
 			Type_Home,
 			Type_Attend,
-			Rel_Female,
-			Rel_Digital,
+			Edge_Female,
+			Edge_Digital,
 			Prim_RT_Subject,
 			Prim_HA_Subject,
 			Prim_HA1_Object,
-			Rel_Blue,
+			Edge_Blue,
 			Prim_HA2_Object,
 			Prim_RT_Object
 		}
@@ -380,11 +380,11 @@ namespace Fabric.Db.Data.Setups {
 			vIdCount = 0;
 			AddLocator(LocatorTypeId.EarthCoord, -85.891373, 42.955912, 0);
 			AddLocator(LocatorTypeId.EarthCoord, -85.621265, 42.830739, 0);
-			AddLocator(LocatorTypeId.RelPos1D, 0.942, 0, 0);
+			AddLocator(LocatorTypeId.EdgePos1D, 0.942, 0, 0);
 			AddLocator(LocatorTypeId.EarthCoord, -85.827441, 43.79177, 0);
-			AddLocator(LocatorTypeId.RelPos2D, 0.5, 0.333, 0);
-			AddLocator(LocatorTypeId.RelPos2D, 0.55, 0.4, 0);
-			AddLocator(LocatorTypeId.RelPos2D, 0.61, 0.812345, 0);
+			AddLocator(LocatorTypeId.EdgePos2D, 0.5, 0.333, 0);
+			AddLocator(LocatorTypeId.EdgePos2D, 0.55, 0.4, 0);
+			AddLocator(LocatorTypeId.EdgePos2D, 0.61, 0.812345, 0);
 
 			vIdCount = 0;
 			AddVector(VectorTypeId.PosLong, SetupArtifacts.ArtifactId.Thi_GradePointAvg,
@@ -852,24 +852,24 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddDescriptor(DescriptorTypeId pTypeId, SetupArtifacts.ArtifactId? pPrimModId=null,
-				SetupArtifacts.ArtifactId? pDtModId=null, SetupArtifacts.ArtifactId? pRelModId=null) {
+				SetupArtifacts.ArtifactId? pDtModId=null, SetupArtifacts.ArtifactId? pEdgeModId=null) {
 			var d = new Descriptor();
 			d.DescriptorId = ++vIdCount;
 			d.DescriptorTypeId = (byte)pTypeId;
 			d.PrimArtRefId = (long?)pPrimModId;
-			d.RelArtRefId = (long?)pRelModId;
-			d.TypeArtRefId = (long?)pRelModId;
+			d.EdgeArtRefId = (long?)pEdgeModId;
+			d.TypeArtRefId = (long?)pEdgeModId;
 			DescMap.Add(d.DescriptorId, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddDirector(DirectorTypeId pTypeId, DirectorActionId pPrimActId,
-																		DirectorActionId pRelActId) {
+																		DirectorActionId pEdgeActId) {
 			var d = new Director();
 			d.DirectorId = ++vIdCount;
 			d.DirectorTypeId = (byte)pTypeId;
 			d.PrimaryDirectorActionId = (byte)pPrimActId;
-			d.RelatedDirectorActionId = (byte)pRelActId;
+			d.RelatedDirectorActionId = (byte)pEdgeActId;
 			DirMap.Add(d.DirectorId, d);
 		}
 
@@ -920,7 +920,7 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddFactor(SetupUsers.MemberId pMemId, SetupArtifacts.ArtifactId pPrimArtId,
-					SetupArtifacts.ArtifactId pRelArtId, DescriptorId? pDescId, DirectorId? pDirId,
+					SetupArtifacts.ArtifactId pEdgeArtId, DescriptorId? pDescId, DirectorId? pDirId,
 					EventorId? pEventId, IdentorId? pIdentId, LocatorId? pLocId, VectorId? pVectId,
 					bool pIsDefining, FactorAccessId pAccId, FactorAssertionId pAstId, bool pIsDeleted,
 					string pNote, bool pIsCompleted=true, FactorId? pReplaceFactorId=null) {
@@ -944,22 +944,22 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(f, vTestMode);
 
-			var relM = DataRel.Create(vSet.GetVertex<Member>((long)pMemId),
+			var edgeM = DataEdge.Create(vSet.GetVertex<Member>((long)pMemId),
 				new MemberCreatesFactor(), f, vTestMode);
-			vSet.AddRel(relM);
+			vSet.AddEdge(edgeM);
 
-			var relPa = DataRel.Create(f, new FactorUsesPrimaryArtifact(),
+			var edgePa = DataEdge.Create(f, new FactorUsesPrimaryArtifact(),
 				vSet.GetVertex<Artifact>((long)pPrimArtId), vTestMode);
-			vSet.AddRel(relPa);
+			vSet.AddEdge(edgePa);
 
-			var relRa = DataRel.Create(f, new FactorUsesRelatedArtifact(),
-				vSet.GetVertex<Artifact>((long)pRelArtId), vTestMode);
-			vSet.AddRel(relRa);
+			var edgeRa = DataEdge.Create(f, new FactorUsesRelatedArtifact(),
+				vSet.GetVertex<Artifact>((long)pEdgeArtId), vTestMode);
+			vSet.AddEdge(edgeRa);
 
 			/*if ( pReplaceFactorId != null ) {
-				var relRf = DataRel.Create(f, new FactorReplacesFactor(),
+				var edgeRf = DataEdge.Create(f, new FactorReplacesFactor(),
 					vSet.GetVertex<Factor>((long)pReplaceFactorId), vTestMode);
-				vSet.AddRel(relRf);
+				vSet.AddEdge(edgeRf);
 			}*/
 
 			if ( pDescId != null ) {
@@ -967,18 +967,18 @@ namespace Fabric.Db.Data.Setups {
 				f.Descriptor_TypeId = d.DescriptorTypeId;
 
 				if ( d.PrimArtRefId != null ) {
-					vSet.AddRel(DataRel.Create(f, new FactorDescriptorRefinesPrimaryWithArtifact(),
+					vSet.AddEdge(DataEdge.Create(f, new FactorDescriptorRefinesPrimaryWithArtifact(),
 						vSet.GetVertex<Artifact>((long)d.PrimArtRefId), vTestMode));
 				}
 
 				if ( d.TypeArtRefId != null ) {
-					vSet.AddRel(DataRel.Create(f, new FactorDescriptorRefinesTypeWithArtifact(),
+					vSet.AddEdge(DataEdge.Create(f, new FactorDescriptorRefinesTypeWithArtifact(),
 						vSet.GetVertex<Artifact>((long)d.TypeArtRefId), vTestMode));
 				}
 
-				if ( d.RelArtRefId != null ) {
-					vSet.AddRel(DataRel.Create(f, new FactorDescriptorRefinesRelatedWithArtifact(),
-						vSet.GetVertex<Artifact>((long)d.RelArtRefId), vTestMode));
+				if ( d.EdgeArtRefId != null ) {
+					vSet.AddEdge(DataEdge.Create(f, new FactorDescriptorRefinesRelatedWithArtifact(),
+						vSet.GetVertex<Artifact>((long)d.EdgeArtRefId), vTestMode));
 				}
 			}
 
@@ -1017,7 +1017,7 @@ namespace Fabric.Db.Data.Setups {
 				f.Vector_UnitPrefixId = v.VectorUnitPrefixId;
 				f.Vector_Value = v.Value;
 
-				vSet.AddRel(DataRel.Create(f, new FactorVectorUsesAxisArtifact(),
+				vSet.AddEdge(DataEdge.Create(f, new FactorVectorUsesAxisArtifact(),
 					vSet.GetVertex<Artifact>(v.AxisArtId), vTestMode));
 			}
 
@@ -1033,7 +1033,7 @@ namespace Fabric.Db.Data.Setups {
 		public virtual long DescriptorId { get; set; }
 		public virtual byte DescriptorTypeId { get; set; }
 		public virtual long? PrimArtRefId { get; set; }
-		public virtual long? RelArtRefId { get; set; }
+		public virtual long? EdgeArtRefId { get; set; }
 		public virtual long? TypeArtRefId { get; set; }
 
 	}

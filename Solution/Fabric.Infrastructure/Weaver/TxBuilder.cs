@@ -87,13 +87,13 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddRel<TRel>(IWeaverVarAlias pFromVar, IWeaverVarAlias pToVar)
-																	where TRel : IWeaverEdge, new() {
+		public void AddEdge<TEdge>(IWeaverVarAlias pFromVar, IWeaverVarAlias pToVar)
+																	where TEdge : IWeaverEdge, new() {
 			VerifyVar(pFromVar);
 			VerifyVar(pToVar);
 
 			Transaction.AddQuery(
-				Weave.Inst.Graph.AddEdge(pFromVar, new TRel(), pToVar)
+				Weave.Inst.Graph.AddEdge(pFromVar, new TEdge(), pToVar)
 			);
 		}
 

@@ -10,7 +10,7 @@ namespace Fabric.Test.FabApiModify {
 
 		private byte vDirTypeId;
 		private byte vPrimActId;
-		private byte vRelActId;
+		private byte vEdgeActId;
 
 		private bool vResult;
 		
@@ -22,7 +22,7 @@ namespace Fabric.Test.FabApiModify {
 
 			vDirTypeId = 9;
 			vPrimActId = 65;
-			vRelActId = 23;
+			vEdgeActId = 23;
 
 			MockTasks
 				.Setup(x => x.UpdateFactorDirector(
@@ -30,13 +30,13 @@ namespace Fabric.Test.FabApiModify {
 					ActiveFactor,
 					vDirTypeId,
 					vPrimActId,
-					vRelActId
+					vEdgeActId
 				));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new AttachDirector(MockTasks.Object, FactorId, vDirTypeId, vPrimActId,vRelActId);
+			var func = new AttachDirector(MockTasks.Object, FactorId, vDirTypeId, vPrimActId,vEdgeActId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -58,8 +58,8 @@ namespace Fabric.Test.FabApiModify {
 				AttachDirector.DirTypeParam), Times.Once());
 			MockValidator.Verify(x => x.FactorDirector_PrimaryActionId(vPrimActId,
 				AttachDirector.PrimActionParam), Times.Once());
-			MockValidator.Verify(x => x.FactorDirector_RelatedActionId(vRelActId,
-				AttachDirector.RelActionParam), Times.Once());
+			MockValidator.Verify(x => x.FactorDirector_RelatedActionId(vEdgeActId,
+				AttachDirector.EdgeActionParam), Times.Once());
 		}
 
 	}

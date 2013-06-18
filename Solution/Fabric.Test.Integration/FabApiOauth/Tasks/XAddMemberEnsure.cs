@@ -58,20 +58,20 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			VertexConnections conn = GetVertexConnections(newMem);
-			conn.AssertRelCount(2, 1);
-			conn.AssertRel<AppDefinesMember, App>(false, vAppId);
-			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
-			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
+			conn.AssertEdgeCount(2, 1);
+			conn.AssertEdge<AppDefinesMember, App>(false, vAppId);
+			conn.AssertEdge<UserDefinesMember, User>(false, vUserId);
+			conn.AssertEdge<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
 
 			conn = GetVertexConnections(newMta);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, newMem.MemberId);
-			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
+			conn.AssertEdgeCount(2, 0);
+			conn.AssertEdge<MemberHasMemberTypeAssign, Member>(false, newMem.MemberId);
+			conn.AssertEdge<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 
 			NewVertexCount = 2;
-			NewRelCount = 4;
+			NewEdgeCount = 4;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -86,8 +86,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(origMem, "Member is missing.");
 
 			VertexConnections conn = GetVertexConnections(origMem);
-			conn.AssertRelCount<MemberHasMemberTypeAssign>(true, 1);
-			conn.AssertRelCount<MemberHasHistoricMemberTypeAssign>(true, 0);
+			conn.AssertEdgeCount<MemberHasMemberTypeAssign>(true, 1);
+			conn.AssertEdgeCount<MemberHasHistoricMemberTypeAssign>(true, 0);
 
 			////
 
@@ -103,22 +103,22 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			Assert.NotNull(newMta, "New MemberTypeAssign was not created.");
 
 			conn = GetVertexConnections(updateMem);
-			conn.AssertRelCount(2, 2);
-			conn.AssertRel<AppDefinesMember, App>(false, vAppId);
-			conn.AssertRel<UserDefinesMember, User>(false, vUserId);
-			conn.AssertRel<MemberHasMemberTypeAssign, MemberTypeAssign>(
+			conn.AssertEdgeCount(2, 2);
+			conn.AssertEdge<AppDefinesMember, App>(false, vAppId);
+			conn.AssertEdge<UserDefinesMember, User>(false, vUserId);
+			conn.AssertEdge<MemberHasMemberTypeAssign, MemberTypeAssign>(
 				true, newMta.MemberTypeAssignId);
-			conn.AssertRel<MemberHasHistoricMemberTypeAssign, MemberTypeAssign>(
+			conn.AssertEdge<MemberHasHistoricMemberTypeAssign, MemberTypeAssign>(
 				true, (long)pUpdateMtaId);
 
 			conn = GetVertexConnections(newMta);
-			conn.AssertRelCount(2, 0);
-			conn.AssertRel<MemberHasMemberTypeAssign, Member>(false, updateMem.MemberId);
-			conn.AssertRel<MemberCreatesMemberTypeAssign, Member>(
+			conn.AssertEdgeCount(2, 0);
+			conn.AssertEdge<MemberHasMemberTypeAssign, Member>(false, updateMem.MemberId);
+			conn.AssertEdge<MemberCreatesMemberTypeAssign, Member>(
 				false, (long)SetupUsers.MemberId.FabFabData);
 
 			NewVertexCount = 1;
-			NewRelCount = 2;
+			NewEdgeCount = 2;
 		}
 
 	}

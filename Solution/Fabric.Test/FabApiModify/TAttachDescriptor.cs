@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiModify {
 
 		private byte vDescTypeId;
 		private long? vPrimArtRefId;
-		private long? vRelArtRefId;
+		private long? vEdgeArtRefId;
 		private long? vDescTypeRefId;
 
 		private bool vResult;
@@ -26,7 +26,7 @@ namespace Fabric.Test.FabApiModify {
 
 			vDescTypeId = 9;
 			vPrimArtRefId = 935823;
-			vRelArtRefId = 25323;
+			vEdgeArtRefId = 25323;
 			vDescTypeRefId = 5439225;
 
 			MockApiCtx
@@ -34,7 +34,7 @@ namespace Fabric.Test.FabApiModify {
 				.Returns(new Artifact());
 
 			MockApiCtx
-				.Setup(x => x.DbVertexById<Artifact>((long)vRelArtRefId))
+				.Setup(x => x.DbVertexById<Artifact>((long)vEdgeArtRefId))
 				.Returns(new Artifact());
 
 			MockApiCtx
@@ -47,7 +47,7 @@ namespace Fabric.Test.FabApiModify {
 					ActiveFactor,
 					vDescTypeId,
 					vPrimArtRefId,
-					vRelArtRefId,
+					vEdgeArtRefId,
 					vDescTypeRefId
 				));
 		}
@@ -55,7 +55,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
 			var func = new AttachDescriptor(MockTasks.Object, FactorId, vDescTypeId,
-				vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
+				vPrimArtRefId, vEdgeArtRefId, vDescTypeRefId);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -81,9 +81,9 @@ namespace Fabric.Test.FabApiModify {
 					AttachDescriptor.PrimArtRefParam), Times.Once());
 			}
 
-			if ( vRelArtRefId != null ) {
-				MockValidator.Verify(x => x.ArtifactId((long)vRelArtRefId,
-					AttachDescriptor.RelArtRefParam), Times.Once());
+			if ( vEdgeArtRefId != null ) {
+				MockValidator.Verify(x => x.ArtifactId((long)vEdgeArtRefId,
+					AttachDescriptor.EdgeArtRefParam), Times.Once());
 			}
 
 			if ( vDescTypeRefId != null ) {
@@ -103,7 +103,7 @@ namespace Fabric.Test.FabApiModify {
 
 			switch ( pType ) {
 				case "P": vPrimArtRefId = refId; break;
-				case "R": vRelArtRefId = refId; break;
+				case "R": vEdgeArtRefId = refId; break;
 				case "T": vDescTypeRefId = refId; break;
 			}
 

@@ -14,7 +14,7 @@ namespace Fabric.Api.Modify {
 
 		public const string DescTypeParam = "DescriptorTypeId";
 		public const string PrimArtRefParam = "PrimaryArtifactRefineId";
-		public const string RelArtRefParam = "RelatedArtifactRefineId";
+		public const string EdgeArtRefParam = "RelatedArtifactRefineId";
 		public const string DescTypeRefParam = "DescriptorTypeRefineId";
 
 		[ServiceOpParam(ServiceOpParamType.Form, DescTypeParam, 1, typeof(Factor))]
@@ -24,9 +24,9 @@ namespace Fabric.Api.Modify {
 			DomainPropertyName="ArtifactId", IsRequired=false)]
 		private readonly long? vPrimArtRefId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, RelArtRefParam, 3, typeof(Artifact),
+		[ServiceOpParam(ServiceOpParamType.Form, EdgeArtRefParam, 3, typeof(Artifact),
 			DomainPropertyName="ArtifactId", IsRequired=false)]
-		private readonly long? vRelArtRefId;
+		private readonly long? vEdgeArtRefId;
 
 		[ServiceOpParam(ServiceOpParamType.Form, DescTypeRefParam, 4, typeof(Artifact),
 			DomainPropertyName="ArtifactId", IsRequired=false)]
@@ -36,11 +36,11 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AttachDescriptor(IModifyTasks pTasks, long pFactorId, byte pDescTypeId, 
-										long? pPrimArtRefId, long? pRelArtRefId, long? pDescTypeRefId) : 
+										long? pPrimArtRefId, long? pEdgeArtRefId, long? pDescTypeRefId) : 
 										base(pTasks, pFactorId) {
 			vDescTypeId = pDescTypeId; 
 			vPrimArtRefId = pPrimArtRefId;
-			vRelArtRefId = pRelArtRefId;
+			vEdgeArtRefId = pEdgeArtRefId;
 			vDescTypeRefId = pDescTypeRefId;
 		}
 
@@ -52,8 +52,8 @@ namespace Fabric.Api.Modify {
 				Tasks.Validator.ArtifactId((long)vPrimArtRefId, PrimArtRefParam);
 			}
 
-			if ( vRelArtRefId != null ) {
-				Tasks.Validator.ArtifactId((long)vRelArtRefId, RelArtRefParam);
+			if ( vEdgeArtRefId != null ) {
+				Tasks.Validator.ArtifactId((long)vEdgeArtRefId, EdgeArtRefParam);
 			}
 
 			if ( vDescTypeRefId != null ) {
@@ -69,8 +69,8 @@ namespace Fabric.Api.Modify {
 				map.Add(PrimArtRefParam, (long)vPrimArtRefId);
 			}
 
-			if ( vRelArtRefId != null ) {
-				map.Add(RelArtRefParam, (long)vRelArtRefId);
+			if ( vEdgeArtRefId != null ) {
+				map.Add(EdgeArtRefParam, (long)vEdgeArtRefId);
 			}
 
 			if ( vDescTypeRefId != null ) {
@@ -83,7 +83,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
 			Tasks.UpdateFactorDescriptor(ApiCtx, pFactor, 
-				vDescTypeId, vPrimArtRefId, vRelArtRefId, vDescTypeRefId);
+				vDescTypeId, vPrimArtRefId, vEdgeArtRefId, vDescTypeRefId);
 			return true;
 		}
 

@@ -440,16 +440,16 @@ namespace Fabric.Db.Data.Setups {
 			l.Name = pName;
 
 			vSet.AddVertexAndIndex(l, x => x.LabelId, vTestMode);
-			vSet.AddRootRel<RootContainsLabel>(l, vTestMode);
+			vSet.AddRootEdge<RootContainsLabel>(l, vTestMode);
 
 			////
 
 			Artifact a = SetupArtifacts.AddArtifact(
 				vSet, pArtId, ArtifactTypeId.Label, pMemberId, vTestMode);
 
-			var rel = DataRel.Create(
+			var edge = DataEdge.Create(
 				vSet.GetVertex<Label>((long)pId), new LabelHasArtifact(), a, vTestMode);
-			vSet.AddRel(rel);
+			vSet.AddEdge(edge);
 
 			////
 
@@ -467,16 +467,16 @@ namespace Fabric.Db.Data.Setups {
 			c.IsInviteOnly = pIsInvOnly;
 
 			vSet.AddVertexAndIndex(c, x => x.CrowdId, vTestMode);
-			vSet.AddRootRel<RootContainsCrowd>(c, vTestMode);
+			vSet.AddRootEdge<RootContainsCrowd>(c, vTestMode);
 
 			////
 
 			Artifact a = SetupArtifacts.AddArtifact(
 				vSet, pArtId, ArtifactTypeId.Crowd, pMemberId, vTestMode);
 
-			var rel = DataRel.Create(
+			var edge = DataEdge.Create(
 				vSet.GetVertex<Crowd>((long)pId), new CrowdHasArtifact(), a, vTestMode);
-			vSet.AddRel(rel);
+			vSet.AddEdge(edge);
 
 			////
 
@@ -491,15 +491,15 @@ namespace Fabric.Db.Data.Setups {
 			c.CrowdianId = (long)pId;
 
 			vSet.AddVertexAndIndex(c, x => x.CrowdianId, vTestMode);
-			vSet.AddRootRel<RootContainsCrowdian>(c, vTestMode);
+			vSet.AddRootEdge<RootContainsCrowdian>(c, vTestMode);
 
-			var relCro = DataRel.Create(vSet.GetVertex<Crowd>((long)pCrowdId),
+			var edgeCro = DataEdge.Create(vSet.GetVertex<Crowd>((long)pCrowdId),
 				new CrowdDefinesCrowdian(), c, vTestMode);
-			vSet.AddRel(relCro);
+			vSet.AddEdge(edgeCro);
 
-			var relUser = DataRel.Create(vSet.GetVertex<User>((long)pUserId),
+			var edgeUser = DataEdge.Create(vSet.GetVertex<User>((long)pUserId),
 				new UserDefinesCrowdian(), c, vTestMode);
-			vSet.AddRel(relUser);
+			vSet.AddEdge(edgeUser);
 
 			////
 
@@ -508,20 +508,20 @@ namespace Fabric.Db.Data.Setups {
 			cta.Weight = pWeight;
 
 			vSet.AddVertexAndIndex(cta, x => x.CrowdianTypeAssignId, vTestMode);
-			vSet.AddRootRel<RootContainsCrowdianTypeAssign>(cta, vTestMode);
+			vSet.AddRootEdge<RootContainsCrowdianTypeAssign>(cta, vTestMode);
 
 			////
 
-			var relC = DataRel.Create(c, new CrowdianHasCrowdianTypeAssign(), cta, vTestMode);
-			vSet.AddRel(relC);
+			var edgeC = DataEdge.Create(c, new CrowdianHasCrowdianTypeAssign(), cta, vTestMode);
+			vSet.AddEdge(edgeC);
 
-			var relCt = DataRel.Create(cta, new CrowdianTypeAssignUsesCrowdianType(),
+			var edgeCt = DataEdge.Create(cta, new CrowdianTypeAssignUsesCrowdianType(),
 				vSet.GetVertex<CrowdianType>((long)pTypeId), vTestMode);
-			vSet.AddRel(relCt);
+			vSet.AddEdge(edgeCt);
 
-			var relU = DataRel.Create(vSet.GetVertex<User>((long)pAssignerId),
+			var edgeU = DataEdge.Create(vSet.GetVertex<User>((long)pAssignerId),
 				new UserCreatesCrowdianTypeAssign(), cta, vTestMode);
-			vSet.AddRel(relU);
+			vSet.AddEdge(edgeU);
 
 			////
 

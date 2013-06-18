@@ -184,9 +184,9 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(od, vTestMode);
 
-			var relA = DataRel.Create(od, new OauthDomainUsesApp(),
+			var edgeA = DataEdge.Create(od, new OauthDomainUsesApp(),
 				vSet.GetVertex<App>((long)pAppId), vTestMode);
-			vSet.AddRel(relA);
+			vSet.AddEdge(edgeA);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -201,14 +201,14 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(oa, vTestMode);
 
-			var relA = DataRel.Create(oa, new OauthAccessUsesApp(),
+			var edgeA = DataEdge.Create(oa, new OauthAccessUsesApp(),
 				vSet.GetVertex<App>((long)pAppId), vTestMode);
-			vSet.AddRel(relA);
+			vSet.AddEdge(edgeA);
 
 			if ( pUserId != null ) {
-				var relU = DataRel.Create(oa, new OauthAccessUsesUser(),
+				var edgeU = DataEdge.Create(oa, new OauthAccessUsesUser(),
 					vSet.GetVertex<User>((long)pUserId), vTestMode);
-				vSet.AddRel(relU);
+				vSet.AddEdge(edgeU);
 			}
 		}
 
@@ -223,13 +223,13 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(og, vTestMode);
 
-			var relA = DataRel.Create(og, new OauthGrantUsesApp(),
+			var edgeA = DataEdge.Create(og, new OauthGrantUsesApp(),
 				vSet.GetVertex<App>((long)pAppId), vTestMode);
-			vSet.AddRel(relA);
+			vSet.AddEdge(edgeA);
 
-			var relU = DataRel.Create(og, new OauthGrantUsesUser(),
+			var edgeU = DataEdge.Create(og, new OauthGrantUsesUser(),
 				vSet.GetVertex<User>((long)pUserId), vTestMode);
-			vSet.AddRel(relU);
+			vSet.AddEdge(edgeU);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -242,13 +242,13 @@ namespace Fabric.Db.Data.Setups {
 
 			vSet.AddVertex(os, vTestMode);
 
-			var relA = DataRel.Create(os, new OauthScopeUsesApp(),
+			var edgeA = DataEdge.Create(os, new OauthScopeUsesApp(),
 				vSet.GetVertex<App>((long)pAppId), vTestMode);
-			vSet.AddRel(relA);
+			vSet.AddEdge(edgeA);
 
-			var relU = DataRel.Create(os, new OauthScopeUsesUser(),
+			var edgeU = DataEdge.Create(os, new OauthScopeUsesUser(),
 				vSet.GetVertex<User>((long)pUserId), vTestMode);
-			vSet.AddRel(relU);
+			vSet.AddEdge(edgeU);
 
 			vSet.ElapseTime();
 		}
