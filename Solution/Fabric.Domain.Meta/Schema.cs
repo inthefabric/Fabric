@@ -176,6 +176,7 @@ namespace Fabric.Domain.Meta {
 				p.ValidRegex = ValidTitleRegex;*/
 
 			WeaverVertexSchema member = AddNode("Member", "M");
+			member.BaseVertex = node;
 			p = AddProp(member, "MemberId", "Id", typeof(long));
 				p.IsPrimaryKey = true;
 

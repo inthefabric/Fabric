@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/17/2013 10:13:33 PM
+// Generated on 6/17/2013 10:59:22 PM
 
 using System;
 using System.Collections.Generic;
@@ -768,6 +768,8 @@ namespace Fabric.Domain {
 			if ( pData == null ) {
 				return;
 			}
+			
+			base.FillWithData(pData);
 			
 			if ( pData.ContainsKey("M_Id") ) {
 				MemberId = long.Parse(pData["M_Id"]);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/17/2013 10:20:24 PM
+// Generated on 6/17/2013 10:59:23 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -638,7 +638,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public class MemberBuilder : DomainBuilder<Member> {
+	public class MemberBuilder : NodeBuilder<Member> {
 
 		public virtual IWeaverVarAlias<App> InAppDefines { get; private set; }
 		public virtual IWeaverVarAlias<MemberTypeAssign> HasMemberTypeAssign { get; private set; }
