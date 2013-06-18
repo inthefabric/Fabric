@@ -46,11 +46,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Common\TestFabVertex.cs" />
     <Compile Include="Common\TestFuncStep.cs" />
     <Compile Include="Common\TestFinalStep.cs" />
-    <Compile Include="Common\TestNodeStep.cs" />
-    <Compile Include="Common\TestFabNode.cs" />
     <Compile Include="Common\TestStep.cs" />
+    <Compile Include="Common\TestVertexStep.cs" />
     <Compile Include="FabApiDto\TFabClass.cs" />
     <Compile Include="FabApiModify\TDeleteFactor.cs" />
     <Compile Include="FabApiModify\TCompleteFactor.cs" />
@@ -73,6 +73,8 @@
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
+    <Compile Include="FabApiTraversal\Steps\Nodes\TVertexStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Nodes\TVertexSteps.cs" />
     <Compile Include="FabApiWeb\Tasks\TGetMemberTypeAssignByMember.cs" />
     <Compile Include="FabApiWeb\TChangeMemberType.cs" />
     <Compile Include="FabApiWeb\TRemoveOauthDomain.cs" />
@@ -119,8 +121,6 @@
     <Compile Include="FabApiTraversal\Steps\TStepException.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncLimitStep.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncBackStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Nodes\TNodeSteps.cs" />
-    <Compile Include="FabApiTraversal\Steps\Nodes\TNodeStep.cs" />
     <Compile Include="FabApiTraversal\Steps\TStepData.cs" />
     <Compile Include="FabApiTraversal\Steps\TStep.cs" />
     <Compile Include="FabApiTraversal\TPathRouter.cs" />

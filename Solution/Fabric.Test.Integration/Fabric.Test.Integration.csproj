@@ -46,11 +46,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Common\NodeConnectionsRel.cs" />
+    <Compile Include="Common\VertexConnectionsRel.cs" />
     <Compile Include="Common\TestApiContext.cs" />
     <Compile Include="Common\TestApiDataAccess.cs" />
     <Compile Include="Common\TestApiDataAccessT.cs" />
-    <Compile Include="Common\NodeConnections.cs" />
+    <Compile Include="Common\VertexConnections.cs" />
     <Compile Include="FabApiModify\XBatchCreateFactor.cs" />
     <Compile Include="FabApiModify\XBatchCreateClass.cs" />
     <Compile Include="FabApiModify\XDeleteFactor.cs" />

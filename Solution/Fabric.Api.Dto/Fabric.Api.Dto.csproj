@@ -73,8 +73,8 @@
     <Compile Include="DtoPropAttribute.cs" />
     <Compile Include="FabError.cs" />
     <Compile Include="FabResponse.cs" />
-    <Compile Include="Traversal\IFabNode.cs" />
-    <Compile Include="Traversal\FabNode.cs" />
+    <Compile Include="Traversal\IFabVertex.cs" />
+    <Compile Include="Traversal\FabVertex.cs" />
     <Compile Include="Oauth\FabOauthAccess.cs" />
     <Compile Include="Oauth\FabOauthError.cs" />
     <Compile Include="Oauth\FabOauthLogin.cs" />

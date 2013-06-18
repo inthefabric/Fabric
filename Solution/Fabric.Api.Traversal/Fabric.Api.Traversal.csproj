@@ -73,25 +73,25 @@
     <Compile Include="Steps\Functions\FuncLimitStep.cs" />
     <Compile Include="Steps\FabStepFault.cs" />
     <Compile Include="Steps\Functions\FuncBackStep.cs" />
-    <Compile Include="Steps\Nodes\BaseClassNodeSteps.cs">
+    <Compile Include="Steps\Nodes\BaseClassVertexSteps.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseClassNodeSteps.tt</DependentUpon>
+      <DependentUpon>BaseClassVertexSteps.tt</DependentUpon>
     </Compile>
     <Compile Include="Steps\Nodes\RootStep.cs" />
-    <Compile Include="Steps\Nodes\NodeStepInterfaces.cs">
-      <DependentUpon>NodeStepInterfaces.tt</DependentUpon>
+    <Compile Include="Steps\Nodes\VertexStepInterfaces.cs">
+      <DependentUpon>VertexStepInterfaces.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\Nodes\INodeStep.cs" />
+    <Compile Include="Steps\Nodes\IVertexStep.cs" />
     <Compile Include="Steps\StepData.cs" />
-    <Compile Include="Steps\Nodes\NodeSteps.cs">
-      <DependentUpon>NodeSteps.tt</DependentUpon>
+    <Compile Include="Steps\Nodes\VertexSteps.cs">
+      <DependentUpon>VertexSteps.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\Nodes\NodeStep.cs" />
+    <Compile Include="Steps\Nodes\VertexStep.cs" />
     <Compile Include="PathRouter.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Steps\IStep.cs" />
@@ -109,17 +109,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FuncRootIndex.cs</LastGenOutput>
     </None>
-    <None Include="Steps\Nodes\BaseClassNodeSteps.tt">
+    <None Include="Steps\Nodes\BaseClassVertexSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BaseClassNodeSteps.cs</LastGenOutput>
+      <LastGenOutput>BaseClassVertexSteps.cs</LastGenOutput>
     </None>
-    <None Include="Steps\Nodes\NodeStepInterfaces.tt">
+    <None Include="Steps\Nodes\VertexStepInterfaces.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NodeStepInterfaces.cs</LastGenOutput>
+      <LastGenOutput>VertexStepInterfaces.cs</LastGenOutput>
     </None>
-    <None Include="Steps\Nodes\NodeSteps.tt">
+    <None Include="Steps\Nodes\VertexSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NodeSteps.cs</LastGenOutput>
+      <LastGenOutput>VertexSteps.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

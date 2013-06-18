@@ -58,7 +58,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="NodeEnums.cs" />
+    <Compile Include="VertexEnums.cs" />
     <Compile Include="Rel.cs" />
     <Compile Include="IRel.cs" />
     <Compile Include="IItemWithId.cs" />
@@ -67,9 +67,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainClasses.tt</DependentUpon>
     </Compile>
-    <Compile Include="INode.cs" />
-    <Compile Include="INodeWithId.cs" />
-    <Compile Include="Node.cs" />
+    <Compile Include="IVertex.cs" />
+    <Compile Include="IVertexWithId.cs" />
+    <Compile Include="Vertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
