@@ -53,7 +53,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			clearOg = GetVertex<OauthGrant>((long)pExpectId);
 			Assert.NotNull(clearOg, "Target OauthGrant was deleted.");
-			Assert.AreEqual("", clearOg.Code, "Target OauthGrant.Code was not cleared.");
+			Assert.Null(clearOg.Code, "Target OauthGrant.Code was not cleared.");
 
 			int updatedCodeCount = CountCodes();
 			Assert.AreEqual(codeCount+1, updatedCodeCount, "Incorrect updated Code count.");
@@ -80,7 +80,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCodes() {
 			IWeaverQuery q = GetVertexByPropQuery<OauthGrant>(
-				".has('"+PropDbName.OauthGrant_Code+"',Tokens.T.eq,'').count()");
+				".sideEffect{}"+ //TODO: resolve "sideEffect" workaround
+				".hasNot('"+PropDbName.OauthGrant_Code+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
 			return int.Parse(data.Result.TextList[0]);
 		}

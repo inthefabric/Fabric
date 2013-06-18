@@ -49,6 +49,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.QueryV().ElasticIndex(
 					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, vUsername)
 				)
+				.CustomStep("_()") //TODO: resolve "underscore" workaround
 				.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 				.ToQuery();
 

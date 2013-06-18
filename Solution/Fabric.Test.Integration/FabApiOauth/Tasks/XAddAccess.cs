@@ -81,8 +81,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
 			clearOa = GetVertex<OauthAccess>((long)pClearedAccessId);
 			Assert.NotNull(clearOa, "Target OauthAccess was deleted.");
-			Assert.AreEqual("", clearOa.Token, "Target OauthAccess.Token was not cleared.");
-			Assert.AreEqual("", clearOa.Refresh, "Target OauthAccess.Refresh was not cleared.");
+			Assert.Null(clearOa.Token, "Target OauthAccess.Token was not cleared.");
+			Assert.Null(clearOa.Refresh, "Target OauthAccess.Refresh was not cleared.");
 
 			int updatedTokenCount = CountTokens();
 			Assert.AreEqual(tokenCount+1, updatedTokenCount, "Incorrect updated Token count.");
@@ -96,7 +96,8 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountTokens() {
 			IWeaverQuery q = GetVertexByPropQuery<OauthAccess>(
-				".has('"+PropDbName.OauthAccess_Token+"',Tokens.T.eq,'').count()");
+				".sideEffect{}"+ //TODO: resolve "sideEffect" workaround
+				".hasNot('"+PropDbName.OauthAccess_Token+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
 			return int.Parse(data.Result.TextList[0]);
 		}

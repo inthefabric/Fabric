@@ -84,6 +84,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
+					.CustomStep("sideEffect{}") //TODO: resolve "sideEffect" workaround
 					.HasNot(x => x.Deleted) //Factor is not deleted
 					.As(out factorAlias)
 				.InMemberCreates.FromMember

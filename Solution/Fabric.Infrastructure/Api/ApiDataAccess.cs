@@ -32,7 +32,6 @@ namespace Fabric.Infrastructure.Api {
 		public IList<IDbDto> ResultDtoList { get; private set; }
 
 		private string vReqJson;
-		private TcpClientPool vTcpPool;
 		private Exception vUnhandledException;
 
 
@@ -43,8 +42,6 @@ namespace Fabric.Infrastructure.Api {
 			ApiCtx = pContext;
 			Script = pScript;
 			Params = pParams;
-
-			vTcpPool = TcpClientPool.GetPool(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
 			Request = BuildRequest(Script, Params);
 		}
 
@@ -160,7 +157,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pReqJson) {
 			//ApiCtx.ProfilerTrace(this, "grr1");
-			TimedTcpClient tcp = vTcpPool.TakeClient();
+			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
 			//ApiCtx.ProfilerTrace(this, "grr2");
 			tcp.SendBufferSize = tcp.ReceiveBufferSize = 1<<16;
 
@@ -207,7 +204,6 @@ namespace Fabric.Infrastructure.Api {
 
 			Log.Debug(test);*/
 
-			vTcpPool.ReturnClient(tcp);
 			Log.Debug("RESULT: "+respData);
 			//ApiCtx.ProfilerTrace(this, "grr7");
 			return respData;
