@@ -73,8 +73,8 @@
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
-    <Compile Include="FabApiTraversal\Steps\Nodes\TVertexStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Nodes\TVertexSteps.cs" />
+    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexSteps.cs" />
     <Compile Include="FabApiWeb\Tasks\TGetMemberTypeAssignByMember.cs" />
     <Compile Include="FabApiWeb\TChangeMemberType.cs" />
     <Compile Include="FabApiWeb\TRemoveOauthDomain.cs" />
