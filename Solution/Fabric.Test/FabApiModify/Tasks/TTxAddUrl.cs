@@ -45,7 +45,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void BuildTx() {
-			IWeaverVarAlias<Member> memVar = GetTxVar<Member>();
+			IWeaverVarAlias<Member> memVar = GetTxVar<Member>("_V0");
 			IWeaverVarAlias<Url> urlVar;
 
 			Tasks.TxAddUrl(MockApiCtx.Object, TxBuild, vAbsoluteUrl, vName, memVar,out urlVar);

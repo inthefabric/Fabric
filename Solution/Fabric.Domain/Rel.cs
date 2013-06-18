@@ -4,8 +4,7 @@ using Weaver.Core.Elements;
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public abstract class Rel<TEdge, TOut, TType, TIn> : WeaverEdge<TEdge, TOut,TType,TIn>, IRel
-																	where TEdge : class, IWeaverEdge
+	public abstract class Rel<TOut, TType, TIn> : WeaverEdge<TOut,TType,TIn>, IRel
 																	where TOut : IWeaverVertex, new()
 																	where TType : IWeaverEdgeType, new()
 																	where TIn : IWeaverVertex, new() {

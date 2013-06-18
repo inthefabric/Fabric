@@ -13,8 +13,6 @@ namespace Fabric.Domain.Meta {
 		public string InVertexName { get; private set; }
 		public string EdgeName { get; private set; }
 
-		public string WeaverBaseClass { get; private set; }
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -25,9 +23,6 @@ namespace Fabric.Domain.Meta {
 			EdgeTypeName = RelSchema.EdgeType;
 			InVertexName = RelSchema.InVertex.Name;
 			EdgeName = RelSchema.Name;
-
-			WeaverBaseClass = 
-				"Rel<"+EdgeName+", "+OutVertexName+", "+EdgeTypeName+", "+InVertexName+">";
 		}
 
 

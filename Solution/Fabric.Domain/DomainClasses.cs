@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/17/2013 7:30:59 PM
+// Generated on 6/17/2013 10:13:33 PM
 
 using System;
 using System.Collections.Generic;
@@ -96,7 +96,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
-	public class AppUsesEmail : Rel<AppUsesEmail, App, Uses, Email>, IItemWithId {
+	public class AppUsesEmail : Rel<App, Uses, Email>, IItemWithId {
 			
 		public virtual App FromApp { get { return OutVertex; } }
 		public virtual Email ToEmail { get { return InVertex; } }
@@ -105,7 +105,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class AppDefinesMember : Rel<AppDefinesMember, App, Defines, Member>, IItemWithId {
+	public class AppDefinesMember : Rel<App, Defines, Member>, IItemWithId {
 			
 		public virtual App FromApp { get { return OutVertex; } }
 		public virtual Member ToMember { get { return InVertex; } }
@@ -114,7 +114,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberHasMemberTypeAssign : Rel<MemberHasMemberTypeAssign, Member, Has, MemberTypeAssign>, IItemWithId {
+	public class MemberHasMemberTypeAssign : Rel<Member, Has, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -123,7 +123,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberHasHistoricMemberTypeAssign : Rel<MemberHasHistoricMemberTypeAssign, Member, HasHistoric, MemberTypeAssign>, IItemWithId {
+	public class MemberHasHistoricMemberTypeAssign : Rel<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -132,22 +132,26 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberCreatesArtifact : Rel<MemberCreatesArtifact, Member, Creates, Artifact>, IItemWithId {
+	public class MemberCreatesArtifact : Rel<Member, Creates, Artifact>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "MemberCreatesArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class MemberCreatesMemberTypeAssign : Rel<MemberCreatesMemberTypeAssign, Member, Creates, MemberTypeAssign>, IItemWithId {
+	public class MemberCreatesMemberTypeAssign : Rel<Member, Creates, MemberTypeAssign>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -156,7 +160,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class MemberCreatesFactor : Rel<MemberCreatesFactor, Member, Creates, Factor>, IItemWithId {
+	public class MemberCreatesFactor : Rel<Member, Creates, Factor>, IItemWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual Factor ToFactor { get { return InVertex; } }
@@ -165,7 +169,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class UserUsesEmail : Rel<UserUsesEmail, User, Uses, Email>, IItemWithId {
+	public class UserUsesEmail : Rel<User, Uses, Email>, IItemWithId {
 			
 		public virtual User FromUser { get { return OutVertex; } }
 		public virtual Email ToEmail { get { return InVertex; } }
@@ -174,7 +178,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class UserDefinesMember : Rel<UserDefinesMember, User, Defines, Member>, IItemWithId {
+	public class UserDefinesMember : Rel<User, Defines, Member>, IItemWithId {
 			
 		public virtual User FromUser { get { return OutVertex; } }
 		public virtual Member ToMember { get { return InVertex; } }
@@ -183,97 +187,121 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class FactorUsesPrimaryArtifact : Rel<FactorUsesPrimaryArtifact, Factor, UsesPrimary, Artifact>, IItemWithId {
+	public class FactorUsesPrimaryArtifact : Rel<Factor, UsesPrimary, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesPrimaryArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class FactorUsesRelatedArtifact : Rel<FactorUsesRelatedArtifact, Factor, UsesRelated, Artifact>, IItemWithId {
+	public class FactorUsesRelatedArtifact : Rel<Factor, UsesRelated, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesRelatedArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesPrimaryWithArtifact : Rel<FactorDescriptorRefinesPrimaryWithArtifact, Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesPrimaryWithArtifact : Rel<Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesPrimaryWithArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesRelatedWithArtifact : Rel<FactorDescriptorRefinesRelatedWithArtifact, Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesRelatedWithArtifact : Rel<Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesRelatedWithArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class FactorDescriptorRefinesTypeWithArtifact : Rel<FactorDescriptorRefinesTypeWithArtifact, Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesTypeWithArtifact : Rel<Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesTypeWithArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class FactorVectorUsesAxisArtifact : Rel<FactorVectorUsesAxisArtifact, Factor, VectorUsesAxis, Artifact>, IItemWithId {
+	public class FactorVectorUsesAxisArtifact : Rel<Factor, VectorUsesAxis, Artifact>, IItemWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorVectorUsesAxisArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 	}
 	
 	/*================================================================================================*/
-	public class OauthAccessUsesApp : Rel<OauthAccessUsesApp, OauthAccess, Uses, App>, IItemWithId {
+	public class OauthAccessUsesApp : Rel<OauthAccess, Uses, App>, IItemWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -282,7 +310,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthAccessUsesUser : Rel<OauthAccessUsesUser, OauthAccess, Uses, User>, IItemWithId {
+	public class OauthAccessUsesUser : Rel<OauthAccess, Uses, User>, IItemWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -291,7 +319,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthDomainUsesApp : Rel<OauthDomainUsesApp, OauthDomain, Uses, App>, IItemWithId {
+	public class OauthDomainUsesApp : Rel<OauthDomain, Uses, App>, IItemWithId {
 			
 		public virtual OauthDomain FromOauthDomain { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -300,7 +328,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthGrantUsesApp : Rel<OauthGrantUsesApp, OauthGrant, Uses, App>, IItemWithId {
+	public class OauthGrantUsesApp : Rel<OauthGrant, Uses, App>, IItemWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -309,7 +337,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthGrantUsesUser : Rel<OauthGrantUsesUser, OauthGrant, Uses, User>, IItemWithId {
+	public class OauthGrantUsesUser : Rel<OauthGrant, Uses, User>, IItemWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -318,7 +346,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthScopeUsesApp : Rel<OauthScopeUsesApp, OauthScope, Uses, App>, IItemWithId {
+	public class OauthScopeUsesApp : Rel<OauthScope, Uses, App>, IItemWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -327,7 +355,7 @@ namespace Fabric.Domain {
 	}
 	
 	/*================================================================================================*/
-	public class OauthScopeUsesUser : Rel<OauthScopeUsesUser, OauthScope, Uses, User>, IItemWithId {
+	public class OauthScopeUsesUser : Rel<OauthScope, Uses, User>, IItemWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -337,11 +365,11 @@ namespace Fabric.Domain {
 	
 
 
-	/* Nodes */
+	/* Vertices */
 
 
 	/*================================================================================================*/
-	public abstract partial class Node<T> where T : class, IWeaverVertex {
+	public abstract partial class Node {
 	
 		[WeaverItemProperty]
 		public virtual byte FabType { get; set; }
@@ -363,7 +391,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public abstract partial class NodeForAction<T> : Node<T> where T : class, IWeaverVertex {
+	public abstract partial class NodeForAction : Node {
 	
 		[WeaverItemProperty]
 		public virtual long Performed { get; set; }
@@ -397,12 +425,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Artifact : Artifact<Artifact> {
-	
-	}
-	
-	/*================================================================================================*/
-	public partial class Artifact<T> : Node<T> where T : class, IWeaverVertex {
+	public partial class Artifact : Node {
 	
 		[WeaverItemProperty]
 		public virtual long ArtifactId { get; set; }
@@ -425,9 +448,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { ArtifactId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<T, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Artifact).ArtifactId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -486,7 +510,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class App : Artifact<App> {
+	public partial class App : Artifact {
 	
 		[WeaverItemProperty]
 		public virtual string Name { get; set; }
@@ -552,7 +576,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Class : Artifact<Class> {
+	public partial class Class : Artifact {
 	
 		[WeaverItemProperty]
 		public virtual string Name { get; set; }
@@ -595,7 +619,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Email : Node<Email> {
+	public partial class Email : Node {
 	
 		[WeaverItemProperty]
 		public virtual long EmailId { get; set; }
@@ -624,9 +648,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { EmailId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<Email, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Email).EmailId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -672,7 +697,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Instance : Artifact<Instance> {
+	public partial class Instance : Artifact {
 	
 		[WeaverItemProperty]
 		public virtual string Name { get; set; }
@@ -715,7 +740,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Member : Node<Member> {
+	public partial class Member : Node {
 	
 		[WeaverItemProperty]
 		public virtual long MemberId { get; set; }
@@ -732,9 +757,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { MemberId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<Member, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Member).MemberId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -787,7 +813,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class MemberTypeAssign : NodeForAction<MemberTypeAssign> {
+	public partial class MemberTypeAssign : NodeForAction {
 	
 		[WeaverItemProperty]
 		public virtual long MemberTypeAssignId { get; set; }
@@ -807,9 +833,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { MemberTypeAssignId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<MemberTypeAssign, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as MemberTypeAssign).MemberTypeAssignId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -848,7 +875,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Url : Artifact<Url> {
+	public partial class Url : Artifact {
 	
 		[WeaverItemProperty]
 		public virtual string Name { get; set; }
@@ -884,7 +911,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class User : Artifact<User> {
+	public partial class User : Artifact {
 	
 		[WeaverItemProperty]
 		public virtual string Name { get; set; }
@@ -945,7 +972,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class Factor : Node<Factor> {
+	public partial class Factor : Node {
 	
 		[WeaverItemProperty]
 		public virtual long FactorId { get; set; }
@@ -1031,9 +1058,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { FactorId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<Factor, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as Factor).FactorId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1180,7 +1208,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthAccess : Node<OauthAccess> {
+	public partial class OauthAccess : Node {
 	
 		[WeaverItemProperty]
 		public virtual long OauthAccessId { get; set; }
@@ -1209,9 +1237,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthAccessId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<OauthAccess, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthAccess).OauthAccessId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1257,7 +1286,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthDomain : Node<OauthDomain> {
+	public partial class OauthDomain : Node {
 	
 		[WeaverItemProperty]
 		public virtual long OauthDomainId { get; set; }
@@ -1277,9 +1306,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthDomainId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<OauthDomain, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthDomain).OauthDomainId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1308,7 +1338,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthGrant : Node<OauthGrant> {
+	public partial class OauthGrant : Node {
 	
 		[WeaverItemProperty]
 		public virtual long OauthGrantId { get; set; }
@@ -1334,9 +1364,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthGrantId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<OauthGrant, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthGrant).OauthGrantId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -1378,7 +1409,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
-	public partial class OauthScope : Node<OauthScope> {
+	public partial class OauthScope : Node {
 	
 		[WeaverItemProperty]
 		public virtual long OauthScopeId { get; set; }
@@ -1401,9 +1432,10 @@ namespace Fabric.Domain {
 		public override void SetTypeId(long pTypeId) { OauthScopeId = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<OauthScope, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as OauthScope).OauthScopeId);
 		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

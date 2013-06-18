@@ -49,7 +49,7 @@ foreach ( string name in edges ) {
 	SchemaHelperRel edge = SchemaHelper.GetEdge(name);
 #>
 	/*================================================================================================*/
-	public class <#= edge.EdgeName #> : <#= edge.WeaverBaseClass #>, IItemWithId {
+	public class <#= edge.EdgeName #> : Rel<<#= edge.OutVertexName #>, <#=edge.EdgeTypeName #>, <#= edge.InVertexName #>>, IItemWithId {
 			
 		public virtual <#= edge.OutVertexName #> From<#= edge.OutVertexName #> { get { return OutVertex; } }
 		public virtual <#= edge.InVertexName #> To<#= edge.InVertexName #> { get { return InVertex; } }
@@ -61,21 +61,25 @@ foreach ( string name in edges ) {
 		
 		if ( hnOut.IsBaseClass && !hnOut.IsAbstract ) {
 #>
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidOutVertexType(Type pType) {
 			return typeof(Artifact<>).IsAssignableFrom(pType);
-		}
+		}*/
 
 <#
 		} //end Out condition
 
 		if ( hnIn.IsBaseClass && !hnIn.IsAbstract ) {
 #>
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override bool IsValidInVertexType(Type pType) {
-			return (pType.BaseType != null && 
+			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
+				return true;
+			}
+
+			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
 				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}
+		}*/
 
 <#
 		} //end In condition
@@ -87,7 +91,7 @@ foreach ( string name in edges ) {
 #>
 
 
-	/* Nodes */
+	/* Vertices */
 
 
 <#
@@ -102,29 +106,16 @@ foreach ( string name in nodes ) {
 	bool isArtifactSubclass = (node.BaseVertex != null && node.BaseVertex.Name == "Artifact");
 
 	if ( node.IsBaseClass ) {
-		if ( !node.IsAbstract ) {
 #>
 	/*================================================================================================*/
-	public partial class <#= node.Name #> : <#= node.Name #><<#= node.Name #>> {
-	
-	}
-	
-<#
-		}
-
-		if ( !isMainNode ) {
-			baseNode += "<T>";
-		}
-#>
-	/*================================================================================================*/
-	public <#= abs #>partial class <#= node.Name #><T><#= baseNode #> where T : class, IWeaverVertex {
+	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
 	
 <#
 	}
 	else {
 #>
 	/*================================================================================================*/
-	public <#= abs #>partial class <#= node.Name #><#= baseNode #><<#= node.Name #>> {
+	public <#= abs #>partial class <#= node.Name #><#= baseNode #> {
 	
 <#
 	}
@@ -167,7 +158,6 @@ foreach ( string name in nodes ) {
 	} //end base class condition
 
 	if ( !node.IsAbstract && !isArtifactSubclass ) {
-		string exprType = (node.IsBaseClass ? "T" : node.Name);
 #>
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,9 +166,10 @@ foreach ( string name in nodes ) {
 		public override void SetTypeId(long pTypeId) { <#= node.Name #>Id = pTypeId; }
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public override Expression<Func<<#= exprType #>, object>> GetTypeIdProp() {
+		public override Expression<Func<T, object>> GetTypeIdProp<T>() {
 			return (x => (x as <#= node.Name #>).<#= node.Name #>Id);
 		}
+
 <#
 	} //end abstract condition
 

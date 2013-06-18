@@ -5,8 +5,7 @@ using Weaver.Core.Elements;
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public abstract partial class Node<T> : WeaverVertex<T>, INode<T>, INodeWithId 
-																		where T : class, IWeaverVertex{
+	public abstract partial class Node : WeaverVertex, INode, INodeWithId {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +21,7 @@ namespace Fabric.Domain {
 		public abstract void SetTypeId(long pTypeId);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual Expression<Func<T, object>> GetTypeIdProp() {
+		public virtual Expression<Func<T, object>> GetTypeIdProp<T>() where T : INode {
 			return (x => x.Id);
 		}
 

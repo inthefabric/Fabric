@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/13/2013 8:00:06 PM
+// Generated on 6/17/2013 10:24:09 PM
 
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void FillWithNode<T>(T pNode) where T : NodeForAction<T> {
+		public void FillWithNode<T>(T pNode) where T : NodeForAction {
 			base.FillWithNode(pNode);
 			Performed = pNode.Performed;
 			Note = pNode.Note;

@@ -15,16 +15,8 @@ namespace Fabric.Domain {
 		long GetTypeId();
 		void SetTypeId(long pTypeId);
 
-	}
-
-
-	/*================================================================================================*/
-	public interface INode<T> : INode, IWeaverVertex<T> where T : class, IWeaverVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		Expression<Func<T, object>> GetTypeIdProp();
+		Expression<Func<T, object>> GetTypeIdProp<T>() where T : INode;
 		
 	}
 

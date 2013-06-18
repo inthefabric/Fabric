@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Weaver.Core.Elements;
+using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Weaver {
@@ -58,9 +59,9 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNode<T>(T pNodeWithId, out IWeaverVarAlias<T> pNodeVar)
-																	where T : class, INode<T>, new() {
+																		where T : class, INode, new() {
 			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(
-				pNodeWithId.GetTypeIdProp(), pNodeWithId.GetTypeId()).Next().ToQuery();
+				pNodeWithId.GetTypeIdProp<T>(), pNodeWithId.GetTypeId()).Next().ToQuery();
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNodeVar);
 			Transaction.AddQuery(q);
 			vVarHash.Add(pNodeVar);
@@ -68,7 +69,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetNodeByNodeId<T>(T pNodeWithNodeId, out IWeaverVarAlias<T> pNodeVar)
-																	where T : class, INode<T>, new() {
+																		where T : class, INode, new() {
 			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pNodeWithNodeId.Id).ToQuery();
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNodeVar);
 			Transaction.AddQuery(q);
@@ -78,8 +79,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddNode<T>(T pNode, out IWeaverVarAlias<T> pNewNodeVar)
-																			where T : class, INode<T> {
+		public void AddNode<T>(T pNode, out IWeaverVarAlias<T> pNewNodeVar) where T : class, INode {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pNode);
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewNodeVar);
 			Transaction.AddQuery(q);

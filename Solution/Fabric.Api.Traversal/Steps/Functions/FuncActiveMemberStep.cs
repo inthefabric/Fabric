@@ -5,6 +5,7 @@ using Fabric.Api.Traversal.Steps.Nodes;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
+using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 

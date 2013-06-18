@@ -10,6 +10,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
+using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
 namespace Fabric.Api.Modify {

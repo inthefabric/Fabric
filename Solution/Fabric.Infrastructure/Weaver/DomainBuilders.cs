@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/13/2013 7:40:57 PM
+// Generated on 6/17/2013 10:20:24 PM
 
 using System.Collections.Generic;
 using Fabric.Domain;
@@ -9,7 +9,7 @@ using Weaver.Core.Query;
 namespace Fabric.Infrastructure.Weaver {
 
 	/*================================================================================================*/
-	public abstract class NodeBuilder<T> : DomainBuilder<T> where T : class, INode<T>, new() {
+	public abstract class NodeBuilder<T> : DomainBuilder<T> where T : class, INode, new() {
 
 		
 
@@ -24,7 +24,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public abstract class NodeForActionBuilder<T> : DomainBuilder<T> where T : class, INode<T>, new() {
+	public abstract class NodeForActionBuilder<T> : DomainBuilder<T> where T : class, INode, new() {
 
 		
 
@@ -39,7 +39,7 @@ namespace Fabric.Infrastructure.Weaver {
 	}
 
 	/*================================================================================================*/
-	public abstract class ArtifactBuilder<T> : DomainBuilder<T> where T : class, INode<T>, new() {
+	public abstract class ArtifactBuilder<T> : DomainBuilder<T> where T : class, INode, new() {
 
 		public virtual IWeaverVarAlias<Member> InMemberCreates { get; private set; }
 		public virtual IList<IWeaverVarAlias<Factor>> InFactorListUsesPrimary { get; private set; }

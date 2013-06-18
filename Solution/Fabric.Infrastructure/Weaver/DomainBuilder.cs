@@ -5,7 +5,7 @@ using Weaver.Core.Query;
 namespace Fabric.Infrastructure.Weaver {
 	
 	/*================================================================================================*/
-	public class DomainBuilder<T> where T : class, INode<T>, new() { //TEST: DomainBuilder
+	public class DomainBuilder<T> where T : class, INode, new() { //TEST: DomainBuilder
 
 		public TxBuilder TxBuild { get; private set; }
 		public T Node { get; private set; }

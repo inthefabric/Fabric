@@ -106,7 +106,7 @@ namespace Fabric.Db.Data.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FillArtifact<T>(DataSet pSet, T pArtifact, ArtifactId pId,
-								SetupUsers.MemberId pCreatorId, bool pTestMode) where T : Artifact<T> {
+									SetupUsers.MemberId pCreatorId, bool pTestMode) where T : Artifact {
 			if ( !pSet.IsForTesting && pTestMode ) {
 				return;
 			}

@@ -24,6 +24,9 @@
 				}
 
 				foreach ( IDataRel rel in ds.Rels ) {
+					System.Console.WriteLine(rel.OutVertex+" / "+rel.Rel.Label+" / "+rel.InVertex);
+					System.Console.WriteLine("OUT: "+ds.GetDataNode(rel.OutVertex).TestVal);
+					System.Console.WriteLine("IN: "+ds.GetDataNode(rel.InVertex).TestVal);
 					rel.TestVal = ds.GetDataNode(rel.OutVertex).TestVal+"|"+
 						rel.Rel.Label+"|"+ds.GetDataNode(rel.InVertex).TestVal;
 				}

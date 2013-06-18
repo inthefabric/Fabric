@@ -90,7 +90,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T DbNodeById<T>(long pTypeId) where T : class, INode<T>, INodeWithId, new() {
+		public T DbNodeById<T>(long pTypeId) where T : class, INode, INodeWithId, new() {
 			T item = Cache.Memory.FindNode<T>(pTypeId);
 			
 			if ( item != null ) {
