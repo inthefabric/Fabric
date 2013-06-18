@@ -53,7 +53,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="DataRel.cs" />
+    <Compile Include="DataEdge.cs" />
     <Compile Include="DataSet.cs" />
     <Compile Include="Setups\SetupIndexesFuncs.cs" />
     <Compile Include="Setups\SetupIndexes.cs">

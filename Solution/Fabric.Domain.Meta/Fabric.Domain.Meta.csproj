@@ -47,9 +47,9 @@
     </Compile>
     <Compile Include="SchemaHelperBase.cs" />
     <Compile Include="SchemaHelperVertex.cs" />
-    <Compile Include="SchemaHelperVertexRel.cs" />
+    <Compile Include="SchemaHelperVertexEdge.cs" />
     <Compile Include="SchemaHelperProp.cs" />
-    <Compile Include="SchemaHelperRel.cs" />
+    <Compile Include="SchemaHelperEdge.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaHelper.tt">

@@ -46,11 +46,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Common\TestFabVertex.cs" />
     <Compile Include="Common\TestFuncStep.cs" />
     <Compile Include="Common\TestFinalStep.cs" />
-    <Compile Include="Common\TestStep.cs" />
     <Compile Include="Common\TestVertexStep.cs" />
+    <Compile Include="Common\TestFabVertex.cs" />
+    <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabClass.cs" />
     <Compile Include="FabApiModify\TDeleteFactor.cs" />
     <Compile Include="FabApiModify\TCompleteFactor.cs" />
@@ -73,8 +73,6 @@
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
-    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexSteps.cs" />
     <Compile Include="FabApiWeb\Tasks\TGetMemberTypeAssignByMember.cs" />
     <Compile Include="FabApiWeb\TChangeMemberType.cs" />
     <Compile Include="FabApiWeb\TRemoveOauthDomain.cs" />
@@ -121,13 +119,15 @@
     <Compile Include="FabApiTraversal\Steps\TStepException.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncLimitStep.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncBackStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexSteps.cs" />
+    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexStep.cs" />
     <Compile Include="FabApiTraversal\Steps\TStepData.cs" />
     <Compile Include="FabApiTraversal\Steps\TStep.cs" />
     <Compile Include="FabApiTraversal\TPathRouter.cs" />
     <Compile Include="FabApiTraversal\TPathSegment.cs" />
     <Compile Include="FabApiTraversal\TPath.cs" />
     <Compile Include="FabDbData\TSetup.cs" />
-    <Compile Include="FabDbData\TDataRel.cs" />
+    <Compile Include="FabDbData\TDataEdge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\StepUtil.cs">
       <AutoGen>True</AutoGen>
