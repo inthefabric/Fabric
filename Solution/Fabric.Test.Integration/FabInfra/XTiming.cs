@@ -20,12 +20,10 @@ namespace Fabric.Test.Integration.FabInfra {
 	[TestFixture]
 	public class XTiming : IntegTestBase {
 
-		/*
 		private const string TestScript = "g";
 		private const string VerifyJsonPatternA = "titangraph";
 		private const string VerifyJsonPatternB = "FabricTest";
 		private const bool VerifyGraphJson = true;
-		*/
 
 		/*
 		private const string TestScript = "g.v(4)";
@@ -41,11 +39,13 @@ namespace Fabric.Test.Integration.FabInfra {
 		private const bool VerifyGraphJson = false;
 		*/
 
+		/*
 		private const string TestScript = "g.V[0..30]";
 		private const string VerifyJsonPatternA = @"""E_Co"":""e3d6522a5c3d4f609ed9e3c4ba9eb145""";
 		private const string VerifyJsonPatternB = @"""Ap_Na"":""Fabric System""";
 		private const bool VerifyGraphJson = false;
-
+		*/
+		 
 		//private const string RexProDataPattern =
 		//	@"Result: ""titangraph\[\n\s*local: data/FabricTest\n\s*\]"",";
 		private const string RexProDataPatternA =

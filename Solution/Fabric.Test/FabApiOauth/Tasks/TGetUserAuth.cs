@@ -20,6 +20,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				".has('"+PropDbName.User_Name+
 				"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
 			".vertices()"+
+				"._()"+
 				".has('"+PropDbName.User_Password+"',Tokens.T.eq,_P1);";
 
 		private string vUsername;

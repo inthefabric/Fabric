@@ -176,7 +176,7 @@ namespace Fabric.Api.Web.Tasks {
 			
 			var od = new OauthDomain();
 			od.OauthDomainId = pApiCtx.GetSharpflakeId<OauthDomain>();
-			od.Domain = pDomain;
+			od.Domain = pDomain.ToLower();
 			
 			var odBuild = new OauthDomainBuilder(txb, od);
 			odBuild.AddVertex();

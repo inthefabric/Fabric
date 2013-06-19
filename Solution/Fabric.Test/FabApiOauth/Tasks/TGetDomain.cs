@@ -16,12 +16,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetDomain {
 
 		private const string QueryGetDomain =
-			"g.query()"+
-				".has('"+PropDbName.OauthDomain_Domain+
-					"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
-				".vertices()"+
-			".outE('"+EdgeDbName.OauthDomainUsesApp+"').inV"+
-				".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1);";
+			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
+			".inE('"+EdgeDbName.OauthDomainUsesApp+"').outV"+
+				".has('"+PropDbName.OauthDomain_Domain+"',Tokens.T.eq,_P1);";
 
 		private long vAppId;
 		private string vRedirUri;
@@ -67,8 +64,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap.Increment(GetDomain.Query.GetOauthDomain+"");
 
 			Assert.AreEqual(QueryGetDomain, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vRedirDomain);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
+			TestUtil.CheckParam(pQuery.Params, "_P1", vRedirDomain.ToLower());
 
 			return vGetDomainResult;
 		}
@@ -116,7 +113,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			vUsageMap.AssertUses(GetDomain.Query.GetOauthDomain+"", 1);
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vRedirDomain, result.Domain, "Incorrect Result.Domain.");
+			Assert.AreEqual(vRedirDomain.ToLower(), result.Domain, "Incorrect Result.Domain.");
 		}
 
 

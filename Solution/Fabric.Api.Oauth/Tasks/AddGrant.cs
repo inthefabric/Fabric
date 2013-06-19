@@ -53,7 +53,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			IWeaverStepAs<OauthGrant> ogAlias;
 			
 			var newOg = new OauthGrant();
-			newOg.RedirectUri = vRedirectUri;
+			newOg.RedirectUri = vRedirectUri.ToLower();
 			newOg.Code = ApiCtx.Code32;
 			newOg.Expires = ApiCtx.UtcNow.AddMinutes(2).Ticks;
 			

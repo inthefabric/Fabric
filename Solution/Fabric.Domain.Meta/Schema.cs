@@ -328,7 +328,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthDomain, "Domain", "Do", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
-				p.IsCaseInsensitive = true; //TODO: ensure that domains are stored with ToLower()
+				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
 			WeaverVertexSchema oauthGrant = AddVertex("OauthGrant", "OG");
@@ -339,7 +339,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(oauthGrant, "RedirectUri", "Re", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 450;
-				p.IsCaseInsensitive = true; //TODO: ensure that redirect URL is stored with ToLower()
+				p.IsCaseInsensitive = true;
 			p = AddProp(oauthGrant, "Code", "Co", typeof(string));
 				p.Len = 32;
 				p.IsUnique = true;

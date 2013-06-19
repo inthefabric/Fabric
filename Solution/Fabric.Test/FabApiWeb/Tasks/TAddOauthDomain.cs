@@ -31,7 +31,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			vAppId = 3456;
-			vDomain = "testing.com";
+			vDomain = "TESTing.Com";
 			vNewDomainId = 874265982347;
 			vDomainResult = new OauthDomain();
 
@@ -52,7 +52,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
 				vNewDomainId,
-				vDomain,
+				vDomain.ToLower(),
 				(byte)VertexFabType.OauthDomain,
 				vAppId,
 				EdgeDbName.OauthDomainUsesApp

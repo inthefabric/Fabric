@@ -13,11 +13,12 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private const string Query = 
 			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
+				".sideEffect{}"+
 				".hasNot('"+PropDbName.Factor_Deleted+"')"+
-				".as('step4')"+
+				".as('step5')"+
 			".inE('"+EdgeDbName.MemberCreatesFactor+"').outV"+
 				".has('"+PropDbName.Member_MemberId+"',Tokens.T.eq,_P1)"+
-			".back('step4');";
+			".back('step5');";
 
 		private long vFactorId;
 		private long vMemberId;

@@ -58,7 +58,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void SetUp() {
 			vAppId = 99;
 			vUserId = 1234;
-			vRedirUri = "http://www.test.com/oauth";
+			vRedirUri = "http://www.TEST.com/oauth";
 			vGrantCode = "12345678901234567890123456789012";
 			vUtcNow = DateTime.UtcNow;
 			vAddOauthGrantId = 123456789;
@@ -104,7 +104,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
 				vUserId,
 				vAppId,
-				vRedirUri,
+				vRedirUri.ToLower(),
 				vUtcNow.AddMinutes(2).Ticks,
 				vGrantCode
 			});
@@ -122,7 +122,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
 				vAddOauthGrantId,
-				vRedirUri,
+				vRedirUri.ToLower(),
 				vGrantCode,
 				vUtcNow.AddMinutes(2).Ticks,
 				(byte)VertexFabType.OauthGrant,

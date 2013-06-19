@@ -6,8 +6,6 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
-using Weaver.Titan;
-using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -64,16 +62,12 @@ namespace Fabric.Api.Oauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override DomainResult Execute() {
 			IWeaverQuery q = 
-				Weave.Inst.TitanGraph()
-				.QueryV().ElasticIndex(
-					new WeaverParamElastic<OauthDomain>(
-						x => x.Domain, WeaverParamElasticOp.Contains, vRedirectDomain)
-				)
-				.UsesApp.ToApp
-					.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, vAppId)
+				Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, vAppId)
+				.InOauthDomainListUses.FromOauthDomain
+					.Has(x => x.Domain, WeaverStepHasOp.EqualTo, vRedirectDomain.ToLower())
 				.ToQuery();
 
-			q.AddStringParam(vRedirectDomain.ToLower());
 			OauthDomain od = ApiCtx.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);
 			
 			if ( od == null ) {
