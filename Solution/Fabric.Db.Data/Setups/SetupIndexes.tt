@@ -1,5 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)../Packages/Weaver/Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Titan.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -39,8 +40,8 @@ foreach ( WeaverVertexSchema vertex in verts ) {
 	foreach ( WeaverPropSchema ps in vertex.Props ) {
 		FabricPropSchema prop = (FabricPropSchema)ps;
 		string titanType = SchemaHelperProp.GetTitanTypeName(prop.Type);
-		bool index = (prop.IsPrimaryKey == true || prop.IndexWithTitan == true);
-		bool elastic = (prop.IndexWithElasticSearch == true);
+		bool index = (prop.IsPrimaryKey == true || prop.TitanIndex == true);
+		bool elastic = (prop.TitanElasticIndex == true);
 #>
 			pSet.AddIndexQuery(BuildKey("<#= vertex.DbName #>", "<#= prop.DbName #>", "<#= titanType #>", <#= index.ToString().ToLower() #>, <#= elastic.ToString().ToLower() #>));
 <#

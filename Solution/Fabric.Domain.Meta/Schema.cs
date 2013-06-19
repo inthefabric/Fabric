@@ -69,7 +69,7 @@ namespace Fabric.Domain.Meta {
 				p.IsPrimaryKey = true;
 			p = AddProp(artifact, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 				p.IsVertexCentricIndex = true;
 
 			WeaverVertexSchema app = AddVertex("App", "Ap");
@@ -80,7 +80,7 @@ namespace Fabric.Domain.Meta {
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidTitleRegex;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(app, "Secret", "Se", typeof(string));
 				p.Len = 32;
 				p.IsInternal = true;
@@ -92,13 +92,13 @@ namespace Fabric.Domain.Meta {
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.ValidRegex = ValidTitleRegex;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(clas, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(clas, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
@@ -153,13 +153,13 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(instance, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
 				p.IsNullable = true;
 				p.ValidRegex = ValidTitleRegex;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(instance, "Note", "No", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
@@ -193,13 +193,13 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(url, "Name", "Na", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(url, "AbsoluteUrl", "Ab", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 2048;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 
 			WeaverVertexSchema user = AddVertex("User", "U");
 			user.BaseVertex = artifact;
@@ -209,7 +209,7 @@ namespace Fabric.Domain.Meta {
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidUserRegex;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(user, "Password", "Pa", typeof(string));
 				p.LenMin = 8;
 				p.LenMax = 32;
@@ -231,7 +231,7 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(factor, "Created", "Cr", typeof(DateTime));
 				p.IsTimestamp = true;
 				p.IsVertexCentricIndex = true;
-				p.IndexWithElasticSearch = true;
+				p.TitanElasticIndex = true;
 			p = AddProp(factor, "Deleted", "Dl", typeof(DateTime));
 				p.IsNullable = true;
 				p.IsInternal = true;
@@ -273,8 +273,8 @@ namespace Fabric.Domain.Meta {
 			p = AddProp(factor, "Identor_Value", "IdV", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 256;
-				p.IndexWithTitan = true;
-				p.IndexWithElasticSearch = true;
+				p.TitanIndex = true;
+				p.TitanElasticIndex = true;
 				p.IsVertexCentricIndex = true;
 
 			p = AddProp(factor, "Locator_TypeId", "LoT", typeof(byte));
@@ -311,12 +311,12 @@ namespace Fabric.Domain.Meta {
 				p.IsNullable = true;
 				p.IsUnique = true;
 				p.ValidRegex = ValidCodeRegex;
-				p.IndexWithTitan = true;
+				p.TitanIndex = true;
 			p = AddProp(oauthAccess, "Refresh", "Re", typeof(string));
 				p.Len = 32;
 				p.IsNullable = true;
 				p.ValidRegex = ValidCodeRegex;
-				p.IndexWithTitan = true;
+				p.TitanIndex = true;
 			p = AddProp(oauthAccess, "Expires", "Ex", typeof(DateTime));
 			p = AddProp(oauthAccess, "IsClientOnly", "CO", typeof(bool));
 
@@ -344,7 +344,7 @@ namespace Fabric.Domain.Meta {
 				p.Len = 32;
 				p.IsUnique = true;
 				p.ValidRegex = ValidCodeRegex;
-				p.IndexWithTitan = true;
+				p.TitanIndex = true;
 			p = AddProp(oauthGrant, "Expires", "Ex", typeof(DateTime));
 
 			WeaverVertexSchema oauthScope = AddVertex("OauthScope", "OS");

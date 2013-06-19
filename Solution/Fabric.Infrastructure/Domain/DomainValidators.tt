@@ -1,5 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="$(SolutionDir)../Packages/Weaver/Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Titan.dll" #>
 <#@ assembly name="$(ProjectDir)/bin/Debug/Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta/bin/Debug/Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
