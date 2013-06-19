@@ -111,7 +111,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 3; //TODO: use DB vertex count
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
 			Parallel.ForEach(vIndexes, opt, InsertFactors);
 			return vResults;
 		}

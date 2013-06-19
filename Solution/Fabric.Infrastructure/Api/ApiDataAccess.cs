@@ -65,7 +65,6 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
-			//ApiCtx.ProfilerTrace(this, "ex.start");
 			var sw = new Stopwatch();
 			sw.Start();
 
@@ -84,9 +83,7 @@ namespace Fabric.Infrastructure.Api {
 				JsConfig.EmitCamelCaseNames = false;
 
 				//Log.Debug("REQUEST: "+vReqJson);
-				//ApiCtx.ProfilerTrace(this, "ex.get");
 				ResponseJson = GetRawResult(vReqJson);
-				//ApiCtx.ProfilerTrace(this, "ex.resp");
 
 				Response = JsonSerializer.DeserializeFromString<RexConnTcpResponse>(ResponseJson);
 
@@ -150,63 +147,43 @@ namespace Fabric.Infrastructure.Api {
 					Log.Warn(ApiCtx.ContextId, "DATA", "Response.CmdList["+i+"] error: "+rc.Err);
 				}
 			}
-
-			//ApiCtx.ProfilerTrace(this, "ex.done");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetRawResult(string pReqJson) {
-			//ApiCtx.ProfilerTrace(this, "grr1");
 			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
-			//ApiCtx.ProfilerTrace(this, "grr2");
 			tcp.SendBufferSize = tcp.ReceiveBufferSize = 1<<16;
 
 			byte[] dataLen = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(pReqJson.Length));
 			byte[] data = Encoding.ASCII.GetBytes(pReqJson);
-			//ApiCtx.ProfilerTrace(this, "grr3");
 
 			NetworkStream stream = tcp.GetStream();
-			//ApiCtx.ProfilerTrace(this, "grr4");
 			stream.Write(dataLen, 0, dataLen.Length); //begin with the request's string length
 			stream.Write(data, 0, data.Length);
 
-			//TODO: Get string length from the first four bytes
-			/*data = new byte[4];
+			//Get string length from the first four bytes
+			data = new byte[4];
 			stream.Read(data, 0, data.Length);
+			Array.Reverse(data);
+			int respLen = BitConverter.ToInt32(data, 0);
 
-			foreach ( byte b in data ) {
-				Log.Debug(" - "+b);
-			}*/
+			//Get response string using the string length
+			var sb = new StringBuilder(respLen);
 
-			//ApiCtx.ProfilerTrace(this, "grr5");
-			data = new byte[tcp.ReceiveBufferSize];
-			int bytes = stream.Read(data, 0, data.Length);
-			string respData = Encoding.ASCII.GetString(data, 4, bytes-4);
-			//ApiCtx.ProfilerTrace(this, "grr6");
-
-			/*const int size = 1<<11;
-			int offset = 4;
-			var respData = new StringBuilder();
-			string test = "";
-
-			while ( true ) {
-				data = new byte[size];
+			while ( sb.Length < respLen ) {
+				data = new byte[respLen];
 				int bytes = stream.Read(data, 0, data.Length);
 
-				respData.AppendFormat("{0}", Encoding.ASCII.GetString(data, offset, bytes-offset));
-				offset = 0; //only the first read needs the offset
-				test += "R: "+bytes+" / "+size+" / "+stream.DataAvailable+"\n";
-
-				if ( !stream.DataAvailable ) {
-					break;
+				if ( bytes == 0 ) {
+					throw new Exception("Empty read from NetworkStream. "+
+						"Expected "+respLen+" chars, received "+sb.Length+" total.");
 				}
+
+				sb.Append(Encoding.ASCII.GetString(data, 0, bytes));
 			}
 
-			Log.Debug(test);*/
-
 			//Log.Debug("RESULT: "+respData);
-			//ApiCtx.ProfilerTrace(this, "grr7");
-			return respData;
+			return sb.ToString();
 		}
 
 
