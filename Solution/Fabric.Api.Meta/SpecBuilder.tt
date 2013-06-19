@@ -111,6 +111,10 @@ foreach ( string name in verts ) {
 		if ( prop.IsCaseInsensitive != null ) {
 			propItems += "pProp.IsCaseInsensitive = "+prop.IsCaseInsensitive.ToString().ToLower()+";"+lineEnd;
 		}
+		
+		if ( prop.ToLowerCase ) {
+			propItems += "pProp.ToLowerCase = "+prop.ToLowerCase.ToString().ToLower()+";"+lineEnd;
+		}
 
 		if ( prop.IsNullable != null ) {
 			propItems += "pProp.IsNullable = "+prop.IsNullable.ToString().ToLower()+";"+lineEnd;

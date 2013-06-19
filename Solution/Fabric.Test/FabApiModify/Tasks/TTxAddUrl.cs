@@ -31,7 +31,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAbsoluteUrl = "http://www.mywebsite.com";
+			vAbsoluteUrl = "http://www.myWEBsite.com";
 			vName = "My Web Site";
 			vNewArtifactId = 27357427;
 			vUtcNow = DateTime.UtcNow;
@@ -59,7 +59,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vName,
-				vAbsoluteUrl,
+				vAbsoluteUrl.ToLower(),
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.Url,

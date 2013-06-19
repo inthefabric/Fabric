@@ -206,7 +206,7 @@ namespace Fabric.Api.Web.Tasks {
 																out IWeaverVarAlias<Email> pEmailVar) {
 			var email = new Email();
 			email.EmailId = pApiCtx.GetSharpflakeId<Email>();
-			email.Address = pAddress;
+			email.Address = pAddress.ToLower();
 			email.Code = pApiCtx.Code32;
 			email.Created = pApiCtx.UtcNow.Ticks;
 			email.Verified = null;

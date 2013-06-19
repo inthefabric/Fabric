@@ -125,7 +125,7 @@ namespace Fabric.Db.Data.Setups {
 			FillUserArtifact(SetupArtifacts.ArtifactId.User_Mel, MemberId.FabMel);
 			vSet.ElapseTime();
 
-			AddEmail(EmailId.PhoApp_ZK, "PhotoApp@zachkinstner.com");
+			AddEmail(EmailId.PhoApp_ZK, "photoapp@zachkinstner.com");
 			AddUser(UserId.GalData, "KinstnerPhotos", "snapshot1234", EmailId.PhoApp_ZK);
 			AddMember(MemberId.FabGalData, AppId.FabSys, UserId.GalData,
 				MemberTypeId.Member, MemberTypeAssignId.FabGalDataBySystem, MemberId.FabFabData);
@@ -142,7 +142,7 @@ namespace Fabric.Db.Data.Setups {
 				MemberTypeId.Owner, MemberTypeAssignId.GalZachByGalGalData, MemberId.GalGalData);
 			vSet.ElapseTime();
 
-			AddEmail(EmailId.EJ_ZK, "EllieJoy@zachkinstner.com");
+			AddEmail(EmailId.EJ_ZK, "elliejoy@zachkinstner.com");
 			AddUser(UserId.Ellie, "EllieJoy", "iLOVEdaddy", EmailId.EJ_ZK);
 			AddMember(MemberId.FabEllie, AppId.FabSys, UserId.Ellie,
 				MemberTypeId.Member, MemberTypeAssignId.FabEllieBySystem, MemberId.FabFabData);
@@ -157,14 +157,14 @@ namespace Fabric.Db.Data.Setups {
 				MemberTypeId.Admin, MemberTypeAssignId.GalMelByGalGalData, MemberId.GalGalData);
 			vSet.ElapseTime();
 
-			AddEmail(EmailId.PJ_ZK, "PennyJane@zachkinstner.com");
+			AddEmail(EmailId.PJ_ZK, "pennyjane@zachkinstner.com");
 			AddUser(UserId.Penny, "PennyJane", "iLOVEdaddyTOO!", EmailId.PJ_ZK);
 			AddMember(MemberId.FabPenny, AppId.FabSys, UserId.Penny,
 				MemberTypeId.Member, MemberTypeAssignId.FabPennyBySystem, MemberId.FabFabData);
 			FillUserArtifact(SetupArtifacts.ArtifactId.User_Penny, MemberId.FabPenny);
 			vSet.ElapseTime();
 
-			AddEmail(EmailId.FabApp_Book, "fabricApp@bookmarker.com");
+			AddEmail(EmailId.FabApp_Book, "fabricapp@bookmarker.com");
 			AddUser(UserId.BookData, "BookmarkerDP", "bookpass", EmailId.FabApp_Book);
 			AddMember(MemberId.FabBookData, AppId.FabSys, UserId.BookData,
 				MemberTypeId.Member, MemberTypeAssignId.FabBookDataBySystem, MemberId.FabFabData);

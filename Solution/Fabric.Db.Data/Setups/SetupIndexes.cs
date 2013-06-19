@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/18/2013 3:43:34 PM
+// Generated on 6/19/2013 3:23:13 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -65,7 +65,7 @@ namespace Fabric.Db.Data.Setups {
 			//Url
 			pSet.AddIndexQuery(BuildGroup("Ur", 11));
 			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Na", "String", false, true));
-			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Ab", "String", false, true));
+			pSet.AddIndexQuery(BuildKey("Ur", "Ur_Ab", "String", true, false));
 
 			//User
 			pSet.AddIndexQuery(BuildGroup("U", 12));

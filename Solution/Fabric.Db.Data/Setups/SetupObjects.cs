@@ -213,7 +213,7 @@ namespace Fabric.Db.Data.Setups {
 				SetupArtifacts.ArtifactId.Url_ZachFb, SetupUsers.MemberId.GalZach);
 			AddUrl(UrlId.YahooFin, "http://finance.yahoo.com", "Financial News",
 				SetupArtifacts.ArtifactId.Url_YahooFin, SetupUsers.MemberId.BookZach);
-			AddUrl(UrlId.CutePhoto, "http://zachkinstner.com/gallery/Photo/View/4165",
+			AddUrl(UrlId.CutePhoto, "http://zachkinstner.com/gallery/photo/view/4165",
 				"Super Cute Photo", SetupArtifacts.ArtifactId.Url_CutePhoto,SetupUsers.MemberId.GalMel);
 
 			/*AddLabel(LabelId.A1234, "A1234",

@@ -27,7 +27,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAddress = "test@test.com";
+			vAddress = "test@TEST.com";
 			vUtcNow = DateTime.UtcNow;
 			vNewEmailId = 43562742344;
 
@@ -53,7 +53,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vNewEmailId,
-				vAddress,
+				vAddress.ToLower(),
 				vUtcNow.Ticks,
 				(byte)VertexFabType.Email
 			});

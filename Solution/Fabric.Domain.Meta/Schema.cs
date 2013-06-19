@@ -137,6 +137,7 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 256;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
+				p.ToLowerCase = true;
 				p.ValidRegex = ValidEmailRegex;
 			p = AddProp(email, "Code", "Co", typeof(string));
 				p.Len = 32;
@@ -199,7 +200,8 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 2048;
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
-				p.TitanElasticIndex = true;
+				p.ToLowerCase = true;
+				p.TitanIndex = true;
 
 			WeaverVertexSchema user = AddVertex("User", "U");
 			user.BaseVertex = artifact;
@@ -329,6 +331,7 @@ namespace Fabric.Domain.Meta {
 				p.LenMin = 1;
 				p.LenMax = 256;
 				p.IsCaseInsensitive = true;
+				p.ToLowerCase = true;
 				p.ValidRegex = ValidOauthDomainRegexp;
 			
 			WeaverVertexSchema oauthGrant = AddVertex("OauthGrant", "OG");
@@ -340,6 +343,7 @@ namespace Fabric.Domain.Meta {
 				p.LenMin = 1;
 				p.LenMax = 450;
 				p.IsCaseInsensitive = true;
+				p.ToLowerCase = true;
 			p = AddProp(oauthGrant, "Code", "Co", typeof(string));
 				p.Len = 32;
 				p.IsUnique = true;

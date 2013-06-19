@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/18/2013 3:43:36 PM
+// Generated on 6/19/2013 3:23:15 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -392,6 +392,7 @@ namespace Fabric.Api.Meta {
 					pProp.Description = SpecDoc.GetDtoPropText("Url_AbsoluteUrl");
 					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
+					pProp.ToLowerCase = true;
 					pProp.IsUnique = true;
 					break;
 

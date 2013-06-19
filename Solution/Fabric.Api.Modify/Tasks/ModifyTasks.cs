@@ -242,7 +242,7 @@ namespace Fabric.Api.Modify.Tasks {
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
 									IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();
-			url.AbsoluteUrl = pAbsoluteUrl;
+			url.AbsoluteUrl = pAbsoluteUrl.ToLower();
 			url.Name = pName;
 			url.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
 			url.Created = pApiCtx.UtcNow.Ticks;
