@@ -41,16 +41,27 @@ namespace Fabric.Api.Web.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TODO: WebTasks.GetAppByName must split names by string and search each token
-		//Verify the full exact name AFTER getting the result (ToLower)
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
+			string[] tokens = pName.Split(' ');
+			int n = tokens.Length;
+			var elasticParams = new WeaverParamElastic<App>[n];
+
+			for ( int i = 0 ; i < n ; ++i ) {
+				elasticParams[i] = new WeaverParamElastic<App>(
+					x => x.Name, WeaverParamElasticOp.Contains, tokens[i]);
+			}
+
 			IWeaverQuery q = Weave.Inst.TitanGraph()
-				.QueryV().ElasticIndex(
-					new WeaverParamElastic<App>(x => x.Name, WeaverParamElasticOp.Contains, pName)
-				)
+				.QueryV().ElasticIndex(elasticParams)
 				.ToQuery();
 
-			return pApiCtx.DbSingle<App>("GetAppByName", q);
+			App app = pApiCtx.DbSingle<App>("GetAppByName", q);
+
+			if ( app == null || app.Name.ToLower() != pName.ToLower() ) {
+				return null;
+			}
+
+			return app;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

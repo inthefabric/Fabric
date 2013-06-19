@@ -11,10 +11,13 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TGetAppByName : TWebTasks {
 
+		private const string Cont = "com.thinkaurelius.titan.core.attribute.Text.CONTAINS";
+
 		private const string Query =
 			"g.query()"+
-				".has('"+PropDbName.App_Name+
-					"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
+				".has('"+PropDbName.App_Name+"',"+Cont+",_P0)"+
+				".has('"+PropDbName.App_Name+"',"+Cont+",_P1)"+
+				".has('"+PropDbName.App_Name+"',"+Cont+",_P2)"+
 			".vertices();";
 
 		private string vName;
@@ -24,8 +27,10 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vName = "TestApp";
+			vName = "My Test App";
+
 			vAppResult = new App();
+			vAppResult.Name = vName;
 
 			MockApiCtx
 				.Setup(x => x.DbSingle<App>("GetAppByName", It.IsAny<IWeaverQuery>()))
@@ -38,7 +43,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			UsageMap.Increment("GetAppByName");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vName);
+			TestUtil.CheckParam(pQuery.Params, "_P0", "My");
+			TestUtil.CheckParam(pQuery.Params, "_P1", "Test");
+			TestUtil.CheckParam(pQuery.Params, "_P2", "App");
 
 			return vAppResult;
 		}
@@ -52,6 +59,17 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			UsageMap.AssertUses("GetAppByName", 1);
 			Assert.AreEqual(vAppResult, result, "Incorrect Result.");
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Failure() {
+			vAppResult.Name = vName+" Extra Tokens";
+
+			App result = Tasks.GetAppByName(MockApiCtx.Object, vName);
+
+			UsageMap.AssertUses("GetAppByName", 1);
+			Assert.Null(result, "Incorrect Result.");
 		}
 
 	}

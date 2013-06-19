@@ -6,8 +6,6 @@ using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
-using Weaver.Titan;
-using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Modify.Tasks {
 
@@ -27,11 +25,8 @@ namespace Fabric.Api.Modify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl) {
-			IWeaverQuery q = Weave.Inst.TitanGraph()
-				.QueryV().ElasticIndex(
-					new WeaverParamElastic<Url>(x => x.AbsoluteUrl, 
-						WeaverParamElasticOp.Contains, pAbsoluteUrl)
-				)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Url>(x => x.AbsoluteUrl, pAbsoluteUrl.ToLower())
 				.ToQuery();
 
 			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);

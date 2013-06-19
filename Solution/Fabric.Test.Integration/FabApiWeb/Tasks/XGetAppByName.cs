@@ -39,6 +39,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("Kinstner Photo Galleryy")]
 		[TestCase("Kinstner Photo Galler")]
+		[TestCase("Kinstner Photo")]
 		public void NotFound(string pName) {
 			vName = pName;
 

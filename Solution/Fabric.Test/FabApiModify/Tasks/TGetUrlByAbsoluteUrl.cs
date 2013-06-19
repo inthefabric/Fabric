@@ -11,11 +11,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetUrlByAbsoluteUrl : TModifyTasks {
 
-		private const string Query =
-			"g.query()"+
-			".has('"+PropDbName.Url_AbsoluteUrl+
-				"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
-			".vertices();";
+		private const string Query = "g.V('"+PropDbName.Url_AbsoluteUrl+"',_P0);";
 
 		private string vAbsoluteUrl;
 		private Url vUrlResult;
@@ -24,7 +20,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAbsoluteUrl = "http://www.duplicate.com";
+			vAbsoluteUrl = "http://www.DUPlicate.com";
 			vUrlResult = new Url();
 
 			MockApiCtx
