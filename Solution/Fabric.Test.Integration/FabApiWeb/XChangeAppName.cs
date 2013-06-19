@@ -22,6 +22,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		protected override void TestSetUp() {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
+			UsesElasticSearch = true;
 
 			vAppId = (long)AppGal;
 			vName = "My New App";

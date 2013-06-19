@@ -17,6 +17,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			IsReadOnlyTest = true;
+			UsesElasticSearch = true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -93,6 +93,21 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.Null(result, "Result should be null.");
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("", "x")]
+		[TestCase(" ", "x")]
+		[TestCase("x", "")]
+		[TestCase("x", " ")]
+		public void NotFoundEmpty(string pUsername, string pPassword) {
+			vUsername = pUsername;
+			vPassword = pPassword;
+
+			User result = TestGo();
+
+			vUsageMap.AssertUses(GetUserAuth.Query.GetUser+"", 0);
+			Assert.Null(result, "Result should be null.");
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

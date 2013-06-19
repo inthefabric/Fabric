@@ -26,6 +26,7 @@ namespace Fabric.Test.Integration.FabApiWeb {
 		protected override void TestSetUp() {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
+			UsesElasticSearch = true;
 			
 			vEmail = "new@user.com";
 			vName = "NewUser";

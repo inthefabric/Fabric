@@ -40,6 +40,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			base.TestSetUp();
+			UsesElasticSearch = true;
 
 			vResponseType = "code";
 			vClientId = (uint)SetupUsers.AppId.FabSys+"";
@@ -130,6 +131,8 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		private void CheckAuthCookie(Response pResult, bool pIsLoggedIn, DateTime pExpires) {
 			Assert.NotNull(pResult, "Result should be filled.");
+			Assert.NotNull(pResult.Cookies, "Result.Cookies should be filled.");
+			Assert.AreEqual(1, pResult.Cookies.Count, "Incorrect Result.Cookies length.");
 
 			INancyCookie cook = pResult.Cookies[0];
 

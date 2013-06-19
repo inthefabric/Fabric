@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Threading;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Domain.Meta;
@@ -22,6 +23,7 @@ namespace Fabric.Test.Integration {
 		protected bool IsReadOnlyTest { get; set; }
 		protected int NewVertexCount { get; set; }
 		protected int NewEdgeCount { get; set; }
+		protected bool UsesElasticSearch { get; set; }
 
 		private Stopwatch vWatch;
 		private Stopwatch vWatch2;
@@ -58,6 +60,10 @@ namespace Fabric.Test.Integration {
 			NewEdgeCount = 0;
 
 			TestSetUp();
+
+			if ( UsesElasticSearch ) {
+				Thread.Sleep(1000); //ElasticSearch has a delay when re-indexing
+			}
 
 			//vCounts = CountVerticesAndEdges();
 			vCounts = new Tuple<int, int>(259, 590); //shortcut to help tests run faster

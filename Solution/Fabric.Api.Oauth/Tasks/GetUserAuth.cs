@@ -44,6 +44,10 @@ namespace Fabric.Api.Oauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override User Execute() {
+			if ( string.IsNullOrWhiteSpace(vUsername) || string.IsNullOrWhiteSpace(vPassword) ) {
+				return null; //avoid a database call (and corresponding database error)
+			}
+
 			IWeaverQuery q = 
 				Weave.Inst.TitanGraph()
 				.QueryV().ElasticIndex(
