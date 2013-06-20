@@ -17,6 +17,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				".outE('"+EdgeDbName.UserUsesEmail+"').inV.next();"+
 			"_V2=g.addVertex(["+
 				PropDbName.App_Name+":_TP,"+
+				PropDbName.App_NameKey+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
@@ -64,6 +65,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vUserId,
 				vName,
+				vName.ToLower(),
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.App,

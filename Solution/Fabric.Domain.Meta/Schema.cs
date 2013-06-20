@@ -81,6 +81,11 @@ namespace Fabric.Domain.Meta {
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidTitleRegex;
 				p.TitanElasticIndex = true;
+			p = AddProp(app, "NameKey", "NK", typeof(string));
+				p.IsInternal = true;
+				p.IsUnique = true;
+				p.ToLowerCase = true;
+				p.TitanIndex = true;
 			p = AddProp(app, "Secret", "Se", typeof(string));
 				p.Len = 32;
 				p.IsInternal = true;
@@ -93,6 +98,11 @@ namespace Fabric.Domain.Meta {
 				p.LenMax = 128;
 				p.ValidRegex = ValidTitleRegex;
 				p.TitanElasticIndex = true;
+			p = AddProp(clas, "NameKey", "NK", typeof(string));
+				p.IsInternal = true;
+				p.IsUnique = true;
+				p.ToLowerCase = true;
+				p.TitanIndex = true;
 			p = AddProp(clas, "Disamb", "Di", typeof(string));
 				p.LenMin = 1;
 				p.LenMax = 128;
@@ -211,7 +221,11 @@ namespace Fabric.Domain.Meta {
 				p.IsUnique = true;
 				p.IsCaseInsensitive = true;
 				p.ValidRegex = ValidUserRegex;
-				p.TitanElasticIndex = true;
+			p = AddProp(user, "NameKey", "NK", typeof(string));
+				p.IsInternal = true;
+				p.IsUnique = true;
+				p.ToLowerCase = true;
+				p.TitanIndex = true;
 			p = AddProp(user, "Password", "Pa", typeof(string));
 				p.LenMin = 8;
 				p.LenMax = 32;

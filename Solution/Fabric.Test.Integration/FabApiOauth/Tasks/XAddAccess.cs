@@ -96,7 +96,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountTokens() {
 			IWeaverQuery q = GetVertexByPropQuery<OauthAccess>(
-				".sideEffect{}"+ //TODO: resolve "sideEffect" workaround
+				".scatter()"+ //TODO: resolve "scatter" workaround
 				".hasNot('"+PropDbName.OauthAccess_Token+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
 			return int.Parse(data.Result.TextList[0]);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/19/2013 3:23:15 PM
+// Generated on 6/19/2013 8:05:15 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -40,6 +40,9 @@ namespace Fabric.Api.Meta {
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
 					break;
 
+				case "App.NameKey":
+					break;
+
 				case "App.Secret":
 					pValue.Len = 32;
 					pValue.ValidRegex = @"^[a-zA-Z0-9]*$";
@@ -49,6 +52,9 @@ namespace Fabric.Api.Meta {
 					pValue.LenMax = 128;
 					pValue.LenMin = 1;
 					pValue.ValidRegex = @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$";
+					break;
+
+				case "Class.NameKey":
 					break;
 
 				case "Class.Disamb":
@@ -122,6 +128,9 @@ namespace Fabric.Api.Meta {
 					pValue.LenMax = 16;
 					pValue.LenMin = 4;
 					pValue.ValidRegex = @"^[a-zA-Z0-9_]*$";
+					break;
+
+				case "User.NameKey":
 					break;
 
 				case "User.Password":

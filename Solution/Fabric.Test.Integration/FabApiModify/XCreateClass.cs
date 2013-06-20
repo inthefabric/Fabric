@@ -119,8 +119,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: enable this [TestCase("human", null)]
-		//TEST: enable this [TestCase("LOCATION", "GeoGraphiCal")]
+		[TestCase("human", null)]
+		[TestCase("LOCATION", "GeoGraphiCal")]
 		public void ErrNameDisambDuplicate(string pName, string pDisamb) {
 			vName = pName;
 			vDisamb = pDisamb;

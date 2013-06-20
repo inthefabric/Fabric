@@ -534,6 +534,7 @@ namespace Fabric.Db.Data.Setups {
 			var c = new Class();
 			c.ArtifactId = (byte)pId;
 			c.Name = pName;
+			c.NameKey = pName.ToLower();
 			c.Disamb = pDisamb;
 			c.Note = null;
 

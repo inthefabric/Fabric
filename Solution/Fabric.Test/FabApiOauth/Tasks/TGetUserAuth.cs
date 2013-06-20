@@ -16,11 +16,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 	public class TGetUserAuth {
 
 		private const string QueryGetUserAuth =
-			"g.query()"+
-				".has('"+PropDbName.User_Name+
-				"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
-			".vertices()"+
-				"._()"+
+			"g.V('"+PropDbName.User_NameKey+"',_P0)"+
 				".has('"+PropDbName.User_Password+"',Tokens.T.eq,_P1);";
 
 		private string vUsername;
@@ -64,7 +60,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vUsageMap.Increment(GetUserAuth.Query.GetUser+"");
 
 			Assert.AreEqual(QueryGetUserAuth, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vUsername);
+			TestUtil.CheckParam(pQuery.Params, "_P0", vUsername.ToLower());
 			TestUtil.CheckParam(pQuery.Params, "_P1", FabricUtil.HashPassword(vPassword));
 
 			return vGetUserAuthResult;

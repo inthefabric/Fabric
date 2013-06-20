@@ -17,6 +17,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			"_V1=[];"+ //Member
 			"_V2=g.addVertex(["+
 				PropDbName.User_Name+":_TP,"+
+				PropDbName.User_NameKey+":_TP,"+
 				PropDbName.User_Password+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
@@ -66,6 +67,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vName,
+				vName.ToLower(),
 				FabricUtil.HashPassword(vPassword),
 				vNewArtifactId,
 				vUtcNow.Ticks,

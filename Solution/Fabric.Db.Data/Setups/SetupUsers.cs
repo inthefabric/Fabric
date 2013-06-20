@@ -260,6 +260,7 @@ namespace Fabric.Db.Data.Setups {
 			var a = new App();
 			a.ArtifactId = (long)pId;
 			a.Name = pName;
+			a.NameKey = pName.ToLower();
 			a.Secret = pSecret;
 
 			vSet.AddVertex(a, vTestMode);
@@ -274,6 +275,7 @@ namespace Fabric.Db.Data.Setups {
 			var u = new User();
 			u.ArtifactId = (byte)pId;
 			u.Name = pName;
+			u.NameKey = pName.ToLower();
 			u.Password = FabricUtil.HashPassword(pPass);
 
 			vSet.AddVertex(u, vTestMode);

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/18/2013 3:43:34 PM
+// Generated on 6/19/2013 8:05:05 PM
 
 using System;
 using Fabric.Infrastructure.Db;
@@ -26,10 +26,14 @@ namespace Fabric.Infrastructure.Domain {
 		void ArtifactCreated(long pValue);
 		void AppName(string pValue, string pParamName);
 		void AppName(string pValue);
+		void AppNameKey(string pValue, string pParamName);
+		void AppNameKey(string pValue);
 		void AppSecret(string pValue, string pParamName);
 		void AppSecret(string pValue);
 		void ClassName(string pValue, string pParamName);
 		void ClassName(string pValue);
+		void ClassNameKey(string pValue, string pParamName);
+		void ClassNameKey(string pValue);
 		void ClassDisamb(string pValue, string pParamName);
 		void ClassDisamb(string pValue);
 		void ClassNote(string pValue, string pParamName);
@@ -62,6 +66,8 @@ namespace Fabric.Infrastructure.Domain {
 		void UrlAbsoluteUrl(string pValue);
 		void UserName(string pValue, string pParamName);
 		void UserName(string pValue);
+		void UserNameKey(string pValue, string pParamName);
+		void UserNameKey(string pValue);
 		void UserPassword(string pValue, string pParamName);
 		void UserPassword(string pValue);
 		void FactorId(long pValue, string pParamName);
@@ -218,6 +224,16 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public void AppNameKey(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AppNameKey(string pValue) {
+			AppNameKey(pValue, "NameKey");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public void AppSecret(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
 			MatchesRegex(pParamName, pValue, @"^[a-zA-Z0-9]*$");
@@ -240,6 +256,16 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ClassName(string pValue) {
 			ClassName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassNameKey(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void ClassNameKey(string pValue) {
+			ClassNameKey(pValue, "NameKey");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -427,6 +453,16 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UserName(string pValue) {
 			UserName(pValue, "Name");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UserNameKey(string pValue, string pParamName) {
+			NotNull(pParamName, pValue);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void UserNameKey(string pValue) {
+			UserNameKey(pValue, "NameKey");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

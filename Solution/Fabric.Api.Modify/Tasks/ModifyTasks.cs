@@ -67,8 +67,26 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			//TODO: Implement an ElasticSearch query using case-insensitive name/disamb indexes
-			return null;
+			Class c = Weave.Inst.Graph
+				.V.ExactIndex<Class>(x => x.NameKey, pName.ToLower())
+				.CustomStep("scatter()"); //TODO: resolve "scatter" workaround
+			IWeaverQuery q;
+
+			if ( pDisamb == null ) {
+				q = c.HasNot(x => x.Disamb).ToQuery();
+			}
+			else {
+				q = c.CustomStep(
+					"filter{"+
+						"_DI=it.getProperty('"+PropDbName.Class_Disamb+"');"+
+						"(_DI && _DI.toLowerCase()==_P1);"+
+					"}")
+					.ToQuery();
+
+				q.AddParam(new WeaverQueryVal(pDisamb.ToLower()));
+			}
+
+			return pApiCtx.DbSingle<Class>("GetClassByNameDisamb", q);
 		}
 
 
@@ -79,7 +97,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 			IWeaverQuery q = 
 				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
-					.CustomStep("sideEffect{}") //TODO: resolve "sideEffect" workaround
+					.CustomStep("scatter()") //TODO: resolve "scatter" workaround
 					.HasNot(x => x.Deleted) //Factor is not deleted
 					.As(out factorAlias)
 				.InMemberCreates.FromMember
@@ -253,6 +271,7 @@ namespace Fabric.Api.Modify.Tasks {
 				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			var c = new Class();
 			c.Name = pName;
+			c.NameKey = pName.ToLower();
 			c.Disamb = pDisamb;
 			c.Note = pNote;
 			c.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();

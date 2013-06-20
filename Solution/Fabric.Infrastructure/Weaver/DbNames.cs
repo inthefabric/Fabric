@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/18/2013 3:43:34 PM
+// Generated on 6/19/2013 8:05:06 PM
 
 using System;
 using System.Collections.Generic;
@@ -105,9 +105,11 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string Artifact_Created = "A_Cr";
 
 		public const string App_Name = "Ap_Na";
+		public const string App_NameKey = "Ap_NK";
 		public const string App_Secret = "Ap_Se";
 
 		public const string Class_Name = "Cl_Na";
+		public const string Class_NameKey = "Cl_NK";
 		public const string Class_Disamb = "Cl_Di";
 		public const string Class_Note = "Cl_No";
 
@@ -130,6 +132,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string Url_AbsoluteUrl = "Ur_Ab";
 
 		public const string User_Name = "U_Na";
+		public const string User_NameKey = "U_NK";
 		public const string User_Password = "U_Pa";
 
 		public const string Factor_FactorId = "F_Id";

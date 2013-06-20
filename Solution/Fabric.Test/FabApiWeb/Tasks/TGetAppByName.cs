@@ -11,14 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TGetAppByName : TWebTasks {
 
-		private const string Cont = "com.thinkaurelius.titan.core.attribute.Text.CONTAINS";
-
-		private const string Query =
-			"g.query()"+
-				".has('"+PropDbName.App_Name+"',"+Cont+",_P0)"+
-				".has('"+PropDbName.App_Name+"',"+Cont+",_P1)"+
-				".has('"+PropDbName.App_Name+"',"+Cont+",_P2)"+
-			".vertices();";
+		private const string Query = "g.V('"+PropDbName.App_NameKey+"',_P0);";
 
 		private string vName;
 		private App vAppResult;
@@ -43,9 +36,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			UsageMap.Increment("GetAppByName");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", "My");
-			TestUtil.CheckParam(pQuery.Params, "_P1", "Test");
-			TestUtil.CheckParam(pQuery.Params, "_P2", "App");
+			TestUtil.CheckParam(pQuery.Params, "_P0", vName.ToLower());
 
 			return vAppResult;
 		}

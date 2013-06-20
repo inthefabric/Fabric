@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
+using ServiceStack.Text;
+using Weaver.Core.Elements;
+using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Infrastructure {
 
@@ -36,6 +41,23 @@ namespace Fabric.Infrastructure {
 			}
 
 			return sb.ToString();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		// Querying
+		/*--------------------------------------------------------------------------------------------*/
+		//TODO: Move this into Weaver
+		public static IWeaverParamElastic<T>[] BuildElasticParams<T>(
+						Expression<Func<T,object>> pProperty, string pText) where T : IWeaverElement {
+			string[] tokens = pText.Split(' ');
+			IList<IWeaverParamElastic<T>> list = new List<IWeaverParamElastic<T>>();
+
+			foreach ( string t in tokens ) {
+				list.Add(new WeaverParamElastic<T>(pProperty, WeaverParamElasticOp.Contains, t));
+			}
+
+			return list.ToArray();
 		}
 
 	}

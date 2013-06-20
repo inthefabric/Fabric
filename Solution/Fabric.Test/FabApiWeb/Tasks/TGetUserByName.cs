@@ -11,11 +11,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 	[TestFixture]
 	public class TGetUserByName : TWebTasks {
 
-		private const string Query =
-			"g.query()"+
-				".has('"+PropDbName.User_Name+
-					"',com.thinkaurelius.titan.core.attribute.Text.CONTAINS,_P0)"+
-			".vertices();";
+		private const string Query = "g.V('"+PropDbName.User_NameKey+"',_P0);";
 
 		private string vName;
 		private User vUserResult;
@@ -38,7 +34,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			UsageMap.Increment("GetUserByName");
 
 			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vName);
+			TestUtil.CheckParam(pQuery.Params, "_P0", vName.ToLower());
 
 			return vUserResult;
 		}

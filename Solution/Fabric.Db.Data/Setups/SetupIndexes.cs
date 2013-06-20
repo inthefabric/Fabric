@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/19/2013 3:23:13 PM
+// Generated on 6/19/2013 8:12:16 PM
 
 namespace Fabric.Db.Data.Setups {
 
@@ -31,11 +31,13 @@ namespace Fabric.Db.Data.Setups {
 			//App
 			pSet.AddIndexQuery(BuildGroup("Ap", 5));
 			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Na", "String", false, true));
+			pSet.AddIndexQuery(BuildKey("Ap", "Ap_NK", "String", true, false));
 			pSet.AddIndexQuery(BuildKey("Ap", "Ap_Se", "String", false, false));
 
 			//Class
 			pSet.AddIndexQuery(BuildGroup("Cl", 6));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Na", "String", false, true));
+			pSet.AddIndexQuery(BuildKey("Cl", "Cl_NK", "String", true, false));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_Di", "String", false, true));
 			pSet.AddIndexQuery(BuildKey("Cl", "Cl_No", "String", false, false));
 
@@ -69,7 +71,8 @@ namespace Fabric.Db.Data.Setups {
 
 			//User
 			pSet.AddIndexQuery(BuildGroup("U", 12));
-			pSet.AddIndexQuery(BuildKey("U", "U_Na", "String", false, true));
+			pSet.AddIndexQuery(BuildKey("U", "U_Na", "String", false, false));
+			pSet.AddIndexQuery(BuildKey("U", "U_NK", "String", true, false));
 			pSet.AddIndexQuery(BuildKey("U", "U_Pa", "String", false, false));
 
 			//Factor
@@ -134,6 +137,7 @@ namespace Fabric.Db.Data.Setups {
 				},
 				new [] {
 					"Ap_Na",
+					"Ap_NK",
 					"Ap_Se",
 					"E_Id",
 					"E_Ad",
@@ -150,6 +154,7 @@ namespace Fabric.Db.Data.Setups {
 				},
 				new [] {
 					"Ap_Na",
+					"Ap_NK",
 					"Ap_Se",
 					"M_Id"
 				}
@@ -244,6 +249,7 @@ namespace Fabric.Db.Data.Setups {
 				},
 				new [] {
 					"U_Na",
+					"U_NK",
 					"U_Pa",
 					"E_Id",
 					"E_Ad",
@@ -260,6 +266,7 @@ namespace Fabric.Db.Data.Setups {
 				},
 				new [] {
 					"U_Na",
+					"U_NK",
 					"U_Pa",
 					"M_Id"
 				}
@@ -487,6 +494,7 @@ namespace Fabric.Db.Data.Setups {
 					"OA_Ex",
 					"OA_CO",
 					"Ap_Na",
+					"Ap_NK",
 					"Ap_Se"
 				}
 			));
@@ -503,6 +511,7 @@ namespace Fabric.Db.Data.Setups {
 					"OA_Ex",
 					"OA_CO",
 					"U_Na",
+					"U_NK",
 					"U_Pa"
 				}
 			));
@@ -516,6 +525,7 @@ namespace Fabric.Db.Data.Setups {
 					"OD_Id",
 					"OD_Do",
 					"Ap_Na",
+					"Ap_NK",
 					"Ap_Se"
 				}
 			));
@@ -531,6 +541,7 @@ namespace Fabric.Db.Data.Setups {
 					"OG_Co",
 					"OG_Ex",
 					"Ap_Na",
+					"Ap_NK",
 					"Ap_Se"
 				}
 			));
@@ -546,6 +557,7 @@ namespace Fabric.Db.Data.Setups {
 					"OG_Co",
 					"OG_Ex",
 					"U_Na",
+					"U_NK",
 					"U_Pa"
 				}
 			));
@@ -560,6 +572,7 @@ namespace Fabric.Db.Data.Setups {
 					"OS_Al",
 					"OS_Cr",
 					"Ap_Na",
+					"Ap_NK",
 					"Ap_Se"
 				}
 			));
@@ -574,6 +587,7 @@ namespace Fabric.Db.Data.Setups {
 					"OS_Al",
 					"OS_Cr",
 					"U_Na",
+					"U_NK",
 					"U_Pa"
 				}
 			));

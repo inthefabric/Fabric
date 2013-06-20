@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private const string Query = 
 			"g.V('"+PropDbName.Factor_FactorId+"',_P0)"+
-				".sideEffect{}"+
+				".scatter()"+
 				".hasNot('"+PropDbName.Factor_Deleted+"')"+
 				".as('step5')"+
 			".inE('"+EdgeDbName.MemberCreatesFactor+"').outV"+

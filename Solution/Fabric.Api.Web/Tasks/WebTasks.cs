@@ -9,8 +9,6 @@ using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 using Weaver.Core.Util;
-using Weaver.Titan;
-using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -30,29 +28,17 @@ namespace Fabric.Api.Web.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public User GetUserByName(IApiContext pApiCtx, string pName) {
-			IWeaverQuery q = Weave.Inst.TitanGraph()
-				.QueryV().ElasticIndex(
-					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, pName)
-				)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.NameKey, pName.ToLower())
 				.ToQuery();
 
 			return pApiCtx.DbSingle<User>("GetUserByName", q);
-
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetAppByName(IApiContext pApiCtx, string pName) {
-			string[] tokens = pName.Split(' ');
-			int n = tokens.Length;
-			var elasticParams = new WeaverParamElastic<App>[n];
-
-			for ( int i = 0 ; i < n ; ++i ) {
-				elasticParams[i] = new WeaverParamElastic<App>(
-					x => x.Name, WeaverParamElasticOp.Contains, tokens[i]);
-			}
-
-			IWeaverQuery q = Weave.Inst.TitanGraph()
-				.QueryV().ElasticIndex(elasticParams)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.NameKey, pName.ToLower())
 				.ToQuery();
 
 			App app = pApiCtx.DbSingle<App>("GetAppByName", q);
@@ -233,6 +219,7 @@ namespace Fabric.Api.Web.Tasks {
 								out Action<IWeaverVarAlias<Member>> pSetMemberCreatesAction) {
 			var user = new User();
 			user.Name = pName;
+			user.NameKey = pName.ToLower();
 			user.Password = FabricUtil.HashPassword(pPassword);
 			user.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
 			user.Created = pApiCtx.UtcNow.Ticks;
@@ -285,6 +272,7 @@ namespace Fabric.Api.Web.Tasks {
 
 			var app = new App();
 			app.Name = pName;
+			app.NameKey = pName.ToLower();
 			app.Secret = pApiCtx.Code32;
 			app.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
 			app.Created = pApiCtx.UtcNow.Ticks;

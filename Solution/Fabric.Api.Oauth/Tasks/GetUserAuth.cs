@@ -6,8 +6,6 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
-using Weaver.Titan;
-using Weaver.Titan.Steps.Parameters;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
@@ -49,11 +47,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			IWeaverQuery q = 
-				Weave.Inst.TitanGraph()
-				.QueryV().ElasticIndex(
-					new WeaverParamElastic<User>(x => x.Name, WeaverParamElasticOp.Contains, vUsername)
-				)
-				.CustomStep("_()") //TODO: resolve "underscore" workaround
+				Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.NameKey, vUsername.ToLower())
 				.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 				.ToQuery();
 

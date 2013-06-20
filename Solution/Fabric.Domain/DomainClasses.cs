@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/18/2013 3:43:33 PM
+// Generated on 6/19/2013 8:05:03 PM
 
 using System;
 using System.Collections.Generic;
@@ -516,6 +516,9 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		public virtual string NameKey { get; set; }
+
+		[WeaverItemProperty]
 		public virtual string Secret { get; set; }
 
 
@@ -535,6 +538,10 @@ namespace Fabric.Domain {
 			
 			if ( pData.ContainsKey("Ap_Na") ) {
 				Name = pData["Ap_Na"];
+			}
+			
+			if ( pData.ContainsKey("Ap_NK") ) {
+				NameKey = pData["Ap_NK"];
 			}
 			
 			if ( pData.ContainsKey("Ap_Se") ) {
@@ -582,6 +589,9 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		public virtual string NameKey { get; set; }
+
+		[WeaverItemProperty]
 		public virtual string Disamb { get; set; }
 
 		[WeaverItemProperty]
@@ -604,6 +614,10 @@ namespace Fabric.Domain {
 			
 			if ( pData.ContainsKey("Cl_Na") ) {
 				Name = pData["Cl_Na"];
+			}
+			
+			if ( pData.ContainsKey("Cl_NK") ) {
+				NameKey = pData["Cl_NK"];
 			}
 			
 			if ( pData.ContainsKey("Cl_Di") ) {
@@ -919,6 +933,9 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverItemProperty]
+		public virtual string NameKey { get; set; }
+
+		[WeaverItemProperty]
 		public virtual string Password { get; set; }
 
 
@@ -938,6 +955,10 @@ namespace Fabric.Domain {
 			
 			if ( pData.ContainsKey("U_Na") ) {
 				Name = pData["U_Na"];
+			}
+			
+			if ( pData.ContainsKey("U_NK") ) {
+				NameKey = pData["U_NK"];
 			}
 			
 			if ( pData.ContainsKey("U_Pa") ) {

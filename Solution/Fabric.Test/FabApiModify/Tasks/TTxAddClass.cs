@@ -15,6 +15,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Member
 			"_V1=g.addVertex(["+
 				PropDbName.Class_Name+":_TP,"+
+				PropDbName.Class_NameKey+":_TP,"+
 				PropDbName.Class_Disamb+":_TP,"+
 				PropDbName.Class_Note+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
@@ -62,6 +63,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vName,
+				vName.ToLower(),
 				vDisamb,
 				vNote,
 				vNewArtifactId,

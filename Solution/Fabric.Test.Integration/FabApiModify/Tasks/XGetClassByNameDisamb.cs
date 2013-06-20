@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 	/*================================================================================================*/
-	//TEST: enable this [TestFixture]
+	[TestFixture]
 	public class XGetClassByNameDisamb : XModifyTasks {
 
 		private string vName;
@@ -26,8 +26,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: enable this [TestCase("MUSKEGON", "MI, Usa")]
-		//TEST: enable this [TestCase("human", null)]
+		[TestCase("MUSKEGON", "MI, Usa")]
+		[TestCase("human", null)]
 		public void Found(string pName, string pDisamb) {
 			vName = pName;
 			vDisamb = pDisamb;
@@ -39,10 +39,10 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: enable this [TestCase("Muskegon", "test")]
-		//TEST: enable this [TestCase("human", "bean")]
-		//TEST: enable this [TestCase("test", null)]
-		//TEST: enable this [TestCase("MUSKEGON", null)]
+		[TestCase("Muskegon", "test")]
+		[TestCase("human", "bean")]
+		[TestCase("test", null)]
+		[TestCase("MUSKEGON", null)]
 		public void NotFound(string pName, string pDisamb) {
 			vName = pName;
 			vDisamb = pDisamb;
