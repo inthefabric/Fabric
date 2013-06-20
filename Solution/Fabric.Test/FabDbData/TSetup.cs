@@ -4,7 +4,6 @@ using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
-using Weaver;
 using Weaver.Core.Query;
 
 namespace Fabric.Test.FabDbData {
@@ -36,7 +35,8 @@ namespace Fabric.Test.FabDbData {
 
 			foreach ( IDataVertex n in ds.Vertices ) {
 				string json = WeaverQueryToJson(n.AddQuery);
-				Log.Debug("["+vertexI+"] -- "+json);
+				//Log.Debug("["+vertexI+"] -- "+json);
+				Log.Debug(json);
 				n.Vertex.Id = (vertexI++)+"";
 			}
 

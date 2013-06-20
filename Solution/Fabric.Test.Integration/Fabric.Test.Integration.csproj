@@ -164,7 +164,8 @@
     <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Titan, Version=0.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Weaver\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>

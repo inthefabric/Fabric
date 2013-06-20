@@ -24,9 +24,6 @@
 				}
 
 				foreach ( IDataEdge edge in ds.Edges ) {
-					System.Console.WriteLine(edge.OutVertex+" / "+edge.Edge.Label+" / "+edge.InVertex);
-					System.Console.WriteLine("OUT: "+ds.GetDataVertex(edge.OutVertex).TestVal);
-					System.Console.WriteLine("IN: "+ds.GetDataVertex(edge.InVertex).TestVal);
 					edge.TestVal = ds.GetDataVertex(edge.OutVertex).TestVal+"|"+
 						edge.Edge.Label+"|"+ds.GetDataVertex(edge.InVertex).TestVal;
 				}

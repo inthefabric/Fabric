@@ -27,12 +27,6 @@ namespace Fabric.Domain.Meta {
 			return (PropSchema.Name.IndexOf('_') != -1);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public bool UseVertexCentricIndexForEdge(SchemaHelperEdge pEdge) {
-			return (PropSchema.IsVertexCentricIndex && 
-				pEdge.GetEdgeHasMany(true) && pEdge.GetEdgeHasMany(false));
-		}
-		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

@@ -45,6 +45,9 @@
     <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Weaver.Titan">
+      <HintPath>..\..\Packages\Weaver\Weaver.Titan.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
@@ -55,12 +58,7 @@
     </Compile>
     <Compile Include="DataEdge.cs" />
     <Compile Include="DataSet.cs" />
-    <Compile Include="Setups\SetupIndexesFuncs.cs" />
-    <Compile Include="Setups\SetupIndexes.cs">
-      <DependentUpon>SetupIndexes.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Setups\SetupIndexes.cs" />
     <Compile Include="Setups\SetupFactors.cs" />
     <Compile Include="Setups\SetupObjects.cs" />
     <Compile Include="Setups\SetupOauth.cs" />
@@ -71,6 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.Domain.Meta\Fabric.Domain.Meta.csproj">
+      <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
+      <Name>Fabric.Domain.Meta</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
@@ -79,12 +81,6 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Setups\SetupIndexes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SetupIndexes.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
