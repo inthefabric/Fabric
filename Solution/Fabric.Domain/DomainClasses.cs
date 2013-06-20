@@ -1,11 +1,10 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/19/2013 8:05:03 PM
+// Generated on 6/20/2013 5:55:27 PM
 
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Fabric.Domain;
 using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
@@ -138,16 +137,6 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "MemberCreatesArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
-
 	}
 	
 	/*================================================================================================*/
@@ -193,16 +182,6 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesPrimaryArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
-
 	}
 	
 	/*================================================================================================*/
@@ -211,16 +190,6 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorUsesRelatedArtifact"; } }
-
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
 
 	}
 	
@@ -231,16 +200,6 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesPrimaryWithArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
-
 	}
 	
 	/*================================================================================================*/
@@ -249,16 +208,6 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesRelatedWithArtifact"; } }
-
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
 
 	}
 	
@@ -269,16 +218,6 @@ namespace Fabric.Domain {
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorDescriptorRefinesTypeWithArtifact"; } }
 
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
-
 	}
 	
 	/*================================================================================================*/
@@ -287,16 +226,6 @@ namespace Fabric.Domain {
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
 		public override string Label { get { return "FactorVectorUsesAxisArtifact"; } }
-
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
 
 	}
 	

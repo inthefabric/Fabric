@@ -15,7 +15,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Fabric.Domain;
 using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
@@ -56,35 +55,6 @@ foreach ( string name in edges ) {
 		public virtual <#= edge.InVertexName #> To<#= edge.InVertexName #> { get { return InVertex; } }
 		public override string Label { get { return "<#= edge.EdgeName #>"; } }
 
-<#
-		WeaverVertexSchema hnOut = SchemaHelper.GetVertex(edge.OutVertexName).VertexSchema;
-		WeaverVertexSchema hnIn = SchemaHelper.GetVertex(edge.InVertexName).VertexSchema;
-		
-		if ( hnOut.IsBaseClass && !hnOut.IsAbstract ) {
-#>
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidOutVertexType(Type pType) {
-			return typeof(Artifact<>).IsAssignableFrom(pType);
-		}*/
-
-<#
-		} //end Out condition
-
-		if ( hnIn.IsBaseClass && !hnIn.IsAbstract ) {
-#>
-		/*--------------------------------------------------------------------------------------------* /
-		public override bool IsValidInVertexType(Type pType) {
-			if ( pType.IsGenericType && pType.GetGenericTypeDefinition() == typeof(Artifact<>) ) {
-				return true;
-			}
-
-			return (pType.BaseType != null && pType.BaseType.IsGenericType &&
-				pType.BaseType.GetGenericTypeDefinition() == typeof(Artifact<>));
-		}*/
-
-<#
-		} //end In condition
-#>
 	}
 	
 <#
