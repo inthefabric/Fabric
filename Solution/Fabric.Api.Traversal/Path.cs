@@ -129,19 +129,8 @@ namespace Fabric.Api.Traversal {
 		public string Script {
 			get {
 				string s = "";
-				int startI = 0;
 
-				if ( vSegments.Count >= 3 ) {
-					IVertexStep vertex = (vSegments[1].Step as IVertexStep);
-					IFuncWhereIdStep whereId = (vSegments[2].Step as IFuncWhereIdStep);
-
-					if ( vertex != null && whereId != null ) {
-						s = vertex.GetKeyIndexScript(whereId.Id);
-						startI = 3;
-					}
-				}
-
-				for ( int i = startI ; i < vSegments.Count ; ++i ) {
+				for ( int i = 0 ; i < vSegments.Count ; ++i ) {
 					s += (s == "" ? "" : ".")+vSegments[i].Script;
 				}
 

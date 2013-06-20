@@ -2,7 +2,6 @@
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -59,32 +58,6 @@ namespace Fabric.Test.FabApiTraversal {
 
 			Assert.AreEqual(expect, p.Script, "Incorrect final Script.");
 			Assert.AreEqual(6, p.GetSegmentCount(), "Incorrect final GetSegmentCount().");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void AddSegmentShortcut() {
-			var p = new Path();
-			const long typeId = 125235;
-			string expectShortcut = "g.V('ArtifactId',"+typeId+"L)";
-			const string script0 = "g.v(0)";
-			const string script3 = "outE('ArtifactUsesArtifactType').inV";
-			string expectScript = expectShortcut+"."+script3;
-			Mock<IStep> mockStep;
-
-			var vertexStep = new Mock<IVertexStep>();
-			vertexStep.Setup(x => x.GetKeyIndexScript(typeId)).Returns(expectShortcut);
-
-			var whereId = new Mock<IFuncWhereIdStep>();
-			whereId.SetupGet(x => x.Id).Returns(typeId);
-
-			TestAddSegmentToPath(p, script0, out mockStep);
-			p.AddSegment(vertexStep.Object, "XXX");
-			p.AddSegment(whereId.Object, "XXX");
-			TestAddSegmentToPath(p, script3, out mockStep);
-
-			Assert.AreEqual(expectScript, p.Script, "Incorrect final Script.");
-			Assert.AreEqual(4, p.GetSegmentCount(), "Incorrect final GetSegmentCount().");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
