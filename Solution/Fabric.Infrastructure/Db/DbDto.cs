@@ -87,16 +87,12 @@ namespace Fabric.Infrastructure.Db {
 				throw new FabArgumentNullFault("DbDto.Id was null.");
 			}
 
-			Type resultType = typeof(T);
+			string idProp = PropDbName.TypeIdMap[typeof(T)];
 
-			//TODO: Implement a type check that works with new DbName functionality
-			/*if ( resultType.Name != Class ) {
-				//IMPROVE: implement more flexible super-class checks
-				if ( resultType != ArtifactType || !ArtifactType.IsAssignableFrom(resultType) ) {
-					throw new Exception("Incorrect conversion from DbDto class '"+
-						Class+"' to type '"+resultType.Name+"'.");
-				}
-			}*/
+			if ( !Data.ContainsKey(idProp) ) {
+				throw new Exception("Incorrect conversion from DbDto class '"+
+					Class+"' to type '"+typeof(T).Name+"'.");
+			}
 
 			T result = new T();
 			result.Id = Id;
