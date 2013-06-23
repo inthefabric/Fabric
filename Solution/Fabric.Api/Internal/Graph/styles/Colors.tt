@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ output extension=".css" #> 
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.Domain.Meta" #>

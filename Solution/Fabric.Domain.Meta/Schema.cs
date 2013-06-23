@@ -137,14 +137,14 @@ namespace Fabric.Domain.Meta {
 			var usesAxis = new KeyValuePair<string, string>("VectorUsesAxis", "VUA");
 			var defines = new KeyValuePair<string, string>("Defines", "D");
 
-			const WeaverEdgeConn ifo = WeaverEdgeConn.InFromOne;
-			const WeaverEdgeConn ifoom = WeaverEdgeConn.InFromOneOrMore;
-			const WeaverEdgeConn ifzom = WeaverEdgeConn.InFromZeroOrMore;
-			//const WeaverEdgeConn ifzoo = WeaverEdgeConn.InFromZeroOrOne;
-			const WeaverEdgeConn oto = WeaverEdgeConn.OutToOne;
-			const WeaverEdgeConn otoom = WeaverEdgeConn.OutToOneOrMore;
-			const WeaverEdgeConn otzom = WeaverEdgeConn.OutToZeroOrMore;
-			const WeaverEdgeConn otzoo = WeaverEdgeConn.OutToZeroOrOne;
+			const WeaverEdgeConn ifo = WeaverEdgeConn.InOne;
+			const WeaverEdgeConn ifoom = WeaverEdgeConn.InOneOrMore;
+			const WeaverEdgeConn ifzom = WeaverEdgeConn.InZeroOrMore;
+			//const WeaverEdgeConn ifzoo = WeaverEdgeConn.InZeroOrOne;
+			const WeaverEdgeConn oto = WeaverEdgeConn.OutOne;
+			const WeaverEdgeConn otoom = WeaverEdgeConn.OutOneOrMore;
+			const WeaverEdgeConn otzom = WeaverEdgeConn.OutZeroOrMore;
+			const WeaverEdgeConn otzoo = WeaverEdgeConn.OutZeroOrOne;
 
 			WeaverEdgeSchema appUsesEmail = AddEdge(app, uses, email, oto, ifzom);
 			WeaverEdgeSchema appDefMem = AddEdge(app, defines, member, otoom, ifo);

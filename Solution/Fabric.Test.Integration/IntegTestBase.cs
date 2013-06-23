@@ -160,8 +160,7 @@ namespace Fabric.Test.Integration {
 
 			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.has('"+PropDbName.Vertex_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
-				".has('"+WeaverUtil.GetPropertyName(Weave.Inst.Config, pProp)+
-				"',Tokens.T.eq,"+pValWithQuotes+")");
+				".has('"+WeaverUtil.GetPropertyDbName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
 			return ApiCtx.DbSingle<T>("TEST.GetVertexByProp", q);
 		}
 

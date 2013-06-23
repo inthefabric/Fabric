@@ -43,8 +43,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Weaver.Core">
-      <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
+    <Reference Include="Weaver.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Titan">
+      <HintPath>..\..\Packages\Weaver.Titan.0.4.0\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +75,7 @@
     <Compile Include="IVertexWithId.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

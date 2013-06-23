@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Core.dll" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver\Weaver.Titan.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.Titan.0.4.0\lib\Weaver.Titan.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Weaver.Core.Elements;
+using Weaver.Titan.Elements;
 
 namespace Fabric.Domain {
 
@@ -46,14 +47,16 @@ foreach ( string name in edgeTypes ) {
 IList<string> edges = SchemaHelper.GetEdges();
 
 foreach ( string name in edges ) {
-	SchemaHelperEdge edge = SchemaHelper.GetEdge(name);
+	SchemaHelperEdge he = SchemaHelper.GetEdge(name);
+	WeaverEdgeSchema edge = he.EdgeSchema;
 #>
 	/*================================================================================================*/
-	public class <#= edge.EdgeName #> : Edge<<#= edge.OutVertexName #>, <#=edge.EdgeTypeName #>, <#= edge.InVertexName #>>, IItemWithId {
+	[WeaverTitanEdge("<#= edge.DbName #>", WeaverEdgeConn.<#= edge.OutVertexConn #>, typeof(<#= he.OutVertexName #>),
+		WeaverEdgeConn.<#= edge.InVertexConn #>, typeof(<#= he.InVertexName #>))]
+	public class <#= he.EdgeName #> : Edge<<#= he.OutVertexName #>, <#=he.EdgeTypeName #>, <#= he.InVertexName #>>, IItemWithId {
 			
-		public virtual <#= edge.OutVertexName #> From<#= edge.OutVertexName #> { get { return OutVertex; } }
-		public virtual <#= edge.InVertexName #> To<#= edge.InVertexName #> { get { return InVertex; } }
-		public override string Label { get { return "<#= edge.EdgeName #>"; } }
+		public virtual <#= he.OutVertexName #> From<#= he.OutVertexName #> { get { return OutVertex; } }
+		public virtual <#= he.InVertexName #> To<#= he.InVertexName #> { get { return InVertex; } }
 
 	}
 	
@@ -86,6 +89,7 @@ foreach ( string name in verts ) {
 	else {
 #>
 	/*================================================================================================*/
+	[WeaverTitanVertex]
 	public <#= abs #>partial class <#= vertex.Name #><#= baseVertex #> {
 	
 <#
@@ -102,7 +106,7 @@ foreach ( string name in verts ) {
 			propType += "?";
 		}
 #>
-		[WeaverItemProperty]
+		[WeaverTitanProperty("<#= prop.DbName #>")]
 		public virtual <#= propType+" "+propName #> { get; set; }
 
 <#

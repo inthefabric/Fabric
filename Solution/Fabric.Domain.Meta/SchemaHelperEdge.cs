@@ -42,8 +42,8 @@ namespace Fabric.Domain.Meta {
 			WeaverEdgeConn c = (pIsOut ? EdgeSchema.OutVertexConn : EdgeSchema.InVertexConn);
 
 			return (pIsOut ?
-				(c == WeaverEdgeConn.OutToOneOrMore || c ==WeaverEdgeConn.OutToZeroOrMore) :
-				(c == WeaverEdgeConn.InFromOneOrMore || c ==WeaverEdgeConn.InFromZeroOrMore)
+				(c == WeaverEdgeConn.OutOneOrMore || c ==WeaverEdgeConn.OutZeroOrMore) :
+				(c == WeaverEdgeConn.InOneOrMore || c ==WeaverEdgeConn.InZeroOrMore)
 			);
 		}
 

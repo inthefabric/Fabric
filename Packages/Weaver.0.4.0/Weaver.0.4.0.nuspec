@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Weaver</id>
+    <version>0.4.0</version>
+    <title>Weaver.Core</title>
+    <authors>Zach Kinstner</authors>
+    <owners>Zach Kinstner</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A fluent, strongly-typed Gremlin script generator (for .NET/C#).</description>
+    <releaseNotes />
+    <copyright>Zach Kinstner</copyright>
+    <language />
+    <tags>Gremlin Titan Neo4j Dex Blueprints TinkerPop</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

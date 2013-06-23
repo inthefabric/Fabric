@@ -42,11 +42,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Weaver.Core">
-      <HintPath>..\..\Packages\Weaver\Weaver.Core.dll</HintPath>
+    <Reference Include="Weaver.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan">
-      <HintPath>..\..\Packages\Weaver\Weaver.Titan.dll</HintPath>
+    <Reference Include="Weaver.Titan, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.Titan.0.4.0\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

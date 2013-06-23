@@ -154,7 +154,7 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomain GetOauthDomainByDomain(IApiContext pApiCtx, long pAppId, string pDomain) {
-			string propName = WeaverUtil.GetPropertyName<OauthDomain>(Weave.Inst.Config, x => x.Domain);
+			string propName = WeaverUtil.GetPropertyDbName<OauthDomain>(x => x.Domain);
 			string filterStep = "filter{it.getProperty('"+propName+"').toLowerCase()==_P1}";
 
 			IWeaverQuery q = Weave.Inst.Graph
