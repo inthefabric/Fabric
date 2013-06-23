@@ -60,7 +60,11 @@
     </Compile>
     <Compile Include="DataEdge.cs" />
     <Compile Include="DataSet.cs" />
-    <Compile Include="Setups\SetupIndexes.cs" />
+    <Compile Include="Setups\SetupIndexes.cs">
+      <DependentUpon>SetupIndexes.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Setups\SetupFactors.cs" />
     <Compile Include="Setups\SetupObjects.cs" />
     <Compile Include="Setups\SetupOauth.cs" />
@@ -89,6 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Setups\SetupIndexes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SetupIndexes.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

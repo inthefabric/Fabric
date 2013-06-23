@@ -52,8 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Weaver\Weaver.Titan.dll</HintPath>
+    <Reference Include="Weaver.Titan, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.Titan.0.4.0\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

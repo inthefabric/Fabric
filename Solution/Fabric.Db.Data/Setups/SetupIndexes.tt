@@ -1,0 +1,94 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.Titan.0.4.0\lib\Weaver.Titan.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Weaver.Core.Elements" #>
+<#@ import namespace="Weaver.Core.Schema" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using System;
+using System.Collections.Generic;
+using Fabric.Domain;
+using Fabric.Infrastructure.Weaver;
+using Weaver.Core.Query;
+using Weaver.Titan;
+using Weaver.Titan.Graph;
+
+namespace Fabric.Db.Data.Setups {
+
+	/*================================================================================================*/
+	public class SetupIndexes {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void SetupAll(DataSet pSet) {
+			var su = new SetupIndexes(pSet);
+		}
+			
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private SetupIndexes(DataSet pSet) {
+			IWeaverQuery q;
+			IWeaverVarAlias gv;
+			IWeaverVarAlias pv;
+			string dbName;
+
+			IWeaverTitanGraph tg = Weave.Inst.TitanGraph();
+			var propMap = new Dictionary<string, IWeaverVarAlias>();
+			int groupId = 2;
+
+<#
+IList<string> verts = SchemaHelper.GetVertices();
+IList<string> edges = SchemaHelper.GetEdges();
+
+foreach ( string name in verts ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
+	if ( hn.VertexSchema.IsBaseClass ) { continue; }
+#>
+			////
+
+			q = tg.TypeGroupOf<<#= name #>>(groupId++);
+			q = WeaverQuery.StoreResultAsVar("<#= hn.VertexSchema.DbName #>", q, out gv);
+			pSet.AddIndexQuery(q);
+
+<#
+	IList<SchemaHelperProp> props = hn.GetProps();
+
+	foreach ( SchemaHelperProp hp in props ) {
+#>
+				dbName = "<#= hp.PropSchema.DbName #>";
+				q = tg.MakeVertexPropertyKey<<#= name #>>(x => x.<#= hp.PropSchema.Name #>, gv).ToQuery();
+				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
+				pSet.AddIndexQuery(q);
+				propMap.Add(dbName, pv);
+
+<#
+	}
+}
+#>
+			////
+
+			Func<string, IWeaverVarAlias> f = (n => propMap[n]);
+<#
+foreach ( string name in edges ) {
+	SchemaHelperEdge hn = SchemaHelper.GetEdge(name);
+#>
+
+			q = Weave.Inst.TitanGraph().BuildEdgeLabel<<#= hn.EdgeSchema.Name #>>(f).ToQuery();
+			pSet.AddIndexQuery(q);
+<#
+}
+#>
+		}
+
+	}
+
+}

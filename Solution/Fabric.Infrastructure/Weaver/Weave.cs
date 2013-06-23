@@ -1,5 +1,9 @@
-﻿using Fabric.Domain.Meta;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Fabric.Domain;
 using Weaver.Core;
+using Weaver.Titan.Elements;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -12,8 +16,25 @@ namespace Fabric.Infrastructure.Weaver {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static WeaverInstance Init() {
-			var s = new Schema();
-			return new WeaverInstance(s.Vertices, s.Edges);
+			Type[] types = Assembly.GetAssembly(typeof(App)).GetTypes();
+			var vertTypes = new List<Type>();
+			var edgeTypes = new List<Type>();
+
+			foreach ( Type t in types ) {
+				object[] atts = t.GetCustomAttributes(typeof(WeaverTitanVertexAttribute), false);
+
+				if ( atts.Length > 0 ) {
+					vertTypes.Add(t);
+				}
+
+				atts = t.GetCustomAttributes(typeof(WeaverTitanEdgeAttribute), false);
+
+				if ( atts.Length > 0 ) {
+					edgeTypes.Add(t);
+				}
+			}
+
+			return new WeaverInstance(vertTypes, edgeTypes);
 		}
 
 	}
