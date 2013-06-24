@@ -99,15 +99,18 @@ foreach ( string name in verts ) {
 	IList<SchemaHelperProp> props = hn.GetProps(false);
 
 	foreach ( SchemaHelperProp hp in props ) { 
-		WeaverPropSchema prop = hp.PropSchema;
+		FabricPropSchema prop = hp.PropSchema;
 		string propType = hp.TypeName;
 		string propName = prop.Name;
 
 		if ( prop.Type.IsValueType && hp.IsSubProp() ) {
 			propType += "?";
 		}
+
+		string index = (prop.TitanIndex == true ? "true" : "false");
+		string elast = (prop.TitanElasticIndex == true ? "true" : "false");
 #>
-		[WeaverTitanProperty("<#= prop.DbName #>")]
+		[WeaverTitanProperty("<#= prop.DbName #>", TitanIndex=<#= index #>, TitanElasticIndex=<#= elast #>)]
 		public virtual <#= propType+" "+propName #> { get; set; }
 
 <#
