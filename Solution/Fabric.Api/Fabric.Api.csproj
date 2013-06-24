@@ -68,9 +68,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
-    <Reference Include="Weaver.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Core, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.4.0\lib\Weaver.Core.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.0.4.1\lib\Weaver.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
