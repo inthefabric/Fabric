@@ -16,9 +16,9 @@ using System;
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
+using Weaver.Core;
 using Weaver.Core.Query;
 using Weaver.Titan;
-using Weaver.Titan.Graph;
 
 namespace Fabric.Db.Data.Setups {
 
@@ -41,7 +41,7 @@ namespace Fabric.Db.Data.Setups {
 			IWeaverVarAlias pv;
 			string dbName;
 
-			IWeaverTitanGraph tg = Weave.Inst.TitanGraph();
+			WeaverInstance wi = Weave.Inst;
 			var propMap = new Dictionary<string, IWeaverVarAlias>();
 			int groupId = 2;
 
@@ -51,11 +51,10 @@ IList<string> edges = SchemaHelper.GetEdges();
 
 foreach ( string name in verts ) {
 	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
-	if ( hn.VertexSchema.IsBaseClass ) { continue; }
 #>
 			////
 
-			q = tg.TypeGroupOf<<#= name #>>(groupId++);
+			q = wi.TitanGraph().TypeGroupOf<<#= name #>>(groupId++);
 			q = WeaverQuery.StoreResultAsVar("<#= hn.VertexSchema.DbName #>", q, out gv);
 			pSet.AddIndexQuery(q);
 
@@ -65,7 +64,7 @@ foreach ( string name in verts ) {
 	foreach ( SchemaHelperProp hp in props ) {
 #>
 				dbName = "<#= hp.PropSchema.DbName #>";
-				q = tg.MakeVertexPropertyKey<<#= name #>>(x => x.<#= hp.PropSchema.Name #>, gv).ToQuery();
+				q = wi.TitanGraph().MakeVertexPropertyKey<<#= name #>>(x => x.<#= hp.PropSchema.Name #>, gv).ToQuery();
 				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
 				pSet.AddIndexQuery(q);
 				propMap.Add(dbName, pv);

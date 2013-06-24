@@ -82,6 +82,7 @@ foreach ( string name in verts ) {
 	if ( vertex.IsBaseClass ) {
 #>
 	/*================================================================================================*/
+	[WeaverTitanVertex] //allows this class to be included in SetupIndexes
 	public <#= abs #>partial class <#= vertex.Name #><#= baseVertex #> {
 	
 <#

@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/23/2013 10:41:10 AM
+// Generated on 6/24/2013 3:28:40 PM
 
 using System;
 using System.Collections.Generic;
@@ -321,6 +321,7 @@ namespace Fabric.Domain {
 
 
 	/*================================================================================================*/
+	[WeaverTitanVertex] //allows this class to be included in SetupIndexes
 	public abstract partial class Vertex {
 	
 		[WeaverTitanProperty("N_FT")]
@@ -343,6 +344,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	[WeaverTitanVertex] //allows this class to be included in SetupIndexes
 	public abstract partial class VertexForAction : Vertex {
 	
 		[WeaverTitanProperty("NA_Pe")]
@@ -377,6 +379,7 @@ namespace Fabric.Domain {
 	}
 
 	/*================================================================================================*/
+	[WeaverTitanVertex] //allows this class to be included in SetupIndexes
 	public partial class Artifact : Vertex {
 	
 		[WeaverTitanProperty("A_AId")]

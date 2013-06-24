@@ -69,6 +69,18 @@ namespace Fabric.Domain.Meta {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public IList<SchemaHelperProp> GetNestedProps(bool pSkipInternal=false, bool pSkipSubs=false) {
+			if ( VertexSchema.BaseVertex == null ) {
+				return GetProps(pSkipInternal, pSkipSubs);
+			}
+
+			var parent = new SchemaHelperVertex(VertexSchema.BaseVertex);
+			List<SchemaHelperProp> props = parent.GetNestedProps(pSkipInternal, pSkipSubs).ToList();
+			props.AddRange(GetProps(pSkipInternal, pSkipSubs));
+			return props;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public IList<SchemaHelperVertexEdge> GetEdges(bool pSkipInternal=false) {
 			return vEdges
 				.Where(r => (!pSkipInternal || !r.IsTargetVertexInternal))
