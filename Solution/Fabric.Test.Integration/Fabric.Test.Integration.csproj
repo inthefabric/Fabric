@@ -141,25 +141,28 @@
     <Reference Include="MsgPack">
       <HintPath>..\..\Packages\MsgPack.Cli.0.3.1\lib\net40-client\MsgPack.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy, Version=0.17.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Nancy.0.17.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Testing, Version=0.17.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Nancy.Testing.0.17.1\lib\net40\Nancy.Testing.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="RexProClient">
       <HintPath>..\..\Packages\RexProClient\RexProClient.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="CsQuery">
       <HintPath>..\..\Packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\..\Packages\Nancy.0.16.1\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Testing">
-      <HintPath>..\..\Packages\Nancy.Testing.0.16.1\lib\net40\Nancy.Testing.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.42.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.42\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="Weaver.Core, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -35,12 +35,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GoogleAnalyticsTracker, Version=1.4.4828.15283, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GoogleAnalyticsTracker, Version=1.5.0.0, Culture=neutral, PublicKeyToken=04ab204e84b117c0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.4.6001\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
+      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.5.000\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
