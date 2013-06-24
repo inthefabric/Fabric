@@ -109,8 +109,20 @@ foreach ( string name in verts ) {
 
 		string index = (prop.TitanIndex == true ? "true" : "false");
 		string elast = (prop.TitanElasticIndex == true ? "true" : "false");
+
+		WeaverEdgeSchema[] vciEdges = prop.GetTitanVertexCentricIndexes();
+		string vci = (vciEdges.Length > 0 ? 
+			",\r\n\t\t\tEdgesForVertexCentricIndexing=new [] {" : "");
+
+		foreach ( WeaverEdgeSchema edge in vciEdges ) {
+			vci += "\r\n\t\t\t\ttypeof("+edge.Name+"),";
+		}
+
+		if ( vci.Length > 0 ) {
+			vci += "\r\n\t\t\t}\r\n\t\t";
+		}
 #>
-		[WeaverTitanProperty("<#= prop.DbName #>", TitanIndex=<#= index #>, TitanElasticIndex=<#= elast #>)]
+		[WeaverTitanProperty("<#= prop.DbName #>", TitanIndex=<#= index #>, TitanElasticIndex=<#= elast #><#= vci #>)]
 		public virtual <#= propType+" "+propName #> { get; set; }
 
 <#

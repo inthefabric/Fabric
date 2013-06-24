@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/24/2013 3:36:29 PM
+// Generated on 6/24/2013 4:40:02 PM
 
 using System;
 using System.Collections.Generic;
@@ -385,7 +385,17 @@ namespace Fabric.Domain {
 		[WeaverTitanProperty("A_AId", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long ArtifactId { get; set; }
 
-		[WeaverTitanProperty("A_Cr", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("A_Cr", TitanIndex=false, TitanElasticIndex=true,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesArtifact),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual long Created { get; set; }
 
 
@@ -964,13 +974,43 @@ namespace Fabric.Domain {
 		[WeaverTitanProperty("F_Id", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long FactorId { get; set; }
 
-		[WeaverTitanProperty("F_Fa", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_Fa", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte FactorAssertionId { get; set; }
 
-		[WeaverTitanProperty("F_Df", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_Df", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual bool IsDefining { get; set; }
 
-		[WeaverTitanProperty("F_Cr", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("F_Cr", TitanIndex=false, TitanElasticIndex=true,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual long Created { get; set; }
 
 		[WeaverTitanProperty("F_Dl", TitanIndex=false, TitanElasticIndex=false)]
@@ -982,55 +1022,225 @@ namespace Fabric.Domain {
 		[WeaverTitanProperty("F_No", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Note { get; set; }
 
-		[WeaverTitanProperty("F_DeT", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_DeT", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Descriptor_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_DiT", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_DiT", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Director_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_DiP", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_DiP", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Director_PrimaryActionId { get; set; }
 
-		[WeaverTitanProperty("F_DiR", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_DiR", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Director_RelatedActionId { get; set; }
 
-		[WeaverTitanProperty("F_EvT", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_EvT", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Eventor_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_EvP", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_EvP", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Eventor_PrecisionId { get; set; }
 
-		[WeaverTitanProperty("F_EvD", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_EvD", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual long? Eventor_DateTime { get; set; }
 
-		[WeaverTitanProperty("F_IdT", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_IdT", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Identor_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_IdV", TitanIndex=true, TitanElasticIndex=true)]
+		[WeaverTitanProperty("F_IdV", TitanIndex=true, TitanElasticIndex=true,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual string Identor_Value { get; set; }
 
-		[WeaverTitanProperty("F_LoT", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_LoT", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Locator_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_LoX", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_LoX", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual double? Locator_ValueX { get; set; }
 
-		[WeaverTitanProperty("F_LoY", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_LoY", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual double? Locator_ValueY { get; set; }
 
-		[WeaverTitanProperty("F_LoZ", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_LoZ", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual double? Locator_ValueZ { get; set; }
 
-		[WeaverTitanProperty("F_VeT", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_VeT", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Vector_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_VeU", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_VeU", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Vector_UnitId { get; set; }
 
-		[WeaverTitanProperty("F_VeP", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_VeP", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual byte? Vector_UnitPrefixId { get; set; }
 
-		[WeaverTitanProperty("F_VeV", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_VeV", TitanIndex=false, TitanElasticIndex=false,
+			EdgesForVertexCentricIndexing=new [] {
+				typeof(MemberCreatesFactor),
+				typeof(FactorUsesPrimaryArtifact),
+				typeof(FactorUsesRelatedArtifact),
+				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
+				typeof(FactorDescriptorRefinesRelatedWithArtifact),
+				typeof(FactorDescriptorRefinesTypeWithArtifact),
+				typeof(FactorVectorUsesAxisArtifact),
+			}
+		)]
 		public virtual long? Vector_Value { get; set; }
 
 
