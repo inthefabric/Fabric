@@ -1,6 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.4.1\lib\Weaver.Core.dll" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.Titan.0.4.1\lib\Weaver.Titan.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.4.2\lib\Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.Titan.0.4.2\lib\Weaver.Titan.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Infrastructure\bin\Debug\Fabric.Infrastructure.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Api.Dto\bin\Debug\Fabric.Api.Dto.dll" #>

@@ -2,20 +2,19 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Weaver.Titan</id>
-    <version>0.4.1</version>
+    <version>0.4.2</version>
     <title>Weaver.Titan</title>
     <authors>Zach Kinstner</authors>
     <owners>Zach Kinstner</owners>
     <licenseUrl>https://github.com/inthefabric/Weaver/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/inthefabric/Weaver</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extends Weaver with Titan-specific datatype and query functionality.</description>
-    <releaseNotes />
+    <description>Extends Weaver with Titan-specific data-type and query functionality.</description>
     <copyright>Zach Kinstner</copyright>
     <language />
-    <tags>Gremlin Titan Blueprints TinkerPop</tags>
+    <tags>Gremlin Titan Neo4j Dex Blueprints TinkerPop</tags>
     <dependencies>
-      <dependency id="Weaver" version="0.4.0" />
+      <dependency id="Weaver" version="0.4.2" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />

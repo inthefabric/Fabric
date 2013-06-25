@@ -107,13 +107,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Weaver.Core, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Core, Version=0.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.4.1\lib\Weaver.Core.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.0.4.2\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Titan, Version=0.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Titan.0.4.1\lib\Weaver.Titan.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.Titan.0.4.2\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
