@@ -42,8 +42,8 @@ namespace Fabric.Api.Modify.Tasks {
 
 			IWeaverStepAs<Member> memAlias;
 
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new User { ArtifactId = pApiCtx.UserId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, pApiCtx.UserId)
 				.DefinesMemberList.ToMember
 					.As(out memAlias)
 				.InAppDefines.FromApp
@@ -94,9 +94,9 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor GetActiveFactorFromMember(IApiContext pApiCtx, long pFactorId, long pMemberId) {
 			IWeaverStepAs<Factor> factorAlias;
-
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new Factor { FactorId = pFactorId })
+			
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Factor>(x => x.FactorId, pFactorId)
 					.CustomStep("scatter()") //TODO: resolve "scatter" workaround
 					.HasNot(x => x.Deleted) //Factor is not deleted
 					.As(out factorAlias)
@@ -113,8 +113,8 @@ namespace Fabric.Api.Modify.Tasks {
 										long? pPrimArtRefId, long? pEdgeArtRefId, long? pDescTypeRefId) {
 			var txb = new TxBuilder();
 
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex(pFactor)
 					.SideEffect(
 						new WeaverStatementSetProperty<Factor>(x => x.Descriptor_TypeId, pDescTypeId)
 					)
@@ -150,8 +150,8 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorDirector(IApiContext pApiCtx, Factor pFactor, byte pDirTypeId,
 																	byte pPrimActId, byte pEdgeActId) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Director_TypeId, pDirTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Director_PrimaryActionId, pPrimActId),
@@ -165,7 +165,8 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
 																	byte pEvePrecId, long pDateTime) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Eventor_TypeId, pEveTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Eventor_PrecisionId, pEvePrecId),
@@ -179,7 +180,8 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId,
 																						string pValue) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Identor_TypeId, pIdenTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Identor_Value, pValue)
@@ -192,7 +194,8 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorLocator(IApiContext pApiCtx, Factor pFactor, byte pLocTypeId, double pX,
 																				double pY, double pZ) {
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Locator_TypeId, pLocTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Locator_ValueX, pX),
@@ -209,7 +212,8 @@ namespace Fabric.Api.Modify.Tasks {
 								long pValue, long pAxisArtId, byte pVecUnitId, byte pVecUnitPrefId) {
 			var txb = new TxBuilder();
 
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(pFactor)
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Vector_TypeId, pVecTypeId),
 					new WeaverStatementSetProperty<Factor>(x => x.Vector_UnitId, pVecUnitId),
@@ -236,7 +240,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor UpdateFactor(IApiContext pApiCtx, Factor pFactor, bool pCompleted, bool pDeleted){
-			Factor facPath = ApiFunc.NewPathFromIndex(pFactor);
+			Factor facPath = Weave.Inst.Graph.V.ExactIndex(pFactor);
 			long now = pApiCtx.UtcNow.Ticks;
 
 			if ( pCompleted ) {

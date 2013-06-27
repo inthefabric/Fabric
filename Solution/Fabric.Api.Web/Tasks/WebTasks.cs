@@ -98,8 +98,8 @@ namespace Fabric.Api.Web.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssign GetMemberTypeAssignByMember(IApiContext pApiCtx, long pMemberId) {
-			IWeaverQuery q = 
-				ApiFunc.NewPathFromIndex(new Member { MemberId = pMemberId })
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Member>(x => x.MemberId, pMemberId)
 				.HasMemberTypeAssign.ToMemberTypeAssign
 				.ToQuery();
 

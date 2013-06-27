@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
-using Weaver.Exec.RexConnect;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -99,7 +99,7 @@ namespace Fabric.Infrastructure.Api {
 			
 			item = new T();
 			((IVertex)item).SetTypeId(pTypeId);
-			IWeaverQuery q = ApiFunc.NewPathFromIndex(item).ToQuery();
+			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(item).ToQuery();
 			item = DbSingle<T>("Get"+typeof(T).Name+"ById", q);
 			
 			if ( item != null ) {

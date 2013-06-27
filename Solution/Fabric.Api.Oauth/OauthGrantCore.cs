@@ -3,6 +3,8 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Weaver;
+using Weaver.Core.Query;
 
 namespace Fabric.Api.Oauth {
 
@@ -89,8 +91,11 @@ namespace Fabric.Api.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IApiContext pContext) {
-			var app = new App { ArtifactId = AppId };
-			app = pContext.DbSingle<App>(Query.GetApp+"", ApiFunc.NewVertexQuery(app));
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.ArtifactId, AppId)
+				.ToQuery();
+
+			App app = pContext.DbSingle<App>(Query.GetApp+"", q);
 
 			if ( app == null ) {
 				throw GetFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
@@ -105,8 +110,11 @@ namespace Fabric.Api.Oauth {
 				return null;
 			}
 
-			var user = new User { ArtifactId = (long)UserId };
-			return pContext.DbSingle<User>(Query.GetUser+"", ApiFunc.NewVertexQuery(user));
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.ArtifactId, (long)UserId)
+				.ToQuery();
+
+			return pContext.DbSingle<User>(Query.GetUser+"", q);
 		}
 
 

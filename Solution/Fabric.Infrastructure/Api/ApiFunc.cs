@@ -1,12 +1,9 @@
 ﻿using System;
-using Fabric.Domain;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 	
 	/*================================================================================================*/
-	public abstract class ApiFunc<TReturn> : ApiFunc, IApiFunc<TReturn> {
+	public abstract class ApiFunc<TReturn> : IApiFunc<TReturn> {
 
 		public IApiContext ApiCtx { get; private set; }
 
@@ -32,24 +29,6 @@ namespace Fabric.Infrastructure.Api {
 			}
 
 			ApiCtx = pApiCtx;
-		}
-
-	}
-
-	/*================================================================================================*/
-	public class ApiFunc {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static T NewPathFromIndex<T>(T pVertexWithId) where T : class, IVertex, new() {
-			return Weave.Inst.Graph.V.ExactIndex(pVertexWithId.GetTypeIdProp<T>(),
-				pVertexWithId.GetTypeId());
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static IWeaverQuery NewVertexQuery<T>(T pVertexWithId) where T : class, IVertex, new() {
-			return NewPathFromIndex(pVertexWithId).ToQuery();
 		}
 
 	}

@@ -3,8 +3,8 @@ using System.Linq;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
+using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
@@ -28,8 +28,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public FuncActiveMemberStep(IPath pPath) : base(pPath) {
 			if ( Script == null ) {
-				IWeaverQuery q = 
-					ApiFunc.NewPathFromIndex(new User { ArtifactId = 0 })
+				IWeaverQuery q = Weave.Inst.Graph
+					.V.ExactIndex<User>(x => x.ArtifactId, 0)
 					.DefinesMemberList.ToMember
 					.InAppDefines.FromApp
 						.Has(x => x.ArtifactId, WeaverStepHasOp.EqualTo, (long)0)
