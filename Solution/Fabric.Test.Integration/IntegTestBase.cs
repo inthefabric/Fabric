@@ -115,7 +115,7 @@ namespace Fabric.Test.Integration {
 
 				q = new WeaverQuery();
 				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
-				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Edgeoad", q);
+				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Reload", q);
 
 				Assert.AreEqual("1", remAllData.Result.GetTextResultsAt(0).ToString(0),
 					"There was an issue with the RemoveAll query!");

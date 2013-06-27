@@ -19,9 +19,6 @@ namespace Fabric.Infrastructure.Db {
 		public string OutVertexId { get; set; }
 		public string InVertexId { get; set; }
 
-		public string Message { get; set; } //TODO: remove?
-		public string Exception { get; set; } //TODO: remove?
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -32,6 +29,8 @@ namespace Fabric.Infrastructure.Db {
 			Element = pElement;
 			Id = Element.Id;
 			Data = Element.Properties;
+
+			Class = Element.Label;
 			OutVertexId = Element.OutVertexId;
 			InVertexId = Element.InVertexId;
 
