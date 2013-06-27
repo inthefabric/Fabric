@@ -53,7 +53,7 @@ namespace Fabric.Infrastructure.Db {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T ToItem<T>() where T : IItemWithId, new() {
+		public T ToItem<T>() where T : IElementWithId, new() {
 			if ( Element.Id == null ) {
 				throw new FabArgumentNullFault("DbDto.Id was null.");
 			}

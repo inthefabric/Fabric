@@ -8,7 +8,7 @@ using Weaver.Core.Query;
 namespace Fabric.Test.Integration.Common {
 
 	/*================================================================================================*/
-	public class TestApiDataAccess<T> : ApiDataAccess<T> where T : IItemWithId, new() {
+	public class TestApiDataAccess<T> : ApiDataAccess<T> where T : IElementWithId, new() {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

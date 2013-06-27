@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/24/2013 4:40:02 PM
+// Generated on 6/27/2013 7:45:19 PM
 
 using System;
 using System.Collections.Generic;
@@ -98,7 +98,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("Ap-U-E", WeaverEdgeConn.OutOne, typeof(App),
 		WeaverEdgeConn.InZeroOrMore, typeof(Email))]
-	public class AppUsesEmail : Edge<App, Uses, Email>, IItemWithId {
+	public class AppUsesEmail : Edge<App, Uses, Email>, IElementWithId {
 			
 		public virtual App FromApp { get { return OutVertex; } }
 		public virtual Email ToEmail { get { return InVertex; } }
@@ -108,7 +108,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("Ap-D-M", WeaverEdgeConn.OutOneOrMore, typeof(App),
 		WeaverEdgeConn.InOne, typeof(Member))]
-	public class AppDefinesMember : Edge<App, Defines, Member>, IItemWithId {
+	public class AppDefinesMember : Edge<App, Defines, Member>, IElementWithId {
 			
 		public virtual App FromApp { get { return OutVertex; } }
 		public virtual Member ToMember { get { return InVertex; } }
@@ -118,7 +118,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("M-H-MTA", WeaverEdgeConn.OutOne, typeof(Member),
 		WeaverEdgeConn.InOne, typeof(MemberTypeAssign))]
-	public class MemberHasMemberTypeAssign : Edge<Member, Has, MemberTypeAssign>, IItemWithId {
+	public class MemberHasMemberTypeAssign : Edge<Member, Has, MemberTypeAssign>, IElementWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -128,7 +128,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("M-HH-MTA", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InOne, typeof(MemberTypeAssign))]
-	public class MemberHasHistoricMemberTypeAssign : Edge<Member, HasHistoric, MemberTypeAssign>, IItemWithId {
+	public class MemberHasHistoricMemberTypeAssign : Edge<Member, HasHistoric, MemberTypeAssign>, IElementWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -138,7 +138,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("M-C-A", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InOne, typeof(Artifact))]
-	public class MemberCreatesArtifact : Edge<Member, Creates, Artifact>, IItemWithId {
+	public class MemberCreatesArtifact : Edge<Member, Creates, Artifact>, IElementWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -148,7 +148,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("M-C-MTA", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InOne, typeof(MemberTypeAssign))]
-	public class MemberCreatesMemberTypeAssign : Edge<Member, Creates, MemberTypeAssign>, IItemWithId {
+	public class MemberCreatesMemberTypeAssign : Edge<Member, Creates, MemberTypeAssign>, IElementWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual MemberTypeAssign ToMemberTypeAssign { get { return InVertex; } }
@@ -158,7 +158,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("M-C-F", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InOne, typeof(Factor))]
-	public class MemberCreatesFactor : Edge<Member, Creates, Factor>, IItemWithId {
+	public class MemberCreatesFactor : Edge<Member, Creates, Factor>, IElementWithId {
 			
 		public virtual Member FromMember { get { return OutVertex; } }
 		public virtual Factor ToFactor { get { return InVertex; } }
@@ -168,7 +168,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("U-U-E", WeaverEdgeConn.OutOne, typeof(User),
 		WeaverEdgeConn.InOneOrMore, typeof(Email))]
-	public class UserUsesEmail : Edge<User, Uses, Email>, IItemWithId {
+	public class UserUsesEmail : Edge<User, Uses, Email>, IElementWithId {
 			
 		public virtual User FromUser { get { return OutVertex; } }
 		public virtual Email ToEmail { get { return InVertex; } }
@@ -178,7 +178,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("U-D-M", WeaverEdgeConn.OutOneOrMore, typeof(User),
 		WeaverEdgeConn.InOne, typeof(Member))]
-	public class UserDefinesMember : Edge<User, Defines, Member>, IItemWithId {
+	public class UserDefinesMember : Edge<User, Defines, Member>, IElementWithId {
 			
 		public virtual User FromUser { get { return OutVertex; } }
 		public virtual Member ToMember { get { return InVertex; } }
@@ -188,7 +188,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("F-UP-A", WeaverEdgeConn.OutOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorUsesPrimaryArtifact : Edge<Factor, UsesPrimary, Artifact>, IItemWithId {
+	public class FactorUsesPrimaryArtifact : Edge<Factor, UsesPrimary, Artifact>, IElementWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -198,7 +198,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("F-UR-A", WeaverEdgeConn.OutOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorUsesRelatedArtifact : Edge<Factor, UsesRelated, Artifact>, IItemWithId {
+	public class FactorUsesRelatedArtifact : Edge<Factor, UsesRelated, Artifact>, IElementWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -208,7 +208,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("F-DRP-A", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorDescriptorRefinesPrimaryWithArtifact : Edge<Factor, DescriptorRefinesPrimaryWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesPrimaryWithArtifact : Edge<Factor, DescriptorRefinesPrimaryWith, Artifact>, IElementWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -218,7 +218,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("F-DRR-A", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorDescriptorRefinesRelatedWithArtifact : Edge<Factor, DescriptorRefinesRelatedWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesRelatedWithArtifact : Edge<Factor, DescriptorRefinesRelatedWith, Artifact>, IElementWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -228,7 +228,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("F-DRT-A", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorDescriptorRefinesTypeWithArtifact : Edge<Factor, DescriptorRefinesTypeWith, Artifact>, IItemWithId {
+	public class FactorDescriptorRefinesTypeWithArtifact : Edge<Factor, DescriptorRefinesTypeWith, Artifact>, IElementWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -238,7 +238,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("F-VUA-A", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorVectorUsesAxisArtifact : Edge<Factor, VectorUsesAxis, Artifact>, IItemWithId {
+	public class FactorVectorUsesAxisArtifact : Edge<Factor, VectorUsesAxis, Artifact>, IElementWithId {
 			
 		public virtual Factor FromFactor { get { return OutVertex; } }
 		public virtual Artifact ToArtifact { get { return InVertex; } }
@@ -248,7 +248,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OA-U-Ap", WeaverEdgeConn.OutOne, typeof(OauthAccess),
 		WeaverEdgeConn.InZeroOrMore, typeof(App))]
-	public class OauthAccessUsesApp : Edge<OauthAccess, Uses, App>, IItemWithId {
+	public class OauthAccessUsesApp : Edge<OauthAccess, Uses, App>, IElementWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -258,7 +258,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OA-U-U", WeaverEdgeConn.OutZeroOrOne, typeof(OauthAccess),
 		WeaverEdgeConn.InZeroOrMore, typeof(User))]
-	public class OauthAccessUsesUser : Edge<OauthAccess, Uses, User>, IItemWithId {
+	public class OauthAccessUsesUser : Edge<OauthAccess, Uses, User>, IElementWithId {
 			
 		public virtual OauthAccess FromOauthAccess { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -268,7 +268,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OD-U-Ap", WeaverEdgeConn.OutOne, typeof(OauthDomain),
 		WeaverEdgeConn.InZeroOrMore, typeof(App))]
-	public class OauthDomainUsesApp : Edge<OauthDomain, Uses, App>, IItemWithId {
+	public class OauthDomainUsesApp : Edge<OauthDomain, Uses, App>, IElementWithId {
 			
 		public virtual OauthDomain FromOauthDomain { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -278,7 +278,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OG-U-Ap", WeaverEdgeConn.OutOne, typeof(OauthGrant),
 		WeaverEdgeConn.InZeroOrMore, typeof(App))]
-	public class OauthGrantUsesApp : Edge<OauthGrant, Uses, App>, IItemWithId {
+	public class OauthGrantUsesApp : Edge<OauthGrant, Uses, App>, IElementWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -288,7 +288,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OG-U-U", WeaverEdgeConn.OutOne, typeof(OauthGrant),
 		WeaverEdgeConn.InZeroOrMore, typeof(User))]
-	public class OauthGrantUsesUser : Edge<OauthGrant, Uses, User>, IItemWithId {
+	public class OauthGrantUsesUser : Edge<OauthGrant, Uses, User>, IElementWithId {
 			
 		public virtual OauthGrant FromOauthGrant { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }
@@ -298,7 +298,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OS-U-Ap", WeaverEdgeConn.OutOne, typeof(OauthScope),
 		WeaverEdgeConn.InZeroOrMore, typeof(App))]
-	public class OauthScopeUsesApp : Edge<OauthScope, Uses, App>, IItemWithId {
+	public class OauthScopeUsesApp : Edge<OauthScope, Uses, App>, IElementWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
 		public virtual App ToApp { get { return InVertex; } }
@@ -308,7 +308,7 @@ namespace Fabric.Domain {
 	/*================================================================================================*/
 	[WeaverTitanEdge("OS-U-U", WeaverEdgeConn.OutOne, typeof(OauthScope),
 		WeaverEdgeConn.InZeroOrMore, typeof(User))]
-	public class OauthScopeUsesUser : Edge<OauthScope, Uses, User>, IItemWithId {
+	public class OauthScopeUsesUser : Edge<OauthScope, Uses, User>, IElementWithId {
 			
 		public virtual OauthScope FromOauthScope { get { return OutVertex; } }
 		public virtual User ToUser { get { return InVertex; } }

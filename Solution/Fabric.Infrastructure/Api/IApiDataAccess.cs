@@ -18,7 +18,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		int GetResultCount();
-		T GetResultAt<T>(int pIndex) where T : IItemWithId, new();
+		T GetResultAt<T>(int pIndex) where T : IElementWithId, new();
 
 		/*--------------------------------------------------------------------------------------------*/
 		int GetTextListCount();

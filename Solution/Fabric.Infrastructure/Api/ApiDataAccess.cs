@@ -64,7 +64,7 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T GetResultAt<T>(int pIndex) where T : IItemWithId, new() {
+		public T GetResultAt<T>(int pIndex) where T : IElementWithId, new() {
 			var d = new DbDto(Result.GetGraphElementsAt(0)[pIndex]);
 			return d.ToItem<T>();
 		}

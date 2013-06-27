@@ -7,7 +7,7 @@ using Weaver.Core.Query;
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
-	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : IItemWithId, new() {
+	public class ApiDataAccess<T> : ApiDataAccess, IApiDataAccess<T> where T : IElementWithId, new() {
 
 		public IList<T> TypedResultList { get; private set; }
 

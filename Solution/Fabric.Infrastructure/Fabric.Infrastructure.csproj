@@ -74,7 +74,13 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\ApiEnums.cs" />
+    <Compile Include="Data\IDataAccess.cs" />
+    <Compile Include="Data\DataAccessFull.cs" />
+    <Compile Include="Data\IDataResult.cs" />
+    <Compile Include="Data\IDataDto.cs" />
+    <Compile Include="Data\DataResult.cs" />
     <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Data\DataDto.cs" />
     <Compile Include="Weaver\DbNames.cs">
       <DependentUpon>DbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>

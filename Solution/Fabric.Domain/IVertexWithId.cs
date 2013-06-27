@@ -1,13 +1,13 @@
 ﻿namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public interface IVertexWithId : IItemWithId {
+	public interface IVertexWithId : IElementWithId {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		long GetTypeId();
-		void SetTypeId(long pTypeId);
+		//void SetTypeId(long pTypeId);
 
 	}
 

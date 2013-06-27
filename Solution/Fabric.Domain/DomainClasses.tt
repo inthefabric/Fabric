@@ -53,7 +53,7 @@ foreach ( string name in edges ) {
 	/*================================================================================================*/
 	[WeaverTitanEdge("<#= edge.DbName #>", WeaverEdgeConn.<#= edge.OutVertexConn #>, typeof(<#= he.OutVertexName #>),
 		WeaverEdgeConn.<#= edge.InVertexConn #>, typeof(<#= he.InVertexName #>))]
-	public class <#= he.EdgeName #> : Edge<<#= he.OutVertexName #>, <#=he.EdgeTypeName #>, <#= he.InVertexName #>>, IItemWithId {
+	public class <#= he.EdgeName #> : Edge<<#= he.OutVertexName #>, <#=he.EdgeTypeName #>, <#= he.InVertexName #>>, IElementWithId {
 			
 		public virtual <#= he.OutVertexName #> From<#= he.OutVertexName #> { get { return OutVertex; } }
 		public virtual <#= he.InVertexName #> To<#= he.InVertexName #> { get { return InVertex; } }

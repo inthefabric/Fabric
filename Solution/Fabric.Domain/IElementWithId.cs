@@ -3,7 +3,7 @@
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public interface IItemWithId {
+	public interface IElementWithId {
 
 		string Id { get; set; }
 

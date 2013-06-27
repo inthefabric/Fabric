@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.Common {
@@ -43,6 +44,15 @@ namespace Fabric.Test.Integration.Common {
 				SharpflakeIds.Add(id);
 				return id;
 			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void OnDataPostExecute(IResponseResult pResult) {
+			base.OnDataPostExecute(pResult);
+			Log.Info("Query: "+pResult.ExecutionMilliseconds+"ms ("+pResult.Response.Timer+"ms)");
+			Log.Info("");
 		}
 
 

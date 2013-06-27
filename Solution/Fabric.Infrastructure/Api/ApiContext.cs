@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
@@ -72,6 +75,54 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public IDataAccess GetData(string pSessionId=null) {
+			var da = new DataAccess();
+			da.Build(this);
+			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute);
+			return da;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public T GetVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new() {
+			T item = Cache.Memory.FindVertex<T>(pTypeId);
+
+			if ( item != null ) {
+				return item;
+			}
+
+			item = new T();
+			item.SetTypeId(pTypeId);
+
+			IDataAccess da = GetData();
+			da.AddQuery(Weave.Inst.Graph.V.ExactIndex(item).ToQuery());
+			item = da.Execute().ToElement<T>();
+
+			if ( item == null ) {
+				Cache.Memory.RemoveVertex<T>(pTypeId);
+			}
+			else {
+				Cache.Memory.AddVertex(item);
+			}
+
+			return item;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void OnDataPreExecute(RexConnDataAccess pRexConnData) {
+			int n = pRexConnData.Context.Request.CmdList.Count;
+			Log.Debug(ContextId, "Data", "PreExec commands: "+n);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void OnDataPostExecute(IResponseResult pResult) {
+			DbQueryExecutionCount++;
+			DbQueryMillis += (int)pResult.Response.Timer;
+			Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted) {
 			var a = NewAccess(pScripted);
 			return DbDataAccess(pQueryName, a);
@@ -111,7 +162,7 @@ namespace Fabric.Infrastructure.Api {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public T DbSingle<T>(string pQueryName, IWeaverScript pScripted)
-																where T : class, IItemWithId, new() {
+																where T : class, IElementWithId, new() {
 			var a = NewAccess<T>(pScripted);
 			IApiDataAccess<T> da = DbDataAccess(pQueryName, a);
 
@@ -131,7 +182,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted)
-																		where T : IItemWithId, new() {
+																		where T : IElementWithId, new() {
 			var a = NewAccess<T>(pScripted);
 			return DbDataAccess(pQueryName, a).TypedResultList;
 		}
@@ -146,7 +197,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted)
-																		where T : IItemWithId, new() {
+																		where T : IElementWithId, new() {
 			return new ApiDataAccess<T>(this, pScripted);
 		}
 
@@ -172,7 +223,7 @@ namespace Fabric.Infrastructure.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess<T> DbDataAccess<T>(string pQueryName,
-											IApiDataAccess<T> pDbQuery) where T : IItemWithId, new() {
+											IApiDataAccess<T> pDbQuery) where T : IElementWithId, new() {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
 			DbQueryMillis += (int)pDbQuery.Result.Response.Timer;
