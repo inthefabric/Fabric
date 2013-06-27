@@ -1,38 +1,21 @@
-﻿//#define REX_CONN_DEBUG
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Text.RegularExpressions;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
-using ServiceStack.Text;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
+using Weaver.Exec.RexConnect;
 
 namespace Fabric.Infrastructure.Api {
 
 	/*================================================================================================*/
 	public class ApiDataAccess : IApiDataAccess {
 
-		private static int TcpCount;
-
 		public IApiContext ApiCtx { get; private set; }
-
-		public string Script { get; private set; }
-		public IDictionary<string, IWeaverQueryVal> Params { get; private set; }
-		public RexConnTcpRequest Request { get; private set; }
-
-		public string ResponseJson { get; private set; }
-		public RexConnTcpResponse Response { get; private set; }
-		public IDbResult Result { get; private set; }
-		public IList<IDbDto> ResultDtoList { get; private set; }
-
-		private string vReqJson;
-		private Exception vUnhandledException;
+		public WeaverRequest Request { get; private set; }
+		public IResponseResult Result { get; private set; }
+		//public IList<IDbDto> ResultDtoList { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,9 +23,9 @@ namespace Fabric.Infrastructure.Api {
 		public ApiDataAccess(IApiContext pContext, string pScript, 
 													IDictionary<string, IWeaverQueryVal> pParams=null) {
 			ApiCtx = pContext;
-			Script = pScript;
-			Params = pParams;
-			Request = BuildRequest(Script, Params);
+			
+			Request = new WeaverRequest(pContext.ContextId.ToString());
+			Request.AddQuery(pScript, pParams);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -50,13 +33,15 @@ namespace Fabric.Infrastructure.Api {
 												this(pContext, pScripted.Script, pScripted.Params) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(IApiContext pContext, IList<IWeaverScript> pScriptedList) {
+		public ApiDataAccess(IApiContext pContext, IEnumerable<IWeaverScript> pScriptedList) {
 			ApiCtx = pContext;
-			Request = BuildRequest(pScriptedList);
+
+			Request = new WeaverRequest(pContext.ContextId.ToString());
+			Request.AddQueries(pScriptedList, true);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiDataAccess(IApiContext pContext, RexConnTcpRequest pRequest) {
+		public ApiDataAccess(IApiContext pContext, WeaverRequest pRequest) {
 			ApiCtx = pContext;
 			Request = pRequest;
 		}
@@ -65,252 +50,45 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Execute() {
-			var sw = new Stopwatch();
-			sw.Start();
-
-			try {
-				++TcpCount;
-
-#if REX_CONN_DEBUG
-				var debugCmd = new RexConnTcpRequestCommand();
-				debugCmd.Cmd = RexConnCommand.Config;
-				debugCmd.Args = new List<string>(new [] { RexConnConfigSetting.Debug, "1" });
-				Request.CmdList.Insert(0, debugCmd);
-#endif
-
-				JsConfig.EmitCamelCaseNames = true;
-				vReqJson = JsonSerializer.SerializeToString(Request);
-				JsConfig.EmitCamelCaseNames = false;
-
-				//Log.Debug("REQUEST: "+vReqJson);
-				ResponseJson = GetRawResult(vReqJson);
-
-				Response = JsonSerializer.DeserializeFromString<RexConnTcpResponse>(ResponseJson);
-
-				if ( Response == null ) {
-					throw new Exception("Response is null.");
-				}
-
-				if ( Response.Err != null ) {
-					throw new Exception("Response has an error.");
-				}
-
-				Result = new DbResult(Response, ResponseJson);
-			}
-			catch ( WebException we ) {
-				vUnhandledException = we;
-
-				Response = new RexConnTcpResponse();
-				Response.Err = we+"";
-				Response.CmdList = new List<RexConnTcpResponseCommand>();
-
-				Stream s = (we.Response == null ? null : we.Response.GetResponseStream());
-
-				if ( s != null ) {
-					var sr = new StreamReader(s);
-					Log.Error(ApiCtx.ContextId, "Grem", sr.ReadToEnd());
-				}
-			}
-			catch ( Exception e ) {
-				vUnhandledException = e;
-				Log.Error(ApiCtx.ContextId, "Unhandled raw: ", ResponseJson);
-
-				Response = new RexConnTcpResponse();
-				Response.Err = e+"";
-				Response.CmdList = new List<RexConnTcpResponseCommand>();
-
-				Result = new DbResult(Response, ResponseJson);
-				Result.Exception = Result.Exception+". Exception: "+e;
-			}
-
-			--TcpCount;
-			Result.ServerTime = (int)sw.ElapsedMilliseconds;
+			var ctx = new RexConnContext(Request, ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
+			var data = new RexConnDataAccess(ctx);
+			Result = data.Execute();
 			LogAction();
-
-			if ( vUnhandledException != null ) {
-				vUnhandledException = new Exception("ApiDataAccess exception:"+
-					"\nQuery = "+JsonSerializer.SerializeToString(Request)+
-					"\nResultString = "+ResponseJson+
-					"\nUnhandedException = "+vUnhandledException, vUnhandledException);
-				throw vUnhandledException;
-			}
-
-			if ( Result.DbDtos != null ) {
-				ResultDtoList = new List<IDbDto>(Result.DbDtos);
-			}
-
-
-			for ( int i = 0 ; i < Response.CmdList.Count ; ++i ) {
-				RexConnTcpResponseCommand rc = Response.CmdList[i];
-
-				if ( rc.Err != null ) {
-					Log.Warn(ApiCtx.ContextId, "DATA", "Response.CmdList["+i+"] error: "+rc.Err);
-				}
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual string GetRawResult(string pReqJson) {
-			TcpClient tcp = new TcpClient(ApiCtx.RexConnUrl, ApiCtx.RexConnPort);
-			tcp.SendBufferSize = tcp.ReceiveBufferSize = 1<<16;
-
-			byte[] dataLen = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(pReqJson.Length));
-			byte[] data = Encoding.ASCII.GetBytes(pReqJson);
-
-			NetworkStream stream = tcp.GetStream();
-			stream.Write(dataLen, 0, dataLen.Length); //begin with the request's string length
-			stream.Write(data, 0, data.Length);
-
-			//Get string length from the first four bytes
-			data = new byte[4];
-			stream.Read(data, 0, data.Length);
-			Array.Reverse(data);
-			int respLen = BitConverter.ToInt32(data, 0);
-
-			//Get response string using the string length
-			var sb = new StringBuilder(respLen);
-
-			while ( sb.Length < respLen ) {
-				data = new byte[respLen];
-				int bytes = stream.Read(data, 0, data.Length);
-
-				if ( bytes == 0 ) {
-					throw new Exception("Empty read from NetworkStream. "+
-						"Expected "+respLen+" chars, received "+sb.Length+" total.");
-				}
-
-				sb.Append(Encoding.ASCII.GetString(data, 0, bytes));
-			}
-
-			//Log.Debug("RESULT: "+respData);
-			return sb.ToString();
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private RexConnTcpRequest BuildRequest(string pScript,
-														IDictionary<string, IWeaverQueryVal> pParams) {
-			var req = new RexConnTcpRequest();
-			req.ReqId = ApiCtx.ContextId.ToString();
-			req.CmdList = new List<RexConnTcpRequestCommand>();
-			req.CmdList.Add(BuildRequestCommand(pScript, pParams));
-			return req;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private RexConnTcpRequest BuildRequest(IList<IWeaverScript> pScriptedList) {
-			var req = new RexConnTcpRequest();
-			req.ReqId = ApiCtx.ContextId.ToString();
-			req.CmdList = new List<RexConnTcpRequestCommand>();
-
-#if REX_CONN_DEBUG
-			var debugCmd = new RexConnTcpRequestCommand();
-			debugCmd.Cmd = RexConnCommand.Config;
-			debugCmd.Args = new List<string>(new[] { RexConnConfigSetting.Debug, "1" });
-			req.CmdList.Add(debugCmd);
-#endif
-
-			AddSessionAction(req, RexConnSessionAction.Start);
-
-			foreach ( IWeaverScript ws in pScriptedList ) {
-				req.CmdList.Add(BuildRequestCommand(ws.Script, ws.Params));
-			}
-
-			AddSessionAction(req, RexConnSessionAction.Commit);
-			AddSessionAction(req, RexConnSessionAction.Close);
-			return req;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static RexConnTcpRequestCommand BuildRequestCommand(string pScript,
-														IDictionary<string, IWeaverQueryVal> pParams) {
-			var cmd = new RexConnTcpRequestCommand();
-			cmd.Cmd = RexConnCommand.Query;
-			cmd.Args = new List<string>();
-
-			string q = FabricUtil.JsonUnquote(pScript);
-
-			if ( pParams == null ) {
-				cmd.Args.Add(q);
-				return cmd;
-			}
-
-			string p = "";
-
-			foreach ( string key in pParams.Keys ) {
-				p += (p.Length > 0 ? "," : "")+"\""+FabricUtil.JsonUnquote(key)+"\":";
-
-				IWeaverQueryVal qv = pParams[key];
-
-				if ( qv.IsString ) {
-					p += "\""+FabricUtil.JsonUnquote(qv.FixedText)+"\"";
-					continue;
-				}
-
-				p += qv.FixedText;
-
-				//Explicitly cast certain parameter types
-				//See: https://github.com/tinkerpop/rexster/issues/295
-
-				const string end = @"(?=$|[^\d])";
-
-				if ( qv.Original is int ) {
-					q = Regex.Replace(q, key+end, key+".toInteger()");
-				}
-				else if ( qv.Original is byte ) {
-					q = Regex.Replace(q, key+end, key+".byteValue()");
-				}
-				else if ( qv.Original is float ) {
-					q = Regex.Replace(q, key+end, key+".toFloat()");
-				}
-			}
-
-			cmd.Args.Add(q);
-			cmd.Args.Add("{"+p+"}");
-			return cmd;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void AddSessionAction(RexConnTcpRequest pReq, string pAction) {
-			var cmd = new RexConnTcpRequestCommand();
-			cmd.Cmd = RexConnCommand.Session;
-			cmd.Args = new List<string>(new[] { pAction });
-			pReq.CmdList.Add(cmd);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public int GetResultCount() {
-			return (ResultDtoList == null ? -1 : ResultDtoList.Count);
+			return Result.Response.CmdList[0].Results.Count;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public T GetResultAt<T>(int pIndex) where T : IItemWithId, new() {
-			return ResultDtoList[pIndex].ToItem<T>();
+			var d = new DbDto(Result.GetGraphElementsAt(0)[pIndex]);
+			return d.ToItem<T>();
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public int GetTextListCount() {
-			return (Result == null || Result.TextList == null ? -1 : Result.TextList.Count);
+			return Result.GetTextResultsAt(0).Values.Count;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetStringResultAt(int pIndex) {
-			return Result.TextList[pIndex];
+			return Result.GetTextResultsAt(0).ToString(pIndex);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public int GetIntResultAt(int pIndex) {
-			return int.Parse(GetStringResultAt(pIndex));
+			return Result.GetTextResultsAt(0).ToInt(pIndex);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public long GetLongResultAt(int pIndex) {
-			return long.Parse(GetStringResultAt(pIndex));
+			return Result.GetTextResultsAt(0).ToLong(pIndex);
 		}
 
 
@@ -318,24 +96,18 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private void LogAction() {
 			//DBv1: 
-			//	TotalMs, QueryMs, Timestamp, TcpCount, QueryChars
+			//	TotalMs, QueryMs, Timestamp, QueryChars
 
 			const string name = "DBv1";
 			const string x = " | ";
 
 			string v1 =
-				Result.ServerTime +x+
-				Result.QueryTime +x+
+				Result.ExecutionMilliseconds +x+
+				Result.Response.Timer +x+
 				DateTime.UtcNow.Ticks +x+
-				TcpCount +x+
-				vReqJson.Length;
+				Result.RequestJson.Length;
 
-			if ( vUnhandledException == null ) {
-				Log.Info(ApiCtx.ContextId, name, v1);
-			}
-			else {
-				Log.Error(ApiCtx.ContextId, name, v1, vUnhandledException);
-			}
+			Log.Info(ApiCtx.ContextId, name, v1);
 		}
 
 	}

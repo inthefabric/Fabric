@@ -9,6 +9,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Db;
+using RexConnectClient.Core.Result;
 
 namespace Fabric.Api.Traversal {
 
@@ -65,23 +66,25 @@ namespace Fabric.Api.Traversal {
 
 			////
 
-			if ( data.ResultDtoList != null ) {
+			IList<IGraphElement> elems = data.Result.GetGraphElementsAt(0);
+
+			if ( elems != null ) {
 				int max = vLastStep.Count;
 				int count = 0;
 				vModel.DtoList = new List<IDbDto>();
 
-				foreach ( DbDto dbDto in data.ResultDtoList ) {
+				foreach ( IGraphElement elem in elems ) {
 					if ( count++ >= max ) { break; }
-					vModel.DtoList.Add(dbDto);
+					vModel.DtoList.Add(new DbDto(elem));
 					++vModel.Resp.Count;
 				}
 
 				vModel.Resp.StartIndex = vLastStep.Index;
-				vModel.Resp.HasMore = (data.ResultDtoList.Count > max);
+				vModel.Resp.HasMore = (elems.Count > max);
 				return;
 			}
 
-			vModel.NonDtoText = data.ResponseJson;
+			vModel.NonDtoText = data.Result.ResponseJson;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

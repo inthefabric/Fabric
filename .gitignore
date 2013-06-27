@@ -167,3 +167,4 @@ pip-log.txt
 .DS_Store
 _Publish/
 Solution/Fabric.Api/Fabric.Api.Publish.xml
+_Old/

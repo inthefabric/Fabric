@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Fabric.Domain;
-using Fabric.Infrastructure.Db;
-using Weaver.Core.Query;
+﻿using Fabric.Domain;
+using RexConnectClient.Core.Result;
+using Weaver.Exec.RexConnect;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -9,15 +8,8 @@ namespace Fabric.Infrastructure.Api {
 	public interface IApiDataAccess {
 
 		IApiContext ApiCtx { get; }
-
-		string Script { get; }
-		IDictionary<string, IWeaverQueryVal> Params { get; }
-		RexConnTcpRequest Request { get; }
-
-		string ResponseJson { get; }
-		RexConnTcpResponse Response { get; }
-		IDbResult Result { get; }
-		IList<IDbDto> ResultDtoList { get; }
+		WeaverRequest Request { get; }
+		IResponseResult Result { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

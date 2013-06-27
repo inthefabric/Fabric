@@ -117,9 +117,9 @@ namespace Fabric.Test.Integration {
 				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
 				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Edgeoad", q);
 
-				Assert.AreEqual("1", remAllData.Result.TextList[0],
+				Assert.AreEqual("1", remAllData.Result.GetTextResultsAt(0).ToString(0),
 					"There was an issue with the RemoveAll query!");
-				Assert.AreEqual("1", reloadData.Result.TextList[0],
+				Assert.AreEqual("1", reloadData.Result.GetTextResultsAt(0).ToString(0),
 					"There was an issue with the Reload query!");
 				Log.Info("");
 			}

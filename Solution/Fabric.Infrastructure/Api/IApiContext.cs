@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
-using Fabric.Infrastructure.Db;
 using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
@@ -42,8 +41,8 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		IApiDataAccess DbData(string pQueryName, IList<IWeaverScript> pScriptedList);
 		
-		/*--------------------------------------------------------------------------------------------*/
-		IApiDataAccess DbData(string pQueryName, RexConnTcpRequest pRequest);
+		/*--------------------------------------------------------------------------------------------* /
+		IApiDataAccess DbData(string pQueryName, WeaverRequest pRequest);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		T DbVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new();

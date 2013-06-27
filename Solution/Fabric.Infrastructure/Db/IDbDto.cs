@@ -1,21 +1,16 @@
-﻿using Fabric.Domain;
-using ServiceStack.Text;
+﻿using System.Collections.Generic;
+using Fabric.Domain;
 
 namespace Fabric.Infrastructure.Db {
 	
 	/*================================================================================================*/
 	public interface IDbDto {
 
-		DbDto.ItemType Item { get; set; }
 		string Id { get; set; }
 		string Class { get; set; }
-		string InVertexId { get; set; }
+		IDictionary<string, string> Data { get; set; }
 		string OutVertexId { get; set; }
-
-		JsonObject Data { get; set; }
-
-		string Message { get; set; }
-		string Exception { get; set; }
+		string InVertexId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

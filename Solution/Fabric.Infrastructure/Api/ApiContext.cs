@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
-using Fabric.Infrastructure.Db;
 using Weaver.Core.Query;
+using Weaver.Exec.RexConnect;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -83,7 +83,7 @@ namespace Fabric.Infrastructure.Api {
 			return DbDataAccess(pQueryName, a);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public IApiDataAccess DbData(string pQueryName, RexConnTcpRequest pRequest) {
 			var a = NewAccess(pRequest);
 			return DbDataAccess(pQueryName, a);
@@ -121,7 +121,7 @@ namespace Fabric.Infrastructure.Api {
 
 			if ( da.TypedResultList.Count > 1 ) {
 				Log.Debug("DbSingle Error > Query: "+a.Request);
-				Log.Debug("DbSingle Error > RawResult: "+da.ResponseJson);
+				Log.Debug("DbSingle Error > RawResult: "+da.Result.ResponseJson);
 				throw new Exception("DbSingle<"+typeof(T).Name+"> expects 1 result, but received "+
 					da.TypedResultList.Count);
 			}
@@ -138,6 +138,7 @@ namespace Fabric.Infrastructure.Api {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		// Hooks for ApiContext subclasses
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual IApiDataAccess NewAccess(IWeaverScript pScripted) {
 			return new ApiDataAccess(this, pScripted);
@@ -154,8 +155,8 @@ namespace Fabric.Infrastructure.Api {
 			return new ApiDataAccess(this, pScriptedList);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual IApiDataAccess NewAccess(RexConnTcpRequest pRequest) {
+		/*--------------------------------------------------------------------------------------------* /
+		protected virtual IApiDataAccess NewAccess(WeaverRequest pRequest) {
 			return new ApiDataAccess(this, pRequest);
 		}
 
@@ -165,7 +166,7 @@ namespace Fabric.Infrastructure.Api {
 		protected virtual IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
-			DbQueryMillis += pDbQuery.Result.QueryTime;
+			DbQueryMillis += (int)pDbQuery.Result.Response.Timer;
 			return pDbQuery;
 		}
 
@@ -174,7 +175,7 @@ namespace Fabric.Infrastructure.Api {
 											IApiDataAccess<T> pDbQuery) where T : IItemWithId, new() {
 			pDbQuery.Execute();
 			DbQueryExecutionCount++;
-			DbQueryMillis += pDbQuery.Result.QueryTime;
+			DbQueryMillis += (int)pDbQuery.Result.Response.Timer;
 			return pDbQuery;
 		}
 

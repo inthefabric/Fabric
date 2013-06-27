@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -8,11 +7,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Fabric.Infrastructure;
-using Fabric.Infrastructure.Db;
 using NUnit.Framework;
 using Rexster;
 using Rexster.Messages;
 using ServiceStack.Text;
+using Weaver.Exec.RexConnect;
 
 namespace Fabric.Test.Integration.FabInfra {
 
@@ -189,9 +188,8 @@ namespace Fabric.Test.Integration.FabInfra {
 			var sw = new Stopwatch();
 			sw.Start();
 
-			var req = new RexConnTcpRequest { ReqId = "1234" };
-			var cmd = new RexConnTcpRequestCommand { Cmd = "query", Args = new[] { TestScript, "" } };
-			req.CmdList = new List<RexConnTcpRequestCommand>(new[] { cmd });
+			var req = new WeaverRequest("1234");
+			req.AddQuery(TestScript);
 			double t0 = sw.Elapsed.TotalMilliseconds;
 
 			JsConfig.EmitCamelCaseNames = true;

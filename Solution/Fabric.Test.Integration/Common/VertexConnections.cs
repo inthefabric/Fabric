@@ -5,6 +5,8 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Elements;
 
 namespace Fabric.Test.Integration.Common {
@@ -30,19 +32,21 @@ namespace Fabric.Test.Integration.Common {
 			OutEdges = new List<VertexConnectionEdge>();
 			InEdges = new List<VertexConnectionEdge>();
 
-			if ( DataAccess.ResultDtoList == null ) {
+			IList<IGraphElement> elems = DataAccess.Result.GetGraphElementsAt(0);
+
+			if ( elems == null ) {
 				return;
 			}
 
-			foreach ( IDbDto dbDto in DataAccess.ResultDtoList ) {
-				if ( dbDto.Item == DbDto.ItemType.Vertex ) {
-					TargetVertices.Add(dbDto);
+			foreach ( IGraphElement elem in elems ) {
+				if ( elem.Type == RexConn.GraphElementType.Vertex ) {
+					TargetVertices.Add(new DbDto(elem));
 				}
 			}
 
-			foreach ( IDbDto dbDto in DataAccess.ResultDtoList ) {
-				if ( dbDto.Item == DbDto.ItemType.Edge ) {
-					AddEdge(dbDto);
+			foreach ( IGraphElement elem in elems ) {
+				if ( elem.Type == RexConn.GraphElementType.Edge ) {
+					AddEdge(new DbDto(elem));
 				}
 			}
 		}

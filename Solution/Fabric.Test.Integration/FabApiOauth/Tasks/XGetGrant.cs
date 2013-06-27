@@ -83,7 +83,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 				".scatter()"+ //TODO: resolve "scatter" workaround
 				".hasNot('"+PropDbName.OauthGrant_Code+"').count()");
 			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
-			return int.Parse(data.Result.TextList[0]);
+			return data.Result.GetTextResultsAt(0).ToInt(0);
 		}
 
 	}

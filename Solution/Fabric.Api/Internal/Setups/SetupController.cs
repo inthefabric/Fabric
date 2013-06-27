@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using Fabric.Api.Common;
 using Fabric.Db.Data;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Db;
-using Nancy;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
+using Weaver.Exec.RexConnect;
+using Request = Nancy.Request;
+using Response = Nancy.Response;
 
 namespace Fabric.Api.Internal.Setups {
 
@@ -68,25 +70,27 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes...");
+			string reqId = ApiCtx.ContextId.ToString();
 
-			var req = new RexConnTcpRequest();
-			req.ReqId = ApiCtx.ContextId.ToString();
-			req.CmdList = new List<RexConnTcpRequestCommand>();
-			ApiDataAccess.AddSessionAction(req, RexConnSessionAction.Start);
-			IApiDataAccess data = ApiCtx.DbData("StartIndexes", req);
+			var req = new WeaverRequest(reqId);
+			req.AddSessionAction(RexConn.SessionAction.Start);
+			var da = new ApiDataAccess(ApiCtx, req);
+			da.Execute();
 
-			req.SessId = data.Response.SessId;
+			string sessId = da.Result.Response.SessId;
 
 			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
-				req.CmdList = new List<RexConnTcpRequestCommand>();
-				req.CmdList.Add(ApiDataAccess.BuildRequestCommand(q.Script, q.Params));
-				ApiCtx.DbData("AddIndex", req);
+				req = new WeaverRequest(reqId, sessId);
+				req.AddQuery(q);
+				da = new ApiDataAccess(ApiCtx, req);
+				da.Execute();
 			}
-			
-			req.CmdList = new List<RexConnTcpRequestCommand>();
-			ApiDataAccess.AddSessionAction(req, RexConnSessionAction.Commit);
-			ApiDataAccess.AddSessionAction(req, RexConnSessionAction.Close);
-			ApiCtx.DbData("CommitIndexes", req);
+
+			req = new WeaverRequest(reqId, sessId);
+			req.AddSessionAction(RexConn.SessionAction.Commit);
+			req.AddSessionAction(RexConn.SessionAction.Close);
+			da = new ApiDataAccess(ApiCtx, req);
+			da.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -120,8 +124,10 @@ namespace Fabric.Api.Internal.Setups {
 				tx.Finish();
 				IApiDataAccess vertexData = ApiCtx.DbData("addVertexTx", tx);
 
-				for ( int i = 0 ; i < vertexData.Result.TextList.Count ; ++i ) {
-					string idStr = vertexData.Result.TextList[i];
+				ITextResultList trl = vertexData.Result.GetTextResultsAt(0);
+
+				for ( int i = 0 ; i < trl.Values.Count ; ++i ) {
+					string idStr = trl.ToString(i);
 
 					if ( idStr == null ) {
 						throw new Exception("Vertex is null at index "+i+".");

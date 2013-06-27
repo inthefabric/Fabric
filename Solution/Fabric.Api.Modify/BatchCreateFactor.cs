@@ -10,6 +10,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
+using RexConnectClient.Core.Result;
 using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
@@ -166,11 +167,11 @@ namespace Fabric.Api.Modify {
 					IApiDataAccess data = ApiCtx.DbData("GetBatchArts"+a, queries.GetRange(a,len));
 
 					for ( int i = 0 ; i < len ; ++i ) {
-						IList<string> list = data.Result.GetTextListForCommandAt(i+1); //Skip Session
+						ITextResultList list = data.Result.GetTextResultsAt(i+1); //Skip Session
 						string val = null;
 
-						if ( list != null && list.Count > 0 ) {
-							val = list[0];
+						if ( list != null && list.Values.Count > 0 ) {
+							val = list.ToString(0);
 						}
 
 						long id;

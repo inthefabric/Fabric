@@ -27,16 +27,16 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string GetRawResult(string pReqJson) {
+		public override void Execute() {
 			var sw = new Stopwatch();
 			sw.Start();
 
-			pReqJson = ((TestApiContext)ApiCtx).AlterRequestJson(pReqJson);
-			string json = base.GetRawResult(pReqJson);
+			base.Execute();
+			//pReqJson = ((TestApiContext)ApiCtx).AlterRequestJson(pReqJson);
+			//string json = base.GetRawResult(pReqJson);
 			
 			Log.Info("Query: "+sw.ElapsedMilliseconds+"ms");
 			Log.Info("");
-			return json;
 		}
 
 	}

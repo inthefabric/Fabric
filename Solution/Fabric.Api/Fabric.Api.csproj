@@ -60,6 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Nancy.Serialization.ServiceStack.0.17.1\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
     </Reference>
+    <Reference Include="RexConnectClient.Core, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\RexConnectClient.0.3.3.0\lib\RexConnectClient.Core.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
@@ -71,6 +74,9 @@
     <Reference Include="Weaver.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Weaver.0.5.0\lib\Weaver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.0\lib\Weaver.Exec.RexConnect.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -103,9 +109,6 @@
     <Compile Include="Services\Views\TraversalHtmlView.cs" />
     <Compile Include="Common\FabResponseController.cs" />
     <Compile Include="Common\HtmlView.cs" />
-    <Compile Include="Internal\Graph\GraphView.cs" />
-    <Compile Include="Internal\Graph\GraphJson.cs" />
-    <Compile Include="Internal\Graph\GraphModel.cs" />
     <Compile Include="Services\Views\IView.cs" />
     <Compile Include="Common\FabRespJsonView.cs" />
     <Compile Include="Services\Views\LoginErrorView.cs" />
@@ -114,9 +117,6 @@
     <Compile Include="Services\OauthLoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\Setups\SetupController.cs" />
-    <Compile Include="Internal\Tables\TableVertex.cs" />
-    <Compile Include="Internal\Tables\TableModel.cs" />
-    <Compile Include="Internal\Tables\TableBrowser.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Common\Controller.cs" />
@@ -129,16 +129,6 @@
     <Content Include="Content\Html\LoginError.html" />
     <Content Include="Content\Html\LoginScope.html" />
     <Content Include="Content\Html\LoginPage.html" />
-    <Content Include="Internal\Graph\index.html" />
-    <Content Include="Internal\Graph\js\d3.min.js" />
-    <Content Include="Internal\Graph\js\jquery-1.6.4.min.js" />
-    <Content Include="Internal\Graph\js\viz.js" />
-    <Content Include="Internal\Graph\styles\Colors.css">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Colors.tt</DependentUpon>
-    </Content>
-    <Content Include="Internal\Graph\styles\main.css" />
     <Content Include="packages.config" />
     <Content Include="..\..\Global\GlobalAppSettings.config">
       <Link>GlobalAppSettings.config</Link>
@@ -147,8 +137,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Internal\Tables\index.html" />
-    <Content Include="Internal\Tables\styles\tables.css" />
     <Content Include="Content\bg0.png" />
     <Content Include="Content\bg1.png" />
     <Content Include="Content\bg2.png" />
@@ -157,12 +145,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\Html\Layout.html" />
     <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Internal\Graph\styles\Colors.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Colors.css</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

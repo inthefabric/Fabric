@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Db;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
@@ -25,14 +26,11 @@ namespace Fabric.Infrastructure.Api {
 		public override void Execute() {
 			base.Execute();
 
-			if ( Result.DbDtos == null ) {
-				return;
-			}
-
+			IList<IGraphElement> elems = Result.GetGraphElementsAt(0);
 			TypedResultList = new List<T>();
 			
-			foreach ( DbDto dbDto in Result.DbDtos ) {
-				TypedResultList.Add(dbDto.ToItem<T>());
+			foreach ( IGraphElement elem in elems ) {
+				TypedResultList.Add(new DbDto(elem).ToItem<T>());
 			}
 		}
 
