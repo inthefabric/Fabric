@@ -1,9 +1,8 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -34,26 +33,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vDisamb = "The awesome version";
 			vClassResult = new Class();
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Class>("GetClassByNameDisamb", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery tx) => GetClass(tx));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vClassResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Class GetClass(IWeaverQuery pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			UsageMap.Increment("GetClassByNameDisamb");
-
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 			string expect = (vDisamb != null ? QueryDisamb : QueryNoDisamb);
 
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_P0", vName.ToLower());
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vName.ToLower());
 
 			if ( vDisamb != null ) {
-				TestUtil.CheckParam(pTx.Params, "_P1", vDisamb.ToLower());
+				TestUtil.CheckParam(cmd.Params, "_P1", vDisamb.ToLower());
 			}
-
-			return vClassResult;
 		}
 
 
@@ -62,13 +57,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void Success(bool pNullDisamb) {
-			if ( pNullDisamb ) {
-				vDisamb = null;
-			}
-
+			vDisamb = (pNullDisamb ? null : vDisamb);
 			Class result = Tasks.GetClassByNameDisamb(MockApiCtx.Object, vName, vDisamb);
 
-			UsageMap.AssertUses("GetClassByNameDisamb", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vClassResult, result, "Incorrect Result.");
 		}
 

@@ -1,9 +1,8 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -32,21 +31,17 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vMemberId = 43266;
 			vFactorResult = new Factor();
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Factor>("GetActiveFactorFromMember", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetActiveFactorFromMember(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vFactorResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Factor GetActiveFactorFromMember(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetActiveFactorFromMember");
-
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vFactorId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vMemberId);
-
-			return vFactorResult;
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vFactorId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vMemberId);
 		}
 
 
@@ -56,7 +51,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		public void Success() {
 			Factor result = Tasks.GetActiveFactorFromMember(MockApiCtx.Object, vFactorId, vMemberId);
 
-			UsageMap.AssertUses("GetActiveFactorFromMember", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vFactorResult, result, "Incorrect Result.");
 		}
 

@@ -1,5 +1,6 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
@@ -29,7 +30,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.V.ExactIndex<Url>(x => x.AbsoluteUrl, pAbsoluteUrl.ToLower())
 				.ToQuery();
 
-			return pApiCtx.NewData().AddQuery(q).Execute().ToElement<Url>();
+			return pApiCtx.Get<Url>(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -56,7 +57,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.Back(memAlias)
 				.ToQuery();
 
-			mem = pApiCtx.NewData().AddQuery(q).Execute().ToElement<Member>();
+			mem = pApiCtx.Get<Member>(q);
 
 			if ( mem != null ) {
 				pApiCtx.Cache.Memory.AddMember(pApiCtx.AppId, pApiCtx.UserId, mem);
@@ -86,7 +87,7 @@ namespace Fabric.Api.Modify.Tasks {
 				q.AddParam(new WeaverQueryVal(pDisamb.ToLower()));
 			}
 
-			return pApiCtx.DbSingle<Class>("GetClassByNameDisamb", q);
+			return pApiCtx.Get<Class>(q);
 		}
 
 
@@ -105,7 +106,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.Back(factorAlias)
 				.ToQuery();
 
-			return pApiCtx.DbSingle<Factor>("GetActiveFactorFromMember", q);
+			return pApiCtx.Get<Factor>(q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

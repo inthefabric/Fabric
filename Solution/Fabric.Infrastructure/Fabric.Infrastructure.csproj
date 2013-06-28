@@ -74,6 +74,7 @@
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiDataAccessT.cs" />
     <Compile Include="Api\ApiEnums.cs" />
+    <Compile Include="Data\ApiContextDataExt.cs" />
     <Compile Include="Data\IDataAccess.cs" />
     <Compile Include="Data\DataAccessFull.cs" />
     <Compile Include="Data\IDataResult.cs" />
