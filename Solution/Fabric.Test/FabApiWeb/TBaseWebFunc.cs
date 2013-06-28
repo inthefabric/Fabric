@@ -15,7 +15,6 @@ namespace Fabric.Test.FabApiWeb {
 		protected Mock<IDomainValidator> MockValidator { get; private set; }
 		protected Mock<IWebTasks> MockTasks { get; private set; }
 		protected Mock<ICacheManager> MockCacheManager { get; private set; }
-		protected Mock<IClassDiskCache> MockClassCache { get; private set; }
 		protected Mock<IMemCache> MockMemCache { get; private set; }
 
 		protected long ApiCtxAppId { get; private set; }
@@ -36,7 +35,6 @@ namespace Fabric.Test.FabApiWeb {
 			MockCacheManager = new Mock<ICacheManager>();
 			MockApiCtx.SetupGet(x => x.Cache).Returns(MockCacheManager.Object);
 
-			MockClassCache = new Mock<IClassDiskCache>();
 			MockMemCache = new Mock<IMemCache>();
 			MockCacheManager.SetupGet(x => x.Memory).Returns(MockMemCache.Object);
 

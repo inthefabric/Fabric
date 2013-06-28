@@ -15,26 +15,26 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		DataAccess AddQuery(string pScript);
-		DataAccess AddQuery(string pScript, IDictionary<string, string> pParams);
-		DataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams);
-		DataAccess AddQuery(IWeaverScript pWeaverScript);
-		DataAccess AddQuery(IEnumerable<IWeaverScript> pWeaverScripts);
+		IDataAccess AddQuery(string pScript);
+		IDataAccess AddQuery(string pScript, IDictionary<string, string> pParams);
+		IDataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams);
+		IDataAccess AddQuery(IWeaverScript pWeaverScript);
+		IDataAccess AddQueries(IEnumerable<IWeaverScript> pWeaverScripts);
 
 		/*--------------------------------------------------------------------------------------------*/
-		DataAccess AddSessionStart();
-		DataAccess AddSessionClose();
-		DataAccess AddSessionRollback();
-		DataAccess AddSessionCommit();
+		IDataAccess AddSessionStart();
+		IDataAccess AddSessionClose();
+		IDataAccess AddSessionRollback();
+		IDataAccess AddSessionCommit();
 
 		/*--------------------------------------------------------------------------------------------*/
-		DataAccess AddConfigDebug(bool pEnable);
-		DataAccess AddConfigPretty(bool pEnable);
+		IDataAccess AddConfigDebug(bool pEnable);
+		IDataAccess AddConfigPretty(bool pEnable);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		DataResult Execute();
+		IDataResult Execute();
 
 	}
 

@@ -35,7 +35,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		IDataAccess GetData(string pSessionId=null);
+		IDataAccess NewData(string pSessionId=null);
 		T GetVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new();
 
 

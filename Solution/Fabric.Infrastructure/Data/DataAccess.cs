@@ -37,31 +37,31 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddQuery(string pScript) {
+		public IDataAccess AddQuery(string pScript) {
 			vReq.AddQuery(pScript);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddQuery(string pScript, IDictionary<string, string> pParams) {
+		public IDataAccess AddQuery(string pScript, IDictionary<string, string> pParams) {
 			vReq.AddQuery(pScript, pParams);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams) {
+		public IDataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams) {
 			vReq.AddQuery(pScript, pParams);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddQuery(IWeaverScript pWeaverScript) {
+		public IDataAccess AddQuery(IWeaverScript pWeaverScript) {
 			vReq.AddQuery(pWeaverScript);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddQuery(IEnumerable<IWeaverScript> pWeaverScripts) {
+		public IDataAccess AddQueries(IEnumerable<IWeaverScript> pWeaverScripts) {
 			vReq.AddQueries(pWeaverScripts, true);
 			return this;
 		}
@@ -69,25 +69,25 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddSessionStart() {
+		public IDataAccess AddSessionStart() {
 			vReq.AddSessionAction(RexConn.SessionAction.Start);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddSessionClose() {
+		public IDataAccess AddSessionClose() {
 			vReq.AddSessionAction(RexConn.SessionAction.Close);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddSessionRollback() {
+		public IDataAccess AddSessionRollback() {
 			vReq.AddSessionAction(RexConn.SessionAction.Rollback);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddSessionCommit() {
+		public IDataAccess AddSessionCommit() {
 			vReq.AddSessionAction(RexConn.SessionAction.Commit);
 			return this;
 		}
@@ -95,13 +95,13 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddConfigDebug(bool pEnable) {
+		public IDataAccess AddConfigDebug(bool pEnable) {
 			vReq.AddConfigSetting(RexConn.ConfigSetting.Debug, (pEnable ? "1" : "0"));
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataAccess AddConfigPretty(bool pEnable) {
+		public IDataAccess AddConfigPretty(bool pEnable) {
 			vReq.AddConfigSetting(RexConn.ConfigSetting.Pretty, (pEnable ? "1" : "0"));
 			return this;
 		}
@@ -109,7 +109,7 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public DataResult Execute() {
+		public IDataResult Execute() {
 			var data = new RexConnDataAccess(vRexConnCtx);
 
 			if ( vPreExecute != null ) {

@@ -46,6 +46,8 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Common\MockDataAccessCmd.cs" />
+    <Compile Include="Common\MockDataAccess.cs" />
     <Compile Include="Common\TestFuncStep.cs" />
     <Compile Include="Common\TestFinalStep.cs" />
     <Compile Include="Common\TestVertexStep.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="FabDbData\TSetup.cs" />
     <Compile Include="FabDbData\TDataEdge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TTestBase.cs" />
     <Compile Include="Util\StepUtil.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

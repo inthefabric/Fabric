@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Fabric.Domain;
 using Fabric.Infrastructure;
+using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
@@ -48,6 +50,16 @@ namespace Fabric.Test.Util {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : IVertex {
+			var tv = new Mock<IWeaverVarAlias<T>>();
+			tv.SetupGet(x => x.Name).Returns(pName);
+			tv.SetupGet(x => x.VarType).Returns(typeof(T));
+			return tv.Object;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static void LogWeaverScript(IWeaverScript pScripted) {
 			string p = "";
 
@@ -74,7 +86,7 @@ namespace Fabric.Test.Util {
 		/*--------------------------------------------------------------------------------------------*/
 		public static NameValueCollection BuildQuery(string pQuery) {
 			var q = new NameValueCollection();
-			if ( string.IsNullOrEmpty(pQuery) ) { return q; }
+			if ( String.IsNullOrEmpty(pQuery) ) { return q; }
 
 			string[] pairs = pQuery.Split('&');
 
@@ -99,7 +111,6 @@ namespace Fabric.Test.Util {
 
 			return q;
 		}
-
 	}
 
 }

@@ -75,7 +75,7 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess GetData(string pSessionId=null) {
+		public IDataAccess NewData(string pSessionId=null) {
 			var da = new DataAccess();
 			da.Build(this);
 			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute);
@@ -93,9 +93,8 @@ namespace Fabric.Infrastructure.Api {
 			item = new T();
 			item.SetTypeId(pTypeId);
 
-			IDataAccess da = GetData();
-			da.AddQuery(Weave.Inst.Graph.V.ExactIndex(item).ToQuery());
-			item = da.Execute().ToElement<T>();
+			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(item).ToQuery();
+			item = NewData().AddQuery(q).Execute().ToElement<T>();
 
 			if ( item == null ) {
 				Cache.Memory.RemoveVertex<T>(pTypeId);

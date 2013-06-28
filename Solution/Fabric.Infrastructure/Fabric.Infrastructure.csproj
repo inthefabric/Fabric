@@ -90,7 +90,6 @@
     <Compile Include="Api\EncryptUtil.cs" />
     <Compile Include="Api\AuthUtil.cs" />
     <Compile Include="Api\ICacheManager.cs" />
-    <Compile Include="Api\IClassDiskCache.cs" />
     <Compile Include="Api\IMemCache.cs" />
     <Compile Include="Api\ServiceOpAttribute.cs" />
     <Compile Include="Api\ServiceOpParamAttribute.cs" />

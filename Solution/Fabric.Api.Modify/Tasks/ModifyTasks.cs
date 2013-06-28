@@ -29,7 +29,8 @@ namespace Fabric.Api.Modify.Tasks {
 				.V.ExactIndex<Url>(x => x.AbsoluteUrl, pAbsoluteUrl.ToLower())
 				.ToQuery();
 
-			return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
+			return pApiCtx.NewData().AddQuery(q).Execute().ToElement<Url>();
+			//return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
