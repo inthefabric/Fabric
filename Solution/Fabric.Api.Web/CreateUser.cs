@@ -7,6 +7,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Web {
 	
@@ -71,11 +72,11 @@ namespace Fabric.Api.Web {
 
 			////
 
-			IApiDataAccess data = ApiCtx.DbData("CreateUserTx", txb.Finish());
+			IDataResult data = ApiCtx.Execute(txb.Finish());
 			
 			var result = new CreateUserResult();
-			result.NewUser = data.GetResultAt<User>(0);
-			result.NewEmail = data.GetResultAt<Email>(1);
+			result.NewUser = data.ToElementAt<User>(0, 0);
+			result.NewEmail = data.ToElementAt<Email>(0, 1);
 			return result;
 		}
 

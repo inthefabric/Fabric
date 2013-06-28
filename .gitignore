@@ -168,3 +168,4 @@ pip-log.txt
 _Publish/
 Solution/Fabric.Api/Fabric.Api.Publish.xml
 _Old/
+Solution/Fabric.Test/test-results

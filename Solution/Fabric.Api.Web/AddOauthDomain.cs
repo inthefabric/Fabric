@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Web {
 	
@@ -29,7 +30,7 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override OauthDomain Execute() {
-			App app = ApiCtx.DbVertexById<App>(vAppId);
+			App app = ApiCtx.GetVertexById<App>(vAppId);
 
 			
 			if ( app == null ) {

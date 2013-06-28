@@ -4,6 +4,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Web {
 
@@ -38,7 +39,7 @@ namespace Fabric.Api.Web {
 
 			////
 
-			User user = ApiCtx.DbVertexById<User>(vUserId);
+			User user = ApiCtx.GetVertexById<User>(vUserId);
 
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);
@@ -59,7 +60,7 @@ namespace Fabric.Api.Web {
 			////
 			
 			txb.RegisterVarWithTxBuilder(appVar);
-			return ApiCtx.DbSingle<App>("CreateAppTx", txb.Finish(appVar));
+			return ApiCtx.Get<App>(txb.Finish(appVar));
 		}
 
 	}

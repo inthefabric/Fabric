@@ -8,6 +8,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb {
 
@@ -31,7 +32,7 @@ namespace Fabric.Test.FabApiWeb {
 			vName = "New Test App";
 			vUserId = 987654;
 
-			vOutAppVar = GetTxVar<App>("APP");
+			vOutAppVar = TestUtil.GetTxVar<App>("APP");
 			vOutSetMemAction = (x => vResultMemAlias = x);
 			IWeaverVarAlias<Member> memVar = new Mock<IWeaverVarAlias<Member>>().Object;
 
@@ -58,24 +59,23 @@ namespace Fabric.Test.FabApiWeb {
 
 			vResultApp = new App();
 			var findUser = new User { ArtifactId = vUserId };
-
-			MockApiCtx
-				.Setup(x => x.DbVertexById<User>(vUserId))
-				.Returns(findUser);
 			
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<App>("CreateAppTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateAppTx(q));
+			var mda = MockDataAccess.Create(x => {});
+			mda.MockResult.SetupToElement(findUser);
+			MockDataList.Add(mda);
+			
+			mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vResultApp);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private App CreateAppTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 			const string expectPartial = "APP;";
-			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			return vResultApp;
+			Assert.AreEqual(expectPartial, cmd.Script, "Incorrect partial script.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -114,10 +114,7 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrUserNotFound() {
-			MockApiCtx
-				.Setup(x => x.DbVertexById<User>(vUserId))
-				.Returns((User)null);
-
+			MockDataList[0].MockResult.SetupToElement<User>(null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

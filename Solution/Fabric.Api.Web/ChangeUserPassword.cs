@@ -3,6 +3,7 @@ using Fabric.Api.Web.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Web {
 	
@@ -35,7 +36,7 @@ namespace Fabric.Api.Web {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override SuccessResult Execute() {
-			User user = ApiCtx.DbVertexById<User>(vUserId);
+			User user = ApiCtx.GetVertexById<User>(vUserId);
 
 			if ( user == null ) {
 				throw new FabNotFoundFault(typeof(User), UserIdParam+"="+vUserId);

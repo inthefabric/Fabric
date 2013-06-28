@@ -4,6 +4,8 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Fabric.Infrastructure.Data;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb {
 
@@ -28,9 +30,9 @@ namespace Fabric.Test.FabApiWeb {
 			vResultApp = new App();
 			vResultDomain = new OauthDomain();
 
-			MockApiCtx
-				.Setup(x => x.DbVertexById<App>(vAppId))
-				.Returns(vResultApp);
+			var mda = MockDataAccess.Create(x => {});
+			mda.MockResult.SetupToElement(vResultApp);
+			MockDataList.Add(mda);
 
 			MockTasks
 				.Setup(x => x.GetOauthDomainByDomain(MockApiCtx.Object, vAppId, vDomain))
@@ -67,7 +69,7 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrAppNotFound() {
-			MockApiCtx.Setup(x => x.DbVertexById<App>(vAppId)).Returns((App)null);
+			MockDataList[0].MockResult.SetupToElement<App>(null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

@@ -10,6 +10,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb {
 
@@ -25,7 +26,6 @@ namespace Fabric.Test.FabApiWeb {
 		private IWeaverVarAlias<Email> vOutEmailVar;
 		private Action<IWeaverVarAlias<Member>> vOutSetMemAction;
 		private IWeaverVarAlias<Member> vResultMemAlias;
-		private IApiDataAccess vResultData;
 		private User vResultUser;
 		private Email vResultEmail;
 		private CreateUserResult vResult;
@@ -38,8 +38,8 @@ namespace Fabric.Test.FabApiWeb {
 			vName = "NewUser";
 			vPassword = "TestPassword";
 
-			vOutUserVar = GetTxVar<User>("USER");
-			vOutEmailVar = GetTxVar<Email>("EMAIL");
+			vOutUserVar = TestUtil.GetTxVar<User>("USER");
+			vOutEmailVar = TestUtil.GetTxVar<Email>("EMAIL");
 			vOutSetMemAction = (x => vResultMemAlias = x);
 			IWeaverVarAlias<Member> memVar = new Mock<IWeaverVarAlias<Member>>().Object;
 
@@ -76,25 +76,19 @@ namespace Fabric.Test.FabApiWeb {
 			vResultUser = new User();
 			vResultEmail = new Email();
 
-			var mockData = new Mock<IApiDataAccess>();
-			mockData.Setup(x => x.GetResultAt<User>(0)).Returns(vResultUser);
-			mockData.Setup(x => x.GetResultAt<Email>(1)).Returns(vResultEmail);
-			vResultData = mockData.Object;
-
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
-			MockApiCtx
-				.Setup(x => x.DbData("CreateUserTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateUserTx(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.Setup(x => x.ToElementAt<User>(0, 0)).Returns(vResultUser);
+			mda.MockResult.Setup(x => x.ToElementAt<Email>(0, 1)).Returns(vResultEmail);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess CreateUserTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 			const string expectPartial = "_V0=[USER,EMAIL];";
-			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			return vResultData;
+			Assert.AreEqual(expectPartial, cmd.Script, "Incorrect partial script.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

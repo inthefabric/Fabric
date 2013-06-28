@@ -6,6 +6,8 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
+using Fabric.Infrastructure.Data;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb {
 
@@ -34,7 +36,9 @@ namespace Fabric.Test.FabApiWeb {
 
 			vResultUser = new User();
 
-			MockApiCtx.Setup(x => x.DbVertexById<User>(vUserId)).Returns(vResultUserId);
+			var mda = MockDataAccess.Create(x => {});
+			mda.MockResult.SetupToElement(vResultUserId);
+			MockDataList.Add(mda);
 
 			MockTasks
 				.Setup(x => x.UpdateUserPassword(MockApiCtx.Object, vUserId, vNewPass))
@@ -52,7 +56,6 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
-			Log.Debug("PASS: "+vOldPass+" / "+vNewPass);
 			TestGo();
 
 			Assert.NotNull(vResult, "Result should not be null.");
@@ -82,7 +85,7 @@ namespace Fabric.Test.FabApiWeb {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrUserNotFound() {
-			MockApiCtx.Setup(x => x.DbVertexById<User>(vUserId)).Returns((User)null);
+			MockDataList[0].MockResult.SetupToElement<User>(null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 
