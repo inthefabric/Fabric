@@ -24,7 +24,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Tasks.TxAddMember(ApiCtx, TxBuild, userVar, out memVar);
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddMember", TxBuild.Transaction);
+			ApiCtx.ExecuteForTest(TxBuild.Transaction);
 
 			////
 

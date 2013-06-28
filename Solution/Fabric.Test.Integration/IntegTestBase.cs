@@ -112,15 +112,15 @@ namespace Fabric.Test.Integration {
 			if ( !IsReadOnlyTest ) {
 				var q = new WeaverQuery();
 				q.FinalizeQuery("g.V.remove();1");
-				IApiDataAccess remAllData = ApiCtx.DbData("TEST.RemoveAll", q);
+				IDataResult remAllData = ApiCtx.ExecuteForTest(q);
 
 				q = new WeaverQuery();
 				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
-				IApiDataAccess reloadData = ApiCtx.DbData("TEST.Reload", q);
+				IDataResult reloadData = ApiCtx.ExecuteForTest(q);
 
-				Assert.AreEqual("1", remAllData.Result.GetTextResultsAt(0).ToString(0),
+				Assert.AreEqual("1", remAllData.ToStringAt(0, 0),
 					"There was an issue with the RemoveAll query!");
-				Assert.AreEqual("1", reloadData.Result.GetTextResultsAt(0).ToString(0),
+				Assert.AreEqual("1", reloadData.ToStringAt(0, 0),
 					"There was an issue with the Reload query!");
 				Log.Info("");
 			}
@@ -150,8 +150,8 @@ namespace Fabric.Test.Integration {
 		protected virtual void TestPostTearDown() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T GetVertex<T>(long pId) where T : class, IVertexWithId, new() {
-			return ApiCtx.DbSingle<T>("TEST.GetVertex", GetVertexQuery<T>(pId));
+		protected T GetVertex<T>(long pId) where T : class, IWeaverElement, IVertexWithId, new() {
+			return ApiCtx.ExecuteForTest(GetVertexQuery<T>(pId)).ToElement<T>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -162,7 +162,7 @@ namespace Fabric.Test.Integration {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("g.V.has('"+PropDbName.Vertex_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
 				".has('"+WeaverUtil.GetPropertyDbName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
-			return ApiCtx.DbSingle<T>("TEST.GetVertexByProp", q);
+			return ApiCtx.ExecuteForTest(q).ToElement<T>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -183,8 +183,8 @@ namespace Fabric.Test.Integration {
 		private Tuple<int, int> CountVerticesAndEdges() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
-			IApiDataAccess data = ApiCtx.DbData("TEST.CountVE", q);
-			return new Tuple<int, int>(data.GetIntResultAt(0), data.GetIntResultAt(1));
+			IDataResult data = ApiCtx.ExecuteForTest(q);
+			return new Tuple<int, int>(data.ToIntAt(0, 0), data.ToIntAt(0, 1));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

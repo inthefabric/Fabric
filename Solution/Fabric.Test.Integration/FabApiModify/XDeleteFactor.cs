@@ -4,6 +4,8 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Infrastructure.Data;
+using Fabric.Test.Integration.Common;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -60,8 +62,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		private int CountDeleted() {
 			IWeaverQuery q = GetVertexByPropQuery<Factor>(
 				".has('"+PropDbName.Factor_Deleted+"').count()");
-			IApiDataAccess data = ApiCtx.DbData("TEST.CountDeleted", q);
-			return data.Result.GetTextResultsAt(0).ToInt(0);
+			return ApiCtx.ExecuteForTest(q).ToIntAt(0, 0);
 		}
 
 	}

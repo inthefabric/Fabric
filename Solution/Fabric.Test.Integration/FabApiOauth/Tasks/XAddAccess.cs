@@ -98,8 +98,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			IWeaverQuery q = GetVertexByPropQuery<OauthAccess>(
 				".scatter()"+ //TODO: resolve "scatter" workaround
 				".hasNot('"+PropDbName.OauthAccess_Token+"').count()");
-			IApiDataAccess data = ApiCtx.DbData("TEST.CountTokens", q);
-			return data.Result.GetTextResultsAt(0).ToInt(0);
+			return ApiCtx.ExecuteForTest(q).ToIntAt(0, 0);
 		}
 
 	}

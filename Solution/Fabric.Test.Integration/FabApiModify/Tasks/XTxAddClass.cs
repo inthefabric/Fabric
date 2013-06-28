@@ -25,7 +25,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Tasks.TxAddClass(ApiCtx, TxBuild, pName, pDisamb, pNote, memVar, out urlVar);
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddClass", TxBuild.Transaction);
+			ApiCtx.ExecuteForTest(TxBuild.Transaction);
 
 			////
 

@@ -2,6 +2,7 @@
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Test.Integration.FabInfra {
 
@@ -24,7 +25,7 @@ namespace Fabric.Test.Integration.FabInfra {
 				.UsesEmail
 				.ToQuery();
 
-			ApiCtx.DbList<UserUsesEmail>("test", q);
+			ApiCtx.GetList<UserUsesEmail>(q);
 		}
 		
 	}

@@ -39,16 +39,6 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		IApiDataAccess DbData(string pQueryName, IWeaverScript pScripted);
-		//IApiDataAccess DbData(string pQueryName, IList<IWeaverScript> pScriptedList);
-		//IApiDataAccess DbData(string pQueryName, WeaverRequest pRequest);
-		T DbVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new();
-		T DbSingle<T>(string pQueryName, IWeaverScript pScripted) where T : class, IElementWithId, new();
-		//IList<T> DbList<T>(string pQueryName, IWeaverScript pScripted) where T : IElementWithId, new();
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		void ProfilerTrace(object pObj, string pName);
 		void ProfilerTrace(string pObjName, string pName);
 

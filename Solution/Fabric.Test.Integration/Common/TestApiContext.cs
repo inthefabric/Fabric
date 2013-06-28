@@ -32,11 +32,6 @@ namespace Fabric.Test.Integration.Common {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public override string Code32 {
-			get { return (TestUtcNow == null ? base.Code32 : TestCode32); }
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public override long GetSharpflakeId<T>() {
 			lock ( this ) {
@@ -53,40 +48,6 @@ namespace Fabric.Test.Integration.Common {
 			base.OnDataPostExecute(pResult);
 			Log.Info("Query: "+pResult.ExecutionMilliseconds+"ms ("+pResult.Response.Timer+"ms)");
 			Log.Info("");
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IApiDataAccess NewAccess(IWeaverScript pScripted) {
-			return new TestApiDataAccess(this, pScripted);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IApiDataAccess<T> NewAccess<T>(IWeaverScript pScripted) {
-			return new TestApiDataAccess<T>(this, pScripted);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IApiDataAccess NewAccess(IList<IWeaverScript> pScriptedList) {
-			return new TestApiDataAccess(this, pScriptedList);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IApiDataAccess DbDataAccess(string pQueryName, IApiDataAccess pDbQuery) {
-			Log.Info("Query ("+pQueryName+") ExCount="+DbQueryExecutionCount+", NumCmds="+
-				pDbQuery.Request.CmdList.Count);
-			return base.DbDataAccess(pQueryName, pDbQuery);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override IApiDataAccess<T> DbDataAccess<T>(string pQueryName,
-																		IApiDataAccess<T> pDbQuery) {
-			Log.Info("Query<"+typeof(T).Name+"> ("+pQueryName+") ExCount="+DbQueryExecutionCount+
-				", NumCmds="+pDbQuery.Request.CmdList.Count);
-			return base.DbDataAccess(pQueryName, pDbQuery);
 		}
 
 	}

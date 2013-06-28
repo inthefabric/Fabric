@@ -19,7 +19,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 			Tasks.TxAddEmail(ApiCtx, TxBuild, pAddress, out emailVar);
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddEmail", TxBuild.Transaction);
+			ApiCtx.ExecuteForTest(TxBuild.Transaction);
 
 			////
 

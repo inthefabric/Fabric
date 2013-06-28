@@ -23,7 +23,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Tasks.TxAddInstance(ApiCtx, TxBuild, pName, pDisamb, pNote, memVar, out urlVar);
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddInstance", TxBuild.Transaction);
+			ApiCtx.ExecuteForTest(TxBuild.Transaction);
 
 			////
 

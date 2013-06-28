@@ -8,6 +8,8 @@ using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
+using Fabric.Infrastructure.Data;
+using Fabric.Test.Integration.Common;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -73,16 +75,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 				)
 				.ToQuery();
 
-			ApiCtx.DbData("TEST.AttachDescriptor", q);
+			ApiCtx.ExecuteForTest(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCompleted() {
 			IWeaverQuery q = GetVertexByPropQuery<Factor>(
 				".has('"+PropDbName.Factor_Completed+"').count()");
-			IApiDataAccess data = ApiCtx.DbData("TEST.CountCompleted", q);
-			return data.Result.GetTextResultsAt(0).ToInt(0);
-
+			return ApiCtx.ExecuteForTest(q).ToIntAt(0, 0);
 		}
 
 	}

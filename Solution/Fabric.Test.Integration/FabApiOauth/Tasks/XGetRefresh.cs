@@ -27,7 +27,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(SetupOauth.RefreshGalZach, AppGal, UserZach)]
-		public void Go(string pRefToken, SetupUsers.UserId pAppId, SetupUsers.UserId pUserId){
+		public void Go(string pRefToken, SetupUsers.AppId pAppId, SetupUsers.UserId pUserId){
 			vRefreshToken = pRefToken;
 
 			RefreshResult result = TestGo();

@@ -34,7 +34,7 @@ namespace Fabric.Test.Integration.FabApiWeb.Tasks {
 
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddUser", TxBuild.Transaction);
+			ApiCtx.ExecuteForTest(TxBuild.Transaction);
 
 			////
 

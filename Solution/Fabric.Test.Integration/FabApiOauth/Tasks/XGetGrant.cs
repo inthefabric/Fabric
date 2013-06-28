@@ -7,6 +7,7 @@ using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Integration.Common;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
@@ -82,8 +83,7 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 			IWeaverQuery q = GetVertexByPropQuery<OauthGrant>(
 				".scatter()"+ //TODO: resolve "scatter" workaround
 				".hasNot('"+PropDbName.OauthGrant_Code+"').count()");
-			IApiDataAccess data = ApiCtx.DbData("TEST.CountCodes", q);
-			return data.Result.GetTextResultsAt(0).ToInt(0);
+			return ApiCtx.ExecuteForTest(q).ToIntAt(0, 0);
 		}
 
 	}

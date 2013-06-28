@@ -25,7 +25,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Tasks.TxAddUrl(ApiCtx, TxBuild, pAbsoluteUrl, pName, memVar, out urlVar);
 			FinishTx();
 
-			ApiCtx.DbData("TEST.TxAddUrl", TxBuild.Transaction);
+			ApiCtx.ExecuteForTest(TxBuild.Transaction);
 
 			////
 
