@@ -1,10 +1,10 @@
 ﻿using Fabric.Domain;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -38,27 +38,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vAppId = 93485;
 			vMemberResult = new Member();
 
-			MockApiCtx.SetupGet(x => x.UserId).Returns(vUserId);
-			MockApiCtx.SetupGet(x => x.AppId).Returns(vAppId);
+			SetUpMember(vAppId, vUserId);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Member>("GetValidMemberByContext", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetMember(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vMemberResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Member GetMember(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetValidMemberByContext");
-
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vUserId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P2", (long)MemberTypeId.None);
-			TestUtil.CheckParam(pQuery.Params, "_P3", (long)MemberTypeId.Invite);
-			TestUtil.CheckParam(pQuery.Params, "_P4", (long)MemberTypeId.Request);
-
-			return vMemberResult;
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vUserId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P2", (long)MemberTypeId.None);
+			TestUtil.CheckParam(cmd.Params, "_P3", (long)MemberTypeId.Invite);
+			TestUtil.CheckParam(cmd.Params, "_P4", (long)MemberTypeId.Request);
 		}
 
 
@@ -68,7 +63,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		public void Success() {
 			Member result = Tasks.GetValidMemberByContext(MockApiCtx.Object);
 
-			UsageMap.AssertUses("GetValidMemberByContext", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vMemberResult, result, "Incorrect Result.");
 
 			MockMemCache.Verify(x => x.AddMember(vAppId, vUserId, vMemberResult, null), Times.Once());
@@ -82,20 +77,19 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			
 			Member result = Tasks.GetValidMemberByContext(MockApiCtx.Object);
 
-			UsageMap.AssertUses("GetValidMemberByContext", 0);
+			AssertDataExecution(false);
 			Assert.AreEqual(vCacheMember, result, "Incorrect Result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			vCacheMember = null;
-			vMemberResult = null;
-			MockMemCache.Setup(x => x.FindMember(vAppId, vUserId)).Returns(vCacheMember);
+			MockDataList[0].MockResult.SetupToElement<Member>(null);
+			MockMemCache.Setup(x => x.FindMember(vAppId, vUserId)).Returns((Member)null);
 
 			Member result = Tasks.GetValidMemberByContext(MockApiCtx.Object);
 
-			UsageMap.AssertUses("GetValidMemberByContext", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Incorrect Result.");
 
 			MockMemCache.Verify(x => x.AddMember(vAppId, vUserId, null, null), Times.Never());

@@ -22,7 +22,7 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		IList<IDataDto> ToDtoList();
 		IList<IList<IDataDto>> ToDtoLists();
-		IList<T> ToElementList<T>() where T : class, IElementWithId, new();
+		IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

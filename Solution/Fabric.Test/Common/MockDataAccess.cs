@@ -12,12 +12,17 @@ namespace Fabric.Test.Common {
 
 		protected IList<MockDataAccessCmd> CmdList;
 		public int ExecuteCount;
-		public Mock<IDataResult> MockResult;
+		public MockDataResult MockResult;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetupAddQuery() {
+		private MockDataAccess() {}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void SetupAddQuery() {
 			CmdList = new List<MockDataAccessCmd>();
 
 			Setup(x => x.AddQuery(It.IsAny<string>()))
@@ -42,9 +47,9 @@ namespace Fabric.Test.Common {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetupExecute(Action<MockDataAccess> pExecuteCallback, Mock<IDataResult> pResult) {
+		private void SetupExecute(Action<MockDataAccess> pExecuteCallback) {
 			ExecuteCount = 0;
-			MockResult = pResult;
+			MockResult = new MockDataResult();
 
 			Setup(x => x.Execute())
 				.Callback(() => {
@@ -100,25 +105,14 @@ namespace Fabric.Test.Common {
 
 			return CmdList[pIndex];
 		}
-		
-		/*--------------------------------------------------------------------------------------------* /
-		public string GetScriptAt(int pIndex) {
-			return GetCommand(pIndex).Script;
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public IDictionary<string, IWeaverQueryVal> GetWeaverParamsAt(int pIndex) {
-			return GetCommand(pIndex).Params;
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static MockDataAccess Create(Action<MockDataAccess> pExecuteCallback,
-																			Mock<IDataResult> pResult) {
+		public static MockDataAccess Create(Action<MockDataAccess> pExecuteCallback) {
 			var mda = new MockDataAccess();
 			mda.SetupAddQuery();
-			mda.SetupExecute(pExecuteCallback, pResult);
+			mda.SetupExecute(pExecuteCallback);
 			return mda;
 		}
 

@@ -50,7 +50,7 @@ namespace Fabric.Test {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void SetUpMember(long pAppId, long pUserId, Member pMember) {
+		protected virtual void SetUpMember(long pAppId, long pUserId, Member pMember=null) {
 			ApiCtxAppId = pAppId;
 			ApiCtxUserId = pUserId;
 			ApiCtxMember = pMember;
@@ -74,11 +74,12 @@ namespace Fabric.Test {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected void AssertDataExecution() {
+		protected void AssertDataExecution(bool pExecuted) {
 			var counts = new int[MockDataList.Count];
+			var c = (pExecuted ? 1 : 0);
 
 			for ( int i = 0 ; i < MockDataList.Count ; ++i ) {
-				counts[i] = 1;
+				counts[i] = c;
 			}
 
 			AssertDataExecution(counts);

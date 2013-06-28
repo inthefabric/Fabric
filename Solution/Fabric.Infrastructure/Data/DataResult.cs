@@ -35,7 +35,16 @@ namespace Fabric.Infrastructure.Data {
 		public IDataDto ToDto() {
 			AssertOneCommand();
 			IList<IGraphElement> elems = vResult.GetGraphElementsAt(0);
-			return (elems.Count == 0 ? null : DataDto.FromGraphElement(elems[0]));
+
+			if ( elems.Count == 0 ) {
+				return null;
+			}
+
+			if ( elems.Count == 1 ) {
+				return DataDto.FromGraphElement(elems[0]);
+			}
+
+			throw new Exception("Expected one result, received "+elems.Count);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -64,7 +73,7 @@ namespace Fabric.Infrastructure.Data {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<T> ToElementList<T>() where T : class, IElementWithId, new() {
+		public IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new() {
 			return ToDtoList().Select(DataDto.ToElement<T>).ToList();
 		}
 

@@ -46,6 +46,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Common\MockDataResult.cs" />
     <Compile Include="Common\MockDataAccessCmd.cs" />
     <Compile Include="Common\MockDataAccess.cs" />
     <Compile Include="Common\TestFuncStep.cs" />

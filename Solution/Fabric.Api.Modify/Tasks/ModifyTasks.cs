@@ -30,7 +30,6 @@ namespace Fabric.Api.Modify.Tasks {
 				.ToQuery();
 
 			return pApiCtx.NewData().AddQuery(q).Execute().ToElement<Url>();
-			//return pApiCtx.DbSingle<Url>("GetUrlByAbsoluteUrl", q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -57,7 +56,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.Back(memAlias)
 				.ToQuery();
 
-			mem = pApiCtx.DbSingle<Member>("GetValidMemberByContext", q);
+			mem = pApiCtx.NewData().AddQuery(q).Execute().ToElement<Member>();
 
 			if ( mem != null ) {
 				pApiCtx.Cache.Memory.AddMember(pApiCtx.AppId, pApiCtx.UserId, mem);

@@ -1,9 +1,7 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
 
 namespace Fabric.Test.FabApiModify.Tasks {
@@ -24,10 +22,9 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vAbsoluteUrl = "http://www.DUPlicate.com";
 			vUrlResult = new Url();
 
-			var mockRes = new Mock<IDataResult>();
-			mockRes.Setup(x => x.ToElement<Url>()).Returns(vUrlResult);
-
-			MockDataList.Add(MockDataAccess.Create(OnExecute, mockRes));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vUrlResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -44,7 +41,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		public void Success() {
 			Url result = Tasks.GetUrlByAbsoluteUrl(MockApiCtx.Object, vAbsoluteUrl);
 
-			AssertDataExecution();
+			AssertDataExecution(true);
 			Assert.AreEqual(vUrlResult, result, "Incorrect Result.");
 		}
 
