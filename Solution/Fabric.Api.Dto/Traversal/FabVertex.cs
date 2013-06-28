@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure.Db;
 using Fabric.Domain;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Dto.Traversal {
 
@@ -21,13 +21,13 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
-			if ( pDbDto.Id == null ) {
+		public override void Fill(IDataDto pDto) {
+			if ( pDto.Id == null ) {
 				throw new Exception("DbDto.Id is null.");
 			}
 
-			VertexId = pDbDto.Id;
-			FillResultData(pDbDto.Data);
+			VertexId = pDto.Id;
+			FillResultData(pDto.Properties);
 
 			Uri = "/WhereId("+TypeId+")";
 		}

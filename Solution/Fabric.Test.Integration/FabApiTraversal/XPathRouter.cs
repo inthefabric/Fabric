@@ -2,7 +2,7 @@
 using Fabric.Api.Traversal;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 
@@ -134,16 +134,17 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 			Assert.AreEqual(pDtoCount, vModel.DtoList.Count, "Incorrect Model.DtoList count.");
 
-			foreach ( IDbDto dbDto in vModel.DtoList ) {
-				Assert.AreEqual(typeof(T).Name, dbDto.Class, "Incorrect DbDto.Class.");
+			foreach ( IDataDto dto in vModel.DtoList ) {
+				Assert.AreEqual(typeof(T).Name, dto.Class, "Incorrect DbDto.Class.");
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void CheckTypeId(IDbDto pDbDto, string pIdProp, long pId) {
-			Assert.True(pDbDto.Data.ContainsKey(pIdProp), "DbDto does not contain key '"+pIdProp+"'.");
+		private void CheckTypeId(IDataDto pDto, string pIdProp, long pId) {
+			Assert.True(pDto.Properties.ContainsKey(pIdProp),
+				"DbDto does not contain key '"+pIdProp+"'.");
 
-			string val = pDbDto.Data[pIdProp];
+			string val = pDto.Properties[pIdProp];
 			long valId = long.Parse(val);
 			Assert.AreEqual(pId, valId, "Incorrect DbDto.Data['"+pIdProp+"'].");
 		}

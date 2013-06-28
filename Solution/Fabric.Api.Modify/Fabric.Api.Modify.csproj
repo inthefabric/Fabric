@@ -82,15 +82,8 @@
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
-      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
-      <Name>Fabric.Db.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="RexConnectClient.Core">
-      <HintPath>..\..\Packages\RexConnectClient.0.3.3.0\lib\RexConnectClient.Core.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
@@ -100,10 +93,6 @@
     <Reference Include="Weaver.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Weaver.0.5.0\lib\Weaver.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Titan.0.5.0\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

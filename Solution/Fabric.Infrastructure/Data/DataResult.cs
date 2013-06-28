@@ -20,6 +20,11 @@ namespace Fabric.Infrastructure.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public string GetSessionId() {
+			return vResult.Response.SessId;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public int GetCommandCount() {
 			return vResult.Response.CmdList.Count;
 		}

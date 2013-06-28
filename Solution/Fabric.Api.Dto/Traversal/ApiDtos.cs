@@ -1,12 +1,12 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/18/2013 3:43:35 PM
+// Generated on 6/28/2013 8:35:26 AM
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Dto.Traversal {
 	
@@ -739,7 +739,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
+		public override void Fill(IDataDto pDto) {
 			throw new NotImplementedException();
 		}
 
@@ -756,7 +756,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
+		public override void Fill(IDataDto pDto) {
 			throw new NotImplementedException();
 		}
 
@@ -773,7 +773,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
+		public override void Fill(IDataDto pDto) {
 			throw new NotImplementedException();
 		}
 
@@ -789,7 +789,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
+		public override void Fill(IDataDto pDto) {
 			throw new NotImplementedException();
 		}
 
@@ -807,7 +807,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
+		public override void Fill(IDataDto pDto) {
 			throw new NotImplementedException();
 		}
 
@@ -825,7 +825,7 @@ namespace Fabric.Api.Dto.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {
+		public override void Fill(IDataDto pDto) {
 			throw new NotImplementedException();
 		}
 

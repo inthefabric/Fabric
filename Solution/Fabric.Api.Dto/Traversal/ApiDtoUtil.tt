@@ -13,7 +13,7 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 using ServiceStack.Text;
 
 namespace Fabric.Api.Dto.Traversal {
@@ -24,8 +24,8 @@ namespace Fabric.Api.Dto.Traversal {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IFabVertex ToDto(DbDto pDbDto) {
-			switch ( pDbDto.Class ) {
+		public static IFabVertex ToVertex(IDataDto pDto) {
+			switch ( pDto.Class ) {
 <#
 IList<string> verts = SchemaHelper.GetVertices();
 
@@ -34,42 +34,42 @@ foreach ( string name in verts ) {
 	WeaverVertexSchema vertex = hn.VertexSchema;
 	if ( vertex.IsAbstract || vertex.IsInternal ) { continue; }
 #>
-				case "<#= vertex.Name #>": return ToDto<Fab<#= vertex.Name #>>(pDbDto);
+				case "<#= vertex.Name #>": return ToVertex<Fab<#= vertex.Name #>>(pDto);
 <#
 }
 #>
-				default: throw new Exception("Unknown DbDto class: "+pDbDto.Class);
+				default: throw new Exception("Unknown DbDto class: "+pDto.Class);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string ToDtoJson(DbDto pDbDto) {
-			switch ( pDbDto.Class ) {
+		public static string ToVertexJson(IDataDto pDto) {
+			switch ( pDto.Class ) {
 <#
 foreach ( string name in verts ) {
 	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
 	WeaverVertexSchema vertex = hn.VertexSchema;
 	if ( vertex.IsAbstract || vertex.IsInternal ) { continue; }
 #>
-				case "<#= vertex.Name #>": return ToDtoJson<Fab<#= vertex.Name #>>(pDbDto);
+				case "<#= vertex.Name #>": return ToVertexJson<Fab<#= vertex.Name #>>(pDto);
 <#
 }
 #>
-				default: throw new Exception("Unknown DbDto class: "+pDbDto.Class);
+				default: throw new Exception("Unknown IDataDto class: "+pDto.Class);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static T ToDto<T>(DbDto pDbDto) where T : IFabVertex, new() {
+		private static T ToVertex<T>(IDataDto pDto) where T : IFabVertex, new() {
 			var vertex = new T();
-			vertex.Fill(pDbDto);
+			vertex.Fill(pDto);
 			return vertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string ToDtoJson<T>(DbDto pDbDto) where T : IFabVertex, new() {
+		private static string ToVertexJson<T>(IDataDto pDto) where T : IFabVertex, new() {
 			var vertex = new T();
-			vertex.Fill(pDbDto);
+			vertex.Fill(pDto);
 			return vertex.ToJson();
 		}
 

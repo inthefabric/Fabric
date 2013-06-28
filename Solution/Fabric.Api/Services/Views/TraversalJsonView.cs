@@ -1,7 +1,7 @@
 ﻿using Fabric.Api.Common;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 using ServiceStack.Text;
 
 namespace Fabric.Api.Services.Views {
@@ -50,8 +50,8 @@ namespace Fabric.Api.Services.Views {
 
 			var json = "";
 
-			foreach ( DbDto dbDto in vInfo.DtoList ) {
-				json += (json == "" ? "" : ",")+ApiDtoUtil.ToDtoJson(dbDto);
+			foreach ( IDataDto dto in vInfo.DtoList ) {
+				json += (json == "" ? "" : ",")+ApiDtoUtil.ToVertexJson(dto);
 			}
 
 			return "["+json+"]";

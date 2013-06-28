@@ -1,4 +1,4 @@
-﻿using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Dto.Batch {
 
@@ -17,7 +17,7 @@ namespace Fabric.Api.Dto.Batch {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {}
+		public override void Fill(IDataDto pDto) {}
 
 	}
 

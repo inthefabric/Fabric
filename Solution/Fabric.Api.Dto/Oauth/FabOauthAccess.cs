@@ -1,5 +1,5 @@
 using System.Runtime.Serialization;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Dto.Oauth {
 
@@ -35,7 +35,7 @@ namespace Fabric.Api.Dto.Oauth {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {}
+		public override void Fill(IDataDto pDto) {}
 
 	}
 

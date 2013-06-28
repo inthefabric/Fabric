@@ -11,6 +11,12 @@ namespace Fabric.Infrastructure.Data {
 	/*================================================================================================*/
 	public class DataDto : IDataDto {
 
+		public enum ElementType {
+			Vertex,
+			Edge
+		}
+
+		public ElementType Type { get; set; }
 		public string Id { get; set; }
 		public string Class { get; set; }
 		public IDictionary<string, string> Properties { get; set; }
@@ -34,7 +40,10 @@ namespace Fabric.Infrastructure.Data {
 			EdgeOutVertexId = pGraphElement.OutVertexId;
 			EdgeInVertexId = pGraphElement.InVertexId;
 
+			Type = ElementType.Vertex;
+
 			if ( pGraphElement.Type != RexConn.GraphElementType.Vertex ) {
+				Type = ElementType.Edge;
 				return;
 			}
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
@@ -65,8 +65,7 @@ namespace Fabric.Infrastructure.Api {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public T GetResultAt<T>(int pIndex) where T : IElementWithId, new() {
-			var d = new DbDto(Result.GetGraphElementsAt(0)[pIndex]);
-			return d.ToItem<T>();
+			return DataDto.ToElement<T>(Result.GetGraphElementsAt(0)[pIndex]);
 		}
 
 

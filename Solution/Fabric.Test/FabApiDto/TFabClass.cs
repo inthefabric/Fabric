@@ -1,5 +1,5 @@
 ﻿using Fabric.Api.Dto.Traversal;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using ServiceStack.Text;
@@ -20,13 +20,13 @@ namespace Fabric.Test.FabApiDto {
 			const long artId = 13463246;
 			const long created = 134632424234623466;
 
-			var dd = new DbDto();
+			var dd = new DataDto();
 			dd.Id = "x99";
-			dd.Data = new JsonObject();
-			dd.Data.Add(PropDbName.Class_Name, name);
-			dd.Data.Add(PropDbName.Class_Disamb, disamb);
-			dd.Data.Add(PropDbName.Artifact_ArtifactId, artId+"");
-			dd.Data.Add(PropDbName.Artifact_Created, created+"");
+			dd.Properties = new JsonObject();
+			dd.Properties.Add(PropDbName.Class_Name, name);
+			dd.Properties.Add(PropDbName.Class_Disamb, disamb);
+			dd.Properties.Add(PropDbName.Artifact_ArtifactId, artId+"");
+			dd.Properties.Add(PropDbName.Artifact_Created, created+"");
 
 			var dt = new FabClass();
 			dt.Fill(dd);

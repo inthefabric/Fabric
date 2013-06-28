@@ -10,6 +10,7 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		string GetSessionId();
 		int GetCommandCount();
 		int GetCommandResultCount(int pCommandIndex=0);
 

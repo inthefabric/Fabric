@@ -7,6 +7,7 @@ using Fabric.Domain;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;
 using NUnit.Framework;
@@ -173,8 +174,7 @@ namespace Fabric.Test.Integration {
 				vertexQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
 				vertexQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
 
-			IApiDataAccess data = ApiCtx.DbData("TEST.GetVertexConnections", q);
-			return new VertexConnections(pVertex, data);
+			return new VertexConnections(pVertex, ApiCtx.Execute(q));
 		}
 
 

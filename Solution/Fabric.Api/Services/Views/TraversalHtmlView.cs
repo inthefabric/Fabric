@@ -2,7 +2,7 @@
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Services.Views {
 
@@ -43,8 +43,8 @@ namespace Fabric.Api.Services.Views {
 			var html = "";
 			var i = 0;
 
-			foreach ( DbDto dbDto in vInfo.DtoList ) {
-				IFabVertex n = ApiDtoUtil.ToDto(dbDto);
+			foreach ( IDataDto dto in vInfo.DtoList ) {
+				IFabVertex n = ApiDtoUtil.ToVertex(dto);
 				html += (i++ == 0 ? "" : "<br/>");
 				html += BuildVertexHtml(n);
 			}

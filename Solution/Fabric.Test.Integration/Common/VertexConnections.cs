@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
-using RexConnectClient.Core;
-using RexConnectClient.Core.Result;
 using Weaver.Core.Elements;
 
 namespace Fabric.Test.Integration.Common {
@@ -15,38 +12,38 @@ namespace Fabric.Test.Integration.Common {
 	public class VertexConnections {
 
 		public IVertexWithId Vertex { get; private set; }
-		public IApiDataAccess DataAccess { get; private set; }
+		public IDataResult Result { get; private set; }
 
-		public IList<IDbDto> TargetVertices { get; private set; }
+		public IList<IDataDto> TargetVertices { get; private set; }
 		public IList<VertexConnectionEdge> OutEdges { get; private set; }
 		public IList<VertexConnectionEdge> InEdges { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public VertexConnections(IVertexWithId pVertex, IApiDataAccess pData) {
+		public VertexConnections(IVertexWithId pVertex, IDataResult pResult) {
 			Vertex = pVertex;
-			DataAccess = pData;
+			Result = pResult;
 
-			TargetVertices = new List<IDbDto>();
+			TargetVertices = new List<IDataDto>();
 			OutEdges = new List<VertexConnectionEdge>();
 			InEdges = new List<VertexConnectionEdge>();
 
-			IList<IGraphElement> elems = DataAccess.Result.GetGraphElementsAt(0);
+			IList<IDataDto> dtos = Result.ToDtoList();
 
-			if ( elems == null ) {
+			if ( dtos == null ) {
 				return;
 			}
 
-			foreach ( IGraphElement elem in elems ) {
-				if ( elem.Type == RexConn.GraphElementType.Vertex ) {
-					TargetVertices.Add(new DbDto(elem));
+			foreach ( IDataDto dto in dtos ) {
+				if ( dto.Type == DataDto.ElementType.Vertex ) {
+					TargetVertices.Add(dto);
 				}
 			}
 
-			foreach ( IGraphElement elem in elems ) {
-				if ( elem.Type == RexConn.GraphElementType.Edge ) {
-					AddEdge(new DbDto(elem));
+			foreach ( IDataDto dto in dtos ) {
+				if ( dto.Type == DataDto.ElementType.Edge ) {
+					AddEdge(dto);
 				}
 			}
 		}
@@ -93,7 +90,7 @@ namespace Fabric.Test.Integration.Common {
 				}
 
 				string prop = (pIdProperty ?? PropDbName.StrTypeIdMap[edge.TargetVertex.Class]);
-				string targId = edge.TargetVertex.Data[prop];
+				string targId = edge.TargetVertex.Properties[prop];
 
 				if ( long.Parse(targId) != pTargetId ) {
 					continue;
@@ -109,24 +106,24 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddEdge(IDbDto pDbDto) {
-			if ( pDbDto.OutVertexId == Vertex.Id ) {
-				var edge = new VertexConnectionEdge(pDbDto, true, GetTargetVertex(pDbDto.InVertexId));
+		private void AddEdge(IDataDto pDto) {
+			if ( pDto.EdgeOutVertexId == Vertex.Id ) {
+				var edge = new VertexConnectionEdge(pDto, true, GetTargetVertex(pDto.EdgeInVertexId));
 				OutEdges.Add(edge);
 			}
 			else {
-				var edge = new VertexConnectionEdge(pDbDto, false, GetTargetVertex(pDbDto.OutVertexId));
+				var edge = new VertexConnectionEdge(pDto, false, GetTargetVertex(pDto.EdgeOutVertexId));
 				InEdges.Add(edge);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IDbDto GetTargetVertex(string pVertexId) {
+		private IDataDto GetTargetVertex(string pVertexId) {
 			if ( pVertexId == null ) {
 				throw new Exception("VertexId cannot be null.");
 			}
 
-			foreach ( IDbDto n in TargetVertices ) {
+			foreach ( IDataDto n in TargetVertices ) {
 				if ( n.Id == pVertexId ) {
 					return n;
 				}

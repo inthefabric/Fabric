@@ -1,9 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/24/2013 3:28:40 PM
+// Generated on 6/28/2013 9:02:14 AM
 
 using System;
-using Fabric.Infrastructure.Db;
 
 namespace Fabric.Infrastructure.Domain {
 

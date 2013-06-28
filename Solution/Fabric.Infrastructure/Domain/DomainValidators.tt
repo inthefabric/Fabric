@@ -14,7 +14,6 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using System;
-using Fabric.Infrastructure.Db;
 
 namespace Fabric.Infrastructure.Domain {
 

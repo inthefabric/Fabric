@@ -13,8 +13,8 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void Execute(this IApiContext pApiCtx, IWeaverScript pWeaverScript) {
-			pApiCtx.NewData().AddQuery(pWeaverScript).Execute();
+		public static IDataResult Execute(this IApiContext pApiCtx, IWeaverScript pWeaverScript) {
+			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute();
 		}
 
 

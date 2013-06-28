@@ -1,5 +1,5 @@
 ﻿using System;
-using Fabric.Infrastructure.Db;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Dto.Meta {
 
@@ -41,7 +41,7 @@ namespace Fabric.Api.Dto.Meta {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) {}
+		public override void Fill(IDataDto pDto) {}
 
 	}
 

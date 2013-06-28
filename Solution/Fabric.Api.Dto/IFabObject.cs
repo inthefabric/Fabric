@@ -1,4 +1,4 @@
-﻿using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Dto {
 
@@ -10,7 +10,7 @@ namespace Fabric.Api.Dto {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Fill(IDbDto pDbDto);
+		void Fill(IDataDto pDto);
 
 	}
 

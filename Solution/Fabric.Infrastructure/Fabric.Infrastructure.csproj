@@ -120,7 +120,6 @@
     <Compile Include="Domain\Types\LocatorType.cs" />
     <Compile Include="Domain\Types\MemberType.cs" />
     <Compile Include="Domain\FabricIdEnums.cs" />
-    <Compile Include="Db\DbDto.cs" />
     <Compile Include="Domain\DomainValidator.cs" />
     <Compile Include="Domain\DomainValidators.cs">
       <DependentUpon>DomainValidators.tt</DependentUpon>
@@ -140,7 +139,6 @@
     <Compile Include="Sharpflake.cs" />
     <Compile Include="Api\IApiDataAccess.cs" />
     <Compile Include="Api\IApiDataAccessT.cs" />
-    <Compile Include="Db\IDbDto.cs" />
     <Compile Include="Weaver\TxBuilder.cs" />
     <Compile Include="Weaver\DomainBuilders.cs">
       <DependentUpon>DomainBuilders.tt</DependentUpon>

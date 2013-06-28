@@ -1,4 +1,4 @@
-﻿using Fabric.Infrastructure.Db;
+﻿using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Dto.Traversal {
@@ -25,7 +25,7 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDbDto pDbDto) { }
+		public override void Fill(IDataDto pDto) { }
 
 	}
 

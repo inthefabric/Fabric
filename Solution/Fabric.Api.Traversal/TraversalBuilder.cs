@@ -8,8 +8,7 @@ using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
-using RexConnectClient.Core.Result;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Traversal {
 
@@ -60,31 +59,18 @@ namespace Fabric.Api.Traversal {
 			if ( vLastStep.UseLocalData ) {
 				return;
 			}
+			
+			IList<IDataDto> dtos = vApiCtx.NewData().AddQuery(vLastStep.Path).Execute().ToDtoList();
+			int max = vLastStep.Count;
 
-			IApiDataAccess data = vApiCtx.DbData("Traversal", vLastStep.Path);
+			vModel.DtoList = dtos;
+			vModel.Resp.StartIndex = vLastStep.Index;
+			vModel.Resp.HasMore = (vModel.DtoList.Count > max);
 			vModel.Resp.DbMs = vApiCtx.DbQueryMillis;
-
-			////
-
-			IList<IGraphElement> elems = data.Result.GetGraphElementsAt(0);
-
-			if ( elems != null ) {
-				int max = vLastStep.Count;
-				int count = 0;
-				vModel.DtoList = new List<IDbDto>();
-
-				foreach ( IGraphElement elem in elems ) {
-					if ( count++ >= max ) { break; }
-					vModel.DtoList.Add(new DbDto(elem));
-					++vModel.Resp.Count;
-				}
-
-				vModel.Resp.StartIndex = vLastStep.Index;
-				vModel.Resp.HasMore = (elems.Count > max);
-				return;
+			
+			while ( dtos.Count > max ) {
+				dtos.RemoveAt(dtos.Count-1);
 			}
-
-			vModel.NonDtoText = data.Result.ResponseJson;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
