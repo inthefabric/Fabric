@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetDomain {
+	public class TGetDomain : TTestBase {
 
 		private const string QueryGetDomain =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
@@ -23,51 +24,40 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private long vAppId;
 		private string vRedirUri;
 		private string vRedirDomain;
-		private Mock<IApiContext> vMockCtx;
 		private OauthDomain vGetDomainResult;
-		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 123;
 			vRedirDomain = "TeST.com";
 			vRedirUri = "http://www."+vRedirDomain+"/redir";
-			vUsageMap = new UsageMap();
-
+			
 			vGetDomainResult = new OauthDomain();
 			vGetDomainResult.Domain = vRedirDomain;
-
-			vMockCtx = new Mock<IApiContext>();
-
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthDomain>(
-					GetDomain.Query.GetOauthDomain+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetOauthDomain(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vGetDomainResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private DomainResult TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().GetDomain(vAppId, vRedirUri, vMockCtx.Object);
+				return new OauthTasks().GetDomain(vAppId, vRedirUri, MockApiCtx.Object);
 			}
 
 			var task = new GetDomain(vAppId, vRedirUri);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthDomain GetOauthDomain(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(GetDomain.Query.GetOauthDomain+"");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
-			Assert.AreEqual(QueryGetDomain, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vRedirDomain.ToLower());
-
-			return vGetDomainResult;
+			Assert.AreEqual(QueryGetDomain, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vRedirDomain.ToLower());
 		}
 
 
@@ -78,7 +68,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			DomainResult result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetDomain.Query.GetOauthDomain+"", 1);
+			AssertDataExecution(true);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vRedirDomain, result.Domain, "Incorrect Result.Domain.");
 			Assert.AreEqual(vAppId, result.AppId, "Incorrect Result.AppId.");
@@ -87,11 +77,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			vGetDomainResult = null;
+			MockDataList[0].MockResult.SetupToElement<OauthDomain>(null);
 
 			DomainResult result = TestGo();
 
-			vUsageMap.AssertUses(GetDomain.Query.GetOauthDomain+"", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -111,7 +101,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			DomainResult result = TestGo();
 
-			vUsageMap.AssertUses(GetDomain.Query.GetOauthDomain+"", 1);
+			AssertDataExecution(true);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vRedirDomain.ToLower(), result.Domain, "Incorrect Result.Domain.");
 		}
@@ -123,7 +113,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -131,7 +121,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrNullRedirUri() {
 			vRedirUri = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -143,7 +133,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidRedirUri(string pRedirUri) {
 			vRedirUri = pRedirUri;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

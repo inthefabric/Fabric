@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetRefresh {
+	public class TGetRefresh : TTestBase {
 
 		private const string QueryGetAccessTx =
 			"_V0=[];"+
@@ -31,17 +32,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private string vRefToken;
 		private App vResultApp;
 		private User vResultUser;
-		private Mock<IApiContext> vMockCtx;
-		private Mock<IApiDataAccess> vMockGetAccessTxResult;
-		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vRefToken = "abcdefghijklmnopqrstuvwxyz789012";
-			vUsageMap = new UsageMap();
 			
 			vResultApp = new App();
 			vResultApp.ArtifactId = 456;
@@ -49,42 +45,34 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vResultUser = new User();
 			vResultUser.ArtifactId = 9878;
 
-			vMockGetAccessTxResult = new Mock<IApiDataAccess>();
-			vMockGetAccessTxResult.Setup(x => x.GetResultAt<App>(0)).Returns(vResultApp);
-			vMockGetAccessTxResult.Setup(x => x.GetResultAt<User>(1)).Returns(vResultUser);
-			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(2);
-
-			vMockCtx = new Mock<IApiContext>();
-			vMockCtx
-				.Setup(x => x.DbData(
-					GetRefresh.Query.GetAppUserTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => GetAccessTx(tx));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private RefreshResult TestGo(bool pViaTask=false) {
-			if ( pViaTask ) {
-				return new OauthTasks().GetRefresh(vRefToken, vMockCtx.Object);
-			}
-
-			var task = new GetRefresh(vRefToken);
-			return task.Go(vMockCtx.Object);
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.Setup(x => x.GetCommandResultCount(0)).Returns(2);
+			mda.MockResult.Setup(x => x.ToElementAt<App>(0,0)).Returns(vResultApp);
+			mda.MockResult.Setup(x => x.ToElementAt<User>(0,1)).Returns(vResultUser);
+			MockDataList.Add(mda);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess GetAccessTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			vUsageMap.Increment(GetRefresh.Query.GetAppUserTx+"");
+		private RefreshResult TestGo(bool pViaTask=false) {
+			if ( pViaTask ) {
+				return new OauthTasks().GetRefresh(vRefToken, MockApiCtx.Object);
+			}
+
+			var task = new GetRefresh(vRefToken);
+			return task.Go(MockApiCtx.Object);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(QueryGetAccessTx, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vRefToken,
 				false
 			});
-
-			return vMockGetAccessTxResult.Object;
 		}
 
 
@@ -95,7 +83,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			RefreshResult result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetRefresh.Query.GetAppUserTx+"", 1);
+			AssertDataExecution(true);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vResultApp.ArtifactId, result.AppId, "Incorrect Result.AppId.");
 			Assert.AreEqual(vResultUser.ArtifactId, result.UserId, "Incorrect Result.UserId.");
@@ -105,11 +93,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(-1)]
 		[TestCase(0)]
 		public void NotFound(int pCount) {
-			vMockGetAccessTxResult.Setup(x => x.GetResultCount()).Returns(pCount);
+			MockDataList[0].MockResult.Setup(x => x.GetCommandResultCount(0)).Returns(pCount);
 
 			RefreshResult result = TestGo();
 
-			vUsageMap.AssertUses(GetRefresh.Query.GetAppUserTx+"", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -120,7 +108,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrNullCode() {
 			vRefToken = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

@@ -6,16 +6,12 @@ using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class AddScope : ApiFunc<OauthScope> {
-		
-		public enum Query {
-			UpdateScopeTx,
-			AddScopeTx
-		}
 		
 		private readonly long vAppId;
 		private readonly long vUserId;
@@ -68,7 +64,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.Finish();
-			OauthScope os = ApiCtx.DbSingle<OauthScope>(Query.UpdateScopeTx+"", tx);
+			OauthScope os = ApiCtx.Get<OauthScope>(tx);
 			
 			if ( os != null ) {
 				return os;
@@ -86,7 +82,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			osBuild.SetUsesUser(vUserId);
 			
 			txb.Transaction.Finish(osBuild.VertexVar);
-			newOs = ApiCtx.DbSingle<OauthScope>(Query.AddScopeTx+"", txb.Transaction);
+			newOs = ApiCtx.Get<OauthScope>(txb.Transaction);
 			return newOs;
 		}
 

@@ -6,17 +6,13 @@ using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class AddGrant : ApiFunc<string> {
 	
-		public enum Query {
-			UpdateGrantTx,
-			AddGrantTx
-		}
-		
 		private readonly long vAppId;
 		private readonly long vUserId;
 		private readonly string vRedirectUri;
@@ -75,7 +71,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.Finish();
-			OauthGrant og = ApiCtx.DbSingle<OauthGrant>(Query.UpdateGrantTx+"", tx);
+			OauthGrant og = ApiCtx.Get<OauthGrant>(tx);
 			
 			if ( og != null ) {
 				return newOg.Code;
@@ -91,7 +87,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			ogBuild.SetUsesApp(vAppId);
 			ogBuild.SetUsesUser(vUserId);
 			
-			ApiCtx.DbData(Query.AddGrantTx+"", txb.Finish());
+			ApiCtx.Execute(txb.Finish());
 			return newOg.Code;
 		}
 

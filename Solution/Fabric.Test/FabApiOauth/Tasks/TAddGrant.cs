@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAddGrant {
+	public class TAddGrant : TTestBase {
 
 		private const string QueryUpdateGrantTx =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
@@ -48,79 +49,67 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		protected DateTime vUtcNow;
 		protected long vAddOauthGrantId;
 		private OauthGrant vGrantResult;
-		protected Mock<IApiContext> vMockCtx;
-		protected UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public virtual void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 99;
 			vUserId = 1234;
 			vRedirUri = "http://www.TEST.com/oauth";
 			vGrantCode = "12345678901234567890123456789012";
 			vUtcNow = DateTime.UtcNow;
 			vAddOauthGrantId = 123456789;
-			vUsageMap = new UsageMap();
 			
 			vGrantResult = new OauthGrant();
 			vGrantResult.Code = vGrantCode;
 
-			vMockCtx = new Mock<IApiContext>();
-			vMockCtx.Setup(x => x.GetSharpflakeId<OauthGrant>()).Returns(vAddOauthGrantId);
-			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
-			vMockCtx.SetupGet(x => x.Code32).Returns(vGrantCode);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<OauthGrant>()).Returns(vAddOauthGrantId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
+			MockApiCtx.SetupGet(x => x.Code32).Returns(vGrantCode);
 			
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthGrant>(
-					AddGrant.Query.UpdateGrantTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverScript ws) => UpdateGrant(ws));
+			var mda = MockDataAccess.Create(OnExecuteUpdate);
+			mda.MockResult.SetupToElement(vGrantResult);
+			MockDataList.Add(mda);
 			
-			vMockCtx
-				.Setup(x => x.DbData(AddGrant.Query.AddGrantTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverScript ws) => AddGrantTx(ws));
+			mda = MockDataAccess.Create(OnExecuteAdd);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().AddGrant(vAppId, vUserId, vRedirUri, vMockCtx.Object);
+				return new OauthTasks().AddGrant(vAppId, vUserId, vRedirUri, MockApiCtx.Object);
 			}
 
 			var task = new AddGrant(vAppId, vUserId, vRedirUri);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthGrant UpdateGrant(IWeaverScript pScripted) {
-			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddGrant.Query.UpdateGrantTx+"");
-
+		private void OnExecuteUpdate(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(QueryUpdateGrantTx, "_TP");
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vUserId,
 				vAppId,
 				vRedirUri.ToLower(),
 				vUtcNow.AddMinutes(2).Ticks,
 				vGrantCode
 			});
-			
-			return vGrantResult;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess AddGrantTx(IWeaverScript pScripted) {
-			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddGrant.Query.AddGrantTx+"");
-
+		private void OnExecuteAdd(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			
 			string expect = TestUtil.InsertParamIndexes(QueryAddGrantTx, "_TP");
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vAddOauthGrantId,
 				vRedirUri.ToLower(),
 				vGrantCode,
@@ -131,8 +120,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUserId,
 				EdgeDbName.OauthGrantUsesUser
 			});
-			
-			return null;
 		}
 		
 
@@ -142,9 +129,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(false)]
 		public virtual void UpdateSuccess(bool pViaTask) {
 			string result = TestGo(pViaTask);
-
-			vUsageMap.AssertUses(AddGrant.Query.UpdateGrantTx+"", 1);
-			vUsageMap.AssertUses(AddGrant.Query.AddGrantTx+"", 0);
+			
+			AssertDataExecution(new [] { 1, 0 });
 			Assert.AreEqual(vGrantCode, result, "Incorrect Result.");
 		}
 		
@@ -152,12 +138,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public virtual void AddGrantSuccess(bool pViaTask) {
-			vGrantResult = null;
+			MockDataList[0].MockResult.SetupToElement<OauthGrant>(null);
 			
 			string result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddGrant.Query.UpdateGrantTx+"", 1);
-			vUsageMap.AssertUses(AddGrant.Query.AddGrantTx+"", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vGrantCode, result, "Incorrect Result.");
 		}
 		
@@ -168,7 +153,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void ErrAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -176,7 +161,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void ErrUserId() {
 			vUserId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

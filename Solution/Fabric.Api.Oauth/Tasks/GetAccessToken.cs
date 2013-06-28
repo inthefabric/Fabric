@@ -8,16 +8,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetAccessToken : ApiFunc<FabOauthAccess> {
 		
-		public enum Query {
-			GetAccessTx
-		}
-
 		private readonly string vToken;
 		
 		
@@ -71,7 +68,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			////
-
+			
+			//IMPROVE: use three separate commands (?)
 			var tx = new WeaverTransaction();
 			IWeaverVarAlias agg;
 			IWeaverStepAs<OauthAccess> oaAlias;
@@ -99,8 +97,8 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			IApiDataAccess data = ApiCtx.DbData(Query.GetAccessTx+"", tx);
-			int count = data.GetResultCount();
+			IDataResult result = ApiCtx.Execute(tx);
+			int count = result.GetCommandResultCount();
 
 			if ( count <= 0 ) {
 				return null;
@@ -112,12 +110,12 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			OauthAccess oa = data.GetResultAt<OauthAccess>(0);
-			long appId = data.GetResultAt<App>(1).ArtifactId;
+			OauthAccess oa = result.ToElementAt<OauthAccess>(0, 0);
+			long appId = result.ToElementAt<App>(0, 1).ArtifactId;
 			long? userId = null;
 
 			if ( count == 3 ) {
-				userId = data.GetResultAt<User>(2).ArtifactId;
+				userId = result.ToElementAt<User>(0, 2).ArtifactId;
 			}
 
 			tuple = new Tuple<OauthAccess, long, long?>(oa, appId, userId);

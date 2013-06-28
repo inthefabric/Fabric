@@ -5,15 +5,12 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetAppAuth : ApiFunc<App> {
-		
-		public enum Query {
-			GetApp
-		}
 		
 		private readonly long vAppId;
 		private readonly string vAppSecret;
@@ -46,7 +43,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, vAppSecret)
 				.ToQuery();
 				
-			return ApiCtx.DbSingle<App>(Query.GetApp+"", getApp);
+			return ApiCtx.Get<App>(getApp);
 		}
 		
 	}

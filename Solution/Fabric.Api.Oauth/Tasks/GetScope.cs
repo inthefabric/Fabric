@@ -7,16 +7,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetScope : ApiFunc<ScopeResult> {
 
-		public enum Query {
-			GetMatchingScope
-		}
-		
 		private readonly long vAppId;
 		private readonly long vUserId;
 		
@@ -54,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(scopeAlias)
 				.ToQuery();
 
-			OauthScope scope = ApiCtx.DbSingle<OauthScope>(Query.GetMatchingScope+"", q);
+			OauthScope scope = ApiCtx.Get<OauthScope>(q);
 
 			if ( scope == null ) {
 				return null;

@@ -7,16 +7,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetRefresh : ApiFunc<RefreshResult> {
 
-		public enum Query {
-			GetAppUserTx
-		}
-		
 		private readonly string vRefreshToken;
 		
 		
@@ -63,8 +60,8 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			IApiDataAccess data = ApiCtx.DbData(Query.GetAppUserTx+"", tx);
-			int count = data.GetResultCount();
+			IDataResult data = ApiCtx.Execute(tx);
+			int count = data.GetCommandResultCount();
 
 			if ( count <= 0 ) {
 				return null;
@@ -75,8 +72,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			}
 
 			var rr = new RefreshResult();
-			rr.AppId = data.GetResultAt<App>(0).ArtifactId;
-			rr.UserId = data.GetResultAt<User>(1).ArtifactId;
+			rr.AppId = data.ToElementAt<App>(0, 0).ArtifactId;
+			rr.UserId = data.ToElementAt<User>(0, 1).ArtifactId;
 			return rr;
 		}
 

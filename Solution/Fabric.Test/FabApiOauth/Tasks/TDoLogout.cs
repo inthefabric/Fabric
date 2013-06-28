@@ -22,11 +22,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().DoLogout(vAccess, vMockCtx.Object);
+				return new OauthTasks().DoLogout(vAccess, MockApiCtx.Object);
 			}
 			
 			var task = new DoLogout(vAccess);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		
@@ -60,8 +60,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 			FabOauthAccess result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddAccess.Query.ClearTokens+"", 1);
-			vUsageMap.AssertUses(AddAccess.Query.AddAccessTx+"", 0);
+			AssertDataExecution(new [] { 1, 0 });
 			
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vAccess.AccessToken, result.AccessToken, "Incorrect Result.AccessToken.");

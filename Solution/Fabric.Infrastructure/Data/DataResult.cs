@@ -81,9 +81,22 @@ namespace Fabric.Infrastructure.Data {
 		public IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new() {
 			return ToDtoList().Select(DataDto.ToElement<T>).ToList();
 		}
-
-
+		
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public IDataDto ToDtoAt(int pCommandIndex, int pResultIndex) {
+			IGraphElement e = vResult.GetGraphElementsAt(pCommandIndex)[pResultIndex];
+			return DataDto.FromGraphElement(e);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public T ToElementAt<T>(int pCommandIndex, int pResultIndex)
+											where T : class, IWeaverElement, IElementWithId, new() {
+			IDataDto dto = ToDtoAt(pCommandIndex, pResultIndex);
+			return DataDto.ToElement<T>(dto);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public string ToStringAt(int pCommandIndex, int pResultIndex) {
 			return vResult.GetTextResultsAt(pCommandIndex).ToString(pResultIndex);

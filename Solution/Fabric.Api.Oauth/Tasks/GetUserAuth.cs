@@ -6,16 +6,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetUserAuth : ApiFunc<User> {
 		
-		public enum Query {
-			GetUser
-		}
-
 		private readonly string vUsername;
 		private readonly string vPassword;
 		
@@ -52,7 +49,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 				.ToQuery();
 
-			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
+			return ApiCtx.Get<User>(q);
 		}
 		
 	}

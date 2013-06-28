@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetUserAuth {
+	public class TGetUserAuth : TTestBase {
 
 		private const string QueryGetUserAuth =
 			"g.V('"+PropDbName.User_NameKey+"',_P0)"+
@@ -21,49 +22,39 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private string vUsername;
 		private string vPassword;
-		private Mock<IApiContext> vMockCtx;
 		private User vGetUserAuthResult;
-		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vUsername = "ZachKinstner";
 			vPassword = "abcdefg";
-			vUsageMap = new UsageMap();
 
 			vGetUserAuthResult = new User();
 
-			vMockCtx = new Mock<IApiContext>();
-
-			vMockCtx
-				.Setup(x => x.DbSingle<User>(
-					GetUserAuth.Query.GetUser+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetUser(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vGetUserAuthResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().GetUserAuth(vUsername, vPassword, vMockCtx.Object);
+				return new OauthTasks().GetUserAuth(vUsername, vPassword, MockApiCtx.Object);
 			}
 
 			var task = new GetUserAuth(vUsername, vPassword);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private User GetUser(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(GetUserAuth.Query.GetUser+"");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
-			Assert.AreEqual(QueryGetUserAuth, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vUsername.ToLower());
-			TestUtil.CheckParam(pQuery.Params, "_P1", FabricUtil.HashPassword(vPassword));
-
-			return vGetUserAuthResult;
+			Assert.AreEqual(QueryGetUserAuth, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vUsername.ToLower());
+			TestUtil.CheckParam(cmd.Params, "_P1", FabricUtil.HashPassword(vPassword));
 		}
 
 
@@ -74,18 +65,18 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			User result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetUserAuth.Query.GetUser+"", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vGetUserAuthResult, result, "Incorrect Result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			vGetUserAuthResult = null;
+			MockDataList[0].MockResult.SetupToElement<User>(null);
 
 			User result = TestGo();
 
-			vUsageMap.AssertUses(GetUserAuth.Query.GetUser+"", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -100,7 +91,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 			User result = TestGo();
 
-			vUsageMap.AssertUses(GetUserAuth.Query.GetUser+"", 0);
+			AssertDataExecution(false);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -111,7 +102,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrNullUsername() {
 			vUsername = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -119,7 +110,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrNullPassword() {
 			vPassword = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

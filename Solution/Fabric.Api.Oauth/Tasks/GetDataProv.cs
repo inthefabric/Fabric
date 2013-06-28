@@ -6,16 +6,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetDataProv : ApiFunc<User> {
 		
-		public enum Query {
-			GetUser
-		}
-
 		private readonly long vAppId;
 		private readonly long vDataProvUserId;
 		
@@ -58,7 +55,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(userAlias)
 				.ToQuery();
 
-			return ApiCtx.DbSingle<User>(Query.GetUser+"", q);
+			return ApiCtx.Get<User>(q);
 		}
 
 	}

@@ -8,15 +8,12 @@ using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetGrant : ApiFunc<GrantResult> {
-		
-		public enum Query {
-			GetAndUpdateTx
-		}
 		
 		private readonly string vCode;
 		
@@ -69,8 +66,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			////
 
-			IApiDataAccess data = ApiCtx.DbData(Query.GetAndUpdateTx+"", tx);
-			int count = data.GetResultCount();
+			IDataResult data = ApiCtx.Execute(tx);
+			int count = data.GetCommandResultCount();
 
 			if ( count <= 0 ) {
 				return null;
@@ -80,12 +77,12 @@ namespace Fabric.Api.Oauth.Tasks {
 				throw new Exception("Incorrect result count: "+count);
 			}
 			
-			OauthGrant og = data.GetResultAt<OauthGrant>(0);
+			OauthGrant og = data.ToElementAt<OauthGrant>(0, 0);
 			
 			var gr = new GrantResult();
 			gr.GrantId = og.OauthGrantId;
-			gr.AppId = data.GetResultAt<App>(1).ArtifactId;
-			gr.UserId = data.GetResultAt<User>(2).ArtifactId;
+			gr.AppId = data.ToElementAt<App>(0, 1).ArtifactId;
+			gr.UserId = data.ToElementAt<User>(0, 2).ArtifactId;
 			gr.Code = vCode;
 			gr.RedirectUri = og.RedirectUri;
 			return gr;

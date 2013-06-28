@@ -10,12 +10,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAddAccess {
+	public class TAddAccess : TTestBase {
 
 		private const string QueryClearTokens =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P)"+
@@ -77,15 +78,10 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		protected string vTokenCode;
 		protected string vRefreshCode;
 
-		protected Mock<IApiContext> vMockCtx;
-		private Mock<IMemCache> vMockMemCache;
-		protected UsageMap vUsageMap;
-		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public virtual void SetUp() {
+		protected override void TestSetUp() {
 			vAddOauthAccessId = 123456789;
 			vUtcNow = DateTime.UtcNow;
 			vAppId = 99;
@@ -96,47 +92,35 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vTokenCode = "12345678901234567890123456789012";
 			vRefreshCode = "abcd5678901234567890123456789012";
 
-			vUsageMap = new UsageMap();
-
-			vMockCtx = new Mock<IApiContext>();
-			vMockCtx.Setup(x => x.GetSharpflakeId<OauthAccess>()).Returns(vAddOauthAccessId);
-			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
-			vMockCtx.SetupGet(x => x.Code32).Returns(GetCode32);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<OauthAccess>()).Returns(vAddOauthAccessId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
+			MockApiCtx.SetupGet(x => x.Code32).Returns(GetCode32);
 			
-			vMockCtx
-				.Setup(x => x.DbData(AddAccess.Query.ClearTokens+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverScript ws) => ClearTokens(ws));
+			var mda = MockDataAccess.Create(OnExecuteClear);
+			MockDataList.Add(mda);
 			
-			vMockCtx
-				.Setup(x => x.DbData(AddAccess.Query.AddAccessTx+"", It.IsAny<IWeaverScript>()))
-				.Returns((string s, IWeaverScript ws) => AddAccessTx(ws));
-
-			var mockCacheMan = new Mock<ICacheManager>();
-			vMockCtx.SetupGet(x => x.Cache).Returns(mockCacheMan.Object);
-
-			vMockMemCache = new Mock<IMemCache>();
-			mockCacheMan.SetupGet(x => x.Memory).Returns(vMockMemCache.Object);
+			mda = MockDataAccess.Create(OnExecuteAccess);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private FabOauthAccess TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
 				return new OauthTasks().AddAccess(
-					vAppId, vUserId, vExpireSec, vClientOnly, vMockCtx.Object);
+					vAppId, vUserId, vExpireSec, vClientOnly, MockApiCtx.Object);
 			}
 
 			var task = new AddAccess(vAppId, vUserId, vExpireSec, vClientOnly);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess ClearTokens(IWeaverScript pScripted) {
-			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddAccess.Query.ClearTokens+"");
+		private void OnExecuteClear(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = (vClientOnly ? QueryClearTokensClientOnly : QueryClearTokens);
 			expect = TestUtil.InsertParamIndexes(expect, "_P");
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
 			var vals = new List<object>();
 			vals.Add(vAppId);
@@ -146,18 +130,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vals.Add(vUserId);
 			}
 
-			TestUtil.CheckParams(pScripted.Params, "_P", vals);
-			return null;
+			TestUtil.CheckParams(cmd.Params, "_P", vals);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private ApiDataAccess AddAccessTx(IWeaverScript pScripted) {
-			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddAccess.Query.AddAccessTx+"");
+		private void OnExecuteAccess(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = (vClientOnly ? QueryAddAccessTxClientOnly : QueryAddAccessTx);
 			expect = TestUtil.InsertParamIndexes(expect, "_TP");
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
 			var vals = new List<object>();
 			vals.Add(vAddOauthAccessId);
@@ -174,8 +156,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vals.Add(EdgeDbName.OauthAccessUsesUser);
 			}
 
-			TestUtil.CheckParams(pScripted.Params, "_TP", vals);
-			return null;
+			TestUtil.CheckParams(cmd.Params, "_TP", vals);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -204,8 +185,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 									
 			FabOauthAccess result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(AddAccess.Query.ClearTokens+"", 1);
-			vUsageMap.AssertUses(AddAccess.Query.AddAccessTx+"", 1);
+			AssertDataExecution(true);
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vTokenCode, result.AccessToken, "Incorrect Result.AccessToken.");
@@ -213,7 +193,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			Assert.AreEqual("bearer", result.TokenType, "Incorrect Result.TokenType.");
 			Assert.AreEqual(3600, result.ExpiresIn, "Incorrect Result.ExpiresIn.");
 
-			vMockMemCache.Verify(x => x.RemoveOauthAccesses(vAppId, vUserId), Times.Once());
+			MockMemCache.Verify(x => x.RemoveOauthAccesses(vAppId, vUserId), Times.Once());
 		}
 
 
@@ -223,7 +203,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void ErrAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -236,7 +216,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			vClientOnly = pIsClientOnly;
 			vUserId = pUserId;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

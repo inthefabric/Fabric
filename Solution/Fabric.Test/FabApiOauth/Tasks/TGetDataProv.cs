@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetDataProv {
+	public class TGetDataProv : TTestBase {
 
 		private const string QueryGetUser =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
@@ -29,50 +30,39 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 
 		private long vAppId;
 		private long vDataProvUserId;
-		private Mock<IApiContext> vMockCtx;
 		private User vGetUserResult;
-		private UsageMap vUsageMap;
-		
-		
+
+				
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 23525;
 			vDataProvUserId = 3875;
-			vUsageMap = new UsageMap();
 
 			vGetUserResult = new User();
 
-			vMockCtx = new Mock<IApiContext>();
-
-			vMockCtx
-				.Setup(x => x.DbSingle<User>(
-					GetDataProv.Query.GetUser+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetUser(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vGetUserResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private User TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().GetDataProv(vAppId, vDataProvUserId, vMockCtx.Object);
+				return new OauthTasks().GetDataProv(vAppId, vDataProvUserId, MockApiCtx.Object);
 			}
 
 			var task = new GetDataProv(vAppId, vDataProvUserId);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private User GetUser(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(GetDataProv.Query.GetUser+"");
-
-			Assert.AreEqual(QueryGetUser, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vDataProvUserId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P2", (long)MemberTypeId.DataProvider);
-
-			return vGetUserResult;
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			Assert.AreEqual(QueryGetUser, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vDataProvUserId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P2", (long)MemberTypeId.DataProvider);
 		}
 
 
@@ -83,7 +73,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			User result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetDataProv.Query.GetUser+"", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vGetUserResult, result, "Incorrect Result.");
 		}
 
@@ -94,7 +84,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -102,7 +92,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidDataProvUserId() {
 			vDataProvUserId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

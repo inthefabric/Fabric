@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAddScope {
+	public class TAddScope : TTestBase {
 
 		private const string QueryUpdateScopeTx =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_TP)"+
@@ -47,76 +48,65 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private long vAddOauthScopeId;
 		private OauthScope vScopeResult;
 		private OauthScope vAddScopeResult;
-		private Mock<IApiContext> vMockCtx;
-		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 99;
 			vUserId = 1234;
 			vAllow = true;
 			vUtcNow = DateTime.UtcNow;
 			vAddOauthScopeId = 123456789;
-			vUsageMap = new UsageMap();
 			
 			vScopeResult = new OauthScope();
 			vAddScopeResult = new OauthScope();
 
-			vMockCtx = new Mock<IApiContext>();
-			vMockCtx.Setup(x => x.GetSharpflakeId<OauthScope>()).Returns(vAddOauthScopeId);
-			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<OauthScope>()).Returns(vAddOauthScopeId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
 			
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthScope>(
-					AddScope.Query.UpdateScopeTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverScript ws) => UpdateScope(ws));
+			var mda = MockDataAccess.Create(OnExecuteUpdate);
+			mda.MockResult.SetupToElement(vScopeResult);
+			MockDataList.Add(mda);
 			
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthScope>(
-					AddScope.Query.AddScopeTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverScript ws) => AddScopeTx(ws));
+			mda = MockDataAccess.Create(OnExecuteAdd);
+			mda.MockResult.SetupToElement(vAddScopeResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private OauthScope TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().AddScope(vAppId, vUserId, vAllow, vMockCtx.Object);
+				return new OauthTasks().AddScope(vAppId, vUserId, vAllow, MockApiCtx.Object);
 			}
 
 			var task = new AddScope(vAppId, vUserId, vAllow);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthScope UpdateScope(IWeaverScript pScripted) {
-			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddScope.Query.UpdateScopeTx+"");
+		private void OnExecuteUpdate(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(QueryUpdateScopeTx, "_TP");
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vUserId,
 				vAppId,
 				vAllow,
 				vUtcNow.Ticks
 			});
-			
-			return vScopeResult;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthScope AddScopeTx(IWeaverScript pScripted) {
-			TestUtil.LogWeaverScript(pScripted);
-			vUsageMap.Increment(AddScope.Query.AddScopeTx+"");
-
+		private void OnExecuteAdd(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			
 			string expect = TestUtil.InsertParamIndexes(QueryAddScopeTx, "_TP");
-			Assert.AreEqual(expect, pScripted.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pScripted.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vAddOauthScopeId,
 				vAllow,
 				vUtcNow.Ticks,
@@ -126,8 +116,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				vUserId,
 				EdgeDbName.OauthScopeUsesUser
 			});
-			
-			return vAddScopeResult;
 		}
 		
 
@@ -138,8 +126,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void UpdateSuccess(bool pViaTask) {
 			OauthScope result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(AddScope.Query.UpdateScopeTx+"", 1);
-			vUsageMap.AssertUses(AddScope.Query.AddScopeTx+"", 0);
+			AssertDataExecution(new [] { 1, 0 });
 			Assert.AreEqual(vScopeResult, result, "Incorrect Result.");
 		}
 		
@@ -147,12 +134,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(true)]
 		[TestCase(false)]
 		public virtual void AddScopeSuccess(bool pViaTask) {
-			vScopeResult = null;
+			MockDataList[0].MockResult.SetupToElement<OauthScope>(null);
 			
 			OauthScope result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddScope.Query.UpdateScopeTx+"", 1);
-			vUsageMap.AssertUses(AddScope.Query.AddScopeTx+"", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vAddScopeResult, result, "Incorrect Result.");
 		}
 		
@@ -163,7 +149,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void ErrAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -171,7 +157,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public virtual void ErrUserId() {
 			vUserId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

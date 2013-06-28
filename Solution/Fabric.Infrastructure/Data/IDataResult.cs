@@ -24,10 +24,13 @@ namespace Fabric.Infrastructure.Data {
 		IList<IDataDto> ToDtoList();
 		IList<IList<IDataDto>> ToDtoLists();
 		IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new();
-
-
+		
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		IDataDto ToDtoAt(int pCommandIndex, int pResultIndex);
+		T ToElementAt<T>(int pCommandIndex, int pResultIndex) 
+												where T : class, IWeaverElement, IElementWithId, new();
 		string ToStringAt(int pCommandIndex, int pResultIndex);
 		int ToIntAt(int pCommandIndex, int pResultIndex);
 		long ToLongAt(int pCommandIndex, int pResultIndex);

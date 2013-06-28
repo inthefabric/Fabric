@@ -6,16 +6,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class GetDomain : ApiFunc<DomainResult> {
 
-		public enum Query {
-			GetOauthDomain
-		}
-		
 		private readonly long vAppId;
 		private readonly string vRedirectUri;
 		private string vRedirectDomain;
@@ -68,7 +65,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.Domain, WeaverStepHasOp.EqualTo, vRedirectDomain.ToLower())
 				.ToQuery();
 
-			OauthDomain od = ApiCtx.DbSingle<OauthDomain>(Query.GetOauthDomain+"", q);
+			OauthDomain od = ApiCtx.Get<OauthDomain>(q);
 			
 			if ( od == null ) {
 				return null;

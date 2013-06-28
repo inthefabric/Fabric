@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetScope {
+	public class TGetScope : TTestBase {
 
 		private const string QueryGetMatchingScope =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
@@ -26,50 +27,41 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private long vAppId;
 		private long vUserId;
 		private OauthScope vOauthScopeResult;
-		private Mock<IApiContext> vMockCtx;
-		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 8456;
 			vUserId = 9876;
-			vUsageMap = new UsageMap();
 			
 			vOauthScopeResult = new OauthScope();
 			vOauthScopeResult.OauthScopeId = 25234;
 			vOauthScopeResult.Allow = true;
 			vOauthScopeResult.Created = 9148275124252;
 
-			vMockCtx = new Mock<IApiContext>();
-			vMockCtx
-				.Setup(x => x.DbSingle<OauthScope>(
-					GetScope.Query.GetMatchingScope+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetMatchingScope(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vOauthScopeResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private ScopeResult TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().GetScope(vAppId, vUserId, vMockCtx.Object);
+				return new OauthTasks().GetScope(vAppId, vUserId, MockApiCtx.Object);
 			}
 
 			var task = new GetScope(vAppId, vUserId);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthScope GetMatchingScope(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(GetScope.Query.GetMatchingScope+"");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
-			Assert.AreEqual(QueryGetMatchingScope, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vUserId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vAppId);
-
-			return vOauthScopeResult;
+			Assert.AreEqual(QueryGetMatchingScope, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vUserId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vAppId);
 		}
 
 
@@ -80,7 +72,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void Success(bool pViaTask) {
 			ScopeResult result = TestGo(pViaTask);
 
-			vUsageMap.AssertUses(GetScope.Query.GetMatchingScope+"", 1);
+			AssertDataExecution(true);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vOauthScopeResult.OauthScopeId, result.ScopeId,"Incorrect Result.ScopeId.");
 			Assert.AreEqual(vAppId, result.AppId, "Incorrect Result.AppId.");
@@ -94,11 +86,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			vOauthScopeResult = null;
+			MockDataList[0].MockResult.SetupToElement<OauthScope>(null);
 
 			ScopeResult result = TestGo();
 
-			vUsageMap.AssertUses(GetScope.Query.GetMatchingScope+"", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -109,7 +101,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -117,7 +109,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidUserId() {
 			vUserId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

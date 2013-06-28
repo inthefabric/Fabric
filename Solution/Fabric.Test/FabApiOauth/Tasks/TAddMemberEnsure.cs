@@ -9,12 +9,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TAddMemberEnsure {
+	public class TAddMemberEnsure : TTestBase {
 
 		private const string QueryGetMemberTx =
 			"_V0=[];"+
@@ -74,83 +75,65 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private DateTime vUtcNow;
 		private long vNewMtaId;
 		private long vNewMemId;
-		private Mock<IApiContext> vMockCtx;
-		private Mock<IApiDataAccess> vMockGetMemberTxResult;
-		private UsageMap vUsageMap;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 345;
 			vUserId = 9876;
 			vUtcNow = DateTime.UtcNow;
 			vNewMtaId = 82395829385;
 			vNewMemId = 52923582934;
-			vUsageMap = new UsageMap();
 
 			vMemberResult = new Member { MemberId = 1253 };
 			vMtaResult = new MemberTypeAssign { MemberTypeAssignId = 9253 };
 			
-			vMockGetMemberTxResult = new Mock<IApiDataAccess>();
-			vMockGetMemberTxResult.Setup(x => x.GetResultAt<Member>(0)).Returns(vMemberResult);
-			vMockGetMemberTxResult.Setup(x => x.GetResultAt<MemberTypeAssign>(1)).Returns(vMtaResult);
-			vMockGetMemberTxResult.Setup(x => x.GetResultCount()).Returns(2);
-
-			vMockCtx = new Mock<IApiContext>();
-			vMockCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
-			vMockCtx.Setup(x => x.GetSharpflakeId<MemberTypeAssign>()).Returns(vNewMtaId);
-			vMockCtx.Setup(x => x.GetSharpflakeId<Member>()).Returns(vNewMemId);
+			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<MemberTypeAssign>()).Returns(vNewMtaId);
+			MockApiCtx.Setup(x => x.GetSharpflakeId<Member>()).Returns(vNewMemId);
 			
-			vMockCtx
-				.Setup(x => x.DbData(
-					AddMemberEnsure.Query.GetMemberTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => GetMemberTx(tx));
-				
-			vMockCtx
-				.Setup(x => x.DbData(
-					AddMemberEnsure.Query.AddMemberTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => AddMemberTx(tx));
-					
-			vMockCtx
-				.Setup(x => x.DbData(
-					AddMemberEnsure.Query.UpdateMemberTx+"", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => UpdateMemberTx(tx));
+			var mda = MockDataAccess.Create(OnExecuteGet);
+			mda.MockResult.Setup(x => x.ToElementAt<Member>(0, 0)).Returns(vMemberResult);
+			mda.MockResult.Setup(x => x.ToElementAt<MemberTypeAssign>(0, 1)).Returns(vMtaResult);
+			mda.MockResult.Setup(x => x.GetCommandResultCount(0)).Returns(2);
+			MockDataList.Add(mda);
+			
+			mda = MockDataAccess.Create(OnExecuteAdd);
+			MockDataList.Add(mda);
+			
+			mda = MockDataAccess.Create(OnExecuteUpdate);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private bool TestGo(bool pViaTask=false) {
 			if ( pViaTask ) {
-				return new OauthTasks().AddMemberEnsure(vAppId, vUserId, vMockCtx.Object);
+				return new OauthTasks().AddMemberEnsure(vAppId, vUserId, MockApiCtx.Object);
 			}
 
 			var task = new AddMemberEnsure(vAppId, vUserId);
-			return task.Go(vMockCtx.Object);
+			return task.Go(MockApiCtx.Object);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess GetMemberTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			vUsageMap.Increment(AddMemberEnsure.Query.GetMemberTx+"");
+		private void OnExecuteGet(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(QueryGetMemberTx, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vUserId);
-			TestUtil.CheckParam(pTx.Params, "_TP1", vAppId);
-
-			return vMockGetMemberTxResult.Object;
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_TP0", vUserId);
+			TestUtil.CheckParam(cmd.Params, "_TP1", vAppId);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess AddMemberTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			vUsageMap.Increment(AddMemberEnsure.Query.AddMemberTx+"");
-
+		private void OnExecuteAdd(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			
 			string expect = TestUtil.InsertParamIndexes(QueryAddMemberTx, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vNewMemId,
 				(byte)VertexFabType.Member,
 				vAppId,
@@ -166,19 +149,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				(long)MemberId.FabFabData,
 				EdgeDbName.MemberCreatesMemberTypeAssign
 			});
-			
-			return vMockGetMemberTxResult.Object;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess UpdateMemberTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			vUsageMap.Increment(AddMemberEnsure.Query.UpdateMemberTx+"");
-
+		private void OnExecuteUpdate(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			
 			string expect = TestUtil.InsertParamIndexes(QueryUpdateMemberTx, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vMtaResult.MemberTypeAssignId,
 				vMemberResult.MemberId,
 				EdgeDbName.MemberHasHistoricMemberTypeAssign,
@@ -191,8 +171,6 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				(long)MemberId.FabFabData,
 				EdgeDbName.MemberCreatesMemberTypeAssign
 			});
-			
-			return vMockGetMemberTxResult.Object;
 		}
 
 
@@ -205,9 +183,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 			
 			bool result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddMemberEnsure.Query.GetMemberTx+"", 1);
-			vUsageMap.AssertUses(AddMemberEnsure.Query.AddMemberTx+"", 0);
-			vUsageMap.AssertUses(AddMemberEnsure.Query.UpdateMemberTx+"", 0);
+			AssertDataExecution(new [] { 1, 0, 0 });
 			Assert.False(result, "Incorrect result.");
 		}
 		
@@ -217,12 +193,12 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(true, MemberTypeId.Request)]
 		[TestCase(false, MemberTypeId.None)]
 		public void UpdateMember(bool pViaTask, MemberTypeId pMemTypeId) {
+			MockDataList.RemoveAt(1); //remove the "Add" query
+			
 			vMtaResult.MemberTypeId = (byte)pMemTypeId;
 			bool result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddMemberEnsure.Query.GetMemberTx+"", 1);
-			vUsageMap.AssertUses(AddMemberEnsure.Query.AddMemberTx+"", 0);
-			vUsageMap.AssertUses(AddMemberEnsure.Query.UpdateMemberTx+"", 1);
+			AssertDataExecution(true);
 			Assert.True(result, "Incorrect result.");
 		}
 		
@@ -232,13 +208,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(false, -1)]
 		[TestCase(false, 0)]
 		public void AddMember(bool pViaTask, int pCount) {
-			vMockGetMemberTxResult.Setup(x => x.GetResultCount()).Returns(pCount);
+			MockDataList[0].MockResult.Setup(x => x.GetCommandResultCount(0)).Returns(pCount);
 			
 			bool result = TestGo(pViaTask);
 			
-			vUsageMap.AssertUses(AddMemberEnsure.Query.GetMemberTx+"", 1);
-			vUsageMap.AssertUses(AddMemberEnsure.Query.AddMemberTx+"", 1);
-			vUsageMap.AssertUses(AddMemberEnsure.Query.UpdateMemberTx+"", 0);
+			AssertDataExecution(new [] { 1, 1, 0 });
 			Assert.True(result, "Incorrect result.");
 		}
 
@@ -249,7 +223,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidAppId() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -257,7 +231,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrInvalidUserId() {
 			vUserId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

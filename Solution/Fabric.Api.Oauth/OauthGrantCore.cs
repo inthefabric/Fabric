@@ -5,6 +5,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth {
 
@@ -35,12 +36,7 @@ namespace Fabric.Api.Oauth {
 
 	/*================================================================================================*/
 	public class OauthGrantCore : IOauthGrantCore {
-	
-		public enum Query {
-			GetApp,
-			GetUser
-		}
-
+		
 		public static string[] ErrDescStrings = new [] {
 			"Login cancelled by user",
 			"Access request denied by user",
@@ -95,7 +91,7 @@ namespace Fabric.Api.Oauth {
 				.V.ExactIndex<App>(x => x.ArtifactId, AppId)
 				.ToQuery();
 
-			App app = pContext.DbSingle<App>(Query.GetApp+"", q);
+			App app = pContext.Get<App>(q);
 
 			if ( app == null ) {
 				throw GetFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
@@ -114,7 +110,7 @@ namespace Fabric.Api.Oauth {
 				.V.ExactIndex<User>(x => x.ArtifactId, (long)UserId)
 				.ToQuery();
 
-			return pContext.DbSingle<User>(Query.GetUser+"", q);
+			return pContext.Get<User>(q);
 		}
 
 

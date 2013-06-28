@@ -7,16 +7,12 @@ using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class AddAccess : ApiFunc<FabOauthAccess> {
-
-		public enum Query {
-			ClearTokens,
-			AddAccessTx
-		}
 
 		private readonly long vAppId;
 		private readonly long? vUserId;
@@ -84,7 +80,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				)
 				.ToQuery();
 
-			ApiCtx.DbData(Query.ClearTokens+"", q);
+			ApiCtx.Execute(q);
 			ApiCtx.Cache.Memory.RemoveOauthAccesses(vAppId, vUserId);
 		}
 
@@ -109,7 +105,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				oaBuild.SetUsesUser((long)vUserId);
 			}
 
-			ApiCtx.DbData(Query.AddAccessTx+"", txb.Finish());
+			ApiCtx.Execute(txb.Finish());
 
 			////
 

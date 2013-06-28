@@ -34,11 +34,11 @@ namespace Fabric.Test.FabApiModify {
 			mda.MockResult.SetupToElement(new Artifact());
 			MockDataList.Add(mda);
 
-			mda = MockDataAccess.Create(m => { });
+			mda = MockDataAccess.Create(m => {});
 			mda.MockResult.SetupToElement(new Artifact());
 			MockDataList.Add(mda);
 
-			mda = MockDataAccess.Create(m => { });
+			mda = MockDataAccess.Create(m => {});
 			mda.MockResult.SetupToElement(new Artifact());
 			MockDataList.Add(mda);
 

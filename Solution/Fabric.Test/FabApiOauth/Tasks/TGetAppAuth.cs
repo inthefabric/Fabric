@@ -7,12 +7,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetAppAuth{
+	public class TGetAppAuth : TTestBase {
 
 		private const string QueryGetApp =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
@@ -22,47 +23,36 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		private string vAppSecret;
 		private App vGetAppResult;
 
-		private Mock<IApiContext> vMockCtx;
-		private UsageMap vUsageMap;
-		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vAppId = 123;
 			vAppSecret = "abcdefghijklmnopqrstuvwxyz789012";
 			vGetAppResult = new App();
-			vUsageMap = new UsageMap();
-
-			vMockCtx = new Mock<IApiContext>();
-
-			vMockCtx
-				.Setup(x => x.DbSingle<App>(
-					GetAppAuth.Query.GetApp+"", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetApp(q));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private App TestGo(bool pViaTask=false) {
-			if ( pViaTask ) {
-				return new OauthTasks().GetAppAuth(vAppId, vAppSecret, vMockCtx.Object);
-			}
-
-			var task = new GetAppAuth(vAppId, vAppSecret);
-			return task.Go(vMockCtx.Object);
+			
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vGetAppResult);
+			MockDataList.Add(mda);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private App GetApp(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(GetAppAuth.Query.GetApp+"");
+		private App TestGo(bool pViaTask=false) {
+			if ( pViaTask ) {
+				return new OauthTasks().GetAppAuth(vAppId, vAppSecret, MockApiCtx.Object);
+			}
 
-			Assert.AreEqual(QueryGetApp, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vAppSecret);
+			var task = new GetAppAuth(vAppId, vAppSecret);
+			return task.Go(MockApiCtx.Object);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
-			return vGetAppResult;
+			Assert.AreEqual(QueryGetApp, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vAppSecret);
 		}
 
 
@@ -72,19 +62,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		[TestCase(false)]
 		public void Success(bool pViaTask) {
 			App result = TestGo(pViaTask);
-
-			vUsageMap.AssertUses(GetAppAuth.Query.GetApp+"", 1);
+			
+			AssertDataExecution(true);
 			Assert.AreEqual(vGetAppResult, result, "Incorrect Result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void NotFound() {
-			vGetAppResult = null;
+			MockDataList[0].MockResult.SetupToElement<App>(null);
 
 			App result = TestGo();
 
-			vUsageMap.AssertUses(GetAppAuth.Query.GetApp+"", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Result should be null.");
 		}
 
@@ -95,7 +85,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrAppIdRange() {
 			vAppId = 0;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -103,7 +93,7 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 		public void ErrNullSecret() {
 			vAppSecret = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, () => TestGo());
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 		}
 
 	}

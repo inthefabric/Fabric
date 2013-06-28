@@ -8,12 +8,13 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiOauth {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TOauthGrantCore {
+	public class TOauthGrantCore : TTestBase {
 	
 		private const string QueryGetApp =
 			"g.V('"+PropDbName.Artifact_ArtifactId+"',_P0);";
@@ -27,10 +28,11 @@ namespace Fabric.Test.FabApiOauth {
 		private long vLoggedUserId;
 		private long? vCoreUserId;
 		
-		private Mock<IApiContext> vMockCtx;
 		private App vReturnApp;
 		private User vReturnUser;
-		private UsageMap vUsageMap;
+		
+		private MockDataAccess vAppDataAcc;
+		private MockDataAccess vUserDataAcc;
 		
 		private Mock<IOauthTasks> vMockTasks;
 		private string vTaskGrantCode;
@@ -38,8 +40,7 @@ namespace Fabric.Test.FabApiOauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		protected override void TestSetUp() {
 			vClientIdLong = 12345;
 			vClientId = vClientIdLong+"";
 			vRedirUri = "http://www.test.com/oauth";
@@ -50,24 +51,19 @@ namespace Fabric.Test.FabApiOauth {
 			vReturnApp = new App();
 			vReturnUser = new User();
 			
-			vMockCtx = new Mock<IApiContext>();
-			vUsageMap = new UsageMap();
-			
-			vMockCtx
-				.Setup(x => x.DbSingle<App>(OauthGrantCore.Query.GetApp+"", It.IsAny<IWeaverQuery>()))
-					.Returns((string s, IWeaverQuery q) => GetAppReturns(q));
-					
-			vMockCtx
-				.Setup(x => x.DbSingle<User>(OauthGrantCore.Query.GetUser+"", It.IsAny<IWeaverQuery>()))
-					.Returns((string s, IWeaverQuery q) => GetUserReturns(q));
-					
 			vMockTasks = new Mock<IOauthTasks>();
-			vMockTasks.Setup(x => x.GetScope(vClientIdLong, vLoggedUserId, vMockCtx.Object))
+			vMockTasks.Setup(x => x.GetScope(vClientIdLong, vLoggedUserId, MockApiCtx.Object))
 				.Returns(new ScopeResult() { Allow = true });
-			vMockTasks.Setup(x => x.AddMemberEnsure(vClientIdLong, vLoggedUserId, vMockCtx.Object))
+			vMockTasks.Setup(x => x.AddMemberEnsure(vClientIdLong, vLoggedUserId, MockApiCtx.Object))
 				.Returns(true);
-			vMockTasks.Setup(x => x.AddGrant(vClientIdLong, vLoggedUserId, vRedirUri, vMockCtx.Object))
+			vMockTasks.Setup(x => x.AddGrant(vClientIdLong, vLoggedUserId, vRedirUri, MockApiCtx.Object))
 				.Returns(vTaskGrantCode);
+				
+			vAppDataAcc = MockDataAccess.Create(OnExecuteApp);
+			vAppDataAcc.MockResult.SetupToElement(vReturnApp);
+			
+			vUserDataAcc = MockDataAccess.Create(OnExecuteUser);
+			vUserDataAcc.MockResult.SetupToElement(vReturnUser);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -76,25 +72,17 @@ namespace Fabric.Test.FabApiOauth {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private App GetAppReturns(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(OauthGrantCore.Query.GetApp+"");
-			
-			Assert.AreEqual(QueryGetApp, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", long.Parse(vClientId));
-			
-			return vReturnApp;
+		private void OnExecuteApp(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			Assert.AreEqual(QueryGetApp, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", long.Parse(vClientId));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private User GetUserReturns(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			vUsageMap.Increment(OauthGrantCore.Query.GetUser+"");
-			
-			Assert.AreEqual(QueryGetUser, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vCoreUserId);
-			
-			return vReturnUser;
+		private void OnExecuteUser(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			Assert.AreEqual(QueryGetUser, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vCoreUserId);
 		}
 		
 
@@ -123,19 +111,23 @@ namespace Fabric.Test.FabApiOauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetApp() {
-			App result = NewCore().GetApp(vMockCtx.Object);
+			MockDataList.Add(vAppDataAcc);
+		
+			App result = NewCore().GetApp(MockApiCtx.Object);
 			
-			vUsageMap.AssertUses(OauthGrantCore.Query.GetApp+"", 1);
-			vUsageMap.AssertUses(OauthGrantCore.Query.GetUser+"", 0);
+			AssertDataExecution(true);
 			Assert.AreEqual(vReturnApp, result, "Incorrect Result.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetAppNotFound() {
-			vReturnApp = null;
-			CheckOauthEx(() => NewCore().GetApp(vMockCtx.Object),
+			MockDataList.Add(vAppDataAcc);
+			vAppDataAcc.MockResult.SetupToElement<App>(null);
+			
+			CheckOauthEx(() => NewCore().GetApp(MockApiCtx.Object),
 				GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
+			AssertDataExecution(true);
 		}
 		
 		
@@ -143,10 +135,11 @@ namespace Fabric.Test.FabApiOauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetUser() {
-			User result = NewCore().GetUser(vMockCtx.Object);
+			MockDataList.Add(vUserDataAcc);
 			
-			vUsageMap.AssertUses(OauthGrantCore.Query.GetApp+"", 0);
-			vUsageMap.AssertUses(OauthGrantCore.Query.GetUser+"", 1);
+			User result = NewCore().GetUser(MockApiCtx.Object);
+			
+			AssertDataExecution(true);
 			Assert.AreEqual(vReturnUser, result, "Incorrect Result.");
 		}
 		
@@ -160,9 +153,9 @@ namespace Fabric.Test.FabApiOauth {
 			OauthGrantCore core = NewCore();
 			core.SetUserId(pUserId);
 			
-			User result = core.GetUser(vMockCtx.Object);
+			User result = core.GetUser(MockApiCtx.Object);
 			
-			vUsageMap.AssertNoOverallUses();
+			AssertDataExecution(false);
 			Assert.Null(result, "Result should be null.");
 		}
 		
@@ -172,8 +165,9 @@ namespace Fabric.Test.FabApiOauth {
 		[Test]
 		public void GetGrant() {
 			LoginScopeResult result = NewCore()
-				.GetGrantCodeIfScopeAlreadyAllowed(vMockTasks.Object, vMockCtx.Object);
+				.GetGrantCodeIfScopeAlreadyAllowed(vMockTasks.Object, MockApiCtx.Object);
 			
+			AssertDataExecution(false);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vTaskGrantCode, result.Code, "Incorrect Result.Code.");
 			Assert.AreEqual(vRedirUri, result.Redirect, "Incorrect Result.Redirect.");
@@ -186,8 +180,9 @@ namespace Fabric.Test.FabApiOauth {
 			core.SetUserId(null);
 			
 			LoginScopeResult result = core
-				.GetGrantCodeIfScopeAlreadyAllowed(vMockTasks.Object, vMockCtx.Object);
+				.GetGrantCodeIfScopeAlreadyAllowed(vMockTasks.Object, MockApiCtx.Object);
 			
+			AssertDataExecution(false);
 			Assert.Null(result, "Result should be null.");
 		}
 		
@@ -195,12 +190,13 @@ namespace Fabric.Test.FabApiOauth {
 		[TestCase(true)]
 		[TestCase(false)]
 		public void GetGrantBadScope(bool pNull) {
-			vMockTasks.Setup(x => x.GetScope(vClientIdLong, vLoggedUserId, vMockCtx.Object))
+			vMockTasks.Setup(x => x.GetScope(vClientIdLong, vLoggedUserId, MockApiCtx.Object))
 				.Returns(pNull ? null : new ScopeResult() { Allow = false });
 			
 			LoginScopeResult result = NewCore()
-				.GetGrantCodeIfScopeAlreadyAllowed(vMockTasks.Object, vMockCtx.Object);
+				.GetGrantCodeIfScopeAlreadyAllowed(vMockTasks.Object, MockApiCtx.Object);
 			
+			AssertDataExecution(false);
 			Assert.Null(result, "Result should be null.");
 		}
 		
@@ -211,8 +207,9 @@ namespace Fabric.Test.FabApiOauth {
 		[TestCase(false)]
 		public void AddGrantCode(bool pAlreadyAdded) {
 			LoginScopeResult result = NewCore()
-				.AddGrantCode(pAlreadyAdded, vMockTasks.Object, vMockCtx.Object);
+				.AddGrantCode(pAlreadyAdded, vMockTasks.Object, MockApiCtx.Object);
 			
+			AssertDataExecution(false);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(vTaskGrantCode, result.Code, "Incorrect Result.Code.");
 			Assert.AreEqual(vRedirUri, result.Redirect, "Incorrect Result.Redirect.");
@@ -229,8 +226,9 @@ namespace Fabric.Test.FabApiOauth {
 			OauthGrantCore core = NewCore();
 			core.SetUserId(null);
 			
-			LoginScopeResult result = core.AddGrantCode(true, vMockTasks.Object, vMockCtx.Object);
+			LoginScopeResult result = core.AddGrantCode(true, vMockTasks.Object, MockApiCtx.Object);
 			
+			AssertDataExecution(false);
 			Assert.Null(result, "Result should be null.");
 		}
 		

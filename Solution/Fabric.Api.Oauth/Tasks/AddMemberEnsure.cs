@@ -7,18 +7,13 @@ using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	
 	/*================================================================================================*/
 	public class AddMemberEnsure : ApiFunc<bool> {
 
-		public enum Query {
-			GetMemberTx,
-			AddMemberTx,
-			UpdateMemberTx
-		}
-		
 		private readonly long vAppId;
 		private readonly long vUserId;
 		
@@ -92,8 +87,8 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 			
-			IApiDataAccess data = ApiCtx.DbData(Query.GetMemberTx+"", tx);
-			int count = data.GetResultCount();
+			IDataResult data = ApiCtx.Execute(tx);
+			int count = data.GetCommandResultCount(0);
 
 			if ( count <= 0 ) {
 				pMem = null;
@@ -105,8 +100,8 @@ namespace Fabric.Api.Oauth.Tasks {
 				throw new Exception("Incorrect result count: "+count);
 			}
 
-			pMem = data.GetResultAt<Member>(0);
-			pMta = data.GetResultAt<MemberTypeAssign>(1);
+			pMem = data.ToElementAt<Member>(0, 0);
+			pMta = data.ToElementAt<MemberTypeAssign>(0, 1);
 			return true;
 		}
 		
@@ -137,7 +132,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			memBuild.SetInUserDefines(vUserId);
 
 			AddMemberTypeAssignWithTx(txb, memBuild.VertexVar);
-			ApiCtx.DbData(Query.AddMemberTx+"", txb.Finish());
+			ApiCtx.Execute(txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -165,7 +160,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Finish transaction
 			
 			AddMemberTypeAssignWithTx(txb, memVar);
-			ApiCtx.DbData(Query.UpdateMemberTx+"", txb.Finish());
+			ApiCtx.Execute(txb.Finish());
 		}
 
 
