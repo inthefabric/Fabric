@@ -2,6 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -48,16 +49,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vEdgeArtRefId = 25323;
 			vDescTypeRefId = 5439225;
 
-			MockApiCtx
-				.Setup(x => x.DbData("UpdateFactorDescriptor", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => UpdateFactorDescriptor(tx));
+			var mda = MockDataAccess.Create(OnExecute);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess UpdateFactorDescriptor(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			UsageMap.Increment("UpdateFactorDescriptor");
-
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 			string expect = QueryStart;
 			int v = 1;
 
@@ -86,9 +84,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			}
 			
 			expect = TestUtil.InsertParamIndexes(expect, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Script.");
-
-			return null;
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Script.");
 		}
 
 
@@ -109,6 +105,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			Tasks.UpdateFactorDescriptor(MockApiCtx.Object, vFactor, vDescTypeId, 
 				vPrimArtRefId, vEdgeArtRefId, vDescTypeRefId);
+			AssertDataExecution(true);
 		}
 
 	}

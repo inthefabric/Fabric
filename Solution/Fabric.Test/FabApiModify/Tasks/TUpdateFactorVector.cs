@@ -1,10 +1,8 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -42,20 +40,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vVecUnitId = 235;
 			vVecUnitPrefId = 132;
 
-			MockApiCtx
-				.Setup(x => x.DbData("UpdateFactorVector", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => UpdateFactorVector(tx));
+			var mda = MockDataAccess.Create(OnExecute);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess UpdateFactorVector(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			UsageMap.Increment("UpdateFactorVector");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vFactor.FactorId,
 				vVecTypeId,
 				vVecUnitId,
@@ -64,8 +60,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				vAxisArtId,
 				EdgeDbName.FactorVectorUsesAxisArtifact
 			});
-
-			return null;
 		}
 
 
@@ -75,7 +69,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		public void Update() {
 			Tasks.UpdateFactorVector(MockApiCtx.Object, vFactor, vVecTypeId, vValue, vAxisArtId,
 				vVecUnitId, vVecUnitPrefId);
-			UsageMap.AssertUses("UpdateFactorVector", 1);
+			AssertDataExecution(true);
 		}
 
 	}

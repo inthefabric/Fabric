@@ -12,15 +12,22 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static T Get<T>(this IApiContext pApiCtx, IWeaverQuery pQuery)
+		public static void Execute(this IApiContext pApiCtx, IWeaverScript pWeaverScript) {
+			pApiCtx.NewData().AddQuery(pWeaverScript).Execute();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static T Get<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript)
 												where T : class, IWeaverElement, IElementWithId, new() {
-			return pApiCtx.NewData().AddQuery(pQuery).Execute().ToElement<T>();
+			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute().ToElement<T>();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<T> GetList<T>(this IApiContext pApiCtx, IWeaverQuery pQuery)
+		public static IList<T> GetList<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript)
 												where T : class, IWeaverElement, IElementWithId, new() {
-			return pApiCtx.NewData().AddQuery(pQuery).Execute().ToElementList<T>();
+			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute().ToElementList<T>();
 		}
 
 	}

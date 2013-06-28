@@ -145,7 +145,7 @@ namespace Fabric.Api.Modify.Tasks {
 				facBuild.SetDescriptorRefinesTypeWithArtifact((long)pDescTypeRefId);
 			}
 
-			pApiCtx.DbData("UpdateFactorDescriptor", txb.Finish());
+			pApiCtx.Execute(txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -160,7 +160,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.DbData("UpdateFactorDirector", q);
+			pApiCtx.Execute(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -175,7 +175,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.DbData("UpdateFactorEventor", q);
+			pApiCtx.Execute(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -189,7 +189,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.DbData("UpdateFactorIdentor", q);
+			pApiCtx.Execute(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -205,7 +205,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.DbData("UpdateFactorLocator", q);
+			pApiCtx.Execute(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -236,7 +236,7 @@ namespace Fabric.Api.Modify.Tasks {
 			facBuild.SetVertexVar(facVar);
 			facBuild.SetVectorUsesAxisArtifact(pAxisArtId);
 
-			pApiCtx.DbData("UpdateFactorVector", txb.Finish());
+			pApiCtx.Execute(txb.Finish());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -251,7 +251,7 @@ namespace Fabric.Api.Modify.Tasks {
 				facPath.SideEffect(new WeaverStatementSetProperty<Factor>(x => x.Deleted, now));
 			}
 
-			return pApiCtx.DbSingle<Factor>("UpdateFactor", facPath.ToQuery());
+			return pApiCtx.Get<Factor>(facPath.ToQuery());
 		}
 
 

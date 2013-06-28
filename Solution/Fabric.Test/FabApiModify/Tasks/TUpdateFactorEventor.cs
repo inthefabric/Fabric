@@ -1,10 +1,8 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -33,28 +31,24 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vEveTypeId = 9;
 			vEvePrecId = 23;
 			vDateTime = 253125123523;
-			
-			MockApiCtx
-				.Setup(x => x.DbData("UpdateFactorEventor", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => UpdateFactorEventor(q));
+
+			var mda = MockDataAccess.Create(OnExecute);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess UpdateFactorEventor(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("UpdateFactorEventor");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(Query, "_P");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			
-			TestUtil.CheckParams(pQuery.Params, "_P", new object[] {
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
+
+			TestUtil.CheckParams(cmd.Params, "_P", new object[] {
 				vFactor.FactorId,
 				vEveTypeId,
 				vEvePrecId,
 				vDateTime
 			});
-
-			return null;
 		}
 
 
@@ -63,7 +57,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[Test]
 		public void Update() {
 			Tasks.UpdateFactorEventor(MockApiCtx.Object, vFactor, vEveTypeId, vEvePrecId, vDateTime);
-			UsageMap.AssertUses("UpdateFactorEventor", 1);
+			AssertDataExecution(true);
 		}
 
 	}

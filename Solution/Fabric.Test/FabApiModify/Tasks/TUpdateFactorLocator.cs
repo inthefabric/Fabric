@@ -1,10 +1,8 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -37,28 +35,24 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vValueY = 99.52352;
 			vValueZ = 37.023983;
 
-			MockApiCtx
-				.Setup(x => x.DbData("UpdateFactorLocator", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => UpdateFactorLocator(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess UpdateFactorLocator(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("UpdateFactorLocator");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(Query, "_P");
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pQuery.Params, "_P", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_P", new object[] {
 				vFactor.FactorId,
 				vLocTypeId,
 				vValueX,
 				vValueY,
 				vValueZ,
 			});
-
-			return null;
 		}
 
 
@@ -67,7 +61,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[Test]
 		public void Update() {
 			Tasks.UpdateFactorLocator(MockApiCtx.Object, vFactor, vLocTypeId, vValueX, vValueY,vValueZ);
-			UsageMap.AssertUses("UpdateFactorLocator", 1);
+			AssertDataExecution(true);
 		}
 
 	}

@@ -1,10 +1,8 @@
 ﻿using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -34,27 +32,24 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vPrimActId = 25;
 			vEdgeActId = 64;
 
-			MockApiCtx
-				.Setup(x => x.DbData("UpdateFactorDirector", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => UpdateFactorDirector(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess UpdateFactorDirector(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("UpdateFactorDirector");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+
 
 			string expect = TestUtil.InsertParamIndexes(Query, "_P").Replace('*', '_');
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pQuery.Params, "_P", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_P", new object[] {
 				vFactor.FactorId,
 				vDirTypeId,
 				vPrimActId,
 				vEdgeActId
 			});
-
-			return null;
 		}
 
 
@@ -63,7 +58,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[Test]
 		public void Update() {
 			Tasks.UpdateFactorDirector(MockApiCtx.Object, vFactor, vDirTypeId, vPrimActId, vEdgeActId);
-			UsageMap.AssertUses("UpdateFactorDirector", 1);
+			AssertDataExecution(true);
 		}
 
 	}

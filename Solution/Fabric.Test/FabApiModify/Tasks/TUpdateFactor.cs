@@ -1,10 +1,9 @@
 ﻿using System;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiModify.Tasks {
 
@@ -37,25 +36,23 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			vFactorResult = new Factor();
 
 			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
-			MockApiCtx
-				.Setup(x => x.DbSingle<Factor>("UpdateFactor", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetFactor(q));
+
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vFactorResult);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Factor GetFactor(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("UpdateFactor");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = Query
 				.Replace("{{PropName}}", 
 					(vCompleted ? PropDbName.Factor_Completed : PropDbName.Factor_Deleted));
 
-			Assert.AreEqual(expect, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vFactor.FactorId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vUtcNow.Ticks);
-
-			return vFactorResult;
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vFactor.FactorId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vUtcNow.Ticks);
 		}
 
 
@@ -69,7 +66,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			Factor result = Tasks.UpdateFactor(MockApiCtx.Object, vFactor, vCompleted, vDeleted);
 
-			UsageMap.AssertUses("UpdateFactor", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vFactorResult, result, "Incorrect Result.");
 		}
 
