@@ -160,7 +160,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			try {
-				ApiCtx.DbData("BatchCreateClassTx", txList);
+				ApiCtx.NewData().AddQueries(txList).Execute();
 			}
 			catch ( Exception e ) {
 				Log.Error("BatchCreateClass batch exception: "+e);

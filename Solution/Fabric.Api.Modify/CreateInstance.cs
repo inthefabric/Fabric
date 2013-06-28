@@ -4,6 +4,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
@@ -63,7 +64,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddInstance(ApiCtx, txb, vName, vDisamb, vNote, memVar, out classVar);
 			txb.RegisterVarWithTxBuilder(classVar);
 
-			return ApiCtx.DbSingle<Instance>("CreateInstanceTx", txb.Finish(classVar));
+			return ApiCtx.Get<Instance>(txb.Finish(classVar));
 		}
 
 	}

@@ -3,6 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -32,7 +33,7 @@ namespace Fabric.Test.FabApiModify {
 			vNote = "This is a note.";
 			
 			vResultMember = new Member { Id = "x87123523" };
-			vOutClassVar = GetTxVar<Class>("CLASS");
+			vOutClassVar = TestUtil.GetTxVar<Class>("CLASS");
 
 			vResultClass = new Class();
 			vResultClass.ArtifactId = 84761294623;
@@ -57,24 +58,23 @@ namespace Fabric.Test.FabApiModify {
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Class>("CreateClassTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateClassTx(q));
-
 			SetUpMember(1, 2, vResultMember);
+
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vResultClass);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Class CreateClassTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			const string expectPartial = 
 				"_V0=g.v(_TP0);"+
 				"CLASS;";
 
-			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", vResultMember.Id);
-			return vResultClass;
+			Assert.AreEqual(expectPartial, cmd.Script, "Incorrect partial script.");
+			TestUtil.CheckParam(cmd.Params, "_TP0", vResultMember.Id);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -92,6 +92,7 @@ namespace Fabric.Test.FabApiModify {
 
 			Assert.AreEqual(vResultClass, vResult, "Incorrect Result.");
 
+			AssertDataExecution(true);
 			MockValidator.Verify(x => x.ClassName(vName, CreateClass.NameParam), Times.Once());
 			MockValidator.Verify(x => x.ClassDisamb(vDisamb, CreateClass.DisambParam), Times.Once());
 			MockValidator.Verify(x => x.ClassNote(vNote, CreateClass.NoteParam), Times.Once());

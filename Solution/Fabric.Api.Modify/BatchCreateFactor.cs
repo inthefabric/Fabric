@@ -9,8 +9,8 @@ using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
-using RexConnectClient.Core.Result;
 using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
@@ -164,14 +164,14 @@ namespace Fabric.Api.Modify {
 
 				for ( int a = 0 ; a < n ; a += size ) {
 					int len = Math.Min(size, n-a);
-					IApiDataAccess data = ApiCtx.DbData("GetBatchArts"+a, queries.GetRange(a,len));
+					IDataResult result = ApiCtx.NewData().AddQueries(queries.GetRange(a,len)).Execute();
 
 					for ( int i = 0 ; i < len ; ++i ) {
-						ITextResultList list = data.Result.GetTextResultsAt(i+1); //Skip Session
+						int cmdI = i+1; //use i+1 to skip session command
 						string val = null;
 
-						if ( list != null && list.Values.Count > 0 ) {
-							val = list.ToString(0);
+						if ( result.GetCommandResultCount(cmdI) > 0 ) {
+							val = result.ToStringAt(cmdI, 0);
 						}
 
 						long id;
@@ -221,7 +221,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			try {
-				ApiCtx.DbData("BatchCreateFactorVertexTx", list);
+				ApiCtx.NewData().AddQueries(list).Execute();
 			}
 			catch ( Exception e ) {
 				Log.Error("BatchCreateFactor batch exception: "+e);

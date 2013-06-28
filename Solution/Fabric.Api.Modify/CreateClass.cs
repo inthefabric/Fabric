@@ -4,6 +4,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
@@ -55,7 +56,7 @@ namespace Fabric.Api.Modify {
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 			TxBuilder txb = GetFullTx(out memVar, out classVar);
-			return ApiCtx.DbSingle<Class>("CreateClassTx", txb.Finish(classVar));
+			return ApiCtx.Get<Class>(txb.Finish(classVar));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

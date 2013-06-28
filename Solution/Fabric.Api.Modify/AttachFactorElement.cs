@@ -3,6 +3,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Modify {
 	
@@ -62,7 +63,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			foreach ( KeyValuePair<string, long> pair in map ) {
-				if ( ApiCtx.DbVertexById<Artifact>(pair.Value) == null ) {
+				if ( ApiCtx.GetVertexById<Artifact>(pair.Value) == null ) {
 					throw new FabNotFoundFault(typeof(Artifact), pair.Key+"="+pair.Value);
 				}
 			}

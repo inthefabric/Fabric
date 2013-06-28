@@ -5,6 +5,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
@@ -64,11 +65,11 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyRequiredVertices() {
-			if ( ApiCtx.DbVertexById<Artifact>(vPrimArtId) == null ) {
+			if ( ApiCtx.GetVertexById<Artifact>(vPrimArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), PrimArtParam+"="+vPrimArtId);
 			}
 
-			if ( ApiCtx.DbVertexById<Artifact>(vEdgeArtId) == null ) {
+			if ( ApiCtx.GetVertexById<Artifact>(vEdgeArtId) == null ) {
 				throw new FabNotFoundFault(typeof(Artifact), EdgeArtParam+"="+vEdgeArtId);
 			}
 		}
@@ -79,14 +80,13 @@ namespace Fabric.Api.Modify {
 			Member m = GetContextMember();
 
 			IWeaverVarAlias<Factor> factorVar;
-
 			var txb = new TxBuilder();
 
 			Tasks.TxAddFactor(ApiCtx, txb, vPrimArtId, vEdgeArtId, vAssertId, 
 				vIsDefining, vNote, m, out factorVar);
 			
 			txb.RegisterVarWithTxBuilder(factorVar);
-			return ApiCtx.DbSingle<Factor>("CreateFactorTx", txb.Finish(factorVar));
+			return ApiCtx.Get<Factor>(txb.Finish(factorVar));
 		}
 
 

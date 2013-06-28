@@ -81,30 +81,6 @@ namespace Fabric.Infrastructure.Api {
 			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute);
 			return da;
 		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public T GetVertexById<T>(long pTypeId) where T : class, IVertex, IVertexWithId, new() {
-			T item = Cache.Memory.FindVertex<T>(pTypeId);
-
-			if ( item != null ) {
-				return item;
-			}
-
-			item = new T();
-			item.SetTypeId(pTypeId);
-
-			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(item).ToQuery();
-			item = NewData().AddQuery(q).Execute().ToElement<T>();
-
-			if ( item == null ) {
-				Cache.Memory.RemoveVertex<T>(pTypeId);
-			}
-			else {
-				Cache.Memory.AddVertex(item);
-			}
-
-			return item;
-		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPreExecute(RexConnDataAccess pRexConnData) {

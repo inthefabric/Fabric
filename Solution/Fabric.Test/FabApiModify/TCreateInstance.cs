@@ -3,6 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -30,7 +31,7 @@ namespace Fabric.Test.FabApiModify {
 			vDisamb = "Disamb Text";
 			vNote = "This is a note.";
 
-			vOutInstanceVar = GetTxVar<Instance>("INST");
+			vOutInstanceVar = TestUtil.GetTxVar<Instance>("INST");
 			vResultInstance = new Instance();
 
 			MockTasks
@@ -47,24 +48,23 @@ namespace Fabric.Test.FabApiModify {
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Instance>("CreateInstanceTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateInstanceTx(q));
-
 			SetUpMember(1, 2, new Member { MemberId = 234623 });
+
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vResultInstance);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Instance CreateInstanceTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
-			string expectPartial = 
+			const string expectPartial = 
 				"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP0).next();"+
 				"INST;";
 
-			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", ApiCtxMember.MemberId);
-			return vResultInstance;
+			Assert.AreEqual(expectPartial, cmd.Script, "Incorrect partial script.");
+			TestUtil.CheckParam(cmd.Params, "_TP0", ApiCtxMember.MemberId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

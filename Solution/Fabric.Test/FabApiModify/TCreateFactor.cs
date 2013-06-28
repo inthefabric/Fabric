@@ -3,6 +3,7 @@ using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -19,7 +20,6 @@ namespace Fabric.Test.FabApiModify {
 		private byte vAssertId;
 		private bool vIsDefining;
 		private string vNote;
-		private Member vCreator;
 
 		private IWeaverVarAlias<Factor> vOutFactorVar;
 		private Factor vResultFactor;
@@ -34,9 +34,8 @@ namespace Fabric.Test.FabApiModify {
 			vAssertId = 1;
 			vIsDefining = true;
 			vNote = "note here";
-			vCreator = new Member { MemberId = 151235 };
 
-			vOutFactorVar = GetTxVar<Factor>("FACTOR");
+			vOutFactorVar = TestUtil.GetTxVar<Factor>("FACTOR");
 			vResultFactor = new Factor();
 
 			SetUpMember(1, 2, new Member { MemberId = 234623 });
@@ -57,21 +56,25 @@ namespace Fabric.Test.FabApiModify {
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Factor>("CreateFactorTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateFactorTx(q));
+			var mda = MockDataAccess.Create(m => { });
+			mda.MockResult.SetupToElement(new Artifact());
+			MockDataList.Add(mda);
 
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vPrimArtId)).Returns(new Artifact());
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vEdgeArtId)).Returns(new Artifact());
+			mda = MockDataAccess.Create(m => { });
+			mda.MockResult.SetupToElement(new Artifact());
+			MockDataList.Add(mda);
+
+			mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vResultFactor);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Factor CreateFactorTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			const string expectPartial = "FACTOR;";
-			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			return vResultFactor;
+			Assert.AreEqual(expectPartial, cmd.Script, "Incorrect partial script.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -109,21 +112,21 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrPrimaryArtifactNotFound() {
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vPrimArtId)).Returns((Artifact)null);
+			MockDataList[0].MockResult.SetupToElement((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrRelatedArtifactNotFound() {
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vEdgeArtId)).Returns((Artifact)null);
+			MockDataList[1].MockResult.SetupToElement((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrMemberNotFound() {
-			SetUpMember(1, 2, null);
+			SetUpMember(1, 2);
 			TestUtil.CheckThrows<FabMembershipFault>(true, TestGo);
 		}
 

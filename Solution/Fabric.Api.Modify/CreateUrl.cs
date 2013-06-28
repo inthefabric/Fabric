@@ -4,6 +4,7 @@ using Fabric.Api.Modify.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
@@ -65,7 +66,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, memVar, out urlVar);
 			txb.RegisterVarWithTxBuilder(urlVar);
 
-			return ApiCtx.DbSingle<Url>("CreateUrlTx", txb.Finish(urlVar));
+			return ApiCtx.Get<Url>(txb.Finish(urlVar));
 		}
 
 	}

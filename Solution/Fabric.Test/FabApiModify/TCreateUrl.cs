@@ -1,10 +1,9 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Db;
 using Fabric.Infrastructure.Domain;
-using Fabric.Infrastructure.Domain.Types;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -30,7 +29,7 @@ namespace Fabric.Test.FabApiModify {
 			vAbsoluteUrl = "http://www.mywebsite.com";
 			vName = "My Web Site";
 
-			vOutUrlVar = GetTxVar<Url>("AU");
+			vOutUrlVar = TestUtil.GetTxVar<Url>("AU");
 			vResultUrl = new Url();
 
 			MockTasks
@@ -46,24 +45,23 @@ namespace Fabric.Test.FabApiModify {
 
 			MockApiCtx.SetupGet(x => x.AppId).Returns((long)AppId.FabricSystem);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Url>("CreateUrlTx", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction q) => CreateUrlTx(q));
-
 			SetUpMember(1, 2, new Member { MemberId = 234623 });
+
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vResultUrl);
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Url CreateUrlTx(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			const string expectPartial = 
 				"_V0=g.V('"+PropDbName.Member_MemberId+"',_TP0).next();"+
 				"AU;";
 
-			Assert.AreEqual(expectPartial, pTx.Script, "Incorrect partial script.");
-			TestUtil.CheckParam(pTx.Params, "_TP0", ApiCtxMember.MemberId);
-			return vResultUrl;
+			Assert.AreEqual(expectPartial, cmd.Script, "Incorrect partial script.");
+			TestUtil.CheckParam(cmd.Params, "_TP0", ApiCtxMember.MemberId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

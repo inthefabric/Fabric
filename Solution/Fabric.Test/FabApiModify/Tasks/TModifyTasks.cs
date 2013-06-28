@@ -11,7 +11,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	public abstract class TModifyTasks : TTestBase {
 
 		protected ModifyTasks Tasks { get; private set; }
-		protected UsageMap UsageMap { get; private set; }
 		protected TxBuilder TxBuild { get; private set; }
 		
 		
@@ -20,9 +19,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		[SetUp]
 		public override void SetUp() {
 			Tasks = new ModifyTasks();
-			UsageMap = new UsageMap();
 			TxBuild = new TxBuilder();
-
 			base.SetUp();
 		}
 

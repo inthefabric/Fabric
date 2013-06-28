@@ -1,6 +1,7 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -29,17 +30,17 @@ namespace Fabric.Test.FabApiModify {
 			vEdgeArtRefId = 25323;
 			vDescTypeRefId = 5439225;
 
-			MockApiCtx
-				.Setup(x => x.DbVertexById<Artifact>((long)vPrimArtRefId))
-				.Returns(new Artifact());
+			var mda = MockDataAccess.Create(m => {});
+			mda.MockResult.SetupToElement(new Artifact());
+			MockDataList.Add(mda);
 
-			MockApiCtx
-				.Setup(x => x.DbVertexById<Artifact>((long)vEdgeArtRefId))
-				.Returns(new Artifact());
+			mda = MockDataAccess.Create(m => { });
+			mda.MockResult.SetupToElement(new Artifact());
+			MockDataList.Add(mda);
 
-			MockApiCtx
-				.Setup(x => x.DbVertexById<Artifact>((long)vDescTypeRefId))
-				.Returns(new Artifact());
+			mda = MockDataAccess.Create(m => { });
+			mda.MockResult.SetupToElement(new Artifact());
+			MockDataList.Add(mda);
 
 			MockTasks
 				.Setup(x => x.UpdateFactorDescriptor(
@@ -49,7 +50,8 @@ namespace Fabric.Test.FabApiModify {
 					vPrimArtRefId,
 					vEdgeArtRefId,
 					vDescTypeRefId
-				));
+				)
+			);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,10 +97,10 @@ namespace Fabric.Test.FabApiModify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("P")]
-		[TestCase("R")]
-		[TestCase("T")]
-		public void ErrPrimRefArtNotFound(string pType) {
+		[TestCase("P", 0)]
+		[TestCase("R", 1)]
+		[TestCase("T", 2)]
+		public void ErrPrimRefArtNotFound(string pType, int pIndex) {
 			const long refId = 999;
 
 			switch ( pType ) {
@@ -107,7 +109,7 @@ namespace Fabric.Test.FabApiModify {
 				case "T": vDescTypeRefId = refId; break;
 			}
 
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(refId)).Returns((Artifact)null);
+			MockDataList[pIndex].MockResult.SetupToElement((Artifact)null);
 			TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 		}
 

@@ -2,6 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
@@ -43,8 +44,10 @@ namespace Fabric.Test.FabApiModify {
 						vVecUnitPrefId
 					)
 				);
-				
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vAxisArtId)).Returns(new Artifact());
+
+			var mda = MockDataAccess.Create(m => { });
+			mda.MockResult.SetupToElement(new Artifact());
+			MockDataList.Add(mda);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,7 +96,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrAxisArtifactNotFound() {
-			MockApiCtx.Setup(x => x.DbVertexById<Artifact>(vAxisArtId)).Returns((Artifact)null);
+			MockDataList[0].MockResult.SetupToElement((Artifact)null);
 
 			FabNotFoundFault f = TestUtil.CheckThrows<FabNotFoundFault>(true, TestGo);
 			Assert.AreEqual(typeof(Artifact), f.ItemType, "Incorrect Fault.ItemType.");
