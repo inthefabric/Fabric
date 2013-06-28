@@ -10,29 +10,21 @@ using Weaver.Core.Query;
 namespace Fabric.Test.FabApiWeb.Tasks {
 
 	/*================================================================================================*/
-	public abstract class TWebTasks {
+	public abstract class TWebTasks : TTestBase {
 
 		protected IWebTasks Tasks { get; private set; }
-		protected Mock<IApiContext> MockApiCtx { get; private set; }
 		protected UsageMap UsageMap { get; private set; }
 		protected TxBuilder TxBuild { get; private set; }
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[SetUp]
-		public void SetUp() {
+		public override void SetUp() {
 			Tasks = new WebTasks();
-			UsageMap = new UsageMap();
-			MockApiCtx = new Mock<IApiContext>();
 			TxBuild = new TxBuilder();
-
-			TestSetUp();
+			base.SetUp();
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		protected abstract void TestSetUp();
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -46,11 +38,9 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			IWeaverVarAlias v;
 			TxBuild.Transaction.AddQuery(WeaverQuery.InitListVar(pName, out v));
 
-			var tv = new Mock<IWeaverVarAlias<T>>();
-			tv.SetupGet(x => x.Name).Returns(v.Name);
-			tv.SetupGet(x => x.VarType).Returns(typeof(T));
-			TxBuild.RegisterVarWithTxBuilder(tv.Object);
-			return tv.Object;
+			var tv = TestUtil.GetTxVar<T>(v.Name);
+			TxBuild.RegisterVarWithTxBuilder(tv);
+			return tv;
 		}
 
 	}

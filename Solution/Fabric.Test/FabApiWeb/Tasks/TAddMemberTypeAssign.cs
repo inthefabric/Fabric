@@ -5,6 +5,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -51,21 +52,20 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<MemberTypeAssign>()).Returns(vNewMtaId);
 			MockApiCtx.SetupGet(x => x.UtcNow).Returns(vUtcNow);
-			MockApiCtx
-				.Setup(x => x.DbSingle<MemberTypeAssign>("AddMemberTypeAssign",
-					It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => AddMemberTypeAssign(tx));
+			
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vMtaResult);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private MemberTypeAssign AddMemberTypeAssign(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			UsageMap.Increment("AddMemberTypeAssign");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vMemberId,
 				EdgeDbName.MemberHasHistoricMemberTypeAssign,
 				vNewMtaId,
@@ -76,8 +76,6 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				EdgeDbName.MemberCreatesMemberTypeAssign,
 				EdgeDbName.MemberHasMemberTypeAssign
 			});
-
-			return vMtaResult;
 		}
 
 
@@ -87,8 +85,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		public void Success() {
 			MemberTypeAssign result = Tasks.AddMemberTypeAssign(MockApiCtx.Object,
 				vAssigningMemberId, vMemberId, vMemberTypeId);
-
-			UsageMap.AssertUses("AddMemberTypeAssign", 1);
+				
+			AssertDataExecution(true);
 			Assert.AreEqual(vMtaResult, result, "Incorrect Result.");
 		}
 

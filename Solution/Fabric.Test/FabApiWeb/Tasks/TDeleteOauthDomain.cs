@@ -4,6 +4,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -27,20 +28,17 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			vAppId = 3456;
 			vOauthDomainId = 842645;
 
-			MockApiCtx
-				.Setup(x => x.DbData("DeleteOauthDomain", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => DeleteOauthDomain(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private IApiDataAccess DeleteOauthDomain(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("DeleteOauthDomain");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vOauthDomainId);
-			return null;
+			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vOauthDomainId);
 		}
 
 
@@ -50,7 +48,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		public void Success() {
 			bool result = Tasks.DeleteOauthDomain(MockApiCtx.Object, vAppId, vOauthDomainId);
 
-			UsageMap.AssertUses("DeleteOauthDomain", 1);
+			AssertDataExecution(true);
 			Assert.True(result, "Incorrect Result.");
 		}
 

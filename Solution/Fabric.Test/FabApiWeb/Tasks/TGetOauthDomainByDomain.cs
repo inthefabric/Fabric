@@ -4,6 +4,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -28,21 +29,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			vDomain = "TestOauthDomain";
 			vOauthDomainResult = new OauthDomain();
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<OauthDomain>("GetOauthDomainByDomain", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetOauthDomain(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vOauthDomainResult);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthDomain GetOauthDomain(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetOauthDomainByDomain");
-
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vDomain.ToLower());
-
-			return vOauthDomainResult;
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			
+			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vDomain.ToLower());
 		}
 
 
@@ -52,7 +50,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		public void Success() {
 			OauthDomain result = Tasks.GetOauthDomainByDomain(MockApiCtx.Object, vAppId, vDomain);
 
-			UsageMap.AssertUses("GetOauthDomainByDomain", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vOauthDomainResult, result, "Incorrect Result.");
 		}
 

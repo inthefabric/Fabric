@@ -4,6 +4,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -28,21 +29,18 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			vMemberId = 438643;
 			vMemberResult = new Member();
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<Member>("GetMemberOfApp", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetMemberOfApp(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vMemberResult);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private Member GetMemberOfApp(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetMemberOfApp");
-
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vAppId);
-			TestUtil.CheckParam(pQuery.Params, "_P1", vMemberId);
-
-			return vMemberResult;
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			
+			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vAppId);
+			TestUtil.CheckParam(cmd.Params, "_P1", vMemberId);
 		}
 
 
@@ -52,7 +50,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		public void Success() {
 			Member result = Tasks.GetMemberOfApp(MockApiCtx.Object, vAppId, vMemberId);
 
-			UsageMap.AssertUses("GetMemberOfApp", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vMemberResult, result, "Incorrect Result.");
 		}
 

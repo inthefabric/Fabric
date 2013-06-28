@@ -4,6 +4,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -37,28 +38,25 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			MockApiCtx.Setup(x => x.GetSharpflakeId<OauthDomain>()).Returns(vNewDomainId);
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<OauthDomain>("AddOauthDomain", It.IsAny<IWeaverTransaction>()))
-				.Returns((string s, IWeaverTransaction tx) => AddOauthDomain(tx));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vDomainResult);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthDomain AddOauthDomain(IWeaverTransaction pTx) {
-			TestUtil.LogWeaverScript(pTx);
-			UsageMap.Increment("AddOauthDomain");
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
 
 			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
-			Assert.AreEqual(expect, pTx.Script, "Incorrect Query.Script.");
+			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 
-			TestUtil.CheckParams(pTx.Params, "_TP", new object[] {
+			TestUtil.CheckParams(cmd.Params, "_TP", new object[] {
 				vNewDomainId,
 				vDomain.ToLower(),
 				(byte)VertexFabType.OauthDomain,
 				vAppId,
 				EdgeDbName.OauthDomainUsesApp
 			});
-
-			return vDomainResult;
 		}
 
 
@@ -67,8 +65,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		[Test]
 		public void Success() {
 			OauthDomain result = Tasks.AddOauthDomain(MockApiCtx.Object, vAppId, vDomain);
-
-			UsageMap.AssertUses("AddOauthDomain", 1);
+			
+			AssertDataExecution(true);
 			Assert.AreEqual(vDomainResult, result, "Incorrect Result.");
 		}
 

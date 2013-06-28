@@ -9,6 +9,7 @@ using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 using Weaver.Core.Util;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Web.Tasks {
 
@@ -32,7 +33,7 @@ namespace Fabric.Api.Web.Tasks {
 				.V.ExactIndex<User>(x => x.NameKey, pName.ToLower())
 				.ToQuery();
 
-			return pApiCtx.DbSingle<User>("GetUserByName", q);
+			return pApiCtx.Get<User>(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -41,7 +42,7 @@ namespace Fabric.Api.Web.Tasks {
 				.V.ExactIndex<App>(x => x.NameKey, pName.ToLower())
 				.ToQuery();
 
-			App app = pApiCtx.DbSingle<App>("GetAppByName", q);
+			App app = pApiCtx.Get<App>(q);
 
 			if ( app == null || app.Name.ToLower() != pName.ToLower() ) {
 				return null;
@@ -60,7 +61,7 @@ namespace Fabric.Api.Web.Tasks {
 					)
 				.ToQuery();
 
-			return pApiCtx.DbSingle<User>("UpdateUserPassword", q);
+			return pApiCtx.Get<User>(q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -70,7 +71,7 @@ namespace Fabric.Api.Web.Tasks {
 					.SideEffect(new WeaverStatementSetProperty<App>(x => x.Name, pName))
 				.ToQuery();
 					
-			return pApiCtx.DbSingle<App>("UpdateAppName", q);
+			return pApiCtx.Get<App>(q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -82,7 +83,7 @@ namespace Fabric.Api.Web.Tasks {
 					.SideEffect	(update)
 				.ToQuery();
 
-			return pApiCtx.DbSingle<App>("UpdateAppSecret", q);
+			return pApiCtx.Get<App>(q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,7 +94,7 @@ namespace Fabric.Api.Web.Tasks {
 					.Has(x => x.MemberId, WeaverStepHasOp.EqualTo, pMemberId)
 				.ToQuery();
 			
-			return pApiCtx.DbSingle<Member>("GetMemberOfApp", q);
+			return pApiCtx.Get<Member>(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -103,7 +104,7 @@ namespace Fabric.Api.Web.Tasks {
 				.HasMemberTypeAssign.ToMemberTypeAssign
 				.ToQuery();
 
-			return pApiCtx.DbSingle<MemberTypeAssign>("GetMemberTypeAssignByMember", q);
+			return pApiCtx.Get<MemberTypeAssign>(q);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -149,7 +150,7 @@ namespace Fabric.Api.Web.Tasks {
 			mtaBuild.SetInMemberHas(memAlias);
 
 			txb.Finish(mtaBuild.VertexVar);
-			return pApiCtx.DbSingle<MemberTypeAssign>("AddMemberTypeAssign", txb.Transaction);
+			return pApiCtx.Get<MemberTypeAssign>(txb.Transaction);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -164,7 +165,7 @@ namespace Fabric.Api.Web.Tasks {
 				.ToQuery();
 
 			q.AddStringParam(pDomain.ToLower());
-			return pApiCtx.DbSingle<OauthDomain>("GetOauthDomainByDomain", q);
+			return pApiCtx.Get<OauthDomain>(q);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -180,7 +181,7 @@ namespace Fabric.Api.Web.Tasks {
 			odBuild.SetUsesApp(pAppId);
 			
 			txb.Finish(odBuild.VertexVar);
-			return pApiCtx.DbSingle<OauthDomain>("AddOauthDomain", txb.Transaction);
+			return pApiCtx.Get<OauthDomain>(txb.Transaction);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -192,7 +193,7 @@ namespace Fabric.Api.Web.Tasks {
 					.Remove()
 				.ToQuery();
 				
-			pApiCtx.DbData("DeleteOauthDomain", q);
+			pApiCtx.Execute(q);
 			return true;
 		}
 

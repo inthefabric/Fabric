@@ -4,6 +4,7 @@ using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
+using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb.Tasks {
 
@@ -25,20 +26,16 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 			vAppResult = new App();
 			vAppResult.Name = vName;
 
-			MockApiCtx
-				.Setup(x => x.DbSingle<App>("GetAppByName", It.IsAny<IWeaverQuery>()))
-				.Returns((string s, IWeaverQuery q) => GetApp(q));
+			var mda = MockDataAccess.Create(OnExecute);
+			mda.MockResult.SetupToElement(vAppResult);
+			MockDataList.Add(mda);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private App GetApp(IWeaverQuery pQuery) {
-			TestUtil.LogWeaverScript(pQuery);
-			UsageMap.Increment("GetAppByName");
-
-			Assert.AreEqual(Query, pQuery.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(pQuery.Params, "_P0", vName.ToLower());
-
-			return vAppResult;
+		private void OnExecute(MockDataAccess pData) {
+			MockDataAccessCmd cmd = pData.GetCommand(0);
+			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
+			TestUtil.CheckParam(cmd.Params, "_P0", vName.ToLower());
 		}
 
 
@@ -48,7 +45,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 		public void Success() {
 			App result = Tasks.GetAppByName(MockApiCtx.Object, vName);
 
-			UsageMap.AssertUses("GetAppByName", 1);
+			AssertDataExecution(true);
 			Assert.AreEqual(vAppResult, result, "Incorrect Result.");
 		}
 		
@@ -59,7 +56,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 
 			App result = Tasks.GetAppByName(MockApiCtx.Object, vName);
 
-			UsageMap.AssertUses("GetAppByName", 1);
+			AssertDataExecution(true);
 			Assert.Null(result, "Incorrect Result.");
 		}
 
