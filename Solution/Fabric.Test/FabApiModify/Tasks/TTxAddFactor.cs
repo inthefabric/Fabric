@@ -20,12 +20,33 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				PropDbName.Factor_Note+":_TP"+","+
 				PropDbName.Vertex_FabType+":_TP"+""+
 			"]);"+
+			
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP"+").next();"+
-			"g.addEdge(_V0,_V1,_TP"+");"+
+			
+			"_PROP=[:];"+
+			"_TRY=[F_Fa:_V0,F_Df:_V0,F_Cr:_V0,F_DeT:_V0,F_DiT:_V0,F_DiP:_V0,F_DiR:_V0,F_EvT:_V0,"+
+				"F_EvP:_V0,F_EvD:_V0,F_IdT:_V0,F_IdV:_V0,F_LoT:_V0,F_LoX:_V0,F_LoY:_V0,F_LoZ:_V0,"+
+				"F_VeT:_V0,F_VeU:_V0,F_VeP:_V0,F_VeV:_V0,A_Cr:_V1];"+
+			TestUtil.TryPropScript+
+			"g.addEdge(_V0,_V1,_TP,_PROP);"+
+			
 			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP"+").next();"+
-			"g.addEdge(_V0,_V2,_TP"+");"+
+			
+			"_PROP=[:];"+
+			"_TRY=[F_Fa:_V0,F_Df:_V0,F_Cr:_V0,F_DeT:_V0,F_DiT:_V0,F_DiP:_V0,F_DiR:_V0,F_EvT:_V0,"+
+				"F_EvP:_V0,F_EvD:_V0,F_IdT:_V0,F_IdV:_V0,F_LoT:_V0,F_LoX:_V0,F_LoY:_V0,F_LoZ:_V0,"+
+				"F_VeT:_V0,F_VeU:_V0,F_VeP:_V0,F_VeV:_V0,A_Cr:_V2];"+
+				TestUtil.TryPropScript+
+			"g.addEdge(_V0,_V2,_TP,_PROP);"+
+			
 			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP"+").next();"+
-			"g.addEdge(_V3,_V0,_TP"+");";
+			
+			"_PROP=[:];"+
+			"_TRY=[F_Fa:_V0,F_Df:_V0,F_Cr:_V0,F_DeT:_V0,F_DiT:_V0,F_DiP:_V0,F_DiR:_V0,F_EvT:_V0,"+
+				"F_EvP:_V0,F_EvD:_V0,F_IdT:_V0,F_IdV:_V0,F_LoT:_V0,F_LoX:_V0,F_LoY:_V0,F_LoZ:_V0,"+
+				"F_VeT:_V0,F_VeU:_V0,F_VeP:_V0,F_VeV:_V0];"+
+			TestUtil.TryPropScript+
+			"g.addEdge(_V3,_V0,_TP,_PROP);";
 
 		private long vPrimArtId;
 		private long vEdgeArtId;

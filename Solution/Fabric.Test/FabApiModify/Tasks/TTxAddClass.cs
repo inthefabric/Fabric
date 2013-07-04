@@ -22,7 +22,10 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				PropDbName.Artifact_Created+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V1,_TP);";
+			"_PROP=[:];"+
+			"_TRY=[A_Cr:_V1];"+
+			TestUtil.TryPropScript+
+			"g.addEdge(_V0,_V1,_TP,_PROP);";
 
 		private string vName;
 		private string vDisamb;

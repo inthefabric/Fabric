@@ -20,7 +20,13 @@ namespace Fabric.Test.FabApiModify.Tasks {
 				"}"+
 				".next();"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_F,_V1,_TP);";
+			
+			"_PROP=[:];"+
+			"_TRY=[F_Fa:_F,F_Df:_F,F_Cr:_F,F_DeT:_F,F_DiT:_F,F_DiP:_F,F_DiR:_F,F_EvT:_F,F_EvP:_F,"+
+				"F_EvD:_F,F_IdT:_F,F_IdV:_F,F_LoT:_F,F_LoX:_F,F_LoY:_F,F_LoZ:_F,F_VeT:_F,F_VeU:_F,"+
+				"F_VeP:_F,F_VeV:_F,A_Cr:_V1];"+
+			TestUtil.TryPropScript+
+			"g.addEdge(_F,_V1,_TP,_PROP);";
 
 		private Factor vFactor;
 		private byte vVecTypeId;

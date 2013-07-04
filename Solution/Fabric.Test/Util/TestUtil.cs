@@ -11,6 +11,9 @@ namespace Fabric.Test.Util {
 
 	/*================================================================================================*/
 	public static class TestUtil {
+	
+		public const string TryPropScript =
+			"_TRY.each{k,v->if((z=v.getProperty(k))){_PROP.put(k,z)}};";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
