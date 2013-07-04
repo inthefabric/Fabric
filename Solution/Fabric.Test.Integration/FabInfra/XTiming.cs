@@ -99,11 +99,21 @@ namespace Fabric.Test.Integration.FabInfra {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void RexConnSerial() {
-			Prepare(RunRexConn);
+		public void RexConnTcpSerial() {
+			Prepare(RunRexConnTcp);
 
 			for ( int i = 0 ; i < vRunCount ; ++i ) {
-				RunRexConn(i);
+				RunRexConnTcp(i);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RexConnHttpSerial() {
+			Prepare(RunRexConnHttp);
+
+			for ( int i = 0 ; i < vRunCount ; ++i ) {
+				RunRexConnHttp(i);
 			}
 		}
 
@@ -129,10 +139,18 @@ namespace Fabric.Test.Integration.FabInfra {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void RexConnParallel() {
-			Prepare(RunRexConn);
+		public void RexConnTcpParallel() {
+			Prepare(RunRexConnTcp);
 			vRunCount = 20;
-			Parallel.For(0, vRunCount, RunRexConn);
+			Parallel.For(0, vRunCount, RunRexConnTcp);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RexConnHttpParallel() {
+			Prepare(RunRexConnHttp);
+			vRunCount = 20;
+			Parallel.For(0, vRunCount, RunRexConnHttp);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -184,7 +202,7 @@ namespace Fabric.Test.Integration.FabInfra {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void RunRexConn(int pIndex) {
+		private void RunRexConnTcp(int pIndex) {
 			var sw = new Stopwatch();
 			sw.Start();
 
@@ -206,16 +224,74 @@ namespace Fabric.Test.Integration.FabInfra {
 			stream.Write(data, 0, data.Length);
 			double t2 = sw.Elapsed.TotalMilliseconds;
 
-			data = new byte[tcp.ReceiveBufferSize];
-			int bytes = stream.Read(data, 0, data.Length);
-			string json = Encoding.ASCII.GetString(data, 4, bytes-4);
+			data = new byte[4];
+			stream.Read(data, 0, data.Length);
+			Array.Reverse(data);
+			int respLen = BitConverter.ToInt32(data, 0);
+
+			//Get response string using the string length
+
+			var sb = new StringBuilder(respLen);
+
+			while ( sb.Length < respLen ) {
+				data = new byte[respLen];
+				int bytes = stream.Read(data, 0, data.Length);
+				sb.Append(Encoding.ASCII.GetString(data, 0, bytes));
+			}
+
+			string json = sb.ToString();
 			sw.Stop();
 			double t3 = sw.Elapsed.TotalMilliseconds;
 
 			lock ( this ) {
 				vTimeSum += sw.Elapsed.TotalMilliseconds;
 
-				vResults += String.Format("RunRexConn:"+
+				vResults += String.Format("RunRexConnTcp:"+
+					"  {0,8:#0.0000}ms,"+
+					"  {1,8:#0.0000}ms,"+
+					"  {2,8:#0.0000}ms,"+
+					"  {3,8:#0.0000}ms\n",
+					t0, t1, t2, t3
+				);
+			}
+
+			VerifyJson(json);
+
+			if ( VerifyGraphJson ) {
+				Assert.True(Regex.IsMatch(json, RexConnDataPattern), "Incorrect data.");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void RunRexConnHttp(int pIndex) {
+			var sw = new Stopwatch();
+			sw.Start();
+
+			var wr = new WeaverRequest("1234");
+			wr.AddQuery(TestScript);
+
+			JsConfig.EmitCamelCaseNames = true;
+			string script = JsonSerializer.SerializeToString(wr);
+			JsConfig.EmitCamelCaseNames = false;
+
+			var req = HttpWebRequest.Create(
+				"http://rexster:8182/graphs/graph/fab/rexconn?req="+script);
+			double t0 = sw.Elapsed.TotalMilliseconds;
+
+			WebResponse resp = req.GetResponse();
+			double t1 = sw.Elapsed.TotalMilliseconds;
+
+			var sr = new StreamReader(resp.GetResponseStream());
+			double t2 = sw.Elapsed.TotalMilliseconds;
+
+			string json = sr.ReadToEnd();
+			sw.Stop();
+			double t3 = sw.Elapsed.TotalMilliseconds;
+
+			lock ( this ) {
+				vTimeSum += sw.Elapsed.TotalMilliseconds;
+
+				vResults += String.Format("RunRexConnHttp:"+
 					"  {0,8:#0.0000}ms,"+
 					"  {1,8:#0.0000}ms,"+
 					"  {2,8:#0.0000}ms,"+

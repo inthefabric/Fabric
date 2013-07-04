@@ -1,8 +1,8 @@
 ﻿using System;
-using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
+using Weaver.Titan;
 
 namespace Fabric.Db.Data {
 
@@ -74,7 +74,7 @@ namespace Fabric.Db.Data {
 		public IWeaverQuery AddQuery {
 			get {
 				if ( vAddQuery == null ) {
-					vAddQuery = Weave.Inst.Graph.AddEdge(OutVertexT, EdgeT, InVertexT);
+					vAddQuery = Weave.Inst.TitanGraph().AddEdgeVci(OutVertexT, EdgeT, InVertexT);
 				}
 
 				return vAddQuery;

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Data;
-using Fabric.Infrastructure.Weaver;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
-using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 
@@ -77,22 +74,24 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public IDataAccess NewData(string pSessionId=null) {
 			var da = new DataAccess();
-			da.Build(this);
+			da.Build(this, pSessionId);
 			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute);
 			return da;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPreExecute(RexConnDataAccess pRexConnData) {
-			int n = pRexConnData.Context.Request.CmdList.Count;
-			Log.Debug(ContextId, "Data", "PreExec commands: "+n);
+			//int n = pRexConnData.Context.Request.CmdList.Count;
+			//Log.Debug(ContextId, "Data", "PreExec commands: "+n);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPostExecute(IResponseResult pResult) {
 			DbQueryExecutionCount++;
 			DbQueryMillis += (int)pResult.Response.Timer;
-			Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
+			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
+			Log.Debug(ContextId, "Data", "Request: "+pResult.RequestJson);
+			Log.Debug(ContextId, "Data", "Response: "+pResult.ResponseJson);
 		}
 
 

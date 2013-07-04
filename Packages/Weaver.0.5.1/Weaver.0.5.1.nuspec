@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Weaver.Titan</id>
-    <version>0.5.0</version>
-    <title>Weaver.Titan</title>
+    <id>Weaver</id>
+    <version>0.5.1</version>
+    <title>Weaver.Core</title>
     <authors>Zach Kinstner</authors>
     <owners>Zach Kinstner</owners>
     <licenseUrl>https://github.com/inthefabric/Weaver/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/inthefabric/Weaver</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extends Weaver with Titan-specific data-type and query functionality.</description>
+    <description>A fluent, strongly-typed Gremlin script generator.</description>
     <copyright>Zach Kinstner</copyright>
     <language />
     <tags>Gremlin Titan Neo4j Dex Blueprints TinkerPop</tags>
-    <dependencies>
-      <dependency id="Weaver" version="0.5.0" />
-    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>

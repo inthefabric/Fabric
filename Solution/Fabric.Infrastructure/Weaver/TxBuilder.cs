@@ -4,6 +4,7 @@ using Fabric.Domain;
 using Weaver.Core.Elements;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
+using Weaver.Titan;
 
 namespace Fabric.Infrastructure.Weaver {
 
@@ -93,7 +94,7 @@ namespace Fabric.Infrastructure.Weaver {
 			VerifyVar(pToVar);
 
 			Transaction.AddQuery(
-				Weave.Inst.Graph.AddEdge(pFromVar, new TEdge(), pToVar)
+				Weave.Inst.TitanGraph().AddEdgeVci(pFromVar, new TEdge(), pToVar)
 			);
 		}
 
