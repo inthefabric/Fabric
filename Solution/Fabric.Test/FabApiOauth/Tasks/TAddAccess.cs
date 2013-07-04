@@ -52,9 +52,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V1,_TP);"+
+			"_PROP=[:];"+
+			"g.addEdge(_V0,_V1,_TP,_PROP);"+
 			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V2,_TP);";
+			"_PROP=[:];"+
+			"g.addEdge(_V0,_V2,_TP,_PROP);";
 
 		private const string QueryAddAccessTxClientOnly =
 			"_V0=g.addVertex(["+
@@ -66,7 +68,8 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V0,_V1,_TP);";
+			"_PROP=[:];"+
+			"g.addEdge(_V0,_V1,_TP,_PROP);";
 
 		protected long vAddOauthAccessId;
 		protected DateTime vUtcNow;

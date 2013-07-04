@@ -37,9 +37,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V1,_V0,_TP);"+
+			"_PROP=[:];"+
+			"g.addEdge(_V1,_V0,_TP,_PROP);"+
 			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"g.addEdge(_V2,_V0,_TP);"+
+			"_PROP=[:];"+
+			"g.addEdge(_V2,_V0,_TP,_PROP);"+
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
@@ -47,16 +49,19 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.VertexForAction_Note+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
-			"g.addEdge(_V0,_V3,_TP);"+
+			"_PROP=[:];"+
+			"g.addEdge(_V0,_V3,_TP,_PROP);"+
 			"_V4=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"g.addEdge(_V4,_V3,_TP);";
+			"_PROP=[:];"+
+			"g.addEdge(_V4,_V3,_TP,_PROP);";
 
 		private const string QueryUpdateMemberTx =
 			"_V0=g.V('"+PropDbName.MemberTypeAssign_MemberTypeAssignId+"',_TP).next();"+
 			"_V0.inE('"+EdgeDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
 			"_V1=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"g.addEdge(_V1,_V0,_TP);"+
+			"_PROP=[:];"+
+			"g.addEdge(_V1,_V0,_TP,_PROP);"+
 			"_V2=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
@@ -64,9 +69,11 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.VertexForAction_Note+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
-			"g.addEdge(_V1,_V2,_TP);"+
+			"_PROP=[:];"+
+			"g.addEdge(_V1,_V2,_TP,_PROP);"+
 			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"g.addEdge(_V3,_V2,_TP);";
+			"_PROP=[:];"+
+			"g.addEdge(_V3,_V2,_TP,_PROP);";
 		
 		private long vAppId;
 		private long vUserId;
