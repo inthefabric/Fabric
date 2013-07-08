@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Weaver.Exec.RexConnect</id>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
     <title>Weaver.Exec.RexConnect</title>
     <authors>Zach Kinstner</authors>
     <owners>Zach Kinstner</owners>
@@ -10,12 +10,14 @@
     <projectUrl>https://github.com/inthefabric/Weaver</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Weaver with support for RexConnect request execution.</description>
+    <releaseNotes>- Minor "AddEdgeVci" improvement.
+- Added "HasVci" and "HasNotVci" steps for performing vertex-centric queries.</releaseNotes>
     <copyright>Zach Kinstner</copyright>
     <language />
     <tags>RexConnect RexPro Rexster Gremlin Blueprints</tags>
     <dependencies>
       <dependency id="RexConnectClient" version="0.3.3.0" />
-      <dependency id="Weaver" version="0.5.1" />
+      <dependency id="Weaver" version="0.5.2" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
