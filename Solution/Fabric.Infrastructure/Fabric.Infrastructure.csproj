@@ -49,17 +49,20 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="Weaver.Core, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Weaver.0.5.1\lib\Weaver.Core.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.1\lib\Weaver.Exec.RexConnect.dll</HintPath>
+    <Reference Include="Weaver.Core, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.0.5.2\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Weaver.Titan.0.5.1\lib\Weaver.Titan.dll</HintPath>
+    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.2\lib\Weaver.Exec.RexConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Titan, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Weaver.Titan.0.5.2\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
