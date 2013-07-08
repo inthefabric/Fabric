@@ -20,10 +20,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V2,_V1,_TP,_PROP);"+
-			"_PROP=[:];"+
-			"g.addEdge(_V0,_V1,_TP,_PROP);"+
+			"g.addEdge(_V2,_V1,_TP);"+
+			"g.addEdge(_V0,_V1,_TP);"+
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
@@ -31,10 +29,8 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V4=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V4,_V3,_TP,_PROP);"+
-			"_PROP=[:];"+
-			"g.addEdge(_V1,_V3,_TP,_PROP);";
+			"g.addEdge(_V4,_V3,_TP);"+
+			"g.addEdge(_V1,_V3,_TP);";
 
 		private long vUserId;
 		private long vNewMemberId;

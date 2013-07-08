@@ -23,8 +23,7 @@ namespace Fabric.Test.FabApiWeb.Tasks {
 				PropDbName.Artifact_Created+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
-			"_PROP=[:];"+
-			"g.addEdge(_V2,_V0,_TP,_PROP);"+
+			"g.addEdge(_V2,_V0,_TP);"+
 			"_PROP=[:];"+
 			"_TRY=[A_Cr:_V2];"+
 			TestUtil.TryPropScript+

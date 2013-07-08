@@ -1,15 +1,12 @@
 ﻿using System;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
-using Fabric.Test.Util;
-using Moq;
-using NUnit.Framework;
-using Weaver.Core.Query;
 using Fabric.Test.Common;
+using Fabric.Test.Util;
+using NUnit.Framework;
 
 namespace Fabric.Test.FabApiOauth.Tasks {
 
@@ -37,11 +34,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
 			"_V1=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V1,_V0,_TP,_PROP);"+
+			"g.addEdge(_V1,_V0,_TP);"+
 			"_V2=g.V('"+PropDbName.Artifact_ArtifactId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V2,_V0,_TP,_PROP);"+
+			"g.addEdge(_V2,_V0,_TP);"+
 			"_V3=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
@@ -49,19 +44,16 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.VertexForAction_Note+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
-			"_PROP=[:];"+
-			"g.addEdge(_V0,_V3,_TP,_PROP);"+
+			"g.addEdge(_V0,_V3,_TP);"+
 			"_V4=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V4,_V3,_TP,_PROP);";
+			"g.addEdge(_V4,_V3,_TP);";
 
 		private const string QueryUpdateMemberTx =
 			"_V0=g.V('"+PropDbName.MemberTypeAssign_MemberTypeAssignId+"',_TP).next();"+
 			"_V0.inE('"+EdgeDbName.MemberHasMemberTypeAssign+"')"+
 				".remove();"+
 			"_V1=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V1,_V0,_TP,_PROP);"+
+			"g.addEdge(_V1,_V0,_TP);"+
 			"_V2=g.addVertex(["+
 				PropDbName.MemberTypeAssign_MemberTypeAssignId+":_TP,"+
 				PropDbName.MemberTypeAssign_MemberTypeId+":_TP,"+
@@ -69,11 +61,9 @@ namespace Fabric.Test.FabApiOauth.Tasks {
 				PropDbName.VertexForAction_Note+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
 			"]);"+
-			"_PROP=[:];"+
-			"g.addEdge(_V1,_V2,_TP,_PROP);"+
+			"g.addEdge(_V1,_V2,_TP);"+
 			"_V3=g.V('"+PropDbName.Member_MemberId+"',_TP).next();"+
-			"_PROP=[:];"+
-			"g.addEdge(_V3,_V2,_TP,_PROP);";
+			"g.addEdge(_V3,_V2,_TP);";
 		
 		private long vAppId;
 		private long vUserId;
