@@ -2,7 +2,6 @@
 using Fabric.Domain;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Data;
-using Weaver.Core.Query;
 
 namespace Fabric.Infrastructure.Api {
 	

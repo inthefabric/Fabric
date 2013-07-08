@@ -2,11 +2,11 @@
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
-using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth.Tasks {
 	

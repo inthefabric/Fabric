@@ -263,12 +263,12 @@ namespace Fabric.Db.Data.Setups {
 		private readonly bool vTestMode;
 		private int vIdCount;
 
-		private Dictionary<long, Descriptor> DescMap;
-		private Dictionary<long, Director> DirMap;
-		private Dictionary<long, Eventor> EveMap;
-		private Dictionary<long, Identor> IdenMap;
-		private Dictionary<long, Locator> LocMap;
-		private Dictionary<long, Vector> VecMap;
+		private readonly Dictionary<long, Descriptor> DescMap;
+		private readonly Dictionary<long, Director> DirMap;
+		private readonly Dictionary<long, Eventor> EveMap;
+		private readonly Dictionary<long, Identor> IdenMap;
+		private readonly Dictionary<long, Locator> LocMap;
+		private readonly Dictionary<long, Vector> VecMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

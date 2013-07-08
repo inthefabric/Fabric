@@ -1,11 +1,9 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Core.Query;
-using Fabric.Infrastructure.Data;
-using Fabric.Test.Integration.Common;
 
 namespace Fabric.Test.Integration.FabApiModify {
 

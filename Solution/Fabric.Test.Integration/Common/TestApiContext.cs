@@ -4,7 +4,6 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
 using RexConnectClient.Core.Result;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.Common {
 	

@@ -6,8 +6,8 @@ using Fabric.Api.Services;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure.Domain;
 using Fabric.Test.Integration.Common;
-using Nancy;
 using NUnit.Framework;
+using Nancy;
 
 namespace Fabric.Test.Integration.FabInfra {
 

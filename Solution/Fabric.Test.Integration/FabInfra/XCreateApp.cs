@@ -1,8 +1,8 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 using Weaver.Core.Query;
-using Fabric.Infrastructure.Data;
 
 namespace Fabric.Test.Integration.FabInfra {
 

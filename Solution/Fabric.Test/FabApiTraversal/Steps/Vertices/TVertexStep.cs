@@ -1,7 +1,6 @@
 ﻿using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Test.Common;
-using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;

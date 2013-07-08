@@ -2,6 +2,7 @@
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Pipe;
@@ -9,7 +10,6 @@ using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 using Weaver.Core.Util;
-using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Web.Tasks {
 

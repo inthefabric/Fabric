@@ -3,9 +3,9 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Domain;
 using Fabric.Infrastructure.Api;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
-using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Oauth {
 

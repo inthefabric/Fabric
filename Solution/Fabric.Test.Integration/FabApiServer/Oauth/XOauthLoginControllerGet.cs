@@ -2,8 +2,8 @@
 using Fabric.Api.Services;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
-using Nancy;
 using NUnit.Framework;
+using Nancy;
 
 namespace Fabric.Test.Integration.FabApiServer.Oauth {
 

@@ -1,15 +1,13 @@
 ﻿using Fabric.Api.Modify;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Domain;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
-using Fabric.Infrastructure.Data;
-using Fabric.Test.Integration.Common;
 
 namespace Fabric.Test.Integration.FabApiModify {
 

@@ -3,11 +3,10 @@ using Fabric.Api.Web.Results;
 using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Common;
 using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
-using Fabric.Infrastructure.Data;
-using Fabric.Test.Common;
 
 namespace Fabric.Test.FabApiWeb {
 

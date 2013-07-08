@@ -1,9 +1,9 @@
 ﻿using System.Collections.Specialized;
 using Fabric.Api.Util;
 using Fabric.Test.Util;
+using NUnit.Framework;
 using Nancy;
 using Nancy.Cookies;
-using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiServer.Oauth {
 

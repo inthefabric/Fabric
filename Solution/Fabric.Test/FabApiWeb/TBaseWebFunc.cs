@@ -1,10 +1,5 @@
 ﻿using Fabric.Api.Web.Tasks;
-using Fabric.Domain;
-using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Domain;
 using Moq;
-using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.FabApiWeb {
 

@@ -6,9 +6,9 @@ using Fabric.Api.Services;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Test.Util;
+using NUnit.Framework;
 using Nancy;
 using Nancy.Cookies;
-using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiServer.Oauth {
 

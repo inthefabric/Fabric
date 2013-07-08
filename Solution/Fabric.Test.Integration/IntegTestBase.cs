@@ -6,7 +6,6 @@ using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Integration.Common;

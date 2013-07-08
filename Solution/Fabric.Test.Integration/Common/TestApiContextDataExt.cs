@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using Fabric.Domain;
-using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Core.Elements;
-using Weaver.Core.Query;
+﻿using Fabric.Infrastructure;
 using Fabric.Infrastructure.Data;
-using Fabric.Infrastructure;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.Common {
 

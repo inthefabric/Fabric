@@ -6,9 +6,8 @@ using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Data;
+using Nancy;
 using Weaver.Core.Query;
-using Request = Nancy.Request;
-using Response = Nancy.Response;
 
 namespace Fabric.Api.Internal.Setups {
 

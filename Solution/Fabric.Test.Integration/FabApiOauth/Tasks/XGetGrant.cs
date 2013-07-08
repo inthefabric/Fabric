@@ -3,11 +3,10 @@ using Fabric.Api.Oauth.Results;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Weaver;
+using Fabric.Test.Integration.Common;
 using NUnit.Framework;
 using Weaver.Core.Query;
-using Fabric.Test.Integration.Common;
 
 namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 
