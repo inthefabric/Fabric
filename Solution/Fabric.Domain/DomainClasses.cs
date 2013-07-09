@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/27/2013 7:45:19 PM
+// Generated on 7/9/2013 4:17:11 PM
 
 using System;
 using System.Collections.Generic;
@@ -382,7 +382,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex] //allows this class to be included in SetupIndexes
 	public partial class Artifact : Vertex {
 	
-		[WeaverTitanProperty("A_AId", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("A_AId", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long ArtifactId { get; set; }
 
 		[WeaverTitanProperty("A_Cr", TitanIndex=false, TitanElasticIndex=true,
@@ -603,7 +603,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class Email : Vertex {
 	
-		[WeaverTitanProperty("E_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("E_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long EmailId { get; set; }
 
 		[WeaverTitanProperty("E_Ad", TitanIndex=false, TitanElasticIndex=false)]
@@ -726,7 +726,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class Member : Vertex {
 	
-		[WeaverTitanProperty("M_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("M_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long MemberId { get; set; }
 
 
@@ -802,7 +802,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class MemberTypeAssign : VertexForAction {
 	
-		[WeaverTitanProperty("MTA_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("MTA_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long MemberTypeAssignId { get; set; }
 
 		[WeaverTitanProperty("MTA_Mt", TitanIndex=false, TitanElasticIndex=false)]
@@ -971,7 +971,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class Factor : Vertex {
 	
-		[WeaverTitanProperty("F_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("F_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long FactorId { get; set; }
 
 		[WeaverTitanProperty("F_Fa", TitanIndex=false, TitanElasticIndex=false,
@@ -1408,7 +1408,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class OauthAccess : Vertex {
 	
-		[WeaverTitanProperty("OA_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("OA_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long OauthAccessId { get; set; }
 
 		[WeaverTitanProperty("OA_To", TitanIndex=true, TitanElasticIndex=false)]
@@ -1487,7 +1487,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class OauthDomain : Vertex {
 	
-		[WeaverTitanProperty("OD_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("OD_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long OauthDomainId { get; set; }
 
 		[WeaverTitanProperty("OD_Do", TitanIndex=false, TitanElasticIndex=false)]
@@ -1540,7 +1540,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class OauthGrant : Vertex {
 	
-		[WeaverTitanProperty("OG_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("OG_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long OauthGrantId { get; set; }
 
 		[WeaverTitanProperty("OG_Re", TitanIndex=false, TitanElasticIndex=false)]
@@ -1612,7 +1612,7 @@ namespace Fabric.Domain {
 	[WeaverTitanVertex]
 	public partial class OauthScope : Vertex {
 	
-		[WeaverTitanProperty("OS_Id", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("OS_Id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long OauthScopeId { get; set; }
 
 		[WeaverTitanProperty("OS_Al", TitanIndex=false, TitanElasticIndex=false)]

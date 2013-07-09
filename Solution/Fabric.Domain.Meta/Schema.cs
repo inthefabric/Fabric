@@ -211,6 +211,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(artifact, "ArtifactId", "AId", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 
 			p = AddProp(artifact, "Created", "Cr", typeof(DateTime));
 			p.IsTimestamp = true;
@@ -281,11 +282,13 @@ namespace Fabric.Domain.Meta {
 			
 			p = AddProp(crowdian, "CrowdianId", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 
 			//CrowdianTypeAssign
 			
 			p = AddProp(crowdianTypeAssign, "CrowdianTypeAssignId", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(crowdianTypeAssign, "Weight", typeof(float));			*/
 
@@ -293,6 +296,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(email, "EmailId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(email, "Address", "Ad", typeof(string));
 			p.LenMin = 1;
@@ -346,11 +350,13 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(member, "MemberId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 
 			//MemberTypeAssign
 
 			p = AddProp(memberTypeAssign, "MemberTypeAssignId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(memberTypeAssign, "MemberTypeId", "Mt", typeof(byte));
 			p.EnumName = "MemberTypeId";
@@ -395,6 +401,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(factor, "FactorId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(factor, "FactorAssertionId", "Fa", typeof(byte));
 			p.EnumName = "FactorAssertionId";
@@ -492,6 +499,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(oauthAccess, "OauthAccessId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(oauthAccess, "Token", "To", typeof(string));
 			p.Len = 32;
@@ -514,6 +522,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(oauthDomain, "OauthDomainId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(oauthDomain, "Domain", "Do", typeof(string));
 			p.LenMin = 1;
@@ -526,6 +535,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(oauthGrant, "OauthGrantId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			p = AddProp(oauthGrant, "RedirectUri", "Re", typeof(string));
 			p.LenMin = 1;
@@ -545,6 +555,7 @@ namespace Fabric.Domain.Meta {
 
 			p = AddProp(oauthScope, "OauthScopeId", "Id", typeof(long));
 			p.IsPrimaryKey = true;
+			p.TitanIndex = true;
 			
 			AddProp(oauthScope, "Allow", "Al", typeof(bool));
 			
