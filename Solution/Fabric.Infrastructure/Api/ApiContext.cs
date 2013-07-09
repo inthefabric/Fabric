@@ -90,8 +90,8 @@ namespace Fabric.Infrastructure.Api {
 			DbQueryExecutionCount++;
 			DbQueryMillis += (int)pResult.Response.Timer;
 			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
-			Log.Debug(ContextId, "Data", "Request: "+pResult.RequestJson);
-			Log.Debug(ContextId, "Data", "Response: "+pResult.ResponseJson);
+			//Log.Debug(ContextId, "Data", "Request: "+pResult.RequestJson);
+			//Log.Debug(ContextId, "Data", "Response: "+pResult.ResponseJson);
 		}
 
 
