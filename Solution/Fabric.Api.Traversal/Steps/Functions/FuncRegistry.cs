@@ -21,6 +21,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			//Available for FabRoot
 			FuncIdIndexStep.RegisterAllFunctions();
+			FuncExactIndexStep.RegisterAllFunctions();
 			Register<FuncActiveAppStep>(
 				(p => new FuncActiveAppStep(p)), FuncActiveAppStep.AllowedForStep);
 			Register<FuncActiveUserStep>(

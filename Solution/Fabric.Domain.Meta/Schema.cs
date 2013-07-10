@@ -28,6 +28,7 @@ namespace Fabric.Domain.Meta {
 
 		public List<WeaverVertexSchema> Vertices { get; private set; }
 		public List<WeaverEdgeSchema> Edges { get; private set; }
+		public List<FabricPropSchema> Props { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@ namespace Fabric.Domain.Meta {
 		public Schema() {
 			Vertices = new List<WeaverVertexSchema>();
 			Edges = new List<WeaverEdgeSchema>();
+			Props = new List<FabricPropSchema>();
 			FabricPropSchema p;
 
 			////
@@ -589,7 +591,9 @@ namespace Fabric.Domain.Meta {
 		private FabricPropSchema AddProp(WeaverVertexSchema pVertex, string pName, string pDbName,
 																						Type pType) {
 			var p = new FabricPropSchema(pName, pVertex.DbName+'_'+pDbName, pType);
+			p.VertexSchema = pVertex;
 			pVertex.Props.Add(p);
+			Props.Add(p);
 			return p;
 		}
 

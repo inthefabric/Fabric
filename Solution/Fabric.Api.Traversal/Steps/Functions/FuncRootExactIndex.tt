@@ -1,0 +1,85 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.5.2\lib\Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.Titan.0.5.2\lib\Weaver.Titan.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="Fabric.Domain" #>
+<#@ import namespace="Fabric.Domain.Meta" #>
+<#@ import namespace="Weaver.Core.Schema" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+// Generated on <#= DateTime.Now.ToString() #>
+
+using Fabric.Api.Traversal.Steps.Vertices;
+using Fabric.Domain;
+using Fabric.Infrastructure.Traversal;
+
+namespace Fabric.Api.Traversal.Steps.Functions {
+<#
+IList<string> propNames = SchemaHelper.GetProps();
+var indexNames = new List<string>();
+
+foreach ( string name in propNames ) {
+	SchemaHelperProp hp = SchemaHelper.GetProp(name);
+	FabricPropSchema p = hp.PropSchema;
+
+	if ( p.VertexSchema.IsInternal == true ) {
+		continue;
+	}
+
+	if ( p.TitanIndex == true && p.IsPrimaryKey != true ) {
+		indexNames.Add(hp.PropSchema.DbName);
+	}
+}
+#>
+
+	/*================================================================================================*/
+	public abstract partial class FuncExactIndexStep {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		internal static void RegisterAllFunctions() {
+<#
+foreach ( string name in indexNames ) {
+	string shortName = name.Replace("_","");
+#>
+			FuncRegistry.Register<Func<#= shortName #>ExactIndexStep>(
+				(p => new Func<#= shortName #>ExactIndexStep(p)), AllowedForStep);
+<#
+} //end prop loop
+#>
+		}
+
+	}
+
+<#
+foreach ( string name in indexNames ) {
+	SchemaHelperProp hp = SchemaHelper.GetProp(name);
+	FabricPropSchema p = hp.PropSchema;
+	WeaverVertexSchema v = p.VertexSchema;
+	string type = SchemaHelperProp.GetTypeName(p.Type);
+	string shortName = name.Replace("_","");
+#>
+
+	/*================================================================================================*/
+	[Func("<#= v.Name+"_"+p.Name #>")]
+	public class Func<#= shortName #>ExactIndexStep : FuncExactIndexStep<<#= type #>> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Func<#= shortName #>ExactIndexStep(IPath pPath) : base(pPath) {
+			ProxyStep = new <#= v.Name #>Step(pPath);
+			FabType = (byte)VertexFabType.<#= v.Name #>;
+		}
+
+	}
+
+<#
+} //end prop loop
+#>
+}

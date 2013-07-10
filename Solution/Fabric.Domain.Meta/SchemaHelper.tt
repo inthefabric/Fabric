@@ -131,25 +131,41 @@ foreach ( WeaverVertexSchema vertex in schema.Vertices ) {
 #>
 			};
 		}
-
+		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public static IList<WeaverVertexSchema> GetVertexSchemaListForWeaver() {
-			if ( WeaverVertexSchemaList == null ) {
-				WeaverVertexSchemaList = new List<WeaverVertexSchema> {
+		/*--------------------------------------------------------------------------------------------*/
+		public static SchemaHelperProp GetProp(string pName) {
+			var s = SchemaInstance;
+			
+			switch ( pName ) {
 <#
-foreach ( WeaverVertexSchema vertex in schema.Vertices ) {
+int pi = 0;
+
+foreach ( WeaverPropSchema prop in schema.Props ) {
 #>
-					GetVertexSchemaForWeaver("<#= vertex.Name #>"),
+				case "<#= prop.DbName #>": return new SchemaHelperProp(s.Props[<#= pi #>]);
 <#
-} //end vertex loop
+	++pi;
+} //end prop loop
 #>
-				};
 			}
 
-			return WeaverVertexSchemaList;
-		}*/
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetProps() {
+			return new List<string> {
+<#
+foreach ( WeaverPropSchema prop in schema.Props ) {
+#>
+				"<#= prop.DbName #>",
+<#
+} // end prop loop
+#>
+			};
+		}
 
 	}
 
