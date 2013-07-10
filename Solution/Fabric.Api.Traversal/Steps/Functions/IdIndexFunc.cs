@@ -1,43 +1,39 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Vertices;
-using Fabric.Domain;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
-using Weaver.Core.Query;
-using Weaver.Core.Util;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
-	
+
 	/*================================================================================================*/
-	[Func("ActiveApp", IsInternal=true)]
-	public class FuncActiveAppStep : FuncStep, IFinalStep {
+	public abstract partial class IdIndexFunc : ExactIndexFunc<long>, IFinalStep { //TEST: IdIndexFunc
 
 		public long Index { get { return 0; } }
 		public int Count { get { return 1; } }
 		public bool UseLocalData { get { return false; } }
 
+		[FuncParam(0)]
+		public long Id { get; private set; }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncActiveAppStep(IPath pPath) : base(pPath) {
-			string prop = WeaverUtil.GetPropertyDbName<App>(x => x.ArtifactId);
-			string idParam = Path.AddParam(new WeaverQueryVal(Path.AppId));
-			Path.AddSegment(this, "V('"+prop+"',"+idParam+")");
-			ProxyStep = new AppStep(Path);
+		public IdIndexFunc(IPath pPath) : base(pPath) {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
+			Id = Value;
+
+			if ( Id == 0 ) {
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Cannot be 0.", 0);
+			}
 		}
+
 		
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void SetDataAndUpdatePath(StepData pData) {
-			base.SetDataAndUpdatePath(pData);
-			ExpectParamCount(0);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
+		private static bool AllowedForStep(Type pDtoType) {
 			return (pDtoType == typeof(FabRoot));
 		}
 

@@ -6,7 +6,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	//TEST: all FuncRootTypeStep
 
 	/*================================================================================================*/
-	public abstract partial class RootTypeFunc : FuncStep, IFinalStep {
+	public abstract partial class RootTypeFunc : Func, IFinalStep {
 
 		public bool UseLocalData { get { return true; } }
 		public long Index { get { return 0; } }

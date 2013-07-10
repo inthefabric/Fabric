@@ -8,7 +8,7 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	public interface IFuncBackStep : IFuncStep {
+	public interface IFuncBackStep : IFunc {
 
 		string Alias { get; }
 
@@ -16,7 +16,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
 	[Func("Back")]
-	public class FuncBackStep : FuncStep {
+	public class BackFunc : Func {
 
 		//The correct way to read the "back" command is to count the period chars BEFORE ".back".
 		//The next command will be issued from that period.
@@ -35,13 +35,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		//given: g.A.as('a').B.C.as('c').D.E.back('c').back('a') == A
 		//given: g.A.as('a').B.C.as('c').D.E.back('a').back('c') == exception
 
-		[FuncParam(0, FuncAsStep.LenMin, FuncAsStep.LenMax, FuncAsStep.ValidRegex)]
+		[FuncParam(0, AsFunc.LenMin, AsFunc.LenMax, AsFunc.ValidRegex)]
 		public string Alias { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncBackStep(IPath pPath) : base(pPath) {
+		public BackFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "back");
 		}
 
@@ -62,11 +62,11 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 					"Could not convert to type 'int'.", 0, ex);
 			}
 
-			if ( Alias.Length < FuncAsStep.LenMin || Alias.Length > FuncAsStep.LenMax ) {
+			if ( Alias.Length < AsFunc.LenMin || Alias.Length > AsFunc.LenMax ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Invalid length.", 0);
 			}
 			
-			if ( !Regex.IsMatch(Alias, FuncAsStep.ValidRegex) ) {
+			if ( !Regex.IsMatch(Alias, AsFunc.ValidRegex) ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Invalid format.", 0);
 			}
 			

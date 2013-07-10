@@ -25,7 +25,7 @@ namespace Fabric.Test.FabApiTraversal {
 			var mockStepLast = new Mock<TestFinalStep>();
 
 			mockStep0.Setup(x => x.GetNextStep(parts[0], true, null)).Returns(mockStep1.Object);
-			mockStep1.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true, null))
+			mockStep1.Setup(x => x.GetNextStep(LimitFunc.DefaultStepText, true, null))
 				.Returns(mockStepLast.Object);
 
 			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, pUri);
@@ -54,7 +54,7 @@ namespace Fabric.Test.FabApiTraversal {
 			mockStep1.Setup(x => x.GetNextStep(parts[1], true, null)).Returns(mockStep2.Object);
 			mockStep2.Setup(x => x.GetNextStep(parts[2], true, null)).Returns(mockStep3.Object);
 			mockStep3.Setup(x => x.GetNextStep(parts[3], true, null)).Returns(mockStep4.Object);
-			mockStep4.Setup(x => x.GetNextStep(FuncLimitStep.DefaultStepText, true, null))
+			mockStep4.Setup(x => x.GetNextStep(LimitFunc.DefaultStepText, true, null))
 				.Returns(mockStepLast.Object);
 
 			IFinalStep resultStep = PathRouter.GetPath(mockStep0.Object, uri);

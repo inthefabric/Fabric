@@ -6,15 +6,13 @@ using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
-	//TEST: all FuncExactIndexSteps
-
 	/*================================================================================================*/
-	public abstract partial class FuncExactIndexStep : FuncStep {
+	public abstract partial class ExactIndexFunc : Func { //TEST: ExactIndexFunc
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected FuncExactIndexStep(IPath pPath) : base(pPath) {
+		protected ExactIndexFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "V");
 		}
 
@@ -29,7 +27,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	public abstract partial class FuncExactIndexStep<T> : FuncExactIndexStep {
+	public abstract partial class ExactIndexFunc<T> : ExactIndexFunc {
 
 		public T Value { get; private set; }
 
@@ -39,7 +37,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected FuncExactIndexStep(IPath pPath) : base(pPath) {
+		protected ExactIndexFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "V");
 		}
 

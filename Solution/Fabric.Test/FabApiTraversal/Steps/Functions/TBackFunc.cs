@@ -13,7 +13,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFuncBackStep {
+	public class TBackFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[Test]
 		public void New() {
 			var p = new Mock<IPath>();
-			var s = new FuncBackStep(p.Object);
+			var s = new BackFunc(p.Object);
 
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
@@ -42,12 +42,12 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 			var p = new Mock<IPath>();
 			var asStep = new Mock<IFuncAsStep>();
-			var func = new FuncBackStep(p.Object);
+			var func = new BackFunc(p.Object);
 
 			p.Setup(x => x.GetAlias(alias)).Returns(asStep.Object);
 			p.Setup(x => x.GetSegmentIndexOfStep(func)).Returns(backI);
 			p.Setup(x => x.GetSegmentIndexOfStep(asStep.Object)).Returns(2);
-			p.Setup(x => x.GetSegmentIndexesWithStepType<FuncBackStep>(backI)).Returns(list);
+			p.Setup(x => x.GetSegmentIndexesWithStepType<BackFunc>(backI)).Returns(list);
 
 			var sd = new StepData("Back("+alias+")");
 
@@ -78,7 +78,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var p = new Mock<IPath>();
 			var asStep = new Mock<IFuncAsStep>();
 			var beforeAsStep = new Mock<IFuncAsStep>();
-			var backStep = new FuncBackStep(p.Object);
+			var backStep = new BackFunc(p.Object);
 			var beforeBackStep = new Mock<IFuncBackStep>();
 			beforeBackStep.SetupGet(x => x.Alias).Returns(beforeAlias);
 			
@@ -109,7 +109,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("(1,2)")]
 		public void SetDataAndUpdatePathParamCount(string pParams) {
 			var p = new Mock<IPath>();
-			var s = new FuncBackStep(p.Object);
+			var s = new BackFunc(p.Object);
 			var sd = new StepData("Back"+pParams);
 			
 			FabStepFault se =
@@ -121,7 +121,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("abcdefghi")]
 		public void SetDataAndUpdatePathLength(string pAlias) {
 			var p = new Mock<IPath>();
-			var s = new FuncBackStep(p.Object);
+			var s = new BackFunc(p.Object);
 			var sd = new StepData("Back("+pAlias+")");
 
 			FabStepFault se =
@@ -135,7 +135,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("123")]
 		public void SetDataAndUpdatePathFormat(string pAlias) {
 			var p = new Mock<IPath>();
-			var s = new FuncBackStep(p.Object);
+			var s = new BackFunc(p.Object);
 			var sd = new StepData("Back("+pAlias+")");
 
 			FabStepFault se =
@@ -148,7 +148,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("abc")]
 		public void SetDataAndUpdatePathNoMatch(string pAlias) {
 			var p = new Mock<IPath>();
-			var s = new FuncBackStep(p.Object);
+			var s = new BackFunc(p.Object);
 			var sd = new StepData("Back("+pAlias+")");
 
 			FabStepFault se =
@@ -164,7 +164,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(typeof(FabRoot), false)]
 		[TestCase(typeof(FabArtifact), true)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
-			bool result = FuncBackStep.AllowedForStep(pDtoType);
+			bool result = BackFunc.AllowedForStep(pDtoType);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 

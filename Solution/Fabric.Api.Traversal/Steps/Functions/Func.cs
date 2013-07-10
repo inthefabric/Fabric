@@ -5,14 +5,14 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	public abstract class FuncStep : Step, IFuncStep {
+	public abstract class Func : Step, IFunc {
 
 		public IStep ProxyStep { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected FuncStep(IPath pPath) : base(pPath) {}
+		protected Func(IPath pPath) : base(pPath) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IStep GetNextStep(string pStepText, bool pSetData=true, 
-																		IFuncStep pProxyForFunc=null) {
+																		IFunc pProxyForFunc=null) {
 			if ( ProxyStep == null ) {
 				throw new Exception("ProxyStep is null.");
 			}

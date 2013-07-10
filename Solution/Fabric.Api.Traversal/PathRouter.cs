@@ -47,7 +47,7 @@ namespace Fabric.Api.Traversal {
 				return ddStep;
 			}
 
-			return (IFinalStep)pLastStep.GetNextStep(FuncLimitStep.DefaultStepText);
+			return (IFinalStep)pLastStep.GetNextStep(LimitFunc.DefaultStepText);
 		}
 
 	}

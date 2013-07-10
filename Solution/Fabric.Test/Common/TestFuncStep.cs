@@ -5,7 +5,7 @@ using Fabric.Api.Traversal.Steps.Functions;
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
-	public class TestFuncStep : FuncStep {
+	public class TestFuncStep : Func {
 
 		public const string SegmentText = "testFunc(x)";
 

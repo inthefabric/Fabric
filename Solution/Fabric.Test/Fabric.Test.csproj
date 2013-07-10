@@ -116,12 +116,12 @@
     <Compile Include="FabApiOauth\TOauthAccessAuthCode.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetAppAuth.cs" />
     <Compile Include="FabApiOauth\TOauthLogout.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncWhereIdStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TWhereIdFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncRegistry.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\TStepException.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncLimitStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncBackStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TLimitFunc.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TBackFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\Vertices\TVertexSteps.cs" />
     <Compile Include="FabApiTraversal\Steps\Vertices\TVertexStep.cs" />
     <Compile Include="FabApiTraversal\Steps\TStepData.cs" />
@@ -159,10 +159,10 @@
     <Compile Include="FabApiModify\TAttachLocator.cs" />
     <Compile Include="FabApiModify\Tasks\TUpdateFactorVector.cs" />
     <Compile Include="FabApiModify\TAttachVector.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncActiveAppStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncActiveUserStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncActiveMemberStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncAsStep.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TActiveAppFunc.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TActiveUserFunc.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TActiveMemberFunc.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TAsFunc.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">

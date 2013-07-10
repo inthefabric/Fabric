@@ -5,7 +5,7 @@ using Moq;
 namespace Fabric.Test.Common {
 
 	/*================================================================================================*/
-	public abstract class TestFinalStep : FuncLimitStep {
+	public abstract class TestFinalStep : LimitFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

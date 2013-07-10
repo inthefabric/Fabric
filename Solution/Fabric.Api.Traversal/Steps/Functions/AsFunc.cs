@@ -1,36 +1,35 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
-using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public interface IFuncWhereIdStep : IFuncStep, IFinalStep {
+	public interface IFuncAsStep : IFunc {
 		
-		long Id { get; }
-
+		string Alias { get; }
+		
 	}
-
+		
 
 	/*================================================================================================*/
-	[Func("WhereId")]
-	public class FuncWhereIdStep : FuncStep, IFuncWhereIdStep {
+	[Func("As")]
+	public class AsFunc : Func, IFuncAsStep {
+		
+		public const int LenMin = 1;
+		public const int LenMax = 8;
+		public const string ValidRegex = "^[a-zA-Z]+[a-zA-Z0-9]*$";
 
-		public long Index { get { return 0; } }
-		public int Count { get { return 1; } }
-		public bool UseLocalData { get { return false; } }
-
-		[FuncParam(0)]
-		public long Id { get; private set; }
-
+		[FuncParam(0, LenMin, LenMax, ValidRegex)]
+		public string Alias { get; private set; }
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncWhereIdStep(IPath pPath) : base(pPath) {
-			Path.AddSegment(this, "has");
+		public AsFunc(IPath pPath) : base(pPath) {
+			Path.AddSegment(this, "as");
 		}
 
 
@@ -43,31 +42,34 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			////
 
 			try {
-				Id = Data.ParamAt<long>(0);
+				Alias = Data.ParamAt<string>(0);
 			}
 			catch ( InvalidCastException ex ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'long'.", 0, ex);
+					"Could not convert to type 'string'.", 0, ex);
 			}
-
-			if ( Id == 0 ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Cannot be 0.", 0);
+			
+			if ( Alias.Length < LenMin || Alias.Length > LenMax ) {
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Invalid length.", 0);
 			}
-
+			
+			if ( !Regex.IsMatch(Alias, ValidRegex) ) {
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Invalid format.", 0);
+			}
+			
+			IFuncAsStep asStep = Path.GetAlias(Alias);
+			
+			if ( asStep != null ) {
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,
+					"The alias '"+Alias+"' is already in use.", 0);
+					//Path.GetSegmentIndexOfStep(asStep)+".");
+			}
+			
 			////
 
 			ProxyStep = Path.GetSegmentBeforeLast(1).Step;
-			IVertexStep ns;
-
-			if ( ProxyStep is IFuncStep ) {
-				ns = (IVertexStep)((IFuncStep)ProxyStep).ProxyStep;
-			}
-			else {
-				ns = (IVertexStep)ProxyStep;
-			}
-
-			string idParam = Path.AddParam(new WeaverQueryVal(Id));
-			Path.AppendToCurrentSegment("('"+ns.TypeIdName+"',Tokens.T.eq,"+idParam+")", false);
+			Path.AppendToCurrentSegment("('"+Alias+"')", false);
+			Path.RegisterAlias(this);
 		}
 
 

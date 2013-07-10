@@ -53,7 +53,7 @@ namespace Fabric.Api.Traversal.Steps {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual IStep GetNextStep(string pStepText, bool pSetData=true,
-																		IFuncStep pProxyForFunc=null) {
+																		IFunc pProxyForFunc=null) {
 			var sd = new StepData(pStepText);
 			IStep next = GetNextStep(sd);
 

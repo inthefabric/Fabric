@@ -22,7 +22,7 @@ IList<string> vertexNames = SchemaHelper.GetRootLinks();
 #>
 
 	/*================================================================================================*/
-	public abstract partial class FuncIdIndexStep {
+	public abstract partial class IdIndexFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,8 +31,7 @@ IList<string> vertexNames = SchemaHelper.GetRootLinks();
 <#
 foreach ( string name in vertexNames ) {
 #>
-			FuncRegistry.Register<Func<#= name #>IdIndexStep>(
-				(p => new Func<#= name #>IdIndexStep(p)), AllowedForStep);
+			FuncRegistry.Register<<#= name #>IdIndexFunc>(p => new <#= name #>IdIndexFunc(p), AllowedForStep);
 <#
 } //end vertex loop
 #>
@@ -47,12 +46,12 @@ foreach ( string name in vertexNames ) {
 
 	/*================================================================================================*/
 	[Func("<#= name #>")]
-	public class Func<#= name #>IdIndexStep : FuncIdIndexStep {
+	public class <#= name #>IdIndexFunc : IdIndexFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Func<#= name #>IdIndexStep(IPath pPath) : base(pPath) {
+		public <#= name #>IdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new <#= name #>Step(pPath);
 <#
 	if ( !hn.VertexSchema.IsBaseClass ) {

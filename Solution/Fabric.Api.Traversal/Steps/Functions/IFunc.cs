@@ -1,7 +1,7 @@
 ﻿namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	public interface IFuncStep : IStep {
+	public interface IFunc : IStep {
 
 		IStep ProxyStep { get; set; }
 		

@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFuncActiveAppStep {
+	public class TActiveMemberFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,19 +22,30 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[Test]
 		public void New() {
 			const long appId = 1234;
+			const long userId = 9876;
 			
 			var p = new Mock<IPath>();
 			p.SetupGet(x => x.AppId).Returns(appId);
-			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
+			p.SetupGet(x => x.UserId).Returns(userId);
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => (long)v.Original == userId)))
+				.Returns("_P0");
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => (long)v.Original == appId)))
+				.Returns("_P1");
 
-			var s = new FuncActiveAppStep(p.Object);
+			var s = new ActiveMemberFunc(p.Object);
 			
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
-			Assert.AreEqual(typeof(FabApp), s.DtoType, "Incorrect DtoType.");
+			Assert.AreEqual(typeof(FabMember), s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
-			const string script = "V('"+PropDbName.Artifact_ArtifactId+"',_P0)";
+			const string script = 
+				"V('"+PropDbName.Artifact_ArtifactId+"',_P0)"+
+				".outE('"+EdgeDbName.UserDefinesMember+"').inV"+
+				".inE('"+EdgeDbName.AppDefinesMember+"').outV"+
+					".has('"+PropDbName.Artifact_ArtifactId+"',Tokens.T.eq,_P1)"+
+				".back(3)[0]";
+
 			p.Verify(x => x.AddSegment(s, script), Times.Once());
 		}
 
@@ -46,8 +57,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("(1,2)", false)]
 		public void SetDataAndUpdatePath(string pParams, bool pPass) {
 			var p = new Mock<IPath>();
-			var s = new FuncActiveAppStep(p.Object);
-			var sd = new StepData("ActiveApp"+pParams);
+			var s = new ActiveMemberFunc(p.Object);
+			var sd = new StepData("ActiveMember"+pParams);
 			
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(!pPass, () => s.SetDataAndUpdatePath(sd));
@@ -63,7 +74,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(typeof(FabRoot), true)]
 		[TestCase(typeof(FabArtifact), false)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
-			bool result = FuncActiveAppStep.AllowedForStep(pDtoType);
+			bool result = ActiveMemberFunc.AllowedForStep(pDtoType);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 

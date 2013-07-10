@@ -3,7 +3,6 @@ using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
-using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Test.Util;
 using Moq;
@@ -14,7 +13,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFuncWhereIdStep {
+	public class TLimitFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,16 +21,14 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[Test]
 		public void New() {
 			var p = new Mock<IPath>();
-			var s = new FuncWhereIdStep(p.Object);
+			var s = new LimitFunc(p.Object);
 
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
-			Assert.AreEqual(0, s.Index, "Incorrect Index.");
-			Assert.AreEqual(1, s.Count, "Incorrect Count.");
 			Assert.Null(s.DtoType, "Incorrect DtoType.");
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
-			p.Verify(x => x.AddSegment(s, "has"), Times.Once());
+			p.Verify(x => x.AddSegment(s, "dedup"), Times.Once());
 		}
 
 
@@ -39,48 +36,45 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		//[0..20] actually returns 21 items, as the item at index 20 is included.
 		//The last item is not included in the API response; it determines FabResponse.HasMore value
-		[TestCase(-1)]
-		[TestCase(1)]
-		[TestCase(998764)]
-		public void SetDataAndUpdatePath(long pId) {
-			const string typeIdName = "ArtifactId";
-
-			var proxy = new Mock<IVertexStep>();
-			proxy.SetupGet(x => x.TypeIdName).Returns(typeIdName);
-
+		[TestCase(0, 20, 20)]
+		[TestCase(55, 5, 60)]
+		[TestCase(9999, 50, 10049)]
+		public void SetDataAndUpdatePath(int pIndex, int pCount, int pExpect) {
+			var proxy = new Mock<IStep>();
 			var proxySeg = new Mock<IPathSegment>();
 			proxySeg.SetupGet(x => x.Step).Returns(proxy.Object);
 
 			var p = new Mock<IPath>();
 			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
-			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => (long)v.Original == pIndex)))
+				.Returns("_P0");
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => (long)v.Original == pExpect)))
+				.Returns("_P1");
 
-			string script = "('"+typeIdName+"',Tokens.T.eq,_P0)";
-
-			var wi = new FuncWhereIdStep(p.Object);
-			var sd = new StepData("WhereId("+pId+")");
-
-			////
-
-			wi.SetDataAndUpdatePath(sd);
+			var limit = new LimitFunc(p.Object);
+			var sd = new StepData("Limit("+pIndex+","+pCount+")");
 
 			////
 
-			Assert.AreEqual(pId, wi.Id, "Incorrect Id.");
-			Assert.AreEqual(0, wi.Index, "Incorrect Index.");
-			Assert.AreEqual(1, wi.Count, "Incorrect Count.");
-			Assert.AreEqual(proxy.Object, wi.ProxyStep, "Incorrect ProxyStep.");
+			limit.SetDataAndUpdatePath(sd);
 
-			p.Verify(x => x.AppendToCurrentSegment(script, false), Times.Once());
+			////
+
+			Assert.AreEqual(pIndex, limit.Index, "Incorrect Index.");
+			Assert.AreEqual(pCount, limit.Count, "Incorrect Count.");
+			Assert.AreEqual(proxy.Object, limit.ProxyStep, "Incorrect ProxyStep.");
+
+			p.Verify(x => x.AppendToCurrentSegment("[_P0.._P1]", false), Times.Once());
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("")]
-		[TestCase("(1,2)")]
+		[TestCase("(1)")]
+		[TestCase("(1,2,3)")]
 		public void SetDataAndUpdatePathNoParams(string pParams) {
 			var p = new Mock<IPath>();
-			var s = new FuncWhereIdStep(p.Object);
-			var sd = new StepData("WhereId"+pParams);
+			var s = new LimitFunc(p.Object);
+			var sd = new StepData("Limit"+pParams);
 			
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
@@ -88,11 +82,12 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("a", 0)]
+		[TestCase("a,0", 0)]
+		[TestCase("0,a", 1)]
 		public void SetDataAndUpdatePathCannotConvert(string pParams, int pParamI) {
 			var p = new Mock<IPath>();
-			var s = new FuncWhereIdStep(p.Object);
-			var sd = new StepData("WhereId("+pParams+")");
+			var s = new LimitFunc(p.Object);
+			var sd = new StepData("Limit("+pParams+")");
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
@@ -101,16 +96,19 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		public void SetDataAndUpdatePathOutOfRange(long pId) {
+		[TestCase(-1, 20, 0)]
+		[TestCase(0, -1, 1)]
+		[TestCase(0, 0, 1)]
+		[TestCase(0, 51, 1)]
+		public void SetDataAndUpdatePathOutOfRange(int pIndex, int pCount, int pParamI) {
 			var p = new Mock<IPath>();
-			var s = new FuncWhereIdStep(p.Object);
-			var sd = new StepData("WhereId("+pId+")");
+			var s = new LimitFunc(p.Object);
+			var sd = new StepData("Limit("+pIndex+","+pCount+")");
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
 			Assert.AreEqual(FabFault.Code.IncorrectParamValue, se.ErrCode, "Incorrect ErrCode.");
-			Assert.AreEqual(0, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
+			Assert.AreEqual(pParamI, se.ParamIndex, "Incorrect StepFault.ParamIndex.");
 		}
 
 
@@ -119,7 +117,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(typeof(FabRoot), false)]
 		[TestCase(typeof(FabArtifact), true)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
-			bool result = FuncWhereIdStep.AllowedForStep(pDtoType);
+			bool result = LimitFunc.AllowedForStep(pDtoType);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 

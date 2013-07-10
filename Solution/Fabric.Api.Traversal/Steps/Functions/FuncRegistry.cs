@@ -21,37 +21,37 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			//Available for FabRoot
 			RootTypeFunc.RegisterAllFunctions();
-			FuncIdIndexStep.RegisterAllFunctions();
-			FuncExactIndexStep.RegisterAllFunctions();
-			Register<FuncActiveAppStep>(
-				(p => new FuncActiveAppStep(p)), FuncActiveAppStep.AllowedForStep);
-			Register<FuncActiveUserStep>(
-				(p => new FuncActiveUserStep(p)), FuncActiveUserStep.AllowedForStep);
-			Register<FuncActiveMemberStep>(
-				(p => new FuncActiveMemberStep(p)), FuncActiveMemberStep.AllowedForStep);
+			IdIndexFunc.RegisterAllFunctions();
+			ExactIndexFunc.RegisterAllFunctions();
+			Register<ActiveAppFunc>(
+				(p => new ActiveAppFunc(p)), ActiveAppFunc.AllowedForStep);
+			Register<ActiveUserFunc>(
+				(p => new ActiveUserFunc(p)), ActiveUserFunc.AllowedForStep);
+			Register<ActiveMemberFunc>(
+				(p => new ActiveMemberFunc(p)), ActiveMemberFunc.AllowedForStep);
 
 			//Available for most DTOs
-			Register<FuncAsStep>((p => new FuncAsStep(p)), FuncAsStep.AllowedForStep);
-			Register<FuncBackStep>((p => new FuncBackStep(p)), FuncBackStep.AllowedForStep);
-			Register<FuncLimitStep>((p => new FuncLimitStep(p)), FuncLimitStep.AllowedForStep);
-			Register<FuncWhereIdStep>((p => new FuncWhereIdStep(p)), FuncWhereIdStep.AllowedForStep);
+			Register<AsFunc>((p => new AsFunc(p)), AsFunc.AllowedForStep);
+			Register<BackFunc>((p => new BackFunc(p)), BackFunc.AllowedForStep);
+			Register<LimitFunc>((p => new LimitFunc(p)), LimitFunc.AllowedForStep);
+			Register<WhereIdFunc>((p => new WhereIdFunc(p)), WhereIdFunc.AllowedForStep);
 
 			//Available for Artifact
-			Register<FuncWhereAppStep>(
-				(p => new FuncWhereAppStep(p)), FuncWhereAppStep.AllowedForStep);
-			Register<FuncWhereClassStep>(
-				(p => new FuncWhereClassStep(p)), FuncWhereClassStep.AllowedForStep);
-			Register<FuncWhereInstanceStep>(
-				(p => new FuncWhereInstanceStep(p)), FuncWhereInstanceStep.AllowedForStep);
-			Register<FuncWhereUrlStep>(
-				(p => new FuncWhereUrlStep(p)), FuncWhereUrlStep.AllowedForStep);
-			Register<FuncWhereUserStep>(
-				(p => new FuncWhereUserStep(p)), FuncWhereUserStep.AllowedForStep);
+			Register<WhereAppFunc>(
+				(p => new WhereAppFunc(p)), WhereAppFunc.AllowedForStep);
+			Register<WhereClassFunc>(
+				(p => new WhereClassFunc(p)), WhereClassFunc.AllowedForStep);
+			Register<WhereInstanceFunc>(
+				(p => new WhereInstanceFunc(p)), WhereInstanceFunc.AllowedForStep);
+			Register<WhereUrlFunc>(
+				(p => new WhereUrlFunc(p)), WhereUrlFunc.AllowedForStep);
+			Register<WhereUserFunc>(
+				(p => new WhereUserFunc(p)), WhereUserFunc.AllowedForStep);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal static void Register<T>(Func<IPath, IFuncStep> pNew,
-														Func<Type, bool> pAllow) where T : IFuncStep {
+		internal static void Register<T>(Func<IPath, IFunc> pNew,
+														Func<Type, bool> pAllow) where T : IFunc {
 			Init();
 
 			FuncAttribute fa = (FuncAttribute)typeof(T)
@@ -98,7 +98,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IFuncStep GetFuncStep(string pCommand, IPath pPath) {
+		public static IFunc GetFuncStep(string pCommand, IPath pPath) {
 			if ( !RegItemMap.ContainsKey(pCommand) ) { return null; }
 			return RegItemMap[pCommand].New(pPath);
 		}

@@ -68,30 +68,30 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\Functions\FuncExactIndexStep.cs" />
-    <Compile Include="Steps\Functions\FuncExactIndexes.cs">
-      <DependentUpon>FuncExactIndexes.tt</DependentUpon>
+    <Compile Include="Steps\Functions\ExactIndexFunc.cs" />
+    <Compile Include="Steps\Functions\ExactIndexFuncs.cs">
+      <DependentUpon>ExactIndexFuncs.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Steps\Functions\FuncIdIndexStep.cs" />
-    <Compile Include="Steps\Functions\FuncWhereTypeStep.cs" />
-    <Compile Include="Steps\Functions\FuncWhereIdStep.cs" />
+    <Compile Include="Steps\Functions\IdIndexFunc.cs" />
+    <Compile Include="Steps\Functions\WhereTypeFunc.cs" />
+    <Compile Include="Steps\Functions\WhereIdFunc.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
-    <Compile Include="Steps\Functions\IFuncStep.cs" />
+    <Compile Include="Steps\Functions\IFunc.cs" />
     <Compile Include="Steps\Functions\FuncRegistry.cs" />
-    <Compile Include="Steps\Functions\FuncIdIndexes.cs">
-      <DependentUpon>FuncIdIndexes.tt</DependentUpon>
+    <Compile Include="Steps\Functions\IdIndexFuncs.cs">
+      <DependentUpon>IdIndexFuncs.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Steps\IStepData.cs" />
     <Compile Include="Steps\IBaseStep.cs" />
     <Compile Include="Steps\IFinalStep.cs" />
-    <Compile Include="Steps\Functions\FuncStep.cs" />
-    <Compile Include="Steps\Functions\FuncLimitStep.cs" />
+    <Compile Include="Steps\Functions\Func.cs" />
+    <Compile Include="Steps\Functions\LimitFunc.cs" />
     <Compile Include="Steps\FabStepFault.cs" />
-    <Compile Include="Steps\Functions\FuncBackStep.cs" />
+    <Compile Include="Steps\Functions\BackFunc.cs" />
     <Compile Include="Steps\Vertices\BaseClassVertexSteps.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,10 +116,10 @@
     <Compile Include="Steps\IStep.cs" />
     <Compile Include="Steps\Step.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\Functions\FuncActiveAppStep.cs" />
-    <Compile Include="Steps\Functions\FuncActiveUserStep.cs" />
-    <Compile Include="Steps\Functions\FuncActiveMemberStep.cs" />
-    <Compile Include="Steps\Functions\FuncAsStep.cs" />
+    <Compile Include="Steps\Functions\ActiveAppFunc.cs" />
+    <Compile Include="Steps\Functions\ActiveUserFunc.cs" />
+    <Compile Include="Steps\Functions\ActiveMemberFunc.cs" />
+    <Compile Include="Steps\Functions\AsFunc.cs" />
     <Compile Include="TraversalBuilder.cs" />
     <Compile Include="TraversalModel.cs" />
   </ItemGroup>
@@ -129,13 +129,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RootTypeFuncs.cs</LastGenOutput>
     </None>
-    <None Include="Steps\Functions\FuncExactIndexes.tt">
+    <None Include="Steps\Functions\ExactIndexFuncs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FuncExactIndexes.cs</LastGenOutput>
+      <LastGenOutput>ExactIndexFuncs.cs</LastGenOutput>
     </None>
-    <None Include="Steps\Functions\FuncIdIndexes.tt">
+    <None Include="Steps\Functions\IdIndexFuncs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FuncIdIndexes.cs</LastGenOutput>
+      <LastGenOutput>IdIndexFuncs.cs</LastGenOutput>
     </None>
     <None Include="Steps\Vertices\BaseClassVertexSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

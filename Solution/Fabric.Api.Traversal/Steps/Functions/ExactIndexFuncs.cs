@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 4:12:18 PM
+// Generated on 7/10/2013 4:37:29 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
@@ -9,22 +9,17 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public abstract partial class FuncExactIndexStep {
+	public abstract partial class ExactIndexFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		internal static void RegisterAllFunctions() {
-			FuncRegistry.Register<FuncApNKExactIndexStep>(
-				(p => new FuncApNKExactIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncClNKExactIndexStep>(
-				(p => new FuncClNKExactIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncUrAbExactIndexStep>(
-				(p => new FuncUrAbExactIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncUNKExactIndexStep>(
-				(p => new FuncUNKExactIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncFIdVExactIndexStep>(
-				(p => new FuncFIdVExactIndexStep(p)), AllowedForStep);
+			FuncRegistry.Register<ApNKExactIndexFunc>(p => new ApNKExactIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<ClNKExactIndexFunc>(p => new ClNKExactIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<UrAbExactIndexFunc>(p => new UrAbExactIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<UNKExactIndexFunc>(p => new UNKExactIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<FIdVExactIndexFunc>(p => new FIdVExactIndexFunc(p), AllowedForStep);
 		}
 
 	}
@@ -32,12 +27,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[Func("App_NameKey")]
-	public class FuncApNKExactIndexStep : FuncExactIndexStep<string> {
+	public class ApNKExactIndexFunc : ExactIndexFunc<string> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncApNKExactIndexStep(IPath pPath) : base(pPath) {
+		public ApNKExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new AppStep(pPath);
 			FabType = (byte)VertexFabType.App;
 		}
@@ -47,12 +42,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[Func("Class_NameKey")]
-	public class FuncClNKExactIndexStep : FuncExactIndexStep<string> {
+	public class ClNKExactIndexFunc : ExactIndexFunc<string> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncClNKExactIndexStep(IPath pPath) : base(pPath) {
+		public ClNKExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ClassStep(pPath);
 			FabType = (byte)VertexFabType.Class;
 		}
@@ -62,12 +57,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[Func("Url_AbsoluteUrl")]
-	public class FuncUrAbExactIndexStep : FuncExactIndexStep<string> {
+	public class UrAbExactIndexFunc : ExactIndexFunc<string> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncUrAbExactIndexStep(IPath pPath) : base(pPath) {
+		public UrAbExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UrlStep(pPath);
 			FabType = (byte)VertexFabType.Url;
 		}
@@ -77,12 +72,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[Func("User_NameKey")]
-	public class FuncUNKExactIndexStep : FuncExactIndexStep<string> {
+	public class UNKExactIndexFunc : ExactIndexFunc<string> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncUNKExactIndexStep(IPath pPath) : base(pPath) {
+		public UNKExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UserStep(pPath);
 			FabType = (byte)VertexFabType.User;
 		}
@@ -92,12 +87,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[Func("Factor_Identor_Value")]
-	public class FuncFIdVExactIndexStep : FuncExactIndexStep<string> {
+	public class FIdVExactIndexFunc : ExactIndexFunc<string> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncFIdVExactIndexStep(IPath pPath) : base(pPath) {
+		public FIdVExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new FactorStep(pPath);
 			FabType = (byte)VertexFabType.Factor;
 		}

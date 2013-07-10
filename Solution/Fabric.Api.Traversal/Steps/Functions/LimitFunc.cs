@@ -8,7 +8,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
 	[Func("Limit")]
-	public class FuncLimitStep : FuncStep, IFinalStep {
+	public class LimitFunc : Func, IFinalStep {
 
 		public const string DefaultStepText = "Limit(0,20)";
 
@@ -23,7 +23,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncLimitStep(IPath pPath) : base(pPath) {
+		public LimitFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "dedup");
 		}
 

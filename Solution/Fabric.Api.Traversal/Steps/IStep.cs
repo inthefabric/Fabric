@@ -9,7 +9,7 @@ namespace Fabric.Api.Traversal.Steps {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void SetDataAndUpdatePath(StepData pData);
-		IStep GetNextStep(string pStepText, bool pSetData=true, IFuncStep pProxyForFunc=null);
+		IStep GetNextStep(string pStepText, bool pSetData=true, IFunc pProxyForFunc=null);
 		int GetPathIndex();
 
 	}

@@ -93,7 +93,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			IStep result = s.GetNextStep("Limit(0,10)");
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(typeof(FuncLimitStep), result.GetType(), "Incorrect Result type.");
+			Assert.AreEqual(typeof(LimitFunc), result.GetType(), "Incorrect Result type.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -121,7 +121,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 			mockData.SetupGet(x => x.RawString).Returns("TestFunc");
 			mockData.SetupGet(x => x.Params).Returns((string[])null);
 
-			var funcMock = new Mock<IFuncStep>();
+			var funcMock = new Mock<IFunc>();
 			funcMock.SetupGet(x => x.Path).Returns(p.Object);
 			funcMock.Setup(x => x.GetPathIndex()).Returns(funcStepI);
 			funcMock.SetupGet(x => x.Data).Returns(mockData.Object);

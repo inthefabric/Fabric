@@ -63,11 +63,11 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("activeapp", typeof(FuncActiveAppStep))]
-		[TestCase("activeuser", typeof(FuncActiveUserStep))]
-		[TestCase("activemember", typeof(FuncActiveMemberStep))]
-		[TestCase("back", typeof(FuncBackStep))]
-		[TestCase("limit", typeof(FuncLimitStep))]
+		[TestCase("activeapp", typeof(ActiveAppFunc))]
+		[TestCase("activeuser", typeof(ActiveUserFunc))]
+		[TestCase("activemember", typeof(ActiveMemberFunc))]
+		[TestCase("back", typeof(BackFunc))]
+		[TestCase("limit", typeof(LimitFunc))]
 		public void GetFuncStep(string pCommand, Type pExpectType) {
 			var p = new Mock<IPath>();
 			IStep result = FuncRegistry.GetFuncStep(pCommand, p.Object);
