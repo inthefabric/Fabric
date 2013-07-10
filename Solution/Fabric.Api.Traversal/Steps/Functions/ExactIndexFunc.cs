@@ -37,9 +37,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected ExactIndexFunc(IPath pPath) : base(pPath) {
-			Path.AddSegment(this, "V");
-		}
+		protected ExactIndexFunc(IPath pPath) : base(pPath) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

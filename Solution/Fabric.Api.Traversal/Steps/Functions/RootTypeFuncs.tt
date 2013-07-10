@@ -51,9 +51,7 @@ foreach ( string name in vertexNames ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= hn.PluralName #>Func(IPath pPath) : base(pPath) {
-			ProxyStep = new <#= name #>Step(pPath);
-		}
+		public <#= hn.PluralName #>Func(IPath pPath) : base(pPath) {}
 
 	}
 

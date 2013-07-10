@@ -53,6 +53,7 @@ foreach ( string name in vertexNames ) {
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= name #>IdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new <#= name #>Step(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 <#
 	if ( !hn.VertexSchema.IsBaseClass ) {
 #>

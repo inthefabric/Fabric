@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 4:39:00 PM
+// Generated on 7/10/2013 5:01:45 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
@@ -38,6 +38,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ArtifactStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 		}
 
 	}
@@ -52,6 +53,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public AppIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new AppStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.App;
 		}
 
@@ -67,6 +69,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ClassStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Class;
 		}
 
@@ -82,6 +85,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new InstanceStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Instance;
 		}
 
@@ -97,6 +101,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new MemberStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Member;
 		}
 
@@ -112,6 +117,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberTypeAssignIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new MemberTypeAssignStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.MemberTypeAssign;
 		}
 
@@ -127,6 +133,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UrlStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Url;
 		}
 
@@ -142,6 +149,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public UserIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UserStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.User;
 		}
 
@@ -157,6 +165,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new FactorStep(pPath);
+			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Factor;
 		}
 

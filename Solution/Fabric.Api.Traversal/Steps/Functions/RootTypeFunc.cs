@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
@@ -7,6 +9,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
 	public abstract partial class RootTypeFunc : Func, IFinalStep {
+
+		private static readonly List<IStepLink> vAvailLinks = new List<IStepLink>();
+		private static readonly List<string> vAvailFuncs = new List<string>();
 
 		public bool UseLocalData { get { return true; } }
 		public long Index { get { return 0; } }
@@ -17,10 +22,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected RootTypeFunc(IPath pPath) : base(pPath) {}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public override List<IStepLink> AvailableLinks { get { return vAvailLinks; } }
+		public override List<string> AvailableFuncs { get { return vAvailFuncs; } }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
+		private static bool AllowedForStep(Type pDtoType) {
 			return (pDtoType == typeof(FabRoot));
 		}
 

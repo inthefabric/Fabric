@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 4:27:39 PM
+// Generated on 7/10/2013 4:48:25 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
@@ -35,9 +35,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactsFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new ArtifactStep(pPath);
-		}
+		public ArtifactsFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -49,9 +47,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppsFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new AppStep(pPath);
-		}
+		public AppsFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -63,9 +59,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassesFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new ClassStep(pPath);
-		}
+		public ClassesFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -77,9 +71,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public InstancesFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new InstanceStep(pPath);
-		}
+		public InstancesFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -91,9 +83,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MembersFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new MemberStep(pPath);
-		}
+		public MembersFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -105,9 +95,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignsFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new MemberTypeAssignStep(pPath);
-		}
+		public MemberTypeAssignsFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -119,9 +107,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlsFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new UrlStep(pPath);
-		}
+		public UrlsFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -133,9 +119,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UsersFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new UserStep(pPath);
-		}
+		public UsersFunc(IPath pPath) : base(pPath) {}
 
 	}
 
@@ -147,9 +131,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorsFunc(IPath pPath) : base(pPath) {
-			ProxyStep = new FactorStep(pPath);
-		}
+		public FactorsFunc(IPath pPath) : base(pPath) {}
 
 	}
 
