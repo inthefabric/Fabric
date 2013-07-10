@@ -20,6 +20,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			RegItemMap = new Dictionary<string, FuncRegistryItem>();
 
 			//Available for FabRoot
+			RootTypeFunc.RegisterAllFunctions();
 			FuncIdIndexStep.RegisterAllFunctions();
 			FuncExactIndexStep.RegisterAllFunctions();
 			Register<FuncActiveAppStep>(

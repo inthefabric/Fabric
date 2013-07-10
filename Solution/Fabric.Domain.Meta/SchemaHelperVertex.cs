@@ -10,6 +10,7 @@ namespace Fabric.Domain.Meta {
 		public WeaverVertexSchema VertexSchema { get; private set; }
 
 		public bool HasParentClass { get; private set; }
+		public string PluralName { get; private set; }
 
 		private readonly IList<SchemaHelperProp> vProps;
 		private readonly IList<SchemaHelperVertexEdge> vEdges;
@@ -23,6 +24,7 @@ namespace Fabric.Domain.Meta {
 			VertexSchema = pVertex;
 
 			HasParentClass = (VertexSchema.BaseVertex != null);
+			PluralName = pVertex.Name+(pVertex.Name[pVertex.Name.Length-1] == 's' ? "es" : "s");
 
 			vProps = new List<SchemaHelperProp>();
 			vEdges = new List<SchemaHelperVertexEdge>();

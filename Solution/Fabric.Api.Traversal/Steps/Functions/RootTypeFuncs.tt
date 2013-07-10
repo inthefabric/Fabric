@@ -13,7 +13,6 @@
 // Generated on <#= DateTime.Now.ToString() #>
 
 using Fabric.Api.Traversal.Steps.Vertices;
-using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -22,17 +21,17 @@ IList<string> vertexNames = SchemaHelper.GetRootLinks();
 #>
 
 	/*================================================================================================*/
-	public abstract partial class FuncIdIndexStep {
+	public abstract partial class RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		internal static new void RegisterAllFunctions() {
+		internal static void RegisterAllFunctions() {
 <#
 foreach ( string name in vertexNames ) {
+	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
 #>
-			FuncRegistry.Register<Func<#= name #>IdIndexStep>(
-				(p => new Func<#= name #>IdIndexStep(p)), AllowedForStep);
+			FuncRegistry.Register<<#= hn.PluralName #>Func>(x => new <#= hn.PluralName #>Func(x), AllowedForStep);
 <#
 } //end vertex loop
 #>
@@ -46,21 +45,14 @@ foreach ( string name in vertexNames ) {
 #>
 
 	/*================================================================================================*/
-	[Func("<#= name #>")]
-	public class Func<#= name #>IdIndexStep : FuncIdIndexStep {
+	[Func("<#= hn.PluralName #>")]
+	public class <#= hn.PluralName #>Func : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Func<#= name #>IdIndexStep(IPath pPath) : base(pPath) {
+		public <#= hn.PluralName #>Func(IPath pPath) : base(pPath) {
 			ProxyStep = new <#= name #>Step(pPath);
-<#
-	if ( !hn.VertexSchema.IsBaseClass ) {
-#>
-			FabType = (byte)VertexFabType.<#= name #>;
-<#
-	}
-#>
 		}
 
 	}

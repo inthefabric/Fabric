@@ -62,9 +62,15 @@
     <Compile Include="IPath.cs" />
     <Compile Include="PathSegment.cs" />
     <Compile Include="Steps\FabStepDataFault.cs" />
+    <Compile Include="Steps\Functions\RootTypeFunc.cs" />
+    <Compile Include="Steps\Functions\RootTypeFuncs.cs">
+      <DependentUpon>RootTypeFuncs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Steps\Functions\FuncExactIndexStep.cs" />
-    <Compile Include="Steps\Functions\FuncRootExactIndex.cs">
-      <DependentUpon>FuncRootExactIndex.tt</DependentUpon>
+    <Compile Include="Steps\Functions\FuncExactIndexes.cs">
+      <DependentUpon>FuncExactIndexes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -74,8 +80,8 @@
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFuncStep.cs" />
     <Compile Include="Steps\Functions\FuncRegistry.cs" />
-    <Compile Include="Steps\Functions\FuncRootIndex.cs">
-      <DependentUpon>FuncRootIndex.tt</DependentUpon>
+    <Compile Include="Steps\Functions\FuncIdIndexes.cs">
+      <DependentUpon>FuncIdIndexes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -119,13 +125,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Steps\Functions\FuncRootExactIndex.tt">
+    <None Include="Steps\Functions\RootTypeFuncs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FuncRootExactIndex.cs</LastGenOutput>
+      <LastGenOutput>RootTypeFuncs.cs</LastGenOutput>
     </None>
-    <None Include="Steps\Functions\FuncRootIndex.tt">
+    <None Include="Steps\Functions\FuncExactIndexes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FuncRootIndex.cs</LastGenOutput>
+      <LastGenOutput>FuncExactIndexes.cs</LastGenOutput>
+    </None>
+    <None Include="Steps\Functions\FuncIdIndexes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FuncIdIndexes.cs</LastGenOutput>
     </None>
     <None Include="Steps\Vertices\BaseClassVertexSteps.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

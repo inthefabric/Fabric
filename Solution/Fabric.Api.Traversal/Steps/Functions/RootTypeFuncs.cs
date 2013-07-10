@@ -1,51 +1,41 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 4:28:10 PM
+// Generated on 7/10/2013 4:27:39 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
-using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public abstract partial class FuncIdIndexStep {
+	public abstract partial class RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		internal static new void RegisterAllFunctions() {
-			FuncRegistry.Register<FuncArtifactIdIndexStep>(
-				(p => new FuncArtifactIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncAppIdIndexStep>(
-				(p => new FuncAppIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncClassIdIndexStep>(
-				(p => new FuncClassIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncInstanceIdIndexStep>(
-				(p => new FuncInstanceIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncMemberIdIndexStep>(
-				(p => new FuncMemberIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncMemberTypeAssignIdIndexStep>(
-				(p => new FuncMemberTypeAssignIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncUrlIdIndexStep>(
-				(p => new FuncUrlIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncUserIdIndexStep>(
-				(p => new FuncUserIdIndexStep(p)), AllowedForStep);
-			FuncRegistry.Register<FuncFactorIdIndexStep>(
-				(p => new FuncFactorIdIndexStep(p)), AllowedForStep);
+		internal static void RegisterAllFunctions() {
+			FuncRegistry.Register<ArtifactsFunc>(x => new ArtifactsFunc(x), AllowedForStep);
+			FuncRegistry.Register<AppsFunc>(x => new AppsFunc(x), AllowedForStep);
+			FuncRegistry.Register<ClassesFunc>(x => new ClassesFunc(x), AllowedForStep);
+			FuncRegistry.Register<InstancesFunc>(x => new InstancesFunc(x), AllowedForStep);
+			FuncRegistry.Register<MembersFunc>(x => new MembersFunc(x), AllowedForStep);
+			FuncRegistry.Register<MemberTypeAssignsFunc>(x => new MemberTypeAssignsFunc(x), AllowedForStep);
+			FuncRegistry.Register<UrlsFunc>(x => new UrlsFunc(x), AllowedForStep);
+			FuncRegistry.Register<UsersFunc>(x => new UsersFunc(x), AllowedForStep);
+			FuncRegistry.Register<FactorsFunc>(x => new FactorsFunc(x), AllowedForStep);
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Artifact")]
-	public class FuncArtifactIdIndexStep : FuncIdIndexStep {
+	[Func("Artifacts")]
+	public class ArtifactsFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncArtifactIdIndexStep(IPath pPath) : base(pPath) {
+		public ArtifactsFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ArtifactStep(pPath);
 		}
 
@@ -53,120 +43,112 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("App")]
-	public class FuncAppIdIndexStep : FuncIdIndexStep {
+	[Func("Apps")]
+	public class AppsFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncAppIdIndexStep(IPath pPath) : base(pPath) {
+		public AppsFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new AppStep(pPath);
-			FabType = (byte)VertexFabType.App;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Class")]
-	public class FuncClassIdIndexStep : FuncIdIndexStep {
+	[Func("Classes")]
+	public class ClassesFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncClassIdIndexStep(IPath pPath) : base(pPath) {
+		public ClassesFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ClassStep(pPath);
-			FabType = (byte)VertexFabType.Class;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Instance")]
-	public class FuncInstanceIdIndexStep : FuncIdIndexStep {
+	[Func("Instances")]
+	public class InstancesFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncInstanceIdIndexStep(IPath pPath) : base(pPath) {
+		public InstancesFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new InstanceStep(pPath);
-			FabType = (byte)VertexFabType.Instance;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Member")]
-	public class FuncMemberIdIndexStep : FuncIdIndexStep {
+	[Func("Members")]
+	public class MembersFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncMemberIdIndexStep(IPath pPath) : base(pPath) {
+		public MembersFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new MemberStep(pPath);
-			FabType = (byte)VertexFabType.Member;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("MemberTypeAssign")]
-	public class FuncMemberTypeAssignIdIndexStep : FuncIdIndexStep {
+	[Func("MemberTypeAssigns")]
+	public class MemberTypeAssignsFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncMemberTypeAssignIdIndexStep(IPath pPath) : base(pPath) {
+		public MemberTypeAssignsFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new MemberTypeAssignStep(pPath);
-			FabType = (byte)VertexFabType.MemberTypeAssign;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Url")]
-	public class FuncUrlIdIndexStep : FuncIdIndexStep {
+	[Func("Urls")]
+	public class UrlsFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncUrlIdIndexStep(IPath pPath) : base(pPath) {
+		public UrlsFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UrlStep(pPath);
-			FabType = (byte)VertexFabType.Url;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("User")]
-	public class FuncUserIdIndexStep : FuncIdIndexStep {
+	[Func("Users")]
+	public class UsersFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncUserIdIndexStep(IPath pPath) : base(pPath) {
+		public UsersFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UserStep(pPath);
-			FabType = (byte)VertexFabType.User;
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Factor")]
-	public class FuncFactorIdIndexStep : FuncIdIndexStep {
+	[Func("Factors")]
+	public class FactorsFunc : RootTypeFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FuncFactorIdIndexStep(IPath pPath) : base(pPath) {
+		public FactorsFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new FactorStep(pPath);
-			FabType = (byte)VertexFabType.Factor;
 		}
 
 	}
