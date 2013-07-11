@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Traversal.Steps {
@@ -44,8 +43,10 @@ namespace Fabric.Api.Traversal.Steps {
 			p = p.Substring(0, len-1);
 
 			if ( p.Length == 0 ) {
-				throw new FabStepDataFault(FabFault.Code.IncorrectParamCount,
-					"Empty parameter list: '"+RawString+"'.");
+				Params = new string[0];
+				return;
+				//throw new FabStepDataFault(FabFault.Code.IncorrectParamCount,
+				//	"Empty parameter list: '"+RawString+"'.");
 			}
 
 			Params = p.Split(',');

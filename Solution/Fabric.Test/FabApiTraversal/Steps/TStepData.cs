@@ -14,6 +14,7 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("test", "test", null)]
+		[TestCase("empty()", "empty", new string[0])]
 		[TestCase("A12_34B-c( 1 )", "a12_34b-c", new[] { "1" })]
 		[TestCase("abcdEFG(hijkLMNOP)", "abcdefg", new[] { "hijkLMNOP" })]
 		[TestCase("ABCDefg(hijklmnop,  QRS,   tuv,W,x    y, z)", "abcdefg", 
@@ -29,7 +30,6 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("(")]
 		[TestCase(")")]
-		[TestCase("()")]
 		[TestCase("))")]
 		[TestCase("((")]
 		[TestCase(")(")]
@@ -37,7 +37,6 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase("x)")]
 		[TestCase("x((")]
 		[TestCase("x))")]
-		[TestCase("x()")]
 		[TestCase("x()x")]
 		[TestCase("x(2)x")]
 		[TestCase("x)2)")]

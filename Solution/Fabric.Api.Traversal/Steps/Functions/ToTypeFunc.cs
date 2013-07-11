@@ -17,7 +17,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	public abstract class ToTypeFunc<T> : Func where T : FabVertex, new() { //TEST: ToTypeFunc
+	public abstract class ToTypeFunc<T> : Func where T : FabVertex, new() {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

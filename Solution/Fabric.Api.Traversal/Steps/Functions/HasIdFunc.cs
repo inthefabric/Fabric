@@ -60,8 +60,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				ns = (IVertexStep)ProxyStep;
 			}
 
-			string idParam = Path.AddParam(new WeaverQueryVal(Id));
-			Path.AppendToCurrentSegment("('"+ns.TypeIdName+"',Tokens.T.eq,"+idParam+")", false);
+			string pp = Path.AddParam(new WeaverQueryVal(ns.TypeIdName));
+			string ip = Path.AddParam(new WeaverQueryVal(Id));
+			Path.AppendToCurrentSegment("("+pp+",Tokens.T.eq,"+ip+")", false);
 		}
 
 

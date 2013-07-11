@@ -53,9 +53,14 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 			var p = new Mock<IPath>();
 			p.Setup(x => x.GetSegmentBeforeLast(1)).Returns(proxySeg.Object);
-			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
+			p.Setup(x => x
+				.AddParam(It.Is((IWeaverQueryVal qv) => qv.RawText == typeIdName)))
+				.Returns("_P0");
+			p.Setup(x => x
+				.AddParam(It.Is((IWeaverQueryVal qv) => qv.RawText == pId+"")))
+				.Returns("_P1");
 
-			string script = "('"+typeIdName+"',Tokens.T.eq,_P0)";
+			const string script = "(_P0,Tokens.T.eq,_P1)";
 
 			var wi = new HasIdFunc(p.Object);
 			var sd = new StepData("HasId("+pId+")");
