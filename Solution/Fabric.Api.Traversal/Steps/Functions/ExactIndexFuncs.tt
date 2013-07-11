@@ -88,7 +88,7 @@ foreach ( string name in indexNames ) {
 <#
 	if ( p.ToLowerCase == true ) {
 #>
-			Param0 = Param0.ToLower().Replace("~~~", "://");
+			IdParam = IdParam.ToLower().Replace("~~~", "://");
 <#
 	}
 #>

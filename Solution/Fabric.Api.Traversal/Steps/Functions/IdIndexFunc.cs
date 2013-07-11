@@ -18,7 +18,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		protected override void GetValue() {
 			base.GetValue();
 
-			if ( Param0 == 0 ) {
+			if ( IdParam == 0 ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Cannot be 0.", 0);
 			}
 		}

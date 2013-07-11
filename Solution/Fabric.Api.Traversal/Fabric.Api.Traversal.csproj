@@ -62,6 +62,7 @@
     <Compile Include="IPath.cs" />
     <Compile Include="PathSegment.cs" />
     <Compile Include="Steps\FabStepDataFault.cs" />
+    <Compile Include="Steps\Functions\IndexFunc.cs" />
     <Compile Include="Steps\Functions\ExactIndexFunc.cs" />
     <Compile Include="Steps\Functions\ExactIndexFuncs.cs">
       <DependentUpon>ExactIndexFuncs.tt</DependentUpon>

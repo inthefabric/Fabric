@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 9:55:25 PM
+// Generated on 7/11/2013 3:50:32 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
@@ -43,7 +43,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			Param0 = Param0.ToLower().Replace("~~~", "://");
+			IdParam = IdParam.ToLower().Replace("~~~", "://");
 		}
 
 	}
@@ -67,7 +67,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			Param0 = Param0.ToLower().Replace("~~~", "://");
+			IdParam = IdParam.ToLower().Replace("~~~", "://");
 		}
 
 	}
@@ -91,7 +91,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			Param0 = Param0.ToLower().Replace("~~~", "://");
+			IdParam = IdParam.ToLower().Replace("~~~", "://");
 		}
 
 	}
@@ -115,7 +115,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			Param0 = Param0.ToLower().Replace("~~~", "://");
+			IdParam = IdParam.ToLower().Replace("~~~", "://");
 		}
 
 	}
