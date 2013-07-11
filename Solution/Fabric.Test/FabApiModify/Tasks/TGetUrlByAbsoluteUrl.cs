@@ -8,18 +8,18 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TGetUrlByAbsoluteUrl : TModifyTasks {
+	public class TGetUrlByPath : TModifyTasks {
 
-		private const string Query = "g.V('"+PropDbName.Url_AbsoluteUrl+"',_P0);";
+		private const string Query = "g.V('"+PropDbName.Url_Path+"',_P0);";
 
-		private string vAbsoluteUrl;
+		private string vPath;
 		private Url vUrlResult;
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAbsoluteUrl = "http://www.DUPlicate.com";
+			vPath = "http://www.DUPlicate.com";
 			vUrlResult = new Url();
 
 			var mda = MockDataAccess.Create(OnExecute);
@@ -31,7 +31,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		private void OnExecute(MockDataAccess pData) {
 			MockDataAccessCmd cmd = pData.GetCommand(0);
 			Assert.AreEqual(Query, cmd.Script, "Incorrect Query.Script.");
-			TestUtil.CheckParam(cmd.Params, "_P0", vAbsoluteUrl.ToLower());
+			TestUtil.CheckParam(cmd.Params, "_P0", vPath.ToLower());
 		}
 
 
@@ -39,7 +39,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
-			Url result = Tasks.GetUrlByAbsoluteUrl(MockApiCtx.Object, vAbsoluteUrl);
+			Url result = Tasks.GetUrlByPath(MockApiCtx.Object, vPath);
 
 			AssertDataExecution(true);
 			Assert.AreEqual(vUrlResult, result, "Incorrect Result.");

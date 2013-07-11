@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 4:37:29 PM
+// Generated on 7/10/2013 9:55:25 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
@@ -17,7 +17,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		internal static void RegisterAllFunctions() {
 			FuncRegistry.Register<ApNKExactIndexFunc>(p => new ApNKExactIndexFunc(p), AllowedForStep);
 			FuncRegistry.Register<ClNKExactIndexFunc>(p => new ClNKExactIndexFunc(p), AllowedForStep);
-			FuncRegistry.Register<UrAbExactIndexFunc>(p => new UrAbExactIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<UrPaExactIndexFunc>(p => new UrPaExactIndexFunc(p), AllowedForStep);
 			FuncRegistry.Register<UNKExactIndexFunc>(p => new UNKExactIndexFunc(p), AllowedForStep);
 			FuncRegistry.Register<FIdVExactIndexFunc>(p => new FIdVExactIndexFunc(p), AllowedForStep);
 		}
@@ -26,75 +26,119 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("App_NameKey")]
+	[Func("AppName")]
 	public class ApNKExactIndexFunc : ExactIndexFunc<string> {
+	
+		[FuncParam(0)]
+		public string Name { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ApNKExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new AppStep(pPath);
-			FabType = (byte)VertexFabType.App;
+			PropName = "Ap_NK";
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
+			Param0 = Param0.ToLower().Replace("~~~", "://");
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Class_NameKey")]
+	[Func("ClassName")]
 	public class ClNKExactIndexFunc : ExactIndexFunc<string> {
+	
+		[FuncParam(0)]
+		public string Name { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ClNKExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ClassStep(pPath);
-			FabType = (byte)VertexFabType.Class;
+			PropName = "Cl_NK";
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
+			Param0 = Param0.ToLower().Replace("~~~", "://");
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Url_AbsoluteUrl")]
-	public class UrAbExactIndexFunc : ExactIndexFunc<string> {
+	[Func("UrlPath")]
+	public class UrPaExactIndexFunc : ExactIndexFunc<string> {
+	
+		[FuncParam(0)]
+		public string Url { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrAbExactIndexFunc(IPath pPath) : base(pPath) {
+		public UrPaExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UrlStep(pPath);
-			FabType = (byte)VertexFabType.Url;
+			PropName = "Ur_Pa";
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
+			Param0 = Param0.ToLower().Replace("~~~", "://");
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("User_NameKey")]
+	[Func("UserName")]
 	public class UNKExactIndexFunc : ExactIndexFunc<string> {
+	
+		[FuncParam(0)]
+		public string Name { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public UNKExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new UserStep(pPath);
-			FabType = (byte)VertexFabType.User;
+			PropName = "U_NK";
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
+			Param0 = Param0.ToLower().Replace("~~~", "://");
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Factor_Identor_Value")]
+	[Func("FactorIdentorValue")]
 	public class FIdVExactIndexFunc : ExactIndexFunc<string> {
+	
+		[FuncParam(0)]
+		public string Identor_Value { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FIdVExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new FactorStep(pPath);
-			FabType = (byte)VertexFabType.Factor;
+			PropName = "F_IdV";
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
 		}
 
 	}

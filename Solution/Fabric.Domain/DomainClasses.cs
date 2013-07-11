@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/9/2013 4:17:11 PM
+// Generated on 7/10/2013 9:12:46 PM
 
 using System;
 using System.Collections.Generic;
@@ -868,8 +868,8 @@ namespace Fabric.Domain {
 		[WeaverTitanProperty("Ur_Na", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Name { get; set; }
 
-		[WeaverTitanProperty("Ur_Ab", TitanIndex=true, TitanElasticIndex=false)]
-		public virtual string AbsoluteUrl { get; set; }
+		[WeaverTitanProperty("Ur_Pa", TitanIndex=true, TitanElasticIndex=false)]
+		public virtual string Path { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -890,8 +890,8 @@ namespace Fabric.Domain {
 				Name = pData["Ur_Na"];
 			}
 			
-			if ( pData.ContainsKey("Ur_Ab") ) {
-				AbsoluteUrl = pData["Ur_Ab"];
+			if ( pData.ContainsKey("Ur_Pa") ) {
+				Path = pData["Ur_Pa"];
 			}
 
 		}

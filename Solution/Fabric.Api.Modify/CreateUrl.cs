@@ -15,11 +15,11 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member)]
 	public class CreateUrl : BaseModifyFunc<Url> {
 
-		public const string AbsoluteUrlParam = "AbsoluteUrl";
+		public const string PathParam = "Path";
 		public const string NameParam = "Name";
 
-		[ServiceOpParam(ServiceOpParamType.Form, AbsoluteUrlParam, 0, typeof(Url))]
-		private readonly string vAbsoluteUrl;
+		[ServiceOpParam(ServiceOpParamType.Form, PathParam, 0, typeof(Url))]
+		private readonly string vPath;
 
 		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 1, typeof(Url))]
 		private readonly string vName;
@@ -27,31 +27,31 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateUrl(IModifyTasks pTasks, string pAbsoluteUrl, string pName) : base(pTasks) {
-			vAbsoluteUrl = pAbsoluteUrl;
+		public CreateUrl(IModifyTasks pTasks, string pPath, string pName) : base(pTasks) {
+			vPath = pPath;
 			vName = pName;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.UrlAbsoluteUrl(vAbsoluteUrl, AbsoluteUrlParam);
+			Tasks.Validator.UrlPath(vPath, PathParam);
 			Tasks.Validator.UrlName(vName, NameParam);
 
 			////
 
-			int protoI = vAbsoluteUrl.IndexOf("://");
+			int protoI = vPath.IndexOf("://");
 			int protoEnd = protoI+3;
 
-			if ( protoI < 2 || vAbsoluteUrl.Length <= protoEnd ) {
+			if ( protoI < 2 || vPath.Length <= protoEnd ) {
 				throw new FabArgumentValueFault(
-					AbsoluteUrlParam+" uses an invalid format. Try starting the URL with 'http://'.");
+					PathParam+" uses an invalid format. Try starting the URL with 'http://'.");
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Url Execute() {
-			if ( Tasks.GetUrlByAbsoluteUrl(ApiCtx, vAbsoluteUrl) != null ) {
-				throw new FabDuplicateFault(typeof(Url), AbsoluteUrlParam, vAbsoluteUrl);
+			if ( Tasks.GetUrlByPath(ApiCtx, vPath) != null ) {
+				throw new FabDuplicateFault(typeof(Url), PathParam, vPath);
 			}
 
 			Member m = GetContextMember();
@@ -63,7 +63,7 @@ namespace Fabric.Api.Modify {
 
 			var txb = new TxBuilder();
 			txb.GetVertex(m, out memVar);
-			Tasks.TxAddUrl(ApiCtx, txb, vAbsoluteUrl, vName, memVar, out urlVar);
+			Tasks.TxAddUrl(ApiCtx, txb, vPath, vName, memVar, out urlVar);
 			txb.RegisterVarWithTxBuilder(urlVar);
 
 			return ApiCtx.Get<Url>(txb.Finish(urlVar));

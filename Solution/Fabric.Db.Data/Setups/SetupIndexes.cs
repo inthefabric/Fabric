@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/24/2013 3:28:40 PM
+// Generated on 7/10/2013 9:12:46 PM
 
 using System;
 using System.Collections.Generic;
@@ -239,8 +239,8 @@ namespace Fabric.Db.Data.Setups {
 				pSet.AddIndexQuery(q);
 				propMap.Add(dbName, pv);
 
-				dbName = "Ur_Ab";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Url>(x => x.AbsoluteUrl, gv).ToQuery();
+				dbName = "Ur_Pa";
+				q = wi.TitanGraph().MakeVertexPropertyKey<Url>(x => x.Path, gv).ToQuery();
 				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
 				pSet.AddIndexQuery(q);
 				propMap.Add(dbName, pv);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Text.RegularExpressions;
+using System.Linq;
 using Fabric.Infrastructure.Api.Faults;
 
 namespace Fabric.Api.Traversal.Steps {
@@ -48,7 +48,11 @@ namespace Fabric.Api.Traversal.Steps {
 					"Empty parameter list: '"+RawString+"'.");
 			}
 
-			Params = Regex.Replace(p, @"\s*", "").Split(',');
+			Params = p.Split(',');
+
+			for ( int i = 0 ; i < Params.Length ; ++i ) {
+				Params[i] = Params[i].Trim();
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

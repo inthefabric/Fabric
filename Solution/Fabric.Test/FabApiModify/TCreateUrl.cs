@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify {
 	[TestFixture]
 	public class TCreateUrl : TBaseModifyFunc {
 
-		private string vAbsoluteUrl;
+		private string vPath;
 		private string vName;
 
 		private IWeaverVarAlias<Url> vOutUrlVar;
@@ -26,7 +26,7 @@ namespace Fabric.Test.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAbsoluteUrl = "http://www.mywebsite.com";
+			vPath = "http://www.mywebsite.com";
 			vName = "My Web Site";
 
 			vOutUrlVar = TestUtil.GetTxVar<Url>("AU");
@@ -36,7 +36,7 @@ namespace Fabric.Test.FabApiModify {
 				.Setup(x => x.TxAddUrl(
 						MockApiCtx.Object,
 						It.IsAny<TxBuilder>(),
-						vAbsoluteUrl,
+						vPath,
 						vName,
 						It.IsAny<IWeaverVarAlias<Member>>(),
 						out vOutUrlVar
@@ -66,7 +66,7 @@ namespace Fabric.Test.FabApiModify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateUrl(MockTasks.Object, vAbsoluteUrl, vName);
+			var func = new CreateUrl(MockTasks.Object, vPath, vName);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -79,8 +79,8 @@ namespace Fabric.Test.FabApiModify {
 
 			Assert.AreEqual(vResultUrl, vResult, "Incorrect Result.");
 
-			MockValidator.Verify(x => x.UrlAbsoluteUrl(vAbsoluteUrl,
-				CreateUrl.AbsoluteUrlParam), Times.Once());
+			MockValidator.Verify(x => x.UrlPath(vPath,
+				CreateUrl.PathParam), Times.Once());
 			MockValidator.Verify(x => x.UrlName(vName, CreateUrl.NameParam), Times.Once());
 		}
 
@@ -95,7 +95,7 @@ namespace Fabric.Test.FabApiModify {
 		[TestCase("http:/")]
 		[TestCase("http//:www.test.com")]
 		public void ErrInvalidUrl(string pUrl) {
-			vAbsoluteUrl = pUrl;
+			vPath = pUrl;
 			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
 		}
 		
@@ -103,7 +103,7 @@ namespace Fabric.Test.FabApiModify {
 		[Test]
 		public void ErrDuplicateUrl() {
 			MockTasks
-				.Setup(x => x.GetUrlByAbsoluteUrl(MockApiCtx.Object, vAbsoluteUrl))
+				.Setup(x => x.GetUrlByPath(MockApiCtx.Object, vPath))
 				.Returns(new Url());
 
 			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);

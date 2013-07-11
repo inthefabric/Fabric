@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/28/2013 9:02:14 AM
+// Generated on 7/10/2013 9:12:47 PM
 
 using System;
 
@@ -61,8 +61,8 @@ namespace Fabric.Infrastructure.Domain {
 		void MemberTypeAssignMemberTypeId(byte pValue);
 		void UrlName(string pValue, string pParamName);
 		void UrlName(string pValue);
-		void UrlAbsoluteUrl(string pValue, string pParamName);
-		void UrlAbsoluteUrl(string pValue);
+		void UrlPath(string pValue, string pParamName);
+		void UrlPath(string pValue);
 		void UserName(string pValue, string pParamName);
 		void UserName(string pValue);
 		void UserNameKey(string pValue, string pParamName);
@@ -430,14 +430,14 @@ namespace Fabric.Infrastructure.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UrlAbsoluteUrl(string pValue, string pParamName) {
+		public void UrlPath(string pValue, string pParamName) {
 			NotNull(pParamName, pValue);
 			LengthBetween(pParamName, pValue, 1, 2048);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UrlAbsoluteUrl(string pValue) {
-			UrlAbsoluteUrl(pValue, "AbsoluteUrl");
+		public void UrlPath(string pValue) {
+			UrlPath(pValue, "Path");
 		}
 
 		

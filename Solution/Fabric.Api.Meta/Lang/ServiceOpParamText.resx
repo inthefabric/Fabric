@@ -156,7 +156,7 @@
   <data name="Modify_AddInstance_Note" xml:space="preserve">
     <value>A brief description of the new Instance.  It can be useful for helping others understand the creator's intended purpose or meaning.</value>
   </data>
-  <data name="Modify_AddUrl_AbsoluteUrl" xml:space="preserve">
+  <data name="Modify_AddUrl_Path" xml:space="preserve">
     <value>The complete absolute URL for new Url object. It must include the URL's protocol (such as 'http://').</value>
   </data>
   <data name="Modify_AddUrl_Name" xml:space="preserve">

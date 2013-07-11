@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 8:53:26 PM
+// Generated on 7/10/2013 9:12:48 PM
 
 using System;
 using Fabric.Api.Dto.Traversal;
@@ -32,7 +32,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("Artifact")]
+	[Func("ArtifactId")]
 	public class ArtifactIdIndexFunc : IdIndexFunc {
 
 
@@ -45,14 +45,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabArtifact>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("App")]
+	[Func("AppId")]
 	public class AppIdIndexFunc : IdIndexFunc {
 
 
@@ -66,14 +66,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabApp>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Class")]
+	[Func("ClassId")]
 	public class ClassIdIndexFunc : IdIndexFunc {
 
 
@@ -87,14 +87,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabClass>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Instance")]
+	[Func("InstanceId")]
 	public class InstanceIdIndexFunc : IdIndexFunc {
 
 
@@ -108,14 +108,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabInstance>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Member")]
+	[Func("MemberId")]
 	public class MemberIdIndexFunc : IdIndexFunc {
 
 
@@ -129,14 +129,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabMember>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("MemberTypeAssign")]
+	[Func("MemberTypeAssignId")]
 	public class MemberTypeAssignIdIndexFunc : IdIndexFunc {
 
 
@@ -150,14 +150,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabMemberTypeAssign>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Url")]
+	[Func("UrlId")]
 	public class UrlIdIndexFunc : IdIndexFunc {
 
 
@@ -171,14 +171,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabUrl>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("User")]
+	[Func("UserId")]
 	public class UserIdIndexFunc : IdIndexFunc {
 
 
@@ -192,14 +192,14 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabUser>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
 
 
 	/*================================================================================================*/
-	[Func("Factor")]
+	[Func("FactorId")]
 	public class FactorIdIndexFunc : IdIndexFunc {
 
 
@@ -213,7 +213,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<FabFactor>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}

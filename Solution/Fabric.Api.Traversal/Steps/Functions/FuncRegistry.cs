@@ -20,14 +20,11 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			RegItemMap = new Dictionary<string, FuncRegistryItem>();
 
 			//Available for FabRoot
-			RootTypeFunc.RegisterAllFunctions();
+			IdIndexFunc.RegisterAllFunctions();
+			ExactIndexFunc.RegisterAllFunctions();
 			Register<ActiveAppFunc>(p => new ActiveAppFunc(p), ActiveAppFunc.AllowedForStep);
 			Register<ActiveUserFunc>(p => new ActiveUserFunc(p), ActiveUserFunc.AllowedForStep);
 			Register<ActiveMemberFunc>(p => new ActiveMemberFunc(p), ActiveMemberFunc.AllowedForStep);
-
-			//Available for RootTypes
-			IdIndexFunc.RegisterAllFunctions();
-			ExactIndexFunc.RegisterAllFunctions();
 
 			//Available for most DTOs
 			Register<AsFunc>(p => new AsFunc(p), AsFunc.AllowedForStep);
@@ -41,6 +38,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			Register<WhereInstanceFunc>(p => new WhereInstanceFunc(p), WhereInstanceFunc.AllowedForStep);
 			Register<WhereUrlFunc>(p => new WhereUrlFunc(p), WhereUrlFunc.AllowedForStep);
 			Register<WhereUserFunc>(p => new WhereUserFunc(p), WhereUserFunc.AllowedForStep);
+
+			RegItems.Sort((a,b) => a.Uri.CompareTo(b.Uri));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

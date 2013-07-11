@@ -45,7 +45,7 @@ foreach ( string name in propNames ) {
 		internal static void RegisterAllFunctions() {
 <#
 foreach ( string name in indexNames ) {
-	string shortName = name.Replace("_","");
+	string shortName = name.Replace("_", "");
 #>
 			FuncRegistry.Register<<#= shortName #>ExactIndexFunc>(p => new <#= shortName #>ExactIndexFunc(p), AllowedForStep);
 <#
@@ -61,19 +61,37 @@ foreach ( string name in indexNames ) {
 	FabricPropSchema p = hp.PropSchema;
 	WeaverVertexSchema v = p.VertexSchema;
 	string type = SchemaHelperProp.GetTypeName(p.Type);
-	string shortName = name.Replace("_","");
+	string shortName = name.Replace("_", "");
+
+	string funcName = v.Name+p.Name.Replace("_", "").Replace("Key", "");
+	string paramName = p.Name.Replace("Key", "").Replace("Path", "Url");
 #>
 
 	/*================================================================================================*/
-	[Func("<#= v.Name+"_"+p.Name #>")]
+	[Func("<#= funcName #>")]
 	public class <#= shortName #>ExactIndexFunc : ExactIndexFunc<<#= type #>> {
+	
+		[FuncParam(0)]
+		public <#= type #> <#= paramName #> { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= shortName #>ExactIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new <#= v.Name #>Step(pPath);
-			FabType = (byte)VertexFabType.<#= v.Name #>;
+			PropName = "<#= name #>";
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void GetValue() {
+			base.GetValue();
+<#
+	if ( p.ToLowerCase == true ) {
+#>
+			Param0 = Param0.ToLower().Replace("~~~", "://");
+<#
+	}
+#>
 		}
 
 	}

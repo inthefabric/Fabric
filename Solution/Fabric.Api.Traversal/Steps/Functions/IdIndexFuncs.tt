@@ -48,7 +48,7 @@ foreach ( string name in vertexNames ) {
 #>
 
 	/*================================================================================================*/
-	[Func("<#= name #>")]
+	[Func("<#= name #>Id")]
 	public class <#= name #>IdIndexFunc : IdIndexFunc {
 
 
@@ -68,7 +68,7 @@ foreach ( string name in vertexNames ) {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRootType<Fab<#= name #>>));
+			return (pDtoType == typeof(FabRoot));
 		}
 
 	}

@@ -14,7 +14,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		Url GetUrlByAbsoluteUrl(IApiContext pApiCtx, string pAbsoluteUrl);
+		Url GetUrlByPath(IApiContext pApiCtx, string pPath);
 
 		/*--------------------------------------------------------------------------------------------*/
 		Member GetValidMemberByContext(IApiContext pApiCtx);
@@ -56,7 +56,7 @@ namespace Fabric.Api.Modify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pAbsoluteUrl, string pName,
+		void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pPath, string pName,
 									IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Url> pUrlVar);
 
 		/*--------------------------------------------------------------------------------------------*/

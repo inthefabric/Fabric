@@ -165,7 +165,7 @@
   <data name="Class_Note" xml:space="preserve">
     <value>A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.</value>
   </data>
-  <data name="Url_AbsoluteUrl" xml:space="preserve">
+  <data name="Url_Path" xml:space="preserve">
     <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').</value>
   </data>
   <data name="Eventor_DateTime" xml:space="preserve">

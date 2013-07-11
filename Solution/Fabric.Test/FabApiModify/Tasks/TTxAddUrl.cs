@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Member
 			"_V1=g.addVertex(["+
 				PropDbName.Url_Name+":_TP,"+
-				PropDbName.Url_AbsoluteUrl+":_TP,"+
+				PropDbName.Url_Path+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+
@@ -26,7 +26,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.TryPropScript+
 			"g.addEdge(_V0,_V1,_TP,_PROP);";
 
-		private string vAbsoluteUrl;
+		private string vPath;
 		private string vName;
 		private long vNewArtifactId;
 		private DateTime vUtcNow;
@@ -35,7 +35,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			vAbsoluteUrl = "http://www.myWEBsite.com";
+			vPath = "http://www.myWEBsite.com";
 			vName = "My Web Site";
 			vNewArtifactId = 27357427;
 			vUtcNow = DateTime.UtcNow;
@@ -52,7 +52,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			IWeaverVarAlias<Member> memVar = GetTxVar<Member>("_V0");
 			IWeaverVarAlias<Url> urlVar;
 
-			Tasks.TxAddUrl(MockApiCtx.Object, TxBuild, vAbsoluteUrl, vName, memVar,out urlVar);
+			Tasks.TxAddUrl(MockApiCtx.Object, TxBuild, vPath, vName, memVar,out urlVar);
 			FinishTx();
 
 			Assert.NotNull(urlVar, "UrlVar should not be null.");
@@ -63,7 +63,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
 				vName,
-				vAbsoluteUrl.ToLower(),
+				vPath.ToLower(),
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.Url,

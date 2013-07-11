@@ -308,7 +308,7 @@ namespace Fabric.Api.Services {
 				case "POST":
 					Fabric.Domain.Url u = new CreateUrl(
 						NewModTasks(),
-						GetPostString(CreateUrl.AbsoluteUrlParam),
+						GetPostString(CreateUrl.PathParam),
 						GetPostString(CreateUrl.NameParam)
 					)
 					.Go(ApiCtx);

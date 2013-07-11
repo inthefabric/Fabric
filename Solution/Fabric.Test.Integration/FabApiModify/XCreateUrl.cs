@@ -12,7 +12,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 	[TestFixture]
 	public class XCreateUrl : XBaseModifyFunc {
 		
-		private string vAbsoluteUrl;
+		private string vPath;
 		private string vName;
 
 		private long vExpectMemberId;
@@ -25,7 +25,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			base.TestSetUp();
 			IsReadOnlyTest = true;
 			
-			vAbsoluteUrl = "http://www.mywebsite.com";
+			vPath = "http://www.mywebsite.com";
 			vName = "My Web Site";
 
 			ApiCtx.SetAppUserId((long)AppGal, (long)UserZach);
@@ -34,7 +34,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
-			var func = new CreateUrl(Tasks, vAbsoluteUrl, vName);
+			var func = new CreateUrl(Tasks, vPath, vName);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -67,23 +67,23 @@ namespace Fabric.Test.Integration.FabApiModify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrAbsoluteUrlNull() {
-			vAbsoluteUrl = null;
+		public void ErrPathNull() {
+			vPath = null;
 			TestUtil.CheckThrows<FabArgumentNullFault>(true, TestGo);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(0)]
 		[TestCase(2049)]
-		public void ErrAbsoluteUrlLength(int pLength) {
-			vAbsoluteUrl = new string('a', pLength);
+		public void ErrPathLength(int pLength) {
+			vPath = new string('a', pLength);
 			TestUtil.CheckThrows<FabArgumentLengthFault>(true, TestGo);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ErrAbsoluteUrlDuplicate() {
-			vAbsoluteUrl = "HTTP://zachkinstner.COM";
+		public void ErrPathDuplicate() {
+			vPath = "HTTP://zachkinstner.COM";
 			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
 		}
 

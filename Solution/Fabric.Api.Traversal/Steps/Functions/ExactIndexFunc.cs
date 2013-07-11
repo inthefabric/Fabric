@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
@@ -29,7 +30,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	public abstract partial class ExactIndexFunc<T> : ExactIndexFunc {
 
-		public T Value { get; private set; }
+		public T Param0 { get; protected set; }
 
 		protected string PropName { get; set; }
 		protected byte? FabType { get; set; }
@@ -49,7 +50,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			////
 
 			string propParam = Path.AddParam(new WeaverQueryVal(PropName));
-			string idParam = Path.AddParam(new WeaverQueryVal(Value));
+			string idParam = Path.AddParam(new WeaverQueryVal(Param0));
 			Path.AppendToCurrentSegment("("+propParam+","+idParam+")", false);
 
 			if ( FabType != null ) {
@@ -64,7 +65,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			ExpectParamCount(1);
 
 			try {
-				Value = Data.ParamAt<T>(0);
+				Param0 = Data.ParamAt<T>(0);
+				Log.Debug("PARAM: "+Param0);
 			}
 			catch ( InvalidCastException ex ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,

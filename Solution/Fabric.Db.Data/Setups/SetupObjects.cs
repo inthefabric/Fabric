@@ -416,12 +416,12 @@ namespace Fabric.Db.Data.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddUrl(UrlId pId, string pAbsoluteUrl, string pName,
+		public void AddUrl(UrlId pId, string pPath, string pName,
 									SetupArtifacts.ArtifactId pArtId, SetupUsers.MemberId pMemberId) {
 			var u = new Url();
 			u.ArtifactId = (byte)pId;
 			u.Name = pName;
-			u.AbsoluteUrl = pAbsoluteUrl;
+			u.Path = pPath;
 
 			vSet.AddVertex(u, vTestMode);
 

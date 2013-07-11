@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -42,15 +41,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 
 			return next;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool IsRootBasedStep(Type pDtoType) {
-			if ( pDtoType == typeof(FabRoot) ) { return true; }
-			if ( typeof(RootTypeFunc).IsAssignableFrom(pDtoType) ) { return true; }
-			return false;
 		}
 
 	}

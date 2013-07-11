@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 3:25:39 PM
+// Generated on 7/10/2013 9:12:49 PM
 
 using System.Collections.Generic;
 
@@ -188,7 +188,7 @@ namespace Fabric.Domain.Meta {
 				case "MTA_Id": return new SchemaHelperProp(s.Props[21]);
 				case "MTA_Mt": return new SchemaHelperProp(s.Props[22]);
 				case "Ur_Na": return new SchemaHelperProp(s.Props[23]);
-				case "Ur_Ab": return new SchemaHelperProp(s.Props[24]);
+				case "Ur_Pa": return new SchemaHelperProp(s.Props[24]);
 				case "U_Na": return new SchemaHelperProp(s.Props[25]);
 				case "U_NK": return new SchemaHelperProp(s.Props[26]);
 				case "U_Pa": return new SchemaHelperProp(s.Props[27]);
@@ -262,7 +262,7 @@ namespace Fabric.Domain.Meta {
 				"MTA_Id",
 				"MTA_Mt",
 				"Ur_Na",
-				"Ur_Ab",
+				"Ur_Pa",
 				"U_Na",
 				"U_NK",
 				"U_Pa",

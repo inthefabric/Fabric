@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 6/24/2013 3:28:41 PM
+// Generated on 7/10/2013 9:12:49 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -119,7 +119,7 @@ namespace Fabric.Api.Meta {
 					pValue.LenMin = 1;
 					break;
 
-				case "Url.AbsoluteUrl":
+				case "Url.Path":
 					pValue.LenMax = 2048;
 					pValue.LenMin = 1;
 					break;
@@ -395,10 +395,10 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					break;
 
-				case "Url.AbsoluteUrl":
-					pProp.Name = "AbsoluteUrl";
+				case "Url.Path":
+					pProp.Name = "Path";
 					pProp.Type = "string";
-					pProp.Description = SpecDoc.GetDtoPropText("Url_AbsoluteUrl");
+					pProp.Description = SpecDoc.GetDtoPropText("Url_Path");
 					pProp.Enum = null;
 					pProp.IsCaseInsensitive = true;
 					pProp.ToLowerCase = true;
