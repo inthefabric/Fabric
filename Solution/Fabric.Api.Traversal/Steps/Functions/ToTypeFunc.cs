@@ -9,20 +9,20 @@ using Weaver.Core.Query;
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public interface IWhereAppFunc : IFunc {}
-	public interface IWhereClassFunc : IFunc {}
-	public interface IWhereInstanceFunc : IFunc {}
-	public interface IWhereUrlFunc : IFunc {}
-	public interface IWhereUserFunc : IFunc {}
+	public interface IToAppFunc : IFunc {}
+	public interface IToClassFunc : IFunc {}
+	public interface IToInstanceFunc : IFunc {}
+	public interface IToUrlFunc : IFunc {}
+	public interface IToUserFunc : IFunc {}
 
 
 	/*================================================================================================*/
-	public abstract class WhereTypeFunc<T> : Func where T : FabVertex, new() { //TEST: WhereTypeFunc
+	public abstract class ToTypeFunc<T> : Func where T : FabVertex, new() { //TEST: ToTypeFunc
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected WhereTypeFunc(IPath pPath) : base(pPath) {
+		protected ToTypeFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "has");
 		}
 
@@ -54,13 +54,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("WhereApp")]
-	public class WhereAppFunc : WhereTypeFunc<FabApp>, IWhereAppFunc {
+	[Func("ToApp")]
+	public class ToAppFunc : ToTypeFunc<FabApp>, IToAppFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WhereAppFunc(IPath pPath) : base(pPath) { }
+		public ToAppFunc(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexFabType GetFabType() {
@@ -82,13 +82,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("WhereClass")]
-	public class WhereClassFunc : WhereTypeFunc<FabClass>, IWhereClassFunc {
+	[Func("ToClass")]
+	public class ToClassFunc : ToTypeFunc<FabClass>, IToClassFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WhereClassFunc(IPath pPath) : base(pPath) { }
+		public ToClassFunc(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexFabType GetFabType() {
@@ -111,13 +111,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("WhereInstance")]
-	public class WhereInstanceFunc : WhereTypeFunc<FabInstance>, IWhereInstanceFunc {
+	[Func("ToInstance")]
+	public class ToInstanceFunc : ToTypeFunc<FabInstance>, IToInstanceFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WhereInstanceFunc(IPath pPath) : base(pPath) { }
+		public ToInstanceFunc(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexFabType GetFabType() {
@@ -140,13 +140,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("WhereUrl")]
-	public class WhereUrlFunc : WhereTypeFunc<FabUrl>, IWhereUrlFunc {
+	[Func("ToUrl")]
+	public class ToUrlFunc : ToTypeFunc<FabUrl>, IToUrlFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WhereUrlFunc(IPath pPath) : base(pPath) { }
+		public ToUrlFunc(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexFabType GetFabType() {
@@ -169,13 +169,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("WhereUser")]
-	public class WhereUserFunc : WhereTypeFunc<FabUser>, IWhereUserFunc {
+	[Func("ToUser")]
+	public class ToUserFunc : ToTypeFunc<FabUser>, IToUserFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WhereUserFunc(IPath pPath) : base(pPath) { }
+		public ToUserFunc(IPath pPath) : base(pPath) { }
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexFabType GetFabType() {

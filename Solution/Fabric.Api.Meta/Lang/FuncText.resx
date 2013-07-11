@@ -160,10 +160,10 @@ Retrace to the Member list, which now also excludes any Members who have not cre
   <data name="Limit" xml:space="preserve">
     <value>Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution.</value>
   </data>
-  <data name="WhereApp" xml:space="preserve">
+  <data name="ToApp" xml:space="preserve">
     <value>Restricts the results to include only App verts.</value>
   </data>
-  <data name="WhereClass" xml:space="preserve">
+  <data name="ToClass" xml:space="preserve">
     <value>Restricts the results to include only Class verts.</value>
   </data>
   <data name="HasId" xml:space="preserve">
@@ -171,13 +171,13 @@ Retrace to the Member list, which now also excludes any Members who have not cre
 
 Note that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId.</value>
   </data>
-  <data name="WhereInstance" xml:space="preserve">
+  <data name="ToInstance" xml:space="preserve">
     <value>Restricts the results to include only Instance verts.</value>
   </data>
-  <data name="WhereUrl" xml:space="preserve">
+  <data name="ToUrl" xml:space="preserve">
     <value>Restricts the results to include only Url verts.</value>
   </data>
-  <data name="WhereUser" xml:space="preserve">
+  <data name="ToUser" xml:space="preserve">
     <value>Restricts the results to include only User verts.</value>
   </data>
 </root>

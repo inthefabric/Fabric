@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 9:12:49 PM
+// Generated on 7/11/2013 6:02:38 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -591,85 +591,85 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Artifact":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
-					pObject.TraversalFunctions.Add("WhereApp");
-					pObject.TraversalFunctions.Add("WhereClass");
-					pObject.TraversalFunctions.Add("WhereInstance");
-					pObject.TraversalFunctions.Add("WhereUrl");
-					pObject.TraversalFunctions.Add("WhereUser");
+					pObject.TraversalFunctions.Add("Limit");
+					pObject.TraversalFunctions.Add("ToApp");
+					pObject.TraversalFunctions.Add("ToClass");
+					pObject.TraversalFunctions.Add("ToInstance");
+					pObject.TraversalFunctions.Add("ToUrl");
+					pObject.TraversalFunctions.Add("ToUser");
 					break;
 
 				case "App":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Class":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Instance":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Member":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "MemberTypeAssign":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Url":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "User":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 
 				case "Factor":
 					pObject.TraversalFunctions = new List<string>();
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
-					pObject.TraversalFunctions.Add("Limit");
 					pObject.TraversalFunctions.Add("HasId");
+					pObject.TraversalFunctions.Add("Limit");
 					break;
 			}
 		}

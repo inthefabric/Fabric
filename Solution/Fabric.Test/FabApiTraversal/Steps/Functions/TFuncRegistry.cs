@@ -32,9 +32,9 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(true, new[] { "/As", "/Back", "/HasId", "/Limit",
-			"/WhereApp", "/WhereClass", "/WhereInstance", "/WhereUrl", "/WhereUser" })]
+			"/ToApp", "/ToClass", "/ToInstance", "/ToUrl", "/ToUser" })]
 		[TestCase(false, new[] { "as", "back", "hasid", "limit",
-			"whereapp", "whereclass", "whereinstance", "whereurl", "whereuser" })]
+			"toapp", "toclass", "toinstance", "tourl", "touser" })]
 		public void GetAvailableFuncsForArtifact(bool pUri, string[] pExpect) {
 			var p = new Mock<IPath>();
 			var art = new ArtifactStep(p.Object);

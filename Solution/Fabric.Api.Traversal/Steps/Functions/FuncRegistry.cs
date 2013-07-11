@@ -34,11 +34,11 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			Register<HasIdFunc>(p => new HasIdFunc(p), HasIdFunc.AllowedForStep);
 
 			//Available for Artifact
-			Register<WhereAppFunc>(p => new WhereAppFunc(p), WhereAppFunc.AllowedForStep);
-			Register<WhereClassFunc>(p => new WhereClassFunc(p), WhereClassFunc.AllowedForStep);
-			Register<WhereInstanceFunc>(p => new WhereInstanceFunc(p), WhereInstanceFunc.AllowedForStep);
-			Register<WhereUrlFunc>(p => new WhereUrlFunc(p), WhereUrlFunc.AllowedForStep);
-			Register<WhereUserFunc>(p => new WhereUserFunc(p), WhereUserFunc.AllowedForStep);
+			Register<ToAppFunc>(p => new ToAppFunc(p), ToAppFunc.AllowedForStep);
+			Register<ToClassFunc>(p => new ToClassFunc(p), ToClassFunc.AllowedForStep);
+			Register<ToInstanceFunc>(p => new ToInstanceFunc(p), ToInstanceFunc.AllowedForStep);
+			Register<ToUrlFunc>(p => new ToUrlFunc(p), ToUrlFunc.AllowedForStep);
+			Register<ToUserFunc>(p => new ToUserFunc(p), ToUserFunc.AllowedForStep);
 
 			RegItems.Sort((a,b) => a.Uri.CompareTo(b.Uri));
 		}

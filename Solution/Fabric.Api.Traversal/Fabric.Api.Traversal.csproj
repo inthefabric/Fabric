@@ -76,7 +76,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Steps\Functions\IdIndexFunc.cs" />
-    <Compile Include="Steps\Functions\WhereTypeFunc.cs" />
+    <Compile Include="Steps\Functions\ToTypeFunc.cs" />
     <Compile Include="Steps\Functions\HasIdFunc.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFunc.cs" />
