@@ -42,13 +42,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 
-			try {
-				Id = Data.ParamAt<long>(0);
-			}
-			catch ( InvalidCastException ex ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'long'.", 0, ex);
-			}
+			Id = ParamAt<long>(0);
 
 			if ( Id == 0 ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Cannot be 0.", 0);

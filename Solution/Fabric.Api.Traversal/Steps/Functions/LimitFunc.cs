@@ -36,13 +36,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 
-			try {
-				Index = Data.ParamAt<long>(0);
-			}
-			catch ( InvalidCastException ex ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'long'.", 0, ex);
-			}
+			Index = ParamAt<long>(0);
 
 			if ( Index < 0 ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,
@@ -51,13 +45,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 
-			try {
-				Count = Data.ParamAt<int>(1);
-			}
-			catch ( InvalidCastException ex ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'int'.", 1, ex);
-			}
+			Count = ParamAt<int>(1);
 
 			if ( Count <= 0 || Count > 50 ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this,

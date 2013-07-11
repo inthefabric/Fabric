@@ -22,6 +22,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			//Available for FabRoot
 			IdIndexFunc.RegisterAllFunctions();
 			ExactIndexFunc.RegisterAllFunctions();
+			ElasticIndexFunc.RegisterAllFunctions();
 			Register<ActiveAppFunc>(p => new ActiveAppFunc(p), ActiveAppFunc.AllowedForStep);
 			Register<ActiveUserFunc>(p => new ActiveUserFunc(p), ActiveUserFunc.AllowedForStep);
 			Register<ActiveMemberFunc>(p => new ActiveMemberFunc(p), ActiveMemberFunc.AllowedForStep);

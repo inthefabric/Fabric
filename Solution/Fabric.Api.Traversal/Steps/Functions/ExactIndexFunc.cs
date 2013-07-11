@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Traversal;
 using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -10,7 +11,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected ExactIndexFunc(IPath pPath) : base(pPath) {}
+		protected ExactIndexFunc(IPath pPath) : base(pPath) {
+			Path.AddSegment(this, "V");
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static bool AllowedForStep(Type pDtoType) {
@@ -23,7 +26,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	public abstract partial class ExactIndexFunc<T> : ExactIndexFunc {
 
-		protected T IdParam { get; set; }
+		[FuncParam(0)]
+		protected T Value { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,16 +37,16 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void  AppendPathSegment() {
+		protected override void AppendPathSegment() {
 			string pp = Path.AddParam(new WeaverQueryVal(PropName));
-			string ip = Path.AddParam(new WeaverQueryVal(IdParam));
+			string ip = Path.AddParam(new WeaverQueryVal(Value));
 			Path.AppendToCurrentSegment("("+pp+","+ip+")", false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			ExpectParamCount(1);
-			IdParam = Data.ParamAt<T>(0);
+			Value = ParamAt<T>(0);
 		}
 
 	}

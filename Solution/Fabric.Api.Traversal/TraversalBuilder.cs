@@ -66,6 +66,7 @@ namespace Fabric.Api.Traversal {
 			vModel.DtoList = dtos;
 			vModel.Resp.StartIndex = vLastStep.Index;
 			vModel.Resp.HasMore = (vModel.DtoList.Count > max);
+			vModel.Resp.Count = (vModel.Resp.HasMore ? max : vModel.DtoList.Count);
 			vModel.Resp.DbMs = vApiCtx.DbQueryMillis;
 			
 			while ( dtos.Count > max ) {

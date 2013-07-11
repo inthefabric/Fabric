@@ -16,8 +16,8 @@ namespace Fabric.Test.FabApiTraversal.Steps {
 		[TestCase("test", "test", null)]
 		[TestCase("A12_34B-c( 1 )", "a12_34b-c", new[] { "1" })]
 		[TestCase("abcdEFG(hijkLMNOP)", "abcdefg", new[] { "hijkLMNOP" })]
-		[TestCase("ABCDefg(hijklmnop,  QRS,   tuv,W,x			 y, z)", "abcdefg", 
-			new[] { "hijklmnop", "QRS", "tuv", "W", "xy", "z" })]
+		[TestCase("ABCDefg(hijklmnop,  QRS,   tuv,W,x    y, z)", "abcdefg", 
+			new[] { "hijklmnop", "QRS", "tuv", "W", "x    y", "z" })]
 		public void New(string pRawString, string pCommand, string[] pParams) {
 			var sd = new StepData(pRawString);
 

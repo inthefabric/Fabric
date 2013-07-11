@@ -63,6 +63,12 @@
     <Compile Include="PathSegment.cs" />
     <Compile Include="Steps\FabStepDataFault.cs" />
     <Compile Include="Steps\Functions\IndexFunc.cs" />
+    <Compile Include="Steps\Functions\ElasticIndexFunc.cs" />
+    <Compile Include="Steps\Functions\ElasticIndexFuncs.cs">
+      <DependentUpon>ElasticIndexFuncs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Steps\Functions\ExactIndexFunc.cs" />
     <Compile Include="Steps\Functions\ExactIndexFuncs.cs">
       <DependentUpon>ExactIndexFuncs.tt</DependentUpon>
@@ -120,6 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Steps\Functions\ElasticIndexFuncs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ElasticIndexFuncs.cs</LastGenOutput>
+    </None>
     <None Include="Steps\Functions\ExactIndexFuncs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ExactIndexFuncs.cs</LastGenOutput>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -41,6 +42,17 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 
 			return next;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected T ParamAt<T>(int pIndex) {
+			try {
+				return Data.ParamAt<T>(pIndex);
+			}
+			catch ( InvalidCastException ex ) {
+				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
+					"Could not convert to type 'string'.", pIndex, ex);
+			}
 		}
 
 	}

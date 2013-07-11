@@ -54,13 +54,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			////
 			
-			try {
-				Alias = Data.ParamAt<string>(0);
-			}
-			catch ( InvalidCastException ex ) {
-				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'int'.", 0, ex);
-			}
+			Alias = ParamAt<string>(0);
 
 			if ( Alias.Length < AsFunc.LenMin || Alias.Length > AsFunc.LenMax ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Invalid length.", 0);

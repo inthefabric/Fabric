@@ -1,9 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/11/2013 3:50:32 PM
+// Generated on 7/11/2013 5:20:53 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
-using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -28,9 +27,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	[Func("AppName")]
 	public class ApNKExactIndexFunc : ExactIndexFunc<string> {
-	
-		[FuncParam(0)]
-		public string Name { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +39,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			IdParam = IdParam.ToLower().Replace("~~~", "://");
+			Value = Value.ToLower();
 		}
 
 	}
@@ -52,9 +48,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	[Func("ClassName")]
 	public class ClNKExactIndexFunc : ExactIndexFunc<string> {
-	
-		[FuncParam(0)]
-		public string Name { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +60,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			IdParam = IdParam.ToLower().Replace("~~~", "://");
+			Value = Value.ToLower();
 		}
 
 	}
@@ -76,9 +69,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	[Func("UrlPath")]
 	public class UrPaExactIndexFunc : ExactIndexFunc<string> {
-	
-		[FuncParam(0)]
-		public string Url { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +81,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			IdParam = IdParam.ToLower().Replace("~~~", "://");
+			Value = Value.ToLower();
+			Value = Value.Replace("~~~", "://");
 		}
 
 	}
@@ -100,9 +91,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	[Func("UserName")]
 	public class UNKExactIndexFunc : ExactIndexFunc<string> {
-	
-		[FuncParam(0)]
-		public string Name { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,7 +103,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {
 			base.GetValue();
-			IdParam = IdParam.ToLower().Replace("~~~", "://");
+			Value = Value.ToLower();
 		}
 
 	}
@@ -124,9 +112,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	/*================================================================================================*/
 	[Func("FactorIdentorValue")]
 	public class FIdVExactIndexFunc : ExactIndexFunc<string> {
-	
-		[FuncParam(0)]
-		public string Identor_Value { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
