@@ -29,7 +29,7 @@ namespace Fabric.Api.Dto.Traversal {
 			VertexId = pDto.Id;
 			FillResultData(pDto.Properties);
 
-			Uri = "/WhereId("+TypeId+")";
+			Uri = "/HasId("+TypeId+")";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

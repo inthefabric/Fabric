@@ -115,9 +115,9 @@ namespace Fabric.Api.Meta.Lang {
         ///
         ///Note that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
         /// </summary>
-        internal static string WhereId {
+        internal static string HasId {
             get {
-                return ResourceManager.GetString("WhereId", resourceCulture);
+                return ResourceManager.GetString("HasId", resourceCulture);
             }
         }
         

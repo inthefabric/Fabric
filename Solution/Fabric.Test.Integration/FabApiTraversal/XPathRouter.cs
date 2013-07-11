@@ -102,7 +102,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		[Test]
 		public void FactorsWithMelAsPrimaryCreatedByMel() {
 			vUri = "/User("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary/As(F)/"+
-				"InMemberCreates/InUserDefines/WhereId(4)/Back(F)";
+				"InMemberCreates/InUserDefines/HasId(4)/Back(F)";
 			TestPath();
 			CheckSuccess<Factor>(9);
 		}

@@ -77,7 +77,7 @@
     </Compile>
     <Compile Include="Steps\Functions\IdIndexFunc.cs" />
     <Compile Include="Steps\Functions\WhereTypeFunc.cs" />
-    <Compile Include="Steps\Functions\WhereIdFunc.cs" />
+    <Compile Include="Steps\Functions\HasIdFunc.cs" />
     <Compile Include="Steps\Functions\FuncRegistryItem.cs" />
     <Compile Include="Steps\Functions\IFunc.cs" />
     <Compile Include="Steps\Functions\FuncRegistry.cs" />

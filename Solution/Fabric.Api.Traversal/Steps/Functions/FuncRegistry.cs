@@ -31,7 +31,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			Register<AsFunc>(p => new AsFunc(p), AsFunc.AllowedForStep);
 			Register<BackFunc>(p => new BackFunc(p), BackFunc.AllowedForStep);
 			Register<LimitFunc>(p => new LimitFunc(p), LimitFunc.AllowedForStep);
-			Register<WhereIdFunc>(p => new WhereIdFunc(p), WhereIdFunc.AllowedForStep);
+			Register<HasIdFunc>(p => new HasIdFunc(p), HasIdFunc.AllowedForStep);
 
 			//Available for Artifact
 			Register<WhereAppFunc>(p => new WhereAppFunc(p), WhereAppFunc.AllowedForStep);

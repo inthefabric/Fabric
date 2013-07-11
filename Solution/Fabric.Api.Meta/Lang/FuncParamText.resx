@@ -129,7 +129,7 @@
   <data name="Limit_Index" xml:space="preserve">
     <value>The starting index for the returned list of verts.</value>
   </data>
-  <data name="WhereId_Id" xml:space="preserve">
+  <data name="HasId_Id" xml:space="preserve">
     <value>The target vertex Id.</value>
   </data>
 </root>

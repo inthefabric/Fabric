@@ -14,7 +14,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TWhereIdFunc {
+	public class THasIdFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[Test]
 		public void New() {
 			var p = new Mock<IPath>();
-			var s = new WhereIdFunc(p.Object);
+			var s = new HasIdFunc(p.Object);
 
 			Assert.AreEqual(p.Object, s.Path, "Incorrect Path.");
 			Assert.AreEqual(0, s.Index, "Incorrect Index.");
@@ -57,8 +57,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 			string script = "('"+typeIdName+"',Tokens.T.eq,_P0)";
 
-			var wi = new WhereIdFunc(p.Object);
-			var sd = new StepData("WhereId("+pId+")");
+			var wi = new HasIdFunc(p.Object);
+			var sd = new StepData("HasId("+pId+")");
 
 			////
 
@@ -79,8 +79,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("(1,2)")]
 		public void SetDataAndUpdatePathNoParams(string pParams) {
 			var p = new Mock<IPath>();
-			var s = new WhereIdFunc(p.Object);
-			var sd = new StepData("WhereId"+pParams);
+			var s = new HasIdFunc(p.Object);
+			var sd = new StepData("HasId"+pParams);
 			
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
@@ -91,8 +91,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase("a", 0)]
 		public void SetDataAndUpdatePathCannotConvert(string pParams, int pParamI) {
 			var p = new Mock<IPath>();
-			var s = new WhereIdFunc(p.Object);
-			var sd = new StepData("WhereId("+pParams+")");
+			var s = new HasIdFunc(p.Object);
+			var sd = new StepData("HasId("+pParams+")");
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
@@ -104,8 +104,8 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(0)]
 		public void SetDataAndUpdatePathOutOfRange(long pId) {
 			var p = new Mock<IPath>();
-			var s = new WhereIdFunc(p.Object);
-			var sd = new StepData("WhereId("+pId+")");
+			var s = new HasIdFunc(p.Object);
+			var sd = new StepData("HasId("+pId+")");
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));
@@ -119,7 +119,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[TestCase(typeof(FabRoot), false)]
 		[TestCase(typeof(FabArtifact), true)]
 		public void AllowForStep(Type pDtoType, bool pExpect) {
-			bool result = WhereIdFunc.AllowedForStep(pDtoType);
+			bool result = HasIdFunc.AllowedForStep(pDtoType);
 			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 

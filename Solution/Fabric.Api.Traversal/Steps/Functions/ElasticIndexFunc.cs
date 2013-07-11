@@ -19,7 +19,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected ElasticIndexFunc(IPath pPath) : base(pPath) {
-			Path.AddSegment(this, "query()");
+			Path.AddSegment(this, "query()"); //TODO: update to "V" notation once it's available
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

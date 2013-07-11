@@ -146,16 +146,16 @@ Create named alias "M" at the Member step:
 - /!Root/ContainsMemberList/As(M)
 
 Continue traversing to the target App:
-- /!Root/ContainsMemberList/As(M)/InAppDefines/WhereId(2)
+- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)
 
 Retrace to the Member list, which now contains only Members of "Great App":
-- /!Root/ContainsMemberList/As(M)/InAppDefines/WhereId(2)/Back(M)
+- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)
 
 Continue traversing to the Artifacts created by these Members:
-- /!Root/ContainsMemberList/As(M)/InAppDefines/WhereId(2)/Back(M)/CreatesArtifactList
+- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList
 
 Retrace to the Member list, which now also excludes any Members who have not created an Artifact:
-- /!Root/ContainsMemberList/As(M)/InAppDefines/WhereId(2)/Back(M)/CreatesArtifactList/Back(M))]</value>
+- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList/Back(M))]</value>
   </data>
   <data name="Limit" xml:space="preserve">
     <value>Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution.</value>
@@ -166,7 +166,7 @@ Retrace to the Member list, which now also excludes any Members who have not cre
   <data name="WhereClass" xml:space="preserve">
     <value>Restricts the results to include only Class verts.</value>
   </data>
-  <data name="WhereId" xml:space="preserve">
+  <data name="HasId" xml:space="preserve">
     <value>Restricts the results to a single Id value. 
 
 Note that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId.</value>

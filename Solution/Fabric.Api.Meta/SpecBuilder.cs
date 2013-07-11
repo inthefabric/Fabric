@@ -592,7 +592,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "Artifact":
@@ -600,7 +600,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					pObject.TraversalFunctions.Add("WhereApp");
 					pObject.TraversalFunctions.Add("WhereClass");
 					pObject.TraversalFunctions.Add("WhereInstance");
@@ -613,7 +613,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "Class":
@@ -621,7 +621,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "Instance":
@@ -629,7 +629,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "Member":
@@ -637,7 +637,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "MemberTypeAssign":
@@ -645,7 +645,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "Url":
@@ -653,7 +653,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "User":
@@ -661,7 +661,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 
 				case "Factor":
@@ -669,7 +669,7 @@ namespace Fabric.Api.Meta {
 					pObject.TraversalFunctions.Add("As");
 					pObject.TraversalFunctions.Add("Back");
 					pObject.TraversalFunctions.Add("Limit");
-					pObject.TraversalFunctions.Add("WhereId");
+					pObject.TraversalFunctions.Add("HasId");
 					break;
 			}
 		}

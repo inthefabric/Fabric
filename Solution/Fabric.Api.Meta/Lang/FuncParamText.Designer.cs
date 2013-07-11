@@ -99,9 +99,9 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The target vertex Id..
         /// </summary>
-        internal static string WhereId_Id {
+        internal static string HasId_Id {
             get {
-                return ResourceManager.GetString("WhereId_Id", resourceCulture);
+                return ResourceManager.GetString("HasId_Id", resourceCulture);
             }
         }
     }

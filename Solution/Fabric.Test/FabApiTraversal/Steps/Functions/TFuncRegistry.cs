@@ -18,26 +18,22 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new[] { "/Artifact", "/App", "/Class", "/Instance", "/Member", 
-			"/MemberTypeAssign", "/Url", "/User", "/Factor",
-			"/ActiveApp", "/ActiveUser", "/ActiveMember" })]
-		[TestCase(false, new[] { "artifact", "app", "class", "instance", "member", 
-			"membertypeassign", "url", "user", "factor",
-			"activeapp", "activeuser", "activemember"})]
-		public void GetAvailableFuncsForRoot(bool pUri, string[] pExpect) {
+		[TestCase(true)]
+		[TestCase(false)]
+		public void GetAvailableFuncsForRoot(bool pUri) {
 			var p = new Mock<IPath>();
 			var art = new RootStep(p.Object);
 			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri, true);
-			Assert.AreEqual(pExpect, result, "Incorrect result.");
+			Assert.AreEqual(26, result.Count, "Incorrect result count.");
 
 			result = FuncRegistry.GetAvailableFuncs(typeof(FabRoot), pUri, true);
-			Assert.AreEqual(pExpect, result, "Incorrect result.");
+			Assert.AreEqual(26, result.Count, "Incorrect result count.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true, new[] { "/As", "/Back", "/Limit", "/WhereId",
+		[TestCase(true, new[] { "/As", "/Back", "/HasId", "/Limit",
 			"/WhereApp", "/WhereClass", "/WhereInstance", "/WhereUrl", "/WhereUser" })]
-		[TestCase(false, new[] { "as", "back", "limit", "whereid",
+		[TestCase(false, new[] { "as", "back", "hasid", "limit",
 			"whereapp", "whereclass", "whereinstance", "whereurl", "whereuser" })]
 		public void GetAvailableFuncsForArtifact(bool pUri, string[] pExpect) {
 			var p = new Mock<IPath>();

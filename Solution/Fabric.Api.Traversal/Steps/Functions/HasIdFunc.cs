@@ -8,7 +8,7 @@ using Weaver.Core.Query;
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public interface IFuncWhereIdStep : IFunc, IFinalStep {
+	public interface IHasIdFunc : IFunc, IFinalStep {
 		
 		long Id { get; }
 
@@ -16,8 +16,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("WhereId")]
-	public class WhereIdFunc : Func, IFuncWhereIdStep {
+	[Func("HasId")]
+	public class HasIdFunc : Func, IHasIdFunc {
 
 		public long Index { get { return 0; } }
 		public int Count { get { return 1; } }
@@ -29,7 +29,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public WhereIdFunc(IPath pPath) : base(pPath) {
+		public HasIdFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "has");
 		}
 
