@@ -1,12 +1,9 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
 
-namespace Fabric.Api.Traversal.Steps.Functions {
-
-	//TEST: all FuncRootTypeStep
+namespace Fabric.Api.Traversal.Steps.Vertices {
 
 	/*================================================================================================*/
-	public abstract partial class RootTypeFunc : Func, IFinalStep {
+	public class RootTypeStep<T> : VertexStep<T>, IFinalStep where T : FabVertex, new() {
 
 		public bool UseLocalData { get { return true; } }
 		public long Index { get { return 0; } }
@@ -15,14 +12,11 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected RootTypeFunc(IPath pPath) : base(pPath) {}
+		public RootTypeStep(IPath pPath) : base(pPath) {}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
-		}
+		public override string TypeIdName { get { return null; } }
+		public override bool TypeIdIsLong { get { return false; } }
 
 	}
 

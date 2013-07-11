@@ -97,6 +97,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseClassVertexSteps.tt</DependentUpon>
     </Compile>
+    <Compile Include="Steps\Vertices\RootTypeStep.cs" />
     <Compile Include="Steps\Vertices\RootStep.cs" />
     <Compile Include="Steps\Vertices\VertexStepInterfaces.cs">
       <DependentUpon>VertexStepInterfaces.tt</DependentUpon>

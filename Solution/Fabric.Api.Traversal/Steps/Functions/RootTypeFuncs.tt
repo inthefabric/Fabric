@@ -12,6 +12,7 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
 
@@ -31,7 +32,7 @@ IList<string> vertexNames = SchemaHelper.GetRootLinks();
 foreach ( string name in vertexNames ) {
 	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
 #>
-			FuncRegistry.Register<<#= hn.PluralName #>Func>(x => new <#= hn.PluralName #>Func(x), AllowedForStep);
+			FuncRegistry.Register<<#= hn.PluralName #>Func>(p => new <#= hn.PluralName #>Func(p), AllowedForStep);
 <#
 } //end vertex loop
 #>
@@ -51,7 +52,9 @@ foreach ( string name in vertexNames ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= hn.PluralName #>Func(IPath pPath) : base(pPath) {}
+		public <#= hn.PluralName #>Func(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<Fab<#= name #>>>(pPath);
+		}
 
 	}
 

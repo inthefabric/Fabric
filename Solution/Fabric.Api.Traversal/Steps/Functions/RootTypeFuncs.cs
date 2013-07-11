@@ -1,7 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 4:48:25 PM
+// Generated on 7/10/2013 8:52:11 PM
 
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
 
@@ -14,15 +15,15 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		internal static void RegisterAllFunctions() {
-			FuncRegistry.Register<ArtifactsFunc>(x => new ArtifactsFunc(x), AllowedForStep);
-			FuncRegistry.Register<AppsFunc>(x => new AppsFunc(x), AllowedForStep);
-			FuncRegistry.Register<ClassesFunc>(x => new ClassesFunc(x), AllowedForStep);
-			FuncRegistry.Register<InstancesFunc>(x => new InstancesFunc(x), AllowedForStep);
-			FuncRegistry.Register<MembersFunc>(x => new MembersFunc(x), AllowedForStep);
-			FuncRegistry.Register<MemberTypeAssignsFunc>(x => new MemberTypeAssignsFunc(x), AllowedForStep);
-			FuncRegistry.Register<UrlsFunc>(x => new UrlsFunc(x), AllowedForStep);
-			FuncRegistry.Register<UsersFunc>(x => new UsersFunc(x), AllowedForStep);
-			FuncRegistry.Register<FactorsFunc>(x => new FactorsFunc(x), AllowedForStep);
+			FuncRegistry.Register<ArtifactsFunc>(p => new ArtifactsFunc(p), AllowedForStep);
+			FuncRegistry.Register<AppsFunc>(p => new AppsFunc(p), AllowedForStep);
+			FuncRegistry.Register<ClassesFunc>(p => new ClassesFunc(p), AllowedForStep);
+			FuncRegistry.Register<InstancesFunc>(p => new InstancesFunc(p), AllowedForStep);
+			FuncRegistry.Register<MembersFunc>(p => new MembersFunc(p), AllowedForStep);
+			FuncRegistry.Register<MemberTypeAssignsFunc>(p => new MemberTypeAssignsFunc(p), AllowedForStep);
+			FuncRegistry.Register<UrlsFunc>(p => new UrlsFunc(p), AllowedForStep);
+			FuncRegistry.Register<UsersFunc>(p => new UsersFunc(p), AllowedForStep);
+			FuncRegistry.Register<FactorsFunc>(p => new FactorsFunc(p), AllowedForStep);
 		}
 
 	}
@@ -35,7 +36,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactsFunc(IPath pPath) : base(pPath) {}
+		public ArtifactsFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabArtifact>>(pPath);
+		}
 
 	}
 
@@ -47,7 +50,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppsFunc(IPath pPath) : base(pPath) {}
+		public AppsFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabApp>>(pPath);
+		}
 
 	}
 
@@ -59,7 +64,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ClassesFunc(IPath pPath) : base(pPath) {}
+		public ClassesFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabClass>>(pPath);
+		}
 
 	}
 
@@ -71,7 +78,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public InstancesFunc(IPath pPath) : base(pPath) {}
+		public InstancesFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabInstance>>(pPath);
+		}
 
 	}
 
@@ -83,7 +92,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MembersFunc(IPath pPath) : base(pPath) {}
+		public MembersFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabMember>>(pPath);
+		}
 
 	}
 
@@ -95,7 +106,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberTypeAssignsFunc(IPath pPath) : base(pPath) {}
+		public MemberTypeAssignsFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabMemberTypeAssign>>(pPath);
+		}
 
 	}
 
@@ -107,7 +120,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UrlsFunc(IPath pPath) : base(pPath) {}
+		public UrlsFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabUrl>>(pPath);
+		}
 
 	}
 
@@ -119,7 +134,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public UsersFunc(IPath pPath) : base(pPath) {}
+		public UsersFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabUser>>(pPath);
+		}
 
 	}
 
@@ -131,7 +148,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorsFunc(IPath pPath) : base(pPath) {}
+		public FactorsFunc(IPath pPath) : base(pPath) {
+			ProxyStep = new RootTypeStep<FabRootType<FabFactor>>(pPath);
+		}
 
 	}
 

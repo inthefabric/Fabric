@@ -68,6 +68,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="FabObject.cs" />
+    <Compile Include="Traversal\FabRootType.cs" />
     <Compile Include="Traversal\FabRoot.cs" />
     <Compile Include="Traversal\FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />

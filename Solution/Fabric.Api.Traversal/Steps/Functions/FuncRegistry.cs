@@ -21,32 +21,26 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			//Available for FabRoot
 			RootTypeFunc.RegisterAllFunctions();
+			Register<ActiveAppFunc>(p => new ActiveAppFunc(p), ActiveAppFunc.AllowedForStep);
+			Register<ActiveUserFunc>(p => new ActiveUserFunc(p), ActiveUserFunc.AllowedForStep);
+			Register<ActiveMemberFunc>(p => new ActiveMemberFunc(p), ActiveMemberFunc.AllowedForStep);
+
+			//Available for RootTypes
 			IdIndexFunc.RegisterAllFunctions();
 			ExactIndexFunc.RegisterAllFunctions();
-			Register<ActiveAppFunc>(
-				(p => new ActiveAppFunc(p)), ActiveAppFunc.AllowedForStep);
-			Register<ActiveUserFunc>(
-				(p => new ActiveUserFunc(p)), ActiveUserFunc.AllowedForStep);
-			Register<ActiveMemberFunc>(
-				(p => new ActiveMemberFunc(p)), ActiveMemberFunc.AllowedForStep);
 
 			//Available for most DTOs
-			Register<AsFunc>((p => new AsFunc(p)), AsFunc.AllowedForStep);
-			Register<BackFunc>((p => new BackFunc(p)), BackFunc.AllowedForStep);
-			Register<LimitFunc>((p => new LimitFunc(p)), LimitFunc.AllowedForStep);
-			Register<WhereIdFunc>((p => new WhereIdFunc(p)), WhereIdFunc.AllowedForStep);
+			Register<AsFunc>(p => new AsFunc(p), AsFunc.AllowedForStep);
+			Register<BackFunc>(p => new BackFunc(p), BackFunc.AllowedForStep);
+			Register<LimitFunc>(p => new LimitFunc(p), LimitFunc.AllowedForStep);
+			Register<WhereIdFunc>(p => new WhereIdFunc(p), WhereIdFunc.AllowedForStep);
 
 			//Available for Artifact
-			Register<WhereAppFunc>(
-				(p => new WhereAppFunc(p)), WhereAppFunc.AllowedForStep);
-			Register<WhereClassFunc>(
-				(p => new WhereClassFunc(p)), WhereClassFunc.AllowedForStep);
-			Register<WhereInstanceFunc>(
-				(p => new WhereInstanceFunc(p)), WhereInstanceFunc.AllowedForStep);
-			Register<WhereUrlFunc>(
-				(p => new WhereUrlFunc(p)), WhereUrlFunc.AllowedForStep);
-			Register<WhereUserFunc>(
-				(p => new WhereUserFunc(p)), WhereUserFunc.AllowedForStep);
+			Register<WhereAppFunc>(p => new WhereAppFunc(p), WhereAppFunc.AllowedForStep);
+			Register<WhereClassFunc>(p => new WhereClassFunc(p), WhereClassFunc.AllowedForStep);
+			Register<WhereInstanceFunc>(p => new WhereInstanceFunc(p), WhereInstanceFunc.AllowedForStep);
+			Register<WhereUrlFunc>(p => new WhereUrlFunc(p), WhereUrlFunc.AllowedForStep);
+			Register<WhereUserFunc>(p => new WhereUserFunc(p), WhereUserFunc.AllowedForStep);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

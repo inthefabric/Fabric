@@ -1,6 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Infrastructure.Api.Faults;
+﻿using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -28,13 +26,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			if ( Id == 0 ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Cannot be 0.", 0);
 			}
-		}
-
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
