@@ -1,4 +1,6 @@
-﻿using Fabric.Infrastructure.Weaver;
+﻿using System;
+using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -34,6 +36,13 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void GetValue();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static bool AllowedForStep(Type pDtoType) {
+			return (pDtoType == typeof(FabRoot));
+		}
 
 	}
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Api.Dto.Traversal;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Traversal;
 using Weaver.Core.Query;
@@ -30,11 +29,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		private static IDictionary<string, string> BuildOperationMap() {
 			var map = new Dictionary<string, string>();
@@ -97,7 +91,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	
 
 	/*================================================================================================*/
-	public abstract partial class ElasticIndexContainsFunc : ElasticIndexFunc { //TEST: ElasticIndexContainsFunc
+	public abstract partial class ElasticIndexContainsFunc : ElasticIndexFunc {
 
 		[FuncParam(0)]
 		public string Tokens { get; set; }

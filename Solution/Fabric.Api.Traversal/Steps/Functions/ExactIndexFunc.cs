@@ -1,6 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Infrastructure.Traversal;
+﻿using Fabric.Infrastructure.Traversal;
 using Weaver.Core.Query;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
@@ -13,11 +11,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		protected ExactIndexFunc(IPath pPath) : base(pPath) {
 			Path.AddSegment(this, "V");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}

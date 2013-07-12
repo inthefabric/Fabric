@@ -1,4 +1,5 @@
-﻿using Fabric.Api.Dto.Traversal;
+﻿using System.Collections.Generic;
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
@@ -14,10 +15,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TExactIndexFunc {
+	public class TElasticIndexContainsFunc {
 
-		// ExactIndexFunc is abstract, and the subclasses are all generated. These tests use
-		// the ApNKExactIndexFunc subclass as a representative case for all of the others.
+		// ElasticIndexContainsFunc is abstract, and the subclasses are all generated. These tests use
+		// the ApNaElasticIndexFunc subclass as a representative case for all of the others.
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,30 +26,42 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		[Test]
 		public void New() {
 			var p = new Mock<IPath>();
-			var f = new ApNKExactIndexFunc(p.Object);
+			var f = new ApNaElasticIndexFunc(p.Object);
 
 			Assert.AreEqual(p.Object, f.Path, "Incorrect Path.");
 			Assert.AreEqual(typeof(FabApp), f.DtoType, "Incorrect DtoType.");
 			Assert.Null(f.Data, "Data should be null.");
 
-			p.Verify(x => x.AddSegment(f, "V"), Times.Once());
+			p.Verify(x => x.AddSegment(f, "query()"), Times.Once());
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void SetDataAndUpdatePath() {
-			const string appName = "TEST app";
+		[TestCase("test", new [] { "test" })]
+		[TestCase("TEST abcd", new [] { "TEST", "abcd" })]
+		[TestCase("test   123 456", new [] { "test", "123", "456" })]
+		[TestCase("test-123-456", new [] { "test", "123", "456" })]
+		[TestCase("test   123-456", new [] { "test", "123", "456" })]
+		public void SetDataAndUpdatePath(string pValue, string[] pExpectTokens) {
+			const string propName = PropDbName.App_Name;
+			int paramI = 0;
+			var scripts = new List<string>();
 
 			var p = new Mock<IPath>();
-			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => v.RawText == PropDbName.App_NameKey)))
-				.Returns("_P0");
-			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => v.RawText == appName.ToLower())))
-				.Returns("_P1");
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => v.RawText == propName)))
+				.Returns("_P"+(paramI++));
 
-			var f = new ApNKExactIndexFunc(p.Object);
-			var sd = new StepData("AppName("+appName+")");
+			foreach ( string token in pExpectTokens ) {
+				string t = token;
+				string par = "_P"+(paramI++);
+
+				p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => v.RawText == t))).Returns(par);
+				scripts.Add("has(_P0,"+ElasticIndexFunc.TextNamespace+"CONTAINS,"+par+")");
+			}
+			
+			var f = new ApNaElasticIndexFunc(p.Object);
+			var sd = new StepData("AppNameContains("+pValue+")");
 
 			////
 
@@ -58,16 +71,23 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 			Assert.AreEqual(typeof(AppStep), f.ProxyStep.GetType(), "Incorrect ProxyStep type.");
 
-			p.Verify(x => x.AppendToCurrentSegment("(_P0,_P1)", false), Times.Once());
+			foreach ( string script in scripts ) {
+				string s = script;
+				p.Verify(x => x.AddSegment(f, s), Times.Once());
+			}
+			
+			p.Verify(x => x.AddSegment(f, "vertices()"), Times.Once());
+			p.Verify(x => x.AddSegment(f, "_()"), Times.Once());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("")]
+		[TestCase("()")]
 		[TestCase("(1,2)")]
 		public void SetDataAndUpdatePathParamCount(string pParams) {
 			var p = new Mock<IPath>();
-			var s = new ApNKExactIndexFunc(p.Object);
-			var sd = new StepData("AppName"+pParams);
+			var s = new ApNaElasticIndexFunc(p.Object);
+			var sd = new StepData("AppNameContains"+pParams);
 
 			FabStepFault se =
 				TestUtil.CheckThrows<FabStepFault>(true, () => s.SetDataAndUpdatePath(sd));

@@ -76,6 +76,8 @@
     <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TElasticIndexContainsFunc.cs" />
+    <Compile Include="FabApiTraversal\Steps\Functions\TIndexFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TElasticIndexHasFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TIdIndexFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TExactIndexFunc.cs" />
