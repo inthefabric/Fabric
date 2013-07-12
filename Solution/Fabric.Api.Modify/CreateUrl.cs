@@ -15,10 +15,10 @@ namespace Fabric.Api.Modify {
 		Auth=ServiceAuthType.Member)]
 	public class CreateUrl : BaseModifyFunc<Url> {
 
-		public const string PathParam = "Path";
+		public const string FullPathParam = "Path";
 		public const string NameParam = "Name";
 
-		[ServiceOpParam(ServiceOpParamType.Form, PathParam, 0, typeof(Url))]
+		[ServiceOpParam(ServiceOpParamType.Form, FullPathParam, 0, typeof(Url))]
 		private readonly string vPath;
 
 		[ServiceOpParam(ServiceOpParamType.Form, NameParam, 1, typeof(Url))]
@@ -34,7 +34,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateParams() {
-			Tasks.Validator.UrlPath(vPath, PathParam);
+			Tasks.Validator.UrlFullPath(vPath, FullPathParam);
 			Tasks.Validator.UrlName(vName, NameParam);
 
 			////
@@ -44,14 +44,14 @@ namespace Fabric.Api.Modify {
 
 			if ( protoI < 2 || vPath.Length <= protoEnd ) {
 				throw new FabArgumentValueFault(
-					PathParam+" uses an invalid format. Try starting the URL with 'http://'.");
+					FullPathParam+" uses an invalid format. Try starting the URL with 'http://'.");
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Url Execute() {
 			if ( Tasks.GetUrlByPath(ApiCtx, vPath) != null ) {
-				throw new FabDuplicateFault(typeof(Url), PathParam, vPath);
+				throw new FabDuplicateFault(typeof(Url), FullPathParam, vPath);
 			}
 
 			Member m = GetContextMember();

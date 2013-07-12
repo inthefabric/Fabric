@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 9:12:47 PM
+// Generated on 7/12/2013 3:41:43 PM
 
 using System;
 using System.Collections.Generic;
@@ -362,10 +362,10 @@ namespace Fabric.Api.Dto.Traversal {
 		public string Name { get; set; }
 		
 		[DtoProp(IsOptional=false)]
-		public string Path { get; set; }
+		public string FullPath { get; set; }
 		
 		private static readonly List<string> AvailVertexProps = new List<string> {
-			"Name", "Path"
+			"Name", "FullPath"
 		};
 
 
@@ -389,14 +389,14 @@ namespace Fabric.Api.Dto.Traversal {
 			if ( found ) { Name = val; }
 
 			found = pData.TryGetValue("Ur_Pa", out val);
-			if ( found ) { Path = val; }
+			if ( found ) { FullPath = val; }
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithVertex(Url pVertex) {
 			base.FillWithVertex(pVertex);
 			Name = pVertex.Name;
-			Path = pVertex.Path;
+			FullPath = pVertex.FullPath;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

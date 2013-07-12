@@ -33,7 +33,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Url result = TestGo();
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(vPath.ToLower(), result.Path.ToLower(), "Incorrect Name.");
+			Assert.AreEqual(vPath.ToLower(), result.FullPath.ToLower(), "Incorrect Name.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -32,7 +32,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 			Url newUrl = GetVertex<Url>(ApiCtx.SharpflakeIds[0]);
 			Assert.NotNull(newUrl, "New Url was not created.");
 			Assert.AreNotEqual(0, newUrl.ArtifactId, "Incorrect UrlId.");
-			Assert.AreEqual(pPath, newUrl.Path, "Incorrect AbsolueUrl.");
+			Assert.AreEqual(pPath, newUrl.FullPath, "Incorrect FullPath.");
 			Assert.AreEqual(pName, newUrl.Name, "Incorrect Name.");
 
 			VertexConnections conn = GetVertexConnections(newUrl);

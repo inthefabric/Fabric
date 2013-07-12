@@ -27,7 +27,7 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public Url GetUrlByPath(IApiContext pApiCtx, string pPath) {
 			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<Url>(x => x.Path, pPath.ToLower())
+				.V.ExactIndex<Url>(x => x.FullPath, pPath.ToLower())
 				.ToQuery();
 
 			return pApiCtx.Get<Url>(q);
@@ -260,7 +260,7 @@ namespace Fabric.Api.Modify.Tasks {
 		public void TxAddUrl(IApiContext pApiCtx, TxBuilder pTxBuild, string pPath, string pName,
 									IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Url> pUrlVar) {
 			var url = new Url();
-			url.Path = pPath.ToLower();
+			url.FullPath = pPath.ToLower();
 			url.Name = pName;
 			url.ArtifactId = pApiCtx.GetSharpflakeId<Artifact>();
 			url.Created = pApiCtx.UtcNow.Ticks;

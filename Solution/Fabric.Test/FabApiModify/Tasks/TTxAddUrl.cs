@@ -15,7 +15,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_V0=[];"+ //Member
 			"_V1=g.addVertex(["+
 				PropDbName.Url_Name+":_TP,"+
-				PropDbName.Url_Path+":_TP,"+
+				PropDbName.Url_FullPath+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
 				PropDbName.Vertex_FabType+":_TP"+

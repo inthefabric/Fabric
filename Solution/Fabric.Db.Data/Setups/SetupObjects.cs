@@ -421,7 +421,7 @@ namespace Fabric.Db.Data.Setups {
 			var u = new Url();
 			u.ArtifactId = (byte)pId;
 			u.Name = pName;
-			u.Path = pPath;
+			u.FullPath = pPath;
 
 			vSet.AddVertex(u, vTestMode);
 

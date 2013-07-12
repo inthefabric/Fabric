@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 9:12:47 PM
+// Generated on 7/12/2013 3:41:42 PM
 
 using System;
 using System.Collections.Generic;
@@ -129,7 +129,7 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string MemberTypeAssign_MemberTypeId = "MTA_Mt";
 
 		public const string Url_Name = "Ur_Na";
-		public const string Url_Path = "Ur_Pa";
+		public const string Url_FullPath = "Ur_Pa";
 
 		public const string User_Name = "U_Na";
 		public const string User_NameKey = "U_NK";

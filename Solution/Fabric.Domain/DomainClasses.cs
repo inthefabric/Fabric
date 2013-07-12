@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 9:12:46 PM
+// Generated on 7/12/2013 3:41:42 PM
 
 using System;
 using System.Collections.Generic;
@@ -869,7 +869,7 @@ namespace Fabric.Domain {
 		public virtual string Name { get; set; }
 
 		[WeaverTitanProperty("Ur_Pa", TitanIndex=true, TitanElasticIndex=false)]
-		public virtual string Path { get; set; }
+		public virtual string FullPath { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -891,7 +891,7 @@ namespace Fabric.Domain {
 			}
 			
 			if ( pData.ContainsKey("Ur_Pa") ) {
-				Path = pData["Ur_Pa"];
+				FullPath = pData["Ur_Pa"];
 			}
 
 		}

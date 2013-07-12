@@ -370,7 +370,7 @@ namespace Fabric.Domain.Meta {
 			p.LenMax = 128;
 			p.TitanElasticIndex = true;
 			
-			p = AddProp(url, "Path", "Pa", typeof(string));
+			p = AddProp(url, "FullPath", "Pa", typeof(string));
 			p.LenMin = 1;
 			p.LenMax = 2048;
 			p.IsUnique = true;

@@ -79,8 +79,7 @@ namespace Fabric.Test.FabApiModify {
 
 			Assert.AreEqual(vResultUrl, vResult, "Incorrect Result.");
 
-			MockValidator.Verify(x => x.UrlPath(vPath,
-				CreateUrl.PathParam), Times.Once());
+			MockValidator.Verify(x => x.UrlFullPath(vPath, CreateUrl.FullPathParam), Times.Once());
 			MockValidator.Verify(x => x.UrlName(vName, CreateUrl.NameParam), Times.Once());
 		}
 

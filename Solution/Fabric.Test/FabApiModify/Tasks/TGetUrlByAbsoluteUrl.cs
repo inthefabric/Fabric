@@ -10,7 +10,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 	[TestFixture]
 	public class TGetUrlByPath : TModifyTasks {
 
-		private const string Query = "g.V('"+PropDbName.Url_Path+"',_P0);";
+		private const string Query = "g.V('"+PropDbName.Url_FullPath+"',_P0);";
 
 		private string vPath;
 		private Url vUrlResult;

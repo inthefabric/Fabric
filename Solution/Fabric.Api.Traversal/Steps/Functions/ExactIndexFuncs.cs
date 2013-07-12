@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/11/2013 5:20:53 PM
+// Generated on 7/12/2013 3:41:43 PM
 
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
@@ -67,7 +67,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UrlPath")]
+	[Func("UrlFullPath")]
 	public class UrPaExactIndexFunc : ExactIndexFunc<string> {
 
 
