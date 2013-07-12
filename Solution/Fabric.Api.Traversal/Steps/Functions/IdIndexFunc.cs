@@ -3,12 +3,12 @@
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public abstract partial class IdIndexFunc : ExactIndexFunc<long> { //TEST: IdIndexFunc
+	public abstract partial class IdIndexFunc : ExactIndexFunc<long> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IdIndexFunc(IPath pPath) : base(pPath) {}
+		protected IdIndexFunc(IPath pPath) : base(pPath) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void GetValue() {

@@ -4,7 +4,7 @@ using Weaver.Core.Query;
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public abstract class IndexFunc : Func { //TEST: IndexFunc
+	public abstract class IndexFunc : Func {
 
 		protected string PropName { get; set; }
 		protected byte? FabType { get; set; }

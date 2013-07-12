@@ -12,8 +12,6 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
-using System;
-using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
@@ -34,7 +32,7 @@ IList<string> vertexNames = SchemaHelper.GetRootLinks();
 foreach ( string name in vertexNames ) {
 	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
 #>
-			FuncRegistry.Register<<#= name #>IdIndexFunc>(p => new <#= name #>IdIndexFunc(p), <#= name #>IdIndexFunc.AllowedForStep);
+			FuncRegistry.Register<<#= name #>IdIndexFunc>(p => new <#= name #>IdIndexFunc(p), AllowedForStep);
 <#
 } //end vertex loop
 #>
@@ -64,11 +62,6 @@ foreach ( string name in vertexNames ) {
 <#
 	}
 #>
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}

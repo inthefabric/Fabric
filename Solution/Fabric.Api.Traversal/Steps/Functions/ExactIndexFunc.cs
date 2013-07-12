@@ -6,7 +6,7 @@ using Weaver.Core.Query;
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public abstract partial class ExactIndexFunc : IndexFunc { //TEST: ExactIndexFunc
+	public abstract partial class ExactIndexFunc : IndexFunc {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,7 +16,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static bool AllowedForStep(Type pDtoType) {
+		public static bool AllowedForStep(Type pDtoType) {
 			return (pDtoType == typeof(FabRoot));
 		}
 
@@ -27,7 +27,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	public abstract partial class ExactIndexFunc<T> : ExactIndexFunc {
 
 		[FuncParam(0)]
-		protected T Value { get; set; }
+		public T Value { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

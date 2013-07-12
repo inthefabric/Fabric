@@ -10,7 +10,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
 	[Func("ActiveApp", IsInternal=true)]
-	public class ActiveAppFunc : Func, IFinalStep {
+	public class ActiveAppFunc : Func, IFinalStep { //TODO: make ActiveAppFunc inherit IdIndexFunc
 
 		public long Index { get { return 0; } }
 		public int Count { get { return 1; } }

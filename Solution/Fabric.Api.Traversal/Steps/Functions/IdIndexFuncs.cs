@@ -1,9 +1,7 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/10/2013 9:12:48 PM
+// Generated on 7/11/2013 9:07:33 PM
 
-using System;
-using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
@@ -17,15 +15,15 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		internal static new void RegisterAllFunctions() {
-			FuncRegistry.Register<ArtifactIdIndexFunc>(p => new ArtifactIdIndexFunc(p), ArtifactIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<AppIdIndexFunc>(p => new AppIdIndexFunc(p), AppIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<ClassIdIndexFunc>(p => new ClassIdIndexFunc(p), ClassIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<InstanceIdIndexFunc>(p => new InstanceIdIndexFunc(p), InstanceIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<MemberIdIndexFunc>(p => new MemberIdIndexFunc(p), MemberIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<MemberTypeAssignIdIndexFunc>(p => new MemberTypeAssignIdIndexFunc(p), MemberTypeAssignIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<UrlIdIndexFunc>(p => new UrlIdIndexFunc(p), UrlIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<UserIdIndexFunc>(p => new UserIdIndexFunc(p), UserIdIndexFunc.AllowedForStep);
-			FuncRegistry.Register<FactorIdIndexFunc>(p => new FactorIdIndexFunc(p), FactorIdIndexFunc.AllowedForStep);
+			FuncRegistry.Register<ArtifactIdIndexFunc>(p => new ArtifactIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<AppIdIndexFunc>(p => new AppIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<ClassIdIndexFunc>(p => new ClassIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<InstanceIdIndexFunc>(p => new InstanceIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<MemberIdIndexFunc>(p => new MemberIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<MemberTypeAssignIdIndexFunc>(p => new MemberTypeAssignIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<UrlIdIndexFunc>(p => new UrlIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<UserIdIndexFunc>(p => new UserIdIndexFunc(p), AllowedForStep);
+			FuncRegistry.Register<FactorIdIndexFunc>(p => new FactorIdIndexFunc(p), AllowedForStep);
 		}
 
 	}
@@ -41,11 +39,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		public ArtifactIdIndexFunc(IPath pPath) : base(pPath) {
 			ProxyStep = new ArtifactStep(pPath);
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
@@ -63,11 +56,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.App;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
-		}
 
 	}
 
@@ -83,11 +71,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			ProxyStep = new ClassStep(pPath);
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Class;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
@@ -105,11 +88,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Instance;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
-		}
 
 	}
 
@@ -125,11 +103,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			ProxyStep = new MemberStep(pPath);
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Member;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
@@ -147,11 +120,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.MemberTypeAssign;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
-		}
 
 	}
 
@@ -167,11 +135,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			ProxyStep = new UrlStep(pPath);
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Url;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}
@@ -189,11 +152,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.User;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
-		}
 
 	}
 
@@ -209,11 +167,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			ProxyStep = new FactorStep(pPath);
 			PropName = (ProxyStep as IVertexStep).TypeIdName;
 			FabType = (byte)VertexFabType.Factor;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}

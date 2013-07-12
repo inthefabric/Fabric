@@ -37,8 +37,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//[0..20] actually returns 21 items, as the item at index 20 is included.
-		//The last item is not included in the API response; it determines FabResponse.HasMore value
 		[TestCase(-1)]
 		[TestCase(1)]
 		[TestCase(998764)]
@@ -82,7 +80,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("")]
 		[TestCase("(1,2)")]
-		public void SetDataAndUpdatePathNoParams(string pParams) {
+		public void SetDataAndUpdatePathParamCount(string pParams) {
 			var p = new Mock<IPath>();
 			var s = new HasIdFunc(p.Object);
 			var sd = new StepData("HasId"+pParams);

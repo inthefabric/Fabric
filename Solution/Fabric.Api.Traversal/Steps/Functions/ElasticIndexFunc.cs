@@ -8,10 +8,10 @@ using Weaver.Core.Query;
 namespace Fabric.Api.Traversal.Steps.Functions {
 
 	/*================================================================================================*/
-	public abstract partial class ElasticIndexFunc : IndexFunc { //TEST: ElasticIndexFunc
+	public abstract partial class ElasticIndexFunc : IndexFunc {
 
-		protected const string Compare = "com.tinkerpop.blueprints.Query.Compare.";
-		protected const string Text = "com.thinkaurelius.titan.core.attribute.Text.";
+		public const string CompareNamespace = "com.tinkerpop.blueprints.Query.Compare.";
+		public const string TextNamespace = "com.thinkaurelius.titan.core.attribute.Text.";
 
 		protected static readonly IDictionary<string, string> OperationMap = BuildOperationMap();
 
@@ -19,25 +19,31 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected ElasticIndexFunc(IPath pPath) : base(pPath) {
-			Path.AddSegment(this, "query()"); //TODO: update to "V" notation once it's available
+			Path.AddSegment(this, "query()"); //TODO: once it's available, update to "V" notation
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
+		protected void FinishIndexStep() {
+			Path.AddSegment(this, "vertices()");
+			Path.AddSegment(this, "_()");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		private static bool AllowedForStep(Type pDtoType) {
+			return (pDtoType == typeof(FabRoot));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		private static IDictionary<string, string> BuildOperationMap() {
 			var map = new Dictionary<string, string>();
-			map.Add("gt", Compare+"GREATER_THAN");
-			map.Add("gte", Compare+"GREATER_THAN_EQUAL");
-			map.Add("lt", Compare+"LESS_THAN");
-			map.Add("lte", Compare+"LESS_THAN_EQUAL");
-			map.Add("eq", Compare+"EQUAL");
-			map.Add("neq", Compare+"NOT_EQUAL");
+			map.Add("gt", CompareNamespace+"GREATER_THAN");
+			map.Add("gte", CompareNamespace+"GREATER_THAN_EQUAL");
+			map.Add("lt", CompareNamespace+"LESS_THAN");
+			map.Add("lte", CompareNamespace+"LESS_THAN_EQUAL");
+			map.Add("eq", CompareNamespace+"EQUAL");
+			map.Add("neq", CompareNamespace+"NOT_EQUAL");
 			return map;
 		}
 
@@ -48,10 +54,10 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	public abstract partial class ElasticIndexHasFunc<T> : ElasticIndexFunc {
 
 		[FuncParam(0)]
-		protected string Operation { get; set; }
+		public string Operation { get; set; }
 
 		[FuncParam(1)]
-		protected T Value { get; set; }
+		public T Value { get; set; }
 
 		private string vGremlinOp { get; set; }
 
@@ -67,8 +73,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			string pp = Path.AddParam(new WeaverQueryVal(PropName));
 			string vp = Path.AddParam(new WeaverQueryVal(Value));
 			Path.AddSegment(this, "has("+pp+","+vGremlinOp+","+vp+")");
-			Path.AddSegment(this, "vertices()");
-			Path.AddSegment(this, "_()");
+			FinishIndexStep();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -80,8 +85,9 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			string op = Operation.ToLower();
 
 			if ( !OperationMap.ContainsKey(op) ) {
-				throw new FabStepFault(FabFault.Code.ArgumentInvalidValue, this, "Invalid operation "+
-					"argument: "+Operation+". Valid operations: "+String.Join(", ", OperationMap.Keys));
+				throw new FabStepFault(FabFault.Code.IncorrectParamValue, this, "Invalid operation "+
+					"argument: "+Operation+". Valid operations: "+
+					String.Join(", ", OperationMap.Keys), 0);
 			}
 
 			vGremlinOp = OperationMap[op];
@@ -91,10 +97,10 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	
 
 	/*================================================================================================*/
-	public abstract partial class ElasticIndexContainsFunc : ElasticIndexFunc {
+	public abstract partial class ElasticIndexContainsFunc : ElasticIndexFunc { //TEST: ElasticIndexContainsFunc
 
 		[FuncParam(0)]
-		protected string Tokens { get; set; }
+		public string Tokens { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,11 +116,10 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 			foreach ( string t in tokenList ) {
 				string tp = Path.AddParam(new WeaverQueryVal(t));
-				Path.AddSegment(this, "has("+pp+","+Text+"CONTAINS,"+tp+")");
+				Path.AddSegment(this, "has("+pp+","+TextNamespace+"CONTAINS,"+tp+")");
 			}
-			
-			Path.AddSegment(this, "vertices()");
-			Path.AddSegment(this, "_()");
+
+			FinishIndexStep();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
