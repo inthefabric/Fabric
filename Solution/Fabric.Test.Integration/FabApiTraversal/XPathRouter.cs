@@ -49,10 +49,51 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void App() {
-			vUri = "/App("+(long)SetupArtifacts.ArtifactId.App_KinPhoGal+")";
+		public void IdIndex() {
+			vUri = "/AppId("+(long)SetupArtifacts.ArtifactId.App_KinPhoGal+")";
 			TestPath();
 			CheckSuccess<App>(1);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ExactIndex() {
+			vUri = "/UserName(zachKINSTNER)";
+			TestPath();
+			CheckSuccess<User>(1);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("kinstner")]
+		[TestCase("kinstner PHOTO gallery")]
+		public void ElasticIndexAppContains(string pValue) {
+			vUri = "/AppNameContains("+pValue+")";
+			TestPath();
+			CheckSuccess<App>(1);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("f-stop")]
+		[TestCase("f stop")]
+		public void ElasticIndexClassContains(string pValue) {
+			vUri = "/ClassNameContains("+pValue+")";
+			TestPath();
+			CheckSuccess<Class>(1);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("gt", 500, 20)]
+		[TestCase("lt", 500, 0)]
+		public void ElasticIndexArtifactHas(string pOperator, long pValue, int pExpect) {
+			vUri = "/ArtifactCreated("+pOperator+","+pValue+")";
+			TestPath();
+
+			Assert.Null(vModel.Resp.Error, "Model.Resp.Error should be null.");
+			Assert.NotNull(vModel.DtoList, "Model.DtoList should be filled.");
+			Assert.NotNull(vModel.Resp.Functions, "Model.Resp.Functions should be filled.");
+			Assert.NotNull(vModel.Resp.Links, "Model.Resp.Links should be filled.");
+
+			Assert.AreEqual(pExpect, vModel.DtoList.Count, "Incorrect Model.DtoList count.");
 		}
 
 
@@ -93,7 +134,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorsWithMelAsPrimary() {
-			vUri = "/User("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary";
+			vUri = "/UserId("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary";
 			TestPath();
 			CheckSuccess<Factor>(10);
 		}
@@ -101,8 +142,8 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FactorsWithMelAsPrimaryCreatedByMel() {
-			vUri = "/User("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary/As(F)/"+
-				"InMemberCreates/InUserDefines/HasId(4)/Back(F)";
+			vUri = "/UserId("+(long)SetupArtifacts.ArtifactId.User_Mel+")/InFactorListUsesPrimary/"+
+				"As(F)/InMemberCreates/InUserDefines/HasId(4)/Back(F)";
 			TestPath();
 			CheckSuccess<Factor>(9);
 		}
@@ -116,7 +157,7 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 		[TestCase(20, 32)]
 		[TestCase(52, 1)]
 		public void Limit(int pStart, int pCount) {
-			vUri = "/App("+(long)SetupArtifacts.ArtifactId.App_FabSys+")/DefinesMemberList/"+
+			vUri = "/AppId("+(long)SetupArtifacts.ArtifactId.App_FabSys+")/DefinesMemberList/"+
 				"CreatesFactorList/Limit("+pStart+","+pCount+")";
 
 			TestPath();
