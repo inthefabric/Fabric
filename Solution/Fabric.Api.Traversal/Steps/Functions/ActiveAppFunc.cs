@@ -1,16 +1,10 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
-using Fabric.Api.Traversal.Steps.Vertices;
-using Fabric.Domain;
-using Fabric.Infrastructure.Traversal;
-using Weaver.Core.Query;
-using Weaver.Core.Util;
+﻿using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
 	[Func("ActiveApp", IsInternal=true)]
-	public class ActiveAppFunc : Func, IFinalStep { //TODO: make ActiveAppFunc inherit IdIndexFunc
+	public class ActiveAppFunc : AppIdIndexFunc, IFinalStep {
 
 		public long Index { get { return 0; } }
 		public int Count { get { return 1; } }
@@ -19,26 +13,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ActiveAppFunc(IPath pPath) : base(pPath) {
-			string prop = WeaverUtil.GetPropertyDbName<App>(x => x.ArtifactId);
-			string idParam = Path.AddParam(new WeaverQueryVal(Path.AppId));
-			Path.AddSegment(this, "V('"+prop+"',"+idParam+")");
-			ProxyStep = new AppStep(Path);
-		}
-		
+		public ActiveAppFunc(IPath pPath) : base(pPath) {}
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void SetDataAndUpdatePath(StepData pData) {
-			base.SetDataAndUpdatePath(pData);
+		protected override void GetValue() {
 			ExpectParamCount(0);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
+			Value = Path.AppId;
 		}
 
 	}

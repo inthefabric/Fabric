@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
@@ -66,16 +65,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			if ( !pPass ) {
 				Assert.AreEqual(FabFault.Code.IncorrectParamCount, se.ErrCode, "Incorrect ErrCode.");
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(typeof(FabRoot), true)]
-		[TestCase(typeof(FabArtifact), false)]
-		public void AllowForStep(Type pDtoType, bool pExpect) {
-			bool result = ActiveMemberFunc.AllowedForStep(pDtoType);
-			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
 	}

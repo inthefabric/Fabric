@@ -27,6 +27,8 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ActiveMemberFunc(IPath pPath) : base(pPath) {
+			//OPTIMIZE: check memory cache for MemberId based on UserId+AppId
+
 			if ( Script == null ) {
 				IWeaverQuery q = Weave.Inst.Graph
 					.V.ExactIndex<User>(x => x.ArtifactId, 0)
@@ -60,13 +62,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		public override void SetDataAndUpdatePath(StepData pData) {
 			base.SetDataAndUpdatePath(pData);
 			ExpectParamCount(0);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool AllowedForStep(Type pDtoType) {
-			return (pDtoType == typeof(FabRoot));
 		}
 
 	}

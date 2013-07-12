@@ -1,8 +1,8 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;
+using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
@@ -21,11 +21,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			const long appId = 1234;
-			
 			var p = new Mock<IPath>();
-			p.SetupGet(x => x.AppId).Returns(appId);
-			p.Setup(x => x.AddParam(It.IsAny<IWeaverQueryVal>())).Returns("_P0");
 
 			var s = new ActiveAppFunc(p.Object);
 			
@@ -34,17 +30,43 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.Null(s.Data, "Data should be null.");
 			Assert.False(s.UseLocalData, "Incorrect UseLocalData.");
 
-			const string script = "V('"+PropDbName.Artifact_ArtifactId+"',_P0)";
-			p.Verify(x => x.AddSegment(s, script), Times.Once());
+			p.Verify(x => x.AddSegment(s, "V"), Times.Once());
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SetDataAndUpdatePath() {
+			const string propName = PropDbName.Artifact_ArtifactId;
+			const long idValue = 1234;
+
+			var p = new Mock<IPath>();
+			p.SetupGet(x => x.AppId).Returns(idValue);
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => v.RawText == propName)))
+				.Returns("_P0");
+			p.Setup(x => x.AddParam(It.Is<IWeaverQueryVal>(v => v.RawText == idValue+"")))
+				.Returns("_P1");
+
+			var f = new ActiveAppFunc(p.Object);
+			var sd = new StepData("ActiveApp()");
+
+			////
+
+			f.SetDataAndUpdatePath(sd);
+
+			////
+
+			Assert.AreEqual(typeof(AppStep), f.ProxyStep.GetType(), "Incorrect ProxyStep type.");
+
+			p.Verify(x => x.AppendToCurrentSegment("(_P0,_P1)", false), Times.Once());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("", true)]
 		[TestCase("(1)", false)]
 		[TestCase("(1,2)", false)]
-		public void SetDataAndUpdatePath(string pParams, bool pPass) {
+		public void SetDataAndUpdatePathParamCount(string pParams, bool pPass) {
 			var p = new Mock<IPath>();
 			var s = new ActiveAppFunc(p.Object);
 			var sd = new StepData("ActiveApp"+pParams);
@@ -55,16 +77,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			if ( !pPass ) {
 				Assert.AreEqual(FabFault.Code.IncorrectParamCount, se.ErrCode, "Incorrect ErrCode.");
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(typeof(FabRoot), true)]
-		[TestCase(typeof(FabArtifact), false)]
-		public void AllowForStep(Type pDtoType, bool pExpect) {
-			bool result = ActiveAppFunc.AllowedForStep(pDtoType);
-			Assert.AreEqual(pExpect, result, "Incorrect result.");
 		}
 
 	}
