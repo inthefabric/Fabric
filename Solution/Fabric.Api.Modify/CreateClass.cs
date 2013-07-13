@@ -54,20 +54,8 @@ namespace Fabric.Api.Modify {
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 			TxBuilder txb = GetFullTx(out memVar, out classVar);
-			
-			try {
-				return ApiCtx.Get<Class>(txb.Finish(classVar));
-			}
-			catch ( DataAccessException dae ) {
-				if ( !dae.Message.Contains("Exception: Duplicate") ) {
-					throw;
-				}
-				
-				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
-				
-				throw new FabDuplicateFault(typeof(Class), NameParam, name,
-					"Conflicts with an existing "+typeof(Class).Name+".");
-			}
+			IDataResult data = ApiCtx.Execute(txb.Finish(classVar));
+			return GetClassFromResult(data);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -86,7 +74,19 @@ namespace Fabric.Api.Modify {
 				vName, vDisamb, vNote, pMemVar, out pClassVar);
 			pTxBuild.RegisterVarWithTxBuilder(pClassVar);
 		}
-
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private Class GetClassFromResult(IDataResult pData) {
+			if ( pData.ToStringAt(0,0) == "Duplicate" ) {
+				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
+				
+				throw new FabDuplicateFault(typeof(Class), NameParam, name,
+					"Name conflicts with existing "+typeof(Class).Name+"Id="+pData.ToLongAt(0,1)+".");
+			}
+			
+			return pData.ToElementAt<Class>(0,0);
+		}
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -116,6 +116,11 @@ namespace Fabric.Api.Modify {
 			c.Disamb = vDisamb;
 			c.Note = vNote;
 			return c;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		internal Class GetClassFromResultForBatch(IDataResult pData) {
+			return GetClassFromResult(pData);
 		}
 
 	}

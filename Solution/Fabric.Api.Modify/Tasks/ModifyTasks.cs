@@ -253,12 +253,10 @@ namespace Fabric.Api.Modify.Tasks {
 			Class c = Weave.Inst.Graph
 				.V.ExactIndex<Class>(x => x.NameKey, pName.ToLower());
 			IWeaverQuery q;
-			const string dupStep = "each{throw new Exception('Duplicate')}";
 			
 			if ( pDisamb == null ) {
 				q = c.CustomStep("scatter()") //TODO: resolve "scatter" workaround
 					.HasNot(x => x.Disamb)
-					.CustomStep(dupStep)
 					.ToQuery();
 			}
 			else {
@@ -266,12 +264,20 @@ namespace Fabric.Api.Modify.Tasks {
 					"filter{"+ //the "?." before "toLowerCase()" is the "safe-navigation" operator
 						"it.getProperty('"+PropDbName.Class_Disamb+"')?.toLowerCase()==_P1;"+
 					"}")
-					.CustomStep(dupStep)
 					.ToQuery();
 				
 				q.AddParam(new WeaverQueryVal(pDisamb.ToLower()));
 			}
 			
+			IWeaverVarAlias<Class> dupVar;
+			q = WeaverQuery.StoreResultAsVar("_DUP", q, out dupVar);
+			pTxBuild.Transaction.AddQuery(q);
+			
+			IWeaverQuery idQuery = Weave.Inst.FromVar(dupVar).Property(x => x.ArtifactId).ToQuery();
+			string idScript = idQuery.Script.TrimEnd(new [] {';'})+".next()";
+			
+			q = new WeaverQuery();
+			q.FinalizeQuery("if("+dupVar.Name+"){return ['Duplicate',"+idScript+"];}");
 			pTxBuild.Transaction.AddQuery(q);
 			
 			////
