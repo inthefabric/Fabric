@@ -67,7 +67,6 @@
     <Compile Include="FabApiModify\XCreateClass.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddInstance.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddClass.cs" />
-    <Compile Include="FabApiModify\Tasks\XGetClassByNameDisamb.cs" />
     <Compile Include="FabApiModify\Tasks\XTxAddUrl.cs" />
     <Compile Include="FabApiModify\Tasks\XGetValidMemberByContext.cs" />
     <Compile Include="FabApiModify\Tasks\XGetUrlByAbsoluteUrl.cs" />
@@ -163,16 +162,13 @@
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Core, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver.0.5.2\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Weaver.Exec.RexConnect">
       <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.2\lib\Weaver.Exec.RexConnect.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Weaver.Titan">
       <HintPath>..\..\Packages\Weaver.Titan.0.5.2\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>

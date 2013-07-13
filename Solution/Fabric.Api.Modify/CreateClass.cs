@@ -51,29 +51,25 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Class Execute() {
-			VerifyUniqueClass();
-
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 			TxBuilder txb = GetFullTx(out memVar, out classVar);
-			return ApiCtx.Get<Class>(txb.Finish(classVar));
+			
+			try {
+				return ApiCtx.Get<Class>(txb.Finish(classVar));
+			}
+			catch ( DataAccessException dae ) {
+				if ( !dae.Message.Contains("Exception: Duplicate") ) {
+					throw;
+				}
+				
+				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
+				
+				throw new FabDuplicateFault(typeof(Class), NameParam, name,
+					"Conflicts with an existing "+typeof(Class).Name+".");
+			}
 		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyUniqueClass() {
-			return;
-			Class c = Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb);
-
-			if ( c == null ) {
-				return;
-			}
-
-			string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
-
-			throw new FabDuplicateFault(typeof(Class), NameParam, name,
-				"Conflicts with ClassId="+c.ArtifactId+".");
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		private TxBuilder GetFullTx(out IWeaverVarAlias<Member> pMemVar,
 																out IWeaverVarAlias<Class> pClassVar) {
@@ -102,7 +98,6 @@ namespace Fabric.Api.Modify {
 		internal TxBuilder GetFullTxForBatch(IApiContext pApiCtx, out IWeaverVarAlias<Member> pMemVar, 
 																out IWeaverVarAlias<Class> pClassVar) {
 			SetApiCtx(pApiCtx);
-			VerifyUniqueClass();
 			return GetFullTx(out pMemVar, out pClassVar);
 		}
 
@@ -110,7 +105,6 @@ namespace Fabric.Api.Modify {
 		internal void AppendTxForBatch(IApiContext pApiCtx, TxBuilder pTxBuild,
 								IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
 			SetApiCtx(pApiCtx);
-			VerifyUniqueClass();
 			AppendTx(pTxBuild, pMemVar, out pClassVar);
 		}
 

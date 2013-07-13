@@ -43,9 +43,14 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void Success() {
+		[TestCase("Muskegon", "test")]
+		[TestCase("human", "bean")]
+		[TestCase("test", null)]
+		[TestCase("MUSKEGON", null)]
+		public void Success(string pName, string pDisamb) {
 			IsReadOnlyTest = false;
+			vName = pName;
+			vDisamb = pDisamb;
 			
 			TestGo();
 			
@@ -121,6 +126,8 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("human", null)]
 		[TestCase("LOCATION", "GeoGraphiCal")]
+		[TestCase("MUSKEGON", "MI, Usa")]
+		[TestCase("human", null)]
 		public void ErrNameDisambDuplicate(string pName, string pDisamb) {
 			vName = pName;
 			vDisamb = pDisamb;

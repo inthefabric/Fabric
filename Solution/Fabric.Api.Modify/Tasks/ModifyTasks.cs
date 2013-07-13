@@ -65,11 +65,6 @@ namespace Fabric.Api.Modify.Tasks {
 
 			return mem;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			return null; //TODO: remove GetClassByNameDisamb
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -111,13 +111,19 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public IDataResult Execute() {
 			var data = new RexConnDataAccess(vRexConnCtx);
-
+			IResponseResult rr;
+			
 			if ( vPreExecute != null ) {
 				vPreExecute(data);
 			}
 
-			IResponseResult rr = data.Execute();
-
+			try {
+				rr = data.Execute();
+			}
+			catch ( ResponseErrException ree ) {
+				throw new DataAccessException(this, ree.Message);
+			}
+			
 			if ( vPostExecute != null ) {
 				vPostExecute(rr);
 			}

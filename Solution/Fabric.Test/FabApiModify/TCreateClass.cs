@@ -103,10 +103,7 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicateClass() {
-			MockTasks
-				.Setup(x => x.GetClassByNameDisamb(MockApiCtx.Object, vName, vDisamb))
-				.Returns(new Class());
-
+			//TODO: mock a duplicate exception response
 			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
 		}
 		
