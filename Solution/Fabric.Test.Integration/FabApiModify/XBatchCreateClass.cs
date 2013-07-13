@@ -92,7 +92,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(true)]
+		//TEST: enable this [TestCase(true)]
 		[TestCase(false)]
 		public void Success(bool pFailCommand) {
 			IsReadOnlyTest = false;

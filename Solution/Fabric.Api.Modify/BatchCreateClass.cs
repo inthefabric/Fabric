@@ -13,7 +13,6 @@ using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Fabric.Infrastructure.Data;
-using System.Diagnostics;
 
 namespace Fabric.Api.Modify {
 	
@@ -164,26 +163,24 @@ namespace Fabric.Api.Modify {
 			try {
 				IDataResult data = ApiCtx.NewData().AddQueries(txList).Execute();
 				
-				var sw = Stopwatch.StartNew();
-				
 				for ( int i = 0 ; i < n ; ++i ) {
+					if ( data.ToStringAt(i+1,0) != "-1" ) {
+						continue;
+					}
+					
 					int index = pIndexes[i];
 					FabBatchNewClass nc = vObjects[index];
-					Log.Debug(i+"/"+index+": "+nc.Name+" // "+data.ToStringAt(i+1,0));
-					continue;
-					
 					string name = nc.Name+(nc.Disamb == null ? "" : " ("+nc.Disamb+")");
-					vResults[i].Error = FabError.ForFault(
+					
+					vResults[index].Error = FabError.ForFault(
 						new FabDuplicateFault(typeof(Class), CreateClass.NameParam, name));
 				}
-				
-				Log.Debug("TIME: "+sw.Elapsed.TotalMilliseconds+"ms");
 			}
 			catch ( Exception e ) {
 				Log.Error("BatchCreateClass batch exception: "+e);
 
-				foreach ( int i in pIndexes ) {
-					vResults[i].Error = FabError.ForInternalServerError();
+				foreach ( int index in pIndexes ) {
+					vResults[index].Error = FabError.ForInternalServerError();
 				}
 			}
 		}

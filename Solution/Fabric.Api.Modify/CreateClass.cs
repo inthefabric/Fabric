@@ -33,7 +33,7 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateClass(IModifyTasks pTasks, string pName, string pDisamb, string pNote) : 
+		public CreateClass(IModifyTasks pTasks, string pName, string pDisamb, string pNote) :
 																						base(pTasks) {
 			vName = pName;
 			vDisamb = pDisamb;
@@ -77,11 +77,11 @@ namespace Fabric.Api.Modify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private Class GetClassFromResult(IDataResult pData) {
-			if ( pData.ToStringAt(0,0) == "Duplicate" ) {
+			if ( pData.ToStringAt(0,0) == "-1" && pData.ToStringAt(0,1) == "Duplicate" ) {
 				string name = vName+(vDisamb == null ? "" : " ("+vDisamb+")");
 				
 				throw new FabDuplicateFault(typeof(Class), NameParam, name,
-					"Name conflicts with existing "+typeof(Class).Name+"Id="+pData.ToLongAt(0,1)+".");
+					"Name conflicts with existing "+typeof(Class).Name+"Id="+pData.ToLongAt(0,2)+".");
 			}
 			
 			return pData.ToElementAt<Class>(0,0);

@@ -277,7 +277,7 @@ namespace Fabric.Api.Modify.Tasks {
 			string idScript = idQuery.Script.TrimEnd(new [] {';'})+".next()";
 			
 			q = new WeaverQuery();
-			q.FinalizeQuery("if("+dupVar.Name+"){return ['Duplicate',"+idScript+"];}");
+			q.FinalizeQuery("if("+dupVar.Name+"){return [-1,'Duplicate',"+idScript+"];}");
 			pTxBuild.Transaction.AddQuery(q);
 			
 			////
