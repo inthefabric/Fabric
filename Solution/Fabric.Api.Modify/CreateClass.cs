@@ -61,6 +61,7 @@ namespace Fabric.Api.Modify {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyUniqueClass() {
+			return;
 			Class c = Tasks.GetClassByNameDisamb(ApiCtx, vName, vDisamb);
 
 			if ( c == null ) {

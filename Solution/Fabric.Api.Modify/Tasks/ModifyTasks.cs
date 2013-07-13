@@ -65,29 +65,10 @@ namespace Fabric.Api.Modify.Tasks {
 
 			return mem;
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public Class GetClassByNameDisamb(IApiContext pApiCtx, string pName, string pDisamb) {
-			Class c = Weave.Inst.Graph
-				.V.ExactIndex<Class>(x => x.NameKey, pName.ToLower())
-				.CustomStep("scatter()"); //TODO: resolve "scatter" workaround
-			IWeaverQuery q;
-
-			if ( pDisamb == null ) {
-				q = c.HasNot(x => x.Disamb).ToQuery();
-			}
-			else {
-				q = c.CustomStep(
-					"filter{"+
-						"_DI=it.getProperty('"+PropDbName.Class_Disamb+"');"+
-						"(_DI && _DI.toLowerCase()==_P1);"+
-					"}")
-					.ToQuery();
-
-				q.AddParam(new WeaverQueryVal(pDisamb.ToLower()));
-			}
-
-			return pApiCtx.Get<Class>(q);
+			return null; //TODO: remove GetClassByNameDisamb
 		}
 
 
@@ -274,7 +255,33 @@ namespace Fabric.Api.Modify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		public long TxAddClass(IApiContext pApiCtx, TxBuilder pTxBuild, string pName, string pDisamb,
 				string pNote, IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
-			var c = new Class();
+			Class c = Weave.Inst.Graph
+				.V.ExactIndex<Class>(x => x.NameKey, pName.ToLower());
+			IWeaverQuery q;
+			const string dupStep = "each{throw new Exception('Duplicate')}";
+			
+			if ( pDisamb == null ) {
+				q = c.CustomStep("scatter()") //TODO: resolve "scatter" workaround
+					.HasNot(x => x.Disamb)
+					.CustomStep(dupStep)
+					.ToQuery();
+			}
+			else {
+				q = c.CustomStep(
+					"filter{"+ //the "?." before "toLowerCase()" is the "safe-navigation" operator
+						"it.getProperty('"+PropDbName.Class_Disamb+"')?.toLowerCase()==_P1;"+
+					"}")
+					.CustomStep(dupStep)
+					.ToQuery();
+				
+				q.AddParam(new WeaverQueryVal(pDisamb.ToLower()));
+			}
+			
+			pTxBuild.Transaction.AddQuery(q);
+			
+			////
+			
+			c = new Class();
 			c.Name = pName;
 			c.NameKey = pName.ToLower();
 			c.Disamb = pDisamb;
