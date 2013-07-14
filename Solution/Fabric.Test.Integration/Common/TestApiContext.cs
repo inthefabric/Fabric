@@ -4,6 +4,8 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
 using RexConnectClient.Core.Result;
+using RexConnectClient.Core;
+using Fabric.Infrastructure.Data;
 
 namespace Fabric.Test.Integration.Common {
 	
@@ -12,14 +14,12 @@ namespace Fabric.Test.Integration.Common {
 
 		public DateTime? TestUtcNow { get; set; }
 		public IList<long> SharpflakeIds { get; private set; }
-		public Func<string, string> AlterRequestJson { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TestApiContext() : base("rexster", 8185, new CacheManager("ApiTest", true)) {
 			SharpflakeIds = new List<long>();
-			AlterRequestJson = (r => r);
 		}
 
 
@@ -39,7 +39,7 @@ namespace Fabric.Test.Integration.Common {
 				return id;
 			}
 		}
-
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

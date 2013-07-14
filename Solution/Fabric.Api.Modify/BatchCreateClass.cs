@@ -30,6 +30,8 @@ namespace Fabric.Api.Modify {
 		private List<List<int>> vIndexes;
 		private CreateClass[] vCreateFuncs;
 		private FabBatchResult[] vResults;
+		
+		public int FailRequestIndexForTest { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,9 +161,23 @@ namespace Fabric.Api.Modify {
 			if ( classes.Count == 0 ) {
 				return;
 			}
+			
+			Log.Debug("---------------- TEST: "+n+" / "+FailRequestIndexForTest);
+			
+			if ( FailRequestIndexForTest-- == 0 ) {
+				var q = new WeaverQuery();
+				q.FinalizeQuery("throw new Exception('FailRequest')");
+				txList.Add(q);
+			}
 
 			try {
-				IDataResult data = ApiCtx.NewData().AddQueries(txList).Execute();
+				IDataAccess acc = ApiCtx.NewData();
+				acc.AddSessionStart();
+				acc.AddQueries(txList);
+				acc.AddSessionCommit();
+				acc.AddSessionClose();
+				
+				IDataResult data = acc.Execute();
 				
 				for ( int i = 0 ; i < n ; ++i ) {
 					if ( data.ToStringAt(i+1,0) != "-1" ) {

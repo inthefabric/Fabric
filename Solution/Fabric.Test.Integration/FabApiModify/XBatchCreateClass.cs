@@ -16,6 +16,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		private List<FabBatchNewClass> vClasses;
 		private string vClassesJson;
+		private int vFailRequestIndex;
 
 		private IList<FabBatchResult> vResults;
 		
@@ -86,30 +87,18 @@ namespace Fabric.Test.Integration.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestGo() {
 			var func = new BatchCreateClass(Tasks, vClassesJson);
+			func.FailRequestIndexForTest = vFailRequestIndex;
 			vResults = func.Go(ApiCtx);
 		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: enable this [TestCase(true)]
+		[TestCase(true)]
 		[TestCase(false)]
-		public void Success(bool pFailCommand) {
+		public void Success(bool pRequestFailure) {
 			IsReadOnlyTest = false;
-			bool altered = false;
-
-			if ( pFailCommand ) { //Generate a database error
-				ApiCtx.AlterRequestJson = (r => {
-					int i = r.IndexOf(PropDbName.Class_Disamb);
-
-					if ( !altered && i != -1 ) {
-						altered = true;
-						r = r.Insert(i+PropDbName.Class_Disamb.Length+2, "x");
-					}
-
-					return r;
-				});
-			}
+			vFailRequestIndex = (pRequestFailure ? 1 : -1);
 			
 			TestGo();
 
@@ -117,7 +106,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 
-			int expectFails = (pFailCommand ? 103 : 3);
+			int expectFails = (pRequestFailure ? 103 : 3);
 			int fails = 0;
 
 			foreach ( FabBatchResult res in vResults ) {

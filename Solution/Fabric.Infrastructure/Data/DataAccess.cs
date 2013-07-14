@@ -62,7 +62,7 @@ namespace Fabric.Infrastructure.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IDataAccess AddQueries(IEnumerable<IWeaverScript> pWeaverScripts) {
-			vReq.AddQueries(pWeaverScripts, true);
+			vReq.AddQueries(pWeaverScripts, false);
 			return this;
 		}
 
