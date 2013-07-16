@@ -3,10 +3,11 @@ using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Weaver;
+using Fabric.Infrastructure.Data;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using ServiceStack.Text;
+using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
@@ -121,6 +122,46 @@ namespace Fabric.Test.Integration.FabApiModify {
 			NewEdgeCount = 1*(vClasses.Count-expectFails);
 
 			Assert.AreEqual(expectFails, fails, "Incorrect Resuls.Error count.");
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		[Test]
+		public void Rollback() {
+			IsReadOnlyTest = false;
+
+			IDataAccess acc = ApiCtx.NewData();
+			acc.AddSessionStart();
+
+			var q = new WeaverQuery();
+			q.FinalizeQuery("g.addVertex([test:1])");
+			acc.AddQuery(q);
+
+			q = new WeaverQuery();
+			q.FinalizeQuery("g.addVertex([test:2])");
+			//acc.AddQuery(q);
+
+			q = new WeaverQuery();
+			q.FinalizeQuery("throw new Exception('wtf')");
+			//acc.AddQuery(q);
+
+			q = new WeaverQuery();
+			q.FinalizeQuery("g.addVertex([test:3])");
+			//acc.AddQuery(q);
+
+			//acc.AddSessionCommit();
+			acc.AddSessionRollback();
+			acc.AddSessionClose();
+
+			try {
+				IDataResult data = acc.Execute();
+				//Assert.Fail("Should have thrown an exception.");
+			}
+			catch ( DataAccessException dae ) {
+				Log.Debug("EXCEPTION: "+dae.Message);
+			}
+
+			NewVertexCount = 0;
+			NewEdgeCount = 0;
 		}
 		
 

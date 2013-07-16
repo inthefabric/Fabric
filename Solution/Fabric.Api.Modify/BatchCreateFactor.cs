@@ -221,7 +221,13 @@ namespace Fabric.Api.Modify {
 			}
 
 			try {
-				ApiCtx.NewData().AddQueries(list).Execute();
+				IDataAccess acc = ApiCtx.NewData();
+				acc.AddSessionStart();
+				acc.AddQueries(list);
+				acc.AddSessionCommit();
+				acc.AddSessionClose();
+
+				IDataResult data = acc.Execute();
 			}
 			catch ( Exception e ) {
 				Log.Error("BatchCreateFactor batch exception: "+e);

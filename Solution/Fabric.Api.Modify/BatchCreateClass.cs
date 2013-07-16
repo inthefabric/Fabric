@@ -162,8 +162,6 @@ namespace Fabric.Api.Modify {
 				return;
 			}
 			
-			Log.Debug("---------------- TEST: "+n+" / "+FailRequestIndexForTest);
-			
 			if ( FailRequestIndexForTest-- == 0 ) {
 				var q = new WeaverQuery();
 				q.FinalizeQuery("throw new Exception('FailRequest')");

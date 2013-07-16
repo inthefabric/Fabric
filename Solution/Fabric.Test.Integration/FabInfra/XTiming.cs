@@ -275,7 +275,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			JsConfig.EmitCamelCaseNames = false;
 
 			var req = HttpWebRequest.Create(
-				"http://rexster:8182/graphs/graph/fab/rexconn?req="+script);
+				"http://rexster:8182/graphs/graph/fabric/rexconnect?req="+script);
 			double t0 = sw.Elapsed.TotalMilliseconds;
 
 			WebResponse resp = req.GetResponse();

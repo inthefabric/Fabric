@@ -220,7 +220,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: Enable this [Test]
+		[Test]
 		public void Success() {
 			IsReadOnlyTest = false;
 			
