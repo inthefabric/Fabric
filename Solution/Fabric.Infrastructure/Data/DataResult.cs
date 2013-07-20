@@ -72,6 +72,22 @@ namespace Fabric.Infrastructure.Data {
 			return (dto == null ? null : DataDto.ToElement<T>(dto));
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public IDictionary<string, string> ToMap() {
+			AssertOneCommand();
+			IList<IDictionary<string, string>> maps = vResult.GetMapResultsAt(0);
+
+			if ( maps.Count == 0 ) {
+				return null;
+			}
+
+			if ( maps.Count == 1 ) {
+				return maps[0];
+			}
+
+			throw new Exception("Expected one result, received "+maps.Count);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,6 +111,11 @@ namespace Fabric.Infrastructure.Data {
 		public IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new() {
 			return ToDtoList().Select(DataDto.ToElement<T>).ToList();
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<IList<IDictionary<string, string>>> ToMapLists() {
+			return vResult.GetMapResults();
+		}
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,6 +130,11 @@ namespace Fabric.Infrastructure.Data {
 											where T : class, IWeaverElement, IElementWithId, new() {
 			IDataDto dto = ToDtoAt(pCommandIndex, pResultIndex);
 			return DataDto.ToElement<T>(dto);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IDictionary<string, string> ToMapAt(int pCommandIndex, int pResultIndex) {
+			return vResult.GetMapResultsAt(pCommandIndex)[pResultIndex];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

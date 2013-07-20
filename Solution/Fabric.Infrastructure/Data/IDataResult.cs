@@ -20,18 +20,21 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		IDataDto ToDto();
 		T ToElement<T>() where T : class, IWeaverElement, IElementWithId, new();
+		IDictionary<string, string> ToMap();
 
 		/*--------------------------------------------------------------------------------------------*/
 		IList<IDataDto> ToDtoList();
 		IList<IList<IDataDto>> ToDtoLists();
 		IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new();
+		IList<IList<IDictionary<string, string>>> ToMapLists();
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		IDataDto ToDtoAt(int pCommandIndex, int pResultIndex);
 		T ToElementAt<T>(int pCommandIndex, int pResultIndex) 
-												where T : class, IWeaverElement, IElementWithId, new();
+			where T : class, IWeaverElement, IElementWithId, new();
+		IDictionary<string, string> ToMapAt(int pCommandIndex, int pResultIndex);
 		string ToStringAt(int pCommandIndex, int pResultIndex);
 		int ToIntAt(int pCommandIndex, int pResultIndex);
 		long ToLongAt(int pCommandIndex, int pResultIndex);

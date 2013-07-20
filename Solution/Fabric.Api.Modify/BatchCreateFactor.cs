@@ -163,10 +163,11 @@ namespace Fabric.Api.Modify {
 
 			foreach ( int i in pIndexes ) {
 				string cmd = pNewFactorCmds[cmdI++];
-				IDataDto dto = data.ToDtoAt(data.GetCommandIndexByCmdId(cmd), 0);
-				Log.Debug("Factor Vertex ID "+i+"/"+cmd+": "+dto.Id);
+				IDictionary<string, string> map = data.ToMapAt(data.GetCommandIndexByCmdId(cmd), 0);
+				string id = (map.ContainsKey("id") ? map["id"] : null);
+				Log.Debug("Factor Vertex ID "+i+"/"+cmd+": "+id);
 
-				if ( dto.Id == null ) {
+				if ( id == null ) {
 					var nf = new FabNotFoundFault(typeof(Artifact), typeof(Artifact).Name+"Id=?");
 					vResults[i].Error = FabError.ForFault(nf);
 				}
