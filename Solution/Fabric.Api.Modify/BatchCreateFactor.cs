@@ -69,7 +69,7 @@ namespace Fabric.Api.Modify {
 			vOpSets = new FactorOperationSet[n];
 			vResults = new FabBatchResult[n];
 
-			const int size = 100;
+			const int size = 1;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewFactor nf = vObjects[i];
@@ -98,11 +98,6 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override FabBatchResult[] Execute() {
 			Member mem = GetContextMember();
-
-			//VerifyRequiredArtifacts();
-
-			////
-			
 			int n = vObjects.Length;
 
 			for ( int i = 0 ; i < n ; ++i ) {
@@ -112,90 +107,19 @@ namespace Fabric.Api.Modify {
 			}
 
 			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
+			opt.MaxDegreeOfParallelism = 1; //TODO: use DB node count
 			Parallel.ForEach(vIndexes, opt, InsertFactors);
 			return vResults;
 		}
+
 		
-		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyRequiredArtifacts() {
-			var map = new Dictionary<long, IList<KeyValuePair<int, string>>>();
-			int count = 0;
-			int hit = 0;
-
-			lock ( vIndexes ) {
-
-				foreach ( List<int> indexList in vIndexes ) {
-					foreach ( int i in indexList ) {
-						FactorOperationSet fos = vOpSets[i];
-
-						foreach ( KeyValuePair<string, long> pair in fos.RequiredArtifacts ) {
-							count++;
-
-							if ( ApiCtx.Cache.Memory.FindExists<Artifact>(pair.Value) == true ) {
-								hit++;
-								continue; //skip verification; the Artifact exists
-							}
-
-							if ( !map.ContainsKey(pair.Value) ) {
-								map.Add(pair.Value, new List<KeyValuePair<int, string>>());
-							}
-
-							map[pair.Value].Add(new KeyValuePair<int, string>(i, pair.Key));
-						}
-					}
-				}
-
-				var queries = new List<IWeaverScript>();
-
-				foreach ( long artId in map.Keys ) {
-					var q = new WeaverQuery();
-					string artParam = q.AddParam(new WeaverQueryVal(artId));
-					q.FinalizeQuery("g.V('"+PropDbName.Artifact_ArtifactId+"',"+artParam+")."+
-						PropDbName.Artifact_ArtifactId);
-					queries.Add(q);
-				}
-
-				////
-
-				int n = queries.Count;
-				const int size = 100;
-				Log.Debug("Artifacts:  cache="+hit+"/"+count+",  quer="+n);
-
-				for ( int a = 0 ; a < n ; a += size ) {
-					int len = Math.Min(size, n-a);
-					IDataResult result = ApiCtx.NewData().AddQueries(queries.GetRange(a,len)).Execute();
-
-					for ( int i = 0 ; i < len ; ++i ) {
-						int cmdI = i+1; //use i+1 to skip session command
-						string val = null;
-
-						if ( result.GetCommandResultCount(cmdI) > 0 ) {
-							val = result.ToStringAt(cmdI, 0);
-						}
-
-						long id;
-						long.TryParse(val, out id);
-						long expectId = map.Keys.ElementAt(a+i);
-
-						if ( id == expectId ) {
-							ApiCtx.Cache.Memory.AddExists<Artifact>(id);
-							continue;
-						}
-
-						foreach ( KeyValuePair<int, string> pair in map[expectId] ) {
-							var nf = new FabNotFoundFault(typeof(Artifact), pair.Value+"="+expectId);
-							vResults[pair.Key].Error = FabError.ForFault(nf);
-						}
-					}
-				}
-
-			} //end lock
-		}
-
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void InsertFactors(IList<int> pIndexes, ParallelLoopState pState, long pThreadId) {
-			var list = new List<IWeaverScript>();
+			IDataAccess acc = ApiCtx.NewData();
+			acc.AddSessionStart();
+
+			var newFactorCmds = new List<string>();
 
 			foreach ( int i in pIndexes ) {
 				FabBatchResult res = vResults[i];
@@ -206,8 +130,9 @@ namespace Fabric.Api.Modify {
 
 				try {
 					FactorOperationSet fos = vOpSets[i];
-					list.AddRange(fos.GetVertexQueries(ApiCtx));
+					fos.AddQueries(ApiCtx, acc);
 					res.ResultId = fos.FactorId;
+					newFactorCmds.Add(fos.NewFactorCmdId);
 				}
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);
@@ -216,24 +141,34 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			if ( list.Count == 0 ) {
-				return;
-			}
-
 			try {
-				IDataAccess acc = ApiCtx.NewData();
-				acc.AddSessionStart();
-				acc.AddQueries(list);
 				acc.AddSessionCommit();
 				acc.AddSessionClose();
-
-				IDataResult data = acc.Execute();
+				ExecuteRequest(acc, pIndexes, newFactorCmds);
 			}
 			catch ( Exception e ) {
 				Log.Error("BatchCreateFactor batch exception: "+e);
 
 				foreach ( int i in pIndexes ) {
 					vResults[i].Error = FabError.ForInternalServerError();
+				}
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void ExecuteRequest(IDataAccess pAccess, IList<int> pIndexes, 
+																		IList<string> pNewFactorCmds ) {
+			IDataResult data = pAccess.Execute();
+			int cmdI = 0;
+
+			foreach ( int i in pIndexes ) {
+				string cmd = pNewFactorCmds[cmdI++];
+				IDataDto dto = data.ToDtoAt(data.GetCommandIndexByCmdId(cmd), 0);
+				Log.Debug("Factor Vertex ID "+i+"/"+cmd+": "+dto.Id);
+
+				if ( dto.Id == null ) {
+					var nf = new FabNotFoundFault(typeof(Artifact), typeof(Artifact).Name+"Id=?");
+					vResults[i].Error = FabError.ForFault(nf);
 				}
 			}
 		}
@@ -245,6 +180,7 @@ namespace Fabric.Api.Modify {
 	public class FactorOperationSet {
 
 		public long FactorId { get; private set; }
+		public string NewFactorCmdId { get; private set; }
 		public List<KeyValuePair<string, long>> RequiredArtifacts { get; private set; }
 
 		private readonly CreateFactor vCreate;
@@ -334,7 +270,46 @@ namespace Fabric.Api.Modify {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<IWeaverScript> GetVertexQueries(IApiContext pApiCtx) {
+		public void AddQueries(IApiContext pApiCtx, IDataAccess pAccess) {
+			ArtifactVar priArt = AddArtifactQuery(pAccess, "_PA", vBatch.PrimaryArtifactId);
+			string condCmdId = priArt.CmdId;
+
+			ArtifactVar relArt = AddArtifactQuery(pAccess, "_RA", vBatch.RelatedArtifactId);
+			pAccess.AddConditionsToLatestCommand(condCmdId);
+			condCmdId = relArt.CmdId;
+
+			FabBatchNewFactorDescriptor desc = vBatch.Descriptor;
+			ArtifactVar priRefArt = null;
+			ArtifactVar relRefArt = null;
+			ArtifactVar typeRefArt = null;
+			ArtifactVar axisArt = null;
+
+			if ( desc.PrimaryArtifactRefineId != null ) {
+				priRefArt = AddArtifactQuery(pAccess, "_RPA", (long)desc.PrimaryArtifactRefineId);
+				pAccess.AddConditionsToLatestCommand(condCmdId);
+				condCmdId = priRefArt.CmdId;
+			}
+
+			if ( desc.RelatedArtifactRefineId != null ) {
+				relRefArt = AddArtifactQuery(pAccess, "_RRA", (long)desc.RelatedArtifactRefineId);
+				pAccess.AddConditionsToLatestCommand(condCmdId);
+				condCmdId = relRefArt.CmdId;
+			}
+
+			if ( desc.TypeRefineId != null ) {
+				typeRefArt = AddArtifactQuery(pAccess, "_RTA", (long)desc.TypeRefineId);
+				pAccess.AddConditionsToLatestCommand(condCmdId);
+				condCmdId = typeRefArt.CmdId;
+			}
+
+			if ( vBatch.Vector != null ) {
+				axisArt = AddArtifactQuery(pAccess, "_AA", vBatch.Vector.AxisArtifactId);
+				pAccess.AddConditionsToLatestCommand(condCmdId);
+				condCmdId = axisArt.CmdId;
+			}
+
+			////
+
 			FactorId = pApiCtx.GetSharpflakeId<Factor>();
 
 			var f = new Factor();
@@ -345,7 +320,7 @@ namespace Fabric.Api.Modify {
 			f.Created = pApiCtx.UtcNow.Ticks;
 			f.Completed = f.Created;
 
-			f.Descriptor_TypeId = vBatch.Descriptor.TypeId;
+			f.Descriptor_TypeId = desc.TypeId;
 
 			if ( vBatch.Director != null ) {
 				f.Director_TypeId = vBatch.Director.TypeId;
@@ -380,73 +355,88 @@ namespace Fabric.Api.Modify {
 
 			////
 
-			var list = new List<IWeaverScript>();
-			IWeaverVarAlias<Factor> facVar;
-
 			var txb = new TxBuilder();
 			var facBuild = new FactorBuilder(txb, f);
 			facBuild.AddVertex();
+			facBuild.SetInMemberCreates(vMember);
+			 
+			facBuild.TxBuild.RegisterVarWithTxBuilder(priArt.Alias);
+			facBuild.SetUsesPrimaryArtifact(priArt.Alias);
 
-			var q = new WeaverQuery();
-			q.FinalizeQuery(facBuild.VertexVar.Name);
-
-			txb.Transaction.AddQuery(
-				WeaverQuery.StoreResultAsVar("_F", q, out facVar)
-			);
-
-			txb.Transaction.AddQuery(
-				Weave.Inst.FromVar(facVar).Property(x => x.Id).ToQuery()
-			);
-
-			list.Add(txb.Finish());
-
-			AppendQueries(list, facVar, fb => {
-				fb.SetUsesPrimaryArtifact(vBatch.PrimaryArtifactId);
-				fb.SetUsesRelatedArtifact(vBatch.RelatedArtifactId);
-				fb.SetInMemberCreates(vMember);
-			});
-
-			if ( vBatch.Descriptor.PrimaryArtifactRefineId != null ) {
-				AppendQueries(list, facVar, fb =>
-					fb.SetDescriptorRefinesPrimaryWithArtifact(
-						(long)vBatch.Descriptor.PrimaryArtifactRefineId)
-				);
+			facBuild.TxBuild.RegisterVarWithTxBuilder(relArt.Alias);
+			facBuild.SetUsesRelatedArtifact(relArt.Alias);
+			
+			if ( priRefArt != null ) {
+				facBuild.TxBuild.RegisterVarWithTxBuilder(priRefArt.Alias);
+				facBuild.SetDescriptorRefinesPrimaryWithArtifact(priRefArt.Alias);
 			}
 
-			if ( vBatch.Descriptor.RelatedArtifactRefineId != null ) {
-				AppendQueries(list, facVar, fb =>
-					fb.SetDescriptorRefinesRelatedWithArtifact(
-						(long)vBatch.Descriptor.RelatedArtifactRefineId)
-				);
+			if ( relRefArt != null ) {
+				facBuild.TxBuild.RegisterVarWithTxBuilder(relRefArt.Alias);
+				facBuild.SetDescriptorRefinesRelatedWithArtifact(relRefArt.Alias);
 			}
 
-			if ( vBatch.Descriptor.TypeRefineId != null ) {
-				AppendQueries(list, facVar, fb =>
-					fb.SetDescriptorRefinesTypeWithArtifact((long)vBatch.Descriptor.TypeRefineId)
-				);
+			if ( typeRefArt != null ) {
+				facBuild.TxBuild.RegisterVarWithTxBuilder(typeRefArt.Alias);
+				facBuild.SetDescriptorRefinesTypeWithArtifact(typeRefArt.Alias);
 			}
 
-			if ( vBatch.Vector != null ) {
-				AppendQueries(list, facVar, fb =>
-					fb.SetVectorUsesAxisArtifact(vBatch.Vector.AxisArtifactId)
-				);
+			if ( axisArt != null ) {
+				facBuild.TxBuild.RegisterVarWithTxBuilder(axisArt.Alias);
+				facBuild.SetVectorUsesAxisArtifact(axisArt.Alias);
 			}
 
-			return list;
+			////
+
+			for ( int i = 0 ; i < txb.Scripts.Count ; ++i ) {
+				IWeaverScript ws = txb.Scripts[i];
+
+				var endQ = new WeaverQuery();
+				endQ.FinalizeQuery(i == 0 ? "[_id:"+facBuild.VertexVar.Name+".id]" : "1");
+
+				var tx = new WeaverTransaction();
+				tx.AddQuery((IWeaverQuery)ws);
+				tx.AddQuery(endQ);
+				tx.Finish();
+
+				pAccess.AddQuery(tx);
+				pAccess.AddConditionsToLatestCommand(condCmdId);
+
+				if ( i == 0 ) {
+					NewFactorCmdId = pAccess.GetLatestCommandId();
+				}
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AppendQueries(IList<IWeaverScript> pList, IWeaverVarAlias<Factor> pFacVar,
-																	Action<FactorBuilder> pAction) {
-			var facBuild = new FactorBuilder(new TxBuilder());
-			facBuild.SetVertexVar(pFacVar);
-			pAction(facBuild);
+		private static ArtifactVar AddArtifactQuery(
+											IDataAccess pAccess, string pVarName, long pArtifactId) {
+			IWeaverVarAlias<Artifact> v;
 
-			IWeaverQuery q = new WeaverQuery();
-			q.FinalizeQuery("1"); //skip unnecessary return data
-			facBuild.TxBuild.Transaction.AddQuery(q);
-			pList.Add(facBuild.TxBuild.Finish());
+			IWeaverQuery q1 = Weave.Inst.Graph
+				.V.ExactIndex<Artifact>(x => x.ArtifactId, pArtifactId)
+				.ToQuery();
+			q1 = WeaverQuery.StoreResultAsVar(pVarName, q1, out v);
+
+			IWeaverQuery q2 = Weave.Inst.FromVar(v).Next().ToQuery();
+			q2 = WeaverQuery.StoreResultAsVar(pVarName, q2, out v);
+
+			var q = new WeaverQuery();
+			q.AddParam(q1.Params["_P0"]);
+			q.FinalizeQuery(q1.Script+"if("+v.Name+"){"+q2.Script+"1;}else{0;}");
+			pAccess.AddQuery(q);
+
+			return new ArtifactVar { CmdId = pAccess.GetLatestCommandId(), Alias = v };
 		}
+
+	}
+	
+
+	/*================================================================================================*/
+	public class ArtifactVar {
+
+		public string CmdId { get; set; }
+		public IWeaverVarAlias<Artifact> Alias { get; set; }
 
 	}
 

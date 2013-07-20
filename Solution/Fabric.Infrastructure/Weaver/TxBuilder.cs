@@ -12,6 +12,7 @@ namespace Fabric.Infrastructure.Weaver {
 	public class TxBuilder { //TEST: TxBuilder
 
 		public IWeaverTransaction Transaction { get; private set; }
+		public IList<IWeaverScript> Scripts { get; private set; }
 
 		private readonly HashSet<IWeaverVarAlias> vVarHash;
 
@@ -20,6 +21,7 @@ namespace Fabric.Infrastructure.Weaver {
 		/*--------------------------------------------------------------------------------------------*/
 		public TxBuilder() {
 			Transaction = new WeaverTransaction();
+			Scripts = new List<IWeaverScript>();
 			vVarHash = new HashSet<IWeaverVarAlias>();
 		}
 
@@ -65,6 +67,7 @@ namespace Fabric.Infrastructure.Weaver {
 				pVertexWithId.GetTypeIdProp<T>(), pVertexWithId.GetTypeId()).Next().ToQuery();
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
+			Scripts.Add(q);
 			vVarHash.Add(pVertexVar);
 		}
 
@@ -74,6 +77,7 @@ namespace Fabric.Infrastructure.Weaver {
 			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pVertexWithVertexId.Id).ToQuery();
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
+			Scripts.Add(q);
 			vVarHash.Add(pVertexVar);
 		}
 
@@ -84,6 +88,7 @@ namespace Fabric.Infrastructure.Weaver {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewVertexVar);
 			Transaction.AddQuery(q);
+			Scripts.Add(q);
 			vVarHash.Add(pNewVertexVar);
 		}
 
@@ -93,9 +98,9 @@ namespace Fabric.Infrastructure.Weaver {
 			VerifyVar(pFromVar);
 			VerifyVar(pToVar);
 
-			Transaction.AddQuery(
-				Weave.Inst.TitanGraph().AddEdgeVci(pFromVar, new TEdge(), pToVar)
-			);
+			IWeaverQuery q = Weave.Inst.TitanGraph().AddEdgeVci(pFromVar, new TEdge(), pToVar);
+			Transaction.AddQuery(q);
+			Scripts.Add(q);
 		}
 
 	}

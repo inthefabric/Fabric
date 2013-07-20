@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fabric.Domain;
 using RexConnectClient.Core.Result;
+using RexConnectClient.Core.Transfer;
 using Weaver.Core.Elements;
 
 namespace Fabric.Infrastructure.Data {
@@ -32,6 +33,19 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public int GetCommandResultCount(int pCommandIndex=0) {
 			return vResult.Response.CmdList[pCommandIndex].Results.Count;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public int GetCommandIndexByCmdId(string pCmdId) {
+			IList<ResponseCmd> list = vResult.Response.CmdList;
+
+			for ( int i = 0 ; i < list.Count ; ++i ) {
+				if ( list[i].CmdId == pCmdId ) {
+					return i;
+				}
+			}
+
+			return -1;
 		}
 
 
