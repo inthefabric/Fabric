@@ -60,9 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\Nancy.Serialization.ServiceStack.0.17.1\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
     </Reference>
-    <Reference Include="RexConnectClient.Core, Version=0.3.5.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RexConnectClient.Core, Version=0.3.5.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\RexConnectClient.0.3.5.1\lib\RexConnectClient.Core.dll</HintPath>
+      <HintPath>..\..\Packages\RexConnectClient.0.3.5.2\lib\RexConnectClient.Core.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
