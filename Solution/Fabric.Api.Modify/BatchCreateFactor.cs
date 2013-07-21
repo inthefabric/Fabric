@@ -69,7 +69,7 @@ namespace Fabric.Api.Modify {
 			vOpSets = new FactorOperationSet[n];
 			vResults = new FabBatchResult[n];
 
-			const int size = 1;
+			const int size = 20;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewFactor nf = vObjects[i];
@@ -107,7 +107,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			var opt = new ParallelOptions();
-			opt.MaxDegreeOfParallelism = 1; //TODO: use DB node count
+			opt.MaxDegreeOfParallelism = 3; //TODO: use DB node count
 			Parallel.ForEach(vIndexes, opt, InsertFactors);
 			return vResults;
 		}
@@ -162,15 +162,15 @@ namespace Fabric.Api.Modify {
 			int cmdI = 0;
 
 			foreach ( int i in pIndexes ) {
-				string cmd = pNewFactorCmds[cmdI++];
-				IDictionary<string, string> map = data.ToMapAt(data.GetCommandIndexByCmdId(cmd), 0);
-				string id = (map.ContainsKey("id") ? map["id"] : null);
-				Log.Debug("Factor Vertex ID "+i+"/"+cmd+": "+id);
+				int fi = data.GetCommandIndexByCmdId(pNewFactorCmds[cmdI++]);
 
-				if ( id == null ) {
-					var nf = new FabNotFoundFault(typeof(Artifact), typeof(Artifact).Name+"Id=?");
-					vResults[i].Error = FabError.ForFault(nf);
+				if ( data.ToMapAt(fi, 0) != null ) {
+					continue;
 				}
+
+				var nf = new FabNotFoundFault(typeof(Artifact), "One or more of the specified "+
+					typeof(Artifact).Name+"s could not be found.");
+				vResults[i].Error = FabError.ForFault(nf);
 			}
 		}
 
@@ -393,7 +393,7 @@ namespace Fabric.Api.Modify {
 				IWeaverScript ws = txb.Scripts[i];
 
 				var endQ = new WeaverQuery();
-				endQ.FinalizeQuery(i == 0 ? "[_id:"+facBuild.VertexVar.Name+".id]" : "1");
+				endQ.FinalizeQuery(i == 0 ? "[id:"+facBuild.VertexVar.Name+".id]" : "1");
 
 				var tx = new WeaverTransaction();
 				tx.AddQuery((IWeaverQuery)ws);

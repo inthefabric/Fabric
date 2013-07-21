@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Fabric.Domain;
@@ -134,7 +135,8 @@ namespace Fabric.Infrastructure.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IDictionary<string, string> ToMapAt(int pCommandIndex, int pResultIndex) {
-			return vResult.GetMapResultsAt(pCommandIndex)[pResultIndex];
+			IList<IDictionary<string, string>> list = vResult.GetMapResultsAt(pCommandIndex);
+			return (list == null ? null : list[pResultIndex]);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

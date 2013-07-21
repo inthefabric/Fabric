@@ -160,8 +160,8 @@ namespace Fabric.Infrastructure.Data {
 			vLatestCmd.CmdId = vCmdIndex+"";
 			vCmdIndex++;
 
-			Log.Debug(vApiCtx.ContextId, "CMD", vLatestCmd.CmdId+": "+vLatestCmd.Cmd+" => "+
-				string.Join(" // ", vLatestCmd.Args));
+			//Log.Debug(vApiCtx.ContextId, "CMD", vLatestCmd.CmdId+": "+vLatestCmd.Cmd+" => "+
+			//	string.Join(" // ", vLatestCmd.Args));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
