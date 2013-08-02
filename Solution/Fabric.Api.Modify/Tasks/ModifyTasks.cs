@@ -74,7 +74,6 @@ namespace Fabric.Api.Modify.Tasks {
 			
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<Factor>(x => x.FactorId, pFactorId)
-					.CustomStep("scatter()") //TODO: resolve "scatter" workaround
 					.HasNot(x => x.Deleted) //Factor is not deleted
 					.As(out factorAlias)
 				.InMemberCreates.FromMember
@@ -255,9 +254,7 @@ namespace Fabric.Api.Modify.Tasks {
 			IWeaverQuery q;
 			
 			if ( pDisamb == null ) {
-				q = c.CustomStep("scatter()") //TODO: resolve "scatter" workaround
-					.HasNot(x => x.Disamb)
-					.ToQuery();
+				q = c.HasNot(x => x.Disamb).ToQuery();
 			}
 			else {
 				q = c.CustomStep(

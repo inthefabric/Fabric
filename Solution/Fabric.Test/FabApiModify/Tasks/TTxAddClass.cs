@@ -50,8 +50,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void BuildTx() {
+		[TestCase("my disamb text")]
+		[TestCase(null)]
+		public void BuildTx(string pDisamb) {
+			vDisamb = pDisamb;
+
 			IWeaverVarAlias<Member> memVar = GetTxVar<Member>("_V0");
 			IWeaverVarAlias<Class> classVar;
 

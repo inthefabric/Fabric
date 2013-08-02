@@ -80,7 +80,6 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountCodes() {
 			IWeaverQuery q = GetVertexByPropQuery<OauthGrant>(
-				".scatter()"+ //TODO: resolve "scatter" workaround
 				".hasNot('"+PropDbName.OauthGrant_Code+"').count()");
 			return ApiCtx.ExecuteForTest(q).ToIntAt(0, 0);
 		}

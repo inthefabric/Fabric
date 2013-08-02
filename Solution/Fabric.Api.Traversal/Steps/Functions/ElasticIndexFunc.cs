@@ -18,13 +18,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected ElasticIndexFunc(IPath pPath) : base(pPath) {
-			Path.AddSegment(this, "query()"); //TODO: once it's available, update to "V" notation
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected void FinishIndexStep() {
-			Path.AddSegment(this, "vertices()");
-			Path.AddSegment(this, "_()");
+			Path.AddSegment(this, "V");
 		}
 
 
@@ -67,7 +61,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			string pp = Path.AddParam(new WeaverQueryVal(PropName));
 			string vp = Path.AddParam(new WeaverQueryVal(Value));
 			Path.AddSegment(this, "has("+pp+","+vGremlinOp+","+vp+")");
-			FinishIndexStep();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -112,8 +105,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 				string tp = Path.AddParam(new WeaverQueryVal(t));
 				Path.AddSegment(this, "has("+pp+","+TextNamespace+"CONTAINS,"+tp+")");
 			}
-
-			FinishIndexStep();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

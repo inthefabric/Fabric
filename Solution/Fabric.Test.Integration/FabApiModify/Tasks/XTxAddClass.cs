@@ -15,6 +15,7 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("Class Name", null, "Class Note")]
 		[TestCase("Class Name", "Class Disambiguation", "Class Note")]
 		public void Success(string pName, string pDisamb, string pNote) {
 			IWeaverVarAlias<Member> memVar;

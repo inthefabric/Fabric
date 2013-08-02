@@ -95,7 +95,6 @@ namespace Fabric.Test.Integration.FabApiOauth.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		private int CountTokens() {
 			IWeaverQuery q = GetVertexByPropQuery<OauthAccess>(
-				".scatter()"+ //TODO: resolve "scatter" workaround
 				".hasNot('"+PropDbName.OauthAccess_Token+"').count()");
 			return ApiCtx.ExecuteForTest(q).ToIntAt(0, 0);
 		}
