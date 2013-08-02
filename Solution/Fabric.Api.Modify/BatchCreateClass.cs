@@ -8,11 +8,11 @@ using Fabric.Domain;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
+using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
-using Fabric.Infrastructure.Data;
 
 namespace Fabric.Api.Modify {
 	
@@ -128,6 +128,11 @@ namespace Fabric.Api.Modify {
 			var classes = new List<Class>();
 			var txList = new List<IWeaverScript>();
 
+			var txb = new TxBuilder();
+			IWeaverVarAlias<Member> memVar;
+			txb.GetVertexByVertexId(GetContextMember(), out memVar, "_M");
+			txList.Add(txb.Finish());
+
 			for ( int i = 0 ; i < n ; ++i ) {
 				int index = pIndexes[i];
 				FabBatchResult res = vResults[index];
@@ -135,9 +140,8 @@ namespace Fabric.Api.Modify {
 				try {
 					CreateClass cc = vCreateFuncs[index];
 					IWeaverVarAlias<Class> classVar;
-					IWeaverVarAlias<Member> memVar;
 
-					TxBuilder txb = cc.GetFullTxForBatch(ApiCtx, out memVar, out classVar);
+					txb = cc.GetTxForBatch(ApiCtx, memVar, out classVar);
 
 					txb.Transaction.AddQuery(
 						Weave.Inst.FromVar(classVar).Property(x => x.Id).ToQuery()
@@ -164,7 +168,7 @@ namespace Fabric.Api.Modify {
 			
 			if ( FailRequestIndexForTest-- == 0 ) {
 				var q = new WeaverQuery();
-				q.FinalizeQuery("throw new Exception('FailRequest')");
+				q.FinalizeQuery("throw new Exception('BatchCreateClassTestFailure')");
 				txList.Add(q);
 			}
 

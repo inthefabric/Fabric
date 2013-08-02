@@ -95,17 +95,14 @@ namespace Fabric.Api.Modify {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal TxBuilder GetFullTxForBatch(IApiContext pApiCtx, out IWeaverVarAlias<Member> pMemVar, 
+		internal TxBuilder GetTxForBatch(IApiContext pApiCtx, IWeaverVarAlias<Member> pMemVar, 
 																out IWeaverVarAlias<Class> pClassVar) {
 			SetApiCtx(pApiCtx);
-			return GetFullTx(out pMemVar, out pClassVar);
-		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		internal void AppendTxForBatch(IApiContext pApiCtx, TxBuilder pTxBuild,
-								IWeaverVarAlias<Member> pMemVar, out IWeaverVarAlias<Class> pClassVar) {
-			SetApiCtx(pApiCtx);
-			AppendTx(pTxBuild, pMemVar, out pClassVar);
+			var txb = new TxBuilder();
+			txb.RegisterVarWithTxBuilder(pMemVar);
+			AppendTx(txb, pMemVar, out pClassVar);
+			return txb;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -116,11 +113,6 @@ namespace Fabric.Api.Modify {
 			c.Disamb = vDisamb;
 			c.Note = vNote;
 			return c;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		internal Class GetClassFromResultForBatch(IDataResult pData) {
-			return GetClassFromResult(pData);
 		}
 
 	}

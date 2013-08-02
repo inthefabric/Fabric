@@ -25,6 +25,7 @@ namespace Fabric.Infrastructure.Data {
 		IDataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams);
 		IDataAccess AddQuery(IWeaverScript pWeaverScript);
 		IDataAccess AddQueries(IEnumerable<IWeaverScript> pWeaverScripts);
+		IDataAccess AddQueries(IWeaverTransaction pTx);
 
 		/*--------------------------------------------------------------------------------------------*/
 		IDataAccess AddSessionStart();

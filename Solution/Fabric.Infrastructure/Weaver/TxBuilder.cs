@@ -72,10 +72,11 @@ namespace Fabric.Infrastructure.Weaver {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetVertexByVertexId<T>(T pVertexWithVertexId, out IWeaverVarAlias<T> pVertexVar)
-																		where T : class, IVertex, new() {
+		public void GetVertexByVertexId<T>(T pVertexWithVertexId, out IWeaverVarAlias<T> pVertexVar,
+												string pVarName=null) where T : class, IVertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pVertexWithVertexId.Id).ToQuery();
-			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
+			string varName = (pVarName ?? GetNextVarName());
+			q = WeaverQuery.StoreResultAsVar(varName, q, out pVertexVar);
 			Transaction.AddQuery(q);
 			Scripts.Add(q);
 			vVarHash.Add(pVertexVar);

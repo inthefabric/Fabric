@@ -88,6 +88,15 @@ namespace Fabric.Infrastructure.Data {
 			return this;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public IDataAccess AddQueries(IWeaverTransaction pTx) {
+			foreach ( IWeaverQuery q in pTx.Queries ) {
+				OnCmd(vReq.AddQuery(q));
+			}
+
+			return this;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
