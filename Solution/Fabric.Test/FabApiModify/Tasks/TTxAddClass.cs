@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Infrastructure.Weaver;
 using Fabric.Test.Util;
@@ -13,10 +14,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		private const string Query = 
 			"_V0=[];"+ //Member
+			"_DUP=CHECKDUP"+
 			"_V1=g.addVertex(["+
 				PropDbName.Class_Name+":_TP,"+
 				PropDbName.Class_NameKey+":_TP,"+
-				PropDbName.Class_Disamb+":_TP,"+
+				"DISAMB"+
 				PropDbName.Class_Note+":_TP,"+
 				PropDbName.Artifact_ArtifactId+":_TP,"+
 				PropDbName.Artifact_Created+":_TP,"+
@@ -26,6 +28,22 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"_TRY=[A_Cr:_V1];"+
 			TestUtil.TryPropScript+
 			"g.addEdge(_V0,_V1,_TP,_PROP);";
+
+		private const string QueryDisamb = 
+			"g.V('"+PropDbName.Class_NameKey+"',_TP)"+
+				".filter{"+
+					"it.getProperty('"+PropDbName.Class_Disamb+"')?.toLowerCase()==_TP;"+
+				"};"+
+			"if(_DUP){"+
+				"return [-1,'Duplicate',_DUP.property('"+PropDbName.Artifact_ArtifactId+"').next()];"+
+			"};";
+
+		private const string QueryDisambNull = 
+			"g.V('"+PropDbName.Class_NameKey+"',_TP)"+
+				".hasNot('"+PropDbName.Class_Disamb+"');"+
+			"if(_DUP){"+
+				"return [-1,'Duplicate',_DUP.property('"+PropDbName.Artifact_ArtifactId+"').next()];"+
+			"};";
 
 		private string vName;
 		private string vDisamb;
@@ -50,7 +68,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("my disamb text")]
+		[TestCase("my DISMAB text")]
 		[TestCase(null)]
 		public void BuildTx(string pDisamb) {
 			vDisamb = pDisamb;
@@ -64,19 +82,31 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			Assert.NotNull(classVar, "ClassVar should not be null.");
 			Assert.AreEqual("_V1", classVar.Name, "Incorrect ClassVar name.");
 
-			string expect = TestUtil.InsertParamIndexes(Query, "_TP");
+			string expect = Query
+				.Replace("DISAMB", (pDisamb == null ? "" : PropDbName.Class_Disamb+":_TP,"))
+				.Replace("CHECKDUP", (pDisamb == null ? QueryDisambNull : QueryDisamb));
+
+			expect = TestUtil.InsertParamIndexes(expect, "_TP");
 			Assert.AreEqual(expect, TxBuild.Transaction.Script, "Incorrect Script.");
 
-			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", new object[] {
+			var paramList = new List<object>();
+			paramList.AddRange(new object[] {
+				vName.ToLower(),
 				vName,
 				vName.ToLower(),
-				vDisamb,
 				vNote,
 				vNewArtifactId,
 				vUtcNow.Ticks,
 				(byte)VertexFabType.Class,
 				EdgeDbName.MemberCreatesArtifact
 			});
+
+			if ( pDisamb != null ) {
+				paramList.Insert(3, vDisamb);
+				paramList.Insert(1, vDisamb.ToLower());
+			}
+
+			TestUtil.CheckParams(TxBuild.Transaction.Params, "_TP", paramList);
 		}
 
 	}

@@ -31,7 +31,7 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.AreEqual(typeof(FabArtifact), f.DtoType, "Incorrect DtoType.");
 			Assert.Null(f.Data, "Data should be null.");
 
-			p.Verify(x => x.AddSegment(f, "query()"), Times.Once());
+			p.Verify(x => x.AddSegment(f, "V"), Times.Once());
 		}
 
 
@@ -68,8 +68,6 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			Assert.AreEqual(typeof(ArtifactStep), f.ProxyStep.GetType(), "Incorrect ProxyStep type.");
 
 			p.Verify(x => x.AddSegment(f, script), Times.Once());
-			p.Verify(x => x.AddSegment(f, "vertices()"), Times.Once());
-			p.Verify(x => x.AddSegment(f, "_()"), Times.Once());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -62,6 +62,7 @@ namespace Fabric.Test.FabApiModify {
 
 			var mda = MockDataAccess.Create(OnExecute);
 			mda.MockResult.SetupToElement(vResultClass);
+			
 			MockDataList.Add(mda);
 		}
 
@@ -103,7 +104,8 @@ namespace Fabric.Test.FabApiModify {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicateClass() {
-			//TODO: mock a duplicate exception response
+			MockDataList[0].MockResult.Setup(x => x.ToStringAt(0,0)).Returns("-1");
+			MockDataList[0].MockResult.Setup(x => x.ToStringAt(0,1)).Returns("Duplicate");
 			TestUtil.CheckThrows<FabDuplicateFault>(true, TestGo);
 		}
 		

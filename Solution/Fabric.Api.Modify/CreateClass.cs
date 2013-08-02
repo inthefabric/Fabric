@@ -84,7 +84,7 @@ namespace Fabric.Api.Modify {
 					"Name conflicts with existing "+typeof(Class).Name+"Id="+pData.ToLongAt(0,2)+".");
 			}
 			
-			return pData.ToElementAt<Class>(0,0);
+			return pData.ToElement<Class>();
 		}
 		
 
