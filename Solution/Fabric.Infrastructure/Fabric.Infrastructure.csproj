@@ -43,16 +43,17 @@
     <Reference Include="log4net">
       <HintPath>..\..\Packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="RexConnectClient.Core, Version=0.3.5.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RexConnectClient.Core, Version=0.4.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\RexConnectClient.0.3.5.2\lib\RexConnectClient.Core.dll</HintPath>
+      <HintPath>..\..\Packages\RexConnectClient.0.4.0.1\lib\RexConnectClient.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.56.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.56\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver.0.5.2\lib\Weaver.Core.dll</HintPath>
     </Reference>
