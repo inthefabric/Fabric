@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Weaver.Titan</id>
-    <version>0.5.2</version>
-    <title>Weaver.Titan</title>
+    <id>Weaver.Exec.RexConnect</id>
+    <version>0.5.3</version>
+    <title>Weaver.Exec.RexConnect</title>
     <authors>Zach Kinstner</authors>
     <owners>Zach Kinstner</owners>
     <licenseUrl>https://github.com/inthefabric/Weaver/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/inthefabric/Weaver</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extends Weaver with Titan-specific data-type and query functionality.</description>
-    <releaseNotes>- Minor "AddEdgeVci" improvement.
-- Added "HasVci" and "HasNotVci" steps for performing vertex-centric queries.</releaseNotes>
+    <description>Extends Weaver with support for RexConnect request execution.</description>
+    <releaseNotes>Various changes to support Blueprints 2.4.0.</releaseNotes>
     <copyright>Zach Kinstner</copyright>
     <language />
-    <tags>Gremlin Titan Neo4j Dex Blueprints TinkerPop</tags>
+    <tags>RexConnect RexPro Rexster Gremlin Blueprints</tags>
     <dependencies>
-      <dependency id="Weaver" version="0.5.2" />
+      <dependency id="RexConnectClient" version="0.3.3.0" />
+      <dependency id="Weaver" version="0.5.3" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />

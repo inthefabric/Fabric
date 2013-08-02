@@ -6,8 +6,8 @@ using Fabric.Api.Services;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure.Domain;
 using Fabric.Test.Integration.Common;
-using NUnit.Framework;
 using Nancy;
+using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabInfra {
 
@@ -58,7 +58,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			s.Position = 0;
 			return new StreamReader(s).ReadToEnd();
 		}
-		
+
 	}
 
 }

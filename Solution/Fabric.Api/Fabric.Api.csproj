@@ -72,13 +72,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
-    <Reference Include="Weaver.Core, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Core, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.5.2\lib\Weaver.Core.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.0.5.3\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.2\lib\Weaver.Exec.RexConnect.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.3\lib\Weaver.Exec.RexConnect.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
