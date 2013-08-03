@@ -180,4 +180,73 @@ Note that each vertex type has its own Id property name. For example, a Member h
   <data name="ToUser" xml:space="preserve">
     <value>Restricts the results to include only User verts.</value>
   </data>
+  <data name="AppId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="AppNameContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ArtifactCreated" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ArtifactId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassDisambContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassName" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassNameContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorCreated" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorIdentorValue" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorIdentorValueContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="InstanceDisambContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="InstanceId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="InstanceNameContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MemberId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MemberTypeAssignId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UrlFullPath" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UrlId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UrlNameContains" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

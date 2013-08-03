@@ -132,4 +132,79 @@
   <data name="HasId_Id" xml:space="preserve">
     <value>The target vertex Id.</value>
   </data>
+  <data name="AppId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="AppNameContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="AppName_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ArtifactCreated_Operation" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ArtifactCreated_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ArtifactId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassDisambContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassNameContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="ClassName_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorCreated_Operation" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorCreated_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorIdentorValueContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorIdentorValue_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="FactorId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="InstanceDisambContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="InstanceId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="InstanceNameContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MemberId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="MemberTypeAssignId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UrlFullPath_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UrlId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UrlNameContains_Tokens" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UserId_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="UserName_Value" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

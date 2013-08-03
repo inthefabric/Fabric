@@ -11,10 +11,10 @@ using Fabric.Api.Meta.Lang;
 using Fabric.Api.Modify;
 using Fabric.Api.Oauth;
 using Fabric.Api.Traversal;
+using Fabric.Api.Traversal.Steps.Functions;
 using Fabric.Domain.Meta;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Traversal;
-using Weaver.Core.Elements;
 
 namespace Fabric.Api.Meta {
 
@@ -333,21 +333,10 @@ namespace Fabric.Api.Meta {
 			SpecBuilder.FillSpecDtoLinks(n, sd);
 
 			if ( pType == typeof(FabRoot) ) {
-				IList<string> rootLinks = SchemaHelper.GetRootLinks();
-				sd.TraversalLinks = new List<FabSpecTravLink>();
+				sd.TraversalFunctions = FuncRegistry.GetAvailableFuncs(pType, true, false);
 
-				foreach ( string name in rootLinks ) {
-					var link = new FabSpecTravLink();
-					link.Name = "Contains"+name+"List";
-					link.Type = "RootContains"+name;
-					link.Description = GetDtoLinkText(link.Type);
-					link.IsOutgoing = true;
-					link.From = pType.Name;
-					link.FromConn = WeaverEdgeConn.InOne+"";
-					link.Relation = "Contains";
-					link.To = "Fab"+name;
-					link.ToConn = WeaverEdgeConn.OutZeroOrMore+"";
-					sd.TraversalLinks.Add(link);
+				for ( int i = 0 ; i < sd.TraversalFunctions.Count ; i++ ) {
+					sd.TraversalFunctions[i] = sd.TraversalFunctions[i].TrimStart(new [] { '/' });
 				}
 			}
 

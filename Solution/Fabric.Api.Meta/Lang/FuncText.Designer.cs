@@ -61,6 +61,51 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string AppId {
+            get {
+                return ResourceManager.GetString("AppId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string AppNameContains {
+            get {
+                return ResourceManager.GetString("AppNameContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ArtifactCreated {
+            get {
+                return ResourceManager.GetString("ArtifactCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ArtifactId {
+            get {
+                return ResourceManager.GetString("ArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creates a named alias for the current step of the traversal path. Execution of the traversal path can return to this alias using the [[Back|Func|Back]] function..
         /// </summary>
         internal static string As {
@@ -84,6 +129,78 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ClassDisambContains {
+            get {
+                return ResourceManager.GetString("ClassDisambContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ClassId {
+            get {
+                return ResourceManager.GetString("ClassId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ClassName {
+            get {
+                return ResourceManager.GetString("ClassName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string ClassNameContains {
+            get {
+                return ResourceManager.GetString("ClassNameContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string FactorCreated {
+            get {
+                return ResourceManager.GetString("FactorCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string FactorId {
+            get {
+                return ResourceManager.GetString("FactorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string FactorIdentorValue {
+            get {
+                return ResourceManager.GetString("FactorIdentorValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string FactorIdentorValueContains {
+            get {
+                return ResourceManager.GetString("FactorIdentorValueContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restricts the results to a single Id value. 
         ///
         ///Note that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId..
@@ -95,11 +212,56 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string InstanceDisambContains {
+            get {
+                return ResourceManager.GetString("InstanceDisambContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string InstanceId {
+            get {
+                return ResourceManager.GetString("InstanceId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string InstanceNameContains {
+            get {
+                return ResourceManager.GetString("InstanceNameContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution..
         /// </summary>
         internal static string Limit {
             get {
                 return ResourceManager.GetString("Limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string MemberId {
+            get {
+                return ResourceManager.GetString("MemberId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string MemberTypeAssignId {
+            get {
+                return ResourceManager.GetString("MemberTypeAssignId", resourceCulture);
             }
         }
         
@@ -145,6 +307,51 @@ namespace Fabric.Api.Meta.Lang {
         internal static string ToUser {
             get {
                 return ResourceManager.GetString("ToUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string UrlFullPath {
+            get {
+                return ResourceManager.GetString("UrlFullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string UrlId {
+            get {
+                return ResourceManager.GetString("UrlId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string UrlNameContains {
+            get {
+                return ResourceManager.GetString("UrlNameContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string UserId {
+            get {
+                return ResourceManager.GetString("UserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
     }

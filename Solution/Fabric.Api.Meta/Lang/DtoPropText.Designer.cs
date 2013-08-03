@@ -1375,20 +1375,20 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A unique, valid absolute URL. The string must include the link&apos;s protocol (such as &apos;http://&apos;)..
+        /// </summary>
+        internal static string Url_FullPath {
+            get {
+                return ResourceManager.GetString("Url_FullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A descriptive name or title..
         /// </summary>
         internal static string Url_Name {
             get {
                 return ResourceManager.GetString("Url_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A unique, valid absolute URL. The string must include the link&apos;s protocol (such as &apos;http://&apos;)..
-        /// </summary>
-        internal static string Url_Path {
-            get {
-                return ResourceManager.GetString("Url_Path", resourceCulture);
             }
         }
         
