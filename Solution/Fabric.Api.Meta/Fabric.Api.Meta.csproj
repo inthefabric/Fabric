@@ -169,6 +169,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="LatestSpec.json" />
     <None Include="packages.config" />
     <None Include="SpecBuilder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

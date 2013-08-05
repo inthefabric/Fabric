@@ -61,7 +61,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains an App by its ArtifactId..
         /// </summary>
         internal static string AppId {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains an Artifact by its ArtifactId..
         /// </summary>
         internal static string ArtifactId {
             get {
@@ -138,7 +138,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a Class by its ArtifactId..
         /// </summary>
         internal static string ClassId {
             get {
@@ -174,7 +174,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains an Factor by its FactorId.
         /// </summary>
         internal static string FactorId {
             get {
@@ -221,7 +221,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains an Instance by its ArtifactId..
         /// </summary>
         internal static string InstanceId {
             get {
@@ -248,7 +248,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a Member by its MemberId..
         /// </summary>
         internal static string MemberId {
             get {
@@ -257,7 +257,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a MemberTypeAssign by its MemberTypeAssignId..
         /// </summary>
         internal static string MemberTypeAssignId {
             get {
@@ -320,7 +320,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a Url by its ArtifactId..
         /// </summary>
         internal static string UrlId {
             get {
@@ -338,7 +338,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a User by its ArtifactId..
         /// </summary>
         internal static string UserId {
             get {

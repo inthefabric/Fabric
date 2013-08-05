@@ -181,7 +181,7 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Restricts the results to include only User verts.</value>
   </data>
   <data name="AppId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains an App by its ArtifactId.</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>TODO</value>
@@ -193,13 +193,13 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>TODO</value>
   </data>
   <data name="ArtifactId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains an Artifact by its ArtifactId.</value>
   </data>
   <data name="ClassDisambContains" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="ClassId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a Class by its ArtifactId.</value>
   </data>
   <data name="ClassName" xml:space="preserve">
     <value>TODO</value>
@@ -211,7 +211,7 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>TODO</value>
   </data>
   <data name="FactorId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains an Factor by its FactorId</value>
   </data>
   <data name="FactorIdentorValue" xml:space="preserve">
     <value>TODO</value>
@@ -223,28 +223,28 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>TODO</value>
   </data>
   <data name="InstanceId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains an Instance by its ArtifactId.</value>
   </data>
   <data name="InstanceNameContains" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="MemberId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a Member by its MemberId.</value>
   </data>
   <data name="MemberTypeAssignId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a MemberTypeAssign by its MemberTypeAssignId.</value>
   </data>
   <data name="UrlFullPath" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="UrlId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a Url by its ArtifactId.</value>
   </data>
   <data name="UrlNameContains" xml:space="preserve">
     <value>TODO</value>
   </data>
   <data name="UserId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a User by its ArtifactId.</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>TODO</value>

@@ -2175,13 +2175,13 @@
           "TraversalFunctions": [
             {
               "Name": "AppId",
-              "Description": "TODO",
+              "Description": "Obtains an [[App|Object|FabApp]] by its ArtifactId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The ArtifactId of the target [[App|Object|FabApp]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2238,13 +2238,13 @@
             },
             {
               "Name": "ArtifactId",
-              "Description": "TODO",
+              "Description": "Obtains an [[Artifact|Object|FabArtifact]] by its ArtifactId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The ArtifactId of the target [[Artifact|Object|FabArtifact]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2294,13 +2294,13 @@
             },
             {
               "Name": "ClassId",
-              "Description": "TODO",
+              "Description": "Obtains a [[Class|Object|FabClass]] by its ArtifactId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The ArtifactId of the target [[Class|Object|FabClass]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2357,13 +2357,13 @@
             },
             {
               "Name": "FactorId",
-              "Description": "TODO",
+              "Description": "Obtains an [[Factor|Object|FabFactor]] by its FactorId",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The FactorId of the target [[Factor|Object|FabFactor]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2427,13 +2427,13 @@
             },
             {
               "Name": "InstanceId",
-              "Description": "TODO",
+              "Description": "Obtains an [[Instance|Object|FabInstance]] by its ArtifactId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The ArtifactId of the target [[Instance|Object|FabInstance]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2479,13 +2479,13 @@
             },
             {
               "Name": "MemberId",
-              "Description": "TODO",
+              "Description": "Obtains a [[Member|Object|FabMember]] by its MemberId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The MemberId of the target [[Member|Object|FabMember]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2493,13 +2493,13 @@
             },
             {
               "Name": "MemberTypeAssignId",
-              "Description": "TODO",
+              "Description": "Obtains a [[MemberTypeAssign|Object|FabMemberTypeAssign]] by its MemberTypeAssignId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The MemberTypeAssignId of the target [[MemberTypeAssign|Object|FabMemberTypeAssign]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2551,13 +2551,13 @@
             },
             {
               "Name": "UrlId",
-              "Description": "TODO",
+              "Description": "Obtains a [[Url|Object|FabUrl]] by its ArtifactId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The UrlId of the target [[Url|Object|FabUrl]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2579,13 +2579,13 @@
             },
             {
               "Name": "UserId",
-              "Description": "TODO",
+              "Description": "Obtains a [[User|Object|FabUser]] by its ArtifactId.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "long",
-                  "Description": "TODO",
+                  "Description": "The UserId of the target [[User|Object|FabUser]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -5305,12 +5305,12 @@
   "RequestUri": "/meta/spec",
   "DbMs": 0,
   "TotalMs": 0,
-  "DataLen": 151265,
+  "DataLen": 152232,
   "StartIndex": 0,
   "Count": 0,
   "HasMore": false,
   "AppId": 0,
   "UserId": 0,
-  "Timestamp": 635111380364321200,
+  "Timestamp": 635112605171868800,
   "HttpStatus": 200
 }
