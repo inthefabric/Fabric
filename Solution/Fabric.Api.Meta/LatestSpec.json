@@ -1,10 +1,10 @@
 ﻿{
   "Data": [
     {
-      "BuildVersion": "0.1.30.4ce2e40",
+      "BuildVersion": "0.2.0.65fa533",
       "BuildYear": 2013,
-      "BuildMonth": 5,
-      "BuildDay": 19,
+      "BuildMonth": 8,
+      "BuildDay": 5,
       "Objects": [
         {
           "Name": "FabApp",
@@ -5305,12 +5305,12 @@
   "RequestUri": "/meta/spec",
   "DbMs": 0,
   "TotalMs": 0,
-  "DataLen": 154424,
+  "DataLen": 154422,
   "StartIndex": 0,
   "Count": 0,
   "HasMore": false,
   "AppId": 0,
   "UserId": 0,
-  "Timestamp": 635112616057073200,
+  "Timestamp": 635113326955604500,
   "HttpStatus": 200
 }
