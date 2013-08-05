@@ -142,10 +142,10 @@
     <value>The Name of the target App.</value>
   </data>
   <data name="ArtifactCreated_Operation" xml:space="preserve">
-    <value>TODO</value>
+    <value>The operator to use for this search.</value>
   </data>
   <data name="ArtifactCreated_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The date/time to use for this search.</value>
   </data>
   <data name="ArtifactId_Value" xml:space="preserve">
     <value>The ArtifactId of the target Artifact.</value>
@@ -163,10 +163,10 @@
     <value>The Name of the target Class.</value>
   </data>
   <data name="FactorCreated_Operation" xml:space="preserve">
-    <value>TODO</value>
+    <value>The operator to use for this search.</value>
   </data>
   <data name="FactorCreated_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The date/time to use for this search.</value>
   </data>
   <data name="FactorIdentorValueContains_Tokens" xml:space="preserve">
     <value>The IdentorValue search tokens.</value>

@@ -190,7 +190,7 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Search for Apps using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
   </data>
   <data name="ArtifactCreated" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Artifacts by their creation date/time.</value>
   </data>
   <data name="ArtifactId" xml:space="preserve">
     <value>Obtains an Artifact by its ArtifactId.</value>
@@ -208,7 +208,7 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
   </data>
   <data name="FactorCreated" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Factors by their creation date/time.</value>
   </data>
   <data name="FactorId" xml:space="preserve">
     <value>Obtains an Factor by its FactorId</value>

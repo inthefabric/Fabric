@@ -88,7 +88,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The operator to use for this search..
         /// </summary>
         internal static string ArtifactCreated_Operation {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The date/time to use for this search..
         /// </summary>
         internal static string ArtifactCreated_Value {
             get {
@@ -169,7 +169,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The operator to use for this search..
         /// </summary>
         internal static string FactorCreated_Operation {
             get {
@@ -178,7 +178,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The date/time to use for this search..
         /// </summary>
         internal static string FactorCreated_Value {
             get {

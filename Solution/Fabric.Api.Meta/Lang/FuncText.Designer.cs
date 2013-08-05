@@ -88,7 +88,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Artifacts by their creation date/time..
         /// </summary>
         internal static string ArtifactCreated {
             get {
@@ -165,7 +165,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Factors by their creation date/time..
         /// </summary>
         internal static string FactorCreated {
             get {
