@@ -10,12 +10,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		private static List<FuncRegistryItem> RegItems;
 		private static Dictionary<string, FuncRegistryItem> RegItemMap;
+		private static bool IsInit = Init();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void Init() {
-			if ( RegItems != null ) { return; }
+		private static bool Init() {
 			RegItems = new List<FuncRegistryItem>();
 			RegItemMap = new Dictionary<string, FuncRegistryItem>();
 
@@ -38,13 +38,12 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			Register<ToUserFunc>(p => new ToUserFunc(p), ToUserFunc.AllowedForStep);
 
 			RegItems.Sort((a,b) => a.Uri.CompareTo(b.Uri));
+			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		internal static void Register<T>(Func<IPath, IFunc> pNew,
 														Func<Type, bool> pAllow) where T : IFunc {
-			Init();
-
 			FuncAttribute fa = (FuncAttribute)typeof(T)
 				.GetCustomAttributes(typeof(FuncAttribute), false)[0];
 			string command = fa.Name;
@@ -71,8 +70,6 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static List<string> GetAvailableFuncs(Type pDtoType, bool pUri, bool pIncludeInternal) {
-			Init();
-
 			if ( !typeof(IFabObject).IsAssignableFrom(pDtoType) ) {
 				throw new Exception("DtoType must implement IFabDto.");
 			}
