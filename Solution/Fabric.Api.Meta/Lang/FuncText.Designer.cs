@@ -70,7 +70,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains an App by its entire (case-insensitive) Name..
         /// </summary>
         internal static string AppName {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Apps using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property..
         /// </summary>
         internal static string AppNameContains {
             get {
@@ -129,7 +129,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property..
         /// </summary>
         internal static string ClassDisambContains {
             get {
@@ -147,7 +147,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a Class by its entire (case-insensitive) Name..
         /// </summary>
         internal static string ClassName {
             get {
@@ -156,7 +156,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property..
         /// </summary>
         internal static string ClassNameContains {
             get {
@@ -183,7 +183,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a Factor by its full (case-insensitive) IdentorValue..
         /// </summary>
         internal static string FactorIdentorValue {
             get {
@@ -192,7 +192,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Factors using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the IdentorValue property..
         /// </summary>
         internal static string FactorIdentorValueContains {
             get {
@@ -212,7 +212,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Instances using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property..
         /// </summary>
         internal static string InstanceDisambContains {
             get {
@@ -230,7 +230,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Instances using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property..
         /// </summary>
         internal static string InstanceNameContains {
             get {
@@ -311,7 +311,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a Url by its entire (case-insensitive) FullPath..
         /// </summary>
         internal static string UrlFullPath {
             get {
@@ -329,7 +329,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Search for Urls using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property..
         /// </summary>
         internal static string UrlNameContains {
             get {
@@ -347,7 +347,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Obtains a User by its entire (case-insensitive) Name..
         /// </summary>
         internal static string UserName {
             get {

@@ -184,10 +184,10 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Obtains an App by its ArtifactId.</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains an App by its entire (case-insensitive) Name.</value>
   </data>
   <data name="AppNameContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Apps using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
   </data>
   <data name="ArtifactCreated" xml:space="preserve">
     <value>TODO</value>
@@ -196,16 +196,16 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Obtains an Artifact by its ArtifactId.</value>
   </data>
   <data name="ClassDisambContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.</value>
   </data>
   <data name="ClassId" xml:space="preserve">
     <value>Obtains a Class by its ArtifactId.</value>
   </data>
   <data name="ClassName" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a Class by its entire (case-insensitive) Name.</value>
   </data>
   <data name="ClassNameContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
   </data>
   <data name="FactorCreated" xml:space="preserve">
     <value>TODO</value>
@@ -214,19 +214,19 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Obtains an Factor by its FactorId</value>
   </data>
   <data name="FactorIdentorValue" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a Factor by its full (case-insensitive) IdentorValue.</value>
   </data>
   <data name="FactorIdentorValueContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Factors using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the IdentorValue property.</value>
   </data>
   <data name="InstanceDisambContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Instances using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.</value>
   </data>
   <data name="InstanceId" xml:space="preserve">
     <value>Obtains an Instance by its ArtifactId.</value>
   </data>
   <data name="InstanceNameContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Instances using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
   </data>
   <data name="MemberId" xml:space="preserve">
     <value>Obtains a Member by its MemberId.</value>
@@ -235,18 +235,18 @@ Note that each vertex type has its own Id property name. For example, a Member h
     <value>Obtains a MemberTypeAssign by its MemberTypeAssignId.</value>
   </data>
   <data name="UrlFullPath" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a Url by its entire (case-insensitive) FullPath.</value>
   </data>
   <data name="UrlId" xml:space="preserve">
     <value>Obtains a Url by its ArtifactId.</value>
   </data>
   <data name="UrlNameContains" xml:space="preserve">
-    <value>TODO</value>
+    <value>Search for Urls using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
   </data>
   <data name="UserId" xml:space="preserve">
     <value>Obtains a User by its ArtifactId.</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>TODO</value>
+    <value>Obtains a User by its entire (case-insensitive) Name.</value>
   </data>
 </root>

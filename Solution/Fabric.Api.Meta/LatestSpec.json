@@ -2189,13 +2189,13 @@
             },
             {
               "Name": "AppName",
-              "Description": "TODO",
+              "Description": "Obtains an [[App|Object|FabApp]] by its entire (case-insensitive) Name.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name of the target [[App|Object|FabApp]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2203,13 +2203,13 @@
             },
             {
               "Name": "AppNameContains",
-              "Description": "TODO",
+              "Description": "Search for [[Apps|Object|FabApp]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2280,13 +2280,13 @@
             },
             {
               "Name": "ClassDisambContains",
-              "Description": "TODO",
+              "Description": "Search for [[Classes|Object|FabClass]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Disamb search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2308,13 +2308,13 @@
             },
             {
               "Name": "ClassName",
-              "Description": "TODO",
+              "Description": "Obtains a [[Class|Object|FabClass]] by its entire (case-insensitive) Name.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name of the target [[Class|Object|FabClass]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2322,13 +2322,13 @@
             },
             {
               "Name": "ClassNameContains",
-              "Description": "TODO",
+              "Description": "Search for [[Classes|Object|FabClass]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2371,13 +2371,13 @@
             },
             {
               "Name": "FactorIdentorValue",
-              "Description": "TODO",
+              "Description": "Obtains a [[Factor|Object|FabFactor]] by its full (case-insensitive) IdentorValue.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The IdentorValue of the target [[Factor|Object|FabFactor]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2385,13 +2385,13 @@
             },
             {
               "Name": "FactorIdentorValueContains",
-              "Description": "TODO",
+              "Description": "Search for [[Factors|Object|FabFactor]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the IdentorValue property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The IdentorValue search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2413,13 +2413,13 @@
             },
             {
               "Name": "InstanceDisambContains",
-              "Description": "TODO",
+              "Description": "Search for [[Instances|Object|FabInstance]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Disamb search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2441,13 +2441,13 @@
             },
             {
               "Name": "InstanceNameContains",
-              "Description": "TODO",
+              "Description": "Search for [[Instances|Object|FabInstance]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2537,13 +2537,13 @@
             },
             {
               "Name": "UrlFullPath",
-              "Description": "TODO",
+              "Description": "Obtains a [[Url|Object|FabUrl]] by its entire (case-insensitive) FullPath.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The FullPath of the target [[Url|Object|FabUrl]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2565,13 +2565,13 @@
             },
             {
               "Name": "UrlNameContains",
-              "Description": "TODO",
+              "Description": "Search for [[Urls|Object|FabUrl]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name search tokens.",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -2593,13 +2593,13 @@
             },
             {
               "Name": "UserName",
-              "Description": "TODO",
+              "Description": "Obtains a [[User|Object|FabUser]] by its entire (case-insensitive) Name.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The Name of the target [[User|Object|FabUser]].",
                   "FabType": "FabSpecTravFuncParam"
                 }
               ],
@@ -5305,12 +5305,12 @@
   "RequestUri": "/meta/spec",
   "DbMs": 0,
   "TotalMs": 0,
-  "DataLen": 152232,
+  "DataLen": 154162,
   "StartIndex": 0,
   "Count": 0,
   "HasMore": false,
   "AppId": 0,
   "UserId": 0,
-  "Timestamp": 635112605171868800,
+  "Timestamp": 635112614191653000,
   "HttpStatus": 200
 }

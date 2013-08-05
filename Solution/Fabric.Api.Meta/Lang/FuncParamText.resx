@@ -136,10 +136,10 @@
     <value>The ArtifactId of the target App.</value>
   </data>
   <data name="AppNameContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name search tokens.</value>
   </data>
   <data name="AppName_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name of the target App.</value>
   </data>
   <data name="ArtifactCreated_Operation" xml:space="preserve">
     <value>TODO</value>
@@ -151,16 +151,16 @@
     <value>The ArtifactId of the target Artifact.</value>
   </data>
   <data name="ClassDisambContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Disamb search tokens.</value>
   </data>
   <data name="ClassId_Value" xml:space="preserve">
     <value>The ArtifactId of the target Class.</value>
   </data>
   <data name="ClassNameContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name search tokens.</value>
   </data>
   <data name="ClassName_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name of the target Class.</value>
   </data>
   <data name="FactorCreated_Operation" xml:space="preserve">
     <value>TODO</value>
@@ -169,22 +169,22 @@
     <value>TODO</value>
   </data>
   <data name="FactorIdentorValueContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The IdentorValue search tokens.</value>
   </data>
   <data name="FactorIdentorValue_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The IdentorValue of the target Factor.</value>
   </data>
   <data name="FactorId_Value" xml:space="preserve">
     <value>The FactorId of the target Factor.</value>
   </data>
   <data name="InstanceDisambContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Disamb search tokens.</value>
   </data>
   <data name="InstanceId_Value" xml:space="preserve">
     <value>The ArtifactId of the target Instance.</value>
   </data>
   <data name="InstanceNameContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name search tokens.</value>
   </data>
   <data name="MemberId_Value" xml:space="preserve">
     <value>The MemberId of the target Member.</value>
@@ -193,18 +193,18 @@
     <value>The MemberTypeAssignId of the target MemberTypeAssign.</value>
   </data>
   <data name="UrlFullPath_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The FullPath of the target Url.</value>
   </data>
   <data name="UrlId_Value" xml:space="preserve">
     <value>The UrlId of the target Url.</value>
   </data>
   <data name="UrlNameContains_Tokens" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name search tokens.</value>
   </data>
   <data name="UserId_Value" xml:space="preserve">
     <value>The UserId of the target User.</value>
   </data>
   <data name="UserName_Value" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Name of the target User.</value>
   </data>
 </root>

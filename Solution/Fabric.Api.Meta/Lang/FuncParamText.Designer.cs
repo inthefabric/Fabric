@@ -70,7 +70,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name of the target App..
         /// </summary>
         internal static string AppName_Value {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name search tokens..
         /// </summary>
         internal static string AppNameContains_Tokens {
             get {
@@ -133,7 +133,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Disamb search tokens..
         /// </summary>
         internal static string ClassDisambContains_Tokens {
             get {
@@ -151,7 +151,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name of the target Class..
         /// </summary>
         internal static string ClassName_Value {
             get {
@@ -160,7 +160,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name search tokens..
         /// </summary>
         internal static string ClassNameContains_Tokens {
             get {
@@ -196,7 +196,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The IdentorValue of the target Factor..
         /// </summary>
         internal static string FactorIdentorValue_Value {
             get {
@@ -205,7 +205,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The IdentorValue search tokens..
         /// </summary>
         internal static string FactorIdentorValueContains_Tokens {
             get {
@@ -223,7 +223,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Disamb search tokens..
         /// </summary>
         internal static string InstanceDisambContains_Tokens {
             get {
@@ -241,7 +241,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name search tokens..
         /// </summary>
         internal static string InstanceNameContains_Tokens {
             get {
@@ -286,7 +286,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The FullPath of the target Url..
         /// </summary>
         internal static string UrlFullPath_Value {
             get {
@@ -304,7 +304,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name search tokens..
         /// </summary>
         internal static string UrlNameContains_Tokens {
             get {
@@ -322,7 +322,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Name of the target User..
         /// </summary>
         internal static string UserName_Value {
             get {
