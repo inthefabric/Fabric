@@ -12,6 +12,7 @@
 // Changes made to this source file will be overwritten
 // Generated on <#= DateTime.Now.ToString() #>
 
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
@@ -46,7 +47,7 @@ foreach ( string name in vertexNames ) {
 #>
 
 	/*================================================================================================*/
-	[Func("<#= name #>Id")]
+	[Func("<#= name #>Id", ReturnsObject=typeof(Fab<#= name #>))]
 	public class <#= name #>IdIndexFunc : IdIndexFunc {
 
 

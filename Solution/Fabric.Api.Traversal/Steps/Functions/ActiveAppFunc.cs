@@ -1,9 +1,10 @@
-﻿using Fabric.Infrastructure.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	[Func("ActiveApp", IsInternal=true)]
+	[Func("ActiveApp", IsInternal=true, ReturnsObject=typeof(FabApp))]
 	public class ActiveAppFunc : AppIdIndexFunc, IFinalStep {
 
 		public long Index { get { return 0; } }

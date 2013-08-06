@@ -388,6 +388,9 @@ namespace Fabric.Api.Meta {
 			string resxKey = (fa.ResxKey ?? func.Name);
 			func.Description = GetFuncText(resxKey);
 			func.Uri = pUri;
+			func.ReturnsObject = (fa.ReturnsObject == null ? null : fa.ReturnsObject.Name);
+			func.ReturnsPrevious = fa.ReturnsPrevious;
+			func.ReturnsReferenced = fa.ReturnsReferenced;
 			func.Parameters = new List<FabSpecTravFuncParam>();
 
 			PropertyInfo[] props = pFuncType.GetProperties();

@@ -1,9 +1,10 @@
-﻿using Fabric.Infrastructure.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
+using Fabric.Infrastructure.Traversal;
 
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	[Func("ActiveUser", IsInternal=true)]
+	[Func("ActiveUser", IsInternal=true, ReturnsObject=typeof(FabUser))]
 	public class ActiveUserFunc : UserIdIndexFunc, IFinalStep {
 
 		public long Index { get { return 0; } }

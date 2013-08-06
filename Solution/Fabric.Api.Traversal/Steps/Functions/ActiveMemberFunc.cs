@@ -12,7 +12,7 @@ using Weaver.Core.Steps;
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	[Func("ActiveMember", IsInternal=true)]
+	[Func("ActiveMember", IsInternal=true, ReturnsObject=typeof(FabMember))]
 	public class ActiveMemberFunc : Func, IFinalStep {
 
 		private static string Script;

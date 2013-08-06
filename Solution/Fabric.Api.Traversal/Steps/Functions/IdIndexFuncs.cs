@@ -1,7 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/11/2013 9:07:33 PM
+// Generated on 8/6/2013 3:31:13 PM
 
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Domain;
 using Fabric.Infrastructure.Traversal;
@@ -30,7 +31,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ArtifactId")]
+	[Func("ArtifactId", ReturnsObject=typeof(FabArtifact))]
 	public class ArtifactIdIndexFunc : IdIndexFunc {
 
 
@@ -45,7 +46,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("AppId")]
+	[Func("AppId", ReturnsObject=typeof(FabApp))]
 	public class AppIdIndexFunc : IdIndexFunc {
 
 
@@ -61,7 +62,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ClassId")]
+	[Func("ClassId", ReturnsObject=typeof(FabClass))]
 	public class ClassIdIndexFunc : IdIndexFunc {
 
 
@@ -77,7 +78,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("InstanceId")]
+	[Func("InstanceId", ReturnsObject=typeof(FabInstance))]
 	public class InstanceIdIndexFunc : IdIndexFunc {
 
 
@@ -93,7 +94,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("MemberId")]
+	[Func("MemberId", ReturnsObject=typeof(FabMember))]
 	public class MemberIdIndexFunc : IdIndexFunc {
 
 
@@ -109,7 +110,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("MemberTypeAssignId")]
+	[Func("MemberTypeAssignId", ReturnsObject=typeof(FabMemberTypeAssign))]
 	public class MemberTypeAssignIdIndexFunc : IdIndexFunc {
 
 
@@ -125,7 +126,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UrlId")]
+	[Func("UrlId", ReturnsObject=typeof(FabUrl))]
 	public class UrlIdIndexFunc : IdIndexFunc {
 
 
@@ -141,7 +142,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UserId")]
+	[Func("UserId", ReturnsObject=typeof(FabUser))]
 	public class UserIdIndexFunc : IdIndexFunc {
 
 
@@ -157,7 +158,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("FactorId")]
+	[Func("FactorId", ReturnsObject=typeof(FabFactor))]
 	public class FactorIdIndexFunc : IdIndexFunc {
 
 

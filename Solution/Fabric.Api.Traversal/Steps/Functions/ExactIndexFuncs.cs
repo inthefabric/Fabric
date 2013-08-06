@@ -1,7 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/12/2013 3:41:43 PM
+// Generated on 8/6/2013 3:30:13 PM
 
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
 
@@ -25,7 +26,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("AppName")]
+	[Func("AppName", ReturnsObject=typeof(FabApp))]
 	public class ApNKExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -46,7 +47,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ClassName")]
+	[Func("ClassName", ReturnsObject=typeof(FabClass))]
 	public class ClNKExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -67,7 +68,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UrlFullPath")]
+	[Func("UrlFullPath", ReturnsObject=typeof(FabUrl))]
 	public class UrPaExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -89,7 +90,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UserName")]
+	[Func("UserName", ReturnsObject=typeof(FabUser))]
 	public class UNKExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -110,7 +111,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("FactorIdentorValue")]
+	[Func("FactorIdentorValue", ReturnsObject=typeof(FabFactor))]
 	public class FIdVExactIndexFunc : ExactIndexFunc<string> {
 
 

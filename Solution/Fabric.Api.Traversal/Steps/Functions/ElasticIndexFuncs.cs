@@ -1,7 +1,8 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/11/2013 4:56:54 PM
+// Generated on 8/6/2013 3:29:15 PM
 
+using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal.Steps.Vertices;
 using Fabric.Infrastructure.Traversal;
 
@@ -29,7 +30,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ArtifactCreated")]
+	[Func("ArtifactCreated", ReturnsObject=typeof(FabArtifact))]
 	public class ACrElasticIndexFunc : ElasticIndexHasFunc<long> {
 	
 
@@ -44,7 +45,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("AppNameContains")]
+	[Func("AppNameContains", ReturnsObject=typeof(FabApp))]
 	public class ApNaElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
@@ -59,7 +60,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ClassNameContains")]
+	[Func("ClassNameContains", ReturnsObject=typeof(FabClass))]
 	public class ClNaElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
@@ -74,7 +75,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ClassDisambContains")]
+	[Func("ClassDisambContains", ReturnsObject=typeof(FabClass))]
 	public class ClDiElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
@@ -89,7 +90,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("InstanceNameContains")]
+	[Func("InstanceNameContains", ReturnsObject=typeof(FabInstance))]
 	public class InNaElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
@@ -104,7 +105,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("InstanceDisambContains")]
+	[Func("InstanceDisambContains", ReturnsObject=typeof(FabInstance))]
 	public class InDiElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
@@ -119,7 +120,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UrlNameContains")]
+	[Func("UrlNameContains", ReturnsObject=typeof(FabUrl))]
 	public class UrNaElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
@@ -134,7 +135,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("FactorCreated")]
+	[Func("FactorCreated", ReturnsObject=typeof(FabFactor))]
 	public class FCrElasticIndexFunc : ElasticIndexHasFunc<long> {
 	
 
@@ -149,7 +150,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("FactorIdentorValueContains")]
+	[Func("FactorIdentorValueContains", ReturnsObject=typeof(FabFactor))]
 	public class FIdVElasticIndexFunc : ElasticIndexContainsFunc {
 	
 
