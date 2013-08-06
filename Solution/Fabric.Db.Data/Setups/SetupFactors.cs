@@ -380,11 +380,11 @@ namespace Fabric.Db.Data.Setups {
 			vIdCount = 0;
 			AddLocator(LocatorTypeId.EarthCoord, -85.891373, 42.955912, 0);
 			AddLocator(LocatorTypeId.EarthCoord, -85.621265, 42.830739, 0);
-			AddLocator(LocatorTypeId.EdgePos1D, 0.942, 0, 0);
+			AddLocator(LocatorTypeId.RelPos1D, 0.942, 0, 0);
 			AddLocator(LocatorTypeId.EarthCoord, -85.827441, 43.79177, 0);
-			AddLocator(LocatorTypeId.EdgePos2D, 0.5, 0.333, 0);
-			AddLocator(LocatorTypeId.EdgePos2D, 0.55, 0.4, 0);
-			AddLocator(LocatorTypeId.EdgePos2D, 0.61, 0.812345, 0);
+			AddLocator(LocatorTypeId.RelPos2D, 0.5, 0.333, 0);
+			AddLocator(LocatorTypeId.RelPos2D, 0.55, 0.4, 0);
+			AddLocator(LocatorTypeId.RelPos2D, 0.61, 0.812345, 0);
 
 			vIdCount = 0;
 			AddVector(VectorTypeId.PosLong, SetupArtifacts.ArtifactId.Thi_GradePointAvg,

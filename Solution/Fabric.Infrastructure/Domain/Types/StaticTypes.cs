@@ -328,19 +328,19 @@ namespace Fabric.Infrastructure.Domain.Types {
 				"X=0.25 represents a position (starting from the origin) that is 25% of the "+
 				"distance to the maximum X dimension.";
 
-			AddLocatorType(LocatorTypeId.EdgePos1D, "Relative Position 1D",
+			AddLocatorType(LocatorTypeId.RelPos1D, "Relative Position 1D",
 				"A one-dimensional position, using X=Time. "+pos,
 				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
 				0, 0,
 				0, 0);
 
-			AddLocatorType(LocatorTypeId.EdgePos2D, "Relative Position 2D",
+			AddLocatorType(LocatorTypeId.RelPos2D, "Relative Position 2D",
 				"A two-dimensional position, using X=Width and Y=Height. "+pos,
 				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
 				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
 				0, 0);
 
-			AddLocatorType(LocatorTypeId.EdgePos3D, "Relative Position 3D",
+			AddLocatorType(LocatorTypeId.RelPos3D, "Relative Position 3D",
 				"A three-dimensional position, using X, Y, and Z axes. "+pos,
 				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
 				FabricUtil.DoubleMin, FabricUtil.DoubleMax,
