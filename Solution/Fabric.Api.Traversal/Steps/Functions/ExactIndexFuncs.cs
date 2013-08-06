@@ -26,7 +26,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("AppName", ReturnsObject=typeof(FabApp))]
+	[Func("AppName", ReturnsObjectType=typeof(FabApp))]
 	public class ApNKExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -47,7 +47,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ClassName", ReturnsObject=typeof(FabClass))]
+	[Func("ClassName", ReturnsObjectType=typeof(FabClass))]
 	public class ClNKExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -68,7 +68,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UrlFullPath", ReturnsObject=typeof(FabUrl))]
+	[Func("UrlFullPath", ReturnsObjectType=typeof(FabUrl))]
 	public class UrPaExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -90,7 +90,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UserName", ReturnsObject=typeof(FabUser))]
+	[Func("UserName", ReturnsObjectType=typeof(FabUser))]
 	public class UNKExactIndexFunc : ExactIndexFunc<string> {
 
 
@@ -111,7 +111,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("FactorIdentorValue", ReturnsObject=typeof(FabFactor))]
+	[Func("FactorIdentorValue", ReturnsObjectType=typeof(FabFactor))]
 	public class FIdVExactIndexFunc : ExactIndexFunc<string> {
 
 

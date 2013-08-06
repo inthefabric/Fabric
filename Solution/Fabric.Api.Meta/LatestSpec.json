@@ -1,7 +1,7 @@
 ﻿{
   "Data": [
     {
-      "BuildVersion": "0.2.0.65fa533",
+      "BuildVersion": "0.2.0.c699edd",
       "BuildYear": 2013,
       "BuildMonth": 8,
       "BuildDay": 5,
@@ -1843,6 +1843,21 @@
               "FabType": "FabSpecObjectProp"
             },
             {
+              "Name": "ReturnsAliasType",
+              "Type": "bool",
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ReturnsObjectType",
+              "Type": "string",
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ReturnsPreviousType",
+              "Type": "bool",
+              "FabType": "FabSpecObjectProp"
+            },
+            {
               "Name": "Uri",
               "Type": "string",
               "FabType": "FabSpecObjectProp"
@@ -2176,6 +2191,9 @@
             {
               "Name": "AppId",
               "Description": "Obtains an [[App|Object|FabApp]] by its ArtifactId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabApp",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2190,6 +2208,9 @@
             {
               "Name": "AppName",
               "Description": "Obtains an [[App|Object|FabApp]] by its entire (case-insensitive) Name.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabApp",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2204,6 +2225,9 @@
             {
               "Name": "AppNameContains",
               "Description": "Search for [[Apps|Object|FabApp]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabApp",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2218,6 +2242,9 @@
             {
               "Name": "ArtifactCreated",
               "Description": "Search for [[Artifacts|Object|FabArtifact]] by their creation date/time.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabArtifact",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2239,6 +2266,9 @@
             {
               "Name": "ArtifactId",
               "Description": "Obtains an [[Artifact|Object|FabArtifact]] by its ArtifactId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabArtifact",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2253,6 +2283,8 @@
             {
               "Name": "As",
               "Description": "Creates a named alias for the current step of the traversal path. Execution of the traversal path can return to this alias using the [[Back|Func|Back]] function.",
+              "ReturnsPreviousType": true,
+              "ReturnsAliasType": false,
               "Parameters": [
                 {
                   "Index": 0,
@@ -2267,6 +2299,8 @@
             {
               "Name": "Back",
               "Description": "Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Func|As]] function.\r\n\r\nWhen traversal execution reaches a Back function step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.\r\n\r\nThe return type of the Back function is determined by the return type of the corresponding alias.\r\n[(EX|Return Type Example|_Traversal Steps_\r\nGet a list of [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)\r\n\r\nGet a list of [[Artifacts|Object|FabArtifact]] created by those [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/CreatesArtifactList\r\n\r\nRetrace to the \"M\" alias, which returns [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/CreatesArtifactList/Back(M))]\r\n\r\nWhen execution retraces the traversal path, it does so _only_ from the vertices that are currently active at the Back function step. This makes the Back function useful for complex filtering.\r\n\r\n[(EX|Retrace Example|_Objective_\r\nFind all the [[Members|Object|FabMember]] of a particular [[App|Object|FabApp]] (AppId = 123) that have created at least one [[Artifact|Object|FabArtifact]].\r\n\r\n_Traversal Steps_\r\nCreate named alias \"M\" at the [[Member|Object|FabMember]] step:\r\n- /Root/ContainsMemberList/As(M)\r\n\r\nContinue traversing to the target [[App|Object|FabApp]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)\r\n\r\nRetrace to the [[Member|Object|FabMember]] list, which now contains only [[Members|Object|FabMember]] of \"Great [[App|Object|FabApp]]\":\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)\r\n\r\nContinue traversing to the [[Artifacts|Object|FabArtifact]] created by these [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList\r\n\r\nRetrace to the [[Member|Object|FabMember]] list, which now also excludes any [[Members|Object|FabMember]] who have not created an [[Artifact|Object|FabArtifact]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList/Back(M))]",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": true,
               "Parameters": [
                 {
                   "Index": 0,
@@ -2281,6 +2315,9 @@
             {
               "Name": "ClassDisambContains",
               "Description": "Search for [[Classes|Object|FabClass]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabClass",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2295,6 +2332,9 @@
             {
               "Name": "ClassId",
               "Description": "Obtains a [[Class|Object|FabClass]] by its ArtifactId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabClass",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2309,6 +2349,9 @@
             {
               "Name": "ClassName",
               "Description": "Obtains a [[Class|Object|FabClass]] by its entire (case-insensitive) Name.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabClass",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2323,6 +2366,9 @@
             {
               "Name": "ClassNameContains",
               "Description": "Search for [[Classes|Object|FabClass]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabClass",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2337,6 +2383,9 @@
             {
               "Name": "FactorCreated",
               "Description": "Search for [[Factors|Object|FabFactor]] by their creation date/time.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabFactor",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2358,6 +2407,9 @@
             {
               "Name": "FactorId",
               "Description": "Obtains an [[Factor|Object|FabFactor]] by its FactorId",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabFactor",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2372,6 +2424,9 @@
             {
               "Name": "FactorIdentorValue",
               "Description": "Obtains a [[Factor|Object|FabFactor]] by its full (case-insensitive) IdentorValue.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabFactor",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2386,6 +2441,9 @@
             {
               "Name": "FactorIdentorValueContains",
               "Description": "Search for [[Factors|Object|FabFactor]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the IdentorValue property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabFactor",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2400,6 +2458,8 @@
             {
               "Name": "HasId",
               "Description": "Restricts the results to a single Id value. \r\n\r\nNote that each vertex type has its own Id property name. For example, a [[Member|Object|FabMember]] has a MemberId and a [[Factor|Object|FabFactor]] has a FactorId.",
+              "ReturnsPreviousType": true,
+              "ReturnsAliasType": false,
               "Parameters": [
                 {
                   "Index": 0,
@@ -2414,6 +2474,9 @@
             {
               "Name": "InstanceDisambContains",
               "Description": "Search for [[Instances|Object|FabInstance]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabInstance",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2428,6 +2491,9 @@
             {
               "Name": "InstanceId",
               "Description": "Obtains an [[Instance|Object|FabInstance]] by its ArtifactId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabInstance",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2442,6 +2508,9 @@
             {
               "Name": "InstanceNameContains",
               "Description": "Search for [[Instances|Object|FabInstance]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabInstance",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2456,6 +2525,8 @@
             {
               "Name": "Limit",
               "Description": "Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution.",
+              "ReturnsPreviousType": true,
+              "ReturnsAliasType": false,
               "Parameters": [
                 {
                   "Index": 0,
@@ -2480,6 +2551,9 @@
             {
               "Name": "MemberId",
               "Description": "Obtains a [[Member|Object|FabMember]] by its MemberId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabMember",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2494,6 +2568,9 @@
             {
               "Name": "MemberTypeAssignId",
               "Description": "Obtains a [[MemberTypeAssign|Object|FabMemberTypeAssign]] by its MemberTypeAssignId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabMemberTypeAssign",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2508,36 +2585,54 @@
             {
               "Name": "ToApp",
               "Description": "Restricts the results to include only [[App|Object|FabApp]] vertices.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabApp",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToClass",
               "Description": "Restricts the results to include only [[Class|Object|FabClass]] vertices.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabClass",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToInstance",
               "Description": "Restricts the results to include only [[Instance|Object|FabInstance]] vertices.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabInstance",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToUrl",
               "Description": "Restricts the results to include only [[Url|Object|FabUrl]] vertices.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUrl",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToUser",
               "Description": "Restricts the results to include only [[User|Object|FabUser]] vertices.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUser",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "UrlFullPath",
               "Description": "Obtains a [[Url|Object|FabUrl]] by its entire (case-insensitive) FullPath.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUrl",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2552,6 +2647,9 @@
             {
               "Name": "UrlId",
               "Description": "Obtains a [[Url|Object|FabUrl]] by its ArtifactId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUrl",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2566,6 +2664,9 @@
             {
               "Name": "UrlNameContains",
               "Description": "Search for [[Urls|Object|FabUrl]] using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUrl",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2580,6 +2681,9 @@
             {
               "Name": "UserId",
               "Description": "Obtains a [[User|Object|FabUser]] by its ArtifactId.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUser",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2594,6 +2698,9 @@
             {
               "Name": "UserName",
               "Description": "Obtains a [[User|Object|FabUser]] by its entire (case-insensitive) Name.",
+              "ReturnsPreviousType": false,
+              "ReturnsAliasType": false,
+              "ReturnsObjectType": "FabUser",
               "Parameters": [
                 {
                   "Index": 0,
@@ -5305,12 +5412,12 @@
   "RequestUri": "/meta/spec",
   "DbMs": 0,
   "TotalMs": 0,
-  "DataLen": 154449,
+  "DataLen": 157246,
   "StartIndex": 0,
   "Count": 0,
   "HasMore": false,
   "AppId": 0,
   "UserId": 0,
-  "Timestamp": 635113464072649600,
+  "Timestamp": 635114163323607200,
   "HttpStatus": 200
 }

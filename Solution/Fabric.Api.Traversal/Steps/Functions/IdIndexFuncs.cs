@@ -31,7 +31,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ArtifactId", ReturnsObject=typeof(FabArtifact))]
+	[Func("ArtifactId", ReturnsObjectType=typeof(FabArtifact))]
 	public class ArtifactIdIndexFunc : IdIndexFunc {
 
 
@@ -46,7 +46,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("AppId", ReturnsObject=typeof(FabApp))]
+	[Func("AppId", ReturnsObjectType=typeof(FabApp))]
 	public class AppIdIndexFunc : IdIndexFunc {
 
 
@@ -62,7 +62,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ClassId", ReturnsObject=typeof(FabClass))]
+	[Func("ClassId", ReturnsObjectType=typeof(FabClass))]
 	public class ClassIdIndexFunc : IdIndexFunc {
 
 
@@ -78,7 +78,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("InstanceId", ReturnsObject=typeof(FabInstance))]
+	[Func("InstanceId", ReturnsObjectType=typeof(FabInstance))]
 	public class InstanceIdIndexFunc : IdIndexFunc {
 
 
@@ -94,7 +94,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("MemberId", ReturnsObject=typeof(FabMember))]
+	[Func("MemberId", ReturnsObjectType=typeof(FabMember))]
 	public class MemberIdIndexFunc : IdIndexFunc {
 
 
@@ -110,7 +110,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("MemberTypeAssignId", ReturnsObject=typeof(FabMemberTypeAssign))]
+	[Func("MemberTypeAssignId", ReturnsObjectType=typeof(FabMemberTypeAssign))]
 	public class MemberTypeAssignIdIndexFunc : IdIndexFunc {
 
 
@@ -126,7 +126,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UrlId", ReturnsObject=typeof(FabUrl))]
+	[Func("UrlId", ReturnsObjectType=typeof(FabUrl))]
 	public class UrlIdIndexFunc : IdIndexFunc {
 
 
@@ -142,7 +142,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("UserId", ReturnsObject=typeof(FabUser))]
+	[Func("UserId", ReturnsObjectType=typeof(FabUser))]
 	public class UserIdIndexFunc : IdIndexFunc {
 
 
@@ -158,7 +158,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("FactorId", ReturnsObject=typeof(FabFactor))]
+	[Func("FactorId", ReturnsObjectType=typeof(FabFactor))]
 	public class FactorIdIndexFunc : IdIndexFunc {
 
 

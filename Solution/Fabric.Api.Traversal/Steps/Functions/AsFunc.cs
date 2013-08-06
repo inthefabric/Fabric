@@ -15,7 +15,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 		
 
 	/*================================================================================================*/
-	[Func("As")]
+	[Func("As", ReturnsPreviousType=true)]
 	public class AsFunc : Func, IFuncAsStep {
 		
 		public const int LenMin = 1;

@@ -4,7 +4,7 @@ using Fabric.Infrastructure.Traversal;
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	[Func("ActiveUser", IsInternal=true, ReturnsObject=typeof(FabUser))]
+	[Func("ActiveUser", IsInternal=true, ReturnsObjectType=typeof(FabUser))]
 	public class ActiveUserFunc : UserIdIndexFunc, IFinalStep {
 
 		public long Index { get { return 0; } }

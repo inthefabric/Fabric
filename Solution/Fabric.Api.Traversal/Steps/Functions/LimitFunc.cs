@@ -7,7 +7,7 @@ using Weaver.Core.Query;
 namespace Fabric.Api.Traversal.Steps.Functions {
 	
 	/*================================================================================================*/
-	[Func("Limit")]
+	[Func("Limit", ReturnsPreviousType=true)]
 	public class LimitFunc : Func, IFinalStep {
 
 		public const string DefaultStepText = "Limit(0,20)";

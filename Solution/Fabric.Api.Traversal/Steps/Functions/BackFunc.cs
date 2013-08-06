@@ -15,7 +15,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 	}
 	
 	/*================================================================================================*/
-	[Func("Back")]
+	[Func("Back", ReturnsAliasType=true)]
 	public class BackFunc : Func {
 
 		//The correct way to read the "back" command is to count the period chars BEFORE ".back".

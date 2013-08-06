@@ -16,7 +16,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("HasId")]
+	[Func("HasId", ReturnsPreviousType=true)]
 	public class HasIdFunc : Func, IHasIdFunc {
 
 		public long Index { get { return 0; } }

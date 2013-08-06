@@ -9,9 +9,9 @@ namespace Fabric.Api.Dto.Meta {
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public string Uri { get; set; }
-		public bool ReturnsPrevious { get; set; }
-		public bool ReturnsReferenced { get; set; }
-		public string ReturnsObject { get; set; }
+		public bool ReturnsPreviousType { get; set; }
+		public bool ReturnsAliasType { get; set; }
+		public string ReturnsObjectType { get; set; }
 		public List<FabSpecTravFuncParam> Parameters { get; set; }
 
 

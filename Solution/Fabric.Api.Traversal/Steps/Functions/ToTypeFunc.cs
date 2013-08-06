@@ -54,7 +54,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ToApp")]
+	[Func("ToApp", ReturnsObjectType=typeof(FabApp))]
 	public class ToAppFunc : ToTypeFunc<FabApp>, IToAppFunc {
 
 
@@ -82,7 +82,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ToClass")]
+	[Func("ToClass", ReturnsObjectType=typeof(FabClass))]
 	public class ToClassFunc : ToTypeFunc<FabClass>, IToClassFunc {
 
 
@@ -111,7 +111,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ToInstance")]
+	[Func("ToInstance", ReturnsObjectType=typeof(FabInstance))]
 	public class ToInstanceFunc : ToTypeFunc<FabInstance>, IToInstanceFunc {
 
 
@@ -140,7 +140,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ToUrl")]
+	[Func("ToUrl", ReturnsObjectType=typeof(FabUrl))]
 	public class ToUrlFunc : ToTypeFunc<FabUrl>, IToUrlFunc {
 
 
@@ -169,7 +169,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 
 
 	/*================================================================================================*/
-	[Func("ToUser")]
+	[Func("ToUser", ReturnsObjectType=typeof(FabUser))]
 	public class ToUserFunc : ToTypeFunc<FabUser>, IToUserFunc {
 
 
