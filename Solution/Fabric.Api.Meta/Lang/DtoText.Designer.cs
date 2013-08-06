@@ -528,7 +528,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The base class for all verts present in the Fabric &quot;graph&quot;.  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]]..
+        ///   Looks up a localized string similar to The base class for all vertices present in the Fabric &quot;graph&quot;.  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]]..
         /// </summary>
         internal static string Vertex {
             get {

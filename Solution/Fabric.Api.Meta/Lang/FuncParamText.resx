@@ -124,10 +124,10 @@
     <value>The target named alias, which was defined by an [[As|Func|As]] function earlier in the traversal path.</value>
   </data>
   <data name="Limit_Count" xml:space="preserve">
-    <value>The maximum number of verts to return.</value>
+    <value>The maximum number of vertices to return.</value>
   </data>
   <data name="Limit_Index" xml:space="preserve">
-    <value>The starting index for the returned list of verts.</value>
+    <value>The starting index for the returned list of vertices.</value>
   </data>
   <data name="HasId_Id" xml:space="preserve">
     <value>The target vertex Id.</value>

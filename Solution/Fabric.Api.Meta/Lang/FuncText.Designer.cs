@@ -266,7 +266,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only App verts..
+        ///   Looks up a localized string similar to Restricts the results to include only App vertices..
         /// </summary>
         internal static string ToApp {
             get {
@@ -275,7 +275,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only Class verts..
+        ///   Looks up a localized string similar to Restricts the results to include only Class vertices..
         /// </summary>
         internal static string ToClass {
             get {
@@ -284,7 +284,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only Instance verts..
+        ///   Looks up a localized string similar to Restricts the results to include only Instance vertices..
         /// </summary>
         internal static string ToInstance {
             get {
@@ -293,7 +293,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only Url verts..
+        ///   Looks up a localized string similar to Restricts the results to include only Url vertices..
         /// </summary>
         internal static string ToUrl {
             get {
@@ -302,7 +302,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restricts the results to include only User verts..
+        ///   Looks up a localized string similar to Restricts the results to include only User vertices..
         /// </summary>
         internal static string ToUser {
             get {

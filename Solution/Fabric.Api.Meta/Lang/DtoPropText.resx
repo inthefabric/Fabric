@@ -232,7 +232,7 @@
     <value>The time (in milliseconds) that it took the database server(s) to complete all data requests.</value>
   </data>
   <data name="Response_HasMore" xml:space="preserve">
-    <value>Indicates whether there are more verts available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
+    <value>Indicates whether there are more vertices available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="Response_RequestUri" xml:space="preserve">
     <value>The URI of the current request.</value>

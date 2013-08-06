@@ -1204,7 +1204,7 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indicates whether there are more verts available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
+        ///   Looks up a localized string similar to Indicates whether there are more vertices available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests..
         /// </summary>
         internal static string Response_HasMore {
             get {

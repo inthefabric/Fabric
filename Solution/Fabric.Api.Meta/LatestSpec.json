@@ -1430,7 +1430,7 @@
             {
               "Name": "HasMore",
               "Type": "bool",
-              "Description": "Indicates whether there are more verts available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.",
+              "Description": "Indicates whether there are more vertices available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.",
               "FabType": "FabSpecObjectProp"
             },
             {
@@ -2120,7 +2120,7 @@
         {
           "Name": "FabVertex",
           "Extends": "FabObject",
-          "Description": "The base class for all verts present in the Fabric \"graph\".  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]].",
+          "Description": "The base class for all vertices present in the Fabric \"graph\".  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]].",
           "IsBaseClass": true,
           "Properties": [
             {
@@ -2266,7 +2266,7 @@
             },
             {
               "Name": "Back",
-              "Description": "Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Func|As]] function.\r\n\r\nWhen traversal execution reaches a Back function step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.\r\n\r\nThe return type of the Back function is determined by the return type of the corresponding alias.\r\n[(EX|Return Type Example|_Traversal Steps_\r\nGet a list of [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)\r\n\r\nGet a list of [[Artifacts|Object|FabArtifact]] created by those [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/CreatesArtifactList\r\n\r\nRetrace to the \"M\" alias, which returns [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/CreatesArtifactList/Back(M))]\r\n\r\nWhen execution retraces the traversal path, it does so _only_ from the verts that are currently active at the Back function step. This makes the Back function useful for complex filtering.\r\n\r\n[(EX|Retrace Example|_Objective_\r\nFind all the [[Members|Object|FabMember]] of a particular [[App|Object|FabApp]] (AppId = 123) that have created at least one [[Artifact|Object|FabArtifact]].\r\n\r\n_Traversal Steps_\r\nCreate named alias \"M\" at the [[Member|Object|FabMember]] step:\r\n- /Root/ContainsMemberList/As(M)\r\n\r\nContinue traversing to the target [[App|Object|FabApp]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)\r\n\r\nRetrace to the [[Member|Object|FabMember]] list, which now contains only [[Members|Object|FabMember]] of \"Great [[App|Object|FabApp]]\":\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)\r\n\r\nContinue traversing to the [[Artifacts|Object|FabArtifact]] created by these [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList\r\n\r\nRetrace to the [[Member|Object|FabMember]] list, which now also excludes any [[Members|Object|FabMember]] who have not created an [[Artifact|Object|FabArtifact]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList/Back(M))]",
+              "Description": "Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Func|As]] function.\r\n\r\nWhen traversal execution reaches a Back function step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.\r\n\r\nThe return type of the Back function is determined by the return type of the corresponding alias.\r\n[(EX|Return Type Example|_Traversal Steps_\r\nGet a list of [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)\r\n\r\nGet a list of [[Artifacts|Object|FabArtifact]] created by those [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/CreatesArtifactList\r\n\r\nRetrace to the \"M\" alias, which returns [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/CreatesArtifactList/Back(M))]\r\n\r\nWhen execution retraces the traversal path, it does so _only_ from the vertices that are currently active at the Back function step. This makes the Back function useful for complex filtering.\r\n\r\n[(EX|Retrace Example|_Objective_\r\nFind all the [[Members|Object|FabMember]] of a particular [[App|Object|FabApp]] (AppId = 123) that have created at least one [[Artifact|Object|FabArtifact]].\r\n\r\n_Traversal Steps_\r\nCreate named alias \"M\" at the [[Member|Object|FabMember]] step:\r\n- /Root/ContainsMemberList/As(M)\r\n\r\nContinue traversing to the target [[App|Object|FabApp]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)\r\n\r\nRetrace to the [[Member|Object|FabMember]] list, which now contains only [[Members|Object|FabMember]] of \"Great [[App|Object|FabApp]]\":\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)\r\n\r\nContinue traversing to the [[Artifacts|Object|FabArtifact]] created by these [[Members|Object|FabMember]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList\r\n\r\nRetrace to the [[Member|Object|FabMember]] list, which now also excludes any [[Members|Object|FabMember]] who have not created an [[Artifact|Object|FabArtifact]]:\r\n- /Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList/Back(M))]",
               "Parameters": [
                 {
                   "Index": 0,
@@ -2461,7 +2461,7 @@
                   "Index": 0,
                   "Name": "Index",
                   "Type": "long",
-                  "Description": "The starting index for the returned list of verts.",
+                  "Description": "The starting index for the returned list of vertices.",
                   "Min": 0,
                   "FabType": "FabSpecTravFuncParam"
                 },
@@ -2469,7 +2469,7 @@
                   "Index": 1,
                   "Name": "Count",
                   "Type": "int",
-                  "Description": "The maximum number of verts to return.",
+                  "Description": "The maximum number of vertices to return.",
                   "Min": 0,
                   "Max": 50,
                   "FabType": "FabSpecTravFuncParam"
@@ -2507,31 +2507,31 @@
             },
             {
               "Name": "ToApp",
-              "Description": "Restricts the results to include only [[App|Object|FabApp]] verts.",
+              "Description": "Restricts the results to include only [[App|Object|FabApp]] vertices.",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToClass",
-              "Description": "Restricts the results to include only [[Class|Object|FabClass]] verts.",
+              "Description": "Restricts the results to include only [[Class|Object|FabClass]] vertices.",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToInstance",
-              "Description": "Restricts the results to include only [[Instance|Object|FabInstance]] verts.",
+              "Description": "Restricts the results to include only [[Instance|Object|FabInstance]] vertices.",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToUrl",
-              "Description": "Restricts the results to include only [[Url|Object|FabUrl]] verts.",
+              "Description": "Restricts the results to include only [[Url|Object|FabUrl]] vertices.",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
             {
               "Name": "ToUser",
-              "Description": "Restricts the results to include only [[User|Object|FabUser]] verts.",
+              "Description": "Restricts the results to include only [[User|Object|FabUser]] vertices.",
               "Parameters": [],
               "FabType": "FabSpecTravFunc"
             },
@@ -4178,7 +4178,7 @@
               "MinZ": 0,
               "MaxZ": 0,
               "Id": 4,
-              "EnumId": "EdgePos1D",
+              "EnumId": "RelPos1D",
               "Name": "Relative Position 1D",
               "Description": "A one-dimensional position, using X=Time. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension."
             },
@@ -4190,7 +4190,7 @@
               "MinZ": 0,
               "MaxZ": 0,
               "Id": 5,
-              "EnumId": "EdgePos2D",
+              "EnumId": "RelPos2D",
               "Name": "Relative Position 2D",
               "Description": "A two-dimensional position, using X=Width and Y=Height. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension."
             },
@@ -4202,7 +4202,7 @@
               "MinZ": -1.79769313486231e+308,
               "MaxZ": 1.79769313486231e+308,
               "Id": 6,
-              "EnumId": "EdgePos3D",
+              "EnumId": "RelPos3D",
               "Name": "Relative Position 3D",
               "Description": "A three-dimensional position, using X, Y, and Z axes. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension."
             }
@@ -5305,12 +5305,12 @@
   "RequestUri": "/meta/spec",
   "DbMs": 0,
   "TotalMs": 0,
-  "DataLen": 154422,
+  "DataLen": 154449,
   "StartIndex": 0,
   "Count": 0,
   "HasMore": false,
   "AppId": 0,
   "UserId": 0,
-  "Timestamp": 635113326955604500,
+  "Timestamp": 635113464072649600,
   "HttpStatus": 200
 }
