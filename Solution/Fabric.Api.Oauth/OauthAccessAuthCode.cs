@@ -40,7 +40,7 @@ namespace Fabric.Api.Oauth {
 				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);
 			}
 
-			if ( vRedirectUri != g.RedirectUri ) {
+			if ( vRedirectUri.ToLower() != g.RedirectUri ) {
 				throw GetFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
 			}
 

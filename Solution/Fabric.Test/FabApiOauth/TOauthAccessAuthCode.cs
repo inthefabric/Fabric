@@ -50,6 +50,7 @@ namespace Fabric.Test.FabApiOauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Success() {
+			vRedirUri = vRedirUri.ToUpper(); //ensure different cases
 			FabOauthAccess result = InnerTestGo();
 			Assert.AreEqual(vAccessResult, result, "Incorrect result.");
 		}
