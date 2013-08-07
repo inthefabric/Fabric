@@ -24,10 +24,10 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 			var p = new Mock<IPath>();
 			var art = new RootStep(p.Object);
 			List<string> result = FuncRegistry.GetAvailableFuncs(art, pUri, true);
-			Assert.AreEqual(23, result.Count, "Incorrect result count.");
+			Assert.AreEqual(26, result.Count, "Incorrect result count.");
 
 			result = FuncRegistry.GetAvailableFuncs(typeof(FabRoot), pUri, true);
-			Assert.AreEqual(23, result.Count, "Incorrect result count.");
+			Assert.AreEqual(26, result.Count, "Incorrect result count.");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -59,6 +59,9 @@ namespace Fabric.Test.FabApiTraversal.Steps.Functions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("activeapp", typeof(ActiveAppFunc))]
+		[TestCase("activeuser", typeof(ActiveUserFunc))]
+		[TestCase("activemember", typeof(ActiveMemberFunc))]
 		[TestCase("appnamecontains", typeof(ApNaElasticIndexFunc))]
 		[TestCase("appname", typeof(ApNKExactIndexFunc))]
 		[TestCase("appid", typeof(AppIdIndexFunc))]

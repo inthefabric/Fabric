@@ -3,6 +3,7 @@ using Fabric.Api.Traversal;
 using Fabric.Db.Data.Setups;
 using Fabric.Domain;
 using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Weaver;
 using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiTraversal {
@@ -93,6 +94,39 @@ namespace Fabric.Test.Integration.FabApiTraversal {
 			Assert.NotNull(vModel.Resp.Links, "Model.Resp.Links should be filled.");
 
 			Assert.AreEqual(pExpect, vModel.DtoList.Count, "Incorrect Model.DtoList count.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ActiveApp() {
+			ApiCtx.SetAppUserId((long)SetupUsers.AppId.KinPhoGal, null);
+			vUri = "/ActiveApp";
+			TestPath();
+			CheckSuccess<App>(1);
+			CheckTypeId(vModel.DtoList[0], PropDbName.Artifact_ArtifactId, ApiCtx.AppId);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ActiveUser() {
+			ApiCtx.SetAppUserId(null, (long)SetupUsers.UserId.Zach);
+			vUri = "/ActiveUser";
+			TestPath();
+			CheckSuccess<User>(1);
+			CheckTypeId(vModel.DtoList[0], PropDbName.Artifact_ArtifactId, ApiCtx.UserId);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ActiveMember() {
+			ApiCtx.SetAppUserId((long)SetupUsers.AppId.KinPhoGal, (long)SetupUsers.UserId.Zach);
+			vUri = "/ActiveMember";
+			TestPath();
+			CheckSuccess<Member>(1);
+			CheckTypeId(vModel.DtoList[0],
+				PropDbName.Member_MemberId, (long)SetupUsers.MemberId.GalZach);
 		}
 
 
