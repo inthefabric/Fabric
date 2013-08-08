@@ -38,6 +38,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		public BatchCreateClass(IModifyTasks pTasks, string pObjectsJson) : base(pTasks) {
 			vObjectsJson = pObjectsJson;
+			FailRequestIndexForTest = -1;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
