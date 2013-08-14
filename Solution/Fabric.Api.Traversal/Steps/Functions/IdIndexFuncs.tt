@@ -1,5 +1,5 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.5.3\lib\Weaver.Core.dll" #>
+<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain\bin\Debug\Fabric.Domain.dll" #>
 <#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
 <#@ import namespace="System" #>
@@ -47,7 +47,7 @@ foreach ( string name in vertexNames ) {
 #>
 
 	/*================================================================================================*/
-	[Func("<#= name #>Id", ReturnsObject=typeof(Fab<#= name #>))]
+	[Func("<#= name #>Id", ReturnsObjectType=typeof(Fab<#= name #>))]
 	public class <#= name #>IdIndexFunc : IdIndexFunc {
 
 

@@ -43,9 +43,9 @@
     <Reference Include="log4net">
       <HintPath>..\..\Packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="RexConnectClient.Core, Version=0.4.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RexConnectClient.Core, Version=0.4.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\RexConnectClient.0.4.0.1\lib\RexConnectClient.Core.dll</HintPath>
+      <HintPath>..\..\Packages\RexConnectClient.0.4.0.2\lib\RexConnectClient.Core.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.56.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -54,17 +54,17 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="Weaver.Core, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.5.3\lib\Weaver.Core.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.3\lib\Weaver.Exec.RexConnect.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.4\lib\Weaver.Exec.RexConnect.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Weaver.Titan, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Titan.0.5.3\lib\Weaver.Titan.dll</HintPath>
+      <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
