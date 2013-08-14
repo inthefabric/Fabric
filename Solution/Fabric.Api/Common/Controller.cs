@@ -4,6 +4,7 @@ using System.Globalization;
 using Fabric.Api.Dto;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
@@ -54,7 +55,8 @@ namespace Fabric.Api.Common {
 				}
 			}
 
-			vMillis = (int)sw.ElapsedMilliseconds;
+			sw.Stop();
+			vMillis = (int)sw.Elapsed.TotalMilliseconds;
 			PreLogAction();
 			LogAction();
 			return vResp;
@@ -80,12 +82,14 @@ namespace Fabric.Api.Common {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
-			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			ApiCtx.Analytics.TrackEvent("Response", "DbMs", "", ApiCtx.DbQueryMillis);
-			ApiCtx.Analytics.TrackEvent("Response", "TotalMs", "", (int)(vMillis/10000));
-			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "",
-				(int)ApiCtx.DbQueryExecutionCount);
-			ApiCtx.Analytics.TrackEvent("Response", "HttpStatus", "", (int)vResp.StatusCode);
+			string cat = AnalyticsManager.GetCategory(NancyReq.Method, NancyReq.Path);
+			string lbl = (UnhandledException != null ? UnhandledException.GetType().Name : "OK");
+			AnalyticsManager am = ApiCtx.Analytics;
+
+			am.TrackRequest(NancyReq.Method, NancyReq.Path);
+			am.TrackEvent(cat, "DbMs", lbl, ApiCtx.DbQueryMillis);
+			am.TrackEvent(cat, "TotalMs", lbl, vMillis);
+			am.TrackEvent(cat, "QueryCount", lbl, ApiCtx.DbQueryExecutionCount);
 
 			//LOGv1: 
 			//	Class, ip, QueryCount, DbMs, TotalMs, Timestamp, HttpStatus, Method, Path, Exception
@@ -108,7 +112,7 @@ namespace Fabric.Api.Common {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
-				ApiCtx.Analytics.TrackEvent("Metrics", "Response", "UnhandledException", 1);
+				am.TrackEvent(cat, "UnhandledException", lbl, 1);
 				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}

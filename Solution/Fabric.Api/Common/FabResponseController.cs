@@ -5,6 +5,7 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
@@ -102,15 +103,17 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
-			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			ApiCtx.Analytics.TrackEvent("Response", "DbMs", "", FabResp.DbMs);
-			ApiCtx.Analytics.TrackEvent("Response", "TotalMs", "", FabResp.TotalMs);
-			ApiCtx.Analytics.TrackEvent("Response", "DataLen", "", FabResp.DataLen);
-			ApiCtx.Analytics.TrackEvent("Response", "StartIndex", "", (int)FabResp.StartIndex);
-			ApiCtx.Analytics.TrackEvent("Response", "Count", "", FabResp.Count);
-			ApiCtx.Analytics.TrackEvent("Response", "HasMore", "", (FabResp.HasMore ? 1 : 0));
-			ApiCtx.Analytics.TrackEvent("Response", "QueryCount", "", ApiCtx.DbQueryExecutionCount);
-			ApiCtx.Analytics.TrackEvent("Response", "HttpStatus", "", FabResp.HttpStatus);
+			string cat = AnalyticsManager.GetCategory(NancyReq.Method, NancyReq.Path);
+			string lbl = (FabResp.Error != null ? FabResp.Error.Name : "OK");
+			AnalyticsManager am = ApiCtx.Analytics;
+
+			am.TrackRequest(NancyReq.Method, NancyReq.Path);
+			am.TrackEvent(cat, "DbMs", lbl, FabResp.DbMs);
+			am.TrackEvent(cat, "TotalMs", lbl, FabResp.TotalMs);
+			am.TrackEvent(cat, "DataLen", lbl, FabResp.DataLen);
+			am.TrackEvent(cat, "StartIndex", lbl, (int)FabResp.StartIndex);
+			am.TrackEvent(cat, "Count", lbl, FabResp.Count);
+			am.TrackEvent(cat, "QueryCount", lbl, ApiCtx.DbQueryExecutionCount);
 
 			//FRv1: (FabResponse log, version 1)
 			//	Class, ip, QueryCount, TotalMs, DbMs, DataLen, StartIndex, Count, HasMore,
@@ -133,7 +136,7 @@ namespace Fabric.Api.Common {
 				FabResp.UserId +x+
 				FabResp.Timestamp +x+
 				FabResp.HttpStatus +x+
-				(FabResp.Error != null ? FabResp.Error.Name : "") +x+
+				(FabResp.Error != null ? FabResp.Error.Name : "OK") +x+
 				NancyReq.Method +x+
 				NancyReq.Path;
 
@@ -141,7 +144,7 @@ namespace Fabric.Api.Common {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
-				ApiCtx.Analytics.TrackEvent("Metrics", "Response", "UnhandledException", 1);
+				am.TrackEvent(cat, "UnhandledException", UnhandledException.GetType().Name, 1);
 				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}

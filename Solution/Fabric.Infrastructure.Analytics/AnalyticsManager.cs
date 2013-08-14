@@ -27,6 +27,17 @@ namespace Fabric.Infrastructure.Analytics {
 #endif
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetCategory(string pHttpMethod, string pPath) {
+			string cat = pHttpMethod+" "+pPath.Replace(")", @"}");
+
+			if ( cat.Length > 46 ) {
+				cat = cat.Substring(0, 43)+"...";
+			}
+
+			return cat;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
