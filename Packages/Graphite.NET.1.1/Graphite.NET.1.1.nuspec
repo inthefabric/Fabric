@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Graphite.NET</id>
+    <version>1.1</version>
+    <title>Graphite.NET</title>
+    <authors>Ragnar Dahlén</authors>
+    <owners>Ragnar Dahlén</owners>
+    <licenseUrl>https://raw.github.com/ragnard/Graphite.NET/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ragnard/Graphite.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET client library for Graphite</description>
+    <summary>.NET client library for Graphite</summary>
+    <releaseNotes />
+    <copyright>Copyright 2011</copyright>
+    <language />
+    <tags>graphite statsd metrics</tags>
+  </metadata>
+</package>

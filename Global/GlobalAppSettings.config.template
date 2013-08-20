@@ -1,18 +1,28 @@
 <appSettings>
+	
 	<add key="Dev_Api" value="localhost:9000" />
-	<add key="Dev_RexConn" value="x.x.x.x:8185" />
-	<add key="Dev_RexNodes" value="1" />
-	<add key="Dev_Rex1" value="x.x.x.x:8182" />
+	<add key="Dev_RexConnPort" value="8185" />
+	<add key="Dev_VertexCount" value="1" />
+	<add key="Dev_VertexIp1" value="x.x.x.x" />
+	<add key="Dev_Graphite" value="x.x.x.x" />
+	<add key="Dev_GraphitePrefix" value="api.dev" />
 
 	<add key="DevLive_Api" value="localhost:9000" />
-	<add key="Prod_RexConn" value="x.x.x.x:8185" />
-	<add key="DevLive_RexNodes" value="2" />
-	<add key="DevLive_Rex1" value="x.x.x.x:8182" />
-	<add key="DevLive_Rex2" value="x.x.x.x:8182" />
+	<add key="DevLive_RexConnPort" value="8185" />
+	<add key="DevLive_VertexCount" value="3" />
+	<add key="DevLive_VertexIp1" value="x.x.x.x" />
+	<add key="DevLive_VertexIp2" value="x.x.x.x" />
+	<add key="DevLive_VertexIp3" value="x.x.x.x" />
+	<add key="DevLive_Graphite" value="x.x.x.x" />
+	<add key="DevLive_GraphitePrefix" value="api.dev-live" />
 
 	<add key="Prod_Api" value="api.inthefabric.com" />
-	<add key="Prod_RexConn" value="x.x.x.x:8185" />
-	<add key="Prod_RexNodes" value="2" />
-	<add key="Prod_Rex1" value="x.x.x.x:8182" />
-	<add key="Prod_Rex2" value="x.x.x.x:8182" />
+	<add key="Prod_RexConnPort" value="8185" />
+	<add key="Prod_VertexCount" value="3" />
+	<add key="Prod_VertexIp1" value="x.x.x.x" />
+	<add key="Prod_VertexIp2" value="x.x.x.x" />
+	<add key="Prod_VertexIp3" value="x.x.x.x" />
+	<add key="Prod_Graphite" value="x.x.x.x" />
+	<add key="Prod_GraphitePrefix" value="api.prod" />
+
 </appSettings>
