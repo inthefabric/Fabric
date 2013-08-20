@@ -32,12 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnalyticsManager.cs" />
+    <Compile Include="MetricsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GoogleAnalyticsTracker, Version=1.6.7.0, Culture=neutral, PublicKeyToken=04ab204e84b117c0, processorArchitecture=MSIL">
+    <Reference Include="GoogleAnalyticsTracker, Version=1.6.10.0, Culture=neutral, PublicKeyToken=04ab204e84b117c0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.6.007\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
+      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.6.010\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Graphite">
+      <HintPath>..\..\Packages\Graphite.NET.1.1\lib\net40\Graphite.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
