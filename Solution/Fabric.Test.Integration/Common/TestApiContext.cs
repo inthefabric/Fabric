@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
 using RexConnectClient.Core.Result;
-using RexConnectClient.Core;
-using Fabric.Infrastructure.Data;
 
 namespace Fabric.Test.Integration.Common {
 	
 	/*================================================================================================*/
 	public class TestApiContext : ApiContext {
+
+		private static readonly CacheManager TestCache = new CacheManager("ApiTest", true);
+		private static readonly MetricsManager TestMetrics =
+			new MetricsManager("graphite.inthefabric.net", 2003, "api.test", 1000);
+		private static readonly Func<Guid, IAnalyticsManager> TestAnalyt = (g=>new AnalyticsManager(g));
 
 		public DateTime? TestUtcNow { get; set; }
 		public IList<long> SharpflakeIds { get; private set; }
@@ -18,7 +22,7 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base("rexster", 8185, new CacheManager("ApiTest", true)) {
+		public TestApiContext() : base("rexster", 8185, TestCache, TestMetrics, TestAnalyt) {
 			SharpflakeIds = new List<long>();
 		}
 

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Metrics</id>
+    <version>1.0.8</version>
+    <title>Metrics</title>
+    <authors>Daniel Crenna</authors>
+    <owners>Daniel Crenna</owners>
+    <licenseUrl>https://github.com/danielcrenna/metrics-net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/danielcrenna/metrics-net</projectUrl>
+    <iconUrl>http://apitize.com.s3.amazonaws.com/logo_metrics.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Capturing CLR and application-level metrics. So you know what's going on. An idiomatic port of Coda Hale's Metrics for Scala and the JVM.</description>
+    <summary>Capturing CLR and application-level metrics. So you know what's going on.</summary>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <tags>CLR metrics</tags>
+    <dependencies>
+      <dependency id="ServiceStack.Text" version="3.9.34" />
+    </dependencies>
+  </metadata>
+</package>

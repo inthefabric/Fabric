@@ -4,7 +4,6 @@ using System.Globalization;
 using Fabric.Api.Dto;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
-using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
@@ -82,9 +81,9 @@ namespace Fabric.Api.Common {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
-			string cat = AnalyticsManager.GetCategory(NancyReq.Method, NancyReq.Path);
+			IAnalyticsManager am = ApiCtx.Analytics;
+			string cat = am.GetCategory(NancyReq.Method, NancyReq.Path);
 			string lbl = (UnhandledException != null ? UnhandledException.GetType().Name : "OK");
-			AnalyticsManager am = ApiCtx.Analytics;
 
 			am.TrackRequest(NancyReq.Method, NancyReq.Path);
 			am.TrackEvent(cat, "DbMs", lbl, ApiCtx.DbQueryMillis);

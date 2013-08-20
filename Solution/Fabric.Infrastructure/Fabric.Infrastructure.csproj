@@ -77,6 +77,8 @@
     <Compile Include="Api\ApiContext.cs" />
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiEnums.cs" />
+    <Compile Include="Api\IAnalyticsManager.cs" />
+    <Compile Include="Api\IMetricsManager.cs" />
     <Compile Include="Data\ApiContextDataExt.cs" />
     <Compile Include="Data\IDataAccess.cs" />
     <Compile Include="Data\DataAccessFull.cs" />
@@ -176,10 +178,6 @@
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Infrastructure.Analytics\Fabric.Infrastructure.Analytics.csproj">
-      <Project>{8E09D9D5-148A-4699-A31B-372BD01E6C0A}</Project>
-      <Name>Fabric.Infrastructure.Analytics</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

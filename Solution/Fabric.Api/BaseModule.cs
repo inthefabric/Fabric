@@ -6,6 +6,7 @@ using Fabric.Api.Dto;
 using Fabric.Api.Dto.Meta;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
+using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
 using Nancy;
@@ -18,7 +19,9 @@ namespace Fabric.Api {
 
 		private static string ConfPrefix;
 		protected static FabMetaVersion Version;
+		private static MetricsManager Metrics;
 		private static CacheManager Cache;
+		private static Func<Guid, IAnalyticsManager> AnalyticsProv;
 
 		public static string ApiUrl;
 		public static int RexConnPort;
@@ -70,13 +73,18 @@ namespace Fabric.Api {
 					" ("+Version.Year+'.'+Version.Month+'.'+Version.Day+")");
 
 				Cache = new CacheManager("Api");
+				AnalyticsProv = (g => new AnalyticsManager(g));
+
+				string graphite = ConfigurationManager.AppSettings[ConfPrefix+"Graphite"];
+				string prefix = ConfigurationManager.AppSettings[ConfPrefix+"GraphitePrefix"];
+				Metrics = new MetricsManager(graphite, 2003, prefix);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected static IApiContext NewApiCtx() {
 			int i = (VertexIndex++)%VertexCount;
-			return new ApiContext(VertexIpList[i], RexConnPort, Cache);
+			return new ApiContext(VertexIpList[i], RexConnPort, Cache, Metrics, AnalyticsProv);
 		}
 
 

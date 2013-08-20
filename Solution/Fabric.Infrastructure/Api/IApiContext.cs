@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.Domain;
-using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Data;
 
 namespace Fabric.Infrastructure.Api {
@@ -14,7 +13,8 @@ namespace Fabric.Infrastructure.Api {
 		Guid ContextId { get; }
 		long UserId { get; }
 		long AppId { get; }
-		AnalyticsManager Analytics { get; }
+		IAnalyticsManager Analytics { get; }
+		IMetricsManager Metrics { get; }
 		ICacheManager Cache { get; }
 
 		int DbQueryExecutionCount { get; }

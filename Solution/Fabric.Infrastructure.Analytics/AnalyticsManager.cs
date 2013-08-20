@@ -1,26 +1,24 @@
 ﻿//#define MONO_DEV
 
 using System;
+using Fabric.Infrastructure.Api;
 #if !MONO_DEV
-using System.Linq;
 using GoogleAnalyticsTracker;
 #endif
 
 namespace Fabric.Infrastructure.Analytics {
 	
 	/*================================================================================================*/
-	public class AnalyticsManager {
+	public class AnalyticsManager : IAnalyticsManager {
 
 #if !MONO_DEV
 		private readonly Tracker vTracker;
-		private readonly Action<string> vLogAction;
 #endif
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AnalyticsManager(Guid pContextId, Action<string> pLogAction) {
+		public AnalyticsManager(Guid pContextId) {
 #if !MONO_DEV
-			vLogAction = pLogAction;
 			vTracker = new Tracker("UA-39329646-1", "inthefabric.com");
 			vTracker.Hostname = "api.inthefabric.com";
 			vTracker.SetCustomVariable(1, "ContextId", pContextId+"");
@@ -28,7 +26,7 @@ namespace Fabric.Infrastructure.Analytics {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string GetCategory(string pHttpMethod, string pPath) {
+		public string GetCategory(string pHttpMethod, string pPath) {
 			string cat = pHttpMethod+" "+pPath.Replace(")", @"}");
 
 			if ( cat.Length > 46 ) {
@@ -75,16 +73,6 @@ namespace Fabric.Infrastructure.Analytics {
 			//task.ContinueWith(x => LogResult("Event", x.Result));
 #endif
 		}
-
-
-#if !MONO_DEV
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private void LogResult(string pType, TrackingResult pResult) {
-			vLogAction(pType+": "+pResult.Success+" | "+pResult.Url+" | "+
-				pResult.Parameters.Aggregate("", (str,p) => str+", "+p.Key+"="+p.Value));
-		}
-#endif
 
 	}
 

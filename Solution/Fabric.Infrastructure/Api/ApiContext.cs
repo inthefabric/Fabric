@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Fabric.Domain;
-using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Data;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
@@ -17,7 +16,8 @@ namespace Fabric.Infrastructure.Api {
 		public Guid ContextId { get; private set; }
 		public long UserId { get; private set; }
 		public long AppId { get; private set; }
-		public AnalyticsManager Analytics { get; private set; }
+		public IAnalyticsManager Analytics { get; private set; }
+		public IMetricsManager Metrics { get; private set; }
 		public ICacheManager Cache { get; private set; }
 
 		public int DbQueryExecutionCount { get; private set; }
@@ -28,18 +28,20 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiContext(string pRexConnUrl, int pRexConnPort, ICacheManager pCache) {
+		public ApiContext(string pRexConnUrl, int pRexConnPort, ICacheManager pCache,
+						IMetricsManager pMetrics, Func<Guid, IAnalyticsManager> pAnalyticsProvider) {
 			vProfiler = new Stopwatch();
 			vProfiler.Start();
 
 			RexConnUrl = pRexConnUrl;
 			RexConnPort = pRexConnPort;
+			Metrics = pMetrics;
 			Cache = pCache;
 
 			ContextId = Guid.NewGuid();
 			UserId = -1;
 			AppId = -1;
-			Analytics = new AnalyticsManager(ContextId, x => Log.Debug(ContextId, "ANALYT", x));
+			Analytics = pAnalyticsProvider(ContextId);
 			DbQueryExecutionCount = 0;
 			DbQueryMillis = 0;
 		}

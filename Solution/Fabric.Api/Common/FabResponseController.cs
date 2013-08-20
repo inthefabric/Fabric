@@ -5,7 +5,6 @@ using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
-using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Api.Faults;
 using Nancy;
@@ -103,9 +102,9 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
-			string cat = AnalyticsManager.GetCategory(NancyReq.Method, NancyReq.Path);
+			IAnalyticsManager am = ApiCtx.Analytics;
+			string cat = am.GetCategory(NancyReq.Method, NancyReq.Path);
 			string lbl = (FabResp.Error != null ? FabResp.Error.Name : "OK");
-			AnalyticsManager am = ApiCtx.Analytics;
 
 			am.TrackRequest(NancyReq.Method, NancyReq.Path);
 			am.TrackEvent(cat, "DbMs", lbl, FabResp.DbMs);

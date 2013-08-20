@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnalyticsManager.cs" />
+    <Compile Include="GraphiteUdp.cs" />
     <Compile Include="MetricsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -40,15 +41,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.6.010\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
     </Reference>
-    <Reference Include="Graphite">
-      <HintPath>..\..\Packages\Graphite.NET.1.1\lib\net40\Graphite.dll</HintPath>
+    <Reference Include="metrics">
+      <HintPath>..\..\Packages\Metrics.1.0.8\lib\net40\metrics.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\Metrics.1.0.8\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
+      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
+      <Name>Fabric.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
