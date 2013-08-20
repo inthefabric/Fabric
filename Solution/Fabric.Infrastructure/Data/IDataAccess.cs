@@ -40,7 +40,8 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		IDataResult Execute();
+		IDataResult Execute(string pName="default");
+		string ExecuteName { get; }
 
 	}
 

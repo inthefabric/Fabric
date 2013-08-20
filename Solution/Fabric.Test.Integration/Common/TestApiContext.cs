@@ -4,6 +4,7 @@ using Fabric.Infrastructure;
 using Fabric.Infrastructure.Analytics;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Caching;
+using Fabric.Infrastructure.Data;
 using RexConnectClient.Core.Result;
 
 namespace Fabric.Test.Integration.Common {
@@ -47,8 +48,8 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void OnDataPostExecute(IResponseResult pResult) {
-			base.OnDataPostExecute(pResult);
+		protected override void OnDataPostExecute(IDataAccess pAccess, IResponseResult pResult) {
+			base.OnDataPostExecute(pAccess, pResult);
 			Log.Info("Query: "+pResult.ExecutionMilliseconds+"ms ("+pResult.Response.Timer+"ms)");
 			Log.Info("");
 		}

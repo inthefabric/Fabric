@@ -18,8 +18,8 @@ namespace Fabric.Infrastructure.Data {
 
 		private int vCmdIndex;
 		private RequestCmd vLatestCmd;
-		private Action<RexConnDataAccess> vPreExecute;
-		private Action<IResponseResult> vPostExecute;
+		private Action<IDataAccess, RexConnDataAccess> vPreExecute;
+		private Action<IDataAccess, IResponseResult> vPostExecute;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +32,8 @@ namespace Fabric.Infrastructure.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal void SetExecuteHooks(Action<RexConnDataAccess> pPreExecute,
-																Action<IResponseResult> pPostExecute) {
+		internal void SetExecuteHooks(Action<IDataAccess, RexConnDataAccess> pPreExecute,
+													Action<IDataAccess, IResponseResult> pPostExecute) {
 			vPreExecute = pPreExecute;
 			vPostExecute = pPostExecute;
 		}
@@ -140,12 +140,14 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataResult Execute() {
+		public IDataResult Execute(string pName="default") {
+			ExecuteName = pName;
+
 			var data = new RexConnDataAccess(vRexConnCtx);
 			IResponseResult rr;
 			
 			if ( vPreExecute != null ) {
-				vPreExecute(data);
+				vPreExecute(this, data);
 			}
 
 			try {
@@ -156,12 +158,15 @@ namespace Fabric.Infrastructure.Data {
 			}
 			
 			if ( vPostExecute != null ) {
-				vPostExecute(rr);
+				vPostExecute(this, rr);
 			}
 
 			LogAction(rr);
 			return new DataResult(rr);
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string ExecuteName { get; private set; }
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnCmd(RequestCmd pCmd) {

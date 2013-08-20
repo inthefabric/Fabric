@@ -51,7 +51,7 @@ namespace Fabric.Test.Common {
 			ExecuteCount = 0;
 			MockResult = new MockDataResult();
 
-			Setup(x => x.Execute())
+			Setup(x => x.Execute(It.IsAny<string>()))
 				.Callback(() => {
 					ExecuteCount++;
 					pExecuteCallback(this);

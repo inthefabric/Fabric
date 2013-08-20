@@ -13,22 +13,23 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDataResult Execute(this IApiContext pApiCtx, IWeaverScript pWeaverScript) {
-			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute();
+		public static IDataResult Execute(this IApiContext pApiCtx, IWeaverScript pWeaverScript,
+																			string pName="default") {
+			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static T Get<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript)
-												where T : class, IWeaverElement, IElementWithId, new() {
-			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute().ToElement<T>();
+		public static T Get<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript,
+						string pName="default") where T : class, IWeaverElement, IElementWithId, new() {
+			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName).ToElement<T>();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<T> GetList<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript)
-												where T : class, IWeaverElement, IElementWithId, new() {
-			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute().ToElementList<T>();
+		public static IList<T> GetList<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript,
+						string pName="default") where T : class, IWeaverElement, IElementWithId, new() {
+			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName).ToElementList<T>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -44,7 +45,7 @@ namespace Fabric.Infrastructure.Data {
 			item.SetTypeId(pTypeId);
 
 			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(item).ToQuery();
-			item = pApiCtx.NewData().AddQuery(q).Execute().ToElement<T>();
+			item = pApiCtx.NewData().AddQuery(q).Execute("GetVertexById").ToElement<T>();
 
 			if ( item == null ) {
 				pApiCtx.Cache.Memory.RemoveVertex<T>(pTypeId);

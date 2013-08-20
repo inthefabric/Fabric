@@ -67,7 +67,9 @@ namespace Fabric.Infrastructure.Analytics {
 				byte[] bytes = Encoding.UTF8.GetBytes(msg);
 				vUdp.Send(bytes, bytes.Length);
 			}
-			catch ( Exception ) { }
+			catch ( Exception e ) {
+				Log.Error("GraphiteUdp exception: "+e.Message, e);
+			}
 		}
 
 

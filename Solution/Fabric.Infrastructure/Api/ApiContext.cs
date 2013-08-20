@@ -82,15 +82,22 @@ namespace Fabric.Infrastructure.Api {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void OnDataPreExecute(RexConnDataAccess pRexConnData) {
+		protected virtual void OnDataPreExecute(IDataAccess pAccess, RexConnDataAccess pRexConnData) {
 			//int n = pRexConnData.Context.Request.CmdList.Count;
 			//Log.Debug(ContextId, "Data", "PreExec commands: "+n);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void OnDataPostExecute(IResponseResult pResult) {
+		protected virtual void OnDataPostExecute(IDataAccess pAccess, IResponseResult pResult) {
 			DbQueryExecutionCount++;
 			DbQueryMillis += (int)pResult.Response.Timer;
+
+			string key = "apictx."+pAccess.ExecuteName;
+			Metrics.Timer(key+".rc", pResult.Response.Timer);
+			Metrics.Timer(key+".ex", (long)pResult.ExecutionMilliseconds);
+			Metrics.Range(key+".len", pResult.ResponseJson.Length);
+			Metrics.Counter(key+".err", (pResult.IsError ? 1 : 0));
+
 			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
 			//Log.Debug(ContextId, "Data", "Request: "+pResult.RequestJson);
 			//Log.Debug(ContextId, "Data", "Response: "+pResult.ResponseJson);
