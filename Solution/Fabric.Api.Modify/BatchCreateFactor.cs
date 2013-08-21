@@ -158,7 +158,7 @@ namespace Fabric.Api.Modify {
 		/*--------------------------------------------------------------------------------------------*/
 		private void ExecuteRequest(IDataAccess pAccess, IList<int> pIndexes, 
 																		IList<string> pNewFactorCmds ) {
-			IDataResult data = pAccess.Execute();
+			IDataResult data = pAccess.Execute("Modify-BatchCreateFactor-Add");
 			int cmdI = 0;
 
 			foreach ( int i in pIndexes ) {

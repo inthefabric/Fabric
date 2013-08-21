@@ -178,7 +178,7 @@ namespace Fabric.Api.Modify {
 				acc.AddSessionCommit();
 				acc.AddSessionClose();
 				
-				IDataResult data = acc.Execute();
+				IDataResult data = acc.Execute("Modify-BatchCreateClass-Add");
 				
 				for ( int i = 0 ; i < n ; ++i ) {
 					if ( data.ToStringAt(i+1,0) != "-1" ) {

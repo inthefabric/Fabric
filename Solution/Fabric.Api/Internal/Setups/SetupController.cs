@@ -67,13 +67,15 @@ namespace Fabric.Api.Internal.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes...");
-			string sessId = ApiCtx.NewData().AddSessionStart().Execute().GetSessionId();
+			string sessId = ApiCtx.NewData().AddSessionStart()
+				.Execute("SetupCtrl-StartIndexSession").GetSessionId();
 
 			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
-				ApiCtx.NewData(sessId).AddQuery(q).Execute();
+				ApiCtx.NewData(sessId).AddQuery(q).Execute("SetupCtrl-AddIndex");
 			}
 
-			ApiCtx.NewData(sessId).AddSessionCommit().AddSessionClose().Execute();
+			ApiCtx.NewData(sessId).AddSessionCommit().AddSessionClose()
+				.Execute("SetupCtrl-CloseIndexSession");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

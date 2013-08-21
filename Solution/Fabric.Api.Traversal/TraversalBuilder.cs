@@ -60,7 +60,8 @@ namespace Fabric.Api.Traversal {
 				return;
 			}
 			
-			IList<IDataDto> dtos = vApiCtx.NewData().AddQuery(vLastStep.Path).Execute().ToDtoList();
+			IList<IDataDto> dtos = vApiCtx.NewData().AddQuery(vLastStep.Path)
+				.Execute("Traversal").ToDtoList();
 			int max = vLastStep.Count;
 
 			vModel.DtoList = dtos;

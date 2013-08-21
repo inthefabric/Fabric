@@ -143,7 +143,7 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataResult Execute(string pName="default") {
+		public IDataResult Execute(string pName) {
 			ExecuteName = pName;
 
 			var data = new RexConnDataAccess(vRexConnCtx);
