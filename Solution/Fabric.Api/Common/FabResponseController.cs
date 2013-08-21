@@ -2,6 +2,7 @@
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
+using Fabric.Api.Services;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
@@ -102,17 +103,30 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
-			IAnalyticsManager am = ApiCtx.Analytics;
-			string cat = am.GetCategory(NancyReq.Method, NancyReq.Path);
-			string lbl = (FabResp.Error != null ? FabResp.Error.Name : "OK");
+			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
 
-			am.TrackRequest(NancyReq.Method, NancyReq.Path);
-			am.TrackEvent(cat, "DbMs", lbl, FabResp.DbMs);
-			am.TrackEvent(cat, "TotalMs", lbl, FabResp.TotalMs);
-			am.TrackEvent(cat, "DataLen", lbl, FabResp.DataLen);
-			am.TrackEvent(cat, "StartIndex", lbl, (int)FabResp.StartIndex);
-			am.TrackEvent(cat, "Count", lbl, FabResp.Count);
-			am.TrackEvent(cat, "QueryCount", lbl, ApiCtx.DbQueryExecutionCount);
+			string key = NancyReq.Method+"-"+NancyReq.Path.Substring(1).Replace('/', '-');
+			
+			if ( GetType() == typeof(TraversalController) ) {
+				string[] segs = NancyReq.Path.Substring(1).Split('/');
+				key = NancyReq.Method+"-"+segs[0];
+
+				if ( segs.Length > 1 ) {
+					key += "-"+segs[1];
+
+					if ( segs.Length > 2 ) {
+						key += "-"+segs[2];
+					}
+				}
+			}
+
+			key = "req."+key+".";
+
+			ApiCtx.Metrics.Range(key+"dbquery", ApiCtx.DbQueryExecutionCount);
+			ApiCtx.Metrics.Timer(key+"totalms", FabResp.TotalMs);
+			ApiCtx.Metrics.Timer(key+"dbms", FabResp.DbMs);
+			ApiCtx.Metrics.Range(key+"datalen", FabResp.DataLen);
+			ApiCtx.Metrics.Range(key+"result", FabResp.Count);
 
 			//FRv1: (FabResponse log, version 1)
 			//	Class, ip, QueryCount, TotalMs, DbMs, DataLen, StartIndex, Count, HasMore,
@@ -143,7 +157,6 @@ namespace Fabric.Api.Common {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
-				am.TrackEvent(cat, "UnhandledException", UnhandledException.GetType().Name, 1);
 				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}
