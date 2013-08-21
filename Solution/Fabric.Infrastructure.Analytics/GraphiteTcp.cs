@@ -14,13 +14,16 @@ namespace Fabric.Infrastructure.Analytics {
 	public class GraphiteTcp : IDisposable {
 
 		private readonly string vPrefix;
-		private readonly TcpClient vTcp;
-
+		private readonly string vHost;
+		private readonly int vPort;
+		private TcpClient vTcp;
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public GraphiteTcp(string pHost, int pPort, string pPrefix) {
-			vTcp = new TcpClient(pHost, pPort);
+			vHost = pHost;
+			vPort = pPort;
 			vPrefix = pPrefix;
 		}
 
@@ -59,6 +62,10 @@ namespace Fabric.Infrastructure.Analytics {
 		/*--------------------------------------------------------------------------------------------*/
 		public void Send(string pPath, string pNumericValue, DateTime pTimeStamp) {
 			try {
+				if ( vTcp == null ) {
+					vTcp = new TcpClient(vHost, vPort);
+				}
+				
 				if ( !string.IsNullOrWhiteSpace(vPrefix) ) {
 					pPath = vPrefix+"."+pPath;
 				}
@@ -68,6 +75,11 @@ namespace Fabric.Infrastructure.Analytics {
 				vTcp.GetStream().Write(bytes, 0, bytes.Length);
 			}
 			catch ( Exception e ) {
+				if ( vTcp != null && vTcp.Connected ) {
+					vTcp.Close();
+				}
+				
+				vTcp = null;
 				Log.Error("GraphiteUdp Exception: "+e.Message, e);
 			}
 		}

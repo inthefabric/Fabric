@@ -104,20 +104,18 @@ namespace Fabric.Api.Common {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-
-			string key = NancyReq.Method+"-"+NancyReq.Path.Substring(1).Replace('/', '-');
+			string key = NancyReq.Method;
+			string path = NancyReq.Path.ToLower().Substring(1);
+			
+			if ( path.Length > 0 ) {
+				key += "-"+path.Replace('/', '-');
+			}
 			
 			if ( GetType() == typeof(TraversalController) ) {
-				string[] segs = NancyReq.Path.Substring(1).Split('/');
+				string[] segs = path.Split('/');
 				key = NancyReq.Method+"-"+segs[0];
-
-				if ( segs.Length > 1 ) {
-					key += "-"+segs[1];
-
-					if ( segs.Length > 2 ) {
-						key += "-"+segs[2];
-					}
-				}
+				key += (segs.Length > 1 ? "-"+segs[1] : "");
+				key += (segs.Length > 2 ? "-"+segs[2].Split('(')[0] : "");
 			}
 
 			key = "req."+key+".";
