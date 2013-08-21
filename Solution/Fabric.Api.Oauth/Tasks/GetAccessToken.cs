@@ -97,7 +97,7 @@ namespace Fabric.Api.Oauth.Tasks {
 
 			////
 
-			IDataResult result = ApiCtx.Execute(tx);
+			IDataResult result = ApiCtx.Execute(tx, "Oauth-GetAccessToken-GetData");
 			int count = result.GetCommandResultCount();
 
 			if ( count <= 0 ) {

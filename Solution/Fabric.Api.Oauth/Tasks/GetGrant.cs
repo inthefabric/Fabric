@@ -66,7 +66,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			
 			////
 
-			IDataResult data = ApiCtx.Execute(tx);
+			IDataResult data = ApiCtx.Execute(tx, "Oauth-GetGrant-Get");
 			int count = data.GetCommandResultCount();
 
 			if ( count <= 0 ) {

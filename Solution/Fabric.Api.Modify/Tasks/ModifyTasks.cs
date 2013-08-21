@@ -120,7 +120,7 @@ namespace Fabric.Api.Modify.Tasks {
 				facBuild.SetDescriptorRefinesTypeWithArtifact((long)pDescTypeRefId);
 			}
 
-			pApiCtx.Execute(txb.Finish());
+			pApiCtx.Execute(txb.Finish(), "Mod-Task-UpdateFacDesc-Up");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -135,7 +135,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q);
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacDir-Up");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -150,7 +150,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q);
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacEve-Up");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -164,7 +164,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q);
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacIden-Up");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -180,7 +180,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q);
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacLoc-Up");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -211,7 +211,7 @@ namespace Fabric.Api.Modify.Tasks {
 			facBuild.SetVertexVar(facVar);
 			facBuild.SetVectorUsesAxisArtifact(pAxisArtId);
 
-			pApiCtx.Execute(txb.Finish());
+			pApiCtx.Execute(txb.Finish(), "Mod-Task-UpdateFacVec-Up");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

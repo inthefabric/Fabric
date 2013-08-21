@@ -80,7 +80,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				)
 				.ToQuery();
 
-			ApiCtx.Execute(q);
+			ApiCtx.Execute(q, "Oauth-AddAccess-Clear");
 			ApiCtx.Cache.Memory.RemoveOauthAccesses(vAppId, vUserId);
 		}
 
@@ -105,7 +105,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				oaBuild.SetUsesUser((long)vUserId);
 			}
 
-			ApiCtx.Execute(txb.Finish());
+			ApiCtx.Execute(txb.Finish(), "Oauth-AddAccess-Add");
 
 			////
 

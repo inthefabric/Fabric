@@ -86,8 +86,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			tx.Finish(aggVar);
 
 			////
-			
-			IDataResult data = ApiCtx.Execute(tx);
+
+			IDataResult data = ApiCtx.Execute(tx, "Oauth-AddMemberEnsure-GetMemData");
 			int count = data.GetCommandResultCount(0);
 
 			if ( count <= 0 ) {
@@ -132,7 +132,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			memBuild.SetInUserDefines(vUserId);
 
 			AddMemberTypeAssignWithTx(txb, memBuild.VertexVar);
-			ApiCtx.Execute(txb.Finish());
+			ApiCtx.Execute(txb.Finish(), "Oauth-AddMemberEnsure-AddMem");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -160,7 +160,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			//Finish transaction
 			
 			AddMemberTypeAssignWithTx(txb, memVar);
-			ApiCtx.Execute(txb.Finish());
+			ApiCtx.Execute(txb.Finish(), "Oauth-AddMemberEnsure-UpdateMemType");
 		}
 
 

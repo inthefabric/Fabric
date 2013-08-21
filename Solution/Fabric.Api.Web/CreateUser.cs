@@ -71,7 +71,7 @@ namespace Fabric.Api.Web {
 
 			////
 
-			IDataResult data = ApiCtx.Execute(txb.Finish());
+			IDataResult data = ApiCtx.Execute(txb.Finish(), "Web-CreateUser-Create");
 			
 			var result = new CreateUserResult();
 			result.NewUser = data.ToElementAt<User>(0, 0);

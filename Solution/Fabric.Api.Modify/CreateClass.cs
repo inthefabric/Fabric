@@ -54,7 +54,7 @@ namespace Fabric.Api.Modify {
 			IWeaverVarAlias<Member> memVar;
 			IWeaverVarAlias<Class> classVar;
 			TxBuilder txb = GetFullTx(out memVar, out classVar);
-			IDataResult data = ApiCtx.Execute(txb.Finish(classVar));
+			IDataResult data = ApiCtx.Execute(txb.Finish(classVar), "Mod-CreateClass-Create");
 			return GetClassFromResult(data);
 		}
 		

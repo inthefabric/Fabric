@@ -192,8 +192,8 @@ namespace Fabric.Api.Web.Tasks {
 					.Has(x => x.OauthDomainId, WeaverStepHasOp.EqualTo, pOauthDomainId)
 					.Remove()
 				.ToQuery();
-				
-			pApiCtx.Execute(q);
+
+			pApiCtx.Execute(q, "Web-Task-DeleteOauthDom-Del");
 			return true;
 		}
 

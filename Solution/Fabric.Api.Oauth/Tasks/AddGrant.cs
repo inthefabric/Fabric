@@ -86,8 +86,8 @@ namespace Fabric.Api.Oauth.Tasks {
 			ogBuild.AddVertex();
 			ogBuild.SetUsesApp(vAppId);
 			ogBuild.SetUsesUser(vUserId);
-			
-			ApiCtx.Execute(txb.Finish());
+
+			ApiCtx.Execute(txb.Finish(), "Oauth-AddGrant-Add");
 			return newOg.Code;
 		}
 

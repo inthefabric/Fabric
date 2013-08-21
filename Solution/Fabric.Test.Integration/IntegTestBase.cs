@@ -173,7 +173,7 @@ namespace Fabric.Test.Integration {
 				vertexQ+".outE.aggregate(x).inV.dedup.aggregate(x).iterate();"+
 				vertexQ+".inE.aggregate(x).outV.dedup.aggregate(x).iterate();x");
 
-			return new VertexConnections(pVertex, ApiCtx.Execute(q));
+			return new VertexConnections(pVertex, ApiCtx.Execute(q, "Test-Base-GetVertConn"));
 		}
 
 
@@ -182,7 +182,7 @@ namespace Fabric.Test.Integration {
 		private Tuple<int, int> CountVerticesAndEdges() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
-			IDataResult data = ApiCtx.ExecuteForTest(q);
+			IDataResult data = ApiCtx.ExecuteForTest(q, "Base-Count");
 			return new Tuple<int, int>(data.ToIntAt(0, 0), data.ToIntAt(0, 1));
 		}
 		

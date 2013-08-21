@@ -14,7 +14,7 @@ namespace Fabric.Infrastructure.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static IDataResult Execute(this IApiContext pApiCtx, IWeaverScript pWeaverScript,
-																			string pName="default") {
+																						string pName) {
 			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName);
 		}
 

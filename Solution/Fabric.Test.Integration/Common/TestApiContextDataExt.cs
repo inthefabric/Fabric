@@ -11,9 +11,9 @@ namespace Fabric.Test.Integration.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static IDataResult ExecuteForTest(this TestApiContext pApiCtx,
-																		IWeaverScript pWeaverScript) {
+												IWeaverScript pWeaverScript, string pName="Default") {
 			Log.Debug("TEST QUERY");
-			return pApiCtx.Execute(pWeaverScript);
+			return pApiCtx.Execute(pWeaverScript, "Test-"+pName);
 		}
 
 	}

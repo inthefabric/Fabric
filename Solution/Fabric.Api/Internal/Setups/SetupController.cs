@@ -51,7 +51,7 @@ namespace Fabric.Api.Internal.Setups {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private void SendSetupTx() {
 			Log.Debug("Remove all verts");
 			var tx = new WeaverTransaction();
@@ -105,7 +105,7 @@ namespace Fabric.Api.Internal.Setups {
 				tx.AddQuery(listQ);
 
 				tx.Finish();
-				IDataResult result = ApiCtx.Execute(tx);
+				IDataResult result = ApiCtx.Execute(tx, "SetupCtrl-AddVert");
 
 				for ( int i = 0 ; i < result.GetCommandResultCount() ; ++i ) {
 					string idStr = result.ToStringAt(0, i);
@@ -142,7 +142,7 @@ namespace Fabric.Api.Internal.Setups {
 				}
 
 				tx.Finish();
-				ApiCtx.Execute(tx);
+				ApiCtx.Execute(tx, "SetupCtrl-AddEdge");
 
 				if ( count >= vDataSet.Edges.Count ) {
 					break;
