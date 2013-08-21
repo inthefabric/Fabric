@@ -72,12 +72,12 @@ namespace Fabric.Api {
 				Log.Debug("Fabric Version: "+Version.Version+
 					" ("+Version.Year+'.'+Version.Month+'.'+Version.Day+")");
 
-				Cache = new CacheManager("Api");
-				AnalyticsProv = (g => new AnalyticsManager(g));
-
 				string graphite = ConfigurationManager.AppSettings[ConfPrefix+"Graphite"];
 				string prefix = ConfigurationManager.AppSettings[ConfPrefix+"GraphitePrefix"];
 				Metrics = new MetricsManager(graphite, 2003, prefix);
+
+				Cache = new CacheManager(Metrics);
+				AnalyticsProv = (g => new AnalyticsManager(g));
 			}
 		}
 

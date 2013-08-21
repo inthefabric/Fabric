@@ -10,8 +10,8 @@ namespace Fabric.Infrastructure.Caching {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CacheManager(string pDiskCacheName, bool pForTesting=false) {
-			Memory = new MemCache();
+		public CacheManager(IMetricsManager pMetrics, bool pForTesting=false) {
+			Memory = new MemCache(pMetrics);
 		}
 
 	}

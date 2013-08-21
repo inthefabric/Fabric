@@ -12,9 +12,9 @@ namespace Fabric.Test.Integration.Common {
 	/*================================================================================================*/
 	public class TestApiContext : ApiContext {
 
-		private static readonly CacheManager TestCache = new CacheManager("ApiTest", true);
 		private static readonly MetricsManager TestMetrics =
 			new MetricsManager("graphite.inthefabric.net", 2003, "api.test", 1000);
+		private static readonly CacheManager TestCache = new CacheManager(TestMetrics, true);
 		private static readonly Func<Guid, IAnalyticsManager> TestAnalyt = (g=>new AnalyticsManager(g));
 
 		public DateTime? TestUtcNow { get; set; }

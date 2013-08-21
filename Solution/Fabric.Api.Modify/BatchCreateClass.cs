@@ -153,8 +153,6 @@ namespace Fabric.Api.Modify {
 					Class c = cc.GetNewClassForBatch();
 					res.ResultId = c.ArtifactId;
 					classes.Add(c);
-
-					ApiCtx.Cache.Memory.AddExists<Artifact>(c.ArtifactId);
 				}
 				catch ( FabFault fault ) {
 					res.Error = FabError.ForFault(fault);

@@ -77,7 +77,7 @@ namespace Fabric.Infrastructure.Api {
 		public IDataAccess NewData(string pSessionId=null) {
 			var da = new DataAccess();
 			da.Build(this, pSessionId);
-			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute);
+			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute, OnDataPostExecuteError);
 			return da;
 		}
 		
@@ -101,6 +101,12 @@ namespace Fabric.Infrastructure.Api {
 			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
 			//Log.Debug(ContextId, "Data", "Request: "+pResult.RequestJson);
 			//Log.Debug(ContextId, "Data", "Response: "+pResult.ResponseJson);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void OnDataPostExecuteError(IDataAccess pAccess, Exception pEx) {
+			string key = "apictx."+pAccess.ExecuteName;
+			Metrics.Counter(key+".err", 1);
 		}
 
 

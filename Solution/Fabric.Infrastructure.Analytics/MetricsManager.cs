@@ -13,10 +13,10 @@ namespace Fabric.Infrastructure.Analytics {
 		private readonly GraphiteTcp vGraphite;
 		private readonly Timer vTimer;
 
-		private readonly HashSet<string> vTimerPaths;
-		private readonly HashSet<string> vRangePaths;
-		private readonly HashSet<string> vCounterPaths;
-		private readonly HashSet<string> vGaugePaths;
+		private HashSet<string> vTimerPaths;
+		private HashSet<string> vRangePaths;
+		private HashSet<string> vCounterPaths;
+		private HashSet<string> vGaugePaths;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,11 @@ namespace Fabric.Infrastructure.Analytics {
 		public MetricsManager(string pHost, int pPort, string pPrefix, int pFrequencyMillis=10000) {
 			vGraphite = new GraphiteTcp(pHost, pPort, pPrefix);
 			vTimer = new Timer(SendData, null, pFrequencyMillis, pFrequencyMillis);
+			ResetPaths();
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private void ResetPaths() {
 			vTimerPaths = new HashSet<string>();
 			vRangePaths = new HashSet<string>();
 			vCounterPaths = new HashSet<string>();
@@ -72,6 +76,7 @@ namespace Fabric.Infrastructure.Analytics {
 				vGraphite.Send(path+".timer.count", mtm.Count);
 				vGraphite.Send(path+".timer.p95", perc[0]);
 				vGraphite.Send(path+".timer.p99", perc[1]);
+				mtm.Clear();
 			}
 
 			foreach ( string path in vRangePaths ) {
@@ -79,17 +84,21 @@ namespace Fabric.Infrastructure.Analytics {
 				vGraphite.Send(path+".range.mean", hm.Mean);
 				vGraphite.Send(path+".range.min", hm.Min);
 				vGraphite.Send(path+".range.max", hm.Max);
+				hm.Clear();
 			}
 
 			foreach ( string path in vCounterPaths ) {
 				CounterMetric cm = Metrics.Counter(GetType(), path);
 				vGraphite.Send(path+".counter", cm.Count);
+				cm.Clear();
 			}
 
 			foreach ( string path in vGaugePaths ) {
 				GaugeMetric<long> gm = Metrics.Gauge<long>(GetType(), path, null);
 				vGraphite.Send(path+".gauge", gm.Value);
 			}
+
+			ResetPaths();
 		}
 
 

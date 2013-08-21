@@ -10,10 +10,14 @@ namespace Fabric.Infrastructure.Caching {
 	/*================================================================================================*/
 	public class MemCache : MemoryCache, IMemCache {
 
+		private readonly IMetricsManager vMetrics;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemCache() : base("MemCache", GetConfig()) {}
+		public MemCache(IMetricsManager pMetrics) : base("MemCache", GetConfig()) {
+			vMetrics = pMetrics;
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static NameValueCollection GetConfig() {
@@ -22,9 +26,16 @@ namespace Fabric.Infrastructure.Caching {
 			return config;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public bool IsCacheHit(string pName, string pKey) {
+			bool hit = Contains(pKey);
+			vMetrics.Counter("cache.mem."+pName+"."+(hit ? "hit" : "miss"), 1);
+			return hit;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AddExists<T>(long pVertexTypeId, CacheItemPolicy pPolicy=null) where T : IVertexWithId {
 			if ( pPolicy == null ) {
 				pPolicy = NewPolicy(3600);
@@ -33,13 +44,13 @@ namespace Fabric.Infrastructure.Caching {
 			Add(GetDomainVertexKey<T>(pVertexTypeId), true, pPolicy);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public bool? FindExists<T>(long pVertexTypeId) where T : IVertexWithId {
 			string key = GetDomainVertexKey<T>(pVertexTypeId);
 			return (Contains(key) ? (bool)Get(key) : (bool?)null);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public bool? RemoveExists<T>(long pVertexTypeId) where T : IVertexWithId {
 			string key = GetDomainVertexKey<T>(pVertexTypeId);
 			return (Contains(key) ? (bool)Remove(key) : (bool?)null);
@@ -75,7 +86,7 @@ namespace Fabric.Infrastructure.Caching {
 		/*--------------------------------------------------------------------------------------------*/
 		public T FindVertex<T>(long pVertexTypeId) where T : IVertexWithId {
 			string key = GetDomainVertexKey<T>(pVertexTypeId);
-			return (Contains(key) ? (T)Get(key) : default(T));
+			return (IsCacheHit("FindVertex", key) ? (T)Get(key) : default(T));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -104,7 +115,7 @@ namespace Fabric.Infrastructure.Caching {
 		/*--------------------------------------------------------------------------------------------*/
 		public Member FindMember(long pAppId, long pUserId) {
 			string key = GetMemberKey(pAppId, pUserId);
-			return (Contains(key) ? (Member)Get(key) : null);
+			return (IsCacheHit("FindMember", key) ? (Member)Get(key) : null);
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
@@ -145,7 +156,8 @@ namespace Fabric.Infrastructure.Caching {
 		/*--------------------------------------------------------------------------------------------*/
 		public Tuple<OauthAccess, long, long?> FindOauthAccess(string pToken) {
 			string key = GetOauthAccessKey(pToken);
-			return (Contains(key) ? (Tuple<OauthAccess, long, long?>)Get(key) : null);
+			return (IsCacheHit("FindOauthAccess", key) ?
+				(Tuple<OauthAccess, long, long?>)Get(key) : null);
 		}
 
 		/*--------------------------------------------------------------------------------------------* /

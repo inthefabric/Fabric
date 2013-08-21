@@ -9,7 +9,7 @@ namespace Fabric.Infrastructure.Api {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		void AddExists<T>(long pVertexTypeId, CacheItemPolicy pPolicy=null) where T : IVertexWithId;
 		bool? FindExists<T>(long pVertexTypeId) where T : IVertexWithId;
 		bool? RemoveExists<T>(long pVertexTypeId) where T : IVertexWithId;

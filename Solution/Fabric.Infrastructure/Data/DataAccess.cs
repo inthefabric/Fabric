@@ -20,6 +20,7 @@ namespace Fabric.Infrastructure.Data {
 		private RequestCmd vLatestCmd;
 		private Action<IDataAccess, RexConnDataAccess> vPreExecute;
 		private Action<IDataAccess, IResponseResult> vPostExecute;
+		private Action<IDataAccess, Exception> vPostExecuteErr;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,9 +34,11 @@ namespace Fabric.Infrastructure.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		internal void SetExecuteHooks(Action<IDataAccess, RexConnDataAccess> pPreExecute,
-													Action<IDataAccess, IResponseResult> pPostExecute) {
+													Action<IDataAccess, IResponseResult> pPostExecute,
+													Action<IDataAccess, Exception> pPostExecuteErr) {
 			vPreExecute = pPreExecute;
 			vPostExecute = pPostExecute;
+			vPostExecuteErr = pPostExecuteErr;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -144,7 +147,7 @@ namespace Fabric.Infrastructure.Data {
 			ExecuteName = pName;
 
 			var data = new RexConnDataAccess(vRexConnCtx);
-			IResponseResult rr;
+			IResponseResult rr = null;
 			
 			if ( vPreExecute != null ) {
 				vPreExecute(this, data);
@@ -154,9 +157,20 @@ namespace Fabric.Infrastructure.Data {
 				rr = data.Execute();
 			}
 			catch ( ResponseErrException ree ) {
+				if ( vPostExecuteErr != null ) {
+					vPostExecuteErr(this, ree);
+				}
+
 				throw new DataAccessException(this, ree.Message);
 			}
-			
+			catch ( Exception e ) {
+				if ( vPostExecuteErr != null ) {
+					vPostExecuteErr(this, e);
+				}
+
+				throw;
+			}
+
 			if ( vPostExecute != null ) {
 				vPostExecute(this, rr);
 			}
