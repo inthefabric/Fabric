@@ -33,7 +33,7 @@ namespace Fabric.Api.Web.Tasks {
 				.V.ExactIndex<User>(x => x.NameKey, pName.ToLower())
 				.ToQuery();
 
-			return pApiCtx.Get<User>(q);
+			return pApiCtx.Get<User>(q, "Web-Task-GetUserByName");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -42,7 +42,7 @@ namespace Fabric.Api.Web.Tasks {
 				.V.ExactIndex<App>(x => x.NameKey, pName.ToLower())
 				.ToQuery();
 
-			App app = pApiCtx.Get<App>(q);
+			App app = pApiCtx.Get<App>(q, "Web-Task-GetAppByName");
 
 			if ( app == null || app.Name.ToLower() != pName.ToLower() ) {
 				return null;
@@ -61,7 +61,7 @@ namespace Fabric.Api.Web.Tasks {
 					)
 				.ToQuery();
 
-			return pApiCtx.Get<User>(q);
+			return pApiCtx.Get<User>(q, "Web-Task-UpdateUserPass");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -70,8 +70,8 @@ namespace Fabric.Api.Web.Tasks {
 				.V.ExactIndex<App>(x => x.ArtifactId, pAppId)
 					.SideEffect(new WeaverStatementSetProperty<App>(x => x.Name, pName))
 				.ToQuery();
-					
-			return pApiCtx.Get<App>(q);
+
+			return pApiCtx.Get<App>(q, "Web-Task-UpdateAppName");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -83,7 +83,7 @@ namespace Fabric.Api.Web.Tasks {
 					.SideEffect	(update)
 				.ToQuery();
 
-			return pApiCtx.Get<App>(q);
+			return pApiCtx.Get<App>(q, "Web-Task-UpdateAppSecret");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,8 +93,8 @@ namespace Fabric.Api.Web.Tasks {
 				.DefinesMemberList.ToMember
 					.Has(x => x.MemberId, WeaverStepHasOp.EqualTo, pMemberId)
 				.ToQuery();
-			
-			return pApiCtx.Get<Member>(q);
+
+			return pApiCtx.Get<Member>(q, "Web-Task-GetMemberOfApp");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -104,7 +104,7 @@ namespace Fabric.Api.Web.Tasks {
 				.HasMemberTypeAssign.ToMemberTypeAssign
 				.ToQuery();
 
-			return pApiCtx.Get<MemberTypeAssign>(q);
+			return pApiCtx.Get<MemberTypeAssign>(q, "Web-Task-GetMtaByMember");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -150,7 +150,7 @@ namespace Fabric.Api.Web.Tasks {
 			mtaBuild.SetInMemberHas(memAlias);
 
 			txb.Finish(mtaBuild.VertexVar);
-			return pApiCtx.Get<MemberTypeAssign>(txb.Transaction);
+			return pApiCtx.Get<MemberTypeAssign>(txb.Transaction, "Web-Task-AddMta");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -165,7 +165,7 @@ namespace Fabric.Api.Web.Tasks {
 				.ToQuery();
 
 			q.AddStringParam(pDomain.ToLower());
-			return pApiCtx.Get<OauthDomain>(q);
+			return pApiCtx.Get<OauthDomain>(q, "Web-Task-GetOauthDomByDom");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -181,7 +181,7 @@ namespace Fabric.Api.Web.Tasks {
 			odBuild.SetUsesApp(pAppId);
 			
 			txb.Finish(odBuild.VertexVar);
-			return pApiCtx.Get<OauthDomain>(txb.Transaction);
+			return pApiCtx.Get<OauthDomain>(txb.Transaction, "Web-Task-AddOauthDom");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -193,7 +193,7 @@ namespace Fabric.Api.Web.Tasks {
 					.Remove()
 				.ToQuery();
 
-			pApiCtx.Execute(q, "Web-Task-DeleteOauthDom-Del");
+			pApiCtx.Execute(q, "Web-Task-DeleteOauthDom");
 			return true;
 		}
 

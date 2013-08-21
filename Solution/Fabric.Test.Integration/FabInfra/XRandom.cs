@@ -31,7 +31,7 @@ namespace Fabric.Test.Integration.FabInfra {
 				.UsesEmail
 				.ToQuery();
 
-			ApiCtx.GetList<UserUsesEmail>(q);
+			ApiCtx.GetList<UserUsesEmail>(q, "Test-XRandom-GetEdges");
 		}
 
 

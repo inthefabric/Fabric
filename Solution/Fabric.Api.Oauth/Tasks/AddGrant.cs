@@ -71,7 +71,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.Finish();
-			OauthGrant og = ApiCtx.Get<OauthGrant>(tx);
+			OauthGrant og = ApiCtx.Get<OauthGrant>(tx, "Oauth-AddGrant-Get");
 			
 			if ( og != null ) {
 				return newOg.Code;

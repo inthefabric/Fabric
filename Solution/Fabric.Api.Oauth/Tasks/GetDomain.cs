@@ -65,7 +65,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.Domain, WeaverStepHasOp.EqualTo, vRedirectDomain.ToLower())
 				.ToQuery();
 
-			OauthDomain od = ApiCtx.Get<OauthDomain>(q);
+			OauthDomain od = ApiCtx.Get<OauthDomain>(q, "Oauth-GetDomain-Get");
 			
 			if ( od == null ) {
 				return null;

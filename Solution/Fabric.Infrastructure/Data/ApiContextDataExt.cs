@@ -22,13 +22,13 @@ namespace Fabric.Infrastructure.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static T Get<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript,
-						string pName="default") where T : class, IWeaverElement, IElementWithId, new() {
+								string pName) where T : class, IWeaverElement, IElementWithId, new() {
 			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName).ToElement<T>();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public static IList<T> GetList<T>(this IApiContext pApiCtx, IWeaverScript pWeaverScript,
-						string pName="default") where T : class, IWeaverElement, IElementWithId, new() {
+								string pName) where T : class, IWeaverElement, IElementWithId, new() {
 			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName).ToElementList<T>();
 		}
 

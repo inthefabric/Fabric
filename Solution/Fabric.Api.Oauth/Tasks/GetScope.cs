@@ -51,7 +51,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(scopeAlias)
 				.ToQuery();
 
-			OauthScope scope = ApiCtx.Get<OauthScope>(q);
+			OauthScope scope = ApiCtx.Get<OauthScope>(q, "Oauth-GetScope-Get");
 
 			if ( scope == null ) {
 				return null;

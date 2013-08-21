@@ -49,7 +49,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Has(x => x.Password, WeaverStepHasOp.EqualTo, FabricUtil.HashPassword(vPassword))
 				.ToQuery();
 
-			return ApiCtx.Get<User>(q);
+			return ApiCtx.Get<User>(q, "Oauth-GetUserAuth-Get");
 		}
 		
 	}

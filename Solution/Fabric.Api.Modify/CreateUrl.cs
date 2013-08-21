@@ -66,7 +66,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddUrl(ApiCtx, txb, vPath, vName, memVar, out urlVar);
 			txb.RegisterVarWithTxBuilder(urlVar);
 
-			return ApiCtx.Get<Url>(txb.Finish(urlVar));
+			return ApiCtx.Get<Url>(txb.Finish(urlVar), "Mod-CreateUrl-Add");
 		}
 
 	}

@@ -91,7 +91,7 @@ namespace Fabric.Api.Oauth {
 				.V.ExactIndex<App>(x => x.ArtifactId, AppId)
 				.ToQuery();
 
-			App app = pContext.Get<App>(q);
+			App app = pContext.Get<App>(q, "Oauth-GrantCore-GetApp");
 
 			if ( app == null ) {
 				throw GetFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
@@ -110,7 +110,7 @@ namespace Fabric.Api.Oauth {
 				.V.ExactIndex<User>(x => x.ArtifactId, (long)UserId)
 				.ToQuery();
 
-			return pContext.Get<User>(q);
+			return pContext.Get<User>(q, "Oauth-GrantCore-GetUser");
 		}
 
 

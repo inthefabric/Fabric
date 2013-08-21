@@ -60,7 +60,7 @@ namespace Fabric.Api.Web {
 			////
 			
 			txb.RegisterVarWithTxBuilder(appVar);
-			return ApiCtx.Get<App>(txb.Finish(appVar));
+			return ApiCtx.Get<App>(txb.Finish(appVar), "Web-CreateApp-Add");
 		}
 
 	}

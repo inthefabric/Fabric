@@ -55,7 +55,7 @@ namespace Fabric.Api.Oauth.Tasks {
 				.Back(userAlias)
 				.ToQuery();
 
-			return ApiCtx.Get<User>(q);
+			return ApiCtx.Get<User>(q, "Oauth-GetDataProv-Get");
 		}
 
 	}

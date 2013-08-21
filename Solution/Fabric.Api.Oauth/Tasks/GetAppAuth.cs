@@ -43,7 +43,7 @@ namespace Fabric.Api.Oauth.Tasks {
 					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, vAppSecret)
 				.ToQuery();
 				
-			return ApiCtx.Get<App>(getApp);
+			return ApiCtx.Get<App>(getApp, "Oauth-GetAppAuth-Get");
 		}
 		
 	}

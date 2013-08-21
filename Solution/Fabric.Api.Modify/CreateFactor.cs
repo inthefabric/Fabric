@@ -86,7 +86,7 @@ namespace Fabric.Api.Modify {
 				vIsDefining, vNote, m, out factorVar);
 			
 			txb.RegisterVarWithTxBuilder(factorVar);
-			return ApiCtx.Get<Factor>(txb.Finish(factorVar));
+			return ApiCtx.Get<Factor>(txb.Finish(factorVar), "Mod-CreateFactor-Add");
 		}
 
 

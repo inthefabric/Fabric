@@ -64,7 +64,7 @@ namespace Fabric.Api.Modify {
 			Tasks.TxAddInstance(ApiCtx, txb, vName, vDisamb, vNote, memVar, out classVar);
 			txb.RegisterVarWithTxBuilder(classVar);
 
-			return ApiCtx.Get<Instance>(txb.Finish(classVar));
+			return ApiCtx.Get<Instance>(txb.Finish(classVar), "Mod-CreateInstance-Add");
 		}
 
 	}

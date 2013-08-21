@@ -64,7 +64,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			);
 
 			tx.Finish();
-			OauthScope os = ApiCtx.Get<OauthScope>(tx);
+			OauthScope os = ApiCtx.Get<OauthScope>(tx, "Oauth-AddScope-Get");
 			
 			if ( os != null ) {
 				return os;
@@ -82,7 +82,7 @@ namespace Fabric.Api.Oauth.Tasks {
 			osBuild.SetUsesUser(vUserId);
 			
 			txb.Transaction.Finish(osBuild.VertexVar);
-			newOs = ApiCtx.Get<OauthScope>(txb.Transaction);
+			newOs = ApiCtx.Get<OauthScope>(txb.Transaction, "Oauth-AddScope-Add");
 			return newOs;
 		}
 

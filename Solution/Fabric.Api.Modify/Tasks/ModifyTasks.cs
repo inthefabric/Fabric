@@ -30,7 +30,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.V.ExactIndex<Url>(x => x.FullPath, pPath.ToLower())
 				.ToQuery();
 
-			return pApiCtx.Get<Url>(q);
+			return pApiCtx.Get<Url>(q, "Mod-Task-GetUrlByPath");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -57,7 +57,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.Back(memAlias)
 				.ToQuery();
 
-			mem = pApiCtx.Get<Member>(q);
+			mem = pApiCtx.Get<Member>(q, "Mod-Task-GetValidMemByCtx");
 
 			if ( mem != null ) {
 				pApiCtx.Cache.Memory.AddMember(pApiCtx.AppId, pApiCtx.UserId, mem);
@@ -81,7 +81,7 @@ namespace Fabric.Api.Modify.Tasks {
 				.Back(factorAlias)
 				.ToQuery();
 
-			return pApiCtx.Get<Factor>(q);
+			return pApiCtx.Get<Factor>(q, "Mod-Task-GetActiveFacFromMem");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -120,7 +120,7 @@ namespace Fabric.Api.Modify.Tasks {
 				facBuild.SetDescriptorRefinesTypeWithArtifact((long)pDescTypeRefId);
 			}
 
-			pApiCtx.Execute(txb.Finish(), "Mod-Task-UpdateFacDesc-Up");
+			pApiCtx.Execute(txb.Finish(), "Mod-Task-UpdateFacDesc");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -135,7 +135,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q, "Mod-Task-UpdateFacDir-Up");
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacDir");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -150,7 +150,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q, "Mod-Task-UpdateFacEve-Up");
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacEve");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -164,7 +164,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q, "Mod-Task-UpdateFacIden-Up");
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacIden");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -180,7 +180,7 @@ namespace Fabric.Api.Modify.Tasks {
 				)
 				.ToQuery();
 
-			pApiCtx.Execute(q, "Mod-Task-UpdateFacLoc-Up");
+			pApiCtx.Execute(q, "Mod-Task-UpdateFacLoc");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -211,7 +211,7 @@ namespace Fabric.Api.Modify.Tasks {
 			facBuild.SetVertexVar(facVar);
 			facBuild.SetVectorUsesAxisArtifact(pAxisArtId);
 
-			pApiCtx.Execute(txb.Finish(), "Mod-Task-UpdateFacVec-Up");
+			pApiCtx.Execute(txb.Finish(), "Mod-Task-UpdateFacVec");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -226,7 +226,7 @@ namespace Fabric.Api.Modify.Tasks {
 				facPath.SideEffect(new WeaverStatementSetProperty<Factor>(x => x.Deleted, now));
 			}
 
-			return pApiCtx.Get<Factor>(facPath.ToQuery());
+			return pApiCtx.Get<Factor>(facPath.ToQuery(), "Mod-Task-UpdateFactor");
 		}
 
 
