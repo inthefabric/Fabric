@@ -10,7 +10,7 @@ namespace Fabric.Infrastructure.Analytics {
 	/*================================================================================================*/
 	public class MetricsManager : IMetricsManager {
 
-		private readonly GraphiteUdp vGraphite;
+		private readonly GraphiteTcp vGraphite;
 		private readonly Timer vTimer;
 
 		private readonly HashSet<string> vTimerPaths;
@@ -22,8 +22,7 @@ namespace Fabric.Infrastructure.Analytics {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MetricsManager(string pHost, int pPort, string pPrefix, int pFrequencyMillis=10000) {
-			Log.Debug("CREATE MEM MGR");
-			vGraphite = new GraphiteUdp(pHost, pPort, pPrefix);
+			vGraphite = new GraphiteTcp(pHost, pPort, pPrefix);
 			vTimer = new Timer(SendData, null, pFrequencyMillis, pFrequencyMillis);
 
 			vTimerPaths = new HashSet<string>();
@@ -63,8 +62,6 @@ namespace Fabric.Infrastructure.Analytics {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendData(object pState) {
-			Log.Debug("SEND DATA!");
-
 			foreach ( string path in vTimerPaths ) {
 				ManualTimerMetric mtm = Metrics.ManualTimer(GetType(), path, 
 					TimeUnit.Milliseconds, TimeUnit.Milliseconds);
@@ -99,7 +96,6 @@ namespace Fabric.Infrastructure.Analytics {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Dispose() {
-			Log.Debug("DISPOSE!");
 			SendData(null);
 			vGraphite.Dispose();
 			vTimer.Dispose();

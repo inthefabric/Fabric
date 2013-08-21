@@ -11,16 +11,16 @@ namespace Fabric.Infrastructure.Analytics {
 	// This was necessary to support sending more than just integer values.
 
 	/*================================================================================================*/
-	public class GraphiteUdp : IDisposable {
+	public class GraphiteTcp : IDisposable {
 
 		private readonly string vPrefix;
-		private readonly UdpClient vUdp;
+		private readonly TcpClient vTcp;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public GraphiteUdp(string pHost, int pPort, string pPrefix) {
-			vUdp = new UdpClient(pHost, pPort);
+		public GraphiteTcp(string pHost, int pPort, string pPrefix) {
+			vTcp = new TcpClient(pHost, pPort);
 			vPrefix = pPrefix;
 		}
 
@@ -63,12 +63,12 @@ namespace Fabric.Infrastructure.Analytics {
 					pPath = vPrefix+"."+pPath;
 				}
 
-				string msg = pPath+" "+pNumericValue+" "+pTimeStamp.ToUnixTime();
+				string msg = pPath+" "+pNumericValue+" "+pTimeStamp.ToUnixTime()+"\n";
 				byte[] bytes = Encoding.UTF8.GetBytes(msg);
-				vUdp.Send(bytes, bytes.Length);
+				vTcp.GetStream().Write(bytes, 0, bytes.Length);
 			}
 			catch ( Exception e ) {
-				Log.Error("GraphiteUdp exception: "+e.Message, e);
+				Log.Error("GraphiteUdp Exception: "+e.Message, e);
 			}
 		}
 
@@ -76,8 +76,8 @@ namespace Fabric.Infrastructure.Analytics {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Dispose() {
-			if ( vUdp != null ) {
-				vUdp.Close();
+			if ( vTcp != null ) {
+				vTcp.Close();
 			}
 
 			GC.SuppressFinalize(this);

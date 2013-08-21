@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnalyticsManager.cs" />
-    <Compile Include="GraphiteUdp.cs" />
+    <Compile Include="GraphiteTcp.cs" />
     <Compile Include="MetricsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
