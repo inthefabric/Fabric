@@ -78,17 +78,26 @@ namespace Fabric.Api.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void PreLogAction() {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual string BuildGraphiteKey() {
+			string key = NancyReq.Method;
+			string path = NancyReq.Path.ToLower().Trim(new[] { '/' }).Split('?')[0];
+
+			if ( path.Length > 0 ) {
+				key += "-"+path.Replace('/', '-');
+			}
+
+			return "req."+key+".";
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
-			IAnalyticsManager am = ApiCtx.Analytics;
-			string cat = am.GetCategory(NancyReq.Method, NancyReq.Path);
-			string lbl = (UnhandledException != null ? UnhandledException.GetType().Name : "OK");
-
-			am.TrackRequest(NancyReq.Method, NancyReq.Path);
-			am.TrackEvent(cat, "DbMs", lbl, ApiCtx.DbQueryMillis);
-			am.TrackEvent(cat, "TotalMs", lbl, vMillis);
-			am.TrackEvent(cat, "QueryCount", lbl, ApiCtx.DbQueryExecutionCount);
+			string key = BuildGraphiteKey();
+			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
+			ApiCtx.Metrics.Range(key+"dbquery", ApiCtx.DbQueryExecutionCount);
+			ApiCtx.Metrics.Timer(key+"totalms", vMillis);
+			ApiCtx.Metrics.Timer(key+"dbms", ApiCtx.DbQueryMillis);
 
 			//LOGv1: 
 			//	Class, ip, QueryCount, DbMs, TotalMs, Timestamp, HttpStatus, Method, Path, Exception
@@ -111,7 +120,6 @@ namespace Fabric.Api.Common {
 				Log.Info(ApiCtx.ContextId, name, v1);
 			}
 			else {
-				am.TrackEvent(cat, "UnhandledException", lbl, 1);
 				Log.Error(ApiCtx.ContextId, name, v1, UnhandledException);
 			}
 		}

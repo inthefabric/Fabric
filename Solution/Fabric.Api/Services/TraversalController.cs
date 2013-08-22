@@ -92,6 +92,23 @@ namespace Fabric.Api.Services {
 			);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string BuildGraphiteKey() {
+			string path = NancyReq.Path.ToLower().Substring(1);
+			string[] segs = path.Split('/');
+			string key = NancyReq.Method+"-"+segs[0];
+
+			if ( segs.Length > 1 ) {
+				key += "-"+segs[1];
+
+				if ( segs.Length > 2 ) {
+					key += "-"+segs[2].Split('(')[0].Split('?')[0];
+				}
+			}
+
+			return "req."+key+".";
+		}
+
 	}
 
 }

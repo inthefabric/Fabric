@@ -103,23 +103,8 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
+			string key = BuildGraphiteKey();
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			string key = NancyReq.Method;
-			string path = NancyReq.Path.ToLower().Substring(1);
-			
-			if ( path.Length > 0 ) {
-				key += "-"+path.Replace('/', '-');
-			}
-			
-			if ( GetType() == typeof(TraversalController) ) {
-				string[] segs = path.Split('/');
-				key = NancyReq.Method+"-"+segs[0];
-				key += (segs.Length > 1 ? "-"+segs[1] : "");
-				key += (segs.Length > 2 ? "-"+segs[2].Split('(')[0] : "");
-			}
-
-			key = "req."+key+".";
-
 			ApiCtx.Metrics.Range(key+"dbquery", ApiCtx.DbQueryExecutionCount);
 			ApiCtx.Metrics.Timer(key+"totalms", FabResp.TotalMs);
 			ApiCtx.Metrics.Timer(key+"dbms", FabResp.DbMs);
