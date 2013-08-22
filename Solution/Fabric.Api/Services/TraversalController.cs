@@ -106,7 +106,7 @@ namespace Fabric.Api.Services {
 				}
 			}
 
-			return "req."+key+".";
+			return "req."+key;
 		}
 
 	}

@@ -9,7 +9,7 @@ namespace Fabric.Infrastructure.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void Timer(string pPath, long pMilliseconds);
-		void Range(string pPath, long pValue);
+		void Mean(string pPath, long pValue);
 		void Counter(string pPath, long pIncrement);
 		void Gauge(string pPath, Func<long> pEvaluator);
 

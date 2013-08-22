@@ -27,7 +27,7 @@ namespace Fabric.Infrastructure.Caching {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public bool IsCacheHit(string pName, string pKey) {
+		private bool IsCacheHit(string pName, string pKey) {
 			bool hit = Contains(pKey);
 			vMetrics.Counter("cache.mem."+pName+"."+(hit ? "hit" : "miss"), 1);
 			return hit;

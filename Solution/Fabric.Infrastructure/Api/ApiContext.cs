@@ -93,9 +93,10 @@ namespace Fabric.Infrastructure.Api {
 			DbQueryMillis += (int)pResult.Response.Timer;
 
 			string key = "apictx."+pAccess.ExecuteName;
+			Metrics.Counter(key, 1);
 			Metrics.Timer(key+".rc", pResult.Response.Timer);
 			Metrics.Timer(key+".ex", (long)pResult.ExecutionMilliseconds);
-			Metrics.Range(key+".len", pResult.ResponseJson.Length);
+			Metrics.Mean(key+".len", pResult.ResponseJson.Length);
 			Metrics.Counter(key+".err", (pResult.IsError ? 1 : 0));
 
 			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
@@ -106,6 +107,7 @@ namespace Fabric.Infrastructure.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPostExecuteError(IDataAccess pAccess, Exception pEx) {
 			string key = "apictx."+pAccess.ExecuteName;
+			Metrics.Counter(key, 1);
 			Metrics.Counter(key+".err", 1);
 		}
 

@@ -2,7 +2,6 @@
 using Fabric.Api.Dto;
 using Fabric.Api.Dto.Oauth;
 using Fabric.Api.Oauth.Tasks;
-using Fabric.Api.Services;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Util;
 using Fabric.Infrastructure;
@@ -103,13 +102,13 @@ namespace Fabric.Api.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void LogAction() {
-			string key = BuildGraphiteKey();
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			ApiCtx.Metrics.Range(key+"dbquery", ApiCtx.DbQueryExecutionCount);
-			ApiCtx.Metrics.Timer(key+"totalms", FabResp.TotalMs);
-			ApiCtx.Metrics.Timer(key+"dbms", FabResp.DbMs);
-			ApiCtx.Metrics.Range(key+"datalen", FabResp.DataLen);
-			ApiCtx.Metrics.Range(key+"result", FabResp.Count);
+
+			string key = BuildGraphiteKey();
+			RecordGraphite(key, FabResp.TotalMs, FabResp.DbMs);
+			ApiCtx.Metrics.Counter(key+".fabresp", 1);
+			ApiCtx.Metrics.Mean(key+".datalen", FabResp.DataLen);
+			ApiCtx.Metrics.Mean(key+".items", FabResp.Count);
 
 			//FRv1: (FabResponse log, version 1)
 			//	Class, ip, QueryCount, TotalMs, DbMs, DataLen, StartIndex, Count, HasMore,

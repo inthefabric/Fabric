@@ -88,16 +88,25 @@ namespace Fabric.Api.Common {
 				key += "-"+path.Replace('/', '-');
 			}
 
-			return "req."+key+".";
+			return "req."+key;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void RecordGraphite(string pKey, long pTotalMs, long pDbMs) {
+			ApiCtx.Metrics.Counter(pKey, 1);
+			ApiCtx.Metrics.Timer(pKey+".total", pTotalMs);
+
+			if ( ApiCtx.DbQueryExecutionCount > 0 ) {
+				ApiCtx.Metrics.Timer(pKey+".db", pDbMs);
+				ApiCtx.Metrics.Mean(pKey+".db.queries", ApiCtx.DbQueryExecutionCount);
+				ApiCtx.Metrics.Mean(pKey+".db.diff", vMillis-pDbMs);
+			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void LogAction() {
-			string key = BuildGraphiteKey();
 			ApiCtx.Analytics.TrackRequest(NancyReq.Method, NancyReq.Path);
-			ApiCtx.Metrics.Range(key+"dbquery", ApiCtx.DbQueryExecutionCount);
-			ApiCtx.Metrics.Timer(key+"totalms", vMillis);
-			ApiCtx.Metrics.Timer(key+"dbms", ApiCtx.DbQueryMillis);
+			RecordGraphite(BuildGraphiteKey(), vMillis, ApiCtx.DbQueryMillis);
 
 			//LOGv1: 
 			//	Class, ip, QueryCount, DbMs, TotalMs, Timestamp, HttpStatus, Method, Path, Exception

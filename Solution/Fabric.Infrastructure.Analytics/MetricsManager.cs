@@ -14,7 +14,7 @@ namespace Fabric.Infrastructure.Analytics {
 		private readonly Timer vTimer;
 
 		private HashSet<string> vTimerPaths;
-		private HashSet<string> vRangePaths;
+		private HashSet<string> vMeanPaths;
 		private HashSet<string> vCounterPaths;
 		private HashSet<string> vGaugePaths;
 
@@ -30,7 +30,7 @@ namespace Fabric.Infrastructure.Analytics {
 		/*--------------------------------------------------------------------------------------------*/
 		private void ResetPaths() {
 			vTimerPaths = new HashSet<string>();
-			vRangePaths = new HashSet<string>();
+			vMeanPaths = new HashSet<string>();
 			vCounterPaths = new HashSet<string>();
 			vGaugePaths = new HashSet<string>();
 		}
@@ -45,8 +45,8 @@ namespace Fabric.Infrastructure.Analytics {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void Range(string pPath, long pValue) {
-			vRangePaths.Add(pPath);
+		public void Mean(string pPath, long pValue) {
+			vMeanPaths.Add(pPath);
 			Metrics.Histogram(GetType(), pPath).Update(pValue);
 		}
 
@@ -71,19 +71,15 @@ namespace Fabric.Infrastructure.Analytics {
 					TimeUnit.Milliseconds, TimeUnit.Milliseconds);
 				double[] perc = mtm.Percentiles(0.95, 0.99);
 
-				vGraphite.Send(path+".timer.m1_rate", mtm.OneMinuteRate);
 				vGraphite.Send(path+".timer.mean", mtm.Mean);
-				vGraphite.Send(path+".timer.count", mtm.Count);
 				vGraphite.Send(path+".timer.p95", perc[0]);
 				vGraphite.Send(path+".timer.p99", perc[1]);
 				mtm.Clear();
 			}
 
-			foreach ( string path in vRangePaths ) {
+			foreach ( string path in vMeanPaths ) {
 				HistogramMetric hm = Metrics.Histogram(GetType(), path);
-				vGraphite.Send(path+".range.mean", hm.Mean);
-				vGraphite.Send(path+".range.min", hm.Min);
-				vGraphite.Send(path+".range.max", hm.Max);
+				vGraphite.Send(path+".mean", hm.Mean);
 				hm.Clear();
 			}
 
