@@ -99,7 +99,6 @@ namespace Fabric.Api.Common {
 			if ( ApiCtx.DbQueryExecutionCount > 0 ) {
 				ApiCtx.Metrics.Timer(pKey+".db", pDbMs);
 				ApiCtx.Metrics.Mean(pKey+".db.queries", ApiCtx.DbQueryExecutionCount);
-				ApiCtx.Metrics.Mean(pKey+".db.diff", vMillis-pDbMs);
 			}
 		}
 		

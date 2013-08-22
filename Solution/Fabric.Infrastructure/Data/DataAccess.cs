@@ -27,7 +27,7 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public void Build(IApiContext pApiCtx, string pSessionId=null) {
 			vApiCtx = pApiCtx;
-			vReq = new WeaverRequest(pApiCtx.ContextId.ToString("N"), pSessionId);
+			vReq = new WeaverRequest("0", pSessionId); //pApiCtx.ContextId.ToString("N")
 			vRexConnCtx = new RexConnContext(vReq, pApiCtx.RexConnUrl, pApiCtx.RexConnPort);
 			vCmdIndex = 0;
 		}
