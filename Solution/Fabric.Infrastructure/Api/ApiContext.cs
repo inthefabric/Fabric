@@ -94,7 +94,11 @@ namespace Fabric.Infrastructure.Api {
 
 			string key = "apictx."+pAccess.ExecuteName;
 			Metrics.Counter(key, 1);
-			Metrics.Timer(key+".rc", pResult.Response.Timer);
+
+			if ( pResult.Response.Timer != null ) {
+				Metrics.Timer(key+".rc", (long)pResult.Response.Timer);
+			}
+
 			Metrics.Timer(key+".ex", (long)pResult.ExecutionMilliseconds);
 			Metrics.Mean(key+".len", pResult.ResponseJson.Length);
 			Metrics.Counter(key+".err", (pResult.IsError ? 1 : 0));
