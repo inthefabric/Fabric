@@ -33,7 +33,8 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		IDataAccess NewData(string pSessionId=null);
+		IDataAccess NewData(string pSessionId=null, bool pSetCmdIds=false,
+																			bool pOmitCmdTimers=true);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -11,7 +11,6 @@ using Fabric.Infrastructure.Api.Faults;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Weaver;
 using ServiceStack.Text;
-using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
 namespace Fabric.Api.Modify {
@@ -132,7 +131,7 @@ namespace Fabric.Api.Modify {
 			var txb = new TxBuilder();
 			IWeaverVarAlias<Member> memVar;
 			txb.GetVertexByVertexId(GetContextMember(), out memVar, "_M");
-			txList.Add(txb.Finish());
+			IWeaverTransaction memTx = txb.Finish();
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				int index = pIndexes[i];
@@ -144,9 +143,9 @@ namespace Fabric.Api.Modify {
 
 					txb = cc.GetTxForBatch(ApiCtx, memVar, out classVar);
 
-					txb.Transaction.AddQuery(
-						Weave.Inst.FromVar(classVar).Property(x => x.Id).ToQuery()
-					);
+					IWeaverQuery oneQ = new WeaverQuery();
+					oneQ.FinalizeQuery("1");
+					txb.Transaction.AddQuery(oneQ);
 
 					txList.Add(txb.Finish());
 
@@ -174,14 +173,19 @@ namespace Fabric.Api.Modify {
 			try {
 				IDataAccess acc = ApiCtx.NewData();
 				acc.AddSessionStart();
+
+				acc.AddQuery(memTx);
+				acc.OmitResultsOfLatestCommand();
+				
 				acc.AddQueries(txList);
+				
 				acc.AddSessionCommit();
 				acc.AddSessionClose();
 				
 				IDataResult data = acc.Execute("Modify-BatchCreateClass-Add");
 				
 				for ( int i = 0 ; i < n ; ++i ) {
-					if ( data.ToStringAt(i+1,0) != "-1" ) {
+					if ( data.ToStringAt(i+2,0) != "-1" ) { //skip session/member queries
 						continue;
 					}
 					

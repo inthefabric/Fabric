@@ -34,7 +34,7 @@ namespace Fabric.Test {
 
 			MockApiCtx = new Mock<IApiContext>();
 			MockApiCtx
-				.Setup(x => x.NewData(null))
+				.Setup(x => x.NewData(null, false, true))
 				.Callback(OnNewData)
 				.Returns(() => MockDataList[MockDataIndex].Object);
 

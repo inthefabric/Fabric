@@ -74,9 +74,10 @@ namespace Fabric.Infrastructure.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess NewData(string pSessionId=null) {
+		public IDataAccess NewData(string pSessionId=null, bool pSetCmdIds=false,
+																			bool pOmitCmdTimers=true) {
 			var da = new DataAccess();
-			da.Build(this, pSessionId);
+			da.Build(this, pSessionId, pSetCmdIds, pOmitCmdTimers);
 			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute, OnDataPostExecuteError);
 			return da;
 		}

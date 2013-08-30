@@ -16,6 +16,8 @@ namespace Fabric.Infrastructure.Data {
 		protected WeaverRequest vReq;
 		protected RexConnContext vRexConnCtx;
 
+		private bool vSetCmdIds;
+		private bool vOmitCmdTimers;
 		private int vCmdIndex;
 		private RequestCmd vLatestCmd;
 		private Action<IDataAccess, RexConnDataAccess> vPreExecute;
@@ -25,10 +27,13 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Build(IApiContext pApiCtx, string pSessionId=null) {
+		public void Build(IApiContext pApiCtx, string pSessionId=null, bool pSetCmdIds=false,
+																			bool pOmitCmdTimers=true) {
 			vApiCtx = pApiCtx;
 			vReq = new WeaverRequest("0", pSessionId); //pApiCtx.ContextId.ToString("N")
 			vRexConnCtx = new RexConnContext(vReq, pApiCtx.RexConnUrl, pApiCtx.RexConnPort);
+			vSetCmdIds = pSetCmdIds;
+			vOmitCmdTimers = pOmitCmdTimers;
 			vCmdIndex = 0;
 		}
 
@@ -54,6 +59,16 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public void AppendScriptToLatestCommand(string pScript) {
 			vLatestCmd.Cmd += pScript;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void OmitResultsOfLatestCommand() {
+			vLatestCmd.EnableOption(RequestCmd.Option.OmitResults);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void RemoveCommandIdOfLatestCommand() {
+			vLatestCmd.CmdId = null;
 		}
 
 
@@ -185,7 +200,15 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnCmd(RequestCmd pCmd) {
 			vLatestCmd = pCmd;
-			vLatestCmd.CmdId = vCmdIndex+"";
+
+			if ( vSetCmdIds ) {
+				vLatestCmd.CmdId = vCmdIndex+"";
+			}
+
+			if ( vOmitCmdTimers ) {
+				vLatestCmd.EnableOption(RequestCmd.Option.OmitTimer);
+			}
+
 			vCmdIndex++;
 
 			//Log.Debug(vApiCtx.ContextId, "CMD", vLatestCmd.CmdId+": "+vLatestCmd.Cmd+" => "+

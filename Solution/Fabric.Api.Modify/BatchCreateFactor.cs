@@ -116,7 +116,7 @@ namespace Fabric.Api.Modify {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void InsertFactors(IList<int> pIndexes, ParallelLoopState pState, long pThreadId) {
-			IDataAccess acc = ApiCtx.NewData();
+			IDataAccess acc = ApiCtx.NewData(null, true);
 			acc.AddSessionStart();
 
 			var newFactorCmds = new List<string>();
@@ -405,6 +405,10 @@ namespace Fabric.Api.Modify {
 
 				if ( i == 0 ) {
 					NewFactorCmdId = pAccess.GetLatestCommandId();
+				}
+				else {
+					pAccess.OmitResultsOfLatestCommand();
+					pAccess.RemoveCommandIdOfLatestCommand();
 				}
 			}
 		}

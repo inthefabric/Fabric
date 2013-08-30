@@ -10,12 +10,15 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Build(IApiContext pApiCtx, string pSessionId=null);
+		void Build(IApiContext pApiCtx, string pSessionId=null, bool pSetCmdIds=false,
+																			bool pOmitCmdTimers=true);
 
 		/*--------------------------------------------------------------------------------------------*/
 		string GetLatestCommandId();
 		void AddConditionsToLatestCommand(string pCmdId);
 		void AppendScriptToLatestCommand(string pScript);
+		void OmitResultsOfLatestCommand();
+		void RemoveCommandIdOfLatestCommand();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
