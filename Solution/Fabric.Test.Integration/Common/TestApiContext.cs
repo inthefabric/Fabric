@@ -14,7 +14,6 @@ namespace Fabric.Test.Integration.Common {
 
 		private static readonly MetricsManager TestMetrics =
 			new MetricsManager("graphite.inthefabric.net", 2003, "api.test", 1000);
-		private static readonly CacheManager TestCache = new CacheManager(TestMetrics, true);
 		private static readonly Func<Guid, IAnalyticsManager> TestAnalyt = (g=>new AnalyticsManager(g));
 
 		public DateTime? TestUtcNow { get; set; }
@@ -23,7 +22,8 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base("rexster", 8185, TestCache, TestMetrics, TestAnalyt) {
+		public TestApiContext() : base("rexster", 8185, new CacheManager(TestMetrics, true),
+																			TestMetrics, TestAnalyt) {
 			SharpflakeIds = new List<long>();
 		}
 
