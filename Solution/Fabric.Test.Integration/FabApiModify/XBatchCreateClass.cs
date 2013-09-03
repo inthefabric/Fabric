@@ -107,7 +107,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 			
 			////
 
-			int expectFails = (pRequestFailure ? 103 : 3);
+			int expectFails = (pRequestFailure ? 23 : 3);
 			int fails = 0;
 
 			foreach ( FabBatchResult res in vResults ) {

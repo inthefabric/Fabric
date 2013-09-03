@@ -31,7 +31,10 @@ namespace Fabric.Infrastructure.Data {
 																			bool pOmitCmdTimers=true) {
 			vApiCtx = pApiCtx;
 			vReq = new WeaverRequest("0", pSessionId); //pApiCtx.ContextId.ToString("N")
+
 			vRexConnCtx = new RexConnContext(vReq, pApiCtx.RexConnUrl, pApiCtx.RexConnPort);
+			vRexConnCtx.SetCacheProvider(pApiCtx.Cache.RexConn);
+
 			vSetCmdIds = pSetCmdIds;
 			vOmitCmdTimers = pOmitCmdTimers;
 			vCmdIndex = 0;
@@ -74,42 +77,52 @@ namespace Fabric.Infrastructure.Data {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess AddQuery(string pScript) {
-			OnCmd(vReq.AddQuery(pScript));
+		public IDataAccess AddQuery(string pScript, bool pCache=false) {
+			OnCmd(vReq.AddQuery(pScript, null, pCache));
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess AddQuery(string pScript, IDictionary<string, string> pParams) {
-			OnCmd(vReq.AddQuery(pScript, pParams));
+		public IDataAccess AddQuery(string pScript, IDictionary<string, string> pParams,
+																					bool pCache=false) {
+			OnCmd(vReq.AddQuery(pScript, pParams, pCache));
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams) {
-			OnCmd(vReq.AddQuery(pScript, pParams));
+		public IDataAccess AddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams,
+																					bool pCache=false) {
+			RequestCmd rc = vReq.AddQuery(pScript, pParams);
+			CacheQueryScript(pCache, rc);
+			OnCmd(rc);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess AddQuery(IWeaverScript pWeaverScript) {
-			OnCmd(vReq.AddQuery(pWeaverScript));
+		public IDataAccess AddQuery(IWeaverScript pWeaverScript, bool pCache=false) {
+			RequestCmd rc = vReq.AddQuery(pWeaverScript);
+			CacheQueryScript(pCache, rc);
+			OnCmd(rc);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess AddQueries(IEnumerable<IWeaverScript> pWeaverScripts) {
+		public IDataAccess AddQueries(IEnumerable<IWeaverScript> pWeaverScripts, bool pCache=false) {
 			foreach ( IWeaverScript ws in pWeaverScripts ) {
-				OnCmd(vReq.AddQuery(ws));
+				RequestCmd rc = vReq.AddQuery(ws);
+				CacheQueryScript(pCache, rc);
+				OnCmd(rc);
 			}
 
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IDataAccess AddQueries(IWeaverTransaction pTx) {
+		public IDataAccess AddQueries(IWeaverTransaction pTx, bool pCache=false) {
 			foreach ( IWeaverQuery q in pTx.Queries ) {
-				OnCmd(vReq.AddQuery(q));
+				RequestCmd rc = vReq.AddQuery(q);
+				CacheQueryScript(pCache, rc);
+				OnCmd(rc);
 			}
 
 			return this;
@@ -196,7 +209,17 @@ namespace Fabric.Infrastructure.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string ExecuteName { get; private set; }
-		
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void CacheQueryScript(bool pCache, RequestCmd pCmd) {
+			if ( !pCache ) {
+				return;
+			}
+
+			string par = (pCmd.Args.Count > 1 ? pCmd.Args[1] : null);
+			pCmd.Args = new[] { pCmd.Args[0], par, "1" };
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnCmd(RequestCmd pCmd) {
 			vLatestCmd = pCmd;

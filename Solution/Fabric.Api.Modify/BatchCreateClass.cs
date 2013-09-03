@@ -71,7 +71,7 @@ namespace Fabric.Api.Modify {
 			vResults = new FabBatchResult[n];
 
 			var dupMap = new HashSet<string>();
-			const int size = 100;
+			const int size = 20;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewClass nc = vObjects[i];
@@ -174,10 +174,10 @@ namespace Fabric.Api.Modify {
 				IDataAccess acc = ApiCtx.NewData();
 				acc.AddSessionStart();
 
-				acc.AddQuery(memTx);
+				acc.AddQuery(memTx, true);
 				acc.OmitResultsOfLatestCommand();
-				
-				acc.AddQueries(txList);
+
+				acc.AddQueries(txList, true);
 				
 				acc.AddSessionCommit();
 				acc.AddSessionClose();

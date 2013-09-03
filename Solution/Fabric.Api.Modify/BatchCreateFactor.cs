@@ -69,7 +69,7 @@ namespace Fabric.Api.Modify {
 			vOpSets = new FactorOperationSet[n];
 			vResults = new FabBatchResult[n];
 
-			const int size = 20;
+			const int size = 10;
 
 			for ( int i = 0 ; i < n ; ++i ) {
 				FabBatchNewFactor nf = vObjects[i];
@@ -400,7 +400,7 @@ namespace Fabric.Api.Modify {
 				tx.AddQuery(endQ);
 				tx.Finish();
 
-				pAccess.AddQuery(tx);
+				pAccess.AddQuery(tx, true);
 				pAccess.AddConditionsToLatestCommand(condCmdId);
 
 				if ( i == 0 ) {
@@ -429,7 +429,7 @@ namespace Fabric.Api.Modify {
 			var q = new WeaverQuery();
 			q.AddParam(q1.Params["_P0"]);
 			q.FinalizeQuery(q1.Script+"if("+v.Name+"){"+q2.Script+"1;}else{0;}");
-			pAccess.AddQuery(q);
+			pAccess.AddQuery(q, true);
 
 			return new ArtifactVar { CmdId = pAccess.GetLatestCommandId(), Alias = v };
 		}

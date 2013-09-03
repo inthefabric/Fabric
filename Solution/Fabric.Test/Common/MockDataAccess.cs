@@ -25,7 +25,7 @@ namespace Fabric.Test.Common {
 		private void SetupAddQuery() {
 			CmdList = new List<MockDataAccessCmd>();
 
-			Setup(x => x.AddQuery(It.IsAny<string>()))
+			Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<bool>()))
 				.Callback((string s) => OnAddQuery(s))
 				.Returns(Object);
 
@@ -33,15 +33,16 @@ namespace Fabric.Test.Common {
 				.Callback((string s, IDictionary<string, string> p) => OnAddQuery(s,p))
 				.Returns(Object);*/
 
-			Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<IDictionary<string, IWeaverQueryVal>>()))
+			Setup(x => x.AddQuery(It.IsAny<string>(), 
+					It.IsAny<IDictionary<string, IWeaverQueryVal>>(), It.IsAny<bool>()))
 				.Callback((string s, IDictionary<string, IWeaverQueryVal> p) => OnAddQuery(s, p))
 				.Returns(Object);
 
-			Setup(x => x.AddQuery(It.IsAny<IWeaverScript>()))
+			Setup(x => x.AddQuery(It.IsAny<IWeaverScript>(), It.IsAny<bool>()))
 				.Callback((IWeaverScript s) => OnAddQuery(s))
 				.Returns(Object);
 
-			Setup(x => x.AddQueries(It.IsAny<IEnumerable<IWeaverScript>>()))
+			Setup(x => x.AddQueries(It.IsAny<IEnumerable<IWeaverScript>>(), It.IsAny<bool>()))
 				.Callback((IEnumerable<IWeaverScript> s) => OnAddQueries(s))
 				.Returns(Object);
 		}
