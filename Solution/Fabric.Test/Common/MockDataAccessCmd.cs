@@ -9,6 +9,7 @@ namespace Fabric.Test.Common {
 		public string Script { get; set; }
 		public IDictionary<string, string> StringParams { get; set; }
 		public IDictionary<string, IWeaverQueryVal> Params { get; set; }
+		public bool Cache { get; set; }
 
 	}
 

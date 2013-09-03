@@ -26,7 +26,7 @@ namespace Fabric.Test.Common {
 			CmdList = new List<MockDataAccessCmd>();
 
 			Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<bool>()))
-				.Callback((string s) => OnAddQuery(s))
+				.Callback((string s, bool c) => OnAddQuery(s, c))
 				.Returns(Object);
 
 			/*Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<IDictionary<string, string>>()))
@@ -35,15 +35,16 @@ namespace Fabric.Test.Common {
 
 			Setup(x => x.AddQuery(It.IsAny<string>(), 
 					It.IsAny<IDictionary<string, IWeaverQueryVal>>(), It.IsAny<bool>()))
-				.Callback((string s, IDictionary<string, IWeaverQueryVal> p) => OnAddQuery(s, p))
+				.Callback((string s, IDictionary<string, IWeaverQueryVal> p, bool c) => 
+					OnAddQuery(s, p, c))
 				.Returns(Object);
 
 			Setup(x => x.AddQuery(It.IsAny<IWeaverScript>(), It.IsAny<bool>()))
-				.Callback((IWeaverScript s) => OnAddQuery(s))
+				.Callback((IWeaverScript s, bool c) => OnAddQuery(s, c))
 				.Returns(Object);
 
 			Setup(x => x.AddQueries(It.IsAny<IEnumerable<IWeaverScript>>(), It.IsAny<bool>()))
-				.Callback((IEnumerable<IWeaverScript> s) => OnAddQueries(s))
+				.Callback((IEnumerable<IWeaverScript> s, bool c) => OnAddQueries(s, c))
 				.Returns(Object);
 		}
 		
@@ -63,9 +64,9 @@ namespace Fabric.Test.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void OnAddQuery(string pScript) {
+		private void OnAddQuery(string pScript, bool pCache) {
 			TestUtil.LogWeaverScript(pScript, "");
-			CmdList.Add(new MockDataAccessCmd { Script = pScript });
+			CmdList.Add(new MockDataAccessCmd { Script = pScript, Cache = pCache});
 		}
 
 		/*--------------------------------------------------------------------------------------------* /
@@ -75,24 +76,25 @@ namespace Fabric.Test.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void OnAddQuery(string pScript, IDictionary<string, IWeaverQueryVal> pParams) {
+		private void OnAddQuery(
+							string pScript, IDictionary<string, IWeaverQueryVal> pParams, bool pCache) {
 			var mockWs = new Mock<IWeaverScript>();
 			mockWs.SetupGet(x => x.Script).Returns(pScript);
 			mockWs.SetupGet(x => x.Params).Returns((Dictionary<string, IWeaverQueryVal>)pParams);
 			TestUtil.LogWeaverScript(mockWs.Object);
 
-			CmdList.Add(new MockDataAccessCmd { Script = pScript, Params = pParams });
+			CmdList.Add(new MockDataAccessCmd { Script = pScript, Params = pParams, Cache = pCache });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void OnAddQuery(IWeaverScript pWeaverScript) {
-			OnAddQuery(pWeaverScript.Script, pWeaverScript.Params);
+		private void OnAddQuery(IWeaverScript pWeaverScript, bool pCache) {
+			OnAddQuery(pWeaverScript.Script, pWeaverScript.Params, pCache);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void OnAddQueries(IEnumerable<IWeaverScript> pWeaverScripts) {
+		private void OnAddQueries(IEnumerable<IWeaverScript> pWeaverScripts, bool pCache) {
 			foreach ( IWeaverScript ws in pWeaverScripts ) {
-				OnAddQuery(ws);
+				OnAddQuery(ws, pCache);
 			}
 		}
 
