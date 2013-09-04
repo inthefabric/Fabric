@@ -24,15 +24,18 @@ namespace Fabric.Infrastructure.Analytics {
 		public MetricsManager(string pHost, int pPort, string pPrefix, int pFrequencyMillis=10000) {
 			vGraphite = new GraphiteTcp(pHost, pPort, pPrefix);
 			vTimer = new Timer(SendData, null, pFrequencyMillis, pFrequencyMillis);
-			ResetPaths();
+			ResetPaths(true);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void ResetPaths() {
+		private void ResetPaths(bool pResetGauges=false) {
 			vTimerPaths = new HashSet<string>();
 			vMeanPaths = new HashSet<string>();
 			vCounterPaths = new HashSet<string>();
-			vGaugePaths = new HashSet<string>();
+
+			if ( pResetGauges ) {
+				vGaugePaths = new HashSet<string>();
+			}
 		}
 
 
