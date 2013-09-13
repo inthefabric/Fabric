@@ -138,12 +138,13 @@ namespace Fabric.Api.Common {
 		private static TType GetValue<TType>(DynamicDictionary pDict, string pName,
 									Func<DynamicDictionaryValue, TType> pConvert, bool pRequired=true) {
 			DynamicDictionaryValue val = pDict[pName];
+			bool noVal = string.IsNullOrEmpty(val);
 
-			if ( !pRequired && val == null ) {
+			if ( !pRequired && noVal ) {
 				return default(TType);
 			}
 
-			if ( pRequired && string.IsNullOrEmpty(val) ) {
+			if ( pRequired && noVal ) {
 				throw new FabParamFault(FabFault.Code.IncorrectParamValue, pName, typeof(TType));
 			}
 
