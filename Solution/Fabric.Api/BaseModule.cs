@@ -66,7 +66,7 @@ namespace Fabric.Api {
 			
 			if ( Version == null ) {
 				Version = new FabMetaVersion();
-				Version.SetBuild(0, 2, 3, "2c7f10c");
+				Version.SetBuild(0, 2, 3, "0ad66f1");
 				Version.SetDate(2013, 9, 13);
 
 				Log.Debug("Fabric Version: "+Version.Version+
