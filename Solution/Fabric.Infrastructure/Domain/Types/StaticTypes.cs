@@ -492,6 +492,7 @@ namespace Fabric.Infrastructure.Domain.Types {
 			AddVectorUnit(VectorUnitId.Person, "Person", "person");
 			AddVectorUnit(VectorUnitId.Percent, "Percent", "%");
 			AddVectorUnit(VectorUnitId.Index, "Index", "index");
+			AddVectorUnit(VectorUnitId.Pixel, "Pixel", "pixel");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
