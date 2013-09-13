@@ -51,7 +51,7 @@ namespace Fabric.Api.Traversal.Steps.Functions {
 			}
 			catch ( InvalidCastException ex ) {
 				throw new FabStepFault(FabFault.Code.IncorrectParamType, this,
-					"Could not convert to type 'string'.", pIndex, ex);
+					"Could not convert to type '"+typeof(T).Name+"'.", pIndex, ex);
 			}
 		}
 

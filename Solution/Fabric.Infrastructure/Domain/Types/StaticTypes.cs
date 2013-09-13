@@ -140,13 +140,13 @@ namespace Fabric.Infrastructure.Domain.Types {
 			AddDescriptorType(DescriptorTypeId.IsRelatedTo, "Is Related To",
 				"The primary Artifact is related to the related Artifact in "+
 				"some way. This is the default (and least meaningful) DescriptorType.");
-			AddDescriptorType(DescriptorTypeId.IsA, "Is A",
+			AddDescriptorType(DescriptorTypeId.IsA, "Is (A/An)",
 				"The primary Artifact is a type of, a subclass of, a subset of, "+
 				"a subordinate of, or in the category defined by the related Artifact.");
 			AddDescriptorType(DescriptorTypeId.IsAnInstanceOf, "Is An Instance Of",
 				"The primary Artifact is an instance, case, example, "+
 				"or representation of the related Artifact.");
-			AddDescriptorType(DescriptorTypeId.HasA, "Has A",
+			AddDescriptorType(DescriptorTypeId.HasA, "Has (A/An)",
 				"The primary Artifact has, as a part, piece, feature, attribute, or component, "+
 				"the related Artifact.");
 			AddDescriptorType(DescriptorTypeId.IsLike, "Is Like",
