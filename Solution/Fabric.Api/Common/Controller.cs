@@ -193,6 +193,11 @@ namespace Fabric.Api.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected long? GetPostNullableLong(string pName, bool pRequired=true) {
+			return GetPost<long?>(pName, (v => v.ToInt64(EnUs)), pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected byte GetPostByte(string pName, bool pRequired=true) {
 			return GetPost(pName, (v => v.ToByte(EnUs)), pRequired);
 		}

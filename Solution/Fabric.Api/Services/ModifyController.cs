@@ -200,9 +200,9 @@ namespace Fabric.Api.Services {
 						NewModTasks(),
 						GetPostLong(AttachFactorElement.FactorParam),
 						GetPostByte(AttachDescriptor.DescTypeParam),
-						GetPostLong(AttachDescriptor.PrimArtRefParam, false),
-						GetPostLong(AttachDescriptor.EdgeArtRefParam, false),
-						GetPostLong(AttachDescriptor.DescTypeRefParam, false)
+						GetPostNullableLong(AttachDescriptor.PrimArtRefParam, false),
+						GetPostNullableLong(AttachDescriptor.EdgeArtRefParam, false),
+						GetPostNullableLong(AttachDescriptor.DescTypeRefParam, false)
 					)
 					.Go(ApiCtx);
 					return ToBoolList(result);
