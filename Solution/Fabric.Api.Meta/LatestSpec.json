@@ -1,10 +1,8 @@
 ﻿{
-  "Data": [
-    {
-      "BuildVersion": "0.2.0.c699edd",
+      "BuildVersion": "0.2.3.3824746",
       "BuildYear": 2013,
-      "BuildMonth": 8,
-      "BuildDay": 5,
+      "BuildMonth": 9,
+      "BuildDay": 13,
       "Objects": [
         {
           "Name": "FabApp",
@@ -3796,7 +3794,7 @@
             {
               "Id": 2,
               "EnumId": "IsA",
-              "Name": "Is A",
+              "Name": "Is (A/An)",
               "Description": "The primary Artifact is a type of, a subclass of, a subset of, a subordinate of, or in the category defined by the related Artifact."
             },
             {
@@ -3808,7 +3806,7 @@
             {
               "Id": 4,
               "EnumId": "HasA",
-              "Name": "Has A",
+              "Name": "Has (A/An)",
               "Description": "The primary Artifact has, as a part, piece, feature, attribute, or component, the related Artifact."
             },
             {
@@ -3924,6 +3922,12 @@
               "EnumId": "EmotesLike",
               "Name": "Emotes Like",
               "Description": "The primary Artifact emotes like (causes the emotion of) the related Artifact."
+            },
+            {
+              "Id": 24,
+              "EnumId": "Uses",
+              "Name": "Uses",
+              "Description": "The primary Artifact uses, utilizes, controls, employs, or manipulates the related Artifact."
             }
           ],
           "Name": "DescriptorType",
@@ -4940,6 +4944,12 @@
               "EnumId": "Index",
               "Name": "Index",
               "Description": "index"
+            },
+            {
+              "Id": 29,
+              "EnumId": "Pixel",
+              "Name": "Pixel",
+              "Description": "pixel"
             }
           ],
           "Name": "VectorUnit",
@@ -5407,17 +5417,3 @@
       ],
       "FabType": "FabSpec"
     }
-  ],
-  "BaseUri": "http://localhost:9000",
-  "RequestUri": "/meta/spec",
-  "DbMs": 0,
-  "TotalMs": 0,
-  "DataLen": 157246,
-  "StartIndex": 0,
-  "Count": 0,
-  "HasMore": false,
-  "AppId": 0,
-  "UserId": 0,
-  "Timestamp": 635114163323607200,
-  "HttpStatus": 200
-}

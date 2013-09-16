@@ -203,6 +203,10 @@ namespace Fabric.Infrastructure.Domain.Types {
 				"the related Artifact.");
 			AddDescriptorType(DescriptorTypeId.EmotesLike, "Emotes Like",
 				"The primary Artifact emotes like (causes the emotion of) the related Artifact.");
+
+			AddDescriptorType(DescriptorTypeId.Uses, "Uses",
+				"The primary Artifact uses, utilizes, controls, employs, or manipulates "+
+				"the related Artifact.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
