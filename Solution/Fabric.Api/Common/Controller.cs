@@ -203,6 +203,11 @@ namespace Fabric.Api.Common {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected byte? GetPostNullableByte(string pName, bool pRequired=true) {
+			return GetPost<byte?>(pName, (v => v.ToByte(EnUs)), pRequired);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected double GetPostDouble(string pName, bool pRequired=true) {
 			return GetPost(pName, (v => v.ToDouble(EnUs)), pRequired);
 		}

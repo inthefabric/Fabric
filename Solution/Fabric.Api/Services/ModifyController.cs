@@ -237,7 +237,12 @@ namespace Fabric.Api.Services {
 						NewModTasks(),
 						GetPostLong(AttachFactorElement.FactorParam),
 						GetPostByte(AttachEventor.EveTypeParam),
-						GetPostLong(AttachEventor.DateTimeParam)
+						GetPostLong(AttachEventor.YearParam),
+						GetPostNullableByte(AttachEventor.MonthParam),
+						GetPostNullableByte(AttachEventor.DayParam),
+						GetPostNullableByte(AttachEventor.HourParam),
+						GetPostNullableByte(AttachEventor.MinuteParam),
+						GetPostNullableByte(AttachEventor.SecondParam)
 					)
 					.Go(ApiCtx);
 					return ToBoolList(result);

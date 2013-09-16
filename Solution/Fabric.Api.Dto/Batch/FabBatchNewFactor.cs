@@ -98,7 +98,22 @@ namespace Fabric.Api.Dto.Batch {
 		public byte TypeId { get; set; }
 
 		[DtoProp(IsOptional=false)]
-		public long DateTime { get; set; }
+		public long Year { get; set; }
+
+		[DtoProp(IsOptional=true)]
+		public byte? Month { get; set; }
+
+		[DtoProp(IsOptional=true)]
+		public byte? Day { get; set; }
+
+		[DtoProp(IsOptional=true)]
+		public byte? Hour { get; set; }
+
+		[DtoProp(IsOptional=true)]
+		public byte? Minute { get; set; }
+
+		[DtoProp(IsOptional=true)]
+		public byte? Second { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

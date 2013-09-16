@@ -11,6 +11,12 @@ namespace Fabric.Infrastructure {
 		public const double DoubleMin = double.MinValue+1E+294;
 		public const double DoubleMax = double.MaxValue-1E+294;
 
+		private const int SecPerMin = 60+1;
+		private const int SecPerHour = SecPerMin*60+1;
+		private const int SecPerDay = SecPerHour*24+1;
+		private const int SecPerMonth = SecPerDay*31+1;
+		private const int SecPerYear = SecPerMonth*12+1; //38,698,400 sec; allows +/- 238 billion years
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -23,7 +29,6 @@ namespace Fabric.Infrastructure {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		// Authentication
 		/*--------------------------------------------------------------------------------------------*/
 		public static string HashPassword(string pPassword) {
 			//var hash = new SHA512Managed(); //64 byte hash
@@ -36,6 +41,62 @@ namespace Fabric.Infrastructure {
 			}
 
 			return sb.ToString();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: EventorTimesToLong()
+		public static long EventorTimesToLong(long pYear, byte? pMonth, byte? pDay, byte? pHour,
+																		byte? pMinute, byte? pSecond) {
+			long t = pYear*SecPerYear;
+
+			if ( pMonth != null ) {
+				t += ((byte)pMonth+1)*SecPerMonth;
+			}
+
+			if ( pDay != null ) {
+				t += ((byte)pDay+1)*SecPerDay;
+			}
+
+			if ( pHour != null ) {
+				t += ((byte)pHour+1)*SecPerHour;
+			}
+
+			if ( pMinute != null ) {
+				t += ((byte)pMinute+1)*SecPerMin;
+			}
+
+			if ( pSecond != null ) {
+				t += ((byte)pSecond+1);
+			}
+
+			return t;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: EventorLongToTimes()
+		public static void EventorLongToTimes(long pDateTime, out long pYear, out byte? pMonth, 
+								out byte? pDay, out byte? pHour, out byte? pMinute, out byte? pSecond) {
+			long dt = pDateTime;
+			pSecond = EventorExtractTime(dt, SecPerMin, out dt);
+			pMinute = EventorExtractTime(dt, SecPerHour, out dt);
+			pHour = EventorExtractTime(dt, SecPerDay, out dt);
+			pDay = EventorExtractTime(dt, SecPerMonth, out dt);
+			pMonth = EventorExtractTime(dt, SecPerYear, out pYear);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static byte? EventorExtractTime(long pDateTime, int pSecs, out long pNewDateTime) {
+			long mod = pDateTime%pSecs;
+			pNewDateTime = pDateTime-mod;
+
+			if ( mod == 0 ) {
+				return null;
+			}
+
+			byte val = (byte)(mod/pSecs);
+			return (byte?)(val-1);
 		}
 
 	}

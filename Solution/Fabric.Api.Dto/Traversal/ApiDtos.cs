@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/16/2013 2:16:04 PM
+// Generated on 9/16/2013 5:01:59 PM
 
 using System;
 using System.Collections.Generic;
@@ -38,6 +38,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("NA_No", out val);
 			if ( found ) { Note = val; }
+
+			
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -45,6 +47,8 @@ namespace Fabric.Api.Dto.Traversal {
 			base.FillWithVertex(pVertex);
 			Performed = pVertex.Performed;
 			Note = pVertex.Note;
+	
+			
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -53,8 +57,9 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
+
 	/*================================================================================================*/
-	public class FabArtifact : FabVertex {
+	public partial class FabArtifact : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long ArtifactId { get; set; }
@@ -88,6 +93,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["A_Cr"];
 			Created = long.Parse(val);
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,6 +102,8 @@ namespace Fabric.Api.Dto.Traversal {
 			base.FillWithVertex(pVertex);
 			ArtifactId = pVertex.ArtifactId;
 			Created = pVertex.Created;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -102,9 +111,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(Artifact pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabApp : FabArtifact {
+	public partial class FabApp : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
@@ -132,12 +150,16 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Ap_Na", out val);
 			if ( found ) { Name = val; }
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithVertex(App pVertex) {
 			base.FillWithVertex(pVertex);
 			Name = pVertex.Name;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -145,9 +167,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(App pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabClass : FabArtifact {
+	public partial class FabClass : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
@@ -187,6 +218,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Cl_No", out val);
 			if ( found ) { Note = val; }
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -195,6 +228,8 @@ namespace Fabric.Api.Dto.Traversal {
 			Name = pVertex.Name;
 			Disamb = pVertex.Disamb;
 			Note = pVertex.Note;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -202,9 +237,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(Class pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabInstance : FabArtifact {
+	public partial class FabInstance : FabArtifact {
 		
 		[DtoProp(IsOptional=true)]
 		public string Name { get; set; }
@@ -244,6 +288,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("In_No", out val);
 			if ( found ) { Note = val; }
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -252,6 +298,8 @@ namespace Fabric.Api.Dto.Traversal {
 			Name = pVertex.Name;
 			Disamb = pVertex.Disamb;
 			Note = pVertex.Note;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -259,9 +307,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(Instance pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabMember : FabVertex {
+	public partial class FabMember : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long MemberId { get; set; }
@@ -289,12 +346,16 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["M_Id"];
 			MemberId = long.Parse(val);
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithVertex(Member pVertex) {
 			base.FillWithVertex(pVertex);
 			MemberId = pVertex.MemberId;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -302,9 +363,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(Member pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabMemberTypeAssign : FabVertexForAction {
+	public partial class FabMemberTypeAssign : FabVertexForAction {
 		
 		[DtoProp(IsOptional=false)]
 		public long MemberTypeAssignId { get; set; }
@@ -340,6 +410,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 			val = pData["MTA_Mt"];
 			MemberTypeId = byte.Parse(val);
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -347,6 +419,8 @@ namespace Fabric.Api.Dto.Traversal {
 			base.FillWithVertex(pVertex);
 			MemberTypeAssignId = pVertex.MemberTypeAssignId;
 			MemberTypeId = pVertex.MemberTypeId;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -354,9 +428,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(MemberTypeAssign pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabUrl : FabArtifact {
+	public partial class FabUrl : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
@@ -390,6 +473,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("Ur_Pa", out val);
 			if ( found ) { FullPath = val; }
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -397,6 +482,8 @@ namespace Fabric.Api.Dto.Traversal {
 			base.FillWithVertex(pVertex);
 			Name = pVertex.Name;
 			FullPath = pVertex.FullPath;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -404,9 +491,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(Url pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabUser : FabArtifact {
+	public partial class FabUser : FabArtifact {
 		
 		[DtoProp(IsOptional=false)]
 		public string Name { get; set; }
@@ -434,12 +530,16 @@ namespace Fabric.Api.Dto.Traversal {
 
 			found = pData.TryGetValue("U_Na", out val);
 			if ( found ) { Name = val; }
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void FillWithVertex(User pVertex) {
 			base.FillWithVertex(pVertex);
 			Name = pVertex.Name;
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -447,9 +547,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(User pVertex);
+
 	}
+
 	/*================================================================================================*/
-	public class FabFactor : FabVertex {
+	public partial class FabFactor : FabVertex {
 		
 		[DtoProp(IsOptional=false)]
 		public long FactorId { get; set; }
@@ -619,6 +728,8 @@ namespace Fabric.Api.Dto.Traversal {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.Value = long.Parse(val);
 			}
+
+			FillResultDataHook(pData);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -710,6 +821,8 @@ namespace Fabric.Api.Dto.Traversal {
 				if ( Vector == null ) { Vector = new FabVector(); }
 				Vector.Value = (long)pVertex.Vector_Value;
 			}
+	
+			FillWithVertexHook(pVertex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -717,11 +830,18 @@ namespace Fabric.Api.Dto.Traversal {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(Factor pVertex);
+
 	}
 
-
 	/*================================================================================================*/
-	public class FabDescriptor : FabObject {
+	public partial class FabDescriptor : FabObject {
 	
 		public byte TypeId { get; set; }
 
@@ -734,9 +854,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	}
 
-
 	/*================================================================================================*/
-	public class FabDirector : FabObject {
+	public partial class FabDirector : FabObject {
 	
 		public byte TypeId { get; set; }
 		public byte PrimaryActionId { get; set; }
@@ -751,9 +870,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	}
 
-
 	/*================================================================================================*/
-	public class FabEventor : FabObject {
+	public partial class FabEventor : FabObject {
 	
 		public byte TypeId { get; set; }
 		public long DateTime { get; set; }
@@ -767,9 +885,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	}
 
-
 	/*================================================================================================*/
-	public class FabIdentor : FabObject {
+	public partial class FabIdentor : FabObject {
 	
 		public byte TypeId { get; set; }
 		public string Value { get; set; }
@@ -783,9 +900,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	}
 
-
 	/*================================================================================================*/
-	public class FabLocator : FabObject {
+	public partial class FabLocator : FabObject {
 	
 		public byte TypeId { get; set; }
 		public double ValueX { get; set; }
@@ -801,9 +917,8 @@ namespace Fabric.Api.Dto.Traversal {
 
 	}
 
-
 	/*================================================================================================*/
-	public class FabVector : FabObject {
+	public partial class FabVector : FabObject {
 	
 		public byte TypeId { get; set; }
 		public byte UnitId { get; set; }
@@ -818,4 +933,5 @@ namespace Fabric.Api.Dto.Traversal {
 		}
 
 	}
+
 }

@@ -9,7 +9,12 @@ namespace Fabric.Test.FabApiModify {
 	public class TAttachEventor : TAttachFactorElement {
 
 		private byte vEveTypeId;
-		private long vDateTime;
+		private long vYear;
+		private byte? vMonth;
+		private byte? vDay;
+		private byte? vHour;
+		private byte? vMinute;
+		private byte? vSecond;
 
 		private bool vResult;
 		
@@ -20,20 +25,31 @@ namespace Fabric.Test.FabApiModify {
 			base.TestSetUp();
 
 			vEveTypeId = 9;
-			vDateTime = 2529342323;
+			vYear = 2013;
+			vMonth = 9;
+			vDay = 16;
+			vHour = 17;
+			vMinute = 10;
+			vSecond = 56;
 
 			MockTasks
 				.Setup(x => x.UpdateFactorEventor(
 					MockApiCtx.Object,
 					ActiveFactor,
 					vEveTypeId,
-					vDateTime
+					vYear,
+					vMonth,
+					vDay,
+					vHour,
+					vMinute,
+					vSecond
 				));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestGo() {
-			var func = new AttachEventor(MockTasks.Object, FactorId, vEveTypeId, vDateTime);
+			var func = new AttachEventor(MockTasks.Object, FactorId, vEveTypeId, 
+				vYear, vMonth, vDay, vHour, vMinute, vSecond);
 			vResult = func.Go(MockApiCtx.Object);
 		}
 
@@ -53,9 +69,9 @@ namespace Fabric.Test.FabApiModify {
 
 			MockValidator.Verify(x => x.FactorEventor_TypeId(vEveTypeId,
 				AttachEventor.EveTypeParam), Times.Once());
-			MockValidator.Verify(x => x.FactorEventor_DateTime(vDateTime,
-				AttachEventor.DateTimeParam), Times.Once());
 		}
+
+		//TEST: TAttachEventor time validations
 
 	}
 

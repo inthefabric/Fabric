@@ -33,11 +33,11 @@ foreach ( string name in verts ) {
 	if ( vertex.IsInternal ) { continue; }
 
 	string baseVertex = (hn.HasParentClass ? vertex.BaseVertex.Name : "Vertex");
-	string abs = (vertex.IsAbstract ? "abstract " : "");
+	string abs = (vertex.IsAbstract ? "abstract" : "partial");
 	bool hasTypeId = false;
 #>
 	/*================================================================================================*/
-	public <#= abs #>class Fab<#= vertex.Name #> : Fab<#= baseVertex #> {
+	public <#= abs #> class Fab<#= vertex.Name #> : Fab<#= baseVertex #> {
 <#
 	IList<SchemaHelperProp> props = hn.GetProps(true, true);
 	string propList = "";
@@ -184,6 +184,8 @@ foreach ( string name in verts ) {
 
 	} //end prop loop
 #>
+
+			<#= vertex.IsAbstract ? "" : "FillResultDataHook(pData);" #>
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -224,22 +226,37 @@ foreach ( string name in verts ) {
 
 	} //end prop loop
 #>
+	
+			<#= vertex.IsAbstract ? "" : "FillWithVertexHook(pVertex);" #>
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected override List<string> AvailableProps {
 			get { return base.AvailableProps.Concat(AvailVertexProps).ToList(); }
 		}
+<#
+	if ( !vertex.IsAbstract ) {
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillResultDataHook(IDictionary<string,string> pData);
+
+		/*--------------------------------------------------------------------------------------------*/
+		partial void FillWithVertexHook(<#= vertex.Name #> pVertex);
+<#
+	} //end abstract condition
+#>
 
 	}
+
 <#
 	if ( subNames.Count > 0 ) {
 		foreach ( string subName in subNames ) {
 #>
-
-
 	/*================================================================================================*/
-	public class Fab<#= subName #> : FabObject {
+	public partial class Fab<#= subName #> : FabObject {
 	
 <#
 			IList<SchemaHelperProp> subProps = hn.GetSubProps(subName);
@@ -259,6 +276,7 @@ foreach ( string name in verts ) {
 		}
 
 	}
+
 <#
 		} //end subname loop
 	} //end subName count condition

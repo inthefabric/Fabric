@@ -1,4 +1,5 @@
 ﻿using Fabric.Domain;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Domain;
@@ -139,13 +140,15 @@ namespace Fabric.Api.Modify.Tasks {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
-																					long pDateTime) {
+		public void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId, 
+					long pYear, byte? pMonth, byte? pDay, byte? pHour, byte? pMinute, byte? pSecond) {
+			long dt = FabricUtil.EventorTimesToLong(pYear, pMonth, pDay, pHour, pMinute, pSecond);
+
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Eventor_TypeId, pEveTypeId),
-					new WeaverStatementSetProperty<Factor>(x => x.Eventor_DateTime, pDateTime)
+					new WeaverStatementSetProperty<Factor>(x => x.Eventor_DateTime, dt)
 				)
 				.ToQuery();
 
