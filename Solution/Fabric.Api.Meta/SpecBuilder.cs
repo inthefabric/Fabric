@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/12/2013 3:41:44 PM
+// Generated on 9/16/2013 2:16:05 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -174,9 +174,6 @@ namespace Fabric.Api.Meta {
 					break;
 
 				case "Factor.Eventor_TypeId":
-					break;
-
-				case "Factor.Eventor_PrecisionId":
 					break;
 
 				case "Factor.Eventor_DateTime":
@@ -493,13 +490,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Eventor_TypeId");
 					pProp.Enum = "EventorType";
-					break;
-
-				case "Eventor.PrecisionId":
-					pProp.Name = "PrecisionId";
-					pProp.Type = "byte";
-					pProp.Description = SpecDoc.GetDtoPropText("Eventor_PrecisionId");
-					pProp.Enum = "EventorPrecision";
 					break;
 
 				case "Eventor.DateTime":
@@ -1143,25 +1133,6 @@ namespace Fabric.Api.Meta {
 			e.Data = new List<Dictionary<string, object>>();
 
 			foreach ( DirectorAction val in StaticTypes.DirectorActions.Values ) {
-				var map = new Dictionary<string, object>();
-				map.Add("Id", val.Id);
-				map.Add("EnumId", val.EnumId);
-				map.Add("Name", val.Name);
-				map.Add("Description", val.Description);
-				e.Data.Add(map);
-			}
-
-			list.Add(e);
-
-			e = new FabSpecEnum();
-			e.Name = "EventorPrecision";
-			e.Description = SpecDoc.GetEnumText("EventorPrecision");
-			e.Extends = "BaseEnum";
-			e.Properties = new List<FabSpecObjectProp>();
-			
-			e.Data = new List<Dictionary<string, object>>();
-
-			foreach ( EventorPrecision val in StaticTypes.EventorPrecisions.Values ) {
 				var map = new Dictionary<string, object>();
 				map.Add("Id", val.Id);
 				map.Add("EnumId", val.EnumId);

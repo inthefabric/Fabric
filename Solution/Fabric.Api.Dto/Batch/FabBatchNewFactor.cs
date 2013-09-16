@@ -98,9 +98,6 @@ namespace Fabric.Api.Dto.Batch {
 		public byte TypeId { get; set; }
 
 		[DtoProp(IsOptional=false)]
-		public byte PrecisionId { get; set; }
-
-		[DtoProp(IsOptional=false)]
 		public long DateTime { get; set; }
 
 

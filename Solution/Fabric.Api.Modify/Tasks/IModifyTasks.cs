@@ -33,8 +33,7 @@ namespace Fabric.Api.Modify.Tasks {
 																						byte pEdgeActId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId, byte pEvePrecId,
-																						long pDateTime);
+		void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId, long pDateTime);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void UpdateFactorIdentor(IApiContext pApiCtx, Factor pFactor, byte pIdenTypeId, string pValue);

@@ -450,10 +450,6 @@ namespace Fabric.Domain.Meta {
 			p.EnumName = "EventorTypeId";
 			FillVertexCentricIndexes(p);
 			
-			p = AddProp(factor, "Eventor_PrecisionId", "EvP", typeof(byte));
-			p.EnumName = "EventorPrecisionId";
-			FillVertexCentricIndexes(p);
-			
 			p = AddProp(factor, "Eventor_DateTime", "EvD", typeof(DateTime));
 			p.Min = 1;
 			FillVertexCentricIndexes(p);

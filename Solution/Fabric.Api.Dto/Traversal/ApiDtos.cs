@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/12/2013 3:41:43 PM
+// Generated on 9/16/2013 2:16:04 PM
 
 using System;
 using System.Collections.Generic;
@@ -488,7 +488,7 @@ namespace Fabric.Api.Dto.Traversal {
 		public FabVector Vector { get; set; }
 		
 		private static readonly List<string> AvailVertexProps = new List<string> {
-			"FactorId", "FactorAssertionId", "IsDefining", "Created", "Completed", "Note", "Descriptor.TypeId", "Director.TypeId", "Director.PrimaryActionId", "Director.RelatedActionId", "Eventor.TypeId", "Eventor.PrecisionId", "Eventor.DateTime", "Identor.TypeId", "Identor.Value", "Locator.TypeId", "Locator.ValueX", "Locator.ValueY", "Locator.ValueZ", "Vector.TypeId", "Vector.UnitId", "Vector.UnitPrefixId", "Vector.Value"
+			"FactorId", "FactorAssertionId", "IsDefining", "Created", "Completed", "Note", "Descriptor.TypeId", "Director.TypeId", "Director.PrimaryActionId", "Director.RelatedActionId", "Eventor.TypeId", "Eventor.DateTime", "Identor.TypeId", "Identor.Value", "Locator.TypeId", "Locator.ValueX", "Locator.ValueY", "Locator.ValueZ", "Vector.TypeId", "Vector.UnitId", "Vector.UnitPrefixId", "Vector.Value"
 		};
 
 
@@ -555,12 +555,6 @@ namespace Fabric.Api.Dto.Traversal {
 			if ( found ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.TypeId = byte.Parse(val);
-			}
-
-			found = pData.TryGetValue("F_EvP", out val);
-			if ( found ) {
-				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.PrecisionId = byte.Parse(val);
 			}
 
 			found = pData.TryGetValue("F_EvD", out val);
@@ -660,11 +654,6 @@ namespace Fabric.Api.Dto.Traversal {
 			if ( pVertex.Eventor_TypeId != null ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.TypeId = (byte)pVertex.Eventor_TypeId;
-			}
-
-			if ( pVertex.Eventor_PrecisionId != null ) {
-				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.PrecisionId = (byte)pVertex.Eventor_PrecisionId;
 			}
 
 			if ( pVertex.Eventor_DateTime != null ) {
@@ -767,7 +756,6 @@ namespace Fabric.Api.Dto.Traversal {
 	public class FabEventor : FabObject {
 	
 		public byte TypeId { get; set; }
-		public byte PrecisionId { get; set; }
 		public long DateTime { get; set; }
 
 

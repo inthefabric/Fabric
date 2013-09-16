@@ -14,13 +14,11 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			"g.V('"+PropDbName.Factor_FactorId+"',_P)"+
 				".sideEffect{"+
 					"it.setProperty('"+PropDbName.Factor_Eventor_TypeId+"',_P);"+
-					"it.setProperty('"+PropDbName.Factor_Eventor_PrecisionId+"',_P);"+
 					"it.setProperty('"+PropDbName.Factor_Eventor_DateTime+"',_P);"+
 				"};";
 
 		private Factor vFactor;
 		private byte vEveTypeId;
-		private byte vEvePrecId;
 		private long vDateTime;
 		
 		
@@ -29,7 +27,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		protected override void TestSetUp() {
 			vFactor = new Factor { FactorId = 132414 };
 			vEveTypeId = 9;
-			vEvePrecId = 23;
 			vDateTime = 253125123523;
 
 			var mda = MockDataAccess.Create(OnExecute);
@@ -46,7 +43,6 @@ namespace Fabric.Test.FabApiModify.Tasks {
 			TestUtil.CheckParams(cmd.Params, "_P", new object[] {
 				vFactor.FactorId,
 				vEveTypeId,
-				vEvePrecId,
 				vDateTime
 			});
 		}
@@ -56,7 +52,7 @@ namespace Fabric.Test.FabApiModify.Tasks {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Update() {
-			Tasks.UpdateFactorEventor(MockApiCtx.Object, vFactor, vEveTypeId, vEvePrecId, vDateTime);
+			Tasks.UpdateFactorEventor(MockApiCtx.Object, vFactor, vEveTypeId, vDateTime);
 			AssertDataExecution(true);
 		}
 

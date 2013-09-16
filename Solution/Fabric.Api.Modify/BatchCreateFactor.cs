@@ -218,8 +218,7 @@ namespace Fabric.Api.Modify {
 			}
 
 			if ( vBatch.Eventor != null ) {
-				var eve = new AttachEventor(pTasks, 0, vBatch.Eventor.TypeId,
-					vBatch.Eventor.PrecisionId, vBatch.Eventor.DateTime);
+				var eve = new AttachEventor(pTasks, 0, vBatch.Eventor.TypeId, vBatch.Eventor.DateTime);
 				vElems.Add(eve);
 			}
 
@@ -331,7 +330,6 @@ namespace Fabric.Api.Modify {
 
 			if ( vBatch.Eventor != null ) {
 				f.Eventor_TypeId = vBatch.Eventor.TypeId;
-				f.Eventor_PrecisionId = vBatch.Eventor.PrecisionId;
 				f.Eventor_DateTime = vBatch.Eventor.DateTime;
 			}
 

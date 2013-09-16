@@ -13,32 +13,26 @@ namespace Fabric.Api.Modify {
 	public class AttachEventor : AttachFactorElement {
 
 		public const string EveTypeParam = "EventorTypeId";
-		public const string EvePrecParam = "EventorPrecisionId";
 		public const string DateTimeParam = "DateTime";
 
 		[ServiceOpParam(ServiceOpParamType.Form, EveTypeParam, 1, typeof(Factor))]
 		private readonly byte vEveTypeId;
 
-		[ServiceOpParam(ServiceOpParamType.Form, EvePrecParam, 2, typeof(Factor))]
-		private readonly byte vEvePrecId;
-
-		[ServiceOpParam(ServiceOpParamType.Form, DateTimeParam, 3, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, DateTimeParam, 2, typeof(Factor))]
 		private readonly long vDateTime;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AttachEventor(IModifyTasks pTasks, long pFactorId, byte pEveTypeId, 
-										byte pEvePrecId, long pDateTime) : base(pTasks, pFactorId) {
-			vEveTypeId = pEveTypeId; 
-			vEvePrecId = pEvePrecId;
+															long pDateTime) : base(pTasks, pFactorId) {
+			vEveTypeId = pEveTypeId;
 			vDateTime = pDateTime;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void ValidateElementParams() {
 			Tasks.Validator.FactorEventor_TypeId(vEveTypeId, EveTypeParam);
-			Tasks.Validator.FactorEventor_PrecisionId(vEvePrecId, EvePrecParam);
 			Tasks.Validator.FactorEventor_DateTime(vDateTime, DateTimeParam);
 		}
 
@@ -47,7 +41,7 @@ namespace Fabric.Api.Modify {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool AddElementToFactor(Factor pFactor) {
-			Tasks.UpdateFactorEventor(ApiCtx, pFactor, vEveTypeId, vEvePrecId, vDateTime);
+			Tasks.UpdateFactorEventor(ApiCtx, pFactor, vEveTypeId, vDateTime);
 			return true;
 		}
 

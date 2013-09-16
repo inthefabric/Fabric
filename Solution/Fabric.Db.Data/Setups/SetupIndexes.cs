@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 8/2/2013 4:25:02 PM
+// Generated on 9/16/2013 2:16:03 PM
 
 using System;
 using System.Collections.Generic;
@@ -343,12 +343,6 @@ namespace Fabric.Db.Data.Setups {
 
 				dbName = "F_EvT";
 				q = wi.TitanGraph().MakeVertexPropertyKey<Factor>(x => x.Eventor_TypeId, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-				dbName = "F_EvP";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Factor>(x => x.Eventor_PrecisionId, gv).ToQuery();
 				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
 				pSet.AddIndexQuery(q);
 				propMap.Add(dbName, pv);

@@ -66,7 +66,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 				if ( f.Eventor_TypeId != null ) {
 					bnf.Eventor = new FabBatchNewFactorEventor();
 					bnf.Eventor.TypeId = (byte)f.Eventor_TypeId;
-					bnf.Eventor.PrecisionId = (byte)f.Eventor_PrecisionId;
 					bnf.Eventor.DateTime = (long)f.Eventor_DateTime;
 				}
 

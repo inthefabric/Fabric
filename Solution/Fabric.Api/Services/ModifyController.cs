@@ -237,7 +237,6 @@ namespace Fabric.Api.Services {
 						NewModTasks(),
 						GetPostLong(AttachFactorElement.FactorParam),
 						GetPostByte(AttachEventor.EveTypeParam),
-						GetPostByte(AttachEventor.EvePrecParam),
 						GetPostLong(AttachEventor.DateTimeParam)
 					)
 					.Go(ApiCtx);

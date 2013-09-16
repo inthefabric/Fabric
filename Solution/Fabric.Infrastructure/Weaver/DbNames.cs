@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/12/2013 3:41:42 PM
+// Generated on 9/16/2013 2:16:03 PM
 
 using System;
 using System.Collections.Generic;
@@ -147,7 +147,6 @@ namespace Fabric.Infrastructure.Weaver {
 		public const string Factor_Director_PrimaryActionId = "F_DiP";
 		public const string Factor_Director_RelatedActionId = "F_DiR";
 		public const string Factor_Eventor_TypeId = "F_EvT";
-		public const string Factor_Eventor_PrecisionId = "F_EvP";
 		public const string Factor_Eventor_DateTime = "F_EvD";
 		public const string Factor_Identor_TypeId = "F_IdT";
 		public const string Factor_Identor_Value = "F_IdV";

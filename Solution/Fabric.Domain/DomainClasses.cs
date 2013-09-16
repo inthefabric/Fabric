@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/12/2013 3:41:42 PM
+// Generated on 9/16/2013 2:16:02 PM
 
 using System;
 using System.Collections.Generic;
@@ -1087,19 +1087,6 @@ namespace Fabric.Domain {
 		)]
 		public virtual byte? Eventor_TypeId { get; set; }
 
-		[WeaverTitanProperty("F_EvP", TitanIndex=false, TitanElasticIndex=false,
-			EdgesForVertexCentricIndexing=new [] {
-				typeof(MemberCreatesFactor),
-				typeof(FactorUsesPrimaryArtifact),
-				typeof(FactorUsesRelatedArtifact),
-				typeof(FactorDescriptorRefinesPrimaryWithArtifact),
-				typeof(FactorDescriptorRefinesRelatedWithArtifact),
-				typeof(FactorDescriptorRefinesTypeWithArtifact),
-				typeof(FactorVectorUsesAxisArtifact),
-			}
-		)]
-		public virtual byte? Eventor_PrecisionId { get; set; }
-
 		[WeaverTitanProperty("F_EvD", TitanIndex=false, TitanElasticIndex=false,
 			EdgesForVertexCentricIndexing=new [] {
 				typeof(MemberCreatesFactor),
@@ -1315,10 +1302,6 @@ namespace Fabric.Domain {
 			
 			if ( pData.ContainsKey("F_EvT") ) {
 				Eventor_TypeId = byte.Parse(pData["F_EvT"]);
-			}
-			
-			if ( pData.ContainsKey("F_EvP") ) {
-				Eventor_PrecisionId = byte.Parse(pData["F_EvP"]);
 			}
 			
 			if ( pData.ContainsKey("F_EvD") ) {

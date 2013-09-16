@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 7/12/2013 3:41:42 PM
+// Generated on 9/16/2013 2:16:03 PM
 
 using System;
 
@@ -93,8 +93,6 @@ namespace Fabric.Infrastructure.Domain {
 		void FactorDirector_RelatedActionId(byte pValue);
 		void FactorEventor_TypeId(byte pValue, string pParamName);
 		void FactorEventor_TypeId(byte pValue);
-		void FactorEventor_PrecisionId(byte pValue, string pParamName);
-		void FactorEventor_PrecisionId(byte pValue);
 		void FactorEventor_DateTime(long pValue, string pParamName);
 		void FactorEventor_DateTime(long pValue);
 		void FactorIdentor_TypeId(byte pValue, string pParamName);
@@ -596,16 +594,6 @@ namespace Fabric.Infrastructure.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorEventor_TypeId(byte pValue) {
 			FactorEventor_TypeId(pValue, "Eventor_TypeId");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void FactorEventor_PrecisionId(byte pValue, string pParamName) {
-			LongBetween(pParamName, pValue, 1, Enum.GetNames(typeof(EventorPrecisionId)).Length);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void FactorEventor_PrecisionId(byte pValue) {
-			FactorEventor_PrecisionId(pValue, "Eventor_PrecisionId");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

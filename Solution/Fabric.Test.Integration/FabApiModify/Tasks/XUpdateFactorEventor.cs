@@ -12,13 +12,13 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(EventorTypeId.Start, EventorPrecisionId.Minute, 1298529385923859238)]
-		[TestCase(EventorTypeId.Start, EventorPrecisionId.Minute, long.MaxValue)]
-		[TestCase(EventorTypeId.Start, EventorPrecisionId.Minute, long.MinValue)]
-		public void Success(EventorTypeId pEveTypeId, EventorPrecisionId pEvePrecId, long pDateTime) {
+		[TestCase(EventorTypeId.Start, 1298529385923859238)]
+		[TestCase(EventorTypeId.Start, long.MaxValue)]
+		[TestCase(EventorTypeId.Start, long.MinValue)]
+		public void Success(EventorTypeId pEveTypeId, long pDateTime) {
 			var f = new Factor { FactorId = (long)SetupFactors.FactorId.FZ_Art_Music_Incomplete };
 
-			Tasks.UpdateFactorEventor(ApiCtx, f, (byte)pEveTypeId, (byte)pEvePrecId, pDateTime);
+			Tasks.UpdateFactorEventor(ApiCtx, f, (byte)pEveTypeId, pDateTime);
 
 			Factor fac = GetVertex<Factor>(f.FactorId);
 			Assert.NotNull(fac, "Updated Factor was deleted.");

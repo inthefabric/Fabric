@@ -140,12 +140,11 @@ namespace Fabric.Api.Modify.Tasks {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateFactorEventor(IApiContext pApiCtx, Factor pFactor, byte pEveTypeId,
-																	byte pEvePrecId, long pDateTime) {
+																					long pDateTime) {
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex(pFactor)
 				.SideEffect(
 					new WeaverStatementSetProperty<Factor>(x => x.Eventor_TypeId, pEveTypeId),
-					new WeaverStatementSetProperty<Factor>(x => x.Eventor_PrecisionId, pEvePrecId),
 					new WeaverStatementSetProperty<Factor>(x => x.Eventor_DateTime, pDateTime)
 				)
 				.ToQuery();

@@ -11,7 +11,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 		public static Dictionary<byte, DescriptorType> DescriptorTypes;
 		public static Dictionary<byte, DirectorType> DirectorTypes;
 		public static Dictionary<byte, DirectorAction> DirectorActions;
-		public static Dictionary<byte, EventorPrecision> EventorPrecisions;
 		public static Dictionary<byte, EventorType> EventorTypes;
 		public static Dictionary<byte, FactorAssertion> FactorAssertions;
 		public static Dictionary<byte, IdentorType> IdentorTypes;
@@ -35,7 +34,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 			DescriptorTypes = new Dictionary<byte, DescriptorType>();
 			DirectorTypes = new Dictionary<byte, DirectorType>();
 			DirectorActions = new Dictionary<byte, DirectorAction>();
-			EventorPrecisions = new Dictionary<byte, EventorPrecision>();
 			EventorTypes = new Dictionary<byte, EventorType>();
 			FactorAssertions = new Dictionary<byte, FactorAssertion>();
 			IdentorTypes = new Dictionary<byte, IdentorType>();
@@ -52,7 +50,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 			TypeList.Add(typeof(DescriptorType));
 			TypeList.Add(typeof(DirectorType));
 			TypeList.Add(typeof(DirectorAction));
-			TypeList.Add(typeof(EventorPrecision));
 			TypeList.Add(typeof(EventorType));
 			TypeList.Add(typeof(FactorAssertion));
 			TypeList.Add(typeof(IdentorType));
@@ -69,7 +66,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 			SetupDescriptorType();
 			SetupDirectorAction();
 			SetupDirectorType();
-			SetupEventorPrecision();
 			SetupEventorType();
 			SetupFactorAssert();
 			SetupIdentorType();
@@ -263,22 +259,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 				"primary Artifact to the related Artifact.");
 			AddDirectorType(DirectorTypeId.Causality, "Causality",
 				"The primary Artifact causes an effect/action to occur upon the related Artifact.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupEventorPrecision() {
-			AddEventorPrecision(EventorPrecisionId.Year, "Year",
-				"This Eventor date is accurate to the year.");
-			AddEventorPrecision(EventorPrecisionId.Month, "Month", 
-				"This Eventor date is accurate to the month.");
-			AddEventorPrecision(EventorPrecisionId.Day, "Day", 
-				"This Eventor date is accurate to the day.");
-			AddEventorPrecision(EventorPrecisionId.Hour, "Hour",
-				"This Eventor date is accurate to the hour.");
-			AddEventorPrecision(EventorPrecisionId.Minute, "Minute",
-				"This Eventor date is accurate to the minute.");
-			AddEventorPrecision(EventorPrecisionId.Second, "Second",
-				"This Eventor date is accurate to the second.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -611,12 +591,6 @@ namespace Fabric.Infrastructure.Domain.Types {
 		private static void AddDirectorType(DirectorTypeId pId, string pName, string pDesc) {
 			var t = new DirectorType(pId, pName, pDesc);
 			DirectorTypes.Add((byte)pId, t);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static void AddEventorPrecision(EventorPrecisionId pId, string pName, string pDesc) {
-			var t = new EventorPrecision(pId, pName, pDesc);
-			EventorPrecisions.Add((byte)pId, t);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

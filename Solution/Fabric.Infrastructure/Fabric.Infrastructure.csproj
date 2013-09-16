@@ -115,7 +115,6 @@
     <Compile Include="Domain\Types\VectorUnit.cs" />
     <Compile Include="Domain\Types\VectorRangeLevel.cs" />
     <Compile Include="Domain\Types\VectorRange.cs" />
-    <Compile Include="Domain\Types\EventorPrecision.cs" />
     <Compile Include="Domain\Types\EventorType.cs" />
     <Compile Include="Domain\Types\DirectorAction.cs" />
     <Compile Include="Domain\Types\DirectorType.cs" />

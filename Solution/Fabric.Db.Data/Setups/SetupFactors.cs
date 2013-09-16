@@ -321,48 +321,48 @@ namespace Fabric.Db.Data.Setups {
 			AddDirector(DirectorTypeId.SuggestPath, DirectorActionId.View, DirectorActionId.View);
 
 			vIdCount = 0;
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Day, new DateTime(1985, 8, 27));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Month, new DateTime(2003, 8, 1));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Month, new DateTime(2003, 8, 1));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Month, new DateTime(2004, 8, 1));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Month, new DateTime(2004, 8, 1));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Month, new DateTime(2005, 7, 1));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Month, new DateTime(2005, 7, 1));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Month, new DateTime(2007, 12, 1));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Day, new DateTime(2007, 11, 13));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Month, new DateTime(1999, 8, 1));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Month, new DateTime(2003, 6, 1));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Year, new DateTime(2003, 1, 1));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Year, new DateTime(2002, 1, 1));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Month, new DateTime(2007, 5, 1));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Day,*/ new DateTime(1985, 8, 27));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Month,*/ new DateTime(2003, 8, 1));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Month,*/ new DateTime(2003, 8, 1));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Month,*/ new DateTime(2004, 8, 1));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Month,*/ new DateTime(2004, 8, 1));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Month,*/ new DateTime(2005, 7, 1));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Month,*/ new DateTime(2005, 7, 1));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Month,*/ new DateTime(2007, 12, 1));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Day,*/ new DateTime(2007, 11, 13));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Month,*/ new DateTime(1999, 8, 1));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Month,*/ new DateTime(2003, 6, 1));
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Year,*/ new DateTime(2003, 1, 1));
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Year,*/ new DateTime(2002, 1, 1));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Month,*/ new DateTime(2007, 5, 1));
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 1, 16, 6, 43, 0));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 3, 27, 6, 22, 0));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 5, 4, 6, 59, 0));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 6, 29, 6, 31, 0));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Day, new DateTime(1984, 11, 13));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Day, new DateTime(2007, 8, 11));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Day, new DateTime(2007, 8, 11));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Day,*/ new DateTime(1984, 11, 13));
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Day,*/ new DateTime(2007, 8, 11));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Day,*/ new DateTime(2007, 8, 11));
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 4, 8, 13, 5, 0));
-			AddEventor(EventorTypeId.End, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.End, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 4, 8, 17, 50, 0));
-			AddEventor(EventorTypeId.Start, EventorPrecisionId.Minute,
+			AddEventor(EventorTypeId.Start, /*EventorPrecisionId.Minute,*/
 				new DateTime(2012, 4, 08, 17, 23, 0));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Second,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Second,*/
 				new DateTime(2012, 5, 26, 17, 57, 0));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Second,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Second,*/
 				new DateTime(2012, 5, 26, 20, 00, 01));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Second,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Second,*/
 				new DateTime(2012, 5, 28, 16, 24, 41));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Second,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Second,*/
 				new DateTime(2012, 5, 29, 17, 59, 59));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Second,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Second,*/
 				new DateTime(2012, 5, 29, 18, 30, 03));
-			AddEventor(EventorTypeId.Occur, EventorPrecisionId.Second,
+			AddEventor(EventorTypeId.Occur, /*EventorPrecisionId.Second,*/
 				new DateTime(2012, 5, 29, 18, 31, 0));
 
 			vIdCount = 0;
@@ -874,11 +874,10 @@ namespace Fabric.Db.Data.Setups {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddEventor(EventorTypeId pTypeId, EventorPrecisionId pPrecId, DateTime pDate) {
+		public void AddEventor(EventorTypeId pTypeId, DateTime pDate) {
 			var e = new Eventor();
 			e.EventorId = ++vIdCount;
 			e.EventorTypeId = (byte)pTypeId;
-			e.EventorPrecisionId = (byte)pPrecId;
 			e.DateTime = pDate.Ticks;
 			EveMap.Add(e.EventorId, e);
 		}
@@ -992,7 +991,6 @@ namespace Fabric.Db.Data.Setups {
 			if ( pEventId != null ) {
 				Eventor e = EveMap[(long)pEventId];
 				f.Eventor_TypeId = e.EventorTypeId;
-				f.Eventor_PrecisionId = e.EventorPrecisionId;
 				f.Eventor_DateTime = e.DateTime;
 			}
 
@@ -1055,7 +1053,6 @@ namespace Fabric.Db.Data.Setups {
 
 		public virtual long EventorId { get; set; }
 		public virtual byte EventorTypeId { get; set; }
-		public virtual byte EventorPrecisionId { get; set; }
 		public virtual long DateTime { get; set; }
 
 	}
