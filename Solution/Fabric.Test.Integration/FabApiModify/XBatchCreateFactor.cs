@@ -64,9 +64,20 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 
 				if ( f.Eventor_TypeId != null ) {
+					long y;
+					byte? mo, d, h, mi, s;
+
+					FabricUtil.EventorLongToTimes((long)f.Eventor_DateTime,
+						out y, out mo, out d, out h, out mi, out s);
+
 					bnf.Eventor = new FabBatchNewFactorEventor();
 					bnf.Eventor.TypeId = (byte)f.Eventor_TypeId;
-					bnf.Eventor.DateTime = (long)f.Eventor_DateTime;
+					bnf.Eventor.Year = y;
+					bnf.Eventor.Month = mo;
+					bnf.Eventor.Day = d;
+					bnf.Eventor.Hour = h;
+					bnf.Eventor.Minute = mi;
+					bnf.Eventor.Second = s;
 				}
 
 				if ( f.Identor_TypeId != null ) {
@@ -202,7 +213,9 @@ namespace Fabric.Test.Integration.FabApiModify {
 				},
 				Eventor = new FabBatchNewFactorEventor {
 					TypeId = (byte)EventorTypeId.Continue,
-					DateTime = new DateTime(2013, 1, 1).Ticks
+					Year = 2013,
+					Month = 1,
+					Day = 1
 				}
 			});
 

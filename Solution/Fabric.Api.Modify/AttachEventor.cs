@@ -66,21 +66,29 @@ namespace Fabric.Api.Modify {
 				throw new FabArgumentValueFault(YearParam, 0);
 			}
 
-			ValidateRange(YearParam, vYear, -100000000000, 100000000000); // +/- 100 billion
-			ValidateRange(MonthParam, vMonth, 1, 12);
-			ValidateRange(DayParam, vDay, 1, 31);
-			ValidateRange(HourParam, vHour, 0, 23);
-			ValidateRange(MinuteParam, vMinute, 0, 59);
-			ValidateRange(SecondParam, vSecond, 0, 59);
+			bool allow = true;
+			allow = ValidateRange(YearParam, vYear, -100000000000, 100000000000, allow); // +/- 100 B
+			allow = ValidateRange(MonthParam, vMonth, 1, 12, allow);
+			allow = ValidateRange(DayParam, vDay, 1, 31, allow);
+			allow = ValidateRange(HourParam, vHour, 0, 23, allow);
+			allow = ValidateRange(MinuteParam, vMinute, 0, 59, allow);
+			ValidateRange(SecondParam, vSecond, 0, 59, allow);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void ValidateRange(string pName, long? pValue, long pMin, long pMax) {
+		private bool ValidateRange(string pName, long? pValue, long pMin, long pMax, bool pAllow) {
 			if ( pValue == null ) {
-				return;
+				return false;
+			}
+
+			//TEST: AttachEventor "allow" parameters
+
+			if ( !pAllow ) {
+				throw new FabArgumentValueFault(pName+" cannot be specified without prior parameters.");
 			}
 
 			DomainValidator.LongBetween(pName, (long)pValue, pMin, pMax);
+			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

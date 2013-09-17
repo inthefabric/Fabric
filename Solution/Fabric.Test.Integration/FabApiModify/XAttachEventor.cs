@@ -13,7 +13,12 @@ namespace Fabric.Test.Integration.FabApiModify {
 	public class XAttachEventor : XAttachFactorElement {
 
 		private byte vEveTypeId;
-		private long vDateTime;
+		private long vYear;
+		private byte? vMonth;
+		private byte? vDay;
+		private byte? vHour;
+		private byte? vMinute;
+		private byte? vSecond;
 		
 		private bool vResult;
 		
@@ -25,12 +30,18 @@ namespace Fabric.Test.Integration.FabApiModify {
 			IsReadOnlyTest = true;
 
 			vEveTypeId = (byte)EventorTypeId.Continue;
-			vDateTime = 925923592753292;
+			vYear = 2013;
+			vMonth = 9;
+			vDay = 16;
+			vHour = 17;
+			vMinute = 10;
+			vSecond = 56;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		protected  override void TestGo() {
-			var func = new AttachEventor(Tasks, FactorId, vEveTypeId, vDateTime);
+			var func = new AttachEventor(Tasks, FactorId, vEveTypeId,
+				vYear, vMonth, vDay, vHour, vMinute, vSecond);
 			vResult = func.Go(ApiCtx);
 		}
 		
@@ -62,14 +73,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 				vEveTypeId = (byte)(StaticTypes.EventorTypes.Keys.Count+1);
 			}
 
-			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0)]
-		[TestCase(-1)]
-		public void ErrEventorDateTimeRange(long pDateTime) {
-			vDateTime = pDateTime;
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
