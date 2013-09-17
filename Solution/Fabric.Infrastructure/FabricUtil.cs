@@ -46,7 +46,6 @@ namespace Fabric.Infrastructure {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: EventorTimesToLong()
 		public static long EventorTimesToLong(long pYear, byte? pMonth, byte? pDay, byte? pHour,
 																		byte? pMinute, byte? pSecond) {
 			long t = pYear*SecPerYear;
@@ -75,27 +74,30 @@ namespace Fabric.Infrastructure {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: EventorLongToTimes()
 		public static void EventorLongToTimes(long pDateTime, out long pYear, out byte? pMonth, 
 								out byte? pDay, out byte? pHour, out byte? pMinute, out byte? pSecond) {
-			long dt = pDateTime;
-			pSecond = EventorExtractTime(dt, SecPerMin, out dt);
-			pMinute = EventorExtractTime(dt, SecPerHour, out dt);
-			pHour = EventorExtractTime(dt, SecPerDay, out dt);
-			pDay = EventorExtractTime(dt, SecPerMonth, out dt);
-			pMonth = EventorExtractTime(dt, SecPerYear, out pYear);
+			long mod = pDateTime%SecPerYear;
+			long dt = mod;
+			
+			pYear = (pDateTime-mod)/SecPerYear;
+			pMonth = EventorExtractTime(dt, SecPerMonth, out dt);
+			pDay = EventorExtractTime(dt, SecPerDay, out dt);
+			pHour = EventorExtractTime(dt, SecPerHour, out dt);
+			pMinute = EventorExtractTime(dt, SecPerMin, out dt);
+			pSecond = (dt == 0 ? null : (byte?)(dt-1));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static byte? EventorExtractTime(long pDateTime, int pSecs, out long pNewDateTime) {
 			long mod = pDateTime%pSecs;
-			pNewDateTime = pDateTime-mod;
+			pNewDateTime = mod;
+			long diff = (pDateTime-mod);
 
-			if ( mod == 0 ) {
+			if ( diff == 0 ) {
 				return null;
 			}
 
-			byte val = (byte)(mod/pSecs);
+			byte val = (byte)(diff/pSecs);
 			return (byte?)(val-1);
 		}
 
