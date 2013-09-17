@@ -127,6 +127,24 @@ namespace Fabric.Test.FabApiModify {
 			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(1, (byte)1, (byte)1, (byte)1, null, (byte)1)]
+		[TestCase(1, (byte)1, (byte)1, null, (byte)1, (byte)1)]
+		[TestCase(1, (byte)1, null, (byte)1, (byte)1, (byte)1)]
+		[TestCase(1, null, (byte)1, (byte)1, (byte)1, (byte)1)]
+		public void TimesErrInvalidCombo(long pYear, byte? pMonth, byte? pDay, byte? pHour,
+																		byte? pMinute, byte? pSecond) {
+			vYear = pYear;
+			vMonth = pMonth;
+			vDay = pDay;
+			vHour = pHour;
+			vMinute = pMinute;
+			vSecond = pSecond;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
+		}
+
 	}
 
 }
