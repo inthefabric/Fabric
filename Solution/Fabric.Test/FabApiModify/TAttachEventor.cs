@@ -1,4 +1,6 @@
 ﻿using Fabric.Api.Modify;
+using Fabric.Infrastructure.Api.Faults;
+using Fabric.Test.Util;
 using Moq;
 using NUnit.Framework;
 
@@ -71,7 +73,59 @@ namespace Fabric.Test.FabApiModify {
 				AttachEventor.EveTypeParam), Times.Once());
 		}
 
-		//TEST: TAttachEventor time validations
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		public void YearErrInvalid(long pYear) {
+			vYear = pYear;
+			TestUtil.CheckThrows<FabArgumentValueFault>(true, TestGo);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(-100000000001)]
+		[TestCase( 100000000001)]
+		public void YearErrRange(long pYear) {
+			vYear = pYear;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(13)]
+		public void MonthErrRange(byte pMonth) {
+			vMonth = pMonth;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0)]
+		[TestCase(32)]
+		public void DayErrRange(byte pDay) {
+			vDay = pDay;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(25)]
+		public void HourErrRange(byte pHour) {
+			vHour = pHour;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(60)]
+		public void MinuteErrRange(byte pMinute) {
+			vMinute = pMinute;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(60)]
+		public void SecondErrRange(byte pSecond) {
+			vSecond = pSecond;
+			TestUtil.CheckThrows<FabArgumentOutOfRangeFault>(true, TestGo);
+		}
 
 	}
 
