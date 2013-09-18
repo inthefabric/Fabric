@@ -288,18 +288,45 @@ namespace Fabric.Api.Meta.Lang {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string BatchNewFactorEventor_DateTime {
+        internal static string BatchNewFactorEventor_Day {
             get {
-                return ResourceManager.GetString("BatchNewFactorEventor_DateTime", resourceCulture);
+                return ResourceManager.GetString("BatchNewFactorEventor_Day", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string BatchNewFactorEventor_PrecisionId {
+        internal static string BatchNewFactorEventor_Hour {
             get {
-                return ResourceManager.GetString("BatchNewFactorEventor_PrecisionId", resourceCulture);
+                return ResourceManager.GetString("BatchNewFactorEventor_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_Minute {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_Month {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_Second {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_Second", resourceCulture);
             }
         }
         
@@ -309,6 +336,15 @@ namespace Fabric.Api.Meta.Lang {
         internal static string BatchNewFactorEventor_TypeId {
             get {
                 return ResourceManager.GetString("BatchNewFactorEventor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string BatchNewFactorEventor_Year {
+            get {
+                return ResourceManager.GetString("BatchNewFactorEventor_Year", resourceCulture);
             }
         }
         
@@ -583,20 +619,47 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A particular point in time, with a level of accuracy defined by EventorPrecision..
+        ///   Looks up a localized string similar to Specifies the day value..
         /// </summary>
-        internal static string Eventor_DateTime {
+        internal static string Eventor_Day {
             get {
-                return ResourceManager.GetString("Eventor_DateTime", resourceCulture);
+                return ResourceManager.GetString("Eventor_Day", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the level of accuracy given to this point in time..
+        ///   Looks up a localized string similar to Specifies the hour value (UTC)..
         /// </summary>
-        internal static string Eventor_PrecisionId {
+        internal static string Eventor_Hour {
             get {
-                return ResourceManager.GetString("Eventor_PrecisionId", resourceCulture);
+                return ResourceManager.GetString("Eventor_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the minute value (UTC)..
+        /// </summary>
+        internal static string Eventor_Minute {
+            get {
+                return ResourceManager.GetString("Eventor_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the month value..
+        /// </summary>
+        internal static string Eventor_Month {
+            get {
+                return ResourceManager.GetString("Eventor_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the second value (UTC)..
+        /// </summary>
+        internal static string Eventor_Second {
+            get {
+                return ResourceManager.GetString("Eventor_Second", resourceCulture);
             }
         }
         
@@ -606,6 +669,15 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Eventor_TypeId {
             get {
                 return ResourceManager.GetString("Eventor_TypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the year value..
+        /// </summary>
+        internal static string Eventor_Year {
+            get {
+                return ResourceManager.GetString("Eventor_Year", resourceCulture);
             }
         }
         

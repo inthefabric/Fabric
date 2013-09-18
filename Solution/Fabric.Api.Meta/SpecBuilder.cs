@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/18/2013 1:59:09 PM
+// Generated on 9/18/2013 3:32:54 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -161,54 +161,54 @@ namespace Fabric.Api.Meta {
 					pValue.LenMin = 1;
 					break;
 
-				case "Factor.Descriptor_TypeId":
+				case "Descriptor.TypeId":
 					break;
 
-				case "Factor.Director_TypeId":
+				case "Director.TypeId":
 					break;
 
-				case "Factor.Director_PrimaryActionId":
+				case "Director.PrimaryActionId":
 					break;
 
-				case "Factor.Director_RelatedActionId":
+				case "Director.RelatedActionId":
 					break;
 
-				case "Factor.Eventor_TypeId":
+				case "Eventor.TypeId":
 					break;
 
-				case "Factor.Eventor_DateTime":
+				case "Eventor.DateTime":
 					break;
 
-				case "Factor.Identor_TypeId":
+				case "Identor.TypeId":
 					break;
 
-				case "Factor.Identor_Value":
+				case "Identor.Value":
 					pValue.LenMax = 256;
 					pValue.LenMin = 1;
 					break;
 
-				case "Factor.Locator_TypeId":
+				case "Locator.TypeId":
 					break;
 
-				case "Factor.Locator_ValueX":
+				case "Locator.ValueX":
 					break;
 
-				case "Factor.Locator_ValueY":
+				case "Locator.ValueY":
 					break;
 
-				case "Factor.Locator_ValueZ":
+				case "Locator.ValueZ":
 					break;
 
-				case "Factor.Vector_TypeId":
+				case "Vector.TypeId":
 					break;
 
-				case "Factor.Vector_UnitId":
+				case "Vector.UnitId":
 					break;
 
-				case "Factor.Vector_UnitPrefixId":
+				case "Vector.UnitPrefixId":
 					break;
 
-				case "Factor.Vector_Value":
+				case "Vector.Value":
 					break;
 
 				case "OauthAccess.OauthAccessId":
@@ -282,6 +282,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsTimestamp = true;
 					break;
 
+
 				case "VertexForAction.Note":
 					pProp.Name = "Note";
 					pProp.Type = "string";
@@ -289,6 +290,7 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
+
 
 				case "Artifact.ArtifactId":
 					pProp.Name = "ArtifactId";
@@ -298,6 +300,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsPrimaryKey = true;
 					break;
 
+
 				case "Artifact.Created":
 					pProp.Name = "Created";
 					pProp.Type = "long";
@@ -305,6 +308,7 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsTimestamp = true;
 					break;
+
 
 				case "App.Name":
 					pProp.Name = "Name";
@@ -315,12 +319,14 @@ namespace Fabric.Api.Meta {
 					pProp.IsUnique = true;
 					break;
 
+
 				case "Class.Name":
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Class_Name");
 					pProp.Enum = null;
 					break;
+
 
 				case "Class.Disamb":
 					pProp.Name = "Disamb";
@@ -330,6 +336,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsNullable = true;
 					break;
 
+
 				case "Class.Note":
 					pProp.Name = "Note";
 					pProp.Type = "string";
@@ -337,6 +344,7 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
+
 
 				case "Instance.Name":
 					pProp.Name = "Name";
@@ -346,6 +354,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsNullable = true;
 					break;
 
+
 				case "Instance.Disamb":
 					pProp.Name = "Disamb";
 					pProp.Type = "string";
@@ -353,6 +362,7 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
+
 
 				case "Instance.Note":
 					pProp.Name = "Note";
@@ -362,6 +372,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsNullable = true;
 					break;
 
+
 				case "Member.MemberId":
 					pProp.Name = "MemberId";
 					pProp.Type = "long";
@@ -369,6 +380,7 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsPrimaryKey = true;
 					break;
+
 
 				case "MemberTypeAssign.MemberTypeAssignId":
 					pProp.Name = "MemberTypeAssignId";
@@ -378,6 +390,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsPrimaryKey = true;
 					break;
 
+
 				case "MemberTypeAssign.MemberTypeId":
 					pProp.Name = "MemberTypeId";
 					pProp.Type = "byte";
@@ -385,12 +398,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "MemberType";
 					break;
 
+
 				case "Url.Name":
 					pProp.Name = "Name";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Url_Name");
 					pProp.Enum = null;
 					break;
+
 
 				case "Url.FullPath":
 					pProp.Name = "FullPath";
@@ -402,6 +417,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsUnique = true;
 					break;
 
+
 				case "User.Name":
 					pProp.Name = "Name";
 					pProp.Type = "string";
@@ -411,6 +427,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsUnique = true;
 					break;
 
+
 				case "Factor.FactorId":
 					pProp.Name = "FactorId";
 					pProp.Type = "long";
@@ -419,6 +436,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsPrimaryKey = true;
 					break;
 
+
 				case "Factor.FactorAssertionId":
 					pProp.Name = "FactorAssertionId";
 					pProp.Type = "byte";
@@ -426,12 +444,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "FactorAssertion";
 					break;
 
+
 				case "Factor.IsDefining":
 					pProp.Name = "IsDefining";
 					pProp.Type = "bool";
 					pProp.Description = SpecDoc.GetDtoPropText("Factor_IsDefining");
 					pProp.Enum = null;
 					break;
+
 
 				case "Factor.Created":
 					pProp.Name = "Created";
@@ -441,6 +461,7 @@ namespace Fabric.Api.Meta {
 					pProp.IsTimestamp = true;
 					break;
 
+
 				case "Factor.Completed":
 					pProp.Name = "Completed";
 					pProp.Type = "long?";
@@ -448,6 +469,7 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					pProp.IsNullable = true;
 					break;
+
 
 				case "Factor.Note":
 					pProp.Name = "Note";
@@ -457,12 +479,14 @@ namespace Fabric.Api.Meta {
 					pProp.IsNullable = true;
 					break;
 
+
 				case "Descriptor.TypeId":
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Descriptor_TypeId");
 					pProp.Enum = "DescriptorType";
 					break;
+
 
 				case "Director.TypeId":
 					pProp.Name = "TypeId";
@@ -471,12 +495,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "DirectorType";
 					break;
 
+
 				case "Director.PrimaryActionId":
 					pProp.Name = "PrimaryActionId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Director_PrimaryActionId");
 					pProp.Enum = "DirectorAction";
 					break;
+
 
 				case "Director.RelatedActionId":
 					pProp.Name = "RelatedActionId";
@@ -485,12 +511,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "DirectorAction";
 					break;
 
+
 				case "Eventor.TypeId":
 					pProp.Name = "TypeId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Eventor_TypeId");
 					pProp.Enum = "EventorType";
 					break;
+
 
 				case "Identor.TypeId":
 					pProp.Name = "TypeId";
@@ -499,12 +527,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "IdentorType";
 					break;
 
+
 				case "Identor.Value":
 					pProp.Name = "Value";
 					pProp.Type = "string";
 					pProp.Description = SpecDoc.GetDtoPropText("Identor_Value");
 					pProp.Enum = null;
 					break;
+
 
 				case "Locator.TypeId":
 					pProp.Name = "TypeId";
@@ -513,12 +543,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "LocatorType";
 					break;
 
+
 				case "Locator.ValueX":
 					pProp.Name = "ValueX";
 					pProp.Type = "double";
 					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueX");
 					pProp.Enum = null;
 					break;
+
 
 				case "Locator.ValueY":
 					pProp.Name = "ValueY";
@@ -527,12 +559,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = null;
 					break;
 
+
 				case "Locator.ValueZ":
 					pProp.Name = "ValueZ";
 					pProp.Type = "double";
 					pProp.Description = SpecDoc.GetDtoPropText("Locator_ValueZ");
 					pProp.Enum = null;
 					break;
+
 
 				case "Vector.TypeId":
 					pProp.Name = "TypeId";
@@ -541,12 +575,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "VectorType";
 					break;
 
+
 				case "Vector.UnitId":
 					pProp.Name = "UnitId";
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Vector_UnitId");
 					pProp.Enum = "VectorUnit";
 					break;
+
 
 				case "Vector.UnitPrefixId":
 					pProp.Name = "UnitPrefixId";
@@ -555,12 +591,14 @@ namespace Fabric.Api.Meta {
 					pProp.Enum = "VectorUnitPrefix";
 					break;
 
+
 				case "Vector.Value":
 					pProp.Name = "Value";
 					pProp.Type = "long";
 					pProp.Description = SpecDoc.GetDtoPropText("Vector_Value");
 					pProp.Enum = null;
 					break;
+
 			}
 		}
 

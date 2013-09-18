@@ -262,6 +262,7 @@ foreach ( string name in verts ) {
 			IList<SchemaHelperProp> subProps = hn.GetSubProps(subName);
 
 			foreach ( SchemaHelperProp hp in subProps ) {
+				if ( hp.PropSchema.IsInternal == true ) { continue; }
 #>
 		public <#= hp.TypeName #> <#= hp.SubPropName #> { get; set; }
 <#

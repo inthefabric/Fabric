@@ -189,12 +189,6 @@
   <data name="Modify_AttachDirectorToFactor_RelatedDirectorActionId" xml:space="preserve">
     <value>Identifies the DirectorAction associated with the Factor's related Artifact.</value>
   </data>
-  <data name="Modify_AttachEventorToFactor_DateTime" xml:space="preserve">
-    <value>The date and time for the new Eventor. This value must be accurate to the level of precision defined by the specified EventorPrecision. Set unused month/day values to 1, and unused hour/minute values (and beyond) to 0.</value>
-  </data>
-  <data name="Modify_AttachEventorToFactor_EventorPrecisionId" xml:space="preserve">
-    <value>Identifies the EventorPrecision for the new Eventor.</value>
-  </data>
   <data name="Modify_AttachEventorToFactor_EventorTypeId" xml:space="preserve">
     <value>Identifies the EventorType for the new Eventor.</value>
   </data>
@@ -296,5 +290,23 @@
   </data>
   <data name="Oauth_Logout_Token" xml:space="preserve">
     <value>The access token for the desired OAuth session. This request will fail if the token has already been invalidated by a previous logout.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_Day" xml:space="preserve">
+    <value>The day value for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_Hour" xml:space="preserve">
+    <value>The hour value for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_Minute" xml:space="preserve">
+    <value>The minute value for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_Month" xml:space="preserve">
+    <value>The month value for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_Second" xml:space="preserve">
+    <value>The second value for the new Eventor.</value>
+  </data>
+  <data name="Modify_AttachEventorToFactor_Year" xml:space="preserve">
+    <value>The year value for the new Eventor.</value>
   </data>
 </root>

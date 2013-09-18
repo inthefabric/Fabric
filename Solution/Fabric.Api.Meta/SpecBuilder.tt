@@ -48,8 +48,15 @@ foreach ( string name in verts ) {
 	foreach ( SchemaHelperProp hp in props ) {
 		WeaverPropSchema prop = hp.PropSchema;
 		string propName = prop.Name;
+		string vertexName = vertex.Name;
 		string propItems = "";
 		string lineEnd = "\r\n\t\t\t\t\t";
+			
+		if ( hp.IsSubProp() ) {
+			int subI = propName.IndexOf('_');
+			vertexName = propName.Substring(0, subI);
+			propName = propName.Substring(subI+1);
+		}
 		
 		if ( prop.Len != null ) {
 			propItems += "pValue.Len = "+prop.Len+";"+lineEnd;
@@ -69,7 +76,7 @@ foreach ( string name in verts ) {
 
 #>
 
-				case "<#= vertex.Name #>.<#= propName #>":
+				case "<#= vertexName #>.<#= propName #>":
 					<#= propItems #>break;
 <#
 	} //end prop loop
@@ -139,6 +146,7 @@ foreach ( string name in verts ) {
 			enu = prop.EnumName;
 			enu = "\""+enu.Substring(0, enu.Length-2)+"\"";
 		}
+
 #>
 
 				case "<#= vertexName #>.<#= propName #>":
@@ -147,6 +155,7 @@ foreach ( string name in verts ) {
 					pProp.Description = SpecDoc.GetDtoPropText("<#= resxDesc #>");
 					pProp.Enum = <#= enu #>;
 					<#= propItems #>break;
+
 <#
 	} //end prop loop
 } // end vertex loop

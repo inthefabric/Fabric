@@ -344,20 +344,49 @@
           "IsBaseClass": false,
           "Properties": [
             {
-              "Name": "DateTime",
-              "Type": "long",
+              "Name": "Day",
+              "Type": "byte?",
               "Description": "",
+              "IsOptional": true,
               "FabType": "FabSpecObjectProp"
             },
             {
-              "Name": "PrecisionId",
-              "Type": "byte",
+              "Name": "Hour",
+              "Type": "byte?",
               "Description": "",
+              "IsOptional": true,
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Minute",
+              "Type": "byte?",
+              "Description": "",
+              "IsOptional": true,
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Month",
+              "Type": "byte?",
+              "Description": "",
+              "IsOptional": true,
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Second",
+              "Type": "byte?",
+              "Description": "",
+              "IsOptional": true,
               "FabType": "FabSpecObjectProp"
             },
             {
               "Name": "TypeId",
               "Type": "byte",
+              "Description": "",
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Year",
+              "Type": "long",
               "Description": "",
               "FabType": "FabSpecObjectProp"
             }
@@ -620,20 +649,52 @@
         {
           "Name": "FabEventor",
           "Extends": "FabObject",
-          "Description": "A [[Factor|Object|FabFactor]] Element that applies the concept of time to a particular [[Factor|Object|FabFactor]].\r\n\r\nAn Eventor places a [[Factor|Object|FabFactor]] at a specific point in time and describes why it is significant to the [[Factor|Object|FabFactor]]. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the [[Factor|Object|FabFactor]] started, occurred, is expected, etc.\r\n\r\nEach Eventor represents one particular point in time, however, the precision of that point in time can vary. The [[EventorPrecision|Enum|EventorPrecision]] allows a point in time to specify a level of accuracy ranging from one second to one year.\r\n[(EX|Started Example|_Objective:_\r\nSpecify that Albert Einstein was born (i.e. started his life) on March 14, 1879.\r\n\r\n_Method:_\r\n- The [[Factor|Object|FabFactor]] uses 'Albert Einstein' as the primary [[Artifact|Object|FabArtifact]] and 'Life' as the related [[Artifact|Object|FabArtifact]].\r\n- The [[Descriptor|Object|FabDescriptor]] uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The Eventor uses 'March 14, 1879' as its DateTime value, the 'Started' [[EventorType|Enum|EventorType]], and the 'Day' [[EventorPrecision|Enum|EventorPrecision]].\r\n\r\n_Factor Phrase:_\r\nAlbert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... March 14, 1879.)] [(EX|Expected Example|_Objective:_\r\nSpecify that person A plans to attend college B in the year 2024.\r\n\r\n_Method:_\r\n- The [[Factor|Object|FabFactor]] uses 'Person A' as the primary [[Artifact|Object|FabArtifact]] and 'College B' as the related [[Artifact|Object|FabArtifact]].\r\n- The [[Descriptor|Object|FabDescriptor]] uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' [[Artifact|Object|FabArtifact]] to refine it.\r\n- The Eventor uses '2024' as its DateTime value, the 'Is Expected' [[EventorType|Enum|EventorType]], and the 'Year' [[EventorPrecision|Enum|EventorPrecision]].\r\n\r\n_Factor Phrase:_\r\nPerson A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]\r\n\r\n_Note: every [[Factor|Object|FabFactor]] recieves a timestamp upon creation. This timestamp is not related to the Eventor._",
+          "Description": "A [[Factor|Object|FabFactor]] Element that applies the concept of time to a particular [[Factor|Object|FabFactor]].\r\n\r\nAn Eventor places a [[Factor|Object|FabFactor]] at a specific point in time and describes why it is significant to the [[Factor|Object|FabFactor]]. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the [[Factor|Object|FabFactor]] started, occurred, is expected, etc.\r\n\r\nEach Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.\r\n[(EX|Started Example|_Objective:_\r\nSpecify that Albert Einstein was born (i.e. started his life) on March 14, 1879.\r\n\r\n_Method:_\r\n- The [[Factor|Object|FabFactor]] uses 'Albert Einstein' as the primary [[Artifact|Object|FabArtifact]] and 'Life' as the related [[Artifact|Object|FabArtifact]].\r\n- The [[Descriptor|Object|FabDescriptor]] uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nAlbert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_\r\nSpecify that person A plans to attend college B in the year 2024.\r\n\r\n_Method:_\r\n- The [[Factor|Object|FabFactor]] uses 'Person A' as the primary [[Artifact|Object|FabArtifact]] and 'College B' as the related [[Artifact|Object|FabArtifact]].\r\n- The [[Descriptor|Object|FabDescriptor]] uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' [[Artifact|Object|FabArtifact]] to refine it.\r\n- The Eventor uses '2024' as its Year value and the 'Is Expected' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nPerson A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]\r\n\r\n_Note: every [[Factor|Object|FabFactor]] recieves a timestamp upon creation. This timestamp is not related to the Eventor._",
           "IsBaseClass": false,
           "Properties": [
             {
-              "Name": "DateTime",
-              "Type": "long",
-              "Description": "A particular point in time, with a level of accuracy defined by EventorPrecision.",
+              "Name": "Day",
+              "Type": "byte?",
+              "Description": "Specifies the day value.",
+              "IsOptional": true,
+              "Min": 1,
+              "Max": 31,
               "FabType": "FabSpecObjectProp"
             },
             {
-              "Enum": "EventorPrecision",
-              "Name": "PrecisionId",
-              "Type": "byte",
-              "Description": "Specifies the level of accuracy given to this point in time.",
+              "Name": "Hour",
+              "Type": "byte?",
+              "Description": "Specifies the hour value (UTC).",
+              "IsOptional": true,
+              "Min": 0,
+              "Max": 23,
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Minute",
+              "Type": "byte?",
+              "Description": "Specifies the minute value (UTC).",
+              "IsOptional": true,
+              "Min": 0,
+              "Max": 59,
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Month",
+              "Type": "byte?",
+              "Description": "Specifies the month value.",
+              "IsOptional": true,
+              "Min": 1,
+              "Max": 12,
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Second",
+              "Type": "byte?",
+              "Description": "Specifies the second value (UTC).",
+              "IsOptional": true,
+              "Min": 0,
+              "Max": 59,
               "FabType": "FabSpecObjectProp"
             },
             {
@@ -641,6 +702,14 @@
               "Name": "TypeId",
               "Type": "byte",
               "Description": "Specifies the significance of this point in time.",
+              "FabType": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Year",
+              "Type": "long",
+              "Description": "Specifies the year value.",
+              "Min": -100000000000,
+              "Max": 100000000000,
               "FabType": "FabSpecObjectProp"
             }
           ],
@@ -865,6 +934,8 @@
               "Name": "Value",
               "Type": "string",
               "Description": "A text-based value that can represent names, numbers, IDs, GUIDs, etc.",
+              "LenMax": 256,
+              "LenMin": 1,
               "FabType": "FabSpecObjectProp"
             }
           ],
@@ -1961,12 +2032,12 @@
             },
             {
               "Name": "Max",
-              "Type": "int?",
+              "Type": "long?",
               "FabType": "FabSpecObjectProp"
             },
             {
               "Name": "Min",
-              "Type": "int?",
+              "Type": "long?",
               "FabType": "FabSpecObjectProp"
             },
             {
@@ -3431,17 +3502,54 @@
                 {
                   "ParamType": "Form",
                   "Index": 2,
-                  "Name": "EventorPrecisionId",
-                  "Type": "byte",
-                  "Description": "Identifies the EventorPrecision for the new [[Eventor|Object|FabEventor]].",
+                  "Name": "Year",
+                  "Type": "long",
+                  "Description": "The year value for the new [[Eventor|Object|FabEventor]].",
                   "FabType": "FabSpecServiceOperationParam"
                 },
                 {
                   "ParamType": "Form",
                   "Index": 3,
-                  "Name": "DateTime",
-                  "Type": "long",
-                  "Description": "The date and time for the new [[Eventor|Object|FabEventor]]. This value must be accurate to the level of precision defined by the specified EventorPrecision. Set unused month/day values to 1, and unused hour/minute values (and beyond) to 0.",
+                  "Name": "Month",
+                  "Type": "byte?",
+                  "Description": "The month value for the new [[Eventor|Object|FabEventor]].",
+                  "IsOptional": true,
+                  "FabType": "FabSpecServiceOperationParam"
+                },
+                {
+                  "ParamType": "Form",
+                  "Index": 4,
+                  "Name": "Day",
+                  "Type": "byte?",
+                  "Description": "The day value for the new [[Eventor|Object|FabEventor]].",
+                  "IsOptional": true,
+                  "FabType": "FabSpecServiceOperationParam"
+                },
+                {
+                  "ParamType": "Form",
+                  "Index": 5,
+                  "Name": "Hour",
+                  "Type": "byte?",
+                  "Description": "The hour value for the new [[Eventor|Object|FabEventor]].",
+                  "IsOptional": true,
+                  "FabType": "FabSpecServiceOperationParam"
+                },
+                {
+                  "ParamType": "Form",
+                  "Index": 6,
+                  "Name": "Minute",
+                  "Type": "byte?",
+                  "Description": "The minute value for the new [[Eventor|Object|FabEventor]].",
+                  "IsOptional": true,
+                  "FabType": "FabSpecServiceOperationParam"
+                },
+                {
+                  "ParamType": "Form",
+                  "Index": 7,
+                  "Name": "Second",
+                  "Type": "byte?",
+                  "Description": "The second value for the new [[Eventor|Object|FabEventor]].",
+                  "IsOptional": true,
                   "FabType": "FabSpecServiceOperationParam"
                 }
               ],
@@ -4085,52 +4193,6 @@
           "Name": "DirectorAction",
           "Extends": "BaseEnum",
           "Description": "Describes an action to be taken (via [[Director|Object|FabDirector]]) on one of the two [[Artifacts|Object|FabArtifact]] in a particular [[Factor|Object|FabFactor]].",
-          "IsBaseClass": false,
-          "Properties": [],
-          "FabType": "FabSpecEnum"
-        },
-        {
-          "Data": [
-            {
-              "Id": 1,
-              "EnumId": "Year",
-              "Name": "Year",
-              "Description": "This Eventor date is accurate to the year."
-            },
-            {
-              "Id": 2,
-              "EnumId": "Month",
-              "Name": "Month",
-              "Description": "This Eventor date is accurate to the month."
-            },
-            {
-              "Id": 3,
-              "EnumId": "Day",
-              "Name": "Day",
-              "Description": "This Eventor date is accurate to the day."
-            },
-            {
-              "Id": 4,
-              "EnumId": "Hour",
-              "Name": "Hour",
-              "Description": "This Eventor date is accurate to the hour."
-            },
-            {
-              "Id": 5,
-              "EnumId": "Minute",
-              "Name": "Minute",
-              "Description": "This Eventor date is accurate to the minute."
-            },
-            {
-              "Id": 6,
-              "EnumId": "Second",
-              "Name": "Second",
-              "Description": "This Eventor date is accurate to the second."
-            }
-          ],
-          "Name": "EventorPrecision",
-          "Extends": "BaseEnum",
-          "Description": "Describes the level of date/time precision (via [[Eventor|Object|FabEventor]]) given to a particular [[Factor|Object|FabFactor]].",
           "IsBaseClass": false,
           "Properties": [],
           "FabType": "FabSpecEnum"

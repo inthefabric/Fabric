@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/18/2013 1:59:07 PM
+// Generated on 9/18/2013 2:48:54 PM
 
 using System;
 using System.Collections.Generic;
@@ -863,7 +863,6 @@ namespace Fabric.Api.Dto.Traversal {
 	public partial class FabEventor : FabObject {
 	
 		public byte TypeId { get; set; }
-		public long DateTime { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

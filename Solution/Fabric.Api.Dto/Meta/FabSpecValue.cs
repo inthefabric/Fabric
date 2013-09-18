@@ -13,8 +13,8 @@ namespace Fabric.Api.Dto.Meta {
 		public int? Len { get; set; }
 		public int? LenMax { get; set; }
 		public int? LenMin { get; set; }
-		public int? Min { get; set; }
-		public int? Max { get; set; }
+		public long? Min { get; set; }
+		public long? Max { get; set; }
 		public string ValidRegex { get; set; }
 
 

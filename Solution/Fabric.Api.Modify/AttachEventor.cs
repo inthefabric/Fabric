@@ -28,19 +28,19 @@ namespace Fabric.Api.Modify {
 		[ServiceOpParam(ServiceOpParamType.Form, YearParam, 2, typeof(Factor))]
 		private readonly long vYear;
 
-		[ServiceOpParam(ServiceOpParamType.Form, MonthParam, 3, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, MonthParam, 3, typeof(Factor), IsRequired=false)]
 		private readonly byte? vMonth;
 
-		[ServiceOpParam(ServiceOpParamType.Form, DayParam, 4, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, DayParam, 4, typeof(Factor), IsRequired=false)]
 		private readonly byte? vDay;
 
-		[ServiceOpParam(ServiceOpParamType.Form, HourParam, 5, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, HourParam, 5, typeof(Factor), IsRequired=false)]
 		private readonly byte? vHour;
 
-		[ServiceOpParam(ServiceOpParamType.Form, MinuteParam, 6, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, MinuteParam, 6, typeof(Factor), IsRequired=false)]
 		private readonly byte? vMinute;
 
-		[ServiceOpParam(ServiceOpParamType.Form, SecondParam, 7, typeof(Factor))]
+		[ServiceOpParam(ServiceOpParamType.Form, SecondParam, 7, typeof(Factor), IsRequired=false)]
 		private readonly byte? vSecond;
 
 

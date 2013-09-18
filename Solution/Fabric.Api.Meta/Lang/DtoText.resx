@@ -253,23 +253,23 @@ Song A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (le
 
 An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
 
-Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The [[EventorPrecision|Enum|EventorPrecision]] allows a point in time to specify a level of accuracy ranging from one second to one year.
+Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.
 [(EX|Started Example|_Objective:_
 Specify that Albert Einstein was born (i.e. started his life) on March 14, 1879.
 
 _Method:_
 - The Factor uses 'Albert Einstein' as the primary Artifact and 'Life' as the related Artifact.
 - The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Eventor uses 'March 14, 1879' as its DateTime value, the 'Started' [[EventorType|Enum|EventorType]], and the 'Day' [[EventorPrecision|Enum|EventorPrecision]].
+- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' [[EventorType|Enum|EventorType]].
 
 _Factor Phrase:_
-Albert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... March 14, 1879.)] [(EX|Expected Example|_Objective:_
+Albert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_
 Specify that person A plans to attend college B in the year 2024.
 
 _Method:_
 - The Factor uses 'Person A' as the primary Artifact and 'College B' as the related Artifact.
 - The Descriptor uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' Artifact to refine it.
-- The !Eventor uses '2024' as its DateTime value, the 'Is Expected' [[EventorType|Enum|EventorType]], and the 'Year' [[EventorPrecision|Enum|EventorPrecision]].
+- The !Eventor uses '2024' as its Year value and the 'Is Expected' [[EventorType|Enum|EventorType]].
 
 _Factor Phrase:_
 Person A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]

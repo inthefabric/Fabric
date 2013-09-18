@@ -132,9 +132,6 @@
   <data name="DirectorType" xml:space="preserve">
     <value>Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor.</value>
   </data>
-  <data name="EventorPrecision" xml:space="preserve">
-    <value>Describes the level of date/time precision (via Eventor) given to a particular Factor.</value>
-  </data>
   <data name="EventorType" xml:space="preserve">
     <value>Provides temporal significance (via Eventor) for a particular Factor.</value>
   </data>

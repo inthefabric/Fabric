@@ -288,6 +288,7 @@ namespace Fabric.Api.Meta {
 
 				if ( att.DomainClass != null ) {
 					SpecBuilder.FillSpecValue(att.DomainClass.Name, att.DomainPropertyName, p);
+					SpecBuilderCustom.FillSpecValue(att.DomainClass.Name, att.DomainPropertyName, p);
 				}
 
 				p.Name = att.Name;
@@ -367,6 +368,7 @@ namespace Fabric.Api.Meta {
 				specProp.Description = GetDtoPropText(n+"_"+pi.Name);
 				specProp.IsOptional = (dpa != null && dpa.IsOptional ? true : (bool?)null);
 				SpecBuilder.FillSpecDtoProp(n, domPropName, specProp); //overwrites in many cases
+				SpecBuilderCustom.FillSpecDtoProp(n, domPropName, specProp);
 				results.Add(pi.Name, specProp);
 			}
 

@@ -277,20 +277,11 @@ namespace Fabric.Api.Meta.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The date and time for the new Eventor. This value must be accurate to the level of precision defined by the specified EventorPrecision. Set unused month/day values to 1, and unused hour/minute values (and beyond) to 0..
+        ///   Looks up a localized string similar to The day value for the new Eventor..
         /// </summary>
-        internal static string Modify_AttachEventorToFactor_DateTime {
+        internal static string Modify_AttachEventorToFactor_Day {
             get {
-                return ResourceManager.GetString("Modify_AttachEventorToFactor_DateTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Identifies the EventorPrecision for the new Eventor..
-        /// </summary>
-        internal static string Modify_AttachEventorToFactor_EventorPrecisionId {
-            get {
-                return ResourceManager.GetString("Modify_AttachEventorToFactor_EventorPrecisionId", resourceCulture);
+                return ResourceManager.GetString("Modify_AttachEventorToFactor_Day", resourceCulture);
             }
         }
         
@@ -309,6 +300,51 @@ namespace Fabric.Api.Meta.Lang {
         internal static string Modify_AttachEventorToFactor_FactorId {
             get {
                 return ResourceManager.GetString("Modify_AttachEventorToFactor_FactorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The hour value for the new Eventor..
+        /// </summary>
+        internal static string Modify_AttachEventorToFactor_Hour {
+            get {
+                return ResourceManager.GetString("Modify_AttachEventorToFactor_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minute value for the new Eventor..
+        /// </summary>
+        internal static string Modify_AttachEventorToFactor_Minute {
+            get {
+                return ResourceManager.GetString("Modify_AttachEventorToFactor_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The month value for the new Eventor..
+        /// </summary>
+        internal static string Modify_AttachEventorToFactor_Month {
+            get {
+                return ResourceManager.GetString("Modify_AttachEventorToFactor_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The second value for the new Eventor..
+        /// </summary>
+        internal static string Modify_AttachEventorToFactor_Second {
+            get {
+                return ResourceManager.GetString("Modify_AttachEventorToFactor_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The year value for the new Eventor..
+        /// </summary>
+        internal static string Modify_AttachEventorToFactor_Year {
+            get {
+                return ResourceManager.GetString("Modify_AttachEventorToFactor_Year", resourceCulture);
             }
         }
         

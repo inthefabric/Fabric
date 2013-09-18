@@ -168,8 +168,8 @@
   <data name="Url_FullPath" xml:space="preserve">
     <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').</value>
   </data>
-  <data name="Eventor_DateTime" xml:space="preserve">
-    <value>A particular point in time, with a level of accuracy defined by EventorPrecision.</value>
+  <data name="Eventor_Year" xml:space="preserve">
+    <value>Specifies the year value.</value>
   </data>
   <data name="Identor_Value" xml:space="preserve">
     <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc.</value>
@@ -441,10 +441,7 @@
   <data name="BatchNewFactorDirector_TypeId" xml:space="preserve">
     <value />
   </data>
-  <data name="BatchNewFactorEventor_DateTime" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_PrecisionId" xml:space="preserve">
+  <data name="BatchNewFactorEventor_Year" xml:space="preserve">
     <value />
   </data>
   <data name="BatchNewFactorEventor_TypeId" xml:space="preserve">
@@ -540,9 +537,6 @@
   <data name="Director_TypeId" xml:space="preserve">
     <value>Specifies the type and reason for the pathway.</value>
   </data>
-  <data name="Eventor_PrecisionId" xml:space="preserve">
-    <value>Specifies the level of accuracy given to this point in time.</value>
-  </data>
   <data name="Eventor_TypeId" xml:space="preserve">
     <value>Specifies the significance of this point in time.</value>
   </data>
@@ -584,5 +578,35 @@
   </data>
   <data name="Vector_UnitPrefixId" xml:space="preserve">
     <value>Specifies its value's order of magnitude.</value>
+  </data>
+  <data name="BatchNewFactorEventor_Day" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_Hour" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_Minute" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_Month" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BatchNewFactorEventor_Second" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Eventor_Day" xml:space="preserve">
+    <value>Specifies the day value.</value>
+  </data>
+  <data name="Eventor_Hour" xml:space="preserve">
+    <value>Specifies the hour value (UTC).</value>
+  </data>
+  <data name="Eventor_Minute" xml:space="preserve">
+    <value>Specifies the minute value (UTC).</value>
+  </data>
+  <data name="Eventor_Month" xml:space="preserve">
+    <value>Specifies the month value.</value>
+  </data>
+  <data name="Eventor_Second" xml:space="preserve">
+    <value>Specifies the second value (UTC).</value>
   </data>
 </root>
