@@ -13,13 +13,15 @@ namespace Fabric.Test.FabInfra {
 		[TestCase(1, null, null, null, null, null)]
 		[TestCase(9999999, null, null, null, null, null)]
 		[TestCase(-9999999, null, null, null, null, null)]
-		[TestCase(1, (byte)0, (byte)0, (byte)0, (byte)0, (byte)0)]
+		[TestCase(1, (byte)1, (byte)1, (byte)0, (byte)0, (byte)0)]
 		[TestCase(1, (byte)1, (byte)1, (byte)1, (byte)1, (byte)1)]
 		[TestCase(2010, (byte)10, null, null, null, null)]
 		[TestCase(1985, (byte)8,  (byte)27, null, null, null)]
 		[TestCase(2010, (byte)10, (byte)10, (byte)10, null, null)]
 		[TestCase(1234, (byte)5,  (byte)6,  (byte)7,  (byte)8, null)]
-		[TestCase(2013, (byte)9,  (byte)17, (byte)17, (byte)5, (byte)34)]
+		[TestCase(2013, (byte)9, (byte)17, (byte)17, (byte)5, (byte)34)]
+		[TestCase(2007, (byte)12, (byte)1, null, null, null)]
+		[TestCase(9999, (byte)12, (byte)31, (byte)23, (byte)59, (byte)59)]
 		public void EventorTimeConversion(long pYear, byte? pMonth, byte? pDay, byte? pHour,
 																		byte? pMinute, byte? pSecond) {
 			long y;

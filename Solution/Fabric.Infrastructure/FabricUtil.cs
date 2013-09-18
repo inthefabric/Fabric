@@ -11,11 +11,11 @@ namespace Fabric.Infrastructure {
 		public const double DoubleMin = double.MinValue+1E+294;
 		public const double DoubleMax = double.MaxValue-1E+294;
 
-		private const int SecPerMin = 60+1;
-		private const int SecPerHour = SecPerMin*60+1;
-		private const int SecPerDay = SecPerHour*24+1;
-		private const int SecPerMonth = SecPerDay*31+1;
-		private const int SecPerYear = SecPerMonth*12+1; //38,698,400 sec; allows +/- 238 billion years
+		private const int SecPerMin = (60+1);
+		private const int SecPerHour = SecPerMin*(60+1);
+		private const int SecPerDay = SecPerHour*(24+1);
+		private const int SecPerMonth = SecPerDay*(31+1);
+		private const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; allows +/- 238 billion yrs
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,11 +51,11 @@ namespace Fabric.Infrastructure {
 			long t = pYear*SecPerYear;
 
 			if ( pMonth != null ) {
-				t += ((byte)pMonth+1)*SecPerMonth;
+				t += (byte)pMonth*SecPerMonth; //do not add 1
 			}
 
 			if ( pDay != null ) {
-				t += ((byte)pDay+1)*SecPerDay;
+				t += (byte)pDay*SecPerDay; //do not add 1
 			}
 
 			if ( pHour != null ) {
@@ -80,15 +80,16 @@ namespace Fabric.Infrastructure {
 			long dt = mod;
 			
 			pYear = (pDateTime-mod)/SecPerYear;
-			pMonth = EventorExtractTime(dt, SecPerMonth, out dt);
-			pDay = EventorExtractTime(dt, SecPerDay, out dt);
-			pHour = EventorExtractTime(dt, SecPerHour, out dt);
-			pMinute = EventorExtractTime(dt, SecPerMin, out dt);
+			pMonth = EventorExtractTime(dt, SecPerMonth, 0, out dt);
+			pDay = EventorExtractTime(dt, SecPerDay, 0, out dt);
+			pHour = EventorExtractTime(dt, SecPerHour, -1, out dt);
+			pMinute = EventorExtractTime(dt, SecPerMin, -1, out dt);
 			pSecond = (dt == 0 ? null : (byte?)(dt-1));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static byte? EventorExtractTime(long pDateTime, int pSecs, out long pNewDateTime) {
+		private static byte? EventorExtractTime(long pDateTime, int pSecs, int pOffset,
+																				out long pNewDateTime) {
 			long mod = pDateTime%pSecs;
 			pNewDateTime = mod;
 			long diff = (pDateTime-mod);
@@ -98,7 +99,7 @@ namespace Fabric.Infrastructure {
 			}
 
 			byte val = (byte)(diff/pSecs);
-			return (byte?)(val-1);
+			return (byte?)(val+pOffset);
 		}
 
 	}
