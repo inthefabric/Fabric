@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.Api.Dto.Traversal;
+﻿using Fabric.Api.Dto.Traversal;
 using Fabric.Api.Traversal;
 using Fabric.Api.Traversal.Steps;
 using Fabric.Api.Traversal.Steps.Functions;

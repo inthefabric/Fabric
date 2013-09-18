@@ -3,11 +3,9 @@ using Fabric.Api.Dto.Batch;
 using Fabric.Api.Modify;
 using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Data;
 using Fabric.Test.Util;
 using NUnit.Framework;
 using ServiceStack.Text;
-using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.FabApiModify {
 
