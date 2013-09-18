@@ -1,5 +1,4 @@
 ﻿using Fabric.Api.Dto.Meta;
-using Fabric.Infrastructure;
 
 namespace Fabric.Api.Meta {
 
@@ -10,7 +9,6 @@ namespace Fabric.Api.Meta {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FillSpecValue(string pTypeName, string pPropName, FabSpecValue pValue) {
-			Log.Debug("FILL CUSTOM: "+pTypeName+"."+pPropName);
 			switch ( pTypeName+"."+pPropName ) {
 
 				case "Eventor.Year":
