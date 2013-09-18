@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/16/2013 5:01:59 PM
+// Generated on 9/18/2013 1:59:07 PM
 
 using System;
 using System.Collections.Generic;
@@ -666,12 +666,6 @@ namespace Fabric.Api.Dto.Traversal {
 				Eventor.TypeId = byte.Parse(val);
 			}
 
-			found = pData.TryGetValue("F_EvD", out val);
-			if ( found ) {
-				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.DateTime = long.Parse(val);
-			}
-
 			found = pData.TryGetValue("F_IdT", out val);
 			if ( found ) {
 				if ( Identor == null ) { Identor = new FabIdentor(); }
@@ -765,11 +759,6 @@ namespace Fabric.Api.Dto.Traversal {
 			if ( pVertex.Eventor_TypeId != null ) {
 				if ( Eventor == null ) { Eventor = new FabEventor(); }
 				Eventor.TypeId = (byte)pVertex.Eventor_TypeId;
-			}
-
-			if ( pVertex.Eventor_DateTime != null ) {
-				if ( Eventor == null ) { Eventor = new FabEventor(); }
-				Eventor.DateTime = (long)pVertex.Eventor_DateTime;
 			}
 
 			if ( pVertex.Identor_TypeId != null ) {

@@ -451,7 +451,7 @@ namespace Fabric.Domain.Meta {
 			FillVertexCentricIndexes(p);
 			
 			p = AddProp(factor, "Eventor_DateTime", "EvD", typeof(DateTime));
-			p.Min = 1;
+			p.IsInternal = true;
 			FillVertexCentricIndexes(p);
 
 			p = AddProp(factor, "Identor_TypeId", "IdT", typeof(byte));

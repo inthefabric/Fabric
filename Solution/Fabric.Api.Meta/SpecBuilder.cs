@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/16/2013 2:16:05 PM
+// Generated on 9/18/2013 1:59:09 PM
 
 using System.Collections.Generic;
 using Fabric.Api.Dto.Meta;
@@ -490,13 +490,6 @@ namespace Fabric.Api.Meta {
 					pProp.Type = "byte";
 					pProp.Description = SpecDoc.GetDtoPropText("Eventor_TypeId");
 					pProp.Enum = "EventorType";
-					break;
-
-				case "Eventor.DateTime":
-					pProp.Name = "DateTime";
-					pProp.Type = "long";
-					pProp.Description = SpecDoc.GetDtoPropText("Eventor_DateTime");
-					pProp.Enum = null;
 					break;
 
 				case "Identor.TypeId":

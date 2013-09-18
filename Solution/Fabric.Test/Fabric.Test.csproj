@@ -54,6 +54,7 @@
     <Compile Include="Common\TestVertexStep.cs" />
     <Compile Include="Common\TestFabVertex.cs" />
     <Compile Include="Common\TestStep.cs" />
+    <Compile Include="FabApiDto\TFabFactor.cs" />
     <Compile Include="FabInfra\TFabricUtil.cs" />
     <Compile Include="FabApiDto\TFabClass.cs" />
     <Compile Include="FabApiModify\TDeleteFactor.cs" />

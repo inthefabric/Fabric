@@ -1,6 +1,6 @@
 ﻿// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/16/2013 2:16:03 PM
+// Generated on 9/18/2013 1:59:07 PM
 
 using System;
 
@@ -598,7 +598,7 @@ namespace Fabric.Infrastructure.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void FactorEventor_DateTime(long pValue, string pParamName) {
-			LongGreaterThanOrEqual(pParamName, pValue, 1);
+			throw new Exception("Eventor_DateTime has no validation. Property value was "+pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
